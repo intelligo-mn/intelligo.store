@@ -55,4 +55,36 @@ class Language {
 		}
 			
 	}
+
+	public function getAll($search = null){
+		$fields = array();
+		$values = array($this->language);
+		$sql = "SELECT 'l'.'id', 'l'.'name', 'c'.'label'
+				FROM '{$this->table}' 'l'
+				LEFT JOIN '{$this->table_5}' 'c'
+					ON 'c'.'language_id' = 'l'.'id'
+				WHERE 'c'.'language' = ?";
+		if (!empty($search) && is_array($search)) {
+			$sql .= "AND (";
+				foreach ($search as $key => $value) {
+					$fields[] = 'c'.'{$key} LIKE ?';
+					$values[] = '%{$value}%';
+				}
+				$sql .= implode(" OR", $fields);
+				$sql .= ")";
+		}
+		$sql .= " ORDER BY 'l'.'name' ASC";
+		return $this->Db->getAll($sql, $values);
+
+	}
+
 }
+
+
+
+
+
+
+
+
+
