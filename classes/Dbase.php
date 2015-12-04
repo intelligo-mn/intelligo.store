@@ -115,8 +115,23 @@ class Dbase
 			return '<p>'.implode('<br />', $out).'</p>';
 		}
 	}
+
 	public function getLastInsertId($sequenceName = null){
 		return $this->_db_object->lastInsertId($sequenceName);
+	}
+
+	public function getAll($sql = null, $params = null){
+		if (!empty($sql)) {
+			$statement = $this->query($sql, $params);
+			return $statement->fetchAll(PDO::FETCH_ASSOC);
+		}
+	}
+
+	public function getOne($sql = null, $params = null){
+		if (!empty($sql)) {
+			$statement = $this->query($sql, $params);
+			return $statement->fetch(PDO::FETCH_ASSOC);
+		}
 	}
 }
 
