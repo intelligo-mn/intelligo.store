@@ -24,6 +24,35 @@ class Language {
 	}
 
 	public function getLabels(){
-		
+
+		$sql = "SELECT 'l'.'id', 'c'.'content'
+				FROM '{$this->table_2}' 'l'
+				LEFT JOIN '{$this->table_3}' 'c'
+					ON 'c'.'label' = 'l'.'id'
+				WHERE 'c'.'language' = ?
+				ORDER BY 'l'.'name' ASC";
+
+		$labels = $this->Db->getAll($sql, $this->language);
+		if (empty($labels)) {
+			# code...
+			setcookie('lang',1, time() + 31536000, '/');
+			$this->language = 1;
+
+			$sql = "SELECT 'l'.'id', 'c'.'content'
+					FROM '{$this->table_2}' 'l'
+					LEFT JOIN '{$this->table_3}' 'c'
+						ON 'c'.'label' = 'l'.'id'
+					WHERE 'c'.'language' = ?
+					ORDER BY 'l'.'name' ASC";
+
+			$labels = $this->Db->getAll($sql, $this->language);
+		}
+		if (!empty($labels)) {
+			# code...
+			foreach ($labels as $row) {
+				$this->labels[$row['id']] = $row['content'];
+			}
+		}
+			
 	}
 }
