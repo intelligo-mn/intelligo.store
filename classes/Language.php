@@ -14,12 +14,16 @@ class Language {
 	private $Db;
 
 	public $labels = array();
-	
+
 	public function __construct(){
 		if (!empty($_COOKIE['lang'])) {
 			$this->language = $_COOKIE['lang'];
 		}
 		$this->Db = new Dbase();
 		$this->getLabels();
+	}
+
+	public function getLabels(){
+		
 	}
 }
