@@ -133,6 +133,29 @@ class Dbase
 			return $statement->fetch(PDO::FETCH_ASSOC);
 		}
 	}
+
+	public function execute($sql = null, $params = null){
+		if (!empty($sql)) {
+			# code...
+			$statement = $this->query($sql, $params);
+			$this->_affected_rows = $statement->rowCount();
+			return true;
+		}
+		return false;
+	}
+
+	public function insert($sql = null, $params = null){
+		if (!empty($sql)) {
+			# code...
+			if ($this->execute($sql, $params)) {
+				# code...
+				$this->_id = $this->getLastInsertId();
+				return true;
+			}
+			return false;
+		}
+	}
+
 }
 
 
