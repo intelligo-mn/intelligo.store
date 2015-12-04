@@ -73,6 +73,36 @@ class Url{
 		}
 	}
 
+	public function splitRaw($item = null){
+		if (!empty($item) && !is_array($item)) {
+			$itemRaw = explode('=', $item);
+			if (count($itemRaw) > 1 && Helper::isEmpty($itemRaw[1])) {
+				$this->paramsRaw[$itemRaw[0]] = $itemRaw[1];
+			}
+		}
+	}
+
+	public function getRaw($param = null){
+		if (!empty($param) && array_key_exists($param, $this->paramsRaw)) {
+			return $this->paramsRaw[$param];
+		}
+	}
+
+	public function get($param = null){
+		if (!empty($param) && array_key_exists($param, $this->params)) {
+			return $this->params[$param]
+		}
+	}
+
+	public function href($main = null, $params = null){
+		if (!empty($main)) {
+			$out = array($main);
+			if (!empty(var)) {
+				# code...
+			}
+		}
+	}
+
 	public static clearString($string = null, $array = null){
 		if (!empty($string) && !self::isEmpty($array)) {
 			$array = self::makeArray($array);
