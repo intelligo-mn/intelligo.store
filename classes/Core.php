@@ -59,5 +59,4 @@ class Core
 				break;
 		}
 	}
-
 }

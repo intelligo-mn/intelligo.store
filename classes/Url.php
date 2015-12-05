@@ -97,10 +97,41 @@ class Url{
 	public function href($main = null, $params = null){
 		if (!empty($main)) {
 			$out = array($main);
-			if (!empty(var)) {
-				# code...
+			if (!empty($params) && is_array($params)) {
+				foreach ($params as $key => $value) {
+					$out[] = $value;
+				}
+			}
+			return '/'.implode('/', $out).PAGE_EXT;
+		}
+	}
+
+	public function getCurrent($exclude = null, $extention = false){
+		$out = array();		
+		if ($this->modul != 'front') {
+			$out[] = $this->module;
+		}
+		$out[] = $this->main;
+		if (!empty($this->params)) {
+			if (!empty($exclude)) {
+				$exclude = Helper::makeArray($exclude);
+				foreach ($this->params as $key => $value) {
+					if (!in_array($key, $exclude)) {
+						$out[] = $key;
+						$out[] = $value;
+					}
+				}
+			}
+			else {
+				foreach ($this->params as $key => $value) {
+					$out[] = $key;
+					$out[] = $value;
+				}
 			}
 		}
+		$url = '/'.implode('/', $out);
+		$url .= $extention ? PAGE_EXT : null;
+		return $url;
 	}
 
 	public static clearString($string = null, $array = null){
