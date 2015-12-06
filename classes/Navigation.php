@@ -49,4 +49,35 @@ class Navigation {
 			}
 		}
 	}
+
+	public function getAllTypes(){
+		$sql = "SELECT *
+				FROM '{$this->table_5}'
+				WHERE 'language' = ?
+				ORDER BY 'navigation' ASC";
+		return $this->Db->getAll($sql, $this->objLanguage->Language);
+	}
+
+	public function getRecords($case = null){
+		if (!empty($case)) {
+			$sql = "SELECT 'n'.*, 't'.'label', 'p'.'identity', 'c'.'name'
+					FROM '{$this->table}' 'n'
+					JOIN '{$this->table_5}' 't'
+						ON 't'.'navigation' = 'n'.'type'
+					JOIN '{$this->table_3}' 'p'
+						ON 'p'.'id' = 'n'.'page'
+					JOIN '{$this->table_4}' 'c'
+						ON 'c'.'page' = 'n'.'page'
+					WHERE 'n'.'type' = ?
+					AND 'c'.'language' = ?
+					AND 't'.'language' = ?
+					ORDER BY 'n'.'order' ASC";
+			return $this->Db->getAll($sql, array($case, $this->objLanguage->Language, $this->objLanguage->Language));
+		}
+	}
 }
+
+
+
+
+
