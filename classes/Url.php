@@ -50,7 +50,7 @@ class Url{
 				}
 				$this->main = $first;
 				$this->cpage = $this->main;
-				if (count($uri) > 1) {
+				if (count($uri) > 1) {                                                        
 					$paris = array();
 					foreach ($uri as $key => $value) {
 						$pairs[] = $value;
