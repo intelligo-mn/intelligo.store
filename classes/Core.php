@@ -62,6 +62,26 @@ class Core
 	public function runFront(){
 		$this->parseNavigation();
 		$this->parseColumn();
+
+		if (array_key_exists($this->objUrl->cpage, Router::$_modules)) {
+			$file = ROOT_PATH.DS.'mod'.DS.Router::$_modules[$this->objUrl->cpage].'.php';
+			if (is_file($file)) {
+				ob_start();
+				require_once($file);
+				echo ob_get_clean();
+			} else {
+				$objPage = new Page($this->objLanguage);
+				$page = $objPage->getError();
+				$this->parsePage($page);
+				ob_start();
+				require_once('header.php');
+				echo $this->content;
+				require_once('footer.php');
+				echo ob_get_clean();
+			}
+		} else {
+
+		}
 	}
 	public function parseNavigation(){
 		$this->navigation_1 = $this->objNavigation->get(1);
