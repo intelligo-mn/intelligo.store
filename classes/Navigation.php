@@ -75,6 +75,59 @@ class Navigation {
 			return $this->Db->getAll($sql, array($case, $this->objLanguage->Language, $this->objLanguage->Language));
 		}
 	}
+	public function get($case = null){
+		if (!empty($case)) {
+			$list = $this->getRecords($case);
+			if ($empty($list)) {
+				$out = array();
+				switch ($case) {
+					case 1:
+						foreach ($list as $row) {
+							$item = '<li';
+							$item .= $this->active($row['identity']);
+							$item .= '><a href="';
+							$item .= $this->objUrl->href($row['identity']);
+							$item .= '" title="';
+							$item .= $row['name'];
+							$item .= '">';
+							$item .= $row['name'];
+							$item .= '</a></li>';
+							$out[] = $item;
+						}
+						$out = '<ul id="navigation">'.implode('', $out).'</ul>';
+						break;
+					case 2:
+						$i = 1;
+						foreach ($list as $row) {
+							$item = '<li';
+							if ($i == count($list)) {
+								$item .= ' class="last';
+								$item .= $this->active($row['identity'],null, false);
+								$item .= '"';
+							} else {
+								$item .= $this->active($row['identity']);
+							}
+							$item .= '><a href="';
+							$item .= $this->objUrl->href($row['identity']);
+							$item .= '" title="';
+							$item .= $row['name'];
+							$item .= '">';
+							$item .= $row['name'];
+							$item .= '</a></li>';
+							$out[] = $item;
+							$i++;
+						}
+						$out = '<ul id="navigation-left">'.implode('', $out).'</ul>';
+						break;
+
+					
+					default:
+						# code...
+						break;
+				}
+			}
+		}
+	}
 }
 
 
