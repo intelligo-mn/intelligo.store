@@ -159,6 +159,23 @@ class Navigation {
 			return $this->Db->getOne($sql, $type);
 		}
 	}
+	public function add($type = null, $page = null){
+		if (!empty($type) && !empty($page)) {
+			$last = $this->getLast($type);
+			$order = !empty($last) ? $last['order'] + 1 : 1;
+			$sql = "INSERT INTO '{$this->table}'
+					('type','page','order')
+					VALUES (?, ?, ?)";
+			return $this->Db->insert($sql, array($type, $page, $order));
+		}
+	}
+	public function remove($id = null){
+		if (!empty($id)) {
+			$sql = "DELETE FROM '{$this->table}'
+					WHERE 'id' = ?";
+			return $this->Db->execute($sql, $id);
+		}
+	}
 }
 
 
