@@ -141,6 +141,24 @@ class Navigation {
 			}
 		}
 	}
+	public function updateOrder($id = null, $order = null){
+		if (!empty($id) && !empty($order)) {
+			$sql = "UPDATE '{$this->table}'
+					SET 'order' = ?
+					WHERE 'id' = ?";
+			return $this->Db->execute($sql, array($order, $id));
+		}
+	}
+	public function getLast($type = null){
+		if (!empty($type)) {
+			$sql = "SELECT *
+					FROM '{$this->table}'
+					WHERE 'type' = ?
+					ORDER BY 'order' DESC
+					LIMIT 0, 1";
+			return $this->Db->getOne($sql, $type);
+		}
+	}
 }
 
 
