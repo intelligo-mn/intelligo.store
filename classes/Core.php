@@ -59,4 +59,45 @@ class Core
 				break;
 		}
 	}
+	public function runFront(){
+		$this->parseNavigation();
+		$this->parseColumn();
+	}
+	public function parseNavigation(){
+		$this->navigation_1 = $this->objNavigation->get(1);
+		$this->navigation_2 = $this->objNavigation->get(2);
+		$this->navigation_3 = $this->objNavigation->get(3);
+	}
+	public function parseColumn(){
+		$array = array(
+			'<img src="/media/images/new-radicals.jpg" alt="New radical"
+				width="250" height="166" style="float:left;margin-bottom:17px;" />', 
+			'<img src="/media/images/red-hot-chili-peppers.jpg" alt="Red Hot Chili Peppers"
+				width="250" height="163" style="float:left;margin-bottom:17px;" />', 
+			'<img src="/media/images/blur.jpg" alt="Blur"
+				width="250" height="132" style="float:left;margin-bottom:17px;" />', 
+			'<img src="/media/images/henry-rollins.jpg" alt="Henry rollins"
+				width="250" height="167" style="float:left;margin-bottom:17px;" />', 
+		);
+		$keys = array_rand($array, 3);
+		$this->column = $array[$keys[0]].$array[$keys[1]].$array[$keys[2]];
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
