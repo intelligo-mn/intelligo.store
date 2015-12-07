@@ -80,7 +80,17 @@ class Core
 				echo ob_get_clean();
 			}
 		} else {
-
+			$objPage = new Page($this->objLanguage);
+			$page = $objPage->getByIdentity($this->objUrl->cpage);
+			if (empty($page)) {
+				$page = $objPage->getError();
+			}
+			$this->parsePage($page);
+			ob_start();
+			require_once('header.php');
+			echo $this->content;
+			require_once('footer.php');
+			echo ob_get_clean();
 		}
 	}
 	public function parseNavigation(){
