@@ -93,6 +93,14 @@ class Core
 			echo ob_get_clean();
 		}
 	}
+	public function parsePage($page = null){
+		if (!empty($page) && is_array($page)) {
+			$this->meta_title = $page['meta_title'];
+			$this->meta_description = $page['meta_description'];
+			$this->meta_keywords = $page['meta_keywords'];
+			$this->content = $page['content'];
+		}
+	}
 	public function parseNavigation(){
 		$this->navigation_1 = $this->objNavigation->get(1);
 		$this->navigation_2 = $this->objNavigation->get(2);
