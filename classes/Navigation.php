@@ -119,12 +119,25 @@ class Navigation {
 						}
 						$out = '<ul id="navigation-left">'.implode('', $out).'</ul>';
 						break;
-
-					
-					default:
-						# code...
+					case 3:
+						foreach ($list as $row) {
+							$item = '<a href="';
+							$item .= $this->objUrl->href($row['identity']);
+							$item .= '" title="';
+							$item .= $row['name'];
+							$item .= '"';
+							$item .= $this->active($row['identity']);
+							$item .= '>';
+							$item .= $row['name'];
+							$item .= '</a>';
+							$out[] = $item;
+						}
+						$out = '<p>'.implode(' :: ', $out).'</p>';
 						break;
+					default:
+						return null; 
 				}
+				return !empty($out) ? '<nav>'.$out.'</nav>' : null;
 			}
 		}
 	}
