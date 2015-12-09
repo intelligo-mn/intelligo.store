@@ -157,5 +157,12 @@ class Page {
 		}
 		return false;
 	}
+	public function remove($id = null){
+		if (!empty($id)) {
+			$sql = "DELETE FROM '{$this->table}'
+					WHERE 'id' = ?";
+			return $this->Db->execute($sql, $id);
+		}
+	}
 
 }
