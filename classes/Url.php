@@ -20,12 +20,13 @@ class Url{
 		$uri = $_SERVER['REQUIST_URI'];
 		if (!empty($uri)) {
 			$uriQ = explode('?', $uri);
+			$uri = $uriQ[0];
 			if (count($uriQ) > 1) {
 				$this->stringRaw = $uriQ[1];
 				$uri = $uriQ[0];
 				$uriRaw = explode('&', $uriQ[1]);
 				if (count($uriRaw) > 1) {
-					foreach ($uriRaw as $key => $value) {
+					foreach ($uriRaw as $key => $row) {
 						$this->splitRaw($row);
 					}
 				} else {
