@@ -10,7 +10,7 @@ class Dbase
 	private $_db_password = '';
 
 	private $_db_object = null;
-	private $_db_driver_option = array();
+	private $_db_driver_options = array();
 
 	public $_last_statement;
 	public $_affected_rows;
@@ -50,7 +50,7 @@ class Dbase
 
 	public function setDriverOptions($options = null){
 		if (!empty($options)) {
-			$this->_driver_option = $options;
+			$this->_driver_options = $options;
 		}
 	}
 
@@ -79,12 +79,12 @@ class Dbase
 	public function formatException($exception = null){
 		if(is_object($exception)){
 			$out = array();
-			$out[] = '<strong>Message:<strong> '.$exception->getMessage();
-			$out[] = '<strong>Code:<strong> '.$exception->getCode();
-			$out[] = '<strong>File:<strong> '.$exception->getFile();
-			$out[] = '<strong>Line:<strong> '.$exception->getLine();
-			$out[] = '<strong>Trace:<strong> '.$exception->getTraceAsString();
-			$out[] = '<strong>Last statement:<strong> '.$this->_last_statement;
+			$out[] = '<strong>Message:</strong> '.$exception->getMessage();
+			$out[] = '<strong>Code:</strong> '.$exception->getCode();
+			$out[] = '<strong>File:</strong> '.$exception->getFile();
+			$out[] = '<strong>Line:</strong> '.$exception->getLine();
+			$out[] = '<strong>Trace:</strong> '.$exception->getTraceAsString();
+			$out[] = '<strong>Last statement:</strong> '.$this->_last_statement;
 			return '<p>'.implode('<br />', $out).'</p>';
 		}
 	}
