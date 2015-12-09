@@ -24,4 +24,9 @@ class Helper
 			return $string;
 		}
 	}
+
+	public static isEmpty($value = null)
+	{
+		return empty($value) && !is_numeric($value) ? true : false;
+	}
 }
