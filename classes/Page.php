@@ -94,4 +94,23 @@ class Page {
 		return true;
 	}
 
+	public function update($array = null, $id = null){
+		if (!empty($array)) {
+			$sql = "START TRANSACTION;";
+			$sql .= "UPDATE '{$this->table}'
+					SET 'identity' = ?
+					WHERE 'id' = ?;";
+			$sql .= "UPDATE '{$this->table_2}'
+					SET 'name' = ?,
+					'content' = ?,
+					'meta_title' = ?,
+					'meta_description' = ?,
+					'meta_keywords' = ?
+					WHERE 'page' = ?
+					AND 'language' = ?;";
+			$sql .= "COMMIT;";
+			return();
+		}
+	}
+
 }
