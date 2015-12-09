@@ -15,7 +15,7 @@ class Helper
 			}
 		}
 	}
-	public function clearString($string = null, $array = null){
+	public static function clearString($string = null, $array = null){
 		if (!empty($string) && !self::isEmpty($array)) {
 			$array = self::makeArray($array);
 			foreach ($array as $key => $value) {
@@ -25,7 +25,7 @@ class Helper
 		}
 	}
 
-	public static isEmpty($value = null)
+	public static function isEmpty($value = null)
 	{
 		return empty($value) && !is_numeric($value) ? true : false;
 	}

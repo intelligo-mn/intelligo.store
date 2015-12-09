@@ -48,7 +48,7 @@ class Dbase
 		}
 	}
 
-	public function setDriverOption($options = null){
+	public function setDriverOptions($options = null){
 		if (!empty($options)) {
 			$this->_driver_option = $options;
 		}
