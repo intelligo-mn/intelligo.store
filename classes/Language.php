@@ -65,10 +65,10 @@ class Language {
 		if (!empty($search) && is_array($search)) {
 			$sql .= "AND (";
 				foreach ($search as $key => $value) {
-					$fields[] = 'c'.'{$key} LIKE ?';
+					$fields[] = "'c'.'{$key}' LIKE ?";
 					$values[] = '%{$value}%';
 				}
-				$sql .= implode(" OR", $fields);
+				$sql .= implode(" OR ", $fields);
 				$sql .= ")";
 		}
 		$sql .= " ORDER BY 'l'.'name' ASC";
