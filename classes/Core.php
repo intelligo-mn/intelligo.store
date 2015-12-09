@@ -35,7 +35,7 @@ class Core
 		$this->lang_menu = Helper::getPlug(
 			'language',
 			array('objLanguage' => $this->objLanguage)
-		)
+		);
 
 		$this->objUrl = new Url();
 		$this->objNavigation = new Navigation($this->objUrl,$this->objLanguage);
