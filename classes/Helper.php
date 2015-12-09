@@ -15,4 +15,13 @@ class Helper
 			}
 		}
 	}
+	public function clearString($string = null, $array = null){
+		if (!empty($string) && !self::isEmpty($array)) {
+			$array = self::makeArray($array);
+			foreach ($array as $key => $value) {
+				$string = str_replace($value, '', $string);
+			}
+			return $string;
+		}
+	}
 }
