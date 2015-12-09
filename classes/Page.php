@@ -20,7 +20,7 @@ class Page {
 	public function getAll($search = null){
 		$fields = array();
 		$values = array($this->objLanguage->language);
-		$sql = "SELECT 'p','id','p'.'identity', 'c'.'name',
+		$sql = "SELECT 'p'.'id','p'.'identity', 'c'.'name',
 				'c'.'content','c'.'meta_title',
 				'c'.'meta_description', 'c'.'meta_keywords'
 				FROM '{$this->table}' 'p'
@@ -40,7 +40,7 @@ class Page {
 	}
 
 	public function getOne($id = null){
-		$sql = "SELECT 'p','id','p'.'identity', 'c'.'name',
+		$sql = "SELECT 'p'.'id','p'.'identity', 'c'.'name',
 				'c'.'content','c'.'meta_title',
 				'c'.'meta_description', 'c'.'meta_keywords'
 				FROM '{$this->table}' 'p'
@@ -57,7 +57,7 @@ class Page {
 	}
 
 	public function getByIdentity($identity = null){
-		$sql = "SELECT 'p','id','p'.'identity', 'c'.'name',
+		$sql = "SELECT 'p'.'id','p'.'identity', 'c'.'name',
 				'c'.'content','c'.'meta_title',
 				'c'.'meta_description', 'c'.'meta_keywords'
 				FROM '{$this->table}' 'p'
@@ -68,7 +68,7 @@ class Page {
 		
 		$page = $this->Db->getOne($sql, array($this->objLanguage->language, $identity));
 		if (empty($page)) {
-			$page = $this->Db->getOne($sql, array(1, $identity));	
+			$page = $this->Db->getOne($sql, array($this->language, $identity));	
 		}
 		return $page;
 	}	
