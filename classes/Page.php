@@ -109,8 +109,53 @@ class Page {
 					WHERE 'page' = ?
 					AND 'language' = ?;";
 			$sql .= "COMMIT;";
-			return();
+			return $this->Db->execute($sql, array(
+				$array['identity'],
+				$id,
+				$array['name'],
+				$array['content'],
+				$array['meta_title'],
+				$array['meta_description'],
+				$array['meta_keywords'],
+				$id,
+				$this->objLanguage->language		
+			));
 		}
+	}
+	public function add($array = null){
+		if (!empty($array)) {
+			$languages = $this->objLanguage->getAll();
+			if (!empty($languages)) {
+				$sql = "INSERT INTO '{$this->table}'
+						('title', 'identity') VALUES (?, ?)";
+				if ($this->db->insert($sql, array($array['name'], $array['identity']))) {
+					$id = $this->Db->_id;
+					$values = array();
+					$sql = "START TRANSACTION;";
+					foreach ($language as $row) {
+						$sql .= "INSERT INTO '{$this->table_2}'
+								(
+									'page', 'language', 'name','content',
+									'meta_title', 'meta_description',
+									'meta_keywords'
+								)
+								VALUES (?, ?, ?, ?, ?, ?, ?)";
+						$values[] = $id;
+						$values[] = $row['id'];
+						$values[] = $array['name'];
+						$values[] = $array['content'];
+						$values[] = $array['meta_title'];
+						$values[] = $array['meta_description'];
+						$values[] = $array['meta_keywords'];
+ 					}
+ 					$sql = "COMMIT;";
+ 					return $this->Db->execute($sql, $values);
+				}
+				return false;
+			}
+			return false;
+		}
+		return false;
 	}
 
 }
