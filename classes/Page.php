@@ -49,9 +49,9 @@ class Page {
 				WHERE 'c'.'language' = ?
 				AND 'p'.'id' = ?";
 		
-		$page = $this->Db->getAll($sql, array($this->objLanguage->language, $id));
+		$page = $this->Db->getOne($sql, array($this->objLanguage->language, $id));
 		if (empty($page)) {
-			$page = $this->Db->getOne($sql, array(1, $id));	
+			$page = $this->Db->getOne($sql, array($this->language, $id));	
 		}
 		return $page;
 	}
@@ -66,11 +66,15 @@ class Page {
 				WHERE 'c'.'language' = ?
 				AND 'p'.'identity' = ?";
 		
-		$page = $this->Db->getAll($sql, array($this->objLanguage->language, $identity));
+		$page = $this->Db->getOne($sql, array($this->objLanguage->language, $identity));
 		if (empty($page)) {
 			$page = $this->Db->getOne($sql, array(1, $identity));	
 		}
 		return $page;
 	}	
+;
+	public function getError(){
+		return $this->getOne($this->error_page_id)
+	}
 
 }
