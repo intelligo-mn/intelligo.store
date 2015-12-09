@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>My Business</title>
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	<title><?php echo $this->meta_title; ?></title>
+	<meta name="description" content="<?php echo $this->meta_description; ?>" />
+	<meta name="keywords" content="<?php echo $this->meta_keywords; ?>" />
 	<link href="/css/core.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -14,27 +14,27 @@
 <div id="pre-header">
 	<div id="pre-header-container">
 		<div id="logo">
-			<a href="/">Toroo CMS</a>
+			<a href="/">My Business</a>
 		</div>
-		<!-- language menu -->
+		<?php echo $this->lang_menu; ?>
 	</div>
 </div>
 <div id="wrapper">
 <header>
-	<div id="header" style="background-image:url(/images/headers/)">
+	<div id="header" style="background-image:url(/images/headers/<?php echo $this->objLanguage->labels[3]; ?>)">
 		
 	</div>
-	<!-- navigation 1 -->
+	<?php echo $this->navigation_1; ?>
 </header>
 <div id="container">
 	<section>
 		<div id="left">
 			
 			<div class="column-item">
-				<!-- navigation 2 -->			
+				<?php echo $this->navigation_2; ?>			
 			</div>
 			
-			<!-- column content -->
+			<?php echo $this->column; ?>
 			
 		</div>
 	</section>
