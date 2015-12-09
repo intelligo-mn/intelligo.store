@@ -6,8 +6,8 @@ if (!empty($data['objLanguage'])) {
 <form method="post">
 	<select name="language" id="language">
 		<?php foreach ($languages as $row) {?>
-			<option value="<?php echo $row['id'];?>">
-				<?php echo $row['id'] == $data['objLanguage']->language ? 'selected="selected"' : null;?>
+			<option value="<?php echo $row['id'];?>"
+				<?php echo $row['id'] == $data['objLanguage']->language ? 'selected="selected"' : null;?>>
 				<?php echo $row['Label'];?>
 			</option>
 		<?php }?>
