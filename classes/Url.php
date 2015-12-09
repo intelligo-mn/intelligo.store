@@ -91,7 +91,7 @@ class Url{
 
 	public function get($param = null){
 		if (!empty($param) && array_key_exists($param, $this->params)) {
-			return $this->params[$param]
+			return $this->params[$param];
 		}
 	}
 
