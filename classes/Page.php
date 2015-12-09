@@ -72,9 +72,26 @@ class Page {
 		}
 		return $page;
 	}	
-;
+
 	public function getError(){
 		return $this->getOne($this->error_page_id)
+	}
+
+	public function duplicate($identity = null, $id = null){
+		if (!Helper::isEmpty($identity)) {
+			$array = array($identity);
+			$sql = "SELECT *
+					FROM '{$this->table}'
+					WHERE 'identity' = ?";
+			if (!empty($id)) {
+				$sql .= " AND 'id' != ?";
+				$array[] $id;
+			}
+			$sql .= " LIMIT 0, 1";
+			$result = $this->Db->getOne($sql, $array);
+			return !empty($result) ? true : false;
+		}
+		return true;
 	}
 
 }
