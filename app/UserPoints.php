@@ -3,9 +3,9 @@
 namespace app;
 
 /*
- * Antvel - User Points Model
+ * Modu - UserPoints Model
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use Illuminate\Database\Eloquent\Model;
