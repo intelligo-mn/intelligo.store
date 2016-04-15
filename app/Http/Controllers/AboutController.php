@@ -3,9 +3,9 @@
 namespace app\Http\Controllers;
 
 /*
- * Antvel - Company CMS Controller
+ * Modu - About Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Company;
