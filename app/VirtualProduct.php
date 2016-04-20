@@ -3,9 +3,9 @@
 namespace app;
 
 /*
- * Antvel - Virtual Products Model
+ * Modu - VirtualProduct Model
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Eloquent\Model;
