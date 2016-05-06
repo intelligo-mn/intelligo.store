@@ -3,9 +3,9 @@
 namespace app\Http\Controllers;
 
 /*
- * Antvel - Logs Controller
+ * Modu - Log Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Http\Controllers\Controller;
