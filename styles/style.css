@@ -25,40 +25,32 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+	background-color: skyblue;
 }
 
-/* remember to define visible focus styles! 
-:focus {
-	outline: ?????;
-} */
-
-/* remember to highlight inserts somehow! */
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-.container {
+.main {
 	width: 1000px;
+	height: auto;
 	margin: auto;
 	}
+	.home-header {
+		width: 1000px;
+		height: 150px;
+	}
 
+	.home-menu {
+
+	}
+
+	.home-sidebar {
+
+	}
+
+	.home-content {
+
+	}
+
+	.home-footer {
+
+	}
 	
