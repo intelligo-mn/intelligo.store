@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE>
+<?php 
+		include ("functions/function.php");
+?>
+
 <html>
 <head>
 	<title>Modu</title>
@@ -12,7 +16,14 @@
 	
 		<div class="home-menu">menubar</div>
 	
-		<div class="home-sidebar">sidebar</div>
+		<div class="home-sidebar">
+
+			<div></div>
+			<ul>
+				<?php getCategory(); ?>
+
+			</ul>
+		</div>
 	
 		<div class="home-content">content</div>
 	
