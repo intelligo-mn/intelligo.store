@@ -6,18 +6,38 @@ function getCategory (){
 
 	global $con;
 
-	$getCats = "select * from category";
+	$get_cats = "select * from category";
 
-	$runCats = mysqli_query($con, $getCats);
+	$run_cats = mysqli_query($con, $get_cats);
 
-	while ($rowCats=mysqli_fetch_array($runCats)) {
+	while ($row_cats=mysqli_fetch_array($run_cats)) {
 		
-		$catId = $rowCats['cat_id'];
-		$catTitle = $rowCats['cat_title'];
+		$cat_id = $row_cats['cat_id'];
+		$cat_title = $row_cats['cat_title'];
 
-		echo "<li><a href='#'>$catTitle</a></li>";
+		echo "<li><a href='#'>$cat_title</a></li>";
 
 	}
+
+}
+
+function getBrand (){
+
+	global $con;
+
+	$get_brands = "select * from brands";
+
+	$run_brands = mysqli_query($con, $get_brands);
+
+	while ($row_brands=mysqli_fetch_array($run_brands)) {
+		
+		$brand_id = $row_brands['brand_id'];
+		$brand_title = $row_brands['brand_title'];
+
+		echo "<li><a href='#'>$brand_title</a></li>";
+
+	}
+
 }
 
 
