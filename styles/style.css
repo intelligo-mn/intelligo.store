@@ -39,18 +39,28 @@ body {
 	}
 
 	.home-menu {
+		width: 1000px;
+		height: 40px;
+		border-bottom: 1px solid black;
 
 	}
 
 	.home-sidebar {
-
+		width: 100px;
+		height: 800px;
+		float: left;
+		border-right: 1px solid black;
 	}
 
 	.home-content {
-
+		width: 800px;
+		height: 800px;
+		float: left;
 	}
 
 	.home-footer {
-
+		width: 1000px;
+		height: 150px;
+		float: left;
 	}
 	
