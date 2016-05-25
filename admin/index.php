@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -41,5 +42,15 @@
 </footer>
 </div>
 <script src="/js/jquery-1.6.4.min.js"></script>
+=======
+<html>
+<head>
+	<title>403 Forbidden</title>
+</head>
+<body>
+
+<p>Directory access is forbidden.</p>
+
+>>>>>>> 245cc6e2ba34ea85f6bbc53cc6ba292ddaf7a34d
 </body>
 </html>
