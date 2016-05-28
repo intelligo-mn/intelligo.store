@@ -24,10 +24,17 @@
 	
 		<div class="home-sidebar">
 
-			<div></div>
+			<div>Category</div>
 			<ul>
 				<?php 
 					getCategory(); 
+				?>
+
+			</ul>
+			<div>Brand</div>
+			<ul>
+				<?php 
+					getBrand(); 
 				?>
 
 			</ul>
@@ -37,6 +44,7 @@
 			
 			<?php
 				getProduct();
+				getCatProduct();
 			?>	
 		</div>
 	
