@@ -16,9 +16,7 @@
 		<div class="home-header">header</div>
 	
 		<div class="home-menu">
-			<ul>
-				<li><a href="https://modu-tortuvshin.c9users.io/admin/add.php">Бараа нэмэх</a></li>
-			</ul>	
+			<?php include ("templates/front/header.php");?>	
 		</div>
 	
 		<div class="home-sidebar">
