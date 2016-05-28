@@ -1,14 +1,14 @@
 <?php
 
-include ("connect.php");
+include ("/database/db_connect.php");
 
 function getCategory (){
 
-	global $db;
+	$db = new Database();
 
 	$get_cats = "select * from category";
 
-	$run_cats = mysqli_query($db, $get_cats);
+	$run_cats = mysqli_query($get_cats);
 
 	while ($row_cats=mysqli_fetch_array($run_cats)) {
 		
@@ -23,7 +23,7 @@ function getCategory (){
 
 function getBrand (){
 
-	global $db;
+	$db = new Database();
 
 	$get_brands = "select * from brands";
 
