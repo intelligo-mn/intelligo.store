@@ -16,4 +16,5 @@
     echo "<script>console.log('Connected successfully');</script>";
     mysqli_set_charset($db,"utf8");
     
+    
 ?>
