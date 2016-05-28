@@ -28,8 +28,7 @@ function cart () {
         
         $check_pro = "select * from cart where user_ip='$ip' and pro_id='$pro_id'"
         
-        if(mysqli_num_rows($)) {
-            
+        if(mysqli_num_rows($check_pro)) {
             
         }
     }
