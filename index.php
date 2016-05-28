@@ -45,6 +45,7 @@
 			<?php
 				getProduct();
 				getCatProduct();
+				getBrandProduct();
 			?>	
 		</div>
 	
