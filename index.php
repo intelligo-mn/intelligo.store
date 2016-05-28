@@ -1,7 +1,8 @@
 <!DOCTYPE>
 <?php 
-header('Content-Type: text/html; charset=utf-8');
-		include ("functions/function.php");
+	header('Content-Type: text/html; charset=utf-8');
+	include ("functions/function.php");
+	include ("functions/product.php");
 ?>
 
 <html>
@@ -25,12 +26,19 @@ header('Content-Type: text/html; charset=utf-8');
 
 			<div></div>
 			<ul>
-				<?php getCategory(); ?>
+				<?php 
+					getCategory(); 
+				?>
 
 			</ul>
 		</div>
 	
-		<div class="home-content">content</div>
+		<div class="home-content">
+			
+			<?php
+				getProduct();
+			?>	
+		</div>
 	
 		<div class="home-footer">footer</div>
 	
