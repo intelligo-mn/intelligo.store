@@ -6,6 +6,7 @@
 <html>
 <head>
 	<title>Modu</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>

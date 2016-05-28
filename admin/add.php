@@ -5,10 +5,10 @@
 
 <html>
 <head>
-
+	<meta charset="UTF-8">
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 	<script>tinymce.init({ selector:'textarea' });</script>
-	<title> </title>
+	<title>Modu</title>
 </head>
 <body>
 	<form action="add.php" method="post" enctype="multipart/form-data">		
