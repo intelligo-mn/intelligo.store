@@ -1,14 +1,14 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "", "modu");
+include ("connect.php");
 
 function getCategory (){
 
-	global $con;
+	global $db;
 
 	$get_cats = "select * from category";
 
-	$run_cats = mysqli_query($con, $get_cats);
+	$run_cats = mysqli_query($db, $get_cats);
 
 	while ($row_cats=mysqli_fetch_array($run_cats)) {
 		
@@ -23,11 +23,11 @@ function getCategory (){
 
 function getBrand (){
 
-	global $con;
+	global $db;
 
 	$get_brands = "select * from brands";
 
-	$run_brands = mysqli_query($con, $get_brands);
+	$run_brands = mysqli_query($db, $get_brands);
 
 	while ($row_brands=mysqli_fetch_array($run_brands)) {
 		
