@@ -14,7 +14,11 @@
 
 		<div class="home-header">header</div>
 	
-		<div class="home-menu">menubar</div>
+		<div class="home-menu">
+			<ul>
+				<li><a href="https://modu-tortuvshin.c9users.io/admin/add.php">Бараа нэмэх</a></li>
+			</ul>	
+		</div>
 	
 		<div class="home-sidebar">
 

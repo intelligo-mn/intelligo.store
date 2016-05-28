@@ -29,7 +29,7 @@
 
 							$get_cats = "select * from category";
 
-							$run_cats = mysqli_query($con, $get_cats);
+							$run_cats = mysqli_query($db, $get_cats);
 
 							while ($row_cats=mysqli_fetch_array($run_cats)) {
 								
@@ -52,7 +52,7 @@
 
 							$get_brands = "select * from brands";
 
-							$run_brands = mysqli_query($con, $get_brands);
+							$run_brands = mysqli_query($db, $get_brands);
 
 							while ($row_brands=mysqli_fetch_array($run_brands)) {
 								
@@ -110,7 +110,7 @@
 		(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) values
 		('$product_cat', '$product_brand', $product_title, '$product_price', '$product_desc', '$product_image', '$product_keywords')";
 	
-		$insert_pro = mysqli_query($con, $insert_product);
+		$insert_pro = mysqli_query($db, $insert_product);
 
 		if ($insert_pro) {
 			echo "<script>alert('Амжилттай нэмлээ');</script>";
