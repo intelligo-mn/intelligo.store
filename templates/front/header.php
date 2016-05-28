@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <?php
+
 	include ("functions/menu.php");
 ?>
-
-<meta charset="UTF-8">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <header>
 	<ul class = "menu">
 		<?php getMenu(); ?>

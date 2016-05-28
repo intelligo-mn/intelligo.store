@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <?php 
+header('Content-Type: text/html; charset=utf-8');
 		include ("functions/function.php");
 ?>
 
@@ -7,6 +8,7 @@
 <head>
 	<title>Modu</title>
 	<meta charset="UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>

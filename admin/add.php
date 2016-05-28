@@ -18,12 +18,12 @@
 			</tr>
 			<tr>
 				<td>Барааны нэр:</td>
-				<td><input type="text" name="product_title"/></td>
+				<td><input type="text" name="product_title" required/></td>
 			</tr>
 			<tr>
 				<td>Барааны категор:</td>
 				<td>
-					<select name="product_cat">
+					<select name="product_cat" required>
 						<option></option>
 						<?php
 
@@ -46,7 +46,7 @@
 			<tr>
 				<td>Барааны брэнд:</td>
 				<td>
-					<select name="product_brand">
+					<select name="product_brand" required>
 						<option></option>
 						<?php
 
@@ -69,11 +69,11 @@
 			</tr>
 			<tr>
 				<td>Барааны зураг:</td>
-				<td><input type="file" name="product_image"/></td>
+				<td><input type="file" name="product_image" required/></td>
 			</tr>
 			<tr>
 				<td>Барааны үнэ:</td>
-				<td><input type="text" name="product_price"/></td>
+				<td><input type="text" name="product_price" required/></td>
 			</tr>
 			<tr>
 				<td>Барааны тайлбар:</td>
@@ -81,10 +81,10 @@
 			</tr>
 			<tr>
 				<td>Барааны түлхүүр үг:</td>
-				<td><input type="text" name="product_keywords"/></td>
+				<td><input type="text" name="product_keywords" required/></td>
 			</tr>
 			<tr>
-				<td><input type="submit" name="insert_post"/></td>
+				<td><input type="submit" name="add"/></td>
 			</tr>
 		</table>
 	</form>
@@ -92,7 +92,7 @@
 </html>
 
 <?php
-	if (isset($_POST['insert_post'])) {
+	if (isset($_POST['add'])) {
 		
 		$product_title = $_POST['product_title'];
 		$product_cat = $_POST['product_cat'];
@@ -106,9 +106,13 @@
 
 		move_uploaded_file($product_image_tmp, "uploads/$product_image");
 
-		echo $insert_product = "insert into product 
-		(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) values
-		('$product_cat', '$product_brand', $product_title, '$product_price', '$product_desc', '$product_image', '$product_keywords')";
+		$insert_product = " insert into product (product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) values
+		('$product_cat', '$product_brand', '$product_title', '$product_price', '$product_desc', '$product_image', '$product_keywords')";
+	
+	
+		$test = " insert into product (product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) values
+		('1', '1', $product_title, '$product_price', '$product_desc', '$product_image', '$product_keywords')";
+	
 	
 		$insert_pro = mysqli_query($db, $insert_product);
 
@@ -116,8 +120,10 @@
 			echo "<script>alert('Амжилттай нэмлээ');</script>";
 			echo "<script>window.open('add.php','_self')</script>";
 		} else {
-
-			echo "<script>alert('Алдаа');</script>";
+			
+			echo $insert_pro;
+			echo "Error: " . $insert_pro . "<br>" . mysqli_error($db);
+			// echo "<script>alert('Алдаа');</script>";
 		}
 	}
 ?>
