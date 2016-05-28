@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-<?php
-require_once('inc/autoload.php');
-$objCore = new Core();
-$objCore->run();
-=======
 <!DOCTYPE>
 <?php 
 		include ("functions/function.php");
@@ -38,4 +32,3 @@ $objCore->run();
 	</div>
 </body>
 </html>
->>>>>>> 245cc6e2ba34ea85f6bbc53cc6ba292ddaf7a34d
