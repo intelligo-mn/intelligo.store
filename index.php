@@ -5,54 +5,91 @@
 	include ("functions/product.php");
 ?>
 
-<html>
-<head>
-	<title>Modu</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<div class="main">
+<link rel="stylesheet" type="text/css" href="css/core.css">
 
-		<div class="home-header">header</div>
-	
-		<div class="home-menu">
-			<?php include ("templates/front/header.php");?>	
-			<form method="get" action="results.php" enctype="multipart/form-data">
-				<input type="text" name="search_query" placeholder="Хайх үгээ бич"/>
-				<input type="submit" name="search" value="Хайх"/>
-			</form>
-		</div>
-	
-		<div class="home-sidebar">
+<?php include ("templates/front/header.php");?>	
 
-			<div class='category'>
-				<ul>
-				<?php 
-					getCategory(); 
-				?>
-				<?php 
-					getBrand(); 
-				?>
-				</ul>
-				
-			</div>
-			
-		</div>
-	
-		<div class="home-content">
+ <div class="category">
+	<div class=" top-nav rsidebar span_1_of_left">
+		<h3 class="cate">Ангилал</h3>
+		 <ul class="menu">
 			
 			<?php
-				getProduct();
-				getCatProduct();
-				getBrandProduct();
-			?>		
-		</div>
-	
-		<div class="home-footer">footer</div>
-	
+				getCategory();
+			?>	
+		</ul>
 	</div>
-</body>
-</html>
+</div>
+<div class="container">
+			<div class="shoes-grid">
+			<a href="single.html">
+			<div class="wrap-in">
+				<div class="wmuSlider example1 slide-grid">		 
+				   <div class="wmuSliderWrapper">		  
+					   <article style="position: absolute; width: 100%; opacity: 0;">					
+						<div class="banner-matter">
+						<div class="col-md-5 banner-bag">
+							<img class="img-responsive " src="images/bag.jpg" alt=" " />
+							</div>
+							<div class="col-md-7 banner-off">							
+								<h2>FLAT 50% 0FF</h2>
+								<label>FOR ALL PURCHASE <b>VALUE</b></label>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>					
+								<span class="on-get">GET NOW</span>
+							</div>
+							
+							<div class="clearfix"> </div>
+						</div>
+						
+					 	</article>
+					 	<article style="position: absolute; width: 100%; opacity: 0;">					
+						<div class="banner-matter">
+						<div class="col-md-5 banner-bag">
+							<img class="img-responsive " src="images/bag1.jpg" alt=" " />
+							</div>
+							<div class="col-md-7 banner-off">							
+								<h2>FLAT 50% 0FF</h2>
+								<label>FOR ALL PURCHASE <b>VALUE</b></label>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>					
+								<span class="on-get">GET NOW</span>
+							</div>
+							
+							<div class="clearfix"> </div>
+						</div>
+						
+					 	</article>
+					 	<article style="position: absolute; width: 100%; opacity: 0;">					
+						<div class="banner-matter">
+						<div class="col-md-5 banner-bag">
+							<img class="img-responsive " src="images/bag.jpg" alt=" " />
+							</div>
+							<div class="col-md-7 banner-off">							
+								<h2>FLAT 50% 0FF</h2>
+								<label>FOR ALL PURCHASE <b>VALUE</b></label>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>					
+								<span class="on-get">GET NOW</span>
+							</div>
+							
+							<div class="clearfix"> </div>
+						</div>
+						
+					 	</article>
+						
+					 </div>
+					 </a>
+	                <ul class="wmuSliderPagination">
+	                	<li><a href="#" class="">0</a></li>
+	                	<li><a href="#" class="">1</a></li>
+	                	<li><a href="#" class="">2</a></li>
+	                </ul>
+					 <script src="js/jquery.wmuSlider.js"></script> 
+				  <script>
+	       			$('.example1').wmuSlider();         
+	   		     </script> 
+	            </div>
+	          </div>
+
+<?php include ("templates/front/footer.php");?>	
+	
