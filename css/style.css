@@ -1,109 +1,157 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
+
+body{
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+body a{
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+}
+.top-header{
+	background: #F97E76;
+	padding: 0.7em 0;
+}
+.top-header-left{
+	float: left;
+}
+ul.support{
+	padding: 0 1em 0 0em;
 	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+	float: left;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+ul.support li{
+	display: inline-block;
+    margin-left: 10px;
 }
-body {
-	line-height: 1;
-	background-color: skyblue;
+ul.support li  label{
+	background: url(../images/img-sprite.png)-2px -27px;
+	width: 32px;
+	height: 30px;
+	display:inline-block;
+	vertical-align: middle;
+}
+ul.support li.van a label{
+	background-position: -46px -25px;
+}
+ul.support li a {
+	text-decoration:none;
+	font-size: 1.1em;
+	color: #fff;
+	
+}
+.top-header-right{
+	float:right;
+	padding-top:8px;
+}
+.down-top{
+	float: left;
+}
+.top-down{
+	padding: 0 0em 0 1em;
+}
+/*----*/
+.bottom-header {
+	border-bottom: 1px solid #ddd;
+	padding: 0.7em 0 1em;
+}
+.header-bottom-left{
+	float: left;
+	width: 55%;
+}
+.logo{
+	float:left;
+	width: 27%;
+    margin-top:9px;
+}
+.header-bottom-right{
+	float: right;
+	width: 37%;
+	text-align: center;
+	padding-top:1.7em;
+}
+.cart{
+	float:left;
+	width:40%;
 }
 
-.main {
-	width: 1000px;
-	height: auto;
-	margin: auto;
-	}
-	
-	.menu li {
-		float: left;
-		list-style-type: none;
-		padding: 5px 10px 5px 10px;
-		background-color: white;
-		border: 1px solid black;
-		
-	}
-	.home-header {
-		width: 1000px;
-		height: 150px;
-	}
-
-	.home-menu {
-		width: 1000px;
-		height: 40px;
-
-	}
-	
-	a {
-		
-		text-decoration: none;
-		color: black;
-	}
-	
-	li {
-		list-style-type: none;
-	}
-
-	.single-product {
-		float: left;
-		width: 180px;
-		height: 220px;
-		padding: 20px;
-		border: 1px solid transparent;
-		
-	}
-	
-	.single-product h3 {
-		
-		font-size: 20px;
-		font-weight: bold;
-	}
-	
-	
-	.category ul li {
-		
-		padding: 10px;
-		border-top: 1px solid black;
-	}
-	.category-item {
-		padding: 10px;	
-		margin: 10px;
-	}
-	
-	.home-sidebar {
-		width: 100px;
-		height: 800px;
-		float: left;
-	}
-
-	.home-content {
-		width: 800px;
-		height: 800px;
-		float: left;
-	}
-
-	.home-footer {
-		width: 1000px;
-		height: 150px;
-		float: left;
-	}
-	
+.cart a ,ul.login li a {
+	text-decoration:none;
+	font-size: 1em;
+	color: #000;
+}
+.cart a span{
+	background: url(../images/img-sprite.png) -172px -28px;
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	vertical-align: middle;
+}
+ul.login{
+	float:left;
+	width:50%;
+	margin:0;
+}
+ul.login li{
+	display:inline-block;
+}
+ul.login li a span{
+	background: url(../images/img-sprite.png) -143px -29px;
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.cart a:hover,ul.login li a:hover{
+	color: #1DBAA5;
+}
+/*----*/
+.search {
+	background:#fff;
+	border: 1px solid #ddd;
+	position: relative;
+	width: 47%;
+	float: right;
+	margin: 1.2em 0 0;
+}
+.search input[type="text"] {
+	border: none;
+	outline: none;
+	background: none;
+	font-size:1em;
+	color:#777;
+	width:68%;
+	padding:7px;
+	-webkit-apperance:none;
+	margin:0;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+}
+.search input[type="submit"] {
+	border-left: 1px solid #ddd;
+	outline: none;
+	cursor: pointer;
+	width: 30.6%;
+	height: 35px;
+	padding: 7px;
+	background: none;
+	border-bottom: none;
+	border-top: none;
+	border-right: none;
+}	
+.search input[type="submit"]:active {
+	position:relative;
+}
+/*----*/
+h3.cate {
+	color: #fff;
+	font-size: 1.7em;
+	padding: 0.6em ;
+	background: #000;
+	margin: 0;
+}
+/*----*/
