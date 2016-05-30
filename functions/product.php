@@ -1,13 +1,13 @@
 <?php
 
-include ("connect.php");
+include ('connect.php');
 
 function getProduct (){
 
         
 	global $db;
 
-	$get_product = "select * from product order by RAND() LIMIT 0, 10";
+	$get_product = 'select * from product order by RAND() LIMIT 0, 3';
 
 	$run_product = mysqli_query($db, $get_product);
 
@@ -21,16 +21,34 @@ function getProduct (){
         $product_image = $row_product['product_image'];
         
         echo "
-            <div class = 'single-product'>
-                <h3>$product_title</h3>
-                
-                <img src='admin/uploads/$product_image' width='180' height='180'>
-                
-                    
-                <a href='details.php?product_id=$product_id'>Дэлгэрэнгүй</a>
-                <a href='index.php?product_id=$product_id'><button>сагсанд хийх</button></a>
-            </div>
             
+   	     	<div class='col-md-4 chain-grid  grid-top-chain'>
+   	     		<a href=''><img class='img-responsive chain' src='admin/uploads/$product_image' alt=' ' /></a>
+   	     		<span class='star'> </span>
+   	     		<div class='grid-chain-bottom'>
+   	     			<h6><a href=''></a></h6>
+   	     			<div class='star-price'>
+   	     				<div class='dolor-grid'> 
+   		     				<span class='actual'>300$</span>
+   		     				<span class='reducedfrom'>$product_price$</span>
+   		     				  <span class='rating'>
+							        <input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>
+							        <label for='rating-input-1-5' class='rating-star1'> </label>
+							        <input type='radio' class='rating-input' id='rating-input-1-4' name='rating-input-1'>
+							        <label for='rating-input-1-4' class='rating-star1'> </label>
+							        <input type='radio' class='rating-input' id='rating-input-1-3' name='rating-input-1'>
+							        <label for='rating-input-1-3' class='rating-star'> </label>
+							        <input type='radio' class='rating-input' id='rating-input-1-2' name='rating-input-1'>
+							        <label for='rating-input-1-2' class='rating-star'> </label>
+							        <input type='radio' class='rating-input' id='rating-input-1-1' name='rating-input-1'>
+							        <label for='rating-input-1-1' class='rating-star'> </label>
+					    	   </span>
+   	     				</div>
+   	     				<a class='now-get get-cart' href='index.php?product_id=$product_id'>Сагсанд хийх</a> 
+   	     				<div class='clearfix'> </div>
+					</div>
+   	     		</div>
+   	     	</div>
         ";
         
 	}
@@ -91,7 +109,7 @@ function getCatProduct (){
     
     	if($count_cats == 0) {
         	    
-        	    echo "<h2>Хоосон байна</h2> ";
+        	    echo '<h2>Хоосон байна</h2> ';
         	}
         else {
             
@@ -108,7 +126,7 @@ function getCatProduct (){
             	
         	if($count_cats == 0) {
         	    
-        	    echo "<h2>Хоосон байна</h2> ";
+        	    echo '<h2>Хоосон байна</h2> ';
         	}
         	
         
@@ -149,7 +167,7 @@ function getBrandProduct (){
     
     	if($count_brands == 0) {
         	    
-        	    echo "<h2>Хоосон байна</h2> ";
+        	    echo '<h2>Хоосон байна</h2> ';
         	}
         else {
             
@@ -166,7 +184,7 @@ function getBrandProduct (){
             	
         	if($count_brands == 0) {
         	    
-        	    echo "<h2>Хоосон байна</h2> ";
+        	    echo '<h2>Хоосон байна</h2> ';
         	}
         	
         
