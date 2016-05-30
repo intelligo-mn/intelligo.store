@@ -1,4 +1,6 @@
 
+[![Join the chat](https://badges.gitter.im/tortuvshin/nodechat.svg)](https://gitter.im/tortuvshin/modu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
     |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
