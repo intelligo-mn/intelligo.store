@@ -15,7 +15,7 @@ function getCategory (){
 		$cat_id = $row_cats['cat_id'];
 		$cat_title = $row_cats['cat_title'];
 
-		echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
+		echo "<li class='category-item'><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
 
 	}
 
@@ -34,7 +34,7 @@ function getBrand (){
 		$brand_id = $row_brands['brand_id'];
 		$brand_title = $row_brands['brand_title'];
 
-		echo "<li><a href='index.php?brand=$brand_id'>$brand_title</a></li>";
+		echo "<li class='category'><a href='index.php?brand=$brand_id'>$brand_title</a></li>";
 
 	}
 

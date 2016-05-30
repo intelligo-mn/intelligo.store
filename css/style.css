@@ -50,15 +50,49 @@ body {
 	.home-menu {
 		width: 1000px;
 		height: 40px;
-		border-bottom: 1px solid black;
 
 	}
+	
+	a {
+		
+		text-decoration: none;
+		color: black;
+	}
+	
+	li {
+		list-style-type: none;
+	}
 
+	.single-product {
+		float: left;
+		width: 180px;
+		height: 220px;
+		padding: 20px;
+		border: 1px solid transparent;
+		
+	}
+	
+	.single-product h3 {
+		
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	
+	.category ul li {
+		
+		padding: 10px;
+		border-top: 1px solid black;
+	}
+	.category-item {
+		padding: 10px;	
+		margin: 10px;
+	}
+	
 	.home-sidebar {
 		width: 100px;
 		height: 800px;
 		float: left;
-		border-right: 1px solid black;
 	}
 
 	.home-content {
