@@ -155,3 +155,136 @@ h3.cate {
 	margin: 0;
 }
 /*----*/
+
+/*--footer--*/
+.footer-top{
+	background: #F5F5F5;
+	margin: 3em 0 0;
+}
+.latter{
+	float:left;
+	width:65%;
+}
+.latter h6{
+	margin: 0.9em 1em 0 0;
+	font-size: 1.7em;
+	color: #000;
+	float:left;
+	width: 36%;
+}
+.latter-right{
+	float:right;
+}
+.latter-right p{
+	font-size: 1.4em;
+	color: #000;
+	margin: 1.1em 1em;
+	float: left;
+}
+ul.face-in-to{
+	float:left;
+	padding:0;
+	margin:0;
+}
+ul.face-in-to li {
+	display:inline-block;
+	float:left;
+}
+ul.face-in-to li a span{
+	background: url(../images/img-sprite.png) -281px 0px;
+	width: 69px;
+	height: 71px;
+	display: block;
+}
+ul.face-in-to li a span.facebook-in{
+	background-position:-350px 0px;
+}
+.latter input[type="text"] {
+	border: 1px solid #ddd;
+	outline: none;
+	background: #fff;
+	font-size:1em;
+	color:#777;
+	width:61%;
+	padding:8px;
+	margin:0;
+}
+.latter input[type="submit"] {
+	outline: none;
+	cursor: pointer;
+	width: 35%;
+	padding: 7px;
+	background: #000;
+	color: #fff;
+	font-size:1.2em;
+	font-weight: 700;
+	border: none;
+	position: absolute;
+	left: 14.7em;
+	top: 15px;
+	-webkit-apperance:none;
+}	
+
+.sub-left-right{
+	float: left;
+	position: relative;
+	width: 56%;
+	padding: 1.1em 0;
+}
+.footer-bottom-cate{
+	float: left;
+	width: 25%;
+}
+.footer-bottom-cate h6{
+	font-size: 1.1em;
+	color: #000;
+	margin: 0 0 0.5em;
+	font-weight: 700;
+}
+.footer-bottom-cate ul{
+	padding: 0;
+	margin: 0;
+}
+.footer-bottom-cate ul li{
+	list-style: none;
+	padding: 0.2em 0;
+}
+.footer-bottom-cate ul li a {
+	text-decoration:none;
+	font-size: 0.85em;
+	color: #999;
+}
+.footer-bottom-cate ul li a:hover{
+	color:#1DBAA5;
+	padding-left: 5px;
+}
+.cate-bottom ul li  {
+	font-size: 0.95em;
+	color: #000;
+	font-weight: 700;
+}
+.cate-bottom ul li{
+	padding: 0em 0;
+}
+.cate-bottom ul li.phone {
+	color:#1DBAA5;
+}
+.cate-bottom ul li.phone {
+	padding: 1em 0 1.5em;
+}
+.cate-bottom ul li p{
+	color:#000;
+	margin: 0;
+	font-size:1.1em;
+}
+.cate-bottom ul li p a{
+	color:#F97E76;
+	font-size:1.1em;
+	font-weight: 500;
+}
+.cate-bottom ul li p a:hover{
+	padding:0;
+}
+.footer-bottom {
+	padding: 2em 0 5em;
+}

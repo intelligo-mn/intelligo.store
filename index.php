@@ -5,10 +5,10 @@
 	include ("functions/product.php");
 ?>
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<link rel="stylesheet" type="text/css" href="css/core.css">
+<link rel="stylesheet" type="text/css" href="css/core.css">
 
-	<?php include ("templates/front/header.php");?>	
-</body>
-</html>
+<?php include ("templates/front/header.php");?>	
+<?php include ("templates/front/footer.php");?>	
+	
