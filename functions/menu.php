@@ -16,7 +16,7 @@ function getMenu (){
 		$menu_title = $row_menus['menu_title'];
 		$menu_url = $row_menus['menu_url'];
 
-		echo "<li><a href='$menu_url'>$menu_title</a></li>";
+		echo "<li class='menu-item'><a href='$menu_url'>$menu_title</a></li>";
 
 	}
 
