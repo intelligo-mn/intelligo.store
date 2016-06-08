@@ -1,136 +1,162 @@
 <?php
-/**
-* created by Toroo in 2015-12-3
-*/
-class Dbase
-{
-	private $_db_host = 'localhost';
-	private $_db_name = 'multilingual';
-	private $_db_user = 'root';
-	private $_db_password = '';
+class Dbase {
 
-	private $_db_object = null;
-	private $_db_driver_options = array();
-
-	public $_last_statement;
-	public $_affected_rows;
+	private $_host = "localhost";
+	private $_user = "modu";
+	private $_password = "modu";
+	private $_name = "modu";
+	
+	private $_conndb = false;
+	public $_last_query = null;
+	public $_affected_rows = 0;
+	
+	public $_insert_keys = array();
+	public $_insert_values = array();
+	public $_update_sets = array();
+	
 	public $_id;
-
-	public function __construct($dbconn = null){
-		$this->setProperties($dbconn);
+	
+	
+	public function __construct() {
 		$this->connect();
 	}
-
-	public function setProperties($array = null){
-		if (!empty($array) && is_array($array) && count($array) == 4) {
-			foreach ($array as $key => $value) {
-				$this->$key = $value;
-			}
-		}
-	}
-
-	private function connect(){
-		$this->setDriverOption(array(
-			PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
-			));
-		try {
-			$this->_db_object = new PDO(
-				"mysql:dbname={$this->_db_name};
-				host={$this->_db_host}",
-
-				$this->_db_user,
-				$this->_db_password,
-				$this->_driver_options
-				);
-		} catch (PDOException $e){
-			echo $e->getMessage();
-			exit;
-		}
-	}
-
-	public function setDriverOptions($options = null){
-		if (!empty($options)) {
-			$this->_driver_options = $options;
-		}
-	}
-
-	private function query($sql = null, $params = null){
-		if (!empty($sql)) {
-			$this->)_last_statement = $sql;
-			if ($this->_db_object == null) {
-				$this->connect();
-			}
-			try{
-				$statement = $this->_db_object->prepare($sql, $this->_driver_options)
-				$params = Helper::makeArray($params);
-				if(!$statement->execute($params) || $statement->errorCode() != '0000'){
-					$error = $statement->errorInfo();
-					throw new PDOException("Database error {$error[0]} : {$error[2]}, driver error code is {$error[1]}");
-					exit;
-				}
-				return $statement;
-			}catch(PDOException $e){
-				echo $this->formatException($e);
-				exit;
-			}
-		}
-	}	
 	
-	public function formatException($exception = null){
-		if(is_object($exception)){
-			$out = array();
-			$out[] = '<strong>Message:</strong> '.$exception->getMessage();
-			$out[] = '<strong>Code:</strong> '.$exception->getCode();
-			$out[] = '<strong>File:</strong> '.$exception->getFile();
-			$out[] = '<strong>Line:</strong> '.$exception->getLine();
-			$out[] = '<strong>Trace:</strong> '.$exception->getTraceAsString();
-			$out[] = '<strong>Last statement:</strong> '.$this->_last_statement;
-			return '<p>'.implode('<br />', $out).'</p>';
+	private function connect() {
+		$this->_conndb = mysql_connect($this->_host, $this->_user, $this->_password);
+		
+		if (!$this->_conndb) {
+			die("Database connection failed:<br />" . mysql_error());
+		} else {
+			$_select = mysql_select_db($this->_name, $this->_conndb);
+			if (!$_select) {
+				die("Database selection failed:<br />" . mysql_error());
+			}
+		}
+		mysql_set_charset("utf8", $this->_conndb);
+	}
+	
+	
+	public function close() {
+		if (!mysql_close($this->_conndb)) {
+			die("Closing connection failed.");
 		}
 	}
-
-	public function getLastInsertId($sequenceName = null){
-		return $this->_db_object->lastInsertId($sequenceName);
+	
+	
+	public function escape($value) {
+		if(function_exists("mysql_real_escape_string")) {
+			if (get_magic_quotes_gpc()) {
+				$value = stripslashes($value);
+			}
+			$value = mysql_real_escape_string($value);
+		} else {
+			if(!get_magic_quotes_gpc()) {
+				$value = addcslashes($value);
+			}
+		}
+		return $value;
 	}
-
-	public function getAll($sql = null, $params = null){
-		if (!empty($sql)) {
-			$statement = $this->query($sql, $params);
-			return $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+	
+	public function query($sql) {
+		$this->_last_query = $sql;
+		$result = mysql_query($sql, $this->_conndb);
+		$this->displayQuery($result);
+		return $result;
+	}
+	
+	
+	public function displayQuery($result) {
+		if(!$result) {
+			$output  = "Database query failed: ". mysql_error() . "<br />";
+			$output .= "Last SQL query was: ".$this->_last_query;
+			die($output);
+		} else {
+			$this->_affected_rows = mysql_affected_rows($this->_conndb);
 		}
 	}
-
-	public function getOne($sql = null, $params = null){
-		if (!empty($sql)) {
-			$statement = $this->query($sql, $params);
-			return $statement->fetch(PDO::FETCH_ASSOC);
+	
+	
+	public function fetchAll($sql) {
+		$result = $this->query($sql);
+		$out = array();
+		while($row = mysql_fetch_assoc($result)) {
+			$out[] = $row;
+		}
+		mysql_free_result($result);
+		return $out;
+	}
+	
+	public function fetchOne($sql) {
+		$out = $this->fetchAll($sql);
+		return array_shift($out);
+	}
+	
+	public function lastId() {
+		return mysql_insert_id($this->_conndb);
+	}
+	
+	public function prepareInsert($array = null) {
+		if (!empty($array)) {
+			foreach($array as $key => $value) {
+				$this->_insert_keys[] = $key;
+				$this->_insert_values[] = $this->escape($value);
+			}
 		}
 	}
-
-	public function execute($sql = null, $params = null){
-		if (!empty($sql)) {
-			$statement = $this->query($sql, $params);
-			$this->_affected_rows = $statement->rowCount();
-			return true;
-		}
-		return false;
-	}
-
-	public function insert($sql = null, $params = null){
-		if (!empty($sql)) {
-			if ($this->execute($sql, $params)) {
-				$this->_id = $this->getLastInsertId();
+	
+	public function insert($table = null) {
+		
+		if (
+			!empty($table) && 
+			!empty($this->_insert_keys) && 
+			!empty($this->_insert_values)
+		) {
+		
+			$sql  = "INSERT INTO `{$table}` (`";
+			$sql .= implode("`, `", $this->_insert_keys);
+			$sql .= "`) VALUES ('";
+			$sql .= implode("', '", $this->_insert_values);
+			$sql .= "')";
+			
+			if ($this->query($sql)) {
+				$this->_id = $this->lastId();
 				return true;
 			}
 			return false;
+		
 		}
-		return false;
+		
 	}
+	
+	public function prepareUpdate($array = null) {
+		if (!empty($array)) {
+			foreach($array as $key => $value) {
+				$this->_update_sets[] = "`{$key}` = '".$this->escape($value)."'";
+			}
+		}
+	}
+	
+	public function update($table = null, $id = null) {
+		if (!empty($table) && !empty($id) && !empty($this->_update_sets)) {
+			$sql  = "UPDATE `{$table}` SET ";
+			$sql .= implode(", ", $this->_update_sets);
+			$sql .= " WHERE `id` = '".$this->escape($id)."'";
+			return $this->query($sql);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
-
-
-
-
-
-
