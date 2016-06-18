@@ -3,9 +3,9 @@
 namespace app;
 
 /*
- * Antvel - Free Product Model
+ * Modu - FreeProduct Model
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Eloquent\Model;
