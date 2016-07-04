@@ -96,9 +96,6 @@ require_once("_header.php");
 	
 </div>
 
-<div class="dn">
-	<img src="/images/loadinfo.net.gif" alt="Proceeding to PayPal" />
-</div>
 
 <?php } else { ?>
 
