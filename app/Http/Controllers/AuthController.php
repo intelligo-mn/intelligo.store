@@ -12,6 +12,6 @@ class AuthController extends Controller {
     
     public function postSignup(Request $request)
     {
-        
+        dd('sign up');
     }
 }   

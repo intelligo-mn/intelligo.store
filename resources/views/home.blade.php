@@ -1,6 +1,6 @@
 @extends('templates.default')
 
 @section('content')
-    <h3>Modu</h3>
+    <h3>Content</h3>
     
 @stop
