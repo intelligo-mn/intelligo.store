@@ -1,6 +1,6 @@
 <?php
 
-namespace Modu\Models;
+namespace Modu;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

@@ -2,7 +2,8 @@
 
 namespace Modu\Http\Controllers;
 
-use Modu\Models\User;
+use Modu\User;
+use Auth;
 use Illuminate\Http\Request;
 
 
@@ -31,6 +32,26 @@ class AuthController extends Controller {
         return redirect()
             ->route('home')
             ->with('info','Амжилттай бүртгэлээ');
+        dd('all ok');
+    }
+    
+    public function getSignin (){
+        
+        return view('auth.signin');  
+    }
+    
+    public function postSignin(Request $request) {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        
+        if(!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))){
+            return redirect()->back()->with('info', 'Хэрэглэгчийн нэр нууц үг буруу байна.');
+        }
+        
+        return redirect()->route('home')->with('info', 'Амжилттай нэвтэрлээ.');
+        
         dd('all ok');
     }
 }   
