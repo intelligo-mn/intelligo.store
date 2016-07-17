@@ -2,7 +2,9 @@
 
 namespace Modu\Http\Controllers;
 
+use Modu\Models\User;
 use Illuminate\Http\Request;
+
 
 class AuthController extends Controller {
 
@@ -19,7 +21,16 @@ class AuthController extends Controller {
             
             
             ]);
-        
+            
+        User::create([
+            'email' => $request->input('email'),
+            'username' => $request->input('username'),
+            'password' => bcrypt($request->input('password')),
+            ]);
+
+        return redirect()
+            ->route('home')
+            ->with('info','Амжилттай бүртгэлээ');
         dd('all ok');
     }
 }   
