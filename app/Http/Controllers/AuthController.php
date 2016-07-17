@@ -12,6 +12,14 @@ class AuthController extends Controller {
     
     public function postSignup(Request $request)
     {
-        dd('sign up');
+        $this->validate($request, [
+            'email' => 'required|unique:users|email|max:255',
+            'username' => 'required|unique:users|alpha_dash|max:20',
+            'password' => 'required|min:6',
+            
+            
+            ]);
+        
+        dd('all ok');
     }
 }   

@@ -17,5 +17,4 @@ Route::get('/signup',[
 
 Route::post('/signup',[
    'uses' => '\Modu\Http\Controllers\AuthController@postSignup',
-   
 ]);

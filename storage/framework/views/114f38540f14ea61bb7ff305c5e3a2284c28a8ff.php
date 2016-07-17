@@ -22,7 +22,7 @@
                     <li><a href="#">Мэдээллээ шинэчлэх</a></li>
                     <li><a href="#">Гарах</a></li>
                 <!-- <?php else: ?> -->
-                    <li><a href="#">Бүртгүүлэх</a></li>
+                    <li><a href="<?php echo e(route('auth.signup')); ?>">Бүртгүүлэх</a></li>
                     <li><a href="#">Нэвтрэх</a></li>
                 <!-- <?php endif; ?> -->
             </ul>
