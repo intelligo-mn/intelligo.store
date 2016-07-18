@@ -28,13 +28,11 @@ class User extends Model implements AuthenticatableContracts
     
     public function getName()
     {
-        if($this->first_name && $this->last_name)
-        {
+        if($this->first_name && $this->last_name){
             return "{$this->first_name} {$this->last_name}";    
         }
         
-        if($this->first_name)
-        {
+        if($this->first_name){
             return $this->first_name;
         }
         
@@ -49,6 +47,10 @@ class User extends Model implements AuthenticatableContracts
     public function getFirstNameOrUsername ()
     {
         return $this->first_name ?: $this->username;
+    }
+    
+    public function getAvatarUrl () {
+        return "https://www.gravatar.com/avatar/{{ md5($this->email) }}?d=mm&s=40";
     }
 }
 
