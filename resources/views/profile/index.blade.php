@@ -7,7 +7,15 @@
         <hr>
     </div>
     <div class="col-lg-4 col-lg-offset-3">
-        
+        @if (Auth::user()->hasFriendRequestsPending($user))
+            <p>{{ $user->getNameOrUsername() }}</p>
+        @elseif (Auth::user()->hasFriendRequestsReceived($user))
+            <a href="#" class="btn btn-primary">Accept friend requests</a>
+        @elseif (Auth::user()->isFriendsWith($user))
+            <p>You and {{ $user->getNameOrUsername() }}</p>
+        @else
+            <a href="" class="btn btn-primary">Add as friend</a>
+        @endif
         
         <h4>{{ $user->getFirstNameOrUsername() }} таны найзууд</h4>
         
