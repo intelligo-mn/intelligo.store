@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Моду</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Моду</a>
         </div>
         <div class="collapse navbar-collapse">
             @if (Auth::check())
@@ -9,7 +9,8 @@
                     <li><a href="#">Мэдээлэл</a></li>
                     <li><a href="#">Найзууд</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search" action="#">
+                <form class="navbar-form navbar-left" role="search" action="{{
+                route('search.results')}}">
                     <div class="form-group">
                         <input type="text" name="query" class="form-control" placeholder="Хайх үгээ бич">
                     </div>
