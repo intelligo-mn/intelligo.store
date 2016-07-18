@@ -18,9 +18,9 @@
             <?php endif; ?>
             <ul class="nav navbar-nav navbar-right">
                  <?php if(Auth::check()): ?>
-                    <li><a href="#">Хэрэглэгчийн нэр</a></li>
+                    <li><a href="#"><?php echo e(Auth::user()->getNameOrUsername()); ?></a></li>
                     <li><a href="#">Мэдээллээ шинэчлэх</a></li>
-                    <li><a href="#">Гарах</a></li>
+                    <li><a href="<?php echo e(route('auth.signout')); ?>">Гарах</a></li>
                 <?php else: ?>
                     <li><a href="<?php echo e(route('auth.signup')); ?>">Бүртгүүлэх</a></li>
                     <li><a href="<?php echo e(route('auth.signin')); ?>">Нэвтрэх</a></li>

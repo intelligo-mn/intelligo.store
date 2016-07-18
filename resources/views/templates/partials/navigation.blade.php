@@ -18,9 +18,9 @@
             @endif
             <ul class="nav navbar-nav navbar-right">
                  @if (Auth::check())
-                    <li><a href="#">Хэрэглэгчийн нэр</a></li>
+                    <li><a href="#">{{Auth::user()->getNameOrUsername()}}</a></li>
                     <li><a href="#">Мэдээллээ шинэчлэх</a></li>
-                    <li><a href="#">Гарах</a></li>
+                    <li><a href="{{ route('auth.signout') }}">Гарах</a></li>
                 @else
                     <li><a href="{{ route('auth.signup') }}">Бүртгүүлэх</a></li>
                     <li><a href="{{ route('auth.signin') }}">Нэвтрэх</a></li>

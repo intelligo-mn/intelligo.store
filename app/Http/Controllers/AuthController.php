@@ -54,4 +54,11 @@ class AuthController extends Controller {
         
         dd('all ok');
     }
+    
+    public function getSignout()
+    {
+        Auth::logout();
+        
+        return redirect()->route('home');
+    }
 }   
