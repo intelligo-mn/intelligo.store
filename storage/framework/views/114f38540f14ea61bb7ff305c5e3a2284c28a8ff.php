@@ -6,8 +6,8 @@
         <div class="collapse navbar-collapse">
             <?php if(Auth::check()): ?>
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Мэдээлэл</a></li>
-                    <li><a href="#">Найзууд</a></li>
+                    <li><a href="<?php echo e(route('home')); ?>">Мэдээлэл</a></li>
+                    <li><a href="<?php echo e(route('friends.index')); ?>">Найзууд</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search" action="<?php echo e(route('search.results')); ?>">
                     <div class="form-group">
