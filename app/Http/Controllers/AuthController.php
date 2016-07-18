@@ -18,9 +18,7 @@ class AuthController extends Controller {
         $this->validate($request, [
             'email' => 'required|unique:users|email|max:255',
             'username' => 'required|unique:users|alpha_dash|max:20',
-            'password' => 'required|min:6',
-            
-            
+            'password' => 'required|min:6',            
             ]);
             
         User::create([
@@ -32,11 +30,9 @@ class AuthController extends Controller {
         return redirect()
             ->route('home')
             ->with('info','Амжилттай бүртгэлээ');
-        dd('all ok');
     }
     
     public function getSignin (){
-        
         return view('auth.signin');  
     }
     
@@ -51,14 +47,12 @@ class AuthController extends Controller {
         }
         
         return redirect()->route('home')->with('info', 'Амжилттай нэвтэрлээ.');
-        
-        dd('all ok');
     }
     
     public function getSignout()
     {
         Auth::logout();
-        
+    
         return redirect()->route('home');
     }
 }   
