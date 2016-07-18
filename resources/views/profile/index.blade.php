@@ -7,6 +7,8 @@
         <hr>
     </div>
     <div class="col-lg-4 col-lg-offset-3">
+        
+        
         <h4>{{ $user->getFirstNameOrUsername() }} таны найзууд</h4>
         
         @if (!$user->friends()->count())
