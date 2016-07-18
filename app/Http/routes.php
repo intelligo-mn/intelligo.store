@@ -37,8 +37,21 @@ Route::get('/signout',[
    'as' => 'auth.signout',
 ]);
 
+/*
+ * Хайх 
+ */
+
 Route::get('/search',[
    'uses' => '\Modu\Http\Controllers\SearchController@getResults',
    'as' => 'search.results',
+]);
+
+/*
+ * Хэрэглэгчийн мэдээлэл 
+ */
+ 
+Route::get('/user/{username}',[
+   'uses' => '\Modu\Http\Controllers\ProfileController@getProfile',
+   'as' => 'profile.index',
 ]);
 

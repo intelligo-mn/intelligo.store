@@ -1,5 +1,5 @@
 <div class="media">
-    <a class="pull-left" href="#">
+    <a class="pull-left" href="{{ route('profile.index', ['username' => $user->username]) }}">
         <img class="media-object" alt="{{ $user->getNameOrUsername() }}" src="
         {{ $user->getAvatarUrl() }}
         ">

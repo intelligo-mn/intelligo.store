@@ -1,5 +1,5 @@
 <div class="media">
-    <a class="pull-left" href="#">
+    <a class="pull-left" href="<?php echo e(route('profile.index', ['username' => $user->username])); ?>">
         <img class="media-object" alt="<?php echo e($user->getNameOrUsername()); ?>" src="
         <?php echo e($user->getAvatarUrl()); ?>
 
