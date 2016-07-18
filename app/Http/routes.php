@@ -55,3 +55,15 @@ Route::get('/user/{username}',[
    'as' => 'profile.index',
 ]);
 
+Route::get('/profile/edit',[
+   'uses' => '\Modu\Http\Controllers\ProfileController@getEdit',
+   'as' => 'profile.edit',
+   'middleware' => ['auth'],
+   
+]);
+
+Route::post('/profile/edit',[
+   'uses' => '\Modu\Http\Controllers\ProfileController@postEdit',
+   'middleware' => ['auth'],
+]);
+

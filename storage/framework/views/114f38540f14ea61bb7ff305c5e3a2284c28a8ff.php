@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-right">
                  <?php if(Auth::check()): ?>
                     <li><a href="<?php echo e(route('profile.index', ['username' => Auth::user()->username])); ?>"><?php echo e(Auth::user()->getNameOrUsername()); ?></a></li>
-                    <li><a href="#">Мэдээллээ шинэчлэх</a></li>
+                    <li><a href="<?php echo e(route('profile.edit')); ?>">Мэдээллээ шинэчлэх</a></li>
                     <li><a href="<?php echo e(route('auth.signout')); ?>">Гарах</a></li>
                 <?php else: ?>
                     <li><a href="<?php echo e(route('auth.signup')); ?>">Бүртгүүлэх</a></li>
