@@ -2,13 +2,23 @@
 <div class="row">
     <div class="col-lg-6">
         <h3>Таны найзууд</h3>
-
-       <!-- List of friends -->
+        <?php if(!$friends->count()): ?>
+            <p>Таньд найз байхгүй байна.</p>
+        <?php else: ?>
+            <?php foreach($friends as $user): ?>
+                <?php echo $__env->make('user/partials/userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
     <div class="col-lg-6">
         <h4>Найзын хүсэлт</h4>
-        
-        <!-- List of friend requests -->
+        <?php if(!$requests->count()): ?>
+            <p>Таньд найзын хүсэлт ирээгүй байна.</p>
+        <?php else: ?>
+            <?php foreach($requests as $user): ?>
+                <?php echo $__env->make('user/partials/userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>
 <?php $__env->stopSection(); ?>
