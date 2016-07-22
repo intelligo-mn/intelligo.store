@@ -53,6 +53,10 @@ class User extends Model implements AuthenticatableContracts
         return "https://www.gravatar.com/avatar/{{ md5($this->email) }}?d=mm&s=40";
     }
     
+    public function statuses () {
+        return $this->hasMany('Modu\Status', 'user_id');    
+    }
+    
     public function friendsOfMine () {
         return $this->belongsToMany('Modu\User', 'friends', 'user_id', 'friend_id');
     }

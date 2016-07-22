@@ -9,7 +9,6 @@ Route::get('/alert', function(){
    return redirect()->route('home')->with('info', 'You have signed up!'); 
 });
 
-
 Route::get('/signup',[
    'uses' => '\Modu\Http\Controllers\AuthController@getSignup',
    'as' => 'auth.signup',
@@ -37,18 +36,10 @@ Route::get('/signout',[
    'as' => 'auth.signout',
 ]);
 
-/*
- * Хайх 
- */
-
 Route::get('/search',[
    'uses' => '\Modu\Http\Controllers\SearchController@getResults',
    'as' => 'search.results',
 ]);
-
-/*
- * Хэрэглэгчийн мэдээлэл 
- */
  
 Route::get('/user/{username}',[
    'uses' => '\Modu\Http\Controllers\ProfileController@getProfile',
@@ -59,7 +50,6 @@ Route::get('/profile/edit',[
    'uses' => '\Modu\Http\Controllers\ProfileController@getEdit',
    'as' => 'profile.edit',
    'middleware' => ['auth'],
-   
 ]);
 
 Route::post('/profile/edit',[
@@ -67,27 +57,26 @@ Route::post('/profile/edit',[
    'middleware' => ['auth'],
 ]);
 
-/*
- * найз
- */
 Route::get('/friends',[
    'uses' => '\Modu\Http\Controllers\FriendController@getIndex',
    'as' => 'friends.index',
-   'middleware' => ['auth'],
-   
+   'middleware' => ['auth'],   
 ]);
 
 Route::get('/friends/add/{username}',[
    'uses' => '\Modu\Http\Controllers\FriendController@getAdd',
    'as' => 'friends.add',
    'middleware' => ['auth'],
-   
 ]);
-
 
 Route::get('/friends/accept/{username}',[
    'uses' => '\Modu\Http\Controllers\FriendController@getAccept',
    'as' => 'friends.accept',
    'middleware' => ['auth'],
-   
+]);
+
+Route::post('/status',[
+   'uses' => '\Modu\Http\Controllers\StatusController@postStatus',
+   'as' => 'status.post',
+   'middleware' => ['auth'],
 ]);
