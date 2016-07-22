@@ -99,7 +99,7 @@ class User extends Model implements AuthenticatableContracts
     }
     
     public function acceptFriendRequest (User $user) {
-        $this->friendRequests()->where('id', $user->id)->first()->pivot()->update([
+        $this->friendRequests()->where('id', $user->id)->first()->pivot->update([
             'accepted' => true,    
         ]);
     }

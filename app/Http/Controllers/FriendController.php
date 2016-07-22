@@ -19,12 +19,17 @@ class FriendController extends Controller {
     }
     
     public function getAdd($username) {
+        
         $user = User::where('username', $username)->first();
         
         if (!$user) {
             return redirect()
                 ->route('home')
                 ->with('info', 'Хэрэглэгч байхгүй байна');
+        }
+        
+        if (Auth::user()->id === $user->id){
+            return redirect()->route('home');    
         }
         
         if (Auth::user()->hasFriendRequestsPending($user) || $user->hasFriendRequestsPending(Auth::user())) {
@@ -44,5 +49,28 @@ class FriendController extends Controller {
         return redirect()
             ->route('profile.index', ['username' => $username])
             ->with('info', 'Найзын хүсэлт илгээсэн');
+    }
+    
+    public function getAccept($username)
+    {
+        $user = User::where('username', $username)->first();
+        
+        if (!$user) {
+            return redirect()
+                ->route('home')
+                ->with('info', 'Хэрэглэгч байхгүй байна');
+        }
+        
+        if (!Auth::user()->hasFriendRequestsReceived($user))
+        {
+            return redirect()->route('home');    
+        }
+        
+        Auth::user()->acceptFriendRequest($user);
+        
+        return redirect()
+            ->route('profile.index', ['username' => $username])
+            ->with('info', 'Найзын хүсэлт авсан');
+         
     }
 }   
