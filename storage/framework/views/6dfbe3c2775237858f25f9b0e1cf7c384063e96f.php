@@ -5,6 +5,17 @@
         <hr>
     </div>
     <div class="col-lg-4 col-lg-offset-3">
+        <?php if(Auth::user()->hasFriendRequestsPending($user)): ?>
+            <p><?php echo e($user->getNameOrUsername()); ?></p>
+        <?php elseif(Auth::user()->hasFriendRequestsReceived($user)): ?>
+            <a href="#" class="btn btn-primary">Accept friend requests</a>
+        <?php elseif(Auth::user()->isFriendsWith($user)): ?>
+            <p>You and <?php echo e($user->getNameOrUsername()); ?></p>
+        <?php else: ?>
+            <a href="<?php echo e(route('friend.add', ['username' => $user->username])); ?>" 
+            class="btn btn-primary">Найз нэмэх</a>
+        <?php endif; ?>
+        
         <h4><?php echo e($user->getFirstNameOrUsername()); ?> таны найзууд</h4>
         
         <?php if(!$user->friends()->count()): ?>
