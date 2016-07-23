@@ -45,32 +45,41 @@
                             <li>10 таалагдсан</li>
                         </ul>
                 
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" alt="" src="">
-                            </a>
-                            <div class="media-body">
-                                <h5 class="media-heading"><a href="#">Ганаа</a></h5>
-                                <p>Тиймээ !</p>
-                                <ul class="list-inline">
-                                    <li>8 минутын өмнө.</li>
-                                    <li><a href="#">таалалгдлаа</a></li>
-                                    <li>4 таалагдсан</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <!--<div class="media">-->
+                        <!--    <a class="pull-left" href="#">-->
+                        <!--        <img class="media-object" alt="" src="">-->
+                        <!--    </a>-->
+                        <!--    <div class="media-body">-->
+                        <!--        <h5 class="media-heading"><a href="#">Ганаа</a></h5>-->
+                        <!--        <p>Тиймээ !</p>-->
+                        <!--        <ul class="list-inline">-->
+                        <!--            <li>8 минутын өмнө.</li>-->
+                        <!--            <li><a href="#">таалалгдлаа</a></li>-->
+                        <!--            <li>4 таалагдсан</li>-->
+                        <!--        </ul>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                 
-                        <form role="form" action="#" method="post">
-                            <div class="form-group">
-                                <textarea name="reply-1" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
+                        <form role="form" action="{{ route('status.reply', ['statusId' => $status->id])}}" method="post">
+                            <div class="form-group {{ $errors->has("reply-{$status->id}") ? ' has-error' : '' }}">
+                                <textarea name="reply-{{ $status->id }}" class="form-control" rows="2" 
+                                placeholder="Хариулт бичих"></textarea>
+                                
+                                @if ($errors->has("reply-{$status->id }"))
+                                    <span class="help-block">
+                                        {{ $errors->first("reply-{$status->id}")}}
+                                    </span>
+                                @endif
                             </div>
-                            <input type="submit" value="Reply" class="btn btn-default btn-sm">
+                            <input type="submit" value="Илгээх" class="btn btn-default btn-sm">
+                            <input type="hidden" name="_token" value= "{{ Session::token() }}"/>
+       
                         </form>
                     </div>
                 </div>
                 @endforeach
                 
-                {!! $statuses->render() !!}
+                <!--{!! $statuses->render() !!}-->
             @endif
         </div>
     </div>

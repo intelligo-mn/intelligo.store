@@ -80,3 +80,9 @@ Route::post('/status',[
    'as' => 'status.post',
    'middleware' => ['auth'],
 ]);
+
+Route::post('/status/{statusId}/reply',[
+   'uses' => '\Modu\Http\Controllers\StatusController@postReply',
+   'as' => 'status.reply',
+   'middleware' => ['auth'],
+]);

@@ -16,6 +16,15 @@ class Status extends Model
         return $this->belongsTo('Modu\User', 'user_id');    
     }
         
+    public function scopeNotReply($query)
+    {
+        return $query->whereNull('parent_id');
+    }
+    
+    public function replies()
+    {
+        return $this->hasMany('Modu\Status', 'parent_id');
+    }
 }
 
 
