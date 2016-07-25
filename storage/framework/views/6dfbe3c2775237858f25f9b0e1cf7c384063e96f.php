@@ -8,12 +8,12 @@
         <?php if(Auth::user()->hasFriendRequestsPending($user)): ?>
             <p><?php echo e($user->getNameOrUsername()); ?></p>
         <?php elseif(Auth::user()->hasFriendRequestsReceived($user)): ?>
-            <a href="<?php echo e(route('friends.accept'), ['username' => $user->username]); ?>" 
-            class="btn btn-primary">Accept friend requests</a>
+            <a href="<?php echo e(route('friends.accept', ['username' => $user->username])); ?>" 
+            class="btn btn-primary">Хүсэлт авах</a>
         <?php elseif(Auth::user()->isFriendsWith($user)): ?>
             <p>You and <?php echo e($user->getNameOrUsername()); ?></p>
-        <?php elseif(Auth::user()->id != $user->id): ?>
-            <a href="<?php echo e(route('friends.add'), ['username' => $user->username]); ?>" 
+        <?php elseif(Auth::user()->id !== $user->id): ?>
+            <a href="<?php echo e(route('friends.add', ['username' => $user->username])); ?>" 
             class="btn btn-primary">Найз нэмэх</a>
         <?php endif; ?>
         
@@ -23,7 +23,7 @@
             <p><?php echo e($user->getFirstNameOrUsername()); ?> найз байхгүй байна.</p>
         <?php else: ?>
             <?php foreach($user->friends() as $user): ?>
-                <?php echo $__env->make('user/partials/userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('user.partials.userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

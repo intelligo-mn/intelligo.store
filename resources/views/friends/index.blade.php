@@ -8,7 +8,7 @@
             <p>Таньд найз байхгүй байна.</p>
         @else
             @foreach($friends as $user)
-                @include('user/partials/userblock')
+                @include('user.partials.userblock')
             @endforeach
         @endif
     </div>
@@ -18,7 +18,7 @@
             <p>Таньд найзын хүсэлт ирээгүй байна.</p>
         @else
             @foreach($requests as $user)
-                @include('user/partials/userblock')
+                @include('user.partials.userblock')
             @endforeach
         @endif
     </div>

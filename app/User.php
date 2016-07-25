@@ -65,13 +65,12 @@ class User extends Model implements AuthenticatableContracts
         return $this->belongsToMany('Modu\User', 'friends', 'friend_id', 'user_id');
     }
     
+    
     public function friends () {
         return $this->friendsOfMine()
             ->wherePivot('accepted', true)
             ->get()
-            ->merge($this->friendOf()
-            ->wherePivot('accepted', true)
-            ->get());
+            ->merge($this->friendOf()->wherePivot('accepted', true)->get());
     }
     
     public function friendRequests () {

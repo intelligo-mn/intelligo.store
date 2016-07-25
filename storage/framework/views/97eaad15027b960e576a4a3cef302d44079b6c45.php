@@ -6,7 +6,7 @@
         ">
     </a>
     <div class="media-body">
-        <h4 class="media-heading"><a href="#"><?php echo e($user->getNameOrUsername()); ?></a></h4>
+        <h4 class="media-heading"><a href="<?php echo e(route('profile.index', ['username' => $user->username])); ?>"><?php echo e($user->getNameOrUsername()); ?></a></h4>
         
         <?php if($user->location): ?>
             <p>

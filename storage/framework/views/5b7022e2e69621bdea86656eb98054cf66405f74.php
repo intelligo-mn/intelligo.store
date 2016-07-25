@@ -6,7 +6,7 @@
             <p>Таньд найз байхгүй байна.</p>
         <?php else: ?>
             <?php foreach($friends as $user): ?>
-                <?php echo $__env->make('user/partials/userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('user.partials.userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
@@ -16,7 +16,7 @@
             <p>Таньд найзын хүсэлт ирээгүй байна.</p>
         <?php else: ?>
             <?php foreach($requests as $user): ?>
-                <?php echo $__env->make('user/partials/userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('user.partials.userblock', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
