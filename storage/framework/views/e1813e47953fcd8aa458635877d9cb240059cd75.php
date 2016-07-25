@@ -44,22 +44,24 @@
                             <li><a href="#">Таалагдлаа</a></li>
                             <li>10 таалагдсан</li>
                         </ul>
-                
-                        <!--<div class="media">-->
-                        <!--    <a class="pull-left" href="#">-->
-                        <!--        <img class="media-object" alt="" src="">-->
-                        <!--    </a>-->
-                        <!--    <div class="media-body">-->
-                        <!--        <h5 class="media-heading"><a href="#">Ганаа</a></h5>-->
-                        <!--        <p>Тиймээ !</p>-->
-                        <!--        <ul class="list-inline">-->
-                        <!--            <li>8 минутын өмнө.</li>-->
-                        <!--            <li><a href="#">таалалгдлаа</a></li>-->
-                        <!--            <li>4 таалагдсан</li>-->
-                        <!--        </ul>-->
-                        <!--    </div>-->
-                        <!--</div>-->
-                
+                        
+                        <?php foreach($status->replies as $reply): ?>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" alt="" src="">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><a href="#"><?php echo e($reply->user->getNameOrUsername()); ?></a></h5>
+                                    <p>Тиймээ !</p>
+                                    <ul class="list-inline">
+                                        <li>8 минутын өмнө.</li>
+                                        <li><a href="#">таалалгдлаа</a></li>
+                                        <li>4 таалагдсан</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        
                         <form role="form" action="<?php echo e(route('status.reply', ['statusId' => $status->id])); ?>" method="post">
                             <div class="form-group <?php echo e($errors->has("reply-{$status->id}") ? ' has-error' : ''); ?>">
                                 <textarea name="reply-<?php echo e($status->id); ?>" class="form-control" rows="2" 
@@ -80,7 +82,8 @@
                 </div>
                 <?php endforeach; ?>
                 
-                <!--<?php echo $statuses->render(); ?>-->
+                <?php echo $statuses->render(); ?>
+
             <?php endif; ?>
         </div>
     </div>

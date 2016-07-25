@@ -28,7 +28,7 @@ class StatusController extends Controller {
         $this->validate($request, [
             "reply-{$statusId}" => 'required|max:100',   
         ], [
-           'required' => 'Хариулт бичих талбарыг бөглөнэ үү' 
+           'required' => 'Хариулт бичих талбарыг бөглөнө үү' 
         ]);
         
         $status = Status::notReply()->find($statusId);

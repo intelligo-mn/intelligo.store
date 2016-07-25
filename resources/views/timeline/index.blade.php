@@ -44,22 +44,24 @@
                             <li><a href="#">Таалагдлаа</a></li>
                             <li>10 таалагдсан</li>
                         </ul>
-                
-                        <!--<div class="media">-->
-                        <!--    <a class="pull-left" href="#">-->
-                        <!--        <img class="media-object" alt="" src="">-->
-                        <!--    </a>-->
-                        <!--    <div class="media-body">-->
-                        <!--        <h5 class="media-heading"><a href="#">Ганаа</a></h5>-->
-                        <!--        <p>Тиймээ !</p>-->
-                        <!--        <ul class="list-inline">-->
-                        <!--            <li>8 минутын өмнө.</li>-->
-                        <!--            <li><a href="#">таалалгдлаа</a></li>-->
-                        <!--            <li>4 таалагдсан</li>-->
-                        <!--        </ul>-->
-                        <!--    </div>-->
-                        <!--</div>-->
-                
+                        
+                        @foreach ($status->replies as $reply)
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" alt="" src="">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><a href="#">{{ $reply->user->getNameOrUsername()}}</a></h5>
+                                    <p>Тиймээ !</p>
+                                    <ul class="list-inline">
+                                        <li>8 минутын өмнө.</li>
+                                        <li><a href="#">таалалгдлаа</a></li>
+                                        <li>4 таалагдсан</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endforeach
+                        
                         <form role="form" action="{{ route('status.reply', ['statusId' => $status->id])}}" method="post">
                             <div class="form-group {{ $errors->has("reply-{$status->id}") ? ' has-error' : '' }}">
                                 <textarea name="reply-{{ $status->id }}" class="form-control" rows="2" 
@@ -79,7 +81,7 @@
                 </div>
                 @endforeach
                 
-                <!--{!! $statuses->render() !!}-->
+                {!! $statuses->render() !!}
             @endif
         </div>
     </div>
