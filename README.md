@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Overviews
 laravel-news version 1.0.5 with post, news, movies, photo management support by laravel5
 # How to install
@@ -7,3 +8,6 @@ laravel-news version 1.0.5 with post, news, movies, photo management support by 
 5. Login by default admin account: admin@admin.com/admin
 # Home page http://buzzy.akbilisim.com/ admin@admin.com/admin
 
+=======
+larv
+>>>>>>> 40f2410757b37e81e07593b01d4380cc25a3aa69
