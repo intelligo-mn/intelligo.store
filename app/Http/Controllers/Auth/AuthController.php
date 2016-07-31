@@ -151,7 +151,7 @@ class AuthController extends Controller
 
             if(Auth::user()->usertype=='banned'){
                 \Auth::logout();
-                return array("errors" => 'You account has been banned!');
+                return array("errors" => 'Таны эрхийг хаасан байна!');
             }
 
             return $this->handleUserWasAuthenticated($request);

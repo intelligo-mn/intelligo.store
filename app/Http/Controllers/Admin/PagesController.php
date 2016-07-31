@@ -43,7 +43,7 @@ class PagesController extends MainAdminController
         $pages = Pages::findOrFail($id);
         $pages->delete();
 
-        \Session::flash('success.message', 'Deleted');
+        \Session::flash('success.message', 'Амжилттай устгалаа');
 
         return redirect('admin/pages');
 
@@ -76,14 +76,14 @@ class PagesController extends MainAdminController
             $pages->footer = $input['footer'];
             $pages->save();
 
-            \Session::flash('success.message', 'Changes Saved');
+            \Session::flash('success.message', 'Өөрчлөлтийг хадгаллаа.');
 
             return redirect('admin/pages');
         }
 
         Pages::create($input);
 
-        \Session::flash('success.message', 'Succesfuly Createted');
+        \Session::flash('success.message', 'Амжилттай нэмлээ');
 
         return redirect('admin/pages');
     }

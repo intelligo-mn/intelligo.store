@@ -40,9 +40,9 @@ class Admin
         if (!$this->auth->check() or $this->auth->user()->usertype !== 'Admin') {
 
             if ($request->ajax()) {
-                return array('errors', 'You are not an Admin..');
+                return array('errors', 'Админ хандах эрхтэй..');
             } else {
-                \Session::flash('error.message',  'You have no permission for this!');
+                \Session::flash('error.message',  'Зөвхөн админ хандах эрхтэй!');
                 return redirect('/');
             }
         }

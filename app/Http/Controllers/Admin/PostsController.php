@@ -98,7 +98,7 @@ class PostsController extends MainAdminController
 
         $post->save();
 
-        \Session::flash('success.message', 'Done');
+        \Session::flash('success.message', 'Амжилттай');
 
         return redirect()->back();
 
@@ -119,7 +119,7 @@ class PostsController extends MainAdminController
 
         $post->save();
 
-        \Session::flash('success.message', 'Done');
+        \Session::flash('success.message', 'Амжилттай');
 
         return redirect()->back();
 
@@ -140,7 +140,7 @@ class PostsController extends MainAdminController
         event(new PostUpdated($post, 'Trash'));
 
 
-        \Session::flash('success.message', 'Moved to Trash');
+        \Session::flash('success.message', 'Хогийн савруу хийсэн');
 
         return redirect()->back();
 
@@ -166,7 +166,7 @@ class PostsController extends MainAdminController
 
         $post->forceDelete();
 
-        \Session::flash('success.message', 'Deleted permanently');
+        \Session::flash('success.message', 'Бүрмөсөн устлаа');
 
         return redirect()->back();
 
@@ -249,25 +249,25 @@ class PostsController extends MainAdminController
 
                 if($post->deleted_at!==null) {
 
-                    $fsdfd = '<div class="label label-danger">On Trash</div>';
+                    $fsdfd = '<div class="label label-danger">Хогийн саванд</div>';
 
                 }elseif($post->approve=='no') {
 
-                    $fsdfd = '<div class="label label-info" style="background-color: #9c6a11 !important;">Awaiting Approval</div>';
+                    $fsdfd = '<div class="label label-info" style="background-color: #9c6a11 !important;">Зөвшөөрөл хүлээж байгаа</div>';
 
                 }elseif($post->featured_at !== null) {
 
-                    $fsdfd =  '<div class="clear"></div><div class="label label-warning" style="background-color: #9C5D54 !important;">Featured Post</div>';
+                    $fsdfd =  '<div class="clear"></div><div class="label label-warning" style="background-color: #9C5D54 !important;">Онцлох</div>';
 
                 }elseif($post->approve=='yes') {
 
-                    $fsdfd = '<div class="label label-info">Active</div>';
+                    $fsdfd = '<div class="label label-info">Идэвхитэй</div>';
 
                 }
 
                 if($post->show_in_homepage=='yes') {
 
-                    $fsdfd = $fsdfd. '<div class="clear"></div><div class="label label-success">Picked for homepage</div>';
+                    $fsdfd = $fsdfd. '<div class="clear"></div><div class="label label-success">Нүүр хуудас сонгох</div>';
                 }
 
 
@@ -279,7 +279,7 @@ class PostsController extends MainAdminController
 
 
                  $edion= '<div class="input-group-btn">
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="fa fa-caret-down"></span></button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Үйл ажиллагаа <span class="fa fa-caret-down"></span></button>
                                   <ul class="dropdown-menu pull-left" style="left:-100px;  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">';
 
              if($post->deleted_at==null) {
@@ -287,37 +287,37 @@ class PostsController extends MainAdminController
 
                 if($post->approve=='no') {
 
-                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@approvepost",  $post->id).'"><i class="fa fa-check"></i>  Approve</a></li>';
+                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@approvepost",  $post->id).'"><i class="fa fa-check"></i>  Зөвшөөрөх</a></li>';
 
                 }elseif($post->approve=='yes') {
 
-                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@approvepost",  $post->id).'"><i class="fa fa-remove"></i> Undo Approve/</a></li>';
+                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@approvepost",  $post->id).'"><i class="fa fa-remove"></i> Зөвшөөрөл буцаах/</a></li>';
 
                 }
 
                 if($post->featured_at == null) {
 
-                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@pickfeatured",  $post->id).'"><i class="fa fa-star"></i> Pick for Featured</a></li>';
+                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@pickfeatured",  $post->id).'"><i class="fa fa-star"></i> Онцлох болгох</a></li>';
 
                 }else{
 
-                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@pickfeatured",  $post->id).'"><i class="fa fa-remove"></i> Undo Featured</a></li>';
+                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@pickfeatured",  $post->id).'"><i class="fa fa-remove"></i> Онцлох буцаах</a></li>';
 
                 }
 
                 if($post->show_in_homepage==null) {
 
-                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@showhomepage",  $post->id).'"><i class="fa fa-dashboard"></i> Pick for Homepage</a></li>';
+                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@showhomepage",  $post->id).'"><i class="fa fa-dashboard"></i> Нүүр хуудас сонгох</a></li>';
 
                 }elseif($post->show_in_homepage=='yes') {
 
-                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@showhomepage",  $post->id).'"><i class="fa fa-remove"></i>  Undo from Homepage</a></li>';
+                    $edion= $edion .  '<li><a href="'.action("Admin\PostsController@showhomepage",  $post->id).'"><i class="fa fa-remove"></i>  Нүүр хуудас буцаах</a></li>';
 
                 }
 
                  $edion= $edion .  '<li class="divider"></li>';
 
-                 $edion= $edion .  '<li><a target="_blank" href="/edit/'.$post->id.'"><i class="fa fa-edit"></i> Edit Post</a></li>';
+                 $edion= $edion .  '<li><a target="_blank" href="/edit/'.$post->id.'"><i class="fa fa-edit"></i> Мэдээ засах</a></li>';
 
                  $edion= $edion .  '<li class="divider"></li>';
 
@@ -326,17 +326,17 @@ class PostsController extends MainAdminController
 
                 if($post->deleted_at==null) {
 
-                    $edion= $edion . '<li><a class="sendtrash" href="'.action("Admin\PostsController@sendtrashpost",  $post->id).'"><i class="fa fa-trash"></i> Send to Trash</a></li>';
+                    $edion= $edion . '<li><a class="sendtrash" href="'.action("Admin\PostsController@sendtrashpost",  $post->id).'"><i class="fa fa-trash"></i> Хогийн саванд хийх</a></li>';
 
                 }else{
 
-                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@sendtrashpost",  $post->id).'"><i class="fa fa-trash"></i> Retrieve from Trash</a></li>';
+                    $edion= $edion . '<li><a href="'.action("Admin\PostsController@sendtrashpost",  $post->id).'"><i class="fa fa-trash"></i> Хогийн савнаас сэргээх</a></li>';
 
                 }
 
 
 
-                 $edion= $edion .  '<li><a class="permanently" href="'.action("Admin\PostsController@forcetrashpost",  $post->id).'"><i class="fa fa-remove"></i> Delete permanently</a></li>';
+                 $edion= $edion .  '<li><a class="permanently" href="'.action("Admin\PostsController@forcetrashpost",  $post->id).'"><i class="fa fa-remove"></i> Бүр мөсөн устлаа</a></li>';
 
                  $edion = $edion .  '</ul>
                             </div>';

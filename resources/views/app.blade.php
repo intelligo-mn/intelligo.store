@@ -116,4 +116,3 @@
 
 </body>
 </html>
-<!-- Buzzy Media Script - All rights reserved by akbilisim. Website: www.akbilisim.com -->

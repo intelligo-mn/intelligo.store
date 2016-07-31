@@ -42,7 +42,7 @@ class CategoriesController extends MainAdminController
         $pages = Categories::findOrFail($id);
         $pages->delete();
 
-        \Session::flash('success.message', 'Deleted');
+        \Session::flash('success.message', 'Устлаа');
 
         return redirect()->back();
 
@@ -85,12 +85,12 @@ class CategoriesController extends MainAdminController
 
         if(!empty($inputs['id'])){
 
-            \Session::flash('success.message', 'Changes Saved');
+            \Session::flash('success.message', 'Өөрчлөлтийг хадгаллаа');
 
             return redirect('admin/categories');
         }else{
 
-            \Session::flash('success.message', 'Added');
+            \Session::flash('success.message', 'Амжилттай нэмэгдлээ');
 
             return \Redirect::back();
 

@@ -54,7 +54,7 @@ class ConfigController extends MainAdminController
         }
 
 
-        \Session::flash('success.message', 'Changes succesfuly saved');
+        \Session::flash('success.message', 'Өөрчлөлт амжилттай хадгалагдлаа.');
 
         return redirect()->back();
     }

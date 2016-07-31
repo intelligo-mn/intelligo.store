@@ -228,9 +228,9 @@
                 <div class="modeempty-header">
                     <div class="modeempty_text">
                         <i class="fa fa-info-circle "></i>
-                        <h4> {{ $type }} Are Not Ready Yet!</h4>
+                        <h4> {{ $type }} Алдаа!</h4>
                         <p>
-                            <b>Must add 5 {{ $type }} at least!</b>
+                            <b>Хамгийн багадаа 5 {{ $type }} тэмдэгт оруул!</b>
                         </p>
                     </div>
                 </div>

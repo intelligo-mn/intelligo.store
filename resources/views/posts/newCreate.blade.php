@@ -1,5 +1,5 @@
 @extends("app")
-@section('head_title', 'Create '.ucfirst($typene).' | Buzzy')
+@section('head_title', 'Хөгжүүлсэн '.ucfirst($typene).' | BT')
 @section("header")
     <link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
 @endsection
