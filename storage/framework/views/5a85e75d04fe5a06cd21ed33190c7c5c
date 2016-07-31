@@ -2,80 +2,80 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="<?php echo e(makepreview(Auth::user()->icon, 's', 'members/avatar')); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo e(makepreview(Auth::user()->icon, 's', 'members/avatar')); ?>" class="img-circle" alt="Хэрэглэгчийн зураг">
         </div>
         <div class="pull-left info">
             <p><?php echo e(Auth::user()->username); ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <a href="#"><i class="fa fa-circle text-success"></i> Онлайн</a>
         </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">ҮНДСЭН ЦЭС</li>
         <li <?php if(Request::segment(2)==''): ?> class="active" <?php endif; ?>>
             <a href="<?php echo e(URL::route('admin')); ?>">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-dashboard"></i> <span>Самбар</span>
             </a>
         </li>
         <li <?php if(Request::segment(2)=='categories'): ?> class="active" <?php endif; ?>>
             <a href="<?php echo e(URL::route('admin.categories')); ?>">
                 <i class="fa fa-folder"></i>
-                <span>Categories</span>
+                <span>Ангилалууд</span>
             </a>
         </li>
         <li class=" <?php if(Request::segment(2)=='all'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.all-posts')); ?>">
                 <i class="fa fa-book"></i>
-                <span>Latest Posts</span>
+                <span>Хамгийн сүүлийн мэдээлэлүүд</span>
             </a>
         </li>
         <li class=" <?php if(Request::segment(2)=='features'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.feature-posts')); ?>">
                 <i class="fa fa-star"></i>
-                <span>Features Posts</span>
+                <span>Санал болгох мэдээнүүд</span>
             </a>
         </li>
         <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.unapprove-posts', array('only' => 'unapprove'))); ?>">
                 <i class="fa fa-check-circle"></i>
-                <span>Unapproved Posts</span>
+                <span>Зөвшөөрөлгүй мэдээнүүд</span>
                 <small class="label pull-right bg-aqua"><?php echo e($toplamapprove); ?></small>
             </a>
         </li>
         <li class="treeview  <?php if(Request::segment(2)=='news'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.news')); ?>">
                 <i class="fa fa-file-text"></i>
-                <span>News</span>
+                <span>Мэдээ</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="<?php echo e(URL::route('admin.news')); ?>"><i class="fa fa-eye"></i> View News</a></li>
-                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Unapproved News <small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li>
-                <li><a href="<?php echo e(URL::route('admin.news', array('only'=>'deleted'))); ?>"><i class="fa fa-trash-o"></i> News Trash</a></li>
+                <li><a href="<?php echo e(URL::route('admin.news')); ?>"><i class="fa fa-eye"></i> Мэдээ харах</a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөлгүй мэдээ <small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only'=>'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
             </ul>
         </li>
         <li class="treeview <?php if(Request::segment(2)=='lists'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.lists')); ?>">
                 <i class="fa fa-th-list"></i>
-                <span>Lists</span>
+                <span>Санал асуулга</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="<?php echo e(URL::route('admin.lists')); ?>"><i class="fa fa-eye"></i> View Lists</a></li>
-                <li><a href="<?php echo e(URL::route('admin.lists', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Unapproved Lists <small class="label pull-right bg-green"><?php echo e($napprovelists); ?></small></a></li>
-                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> List Trash</a></li>
+                <li><a href="<?php echo e(URL::route('admin.lists')); ?>"><i class="fa fa-eye"></i> Санал асуулгууд</a></li>
+                <li><a href="<?php echo e(URL::route('admin.lists', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй санал асуулгууд<small class="label pull-right bg-green"><?php echo e($napprovelists); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
             </ul>
         </li>
         <li class="treeview  <?php if(Request::segment(2)=='videos'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.videos')); ?>">
                 <i class="fa fa-youtube-play"></i>
-                <span>Videos</span>
+                <span>Дүрс бичлэг</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="<?php echo e(URL::route('admin.videos')); ?>"><i class="fa fa-eye"></i> View Videos</a></li>
-                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Unapproved Videos <small class="label pull-right bg-yellow"><?php echo e($napprovevideos); ?></small></a></li>
-                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Video Trash</a></li>
+                <li><a href="<?php echo e(URL::route('admin.videos')); ?>"><i class="fa fa-eye"></i> Дүрс бичлэгүүд</a></li>
+                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй дүрс бичлэг <small class="label pull-right bg-yellow"><?php echo e($napprovevideos); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
             </ul>
         </li>
         <li class="treeview <?php if(Request::segment(2)=='polls'): ?> active <?php endif; ?>">
@@ -93,7 +93,7 @@
         <li class="treeview <?php if(Request::segment(2)=='users'): ?> active <?php endif; ?>">
             <a href="<?php echo e(URL::route('admin.users')); ?>">
                 <i class="fa fa-users"></i>
-                <span>Users</span>
+                <span>Хэрэглэгч</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">

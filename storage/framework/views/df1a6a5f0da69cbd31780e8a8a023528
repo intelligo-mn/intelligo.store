@@ -135,7 +135,7 @@
         <div class="pull-right hidden-xs">
             <strong>Copyright &copy; 2015 <a href="http://toroo.info" target="_blank">ToRoo</a>.</strong> All rights reserved.
         </div>
-        <b><a href="http://toroo.info" target="_blank">Toroo</a></b> Хувилбар : <?php echo e(Config::get('installer.last_version')); ?>
+        <b><a href="http://toroo.info" target="_blank">Систем</a></b> Хувилбар : <?php echo e(Config::get('installer.last_version')); ?>
 
     </footer>
 
