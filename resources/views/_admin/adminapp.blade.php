@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ getcong('sitename') }} | Dashboard</title>
+    <title>{{ getcong('sitename') }} | Самбар</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -39,9 +39,9 @@
         <!-- Logo -->
         <a href="/admin" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>{{ substr(getcong('sitename'),0,1) }}</b>P</span>
+            <span class="logo-mini"><b>{{ substr(getcong('sitename'),0,1) }}</b>С</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>{{ getcong('sitename') }}</b>Panel</span>
+            <span class="logo-lg"><b>{{ getcong('sitename') }}</b>Самбар</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -62,7 +62,7 @@
                             <span class="label label-success">{{ $toplamapprove }}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">{{ $toplamapprove }} awating approvel</li>
+                            <li class="header">{{ $toplamapprove }} зөвшөөрөл хүлээж байгаа</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
@@ -81,7 +81,7 @@
                                  @endforeach
                                 </ul>
                             </li>
-                            <li class="footer"><a href="/admin/unapprove?only=unapprove">See All Unapproved Posts</a></li>
+                            <li class="footer"><a href="/admin/unapprove?only=unapprove">Бүх зөвшөөрөлгүй мэдээг харна уу</a></li>
                         </ul>
                     </li>
 
@@ -96,17 +96,17 @@
                             <li class="user-header">
                                 <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" class="img-circle" alt="User Image">
                                 <p>
-                                    {{  Auth::user()->username }} - Admin
-                                    <small>Member since {{  Auth::user()->created_at }}</small>
+                                    {{  Auth::user()->username }} - Админ
+                                    <small>Гишүүн болсон {{  Auth::user()->created_at }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="/profile/{{  Auth::user()->username_slug }}" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="/profile/{{  Auth::user()->username_slug }}" class="btn btn-default btn-flat">Хувийн мэдээлэл</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="/logout" class="btn btn-default btn-flat">Гарах</a>
                                 </div>
                             </li>
                         </ul>
@@ -132,9 +132,9 @@
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <strong>Copyright &copy; 2015 <a href="http://akbilisim.com" target="_blank">akbilisim</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2015 <a href="http://toroo.info" target="_blank">ToRoo</a>.</strong> All rights reserved.
         </div>
-        <b><a href="http://buzzy.akbilisim.com" target="_blank">Buzzy</a></b> Version : {{ Config::get('installer.last_version') }}
+        <b><a href="http://toroo.info" target="_blank">Систем</a></b> Хувилбар : {{ Config::get('installer.last_version') }}
     </footer>
 
 </div><!-- ./wrapper -->

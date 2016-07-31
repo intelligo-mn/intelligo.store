@@ -1,9 +1,9 @@
 <?php if(Session::has('success.message')): ?>
     <script>
-        swal({   title: "Success!", text: "<?php echo e(Session::get('success.message')); ?>", type: "success",  html: true });
+        swal({   title: "Амжилттай!", text: "<?php echo e(Session::get('success.message')); ?>", type: "success",  html: true });
     </script>
     <?php elseif(Session::has('error.message')): ?>
     <script>
-        swal({   title: "Error!", text: "<?php echo e(Session::get('error.message')); ?>", type: "error",  html: true });
+        swal({   title: "Алдаа!", text: "<?php echo e(Session::get('error.message')); ?>", type: "error",  html: true });
     </script>
 <?php endif; ?>
