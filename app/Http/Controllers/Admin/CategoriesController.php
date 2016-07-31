@@ -95,9 +95,5 @@ class CategoriesController extends MainAdminController
             return \Redirect::back();
 
         }
-
     }
-
-
-
 }
