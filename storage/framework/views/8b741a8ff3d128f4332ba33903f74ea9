@@ -1,0 +1,26 @@
+<?php $__env->startSection("usercontent"); ?>
+    <div class="profile-section-header">
+        <a class="profile-section-item <?php if(Request::segment(3)==''): ?> active <?php endif; ?>" href="/profile/<?php echo e($userinfo->username_slug); ?>"><?php echo e(trans('index.all')); ?></a>
+        <a class="profile-section-item <?php if(Request::segment(3)=='news'): ?> active <?php endif; ?>" href="/profile/<?php echo e($userinfo->username_slug); ?>/news"><?php echo e(trans('index.news')); ?></a>
+        <a class="profile-section-item <?php if(Request::segment(3)=='lists'): ?> active <?php endif; ?>" href="/profile/<?php echo e($userinfo->username_slug); ?>/lists"><?php echo e(trans('index.lists')); ?></a>
+        <a class="profile-section-item <?php if(Request::segment(3)=='polls'): ?> active <?php endif; ?>" href="/profile/<?php echo e($userinfo->username_slug); ?>/polls"><?php echo e(trans('index.polls')); ?></a>
+        <a class="profile-section-item <?php if(Request::segment(3)=='videos'): ?> active <?php endif; ?>" href="/profile/<?php echo e($userinfo->username_slug); ?>/videos"><?php echo e(trans('index.videos')); ?></a>
+    </div>
+    <div class="recent-activity">
+
+        <?php if($lastPosts->total() > 0): ?>
+            <ul class="items_lists res-lists">
+
+                <?php foreach($lastPosts as $item): ?>
+                    <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'bolb titb','descof' => 'on','linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endforeach; ?>
+            </ul>
+            <?php else: ?>
+            <?php echo $__env->make('errors.emptycontent', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php endif; ?>
+    </div>
+
+    <?php echo $lastPosts->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("pages.users.userapp", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

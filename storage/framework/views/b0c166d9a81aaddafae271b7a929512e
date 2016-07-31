@@ -1,0 +1,18 @@
+<?php if(isset($lastFeatures)): ?>
+    <div class="row">
+
+<div class="jscroll">
+    <ul class="items_lists square">
+        <?php foreach($lastFeatures as $item): ?>
+            <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image titm bolb','descof' => 'off','featuredon' => 'on', 'itembodyheight' => '50px', 'metaof' => 'off', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php endforeach; ?>
+
+            <?php if($lastFeatures->nextPageUrl()): ?>
+                <li class="show-more">
+                    <a href="<?php echo e($lastFeatures->nextPageUrl()); ?>" class="page-next"></a>
+                </li>
+            <?php endif; ?>
+    </ul>
+</div>
+</div>
+<?php endif; ?>

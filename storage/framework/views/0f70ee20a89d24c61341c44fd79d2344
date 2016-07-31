@@ -1,5 +1,4 @@
-@extends("app")
-@section('header')
+<?php $__env->startSection('header'); ?>
 <style>
     .starting{
         padding:70px 0 350px 0;
@@ -80,21 +79,21 @@
 
     }
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="content" >
         <div class="container starting">
-            @if(isset($type))
+            <?php if(isset($type)): ?>
                 <div class="modeempty-header">
                     <div class="modeempty_text">
                         <i class="fa fa-info-circle "></i>
-                        <h4> {{ $type }} Are Not Ready Yet!</h4>
+                        <h4> <?php echo e($type); ?> Are Not Ready Yet!</h4>
                         <p>
-                            <b>Must add 5 {{ $type }} at least!</b>
+                            <b>Must add 5 <?php echo e($type); ?> at least!</b>
                         </p>
                     </div>
                 </div>
-            @else
+            <?php else: ?>
 
             <h1 class="title">Сайн байна уу</h1>
             <div class="clear"></div>
@@ -104,18 +103,18 @@
             <div class="modeempty-header green">
                 <div class="modeempty_text">
 
-                    @if(Auth::check() && Auth::user()->usertype=='Admin')
+                    <?php if(Auth::check() && Auth::user()->usertype=='Admin'): ?>
 
 
                         <h4>Админ хэсэгт нэвтэрч үндсэн тохиргоонуудаа засна уу!</h4>
 
                         <a href="/admin/config"  style="margin-top:50px" class="button button-big button-orange">Админ хэсэг</a>
 
-                    @else
+                    <?php else: ?>
                     <i class="fa fa-check green"></i>
                     <h4>Вэб хуудас амжилттай суусан</h4>
 
-                    @endif
+                    <?php endif; ?>
 
 
                 </div>
@@ -124,11 +123,14 @@
             <div class="copyright">
 
 
-                <b><a href="#" target="_blank"></a></b> Хувилбар : {{ Config::get('installer.last_version') }}
+                <b><a href="#" target="_blank"></a></b> Хувилбар : <?php echo e(Config::get('installer.last_version')); ?>
+
             </div>
-@endif
+<?php endif; ?>
 
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

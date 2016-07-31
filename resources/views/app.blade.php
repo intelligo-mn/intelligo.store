@@ -26,44 +26,7 @@
 
     {!! getcong('headcode') !!}
 
-    <style>
-
-
-        body {
-            background: {{  getcong('BodyBC') }}!important;}
-        body.mode-boxed {
-            background: {{  getcong('BodyBCBM') }}!important; }
-        header {
-            background: {{ getcong('NavbarBC') }}!important;
-            border-top: 3px solid {{ getcong('NavbarTBLC') }}!important;}
-        .header  a{
-            color: {{ getcong('NavbarLC') }}!important;}
-        .header a > i{
-            color: {{ getcong('NavbarLC') }}!important;}
-
-        .header .navmenu li.active >a,
-        .header .navmenu li:hover >a{
-             border-color: {{ getcong('NavbarTBLC') }}!important;
-         }
-
-        .header a:hover{
-            color: {{ getcong('NavbarLHC') }}!important;}
-        .header a:hover > i{
-            color: {{ getcong('NavbarLHC') }}!important;}
-        .header .create-links > a {
-            background: {{ getcong('NavbarCBBC') }}!important;
-            color: {{ getcong('NavbarCBFC') }}!important;
-            border-color: {{ getcong('NavbarCBBC') }}!important;}
-        .header .create-links > a i {
-            color: {{ getcong('NavbarCBFC') }}!important;}
-        .header .create-links > a:hover {
-            background: {{ getcong('NavbarCBHBC') }}!important;
-            color: {{ getcong('NavbarCBHFC') }}!important;}
-        .header .create-links > a:hover i {
-            color: {{ getcong('NavbarCBHFC') }}!important;}
-        .list-count:before {
-            background: {{ getcong('NavbarTBLC') }}!important;}
-    </style>
+   
     @yield("header")
 </head>
 <body class="{{ getcong('languagetype') }}  {{ getcong('LayoutType') }} {{ getcong('NavbarType') }} @if(!Request::is('/')) mode-default @endif @if(Request::is('create') or Request::segment(1)=='profile' or Request::segment(1)=='edit') mode-boxed @endif">

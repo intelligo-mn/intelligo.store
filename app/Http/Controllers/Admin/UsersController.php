@@ -36,7 +36,7 @@ class UsersController extends MainAdminController
             $post = User::findOrFail($request->query('userlock'));
             $post->usertype = 'banned';
             $post->save();
-            \Session::flash('success.message', 'Banned');
+            \Session::flash('success.message', 'Хаасан');
             return redirect()->back();
 
         }elseif(null !== $request->query('userunlock')){
@@ -44,7 +44,7 @@ class UsersController extends MainAdminController
             $post = User::findOrFail($request->query('userunlock'));
             $post->usertype = null;
             $post->save();
-            \Session::flash('success.message', 'Unlocked');
+            \Session::flash('success.message', 'Нээсэн');
             return redirect()->back();
 
         }elseif(null !== $request->query('useradmin')){
@@ -52,7 +52,7 @@ class UsersController extends MainAdminController
             $post = User::findOrFail($request->query('useradmin'));
             $post->usertype = 'Admin';
             $post->save();
-            \Session::flash('success.message', 'Success');
+            \Session::flash('success.message', 'Амжилттай');
             return redirect()->back();
 
         }elseif(null !== $request->query('userunadmin')){
@@ -60,7 +60,7 @@ class UsersController extends MainAdminController
             $post = User::findOrFail($request->query('userunadmin'));
             $post->usertype = null;
             $post->save();
-            \Session::flash('success.message', 'Now user is not admin!');
+            \Session::flash('success.message', 'Админ биш!');
             return redirect()->back();
 
         }
