@@ -2,80 +2,80 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" class="img-circle" alt="Хэрэглэгчийн зураг">
+            <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
             <p>{{  Auth::user()->username }}</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Онлайн</a>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-        <li class="header">ҮНДСЭН ЦЭС</li>
+        <li class="header">MAIN NAVIGATION</li>
         <li @if(Request::segment(2)=='') class="active" @endif>
             <a href="{{URL::route('admin')}}">
-                <i class="fa fa-dashboard"></i> <span>Самбар</span>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
         </li>
         <li @if(Request::segment(2)=='categories') class="active" @endif>
             <a href="{{URL::route('admin.categories')}}">
                 <i class="fa fa-folder"></i>
-                <span>Ангилалууд</span>
+                <span>Categories</span>
             </a>
         </li>
         <li class=" @if(Request::segment(2)=='all') active @endif">
             <a href="{{URL::route('admin.all-posts')}}">
                 <i class="fa fa-book"></i>
-                <span>Хамгийн сүүлийн мэдээлэлүүд</span>
+                <span>Latest Posts</span>
             </a>
         </li>
         <li class=" @if(Request::segment(2)=='features') active @endif">
             <a href="{{URL::route('admin.feature-posts')}}">
                 <i class="fa fa-star"></i>
-                <span>Санал болгох мэдээнүүд</span>
+                <span>Features Posts</span>
             </a>
         </li>
         <li class="treeview  @if(Request::segment(2)=='unapprove') active @endif">
             <a href="{{URL::route('admin.unapprove-posts', array('only' => 'unapprove'))}}">
                 <i class="fa fa-check-circle"></i>
-                <span>Зөвшөөрөлгүй мэдээнүүд</span>
+                <span>Unapproved Posts</span>
                 <small class="label pull-right bg-aqua">{{ $toplamapprove }}</small>
             </a>
         </li>
         <li class="treeview  @if(Request::segment(2)=='news') active @endif">
             <a href="{{URL::route('admin.news')}}">
                 <i class="fa fa-file-text"></i>
-                <span>Мэдээ</span>
+                <span>News</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{URL::route('admin.news')}}"><i class="fa fa-eye"></i> Мэдээ харах</a></li>
-                <li><a href="{{URL::route('admin.news', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Зөвшөөрөлгүй мэдээ <small class="label pull-right bg-aqua">{{ $napprovenews }}</small></a></li>
-                <li><a href="{{URL::route('admin.news', array('only'=>'deleted'))}}"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+                <li><a href="{{URL::route('admin.news')}}"><i class="fa fa-eye"></i> View News</a></li>
+                <li><a href="{{URL::route('admin.news', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Unapproved News <small class="label pull-right bg-aqua">{{ $napprovenews }}</small></a></li>
+                <li><a href="{{URL::route('admin.news', array('only'=>'deleted'))}}"><i class="fa fa-trash-o"></i> News Trash</a></li>
             </ul>
         </li>
         <li class="treeview @if(Request::segment(2)=='lists') active @endif">
             <a href="{{URL::route('admin.lists')}}">
                 <i class="fa fa-th-list"></i>
-                <span>Санал асуулга</span>
+                <span>Lists</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{URL::route('admin.lists')}}"><i class="fa fa-eye"></i> Санал асуулгууд</a></li>
-                <li><a href="{{URL::route('admin.lists', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй санал асуулгууд<small class="label pull-right bg-green">{{ $napprovelists }}</small></a></li>
-                <li><a href="{{URL::route('admin.news', array('only' => 'deleted'))}}"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+                <li><a href="{{URL::route('admin.lists')}}"><i class="fa fa-eye"></i> View Lists</a></li>
+                <li><a href="{{URL::route('admin.lists', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Unapproved Lists <small class="label pull-right bg-green">{{ $napprovelists }}</small></a></li>
+                <li><a href="{{URL::route('admin.news', array('only' => 'deleted'))}}"><i class="fa fa-trash-o"></i> List Trash</a></li>
             </ul>
         </li>
         <li class="treeview  @if(Request::segment(2)=='videos') active @endif">
             <a href="{{URL::route('admin.videos')}}">
                 <i class="fa fa-youtube-play"></i>
-                <span>Дүрс бичлэг</span>
+                <span>Videos</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{URL::route('admin.videos')}}"><i class="fa fa-eye"></i> Дүрс бичлэгүүд</a></li>
-                <li><a href="{{URL::route('admin.videos', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй дүрс бичлэг <small class="label pull-right bg-yellow">{{ $napprovevideos }}</small></a></li>
-                <li><a href="{{URL::route('admin.videos', array('only' => 'deleted'))}}"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+                <li><a href="{{URL::route('admin.videos')}}"><i class="fa fa-eye"></i> View Videos</a></li>
+                <li><a href="{{URL::route('admin.videos', array('only' => 'unapprove'))}}"><i class="fa fa-check-circle"></i> Unapproved Videos <small class="label pull-right bg-yellow">{{ $napprovevideos }}</small></a></li>
+                <li><a href="{{URL::route('admin.videos', array('only' => 'deleted'))}}"><i class="fa fa-trash-o"></i> Video Trash</a></li>
             </ul>
         </li>
         <li class="treeview @if(Request::segment(2)=='polls') active @endif">
@@ -93,43 +93,43 @@
         <li class="treeview @if(Request::segment(2)=='users') active @endif">
             <a href="{{URL::route('admin.users')}}">
                 <i class="fa fa-users"></i>
-                <span>Хэрэглэгч</span>
+                <span>Users</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{URL::route('admin.users')}}"><i class="fa fa-caret-right"></i> Хэрэглэгчид</a></li>
-                <li><a href="{{URL::route('admin.users', array('only' => 'banned'))}}"><i class="fa fa-caret-right"></i> Эрх хасуулсан хэрэглэгч </a></li>
-                <li><a href="{{URL::route('admin.users', array('only' => 'admins'))}}"><i class="fa fa-caret-right"></i> Админ</a></li>
+                <li><a href="{{URL::route('admin.users')}}"><i class="fa fa-caret-right"></i> View Users</a></li>
+                <li><a href="{{URL::route('admin.users', array('only' => 'banned'))}}"><i class="fa fa-caret-right"></i> Banned Users </a></li>
+                <li><a href="{{URL::route('admin.users', array('only' => 'admins'))}}"><i class="fa fa-caret-right"></i> Admins</a></li>
             </ul>
         </li>
 
         <li class="treeview  @if(Request::segment(2)=='pages') active @endif">
             <a href="#">
                 <i class="fa fa-files-o"></i>
-                <span>Хуудас</span>
+                <span>Pages</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ action('Admin\PagesController@index') }}"><i class="fa fa-caret-right"></i> Хуудасууд харах</a></li>
-                <li><a href="{{ action('Admin\PagesController@add') }}"><i class="fa fa-caret-right"></i> Шинэ хуудас нэмэх</a></li>
+                <li><a href="{{ action('Admin\PagesController@index') }}"><i class="fa fa-caret-right"></i> View Pages</a></li>
+                <li><a href="{{ action('Admin\PagesController@add') }}"><i class="fa fa-caret-right"></i> Add New Page</a></li>
             </ul>
         </li>
         <li class="treeview">
             <a href="{{ action('Admin\WidgetsController@index') }}">
                 <i class="fa fa-puzzle-piece"></i>
-                <span>Нэмэлт хог</span>
+                <span>Widgets</span>
             </a>
         </li>
         <li class="treeview  @if(Request::segment(2)=='config') active @endif">
             <a href="{{ action('Admin\ConfigController@index') }}">
-                <i class="fa fa-cog"></i> <span>Тохиргоо</span>
+                <i class="fa fa-cog"></i> <span>Settings</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ action('Admin\ConfigController@index') }}"><i class="fa fa-caret-right"></i> Үндсэн тохиргоо</a></li>
-                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'layout']) }}"><i class="fa fa-caret-right"></i> Layout тохиргоо</a></li>
-                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> Social Media Тохиргоо</a></li>
-                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'others']) }}"><i class="fa fa-caret-right"></i> Бусад тохиргоонууд</a></li>
+                <li><a href="{{ action('Admin\ConfigController@index') }}"><i class="fa fa-caret-right"></i> General Settings</a></li>
+                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'layout']) }}"><i class="fa fa-caret-right"></i> Layout Settings</a></li>
+                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> Social Media Settings</a></li>
+                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'others']) }}"><i class="fa fa-caret-right"></i> Other Settings</a></li>
             </ul>
         </li>
         <li>
