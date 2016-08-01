@@ -1,0 +1,105 @@
+V1.4 – 13/06/16
+
+– Added: New Category System. (Now main categories can be added)
+– Added: Tag System 
+– Added: Admin Panel fully translatable
+– Added: Translate Manager Plugin 
+– Added: New Poll Entry (Now all posts types takes polls)
+– Added: Voting for Polls without user registration.
+– Added: Voting for Reactions without user registration. Max 3 times voting
+– Added: Page view counter
+– Added: Share Counter
+– Added: Option for user can send posts or not
+– Added: Demo & Docs for Turkish (Demo) (Docs)
+– Rework: Mobil Sidebar.
+– Rework: Site Layouts.
+– Rework: Header sections has more useful dropdown menu.
+– Fixed: Small issues
+V1.3.2 – 16/12/15
+
+– Added: Spanish Language files
+– Fixed: Yes! Delete it! words on get image from url popup
+– Fixed: Amazon S3 us-east-1 region image url issue
+– Fixed: Feed posts not show up correctly
+– Fixed: Other small issues
+V1.3.1 – 10/12/15
+
+– Added: Amazon S3 CDN Support for Image upload
+– Fixed: Issue with load more button on category pages and homepage.
+V1.3 – 26/11/15
+
+– Added: User Follow System
+– Added: Homepage Builder plugin now supports all subcategories. 
+– Added: “Save as Draft” Option for BuzzyEditor
+– Added: Facebook Post entry for BuzzyEditor
+– Added: Account activate email on user registeration.
+– Added: 3 new widget area (Homepage first and second columns and Post page share buttons below)
+– Added: Now category pages has infinite scrolling
+– Added: More useful design changes
+– Added: Language switcher on Footer (Only changing language strings)
+– Added: Turkish(100%), Russian(80%) language support on frontend.
+– Added: Google Font selection to admin panel settings.
+– Rework: Poll results has more features 
+– Rework: Header sections has more useful dropdown menu.
+– Rework: Search button area 
+– Rework: Social buttons has flat design
+– Rework: Login/register popup has mini connect buttons on mobile
+– Rework: More useful web installer
+– Fixed: Reaction vote buttons has issue on mobile
+– Fixed: Search issue on admin panel post lists
+– Fixed: Issue with scroll top button and quiz auto scroll on Firefox
+– Fixed: Other small issues
+V1.2 – 05/11/15
+
+- Added: New plugin system. Now all content types can be enabled/disabled
+- Added: Reaction vote plugin
+- Added: Homepage Builder(beta) plugin
+- Added: Pagination on post pages. Now posts can be gallery style. 
+- Added: Now Post url supports: {type}/{slug} or {type}/{id} or {username}/{slug} or {username}/{id} 
+- Added: Prepare files for upcoming plugin Quizzes
+- Added: RSS feed for all categories
+- Added: Sitemap
+- Added: New profile design and splash Image upload for users
+- Added: VKontakte Logining 
+- Added: Improve login/register popup on mobile
+- Added: Now footer has different logo upload option.
+- Added: Staff/Editor users posts has auto approve
+- Fixed: Source field not show up on text entry
+- Fixed: Other small issues
+V1.1.3 – 26/10/15
+
+- Added: Staff/Editor role for users
+- Added: User type badge on the post and user pages (Admin/Staff(Editor)/Banned)
+- Added: Create Video page now support Tweet, Instagram, Soundcloud entries
+- Added: Slug field on the category create form 
+- Fixed: Some servers automatically set posts featured issue
+- Fixed: Some servers has logo upload issue
+- Fixed: Issue with user setting changes
+- Fixed: Twitter emoji issue with tweet entry
+- Fixed: Buzzyeditor link issue
+- Fixed: Other small issues
+V1.1.1
+
+- This update has minor bug-fixes
+V1.1
+
+- Added: Tweet Entry, Instagram Entry, SoundCloud Entry for BuzzyEditor
+- Added: Facebook video support for BuzzyEditor Video Entry
+- Added: Password reset system
+- Added: Infinite lists or Load more button option for panel settings
+- Added: New widget area to between 2./3. entries.
+- Fixed: Failed login issue
+- Fixed: Some missing language strings
+- Fixed: Other small issues
+V1.0.5
+
+- Added: Get image from the url support for BuzzyEditor image entry widget.
+- Added: “Make preview image” button for BuzzyEditor image entry widget.
+- Added: RTL support and also added option to the panel for that.
+- Added: Scroll top button
+- Added: Infinite lists on the homepage lists and post page “You may also like” area
+- Removed id from the url for SEO. Now It just like example.com/{type}/{postslug}
+- Fixed some small issues: alert on the poll options , search bug when you hit enter, panel banned user list, create button disappear on mobile devices.
+V1.0.0
+
+- Initial public release
