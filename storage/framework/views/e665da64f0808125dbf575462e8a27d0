@@ -1,0 +1,101 @@
+<?php $__env->startSection('head_title', $userinfo->username.' on '. getcong('sitename')); ?>
+<?php $__env->startSection("content"); ?>
+
+    <div class="content">
+
+        <div class="container" style="padding: 0; ">
+
+            <div class="profile-wrap">
+
+                <div class="profile-content clearfix">
+
+                    <div class="profile-sidebar">
+
+
+                        <div class="profile-section">
+                              <div class="profile-display-name">
+                                  <a href="/profile/<?php echo e($userinfo->username_slug); ?>">  <?php echo e($userinfo->username); ?></a>
+                              </div>
+
+                            <a href="/profile/<?php echo e($userinfo->username_slug); ?>"><img src="<?php echo e(makepreview($userinfo->icon, 'b', 'members/avatar')); ?>" width="120" height="120" data-big="" alt="<?php echo e($userinfo->username); ?>" class="profile-image"></a>
+                            <div class="profile-details">
+                                <?php if($userinfo->name): ?>
+                                <div class="profile-detail">
+                                    <strong><?php echo e(trans('index.usern')); ?></strong>
+                                    <?php echo e($userinfo->name); ?>
+
+                                </div>
+                                <?php endif; ?>
+                                <?php if($userinfo->genre): ?>
+                                    <div class="profile-detail">
+                                        <strong><?php echo e(trans('index.gender')); ?></strong>
+                                        <?php echo e($userinfo->genre); ?>
+
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($userinfo->town): ?>
+                                <div class="profile-detail">
+                                    <strong><?php echo e(trans('index.location')); ?></strong>
+                                    <?php echo e($userinfo->town); ?>
+
+                                </div>
+                                <?php endif; ?>
+
+                            </div>
+<?php if (Gate::check('if-authuser-allows', $userinfo)): ?>
+                            <a class="button button-blue button-full set-button" href="/profile/<?php echo e($userinfo->username_slug); ?>/settings"><?php echo e(trans('index.settings')); ?></a>
+<?php endif; ?>
+                         </div>
+
+                        <div class="profile-section">
+                            <div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-file-text"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.news') ])); ?></span>    </div>      <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/news"><?php echo e($newscount); ?> </a>     </div>
+                            <div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-th-list"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.lists') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/lists"><?php echo e($listscount); ?> </a>      </div>
+                            <div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.polls') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/polls"><?php echo e($pollscount); ?> </a>  </div>
+                            <div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.videos') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/videos"><?php echo e($videoscount); ?> </a>   </div>
+                        </div>
+<?php if($userinfo->about ): ?>
+                        <div class="profile-section">
+                            <div class="profile-sidebar-label">
+                                <?php echo e(trans('index.about')); ?>
+
+                            </div>
+                            <p><?php echo e($userinfo->about); ?></p>
+                        </div>
+<?php endif; ?>
+                        <?php if($userinfo->facebookurl or $userinfo->twitterurl or $userinfo->weburl ): ?>
+                        <div class="profile-section">
+                            <div class="profile-sidebar-label">
+                                 <?php echo e(trans('index.links')); ?>
+
+                            </div>
+
+                            <div class="external-sign-in">
+                                <?php if($userinfo->facebookurl): ?> <a href="<?php echo e($userinfo->facebookurl); ?>" class="Facebook do-signup tgec"></a> <?php endif; ?>
+                                <?php if($userinfo->twitterurl): ?><a href="<?php echo e($userinfo->twitterurl); ?>" class="Twitter do-signup tgec"></a> <?php endif; ?>
+                                <?php if($userinfo->weburl): ?> <a href="<?php echo e($userinfo->weburl); ?>" class="Weburl do-signup tgec"><i class="fa fa-external-link"></i></a> <?php endif; ?>
+                            </div>
+
+                        </div>
+                        <?php endif; ?>
+                        <div class="profile-section" style="border:0">
+                            <?php echo trans('index.joinedat', ['time' => $userinfo->created_at->diffForHumans() ]); ?>
+
+                        </div>
+
+                    </div>
+
+                    <div class="profile-main">
+
+                        <?php echo $__env->yieldContent("usercontent"); ?>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

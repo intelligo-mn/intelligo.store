@@ -1,0 +1,232 @@
+<?php $__env->startSection('head_title', $post->title .' | '.getcong('sitename') ); ?>
+<?php $__env->startSection('head_description', $post->body); ?>
+<?php $__env->startSection('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg')); ?>
+<?php $__env->startSection('head_url', Request::url()); ?>
+
+<?php $__env->startSection("content"); ?>
+
+    <div class="content">
+
+        <div class="container">
+            <div class="mainside">
+
+                <div class="post-content" style="margin-top:7px" itemscope="" itemtype="http://schema.org/Article">
+
+                    <div class="post">
+                        <div class="post-head">
+                            <h1 itemprop="name" class="post-title">
+                                <?php echo e($post->title); ?>
+
+                            </h1>
+                            <?php if (Gate::check('update-post', $post)): ?>
+                            <?php if(Auth::user()->usertype=='Admin'): ?>
+                                   <h5 class="pull-r" style="color:#aaa;line-height: 26px"><?php echo e(trans('index.admintools')); ?></h5>
+
+                                    <?php if($post->approve == 'no'): ?>
+                                        <a href="<?php echo e(action('Admin\PostsController@approvepost', $post->id)); ?>" class="button button-orange button-small"><i class="fa fa-check-square-o iconp"></i> <?php echo e(trans('index.approve')); ?></a>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <h5 class="pull-r" style="color:#aaa;line-height: 26px"><?php echo e(trans('index.ownertools')); ?></h5>
+
+                                    <?php if($post->approve == 'no'): ?>
+                                        <a href="#" class="button button-orange button-small" style="cursor: default"><i class="fa fa-circle-o-notch fa-spin iconp"></i> <?php echo e(trans('index.waitapprove')); ?></a>
+                                    <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if($post->type !== 'poll'): ?>
+                                <?php if(getcong('UserEditPosts')=='true' or Auth::user()->usertype=='Admin'): ?>
+                            <a href="<?php echo e(action('PostsController@CreateEdit', [$post->id])); ?>" class="button button-green button-small" ><i class="fa fa-pencil-square iconp"></i> <?php echo e(trans('index.edit')); ?></a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if(getcong('UserDeletePosts')=='true' or Auth::user()->usertype=='Admin'): ?>
+                            <a href="<?php echo e(action('PostsController@sendtrashpost', [$post->id])); ?>" onclick="confim()" class="button button-red button-small " ><i class="fa fa-trash"></i></a>
+                            <?php endif; ?>
+                            <BR><BR>
+                           <?php endif; ?>
+
+                            <p>
+                                <?php echo nl2br($post->body); ?>
+
+                            </p>
+
+                             <div class="post-head__bar">
+                                 <?php if(isset($post->user->username_slug)): ?>
+                                 <div class="user-info <?php echo e($post->user->genre); ?> answerer">
+                                     <div class="avatar left">
+                                         <img src="<?php echo e(makepreview($post->user->icon , 's', 'members/avatar')); ?>" width="45" height="45" alt="<?php echo e($post->user->username); ?>">
+                                     </div>
+                                     <div class="info">
+                                         <?php echo trans('index.createdby', ['user' => '<a class="name" href="'.action('UsersController@index', [$post->user->username_slug ]) .'" target="_self">'.$post->user->username.'</a>' ]); ?>
+
+
+                                         <div class="detail">
+                                             <?php echo trans('index.postedon', ['time' => '<time itemprop="datePublished">'.$post->published_at->diffForHumans() .'</time>' ]); ?>
+
+
+                                             <?php if ( ! ($post->updated_at==$post->published_at)): ?>
+                                                 , <?php echo trans('index.updatedon', ['time' => '<time itemprop="datePublished">'.$post->updated_at->diffForHumans() .'</time>' ]); ?>
+
+                                             <?php endif; ?>
+                                         </div>
+
+                                     </div>
+                                 </div>
+                                 <?php endif; ?>
+
+                                <div class="post-head__meta">
+                                    <div class="posted-on">
+
+
+                                    </div>
+
+                                    <div class="topics-container clearfix">
+<?php if(isset($post->category->name_slug)): ?>
+                                        <div class="item_category">
+                                            <a href="<?php echo e(action('PagesController@showCategory', ['id' => $post->category->name_slug ])); ?>"><?php echo e($post->category->name); ?></a>
+                                        </div>
+<?php endif; ?>
+                                        <div class="clear"></div>
+
+                                    </div>
+
+                                </div>
+
+                             </div>
+                            <div class="clear"></div>
+                            <div class="external-sign-in">
+                                <a href="https://facebook.com/sharer.php?u=<?php echo e(Request::url()); ?>"  class="Facebook popup-action"><?php echo e(trans('index.sharefacebook')); ?></a>
+                                <a href="https://twitter.com/intent/tweet?url=<?php echo e(Request::url()); ?>&text=<?php echo e($post->title); ?>"  class="Twitter popup-action"><?php echo e(trans('index.sharetweet')); ?></a>
+                                <a href="https://plus.google.com/share?url=<?php echo e(Request::url()); ?>" class="Google popup-action"><?php echo e(trans('index.sharegoogle')); ?></a>
+                                <a href="http://reddit.com/submit?url=<?php echo e(Request::url()); ?>&title=<?php echo e($post->title); ?>" class="Reddit popup-action"><?php echo e(trans('index.sharereddit')); ?></a>
+                                <a href="http://pinterest.com/pin/create/link/?url=<?php echo e(Request::url()); ?>&media=<?php echo e(makepreview($post->thumb, 'b', 'posts')); ?>&description=<?php echo e($post->title); ?>" class="Pinterest popup-action"><?php echo e(trans('index.sharepinterest')); ?></a>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <?php if($post->type=='poll'): ?>
+                            <img class="img-responsive" alt="<?php echo e($post->title); ?>" src="<?php echo e(makepreview($post->thumb, 'b', 'posts')); ?>">
+                        <?php endif; ?>
+                        <article class="post-body" id="post-body" itemprop="text">
+
+                            <?php echo $__env->make("_particles._lists.entryslists", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                        </article>
+                        <?php if($post->type==3): ?>
+                        <?php echo $__env->make("_forms._pollform", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php foreach(\App\Widgets::where('type', 'PostBelow')->where('display', 'on')->get() as $widget): ?>
+                        <?php echo $widget->text; ?>
+
+                    <?php endforeach; ?>
+
+
+                </div>
+
+
+                <div class="answers-form">
+                    <?php if(getcong('easyComment')=='true'): ?>
+                            <!-- easyComment Content Div -->
+                    <div id="easyComment_Content"></div>
+                    <br><br>
+                    <!-- easyComment -->
+                    <script type="text/javascript">
+                        // CONFIGURATION VARIABLES
+                        var easyComment_ContentID = 'Post_<?php echo e($post->id); ?>';
+                        var easyComment_FooterLinks = 'Off'; // Disable footer links from the easyComment script for Buzzy Demo
+
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        var easyComment_Theme = '<?php echo e(getcong('easyCommentTheme') ? getcong('easyCommentTheme') : 'Default'); ?>'; // Title of easyComment area. Yu can change this if you want.
+                        var easyComment_Title = '<?php echo e(getcong('easyCommentTitle') ? getcong('easyCommentTitle') : 'Comments'); ?>'; // Title of easyComment area. Yu can change this if you want.
+
+                        var easyComment_userid = '<?php echo e(Auth::check() ? Auth::user()->id : ''); ?>';
+                        var easyComment_username = '<?php echo e(Auth::check() ? Auth::user()->username : ''); ?>';
+                        var easyComment_usericon = '<?php echo e(Auth::check() ? makepreview(Auth::user()->icon, 's', 'members/avatar') : ''); ?>';
+                        var easyComment_profillink = '<?php echo e(Auth::check() ? action('UsersController@index', [Auth::user()->username_slug ]) : ''); ?>';
+
+                        var easyComment_Domain = '<?php echo e(getcong('easyCommentcode')); ?>';
+
+                        (function() {
+                            var EC = document.createElement('script');
+                            EC.type = 'text/javascript';
+                            EC.async = true;
+                            EC.src = easyComment_Domain + 'plugin/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(EC);
+                        })();
+                    </script>
+
+                    <?php endif; ?>
+
+                    <?php if(getcong('FacebookComment')=='true'): ?>
+                    <div class="colheader">
+                        <h1><?php echo e(trans('index.conversations')); ?></h1>
+                    </div>
+                    <div class="fb-comments" data-href="<?php echo e(Request::url()); ?>" data-numposts="5" data-width="100%" style="width: 100%"></div>
+                        <br><br>
+                    <?php endif; ?>
+                    <?php if(getcong('DisqussComment')=='true'): ?>
+                    <div class="colheader">
+                        <h1><?php echo e(trans('index.disqusconversations')); ?></h1>
+                    </div>
+                        <?php echo getcong('DisqussCommentcode'); ?>
+
+                            <br><br>
+                    <?php endif; ?>
+
+                </div>
+
+
+            </div>
+            <div class="sidebar">
+
+                <?php foreach(\App\Widgets::where('type', 'PostPageSidebar')->where('display', 'on')->get() as $widget): ?>
+                    <?php echo $widget->text; ?>
+
+                <?php endforeach; ?>
+
+                <div class="colheader" style="margin:0;border:0;text-transform: uppercase;">
+                    <h1><?php echo e(trans('index.today')); ?> <?php echo trans('index.top', ['type' => '<span style="color:#d92b2b">'.trans('index.posts').'</span>' ]); ?></h1>
+                </div>
+
+                <?php echo $__env->make("_widgets.trendlist_sidebar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php echo $__env->make("_widgets.facebooklike", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            </div>
+<div class="clear"></div>
+            <br><br> <br>
+
+            <div class="colheader">
+                <h1><?php echo e(trans('index.maylike')); ?></h1>
+            </div>
+            <?php echo $__env->make("_widgets.post-between-comments", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+
+    </div>
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+
+    <script type="text/javascript">
+
+        window.twttr = (function (d, s, id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.async = true;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = {
+                        _e: [], ready: function (f) {
+                            t._e.push(f)
+                        }
+                    });
+        }(document, "script", "twitter-wjs"));
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

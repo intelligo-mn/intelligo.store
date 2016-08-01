@@ -1,0 +1,147 @@
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="<?php echo e(makepreview(Auth::user()->icon, 's', 'members/avatar')); ?>" class="img-circle" alt="Хэрэглэгчийн зураг">
+        </div>
+        <div class="pull-left info">
+            <p><?php echo e(Auth::user()->username); ?></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Онлайн</a>
+        </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+        <li class="header">ҮНДСЭН ЦЭС</li>
+        <li <?php if(Request::segment(2)==''): ?> class="active" <?php endif; ?>>
+            <a href="<?php echo e(URL::route('admin')); ?>">
+                <i class="fa fa-dashboard"></i> <span>Самбар</span>
+            </a>
+        </li>
+        <li <?php if(Request::segment(2)=='categories'): ?> class="active" <?php endif; ?>>
+            <a href="<?php echo e(URL::route('admin.categories')); ?>">
+                <i class="fa fa-folder"></i>
+                <span>Ангилалууд</span>
+            </a>
+        </li>
+        <li class=" <?php if(Request::segment(2)=='all'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.all-posts')); ?>">
+                <i class="fa fa-book"></i>
+                <span>Хамгийн сүүлийн мэдээлэлүүд</span>
+            </a>
+        </li>
+        <li class=" <?php if(Request::segment(2)=='features'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.feature-posts')); ?>">
+                <i class="fa fa-star"></i>
+                <span>Санал болгох мэдээнүүд</span>
+            </a>
+        </li>
+        <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.unapprove-posts', array('only' => 'unapprove'))); ?>">
+                <i class="fa fa-check-circle"></i>
+                <span>Зөвшөөрөлгүй мэдээнүүд</span>
+                <small class="label pull-right bg-aqua"><?php echo e($toplamapprove); ?></small>
+            </a>
+        </li>
+        <li class="treeview  <?php if(Request::segment(2)=='news'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.news')); ?>">
+                <i class="fa fa-file-text"></i>
+                <span>Мэдээ</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(URL::route('admin.news')); ?>"><i class="fa fa-eye"></i> Мэдээ харах</a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөлгүй мэдээ <small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only'=>'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+            </ul>
+        </li>
+        <li class="treeview <?php if(Request::segment(2)=='lists'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.lists')); ?>">
+                <i class="fa fa-th-list"></i>
+                <span>Санал асуулга</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(URL::route('admin.lists')); ?>"><i class="fa fa-eye"></i> Санал асуулгууд</a></li>
+                <li><a href="<?php echo e(URL::route('admin.lists', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй санал асуулгууд<small class="label pull-right bg-green"><?php echo e($napprovelists); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.news', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+            </ul>
+        </li>
+        <li class="treeview  <?php if(Request::segment(2)=='videos'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.videos')); ?>">
+                <i class="fa fa-youtube-play"></i>
+                <span>Дүрс бичлэг</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(URL::route('admin.videos')); ?>"><i class="fa fa-eye"></i> Дүрс бичлэгүүд</a></li>
+                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Зөвшөөрөөгүй дүрс бичлэг <small class="label pull-right bg-yellow"><?php echo e($napprovevideos); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.videos', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Хогийн сав</a></li>
+            </ul>
+        </li>
+        <li class="treeview <?php if(Request::segment(2)=='polls'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.polls')); ?>">
+                <i class="fa fa-check-square-o"></i>
+                <span>Polls</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(URL::route('admin.polls')); ?>"><i class="fa fa-eye"></i> View Polls</a></li>
+                <li><a href="<?php echo e(URL::route('admin.polls', array('only' => 'unapprove'))); ?>"><i class="fa fa-check-circle"></i> Unapproved Polls <small class="label pull-right bg-red"><?php echo e($napprovepolls); ?></small></a></li>
+                <li><a href="<?php echo e(URL::route('admin.polls', array('only' => 'deleted'))); ?>"><i class="fa fa-trash-o"></i> Poll Trash</a></li>
+            </ul>
+        </li>
+        <li class="treeview <?php if(Request::segment(2)=='users'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(URL::route('admin.users')); ?>">
+                <i class="fa fa-users"></i>
+                <span>Хэрэглэгч</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(URL::route('admin.users')); ?>"><i class="fa fa-caret-right"></i> View Users</a></li>
+                <li><a href="<?php echo e(URL::route('admin.users', array('only' => 'banned'))); ?>"><i class="fa fa-caret-right"></i> Banned Users </a></li>
+                <li><a href="<?php echo e(URL::route('admin.users', array('only' => 'admins'))); ?>"><i class="fa fa-caret-right"></i> Admins</a></li>
+            </ul>
+        </li>
+
+        <li class="treeview  <?php if(Request::segment(2)=='pages'): ?> active <?php endif; ?>">
+            <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>Pages</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(action('Admin\PagesController@index')); ?>"><i class="fa fa-caret-right"></i> View Pages</a></li>
+                <li><a href="<?php echo e(action('Admin\PagesController@add')); ?>"><i class="fa fa-caret-right"></i> Add New Page</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="<?php echo e(action('Admin\WidgetsController@index')); ?>">
+                <i class="fa fa-puzzle-piece"></i>
+                <span>Widgets</span>
+            </a>
+        </li>
+        <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(action('Admin\ConfigController@index')); ?>">
+                <i class="fa fa-cog"></i> <span>Settings</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(action('Admin\ConfigController@index')); ?>"><i class="fa fa-caret-right"></i> General Settings</a></li>
+                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'layout'])); ?>"><i class="fa fa-caret-right"></i> Layout Settings</a></li>
+                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'social'])); ?>"><i class="fa fa-caret-right"></i> Social Media Settings</a></li>
+                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'others'])); ?>"><i class="fa fa-caret-right"></i> Other Settings</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/admin/docs/">
+                <i class="fa fa-book"></i>
+                <span> Documentation</span>
+            </a>
+        </li>
+        <li class="header">UNAPPROVED POSTS</li>
+        <li><a href="/admin/news/?only=unapprove"><i class="fa fa-circle-o text-aqua"></i> <span>News</span><small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li>
+        <li><a href="/admin/lists/?only=unapprove"><i class="fa fa-circle-o text-green"></i> <span>Lists</span><small class="label pull-right bg-green"><?php echo e($napprovelists); ?></small></a></li>
+        <li><a href="/admin/polls/?only=unapprove"><i class="fa fa-circle-o text-yellow"></i> <span>Polls</span><small class="label pull-right bg-yellow"><?php echo e($napprovepolls); ?></small></a></li>
+        <li><a href="/admin/videos/?only=unapprove"><i class="fa fa-circle-o text-red"></i> <span>Videos</span><small class="label pull-right bg-red"><?php echo e($napprovevideos); ?></small></a></li>
+    </ul>
+</section>

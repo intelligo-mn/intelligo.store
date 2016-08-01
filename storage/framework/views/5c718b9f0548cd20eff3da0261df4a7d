@@ -1,0 +1,123 @@
+<?php $__env->startSection("header"); ?>
+<link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection("content"); ?>
+
+    <div class="content add-form">
+        <?php echo Form::open(array('action' => array('PostsController@CreateEditPost', $post->id), 'method' => 'POST', 'onsubmit' => 'return false', 'enctype' => 'multipart/form-data')); ?>
+
+        <div class="container" style="background-color: #f9f9f9">
+            <div class="mainside">
+
+                <div class="question-post-form" data-type="<?php echo e($typene); ?>">
+                    <h1 class="createtitle">
+                        <?php echo e(trans('index.edit')); ?> <?php echo e($titlem); ?>
+
+                    </h1>
+                    <fieldset>
+                        <div class="clear"></div>
+                        <section class="form">
+                            <?php echo $__env->make('errors.adminlook', ['relatedid' => $post->user->id, 'relatedtext' => 'You can edit this post beacuse your an admin'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                            <legend><?php echo e(trans('addpost.title')); ?></legend>
+                            <div class="cd-form">
+                                <?php echo Form::text('headline', $post->title, ['class' => 'cd-input ', 'placeholder' => 'Headline (max: 255 character)']); ?>
+
+                            </div>
+                             <legend><?php echo e(trans('addpost.desc')); ?></legend>
+                            <div class="cd-form">
+                                <?php echo Form::textarea('description', $post->body , ['class' => 'cd-input ','style' => 'height:80px', 'placeholder' => 'Description  (max: 500 character)']); ?>
+
+                            </div>
+
+                        </section>
+                        <?php if($typene=='list'): ?>
+                        <section class="form">
+                            <legend><?php echo e(trans('addpost.listtype')); ?></legend>
+                            <div class="lists-types">
+                                <a class="button <?php if($post->ordertype=='asc'): ?> button-gray selected <?php else: ?> button-white <?php endif; ?>" data-order="asc">
+                                    <i class="fa fa-sort-numeric-asc"></i>
+                                    <strong><?php echo e(trans('addpost.listasc')); ?></strong>
+                                </a>
+                                <a class=" button <?php if($post->ordertype=='desc'): ?> button-gray selected <?php else: ?> button-white <?php endif; ?>" data-order="desc">
+                                    <i class="fa fa-sort-numeric-desc"></i>
+                                    <strong><?php echo e(trans('addpost.listdesc')); ?></strong>
+                                </a>
+                                <a class=" button  <?php if($post->ordertype==null): ?> button-gray selected <?php else: ?> button-white <?php endif; ?> last" data-order="none">
+                                    <i class="fa fa-list-ul"></i>
+                                    <strong><?php echo e(trans('addpost.normallist')); ?></strong>
+                                </a>
+
+                            </div>
+                        </section>
+                        <?php endif; ?>
+                        <section class="form">
+                            <legend><?php echo e(trans('addpost.entries', ['type' => ucfirst($typene) ])); ?></legend>
+                            <div id="entries">
+
+                                <?php foreach($entrys as $key => $entry): ?>
+
+
+                                    <?php if($entry->type=='video'): ?>
+
+                                        <?php echo $__env->make('_forms.__addvideoform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php elseif($entry->type=='embed'): ?>
+
+                                        <?php echo $__env->make('_forms.__addembedform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php elseif($entry->type=='text'): ?>
+
+                                        <?php echo $__env->make('_forms.__addtextform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php elseif($entry->type=='poll'): ?>
+
+                                        <?php echo $__env->make('_forms.__addpollform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php elseif($entry->type=='image'): ?>
+
+                                        <?php echo $__env->make('_forms.__addimageform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php else: ?>
+
+                                        <?php echo $__env->make('_forms.__addtextform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php endif; ?>
+
+                                <?php endforeach; ?>
+
+
+                            </div>
+                        </section>
+                        <section class="form last" id="addnew">
+                            <?php echo $__env->make('posts.add-entry', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        </section>
+                        <div class="clear"></div>
+
+                    </fieldset>
+
+                </div>
+
+            </div>
+            <?php echo $__env->make('posts.create-sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+        </div>
+        <?php echo Form::close(); ?>
+
+    </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection("footer"); ?>
+    <script src="/assets/plugins/editor/module.min.js"></script>
+    <script src="/assets/plugins/editor/hotkeys.min.js"></script>
+    <script src="/assets/plugins/editor/simditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="/assets/js/buzzyeditor.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            BuzzyEditor.init();
+            BuzzyEditor.EditorInit();
+        });
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

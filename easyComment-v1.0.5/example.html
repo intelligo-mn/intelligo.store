@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>easyComment</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+		
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				display: table;
+			}
+			.main {
+				display: block;
+				max-width:800px;
+				margin:0 auto;
+				vertical-align: middle;
+			}
+		</style>
+</head>
+	<body>
+		<div class="main">
+		<!-- easyComment Content Div -->
+		<div id="easyComment_Content"></div>
+
+		</div>
+	
+		<!-- easyComment -->
+		<script type="text/javascript">
+			// CONFIGURATION VARIABLES
+			var easyComment_ContentID = 'YourUnquieId'; // It's must be your Unquie Id
+			
+			// CORE 
+			var easyComment_Domain = 'http://yourdomainname.com/yourfolder/';  //It's must be your easyComment folder uri
+			
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			(function() {
+				var EC = document.createElement('script');
+				EC.type = 'text/javascript';
+				EC.async = true;
+				EC.src = easyComment_Domain + 'plugin/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(EC);
+			})();
+		</script>
+</body></html>
