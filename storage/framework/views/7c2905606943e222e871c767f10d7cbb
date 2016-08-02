@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="<?php echo e(Lang::getLocale()); ?>">
+<head>
+    <title><?php echo $__env->yieldContent('head_title', getcong('sitetitle')); ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php echo $__env->yieldContent('head_description', getcong('sitemetadesc')); ?>" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<?php echo $__env->yieldContent('head_title',  getcong('sitetitle')); ?>" />
+    <meta property="og:description" content="<?php echo $__env->yieldContent('head_description', getcong('sitemetadesc')); ?>" />
+    <meta property="og:image" content="<?php echo $__env->yieldContent('head_image', url('/assets/img/logo.png')); ?>" />
+    <meta property="og:url" content="<?php echo $__env->yieldContent('head_url', url()); ?>" />
+
+    <meta name="twitter:image" content="<?php echo $__env->yieldContent('head_image', url('/assets/img/logo.png')); ?>" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="<?php echo $__env->yieldContent('head_url', url()); ?>">
+    <meta name="twitter:title" content="<?php echo $__env->yieldContent('head_title',  getcong('sitetitle')); ?>">
+    <meta name="twitter:description" content="<?php echo $__env->yieldContent('head_description', getcong('sitemetadesc')); ?>">
+
+    <link href='https://fonts.googleapis.com/css?family=<?php echo e(getcong('googlefont')); ?>' rel='stylesheet' type='text/css'>
+    <link href="<?php echo e(url('/assets/img/favicon.png')); ?>" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins.css">
+    <link rel="stylesheet" href="/assets/css/application.css">
+
+
+    <style type="text/css">
+        body {
+            font-family: <?php echo getcong('sitefontfamily'); ?>;
+            background: <?php echo e(getcong('BodyBC')); ?>!important;}
+        body.mode-boxed {
+            background: <?php echo e(getcong('BodyBCBM')); ?>!important; }
+        header {
+            background: <?php echo e(getcong('NavbarBC')); ?>!important;
+            border-top: 3px solid <?php echo e(getcong('NavbarTBLC')); ?>!important;}
+        .header  a{
+            color: <?php echo e(getcong('NavbarLC')); ?>!important;}
+        .header a > i{
+            color: <?php echo e(getcong('NavbarLC')); ?>!important;}
+        .header a:hover{
+            color: <?php echo e(getcong('NavbarLHC')); ?>!important;}
+        .header a:hover > i{
+            color: <?php echo e(getcong('NavbarLHC')); ?>!important;}
+        .header .create-links > a {
+            background: <?php echo e(getcong('NavbarCBBC')); ?>!important;
+            color: <?php echo e(getcong('NavbarCBFC')); ?>!important;
+            border-color: <?php echo e(getcong('NavbarCBBC')); ?>!important;}
+        .header .create-links > a i {
+            color: <?php echo e(getcong('NavbarCBFC')); ?>!important;}
+        .header .create-links > a:hover {
+            background: <?php echo e(getcong('NavbarCBHBC')); ?>!important;
+            color: <?php echo e(getcong('NavbarCBHFC')); ?>!important;}
+        .header .create-links > a:hover i {
+            color: <?php echo e(getcong('NavbarCBHFC')); ?>!important;}
+        .list-count:before {
+            background: <?php echo e(getcong('NavbarTBLC')); ?>!important;}
+    </style>
+
+    <?php echo getcong('headcode'); ?>
+
+
+    <?php echo $__env->yieldContent("header"); ?>
+
+</head>
+<?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
+<body class="<?php echo e(getcong('languagetype')); ?> <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['rtl'] ? 'rtl' :''); ?> <?php echo e(\Config::get('app.language.'.\Session::get ('locale'))['wideheader'] ? 'widecontainer' : ''); ?>  <?php echo e(getcong('LayoutType')); ?> <?php echo e(getcong('NavbarType')); ?> <?php echo $__env->yieldContent("modedefault"); ?> <?php echo $__env->yieldContent("modeboxed"); ?> ">
+<?php echo $__env->make("_particles.header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="content-wrapper" id="container-wrapper">
+    <?php if(!Request::is('create') ): ?> <?php if(Request::segment(1)!=='profile'): ?> <?php if(Request::segment(1)!=='edit'): ?>
+            <?php foreach(\App\Widgets::where('type', 'HeaderBelow')->where('display', 'on')->get() as $widget): ?>
+                <div class="content">
+                    <div class="container" style="text-align: center;padding-top:20px;padding-bottom:20px ">
+                        <center>
+                         <?php echo $widget->text; ?>
+
+                        </center>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+    <?php endif; ?> <?php endif; ?> <?php endif; ?>
+    <?php echo $__env->yieldContent("content"); ?>
+
+</div>
+
+<?php echo $__env->make("_particles.footer", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div id="fb-root"></div>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/app.min.js"></script>
+
+<script>
+    $( document ).ready(function() {
+        App.init();
+    });
+</script>
+<?php echo $__env->yieldContent("footer"); ?>
+<?php echo $__env->make('.errors.swalerror', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div id="auth-modal" class="modal auth-modal"></div>
+
+<div class="hide">
+    <input name="_requesttoken" id="requesttoken" type="hidden" value="<?php echo e(csrf_token()); ?>" />
+</div>
+
+<?php echo getcong('footercode'); ?>
+
+
+</body>
+</html>

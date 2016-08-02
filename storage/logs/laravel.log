@@ -1,0 +1,96 @@
+[2016-08-02 11:39:35] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
+[2016-08-02 11:39:36] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
+[2016-08-02 11:39:39] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
+[2016-08-02 11:39:40] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
+[2016-08-02 11:44:45] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
+[2016-08-02 11:44:47] local.ERROR: exception 'ErrorException' with message 'include(/home/ubuntu/workspace/vendor/simexis/installer/src/Simexis/Installer/InstallerServiceProvider.php): failed to open stream: No such file or directory' in /home/ubuntu/workspace/vendor/composer/ClassLoader.php:412
+Stack trace:
+#0 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/u...', '/home/ubuntu/wo...', 412, Array)
+#1 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(412): Composer\Autoload\includeFile()
+#2 /home/ubuntu/workspace/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/home/ubuntu/wo...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Simexis\Install...')
+#4 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(146): spl_autoload_call('Simexis\Install...')
+#5 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider('Simexis\Install...')
+#6 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load(Array)
+#7 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#8 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#9 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith(Array)
+#10 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#11 /home/ubuntu/workspace/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#12 /home/ubuntu/workspace/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#13 {main}  
