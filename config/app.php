@@ -20,23 +20,8 @@ return [
             'rtl'       => false,
             'wideheader'=> false
         ],
-        'tr'            => [
-            'name'      => 'Türkçe',
-            'rtl'       => false,
-            'wideheader'=> true
-        ],
-        'ru'            => [
-            'name'      => 'Русский',
-            'rtl'       => false,
-            'wideheader'=> true
-        ],
-        'it'            => [
-            'name'      => 'Italiano',
-            'rtl'       => false,
-            'wideheader'=> false
-        ],
-        'es'            => [
-            'name'      => 'Español',
+        'mn'            => [
+            'name'      => 'Монгол',
             'rtl'       => false,
             'wideheader'=> true
         ],
@@ -94,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'mn',
 
     /*
     |--------------------------------------------------------------------------
