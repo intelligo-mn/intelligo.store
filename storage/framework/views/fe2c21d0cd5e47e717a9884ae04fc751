@@ -1,0 +1,135 @@
+<?php $__env->startSection("content"); ?>
+<?php if ( ! (count($lastFeaturestop)==0)): ?>
+<div class="content shay">
+    <div class="container shay">
+        <div class="row homefeatures clearfix">
+            <div class="pull-l">
+                <?php foreach($lastFeaturestop->slice(0,1) as $item): ?>
+                    <div class="tile tile-2">
+                        <?php echo $__env->make('._particles._lists.features_list', ['descof' => 'on','metaon' => 'on'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+            <div class="pull-l">
+                <?php foreach($lastFeaturestop->slice(1,1) as $item): ?>
+                    <div class="tile tile-1">
+                        <?php echo $__env->make('._particles._lists.features_list', ['descof' => 'on','metaon' => 'on'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+
+            <div class="pull-l tway">
+                <?php foreach($lastFeaturestop->slice(2,2) as $item): ?>
+                    <div class="tile tile-3">
+                        <?php echo $__env->make('._particles._lists.features_list', ['metaon' => 'on'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="content">
+
+    <div class="container">
+
+
+
+        <div class="row homecolums">
+            <div class="column1 ">
+                <div class="colheader sea">
+                    <h1><?php echo e($HomeColSec1Tit1 > "" ? $HomeColSec1Tit1 :  trans('index.latest', ['type' => trans('index.lists') ])); ?></h1>
+                </div>
+                <div class="jscroll" data-auto="<?php echo getcong('AutoLoadLists') ?: 'false'; ?>">
+                <?php echo $__env->make('pages.indexpostloadpage', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </div>
+            </div>
+
+            <div class="column2">
+                <div class="colheader formula">
+                    <h1><?php echo e($HomeColSec2Tit1 > "" ? $HomeColSec2Tit1 : trans('index.latest', ['type' => trans('index.news') ])); ?></h1>
+                </div>
+                <?php if($lastNews): ?>
+                    <ul class="items_lists">
+                        <?php foreach($lastNews as $key => $item): ?>
+                           <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'off','linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                            <?php if($key ==0 ): ?>
+                                <?php foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget): ?>
+                                    <?php echo $widget->text; ?>
+
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
+            </div>
+
+
+            <div class="column3">
+
+                <?php if(getcong('HomeCol3Trends')!='false'): ?>
+                <div class="coltrend">
+                <div class="colheader trend">
+                    <h1><?php echo e(trans('index.trendings')); ?></h1>
+                </div>
+                <?php if(isset($lastTrending)): ?>
+                    <ul class="items_lists">
+                        <?php foreach($lastTrending as $item): ?>
+
+                            <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'captionlist list-count tits', 'descof' => 'off','metaof' => 'off', 'linkcolor' => 'white'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                     <div class="coltrend">
+                <div class="colheader darken">
+                    <h1><?php echo e($HomeColSec3Tit1 > "" ? $HomeColSec3Tit1 : trans('index.latest', ['type' => trans('index.videos') ])); ?></h1>
+                </div>
+                <?php if(isset($lastTrendingVideos)): ?>
+                    <ul class="items_lists">
+                        <?php foreach($lastTrendingVideos as $item): ?>
+                            <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image small-h bolb tits', 'video' => 'on', 'setmediamarginbottom' => '5px', 'descof' => 'off', 'metaof' => 'off', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                </div>
+                <div class="social-side">
+                    <div class="colheader rosy">
+                        <h1><?php echo e(trans('index.connect')); ?></h1>
+                    </div>
+                    <div class="external-sign-in" style="padding-top:0">
+                        <?php if(getcong('facebookpage')): ?>
+                            <a class="Facebook mini" target=_blank href="<?php echo getcong('facebookpage'); ?>"></a>
+                        <?php endif; ?>
+                        <?php if(getcong('twitterpage')): ?>
+                            <a class="Twitter mini" target=_blank href="<?php echo getcong('twitterpage'); ?>"></a>
+                        <?php endif; ?>
+                        <?php if(getcong('googlepage')): ?>
+                            <a class="Google mini"  target=_blank href="<?php echo getcong('googlepage'); ?>"></a>
+                        <?php endif; ?>
+                        <?php if(getcong('instagrampage')): ?>
+                            <a class="Instagram mini"  target=_blank href="<?php echo getcong('instagrampage'); ?>"></a>
+                        <?php endif; ?>
+                         <a class="Rss mini"  target=_blank href="index.xml"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

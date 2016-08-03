@@ -3,8 +3,6 @@ Route::get('admin/docs', function () {
     return view('vendor.docs.index');
 });
 
-Route::get('verify', 'AkbilisimController@index');
-
 Route::get('{type}.xml', 'RssController@index');
 
 Route::get('{type}.json', 'RssController@json');

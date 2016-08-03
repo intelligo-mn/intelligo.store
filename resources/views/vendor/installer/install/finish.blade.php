@@ -14,11 +14,11 @@
                 {{ Session::get('message') }}
 
             </div>
-                <a class="btn btn-success" href="/">
+                <a class="btn btn-success" href="/admin">
                     {{ trans('messages.final.exit') }}
                 </a>
             @else
-                <a class="btn btn-success" href="/">
+                <a class="btn btn-success" href="/admin">
                     {{ trans('messages.final.exit') }}
                 </a>
             @endif

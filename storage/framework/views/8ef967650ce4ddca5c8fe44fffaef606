@@ -1,0 +1,58 @@
+<?php if($lastFeatures): ?>
+    <ul class="items_lists res-lists">
+        <?php foreach($lastFeatures as $key => $item): ?>
+
+            <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'bolb titb','descof' => 'on', 'featuredon' => 'on', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <?php if($key==0): ?>
+                <?php foreach(\App\Widgets::where('type', 'Homencolfirst')->where('display', 'on')->get() as $widget): ?>
+                    <?php echo $widget->text; ?>
+
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <?php if($key ==4 and $DB_PLUGIN_VIDEOS == 'on'): ?>
+    </ul>
+    <div class="col-video">
+        <div class="colheader rosy">
+            <h1><?php echo e(trans('index.mostrecent', ['type' => trans('index.videos') ])); ?></h1>
+        </div>
+        <div class="featured-videos">
+            <ul class="items_lists square">
+
+                <?php foreach($lastvideoscol1->slice(0, 3) as $item): ?>
+                    <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image tits','descof' => 'off', 'featuredon' => 'on', 'metaof' => 'off','video' => 'on', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endforeach; ?>
+            </ul>
+
+        </div>
+    </div>
+    <ul class="items_lists res-lists">
+        <?php endif; ?>
+
+
+        <?php if($key ==9  and $DB_PLUGIN_POLLS == 'on'): ?>
+    </ul>
+    <div class="col-poll">
+        <div class="colheader trend">
+            <h1><?php echo e(trans('index.trend', ['type' => trans('index.polls') ])); ?></h1>
+        </div>
+        <ul class="items_lists square s-two">
+
+            <?php foreach($lastpoll->slice(0, 2) as $item): ?>
+                <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image bolb titb','featuredon' => 'on', 'metaof' => 'off', 'descof' => 'off', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php endforeach; ?>
+        </ul>
+
+    </div>
+    <ul class="items_lists res-lists">
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+
+
+        <?php if($lastFeatures->nextPageUrl()): ?>
+            <a href="<?php echo e($lastFeatures->nextPageUrl()); ?>" class="page-next btn-more"> <?php echo e(trans('updates.loadmore')); ?> </a>
+        <?php endif; ?>
+
+<?php endif; ?>

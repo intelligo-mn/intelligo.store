@@ -1,0 +1,20 @@
+<?php if(getcong('facebookpage') or getcong('twitterpage') or getcong('googlepage') or getcong('instagrampage')): ?>
+    <div class="external-sign-in" style="margin-bottom:20px">
+
+    <div class="colheader" style="text-align: center;margin-bottom:20px;margin-top:-10px">
+        <h1 style="float: none;position:relative;bottom:-15px;padding:0 10px;background-color: #fff;display: inline-block;"><?php echo e(trans('index.ccommunity')); ?></h1>
+    </div>
+    <?php if(getcong('facebookpage')): ?>
+    <a class="Facebook do-signup tgec" target=_blank href="<?php echo getcong('facebookpage'); ?>"><?php echo e(trans('index.likeonface')); ?> </a>
+    <?php endif; ?>
+    <?php if(getcong('twitterpage')): ?>
+    <a class="Twitter do-signup tgec" target=_blank href="<?php echo getcong('twitterpage'); ?>"><?php echo e(trans('index.followontwitter')); ?></a>
+    <?php endif; ?>
+    <?php if(getcong('googlepage')): ?>
+    <a class="Google do-signup tgec" target=_blank href="<?php echo getcong('googlepage'); ?>"><?php echo e(trans('index.followongoogle')); ?></a>
+    <?php endif; ?>
+    <?php if(getcong('instagrampage')): ?>
+    <a class="Instagram do-signup tgec" target=_blank href="<?php echo getcong('instagrampage'); ?>"><?php echo e(trans('index.followoninstagram')); ?></a>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

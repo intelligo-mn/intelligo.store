@@ -1,0 +1,5 @@
+<div class="external-sign-in">
+    <a href="javascript:" data-link="<?php echo e(Request::url()); ?>" data-name="<?php echo e($entry->title > "" ? $entry->title : $post->title); ?>" data-image="<?php echo e(makepreview($entry->image, null, 'entries')); ?>" data-description="<?php echo e($entry->body > "" ? substr(strip_tags($entry->body),0,255) : $post->body); ?>" class="Facebook  mini postToFacebookFeed"></a>
+    <a href="http://pinterest.com/pin/create/link/?url=<?php echo e(Request::url()); ?>&media=<?php echo e(makepreview($entry->image, null, 'entries')); ?>&description=<?php echo e(isset($entry->title) ? $entry->title : $post->title); ?>" class="Pinterest popup-action mini"></a>
+    <a href="https://twitter.com/intent/tweet?url=<?php echo e(Request::url()); ?>"  class="Twitter popup-action mini"></a>
+</div>

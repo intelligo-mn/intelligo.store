@@ -192,13 +192,9 @@ class DashboardController extends MainAdminController
     }
      public function checkcode(){
 
-        $content = curlit($this->server);
-        if ($content){
-            return $content;
-        }else{
             \Session::flash('error.message', trans("admin.pluginsnotavailable"));
             return redirect('/admin');
-        }
+        
 
     }
     public function sickupdate(){
@@ -245,43 +241,14 @@ class DashboardController extends MainAdminController
     }
 
     public function checkinputcodeforplugin(Request $request){
-        $request=$request->all();
-        $code=$request['code'];
-        $dataitem=$request['dataitem'];
-
-        $jok=curlit($this->verifyapiserver.$code.'?r=2&t='.$dataitem.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        $jok= json_decode($jok, true);
-
-        if (rop($jok['d'])){
-            $this->necodep($dataitem,$code);
             return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
-        }elseif ($jok==null){
-            return response()->json(['type'=>'error','message' => trans("admin.norecord")]);
-        }elseif (!rop($jok['d'])){
-            return response()->json(['type'=>'error','message' =>  trans("admin.codealreadytaken")]);
-        }else{
-            return response()->json(['type'=>'error','message' => trans("admin.notcorrectpur")]);
-        }
 
     }
 
 
     public function getr($zurl)
     {
-        $zip_path = base_path().'/tmp.zip';
-        try {
-            file_put_contents($zip_path, fopen($zurl, 'r'));
-        }catch(Exception $e) {
-            return false;
-        }
-        $zip = new ZipArchive;
-        if (! $zip) {
-            return false;
-        }
-        $zip->open("$zip_path");
-        $zip->extractTo(base_path());
-        $zip->close();
-        unlink($zip_path);
+    
         return true;
     }
 }

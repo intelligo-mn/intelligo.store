@@ -63,18 +63,8 @@ class MainAdminController extends Controller
     public function code($type = 'buzzy')
     {
 
-        if (!file_exists(base_path('storage/.'.$type))) {
-            return false;
-        }
-        $code=file_get_contents(base_path('storage/.'.$type), true);
-        $jok=curlit($this->verify.$code.'?t='.$type.'&r=2&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        $jok= json_decode($jok, true);
-        if (rop($jok['d'])){
             return true;
-        }else{
-            unlink(base_path('storage/.'.$type));
-            return false;
-        }
+    
     }
 
     public function necodep($type,$code)

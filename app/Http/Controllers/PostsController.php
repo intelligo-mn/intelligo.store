@@ -24,8 +24,6 @@ class PostsController extends Controller
 
         $this->s3url=awsurl();
 
-        $this->middleware('DemoAdmin', ['only' => ['sendtrashpost', 'CreateEditPost']]);
-
         $this->middleware('auth', ['except' => ['index']]);
     }
 
