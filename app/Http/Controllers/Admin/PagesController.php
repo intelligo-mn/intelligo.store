@@ -11,7 +11,7 @@ class PagesController extends MainAdminController
 {
     public function __construct()
     {
-        $this->middleware('DemoAdmin', ['only' => ['delete', 'addnew']]);
+        // $this->middleware('DemoAdmin', ['only' => ['delete', 'addnew']]);
 
         parent::__construct();
 

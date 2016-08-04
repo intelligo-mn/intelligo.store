@@ -27,7 +27,7 @@ class DashboardController extends MainAdminController
     {
         parent::__construct();
 
-        $this->middleware('DemoAdmin', ['only' => ['activeplugin','checkupdate','updatepurcahecheck','checkinputcodeforplugin','getr']]);
+        // $this->middleware('DemoAdmin', ['only' => ['activeplugin','checkupdate','updatepurcahecheck','checkinputcodeforplugin','getr']]);
 
     }
 

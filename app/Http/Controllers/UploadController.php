@@ -104,7 +104,7 @@ class UploadController extends Controller
 
             return response()->json(array('path'=> $patha), 200);
         } else {
-            return response()->json(array('error'=> 'Pick a image'),  200);
+            return response()->json(array('error'=> 'Зураг сонгоно уу'),  200);
         }
 
     }

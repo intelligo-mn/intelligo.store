@@ -8,7 +8,7 @@ class ConfigController extends MainAdminController
 {
     public function __construct()
     {
-        $this->middleware('DemoAdmin', ['only' => ['setconfig']]);
+        // $this->middleware('DemoAdmin', ['only' => ['setconfig']]);
 
         parent::__construct();
 

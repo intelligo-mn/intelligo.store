@@ -72,9 +72,9 @@ return [
     'links'         => 'Холбоосууд',
     'joinedat'      => 'Нэгдсэн :time',
 
-    'account'        => 'Данс',
+    'account'        => 'Хувийн мэдээлэл',
     'details'        => 'Дэлгэрэнгүй',
-    'onlycgange'     => 'Өөрчлөлт хийхийг хүсвэл',
+    'onlycgange'     => 'Нууц үгээ оруулна уу',
     'fullname'       => 'Бүтэн нэр',
     'savesettings'   => 'Тохиргоог хадгалах',
 
@@ -93,8 +93,8 @@ return [
     'termslink'             => 'Би зөвшөөрч байна :url ',
 
 
-    'Doyouhaveanaccount'    => 'Та бүртгүүлж амжсан уу?',
-    'youdonthaveanaccount'  => 'Та бүртгэлгүй байна?',
+    'Doyouhaveanaccount'    => 'Та бүртгүүлтэй бол энд дарна уу?',
+    'youdonthaveanaccount'  => 'Та бүртгэлгүй бол энд дарна уу?',
     'registerwithemail'     => 'И-мэйлээрээ бүртгүүлэх',
     'loginwithemail'        => 'И-мэйлээрээ нэвтрэх',
 

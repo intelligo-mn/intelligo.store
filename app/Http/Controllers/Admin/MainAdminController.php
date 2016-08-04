@@ -76,7 +76,6 @@ class MainAdminController extends Controller
 
             file_put_contents(base_path('storage/.'.$type), $code);
         }catch(Exception $e) {
-            \Session::flash('error.message', 'Please Contact: contact@akbilisim.com');
             return redirect()->back();
         }
         return true;

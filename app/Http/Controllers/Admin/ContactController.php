@@ -14,7 +14,7 @@ class ContactController extends MainAdminController
     public function __construct(Mailer $mailer)
     {
 
-        $this->middleware('DemoAdmin', ['only' => ['dostar', 'doimportant', 'addcat', 'mailcatdelete', 'maillabeldelete', 'doaction', 'newmailsent']]);
+        // $this->middleware('DemoAdmin', ['only' => ['dostar', 'doimportant', 'addcat', 'mailcatdelete', 'maillabeldelete', 'doaction', 'newmailsent']]);
 
         $this->mail =$mailer;
 
@@ -181,7 +181,7 @@ class ContactController extends MainAdminController
     {
         $cat  = Categories::findOrFail($id);
         $cat->delete();
-        \Session::flash('success.message', 'Deleted');
+        \Session::flash('success.message', trans("admin.Deleted"));
         return redirect('admin/mailbox');
     }
 

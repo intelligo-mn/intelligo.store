@@ -24,7 +24,7 @@ class UsersController extends MainAdminController
             or null !== $request->query('unstaff')
         ){
 
-            $this->middleware('DemoAdmin', ['only' => ['users']]);
+            // $this->middleware('DemoAdmin', ['only' => ['users']]);
         }
 
         parent::__construct();

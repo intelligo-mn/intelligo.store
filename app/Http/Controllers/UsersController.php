@@ -22,7 +22,7 @@ class UsersController extends Controller
 
         parent::__construct();
 
-        $this->middleware('DemoAdmin', ['only' => ['updatesettings']]);
+        // $this->middleware('DemoAdmin', ['only' => ['updatesettings']]);
 
         $userslug = $request->segment('2');
 

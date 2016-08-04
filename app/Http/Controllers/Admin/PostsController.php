@@ -18,7 +18,7 @@ class PostsController extends MainAdminController
     public function __construct()
     {
 
-        $this->middleware('DemoAdmin', ['only' => ['approvepost', 'showhomepage', 'pickfeatured', 'sendtrashpost', 'forcetrashpost']]);
+        // $this->middleware('DemoAdmin', ['only' => ['approvepost', 'showhomepage', 'pickfeatured', 'sendtrashpost', 'forcetrashpost']]);
 
         parent::__construct();
 

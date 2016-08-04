@@ -1,0 +1,26 @@
+<div class="entry" data-type="embed" <?php if(isset($entry->id)): ?> data-entry-id="<?php echo e($entry->id); ?>" <?php endif; ?>>
+    <?php echo $__env->make('_forms.__entryactions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <h3><i class="fa fa-code"></i> <?php echo e(trans('addpost.embed')); ?></h3>
+    <div class="embedarea ">
+    <div class="inpunting ordering">
+        <button class="order-number button button-gray">1</button>
+        <?php echo Form::text(null, isset($entry->title) ? $entry->title : null, ['data-type' => 'title', 'class' => 'cd-input ', 'placeholder' => trans('addpost.entry_titleop')]); ?>
+
+    </div>
+
+    <div class="inpunting ">
+        <?php echo Form::textarea(null, isset($entry->video) ? $entry->video : null, ['data-type' => 'video', 'class' => 'cd-input-video', 'placeholder' => trans('addpost.entry_embeddesc')]); ?>
+
+    </div>
+
+    <div class="moredetail text">
+
+        <div class="detailhide" style="display:none">
+            <div class="inpunting">
+            <?php echo Form::textarea(null, isset($entry->body) ? $entry->body : null, ['data-type' => 'body', 'class' => 'message','id' => 'edit', 'placeholder' => trans('addpost.entry_body')]); ?>
+
+            </div>
+         </div>
+    </div>
+    </div>
+</div>
