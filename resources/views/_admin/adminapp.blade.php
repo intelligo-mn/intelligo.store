@@ -132,9 +132,9 @@
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <strong>Copyright &copy; 2015 <a href="http://akbilisim.com" target="_blank">akbilisim</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2015 <a href="http://tortuvshin.github.io" target="_blank">Tortuvshin</a>.</strong> All rights reserved.
         </div>
-        <b><a href="http://buzzy.akbilisim.com" target="_blank">Buzzy</a></b> Version : {{ Config::get('installer.last_version') }}
+        <b><a href="http://tortuvshin.github.io" target="_blank">Modu</a></b> Version : {{ Config::get('installer.last_version') }}
     </footer>
 
 </div><!-- ./wrapper -->

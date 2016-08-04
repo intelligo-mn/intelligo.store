@@ -227,15 +227,10 @@ img {
     line-height: 1.42857143;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 4px;
     transition: all .2s ease-in-out;
     display: inline-block;
     max-width: 100%;
     height: auto
-}
-
-.img-circle {
-    border-radius: 50%
 }
 
 h1,
@@ -280,7 +275,6 @@ h5 {
 
 .underlined {
     border-bottom: 1px solid #bfbebe;
-    box-shadow: 0 2px 0 -1px #ededed
 }
 
 .author-dashboard-heading {
@@ -457,9 +451,6 @@ p {
     .mode-default .container {
         width: 1025px
     }
-    .mode-boxed .container {
-        box-shadow: 0 1px 5px rgba(0, 0, 0, .4)
-    }
     .mainside.cat {
         width: 770px!important
     }
@@ -477,12 +468,10 @@ p {
     line-height: normal;
     border-bottom: 1px solid #DDDFE2;
     transition: height .1s;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .1)
 }
 
 .header .container {
     border: 0!important;
-    box-shadow: none!important;
     position: relative
 }
 
@@ -533,12 +522,6 @@ p {
     border-right: solid 1px transparent
 }
 
-.header .header__nav .navmenu>li.active>a,
-.header .header__nav .navmenu>li:hover>a {
-    border-top: 2px solid #E9573F;
-    border-left: 1px dashed #CCC;
-    border-right: 1px dashed #CCC
-}
 
 .header .header__usernav {
     float: right
@@ -613,7 +596,6 @@ p {
     bottom: -14px;
     font-size: 32px;
     color: #fff;
-    text-shadow: 0 -2px 0 #e1e1e1;
     text-align: center;
     width: 20px;
     margin-left: -10px
@@ -754,7 +736,6 @@ p {
     font-weight: 400;
     line-height: 14px;
     padding: 7px 18px;
-    box-shadow: none
 }
 
 .header .create-links>a i {
@@ -789,9 +770,7 @@ p {
     background-clip: padding-box;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, .15);
-    border-top: 1px dashed #f1f1f1;
     border-radius: 0 0 4px 4px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     display: none
 }
 
@@ -888,7 +867,6 @@ p {
     padding: 10px 0;
     top: 48px;
     list-style-type: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5)
 }
 
 .sub-nav::after {
@@ -906,7 +884,6 @@ p {
     top: -15px;
     font-size: 22px;
     color: #fff;
-    text-shadow: 0 -2px 0 #d0d0d0;
     text-align: center;
     width: 20px;
     margin-left: -10px
@@ -970,7 +947,6 @@ p {
 body:not(.mode-relative) .header.mini {
     height: 40px;
     background: #FDFDFD;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .08)
 }
 
 body:not(.mode-relative) .header.mini .site-logo {
@@ -1107,7 +1083,6 @@ body:not(.mode-relative) .header.mini .sections {
     .header__nav .toggle-nav.active .navmenu>li.cats_link a {
         color: #333!important;
         border: 0;
-        border-bottom: 1px dashed #f1f1f1;
         padding: 10px 15px
     }
     .header__nav .toggle-nav.active .navmenu>li.cats_link a:before {
@@ -1243,9 +1218,6 @@ body:not(.mode-relative) .header.mini .sections {
 .footer .col-1 .language-links .button {
     float: left;
     position: relative;
-    -ms-box-shadow: inset 0 1px 1px #fff;
-    -o-box-shadow: inset 0 1px 1px #fff;
-    box-shadow: inset 0 1px 1px #fff;
     background: #e6e6e6;
     border-radius: 3px;
     border: 1px solid #cbcbcb;
@@ -1267,7 +1239,6 @@ body:not(.mode-relative) .header.mini .sections {
     right: -12px;
     font-size: 22px;
     color: #e6e6e6;
-    text-shadow: 2px 0 0 #e1e1e1;
     text-align: center;
     width: 20px;
     margin-top: -2px
@@ -1280,9 +1251,6 @@ body:not(.mode-relative) .header.mini .sections {
     z-index: 999;
     border-radius: 3px;
     padding: 10px;
-    -ms-box-shadow: 0 1px 3px #999;
-    -o-box-shadow: 0 1px 3px #999;
-    box-shadow: 0 1px 3px #999;
     background: #fff;
     box-sizing: content-box;
     margin-left: -12px
@@ -1312,7 +1280,6 @@ body:not(.mode-relative) .header.mini .sections {
     bottom: -12px;
     font-size: 22px;
     color: #fff;
-    text-shadow: 0 2px 0 #aaa;
     text-align: center;
     width: 20px;
     margin-left: -12px
@@ -1461,17 +1428,6 @@ body:not(.mode-relative) .header.mini .sections {
     padding: 0
 }
 
-body:not(.mode-boxed) .content.shay {
-    background-color: #fbfbfb;
-    border-bottom: 1px solid #eee
-}
-
-body:not(.mode-boxed) .content.khay {
-    background-color: #FDFDFD;
-    padding-top: 10px;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #ECE9E9
-}
 
 .mode-boxed .content .container {
     background-color: #fff;
@@ -1619,7 +1575,6 @@ body:not(.mode-boxed) .content.khay {
     font-size: 20px;
     line-height: 22px;
     font-weight: 700;
-    text-shadow: 1px 1px rgba(0, 0, 0, .8)
 }
 
 .tile .desc {
@@ -1628,7 +1583,6 @@ body:not(.mode-boxed) .content.khay {
     left: 5px;
     bottom: 0;
     right: 0;
-    background: url(../img/shadow.png) 0 repeat-x;
     -khtml-transition: .2s linear all;
     transition: .2s linear all;
     background-position: bottom;
@@ -1748,50 +1702,6 @@ body:not(.mode-boxed) .content.khay {
 .items_lists>.item {
     position: relative;
     counter-increment: li
-}
-
-.items_lists>.item .badge {
-    -khtml-border-radius: 50%;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    padding: 4px;
-    font-size: 12px;
-    color: #2b2b2b;
-    text-transform: uppercase;
-    line-height: 14px;
-    z-index: 100;
-    background-color: #ffc90f
-}
-
-.items_lists>.item .badge .badge-img {
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 32px;
-    height: 32px;
-    display: block;
-    margin: 5%;
-    padding: 0;
-    line-height: 1
-}
-
-.items_lists>.item .badge.featured {
-    background-color: #ed1c24
-}
-
-.items_lists>.item .badge.featured .badge-img {
-    background-image: url(../img/26a1.png)
-}
-
-.items_lists>.item .badge.rocket {
-    background-color: #ffc90f
-}
-
-.items_lists>.item .badge.rocket .badge-img {
-    background-image: url(https://abs.twimg.com/emoji/v1/72x72/1f680.png)
 }
 
 .items_lists>.item .badge.quiz {
@@ -2783,7 +2693,6 @@ span.tagy a {
     position: relative;
     font-size: 16px;
     font-weight: 600;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
     border-radius: 3px;
     vertical-align: middle;
     color: #212020;
@@ -3010,7 +2919,6 @@ span.tagy a i {
         width: 40px!important;
         padding: 0!important;
         color: transparent!important;
-        text-shadow: none!important
     }
 }
 
@@ -3020,7 +2928,6 @@ span.tagy a i {
 
 .profile-splash .profile-splash-cov {
     background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent 40%);
-    border-radius: 3px;
     bottom: 0;
     left: 0;
     pointer-events: none;
@@ -3057,7 +2964,6 @@ span.tagy a i {
 
 .profile-splash .profile-display-name a {
     color: #fff;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, .8)
 }
 
 .profile-splash .profile-follow {
@@ -3232,10 +3138,6 @@ span.tagy a i {
     overflow: hidden
 }
 
-.profile-wrap .follow-images .follow-image img {
-    border-radius: 4px
-}
-
 .profile-wrap .follow-images .follow-image span {
     display: block;
     width: 100%;
@@ -3305,7 +3207,6 @@ span.tagy a i {
 .modeempty-header {
     background-color: #f8f8f8;
     border: 1px solid #e5e5e5;
-    border-radius: 5px;
     position: relative
 }
 
@@ -3330,7 +3231,6 @@ span.tagy a i {
 .modeadmin_header {
     background-color: #ed1c24;
     border: 1px solid #e5e5e5;
-    border-radius: 5px;
     position: relative
 }
 
@@ -3358,8 +3258,6 @@ span.tagy a i {
     text-align: center;
     font: 14px/100% inherit;
     padding: .5em 2em .55em;
-    border-radius: .2em;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .2)
 }
 
 .button i.iconp {
@@ -3369,10 +3267,6 @@ span.tagy a i {
 .button:active {
     position: relative;
     top: 1px
-}
-
-.button.button-bigrounded {
-    border-radius: 2em
 }
 
 .button.button-medium {
@@ -3657,7 +3551,6 @@ span.tagy a i {
     font-family: inherit;
     padding: 12px 10px 12px 56px;
     font-size: 16px;
-    border-radius: 3px;
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
@@ -3880,7 +3773,6 @@ span.tagy a i {
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    border-radius: .25em
 }
 
 .label-staff {
@@ -3905,7 +3797,6 @@ span.tagy a i {
     height: 25px;
     margin-left: 3px;
     line-height: 30px;
-    border-radius: 50%;
     margin-top: -5px;
     text-align: center;
     transition: border, 85ms, linear
@@ -3940,7 +3831,6 @@ span.tagy a i {
     padding: 0!important;
     margin-top: 0!important;
     width: 420px!important;
-    border-radius: 4px!important
 }
 
 @media (max-width:479px) {
@@ -4182,25 +4072,14 @@ section.form.last {
 .cd-form input[type=checkbox]+label::before {
     border: 1px solid #cfd9db;
     background: #fff;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .08)
 }
 
-.cd-form input[type=radio]+label::after,
-.cd-form input[type=radio]+label::before {
-    border-radius: 50%
-}
-
-.cd-form input[type=checkbox]+label::after,
-.cd-form input[type=checkbox]+label::before {
-    border-radius: .25em
-}
 
 .cd-form input[type=radio]+label::after,
 .cd-form input[type=checkbox]+label::after {
     background-color: #2c97de;
     background-position: center center;
     background-repeat: no-repeat;
-    box-shadow: 0 0 5px rgba(44, 151, 222, .4);
     display: none
 }
 
@@ -4214,7 +4093,6 @@ section.form.last {
 
 .cd-form input[type=radio]:focus+label::before,
 .cd-form input[type=checkbox]:focus+label::before {
-    box-shadow: 0 0 5px rgba(44, 151, 222, .6)
 }
 
 .cd-form input[type=radio]:checked+label::after,
@@ -4258,7 +4136,7 @@ textarea {
     padding: 10px;
     border: 1px solid #aaa;
     background-color: #fff;
-    border-radius: 0;
+    
     box-shadow: none
 }
 
@@ -4267,7 +4145,6 @@ select:focus,
 textarea:focus {
     outline: 0;
     border-color: #2c97de;
-    box-shadow: 0 0 5px rgba(44, 151, 222, .2)
 }
 
 select {
@@ -4314,8 +4191,6 @@ textarea {
     position: relative;
     padding: 15px;
     margin-bottom: 20px;
-    -khtml-border-radius: 4px;
-    border-radius: 4px;
     font-size: 12px;
     background-color: #f3f3f3;
     background-repeat: repeat-x;
@@ -4412,8 +4287,7 @@ textarea {
     height: 38px;
     margin: 0;
     border: 1px solid #d5d5d5;
-    box-shadow: none;
-    border-radius: 4px
+    
 }
 
 .question-post-form .entry .get-button.button-white {
@@ -4447,11 +4321,7 @@ textarea {
     float: right;
     font-weight: 700;
     color: #fff;
-    -moz-border-radius-topleft: 0;
-    -moz-border-radius-bottomleft: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    box-shadow: 0
+    
 }
 
 .question-post-form .entry .getvideoinput button i {
@@ -4465,7 +4335,6 @@ textarea {
     font-size: 22px;
     color: #999;
     background-color: #fff;
-    border: 2px dashed #aaa;
     cursor: pointer;
     position: relative
 }
@@ -4495,7 +4364,6 @@ textarea {
 .question-post-form .entry .item-media-placeholder .image-upload-actions .getimageurl {
     background-color: #f5f5f6;
     border: 0;
-    box-shadow: none
 }
 
 .question-post-form .entry .item-media-placeholder .image-upload-actions .getimageurl i {
@@ -4504,7 +4372,6 @@ textarea {
 
 .question-post-form .entry .item-media-placeholder:hover {
     background-color: #fefefe;
-    border: 2px dashed #0076a3
 }
 
 .question-post-form .entry .item-media-placeholder:hover i {
@@ -4545,8 +4412,6 @@ textarea {
     font-size: 14px;
     float: left;
     cursor: pointer;
-    -khtml-border-radius: 4px;
-    border-radius: 4px;
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box
@@ -4577,11 +4442,9 @@ textarea {
     cursor: default;
     border: 0;
     border-right: 1px solid #B6B6B6;
-    box-shadow: none;
     background-color: #fcfcfc;
     background-image: linear-gradient(top, #fcfcfc, #eee);
     filter: progid: DXImageTransform.Microsoft.gradient(start-colourStr='#fcfcfc', end-colourStr='#eee');
-    border-radius: 3px 0 0 3px
 }
 
 .question-post-form .ordering input {
@@ -4631,7 +4494,6 @@ textarea {
 .question-post-form .answers .answer {
     position: relative;
     box-shadow: none;
-    border-radius: 0;
     padding: 0;
     margin: 0 0 15px;
     float: left;
@@ -4654,7 +4516,6 @@ textarea {
 
 .question-post-form .answers .answer .entryactions .delete-entry {
     box-shadow: none;
-    border-radius: 100%;
     width: 18px;
     height: 18px;
     padding: 0;
@@ -4786,9 +4647,6 @@ textarea {
 }
 
 .question-post-side-bar-form .thumbwrapper .preview-placeholder {
-    border: 3px dashed #E8E8E8;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .08);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .08);
     background-color: #fff;
     display: block;
     text-align: center;
@@ -4936,8 +4794,6 @@ div.tagsinput {
 
 div.tagsinput span.tag {
     border: 1px solid #a5d24a;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
     padding: 5px;
     text-decoration: none;
     background: #cde69c;
@@ -4992,8 +4848,6 @@ div.tagsinput input {
     width: 400px;
     background: #fff;
     padding: 15px 30px;
-    border-radius: 2px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, .45)
 }
 
 .modal a.close-modal {
@@ -5005,8 +4859,6 @@ div.tagsinput input {
     height: 30px;
     color: transparent;
     border: 3px solid #D5D5D5;
-    border-radius: 50%;
-    box-shadow: 1px 4px 7px rgba(0, 0, 0, .75);
     transition: .25s all ease;
     background: #f8f8f8
 }

@@ -17,8 +17,7 @@
     <meta name="twitter:url" content="@yield('head_url', url())">
     <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
-
-    <link href='https://fonts.googleapis.com/css?family={{  getcong('googlefont') }}' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/plugins.css">
@@ -27,34 +26,8 @@
 
     <style type="text/css">
         body {
-            font-family: {!!    getcong('sitefontfamily') !!};
-            background: {{  getcong('BodyBC') }}!important;}
-        body.mode-boxed {
-            background: {{  getcong('BodyBCBM') }}!important; }
-        header {
-            background: {{ getcong('NavbarBC') }}!important;
-            border-top: 3px solid {{ getcong('NavbarTBLC') }}!important;}
-        .header  a{
-            color: {{ getcong('NavbarLC') }}!important;}
-        .header a > i{
-            color: {{ getcong('NavbarLC') }}!important;}
-        .header a:hover{
-            color: {{ getcong('NavbarLHC') }}!important;}
-        .header a:hover > i{
-            color: {{ getcong('NavbarLHC') }}!important;}
-        .header .create-links > a {
-            background: {{ getcong('NavbarCBBC') }}!important;
-            color: {{ getcong('NavbarCBFC') }}!important;
-            border-color: {{ getcong('NavbarCBBC') }}!important;}
-        .header .create-links > a i {
-            color: {{ getcong('NavbarCBFC') }}!important;}
-        .header .create-links > a:hover {
-            background: {{ getcong('NavbarCBHBC') }}!important;
-            color: {{ getcong('NavbarCBHFC') }}!important;}
-        .header .create-links > a:hover i {
-            color: {{ getcong('NavbarCBHFC') }}!important;}
-        .list-count:before {
-            background: {{ getcong('NavbarTBLC') }}!important;}
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
     </style>
 
     {!! getcong('headcode') !!}

@@ -17,8 +17,7 @@
     <meta name="twitter:url" content="<?php echo $__env->yieldContent('head_url', url()); ?>">
     <meta name="twitter:title" content="<?php echo $__env->yieldContent('head_title',  getcong('sitetitle')); ?>">
     <meta name="twitter:description" content="<?php echo $__env->yieldContent('head_description', getcong('sitemetadesc')); ?>">
-
-    <link href='https://fonts.googleapis.com/css?family=<?php echo e(getcong('googlefont')); ?>' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="<?php echo e(url('/assets/img/favicon.png')); ?>" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/plugins.css">
@@ -27,34 +26,8 @@
 
     <style type="text/css">
         body {
-            font-family: <?php echo getcong('sitefontfamily'); ?>;
-            background: <?php echo e(getcong('BodyBC')); ?>!important;}
-        body.mode-boxed {
-            background: <?php echo e(getcong('BodyBCBM')); ?>!important; }
-        header {
-            background: <?php echo e(getcong('NavbarBC')); ?>!important;
-            border-top: 3px solid <?php echo e(getcong('NavbarTBLC')); ?>!important;}
-        .header  a{
-            color: <?php echo e(getcong('NavbarLC')); ?>!important;}
-        .header a > i{
-            color: <?php echo e(getcong('NavbarLC')); ?>!important;}
-        .header a:hover{
-            color: <?php echo e(getcong('NavbarLHC')); ?>!important;}
-        .header a:hover > i{
-            color: <?php echo e(getcong('NavbarLHC')); ?>!important;}
-        .header .create-links > a {
-            background: <?php echo e(getcong('NavbarCBBC')); ?>!important;
-            color: <?php echo e(getcong('NavbarCBFC')); ?>!important;
-            border-color: <?php echo e(getcong('NavbarCBBC')); ?>!important;}
-        .header .create-links > a i {
-            color: <?php echo e(getcong('NavbarCBFC')); ?>!important;}
-        .header .create-links > a:hover {
-            background: <?php echo e(getcong('NavbarCBHBC')); ?>!important;
-            color: <?php echo e(getcong('NavbarCBHFC')); ?>!important;}
-        .header .create-links > a:hover i {
-            color: <?php echo e(getcong('NavbarCBHFC')); ?>!important;}
-        .list-count:before {
-            background: <?php echo e(getcong('NavbarTBLC')); ?>!important;}
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
     </style>
 
     <?php echo getcong('headcode'); ?>
