@@ -14,7 +14,7 @@ class CategoriesTableSeeder extends Seeder
 
         DB::table('categories')->insert([
             'order' => '1',
-            'name' => 'News',
+            'name' => 'Мэдээ',
             'name_slug' => 'news',
             'posturl_slug' => 'news',
             'icon' => 'file-text',
@@ -25,7 +25,7 @@ class CategoriesTableSeeder extends Seeder
         ]);
         DB::table('categories')->insert([
             'order' => '2',
-            'name' => 'Lists',
+            'name' => 'Санал асуулга',
             'name_slug' => 'lists',
             'posturl_slug' => 'list',
             'icon' => 'th-list',
@@ -36,11 +36,11 @@ class CategoriesTableSeeder extends Seeder
         ]);
         DB::table('categories')->insert([
             'order' => '3',
-            'name' => 'Quizzes',
+            'name' => 'Таавар',
             'name_slug' => 'quizzes',
             'posturl_slug' => 'quiz',
             'icon' => 'check-square-o',
-            'description' => 'Get start to make great viral quizzes with Buzzy Quizzes Plugin TODAY!',
+            'description' => '!',
             'type' => 'quiz',
             'disabled' => '1',
             'main' => '1',
@@ -58,7 +58,7 @@ class CategoriesTableSeeder extends Seeder
         ]);
         DB::table('categories')->insert([
             'order' => '5',
-            'name' => 'Videos',
+            'name' => 'Бичлэг',
             'name_slug' => 'videos',
             'posturl_slug' => 'video',
             'icon' => 'youtube-play',

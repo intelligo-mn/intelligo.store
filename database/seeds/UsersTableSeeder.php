@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'username_slug' => 'admin',
             'icon' => null,
             'email' => 'admin@admin.com',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('TorooProgrammer1'),
             'remember_token' => str_random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

@@ -48,7 +48,7 @@
                 <div class="colheader sea">
                     <h1>{{ $HomeColSec1Tit1 > "" ? $HomeColSec1Tit1 :  trans('index.latest', ['type' => trans('index.lists') ]) }}</h1>
                 </div>
-                <div class="jscroll" data-auto="{!!  getcong('AutoLoadLists') ?: 'false' !!}">
+                <div class="jscroll" data-auto="{!!  getcong('AutoLoadLists') ?: 'true' !!}">
                 @include('pages.indexpostloadpage')
                 </div>
             </div>

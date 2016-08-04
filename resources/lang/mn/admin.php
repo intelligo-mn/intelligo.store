@@ -5,8 +5,8 @@ return array(
     'adminpanel' => 'Админ панел',
     'panel' => 'Самбар',
 
-    'news' => 'Мэдээ',
-    'lists' => 'Жагсаалт',
+    'news' => 'Нийтлэл',
+    'lists' => 'Мэдээ',
     'quizzes' => 'Quiz',
     'polls' => 'Санал асуулга',
     'videos' => 'Бичлэг',
@@ -350,7 +350,7 @@ return array(
    'lockUser' => 'Эрх хаах',
    'NotAdmin' => 'Админ эрх хаах',
    'MakeAdmin' => 'Админ болгох',
-   'NotEditorStaff' => 'Нийтлэгч болиулах',
+   'NotEditorStaff' => 'Нийтлэгчийн эрх болиулах',
    'MakeEditorStaff' => 'Сэтгүүлч нийтлэгч болгох',
 
    'Posts' => 'Мэдээ',
@@ -362,7 +362,7 @@ return array(
    'AwaitingApproval' => 'Батлуулахаар хүлээгдэж байгаа',
    'FeaturedPost' => 'Онцлох',
    'Active' => 'Идэвхитэй',
-   'Pickedforhomepage' => 'Нүүр хуудсанд нэмэгдлээ',
+   'Pickedforhomepage' => 'Нүүр хуудсанд нэмэгдсэн',
    'Approve' => 'Зөвшөөрөх',
    'UndoApprove' => 'Зөвшөөрөл буцаах',
    'PickforFeatured' => 'Онцлох мэдээ болгох',
@@ -377,10 +377,10 @@ return array(
 
     // dataTable
     "sEmptyTable"=>     "Өгөгдөл байхгүй байна",
-    "sInfo"=>          "Харуулах _START_ ээс _END_ нийт _TOTAL_ өгөгдөл",
-    "sInfoEmpty"=>     "Харуулах 0 аас 0 нийт 0 өгөгдөл",
+    "sInfo"=>          "Дэлгэцэнд _START_ ээс _END_ нийт _TOTAL_ өгөгдөл",
+    "sInfoEmpty"=>     "Дэлгэцэнд 0 аас 0 нийт 0 өгөгдөл",
     "sInfoFiltered"=>   "(Шүүлтэд _MAX_ нийт өгөгдөл)",
-    "sLengthMenu"=>    "Харуулж _MENU_ өгөгдөл",
+    "sLengthMenu"=>    "Дэлгэцэнд харуулж байгаа _MENU_ өгөгдөл",
     "sLoadingRecords"=> "Уншиж байна...",
     "sProcessing"=>    "Уншиж байна...",
     "sSearch"=>         "Хайх:",

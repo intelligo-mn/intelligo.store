@@ -290,7 +290,7 @@ class PostsController extends MainAdminController
 
 
                  $edion= '<div class="input-group-btn">
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="fa fa-caret-down"></span></button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Тохиргоо <span class="fa fa-caret-down"></span></button>
                                   <ul class="dropdown-menu pull-left" style="left:-100px;  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">';
 
              if($post->deleted_at==null) {

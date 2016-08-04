@@ -783,7 +783,7 @@ p {
 .header .sections a.biga {
     white-space: nowrap;
     font-size: 16px;
-    border-bottom: 1px dotted #eee;
+    border-bottom: 1px solid #eee;
     text-transform: uppercase;
     font-weight: 700;
     padding-top: 0;
@@ -1563,9 +1563,11 @@ body:not(.mode-relative) .header.mini .sections {
 
 .tile .descwrap {
     position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 10px
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    padding: 10px;
 }
 
 .tile .post-title {

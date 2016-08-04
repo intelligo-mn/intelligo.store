@@ -46,7 +46,7 @@
                 <div class="colheader sea">
                     <h1><?php echo e($HomeColSec1Tit1 > "" ? $HomeColSec1Tit1 :  trans('index.latest', ['type' => trans('index.lists') ])); ?></h1>
                 </div>
-                <div class="jscroll" data-auto="<?php echo getcong('AutoLoadLists') ?: 'false'; ?>">
+                <div class="jscroll" data-auto="<?php echo getcong('AutoLoadLists') ?: 'true'; ?>">
                 <?php echo $__env->make('pages.indexpostloadpage', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 </div>
             </div>
