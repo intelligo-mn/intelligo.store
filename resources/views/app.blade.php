@@ -63,7 +63,6 @@
 
 </head>
 <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
-<body class="{{ getcong('languagetype') }} {{ \Config::get('app.language.'.$DB_USER_LANG)['rtl'] ? 'rtl' :''  }} {{ \Config::get('app.language.'.\Session::get ('locale'))['wideheader'] ? 'widecontainer' : ''  }}  {{ getcong('LayoutType') }} {{ getcong('NavbarType') }} @yield("modedefault") @yield("modeboxed") ">
 @include("_particles.header")
 
 <div class="content-wrapper" id="container-wrapper">

@@ -64,7 +64,6 @@
 
 </head>
 <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
-<body class="<?php echo e(getcong('languagetype')); ?> <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['rtl'] ? 'rtl' :''); ?> <?php echo e(\Config::get('app.language.'.\Session::get ('locale'))['wideheader'] ? 'widecontainer' : ''); ?>  <?php echo e(getcong('LayoutType')); ?> <?php echo e(getcong('NavbarType')); ?> <?php echo $__env->yieldContent("modedefault"); ?> <?php echo $__env->yieldContent("modeboxed"); ?> ">
 <?php echo $__env->make("_particles.header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <div class="content-wrapper" id="container-wrapper">
