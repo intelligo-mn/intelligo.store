@@ -18,13 +18,13 @@ return array(
     'year'      => ':count жил|:count жил|:count жил',
     'month'     => ':count сар|:count сар|:count сар',
     'week'      => ':count долоо хоног|:count долоо хоног|:count долоо хоног',
-    'day'       => ':count день|:count дня|:count дней',
-    'hour'      => ':count час|:count часа|:count часов',
-    'minute'    => ':count минуту|:count минуты|:count минут',
+    'day'       => ':count өдөр|:count өдөр|:count өдрийн',
+    'hour'      => ':count цаг|:count цагийн|:count цагийн',
+    'minute'    => ':count минут|:count минутын|:count минут',
     'second'    => ':count секунд|:count секунд|:count секунд',
-    'ago'       => ':time назад',
-    'from_now'  => 'через :time',
-    'after'     => ':time после',
-    'before'    => ':time до'
+    'ago'       => ':time өмнө',
+    'from_now'  => 'цаг :time',
+    'after'     => ':time дараа',
+    'before'    => ':time нь'
 );
 
