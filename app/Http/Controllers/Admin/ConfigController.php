@@ -12,7 +12,6 @@ class ConfigController extends MainAdminController
 
         parent::__construct();
 
-
     }
 
     

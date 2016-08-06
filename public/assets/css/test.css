@@ -1,3 +1,18 @@
 .header__logo, .language-links hor, .footer {
     display: none !important; 
 }
+
+.content-wrapper {
+    background: rgba(250, 250, 250, 1) !important;    
+}
+
+.column1 .items_lists>.item {
+    position: relative;
+    counter-increment: li;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 15px;
+}

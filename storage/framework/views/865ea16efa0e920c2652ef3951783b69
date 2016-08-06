@@ -1,0 +1,34 @@
+<?php echo '<'.'?xml version="1.0" encoding="UTF-8"?>'; ?>
+
+<rss version="2.0"
+     xmlns:blogChannel="http://backend.userland.com/blogChannelModule"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+
+    <channel>
+        <title><![CDATA[  <?php echo getcong('sitetitle'); ?>   ]]> Rss</title>
+        <link><?php echo e(url('/')); ?></link>
+        <description><![CDATA[  <?php echo getcong('sitedesc'); ?>   ]]></description>
+        <language><?php echo e(\Config::get('app.locale')); ?></language>
+        <lastBuildDate><?php echo e($posts->slice(0,1)->first()->published_at->toW3cString()); ?></lastBuildDate>
+        <atom:link href="<?php echo e(url(Request::segment(1))); ?>" rel="self" />
+
+        <image>
+            <title><![CDATA[  <?php echo getcong('sitetitle'); ?>   ]]></title>
+            <url><?php echo e(url('/assets/img/logo.png')); ?></url>
+            <link><?php echo e(url('/')); ?></link>
+        </image>
+
+        <?php foreach($posts as $post): ?>
+            <item>
+                <title><![CDATA[  <?php echo $post->title; ?>   ]]></title>
+                <link><?php echo e(url(makeposturl($post))); ?></link>
+                <description><![CDATA[ <?php echo $post->body; ?>  ]]></description>
+                <media:thumbnail url='<?php echo e(makepreview($post->thumb, 'b', 'posts')); ?>'  data-url='<?php echo e(makepreview($post->thumb, 's', 'posts')); ?>'  height='650' width='370' />
+                <guid isPermaLink="false"><?php echo e(url(makeposturl($post))); ?></guid>
+                <pubDate><?php echo e($post->published_at->toW3cString()); ?></pubDate>
+            </item>
+        <?php endforeach; ?>
+    </channel>
+</rss>
