@@ -820,8 +820,8 @@ p {
 
 .header .sections .scol2 a.active,
 .header .sections .scol2 a:hover {
-    background: #E9573F;
-    color: #fff!important
+    /*background: #E9573F;*/
+    /*color: #fff!important*/
 }
 
 .header .sections .scol3 {

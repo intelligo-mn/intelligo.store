@@ -92,9 +92,9 @@
                 </div>
                 <?php endif; ?>
                      <div class="coltrend">
-                <div class="colheader darken">
-                    <h1><?php echo e($HomeColSec3Tit1 > "" ? $HomeColSec3Tit1 : trans('index.latest', ['type' => trans('index.videos') ])); ?></h1>
-                </div>
+                <!--<div class="colheader darken">-->
+                <!--    <h1><?php echo e($HomeColSec3Tit1 > "" ? $HomeColSec3Tit1 : trans('index.latest', ['type' => trans('index.videos') ])); ?></h1>-->
+                <!--</div>-->
                 <?php if(isset($lastTrendingVideos)): ?>
                     <ul class="items_lists">
                         <?php foreach($lastTrendingVideos as $item): ?>
@@ -103,26 +103,26 @@
                     </ul>
                 <?php endif; ?>
                 </div>
-                <div class="social-side">
-                    <div class="colheader rosy">
-                        <h1><?php echo e(trans('index.connect')); ?></h1>
-                    </div>
-                    <div class="external-sign-in" style="padding-top:0">
-                        <?php if(getcong('facebookpage')): ?>
-                            <a class="Facebook mini" target=_blank href="<?php echo getcong('facebookpage'); ?>"></a>
-                        <?php endif; ?>
-                        <?php if(getcong('twitterpage')): ?>
-                            <a class="Twitter mini" target=_blank href="<?php echo getcong('twitterpage'); ?>"></a>
-                        <?php endif; ?>
-                        <?php if(getcong('googlepage')): ?>
-                            <a class="Google mini"  target=_blank href="<?php echo getcong('googlepage'); ?>"></a>
-                        <?php endif; ?>
-                        <?php if(getcong('instagrampage')): ?>
-                            <a class="Instagram mini"  target=_blank href="<?php echo getcong('instagrampage'); ?>"></a>
-                        <?php endif; ?>
-                         <a class="Rss mini"  target=_blank href="index.xml"></a>
-                    </div>
-                </div>
+                <!--<div class="social-side">-->
+                <!--    <div class="colheader rosy">-->
+                <!--        <h1><?php echo e(trans('index.connect')); ?></h1>-->
+                <!--    </div>-->
+                <!--    <div class="external-sign-in" style="padding-top:0">-->
+                <!--        <?php if(getcong('facebookpage')): ?>-->
+                <!--            <a class="Facebook mini" target=_blank href="<?php echo getcong('facebookpage'); ?>"></a>-->
+                <!--        <?php endif; ?>-->
+                <!--        <?php if(getcong('twitterpage')): ?>-->
+                <!--            <a class="Twitter mini" target=_blank href="<?php echo getcong('twitterpage'); ?>"></a>-->
+                <!--        <?php endif; ?>-->
+                <!--        <?php if(getcong('googlepage')): ?>-->
+                <!--            <a class="Google mini"  target=_blank href="<?php echo getcong('googlepage'); ?>"></a>-->
+                <!--        <?php endif; ?>-->
+                <!--        <?php if(getcong('instagrampage')): ?>-->
+                <!--            <a class="Instagram mini"  target=_blank href="<?php echo getcong('instagrampage'); ?>"></a>-->
+                <!--        <?php endif; ?>-->
+                <!--         <a class="Rss mini"  target=_blank href="index.xml"></a>-->
+                <!--    </div>-->
+                <!--</div>-->
             </div>
 
         </div>

@@ -93,9 +93,9 @@
                 </div>
                 @endif
                      <div class="coltrend">
-                <div class="colheader darken">
-                    <h1>{{ $HomeColSec3Tit1 > "" ? $HomeColSec3Tit1 : trans('index.latest', ['type' => trans('index.videos') ]) }}</h1>
-                </div>
+                <!--<div class="colheader darken">-->
+                <!--    <h1>{{ $HomeColSec3Tit1 > "" ? $HomeColSec3Tit1 : trans('index.latest', ['type' => trans('index.videos') ]) }}</h1>-->
+                <!--</div>-->
                 @if(isset($lastTrendingVideos))
                     <ul class="items_lists">
                         @foreach($lastTrendingVideos as $item)
@@ -104,26 +104,26 @@
                     </ul>
                 @endif
                 </div>
-                <div class="social-side">
-                    <div class="colheader rosy">
-                        <h1>{{ trans('index.connect') }}</h1>
-                    </div>
-                    <div class="external-sign-in" style="padding-top:0">
-                        @if(getcong('facebookpage'))
-                            <a class="Facebook mini" target=_blank href="{!!  getcong('facebookpage') !!}"></a>
-                        @endif
-                        @if(getcong('twitterpage'))
-                            <a class="Twitter mini" target=_blank href="{!!  getcong('twitterpage') !!}"></a>
-                        @endif
-                        @if(getcong('googlepage'))
-                            <a class="Google mini"  target=_blank href="{!!  getcong('googlepage') !!}"></a>
-                        @endif
-                        @if(getcong('instagrampage'))
-                            <a class="Instagram mini"  target=_blank href="{!!  getcong('instagrampage') !!}"></a>
-                        @endif
-                         <a class="Rss mini"  target=_blank href="index.xml"></a>
-                    </div>
-                </div>
+                <!--<div class="social-side">-->
+                <!--    <div class="colheader rosy">-->
+                <!--        <h1>{{ trans('index.connect') }}</h1>-->
+                <!--    </div>-->
+                <!--    <div class="external-sign-in" style="padding-top:0">-->
+                <!--        @if(getcong('facebookpage'))-->
+                <!--            <a class="Facebook mini" target=_blank href="{!!  getcong('facebookpage') !!}"></a>-->
+                <!--        @endif-->
+                <!--        @if(getcong('twitterpage'))-->
+                <!--            <a class="Twitter mini" target=_blank href="{!!  getcong('twitterpage') !!}"></a>-->
+                <!--        @endif-->
+                <!--        @if(getcong('googlepage'))-->
+                <!--            <a class="Google mini"  target=_blank href="{!!  getcong('googlepage') !!}"></a>-->
+                <!--        @endif-->
+                <!--        @if(getcong('instagrampage'))-->
+                <!--            <a class="Instagram mini"  target=_blank href="{!!  getcong('instagrampage') !!}"></a>-->
+                <!--        @endif-->
+                <!--         <a class="Rss mini"  target=_blank href="index.xml"></a>-->
+                <!--    </div>-->
+                <!--</div>-->
             </div>
 
         </div>
