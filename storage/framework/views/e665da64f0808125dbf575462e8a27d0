@@ -78,7 +78,16 @@
                             <?php if($DB_PLUGIN_QUIZS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-question-circle"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('buzzyquiz.quizzes') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/quizzes"><?php echo e($quizzescount); ?> </a>  </div><?php endif; ?>
                             <?php if($DB_PLUGIN_POLLS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.polls') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/polls"><?php echo e($pollscount); ?> </a>  </div><?php endif; ?>
                             <?php if($DB_PLUGIN_VIDEOS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.videos') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/videos"><?php echo e($videoscount); ?> </a>   </div><?php endif; ?>
-                        </div>
+       
+                             <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $categorys): ?>
+                                <div class="profile-stat">
+                                    <div class="profile-stat-label">
+                                    <a href="<?php echo e(action('PostsController@CreateNew', ['new'=>$categorys->posturl_slug])); ?>" class="sub-item"><i class="fa fa-<?php echo e($categorys->icon); ?>"></i> <?php echo e(trans('index.new', ['type' => ucfirst($categorys->posturl_slug) ])); ?></a>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+       
 <?php if($userinfo->about ): ?>
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
@@ -144,8 +153,9 @@
                     <div class="profile-main">
 
                         <?php echo $__env->yieldContent("usercontent"); ?>
-
+                        
                     </div>
+                     
                 </div>
             </div>
 

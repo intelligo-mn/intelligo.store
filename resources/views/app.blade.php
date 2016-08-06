@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
     
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/plugins.css">
@@ -29,7 +29,7 @@
 
     <style type="text/css">
         body {
-            font-family: 'Open Sans Condensed', sans-serif;
+            font-family: 'Roboto Condensed', sans-serif;
         }
     </style>
 

@@ -76,7 +76,16 @@
                             @if($DB_PLUGIN_QUIZS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-question-circle"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('buzzyquiz.quizzes') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/quizzes">{{ $quizzescount }} </a>  </div>@endif
                             @if($DB_PLUGIN_POLLS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.polls') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/polls">{{ $pollscount }} </a>  </div>@endif
                             @if($DB_PLUGIN_VIDEOS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.videos') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/videos">{{ $videoscount }} </a>   </div>@endif
-                        </div>
+       
+                             @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $categorys)
+                                <div class="profile-stat">
+                                    <div class="profile-stat-label">
+                                    <a href="{{ action('PostsController@CreateNew', ['new'=>$categorys->posturl_slug]) }}" class="sub-item"><i class="fa fa-{{ $categorys->icon }}"></i> {{ trans('index.new', ['type' => ucfirst($categorys->posturl_slug) ]) }}</a>
+                                    </div>
+                                </div>
+
+                            @endforeach
+       
 @if($userinfo->about )
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
@@ -137,8 +146,9 @@
                     <div class="profile-main">
 
                         @yield("usercontent")
-
+                        
                     </div>
+                     
                 </div>
             </div>
 

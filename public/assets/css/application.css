@@ -510,6 +510,7 @@ p {
 }
 
 .header .header__nav .toggle-nav {
+    width: 100%;
     position: relative;
     display: inline-block
 }
@@ -547,8 +548,7 @@ p {
     float: left;
     display: inline-block;
     padding: 0;
-    z-index: 150;
-    float: right;
+    z-index: 150;rig
 }
 
 .header .navmenu>li {
@@ -645,7 +645,7 @@ p {
     left: auto;
     top: 40px;
     right: -2px;
-    text-align: right
+    text-align: left;
 }
 
 .header .navmenu .profile-info .sub-nav:before {
@@ -654,7 +654,7 @@ p {
 
 .header .search_link {
     height: 100%;
-    float: left;
+    float: right;
     margin-top: 2px;
     position: relative
 }
@@ -1499,28 +1499,28 @@ body:not(.mode-relative) .header.mini .sections {
 }
 
 .colheader.rosy h1 {
-    border-color: #e32;
-    color: #e32
+    /*border-color: #e32;*/
+    /*color: #e32*/
 }
 
 .colheader.sea h1 {
-    color: #004b90;
-    border-color: #004b90
+    /*color: #004b90;*/
+    /*border-color: #004b90*/
 }
 
 .colheader.formula h1 {
-    color: #90281b;
-    border-color: #90281b
+    /*color: #90281b;*/
+    /*border-color: #90281b*/
 }
 
 .colheader.darken h1 {
-    color: #170a1d;
-    border-color: #170a1d
+    /*color: #170a1d;*/
+    /*border-color: #170a1d*/
 }
 
 .colheader.trend h1 {
-    color: #E88900;
-    border-color: #E88900
+    /*color: #E88900;*/
+    /*border-color: #E88900*/
 }
 
 .colheader.none,
