@@ -1716,7 +1716,6 @@ body:not(.mode-relative) .header.mini .sections {
 }
 
 .items_lists>.item .item-cover {
-    margin-bottom: 30px;
     width: 100%;
     position: relative;
     overflow: hidden
@@ -1815,11 +1814,11 @@ body:not(.mode-relative) .header.mini .sections {
 }
 
 .items_lists>.item .item_body .item_meta a {
-    color: #aaa
+    color: #3b8c6e;
 }
 
 .items_lists>.item .item_body .item_meta .item_meta__item {
-    color: #aaa;
+    color: #00ab6b;
     font-size: 12px;
     display: inline-block;
     margin-right: 5px;
@@ -3806,6 +3805,25 @@ span.tagy a i {
     font-size: 17px;
     color: #ddd
 }
+
+
+.is-twitter {
+    color: #21c7e5;
+}
+
+.is-twitter i {
+    color: #21c7e5;
+}
+
+.is-facebook {
+    color: #416ebe;
+}
+
+
+.is-facebook i {
+    color: #416ebe;
+}
+
 
 .share_social:hover.is-twitter {
     color: #21c7e5;

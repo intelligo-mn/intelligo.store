@@ -124,12 +124,6 @@
                 <span>{{ trans('admin.Sitemap') }}</span>
             </a>
         </li>
-        <li>
-            <a href="/admin/docs/">
-                <i class="fa fa-book"></i>
-                <span> {{ trans('admin.documentation') }}</span>
-            </a>
-        </li>
         <li class="header">{{ trans('admin.UNAPPROVEDPOSTS') }}</li>
         @if($DB_PLUGIN_NEWS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-aqua"></i> <span>{{ trans('admin.news') }}</span><small class="label pull-right bg-aqua">{{ $napprovenews }}</small></a></li> @endif
         @if($DB_PLUGIN_LISTS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-green"></i> <span>{{ trans('admin.lists') }}</span><small class="label pull-right bg-green">{{ $napprovelists }}</small></a></li> @endif

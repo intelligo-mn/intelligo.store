@@ -3,18 +3,18 @@ return [
     
     'BuzzyEditor' => [
         'lang' => [
-            'lang_1' => 'Are you sure?',
+            'lang_1' => 'Та итгэлтэй байна уу?',
             'lang_2' => 'You will not be able to recover this!',
-            'lang_3' => 'Yes, delete it!',
-            'lang_4' => 'Cancel',
-            'lang_5' => "Enter the images URL!",
-            'lang_6' => 'Url to image',
-            'lang_7' => 'You need to write something!',
-            'lang_8' => 'Not valid image url!',
-            'lang_9' => 'Please try full link',
-            'lang_10' => 'Add some entry',
-            'lang_11' => 'Invalid Url',
-            'lang_12' => 'You can not select greater then entry for per page.',
+            'lang_3' => 'Тийм, устгая!',
+            'lang_4' => 'Буцах',
+            'lang_5' => "Зургын холбоос оруулна уу!",
+            'lang_6' => 'Зургын холбоос',
+            'lang_7' => 'Та ямар нэг зүйл бичих хэрэгтэй байна!',
+            'lang_8' => 'Зургын холбоос тохирохгүй байна!',
+            'lang_9' => 'Та холбоос оруулна уу',
+            'lang_10' => 'Ямар нэг юм бич',
+            'lang_11' => 'Буруу холбоос',
+            'lang_12' => 'Хэрэгхий их текст хуудаслана уу.',
         ],
         'TextEditor' => [
             'normalText' => 'Энгийн текст',
@@ -26,11 +26,11 @@ return [
             'text' => 'текст',
             'linkText' => 'Холбоос текстээр',
             'linkUrl' => 'URL',
-            'removeLink' => 'Remove Link',
+            'removeLink' => 'Холбоос устгах',
             'ol' => 'Number List',
             'ul' => 'List',
             'strikethrough' => 'Strikethrough',
-            'underline' => 'Underline',
+            'underline' => 'Доогуур зураас',
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
 
     // create pages
     'urltovideo'      => 'Бичлэгийн холбоос',
-    'get'             => 'Get',
+    'get'             => 'Авах',
     'tweet'           => 'Tweet',
     'urltotweet'      => 'Url to Tweet',
     'admininfo'       => 'You can edit this post because your an admin',
@@ -67,9 +67,9 @@ return [
 
 
     //new lines on v1.1.3
-    'usertypeadmin'     => 'Admin',
-    'usertypestaff'     => 'Editor',
-    'usertypebanned'    => 'Banned',
+    'usertypeadmin'     => 'Админ',
+    'usertypestaff'     => 'Нийтлэгч',
+    'usertypebanned'    => 'Бандуулцан гар',
 
     //new lines on v1.2
     'entryerrors'    => 'Entry #:numberofentry  Error: :error',
@@ -107,8 +107,8 @@ return [
     'registerloginreqired'  => 'Please login before activate your account!',
     'registeractivate'      => 'Your account successfully activated!',
 
-    'saveasdraft'           => 'Save as Draft',
-    'thisdraftpost'         => 'This a Draft Post',
+    'saveasdraft'           => 'Ноороглож хадгалах',
+    'thisdraftpost'         => 'Ноорог',
 
     'followers'    => 'Дагагч',
     'following'    => 'Дагаж байгаа',

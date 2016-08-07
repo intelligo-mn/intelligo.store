@@ -89,27 +89,27 @@ return [
 
     'custom' => [
         'type' => [
-            'required' => 'Error.',
+            'required' => 'Алдаа.',
         ],
         'title' => [
-            'required' => 'Title is required.',
-            'unique'  => ' Title has already been taken by other post.',
-            'min' => 'Title must be at least :min characters.',
-            'max' => 'Title may not be greater than :max characters.',
+            'required' => 'Гарчиг оруулна уу.',
+            'unique'  => ' Гарчиг давхцаж байна',
+            'min' => 'Гарчиг хэтэрхий бага :min тэмдэгт байна.',
+            'max' => 'Гарчиг хэтэрхий их :max тэмдэгт.',
         ],
         'body' => [
-            'required' => 'Description is required.',
-            'min' => 'Description must be at least :min characters.',
+            'required' => 'Тайлбар оруулна уу.',
+            'min' => 'Тайлбар хэтэрхий бага :min тэмдэгт байна.',
             'max' => 'Description may not be greater than :max characters.',
         ],
-        'category' => 'Category is required.',
+        'category' => 'Ангилал оруулна уу.',
         'description' => [
             'required' => 'Description is required.',
             'min' => 'Description must be at least :min characters.',
             'max' => 'Description may not be greater than :max characters.',
         ],
         'thumb' => [
-            'required' => 'Preview image is required.',
+            'required' => 'Зураг сонгоно уу.',
         ],
         'username' => [
             'unique' => 'Username has already been taken by other user.',
@@ -123,7 +123,7 @@ return [
             'unique' => 'Email has already been used.',
         ],
         'password' => [
-            'required' => 'Password is required.',
+            'required' => 'Нууц үг оруулна уу.',
             'min' => 'Password must be at least :min characters.',
             'max' => 'Password may not be greater than :max characters.',
         ],

@@ -96,7 +96,7 @@ return [
     'Doyouhaveanaccount'    => 'Та бүртгүүлтэй бол энд дарна уу?',
     'youdonthaveanaccount'  => 'Та бүртгэлгүй бол энд дарна уу?',
     'registerwithemail'     => 'И-мэйлээрээ бүртгүүлэх',
-    'loginwithemail'        => 'И-мэйлээрээ нэвтрэх',
+    'loginwithemail'        => 'Нэвтрэх хэсэг',
 
     'connectfacebok'        => 'Connect with Facebook',
     'connectgoogle'         => 'Connect with Google',
@@ -110,8 +110,8 @@ return [
     'followongoogle'        => 'Follow Us On Google+',
     'followoninstagram'     => 'Follow Us On Instagram',
 
-    'sharefacebook'         => 'Share',
-    'sharetweet'            => 'Tweet',
+    'sharefacebook'         => 'Хуваалцах',
+    'sharetweet'            => 'Жиргэх',
     'sharegoogle'           => 'Google+',
     'sharereddit'           => 'Reddit',
     'sharepinterest'        => 'Pinterest',

@@ -124,12 +124,6 @@
                 <span><?php echo e(trans('admin.Sitemap')); ?></span>
             </a>
         </li>
-        <li>
-            <a href="/admin/docs/">
-                <i class="fa fa-book"></i>
-                <span> <?php echo e(trans('admin.documentation')); ?></span>
-            </a>
-        </li>
         <li class="header"><?php echo e(trans('admin.UNAPPROVEDPOSTS')); ?></li>
         <?php if($DB_PLUGIN_NEWS == 'on'): ?><li><a href="javascript:"><i class="fa fa-circle-o text-aqua"></i> <span><?php echo e(trans('admin.news')); ?></span><small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li> <?php endif; ?>
         <?php if($DB_PLUGIN_LISTS == 'on'): ?><li><a href="javascript:"><i class="fa fa-circle-o text-green"></i> <span><?php echo e(trans('admin.lists')); ?></span><small class="label pull-right bg-green"><?php echo e($napprovelists); ?></small></a></li> <?php endif; ?>
