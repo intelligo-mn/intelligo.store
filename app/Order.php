@@ -3,9 +3,9 @@
 namespace app;
 
 /*
- * Antvel - Order Model
+ * Modu - Order Model
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Address;
