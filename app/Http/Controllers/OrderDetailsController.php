@@ -3,9 +3,9 @@
 namespace app\Http\Controllers;
 
 /*
- * Antvel - Orders Details Controller
+ * Modu - Order Details Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Http\Controllers\Controller;
