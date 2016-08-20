@@ -3,9 +3,9 @@
 namespace app\Http\Controllers;
 
 /*
- * Antvel - Products Details Controller
+ * Modu - Product Detail Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Helpers\featuresHelper;
