@@ -27,11 +27,11 @@
     </div>
 
     <div class="inpunting " style=" padding:0">
-        {!! Form::textarea(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('buzzyquiz.entry_answertitle')]) !!}
+        {!! Form::textarea(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('moduquiz.entry_answertitle')]) !!}
     </div>
     <div class="inpunting " style="background:#ccc; padding:0">
         <?php $idoa=time(); ?>
-        {!! Form::select(null, ['' => trans('buzzyquiz.assign')] , null, [ 'class' => 'getassignres', 'data-identy' => $idoa, 'data-acst' =>  isset($entry->video) ? (int)$entry->video : null, 'data-type' => 'assign' ]) !!}
+        {!! Form::select(null, ['' => trans('moduquiz.assign')] , null, [ 'class' => 'getassignres', 'data-identy' => $idoa, 'data-acst' =>  isset($entry->video) ? (int)$entry->video : null, 'data-type' => 'assign' ]) !!}
     </div>
 </div>
 </div>

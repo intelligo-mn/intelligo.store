@@ -64,18 +64,18 @@
                             <section class="form last" id="addnew"  style="border-bottom: 1px solid #e3e3e3;">
 
 
-                                <legend><?php echo e(trans('buzzyquiz.quizresults')); ?></legend><br>
+                                <legend><?php echo e(trans('moduquiz.quizresults')); ?></legend><br>
 
                                 <div id="results">
                                     <?php foreach($entrysquizresults as $key => $entry): ?>
 
-                                    <?php echo $__env->make('_forms._buzzyquiz.__addresultform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                    <?php echo $__env->make('_forms._moduquiz.__addresultform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                                     <?php endforeach; ?>
                                 </div>
 
 
-                                <a class="submit-button button button-rosy button-big button-full postable" style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="results" data-puttype="append" data-type="resultform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=result" ><i class="fa fa-check-circle-o"></i><?php echo e(trans('addpost.add', ['type' => trans('buzzyquiz.result')])); ?></a>
+                                <a class="submit-button button button-rosy button-big button-full postable" style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="results" data-puttype="append" data-type="resultform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=result" ><i class="fa fa-check-circle-o"></i><?php echo e(trans('addpost.add', ['type' => trans('moduquiz.result')])); ?></a>
                                 <br><br><br><br>
                             </section>
                         <?php endif; ?>
@@ -87,7 +87,7 @@
 
                                     <?php foreach($entrysquizquest as $key => $entry): ?>
 
-                                    <?php echo $__env->make('_forms._buzzyquiz.__addquestionform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                    <?php echo $__env->make('_forms._moduquiz.__addquestionform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                                     <?php endforeach; ?>
 
@@ -146,7 +146,7 @@
 
                                     <?php elseif($entry->type=='poll'): ?>
 
-                                        <?php echo $__env->make('_forms._buzzypoll.__addpollform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                        <?php echo $__env->make('_forms._modupoll.__addpollform', ['entry' => $entry], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                                     <?php elseif($entry->type=='image'): ?>
 
@@ -162,7 +162,7 @@
                                 <?php endif; ?>
                             </div>
                             <?php if($typene=='quiz'): ?>
-                                <a class="submit-button button button-blue button-full postable"  style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="entries" data-puttype="append" data-type="questionform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=question"><i class="fa fa-question-circle"></i><?php echo e(trans('addpost.add', ['type' => trans('buzzyquiz.question')])); ?></a>
+                                <a class="submit-button button button-blue button-full postable"  style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="entries" data-puttype="append" data-type="questionform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=question"><i class="fa fa-question-circle"></i><?php echo e(trans('addpost.add', ['type' => trans('moduquiz.question')])); ?></a>
 
 
                                 <div class="clear"></div>

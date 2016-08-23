@@ -4,7 +4,7 @@
 <section class="content-header">
     <h1>
         {{ trans('admin.Plugins') }}
-        <small>{{ trans('admin.AllBuzzyPlugins') }}</small>
+        <small>{{ trans('admin.AllmoduPlugins') }}</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> {{ trans('admin.dashboard') }}</a></li>

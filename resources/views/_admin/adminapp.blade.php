@@ -158,10 +158,10 @@
 <script src="/adminlte/dist/js/app.js"></script>
 
 
-<script src="/adminlte/dist/js/buzzy.js"></script>
+<script src="/adminlte/dist/js/modu.js"></script>
 <script>
     $( document ).ready(function() {
-        Buzzy.init();
+        modu.init();
     });
 </script>
 @yield('footer')

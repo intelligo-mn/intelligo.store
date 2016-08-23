@@ -96,8 +96,8 @@
                 </div>
             @else
 
-            <h1 class="title">Welcome to Buzzy</h1>
-            <h5 class="thanks">Thanks for Buying and Using Buzzy Script.</h5>
+            <h1 class="title">Welcome to modu</h1>
+            <h5 class="thanks">Thanks for Buying and Using modu Script.</h5>
             <div class="clear"></div>
 
 
@@ -114,7 +114,7 @@
 
                     @else
                     <i class="fa fa-check green"></i>
-                    <h4>Your Buzzy script successfully installed!</h4>
+                    <h4>Your modu script successfully installed!</h4>
 
                     <p>
                         <b>Your homepage is not ready yet!</b><br>
@@ -152,7 +152,7 @@
 
                 &nbsp;&nbsp;&nbsp;
 
-                <b><a href="http://buzzy.akbilisim.com" target="_blank">Buzzy</a></b> Version : {{ Config::get('installer.last_version') }}
+                <b><a href="http://modu.akbilisim.com" target="_blank">modu</a></b> Version : {{ Config::get('installer.last_version') }}
             </div>
 @endif
 

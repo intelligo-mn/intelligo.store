@@ -46,9 +46,9 @@ class ContactController extends Controller
             return redirect()->back()->withInput($ll);
         }
 
-        if(getcong('BuzzyContactCopyEmail') > ""){
+        if(getcong('moduContactCopyEmail') > ""){
             if(!isset($ll['g-recaptcha-response'])){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('moducontact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
@@ -57,14 +57,14 @@ class ContactController extends Controller
             $res= json_decode($content, true);
 
             if($res['success'] == false){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('moducontact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
             $this->composesubject=$ll['subject'];
             $this->fromemail=$ll['email'];
-            $this->composeto = getcong('BuzzyContactCopyEmail')>"" ? getcong('BuzzyContactCopyEmail') : getcong('siteemail');
-            $this->sitename =getcong('BuzzyContactName')>"" ? getcong('BuzzyContactName') : getcong('sitename');
+            $this->composeto = getcong('moduContactCopyEmail')>"" ? getcong('moduContactCopyEmail') : getcong('siteemail');
+            $this->sitename =getcong('moduContactName')>"" ? getcong('moduContactName') : getcong('sitename');
 
 
             $this->mail->send('_contact.emails.mailbox', array('body' => $ll['text']), function($message)
@@ -91,7 +91,7 @@ class ContactController extends Controller
 
 
 
-        \Session::flash('success.message', trans('buzzycontact.successgot'));
+        \Session::flash('success.message', trans('moducontact.successgot'));
         return redirect('/');
     }
 

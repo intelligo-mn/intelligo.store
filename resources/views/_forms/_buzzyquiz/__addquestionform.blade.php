@@ -4,10 +4,10 @@ $uniquid = time().$lfld ;
 ?>
 <div class="entry" data-type="quizquestion" data-co="{{ $uniquid }}" @if(isset($entry->id)) data-entry-id="{{ $entry->id }}" @endif>
     @include('_forms.__entryactions')
-    <h3><i class="fa fa-question-circle"></i> {{ trans('buzzyquiz.question') }}</h3>
+    <h3><i class="fa fa-question-circle"></i> {{ trans('moduquiz.question') }}</h3>
     <div class="inpunting  ordering">
         <button class="order-number button button-gray show">1</button>
-        {!! Form::text(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input ', 'placeholder' => trans('buzzyquiz.entry_question')]) !!}
+        {!! Form::text(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input ', 'placeholder' => trans('moduquiz.entry_question')]) !!}
     </div>
     <div class="inpunting mediaupload" @if(isset($entry->image)) style="display: none;" @endif>
         <div class="item-media-placeholder" style="padding-top: 70px;padding-bottom: 70px">
@@ -56,18 +56,18 @@ $uniquid = time().$lfld ;
         <div id="answer{{ $uniquid }}" class="answers @if(isset($entry->video)) @if($entry->video == '1')thdefault @else {{  $entry->video == "2" ?  'thlarge' : 'thlist' }}@endif @endif"  style="border-radius:0;border:0;padding:0;margin:0;margin-left:-15px;background: transparent;">
             @if(empty($entry->image))
 
-                @include('_forms._buzzyquiz.__addanswerform')
+                @include('_forms._moduquiz.__addanswerform')
 
-                @include('_forms._buzzyquiz.__addanswerform')
+                @include('_forms._moduquiz.__addanswerform')
 
-                @include('_forms._buzzyquiz.__addanswerform')
+                @include('_forms._moduquiz.__addanswerform')
 
                 @else
 
                 @foreach($post->entry()->where('type', 'answer')->where('source', $entry->id)->orderBy('order')->get() as $keya => $answers)
 
 
-                    @include('_forms._buzzyquiz.__addanswerform', ['entry' =>  $answers])
+                    @include('_forms._moduquiz.__addanswerform', ['entry' =>  $answers])
 
 
                 @endforeach
@@ -78,6 +78,6 @@ $uniquid = time().$lfld ;
 
         </div>
         <div class="clear"></div>
-        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer{{ $uniquid }}" data-puttype="append" data-type="answerform" href="{{ action('FormController@addnewform') }}?addnew=answer"><i class="fa fa-plus-circle"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.answer')]) }}</a>
+        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer{{ $uniquid }}" data-puttype="append" data-type="answerform" href="{{ action('FormController@addnewform') }}?addnew=answer"><i class="fa fa-plus-circle"></i>{{ trans('addpost.add', ['type' => trans('moduquiz.answer')]) }}</a>
     </div>
 </div>

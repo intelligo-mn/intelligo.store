@@ -10,8 +10,8 @@
                 @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
                 @endforeach
-                    @if(getcong('p-buzzycontact') == 'on')
-                    <li> <a href="{{ action('ContactController@index') }}">{{ trans('buzzycontact.contact') }}</a></li>
+                    @if(getcong('p-moducontact') == 'on')
+                    <li> <a href="{{ action('ContactController@index') }}">{{ trans('moducontact.contact') }}</a></li>
                     @endif
             </ul>
             <div class="col-1">

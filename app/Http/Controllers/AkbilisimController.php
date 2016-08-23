@@ -12,7 +12,7 @@ class AkbilisimController extends Controller
 
     protected $server  =  'http://envato.akbilisim.com/api/BA';
     protected $rf  =  '1';
-    protected $product  =  'buzzy';
+    protected $product  =  'modu';
 
     public function __construct()
     {
@@ -36,7 +36,7 @@ class AkbilisimController extends Controller
         }
         try {
 
-            file_put_contents($this->buzzyPath, $code);
+            file_put_contents($this->moduPath, $code);
         }catch(Exception $e) {
             \Session::flash('error.message', 'Please Contact: contact@akbilisim.com');
             return redirect()->back();

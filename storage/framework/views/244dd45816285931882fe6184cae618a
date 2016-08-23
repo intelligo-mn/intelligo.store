@@ -8,48 +8,48 @@
 
 
 <script>
-     BuzzyEditorlang = {
-        'lang_1': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_1')); ?>',
-        'lang_2': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_2')); ?>',
-        'lang_3': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_3')); ?>',
-        'lang_4': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_4')); ?>',
-        'lang_5': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_5')); ?>',
-        'lang_6': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_6')); ?>',
-        'lang_7': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_7')); ?>',
-        'lang_8': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_8')); ?>',
-        'lang_9': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_9')); ?>',
-        'lang_10': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_10')); ?>',
-        'lang_11': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_11')); ?>',
-        'lang_12': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_12')); ?>',
+     moduEditorlang = {
+        'lang_1': '<?php echo e(trans('updates.moduEditor.lang.lang_1')); ?>',
+        'lang_2': '<?php echo e(trans('updates.moduEditor.lang.lang_2')); ?>',
+        'lang_3': '<?php echo e(trans('updates.moduEditor.lang.lang_3')); ?>',
+        'lang_4': '<?php echo e(trans('updates.moduEditor.lang.lang_4')); ?>',
+        'lang_5': '<?php echo e(trans('updates.moduEditor.lang.lang_5')); ?>',
+        'lang_6': '<?php echo e(trans('updates.moduEditor.lang.lang_6')); ?>',
+        'lang_7': '<?php echo e(trans('updates.moduEditor.lang.lang_7')); ?>',
+        'lang_8': '<?php echo e(trans('updates.moduEditor.lang.lang_8')); ?>',
+        'lang_9': '<?php echo e(trans('updates.moduEditor.lang.lang_9')); ?>',
+        'lang_10': '<?php echo e(trans('updates.moduEditor.lang.lang_10')); ?>',
+        'lang_11': '<?php echo e(trans('updates.moduEditor.lang.lang_11')); ?>',
+        'lang_12': '<?php echo e(trans('updates.moduEditor.lang.lang_12')); ?>',
         'errorl': '<?php echo e(trans('updates.error')); ?>'
     };
 
      Simditor.i18n = {
         'en_EN': {
-            'normalText': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.normalText')); ?>',
-            'title': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.title')); ?>',
-            'blockquote': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.blockquote')); ?>',
-            'bold': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.bold')); ?>',
-            'italic': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.italic')); ?>',
-            'link': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.link')); ?>',
-            'text': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.text')); ?>',
-            'linkText': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.linkText')); ?>',
-            'linkUrl': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.linkUrl')); ?>',
-            'removeLink': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.removeLink')); ?>',
-            'ol': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.ol')); ?>',
-            'ul': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.ul')); ?>',
-            'strikethrough': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.strikethrough')); ?>',
-            'underline': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.underline')); ?>',
+            'normalText': '<?php echo e(trans('updates.moduEditor.TextEditor.normalText')); ?>',
+            'title': '<?php echo e(trans('updates.moduEditor.TextEditor.title')); ?>',
+            'blockquote': '<?php echo e(trans('updates.moduEditor.TextEditor.blockquote')); ?>',
+            'bold': '<?php echo e(trans('updates.moduEditor.TextEditor.bold')); ?>',
+            'italic': '<?php echo e(trans('updates.moduEditor.TextEditor.italic')); ?>',
+            'link': '<?php echo e(trans('updates.moduEditor.TextEditor.link')); ?>',
+            'text': '<?php echo e(trans('updates.moduEditor.TextEditor.text')); ?>',
+            'linkText': '<?php echo e(trans('updates.moduEditor.TextEditor.linkText')); ?>',
+            'linkUrl': '<?php echo e(trans('updates.moduEditor.TextEditor.linkUrl')); ?>',
+            'removeLink': '<?php echo e(trans('updates.moduEditor.TextEditor.removeLink')); ?>',
+            'ol': '<?php echo e(trans('updates.moduEditor.TextEditor.ol')); ?>',
+            'ul': '<?php echo e(trans('updates.moduEditor.TextEditor.ul')); ?>',
+            'strikethrough': '<?php echo e(trans('updates.moduEditor.TextEditor.strikethrough')); ?>',
+            'underline': '<?php echo e(trans('updates.moduEditor.TextEditor.underline')); ?>',
         }
     };
 
 </script>
 
-<script src="/assets/js/buzzyeditor.min.js"></script>
+<script src="/assets/js/modueditor.min.js"></script>
 <script>
     $( document ).ready(function() {
-        BuzzyEditor.init();
-        BuzzyEditor.EditorInit();
+        moduEditor.init();
+        moduEditor.EditorInit();
         $('#tags').tagsInput({width:'auto', 'height':'auto','defaultText':'<?php echo e(trans('updates.addatag')); ?>',
             'minChars' : 2,
             'maxChars' : 50,

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Buzzy | Dökümanları</title>
+    <title>modu | Dökümanları</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/adminlte/bootstrap/css/bootstrap.min.css">
@@ -33,7 +33,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>B</b>P</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Buzzy</b>Admin</span>
+          <span class="logo-lg"><b>modu</b>Admin</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -44,8 +44,8 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <li><a href="http://buzzy.akbilisim.com">Buzzy Website</a></li>
-              <li><a href="http://codecanyon.net/item/buzzy-news-viral-lists-polls-and-videos/13300279?ref=akbilisim"> Buzzy Satın Al</a></li>
+              <li><a href="http://modu.akbilisim.com">modu Website</a></li>
+              <li><a href="http://codecanyon.net/item/modu-news-viral-lists-polls-and-videos/13300279?ref=akbilisim"> modu Satın Al</a></li>
             </ul>
           </div>
         </nav>
@@ -59,7 +59,7 @@
             <li><a href="#uyegirisleri"><i class="fa fa-circle-o"></i> Sosyal Üyelik Ayarları</a></li>
             <li><a href="#kategoriler"><i class="fa fa-circle-o"></i> Kategori Yönetimi</a></li>
             <li><a href="#yazilar"><i class="fa fa-circle-o"></i> Yazı Yönetimi</a></li>
-            <li><a href="#buzzyeditor"><i class="fa fa-circle-o"></i> BuzzyEditor</a></li>
+            <li><a href="#modueditor"><i class="fa fa-circle-o"></i> moduEditor</a></li>
             <li><a href="#sayfalar"><i class="fa fa-circle-o"></i> Sayfalar</a></li>
             <li><a href="#widgetlar"><i class="fa fa-circle-o"></i> Widget'lar</a></li>
             <li><a href="#dil"><i class="fa fa-circle-o"></i> Diller</a></li>
@@ -77,7 +77,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <h1>
-            Buzzy Dökümantasyon
+            modu Dökümantasyon
             <small>Son Versiyon 1.3.2</small>
           </h1>
           <ol class="breadcrumb">
@@ -93,7 +93,7 @@
   <h2 class="page-header" style="padding-top:0"><a href="#kurulum">Kurulum</a></h2>
     <p class="lead">
       <H3>Sunucu Gereksinimleri</H3>
-       Buzzy'nin çalışması için sunucunuzda olması gereken minimum gereksimleri kontrol ediniz.
+       modu'nin çalışması için sunucunuzda olması gereken minimum gereksimleri kontrol ediniz.
      </p>
         <ol>
           <li>PHP &gt;= 5.5.9</li>
@@ -106,15 +106,15 @@
           <li>Zip PHP Extension </li>
         </ol>
   <hr>
-    <h4>Aşağıdaki buton ile web hostunuzu hızlı bir şekilde Buzzy için uygunluğunu kontrol edebilirsiniz.</h4>
+    <h4>Aşağıdaki buton ile web hostunuzu hızlı bir şekilde modu için uygunluğunu kontrol edebilirsiniz.</h4>
     <a class="btn btn-primary" href="http://envato.akbilisim.com/public/export/zip/check.zip"> Check.php Dosyasını İndir!</a>
   <hr>
     <p class="lead">
-    <H3>Buzzy Kurulumu</H3>
-    Aşağıdaki hızlı adımlar ile Buzzy kurulumunu kolayca tamamlayabilirsiniz. <br><br>
+    <H3>modu Kurulumu</H3>
+    Aşağıdaki hızlı adımlar ile modu kurulumunu kolayca tamamlayabilirsiniz. <br><br>
     </p>
     <h4>Adım 1 - Dosyaları Çıkarma ve Sunucuya Yükleme</h4>
-    <p> Codecanyon üzerinden indirdiğiniz Buzzy dosyalarını tercih ettiğiniz bir ftp programı ile hostunuza yükleyiniz. Yukleme işleminiz bittiğinde <a  target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/allfiles.png">tüm dosyaları yüklediğinizden emin olunuz.</a></p>
+    <p> Codecanyon üzerinden indirdiğiniz modu dosyalarını tercih ettiğiniz bir ftp programı ile hostunuza yükleyiniz. Yukleme işleminiz bittiğinde <a  target="_blank" href="http://modu.akbilisim.com/docsassets/ss/allfiles.png">tüm dosyaları yüklediğinizden emin olunuz.</a></p>
   <br>
     <h4>Adım 2 - Kurulum Ekranı</h4>
     <p> Dosyaları yükleme işleminizin ardından eğer sunucunuzda tüm minimum sistem gereksimleri bulunuyor ise sistem otomatik olarak kurulum ekranına yönlendirecektir.
@@ -123,19 +123,19 @@
   <h4>Adım 3 - Kurulum Ekranı Adımları</h4>
   <blockquote>
     <ol>
-      <li><a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sswizard1.png">İlk Adım</a> sistem gereksinimleri kontrolu <br>
-       Tüm gereksinimler yeşil icon ile belirtilmiş olmalıdır. Eğer gereksinimlerden biri kırmızı gözüküyor ise lütfen cpanel üzerinde bulunan <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelphp2.png">Php ayarları sayfası</a> üzerinden aktif edebilirsiniz. (Bu sayfayı <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelphp1.png" >Php Versiyonu Değiştir</a> üzerinden ulaşabilirsiniz). Bunlar ile ilgili herhangi bir seçenek panelinizde bulunmuyor ise host yetkiliniz ile görüşebilirsiniz.
+      <li><a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sswizard1.png">İlk Adım</a> sistem gereksinimleri kontrolu <br>
+       Tüm gereksinimler yeşil icon ile belirtilmiş olmalıdır. Eğer gereksinimlerden biri kırmızı gözüküyor ise lütfen cpanel üzerinde bulunan <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelphp2.png">Php ayarları sayfası</a> üzerinden aktif edebilirsiniz. (Bu sayfayı <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelphp1.png" >Php Versiyonu Değiştir</a> üzerinden ulaşabilirsiniz). Bunlar ile ilgili herhangi bir seçenek panelinizde bulunmuyor ise host yetkiliniz ile görüşebilirsiniz.
         <br> <br>
       </li>
-      <li><a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sswizard2.png">Sonraki Adım</a>, Buzzy Access Kontrolu.
-        Bu adımda Buzzy Access kodu al butonuna tıklayarak, açılan pencere envato hesabınız ile giriş yapınız. Yönlendirildiğiniz sayfada envato purchase kodunuzu giriniz. Daha sonrasında eklediğiniz purchase koduna site adresinizi tanımlayıp access kodunuzu alınız.
+      <li><a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sswizard2.png">Sonraki Adım</a>, modu Access Kontrolu.
+        Bu adımda modu Access kodu al butonuna tıklayarak, açılan pencere envato hesabınız ile giriş yapınız. Yönlendirildiğiniz sayfada envato purchase kodunuzu giriniz. Daha sonrasında eklediğiniz purchase koduna site adresinizi tanımlayıp access kodunuzu alınız.
         <br>
         <br>
       </li>
-      <li><a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sswizard3.png">Bu Adımda</a>, klasör izinleriniz kontrol edilecektir. İzinleriniz tam ise son adıma geçebilirsiniz.
+      <li><a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sswizard3.png">Bu Adımda</a>, klasör izinleriniz kontrol edilecektir. İzinleriniz tam ise son adıma geçebilirsiniz.
         <br>
         <br></li>
-      <li><a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sswizard4.png">Son Adım</a>, Bu adımda önceden oluşturduğunuz veritabanı ve veritabanı kullanıcı bilgilerini girmeniz gerekmektedir. <br>
+      <li><a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sswizard4.png">Son Adım</a>, Bu adımda önceden oluşturduğunuz veritabanı ve veritabanı kullanıcı bilgilerini girmeniz gerekmektedir. <br>
         <br>
         <code>
           Host= Genelde "localhost"<br>
@@ -165,7 +165,7 @@
 <section id="ayarlar">
   <h2 class="page-header"><a href="#ayarlar">Ayarlar</a></h2>
   <p class="lead">
-    Kurulum işleminiz bittiğine göre şimdi sıra Buzzy'i tercihlerinize göre ayarlamaya geldi.
+    Kurulum işleminiz bittiğine göre şimdi sıra modu'i tercihlerinize göre ayarlamaya geldi.
     <br><br>
     Önemli ayarlarmalar için ilk olarak Admin > Ayarlar > Genel Ayarlar sayfasını açınız.
 
@@ -206,21 +206,21 @@
     <li>Lütfen Facebook dökümanları üzerinde belirtilen adımlar ile Facebook uygulamanızı oluşturunuz:  <a target="_blank" href="https://developers.facebook.com/docs/apps/register">https://developers.facebook.com/docs/apps/register</a>  <br>
     </li>
     <li>Geçerli Facebook Uygulaması örneği için lüften belirtilen ekran görüntülerine göz atıp, uygulmanızın aynı uygunluğu sağladığından emin olunuz. <a href="/docsassets/ss/sssocialface1.png" target="_blank">SS1</a>,<a href="/docsassets/ss/sssocialface4.png" target="_blank">SS2</a>,  <a href="/docsassets/ss/sssocialface2.png" target="_blank">SS3</a>,  <a href="/docsassets/ss/sssocialface3.png" target="_blank">SS4</a> </li>
-      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını Buzzy Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Facebook id ve secret alına giriniz.</li>
+      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını modu Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Facebook id ve secret alına giriniz.</li>
     </ul>
     <p>
-      Buzzy Facebook Uygulama Callback Adresi: <code>http://your-site-name.com/auth/social/facebook/callback</code>
+      modu Facebook Uygulama Callback Adresi: <code>http://your-site-name.com/auth/social/facebook/callback</code>
     </p>
 
   <h4>Twitter</h4>
     <ul>
       <li>Twitter uygulama açılma işlemi gayet basittir. Bunun için belirtile adresteki adımları uygulayınız: http://iag.me/socialmedia/how-to-create-a-twitter-app-in-8-easy-steps/ <br>
       </li>
-      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını Buzzy Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Twitter id ve secret alına giriniz.</li>
+      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını modu Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Twitter id ve secret alına giriniz.</li>
     </ul>
 
     <p>
-      Buzzy Twitter Uygulama Callback Adresi: <code>http://your-site-name.com/auth/social/twitter/callback</code>
+      modu Twitter Uygulama Callback Adresi: <code>http://your-site-name.com/auth/social/twitter/callback</code>
     </p>
 
   <div class="callout callout-info lead">
@@ -248,11 +248,11 @@
     <ul>
       <li>Burada Web Application alınında belirtilen adımları uygulayınız : <a href="https://github.com/googleads/googleads-dotnet-lib/wiki/How-to-create-OAuth2-client-id-and-secret">https://github.com/googleads/googleads-dotnet-lib/wiki/How-to-create-OAuth2-client-id-and-secret</a><br>
       </li>
-      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını Buzzy Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Google id ve secret alına giriniz.</li>
+      <li>Tüm işlemleri tamamladığınıza sahip olduğunuz uygulamadınız id ve secret kodlarını modu Admin Panel > Ayarlar > Genel Ayarlar > Sosyal giriş ayarları > Google id ve secret alına giriniz.</li>
     </ul>
     <a href="/docsassets/ss/googleappinfo.png" target="_blank">Buradan örnek Google Uygulamasına Göz atın.</A>
     <p>
-      Buzzy Google App Callback Url: <code>http://your-site-name.com/auth/social/google/callback</code>
+      modu Google App Callback Url: <code>http://your-site-name.com/auth/social/google/callback</code>
     </p>
 
 
@@ -295,7 +295,7 @@
 <section id="yazilar">
   <h2 class="page-header"><a href="#yazilar">Yazılar</a></h2>
   <p class="lead">
-    Buzzy 4 ana yazı tipi ile birlikte gelmektedir. Haberler, Listeler, Anketler and Videolar. <br>
+    modu 4 ana yazı tipi ile birlikte gelmektedir. Haberler, Listeler, Anketler and Videolar. <br>
     Tüm bu içeriği admin panelinden kontrol etmeniz mümkün.
 
     <h3>Yazı Yönetimi</h3>
@@ -335,11 +335,11 @@
 
   <!-- ============================================================= -->
 
-<section id="buzzyeditor">
-    <h2 class="page-header"><a href="#yazilar">BuzzyEditor</a></h2>
+<section id="modueditor">
+    <h2 class="page-header"><a href="#yazilar">moduEditor</a></h2>
     <p class="lead">
-     Buzzy, gelişmiş bir yazı editörü ile birlikte gelmektedir. <br>
-       BuzzyEditor ile kolayca haber, liste, video, anket vs içerikleri oluşturabilirsiniz.
+     modu, gelişmiş bir yazı editörü ile birlikte gelmektedir. <br>
+       moduEditor ile kolayca haber, liste, video, anket vs içerikleri oluşturabilirsiniz.
 
 
     <h3>Yazı Oluşturma</h3>
@@ -421,7 +421,7 @@
   <p class="lead">
     Resources/lang klasörü içindeki en adlı klasörü kopyala/yapıştır yaparak istediğiniz dil için klasörü adlandırın. Örnek olarak Azerice için az şeklinde.
     <BR>
-    Yeni oluşturduğunuz dili ister klasör içindeki dosyalardan isterseniz Buzzy Translation Manager eklentisi ile admin paneli üzerinden dili düzenleyebilirsiniz.
+    Yeni oluşturduğunuz dili ister klasör içindeki dosyalardan isterseniz modu Translation Manager eklentisi ile admin paneli üzerinden dili düzenleyebilirsiniz.
   <br>
 
 
@@ -429,9 +429,9 @@
   <h4>Footer Dil Değiştirme Kısmı</h4>
   <ul>
     <li>Config/app.php dosyasını açınız.</li>
-    <li>Bu kısımda dil ayarlarını <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/ssapplang1.png">görebilirsiniz </a>.</li>
-    <li>Sadece istediğiniz diller olması için <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/ssapplang2.png"> şu şekilde</a> düzenleyebilirsiniz. </li>
-    <li> Dil değiştirme kısmını istemiyorsanız  <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/ssapplang3.png">bu şekilde</a> tümünü kaldırabilirsiniz<br> Böylece sadece 'locale' => 'tr' kısımda belirtiğiniz dil ana dil olarak kalacaktır.</li>
+    <li>Bu kısımda dil ayarlarını <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/ssapplang1.png">görebilirsiniz </a>.</li>
+    <li>Sadece istediğiniz diller olması için <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/ssapplang2.png"> şu şekilde</a> düzenleyebilirsiniz. </li>
+    <li> Dil değiştirme kısmını istemiyorsanız  <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/ssapplang3.png">bu şekilde</a> tümünü kaldırabilirsiniz<br> Böylece sadece 'locale' => 'tr' kısımda belirtiğiniz dil ana dil olarak kalacaktır.</li>
   </ul>
 
   </p>
@@ -445,18 +445,18 @@
   Mail ayarlarını şifre yenileme, üyelik onay, mail gönderimi gibi bir çok kısımda kullanıyoruz. <br>
 
     <h3>Cpanel üzerinde nasıl email ayarı bulabilirim?</h3>
-   Cpaneliniz anasayfasında <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelemail1.png">Email Hesapları</a> Kısmını bulunuz.<br>
-    Ve  <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelemail2.png">yeni bir email</a> adresi oluşturunuz <br>
-    Email adresiniz  <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelemail3.png">başarılı bir şekilde oluşturuldu</a>. Bu kısımda Mail ayarlarını düzenle butonuna tıklayınız.<br>
-    Bu sayfada <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelemail4.png">email ayarlarınızın bilgisi verilmektedir.</a>. Bu sayfadan mail sunucusu adresi ve port bilgilerinizi alınız..<br>
+   Cpaneliniz anasayfasında <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelemail1.png">Email Hesapları</a> Kısmını bulunuz.<br>
+    Ve  <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelemail2.png">yeni bir email</a> adresi oluşturunuz <br>
+    Email adresiniz  <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelemail3.png">başarılı bir şekilde oluşturuldu</a>. Bu kısımda Mail ayarlarını düzenle butonuna tıklayınız.<br>
+    Bu sayfada <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelemail4.png">email ayarlarınızın bilgisi verilmektedir.</a>. Bu sayfadan mail sunucusu adresi ve port bilgilerinizi alınız..<br>
 
-  Bu kadar! Şimdi Lütfen Buzzy ana dizininizde bulunan .env dosyasını açınız ve bilgileri giriniz.
+  Bu kadar! Şimdi Lütfen modu ana dizininizde bulunan .env dosyasını açınız ve bilgileri giriniz.
     <br><br>
   Geçerli mail ayarları bu şekilde olmalıdır.<br>
 <code>MAIL_DRIVER=smtp<br>
-    MAIL_HOST=mail.buzzy.com<br>
+    MAIL_HOST=mail.modu.com<br>
     MAIL_PORT=25<br>
-    MAIL_USERNAME=info@buzzy.com<br>
+    MAIL_USERNAME=info@modu.com<br>
     MAIL_PASSWORD=mail password<br>
     MAIL_ENCRYPTION=<br>
   </code>
@@ -482,7 +482,7 @@
   <section id="AWSS3">
     <h2 class="page-header"><a href="#AWSS3">AWS S3 CDN Desteği (Gelişmiş kullanım için)</a></h2>
     <p class="lead">
-      Buzzy CDN desteği ile yazı resimleriniz ve kullanıcı avatarlarını vs Cloud sunuculara yükleyebilirsiniz.<br>
+      modu CDN desteği ile yazı resimleriniz ve kullanıcı avatarlarını vs Cloud sunuculara yükleyebilirsiniz.<br>
       Bu hostunuzda daha fazla yer kazanmanıza olanak sağlayacaktır.<br>
 
     <h3>AWS S3 env dosyası ayarları </h3>
@@ -509,7 +509,7 @@
       S3_KEY=AKIAIYH65T3HNWOUSOGQ<br>
       S3_SECRET=oEffpw8wsjkD5LoVdb/0eUvbYbFJO<br>
       S3_REGION=eu-central-1<br>
-      S3_BUCKET=buzzy-bux-go<br>
+      S3_BUCKET=modu-bux-go<br>
     </code>
     <br>
     <h3>AWS Dökümanları</h3>
@@ -530,11 +530,11 @@
     <p class="lead">
       easyComment, php tabanlı bir yorum sistemdir.  Facebook Comment, Google Comment or Disqus Comment benzer yapıda çalışmaktadır.
     <h3>
-      Buzzy için easyComment</h3>
-     Buzzy, Facebook Yorumlar ve Disqus yorumlar eklentisi ile gelmektedir ancak tam entegre çalışan <a target="_blank" href="http://codecanyon.net/item/easycomment-php-comment-script/12727003">easyComment</a> eklentiside mevcuttur.<br><br>
+      modu için easyComment</h3>
+     modu, Facebook Yorumlar ve Disqus yorumlar eklentisi ile gelmektedir ancak tam entegre çalışan <a target="_blank" href="http://codecanyon.net/item/easycomment-php-comment-script/12727003">easyComment</a> eklentiside mevcuttur.<br><br>
 
-    easyComment eklentisi Buzzy ile tam entegre çalışmaktadır.<br>
-    Tüm Buzzy kullanıcıları herhangi bir 2. üye kaydı gerektirmeden easyComment eklentisiyle Buzzy hesaplarıyla yorum yapabilmektedir.<br>
+    easyComment eklentisi modu ile tam entegre çalışmaktadır.<br>
+    Tüm modu kullanıcıları herhangi bir 2. üye kaydı gerektirmeden easyComment eklentisiyle modu hesaplarıyla yorum yapabilmektedir.<br>
 
     <ul>
       <li>  easyComment'i Codecanyon üzerinden satın alın. <a href="http://codecanyon.net/item/easycomment-php-comment-script/full_screen_preview/12727003" target="_blank">easyComment Satın al.</a></li>
@@ -547,10 +547,10 @@
       </li>
 
       <li> easyComment tarafında işlemler bittiğinde pek fazla birşeyimiz kalmadı.</li>
-      <li>Buzzy admin panelini açıp, eklentiler sayfasına geliniz. Burada easyComment pluginini purchase kodunuzu envato.akbilisim.com adresinde ekleyerek aldığınız access kodu ile aktif ediniz.
+      <li>modu admin panelini açıp, eklentiler sayfasına geliniz. Burada easyComment pluginini purchase kodunuzu envato.akbilisim.com adresinde ekleyerek aldığınız access kodu ile aktif ediniz.
         easyComment eklentisini aktif ettikten sonra ayarlar butonuna tıklayak bu kısımda bulunan easyComment başlatma adresi kısmına  http://yorumlar.siteadresiniz.com/ yazıp kaydediniz.</li>
 
-       <li>Bu kadar easyComment'iniz, Buzzy ile entegre şekilde çalışmaya başladı!</li>
+       <li>Bu kadar easyComment'iniz, modu ile entegre şekilde çalışmaya başladı!</li>
     </ul>
 
     </p>
@@ -560,18 +560,18 @@
 
   <section id="SSS">
     <h2 class="page-header"><a href="#SSS">Sıkça Sorulan Sorular (SSS)</a></h2>
-    <h4>Hostum, Buzzy'i destekler mi?</h4>
+    <h4>Hostum, modu'i destekler mi?</h4>
     <p class="lead">Tüm sunucu gereksinimlerine sahipseniz sunucunuz sorunsuz destekleyecektir. Buradan sunucu gereksimlerine bakabilirsiniz: <a href="#kurulum">Kurulum</a> </p>
-    <h4>Buzzy için hangi hostu sağlayıcısını önerirsiniz?</h4>
-    <p class="lead">Tüm sunucu gereksinimlerini karşılayan hostları Buzzyi çalıştıracaktır fakat bazı sunucular çeşitli kısıtlamalara sahip olabiliyor.
-      Buzzy için uygun uluslararası bilinen  <a target="_blank" href="http://www.godaddy.com">www.godaddy.com</a>, <a target="_blank" href="http://www.hawkhost.com">www.hawkhost.com</a> yada <a target="_blank" href="http://www.bluehost.com">www.bluehost.com</a>  tam olarak desteklemektedir. Bu host sağlayıcılarında bir çok başarılı kurulum sağlanmıştır </p>
+    <h4>modu için hangi hostu sağlayıcısını önerirsiniz?</h4>
+    <p class="lead">Tüm sunucu gereksinimlerini karşılayan hostları modui çalıştıracaktır fakat bazı sunucular çeşitli kısıtlamalara sahip olabiliyor.
+      modu için uygun uluslararası bilinen  <a target="_blank" href="http://www.godaddy.com">www.godaddy.com</a>, <a target="_blank" href="http://www.hawkhost.com">www.hawkhost.com</a> yada <a target="_blank" href="http://www.bluehost.com">www.bluehost.com</a>  tam olarak desteklemektedir. Bu host sağlayıcılarında bir çok başarılı kurulum sağlanmıştır </p>
 
     <h4>Birden fazla domain üzerinde kullanabilir miyim.?</h4>
     <p class="lead">Öncelikle, Bunun için Envato Kurallarını okuyunuz. <a target="_blank" href="http://codecanyon.net/licenses/standard">http://codecanyon.net/licenses/standard</a>
-      Bir Envato lisans kodu ile bir domain üzerinde kurulum yetkiniz bulunmaktadır. Farklı domain üzerinde birden fazla Buzzy ile site açmak için her siteniz için bir lisans kodu almanız gerekmektedir.</p>
+      Bir Envato lisans kodu ile bir domain üzerinde kurulum yetkiniz bulunmaktadır. Farklı domain üzerinde birden fazla modu ile site açmak için her siteniz için bir lisans kodu almanız gerekmektedir.</p>
 
     <h4>.env dosyasını bulamıyorum!</h4>
-    <p class="lead">Cpanel Dosya Yönetici ile dotfiles gözükmeyebilir. <a target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/sscpanelenv.png">Bu ayar ile</a>  env dosyasını görebilirsiniz. </p>
+    <p class="lead">Cpanel Dosya Yönetici ile dotfiles gözükmeyebilir. <a target="_blank" href="http://modu.akbilisim.com/docsassets/ss/sscpanelenv.png">Bu ayar ile</a>  env dosyasını görebilirsiniz. </p>
 
     <h4>I see some errors on Quizzes Plugin page.
      </h4>
@@ -603,7 +603,7 @@
 
 
     <h4>Hata Çözümü: Parse error: syntax error, unexpected 'class' (T_CLASS), expecting > identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in</h4>
-    <p class="lead">Bu hata sunucunuz php 5.5 ve üzeri bir php versiyonuna sahip olmadığını gösteriyor. Buzzy, PHP 5.5 üzeri bir php versiyonu ile çalışır.  <br>
+    <p class="lead">Bu hata sunucunuz php 5.5 ve üzeri bir php versiyonuna sahip olmadığını gösteriyor. modu, PHP 5.5 üzeri bir php versiyonu ile çalışır.  <br>
 
     </p>
 
@@ -611,8 +611,8 @@
     <p class="lead">Bu hata bir çok sebepten meydana gelmiş olabilir.<br>
     <h5>Muhtemel Çözümler</h5>
     <ul>
-      <li>Öncelikle tüm Buzzy dosyalarını silip <a href="#kurulum">Kurulum</a> sekmesindeki check.php dosyası ile sunucunuzu Buzzy için uygunluğunu kontrol ediniz. </li>
-      <li>Bazı dosyaların kayıp olmasından kaynaklanıyor olabilir.(Tüm dosyalar sunucunuzda bu şekilde listeleniyor olması gerekmektedir. <a  target="_blank" href="http://buzzy.akbilisim.com/docsassets/ss/allfiles.png">http://prntscr.com/9caxe3</a>) Tümüne sahip olduğunuzdan emin olunuz.</li>
+      <li>Öncelikle tüm modu dosyalarını silip <a href="#kurulum">Kurulum</a> sekmesindeki check.php dosyası ile sunucunuzu modu için uygunluğunu kontrol ediniz. </li>
+      <li>Bazı dosyaların kayıp olmasından kaynaklanıyor olabilir.(Tüm dosyalar sunucunuzda bu şekilde listeleniyor olması gerekmektedir. <a  target="_blank" href="http://modu.akbilisim.com/docsassets/ss/allfiles.png">http://prntscr.com/9caxe3</a>) Tümüne sahip olduğunuzdan emin olunuz.</li>
       <li>Klasör yetki sorunları olabilir.. storage ve bootstrap klasörleri ve içindeki tüm dosya ve klasörleride kapsayacak şekilde 775 yetkisi veriniz. </li>
     </ul>
 

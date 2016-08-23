@@ -187,13 +187,13 @@
 <?php $__env->startSection('footer'); ?>
     <?php if($post->type=="quiz"): ?>
     <script>
-         BuzzyQuizzes = {
-            'lang_1': '<?php echo e(trans('buzzyquiz.shareonface')); ?>',
-            'lang_2': '<?php echo e(trans('buzzyquiz.shareontwitter')); ?>',
-            'lang_3': '<?php echo e(trans('buzzyquiz.shareface')); ?>',
-            'lang_4': '<?php echo e(trans('buzzyquiz.sharetweet')); ?>',
-            'lang_5': '<?php echo e(trans('buzzyquiz.sharedone')); ?>',
-            'lang_6': '<?php echo e(trans('buzzyquiz.sharedonedesc')); ?>'
+         moduQuizzes = {
+            'lang_1': '<?php echo e(trans('moduquiz.shareonface')); ?>',
+            'lang_2': '<?php echo e(trans('moduquiz.shareontwitter')); ?>',
+            'lang_3': '<?php echo e(trans('moduquiz.shareface')); ?>',
+            'lang_4': '<?php echo e(trans('moduquiz.sharetweet')); ?>',
+            'lang_5': '<?php echo e(trans('moduquiz.sharedone')); ?>',
+            'lang_6': '<?php echo e(trans('moduquiz.sharedonedesc')); ?>'
         };
 
 

@@ -17,7 +17,7 @@
                 <i class="fa fa-dashboard"></i> <span><?php echo e(trans('admin.dashboard')); ?></span>
             </a>
         </li>
-        <?php if(getcong('p-buzzycontact') == 'on'): ?>
+        <?php if(getcong('p-moducontact') == 'on'): ?>
         <li class=" <?php if(Request::segment(2)=='mailbox'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\ContactController@index')); ?>">
                 <i class="fa fa-envelope"></i> <span><?php echo e(trans('admin.Inbox')); ?></span>

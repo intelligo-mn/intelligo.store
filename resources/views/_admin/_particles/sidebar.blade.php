@@ -17,7 +17,7 @@
                 <i class="fa fa-dashboard"></i> <span>{{ trans('admin.dashboard') }}</span>
             </a>
         </li>
-        @if(getcong('p-buzzycontact') == 'on')
+        @if(getcong('p-moducontact') == 'on')
         <li class=" @if(Request::segment(2)=='mailbox') active @endif">
             <a href="{{  action('Admin\ContactController@index') }}">
                 <i class="fa fa-envelope"></i> <span>{{ trans('admin.Inbox') }}</span>

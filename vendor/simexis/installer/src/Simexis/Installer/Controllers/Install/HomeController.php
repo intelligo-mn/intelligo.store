@@ -33,11 +33,11 @@ class HomeController extends Controller {
 
     public function codep($code)
     {
-        if (file_exists(base_path('storage/.buzzy'))){
+        if (file_exists(base_path('storage/.modu'))){
             return false;
         }
         try {
-            file_put_contents(base_path('storage/.buzzy'), $code);
+            file_put_contents(base_path('storage/.modu'), $code);
         }catch(Exception $e) {
             \Session::flash('error.message', 'Please Contact: contact@akbilisim.com');
             return redirect()->back();

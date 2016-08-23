@@ -10,8 +10,8 @@
                 <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
                     <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
                 <?php endforeach; ?>
-                    <?php if(getcong('p-buzzycontact') == 'on'): ?>
-                    <li> <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('buzzycontact.contact')); ?></a></li>
+                    <?php if(getcong('p-moducontact') == 'on'): ?>
+                    <li> <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('moducontact.contact')); ?></a></li>
                     <?php endif; ?>
             </ul>
             <div class="col-1">

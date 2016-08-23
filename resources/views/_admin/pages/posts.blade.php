@@ -94,7 +94,7 @@
                 "ajax": {
                     "url": '/admin/postlist/?type={{ $type }}@if(Request::query('only'))&only={{ Request::query('only') }}@endif',
                     "data": function ( ) {
-                        setTimeout(function(){   Buzzy.init(); }, 2000);
+                        setTimeout(function(){   modu.init(); }, 2000);
                     }
                 },
                 columns: [

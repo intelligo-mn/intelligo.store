@@ -128,19 +128,19 @@
                                 <textarea name="DisqussCommentcode" style="height:120px" class="form-control">{{  getcong('DisqussCommentcode') }}</textarea>
                             </div>
                         </div>
-                    @elseif($p_code == "buzzyquizzes")
+                    @elseif($p_code == "moduquizzes")
 
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-remove"></i></button>
-                            <h4 class="modal-title">{!! trans("admin.BuzzyQuizzesPluginSettings")  !!}</h4>
+                            <h4 class="modal-title">{!! trans("admin.moduQuizzesPluginSettings")  !!}</h4>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.QuizzesPluginResultType")  !!}</label>
-                                {!! Form::select('BuzzyQuizzesPopup', ['on' => trans("admin.BuzzyQuizzesSpecialResultPopup"), 'off' => trans("admin.OnlyBuzzFeedStyleResult")], getcong('BuzzyQuizzesPopup'), ['class' => 'form-control'])  !!}
+                                {!! Form::select('moduQuizzesPopup', ['on' => trans("admin.moduQuizzesSpecialResultPopup"), 'off' => trans("admin.OnlyBuzzFeedStyleResult")], getcong('moduQuizzesPopup'), ['class' => 'form-control'])  !!}
                                 <p>{!! trans("admin.QuizzesPluginResultTypeDesc")  !!}</p>
                             </div>
 
@@ -150,7 +150,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-remove"></i></button>
-                            <h4 class="modal-title">{!! trans("admin.BuzzyTranslationManager")  !!}</h4>
+                            <h4 class="modal-title">{!! trans("admin.moduTranslationManager")  !!}</h4>
                         </div>
 
                         <div class="modal-body" style="width:100%; height:100%;padding: 0">
@@ -158,39 +158,39 @@
 
 
                         </div>
-                    @elseif($p_code == "buzzycontact")
+                    @elseif($p_code == "moducontact")
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-remove"></i></button>
-                            <h4 class="modal-title">{!! trans("admin.BuzzyContactPluginSettings")  !!}</h4>
+                            <h4 class="modal-title">{!! trans("admin.moduContactPluginSettings")  !!}</h4>
                         </div>
 
 
                         <div class="modal-body">
                             <div class="form-group">
-                                <label class="control-label">{!! trans("admin.BuzzyContactName")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactName" value="{{  getcong('BuzzyContactName') }}">
-                                <p>{!! trans("admin.BuzzyContactNameDesc")  !!}</p>
+                                <label class="control-label">{!! trans("admin.moduContactName")  !!}</label>
+                                <input type="text" class="form-control input-lg" name="moduContactName" value="{{  getcong('moduContactName') }}">
+                                <p>{!! trans("admin.moduContactNameDesc")  !!}</p>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">{!! trans("admin.BuzzyContactEmail")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactEmail" value="{{  getcong('BuzzyContactEmail') }}">
-                                <p>{!! trans("admin.BuzzyContactEmailDesc")  !!}</p>
+                                <label class="control-label">{!! trans("admin.moduContactEmail")  !!}</label>
+                                <input type="text" class="form-control input-lg" name="moduContactEmail" value="{{  getcong('moduContactEmail') }}">
+                                <p>{!! trans("admin.moduContactEmailDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.EmailSignature")  !!}</label>
-                                <textarea  class="form-control input-lg" name="BuzzyContactSignature">{{  getcong('BuzzyContactSignature') }}</textarea>
+                                <textarea  class="form-control input-lg" name="moduContactSignature">{{  getcong('moduContactSignature') }}</textarea>
                                 <p>{!! trans("admin.EmailSignatureDesc")  !!}</p>
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.Sendacopytomyemail")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactCopyEmail" value="{{  getcong('BuzzyContactCopyEmail') }}">
+                                <input type="text" class="form-control input-lg" name="moduContactCopyEmail" value="{{  getcong('moduContactCopyEmail') }}">
                                 <p>{!! trans("admin.SendacopytomyemailDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.Usecaptchaoncontactform")  !!}</label>
-                                {!! Form::select('BuzzyContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getcong('BuzzyContactCaptcha'), ['class' => 'form-control'])  !!}
+                                {!! Form::select('moduContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getcong('moduContactCaptcha'), ['class' => 'form-control'])  !!}
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.GooglereCaptchaApiKey")  !!}</label>
@@ -210,7 +210,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-remove"></i></button>
-                            <h4 class="modal-title">{!! trans("admin.BuzzyHomepageBuilder")  !!}</h4>
+                            <h4 class="modal-title">{!! trans("admin.moduHomepageBuilder")  !!}</h4>
                         </div>
                         <div class="modal-body">
                             <div class="col-lg-6 col-xs-3">

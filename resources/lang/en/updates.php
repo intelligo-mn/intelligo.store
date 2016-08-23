@@ -5,9 +5,9 @@ return [
       | All update lines
       |--------------------------------------------------------------------------
       */
-    // BuzzyEditor
+    // moduEditor
 
-    'BuzzyEditor' => [
+    'moduEditor' => [
         'lang' => [
             'lang_1' => 'Are you sure?',
             'lang_2' => 'You will not be able to recover this!',
@@ -135,6 +135,6 @@ return [
     'tag'    => 'tag',
 
     'success'    => 'Success',
-    'copyright'    => ' Copyright © 2015 Buzzy. All rights reserved.',
+    'copyright'    => ' Copyright © 2015 modu. All rights reserved.',
 
 ];

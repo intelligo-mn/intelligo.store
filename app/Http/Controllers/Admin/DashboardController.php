@@ -15,11 +15,11 @@ class DashboardController extends MainAdminController
 
     protected $verifyapiserver  =  'http://envato.akbilisim.com/api/BA';
 
-    protected $server  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestupdate.txt';
+    protected $server  =  'http://envato.akbilisim.com/productmodu/moduupdates/latestupdate.txt';
 
-    protected $servercore  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestcore.txt';
+    protected $servercore  =  'http://envato.akbilisim.com/productmodu/moduupdates/latestcore.txt';
 
-    protected $serverrar  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/updates/update';
+    protected $serverrar  =  'http://envato.akbilisim.com/productmodu/moduupdates/updates/update';
 
     protected $pluginsapi = 'http://envato.akbilisim.com/api/allplugins';
 
@@ -93,9 +93,9 @@ class DashboardController extends MainAdminController
     public function plugins()
     {
         $version=\Config::get('installer.last_version');
-        $code=file_get_contents(base_path('storage/.buzzy'), true);
+        $code=file_get_contents(base_path('storage/.modu'), true);
 
-        $content = curlit($this->pluginsapi.'?i=buzzy&v='.$version.'&c='.$code.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        $content = curlit($this->pluginsapi.'?i=modu&v='.$version.'&c='.$code.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
         $plugins= json_decode($content, true);
 
@@ -154,15 +154,15 @@ class DashboardController extends MainAdminController
         }
 
                         $actite="";
-                        if($pluginiten=='buzzynews'){
+                        if($pluginiten=='modunews'){
                             $actite="news";
-                        }else if($pluginiten=='buzzylists'){
+                        }else if($pluginiten=='modulists'){
                             $actite="list";
-                        }else if($pluginiten=='buzzypolls'){
+                        }else if($pluginiten=='modupolls'){
                             $actite="poll";
-                        }else if($pluginiten=='buzzyvideos'){
+                        }else if($pluginiten=='moduvideos'){
                             $actite="video";
-                        }else if($pluginiten=='buzzyquizzes'){
+                        }else if($pluginiten=='moduquizzes'){
                             $actite="quiz";
                         }
 

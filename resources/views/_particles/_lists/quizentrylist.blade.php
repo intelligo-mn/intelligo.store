@@ -56,16 +56,16 @@
 
 
 
-<section class="entry results" id="quiz_result" data-popup="{{ getcong('BuzzyQuizzesPopup') }}">
+<section class="entry results" id="quiz_result" data-popup="{{ getcong('moduQuizzesPopup') }}">
     <div class="quiz_result_area">
         <h2 class="post-title">{{ $post->title }}</h2>
         <ol>
             @foreach($entrysquizresults as $keyp => $entry)
 
-                <li class="quiz_result" data-order="{{ $keyp }}" data-result="{{ $entry->id }}" data-link="{{ Request::url() }}" data-name="{{ trans('buzzyquiz.yougot', ['title'=> $entry->title]) }}"  data-iname="{{ trans('buzzyquiz.igot', ['title'=> $entry->title, 'posttitle'=> $post->title]) }}"  data-itname="{{ trans('buzzyquiz.igotfortweet', ['title'=> $entry->title]) }}" data-description="{{ strip_tags($entry->body) }}" data-picture="{{ $entry->image > "" ? makepreview($entry->image, null, 'entries') : makepreview($post->thumb, 'b', 'posts')  }}">
+                <li class="quiz_result" data-order="{{ $keyp }}" data-result="{{ $entry->id }}" data-link="{{ Request::url() }}" data-name="{{ trans('moduquiz.yougot', ['title'=> $entry->title]) }}"  data-iname="{{ trans('moduquiz.igot', ['title'=> $entry->title, 'posttitle'=> $post->title]) }}"  data-itname="{{ trans('moduquiz.igotfortweet', ['title'=> $entry->title]) }}" data-description="{{ strip_tags($entry->body) }}" data-picture="{{ $entry->image > "" ? makepreview($entry->image, null, 'entries') : makepreview($post->thumb, 'b', 'posts')  }}">
 
                     <h2 class="quiz_headline">
-                        {{ trans('buzzyquiz.yougot', ['title'=> $entry->title]) }}
+                        {{ trans('moduquiz.yougot', ['title'=> $entry->title]) }}
                     </h2>
                     <div class="clear"></div>
                     <div  class="quiz_text"  {{ $entry->image == '' ? 'style=width:100%' :'' }}>{!! $entry->body !!}</div>
@@ -82,7 +82,7 @@
     </div>
 <div class="clear"></div>
     <div class="quiz_result_share">
-    <h2 class="bold share_title">{{trans('buzzyquiz.shareresult') }}</h2>
+    <h2 class="bold share_title">{{trans('moduquiz.shareresult') }}</h2>
     <div class="external-sign-in">
         <a href="javascript:" class="Facebook postToResultFeed">{{trans('index.sharefacebook') }}</a>
         <a href="javascript:" class="Twitter postToResultFeed">{{trans('index.sharetweet') }}</a>

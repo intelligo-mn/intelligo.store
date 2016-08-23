@@ -55,18 +55,18 @@ $uniquid = time().$lfld ;
         <div id="answer{{ $uniquid }}" class="answers @if(isset($entry->video)) @if($entry->video == '1')thdefault @else {{  $entry->video == "2" ?  'thlarge' : 'thlist' }}@endif @else thlist @endif"  style="border-radius:0;border:0;padding:0;margin:0;margin-left:-15px;background: transparent;">
             @if(empty($entry->image))
 
-                @include('_forms._buzzypoll.__addanswerform')
+                @include('_forms._modupoll.__addanswerform')
 
-                @include('_forms._buzzypoll.__addanswerform')
+                @include('_forms._modupoll.__addanswerform')
 
-                @include('_forms._buzzypoll.__addanswerform')
+                @include('_forms._modupoll.__addanswerform')
 
             @else
 
                 @foreach($post->entry()->where('type', 'answer')->where('source', $entry->id)->orderBy('order')->get() as $keya => $answers)
 
 
-                    @include('_forms._buzzypoll.__addanswerform', ['entry' =>  $answers])
+                    @include('_forms._modupoll.__addanswerform', ['entry' =>  $answers])
 
 
                 @endforeach
@@ -77,6 +77,6 @@ $uniquid = time().$lfld ;
 
         </div>
         <div class="clear"></div>
-        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer{{ $uniquid }}" data-puttype="append" data-type="pollanswerform" href="{{ action('FormController@addnewform') }}?addnew=pollanswer"><i class="fa fa-plus-circle"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.answer')]) }}</a>
+        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer{{ $uniquid }}" data-puttype="append" data-type="pollanswerform" href="{{ action('FormController@addnewform') }}?addnew=pollanswer"><i class="fa fa-plus-circle"></i>{{ trans('addpost.add', ['type' => trans('moduquiz.answer')]) }}</a>
     </div>
 </div>

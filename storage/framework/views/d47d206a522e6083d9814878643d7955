@@ -59,18 +59,18 @@ $uniquid = time().$lfld ;
         <div id="answer<?php echo e($uniquid); ?>" class="answers <?php if(isset($entry->video)): ?> <?php if($entry->video == '1'): ?>thdefault <?php else: ?> <?php echo e($entry->video == "2" ?  'thlarge' : 'thlist'); ?><?php endif; ?> <?php else: ?> thlist <?php endif; ?>"  style="border-radius:0;border:0;padding:0;margin:0;margin-left:-15px;background: transparent;">
             <?php if(empty($entry->image)): ?>
 
-                <?php echo $__env->make('_forms._buzzypoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('_forms._modupoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                <?php echo $__env->make('_forms._buzzypoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('_forms._modupoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                <?php echo $__env->make('_forms._buzzypoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('_forms._modupoll.__addanswerform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
             <?php else: ?>
 
                 <?php foreach($post->entry()->where('type', 'answer')->where('source', $entry->id)->orderBy('order')->get() as $keya => $answers): ?>
 
 
-                    <?php echo $__env->make('_forms._buzzypoll.__addanswerform', ['entry' =>  $answers], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php echo $__env->make('_forms._modupoll.__addanswerform', ['entry' =>  $answers], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
                 <?php endforeach; ?>
@@ -81,6 +81,6 @@ $uniquid = time().$lfld ;
 
         </div>
         <div class="clear"></div>
-        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer<?php echo e($uniquid); ?>" data-puttype="append" data-type="pollanswerform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=pollanswer"><i class="fa fa-plus-circle"></i><?php echo e(trans('addpost.add', ['type' => trans('buzzyquiz.answer')])); ?></a>
+        <a class="button button-white button-full submit-button postable answerbutton" data-method="Get" data-target="answer<?php echo e($uniquid); ?>" data-puttype="append" data-type="pollanswerform" href="<?php echo e(action('FormController@addnewform')); ?>?addnew=pollanswer"><i class="fa fa-plus-circle"></i><?php echo e(trans('addpost.add', ['type' => trans('moduquiz.answer')])); ?></a>
     </div>
 </div>

@@ -2,10 +2,10 @@
     <div class="entryactions">
         <button class="button button-red get-button delete-entry"  data-block="entry"><i class="fa fa-trash"></i></button>
     </div>
-    <h3><i class="fa fa-question-circle"></i> {{ trans('buzzyquiz.result') }}</h3>
+    <h3><i class="fa fa-question-circle"></i> {{ trans('moduquiz.result') }}</h3>
     <div class="inpunting ordering">
         <button class="order-number button button-gray show">1</button>
-        {!! Form::text(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input ', 'placeholder' => trans('buzzyquiz.result')]) !!}
+        {!! Form::text(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input ', 'placeholder' => trans('moduquiz.result')]) !!}
     </div>
     <div class="moredetail text" style="width:60%;float:left;vertical-align: top">
         <div class="inpunting" style="margin-right: 15px">

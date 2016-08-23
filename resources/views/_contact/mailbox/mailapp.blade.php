@@ -5,14 +5,14 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        {{ trans("buzzycontact.Mailbox") }}
+        {{ trans("moducontact.Mailbox") }}
         <small>{{ $unapproveinbox }} {{ trans("admin.newmessages") }}</small>
 
     </h1>
 
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> {{ trans("admin.dashboard") }}</a></li>
-        <li class="active"> {{ trans("buzzycontact.Mailbox") }}</li>
+        <li class="active"> {{ trans("moducontact.Mailbox") }}</li>
     </ol>
 </section>
 
@@ -20,12 +20,12 @@
 <section class="content">
     <div class="row">
         <div class="col-md-3">
-            <a href="/admin/mailbox/new" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-paper-plane" style="margin-right: 5px"></i>  {{ trans("buzzycontact.SendNewEmail") }}</a>
+            <a href="/admin/mailbox/new" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-paper-plane" style="margin-right: 5px"></i>  {{ trans("moducontact.SendNewEmail") }}</a>
 
 
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans("buzzycontact.Folders") }}</h3>
+                    <h3 class="box-title">{{ trans("moducontact.Folders") }}</h3>
                     <div class="box-tools">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
@@ -56,14 +56,14 @@
                         @endif
                             <ul class="nav nav-pills nav-stacked">
 
-                                <li><a href="javascript:" class="addcat" data-type="mailprivatecat"><i class="fa fa-plus"></i> {{ trans("buzzycontact.AddFolder") }}</a></li>
+                                <li><a href="javascript:" class="addcat" data-type="mailprivatecat"><i class="fa fa-plus"></i> {{ trans("moducontact.AddFolder") }}</a></li>
                             </ul>
                     </ul>
                 </div><!-- /.box-body -->
             </div><!-- /. box -->
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans("buzzycontact.Labels") }}</h3>
+                    <h3 class="box-title">{{ trans("moducontact.Labels") }}</h3>
                     <div class="box-tools">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
@@ -81,12 +81,12 @@
 
                         @endif
 
-                        <li><a href="javascript:" class="addcat" data-type="maillabel"><i class="fa fa-plus"></i> {{ trans("buzzycontact.AddLabel") }}</a></li>
+                        <li><a href="javascript:" class="addcat" data-type="maillabel"><i class="fa fa-plus"></i> {{ trans("moducontact.AddLabel") }}</a></li>
                     </ul>
 
                 </div><!-- /.box-body -->
             </div><!-- /.box --><br>
-            <a href="javascript:" data-item="buzzycontact" class="btn btn-block btn-warning  btn-sm " data-toggle="modal" data-target="#modalbuzzycontact" ><i class="fa fa-cog" style="margin-right:0"></i> {{ trans("buzzycontact.Settings") }}</a>
+            <a href="javascript:" data-item="moducontact" class="btn btn-block btn-warning  btn-sm " data-toggle="modal" data-target="#modalmoducontact" ><i class="fa fa-cog" style="margin-right:0"></i> {{ trans("moducontact.Settings") }}</a>
 
         </div><!-- /.col -->
         <div class="col-md-9">
@@ -95,7 +95,7 @@
     </div><!-- /.row -->
 </section><!-- /.content -->
 
-<div class="modal modal-info" id="modalbuzzycontact">
+<div class="modal modal-info" id="modalmoducontact">
     <div class="modal-dialog">
         <div class="modal-content">
             {!!   Form::open(array('action' => 'Admin\ConfigController@setconfig', 'method' => 'POST', 'enctype' => 'multipart/form-data')) !!}
@@ -103,35 +103,35 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-remove"></i></button>
-                <h4 class="modal-title">{!! trans("admin.BuzzyContactPluginSettings")  !!}</h4>
+                <h4 class="modal-title">{!! trans("admin.moduContactPluginSettings")  !!}</h4>
             </div>
 
 
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="control-label">{!! trans("admin.BuzzyContactName")  !!}</label>
-                    <input type="text" class="form-control input-lg" name="BuzzyContactName" value="{{  getcong('BuzzyContactName') }}">
-                    <p>{!! trans("admin.BuzzyContactNameDesc")  !!}</p>
+                    <label class="control-label">{!! trans("admin.moduContactName")  !!}</label>
+                    <input type="text" class="form-control input-lg" name="moduContactName" value="{{  getcong('moduContactName') }}">
+                    <p>{!! trans("admin.moduContactNameDesc")  !!}</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">{!! trans("admin.BuzzyContactEmail")  !!}</label>
-                    <input type="text" class="form-control input-lg" name="BuzzyContactEmail" value="{{  getcong('BuzzyContactEmail') }}">
-                    <p>{!! trans("admin.BuzzyContactEmailDesc")  !!}</p>
+                    <label class="control-label">{!! trans("admin.moduContactEmail")  !!}</label>
+                    <input type="text" class="form-control input-lg" name="moduContactEmail" value="{{  getcong('moduContactEmail') }}">
+                    <p>{!! trans("admin.moduContactEmailDesc")  !!}</p>
                 </div>
                 <div class="form-group">
                     <label class="control-label">{!! trans("admin.EmailSignature")  !!}</label>
-                    <textarea  class="form-control input-lg" name="BuzzyContactSignature">{{  getcong('BuzzyContactSignature') }}</textarea>
+                    <textarea  class="form-control input-lg" name="moduContactSignature">{{  getcong('moduContactSignature') }}</textarea>
                     <p>{!! trans("admin.EmailSignatureDesc")  !!}</p>
                 </div>
                 <hr>
                 <div class="form-group">
                     <label class="control-label">{!! trans("admin.Sendacopytomyemail")  !!}</label>
-                    <input type="text" class="form-control input-lg" name="BuzzyContactCopyEmail" value="{{  getcong('BuzzyContactCopyEmail') }}">
+                    <input type="text" class="form-control input-lg" name="moduContactCopyEmail" value="{{  getcong('moduContactCopyEmail') }}">
                     <p>{!! trans("admin.SendacopytomyemailDesc")  !!}</p>
                 </div>
                 <div class="form-group">
                     <label class="control-label">{!! trans("admin.Usecaptchaoncontactform")  !!}</label>
-                    {!! Form::select('BuzzyContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getcong('BuzzyContactCaptcha'), ['class' => 'form-control'])  !!}
+                    {!! Form::select('moduContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getcong('moduContactCaptcha'), ['class' => 'form-control'])  !!}
                 </div>
                 <div class="form-group">
                     <label class="control-label">{!! trans("admin.GooglereCaptchaApiKey")  !!}</label>
@@ -163,7 +163,7 @@
 
     <script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
 
-    <script src="/adminlte/dist/js/buzzymailbox.js"></script>
+    <script src="/adminlte/dist/js/modumailbox.js"></script>
     @yield('mailfooter')
 
 @endsection

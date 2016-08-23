@@ -7,7 +7,7 @@
     <script type="text/javascript">
         // CONFIGURATION VARIABLES
         var easyComment_ContentID = 'Post_{{ $post->id }}';
-        var easyComment_FooterLinks = 'Off'; // Disable footer links from the easyComment script for Buzzy Demo
+        var easyComment_FooterLinks = 'Off'; // Disable footer links from the easyComment script for modu Demo
 
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

@@ -2699,8 +2699,8 @@ span.tagy a {
     transition: all .2s ease-in-out
 }
 
-.BuzzyQuizAlert .external-sign-in strong,
-.BuzzyQuizAlert .sa-button-container,
+.moduQuizAlert .external-sign-in strong,
+.moduQuizAlert .sa-button-container,
 .entry.results .quiz_result {
     display: none
 }
@@ -2801,29 +2801,29 @@ span.tagy a i {
     padding-top: 30px
 }
 
-.BuzzyQuizAlert {
+.moduQuizAlert {
     width: 658px;
     margin-left: -356px!important;
     padding-bottom: 0!important
 }
 
-.BuzzyQuizAlert .sa-button-container button,
-.BuzzyQuizAlert h2 {
+.moduQuizAlert .sa-button-container button,
+.moduQuizAlert h2 {
     margin: 0!important
 }
 
-.BuzzyQuizAlert h2 {
+.moduQuizAlert h2 {
     font-size: 28px!important;
     line-height: 32px!important
 }
 
-.BuzzyQuizAlert p {
+.moduQuizAlert p {
     padding-top: 20px;
     font-weight: 400;
     font-size: 20px
 }
 
-.BuzzyQuizAlert .sa-icon {
+.moduQuizAlert .sa-icon {
     margin-top: 0!important;
     width: 100%!important;
     min-height: 350px!important;
@@ -2831,7 +2831,7 @@ span.tagy a i {
 }
 
 @media (max-width:680px) {
-    .BuzzyQuizAlert {
+    .moduQuizAlert {
         top: 0!important;
         left: 0!important;
         right: 0!important;
@@ -2840,27 +2840,27 @@ span.tagy a i {
         margin: 0!important;
         padding: 0!important
     }
-    .BuzzyQuizAlert h2 {
+    .moduQuizAlert h2 {
         padding: 10px!important;
         font-size: 18px!important
     }
-    .BuzzyQuizAlert p {
+    .moduQuizAlert p {
         padding-top: 10px!important;
         font-weight: 400;
         font-size: 16px!important
     }
-    .BuzzyQuizAlert .sa-icon {
+    .moduQuizAlert .sa-icon {
         margin-top: 10px!important;
         min-height: 150px!important
     }
-    .BuzzyQuizAlert .external-sign-in span {
+    .moduQuizAlert .external-sign-in span {
         display: none
     }
-    .BuzzyQuizAlert .external-sign-in strong,
-    .BuzzyQuizAlert .sa-button-container {
+    .moduQuizAlert .external-sign-in strong,
+    .moduQuizAlert .sa-button-container {
         display: block
     }
-    .BuzzyQuizAlert .cancel {
+    .moduQuizAlert .cancel {
         position: absolute;
         top: 10px;
         right: 5px;

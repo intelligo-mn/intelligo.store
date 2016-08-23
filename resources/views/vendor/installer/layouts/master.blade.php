@@ -60,8 +60,8 @@
 
 	<div class="container">
 		<div class="login-body">
-            <h1 class="title">Buzzy <span>Initialization Wizard</span></h1>
-            <h5 class="thanks">Thanks for Buying and Using Buzzy Script.</h5>
+            <h1 class="title">modu <span>Initialization Wizard</span></h1>
+            <h5 class="thanks">Thanks for Buying and Using modu Script.</h5>
             <div class="clear"></div>
 
 
@@ -78,7 +78,7 @@
 
                 &nbsp;&nbsp;&nbsp;
 
-                <b><a href="http://buzzy.akbilisim.com" target="_blank">Buzzy</a></b> Version : {{ Config::get('installer.last_version') }}
+                <b><a href="http://modu.akbilisim.com" target="_blank">modu</a></b> Version : {{ Config::get('installer.last_version') }}
             </div>
 		</div>
 	</div>

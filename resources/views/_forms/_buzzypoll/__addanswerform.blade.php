@@ -27,7 +27,7 @@
     </div>
 
     <div class="inpunting " style=" padding:0">
-        {!! Form::textarea(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('buzzyquiz.entry_answertitle')]) !!}
+        {!! Form::textarea(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('moduquiz.entry_answertitle')]) !!}
     </div>
 </div>
 </div>

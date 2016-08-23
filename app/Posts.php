@@ -191,20 +191,20 @@ class Posts extends Model
     public function scopeTypesActivete($query)
     {
 
-        if(getcong('p-buzzynews') != 'on'){
+        if(getcong('p-modunews') != 'on'){
            $query->where("posts.type", '!=', 'news');
         }
-        if(getcong('p-buzzylists') != 'on'){
+        if(getcong('p-modulists') != 'on'){
             $query->where("posts.type", '!=', 'list');
         }
-        if(getcong('p-buzzypolls') != 'on'){
+        if(getcong('p-modupolls') != 'on'){
            $query->where("posts.type", '!=', 'poll');
         }
-        if(getcong('p-buzzyquizzes') != 'on'){
+        if(getcong('p-moduquizzes') != 'on'){
             $query->where("posts.type", '!=', 'quiz');
         }
 
-        if(getcong('p-buzzyvideos') != 'on'){
+        if(getcong('p-moduvideos') != 'on'){
             $query->where("posts.type", '!=', 'video');
         }
 

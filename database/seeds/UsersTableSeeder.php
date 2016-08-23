@@ -22,26 +22,26 @@ class UsersTableSeeder extends Seeder
             'username_slug' => 'admin',
             'icon' => null,
             'email' => 'admin@admin.com',
-            'password' => bcrypt('TorooProgrammer1'),
+            'password' => bcrypt('admin'),
             'remember_token' => str_random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('settings')->insert([
-            'key' => 'p-buzzynews',
+            'key' => 'p-modunews',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
-            'key' => 'p-buzzylists',
+            'key' => 'p-modulists',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
-            'key' => 'p-buzzyvideos',
+            'key' => 'p-moduvideos',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
-            'key' => 'p-buzzypolls',
+            'key' => 'p-modupolls',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([

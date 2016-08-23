@@ -1,7 +1,7 @@
 <?php
 return [
     
-    'BuzzyEditor' => [
+    'moduEditor' => [
         'lang' => [
             'lang_1' => 'Та итгэлтэй байна уу?',
             'lang_2' => 'You will not be able to recover this!',

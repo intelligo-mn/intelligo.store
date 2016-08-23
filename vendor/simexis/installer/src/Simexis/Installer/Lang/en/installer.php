@@ -5,7 +5,7 @@ return [
      * Shared translations.
      *
      */
-    'title' => 'Buzzy  Installer',
+    'title' => 'modu  Installer',
     'next' => 'Next Step',
 	'yes' => 'Yes',
 	'no' => 'No',

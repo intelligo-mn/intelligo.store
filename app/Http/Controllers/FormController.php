@@ -34,7 +34,7 @@ class FormController extends Controller
 
         }else if($request->query('addnew')=='poll'){
 
-            return view('_forms._buzzypoll.__addpollform');
+            return view('_forms._modupoll.__addpollform');
 
         }else  if($request->query('addnew')=='embed'){
 
@@ -86,19 +86,19 @@ class FormController extends Controller
 
         }else if($request->query('addnew')=='question'){
 
-            return view('_forms._buzzyquiz.__addquestionform');
+            return view('_forms._moduquiz.__addquestionform');
 
         }else  if($request->query('addnew')=='result'){
 
-            return view('_forms._buzzyquiz.__addresultform');
+            return view('_forms._moduquiz.__addresultform');
 
         }else if($request->query('addnew')=='answer'){
 
-            return view('_forms._buzzyquiz.__addanswerform');
+            return view('_forms._moduquiz.__addanswerform');
 
         }else if($request->query('addnew')=='pollanswer'){
 
-            return view('_forms._buzzypoll.__addanswerform');
+            return view('_forms._modupoll.__addanswerform');
 
         }
 

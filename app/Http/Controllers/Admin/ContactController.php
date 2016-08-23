@@ -18,8 +18,8 @@ class ContactController extends MainAdminController
 
         $this->mail =$mailer;
 
-        $this->fromemail = getcong('BuzzyContactEmail') > "" ? getcong('BuzzyContactEmail') : getcong('siteemail');
-        $this->sitename =getcong('BuzzyContactName') > "" ? getcong('BuzzyContactName') : getcong('sitename');
+        $this->fromemail = getcong('moduContactEmail') > "" ? getcong('moduContactEmail') : getcong('siteemail');
+        $this->sitename =getcong('moduContactName') > "" ? getcong('moduContactName') : getcong('sitename');
 
 
         $mailcat = Categories::byType('mailcat')->oldest('id')->get();

@@ -24,11 +24,11 @@ abstract class Controller extends BaseController
         \App::setLocale($lang);
 
 
-        \View::share(['DB_PLUGIN_NEWS' => getcong('p-buzzynews'),
-            'DB_PLUGIN_LISTS' => getcong('p-buzzylists'),
-            'DB_PLUGIN_POLLS' => getcong('p-buzzypolls'),
-            'DB_PLUGIN_VIDEOS' =>  getcong('p-buzzyvideos'),
-            'DB_PLUGIN_QUIZS' => getcong('p-buzzyquizzes'),
+        \View::share(['DB_PLUGIN_NEWS' => getcong('p-modunews'),
+            'DB_PLUGIN_LISTS' => getcong('p-modulists'),
+            'DB_PLUGIN_POLLS' => getcong('p-modupolls'),
+            'DB_PLUGIN_VIDEOS' =>  getcong('p-moduvideos'),
+            'DB_PLUGIN_QUIZS' => getcong('p-moduquizzes'),
             'DB_USER_LANG' => $lang
         ]);
 

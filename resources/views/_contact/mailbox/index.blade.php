@@ -66,7 +66,7 @@
             <div class="box-tools pull-right">
                 <div class="has-feedback">
                     <form method="get" action="/admin/mailbox/inbox">
-                        <input type="text" name="qemail" class="form-control input-sm" placeholder="{{ trans("buzzycontact.Searchemailaddress") }}">
+                        <input type="text" name="qemail" class="form-control input-sm" placeholder="{{ trans("moducontact.Searchemailaddress") }}">
                     </form>
                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
@@ -92,7 +92,7 @@
                                 <td  style="width:15% ; padding: 12px 0px!important;">
                                     <div class="mailbox-read-info" style="border: 0">
                                         <a href="/admin/mailbox/read/{{ $mail->id }}" class="taba" style="color:#333">
-                                           <h3 style="font-weight: 700">{{ $mail->name > "" ? $mail->name :  trans("buzzycontact.NoName") }}</h3>
+                                           <h3 style="font-weight: 700">{{ $mail->name > "" ? $mail->name :  trans("moducontact.NoName") }}</h3>
                                             <h5>{{ $mail->email }}</h5>
                                         </a>
                                     </div>
@@ -117,7 +117,7 @@
                     @else
                         <div class="alert alert-default alert-dismissible" style="text-align: center;padding:170px 50px">
 
-                            <h4><i class="icon fa fa-{{ $caticon }}" style="font-size:80px;margin-bottom:20px;opacity: 0.5"></i> <br> <b>{{ $catname }}</b> {{  trans("buzzycontact.folderisempty") }}.!</h4>
+                            <h4><i class="icon fa fa-{{ $caticon }}" style="font-size:80px;margin-bottom:20px;opacity: 0.5"></i> <br> <b>{{ $catname }}</b> {{  trans("moducontact.folderisempty") }}.!</h4>
 
                         </div>
 

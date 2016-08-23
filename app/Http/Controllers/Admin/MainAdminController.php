@@ -60,7 +60,7 @@ class MainAdminController extends Controller
 
     }
 
-    public function code($type = 'buzzy')
+    public function code($type = 'modu')
     {
 
             return true;

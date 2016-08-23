@@ -181,13 +181,13 @@
 @section('footer')
     @if($post->type=="quiz")
     <script>
-         BuzzyQuizzes = {
-            'lang_1': '{{ trans('buzzyquiz.shareonface') }}',
-            'lang_2': '{{ trans('buzzyquiz.shareontwitter') }}',
-            'lang_3': '{{ trans('buzzyquiz.shareface') }}',
-            'lang_4': '{{ trans('buzzyquiz.sharetweet') }}',
-            'lang_5': '{{ trans('buzzyquiz.sharedone') }}',
-            'lang_6': '{{ trans('buzzyquiz.sharedonedesc') }}'
+         moduQuizzes = {
+            'lang_1': '{{ trans('moduquiz.shareonface') }}',
+            'lang_2': '{{ trans('moduquiz.shareontwitter') }}',
+            'lang_3': '{{ trans('moduquiz.shareface') }}',
+            'lang_4': '{{ trans('moduquiz.sharetweet') }}',
+            'lang_5': '{{ trans('moduquiz.sharedone') }}',
+            'lang_6': '{{ trans('moduquiz.sharedonedesc') }}'
         };
 
 

@@ -52,8 +52,8 @@ class PostsController extends Controller
             }
         }
 
-        Cookie::queue('BuzzyPostHit'.$post->id, true, 45000);
-        if (Cookie::get('BuzzyPostHit'.$post->id) !== true){
+        Cookie::queue('moduPostHit'.$post->id, true, 45000);
+        if (Cookie::get('moduPostHit'.$post->id) !== true){
             $post->hit();
         }
 
@@ -158,7 +158,7 @@ class PostsController extends Controller
         }elseif($typene == 'list'){
             $typenetitle = trans('index.list');
         }elseif($typene == 'quiz'){
-            $typenetitle = trans('buzzyquiz.quiz');
+            $typenetitle = trans('moduquiz.quiz');
 
 
             $entrysquizquest=$post->entry()->where('type', 'quizquestion')->oldest("order")->get();
@@ -757,7 +757,7 @@ class PostsController extends Controller
             }
 
             if($quizresultcount < 2){
-                return array('status' => trans('buzzyquiz.quizerror'), 'errors' => trans('buzzyquiz.atlest2result'));
+                return array('status' => trans('moduquiz.quizerror'), 'errors' => trans('moduquiz.atlest2result'));
             }
 
             $quizquestioncount = 0;
@@ -768,7 +768,7 @@ class PostsController extends Controller
             }
 
             if($quizquestioncount < 1){
-                return array('status' => trans('buzzyquiz.quizerror'), 'errors' => trans('buzzyquiz.atlest1question'));
+                return array('status' => trans('moduquiz.quizerror'), 'errors' => trans('moduquiz.atlest1question'));
             }
         }
 
@@ -787,15 +787,15 @@ class PostsController extends Controller
 
                 if($entrytype=="quizresult"){
 
-                    return array('status' => trans('buzzyquiz.quizresulterror'), 'errors' => trans('buzzyquiz.quizresulterrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
+                    return array('status' => trans('moduquiz.quizresulterror'), 'errors' => trans('moduquiz.quizresulterrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
 
                 }elseif($entrytype=="quizquestion"){
 
-                    return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya-$quizresultcount, 'error' => $v->errors()->first()]));
+                    return array('status' => trans('moduquiz.questionerror'), 'errors' => trans('moduquiz.questionerrors', ['numberofentry' => $keya-$quizresultcount, 'error' => $v->errors()->first()]));
 
                }elseif($entrytype=="poll"){
 
-                    return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
+                    return array('status' => trans('moduquiz.questionerror'), 'errors' => trans('moduquiz.questionerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
 
                }else{
                    return array('status' => trans('updates.error'), 'errors' => trans('updates.entryerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
@@ -810,7 +810,7 @@ class PostsController extends Controller
 
 
                     if(!isset($n['answers']) or count($n['answers']) < 2){
-                        return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $key-$quizresultcount+1, 'error' => trans('buzzyquiz.atlest2answer')]));
+                        return array('status' => trans('moduquiz.questionerror'), 'errors' => trans('moduquiz.questionerrors', ['numberofentry' => $key-$quizresultcount+1, 'error' => trans('moduquiz.atlest2answer')]));
                     }
 
                     foreach($n['answers'] as $ankey => $ann )
@@ -819,7 +819,7 @@ class PostsController extends Controller
 
                         if ($qv->fails()) {
                             $keyaa=$ankey+1;
-                            return array('status' => trans('buzzyquiz.answererror'), 'errors' => trans('buzzyquiz.answererrors', ['numberofentry' => $key-$quizresultcount+1, 'numberofanswer' => $keyaa, 'error' => $qv->errors()->first()]));
+                            return array('status' => trans('moduquiz.answererror'), 'errors' => trans('moduquiz.answererrors', ['numberofentry' => $key-$quizresultcount+1, 'numberofanswer' => $keyaa, 'error' => $qv->errors()->first()]));
                         }
                     }
                 }

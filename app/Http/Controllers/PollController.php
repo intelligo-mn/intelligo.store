@@ -126,8 +126,8 @@ class PollController extends Controller
 
         $post = Posts::findOrFail($id);
 
-        Cookie::queue('BuzzyPostshared'.$post->id, true, 45000);
-        if (Cookie::get('BuzzyPostshared'.$post->id) == true){
+        Cookie::queue('moduPostshared'.$post->id, true, 45000);
+        if (Cookie::get('moduPostshared'.$post->id) == true){
             return "ok";
         }
 

@@ -1,6 +1,6 @@
 @extends("app")
 
-@section('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') )
+@section('head_title', trans('moducontact.contact').' | '.getcong('sitename') )
 
 @section("header")
     <style>
@@ -86,43 +86,43 @@
         <div class="container">
             <div class="mainside" style="min-height: 900px">
 <br>
-            <h1 style="margin-bottom:10px">{{ trans('buzzycontact.contact') }}</h1>
+            <h1 style="margin-bottom:10px">{{ trans('moducontact.contact') }}</h1>
 
                 {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
 
                     <div class="form-field string  inpt">
-                        <label for="subject">{{ trans('buzzycontact.subject') }}</label>
+                        <label for="subject">{{ trans('moducontact.subject') }}</label>
                         {!! Form::text('subject', null, ['id' => 'subject']) !!}
                     </div>
                     <div class="form-field text  inpt">
-                        <label for="description">{{ trans('buzzycontact.description') }}</label>
+                        <label for="description">{{ trans('moducontact.description') }}</label>
                         {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px']) !!}
-                        <p>{{ trans('buzzycontact.descriptioninfo') }}</p>
+                        <p>{{ trans('moducontact.descriptioninfo') }}</p>
                     </div>
                     <div class="form-field string  inpt">
-                        <label for="name">{{ trans('buzzycontact.name') }}</label>
+                        <label for="name">{{ trans('moducontact.name') }}</label>
                         {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name']) !!}
-                        <p>{{ trans('buzzycontact.nameinfo') }}</p>
+                        <p>{{ trans('moducontact.nameinfo') }}</p>
                     </div>
                     <div class="form-field inpt">
-                        <label for="email">{{ trans('buzzycontact.email') }}</label>
+                        <label for="email">{{ trans('moducontact.email') }}</label>
                         {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email']) !!}
                     </div>
 
                     <div class="form-field string  inpt">
-                        <label for="label">{{ trans('buzzycontact.label') }}</label>
+                        <label for="label">{{ trans('moducontact.label') }}</label>
                         {!! Form::select('label', $labels, ['id' => 'label']) !!}
-                        <p>{{ trans('buzzycontact.labelinfo') }}</p>
+                        <p>{{ trans('moducontact.labelinfo') }}</p>
                     </div>
-                @if(getcong('BuzzyContactCaptcha')=="on")
+                @if(getcong('moduContactCaptcha')=="on")
                 <div class="form-field inpt">
-                    <label>{{ trans('buzzycontact.areyouhuman') }}</label>
+                    <label>{{ trans('moducontact.areyouhuman') }}</label>
                     <script src='https://www.google.com/recaptcha/api.js'></script>
                     <div class="g-recaptcha" data-sitekey="{{  getcong('reCaptchaKey') }}"></div>
                 </div>
                 @endif
 
-                {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('buzzycontact.send'), ['class' => 'button button-orange button-full submit-button']) !!}
+                {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('moducontact.send'), ['class' => 'button button-orange button-full submit-button']) !!}
 
                 {!! Form::close() !!}
             </div>

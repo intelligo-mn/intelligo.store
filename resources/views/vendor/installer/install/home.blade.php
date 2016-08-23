@@ -5,22 +5,22 @@
     <div class="panel panel-success">
        <div class="panel-body">
             @if(null == Session::get('ok'))
-               <h3 style="text-align: center;">Verify Buzzy Access </h3>
-               <p style="text-align: center;">Please click "GET  Buzzy Code" button and add your purchase code and domain name and take the Buzzy access code</p>
+               <h3 style="text-align: center;">Verify modu Access </h3>
+               <p style="text-align: center;">Please click "GET  modu Code" button and add your purchase code and domain name and take the modu access code</p>
 
                <div class="bs-component" style="text-align: center;padding:80px;">
-                <a href="http://envato.akbilisim.com/auth/social/envato" class="btn btn-info  btn-lg popup-action">GET  Buzzy Code</a>
+                <a href="http://envato.akbilisim.com/auth/social/envato" class="btn btn-info  btn-lg popup-action">GET  modu Code</a>
             </div>
 
             <hr>
             <div class="bs-component" style="text-align: center;padding:30px 80px;">
-                <h3>Check Buzzy Access Code</h3>
+                <h3>Check modu Access Code</h3>
                     <form method="post" action="{{ route('installer::checkedcode') }}">
                         <div class="row">
                             <div class="form-group col-md-12">
 
                                 <div class="col-md-10">
-                                    <input class="input-lg form-control" style="height: 46px;padding: 10px 16px; font-size: 18px; line-height: 1.3333333; border-radius: 6px;" placeholder="Enter your Buzzy Code here" name="code" type="text" >
+                                    <input class="input-lg form-control" style="height: 46px;padding: 10px 16px; font-size: 18px; line-height: 1.3333333; border-radius: 6px;" placeholder="Enter your modu Code here" name="code" type="text" >
                                 </div>
                                     <div class="col-md-2">
                                     <button class="btn btn-success" type="submit">

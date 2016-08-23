@@ -60,18 +60,18 @@
                             <section class="form last" id="addnew"  style="border-bottom: 1px solid #e3e3e3;">
 
 
-                                <legend>{{ trans('buzzyquiz.quizresults') }}</legend><br>
+                                <legend>{{ trans('moduquiz.quizresults') }}</legend><br>
 
                                 <div id="results">
                                     @foreach($entrysquizresults as $key => $entry)
 
-                                    @include('_forms._buzzyquiz.__addresultform', ['entry' => $entry])
+                                    @include('_forms._moduquiz.__addresultform', ['entry' => $entry])
 
                                     @endforeach
                                 </div>
 
 
-                                <a class="submit-button button button-rosy button-big button-full postable" style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="results" data-puttype="append" data-type="resultform" href="{{ action('FormController@addnewform') }}?addnew=result" ><i class="fa fa-check-circle-o"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.result')]) }}</a>
+                                <a class="submit-button button button-rosy button-big button-full postable" style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="results" data-puttype="append" data-type="resultform" href="{{ action('FormController@addnewform') }}?addnew=result" ><i class="fa fa-check-circle-o"></i>{{ trans('addpost.add', ['type' => trans('moduquiz.result')]) }}</a>
                                 <br><br><br><br>
                             </section>
                         @endif
@@ -83,7 +83,7 @@
 
                                     @foreach($entrysquizquest as $key => $entry)
 
-                                    @include('_forms._buzzyquiz.__addquestionform', ['entry' => $entry])
+                                    @include('_forms._moduquiz.__addquestionform', ['entry' => $entry])
 
                                     @endforeach
 
@@ -142,7 +142,7 @@
 
                                     @elseif($entry->type=='poll')
 
-                                        @include('_forms._buzzypoll.__addpollform', ['entry' => $entry])
+                                        @include('_forms._modupoll.__addpollform', ['entry' => $entry])
 
                                     @elseif($entry->type=='image')
 
@@ -158,7 +158,7 @@
                                 @endif
                             </div>
                             @if($typene=='quiz')
-                                <a class="submit-button button button-blue button-full postable"  style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="entries" data-puttype="append" data-type="questionform" href="{{ action('FormController@addnewform') }}?addnew=question"><i class="fa fa-question-circle"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.question')]) }}</a>
+                                <a class="submit-button button button-blue button-full postable"  style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="entries" data-puttype="append" data-type="questionform" href="{{ action('FormController@addnewform') }}?addnew=question"><i class="fa fa-question-circle"></i>{{ trans('addpost.add', ['type' => trans('moduquiz.question')]) }}</a>
 
 
                                 <div class="clear"></div>
