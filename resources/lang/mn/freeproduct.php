@@ -1,0 +1,48 @@
+<?php
+
+return [
+    //Informacion and Actions
+    'create'                           => 'Create Free Product',
+    'products_included'                => 'Products Included',
+    'information_detail'               => 'Information Detail',
+    'participations'                   => 'Participations',
+    'loading_freeproduct'              => 'Loading Free Product',
+    'participate'                      => 'Participate',
+    'coming_soon'                      => 'Coming soon...',
+    'you_are_participating'            => 'You are participating !!!',
+    'go_to_package'                    => 'Go to Free Product Package',
+    'purchase_this_item'               => 'Purchase this item',
+    'promote'                          => 'Promote',
+    //Labels
+    'description'                      => 'Description',
+    'start_date'                       => 'Start Date',
+    'end_date'                         => 'End Date',
+    'participation_cost'               => 'Participation Cost (points)',
+    'max_participants'                 => 'Max Participants',
+    'min_participants'                 => 'Min Participants',
+    'max_participations_per_user'      => 'Max Participations per User',
+    'draw_number'                      => 'Draw Number',
+    'draw_date'                        => 'Draw Date',
+    'conditions'                       => 'Conditions',
+    'price_original'                   => 'Price Original',
+    //Errors
+    'unauthorized_access'              => 'Unauthorized access. To create a free product, you must have the required permissions to such action.',
+    'order_type_invalid'               => 'The type of order you want to process does not meet the requirements to form a free product',
+    'error_exception'                  => 'Occurred while creating free product was processed. Please try again later.',
+    'drawnumber_exceed_total_products' => 'The total number of winners can not exceed the total product in its freeproduct',
+    'address_not_registered'           => 'Does not have a registered address. This will be necessary if resultes winner freeproduct',
+    'freeproduct_not_exist'            => 'Free product you want to view does not exist',
+    'freeproduct_not_activated'        => 'Free product you want to view does not activated',
+    'freeproduct_not_available'        => 'This product is no longer available for you to participate.',
+    'not_enough_point'                 => 'Sorry, but you do not have enough points to participate in this free product.',
+    'participations_not_available'     => 'We are sorry. Currently there are no more entries available for this free product.',
+    'max_participations_for_user'      => 'We are sorry. And you can no longer participate in this free product, due to the conditions established for their participation.',
+    //Message
+    'saved_successfully'               => 'Free Product saved successfully.',
+    'freeproduct_exist'                => 'Free product that tries was already registered. These are the characteristics of it.',
+    'congratulations_participate'      => 'Congratulations!!! You are participating in this free product. You will be notified by mail to be the winner.',
+    'not_freeproduct_registered'       => 'There are no products registered for free.',
+    'not_freeproducts_activated'       => 'There are no products registered and activated free.',
+    'not_freeproducts_inactivated'     => 'There are no products registered and inactivated free.',
+    'not_freeproduct_participating'    => 'You are not currently participating for any free product.',
+];
