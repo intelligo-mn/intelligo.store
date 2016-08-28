@@ -1,0 +1,10 @@
+
+.list-group-item {
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    background-color: @list-group-active-bg;
+    border-color: @list-group-active-border;
+  }
+}
