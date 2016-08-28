@@ -17,7 +17,7 @@ class AddressesTableSeeder extends Seeder
     {
         $faker = Faker::create();
         //Category
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $user = User::select(['id'])->where('id', rand(1, User::count()))->first();
             $address = Address::create([
                 'user_id'      => ($i <= 2) ? 4 : $user->id,

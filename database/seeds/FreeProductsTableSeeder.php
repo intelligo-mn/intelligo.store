@@ -23,7 +23,7 @@ class FreeProductsTableSeeder extends Seeder
         $faker = Faker::create();
         $users = Address::get();
         $status_list = array_keys(trans('globals.order_status'));
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $user = $users->random(1);
             $products = Product::where('id', '!=', $user->user_id)->where('type', '!=', 'freeproduct')->get();
             $type = 'freeproduct';

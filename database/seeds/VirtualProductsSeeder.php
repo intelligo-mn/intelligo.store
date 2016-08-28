@@ -18,7 +18,7 @@ class VirtualProductsSeeder extends Seeder
     {
         $faker = Faker::create();
         $businesses = Business::get();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $price = $faker->numberBetween(1, 99);
             $stock = $faker->numberBetween(20, 50);
             $product = Product::create([
