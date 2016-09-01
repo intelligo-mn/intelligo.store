@@ -2,7 +2,7 @@
 
 return [
     //Globally used
-    'actions'              => 'Actions',
+    'actions'              => 'Үйлдэлүүд',
     'buy_points'           => 'Buy Points',
     'cancel_order'         => 'Cancel Order',
     'cancelled'            => 'Cancelled',
