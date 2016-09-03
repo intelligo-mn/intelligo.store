@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Antvel - Breadcrumbs Menus.
+ * Modu - breadcrumb Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 //home
