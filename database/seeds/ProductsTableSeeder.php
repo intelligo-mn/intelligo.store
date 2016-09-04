@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
         $faker = Faker::create();
         $businesses = Business::get();
         $numCategories = DB::table('categories')->count();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 150; $i++) {
             $price = $faker->numberBetween(1, 99);
             $stock = $faker->numberBetween(20, 50);
             $id = Product::create([

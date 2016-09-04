@@ -20,7 +20,7 @@ class LogsTableSeeder extends Seeder
         $actions = ActionType::get();
         $users = User::select('id')->get();
         //Category
-        foreach (range(1, 2) as $void) {
+        foreach (range(1, 20) as $void) {
             Log::create([
                 'user_id'        => $users->random(1)->id,
                 'action_type_id' => $actions->random(1)->id,

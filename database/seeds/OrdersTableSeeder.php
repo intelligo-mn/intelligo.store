@@ -25,7 +25,7 @@ class OrdersTableSeeder extends Seeder
 
         $products = Product::select('id', 'price')->get();
 
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $address = $addresses->random(1);
             $type = $faker->randomElement(['cart', 'wishlist', 'order']);
             $status = 'open';
