@@ -3,9 +3,9 @@
 namespace app;
 
 /*
- * Antvel - Categories Model
+ * Modu - Categories Model
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\Collection\Categories;
