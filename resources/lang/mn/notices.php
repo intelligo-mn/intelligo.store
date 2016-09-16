@@ -9,17 +9,17 @@ return [
     ],
     //templates to the actions types
     'templates' => [
-        'order:open'       => 'A new order #[source_id] has been placed.',
-        'order:pending'    => 'Your order #[source_id] is pending',
-        'order:comment'    => 'The order #[source_id] has a new comment',
-        'order:closed'     => 'The order #[source_id] was closed',
-        'order:cancelled'  => 'Ther order #[source_id] was cancelled.',
-        'order:sent'       => 'The order #[source_id] was sent.',
-        'order:rate'       => 'The order #[source_id] was rated.',
-        'order:received'   => 'The order #[source_id] has been received.',
-        'order:processing' => 'The order #[source_id] has been processed.',
+        'order:open'       => 'Шинэ #[source_id] захиалга.',
+        'order:pending'    => 'Таны #[source_id] захиалга хүлээгдэж байна',
+        'order:comment'    => 'Таны #[source_id] захиалга дээр шинэ сэтгэгдэл',
+        'order:closed'     => 'Таны #[source_id] захиалга дууслаа',
+        'order:cancelled'  => 'Таны #[source_id] захиалга буцаагдсан байна.',
+        'order:sent'       => 'Таны #[source_id] захиалгыг илгээлээ.',
+        'order:rate'       => 'Таны #[source_id] захиалга үнэлгээ өглөө.',
+        'order:received'   => 'Таны #[source_id] захиалгыг хүлээж авлаа.',
+        'order:processing' => 'Таны #[source_id] захиалгыг боловсруулж байна.',
     ],
 
-    'all_title'   => 'Store Notices',
-    'all_summary' => 'Here you will be able to see all the notices that have come to you so far. Also, you can click on the to look at their detail.',
+    'all_title'   => 'Дэлгүүрийн мэдэгдэл',
+    'all_summary' => 'Та өнөөг хүртэл таньд ирж байгаа бүх мэдэгдэл харах боломжтой болно. Мөн, та нар тэднийг нарийвчлан үзэх бол дэлгэрэнгүй дарна уу.',
 ];
