@@ -89,5 +89,16 @@ class ProductsDetailTableSeeder extends Seeder
             'type_products'    => 'all',
             'max_num_values'   => 1,
         ]);
+
+        ProductDetail::create([
+            'name'             => trans('globals.product_features.model'),
+            'input_type'       => 'text',
+            'default_values'   => '{}',
+             'status'          => 'active',
+            'validation_rules' => '{}',
+            'help_message'     => '{}',
+            'type_products'    => 'all',
+            'max_num_values'   => 1,
+        ]);
     }
 }
