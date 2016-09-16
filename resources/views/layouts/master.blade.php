@@ -20,10 +20,10 @@
 	</script>
 
 	{{-- Antvel CSS files --}}
-	{!! Html::style('/antvel-bower/bootstrap/dist/css/bootstrap.css') !!}
+	{!! Html::style('/modu-bower/bootstrap/dist/css/bootstrap.css') !!}
 	@section('css')
-		{!! Html::style('/antvel-bower/angular-notify/dist/angular-notify.min.css') !!}
-		{!! Html::style('/antvel-bower/font-awesome/css/font-awesome.min.css') !!}
+		{!! Html::style('/modu-bower/angular-notify/dist/angular-notify.min.css') !!}
+		{!! Html::style('/modu-bower/font-awesome/css/font-awesome.min.css') !!}
 		{!! Html::style('/css/carousel.css') !!}
 		{!! Html::style('/css/angucomplete-alt.css') !!}
 		{!! Html::style('/css/app.css') !!}
