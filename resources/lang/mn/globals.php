@@ -284,7 +284,7 @@ return [
   'by_label'               => 'by',
   'company_label'          => 'Компани',
   'social_label'           => 'Сошиал',
-  'power_by_label'         => 'Power By',
+  'power_by_label'         => 'Powered By',
   'antvel_eCommerce'       => 'Modu eCommerce',
   'validation_error_label' => 'Баталгаажуулалтын алдаа',
   'success_label'          => 'Амжилттай',
