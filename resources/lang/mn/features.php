@@ -36,8 +36,8 @@ return [
    'is_required'                                 => 'is required',
    'validation_rules_numerical_validation_array' => [
       ''              => '',
-      'maximum_value' => 'Maximum value',
-      'minimum_value' => 'Minimum value',
+      'maximum_value' => 'Хамгийн их утга',
+      'minimum_value' => 'Хамгийн бага утга',
       'range_values'  => 'Range of values',
    ],
    'validation_rules_number_characters_array' => [
