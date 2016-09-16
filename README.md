@@ -129,7 +129,7 @@ gulp
 * Addresses Book
 * User Profiles (Sellers & Buyers)
 * Products barcode
-* Administrative Panel - (http://ashigtai.com/wpanel)
+* Administrative Panel - (http://ashigtai.toroo.info/wpanel)
 * Users Orders list with action status (process, Placed, Cancel, Rated)
 * Virtual Products (products key download integrated)
 * Free Products Module
