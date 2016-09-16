@@ -3,9 +3,9 @@
 namespace app\Http\Controllers;
 
 /*
- * Antvel - Notice Controller
+ * Modu - Notice Controller
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use App\ActionType;
