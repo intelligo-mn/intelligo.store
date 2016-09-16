@@ -94,15 +94,15 @@ return [
         'emails' => [
                 'verification_account' => [
                         'subject' => 'Мэйл хаягаа баталгаажуулна уу',
-                        'msg_01'  => 'You are receiving this email because you recently created a account at our site. To verify your account you will need to visit the following link.',
-                        'msg_02'  => 'After visiting the above link your account will be hundred percent security of external uses.',
-                        'msg_03'  => 'If you have any problem verifying your account, please send a email to',
-                        'msg_04'  => 'to get assistance!',
+                        'msg_01'  => 'Та бүртгэлээ баталгаажуулахын тулд дараах холбоос дээр дарна уу',
+                        'msg_02'  => 'Дараах холбоос дээр дарна уу.',
+                        'msg_03'  => 'Таны бүртгэлтэй холбоотой ямар нэг асуудал гарсан бол мэйл илгээнэ үү',
+                        'msg_04'  => 'Тусламж авах!',
                         'msg_05'  => 'Баярлалаа!',
                 ],
         ],
 
-        'account_verified_ok_message'    => '<strong>Activation results!</strong><br/><br/>Congratulation [name]!, your account was successfully activated.',
-        'account_verified_error_message' => '<strong>There was an error!</strong><br/><br/>The token sent to validate your account is not in our records.<br/><br/>Please, check it out and try again!',
-        'signUp_message'                 => '<strong>Thank you :_name!<br>You have successfully registered!</strong><br><br>We have just sent you a email with a link that you can click to confirm your account.',
+        'account_verified_ok_message'    => '<strong>Баталгаажуулсан!</strong><br/><br/>Баяр хүргэе [name]!, таны бүртгэл амжилттай баталгаажлаа.',
+        'account_verified_error_message' => '<strong>Алдаа!</strong><br/><br/>Таны баталгаажуулах холбоос идэвхигүй байна.<br/><br/>Дахин оролдоно уу!',
+        'signUp_message'                 => '<strong>Баярлалаа :_name!<br>Та амжилттай бүртгүүллээ!</strong><br><br>Бүртгэлээ баталгаажуулах холбоос дээр дарна уу.',
 ];
