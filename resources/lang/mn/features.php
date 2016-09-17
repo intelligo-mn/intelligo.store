@@ -32,13 +32,13 @@ return [
    'view_product_detail'       => 'Бүтээгдэхүүний дэлгэрэнгүй харах',
    'view_product_form'         => 'View Product Form',
    //'only_numerical_values'     => 'only numerical values',
-   'is_invalid'                                  => 'is invalid',
-   'is_required'                                 => 'is required',
+   'is_invalid'                                  => 'алдаа',
+   'is_required'                                 => 'бөглөнө үү',
    'validation_rules_numerical_validation_array' => [
       ''              => '',
       'maximum_value' => 'Хамгийн их утга',
       'minimum_value' => 'Хамгийн бага утга',
-      'range_values'  => 'Range of values',
+      'range_values'  => 'Утгын хязгаар',
    ],
    'validation_rules_number_characters_array' => [
       ''                   => '',
