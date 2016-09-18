@@ -26,12 +26,12 @@ return [
     'status'               => 'Status',
     'view_address'         => 'Shipping Address',
     'view_cart'            => 'Сагсан дахь бараа харах',
-    'view_comments'        => 'View Comments',
+    'view_comments'        => 'Сэтгэгдэл харах',
     'wish_list'            => 'Хадгалсан зар',
-    'your_wish_lists'      => 'Your Wish Lists',
+    'your_wish_lists'      => 'Таны хүслийн жагсаалт',
     'basic_wish_list'      => 'Default wish list',
-    'add_to_cart'          => 'Add to cart',
-    'add_to_wish_list'     => 'Add to Wish List',
+    'add_to_cart'          => 'Сагсад хийх',
+    'add_to_wish_list'     => 'Хүслийн жагсаалтанд хийх',
 
     'orders_index' => [
         'order_started'   => 'The order was marked as processed',
