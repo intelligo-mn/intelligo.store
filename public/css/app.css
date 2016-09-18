@@ -356,17 +356,17 @@ body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1;
-  color: #0668B2;
+  color: black;
   background-color: white;
 }
 a {
-  color: #3498db;
+  color: black;
   text-decoration: none;
   transition: .25s;
 }
 a:hover,
 a:focus {
-  color: #7f8c8d;
+  color: black;
   text-decoration: none;
 }
 a:focus {
@@ -400,6 +400,7 @@ h5,
 h6,
 .h1,
 .h2,
+
 .h3,
 .h4,
 .h5,
@@ -421,7 +422,7 @@ h6 small,
 .h4 small,
 .h5 small,
 .h6 small {
-  color: #e1edf6;
+  color: black;
 }
 h1,
 h2,
