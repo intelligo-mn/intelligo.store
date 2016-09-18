@@ -1,5 +1,4 @@
 <?php
-
 return [
     //Globally used
     'actions'              => 'Үйлдэлүүд',
@@ -32,14 +31,12 @@ return [
     'basic_wish_list'      => 'Үндсэн хүслийн жагсаалт',
     'add_to_cart'          => 'Сагсад хийх',
     'add_to_wish_list'     => 'Хүслийн жагсаалтанд хийх',
-
     'orders_index' => [
         'order_started'   => 'The order was marked as processed',
         'order_closed'    => 'The order was marked as closed',
         'order_received'  => 'The order was marked as received',
         'order_sent'      => 'The order was marked as sent',
     ],
-
     'create_comment_modal' => [
         'create_comment'             => 'Сэтгэгдэл бичих #',
         'create_comment_placeholder' => 'Сэтгэгдэлээ бичнэ үү ...',
@@ -48,7 +45,6 @@ return [
         'added_order_comment'        => 'Сэтгэгдэл амжилттай явууллаа',
         'save_new_comment'           => 'Сэтгэгдэл оруулах',
     ],
-
     'cart_view' => [
         'not_logged_disclaimer'     => 'Signing in your account you will be able to save your shopping cart for later.',
         'insufficient_funds'        => 'Insufficient Funds. Did You Know That You Can Also Buy Points?',
@@ -56,9 +52,7 @@ return [
         'your_shopping_cart_resume' => 'Shopping cart sumary',
         'item_changed_stock1'       => 'Бараа',
         'item_changed_stock2'       => 'has changed its stock availability. However, we have updated your shopping cart quantities.',
-
     ],
-
     'form_create_list_view' => [
         'add_to_basic_wish_list'  => 'жагсаалтад нэмэх',
         'add_to_wish_list'        => 'You can add the product to one of your wish lists',
@@ -69,7 +63,6 @@ return [
         'description_placeholder' => 'Enter a description for your new wish list',
         'save_wish_label'         => 'Save wish list',
     ],
-
     'wish_list_view' => [
         'subtotal_label'          => 'Sub-Total',
         'update_label'            => 'Updated on',
@@ -81,7 +74,6 @@ return [
         'success_deleting_msg'    => 'You wish list was deleted successfully!',
         'error_deleting_msg'      => 'The wish list given either does not belong to you or cannot be deleted!',
     ],
-
     'show_order_details_view' => [
         'contact_seller'        => 'Contact the seller',
         'products_in_order'     => 'Products in order',
@@ -93,11 +85,9 @@ return [
         'ship_it_out'           => 'Send it out',
         'mark_as_received'      => 'Mark as received',
     ],
-
     'rate' => [
         'product_description' => 'you can rate each product in this order',
     ],
-
     'order_rate_view' => [
         'title_detail'      => 'Rate Order #:_order Items',
         'title_modal'       => 'Rate Order #:_order',
@@ -115,7 +105,6 @@ return [
             'no_order'      => 'The order selected does not match our records or it was already rated',
         ],
     ],
-
     'suggestions' => [
         'viewed'          => 'Related to items you have viewed',
         'viewed_unlogged' => 'What other customers are looking at',
@@ -127,7 +116,6 @@ return [
         'product'         => 'Related to this item',
         'my_search'       => 'Products related to this search result',
     ],
-
     'paypal' => [
         'antvel_points_bundle' => 'Store Points Bundle',
         'item_name1'           => 'Store Points (',
@@ -137,7 +125,6 @@ return [
         'approved'             => 'You Have Successfully Bought',
         'approved2'            => 'Points Through PayPal',
     ],
-
     'addToWishList'                          => 'Add to wish list',
     'all_categories'                         => 'All Categories',
     'canceledOrders'                         => 'Canceled Orders',
