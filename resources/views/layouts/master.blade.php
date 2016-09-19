@@ -98,17 +98,17 @@
 	</footer>
 @show
 
-{{-- Antvel - Bower Components --}}
-{!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}
-{!! Html::script('/antvel-bower/angular/angular.min.js') !!}
-{!! Html::script('/antvel-bower/angular-route/angular-route.min.js') !!}
-{!! Html::script('/antvel-bower/angular-sanitize/angular-sanitize.min.js') !!}
-{!! Html::script('/antvel-bower/angular-bootstrap/ui-bootstrap-tpls.min.js') !!}
-{!! Html::script('/antvel-bower/angular-animate/angular-animate.min.js') !!}
-{!! Html::script('/antvel-bower/angular-loading-bar/build/loading-bar.min.js') !!}
-{!! Html::script('/antvel-bower/angular-mocks/angular-mocks.js') !!}
-{!! Html::script('/antvel-bower/angular-touch/angular-touch.min.js') !!}
-{!! Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.min.js') !!}
+{{-- Modu - Bower Components --}}
+{!! Html::script('/modu-bower/jquery/dist/jquery.min.js') !!}
+{!! Html::script('/modu-bower/angular/angular.min.js') !!}
+{!! Html::script('/modu-bower/angular-route/angular-route.min.js') !!}
+{!! Html::script('/modu-bower/angular-sanitize/angular-sanitize.min.js') !!}
+{!! Html::script('/modu-bower/angular-bootstrap/ui-bootstrap-tpls.min.js') !!}
+{!! Html::script('/modu-bower/angular-animate/angular-animate.min.js') !!}
+{!! Html::script('/modu-bower/angular-loading-bar/build/loading-bar.min.js') !!}
+{!! Html::script('/modu-bower/angular-mocks/angular-mocks.js') !!}
+{!! Html::script('/modu-bower/angular-touch/angular-touch.min.js') !!}
+{!! Html::script('/modu-bower/bootstrap/dist/js/bootstrap.min.js') !!}
 
 {!! Html::script('/js/vendor/xtForms/xtForm.js') !!}
 {!! Html::script('/js/vendor/xtForms/xtForm.tpl.min.js') !!}
@@ -150,8 +150,8 @@
 	{!! Html::script('/js/vendor/angucomplete-alt.js') !!}
 
 	{{-- Antvel-bower components --}}
-	{!! Html::script('/antvel-bower/angular-notify/dist/angular-notify.min.js') !!}
-	{!! Html::script('/antvel-bower/angular-local-storage/dist/angular-local-storage.min.js') !!}
+	{!! Html::script('/modu-bower/angular-notify/dist/angular-notify.min.js') !!}
+	{!! Html::script('/modu-bower/angular-local-storage/dist/angular-local-storage.min.js') !!}
 @show
 
 </body>
