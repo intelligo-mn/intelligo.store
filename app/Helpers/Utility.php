@@ -2,11 +2,13 @@
 
 namespace app\Helpers;
 
-/**
- * Antvel - Utilities Functions Helper.
+
+/*
+ * Modu - Utility
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
+
 class Utility
 {
     /**
