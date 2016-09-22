@@ -2,11 +2,12 @@
 
 namespace app\Helpers;
 
-/**
- * Antvel - Categories Validation Helper.
+/*
+ * Modu - Categories Validation
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
+
 class categoriesHelper
 {
     public static function separateTypesCategories($data)
