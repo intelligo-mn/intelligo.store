@@ -3,9 +3,9 @@
 namespace app\Helpers;
 
 /*
- * Antvel - File Manager Helper
+ * Modu - File manager helper
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
