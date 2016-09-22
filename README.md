@@ -14,13 +14,13 @@ You can install modu in two ways.
 The first way is using composer, just run this command in your terminal:
 
 ```bash
-composer require modu/ecommerce
+composer require tortuvshin/ecommerce
 ```
 
 The second way is cloning this repo, for that you need to run this commands:
 
 ```
-git clone https://github.com/modusys/ecommerce.git
+git clone https://github.com/tortuvshin/modu-ecommerce.git
 ```
 
 
