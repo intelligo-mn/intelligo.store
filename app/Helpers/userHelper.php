@@ -2,11 +2,12 @@
 
 namespace app\Helpers;
 
-/**
- * Antvel - User Helper.
+/*
+ * Modu - user helper
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
+
 class userHelper
 {
     private $preferences = [];
