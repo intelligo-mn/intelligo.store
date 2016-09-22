@@ -3,9 +3,9 @@
 namespace app\Helpers;
 
 /*
- * Antvel - Files Validations Helper
+ * Modu - File validation helper
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
