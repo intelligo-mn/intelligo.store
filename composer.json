@@ -1,19 +1,19 @@
 {
-	"name": "ant-vel/ant-vel",
+	"name": "tortuvshin/ecommerce",
 	"description": "An Laravel eCommerce",
 	"keywords": ["ecommerce", "laravel","virtual store","store"],
-	"homepage": "http://antvel.com/",
+	"homepage": "http://toroo.info/",
 	"license": "MIT",
 	"type": "project",
 	"authors": [
 		{
-			"name": "Gustavo Ocanto",
-			"email": "gustavoocanto@gmail.com"
+			"name": "Tortuvshin Byambaa",
+			"email": "toroo.byamba@gmail.com"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/ant-vel/antVel/issues",
-		"source": "https://github.com/ant-vel/antVel"
+		"issues": "https://github.com/tortuvshin/modu-ecommerce/issues",
+		"source": "https://github.com/tortuvshin/modu-ecommerce"
 	},
 	"require": {
 		"php": ">=5.5.9",
