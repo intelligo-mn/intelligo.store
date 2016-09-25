@@ -6171,12 +6171,15 @@ footer p {
 .container {
   width: 100% !important;
 }
+.badge {
+  float: right !important;
+}
 /*Modu Flat Theme*/
 html,
 body {
   height: 100%;
   font-weight: 300;
-  background-color: #ededed;
+  background-color: white;
 }
 footer {
   background: white;
@@ -6282,7 +6285,6 @@ footer .newsletter .signup form input[type="button"] {
   border: 0;
   background: #3498db;
   color: #FFF;
-  border-radius: 3px;
   padding: 6px 10px;
   position: absolute;
   top: 5px;
@@ -6399,7 +6401,6 @@ footer .credits .col-md-12 {
   opacity: .45;
   -ms-box-shadow: black 1px 0 12px 1px;
   box-shadow: black 1px 0 12px 1px;
-  border-radius: 100%;
 }
 #loading-bar-spinner {
   pointer-events: none;
@@ -6417,7 +6418,6 @@ footer .credits .col-md-12 {
   border: solid 2px transparent;
   border-top-color: #34495e;
   border-left-color: black;
-  border-radius: 10px;
   animation: loading-bar-spinner 400ms linear infinite;
 }
 #loading-bar.ng-enter,
@@ -6562,7 +6562,6 @@ footer .credits .col-md-12 {
   background: transparent no-repeat center center;
   background-size: 100%;
   color: transparent;
-  border-radius: 50%;
 }
 .navbar-wrapper .navbar .navbar-nav .cart {
   background-color: white;
@@ -6609,7 +6608,6 @@ footer .credits .col-md-12 {
 }
 .navbar-wrapper form .input-group-btn .btn {
   font-size: 16px;
-  border-radius: 0 !important;
   background-color: white;
   border: 2px solid #ecf0f1;
   color: #34495e;
@@ -6624,9 +6622,6 @@ footer .credits .col-md-12 {
   .navbar-wrapper form .categories-search {
     display: none;
   }
-}
-.navbar-wrapper form .ui-select-toggle {
-  border-radius: 5px;
 }
 .angucomplete-dropdown {
   overflow-y: auto;
@@ -6715,7 +6710,6 @@ section.home .home-info-bar {
 section.home .home-info-bar-icon {
   color: #2c3e50;
   background-color: white;
-  border-radius: 50%;
   width: 35px;
   padding: 6px 6px 6px 8px;
   font-size: 18px;
@@ -6794,7 +6788,6 @@ section.user-profile .user-photo:hover {
 section.user-profile .user-photo > img {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
 }
 section.wrapper-page {
   background: #5E7A9B;
@@ -6819,6 +6812,7 @@ section.wrapper-page {
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   margin: 0;
+  padding-top: 5px;
   font-size: 115%;
 }
 .products_view .container-fluid.marketing .product-description {
@@ -6830,12 +6824,14 @@ section.wrapper-page {
   color: #95a5a6;
 }
 .products_view .container-fluid.marketing .product-img-box {
-  height: 13.4em;
-  max-height: 13.4em;
+  height: 180px;
+  max-height: 200px;
   overflow: hidden;
 }
 .products_view .container-fluid.marketing .product-img-box > img {
-  height: 12.7em;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
   overflow: hidden;
   cursor: pointer;
 }
@@ -6852,7 +6848,6 @@ section.wrapper-page {
   color: white;
   width: 100%;
   height: 1.5em;
-  border-radius: 0.188em;
   cursor: pointer;
   font-size: 40px;
   transition: background-color 0.5s ease;
@@ -6868,8 +6863,6 @@ section.wrapper-page {
 .products_view .container-fluid.marketing .product-price {
   position: absolute;
   margin-top: 10em;
-  border-bottom-right-radius: 0.188em;
-  border-top-right-radius: 0.188em;
   background-color: white;
   padding: 0.2em;
   padding-bottom: 1.5em;
@@ -6883,8 +6876,6 @@ section.wrapper-page {
   position: absolute;
   right: 1.2em;
   margin-top: 10em;
-  border-bottom-left-radius: 0.188em;
-  border-top-left-radius: 0.188em;
   background-color: white;
   padding: 0.2em;
   padding-bottom: 1.5em;
@@ -7356,7 +7347,6 @@ section.wrapper-page {
   margin: 0 auto;
   margin-top: 25px;
   padding: 15px 40px 0 40px;
-  border-radius: 5px;
   background-color: #FFF;
   box-shadow: 0px 0px 5px #000;
 }
