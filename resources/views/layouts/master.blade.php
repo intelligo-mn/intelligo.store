@@ -46,7 +46,6 @@
 	{{-- Breadcrumbs section --}}
 	<div class="container">
 		@section('breadcrumbs')
-			<div class="row">&nbsp;</div>
 		@show
 	</div>
 
@@ -55,7 +54,6 @@
 		@section('panels')
 
 			<div class="container">
-				<div class="row">&nbsp;</div>
 				<div class="row global-panels">
 
 					{{-- left panel --}}
