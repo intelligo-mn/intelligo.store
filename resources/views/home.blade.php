@@ -172,78 +172,7 @@
             @section('panel_left_content')
 
                 <div class="home-left-bar">
-
-                    {{-- rated products tag --}}
-                    @if (count($tagsCloud)>0 || true)
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                {{ trans('globals.popular_tags') }}
-                            </div>
-                            <div class="panel-body">
-                                <div class="tags-cloud">
-                                    @foreach ($tagsCloud as $tag)
-                                        <a href="{{ action('ProductsController@index') }}/?search={{ $tag }}" class="t{{ mt_rand(1,10) }}" >
-                                            {{ $tag }}
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    {{-- upcoming events --}}
-
-                    @if (config('app.offering_free_products'))
-
-                        @foreach ($events as $event)
-
-                            @if (count($event['products'])>0)
-
-                                <div class="panel panel-default">
-
-                                    <div class="free-products-home-sign">
-                                        <span>{{ trans('globals.free') }}</span>
-                                    </div>
-
-                                    <div class="panel-heading">
-
-                                       {{ trans('globals.due_date') }}&nbsp;{{ Carbon\Carbon::parse($event['start_date'])->format('F j, Y') }}
-
-                                    </div>
-
-                                    <ul class="list-group">
-                                        <li class="list-group-item" style="font-size: 12px;"><span class="fui-user icon-color"></span>&nbsp;{{ trans('freeproduct.min_participants') }}:&nbsp;<strong>{{ \Utility::thousandSuffix($event['min_participants']) }}</strong></li>
-                                        <li class="list-group-item" style="font-size: 12px;"><span class="fui-user icon-color"></span>&nbsp;{{ trans('freeproduct.max_participants') }}:&nbsp;<strong>{{ \Utility::thousandSuffix($event['max_participants']) }}</strong></li>
-                                        <li class="list-group-item" style="font-size: 12px;"><span class="fui-radio-unchecked icon-color"></span>&nbsp;{{ trans('freeproduct.participation_cost') }}:&nbsp;<strong>{{ \Utility::thousandSuffix($event['participation_cost']) }}</strong></li>
-                                        <li class="list-group-item panel-default">Package</li>
-                                        <li class="list-group-item clearfix" style="font-size: 12px;">
-                                            @foreach ($event['products'] as $product)
-                                                <a href="{{ route('products.show',[$product['id']]) }}" class="thumbnail col-xs-4 col-md-2 " style="margin: 0 5px 5px 0">
-                                                    <img src='{{ $product["features"]["images"][0] }}' class="img-rounded" alt="{{ $product['name'] }}">
-                                                </a>
-                                            @endforeach
-                                        </li>
-                                        <li class="list-group-item  panel-default">Description</li>
-                                        <li class="list-group-item">
-                                            {{ $event['description'] }}
-                                            <hr>
-                                            <div class="clearfix">
-                                                <small>
-                                                    <a href="{{ route('freeproducts.show',[$event['id']]) }}" class="pull-right">
-                                                        <span class="fui-search icon-color"></span>&nbsp;{{ trans('globals.see_more') }}
-                                                    </a>
-                                                </small>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div> {{-- end panel --}}
-
-                            @endif {{-- products >0 --}}
-
-                        @endforeach {{-- free products --}}
-
-                    @endif {{-- if offering free products --}}
+                    
 
                 </div> {{-- end home-left-bar --}}
 

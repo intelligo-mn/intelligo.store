@@ -6133,6 +6133,12 @@ small,
 #menu-top-category .breadcrumb {
   margin-top: 70px;
 }
+.navbar-nav .breadcrumb {
+  margin-top: 0px !important;
+}
+.container .breadcrumb {
+  margin-top: 70px;
+}
 .breadcrumb {
   background-color: transparent;
   margin-bottom: 0px !important;
@@ -6695,6 +6701,7 @@ section.home .home-title-section {
 }
 section.home .home-carousel-box {
   height: 300px;
+  margin-top: 70px;
 }
 section.home .home-carousel-box .jumbotron-box-right {
   margin: 40px 10px 0;
@@ -6890,8 +6897,8 @@ section.wrapper-page {
 .products_view .container-fluid.marketing .product-actions {
   height: 30px;
   right: 20px;
-  width: 90px;
-  top: 170px;
+  width: 30px;
+  top: 19px;
   position: absolute;
 }
 .products_view .container-fluid.marketing .product-actions .wrapper {
@@ -6909,7 +6916,6 @@ section.wrapper-page {
   color: #3b5998;
 }
 .products_view .container-fluid.marketing .product-actions .option {
-  background-color: #ecf0f1;
   width: 30px;
   float: right;
   height: 30px;

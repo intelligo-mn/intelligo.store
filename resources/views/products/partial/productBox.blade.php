@@ -13,13 +13,13 @@ if (isset($productSuggestion)) {
         <div class="product-price">
             {!! \Utility::showPrice($product['price']) !!}
         </div>
-
+<!-- 
         <div class="product-reviews @if (!$product['rate_val']) hide @endif">
             {!! \Utility::thousandSuffix($product['rate_val']) !!}
             <small>
                 {{ trans_choice('store.review', $product['rate_val']) }}
             </small>
-        </div>
+        </div> -->
 
         @if ($product['type'] == 'freeproduct')
             <div class="free-products-box-sign"><span>{{ trans('globals.free') }}</span></div>
@@ -36,7 +36,7 @@ if (isset($productSuggestion)) {
 
         {{-- actions begin --}}
         <div class="product-actions">
-
+<!-- 
             {{-- add to cart (only products not free)  --}}
             <div class="" ng-click="submit('#add-{{ $product['id'] }}')">
                 <div class = "glyphicon glyphicon-shopping-cart option cart" >
@@ -45,17 +45,17 @@ if (isset($productSuggestion)) {
                         {!! Form::close() !!}
                     @endif
                 </div>
-            </div>
+            </div> -->
 
             {{-- wish list (only products not free) --}}
             <div class=""  ng-click = "goTo('{{ route('orders.add_to_order',['wishlist', $product[($product['type']=='freeproduct')?'parent_id':'id']]) }}')">
                 <div class="glyphicon glyphicon-heart option heart"></div>
             </div>
 
-            {{-- view --}}
+            <!-- {{-- view --}}
             <div class="" ng-click = "goTo('{{ route('products.show',[$product['id']]) }}')">
                 <div class="glyphicon glyphicon-eye-open option eye"></div>
-            </div>
+            </div> -->
 
         </div>
         {{-- actions end --}}
