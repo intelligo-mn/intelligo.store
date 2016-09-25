@@ -58,8 +58,7 @@
     &:first-child {
       > a,
       > span {
-        border-radius: @pagination-border-radius 0 0 @pagination-border-radius;
-        border-left: none;
+        border-radius: 25px 0 0 25px;
       }
       &.previous + li {
         > a,
@@ -76,7 +75,7 @@
         &,
         &:hover,
         &:focus {
-          border-radius: 0 @pagination-border-radius @pagination-border-radius 0;
+          border-radius: 0 25px 25px 0;
         }
       }
     }
@@ -134,23 +133,23 @@
     // Link
     > a,
     > span {
+
       display: inline-block;
       background: transparent;
       border: none;
-      border-left: 2px solid mix(@pagination-bg, white, 66%);
+      border: 1px solid #eee;
       color: black;
-      font-size: ceil((@component-font-size-base * 0.933)); // ~14px
+      font-size: 14px;
       line-height: 16px;
       min-height: 23px;
       min-width: 23px;
       outline: none;
-      padding: 8px 12px;
+      padding: 5px 20px;
       text-align: center;
-      transition: .25s ease-out;
+      transition: 0.25s ease-out;
       background-color: white;
-      border-radius: 50%;
-      margin-left: 6px;
-
+      border-radius: 50px;
+      margin-left: 8px;
       &:hover,
       &:focus {
         background-color: @pagination-hover-bg;

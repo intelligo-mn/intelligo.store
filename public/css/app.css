@@ -2553,8 +2553,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination li:first-child > a,
 .pagination li:first-child > span {
-  border-radius: 0.375em 0 0 0.375em;
-  border-left: none;
+  border-radius: 25px 0 0 25px;
 }
 .pagination li:first-child.previous + li > a,
 .pagination li:first-child.previous + li > span {
@@ -2569,7 +2568,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination li:last-child > span:hover,
 .pagination li:last-child > a:focus,
 .pagination li:last-child > span:focus {
-  border-radius: 0 0.375em 0.375em 0;
+  border-radius: 0 25px 25px 0;
 }
 .pagination li.previous > a,
 .pagination li.next > a,
@@ -2622,19 +2621,19 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   display: inline-block;
   background: transparent;
   border: none;
-  border-left: 2px solid #dddddd;
+  border: 1px solid #eee;
   color: black;
   font-size: 14px;
   line-height: 16px;
   min-height: 23px;
   min-width: 23px;
   outline: none;
-  padding: 8px 12px;
+  padding: 5px 20px;
   text-align: center;
   transition: 0.25s ease-out;
   background-color: white;
-  border-radius: 50%;
-  margin-left: 6px;
+  border-radius: 50px;
+  margin-left: 8px;
 }
 .pagination li > a:hover,
 .pagination li > span:hover,
@@ -6134,7 +6133,7 @@ small,
   margin-top: 70px;
 }
 .navbar-nav .breadcrumb {
-  margin-top: 0px !important;
+  margin-top: 10px !important;
 }
 .container .breadcrumb {
   margin-top: 70px;
