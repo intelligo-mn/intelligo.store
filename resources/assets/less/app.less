@@ -11,7 +11,7 @@
 html,body{
 	height: 100%;
 	font-weight: 300;
-	background-color: white;
+	background-color: #eeeeee;
 }
 
 footer{
@@ -842,6 +842,7 @@ section{
 			height: 100%;
 			width: 100%;
 			background-size: cover;
+			object-fit: cover;
 			overflow: hidden;
 			cursor: pointer;
 		}
@@ -883,7 +884,7 @@ section{
 		.product-price
 		{
 			position: absolute;
-			margin-top: 10em;
+			margin-top: 10px;
 			background-color: @ligh;
 			padding: 0.2em;
     		padding-bottom: 1.5em;
@@ -897,8 +898,8 @@ section{
 		.product-reviews
 		{
 			position: absolute;
-			right: 1.2em;
-			margin-top: 10em;
+			right: 10px;
+			margin-top: 10px;
 			background-color: @ligh;
 			padding: 0.2em;
     		padding-bottom: 1.5em;
@@ -912,6 +913,9 @@ section{
 		.product-overflow
 		{
 			overflow: visible;
+			border: none;
+			border-radius: 0;
+			padding: 10px !important;
 		}
 
 	}
