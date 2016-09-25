@@ -10,9 +10,8 @@
 			<div class="navbar-brand">
 				<a href="/home" class="navbar-brand">
 					@if($main_company['logo'])
-						<span class="navbar-brand-text">
-							<img src="{{$main_company['logo']}}" alt="">
-						</span>
+						
+						<span class="navbar-brand-text">{{ $main_company['name'] }}</span>
 					@else
 						<span class="navbar-brand-text">{{ $main_company['name'] }}</span>
 					@endif

@@ -11,7 +11,7 @@
 html,body{
 	height: 100%;
 	font-weight: 300;
-	background-color: #eeeeee;
+	background-color: #fafafa;
 }
 
 footer{
@@ -849,7 +849,11 @@ section{
 
 		.product-actions
 		{
-			height: 3.889em;
+			height: 30px;
+		    right: 20px;
+		    width: 90px;
+		    top: 170px;
+		    position: absolute;
 
 			.wrapper
 			{
@@ -858,25 +862,37 @@ section{
 				margin: 0;
 			}
 
+			.eye {
+				color: #70d7b1;
+			}
+
+			.heart {
+				color: #ed4956;
+			}
+
+			.cart {
+				color: #3b5998;
+			}
+
 			.option
-			{
-				background-color: @clouds;
-				color: @ligh;
-				width: 100%;
-				height: 1.5em;
-				cursor: pointer;
-				font-size: @font-size-h1;
-				transition: background-color 0.5s ease;
-				-webkit-transition: background-color 0.5s ease;
-				-moz-transition: background-color 0.5s ease;
-				-o-transition: background-color 0.5s ease;
-				padding:10px 0 0 2px;
-				border: none;
+			{    
+				background-color: #ecf0f1;
+			    width: 30px;
+			    float: right;
+			    height: 30px;
+			    cursor: pointer;
+			    font-size: 20px;
+			    transition: background-color 0.5s ease;
+			    -webkit-transition: background-color 0.5s ease;
+			    -moz-transition: background-color 0.5s ease;
+			    -o-transition: background-color 0.5s ease;
+			    padding: 5px;
+			    border: none;
 			}
 
 			.option:hover
 			{
-				background-color: @brand-primary;
+				background-color: white;
 			}
 
 		}
@@ -884,29 +900,25 @@ section{
 		.product-price
 		{
 			position: absolute;
-			margin-top: 10px;
-			background-color: @ligh;
-			padding: 0.2em;
-    		padding-bottom: 1.5em;
-			color: @midnight-blue;
-			font-weight: bold;
-			font-size: 1.000em;
-			opacity: 0.85;
-			height: 1.5em;
+		    background: rgba(0, 0, 0, 0.5);
+		    padding: 0.2em;
+		    padding-bottom: 1.5em;
+		    color: white;
+		    font-weight: bold;
+		    font-size: 1.000em;
+		    height: 1.5em;
 		}
 
 		.product-reviews
 		{
 			position: absolute;
-			right: 10px;
-			margin-top: 10px;
-			background-color: @ligh;
+			right: 20px;
+			background: rgba(0, 0, 0, 0.5);
 			padding: 0.2em;
     		padding-bottom: 1.5em;
-			color: @midnight-blue;
+			color: white;
 			font-weight: bold;
 			font-size: 1.000em;
-			opacity: 0.85;
 			height: 1.5em;
 		}
 
