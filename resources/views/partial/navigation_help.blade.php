@@ -2,7 +2,6 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <span class="fui fui-question-circle"></span>
-            {{ trans('globals.help') }}<span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
             <?php $menu=\Menu::help(true);?>

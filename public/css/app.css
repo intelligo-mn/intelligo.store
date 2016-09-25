@@ -6114,6 +6114,11 @@ small,
 .small {
   line-height: 1;
 }
+.cat-controller-nav {
+  width: 60%;
+  float: left;
+  margin-top: 10px;
+}
 .thumbnail {
   margin-bottom: 0 !important;
 }
@@ -6558,7 +6563,7 @@ footer .credits .col-md-12 {
   margin-top: 3px;
 }
 .navbar-wrapper .navbar .navbar-nav a {
-  padding: 15px 30px;
+  padding: 15px 15px;
   font-size: 0.8em;
 }
 .navbar-wrapper .navbar .navbar-nav a .badge.badge-notifications {
