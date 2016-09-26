@@ -61,8 +61,6 @@ class CategoriesTableSeeder extends Seeder
                     'Home Services'           => ['Home Improvement & Repair', 'Lawn & Garden Care', 'Automotive Services',
                                                     'Computer & Electronics', 'Lessons & Tutoring', ], ];
 
-        $categorias = ['']
-
         //create some Categories for every role
         foreach ($categorias as $categoria => $subCategorias) {
             if ($temptype == 'group') {
@@ -70,39 +68,39 @@ class CategoriesTableSeeder extends Seeder
             } else {
                 $temptype = 'group';
             }
-            //Category
-            // $inserted = Category::create([
-            //     'name'        => $categoria,
-            //     'description' => $faker->text(90),
-            //     'icon'        => $faker->randomElement($icons),
-            //     'status'      => 1,
-            //     'image'       => 'test',
-            //     'type'        => $temptype,
-            // ]);
+            
+            $inserted = Category::create([
+                'name'        => $categoria,
+                'description' => $faker->text(90),
+                'icon'        => $faker->randomElement($icons),
+                'status'      => 1,
+                'image'       => 'test',
+                'type'        => $temptype,
+            ]);
 
-            // foreach ($subCategorias as $subCategoria) {
-            //     $subins = Category::create([
-            //         'category_id' => $inserted->id,
-            //         'name'        => $subCategoria,
-            //         'description' => $faker->text(90),
-            //         'image'       => 'testsub',
-            //         'icon'        => $faker->randomElement($icons),
-            //         'status'      => 1,
-            //         'type'        => $inserted->type,
-            //     ]);
+            foreach ($subCategorias as $subCategoria) {
+                $subins = Category::create([
+                    'category_id' => $inserted->id,
+                    'name'        => $subCategoria,
+                    'description' => $faker->text(90),
+                    'image'       => 'testsub',
+                    'icon'        => $faker->randomElement($icons),
+                    'status'      => 1,
+                    'type'        => $inserted->type,
+                ]);
 
-            //     for ($j = 0; $j < 2; $j++) {
-            //         Category::create([
-            //             'category_id' => $subins->id,
-            //             'name'        => 'another sub',
-            //             'description' => $faker->text(90),
-            //             'image'       => 'testsubsub',
-            //             'icon'        => $faker->randomElement($icons),
-            //             'status'      => 1,
-            //             'type'        => $subins->type,
-            //         ]);
-            //     }
-            // }
+                for ($j = 0; $j < 2; $j++) {
+                    Category::create([
+                        'category_id' => $subins->id,
+                        'name'        => 'another sub',
+                        'description' => $faker->text(90),
+                        'image'       => 'testsubsub',
+                        'icon'        => $faker->randomElement($icons),
+                        'status'      => 1,
+                        'type'        => $subins->type,
+                    ]);
+                }
+            }
         }
     }
 }
