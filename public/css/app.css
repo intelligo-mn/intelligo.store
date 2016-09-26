@@ -6233,7 +6233,11 @@ small,
 .login-wrapper .form-group {
   margin-bottom: 0 !important;
 }
-/*Modu Flat Theme*/
+.login-content-wrapper {
+  width: 30%;
+  max-width: 400px;
+  background-color: transparent;
+}
 html,
 body {
   height: 100%;
@@ -6850,8 +6854,8 @@ section.user-profile .user-photo > img {
   height: 80px;
 }
 section.wrapper-page {
-  background: #5E7A9B;
-  background: linear-gradient(top, #355069 0, #5E7A9B 100%);
+  background: #252830;
+  background: linear-gradient(top, #355069 0, #252830 100%);
   -webkit-font-smoothing: antialiased;
   background-attachment: fixed !important;
   height: 100%;
@@ -7417,10 +7421,8 @@ section.wrapper-page {
 }
 .content_wrapper {
   margin: 0 auto;
-  margin-top: 25px;
+  margin-top: 150px;
   padding: 15px 40px 0 40px;
-  background-color: #FFF;
-  box-shadow: 0px 0px 5px #000;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .content_wrapper {

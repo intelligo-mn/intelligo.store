@@ -69,7 +69,7 @@ return [
         'sign_in_my_account'           => 'Нэвтрэх',
         'are_you_human'                => 'Компьютер биш гэдгээ батал?',
         'set_up_new_account'           => 'Шинэ хэрэглэгч',
-        'create_my_account'            => 'Шинээр бүртгэл үүсгэх',
+        'create_my_account'            => 'Бүртгүүлэх',
         'newsletter_sign_up'           => 'И-мэйл хаягаа бүргүүлж шинэ мэдээлэл хүлээж аваарай.',
         'your_email_address_label'     => 'И-мэйл',
         'sign_up_label'                => 'Бүртгүүлэх',
