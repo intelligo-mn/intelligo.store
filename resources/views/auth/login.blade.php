@@ -38,7 +38,7 @@
 				<div class="form-group" style="height: 81px">
 					{!! Recaptcha::render() !!}
 				</div>
-			
+			    
 				<div class="form-group">
 
 					<a style="100%" href="{{ url('/password/email') }}">
@@ -53,7 +53,7 @@
 						{{ trans('user.sign_in_my_account') }}
 					</button>
 				</div>
-
+				
 				{!! Form::close() !!}
 	    	
 	    	</div> {{-- col --}}
