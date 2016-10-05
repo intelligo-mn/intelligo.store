@@ -1,6 +1,6 @@
 {
 	"name": "tortuvshin/ecommerce",
-	"description": "An Laravel eCommerce",
+	"description": "An Laravel 5 eCommerce",
 	"keywords": ["ecommerce", "laravel","virtual store","store"],
 	"homepage": "http://toroo.info/",
 	"license": "MIT",
