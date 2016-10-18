@@ -123,15 +123,15 @@ class ProductsController extends Controller
         $filters = productsHelper::countingProductsByCategory($all_products, $categories);
 
         //condition
-        $filters['conditions'] = array_count_values($all_products->lists('condition')->toArray());
+        $filters['conditions'] = array_count_values($all_products->pluck('condition')->toArray());
 
         //brand filter
-        $filters['brands'] = array_count_values($all_products->lists('brand')->toArray());
+        $filters['brands'] = array_count_values($all_products->pluck('brand')->toArray());
 
         //features
         $features = [];
         $irrelevant_features = ['images', 'dimensions', 'weight', 'brand']; //this has to be in company setting module
-        foreach ($all_products->lists('features') as $feature) {
+        foreach ($all_products->pluck('features') as $feature) {
             $feature = array_except($feature, $irrelevant_features);
             foreach ($feature as $key => $value) {
                 $features[$key][] = $value;
@@ -148,7 +148,8 @@ class ProductsController extends Controller
         }
 
         //prices filter
-        $prices = $all_products->lists('price', 'price')->toArray();
+        $prices = $all_products->pluck('price', 'price')->toArray();
+
         sort($prices);
 
         //saving tags from searching products in users preferences

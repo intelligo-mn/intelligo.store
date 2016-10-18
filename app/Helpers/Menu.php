@@ -76,8 +76,8 @@ class Menu
     {
         if (\Auth::guest()) { // invidados
             $menu = [
-                ['route' => '/auth/login', 'text' => trans('user.login'), 'divider' => 1],
-                ['route' => '/auth/register', 'text' => trans('user.register')],
+                ['route' => '/login', 'text' => trans('user.login'), 'divider' => 1],
+                ['route' => '/register', 'text' => trans('user.register')],
             ];
         } else {  // logeado
             $menu = self::dashboard(true);
@@ -88,8 +88,6 @@ class Menu
                     ['route' => '/wpanel', 'text' => trans('user.wpanel'), 'icon' => 'glyphicon glyphicon-cog', 'divider' => 1],
                 ]);
             }
-
-            $menu[] = ['route' => '/auth/logout', 'text' => trans('user.logout'), 'icon' => 'glyphicon glyphicon-log-out'];
         }
 
         return $returnArray ? $menu : json_encode($menu);
