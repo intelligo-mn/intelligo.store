@@ -128,71 +128,75 @@
 		        	<div class="panel-body">
 
 	                    {!! Form::open(array('url' => route('orders.add_to_order',['cart',$product->id]), 'method' => 'put')) !!}
-	                    <div class="row">
-							<div class="col-lg-12">
-								<label for = "quantity">{{ trans('store.quantity_long') }}:</label>
-									{!! Form::selectRange(
-			                            	'quantity', 1,
-			                            	$product->stock, 1,
-			                                ['class' => 'form-control input-sm']
-			                        ) !!}
+
+	                    @if (auth()->user()->id != $product->user_id)
+		                    <div class="row">
+								<div class="col-lg-12">
+									<label for = "quantity">{{ trans('store.quantity_long') }}:</label>
+										{!! Form::selectRange(
+				                            	'quantity', 1,
+				                            	$product->stock, 1,
+				                                ['class' => 'form-control input-sm']
+				                        ) !!}
+			                    </div>
 		                    </div>
-	                    </div>
 
-	                    <hr>
+		                    <hr>
 
-	                    <div class="row">
-	                    	<div class="col-lg-12">
-								<button type="submit" class="btn btn-warning btn-sm full-width">
-									<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
-									{{ trans('store.add_to_cart') }}
-								</button>
-							</div>
-	                    </div>
+		                    <div class="row">
+		                    	<div class="col-lg-12">
+									<button type="submit" class="btn btn-warning btn-sm full-width">
+										<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
+										{{ trans('store.add_to_cart') }}
+									</button>
+								</div>
+		                    </div>
 
-						<div class="row">&nbsp;</div>
+							<div class="row">&nbsp;</div>
 
-	                    <div class="row">
+		                    <div class="row">
 
-	                    	<div class="col-lg-12">
+		                    	<div class="col-lg-12">
 
-									@if (Auth::check())
+										@if (Auth::check())
 
-		                                <div class="dropdown">
+			                                <div class="dropdown">
 
-		                                    <button class="btn btn-default dropdown-toggle btn-sm full-width" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-		                                        <span class="glyphicon glyphicon-heart"></span>&nbsp;
-		                                        {{ trans('store.addToWishList') }}
-		                                        <span class="caret"></span>
-		                                    </button>
+			                                    <button class="btn btn-default dropdown-toggle btn-sm full-width" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			                                        <span class="glyphicon glyphicon-heart"></span>&nbsp;
+			                                        {{ trans('store.addToWishList') }}
+			                                        <span class="caret"></span>
+			                                    </button>
 
-		                                    <ul class="dropdown-menu dropdown-menu-left btn-sm" aria-labelledby="dropdownMenu1">
-		                                        <li>
-		                                            <a href="{{ route('orders.add_to_order',['wishlist',$product->id]) }}">
-		                                                {{ trans('store.wish_list') }}
-		                                            </a>
-		                                        </li>
-		                                        @if (count($allWishes)>0)
-		                                            <li class="dropdown-header">{{ trans('store.your_wish_lists') }}</li>
-		                                        @endif
-		                                        @foreach($allWishes as $wishList)
-		                                            <li><a href="{{ route('orders.add_to_order_by_id',[$wishList->id,$product->id]) }}">{{ $wishList->description }}</a></li>
-		                                        @endforeach
+			                                    <ul class="dropdown-menu dropdown-menu-left btn-sm" aria-labelledby="dropdownMenu1">
+			                                        <li>
+			                                            <a href="{{ route('orders.add_to_order',['wishlist',$product->id]) }}">
+			                                                {{ trans('store.wish_list') }}
+			                                            </a>
+			                                        </li>
+			                                        @if (count($allWishes)>0)
+			                                            <li class="dropdown-header">{{ trans('store.your_wish_lists') }}</li>
+			                                        @endif
+			                                        @foreach($allWishes as $wishList)
+			                                            <li><a href="{{ route('orders.add_to_order_by_id',[$wishList->id,$product->id]) }}">{{ $wishList->description }}</a></li>
+			                                        @endforeach
 
-		                                    </ul>
-		                                </div>
+			                                    </ul>
+			                                </div>
 
-	                                @else
-	                                    <a  href="/auth/login btn-sm" class="btn btn-info full-width">
-	                                    	<span class="glyphicon glyphicon-heart"></span>&nbsp;
-	                                    	{{ trans('store.addToWishList') }}
-	                                    </a>
-	                                @endif
+		                                @else
+		                                    <a  href="/auth/login btn-sm" class="btn btn-info full-width">
+		                                    	<span class="glyphicon glyphicon-heart"></span>&nbsp;
+		                                    	{{ trans('store.addToWishList') }}
+		                                    </a>
+		                                @endif
 
-							</div>
-	                    </div>
+								</div>
+		                    </div>
 
-						<hr>
+							<hr>
+						@endif
+
 	                    <div class="row">
 	                    	<div class="col-lg-12">
 	                    		<button type="button" id="facebook" class="btn btn-primary btn-sm full-width">

@@ -11,6 +11,7 @@
 @section('content')
 
     <div id="menu-top-category" class="container">
+         <div class="row">&nbsp;</div>
          <ol class="breadcrumb">
             <li class="total">
                 <span class="badge">{{ $products->total() }}</span> <small> {{ trans('globals.searchResults') }} </small>
