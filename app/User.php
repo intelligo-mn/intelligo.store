@@ -3,24 +3,26 @@
 namespace app;
 
 /*
- * Modu - User Model
+ * Modu - Users Model
  *
  * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
  */
 
-use App\Eloquent\Model;
 use App\Log;
 use App\Order;
 use App\UserPoints;
+use App\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Notifications\Auth\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable,CanResetPassword,SoftDeletes;
+    use Authenticatable, CanResetPassword, SoftDeletes, Notifiable;
 
     /**
      * The database table used by the model.
@@ -185,5 +187,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         } else {
             return false;
         }
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
