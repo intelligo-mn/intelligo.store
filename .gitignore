@@ -6,3 +6,8 @@
 .env
 composer.lock
 .idea/
+
+/inilab/*
+/sms/*
+/socialite/*
+/pos/*
