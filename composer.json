@@ -1,6 +1,6 @@
 {
-	"name": "tortuvshin/ecommerce",
-	"description": "An Laravel 5 eCommerce",
+	"name": "tortuvshin/eCommerce",
+	"description": "An Laravel eCommerce",
 	"keywords": ["ecommerce", "laravel","virtual store","store"],
 	"homepage": "http://toroo.info/",
 	"license": "MIT",
@@ -12,19 +12,19 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/tortuvshin/modu-ecommerce/issues",
-		"source": "https://github.com/tortuvshin/modu-ecommerce"
+		"issues": "https://github.com/tortuvshin/ecommerce/issues",
+		"source": "https://github.com/tortuvshin/ecommerce"
 	},
 	"require": {
-		"php": ">=5.5.9",
-		"laravel/framework": "5.2.*",
+		"php": ">=5.6.4",
+        "laravel/framework": "5.3.*",
 		"doctrine/dbal": "^2.5",
-		"laravelcollective/html": "5.2.*",
+		"laravelcollective/html": "5.3.*",
 		"fzaninotto/faker": "^1.5",
 		"laravel/socialite": "^2.0",
 		"intervention/image": "^2.3",
 		"greggilbert/recaptcha": "dev-master@dev",
-		"barryvdh/laravel-dompdf": "0.6.*",
+		"barryvdh/laravel-dompdf": "0.7.*",
 		"barryvdh/laravel-debugbar": "^2.0",
 		"predis/predis": "^1.0",
 		"davejamesmiller/laravel-breadcrumbs": "^3.0",
