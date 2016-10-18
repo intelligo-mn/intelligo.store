@@ -59,7 +59,7 @@ RECAPTCHA_PRIVATE_KEY = ModuRecaptcahPrivateKeyObtained
 
 ***Note:*** ```APP_DEBUG == true```, reCaptcha will not be applied
 
-## Using Laravel Elixir ашиглах
+## Laravel Elixir ашиглах
  
  Gulp суулгах:
 
