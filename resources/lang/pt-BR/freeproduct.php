@@ -1,0 +1,48 @@
+<?php
+
+return [
+    //Informacion and Actions
+    'create'                           => 'Criar produto grátis',
+    'products_included'                => 'Produtos incluídos',
+    'information_detail'               => 'Detalhe das informações',
+    'participations'                   => 'Participações',
+    'loading_freeproduct'              => 'Carregando produto gratuíto',
+    'participate'                      => 'Participar',
+    'coming_soon'                      => 'Em breve...',
+    'you_are_participating'            => 'Você está participando !!!',
+    'go_to_package'                    => 'r para o Pacote de Produtos Grátis',
+    'purchase_this_item'               => 'Comprar esse item',
+    'promote'                          => 'Promover',
+    //Labels
+    'description'                      => 'Descrição',
+    'start_date'                       => 'Data de início',
+    'end_date'                         => 'Data de término',
+    'participation_cost'               => 'Custo de participação(pontos)',
+    'max_participants'                 => 'Máx Participantes',
+    'min_participants'                 => 'Mín Participants',
+    'max_participations_per_user'      => 'Participações máx por usuário',
+    'draw_number'                      => 'Especifique o número',
+    'draw_date'                        => 'Especifique a data',
+    'conditions'                       => 'Condições',
+    'price_original'                   => 'Preço original',
+    //Errors
+    'unauthorized_access'              => 'Acesso não autorizado. Para criar um produto gratuito , você deve ter as permissões necessárias para tal ação.',
+    'order_type_invalid'               => 'O tipo de ordem que você pretende processar não cumpre os requisitos para criar um produto gratuito',
+    'error_exception'                  => 'Ocorreu durante a criação do produto grátis. Por favor, tente novamente mais tarde.',
+    'drawnumber_exceed_total_products' => 'O número total de vencedores não pode exceder o total de produtos na sua freeproduct',
+    'address_not_registered'           => 'Não tem um endereço registrado . Isto será necessário caso seja vencedor do freeproduct',
+    'freeproduct_not_exist'            => 'O produto gratuito que deseja visualizar não existe',
+    'freeproduct_not_activated'        => 'O produto gratuito que pretende ver não está ativado',
+    'freeproduct_not_available'        => 'Este produto não está mais disponível para você participar.',
+    'not_enough_point'                 => 'Desculpe, mas você não tem pontos suficientes para participar deste produto gratuito.',
+    'participations_not_available'     => 'Nos desculpe. Actualmente não há mais disponibilidade para este produto gratuito.',
+    'max_participations_for_user'      => 'Você não pode mais participar deste produto gratuito, devido às condições estabelecidas para a sua participação.',
+    //Message
+    'saved_successfully'               => 'Produto grátis salvo com sucesso.',
+    'freeproduct_exist'                => 'O produto gratuito já foi registrado. Estas são as características dele.',
+    'congratulations_participate'      => 'Parabéns!!! Você está participando deste produto gratuito. Você será notificado por e-mail caso seja o vencedor.',
+    'not_freeproduct_registered'       => 'Não existem produtos grátis registrados.',
+    'not_freeproducts_activated'       => 'Não existem produtos grátis registrados e ativados.',
+    'not_freeproducts_inactivated'     => 'Não existem produtos grátis registrados e inativos.',
+    'not_freeproduct_participating'    => 'Você não está participando atualmente de um produto gratuito.',
+];
