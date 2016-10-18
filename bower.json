@@ -35,6 +35,6 @@
     "angular-lazy-img": "~1.2.2"
   },
   "resolutions": {
-    "angular": "1.2.15"
+    "angular": "1.4.12"
   }
 }
