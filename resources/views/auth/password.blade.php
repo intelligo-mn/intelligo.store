@@ -23,13 +23,13 @@
 			<div class="col-md-12">
 
 				@if (session('status'))
-					<div class="alert alert-success">
-						{{ session('status') }}
-					</div>
-				@endif
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
 				<form role="form" method="POST" action="{{ url('/password/email') }}">
-					
+
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 					<div class="form-group">
@@ -43,7 +43,7 @@
 					<div class="form-group">
 						<div class="btn-group" role="group">
 							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span>&nbsp;{{ trans('user.reset_password') }}</button>
-							<a href="/auth/login" class="btn btn-info"><span class="fa fa-sign-in"></span>&nbsp;{{  trans('user.sign_in_my_account') }}</a>
+							<a href="/login" class="btn btn-info"><span class="fa fa-sign-in"></span>&nbsp;{{  trans('user.sign_in_my_account') }}</a>
 						</div>
 					</div>
 

@@ -20,14 +20,14 @@
 <div class="content_wrapper">
 	<div class="row">
 		<div class="col-md-12">
-			
-				{!! Form::open(['url'=>'auth/register', 'class'=>'form-horizontal', 'role'=>'form']) !!}
+
+				{!! Form::open(['url'=>'/register', 'class'=>'form-horizontal', 'role'=>'form']) !!}
 
 					<div class="form-group" id="business_div" style="display:none;">
 						{!! Form::label('business_name',trans('user.business_name')) !!}
 						{!! Form::text('business_name', null, ['ng-disabled'=>'disabled','class'=>'form-control']) !!}
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-md-6 col-lg-6 ">
 							{!! Form::label('first_name',trans('user.first_name')) !!}:
@@ -50,7 +50,7 @@
 							{!! Form::label('email',trans('user.email')) !!}:
 							<div class="input-group">
 					      		<div class="input-group-addon"><span class="fa fa-envelope"></span></div>
-								{!! Form::email('email', (\Request::get('email')!='' ? \Request::get('email') : null), ['ng-disabled'=>'disabled','class'=>'form-control']) !!}
+								{!! Form::email('email', $email, ['ng-disabled'=>'disabled','class'=>'form-control']) !!}
 							</div>
 						</div>
 					</div>
@@ -71,19 +71,19 @@
 							{!! Recaptcha::render() !!}
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-md-12">
 							<hr>
 							<div class="btn-group" role="group">
 								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span>&nbsp;{{ trans('user.create_my_account') }}</button>
-								<a href="/auth/login" class="btn btn-info"><span class="fa fa-sign-in"></span>&nbsp;{{  trans('user.sign_in_my_account') }}</a>
+								<a href="/login" class="btn btn-info"><span class="fa fa-sign-in"></span>&nbsp;{{  trans('user.sign_in_my_account') }}</a>
 							</div>
 						</div>
 					</div>
-				
+
 				{!! Form::close() !!}
-			
+
 		</div>
 	</div>
 </div>
