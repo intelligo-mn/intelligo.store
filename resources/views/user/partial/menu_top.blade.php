@@ -2,7 +2,8 @@
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 			<span class="glyphicon glyphicon-user  @if(Auth::check()){{ 'user-photo' }}@endif"
 				  style="@if(Auth::check()) {{ "background-image:url('".(\Auth::user()->pic_url?\Auth::user()->pic_url:'img/no-avatar.png')."');" }} @endif"></span>
-			{{ trans('user.your_account') }} <span class="caret"></span>
+			<!-- {{ trans('user.your_account') }} -->
+			 <span class="caret"></span>
 		</a>
 	<ul class="dropdown-menu" role="menu" >
 		<?php $menu=\Menu::top(true);?>

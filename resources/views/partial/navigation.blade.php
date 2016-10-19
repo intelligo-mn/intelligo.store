@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand">
+			<!-- <div class="navbar-brand">
 				<a href="/home" class="navbar-brand">
 					@if($main_company['logo'])
 						<span class="navbar-brand-text">
@@ -21,21 +21,59 @@
 						<span class="navbar-brand-slogan">{{$main_company['slogan']}}</span>
 					@endif
 				</a>
-			</div>
+			</div> -->
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
+			<nav ng-controller="CategoriesController">
+				{!! Form::model(Request::all(),['url'=> action('ProductsController@index'), 'method'=>'GET', 'id'=>'searchForm']) !!}
+				<div class="input-group">
+					<span class="input-group-btn categories-search">
+						<button  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<span ng-bind="catSelected.name || '{{ isset($categories_menu[Request::get('category')]['name']) ? $categories_menu[Request::get('category')]['name'] : trans('store.all_categories') }}'">
+								{{ isset($categories_menu[Request::get('category')]['name']) ? $categories_menu[Request::get('category')]['name'] : trans('store.all_categories') }}
+								</span> <span class="caret">
+							</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							@foreach($categories_menu as $categorie_menu)
+								<li >
+									<a href="javascript:void(0)"
+									   ng-click="setCategorie({{ $categorie_menu['id'] }},'{{ $categorie_menu['name'] }}')" >
+										{{ $categorie_menu['name'] }}
+									</a>
+								</li>
+							@endforeach
+
+						</ul>
+					</span>
+					<input type="hidden" name="category" value="[[refine() || '{{Request::get('category')}}']]"/>
+
+					@include('partial.search_box',['angularController' => 'AutoCompleteCtrl', 'idSearch'=>'search'])
+
+					<span class="input-group-btn">
+						<button class="btn btn-default fui-search" type="submit"></button>
+					</span>
+				</div>
+				{!! Form::close() !!}
+			</nav>
 			<ul class="nav navbar-nav">
+
 
 				@include('user.partial.menu_top')
 
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						<span class="fui fui-heart"></span>{{ trans('store.wish_list') }}
+						<span class="fui fui-heart"></span>
+						<!-- {{ trans('store.wish_list') }} -->
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="{{ route('orders.show_wish_list') }}">{{ trans('store.wish_list') }}</a></li>
-						<li><a href="{{ route('orders.show_list_directory') }}">{{ trans('store.your_wish_lists') }}</a></li>
+						<li><a href="{{ route('orders.show_wish_list') }}">
+						<!-- {{ trans('store.wish_list') }} -->
+						</a></li>
+						<li><a href="{{ route('orders.show_list_directory') }}">
+						<!-- {{ trans('store.your_wish_lists') }} -->
+						</a></li>
 					</ul>
 				</li>
 
@@ -47,7 +85,8 @@
 						<span class="badge badge-cart">{{ array_sum(Session::get('user.cart_content')) }} </span>
 						@endif
 
-						<span class="glyphicon glyphicon-shopping-cart"></span>{{ trans('store.cart') }}
+						<span class="glyphicon glyphicon-shopping-cart"></span>
+						<!-- {{ trans('store.cart') }} -->
 						<span class="caret"></span>
 					</a>
 
@@ -90,7 +129,8 @@
 					<li class="dropdown " id="push-notices" ng-controller="PushNoticesController"  ng-click="check()" ng-focus="check()">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 							<span class="badge badge-notifications ng-hide" ng-cloak  ng-show="push">[[push]]</span>
-							<span class="fui fui-chat"></span>{{ trans('globals.notices') }}
+							<span class="fui fui-chat"></span>
+							<!-- {{ trans('globals.notices') }} -->
 							<span class="visible-xs-inline">
 								<span class="caret"></span>
 							</span>
@@ -126,37 +166,4 @@
 			@include('partial.navigation_help')
 		</div>
 	</nav>
-
-	<nav ng-controller="CategoriesController">
-		{!! Form::model(Request::all(),['url'=> action('ProductsController@index'), 'method'=>'GET', 'id'=>'searchForm']) !!}
-		<div class="input-group">
-			<span class="input-group-btn categories-search">
-				<button  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					<span ng-bind="catSelected.name || '{{ isset($categories_menu[Request::get('category')]['name']) ? $categories_menu[Request::get('category')]['name'] : trans('store.all_categories') }}'">
-						{{ isset($categories_menu[Request::get('category')]['name']) ? $categories_menu[Request::get('category')]['name'] : trans('store.all_categories') }}
-						</span> <span class="caret">
-					</span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					@foreach($categories_menu as $categorie_menu)
-						<li >
-							<a href="javascript:void(0)"
-							   ng-click="setCategorie({{ $categorie_menu['id'] }},'{{ $categorie_menu['name'] }}')" >
-								{{ $categorie_menu['name'] }}
-							</a>
-						</li>
-					@endforeach
-
-				</ul>
-			</span>
-			<input type="hidden" name="category" value="[[refine() || '{{Request::get('category')}}']]"/>
-
-			@include('partial.search_box',['angularController' => 'AutoCompleteCtrl', 'idSearch'=>'search'])
-
-			<span class="input-group-btn">
-				<button class="btn btn-default fui-search" type="submit"></button>
-			</span>
-		</div>
-		{!! Form::close() !!}
-		</nav>
 </div>
