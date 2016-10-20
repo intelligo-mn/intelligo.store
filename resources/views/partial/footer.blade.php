@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-xs-4 col-sm-4 col-md-4 menu">
 			<?php $menu=\Menu::help(true); ?>
 			<h3>{{ trans('globals.company_label') }}</h3>
@@ -35,7 +35,7 @@
 		</div>
 
 	</div>
-
+ -->
 	<div class="row credits">
 		<div class="col-md-12">
 			{{ trans('globals.power_by_label') }}&nbsp;<a href="http://antvel.com">{{ trans('globals.antvel_eCommerce') }}</a>

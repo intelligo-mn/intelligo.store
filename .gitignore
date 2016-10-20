@@ -11,5 +11,6 @@ composer.lock
 /sms/*
 /socialite/*
 /pos/*
+/antvel/*
 app/Http/Controllers/.DS_Store
 app/Notifications/.DS_Store

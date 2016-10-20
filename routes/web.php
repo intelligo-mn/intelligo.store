@@ -16,7 +16,10 @@
 Auth::routes();
 
 // home
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+Route::get('/', ['uses' => 'ProductsController@index', 'as' => 'products']);
+
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');
