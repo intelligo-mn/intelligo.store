@@ -6129,15 +6129,6 @@ small,
   box-shadow: 0px 2px 20px -5px rgba(51, 51, 51, 0.3);
   transition: border 0.2s ease-in-out;
 }
-#menu-top-category .breadcrumb {
-  margin-top: 70px;
-}
-.navbar-nav .breadcrumb {
-  margin-top: 10px !important;
-}
-.container .breadcrumb {
-  margin-top: 70px;
-}
 .breadcrumb {
   background-color: transparent;
   margin-bottom: 0px !important;
@@ -6145,9 +6136,6 @@ small,
 .categories-panel {
   background-color: transparent ;
   padding: 0 !important;
-}
-.navbar-static-top {
-  position: fixed;
 }
 .navbar-static-top .navbar-collapse {
   box-shadow: 0px 2px 11px -1px rgba(51, 51, 51, 0.3);
