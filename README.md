@@ -1,6 +1,6 @@
 ## Цахим худалдааны системийн танилцуулга
 
-Энэхүү онлайн худалдааны платпормыг Laravel 5. хувилбар дээр хөгжүүлж байна.
+Энэхүү онлайн худалдааны платпормыг Laravel 5.3. хувилбар дээр хөгжүүлж байна.
 
 <a name="installation"></a>
 ## Суулгах
@@ -8,7 +8,7 @@
 Дараах коммандыг ажиллуулж энэхүү төслийг clone хийж авна:
 
 ```
-git clone https://github.com/tortuvshin/modu-ecommerce.git
+git clone https://github.com/tortuvshin/ecommerce.git
 ```
 
 Дараа нь, энэхүү төслийг татаж авсан хавтаст орж composer update/install комманд ажиллуулна
