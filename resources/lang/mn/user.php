@@ -50,7 +50,7 @@ return [
         'your_recommendations'         => 'Таны зөвлөмж',
         'your_wishlist'                => 'Таны авахыг хүссэн бараа',
         'your_products'                => 'Таны бараа',
-        'your_free_products'           => 'Таны зар',
+        'your_free_products'           => 'Таны бүтээгдэхүүн',
         'account_resume'               => 'Хувийн мэдээлэл',
         'business_name'                => 'Байгууллагын нэр',
         'disable_account'              => 'Бүртгэл идэвхгүй болгох',

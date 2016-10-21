@@ -3,15 +3,15 @@
 return [
    //globals +2 view or controller
    'globals' => [
-      'add'                   => 'Шинэ зар нэмэх',
-      'loading_product_info'  => 'Зарын мэдээлэл уншиж байна...',
+      'add'                   => 'Шинэ бүтээгдэхүүн',
+      'loading_product_info'  => 'Бүтээгдэхүүний мэдээлэл уншиж байна...',
       'categories'            => 'Ангилалууд',
       'digital_item'          => 'Digital item',
       'features'              => 'Features',
       'key'                   => 'Key',
-      'new_product'           => 'New product',
+      'new_product'           => 'Шинэ бүтээгдэхүүн',
       'price'                 => 'Үнэ',
-      'product_information'   => 'Зарын мэдээлэл',
+      'product_information'   => 'Бүтээгдэхүүний мэдээлэл',
       'description'           => 'Тайлбар',
       'comments'              => 'Сэтгэгдэлүүд',
       'save'                  => 'Батлах',
@@ -56,7 +56,7 @@ return [
       'sold_by'         => 'Sold by',
    ],
    'controller' => [
-      'gift_card'          => 'Gift Card',
+      'gift_card'          => 'Бэлгийн карт',
       'item'               => 'Item',
       'may_invalid_keys'   => 'One or more keys may be invalid.',
       'new'                => 'New',
