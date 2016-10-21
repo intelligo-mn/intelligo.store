@@ -285,7 +285,7 @@
 @section('scripts')
     @parent
 
-	{!! Html::script('/antvel-bower/angular-lazy-img/release/angular-lazy-img.min.js') !!}
+	{!! Html::script('/modu-bower/angular-lazy-img/release/angular-lazy-img.min.js') !!}
 
 	<script src = "https://connect.facebook.net/en_US/sdk.js"></script>
 
