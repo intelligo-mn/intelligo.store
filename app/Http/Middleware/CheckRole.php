@@ -18,16 +18,10 @@ class CheckRole
     {
         $roles = $this->getRequiredRoleForRoute($request->route());
 
-        if ($request->user()->hasRole($roles) || !$roles) {
+        if (auth()->check() && $request->user()->hasRole($roles) || !$roles) {
             return $next($request);
         }
-        // return response([
-        // 	'error' => [
-        // 		'code' => 'INSUFFICIENT_ROLE',
-        // 		'description' => trans('user.insufficient_role')
-        // 	]
-        // ], 401);
-        //
+        
         return redirect()->route('home');
     }
 
