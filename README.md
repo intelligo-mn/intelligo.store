@@ -81,3 +81,5 @@ Gulp ашиглах:
 ```
 gulp
 ```
+
+[Features](https://github.com/tortuvshin/ecommerce/blob/master/ToDo.md)
