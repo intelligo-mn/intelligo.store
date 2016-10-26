@@ -68,7 +68,7 @@
 
                                     @else
 
-                                        <a href="/auth/login" class="btn btn-default btn-sm">
+                                        <a href="/login" class="btn btn-default btn-sm">
                                             <div class = "glyphicon glyphicon-heart"></div>&nbsp;{{ trans('store.add_to_wish_list') }}
                                         </a>
 

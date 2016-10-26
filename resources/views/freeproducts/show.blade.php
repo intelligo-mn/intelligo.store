@@ -78,7 +78,7 @@
                             <a href="#" type="button" class="btn btn-success">{{ trans('freeproduct.promote') }}</a>
                         @endif
                     @else
-                        <a href="/auth/login/" type="button" class="btn btn-success">{{ trans('user.login') }}</a>
+                        <a href="/login/" type="button" class="btn btn-success">{{ trans('user.login') }}</a>
                     @endif
                 </div>
 

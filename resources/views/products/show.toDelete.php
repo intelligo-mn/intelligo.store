@@ -156,7 +156,7 @@
                                 </div>
 
                                 @else
-                                    <a  href="/auth/login" class="btn btn-info ">{{ trans('store.addToWishList') }}</a>
+                                    <a  href="/login" class="btn btn-info ">{{ trans('store.addToWishList') }}</a>
                                 @endif
                                 </div>
 

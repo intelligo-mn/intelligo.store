@@ -183,7 +183,7 @@
 		                                </div>
 
 	                                @else
-	                                    <a  href="/auth/login btn-sm" class="btn btn-info full-width">
+	                                    <a  href="/login btn-sm" class="btn btn-info full-width">
 	                                    	<span class="glyphicon glyphicon-heart"></span>&nbsp;
 	                                    	{{ trans('store.addToWishList') }}
 	                                    </a>
