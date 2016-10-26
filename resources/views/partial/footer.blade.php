@@ -38,7 +38,7 @@
  -->
 	<div class="row credits">
 		<div class="col-md-12">
-			{{ trans('globals.power_by_label') }}&nbsp;<a href="http://antvel.com">{{ trans('globals.antvel_eCommerce') }}</a>
+			{{ trans('globals.power_by_label') }}&nbsp;<a href="http://github.com/tortuvshin/ecommerce">{{ trans('globals.antvel_eCommerce') }}</a>
 		</div>
 	</div>
 
@@ -54,7 +54,7 @@
 					  	$scope.save = function()
 					  	{
 					  		if ($scope.newsEmail.trim() != '') {
-					  			$window.location.href = '/auth/register?email='+$scope.newsEmail;
+					  			$window.location.href = '/register?email='+$scope.newsEmail;
 					  		} else {
 					  			notify({ duration:5000, messageTemplate: '<strong>{{ trans('globals.validation_error_label') }}</strong><br><br><p>{{ trans('globals.newsletter_email_error') }}</p>', classes: 'alert alert-danger' });
 					  		}
