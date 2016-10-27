@@ -88,6 +88,7 @@ Route::group(['prefix' => 'user', 'roles' => array_keys(trans('globals.roles')),
     Route::get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
 
     //filtered by dates
+    
     Route::post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
 
     Route::get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
