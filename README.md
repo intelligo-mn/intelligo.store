@@ -1,12 +1,8 @@
-<p align="center">
-<a href="http://boxshop.mn/">
-</a><br>
-	<b>Laravel Ecommerce Platform</b>
-</p>
+## Цахим худалдааны системийн танилцуулга
 
-This is a e-commerce platform I made mostly using Laravel 5.4
+Энэхүү онлайн худалдааны платпормыг Laravel 5.4. хувилбар дээр хөгжүүлж байна.
 
-## Requirements
+## Сэрвэрийн үзүүлэлт
 
 	PHP >= 5.6.4
 	MySQL >= 5.7
@@ -18,55 +14,107 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 
 
 <a name="installation"></a>
-## Install
+## Суулгах
 
-Clone repo
+Дараах коммандыг ажиллуулж энэхүү төслийг clone хийж авна:
 
 ```
 git clone https://github.com/tortuvshin/ecommerce.git
 ```
 
-Install Composer
+Composer татаж суулгана
 
 ```
-[Download Composer](https://getcomposer.org/download/)
+[Composer татах](https://getcomposer.org/download/)
 ```
 
-composer update/install 
+Дараа нь, энэхүү төслийг татаж авсан хавтаст орж composer update/install комманд ажиллуулна
 
 ```
 composer install
 ```
 
-Install Nodejs
+Nodejs татаж суулгана 
 
 ```
 https://nodejs.org/en/download/
 ```
 
-NPM dependencies
+NPM сангууд татах
 ```
 npm install
 ```
 
-Using Laravel Mix 
+## Тохируулах
+
+Дараа нь .env-example файлыг өөрчилж .env болгон өөрийн өгөгдлийн сан болон серверийг тохируулна
+
+Өгөгдлийн санг үүсгэж тохируулсаны дараа дараах коммандаар хүснэгтүүдийг үүсгэнэ:
+
+```
+php artisan migrate
+```
+
+Туршилтын өгөгдөл дараах коммандаар оруулна:
+
+```
+php artisan db:seed
+```
+	
+```
+php artisan key:generate
+```
+	
+Frontend хөгжүүлэлтэнд хамааралтай сангуудыг дараах командаар оруулна:
+
+```
+bower install
+```
+
+reChaptcha код авах: 
+
+```
+https://www.google.com/recaptcha/admin#list
+```
+
+```
+RECAPTCHA_PUBLIC_KEY, and RECAPTCHA_PRIVATE_KEY
+```
+
+reCaptcha кодуудаа .env файлд оруулна. Жишээ нь: 
+
+```
+RECAPTCHA_PUBLIC_KEY = ModuRecaptchaPublicKeyObtained
+
+RECAPTCHA_PRIVATE_KEY = ModuRecaptchaPrivateKeyObtained
+```
+
+***Тайлбар:*** ```APP_DEBUG == true``` буюу debug асаалттай байгаа үед reCaptcha хэрэглэхгүй
+
+
+
+NPM сангууд суулгах:
+
+```
+npm install 
+```
+
+Хэрвээ Window үйлдлийн систем  болон VM ашиглаж хөгжүүлэлт хийж байгаа бол дараах коммандыг ажиллуулна: 
+```
+npm install --no-bin-links
+```
+
+Laravel Mix ашиглах
 
 ```
 npm run dev
 ```
 
-## How to setting 
+Туршилтын хэрэглэгчийн мэдээлэл
 
+	Хэрэглэгчийн нэр: admin@admin.com
+	Нууц үг: admin
 
-```
-php artisan migrate
-php artisan db:seed
-```
-	
-Generating a New Application Key
-```
-php artisan key:generate
-```
 
 [NODEJS]: https://nodejs.org/en/download/
 [COMPOSER]: https://getcomposer.org/download/
