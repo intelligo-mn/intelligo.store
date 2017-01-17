@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Orders Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\Address;
 use App\Order;
 use App\OrderDetail;

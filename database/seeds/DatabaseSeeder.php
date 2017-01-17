@@ -21,15 +21,10 @@ class DatabaseSeeder extends Seeder
         $this->call('ProductsTableSeeder');
         $this->call('ProductsDetailTableSeeder');
         $this->call('OrdersTableSeeder');
-        $this->call('ProductsRatesSeeder');
-        $this->call('LogsTableSeeder');
-        $this->call('CommentsTableSeeder');
-        $this->call('VirtualProductsSeeder');
+        // $this->call('ProductsRatesSeeder');
+        // $this->call('LogsTableSeeder');
+        // $this->call('CommentsTableSeeder');
         $this->call('CompanyTableSeeder');
         $this->call('CompanyFeaturesSeeder');
-
-        if (config('app.offering_free_products')) {
-            $this->call('FreeProductsTableSeeder');
-        }
     }
 }

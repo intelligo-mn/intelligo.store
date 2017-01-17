@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Users Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\Business as Business;
 use App\Person as Person;
 use App\User as User;
@@ -38,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 ],
             ]);
         }
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $company_name = $faker->company;
             //business
             Business::create([

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Data Base
- * Users Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -52,6 +46,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }

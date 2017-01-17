@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Data Base
- * Password Resets Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -32,6 +26,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('password_resets');
+        Schema::dropIfExists('password_resets');
     }
 }

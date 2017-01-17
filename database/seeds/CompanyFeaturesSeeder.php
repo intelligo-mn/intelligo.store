@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Main Company Features Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\Company;
 use App\CompanyFeatures;
 use Illuminate\Database\Seeder;

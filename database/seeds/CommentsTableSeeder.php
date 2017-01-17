@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Comments Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\ActionType;
 use App\Comment;
 use App\User;

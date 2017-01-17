@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Products Rates Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\Address;
 use App\Category;
 use App\Order;
@@ -48,14 +42,14 @@ class ProductsRatesSeeder extends Seeder
         $seededProduct = Product::create([
             'category_id'  => $catforseed->id,
             'user_id'      => '3', //3,
-            'name'         => 'My Seeded Product',
+            'name'         => '16 Brand Foundation',
             'description'  => $faker->text(90),
             'price'        => $faker->randomNumber(2),
             'stock'        => 100,
-            'type'         => 'software',
+            'type'         => 'beauty',
             'sale_counts'  => $faker->randomNumber(9),
             'view_counts'  => $faker->randomNumber(9),
-            'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
+            'brand'        => $faker->randomElement(['Skin1004', 'DayCell', 'Ottie', '16 Brand', 'Son Park', 'Clinique']),
             'features'     => json_encode([
                     'images' => [
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
@@ -63,13 +57,6 @@ class ProductsRatesSeeder extends Seeder
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    ],
-                    trans('globals.product_features.weight')     => $faker->numberBetween(10, 150).' '.$faker->randomElement(['Mg', 'Gr', 'Kg', 'Oz', 'Lb']),
-                    trans('globals.product_features.dimensions') => $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' '.
-                                  $faker->randomElement(['inch', 'mm', 'cm']),
-                    trans('globals.product_features.color') => $faker->safeColorName,
                     ]),
             'condition' => $faker->randomElement(['new', 'refurbished', 'used']),
             //'currency'=>0,
@@ -103,14 +90,14 @@ class ProductsRatesSeeder extends Seeder
         $seededProduct2 = Product::create([
             'category_id'  => $catforseed->id,
             'user_id'      => '3',
-            'name'         => 'Another Seeded Product',
+            'name'         => '16 Brand brickit shadow',
             'description'  => $faker->text(90),
             'stock'        => 100,
-            'type'         => 'software',
+            'type'         => 'beauty',
             'sale_counts'  => $faker->randomNumber(9),
             'view_counts'  => $faker->randomNumber(9),
             'price'        => $faker->randomNumber(2),
-            'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
+            'brand'        => $faker->randomElement(['Skin1004', 'DayCell', 'Ottie', '16 Brand', 'Son Park', 'Clinique']),
             'stock'        => 100,
             'features'     => json_encode([
                     'images' => [
@@ -119,13 +106,6 @@ class ProductsRatesSeeder extends Seeder
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    ],
-                    trans('globals.product_features.weight')     => $faker->numberBetween(10, 150).' '.$faker->randomElement(['Mg', 'Gr', 'Kg', 'Oz', 'Lb']),
-                    trans('globals.product_features.dimensions') => $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' '.
-                                  $faker->randomElement(['inch', 'mm', 'cm']),
-                    trans('globals.product_features.color') => $faker->safeColorName,
                     ]),
             'condition' => $faker->randomElement(['new', 'refurbished', 'used']),
             //'currency'=>0,
@@ -138,15 +118,15 @@ class ProductsRatesSeeder extends Seeder
         $seededProduct3 = Product::create([
             'category_id'  => $catforseed->id,
             'user_id'      => '3', //3,
-            'name'         => 'More on Seeded Product',
+            'name'         => 'Son park beauty water',
             'description'  => $faker->text(90),
             'stock'        => 100,
-            'type'         => 'software',
+            'type'         => 'beauty',
             'sale_counts'  => $faker->randomNumber(9),
             'view_counts'  => $faker->randomNumber(9),
             'price'        => $faker->randomNumber(2),
             'stock'        => 100,
-            'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
+            'brand'        => $faker->randomElement(['Skin1004', 'DayCell', 'Ottie', '16 Brand', 'Son Park', 'Clinique']),
             'features'     => json_encode([
                     'images' => [
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
@@ -154,13 +134,6 @@ class ProductsRatesSeeder extends Seeder
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    ],
-                    trans('globals.product_features.weight')     => $faker->numberBetween(10, 150).' '.$faker->randomElement(['Mg', 'Gr', 'Kg', 'Oz', 'Lb']),
-                    trans('globals.product_features.dimensions') => $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' X '.
-                                  $faker->numberBetween(1, 30).' '.
-                                  $faker->randomElement(['inch', 'mm', 'cm']),
-                    trans('globals.product_features.color') => $faker->safeColorName,
                     ]),
             'condition' => $faker->randomElement(['new', 'refurbished', 'used']),
             //'currency'=>0,

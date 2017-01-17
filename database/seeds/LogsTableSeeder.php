@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Logs Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\ActionType;
 use App\Log;
 use App\User;

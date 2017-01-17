@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Antvel - Seeder
- * Products Detail Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
 use App\ProductDetail;
 use Illuminate\Database\Seeder;
 
@@ -22,83 +16,6 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '{}',
             'type_products'    => 'all',
             'max_num_values'   => 5,
-        ]);
-
-        ProductDetail::create([
-            'name'             => 'virtual weight',
-            'input_type'       => 'text',
-             'status'          => 'active',
-            'default_values'   => '{}',
-            'validation_rules' => '{}',
-            'help_message'     => '{}',
-            'type_products'    => 'key',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => 'OS',
-            'input_type'       => 'text',
-             'status'          => 'active',
-            'default_values'   => '{}',
-            'validation_rules' => '{}',
-            'help_message'     => '{}',
-            'type_products'    => 'key',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => trans('globals.product_features.weight'),
-            'input_type'       => 'text',
-            'default_values'   => '{}',
-             'status'          => 'active',
-            'validation_rules' => '{}',
-            'help_message'     => '{}',
-            'type_products'    => 'item',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => trans('globals.product_features.dimensions'),
-            'input_type'       => 'text',
-            'default_values'   => '{}',
-            'validation_rules' => '{}',
-             'status'          => 'active',
-            'help_message'     => '{}',
-            'type_products'    => 'item',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => trans('globals.product_features.color'),
-            'input_type'       => 'text',
-            'default_values'   => '{}',
-            'validation_rules' => '{}',
-             'status'          => 'active',
-            'help_message'     => '{}',
-            'type_products'    => 'item',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => trans('globals.product_features.model'),
-            'input_type'       => 'text',
-            'default_values'   => '{}',
-             'status'          => 'active',
-            'validation_rules' => '{}',
-            'help_message'     => '{}',
-            'type_products'    => 'all',
-            'max_num_values'   => 1,
-        ]);
-
-        ProductDetail::create([
-            'name'             => trans('globals.product_features.model'),
-            'input_type'       => 'text',
-            'default_values'   => '{}',
-             'status'          => 'active',
-            'validation_rules' => '{}',
-            'help_message'     => '{}',
-            'type_products'    => 'all',
-            'max_num_values'   => 1,
         ]);
     }
 }
