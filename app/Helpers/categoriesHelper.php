@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - Categories Validation
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 class categoriesHelper
 {
     public static function separateTypesCategories($data)

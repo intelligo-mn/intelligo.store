@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Modu - breadcrumb Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 //home
 Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push(trans('globals.home'), route('home'));

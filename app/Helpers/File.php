@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - File validation helper
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File

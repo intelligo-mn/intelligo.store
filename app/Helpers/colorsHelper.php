@@ -2,13 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - Product color helper
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
-
 class colorsHelper
 {
     private $colors = [

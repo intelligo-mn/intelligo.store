@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - File manager helper
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUpload extends UploadedFile

@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - Products helper 
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Category;
 use App\Helpers\categoriesHelper;
 use App\Http\Controllers\ProductsController;

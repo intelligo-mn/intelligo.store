@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - features helper
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Helpers\colorsHelper;
 use App\ProductDetail;
 use Illuminate\Support\Facades\Validator;
