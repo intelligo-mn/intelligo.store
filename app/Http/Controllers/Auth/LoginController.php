@@ -88,9 +88,9 @@ class LoginController extends Controller
             'password' => 'required',
         ];
 
-        if (! env('APP_DEBUG')) {
-            $rules['g-recaptcha-response'] = 'required|recaptcha';
-        }
+        // if (env('APP_DEBUG')) {
+        //     $rules['g-recaptcha-response'] = 'required|recaptcha';
+        // }
 
         return $rules;
     }
@@ -107,5 +107,10 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
+    }
+
+    public function getFailedLoginMessage()
+    {
+        return trans('user.credentials_do_not_match_our_records');
     }
 }
