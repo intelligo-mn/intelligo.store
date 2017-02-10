@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - UserPreference Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class UserPreference extends Model

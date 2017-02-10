@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Order Detail Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class OrderDetail extends Model

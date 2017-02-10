@@ -2,13 +2,6 @@
 
 namespace app;
 
-
-/*
- * Modu - Company Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class Company extends Model

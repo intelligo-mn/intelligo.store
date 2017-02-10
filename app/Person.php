@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Person Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 use App\User;
 

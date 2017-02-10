@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Users Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Log;
 use App\Order;
 use App\UserPoints;

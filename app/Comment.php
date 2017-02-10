@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Comment Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\ActionType;
 use App\Eloquent\Model;
 use App\Notice;

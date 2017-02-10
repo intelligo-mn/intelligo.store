@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Action Type Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class ActionType extends Model

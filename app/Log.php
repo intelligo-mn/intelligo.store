@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Log Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class Log extends Model

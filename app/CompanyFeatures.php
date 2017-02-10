@@ -1,11 +1,6 @@
 <?php
 
 namespace app;
-/*
- * Modu - CompanyFeatures Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
 
 use App\Eloquent\Model;
 

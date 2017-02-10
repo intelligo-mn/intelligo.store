@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Categories Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Collection\Categories;
 use App\Eloquent\Model;
 

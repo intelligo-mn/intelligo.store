@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Order Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Address;
 use App\Eloquent\Model;
 use App\Http\Controllers\ProductsController as ProductsController;

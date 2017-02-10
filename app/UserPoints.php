@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - UserPoints Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use Illuminate\Database\Eloquent\Model;
 
 class UserPoints extends Model

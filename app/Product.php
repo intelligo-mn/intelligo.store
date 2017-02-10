@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Product Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Category;
 use App\Eloquent\Model;
 
@@ -32,13 +26,13 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'stock',
+        // 'stock',
         'features',
-        'barcode',
-        'condition',
+        // 'barcode',
+        // 'condition',
         'rate_val',
         'rate_count',
-        'low_stock',
+        // 'low_stock',
         'status',
         'parent_id',
     ];
@@ -93,8 +87,7 @@ class Product extends Model
 
     public function scopeActives($query)
     {
-        return $query->where('status', 1)
-                     ->where('stock', '>', 0);
+        return $query->where('status', 1);
     }
 
     public function scopeInactives($query)
@@ -125,9 +118,9 @@ class Product extends Model
                     $query->whereIn('category_id', $children);
                 break;
 
-                case 'conditions':
-                    $query->where('condition', 'LIKE', $value);
-                break;
+                // case 'conditions':
+                //     $query->where('condition', 'LIKE', $value);
+                // break;
 
                 case 'brands':
                    $query->where('brand', 'LIKE', $value);

@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Notice Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Collection;
 use App\Eloquent\Model;
 

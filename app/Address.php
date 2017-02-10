@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Address Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

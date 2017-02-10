@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - TypePreference Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class TypePreference extends Model

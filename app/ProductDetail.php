@@ -2,12 +2,6 @@
 
 namespace app;
 
-/*
- * Modu - Product Detail Model
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Eloquent\Model;
 
 class ProductDetail extends Model
