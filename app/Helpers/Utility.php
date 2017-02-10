@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - Utility
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 class Utility
 {
     /**

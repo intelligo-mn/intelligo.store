@@ -2,12 +2,6 @@
 
 namespace app\Helpers;
 
-/*
- * Modu - user helper
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 class userHelper
 {
     private $preferences = [];
