@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class PageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPageNo;
-    
+    private static View rootView;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -34,7 +34,7 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPageNo = getArguments().getInt(ARG_PAGE);
-        setupRecyclerView();
+
     }
 
     private void setupRecyclerView() {
@@ -47,9 +47,9 @@ public class PageFragment extends Fragment {
 
 
 
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView)rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new PageFragment.MyAdapter(myDataset,myImages);
         mRecyclerView.setAdapter(mAdapter);
@@ -58,9 +58,9 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
-
-        return view;
+        rootView = inflater.inflate(R.layout.fragment_page, container, false);
+        setupRecyclerView();
+        return rootView;
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
