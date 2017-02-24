@@ -25,12 +25,15 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="200dp" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarSplash"
-        android:layout_marginBottom="124dp"
+    <com.dglproject.widget.DglProgressBar
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:dgl_thickness="@dimen/default_thickness"
+        app:dgl_inner_padding="@dimen/default_inner_padding"
+        app:dgl_inner_color="@color/white"
+        app:dgl_outer_color="@color/white"
+        android:layout_marginBottom="130dp"
+        android:id="@+id/dglProgressBar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
