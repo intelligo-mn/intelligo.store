@@ -7,14 +7,10 @@ import android.widget.ProgressBar;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-        progressBar = (ProgressBar)findViewById (R.id.progressBarSplash);
 
         // Splash screen 2 секунд хүлээгээд MainActivity-руу шилжинэ
         try {
