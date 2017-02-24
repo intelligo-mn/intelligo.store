@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Product Detail Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Helpers\featuresHelper;
 use App\Http\Controllers\Controller;
 use App\ProductDetail;

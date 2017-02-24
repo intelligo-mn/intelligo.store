@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Log Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Http\Controllers\Controller;
 use App\Log;
 

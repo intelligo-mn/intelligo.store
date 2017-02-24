@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Product Offers Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Http\Controllers\Controller;
 
 class ProductOffersController extends Controller

@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Company Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -118,25 +112,25 @@ class CompanyController extends Controller
     public static function defaultCompany()
     {
         return [
-            'name'                => 'antVel',
-            'website_name'        => 'hhtp://antvel.com',
+            'name'                => 'Bella',
+            'website_name'        => 'hhtp://Bella.mn',
             'slogan'              => 'An Laravel eCommerce',
             'phone_number'        => '+1 (405) - 669.63.31',
             'cell_phone'          => '+1 (405) - 669.63.31',
             'address'             => 'Northwest',
-            'state'               => 'Oklahoma',
-            'city'                => 'Oklahoma City',
-            'facebook'            => 'https://www.facebook.com/ocantog',
-            'facebook_app_id'     => 'antvel facebook appID',
-            'twitter'             => 'https://twitter.com/gocanto',
+            'state'               => 'Ulaanbaatar',
+            'city'                => 'Ulaanbaatar city',
+            'facebook'            => 'https://www.facebook.com/bella.mn',
+            'facebook_app_id'     => 'Bella facebook appID',
+            'twitter'             => 'https://twitter.com/bella.mn',
             'zip_code'            => '73116',
-            'google_maps_key_api' => 'antvel google appID',
-            'email'               => 'gustavoocanto@gmail.com',
-            'contact_email'       => 'gustavoocanto@gmail.com',
-            'sales_email'         => 'gustavoocanto@gmail.com',
-            'support_email'       => 'gustavoocanto@gmail.com',
+            'google_maps_key_api' => 'bella google appID',
+            'email'               => 'toroo.byamba@gmail.com',
+            'contact_email'       => 'toroo.byamba@gmail.com',
+            'sales_email'         => 'toroo.byamba@gmail.com',
+            'support_email'       => 'toroo.byamba@gmail.com',
             'description'         => ' eStore ready to use',
-            'keywords'            => 'antvel, gocanto, laravel, php',
+            'keywords'            => 'antvel, toroo, laravel, php',
             'about_us'            => 'I am Web Developer',
             'refund_policy'       => 'Refund Policy',
             'privacy_policy'      => 'Privacy Policy',

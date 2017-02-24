@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - About Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactFormRequest;

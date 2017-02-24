@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Files manager Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\Helpers\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

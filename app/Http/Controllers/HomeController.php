@@ -2,12 +2,6 @@
 
 namespace app\Http\Controllers;
 
-/*
- * Modu - Home Controller
- *
- * @author  Tortuvshin Byambaa <toroo.byamba@gmail.com>
- */
-
 use App\FreeProduct;
 use App\Helpers\productsHelper;
 use App\Http\Controllers\Controller;
@@ -20,12 +14,12 @@ class HomeController extends Controller
     {
         $panel = [
             'center' => [
-                'width' => 10,
+                'width' => 12,
             ],
-            'left' => [
-                'width' => 2,
-                'class' => 'home-no-padding',
-            ],
+            // 'left' => [
+            //     'width' => 2,
+            //     'class' => 'home-no-padding',
+            // ],
         ];
 
         $helperProd = new productsHelper();
@@ -69,10 +63,10 @@ class HomeController extends Controller
         $jumbotronClasses = ['jumbotron-box-left', 'jumbotron-box-right']; //carousel implementation
 
         $banner = [
-            '/img/banner/01.png',
-            '/img/banner/02.png',
-            '/img/banner/03.png',
-            '/img/banner/04.png',
+            '/img/banner/01.jpg',
+            '/img/banner/02.jpg',
+            '/img/banner/03.jpg',
+            '/img/banner/04.jpg',
         ];
 
         // $this->createTags();
