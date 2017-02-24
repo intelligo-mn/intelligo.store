@@ -10,6 +10,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        // Splash screen 2 секунд хүлээгээд MainActivity-руу шилжинэ
         try {
             Thread timerThread = new Thread(){
                 public void run(){
