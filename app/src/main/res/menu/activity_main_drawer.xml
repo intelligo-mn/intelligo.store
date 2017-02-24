@@ -3,33 +3,38 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_home"
+            android:icon="@drawable/dgl_black_home"
+            android:title="Нүүр хуудас" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_company"
+            android:icon="@drawable/dgl_black_user"
+            android:title="Компаниуд" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_department"
+            android:icon="@drawable/dgl_black_user"
+            android:title="Салбарууд" />
+
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_location"
+            android:icon="@drawable/dgl_black_placeholder"
+            android:title="Байрлал" />
+        <item
+            android:id="@+id/nav_checkout"
+            android:icon="@drawable/dgl_black_star"
+            android:title="Төлбөр" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Бүртгэл">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/dgl_black_settings"
+                android:title="Тохиргоо" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_help"
+                android:icon="@drawable/dgl_black_help"
+                android:title="Тусламж" />
         </menu>
     </item>
 
