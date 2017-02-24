@@ -5,26 +5,26 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Тохиргоо</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Нэвтрэх</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="prompt_email">И-мэйл хаяг</string>
+    <string name="prompt_password">Нууц үг</string>
+    <string name="action_sign_in">Нэвтрэх</string>
+    <string name="action_sign_in_short">Нэвтрэх</string>
+    <string name="error_invalid_email">И-мэйл хаяг алдаатай байна</string>
+    <string name="error_invalid_password">Нууц үг алдаатай байна</string>
+    <string name="error_incorrect_password">Нууц үг буруу байна</string>
+    <string name="error_field_required">Хоосон байна</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Тохиргоо</string>
 
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_header_general">Үндсэн тохиргоо</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
@@ -92,4 +92,5 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_signup">Бүртгүүлэх</string>
 </resources>
