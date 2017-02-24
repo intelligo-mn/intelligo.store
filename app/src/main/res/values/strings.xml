@@ -93,4 +93,7 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_signup">Бүртгүүлэх</string>
+    <string name="title_activity_help">Тусламж</string>
+    <string name="title_activity_company">Компаниуд</string>
+    <string name="title_activity_department">Салбарууд</string>
 </resources>
