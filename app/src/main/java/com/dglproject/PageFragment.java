@@ -45,8 +45,6 @@ public class PageFragment extends Fragment {
         int[]myImages = {R.drawable.logo ,R.drawable.logo ,R.drawable.logo, R.drawable.logo ,R.drawable.logo,
                 R.drawable.logo ,R.drawable.logo, R.drawable.logo ,R.drawable.logo ,R.drawable.logo};
 
-
-
         mRecyclerView = (RecyclerView)rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(getActivity(), 2);

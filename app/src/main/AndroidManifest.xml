@@ -21,7 +21,6 @@
             android:name=".SplashScreenActivity"
             android:theme="@style/AppFullScreen">
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,6 +47,22 @@
         <activity
             android:name=".DepartmentActivity"
             android:label="@string/title_activity_department"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:label="@string/title_activity_product_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CategoryActivity"
+            android:label="@string/title_activity_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CardActivity"
+            android:label="@string/title_activity_card"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
