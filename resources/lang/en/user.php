@@ -105,4 +105,5 @@ return [
         'account_verified_ok_message'    => '<strong>Activation results!</strong><br/><br/>Congratulation [name]!, your account was successfully activated.',
         'account_verified_error_message' => '<strong>There was an error!</strong><br/><br/>The token sent to validate your account is not in our records.<br/><br/>Please, check it out and try again!',
         'signUp_message'                 => '<strong>Thank you :_name!<br>You have successfully registered!</strong><br><br>We have just sent you a email with a link that you can click to confirm your account.',
+        'credentials_do_not_match_our_records' => 'These credentials do not match our records.',
 ];

@@ -14,7 +14,7 @@ return [
    'line2'                       => 'Line 2',
    'make_default'                => 'Үндсэн сонгох',
    'make_default_1'              => 'Үндсэн',
-   'my_addresses'                => 'Миний хүргэлтийн хаягууд',
+   'my_addresses'                => 'Хүргэлтийн хаягууд',
    'no_registered'               => 'Хүргэлт хийх хаягаа бүртгүүлээгүй байна',
    'no_registered_instructions'  => 'Оршин суугаа хаягаа бүртгүүлэх',
    'phone'                       => 'Утас',
