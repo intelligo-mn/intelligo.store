@@ -74,7 +74,8 @@
             android:name=".OrderActivity"
             android:label="@string/title_activity_card"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ProductListActivity"></activity>
+        <activity android:name=".ProductListActivity" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>

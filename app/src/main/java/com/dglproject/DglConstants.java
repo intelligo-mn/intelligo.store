@@ -12,14 +12,14 @@ import java.io.OutputStream;
  * Created by Tortuvshin Byambaa on 3/3/2017.
  */
 
-public class Constants {
+public class DglConstants {
 
-    static String AdminPageURL = "http://www.dgl.toroo.info/";
-    static String CategoryAPI = "http://www.dgl.toroo.info/api/get-all-category-data.php";
-    static String MenuAPI = "http://www.dgl.toroo.info/api/get-menu-data-by-category-id.php";
-    static String TaxCurrencyAPI = "http://www.dgl.toroo.info/api/get-tax-and-currency.php";
-    static String MenuDetailAPI = "http://www.dgl.toroo.info/api/get-menu-detail.php";
-    static String SendDataAPI = "http://www.dgl.toroo.info/api/add-reservation.php";
+    public static String AdminPageURL = "http://www.dgl.toroo.info/";
+    public static String CategoryAPI = "http://www.dgl.toroo.info/api/get-all-category-data.php";
+    public static String MenuAPI = "http://www.dgl.toroo.info/api/get-menu-data-by-category-id.php";
+    public static String TaxCurrencyAPI = "http://www.dgl.toroo.info/api/get-tax-and-currency.php";
+    public static String MenuDetailAPI = "http://www.dgl.toroo.info/api/get-menu-detail.php";
+    public static String SendDataAPI = "http://www.dgl.toroo.info/api/add-reservation.php";
 
     static String AccessKey = "12345";
 

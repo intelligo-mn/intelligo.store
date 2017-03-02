@@ -76,7 +76,7 @@ public class ImageLoader {
             conn.setInstanceFollowRedirects(true);
             InputStream is=conn.getInputStream();
             OutputStream os = new FileOutputStream(f);
-            Constants.CopyStream(is, os);
+            DglConstants.CopyStream(is, os);
             os.close();
             conn.disconnect();
             bitmap = decodeFile(f);

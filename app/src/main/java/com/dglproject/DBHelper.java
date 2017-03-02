@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
 
-        DB_PATH = Constants.DBPath;
+        DB_PATH = DglConstants.DBPath;
     }
 
     public void createDataBase() throws IOException {
