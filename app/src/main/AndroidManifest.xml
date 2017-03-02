@@ -73,7 +73,8 @@
         <activity
             android:name=".OrderActivity"
             android:label="@string/title_activity_card"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ProductListActivity"></activity>
     </application>
 
 </manifest>

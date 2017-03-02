@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/dgl_black_star"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="cart"/>
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/dgl_black_placeholder"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="refresh"/>
+
+</menu>
