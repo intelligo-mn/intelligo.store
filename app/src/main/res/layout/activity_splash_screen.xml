@@ -10,19 +10,19 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context="com.dglproject.SplashScreenActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/logo"
         android:id="@+id/imageView2"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="200dp" />
 
     <com.dglproject.widget.DglProgressBar
@@ -30,8 +30,8 @@
         android:layout_height="64dp"
         app:dgl_thickness="@dimen/default_thickness"
         app:dgl_inner_padding="@dimen/default_inner_padding"
-        app:dgl_inner_color="@color/white"
-        app:dgl_outer_color="@color/white"
+        app:dgl_inner_color="@color/colorPrimary"
+        app:dgl_outer_color="@color/colorPrimary"
         android:layout_marginBottom="130dp"
         android:id="@+id/dglProgressBar"
         android:layout_alignParentBottom="true"
