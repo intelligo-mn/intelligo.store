@@ -8,5 +8,57 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dglproject.ProductListActivity">
+    <LinearLayout
+        android:id="@+id/lytSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:visibility="visible" >
 
+        <EditText
+            android:id="@+id/edtKeyword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:hint="Хайх"
+            android:padding="7dp"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/dgl_black_search" />
+
+    </LinearLayout>
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listMenu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lytSearch"
+        android:divider="@null"
+        android:padding="5dp" />
+
+    <ProgressBar
+        android:id="@+id/prgLoading"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/txtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/not_found"
+        android:textSize="14sp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 </RelativeLayout>
