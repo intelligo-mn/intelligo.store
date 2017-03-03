@@ -103,4 +103,5 @@
     <string name="no_internet">Интернет холболтоо шалгана уу</string>
     <string name="title_activity_activity_product_list">ActivityProductList</string>
     <string name="not_found">Хоосон байна</string>
+    <string name="shopping_cart">Сагс</string>
 </resources>
