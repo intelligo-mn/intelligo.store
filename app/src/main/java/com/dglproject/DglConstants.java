@@ -23,7 +23,7 @@ public class DglConstants {
 
     static String AccessKey = "12345";
 
-    static String DBPath = "/data/data/com.dglproject/databases/";
+    static String DBPath = "/data/com.dglproject/databases/";
 
     public static boolean isNetworkAvailable(Activity activity) {
         ConnectivityManager connectivity = (ConnectivityManager) activity
