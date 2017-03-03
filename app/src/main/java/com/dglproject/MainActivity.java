@@ -182,6 +182,14 @@ public class MainActivity extends AppCompatActivity
         MenuItem cartItem = menu.findItem(R.id.action_cart);
         MenuItemCompat.setActionView(cartItem, R.layout.action_icon_cart);
         View view = MenuItemCompat.getActionView(cartItem);
+        cartItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent cart = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(cart);
+                return true;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
