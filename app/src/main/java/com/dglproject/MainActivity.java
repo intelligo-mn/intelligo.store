@@ -199,6 +199,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_category) {
             Intent cat = new Intent(MainActivity.this, CategoryActivity.class);
             startActivity(cat);
+        } else if (id == R.id.action_cart) {
+            Intent cart = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(cart);
         }
 
         return super.onOptionsItemSelected(item);
