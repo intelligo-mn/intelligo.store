@@ -65,8 +65,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-
-
     private boolean checkDataBase(){
 
         File dbFile = new File(DB_PATH + DB_NAME);
@@ -152,6 +150,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean isDataExist(long id){
+
         boolean exist = false;
 
         Cursor cursor = null;

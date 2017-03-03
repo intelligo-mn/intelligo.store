@@ -184,10 +184,7 @@ public class CategoryActivity extends AppCompatActivity {
                 Category_name.add(category.getString("Category_name"));
                 Category_image.add(category.getString("Category_image"));
                 Log.d("Category name", Category_name.get(i));
-
             }
-
-
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

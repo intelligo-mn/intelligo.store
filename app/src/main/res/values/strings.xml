@@ -104,4 +104,6 @@
     <string name="title_activity_activity_product_list">ActivityProductList</string>
     <string name="not_found">Хоосон байна</string>
     <string name="shopping_cart">Сагс</string>
+    <string name="order">Захиалга</string>
+    <string name="number_order">Захиалгын хэмжээ</string>
 </resources>
