@@ -50,13 +50,13 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter mola;
 
     static double Tax;
-    static String Currency;
+    public static String Currency;
 
     ArrayList<ArrayList<Object>> data;
-    static ArrayList<Integer> Menu_ID = new ArrayList<Integer>();
-    static ArrayList<String> Menu_name = new ArrayList<String>();
-    static ArrayList<Integer> Quantity = new ArrayList<Integer>();
-    static ArrayList<Double> Sub_total_price = new ArrayList<Double>();
+    public static ArrayList<Integer> Menu_ID = new ArrayList<Integer>();
+    public static ArrayList<String> Menu_name = new ArrayList<String>();
+    public static ArrayList<Integer> Quantity = new ArrayList<Integer>();
+    public static ArrayList<Double> Sub_total_price = new ArrayList<Double>();
 
     double Total_price;
     final int CLEAR_ALL_ORDER = 0;

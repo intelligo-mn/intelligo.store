@@ -41,7 +41,7 @@ public class CartAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.order_list_item, null);
+            convertView = inflater.inflate(R.layout.cart_list_item, null);
             holder = new ViewHolder();
             holder.txtMenuName = (TextView) convertView.findViewById(R.id.txtMenuName);
             holder.txtQuantity = (TextView) convertView.findViewById(R.id.txtQuantity);
