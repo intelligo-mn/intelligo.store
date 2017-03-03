@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/dgl_black_user"
+        app:srcCompat="@drawable/dgl_white_user"
         android:background="@color/colorPrimary"/>
 
     <TextView

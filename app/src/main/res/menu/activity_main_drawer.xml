@@ -3,21 +3,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/dgl_black_home"
-            android:title="Нүүр хуудас" />
+            android:id="@+id/nav_category"
+            android:icon="@drawable/dgl_white_list"
+            android:title="Ангилалууд" />
         <item
             android:id="@+id/nav_company"
-            android:icon="@drawable/dgl_black_user"
+            android:icon="@drawable/dgl_white_app"
             android:title="Компаниуд" />
         <item
             android:id="@+id/nav_department"
-            android:icon="@drawable/dgl_black_user"
+            android:icon="@drawable/dgl_white_favorite"
             android:title="Салбарууд" />
 
         <item
             android:id="@+id/nav_location"
-            android:icon="@drawable/dgl_black_placeholder"
+            android:icon="@drawable/dgl_white_map"
             android:title="Байрлал" />
         <item
             android:id="@+id/nav_checkout"

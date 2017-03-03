@@ -221,9 +221,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_category) {
             // Handle the camera action
-            Intent loginIntent = new Intent(MainActivity.this, MainActivity.class);
+            Intent loginIntent = new Intent(MainActivity.this, CategoryActivity.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
             Intent companyIntent = new Intent(MainActivity.this, CompanyActivity.class);
