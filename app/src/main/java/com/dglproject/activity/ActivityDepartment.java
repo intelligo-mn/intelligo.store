@@ -7,7 +7,14 @@ import android.view.MenuItem;
 
 import com.dglproject.R;
 
+import java.util.ArrayList;
+
 public class ActivityDepartment extends AppCompatActivity {
+
+
+    public static ArrayList<Long> Department_ID = new ArrayList<Long>();
+    public static ArrayList<String> Department_name = new ArrayList<String>();
+    public static ArrayList<String> Department_image = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

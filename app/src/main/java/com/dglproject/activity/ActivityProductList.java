@@ -79,7 +79,7 @@ public class ActivityProductList extends AppCompatActivity {
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
-        MenuAPI = DglConstants.MenuAPI+"?accesskey="+DglConstants.AccessKey+"&category_id=";
+        MenuAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey+"&category_id=";
 
         TaxCurrencyAPI = DglConstants.TaxCurrencyAPI+"?accesskey="+DglConstants.AccessKey;
 
@@ -144,7 +144,7 @@ public class ActivityProductList extends AppCompatActivity {
 //					e.printStackTrace();
 //				}
 //
-//            	MenuAPI += "&keyword="+Keyword;
+//            	ProductApi += "&keyword="+Keyword;
 // 				IOConnect = 0;
 //     			listMenu.invalidateViews();
 //     			clearData();

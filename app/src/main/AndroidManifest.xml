@@ -75,7 +75,8 @@
             android:theme="@style/AppAuth" />
         <activity
             android:name=".activity.ActivitySignup"
-            android:theme="@style/AppAuth"/>
+            android:theme="@style/AppAuth" />
+        <activity android:name=".activity.ActivitySettings"></activity>
     </application>
 
 </manifest>
