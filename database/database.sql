@@ -43,6 +43,52 @@ INSERT INTO `category` (`Category_ID`, `Category_name`, `Category_image`) VALUES
 (2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
 (3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
 (4, 'Гэр ахуй', 'upload/images/2787-2017-03-04.png');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE IF NOT EXISTS `department` (
+  `department_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `department_name` varchar(20) NOT NULL,
+  `department_image` text NOT NULL,
+  PRIMARY KEY (`department_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`department_ID`, `department_name`, `department_image`) VALUES
+(1, 'Боловсрол', 'upload/images/5615-2017-03-04.png'),
+(2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
+(3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
+(4, 'Гэр ахуй', 'upload/images/2787-2017-03-04.png');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+DROP TABLE IF EXISTS `company`;
+CREATE TABLE IF NOT EXISTS `company` (
+  `company_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(20) NOT NULL,
+  `company_image` text NOT NULL,
+  PRIMARY KEY (`company_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`company_ID`, `company_name`, `company_image`) VALUES
+(1, 'Боловсрол', 'upload/images/5615-2017-03-04.png'),
+(2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
+(3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
+(4, 'Гэр ахуй', 'upload/images/2787-2017-03-04.png');
 
 -- --------------------------------------------------------
 
