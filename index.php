@@ -7,9 +7,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="public/css/font-awesome.min.css">
+        <link rel="stylesheet" href="public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/css/custom.css">
         <title>DglProject</title>
         <style>
             .login{
@@ -28,10 +28,10 @@
 
     <body>
     	<div id="container">
-			<?php include('public/login_form.php');?>
-	        <?php include('public/footer.php');?>
+			<?php include('views/login.php');?>
+	        <?php include('views/footer.php');?>
     	</div>
 
-    <script src="css/js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
     </body>
 </html>

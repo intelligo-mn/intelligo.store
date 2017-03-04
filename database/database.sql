@@ -51,7 +51,7 @@ INSERT INTO `category` (`Category_ID`, `Category_name`, `Category_image`) VALUES
 --
 
 DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `tbl_menu` (
+CREATE TABLE IF NOT EXISTS `product` (
   `Product_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Product_name` varchar(50) NOT NULL,
   `Category_ID` int(11) NOT NULL,
