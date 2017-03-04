@@ -99,28 +99,32 @@
             android:padding="12dp"
             android:text="Фэйсбүүкээр нэвтрэх"/>
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:columnCount="3">
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/loginTw"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:padding="12dp"
-                android:text="Twitter"/>
+                android:text="Twitter"
+                android:layout_row="0"
+                android:layout_column="00"/>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/loginGl"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:padding="12dp"
-                android:text="Google +"/>
+                android:text="Google +"
+                android:layout_row="0"
+                android:layout_column="2" />
 
-        </LinearLayout>
+        </GridLayout>
     </LinearLayout>
 </ScrollView>
