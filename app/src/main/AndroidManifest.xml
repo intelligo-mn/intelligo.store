@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ActivitySettings"
+            android:name=".activity.ActivityUserSettings"
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".activity.ActivityHelp"
@@ -58,7 +58,7 @@
         <activity
             android:name=".activity.ActivityUserProfile"
             android:label="@string/title_activity_user_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ActivityCategory"
             android:label="@string/title_activity_category"

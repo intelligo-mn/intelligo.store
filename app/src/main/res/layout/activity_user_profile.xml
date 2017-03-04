@@ -42,7 +42,7 @@
                 android:src="@drawable/dgl_white_error" />
 
             <ImageView
-                android:id="@+id/drop_down_option_menu"
+                android:id="@+id/user_profile_set_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"

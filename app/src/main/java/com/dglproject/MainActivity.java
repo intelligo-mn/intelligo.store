@@ -21,14 +21,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
-import com.dglproject.activity.ActivitySettings;
+import com.dglproject.activity.ActivityUserSettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
 import com.dglproject.activity.ActivityHelp;
@@ -225,7 +224,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
+            Intent settings = new Intent(MainActivity.this, ActivityUserSettings.class);
             startActivity(settings);
         } else if (id == R.id.action_category) {
             Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
@@ -264,7 +263,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_location) {
 
         } else if (id == R.id.nav_settings) {
-            Intent settingsIntent = new Intent(MainActivity.this, ActivitySettings.class);
+            Intent settingsIntent = new Intent(MainActivity.this, ActivityUserSettings.class);
             startActivity(settingsIntent);
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
