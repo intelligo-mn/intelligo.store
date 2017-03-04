@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
+import com.dglproject.activity.ActivitySettings;
 import com.dglproject.activity.ActivityUserSettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
@@ -224,7 +225,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settings = new Intent(MainActivity.this, ActivityUserSettings.class);
+            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
             startActivity(settings);
         } else if (id == R.id.action_category) {
             Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
