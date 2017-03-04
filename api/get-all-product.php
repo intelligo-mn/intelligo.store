@@ -4,7 +4,6 @@
 	
 	if(isset($_GET['accesskey']) && isset($_GET['category_id'])) {
 		$access_key_received = $_GET['accesskey'];
-		$category_ID = $_GET['category_id'];
 		
 		if(isset($_GET['keyword'])){
 			$keyword = $_GET['keyword'];
@@ -14,15 +13,14 @@
 		
 		if($access_key_received == $access_key){
 			if($keyword == ""){
-				// тухайн ангилалд хамаатай бараанууд хайх
+
 				$sql_query = "SELECT Product_ID, Product_name, Price, Product_image 
-					FROM tbl_product 
-					WHERE Category_ID = ".$category_ID." 
+					FROM product 
 					ORDER BY product_ID DESC";
 			}else{
 				$sql_query = "SELECT Product_ID, product_name, Price, product_image 
 					FROM product 
-					WHERE Product_name LIKE '%".$keyword."%' AND Category_ID = ".$category_ID." 
+					WHERE Product_name LIKE '%".$keyword."%'
 					ORDER BY Product_ID DESC";
 			}
 			
