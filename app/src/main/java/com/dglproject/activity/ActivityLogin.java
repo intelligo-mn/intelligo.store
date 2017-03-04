@@ -112,30 +112,13 @@ public class ActivityLogin extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        new android.app.AlertDialog.Builder(this,R.style.AlertDialog)
-                .setIcon(R.drawable.exit)
-                .setTitle("Толь бичиг")
-                .setMessage("Та програмаас гарах уу?")
-                .setPositiveButton("Тийм", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("Үгүй", null)
-                .show();
-    }
-
     public void onLoginSuccess() {
         loginButton.setEnabled(true);
         finish();
     }
 
     public void onLoginFailed() {
-        //Toast.makeText(getBaseContext(), "Хэрэглэгчийн мэдээллээ шинэчлээд дахин оролдно уу !", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Хэрэглэгчийн мэдээллээ шинэчлээд дахин оролдно уу !", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
     private void RememberMe() {
@@ -172,7 +155,7 @@ public class ActivityLogin extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                     R.style.AppTheme_PopupOverlay);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
+            progressDialog.setMessage("Уншиж байна...");
             progressDialog.show();
             // TODO: Implement your own authentication logic here.
             new android.os.Handler().postDelayed(

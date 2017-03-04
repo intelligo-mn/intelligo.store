@@ -9,10 +9,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="24dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
-
+        android:paddingRight="24dp"
+        android:paddingBottom="24dp">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/loginImage"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="24dp" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,6 +78,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+            android:background="@color/colorPrimary"
             android:text="Бүртгүүлэх"/>
 
         <TextView android:id="@+id/linkLogin"
@@ -80,5 +88,44 @@
             android:text="Хэрэв та бүртгэлтэй бол энд дарна уу?"
             android:gravity="center"
             android:textSize="16dip"/>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/loginfb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary"
+            android:padding="12dp"
+            android:text="Sign up with facebook"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:columnCount="3">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/loginTw"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:text="Twitter"
+                android:layout_row="0"
+                android:layout_column="00"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/loginGl"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:text="Google +"
+                android:layout_row="0"
+                android:layout_column="2" />
+
+        </GridLayout>
     </LinearLayout>
 </ScrollView>
