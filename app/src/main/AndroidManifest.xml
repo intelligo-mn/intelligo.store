@@ -70,7 +70,9 @@
         <activity android:name=".activity.ActivityProductList" />
         <activity android:name=".activity.ActivityCart" />
         <activity android:name=".activity.ActivityCheckout" />
-        <activity android:name=".activity.ActivityLogin" />
+        <activity
+            android:name=".activity.ActivityLogin"
+            android:theme="@style/AppAuth" />
         <activity android:name=".activity.ActivitySignup"></activity>
     </application>
 

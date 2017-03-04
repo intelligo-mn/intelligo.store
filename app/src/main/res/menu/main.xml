@@ -11,6 +11,11 @@
         android:orderInCategory="100"
         android:title="Ангилал"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_login"
+        android:orderInCategory="100"
+        android:title="Нэвтрэх"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_search"

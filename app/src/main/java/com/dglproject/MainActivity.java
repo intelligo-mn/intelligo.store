@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
+import com.dglproject.activity.ActivityLogin;
 import com.dglproject.activity.ActivitySettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
@@ -214,6 +215,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_cart) {
             Intent cart = new Intent(MainActivity.this, ActivityCart.class);
             startActivity(cart);
+        }
+            else if (id == R.id.action_login) {
+            Intent cart = new Intent(MainActivity.this, ActivityLogin.class);
+            startActivity(cart);
+
         }
 
         return super.onOptionsItemSelected(item);
