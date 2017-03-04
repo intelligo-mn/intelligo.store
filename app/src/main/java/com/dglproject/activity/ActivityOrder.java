@@ -7,17 +7,17 @@ import android.view.MenuItem;
 
 import com.dglproject.R;
 
-public class HelpActivity extends AppCompatActivity {
+public class ActivityOrder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_order);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

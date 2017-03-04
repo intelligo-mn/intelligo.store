@@ -27,9 +27,9 @@ import android.widget.Toast;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivitySettings;
-import com.dglproject.activity.CompanyActivity;
-import com.dglproject.activity.DepartmentActivity;
-import com.dglproject.activity.HelpActivity;
+import com.dglproject.activity.ActivityCompany;
+import com.dglproject.activity.ActivityDepartment;
+import com.dglproject.activity.ActivityHelp;
 import com.dglproject.fragments.PageFragment;
 import com.dglproject.widgets.CustomViewPager;
 
@@ -230,10 +230,10 @@ public class MainActivity extends AppCompatActivity
             Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
-            Intent companyIntent = new Intent(MainActivity.this, CompanyActivity.class);
+            Intent companyIntent = new Intent(MainActivity.this, ActivityCompany.class);
             startActivity(companyIntent);
         } else if (id == R.id.nav_department) {
-            Intent depaIntent = new Intent(MainActivity.this, DepartmentActivity.class);
+            Intent depaIntent = new Intent(MainActivity.this, ActivityDepartment.class);
             startActivity(depaIntent);
         } else if (id == R.id.nav_checkout) {
 
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity
             Intent settingsIntent = new Intent(MainActivity.this, ActivitySettings.class);
             startActivity(settingsIntent);
         } else if (id == R.id.nav_help) {
-            Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
+            Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
             startActivity(helpIntent);
         }
 

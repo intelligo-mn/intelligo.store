@@ -9,7 +9,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".activity.SplashScreenActivity"
+    tools:context=".activity.ActivitySplashScreen"
     android:background="@color/white">
 
     <ImageView

@@ -46,7 +46,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 
-public class ProductDetailActivity extends AppCompatActivity {
+public class ActivityProductDetail extends AppCompatActivity {
 
     ImageView imgPreview;
     TextView txtText, txtSubText;
@@ -97,7 +97,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(wPix, hPix);
         imgPreview.setLayoutParams(lp);
 
-        imageLoader = new ImageLoader(ProductDetailActivity.this);
+        imageLoader = new ImageLoader(ActivityProductDetail.this);
         dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
@@ -200,7 +200,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 imageLoader.DisplayImage(DglConstants.AdminPageURL+Menu_image, imgPreview);
 
                 txtText.setText(Menu_name);
-                txtSubText.setText("Price : " +Menu_price+" "+ProductListActivity.Currency+"\n"+"Status : "+Menu_serve+"\n"+"Stock : "+Menu_quantity);
+                txtSubText.setText("Price : " +Menu_price+" "+ ActivityProductList.Currency+"\n"+"Status : "+Menu_serve+"\n"+"Stock : "+Menu_quantity);
                 txtDescription.loadDataWithBaseURL("", Menu_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#e7e7e7"));
             }else{

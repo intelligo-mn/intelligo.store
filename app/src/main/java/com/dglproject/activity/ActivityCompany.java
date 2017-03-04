@@ -7,17 +7,17 @@ import android.view.MenuItem;
 
 import com.dglproject.R;
 
-public class OrderActivity extends AppCompatActivity {
+public class ActivityCompany extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_company);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -30,5 +30,4 @@ public class OrderActivity extends AppCompatActivity {
         }
         return false;
     }
-
 }

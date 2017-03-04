@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.dglproject.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class ActivityLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

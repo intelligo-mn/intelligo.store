@@ -39,7 +39,7 @@ import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ProductListActivity extends AppCompatActivity {
+public class ActivityProductList extends AppCompatActivity {
 
     ListView listMenu;
     ProgressBar prgLoading;
@@ -90,7 +90,7 @@ public class ProductListActivity extends AppCompatActivity {
 
 //        txtTitle.setText(Category_name);
 
-        productListAdapter = new ProductListAdapter(ProductListActivity.this);
+        productListAdapter = new ProductListAdapter(ActivityProductList.this);
 
         new getTaxCurrency().execute();
 
@@ -115,7 +115,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
 
-                Intent iDetail = new Intent(ProductListActivity.this, ProductDetailActivity.class);
+                Intent iDetail = new Intent(ActivityProductList.this, ActivityProductDetail.class);
                 iDetail.putExtra("menu_id", Menu_ID.get(position));
                 startActivity(iDetail);
             }
@@ -178,7 +178,7 @@ public class ProductListActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent iMyOrder = new Intent(ProductListActivity.this, ActivityCart.class);
+                Intent iMyOrder = new Intent(ActivityProductList.this, ActivityCart.class);
                 startActivity(iMyOrder);
                 return true;
 

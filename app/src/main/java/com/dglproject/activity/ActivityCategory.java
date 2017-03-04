@@ -76,7 +76,7 @@ public class ActivityCategory extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
                 // TODO Auto-generated method stub
-                Intent iMenuList = new Intent(ActivityCategory.this, ProductListActivity.class);
+                Intent iMenuList = new Intent(ActivityCategory.this, ActivityProductList.class);
                 iMenuList.putExtra("category_id", Category_ID.get(position));
                 iMenuList.putExtra("category_name", Category_name.get(position));
                 startActivity(iMenuList);

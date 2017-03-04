@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.dglproject.MainActivity;
 import com.dglproject.R;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class ActivitySplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     }catch(InterruptedException e){
                         e.printStackTrace();
                     }finally{
-                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        Intent intent = new Intent(ActivitySplashScreen.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

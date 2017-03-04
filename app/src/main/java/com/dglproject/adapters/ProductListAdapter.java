@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.dglproject.DglConstants;
 import com.dglproject.utils.ImageLoader;
-import com.dglproject.activity.ProductListActivity;
+import com.dglproject.activity.ActivityProductList;
 import com.dglproject.R;
 
 /**
@@ -29,7 +29,7 @@ public class ProductListAdapter extends BaseAdapter{
 
     public int getCount() {
 
-        return ProductListActivity.Menu_ID.size();
+        return ActivityProductList.Menu_ID.size();
     }
 
     public Object getItem(int position) {
@@ -61,10 +61,10 @@ public class ProductListAdapter extends BaseAdapter{
         holder.txtSubText = (TextView) convertView.findViewById(R.id.txtSubText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
-        holder.txtText.setText(ProductListActivity.Menu_name.get(position));
-        holder.txtSubText.setText(ProductListActivity.Menu_price.get(position)+" "+ProductListActivity.Currency);
+        holder.txtText.setText(ActivityProductList.Menu_name.get(position));
+        holder.txtSubText.setText(ActivityProductList.Menu_price.get(position)+" "+ ActivityProductList.Currency);
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ProductListActivity.Menu_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityProductList.Menu_image.get(position), holder.imgThumb);
 
         return convertView;
     }
