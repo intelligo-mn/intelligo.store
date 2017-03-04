@@ -21,7 +21,7 @@ public class DglConstants {
     public static String MenuDetailAPI = "http://www.dgl.toroo.info/api/get-menu-detail.php";
     public static String SendDataAPI = "http://www.dgl.toroo.info/api/add-reservation.php";
 
-    static String AccessKey = "12345";
+    public static String AccessKey = "12345";
 
     static String DBPath = "/data/com.dglproject/databases/";
 

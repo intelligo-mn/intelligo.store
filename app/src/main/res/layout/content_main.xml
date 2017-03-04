@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <com.dglproject.CustomViewPager
+    <com.dglproject.widgets.CustomViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        app:layout_behavior="com.dglproject.BottomNavigationBehavior"
+        app:layout_behavior="com.dglproject.widgets.BottomNavigationBehavior"
         app:tabLayoutId="@+id/tab_layout"
         >
 

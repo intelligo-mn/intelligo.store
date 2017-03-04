@@ -4,15 +4,11 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +20,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.dglproject.activity.ActivityCart;
+import com.dglproject.activity.ActivityCategory;
+import com.dglproject.activity.ActivitySettings;
+import com.dglproject.activity.CompanyActivity;
+import com.dglproject.activity.DepartmentActivity;
+import com.dglproject.activity.HelpActivity;
+import com.dglproject.fragments.PageFragment;
+import com.dglproject.widgets.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         cartItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent cart = new Intent(MainActivity.this, CartActivity.class);
+                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
                 startActivity(cart);
                 return true;
             }
@@ -202,13 +206,13 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
             startActivity(settings);
         } else if (id == R.id.action_category) {
-            Intent cat = new Intent(MainActivity.this, CategoryActivity.class);
+            Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(cat);
         } else if (id == R.id.action_cart) {
-            Intent cart = new Intent(MainActivity.this, CartActivity.class);
+            Intent cart = new Intent(MainActivity.this, ActivityCart.class);
             startActivity(cart);
         }
 
@@ -223,7 +227,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_category) {
             // Handle the camera action
-            Intent loginIntent = new Intent(MainActivity.this, CategoryActivity.class);
+            Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
             Intent companyIntent = new Intent(MainActivity.this, CompanyActivity.class);
@@ -236,7 +240,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_location) {
 
         } else if (id == R.id.nav_settings) {
-            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent settingsIntent = new Intent(MainActivity.this, ActivitySettings.class);
             startActivity(settingsIntent);
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
