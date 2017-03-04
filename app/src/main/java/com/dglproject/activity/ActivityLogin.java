@@ -85,7 +85,7 @@ public class ActivityLogin extends AppCompatActivity {
         loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-                R.style.AppTheme_PopupOverlay);
+                R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Уншиж байна...");
         progressDialog.show();
@@ -153,7 +153,7 @@ public class ActivityLogin extends AppCompatActivity {
         }
         if(username.trim().length() > 0 && password.trim().length() > 0){
             final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-                    R.style.AppTheme_PopupOverlay);
+                    R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Уншиж байна...");
             progressDialog.show();

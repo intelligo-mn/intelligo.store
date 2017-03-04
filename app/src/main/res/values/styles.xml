@@ -56,4 +56,8 @@
     <style name="AlertDialogAnimation">
     </style>
 
+    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
 </resources>
