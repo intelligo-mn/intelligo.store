@@ -72,6 +72,34 @@
           </div>
         </a>
 
+		<a href="product.php">
+          <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">    
+              <div class="caption">
+              <center>
+              <img src="images/ic_product.png" width="100" height="100">
+                <h3><?php echo $total_product;?></h3>
+                <p class="detail">Салбарууд</p>  
+                </center>
+              </div>
+            </div>
+          </div>
+        </a>
+
+		<a href="product.php">
+          <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">    
+              <div class="caption">
+              <center>
+              <img src="images/ic_product.png" width="100" height="100">
+                <h3><?php echo $total_product;?></h3>
+                <p class="detail">Байгууллагууд</p>  
+                </center>
+              </div>
+            </div>
+          </div>
+        </a>
+
         <a href="admin.php">
           <div class="col-sm-6 col-md-2">
             <div class="thumbnail"> 
