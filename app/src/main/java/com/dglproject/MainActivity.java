@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +32,14 @@ import com.dglproject.activity.ActivitySettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
 import com.dglproject.activity.ActivityHelp;
+import com.dglproject.activity.ActivityUserProfile;
 import com.dglproject.fragments.PageFragment;
 import com.dglproject.widgets.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ImageView userImage;
 
     private TabLayout mTabLayout;
 
@@ -66,6 +70,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView, false);
+        navigationView.addHeaderView(headerView);
+
+        userImage = (ImageView ) headerView.findViewById(R.id.imageViewNavUser);
+
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(MainActivity.this, ActivityUserProfile.class);
+                startActivity(profile);
+            }
+        });
+
     }
 
     public void setupViewPager () {
