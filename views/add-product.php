@@ -54,17 +54,17 @@
 			if(empty($price)){
 				$error['price'] = " <span class='label label-danger'>Хоосон байна!</span>";
 			}else if(!is_numeric($price)){
-				$error['price'] = " <span class='label label-danger'>Price in number!</span>";
+				$error['price'] = " <span class='label label-danger'>Үнэ тоо байна!</span>";
 			}
 
 			if(empty($quantity)){
 				$error['quantity'] = " <span class='label label-danger'>Хоосон байна!</span>";
 			}else if(!is_numeric($quantity)){
-				$error['quantity'] = " <span class='label label-danger'>Quantity in number!</span>";
+				$error['quantity'] = " <span class='label label-danger'>Тоо ширхэг!</span>";
 			}
 				
 			if(empty($serve_for)){
-				$error['serve_for'] = " <span class='label label-danger'>Not choosen</span>";
+				$error['serve_for'] = " <span class='label label-danger'>Сонгоно уу</span>";
 			}			
 
 			if(empty($description)){
