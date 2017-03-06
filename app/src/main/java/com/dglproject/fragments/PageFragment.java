@@ -62,7 +62,7 @@ public class PageFragment extends Fragment {
     public static ArrayList<Double> Product_price = new ArrayList<Double>();
     public static ArrayList<String> Product_image = new ArrayList<String>();
 
-    String ProductAPI;
+    String AllProductApi;
 
     public static PageFragment newInstance(int pageNo) {
 
@@ -104,10 +104,9 @@ public class PageFragment extends Fragment {
         listMenu = (ListView) rootView.findViewById(R.id.listProduct);
         txtAlert = (TextView) rootView.findViewById(R.id.txtFraAlert);
 
-        Toast.makeText(getContext(), "On Create View", Toast.LENGTH_LONG).show();
-        ProductAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey;
+        AllProductApi = DglConstants.AllProductApi +"?accesskey="+DglConstants.AccessKey;
 
-
+        new getDataTask().execute();
 //        txtTitle.setText(Category_name);
 
         allProductAdapter = new AllProductAdapter(getActivity());
@@ -214,10 +213,10 @@ public class PageFragment extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductAPI);
+            HttpUriRequest request = new HttpGet(AllProductApi);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
-            Toast.makeText(getContext(), "Connected", Toast.LENGTH_LONG).show();
+
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
 
             String line;
@@ -232,12 +231,12 @@ public class PageFragment extends Fragment {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
 
-                JSONObject product = object.getJSONObject("product");
+                JSONObject product = object.getJSONObject("product_all");
 
-                Product_ID.add(Long.parseLong(product.getString("Product_ID")));
-                Product_name.add(product.getString("Product_name"));
-                Product_price.add(Double.valueOf(product.getDouble("Price")));
-                Product_image.add(product.getString("Product_image"));
+                Product_ID.add(Long.parseLong(product.getString("product_id")));
+                Product_name.add(product.getString("product_name"));
+                Product_price.add(Double.valueOf(product.getDouble("price")));
+                Product_image.add(product.getString("product_image"));
 
             }
 
