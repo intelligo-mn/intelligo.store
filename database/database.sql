@@ -28,17 +28,17 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-  `Category_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Category_name` varchar(20) NOT NULL,
-  `Category_image` text NOT NULL,
-  PRIMARY KEY (`Category_ID`)
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(20) NOT NULL,
+  `category_image` text NOT NULL,
+  PRIMARY KEY (`category_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`Category_ID`, `Category_name`, `Category_image`) VALUES
+INSERT INTO `category` (`category_id`, `category_name`, `category_image`) VALUES
 (1, 'Боловсрол', 'upload/images/5615-2017-03-04.png'),
 (2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
 (3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
@@ -51,17 +51,17 @@ INSERT INTO `category` (`Category_ID`, `Category_name`, `Category_image`) VALUES
 
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE IF NOT EXISTS `department` (
-  `department_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `department_id` int(11) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(20) NOT NULL,
   `department_image` text NOT NULL,
-  PRIMARY KEY (`department_ID`)
+  PRIMARY KEY (`department_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`department_ID`, `department_name`, `department_image`) VALUES
+INSERT INTO `department` (`department_id`, `department_name`, `department_image`) VALUES
 (1, 'Боловсрол', 'upload/images/5615-2017-03-04.png'),
 (2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
 (3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
@@ -74,17 +74,17 @@ INSERT INTO `department` (`department_ID`, `department_name`, `department_image`
 
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
-  `company_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_name` varchar(20) NOT NULL,
   `company_image` text NOT NULL,
-  PRIMARY KEY (`company_ID`)
+  PRIMARY KEY (`company_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`company_ID`, `company_name`, `company_image`) VALUES
+INSERT INTO `company` (`company_id`, `company_name`, `company_image`) VALUES
 (1, 'Боловсрол', 'upload/images/5615-2017-03-04.png'),
 (2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
 (3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
@@ -98,22 +98,22 @@ INSERT INTO `company` (`company_ID`, `company_name`, `company_image`) VALUES
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `Product_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Product_name` varchar(50) NOT NULL,
-  `Category_ID` int(11) NOT NULL,
-  `Price` double NOT NULL,
-  `Serve_for` varchar(45) NOT NULL,
-  `Product_image` text NOT NULL,
-  `Description` text NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  PRIMARY KEY (`Product_ID`)
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(50) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `price` double NOT NULL,
+  `serve_for` varchar(45) NOT NULL,
+  `product_image` text NOT NULL,
+  `description` text NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`Product_ID`, `Product_name`, `Category_ID`, `Price`, `Serve_for`, `Product_image`, `Description`, `Quantity`) VALUES
+INSERT INTO `product` (`product_id`, `product_name`, `category_id`, `price`, `serve_for`, `product_image`, `description`, `quantity`) VALUES
 (1, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
 (2, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
 (3, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
@@ -131,14 +131,14 @@ INSERT INTO `product` (`Product_ID`, `Product_name`, `Category_ID`, `Price`, `Se
 
 
 CREATE TABLE IF NOT EXISTS `setting` (
-  `Variable` varchar(20) NOT NULL,
-  `Value` varchar(5) NOT NULL
+  `variable` varchar(20) NOT NULL,
+  `value` varchar(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `setting` (`Variable`, `Value`) VALUES
-('Tax', '0'),
-('Currency', 'MNT');
+INSERT INTO `setting` (`variable`, `value`) VALUES
+('tax', '0'),
+('currency', 'MNT');
 
 --
 -- Table structure for table `user`
@@ -146,10 +146,10 @@ INSERT INTO `setting` (`Variable`, `Value`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Username` varchar(15) NOT NULL,
-  `Password` text NOT NULL,
-  `Email` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(15) NOT NULL,
+  `password` text NOT NULL,
+  `email` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`ID`, `Username`, `Password`, `Email`) VALUES
+INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
 (1, 'admin', 'd82494f05d6917ba02f7aaa29689ccb444bb73f20380876cb05d1f37537b7892', 'toroo.byamba@gmail.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

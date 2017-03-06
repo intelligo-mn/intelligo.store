@@ -15,15 +15,15 @@
 		if($access_key_received == $access_key){
 			if($keyword == ""){
 				// тухайн ангилалд хамаатай бараанууд хайх
-				$sql_query = "SELECT Product_ID, Product_name, Price, Product_image 
+				$sql_query = "SELECT product_id, product_name, price, product_image 
 					FROM product 
-					WHERE Category_ID = ".$category_ID." 
-					ORDER BY product_ID DESC";
+					WHERE category_id = ".$category_ID." 
+					ORDER BY product_id DESC";
 			}else{
-				$sql_query = "SELECT Product_ID, product_name, Price, product_image 
+				$sql_query = "SELECT product_id, product_name, price, product_image 
 					FROM product 
-					WHERE Product_name LIKE '%".$keyword."%' AND Category_ID = ".$category_ID." 
-					ORDER BY Product_ID DESC";
+					WHERE product_name LIKE '%".$keyword."%' AND category_id = ".$category_ID." 
+					ORDER BY product_id DESC";
 			}
 			
 			$result = $connect->query($sql_query) or die("Error : ".mysql_error());

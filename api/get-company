@@ -15,7 +15,7 @@
 	 
 			$companies = array();
 			while($company = $result->fetch_assoc()) {
-				$companies[] = array('Company'=>$company);
+				$companies[] = array('company'=>$company);
 			}
 			
 			// json бэлдэх

@@ -9,13 +9,13 @@
 			// Бүх ангилал авах
 			$sql_query = "SELECT * 
 					FROM category 
-					ORDER BY Category_name ASC ";
+					ORDER BY category_name ASC ";
 			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
 			$categories = array();
 			while($category = $result->fetch_assoc()) {
-				$categories[] = array('Category'=>$category);
+				$categories[] = array('category'=>$category);
 			}
 			
 			// json бэлдэх

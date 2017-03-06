@@ -15,7 +15,7 @@
 	 
 			$departments = array();
 			while($department = $result->fetch_assoc()) {
-				$departments[] = array('Department'=>$department);
+				$departments[] = array('department'=>$department);
 			}
 			
 			// json бэлдэх
