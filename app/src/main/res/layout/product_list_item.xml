@@ -5,15 +5,16 @@
     android:padding="5dp" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp" >
+        android:padding="2dp"
+        android:background="@drawable/corner_radius">
 
         <ImageView
             android:id="@+id/imgThumb"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:src="@drawable/loading" />
 
@@ -21,7 +22,17 @@
             android:id="@+id/lytText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp" >
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgFav"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="-170dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dgl_black_star"
+                android:layout_gravity="right" />
 
             <TextView
                 android:id="@+id/txtText"
@@ -42,6 +53,7 @@
                 android:text="bbb" />
 
         </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

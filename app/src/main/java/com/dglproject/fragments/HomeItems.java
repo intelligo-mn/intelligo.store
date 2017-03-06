@@ -87,7 +87,7 @@ public class HomeItems extends Fragment {
 
         allProductAdapter = new AllProductAdapter(getActivity());
 
-        homeItemList.setNumColumns(3);
+        homeItemList.setNumColumns(2);
 
         homeItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
