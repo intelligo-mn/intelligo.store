@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
@@ -53,12 +54,12 @@ public class ActivityProductList extends AppCompatActivity {
 
     ProductListAdapter productListAdapter;
 
-    public static ArrayList<Long> Menu_ID = new ArrayList<Long>();
-    public static ArrayList<String> Menu_name = new ArrayList<String>();
-    public static ArrayList<Double> Menu_price = new ArrayList<Double>();
-    public static ArrayList<String> Menu_image = new ArrayList<String>();
+    public static ArrayList<Long> Product_ID = new ArrayList<Long>();
+    public static ArrayList<String> Product_name = new ArrayList<String>();
+    public static ArrayList<Double> Product_price = new ArrayList<Double>();
+    public static ArrayList<String> Product_image = new ArrayList<String>();
 
-    String MenuAPI;
+    String ProductAPI;
     String TaxCurrencyAPI;
     int IOConnect = 0;
     long Category_ID;
@@ -79,20 +80,18 @@ public class ActivityProductList extends AppCompatActivity {
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
-        MenuAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey+"&category_id=";
+        ProductAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey+"&category_id=";
 
         TaxCurrencyAPI = DglConstants.TaxCurrencyAPI+"?accesskey="+DglConstants.AccessKey;
 
         Intent iGet = getIntent();
         Category_ID = iGet.getLongExtra("category_id",0);
         Category_name = iGet.getStringExtra("category_name");
-        MenuAPI += Category_ID;
+        ProductAPI += Category_ID;
 
 //        txtTitle.setText(Category_name);
 
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
-
-        new getTaxCurrency().execute();
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
 
@@ -102,7 +101,7 @@ public class ActivityProductList extends AppCompatActivity {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                MenuAPI += "&keyword="+Keyword;
+                ProductAPI += "&keyword="+Keyword;
                 IOConnect = 0;
                 listMenu.invalidateViews();
                 clearData();
@@ -116,7 +115,7 @@ public class ActivityProductList extends AppCompatActivity {
                                     long arg3) {
 
                 Intent iDetail = new Intent(ActivityProductList.this, ActivityProductDetail.class);
-                iDetail.putExtra("menu_id", Menu_ID.get(position));
+                iDetail.putExtra("product_id", Product_ID.get(position));
                 startActivity(iDetail);
             }
         });
@@ -198,79 +197,11 @@ public class ActivityProductList extends AppCompatActivity {
         }
     }
 
-    public class getTaxCurrency extends AsyncTask<Void, Void, Void> {
-
-        getTaxCurrency(){
-            if(!prgLoading.isShown()){
-                prgLoading.setVisibility(0);
-                txtAlert.setVisibility(8);
-            }
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            parseJSONDataTax();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            prgLoading.setVisibility(8);
-
-            if((Currency != null) && IOConnect == 0){
-                new getDataTask().execute();
-            }else{
-                txtAlert.setVisibility(0);
-            }
-        }
-    }
-
-    public void parseJSONDataTax(){
-        try {
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(TaxCurrencyAPI);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
-            }
-
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data");
-
-            JSONObject object_tax = data.getJSONObject(0);
-            JSONObject tax = object_tax.getJSONObject("tax_n_currency");
-
-            Tax = Double.parseDouble(tax.getString("Value"));
-
-            JSONObject object_currency = data.getJSONObject(1);
-            JSONObject currency = object_currency.getJSONObject("tax_n_currency");
-
-            Currency = currency.getString("Value");
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
     void clearData(){
-        Menu_ID.clear();
-        Menu_name.clear();
-        Menu_price.clear();
-        Menu_image.clear();
+        Product_ID.clear();
+        Product_name.clear();
+        Product_price.clear();
+        Product_image.clear();
     }
 
     public class getDataTask extends AsyncTask<Void, Void, Void>{
@@ -292,11 +223,12 @@ public class ActivityProductList extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             prgLoading.setVisibility(8);
 
-            if(Menu_ID.size() > 0){
+            if(Product_ID.size() > 0){
                 listMenu.setVisibility(0);
                 listMenu.setAdapter(productListAdapter);
             }else{
                 txtAlert.setVisibility(0);
+                Toast.makeText(getApplicationContext(), "Бүтээгдэхүүний мэдээлэл байхгүй байна", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -310,7 +242,7 @@ public class ActivityProductList extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(MenuAPI);
+            HttpUriRequest request = new HttpGet(ProductAPI);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
 
@@ -328,12 +260,12 @@ public class ActivityProductList extends AppCompatActivity {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
 
-                JSONObject menu = object.getJSONObject("Menu");
+                JSONObject product = object.getJSONObject("product");
 
-                Menu_ID.add(Long.parseLong(menu.getString("Menu_ID")));
-                Menu_name.add(menu.getString("Menu_name"));
-                Menu_price.add(Double.valueOf(formatData.format(menu.getDouble("Price"))));
-                Menu_image.add(menu.getString("Menu_image"));
+                Product_ID.add(Long.parseLong(product.getString("product_id")));
+                Product_name.add(product.getString("product_name"));
+                Product_price.add(Double.valueOf(formatData.format(product.getDouble("price"))));
+                Product_image.add(product.getString("product_image"));
 
             }
 
@@ -364,6 +296,4 @@ public class ActivityProductList extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
-
 }

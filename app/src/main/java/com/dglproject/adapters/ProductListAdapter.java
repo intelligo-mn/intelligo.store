@@ -29,7 +29,7 @@ public class ProductListAdapter extends BaseAdapter{
 
     public int getCount() {
 
-        return ActivityProductList.Menu_ID.size();
+        return ActivityProductList.Product_ID.size();
     }
 
     public Object getItem(int position) {
@@ -61,10 +61,10 @@ public class ProductListAdapter extends BaseAdapter{
         holder.txtSubText = (TextView) convertView.findViewById(R.id.txtSubText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
-        holder.txtText.setText(ActivityProductList.Menu_name.get(position));
-        holder.txtSubText.setText(ActivityProductList.Menu_price.get(position)+" "+ ActivityProductList.Currency);
+        holder.txtText.setText(ActivityProductList.Product_name.get(position));
+        holder.txtSubText.setText(ActivityProductList.Product_price.get(position)+" "+ ActivityProductList.Currency);
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityProductList.Menu_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityProductList.Product_image.get(position), holder.imgThumb);
 
         return convertView;
     }

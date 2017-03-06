@@ -180,11 +180,11 @@ public class ActivityCategory extends AppCompatActivity {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
 
-                JSONObject category = object.getJSONObject("Category");
+                JSONObject category = object.getJSONObject("category");
 
-                Category_ID.add(Long.parseLong(category.getString("Category_ID")));
-                Category_name.add(category.getString("Category_name"));
-                Category_image.add(category.getString("Category_image"));
+                Category_ID.add(Long.parseLong(category.getString("category_id")));
+                Category_name.add(category.getString("category_name"));
+                Category_image.add(category.getString("category_image"));
                 Log.d("Category name", Category_name.get(i));
             }
         } catch (MalformedURLException e) {

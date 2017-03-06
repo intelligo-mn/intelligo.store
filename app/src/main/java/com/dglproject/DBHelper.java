@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private final String TABLE_NAME = "tbl_order";
     private final String ID = "id";
-    private final String MENU_NAME = "Menu_name";
+    private final String MENU_NAME = "Product_name";
     private final String QUANTITY = "Quantity";
     private final String TOTAL_PRICE = "Total_price";
 

@@ -60,7 +60,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     ImageLoader imageLoader;
 
-    String Menu_image, Menu_name, Menu_serve, Menu_description;
+    String Product_image, Product_name, Product_serve, Product_description;
     double Menu_price;
     int Menu_quantity;
     long Menu_ID;
@@ -156,7 +156,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                     if(dbhelper.isDataExist(Menu_ID)){
                         dbhelper.updateData(Menu_ID, quantity, (Menu_price*quantity));
                     }else{
-                        dbhelper.addData(Menu_ID, Menu_name, quantity, (Menu_price*quantity));
+                        dbhelper.addData(Menu_ID, Product_name, quantity, (Menu_price*quantity));
                     }
                 }else{
                     dialog.cancel();
@@ -194,14 +194,14 @@ public class ActivityProductDetail extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             prgLoading.setVisibility(8);
-            if((Menu_name != null) && IOConnect == 0){
+            if((Product_name != null) && IOConnect == 0){
                 sclDetail.setVisibility(0);
 
-                imageLoader.DisplayImage(DglConstants.AdminPageURL+Menu_image, imgPreview);
+                imageLoader.DisplayImage(DglConstants.AdminPageURL+ Product_image, imgPreview);
 
-                txtText.setText(Menu_name);
-                txtSubText.setText("Price : " +Menu_price+" "+ ActivityProductList.Currency+"\n"+"Status : "+Menu_serve+"\n"+"Stock : "+Menu_quantity);
-                txtDescription.loadDataWithBaseURL("", Menu_description, "text/html", "UTF-8", "");
+                txtText.setText(Product_name);
+                txtSubText.setText("Price : " +Menu_price+" "+ ActivityProductList.Currency+"\n"+"Status : "+ Product_serve +"\n"+"Stock : "+Menu_quantity);
+                txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#e7e7e7"));
             }else{
                 txtAlert.setVisibility(0);
@@ -236,11 +236,11 @@ public class ActivityProductDetail extends AppCompatActivity {
 
                 JSONObject menu = object.getJSONObject("Menu_detail");
 
-                Menu_image = menu.getString("Menu_image");
-                Menu_name = menu.getString("Menu_name");
+                Product_image = menu.getString("Product_image");
+                Product_name = menu.getString("Product_name");
                 Menu_price = Double.valueOf(formatData.format(menu.getDouble("Price")));
-                Menu_serve = menu.getString("Serve_for");
-                Menu_description = menu.getString("Description");
+                Product_serve = menu.getString("Serve_for");
+                Product_description = menu.getString("Description");
                 Menu_quantity = menu.getInt("Quantity");
 
             }
