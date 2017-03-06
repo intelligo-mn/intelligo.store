@@ -28,7 +28,7 @@
 			
 			$products = array();
 			while($product = $result->fetch_assoc()) {
-				$products[] = array('product'=>$product);
+				$products[] = array('product_all'=>$product);
 			}
 			
 			$output = json_encode(array('data' => $products));

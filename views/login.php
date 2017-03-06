@@ -1,5 +1,5 @@
 <?php
-	include_once('config/connect.php'); 
+	include_once('config/database.php'); 
 	
 	// start session
 	//session_start();
