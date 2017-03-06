@@ -114,7 +114,31 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Product_name`, `Category_ID`, `Price`, `Serve_for`, `Product_image`, `Description`, `Quantity`) VALUES
-(28, 'Бараа 1', 10, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1);
+(1, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(2, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(3, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(4, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(5, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(6, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(7, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(8, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(9, 'Бараа', 1, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(10, 'Бараа', 2, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(11, 'Бараа', 2, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(12, 'Бараа', 2, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(13, 'Бараа', 2, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1),
+(14, 'Бараа', 2, 15000, 'Available', 'upload/images/5816-2017-03-04.png', '<p>Дэлгэрэнгүй тайлбар</p>\r\n', 1);
+
+
+CREATE TABLE IF NOT EXISTS `setting` (
+  `Variable` varchar(20) NOT NULL,
+  `Value` varchar(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `setting` (`Variable`, `Value`) VALUES
+('Tax', '0'),
+('Currency', 'MNT');
 
 --
 -- Table structure for table `user`
