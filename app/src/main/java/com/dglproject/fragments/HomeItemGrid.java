@@ -5,17 +5,13 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
@@ -43,15 +39,13 @@ import java.util.ArrayList;
  * Created by Tortuvshin Byambaa on 2/24/2017.
  */
 
-public class PageFragment extends Fragment {
+public class HomeItemGrid extends Fragment {
+
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPageNo;
     private static View rootView;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
-    ListView listMenu;
+    GridView homeItemList;
     ProgressBar prgLoading;
     TextView txtAlert;
 
@@ -64,11 +58,11 @@ public class PageFragment extends Fragment {
 
     String AllProductApi;
 
-    public static PageFragment newInstance(int pageNo) {
+    public static HomeItemGrid newInstance(int pageNo) {
 
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNo);
-        PageFragment fragment = new PageFragment();
+        HomeItemGrid fragment = new HomeItemGrid();
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,39 +73,21 @@ public class PageFragment extends Fragment {
 
     }
 
-//    private void setupRecyclerView() {
-//
-//        String[] myDataset={"Бараа","Бараа","Бараа","Бараа","Бараа",
-//                "Бараа","Бараа","Бараа","Бараа","Бараа"};
-//
-//        int[]myImages = {R.drawable.logo ,R.drawable.logo ,R.drawable.logo, R.drawable.logo ,R.drawable.logo,
-//                R.drawable.logo ,R.drawable.logo, R.drawable.logo ,R.drawable.logo ,R.drawable.logo};
-//
-//        mRecyclerView = (RecyclerView)rootView.findViewById(R.id.my_recycler_view);
-//        mRecyclerView.setHasFixedSize(true);
-//        mLayoutManager = new GridLayoutManager(getActivity(), 2);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mAdapter = new PageFragment.MyAdapter(myDataset,myImages);
-//        mRecyclerView.setAdapter(mAdapter);
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_page, container, false);
-//        setupRecyclerView();
-        prgLoading = (ProgressBar) rootView.findViewById(R.id.prdLoading);
-        listMenu = (ListView) rootView.findViewById(R.id.listProduct);
-        txtAlert = (TextView) rootView.findViewById(R.id.txtFraAlert);
+        rootView = inflater.inflate(R.layout.home_item_grid, container, false);
+        prgLoading = (ProgressBar) rootView.findViewById(R.id.homeLoading);
+        homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
+        txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
         AllProductApi = DglConstants.AllProductApi +"?accesskey="+DglConstants.AccessKey;
 
         new getDataTask().execute();
-//        txtTitle.setText(Category_name);
 
         allProductAdapter = new AllProductAdapter(getActivity());
 
-        listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        homeItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
@@ -123,51 +99,6 @@ public class PageFragment extends Fragment {
         });
         return rootView;
     }
-//
-//    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-//        private String[] mDataset;
-//        private int[] mImages;
-//
-//        public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//            public TextView mTextView;
-//            public ImageView mImageView;
-//            public ViewHolder(View v) {
-//                super(v);
-//                v.setOnClickListener(this);
-//                mTextView = (TextView)v.findViewById(R.id.txt);
-//                mImageView = (ImageView)v.findViewById(R.id.img);
-//            }
-//
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        }
-//
-//        public MyAdapter(String[] myDataset, int[] myImages) {
-//            mDataset = myDataset;
-//            mImages = myImages;
-//        }
-//
-//        @Override
-//        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-//                                                       int viewType) {
-//            View v = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.main_list, parent, false);
-//            ViewHolder vh = new ViewHolder(v);
-//            return vh;
-//        }
-//
-//        public void onBindViewHolder(ViewHolder holder, int position) {
-//            holder.mTextView.setText(mDataset[position]);
-//            holder.mImageView.setImageResource(mImages[position]);
-//        }
-//
-//        public int getItemCount() {
-//            return mDataset.length;
-//        }
-//    }
 
     void clearData(){
         Product_ID.clear();
@@ -196,8 +127,8 @@ public class PageFragment extends Fragment {
             prgLoading.setVisibility(8);
 
             if(Product_ID.size() > 0){
-                listMenu.setVisibility(0);
-                listMenu.setAdapter(allProductAdapter);
+                homeItemList.setVisibility(0);
+                homeItemList.setAdapter(allProductAdapter);
             }else{
                 txtAlert.setVisibility(0);
             }

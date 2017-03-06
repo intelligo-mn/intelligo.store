@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
-import com.dglproject.fragments.PageFragment;
+import com.dglproject.fragments.HomeItemList;
 import com.dglproject.utils.ImageLoader;
 
 /**
@@ -29,7 +29,7 @@ public class AllProductAdapter extends BaseAdapter {
 
     public int getCount() {
 
-        return PageFragment.Product_ID.size();
+        return HomeItemList.Product_ID.size();
     }
 
     public Object getItem(int position) {
@@ -61,10 +61,10 @@ public class AllProductAdapter extends BaseAdapter {
         holder.txtSubText = (TextView) convertView.findViewById(R.id.txtSubText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
-        holder.txtText.setText(PageFragment.Product_name.get(position));
-        holder.txtSubText.setText(PageFragment.Product_price.get(position)+" ");
+        holder.txtText.setText(HomeItemList.Product_name.get(position));
+        holder.txtSubText.setText(HomeItemList.Product_price.get(position)+" ");
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ PageFragment.Product_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+ HomeItemList.Product_image.get(position), holder.imgThumb);
 
         return convertView;
     }

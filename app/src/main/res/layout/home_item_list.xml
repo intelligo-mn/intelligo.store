@@ -2,24 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dglproject.fragments.HomeFragment">
+    tools:context=".fragments.HomeItemList">
 
-    <GridView
-        android:id="@+id/homeItemList"
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listProduct"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:numColumns="2"
-        android:visibility="gone" />
+        android:padding="5dp" />
 
     <ProgressBar
-        android:id="@+id/homeLoading"
+        android:id="@+id/prdLoading"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_centerInParent="true" />
-
     <TextView
-        android:id="@+id/homeTxtAlert"
+        android:id="@+id/txtFraAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/not_found"

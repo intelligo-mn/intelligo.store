@@ -33,8 +33,8 @@ import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
 import com.dglproject.activity.ActivityHelp;
 import com.dglproject.activity.ActivityUserProfile;
-import com.dglproject.fragments.HomeFragment;
-import com.dglproject.fragments.PageFragment;
+import com.dglproject.fragments.HomeItemGrid;
+import com.dglproject.fragments.HomeItemList;
 import com.dglproject.widgets.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity
@@ -135,11 +135,11 @@ public class MainActivity extends AppCompatActivity
             switch (pos) {
 
                 case 0:
-                    return HomeFragment.newInstance(1);
+                    return HomeItemGrid.newInstance(1);
                 case 1:
-                    return PageFragment.newInstance(2);
+                    return HomeItemList.newInstance(2);
                 case 2:
-                    return PageFragment.newInstance(3);
+                    return HomeItemList.newInstance(3);
 
             }
             return null;
