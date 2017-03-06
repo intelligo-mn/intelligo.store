@@ -61,10 +61,10 @@ public class ActivityProductDetail extends AppCompatActivity {
     ImageLoader imageLoader;
 
     String Product_image, Product_name, Product_serve, Product_description;
-    double Menu_price;
-    int Menu_quantity;
-    long Menu_ID;
-    String MenuDetailAPI;
+    double Product_price;
+    int Product_quantity;
+    long Product_ID;
+    String ProductDetailAPI;
     int IOConnect = 0;
 
     DecimalFormat formatData = new DecimalFormat("#.##");
@@ -101,9 +101,9 @@ public class ActivityProductDetail extends AppCompatActivity {
         dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
-        Menu_ID = iGet.getLongExtra("menu_id", 0);
+        Product_ID = iGet.getLongExtra("product_id", 0);
 
-        MenuDetailAPI = DglConstants.MenuDetailAPI+"?accesskey="+DglConstants.AccessKey+"&menu_id="+Menu_ID;
+        ProductDetailAPI = DglConstants.ProductDetailAPI +"?accesskey="+DglConstants.AccessKey+"&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
@@ -146,17 +146,17 @@ public class ActivityProductDetail extends AppCompatActivity {
         edtQuantity.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(edtQuantity);
 
-        alert.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Нэмэх", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String temp = edtQuantity.getText().toString();
                 int quantity = 0;
 
                 if(!temp.equalsIgnoreCase("")){
                     quantity = Integer.parseInt(temp);
-                    if(dbhelper.isDataExist(Menu_ID)){
-                        dbhelper.updateData(Menu_ID, quantity, (Menu_price*quantity));
+                    if(dbhelper.isDataExist(Product_ID)){
+                        dbhelper.updateData(Product_ID, quantity, (Product_price *quantity));
                     }else{
-                        dbhelper.addData(Menu_ID, Product_name, quantity, (Menu_price*quantity));
+                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price *quantity));
                     }
                 }else{
                     dialog.cancel();
@@ -164,7 +164,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             }
         });
 
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("Буцах", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
                 dialog.cancel();
@@ -200,7 +200,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                 imageLoader.DisplayImage(DglConstants.AdminPageURL+ Product_image, imgPreview);
 
                 txtText.setText(Product_name);
-                txtSubText.setText("Price : " +Menu_price+" "+ ActivityProductList.Currency+"\n"+"Status : "+ Product_serve +"\n"+"Stock : "+Menu_quantity);
+                txtSubText.setText("Үнэ : " + Product_price +" "+ ActivityProductList.Currency+"\n");
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#e7e7e7"));
             }else{
@@ -216,7 +216,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(MenuDetailAPI);
+            HttpUriRequest request = new HttpGet(ProductDetailAPI);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
 
@@ -234,14 +234,14 @@ public class ActivityProductDetail extends AppCompatActivity {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
 
-                JSONObject menu = object.getJSONObject("Menu_detail");
+                JSONObject menu = object.getJSONObject("product_detail");
 
-                Product_image = menu.getString("Product_image");
-                Product_name = menu.getString("Product_name");
-                Menu_price = Double.valueOf(formatData.format(menu.getDouble("Price")));
-                Product_serve = menu.getString("Serve_for");
-                Product_description = menu.getString("Description");
-                Menu_quantity = menu.getInt("Quantity");
+                Product_image = menu.getString("product_image");
+                Product_name = menu.getString("product_name");
+                Product_price = Double.valueOf(formatData.format(menu.getDouble("price")));
+                Product_serve = menu.getString("serve_for");
+                Product_description = menu.getString("description");
+                Product_quantity = menu.getInt("quantity");
 
             }
 
@@ -274,6 +274,4 @@ public class ActivityProductDetail extends AppCompatActivity {
     {
         super.onConfigurationChanged(newConfig);
     }
-
-
 }

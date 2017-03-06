@@ -19,7 +19,7 @@ public class DglConstants {
     public static String ProductApi = "http://www.dgl.toroo.info/api/get-product-category-id.php";
     public static String AllProductApi = "http://www.dgl.toroo.info/api/get-all-product.php";
     public static String TaxCurrencyAPI = "http://www.dgl.toroo.info/api/get-currency.php";
-    public static String MenuDetailAPI = "http://www.dgl.toroo.info/api/get-product.php";
+    public static String ProductDetailAPI = "http://www.dgl.toroo.info/api/get-product.php";
     public static String SendDataAPI = "http://www.dgl.toroo.info/api/add-order.php";
     public static String CompanyAPI = "http://www.dgl.toroo.info/api/get-company.php";
 
