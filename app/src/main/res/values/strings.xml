@@ -9,12 +9,12 @@
     <string name="title_activity_help">Тусламж</string>
     <string name="title_activity_company">Компаниуд</string>
     <string name="title_activity_department">Салбарууд</string>
-    <string name="title_activity_product_detail">ProductDetailActivity</string>
-    <string name="title_activity_user_profile">UserProfileActivity</string>
-    <string name="title_activity_category">CategoryActivity</string>
+    <string name="title_activity_product_detail">Дэлгэрэнгүй</string>
+    <string name="title_activity_user_profile">Хэрэглэгч</string>
+    <string name="title_activity_category">Ангилал</string>
     <string name="title_activity_card">Сагс</string>
     <string name="no_internet">Интернет холболтоо шалгана уу</string>
-    <string name="title_activity_activity_product_list">ActivityProductList</string>
+    <string name="title_activity_activity_product_list">Бүтээгдэхүүний жагсаалт</string>
     <string name="not_found">Хоосон байна</string>
     <string name="shopping_cart">Сагс</string>
     <string name="order">Захиалга</string>
