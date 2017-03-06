@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
@@ -103,6 +104,7 @@ public class PageFragment extends Fragment {
         listMenu = (ListView) rootView.findViewById(R.id.listProduct);
         txtAlert = (TextView) rootView.findViewById(R.id.txtFraAlert);
 
+        Toast.makeText(getContext(), "On Create View", Toast.LENGTH_LONG).show();
         ProductAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey;
 
 
@@ -215,7 +217,7 @@ public class PageFragment extends Fragment {
             HttpUriRequest request = new HttpGet(ProductAPI);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
-
+            Toast.makeText(getContext(), "Connected", Toast.LENGTH_LONG).show();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
 
             String line;

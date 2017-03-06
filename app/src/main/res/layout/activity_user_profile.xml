@@ -17,7 +17,7 @@
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@android:color/black"
+            android:background="@android:color/white"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
@@ -34,12 +34,12 @@
                 android:src="@drawable/logo" />
 
             <ImageView
-                android:id="@+id/back"
+                android:id="@+id/profile_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/dgl_white_error" />
+                android:src="@drawable/abc_ic_ab_back_material" />
 
             <ImageView
                 android:id="@+id/user_profile_set_btn"
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/dgl_white_settings" />
+                android:src="@drawable/dgl_black_settings" />
 
             <TextView
                 android:id="@+id/user_profile_name"
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="Tortuvshin Byambaa"
-                android:textColor="#fff"
+                android:textColor="#191717"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -71,7 +71,8 @@
                 android:layout_below="@+id/user_profile_name"
                 android:layout_marginTop="6dp"
                 android:background="@color/colorPrimary"
-                android:text="Түншлэх"/>
+                android:text="Түншлэх"
+                android:textColor="#fff" />
 
             <TextView
                 android:id="@+id/user_profile_f"

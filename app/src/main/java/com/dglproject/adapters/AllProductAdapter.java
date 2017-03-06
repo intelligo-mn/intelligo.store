@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
-import com.dglproject.activity.ActivityProductList;
-import com.dglproject.fragments.MainFragment;
 import com.dglproject.fragments.PageFragment;
 import com.dglproject.utils.ImageLoader;
 

@@ -33,7 +33,6 @@ import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
 import com.dglproject.activity.ActivityHelp;
 import com.dglproject.activity.ActivityUserProfile;
-import com.dglproject.fragments.MainFragment;
 import com.dglproject.fragments.PageFragment;
 import com.dglproject.widgets.CustomViewPager;
 
@@ -138,7 +137,7 @@ public class MainActivity extends AppCompatActivity
                     return PageFragment.newInstance(1);
 
                 case 1:
-                    return MainFragment.newInstance(1);
+                    return PageFragment.newInstance(2);
                 case 2:
                     return PageFragment.newInstance(3);
 

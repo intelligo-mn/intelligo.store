@@ -107,7 +107,8 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/colorPrimary"
-            android:text="Хадгалах"/>
+            android:text="Хадгалах"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </ScrollView>
