@@ -2,7 +2,7 @@
 	include_once('../config/database.php'); 
 	include_once('../config/variables.php');
 	
-	if(isset($_GET['accesskey']) && isset($_GET['category_id'])) {
+	if(isset($_GET['accesskey'])) {
 		$access_key_received = $_GET['accesskey'];
 		
 		if(isset($_GET['keyword'])){
