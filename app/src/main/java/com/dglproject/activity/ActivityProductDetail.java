@@ -67,8 +67,6 @@ public class ActivityProductDetail extends AppCompatActivity {
     String ProductDetailAPI;
     int IOConnect = 0;
 
-    DecimalFormat formatData = new DecimalFormat("#.##");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,7 +198,8 @@ public class ActivityProductDetail extends AppCompatActivity {
                 imageLoader.DisplayImage(DglConstants.AdminPageURL+ Product_image, imgPreview);
 
                 txtText.setText(Product_name);
-                txtSubText.setText("Үнэ : " + Product_price +" "+ ActivityProductList.Currency+"\n");
+//                txtSubText.setText("Үнэ : " + Product_price +" "+ ActivityProductList.Currency+"\n");
+                txtSubText.setText("Үнэ : " + Product_price +" ₮"+"\n");
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#e7e7e7"));
             }else{
@@ -238,7 +237,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
                 Product_image = menu.getString("product_image");
                 Product_name = menu.getString("product_name");
-                Product_price = Double.valueOf(formatData.format(menu.getDouble("price")));
+                Product_price = menu.getDouble("price");
                 Product_serve = menu.getString("serve_for");
                 Product_description = menu.getString("description");
                 Product_quantity = menu.getInt("quantity");

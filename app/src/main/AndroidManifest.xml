@@ -54,7 +54,7 @@
         <activity
             android:name=".activity.ActivityProductDetail"
             android:label="@string/title_activity_product_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBarGreen" />
         <activity
             android:name=".activity.ActivityUserProfile"
             android:label="@string/title_activity_user_profile"
