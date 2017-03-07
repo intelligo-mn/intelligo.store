@@ -1,6 +1,6 @@
 <?php
 	include_once('config/database.php'); 
-	include_once('functions.php'); 
+	include_once('app/functions.php'); 
 ?>
 <div id="content" class="container col-md-12">
 	<?php 
