@@ -9,4 +9,10 @@
     <color name="facebook_color">#3b5998</color>
     <color name="twitter_color">#00aced</color>
     <color name="google_color">#d34836</color>
+    <color name="search_layover_bg">@color/gray</color>
+    <color name="search_field_bg">@color/white_ish</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="black">#ff000000</color>
+    <color name="gray">#ff888888</color>
+    <color name="white_ish">#fffefefe</color>
 </resources>

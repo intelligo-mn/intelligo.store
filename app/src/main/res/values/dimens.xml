@@ -11,4 +11,6 @@
     <integer name="default_anim_duration">3000</integer>
     <integer name="default_anim_step">3</integer>
     <integer name="default_start_angle">-90</integer>
+    <dimen name="search_icon_padding">12dp</dimen>
+    <dimen name="search_view_text_padding">8dp</dimen>
 </resources>

@@ -26,6 +26,11 @@
     <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
     <string name="no_order">Захиалга байхгүй байна</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_hint">Хайх&#8230;</string>
+    <string name="hint_prompt">Speak an item name or a number</string>
+
+    <string name="cd_up_button">Up navigation button</string>
+    <string name="cd_voice_search">Voice search</string>
+    <string name="cd_clear_button">Clear field</string>
+    <string name="cd_suggestion_icon">List item icon</string>
 </resources>
