@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
-            R.drawable.ic_recents_selector,
-            R.drawable.ic_favorite_selector,
-            R.drawable.ic_place_selector};
+            R.drawable.dgl_white_heart,
+            R.drawable.dgl_white_app,
+            R.drawable.dgl_white_list};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         public final int PAGE_COUNT = 3;
 
-        private final String[] mTabsTitle = {"Дэлгүүр", "Брэнд апп", "Аялал жуулчлал"};
+        private final String[] mTabsTitle = {"Бүтээгдэхүүн", "Брэндүүд", "Ангилалууд"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
