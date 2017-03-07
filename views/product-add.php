@@ -4,16 +4,16 @@
 ?>
 <div id="content" class="container col-md-12">
 	<?php 
-		$sql_query = "SELECT Category_ID, Category_name 
+		$sql_query = "SELECT category_id, category_name 
 			FROM category 
-			ORDER BY Category_ID ASC";
+			ORDER BY category_id ASC";
 				
 		$stmt_category = $connect->stmt_init();
 		if($stmt_category->prepare($sql_query)) {	
 			$stmt_category->execute();
 			$stmt_category->store_result();
-			$stmt_category->bind_result($category_data['Category_ID'], 
-				$category_data['Category_name']
+			$stmt_category->bind_result($category_data['category_id'], 
+				$category_data['category_name']
 				);		
 		}
 		
@@ -30,7 +30,7 @@
 			
 		if(isset($_POST['btnAdd'])){
 			$product_name = $_POST['product_name'];
-			$category_ID = $_POST['category_ID'];
+			$category_ID = $_POST['category_id'];
 			$price = $_POST['price'];
 			$serve_for = $_POST['serve_for'];
 			$description = $_POST['description'];
@@ -48,7 +48,7 @@
 			}
 				
 			if(empty($category_ID)){
-				$error['category_ID'] = " <span class='label label-danger'>Хоосон байна!</span>";
+				$error['category_id'] = " <span class='label label-danger'>Хоосон байна!</span>";
 			}				
 				
 			if(empty($price)){
@@ -99,7 +99,7 @@
 					
 				$upload = move_uploaded_file($_FILES['product_image']['tmp_name'], 'upload/images/'.$product_image);
 		
-				$sql_query = "INSERT INTO product (Product_name, Category_ID, Price, Serve_for, Product_image, Description, Quantity)
+				$sql_query = "INSERT INTO product (product_name, category_id, price, serve_for, product_image, description, quantity)
 						VALUES(?, ?, ?, ?, ?, ?, ?)";
 						
 				$upload_image = 'upload/images/'.$product_image;
@@ -127,12 +127,11 @@
 				}else {
 					$error['add_product'] = " <span class='label label-danger'>Алдаа</span>";
 				}
-			}
-				
-			}
+			}	
+		}
 	?>
 	<div class="col-md-12">
-	<h1>Add Menu <?php echo isset($error['add_product']) ? $error['add_product'] : '';?></h1>
+	<h1>Бараа нэмэх <?php echo isset($error['add_product']) ? $error['add_product'] : '';?></h1>
 	<hr />
 	</div>
 
@@ -162,10 +161,10 @@
 		</select>
 		<br/>
 
-	    <label>Ангилал :</label><?php echo isset($error['category_ID']) ? $error['category_ID'] : '';?>
-		<select name="category_ID" class="form-control">
+	    <label>Ангилал :</label><?php echo isset($error['category_id']) ? $error['category_id'] : '';?>
+		<select name="category_id" class="form-control">
 			<?php while($stmt_category->fetch()){ ?>
-				<option value="<?php echo $category_data['Category_ID']; ?>"><?php echo $category_data['Category_name']; ?></option>
+				<option value="<?php echo $category_data['category_id']; ?>"><?php echo $category_data['category_name']; ?></option>
 			<?php } ?>
 		</select>
 		

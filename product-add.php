@@ -30,7 +30,7 @@
     <body>
     	<div id="container">
     		<?php include('views/menubar.php'); ?>
-    		<?php include('views/add-product.php'); ?>
+    		<?php include('views/product-add.php'); ?>
 			<?php include('views/footer.php'); ?>
     	</div>
 
