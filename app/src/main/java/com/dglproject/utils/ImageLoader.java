@@ -51,7 +51,6 @@ public class ImageLoader {
         else
         {
             queuePhoto(url, imageView);
-            imageView.setBackgroundColor(Color.parseColor("#1e1411"));
         }
     }
 
@@ -99,7 +98,7 @@ public class ImageLoader {
             BitmapFactory.decodeStream(stream1,null,o);
             stream1.close();
 
-            final int REQUIRED_SIZE=70;
+            final int REQUIRED_SIZE=140;
             int width_tmp=o.outWidth, height_tmp=o.outHeight;
             int scale=1;
             while(true){
