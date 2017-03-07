@@ -32,8 +32,29 @@
         app:dgl_inner_padding="@dimen/default_inner_padding"
         app:dgl_inner_color="@color/colorPrimary"
         app:dgl_outer_color="@color/colorPrimary"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="100dp"
         android:id="@+id/dglProgressBar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Уншиж байна..."
+        android:id="@+id/textView2"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="DGL BRAND"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
 </RelativeLayout>
