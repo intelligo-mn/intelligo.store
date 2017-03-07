@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.DglConstants;
+import com.dglproject.fragments.CategoryFragment;
 import com.dglproject.utils.ImageLoader;
 import com.dglproject.R;
 
@@ -28,7 +29,7 @@ public class CategoryAdapter extends BaseAdapter{
     }
 
     public int getCount() {
-        return ActivityCategory.Category_ID.size();
+        return CategoryFragment.Category_ID.size();
     }
 
     public Object getItem(int position) {
@@ -57,8 +58,8 @@ public class CategoryAdapter extends BaseAdapter{
         holder.txtText = (TextView) convertView.findViewById(R.id.txtText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
-        holder.txtText.setText(ActivityCategory.Category_name.get(position));
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityCategory.Category_image.get(position), holder.imgThumb);
+        holder.txtText.setText(CategoryFragment.Category_name.get(position));
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+ CategoryFragment.Category_image.get(position), holder.imgThumb);
 
         return convertView;
     }
