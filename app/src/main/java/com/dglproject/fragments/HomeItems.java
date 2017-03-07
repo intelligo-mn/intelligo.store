@@ -66,11 +66,11 @@ public class HomeItems extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPageNo = getArguments().getInt(ARG_PAGE);
-
     }
 
     @Override
@@ -134,7 +134,6 @@ public class HomeItems extends Fragment {
             }else{
                 txtAlert.setVisibility(0);
             }
-
         }
     }
 
@@ -168,7 +167,7 @@ public class HomeItems extends Fragment {
 
                 Product_ID.add(Long.parseLong(product.getString("product_id")));
                 Product_name.add(product.getString("product_name"));
-                Product_price.add(Double.valueOf(product.getDouble("price")));
+                Product_price.add(product.getDouble("price"));
                 Product_image.add(product.getString("product_image"));
 
             }
@@ -181,7 +180,6 @@ public class HomeItems extends Fragment {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig)

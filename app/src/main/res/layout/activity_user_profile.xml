@@ -17,7 +17,7 @@
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@android:color/white"
+            android:background="@drawable/header_image"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
@@ -39,17 +39,17 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/abc_ic_ab_back_material" />
+                android:src="@drawable/dgl_white_x" />
 
             <ImageView
                 android:id="@+id/user_profile_set_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/dgl_black_settings" />
+                android:src="@drawable/dgl_white_settings" />
 
             <TextView
                 android:id="@+id/user_profile_name"
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="Tortuvshin Byambaa"
-                android:textColor="#191717"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
