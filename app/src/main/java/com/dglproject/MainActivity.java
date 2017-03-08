@@ -1,15 +1,18 @@
 package com.dglproject;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,6 +23,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +41,9 @@ import com.dglproject.activity.ActivityUserProfile;
 import com.dglproject.fragments.CategoryFragment;
 import com.dglproject.fragments.HomeItems;
 import com.dglproject.widgets.CustomViewPager;
+import com.dglproject.widgets.MaterialSearchView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +56,8 @@ public class MainActivity extends AppCompatActivity
             R.drawable.dgl_white_heart,
             R.drawable.dgl_white_app,
             R.drawable.dgl_white_list};
+
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +95,81 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewOpened() {
+                // Do something once the view is open.
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                // Do something once the view is closed.
+            }
+        });
+
+        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Do something when the suggestion list is clicked.
+                String suggestion = searchView.getSuggestionAtPosition(position);
+
+                searchView.setQuery(suggestion, false);
+            }
+        });
+//
+//        bt_clearHistory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clearHistory();
+//            }
+//        });
+//
+//        bt_clearSuggestions.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clearSuggestions();
+//            }
+//        });
+//
+//        bt_clearAll.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clearAll();
+//            }
+//        });
+
+//        searchView.setTintAlpha(200);
+        searchView.adjustTintAlpha(0.8f);
+
+        final Context context = this;
+        searchView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(context, "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        searchView.setOnVoiceClickedListener(new MaterialSearchView.OnVoiceClickedListener() {
+            @Override
+            public void onVoiceClicked() {
+                Toast.makeText(context, "Voice clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setupViewPager () {
@@ -181,38 +266,38 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        searchView.setIconifiedByDefault(false);
+//
+//        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener()
+//        {
+//            @Override
+//            public boolean onQueryTextChange(String newText)
+//            {
+//                return true;
+//            }
+//            @Override
+//            public boolean onQueryTextSubmit(String query)
+//            {
+//                return true;
+//            }
+//        };
+//        searchView.setOnQueryTextListener(textChangeListener);
 
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false);
-
-        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener()
-        {
-            @Override
-            public boolean onQueryTextChange(String newText)
-            {
-                return true;
-            }
-            @Override
-            public boolean onQueryTextSubmit(String query)
-            {
-                return true;
-            }
-        };
-        searchView.setOnQueryTextListener(textChangeListener);
-
-        MenuItem cartItem = menu.findItem(R.id.action_cart);
-        MenuItemCompat.setActionView(cartItem, R.layout.action_icon_cart);
-        View view = MenuItemCompat.getActionView(cartItem);
-        cartItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
-                startActivity(cart);
-                return true;
-            }
-        });
+//        MenuItem cartItem = menu.findItem(R.id.action_cart);
+//        MenuItemCompat.setActionView(cartItem, R.layout.action_icon_cart);
+//        View view = MenuItemCompat.getActionView(cartItem);
+//        cartItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
+//                startActivity(cart);
+//                return true;
+//            }
+//        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -222,23 +307,29 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id) {
+            case R.id.action_search:
+                // Open the search view on the menu item click.
 
+                searchView.openSearch();
+                return true;
+        }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
-            startActivity(settings);
-        } else if (id == R.id.action_category) {
-            Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
-            startActivity(cat);
-        } else if (id == R.id.action_cart) {
-            Intent cart = new Intent(MainActivity.this, ActivityCart.class);
-            startActivity(cart);
-        }
-            else if (id == R.id.action_login) {
-            Intent cart = new Intent(MainActivity.this, ActivityLogin.class);
-            startActivity(cart);
-
-        }
+//        if (id == R.id.action_settings) {
+//            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
+//            startActivity(settings);
+//        } else if (id == R.id.action_category) {
+//            Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
+//            startActivity(cat);
+//        } else if (id == R.id.action_cart) {
+//            Intent cart = new Intent(MainActivity.this, ActivityCart.class);
+//            startActivity(cart);
+//        }
+//            else if (id == R.id.action_login) {
+//            Intent cart = new Intent(MainActivity.this, ActivityLogin.class);
+//            startActivity(cart);
+//
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -274,5 +365,49 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0) {
+                String searchWrd = matches.get(0);
+                if (!TextUtils.isEmpty(searchWrd)) {
+                    searchView.setQuery(searchWrd, false);
+                }
+            }
+
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        searchView.clearSuggestions();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        searchView.activityResumed();
+        String[] arr = getResources().getStringArray(R.array.suggestions);
+
+        searchView.addSuggestions(arr);
+    }
+
+    private void clearHistory() {
+        searchView.clearHistory();
+    }
+
+    private void clearSuggestions() {
+        searchView.clearSuggestions();
+    }
+
+    private void clearAll() {
+        searchView.clearAll();
     }
 }

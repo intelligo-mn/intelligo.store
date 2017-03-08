@@ -1,37 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="1001"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_category"
-        android:orderInCategory="100"
-        android:title="Ангилал"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_login"
-        android:orderInCategory="100"
-        android:title="Нэвтрэх"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/search"
-        android:orderInCategory="10"
-        android:title="Хайх"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
-
-    <item
-        android:id="@+id/action_cart"
-        android:actionLayout="@layout/action_icon_cart"
-        android:icon="@drawable/cart"
+        android:icon="@drawable/ic_action_search_white"
         android:orderInCategory="100"
-        android:title="Сагс"
-        app:showAsAction="ifRoom" />
-
+        android:title="@string/abc_search_hint"
+        app:showAsAction="always" />
 
 </menu>

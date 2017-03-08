@@ -77,6 +77,13 @@
             android:name=".activity.ActivitySignup"
             android:theme="@style/AppAuth" />
         <activity android:name=".activity.ActivitySettings"></activity>
+
+        <provider
+            android:name="com.dglproject.database.HistoryProvider"
+            android:authorities="com.dglproject"
+            android:exported="false"
+            android:protectionLevel="signature"
+            android:syncable="true"/>
     </application>
 
 </manifest>

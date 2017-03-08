@@ -257,7 +257,7 @@ public class ActivityProductDetail extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        dbhelper.close();
+//        dbhelper.close();
         finish();
     }
 
