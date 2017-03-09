@@ -8,7 +8,6 @@
 	if(!isset($_SESSION['user'])){
 		header("location:index.php");
 	}
-	
 
 	if($currentTime > $_SESSION['timeout']){
 		session_destroy();
@@ -23,10 +22,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>DGL</title>
         <link rel="stylesheet" href="public/css/font-awesome.min.css">
         <link rel="stylesheet" href="public/css/bootstrap.css">
         <link rel="stylesheet" href="public/css/custom.css">
-        <title>DGL</title>
     </head>
     <body>
     	<div id="container">

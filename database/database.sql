@@ -66,7 +66,15 @@ INSERT INTO `department` (`department_id`, `department_name`, `department_image`
 (2, 'Байгаль орчин', 'upload/images/8195-2017-03-04.png'),
 (3, 'Барилга угсралт', 'upload/images/8571-2017-03-04.png'),
 (4, 'Гэр ахуй', 'upload/images/2787-2017-03-04.png');
--- --------------------------------------------------------
+
+
+DROP TABLE IF EXISTS `brand`;
+CREATE TABLE IF NOT EXISTS `brand` (
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(20) NOT NULL,
+  `brand_image` text NOT NULL,
+  PRIMARY KEY (`brand_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `company`
