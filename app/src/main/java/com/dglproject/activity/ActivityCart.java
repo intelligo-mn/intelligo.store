@@ -26,7 +26,7 @@ import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import com.dglproject.DBHelper;
+import com.dglproject.database.DBHelper;
 import com.dglproject.DglConstants;
 import com.dglproject.R;
 import com.dglproject.adapters.CartAdapter;

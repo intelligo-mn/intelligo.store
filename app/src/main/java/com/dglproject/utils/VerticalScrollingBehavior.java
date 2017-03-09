@@ -1,4 +1,4 @@
-package com.dglproject;
+package com.dglproject.utils;
 
 import android.content.Context;
 import android.os.Parcelable;

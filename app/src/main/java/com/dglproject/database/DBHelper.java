@@ -1,4 +1,4 @@
-package com.dglproject;
+package com.dglproject.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.dglproject.DglConstants;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.telephony.cdma.CdmaCellLocation;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -271,38 +272,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
-//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-//
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setIconifiedByDefault(false);
-//
-//        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener()
-//        {
-//            @Override
-//            public boolean onQueryTextChange(String newText)
-//            {
-//                return true;
-//            }
-//            @Override
-//            public boolean onQueryTextSubmit(String query)
-//            {
-//                return true;
-//            }
-//        };
-//        searchView.setOnQueryTextListener(textChangeListener);
 
-//        MenuItem cartItem = menu.findItem(R.id.action_cart);
-//        MenuItemCompat.setActionView(cartItem, R.layout.action_icon_cart);
-//        View view = MenuItemCompat.getActionView(cartItem);
-//        cartItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
-//                startActivity(cart);
-//                return true;
-//            }
-//        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -317,26 +287,14 @@ public class MainActivity extends AppCompatActivity
                 searchView.openSearch();
                 return true;
             case R.id.action_cart:
-                Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
-                startActivity(cat);
+                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
+                startActivity(cart);
+                return true;
+            case R.id.action_settings:
+                Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
+                startActivity(settings);
                 return true;
         }
-
-//        if (id == R.id.action_settings) {
-//            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
-//            startActivity(settings);
-//        } else if (id == R.id.action_category) {
-//            Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
-//            startActivity(cat);
-//        } else if (id == R.id.action_cart) {
-//            Intent cart = new Intent(MainActivity.this, ActivityCart.class);
-//            startActivity(cart);
-//        }
-//            else if (id == R.id.action_login) {
-//            Intent cart = new Intent(MainActivity.this, ActivityLogin.class);
-//            startActivity(cart);
-//
-//        }
 
         return super.onOptionsItemSelected(item);
     }
