@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="calendar_colors">
+        <item>@color/blue50</item>
+        <item>@color/cyan50</item>
+        <item>@color/green50</item>
+        <item>@color/yellow50</item>
+        <item>@color/red50</item>
+    </string-array>
+</resources>

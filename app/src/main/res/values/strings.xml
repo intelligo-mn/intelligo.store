@@ -26,6 +26,9 @@
     <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
     <string name="no_order">Захиалга байхгүй байна</string>
 
+    <string name="next">Дараагийн</string>
+    <string name="start">Эхлэх</string>
+
     <string name="search_hint">Хайх&#8230;</string>
     <string name="hint_prompt">Speak an item name or a number</string>
 
