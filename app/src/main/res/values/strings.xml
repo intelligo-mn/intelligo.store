@@ -29,6 +29,24 @@
     <string name="next">Дараагийн</string>
     <string name="start">Эхлэх</string>
 
+
+    <string name="slide_1_title">DGL Brand!</string>
+    <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг
+                    манай сайтаас авч хамтын ажиллагаагаа өргөжүүлээрэй!</string>
+
+    <string name="slide_2_title">DGL Brand</string>
+    <string name="slide_2_desc">Та нийгмийн сайн сайхны төлөө
+                    хөрөнгө оруулахад бэлэн үү?!</string>
+
+    <string name="slide_3_title">DGL Brand</string>
+    <string name="slide_3_desc">Бид танд хөрөнгө оруулагч
+                    хувь хүн, байгууллагатай хамтран
+                    ажиллах гүүрийг санал болгож байна.!</string>
+
+    <string name="slide_4_title">DGL Brand</string>
+    <string name="slide_4_desc">Бид таныг сайн санаат байгууллага,
+                    хувь хүнтэй холбож өгнө.!</string>
+
     <string name="search_hint">Хайх&#8230;</string>
     <string name="hint_prompt">Speak an item name or a number</string>
 

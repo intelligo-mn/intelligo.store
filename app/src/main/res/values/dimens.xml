@@ -13,4 +13,13 @@
     <integer name="default_start_angle">-90</integer>
     <dimen name="search_icon_padding">12dp</dimen>
     <dimen name="search_view_text_padding">8dp</dimen>
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
 </resources>
