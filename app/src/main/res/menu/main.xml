@@ -9,4 +9,10 @@
         android:title="@string/abc_search_hint"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_cart"
+        android:icon="@drawable/cart"
+        android:orderInCategory="1000"
+        app:showAsAction="always"
+        android:title="cart"/>
 </menu>

@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         setupViewPager();
     }
 
-
     // oncreate үйлдэл ажиллахад дуудагдах
     public void init () {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -315,12 +314,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                // Open the search view on the menu item click.
-
                 searchView.openSearch();
                 return true;
+            case R.id.action_cart:
+                Intent cat = new Intent(MainActivity.this, ActivityCategory.class);
+                startActivity(cat);
+                return true;
         }
-        //noinspection SimplifiableIfStatement
+
 //        if (id == R.id.action_settings) {
 //            Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
 //            startActivity(settings);
