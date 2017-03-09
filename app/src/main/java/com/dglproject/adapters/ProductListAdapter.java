@@ -62,7 +62,9 @@ public class ProductListAdapter extends BaseAdapter{
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtText.setText(ActivityProductList.Product_name.get(position));
-        holder.txtSubText.setText(ActivityProductList.Product_price.get(position)+" "+ ActivityProductList.Currency);
+//        holder.txtSubText.setText(ActivityProductList.Product_price.get(position)+" "+ ActivityProductList.Currency);
+
+        holder.txtSubText.setText(ActivityProductList.Product_price.get(position)+" ₮");
 
         imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityProductList.Product_image.get(position), holder.imgThumb);
 
