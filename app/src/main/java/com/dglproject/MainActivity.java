@@ -220,10 +220,13 @@ public class MainActivity extends AppCompatActivity
             switch (pos) {
 
                 case 0:
+                    getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(0);
                 case 1:
+                    getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(1);
                 case 2:
+                    getSupportActionBar().setTitle("");
                     return CategoryFragment.newInstance(2);
 
             }

@@ -98,11 +98,14 @@ public class ActivityProductDetail extends AppCompatActivity {
         dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
+
         Product_ID = iGet.getLongExtra("product_id", 0);
 
         ProductDetailAPI = DglConstants.ProductDetailAPI +"?accesskey="+DglConstants.AccessKey+"&product_id="+ Product_ID;
 
         new getDataTask().execute();
+
+        getSupportActionBar().setTitle(Product_name);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
 
