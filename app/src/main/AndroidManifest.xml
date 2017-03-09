@@ -85,7 +85,10 @@
             android:protectionLevel="signature"
             android:syncable="true" />
 
-        <activity android:name=".activity.WelcomeActivity"></activity>
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:theme="@style/AppFullScreen">
+        </activity>
     </application>
 
 </manifest>
