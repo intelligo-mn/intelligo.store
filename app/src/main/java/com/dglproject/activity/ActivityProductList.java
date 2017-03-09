@@ -91,6 +91,7 @@ public class ActivityProductList extends AppCompatActivity {
 
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
 
+        getSupportActionBar().setTitle(Category_name);
         new getDataTask().execute();
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
