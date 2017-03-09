@@ -89,9 +89,9 @@ public class ActivityProductList extends AppCompatActivity {
         Category_name = iGet.getStringExtra("category_name");
         ProductAPI += Category_ID;
 
-//        txtTitle.setText(Category_name);
-
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
+
+        new getDataTask().execute();
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
 

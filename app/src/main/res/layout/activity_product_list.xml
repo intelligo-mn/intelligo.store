@@ -19,11 +19,10 @@
         <EditText
             android:id="@+id/edtKeyword"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:hint="Хайх"
+            android:background="@color/white"
             android:padding="7dp"
             android:textSize="14sp"
             android:inputType="text"
@@ -35,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@color/colorPrimary"
-            android:src="@drawable/dgl_white_search" />
+            android:src="@drawable/ic_action_search_white" />
 
     </LinearLayout>
 
