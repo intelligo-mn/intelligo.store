@@ -11,8 +11,15 @@
 
     <item
         android:id="@+id/action_cart"
-        android:icon="@drawable/cart"
+        android:icon="@drawable/dgl_white_cart"
         android:orderInCategory="1000"
         app:showAsAction="always"
         android:title="cart"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/dgl_white_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/action_settings"/>
 </menu>
