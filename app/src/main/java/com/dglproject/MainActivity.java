@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String suggestion = searchView.getSuggestionAtPosition(position);
-                Log.d("Search : ",""+suggestion);
-                home.searchData(suggestion);
+//                Log.d("Search : ",""+suggestion);
+//                home.searchData(suggestion);
                 searchView.setQuery(suggestion, true);
             }
         });
