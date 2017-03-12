@@ -41,17 +41,7 @@ public class PrefManager {
 
     public boolean loginUser (String email, String password) {
 
-        boolean valid = true;
-
-        String thisUsermail = pref.getString("user_email", "");
-        String thisPassword = pref.getString("password", "");
-
-        if (thisUsermail == email || thisPassword == password) {
-            valid = true;
-        } else {
-            valid = false;
-        }
-        return valid;
+        return pref.getString("user_email", "") == email || pref.getString("password", "") == password;
     }
 
     public void saveLoggedInUser(String username, String email, String password) {

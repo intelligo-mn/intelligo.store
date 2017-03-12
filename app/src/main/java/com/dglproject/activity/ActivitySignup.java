@@ -30,6 +30,8 @@ public class ActivitySignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        prefManager = new PrefManager(this);
+
         nameEditText = (EditText)findViewById(R.id.sName);
         emailEditText = (EditText)findViewById(R.id.sEmail);
         passwordEditText = (EditText)findViewById(R.id.sPassword);
