@@ -86,4 +86,7 @@
     <string name="title_app_more">Бусад програмууд</string>
     <string name="more_apps"></string>
     <string name="share_content"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
