@@ -69,16 +69,12 @@ public class ActivityProductDetail extends AppCompatActivity {
     ImageView imgPreview;
     TextView txtText, txtSubText;
     WebView txtDescription;
-    FloatingActionButton btnAdd;
-//    NestedScrollView sclDetail;
     ProgressBar prgLoading;
     TextView txtAlert;
 
     CoordinatorLayout coordinatorLayout;
 
     static DBHelper dbhelper;
-
-    ImageLoader imageLoader;
 
     String Product_image, Product_name, Product_serve, Product_description;
     double Product_price;
@@ -107,7 +103,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         txtText = (TextView) findViewById(R.id.txtText);
         txtSubText = (TextView) findViewById(R.id.txtSubText);
 
-        //txtDescription = (WebView) findViewById(R.id.txtDescription);
         txtDescription = (WebView) findViewById(R.id.txtDescription);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
@@ -139,12 +134,6 @@ public class ActivityProductDetail extends AppCompatActivity {
             }
         });
 
-        //imageLoader = new ImageLoader(ActivityMenuDetail.this);
-        dbhelper = new DBHelper(this);
-
-
-//        imageLoader = new ImageLoader(ActivityProductDetail.this);
-
         dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
@@ -155,7 +144,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         new getDataTask().execute();
 
-        getSupportActionBar().setTitle(Product_name);
+//        getSupportActionBar().setTitle(Product_name);
 
     }
 
