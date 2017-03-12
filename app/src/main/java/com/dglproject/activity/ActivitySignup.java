@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.R;
+import com.dglproject.utils.PrefManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,11 +20,10 @@ import java.security.NoSuchAlgorithmException;
 public class ActivitySignup extends AppCompatActivity {
 
     private static final String TAG = "SignUp";
-    public SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     Button signUpButton;
     TextView loginLink;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,8 @@ public class ActivitySignup extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
+        prefManager.createUser(name, email, password);
+
     }
 
     public void onSignupFailed() {
@@ -97,10 +99,6 @@ public class ActivitySignup extends AppCompatActivity {
     public boolean validate() {
 
         boolean valid = true;
-        sharedPreferences = getSharedPreferences(ActivityLogin.PREFER_NAME, 0);
-        editor = sharedPreferences.edit();
-        editor.putLong("UserId",0);
-        editor.commit();
 
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
@@ -134,18 +132,9 @@ public class ActivitySignup extends AppCompatActivity {
             confirmPasswordEditText.setError(null);
         }
 
-        //password = PasswordHashes(password);
-
         return valid;
     }
-    private void saveLoggedInUser(long id, String username, String password) {
-        sharedPreferences = getSharedPreferences(ActivityLogin.PREFER_NAME, 0);
-        editor = sharedPreferences.edit();
-        editor.putLong("UserId", id);
-        editor.putString("Username", username);
-        editor.putString("Password", password);
-        editor.commit();
-    }
+
     /**
      * Hashes the password with MD5.
      * @param s

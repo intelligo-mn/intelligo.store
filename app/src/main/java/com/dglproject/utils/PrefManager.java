@@ -32,7 +32,7 @@ public class PrefManager {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
-    private void createUser(String username, String email, String password) {
+    public void createUser(String username, String email, String password) {
         editor.putString("user_name", username);
         editor.putString("user_email", email);
         editor.putString("password", password);
@@ -54,7 +54,7 @@ public class PrefManager {
         return valid;
     }
 
-    private void saveLoggedInUser(String username, String email, String password) {
+    public void saveLoggedInUser(String username, String email, String password) {
         editor.putString("user_name", username);
         editor.putString("user_email", email);
         editor.putString("password", password);
