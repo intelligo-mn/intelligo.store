@@ -14,6 +14,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.telephony.cdma.CdmaCellLocation;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -45,21 +46,25 @@ import com.dglproject.fragments.HomeItems;
 import com.dglproject.widgets.CustomViewPager;
 import com.dglproject.widgets.MaterialSearchView;
 
+import android.support.v4.app.Fragment;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView userImage;
-
+    String Keyword;
     private TabLayout mTabLayout;
+    HomeItems home;
 
     private int[] mTabsIcons = {
             R.drawable.dgl_white_heart,
             R.drawable.dgl_white_app,
             R.drawable.dgl_white_list};
 
-    private MaterialSearchView searchView;
+    public MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity
     public void init () {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        home = new HomeItems();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -125,12 +132,15 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Do something when the suggestion list is clicked.
-                String suggestion = searchView.getSuggestionAtPosition(position);
 
-                searchView.setQuery(suggestion, false);
+                String suggestion = searchView.getSuggestionAtPosition(position);
+                Log.d("Search : ",""+suggestion);
+                home.searchData(suggestion);
+                searchView.setQuery(suggestion, true);
             }
         });
+
+
 //
 //        bt_clearHistory.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -153,7 +163,7 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
-//        searchView.setTintAlpha(200);
+        searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
 
         final Context context = this;
@@ -222,7 +232,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(0);
+//                    return HomeItems.newInstance(0);
                 case 1:
                     getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(1);
