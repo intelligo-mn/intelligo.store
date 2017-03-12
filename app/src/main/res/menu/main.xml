@@ -14,12 +14,26 @@
         android:icon="@drawable/dgl_white_cart"
         android:orderInCategory="1000"
         app:showAsAction="always"
-        android:title="cart"/>
+        android:title="Сагс"/>
 
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/dgl_white_settings"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="Тохиргоо"/>
+
+    <item
+        android:id="@+id/action_pro"
+        android:icon="@drawable/dgl_white_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Хэрэглэгчийн профайл"/>
+
+    <item
+        android:id="@+id/action_login"
+        android:icon="@drawable/dgl_white_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Нэвтрэх"/>
 </menu>

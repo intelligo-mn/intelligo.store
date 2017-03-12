@@ -34,6 +34,7 @@ import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
 import com.dglproject.activity.ActivitySettings;
+import com.dglproject.activity.ActivitySignup;
 import com.dglproject.activity.ActivityUserSettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
@@ -297,6 +298,17 @@ public class MainActivity extends AppCompatActivity
                 Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
                 startActivity(settings);
                 return true;
+
+            case R.id.action_pro:
+                Intent pro = new Intent(MainActivity.this, ActivityUserProfile.class);
+                startActivity(pro);
+                return true;
+
+            case R.id.action_login:
+                Intent l = new Intent(MainActivity.this, ActivityLogin.class);
+                startActivity(l);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
