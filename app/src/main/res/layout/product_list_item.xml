@@ -14,15 +14,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp">
+            <ImageView
+                android:id="@+id/imgFav"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dgl_red_heart"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="right" />
+
             <TextView
                 android:id="@+id/txtSubText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
                 android:text="bbb" />
+
             <ImageView
-                android:id="@+id/imgFav"
+                android:id="@+id/imgCart"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:scaleType="centerCrop"
@@ -50,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:text="aaa"
                 android:textSize="16sp" />
         </RelativeLayout>
