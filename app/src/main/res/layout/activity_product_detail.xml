@@ -115,7 +115,8 @@
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|end"
             android:clickable="true"
-            android:src="@drawable/cart"
+            android:src="@drawable/dgl_white_cart"
+            android:background="@color/bg_screen3"
             app:borderWidth="0dp"
             app:fabSize="normal" />
 
@@ -132,31 +133,31 @@
             fab:menu_labels_ellipsize="end"
             fab:menu_labels_singleLine="true"
             fab:menu_backgroundColor="#ccffffff"
-            fab:menu_fab_size="mini">
+            fab:menu_fab_size="normal">
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/cart"
+                android:id="@+id/send_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/cart"
-                fab:fab_size="mini"
-                fab:fab_label="Сагсанд хийх" />
+                android:src="@drawable/dgl_white_send_20"
+                fab:fab_size="normal"
+                fab:fab_label="Мессеж илгээх" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/checkout"
+                android:id="@+id/send_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_checkout_circle"
-                fab:fab_size="mini"
-                fab:fab_label="Төлбөр" />
+                android:src="@drawable/dgl_white_mail_20"
+                fab:fab_size="normal"
+                fab:fab_label="Мэйл илгээх" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/save"
+                android:id="@+id/share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_save"
-                fab:fab_size="mini"
-                fab:fab_label="Хадгалах" />
+                android:src="@drawable/dgl_white_share_20"
+                fab:fab_size="normal"
+                fab:fab_label="Хуваалцах" />
 
         </com.github.clans.fab.FloatingActionMenu>
 
