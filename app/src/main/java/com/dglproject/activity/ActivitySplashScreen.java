@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.dglproject.MainActivity;
 import com.dglproject.R;
 
 public class ActivitySplashScreen extends AppCompatActivity {
@@ -23,7 +22,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
                     }catch(InterruptedException e){
                         e.printStackTrace();
                     }finally{
-                        Intent intent = new Intent(ActivitySplashScreen.this, WelcomeActivity.class);
+                        Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
                         startActivity(intent);
                         finish();
                     }

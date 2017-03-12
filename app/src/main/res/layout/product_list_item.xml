@@ -8,8 +8,38 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="1dp"
         android:background="@drawable/corner_radius">
+        <RelativeLayout
+            android:id="@+id/detail_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+            <ImageView
+                android:id="@+id/imgFav"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dgl_red_heart"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="right" />
+
+            <TextView
+                android:id="@+id/txtSubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="bbb" />
+
+            <ImageView
+                android:id="@+id/imgCart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dgl_green_cart"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/imgThumb"
@@ -24,34 +54,14 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/imgFav"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="-170dp"
-                android:layout_marginLeft="10dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dgl_black_star"
-                android:layout_gravity="right" />
-
             <TextView
                 android:id="@+id/txtText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_toLeftOf="@+id/txtSubText"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:text="aaa"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txtSubText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="bbb" />
-
         </RelativeLayout>
 
     </LinearLayout>

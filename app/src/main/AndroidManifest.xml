@@ -86,9 +86,10 @@
             android:syncable="true" />
 
         <activity
-            android:name=".activity.WelcomeActivity"
-            android:theme="@style/AppFullScreen">
-        </activity>
+            android:name=".activity.ActivityWelcome"
+            android:theme="@style/AppFullScreen" />
+        <activity android:name=".activity.ActivityProductAdd" />
+        <activity android:name=".activity.ActivityAbout"></activity>
     </application>
 
 </manifest>

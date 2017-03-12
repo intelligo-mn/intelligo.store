@@ -1,12 +1,16 @@
 package com.dglproject;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +18,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.telephony.cdma.CdmaCellLocation;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -30,10 +35,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.activity.ActivityAbout;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
 import com.dglproject.activity.ActivitySettings;
+import com.dglproject.activity.ActivitySignup;
 import com.dglproject.activity.ActivityUserSettings;
 import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
@@ -44,13 +51,15 @@ import com.dglproject.fragments.HomeItems;
 import com.dglproject.widgets.CustomViewPager;
 import com.dglproject.widgets.MaterialSearchView;
 
+import android.support.v4.app.Fragment;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView userImage;
-
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
@@ -58,7 +67,7 @@ public class MainActivity extends AppCompatActivity
             R.drawable.dgl_white_app,
             R.drawable.dgl_white_list};
 
-    private MaterialSearchView searchView;
+    public MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         init();
         setupViewPager();
+        isStoragePermissionGranted();
     }
 
     // oncreate үйлдэл ажиллахад дуудагдах
@@ -124,12 +134,15 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Do something when the suggestion list is clicked.
-                String suggestion = searchView.getSuggestionAtPosition(position);
 
-                searchView.setQuery(suggestion, false);
+                String suggestion = searchView.getSuggestionAtPosition(position);
+//                Log.d("Search : ",""+suggestion);
+//                home.searchData(suggestion);
+                searchView.setQuery(suggestion, true);
             }
         });
+
+
 //
 //        bt_clearHistory.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -152,14 +165,13 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
-//        searchView.setTintAlpha(200);
+        searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
 
-        final Context context = this;
         searchView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context, "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -167,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnVoiceClickedListener(new MaterialSearchView.OnVoiceClickedListener() {
             @Override
             public void onVoiceClicked() {
-                Toast.makeText(context, "Voice clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Voice clicked!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -221,7 +233,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(0);
+//                    return HomeItems.newInstance(0);
                 case 1:
                     getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(1);
@@ -297,12 +309,27 @@ public class MainActivity extends AppCompatActivity
                 Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
                 startActivity(settings);
                 return true;
+
+            case R.id.action_pro:
+                Intent pro = new Intent(MainActivity.this, ActivityUserProfile.class);
+                startActivity(pro);
+                return true;
+
+            case R.id.action_login:
+                Intent l = new Intent(MainActivity.this, ActivityLogin.class);
+                startActivity(l);
+                return true;
+
+            case R.id.action_about:
+                Intent ab = new Intent(MainActivity.this, ActivityAbout.class);
+                startActivity(ab);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -328,6 +355,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
             startActivity(helpIntent);
+        } else if (id == R.id.nav_about) {
+            Intent aboutIntent = new Intent(MainActivity.this, ActivityAbout.class);
+            startActivity(aboutIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -377,5 +407,20 @@ public class MainActivity extends AppCompatActivity
 
     private void clearAll() {
         searchView.clearAll();
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 }

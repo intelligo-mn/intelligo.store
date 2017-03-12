@@ -8,6 +8,18 @@
         android:title="Таалагдсан"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/detail_call"
+        android:enabled="true"
+        android:icon="@drawable/dgl_white_call"
+        android:title="Залгах"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/detail_sms"
+        android:enabled="true"
+        android:icon="@drawable/dgl_white_send"
+        android:title="SMS бичих"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/detail_cart"
         android:enabled="true"
         android:icon="@drawable/dgl_white_cart"

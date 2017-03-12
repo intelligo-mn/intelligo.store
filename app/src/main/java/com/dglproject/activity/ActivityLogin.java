@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.dglproject.MainActivity;
 import com.dglproject.R;
+import com.dglproject.utils.PrefManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,11 +26,9 @@ public class ActivityLogin extends AppCompatActivity {
     private static final String TAG = "Login";
 
     private static final int REQUEST_SIGNUP = 0;
-    public static final String PREFER_NAME = "UserInfo";
 
-    private SharedPreferences sharedPreferences;
+    PrefManager prefManager;
 
-    SharedPreferences.Editor editor;
     EditText nameText;
     EditText passwordText;
     Button loginButton;
@@ -40,6 +39,8 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        prefManager = new PrefManager(this);
 
         nameText = (EditText)findViewById(R.id.username);
         passwordText = (EditText)findViewById(R.id.password);
@@ -60,21 +61,21 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        rememberDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RememberMe();
-            }
-        });
-        SharedPreferences prefs = getSharedPreferences(PREFER_NAME, 0);
-        String thisUsername = prefs.getString("Username", "");
-        String thisPassword = prefs.getString("Password", "");
-        boolean thisRemember = prefs.getBoolean("Remember", false);
-        if(thisRemember) {
-            nameText.setText(thisUsername);
-            passwordText.setText(thisPassword);
-            rememberDetail.setChecked(thisRemember);
-        }
+//        rememberDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                RememberMe();
+//            }
+//        });
+//        SharedPreferences prefs = getSharedPreferences(PREFER_NAME, 0);
+//        String thisUsername = prefs.getString("Username", "");
+//        String thisPassword = prefs.getString("Password", "");
+//        boolean thisRemember = prefs.getBoolean("Remember", false);
+//        if(thisRemember) {
+//            nameText.setText(thisUsername);
+//            passwordText.setText(thisPassword);
+//            rememberDetail.setChecked(thisRemember);
+//        }
     }
 
     public void login() {
@@ -121,13 +122,13 @@ public class ActivityLogin extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Хэрэглэгчийн мэдээллээ шинэчлээд дахин оролдно уу !", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
-    private void RememberMe() {
-        boolean thisRemember = rememberDetail.isChecked();
-        sharedPreferences = getSharedPreferences(PREFER_NAME, 0);
-        editor = sharedPreferences.edit();
-        editor.putBoolean("Remember", thisRemember);
-        editor.commit();
-    }
+//    private void RememberMe() {
+//        boolean thisRemember = rememberDetail.isChecked();
+//        sharedPreferences = getSharedPreferences(PREFER_NAME, 0);
+//        editor = sharedPreferences.edit();
+//        editor.putBoolean("Remember", thisRemember);
+//        editor.commit();
+//    }
     public boolean validate() {
         boolean valid = true;
         String username = nameText.getText().toString();
@@ -136,7 +137,7 @@ public class ActivityLogin extends AppCompatActivity {
         //password = PasswordEncryption(password);
 
         //Toast.makeText(getApplicationContext(), "Хэрэглэгч нэвтэрсэн байдал: " + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
-        sharedPreferences = getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
+        //sharedPreferences = getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
         if (username.isEmpty() || password.length() < 3) {
             nameText.setError("хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна");
             valid = false;
@@ -151,13 +152,13 @@ public class ActivityLogin extends AppCompatActivity {
         } else {
             passwordText.setError(null);
         }
-        if(username.trim().length() > 0 && password.trim().length() > 0){
+
+        if (prefManager.loginUser(username, password) == true){
             final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Уншиж байна...");
             progressDialog.show();
-            // TODO: Implement your own authentication logic here.
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
@@ -168,24 +169,27 @@ public class ActivityLogin extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
                     }, 2000);
+
             valid = true;
         } else {
-            Toast.makeText(ActivityLogin.this,"Хэрэглэгчийн нэр нууц үгээ оруулна уу", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(ActivityLogin.this,"Хэрэглэгчийн нэр нууц үг буруу байна", Toast.LENGTH_SHORT).show();
             valid = false;
         }
+
         return valid;
     }
-
-    private void saveLoggedInUser(long id, String username, String password) {
-        SharedPreferences settings = getSharedPreferences(PREFER_NAME, 0);
-        editor = settings.edit();
-        editor.putLong("UserId", id);
-        editor.putString("Username", username);
-        editor.putString("Password", password);
-        boolean rememberThis = rememberDetail.isChecked();
-        editor.putBoolean("rememberThis", rememberThis);
-        editor.commit();
-    }
+//
+//    private void saveLoggedInUser(long id, String username, String password) {
+//        SharedPreferences settings = getSharedPreferences(PREFER_NAME, 0);
+//        editor = settings.edit();
+//        editor.putLong("UserId", id);
+//        editor.putString("Username", username);
+//        editor.putString("Password", password);
+//        boolean rememberThis = rememberDetail.isChecked();
+//        editor.putBoolean("rememberThis", rememberThis);
+//        editor.commit();
+//    }
 
     private String PasswordEncryption(String s) {
         try {

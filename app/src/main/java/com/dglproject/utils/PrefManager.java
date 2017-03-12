@@ -32,4 +32,22 @@ public class PrefManager {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
+    public void createUser(String username, String email, String password) {
+        editor.putString("user_name", username);
+        editor.putString("user_email", email);
+        editor.putString("password", password);
+        editor.commit();
+    }
+
+    public boolean loginUser (String email, String password) {
+
+        return pref.getString("user_email", "") == email || pref.getString("password", "") == password;
+    }
+
+    public void saveLoggedInUser(String username, String email, String password) {
+        editor.putString("user_name", username);
+        editor.putString("user_email", email);
+        editor.putString("password", password);
+        editor.commit();
+    }
 }

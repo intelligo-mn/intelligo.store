@@ -24,15 +24,15 @@ import java.util.ArrayList;
 public class DBHelper extends SQLiteOpenHelper {
 
     String DB_PATH;
-    private final static String DB_NAME = "db_order";
+    private final static String DB_NAME = "dglbrand";
     public final static int DB_VERSION = 1;
     public static SQLiteDatabase db;
 
     private final Context context;
 
-    private final String TABLE_NAME = "tbl_order";
+    private final String TABLE_NAME = "cart_table";
     private final String ID = "id";
-    private final String MENU_NAME = "Product_name";
+    private final String PRODUCT_NAME = "Product_name";
     private final String QUANTITY = "Quantity";
     private final String TOTAL_PRICE = "Total_price";
 
@@ -45,14 +45,12 @@ public class DBHelper extends SQLiteOpenHelper {
         DB_PATH = DglConstants.DBPath;
     }
 
-    public void createDataBase() throws IOException {
+    public void createDataBase() throws IOException{
 
         boolean dbExist = checkDataBase();
         SQLiteDatabase db_Read = null;
 
-
         if(dbExist){
-            //do nothing - database already exist
 
         }else{
             db_Read = this.getReadableDatabase();
@@ -66,6 +64,8 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
+
+
 
     private boolean checkDataBase(){
 
@@ -96,7 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void openDataBase() throws SQLException {
+    public void openDataBase() throws SQLException{
         String myPath = DB_PATH + DB_NAME;
         db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
@@ -124,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try{
             cursor = db.query(
                     TABLE_NAME,
-                    new String[]{ID, MENU_NAME, QUANTITY, TOTAL_PRICE},
+                    new String[]{ID, PRODUCT_NAME, QUANTITY, TOTAL_PRICE},
                     null,null, null, null, null);
             cursor.moveToFirst();
 
@@ -152,7 +152,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean isDataExist(long id){
-
         boolean exist = false;
 
         Cursor cursor = null;
@@ -175,6 +174,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return exist;
     }
+
 
     public boolean isPreviousDataExist(){
         boolean exist = false;
@@ -199,10 +199,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return exist;
     }
 
-    public void addData(long id, String menu_name, int quantity, double total_price){
+    public void addData(long id, String product_name, int quantity, double total_price){
         ContentValues values = new ContentValues();
         values.put(ID, id);
-        values.put(MENU_NAME, menu_name);
+        values.put(PRODUCT_NAME, product_name);
         values.put(QUANTITY, quantity);
         values.put(TOTAL_PRICE, total_price);
 
@@ -224,6 +224,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteAllData(){
+
         try {db.delete(TABLE_NAME, null, null);}
         catch (Exception e)
         {
@@ -233,7 +234,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void updateData(long id, int quantity, double total_price){
-        // this is a key value pair holder used by android's SQLite functions
+
         ContentValues values = new ContentValues();
         values.put(QUANTITY, quantity);
         values.put(TOTAL_PRICE, total_price);
@@ -245,4 +246,6 @@ public class DBHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
+
+
 }

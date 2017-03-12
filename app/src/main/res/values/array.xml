@@ -7,4 +7,25 @@
         <item>@color/yellow50</item>
         <item>@color/red50</item>
     </string-array>
+
+    <string-array name="title">
+        <item>@string/title_app_name</item>
+        <item>@string/title_app_version</item>
+        <item>@string/title_app_email</item>
+        <item>@string/title_app_copyright</item>
+        <item>@string/title_app_share</item>
+        <item>@string/title_app_rate</item>
+        <item>@string/title_app_more</item>
+    </string-array>
+
+    <string-array name="subtitle">
+        <item>@string/app_name</item>
+        <item>@string/app_version</item>
+        <item>@string/app_email</item>
+        <item>@string/app_copyright</item>
+        <item>@string/share_summary</item>
+        <item>@string/rate_summary</item>
+        <item>@string/more_summary</item>
+    </string-array>
+
 </resources>

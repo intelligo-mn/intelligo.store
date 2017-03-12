@@ -1,33 +1,52 @@
 package com.dglproject.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.SQLException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.DisplayMetrics;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.dglproject.database.DBHelper;
 import com.dglproject.DglConstants;
 import com.dglproject.R;
+import com.dglproject.database.CartProductsAdapter;
+import com.dglproject.database.DBHelper;
+import com.dglproject.models.CartProducts;
 import com.dglproject.utils.ImageLoader;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -40,26 +59,43 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.Random;
 
 public class ActivityProductDetail extends AppCompatActivity {
 
     ImageView imgPreview;
     TextView txtText, txtSubText;
     WebView txtDescription;
-    Button btnAdd;
-    ScrollView sclDetail;
     ProgressBar prgLoading;
     TextView txtAlert;
+    TextView totalOrderView;
+    TextView totalCostView;
+
+    Button increaseTotalCostButton;
+    Button decreaseTotalCostButton;
+    Button addToListButton;
+
+    CoordinatorLayout coordinatorLayout;
 
     static DBHelper dbhelper;
 
-    ImageLoader imageLoader;
-
     String Product_image, Product_name, Product_serve, Product_description;
+
+    double totalCostDouble;
+    int totalOrder;
+    String imageTitleString;
+    RatingBar rating;
+    double ratingValue;
+
     double Product_price;
     int Product_quantity;
     long Product_ID;
@@ -70,49 +106,107 @@ public class ActivityProductDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("");
 
         imgPreview = (ImageView) findViewById(R.id.imgPreview);
         txtText = (TextView) findViewById(R.id.txtText);
         txtSubText = (TextView) findViewById(R.id.txtSubText);
+
         txtDescription = (WebView) findViewById(R.id.txtDescription);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
-        //btnShare = (Button) findViewById(R.id.btnShare);
-        sclDetail = (ScrollView) findViewById(R.id.sclDetail);
+
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+
         prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int wPix = dm.widthPixels;
-        int hPix = wPix / 2 + 50;
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(wPix, hPix);
-        imgPreview.setLayoutParams(lp);
+        increaseTotalCostButton = (Button)findViewById(R.id.increaseTotalCostButton);
+        addToListButton = (Button)findViewById(R.id.addToListButton);
+        decreaseTotalCostButton = (Button)findViewById(R.id.decreaseTotalCostButton);
 
-        imageLoader = new ImageLoader(ActivityProductDetail.this);
+        rating =(RatingBar)findViewById(R.id.ratingBar);
+
+        displayRating();
+
+        increaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseTotalCost();
+            }
+        });
+
+        decreaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreaseTotalCost();
+            }
+        });
+
+        addToListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToList();
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnAdd);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputDialog();
+            }
+        });
+
+        com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_sms);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ActivityCart.class));
+            }
+        });
+
+        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_mail);
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ActivityCheckout.class));
+            }
+        });
+
         dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductDetailAPI = DglConstants.ProductDetailAPI +"?accesskey="+DglConstants.AccessKey+"&product_id="+ Product_ID;
+        ProductDetailAPI = DglConstants.ProductDetailAPI +"?accesskey="+ DglConstants.AccessKey+"&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
-        getSupportActionBar().setTitle(Product_name);
+//        getSupportActionBar().setTitle(Product_name);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-                inputDialog();
+        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
+        fabShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendInt = new Intent(Intent.ACTION_SEND);
+                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+                sendInt.setType("text/plain");
+                startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
             }
         });
+
     }
 
     @Override
@@ -127,11 +221,48 @@ public class ActivityProductDetail extends AppCompatActivity {
         return false;
     }
 
-    void inputDialog(){
+    public void increaseTotalCost() {
+        totalOrder++;
+        totalCostDouble += Product_price;
+        displayUpdate();
+    }
 
-        try{
+    public void decreaseTotalCost() {
+        totalOrder = (--totalOrder < 1) ? 1 : totalOrder;
+        totalCostDouble -= Product_price;
+        totalCostDouble = (totalCostDouble < Product_price) ? Product_price : totalCostDouble;
+        displayUpdate();
+    }
+
+    public void displayRating(){
+        Random r = new Random();
+        ratingValue = (r.nextDouble()*5.0);
+        rating.setRating((float)ratingValue);
+    }
+
+    public void displayUpdate() {
+        totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
+        totalCostView.setText("Нийт дүн: $ " + new DecimalFormat("#.##").format(totalCostDouble));
+
+        totalOrderView = (TextView) findViewById(R.id.total_item_number);
+        totalOrderView.setText("Нийт тоо: " + totalOrder);
+    }
+
+    public void addToList() {
+        CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
+        ratingValue = rating.getRating();
+        CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
+        item.setRatinng(ratingValue);
+        productAdapter.addProduct(item);
+        Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
+
+    }
+
+    void inputDialog() {
+
+        try {
             dbhelper.openDataBase();
-        }catch(SQLException sqle){
+        } catch (SQLException sqle) {
             throw sqle;
         }
 
@@ -142,7 +273,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         alert.setCancelable(false);
         final EditText edtQuantity = new EditText(this);
         int maxLength = 3;
-        edtQuantity.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        edtQuantity.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         edtQuantity.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(edtQuantity);
 
@@ -151,14 +282,16 @@ public class ActivityProductDetail extends AppCompatActivity {
                 String temp = edtQuantity.getText().toString();
                 int quantity = 0;
 
-                if(!temp.equalsIgnoreCase("")){
+                if (!temp.equalsIgnoreCase("")) {
                     quantity = Integer.parseInt(temp);
-                    if(dbhelper.isDataExist(Product_ID)){
-                        dbhelper.updateData(Product_ID, quantity, (Product_price *quantity));
-                    }else{
-                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price *quantity));
+                    Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
+
+                    if (dbhelper.isDataExist(Product_ID)) {
+                        dbhelper.updateData(Product_ID, quantity, (Product_price * quantity));
+                    } else {
+                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price * quantity));
                     }
-                }else{
+                } else {
                     dialog.cancel();
                 }
             }
@@ -190,22 +323,43 @@ public class ActivityProductDetail extends AppCompatActivity {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(Void result) {
+            prgLoading.setVisibility(View.GONE);
+            if ((Product_name != null) && IOConnect == 0) {
+                coordinatorLayout.setVisibility(View.VISIBLE);
 
-            prgLoading.setVisibility(8);
-            if((Product_name != null) && IOConnect == 0){
-                sclDetail.setVisibility(0);
+                Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
+                        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                            }
+                        });
+                    }
 
-                imageLoader.DisplayImage(DglConstants.AdminPageURL+ Product_image, imgPreview);
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
                 txtText.setText(Product_name);
-//                txtSubText.setText("Үнэ : " + Product_price +" "+ ActivityProductList.Currency+"\n");
-                txtSubText.setText("Үнэ : " + Product_price +" ₮"+"\n");
+                txtSubText.setText("Үнэ : " + Product_price + " ₮" );
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
-                txtDescription.setBackgroundColor(Color.parseColor("#e7e7e7"));
-            }else{
-                txtAlert.setVisibility(0);
+                txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
+                WebSettings webSettings = txtDescription.getSettings();
+                Resources res = getResources();
+//                int fontSize = res.getInteger(R.integer.font_size);
+//                webSettings.setDefaultFontSize(fontSize);
+
+            } else {
+                txtAlert.setVisibility(View.VISIBLE);
             }
         }
     }

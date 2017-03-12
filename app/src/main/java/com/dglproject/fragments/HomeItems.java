@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dglproject.DglConstants;
+import com.dglproject.MainActivity;
 import com.dglproject.R;
 import com.dglproject.activity.ActivityProductDetail;
 import com.dglproject.adapters.AllProductAdapter;
@@ -32,7 +33,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -49,7 +52,12 @@ public class HomeItems extends Fragment {
     ProgressBar prgLoading;
     TextView txtAlert;
 
+    int IOConnect = 0;
+    String Keyword;
+
     AllProductAdapter allProductAdapter;
+
+    MainActivity mainActivity;
 
     public static ArrayList<Long> Product_ID = new ArrayList<Long>();
     public static ArrayList<String> Product_name = new ArrayList<String>();
@@ -85,6 +93,8 @@ public class HomeItems extends Fragment {
 
         new getDataTask().execute();
 
+        mainActivity = new MainActivity();
+
         allProductAdapter = new AllProductAdapter(getActivity());
 
         homeItemList.setNumColumns(2);
@@ -102,7 +112,23 @@ public class HomeItems extends Fragment {
         return rootView;
     }
 
-    void clearData(){
+
+    public void searchData(String a){
+
+        try {
+            Keyword = URLEncoder.encode(a, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        AllProductApi += "&keyword="+Keyword;
+
+        IOConnect = 0;
+        homeItemList.invalidateViews();
+        clearData();
+        new getDataTask().execute();
+    }
+
+    public void clearData(){
         Product_ID.clear();
         Product_name.clear();
         Product_price.clear();
