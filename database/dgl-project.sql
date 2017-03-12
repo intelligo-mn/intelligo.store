@@ -109,7 +109,7 @@ CREATE TABLE `product_category` (
   `updated_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
@@ -137,9 +137,7 @@ CREATE TABLE `product_photo` (
   `created_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `created_user_id_idx` (`created_user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -161,10 +159,7 @@ CREATE TABLE `product_sale` (
   `updated_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -226,15 +221,7 @@ CREATE TABLE `user` (
   `is_idea_owner` tinyint(4) DEFAULT NULL,
   `is_idea_buyer` tinyint(4) DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `project_user_sluggable_idx` (`slug`),
-  KEY `department_id_idx` (`department_id`),
-  KEY `rank_id_idx` (`rank_id`),
-  KEY `position_id_idx` (`position_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`),
-  KEY `aimag_id_idx` (`aimag_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
