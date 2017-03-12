@@ -1,5 +1,6 @@
 package com.dglproject;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.activity.ActivityAbout;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
@@ -58,9 +60,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView userImage;
-    String Keyword;
     private TabLayout mTabLayout;
-    HomeItems home;
 
     private int[] mTabsIcons = {
             R.drawable.dgl_white_heart,
@@ -82,8 +82,6 @@ public class MainActivity extends AppCompatActivity
     public void init () {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        home = new HomeItems();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -170,11 +168,10 @@ public class MainActivity extends AppCompatActivity
         searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
 
-        final Context context = this;
         searchView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context, "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -182,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnVoiceClickedListener(new MaterialSearchView.OnVoiceClickedListener() {
             @Override
             public void onVoiceClicked() {
-                Toast.makeText(context, "Voice clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Voice clicked!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -323,12 +320,16 @@ public class MainActivity extends AppCompatActivity
                 startActivity(l);
                 return true;
 
+            case R.id.action_about:
+                Intent ab = new Intent(MainActivity.this, ActivityAbout.class);
+                startActivity(ab);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -354,6 +355,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
             startActivity(helpIntent);
+        } else if (id == R.id.nav_about) {
+            Intent aboutIntent = new Intent(MainActivity.this, ActivityAbout.class);
+            startActivity(aboutIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -160,11 +160,11 @@ public class ActivityProductDetail extends AppCompatActivity {
         return false;
     }
 
-    void inputDialog(){
+    void inputDialog() {
 
-        try{
+        try {
             dbhelper.openDataBase();
-        }catch(SQLException sqle){
+        } catch (SQLException sqle) {
             throw sqle;
         }
 
@@ -175,7 +175,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         alert.setCancelable(false);
         final EditText edtQuantity = new EditText(this);
         int maxLength = 3;
-        edtQuantity.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        edtQuantity.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         edtQuantity.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(edtQuantity);
 
@@ -184,14 +184,16 @@ public class ActivityProductDetail extends AppCompatActivity {
                 String temp = edtQuantity.getText().toString();
                 int quantity = 0;
 
-                if(!temp.equalsIgnoreCase("")){
+                if (!temp.equalsIgnoreCase("")) {
                     quantity = Integer.parseInt(temp);
-                    if(dbhelper.isDataExist(Product_ID)){
-                        dbhelper.updateData(Product_ID, quantity, (Product_price *quantity));
-                    }else{
-                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price *quantity));
+                    Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
+
+                    if (dbhelper.isDataExist(Product_ID)) {
+                        dbhelper.updateData(Product_ID, quantity, (Product_price * quantity));
+                    } else {
+                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price * quantity));
                     }
-                }else{
+                } else {
                     dialog.cancel();
                 }
             }

@@ -66,4 +66,21 @@
         <item>платье</item>
         <item>эрэгтэй цамц</item>
     </string-array>
+
+    <string name="title_about">Тухай</string>
+    <string name="app_version">Version 1.0.0</string>
+    <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
+    <string name="app_email">toroo.byamba@gmail.com</string>
+    <string name="share_summary">Бусад хүмүүст хуваалцан</string>
+    <string name="rate_summary">Та үнэлгээ болон саналаа өгнө үү</string>
+    <string name="more_summary">DGL PROJECT бусад програмууд.</string>
+    <string name="title_app_name">Application Name</string>
+    <string name="title_app_version">Програмын хувилбар</string>
+    <string name="title_app_email">Мэйл хаяг</string>
+    <string name="title_app_copyright">Зохиогчын эрх</string>
+    <string name="title_app_share">Хуваалцах</string>
+    <string name="title_app_rate">Үнэлгээ өгөх</string>
+    <string name="title_app_more">Бусад програмууд</string>
+    <string name="more_apps"></string>
+    <string name="share_content"></string>
 </resources>

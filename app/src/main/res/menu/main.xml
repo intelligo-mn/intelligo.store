@@ -36,4 +36,12 @@
         android:orderInCategory="100"
         app:showAsAction="never"
         android:title="Нэвтрэх"/>
+
+
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/dgl_white_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Тухай"/>
 </menu>

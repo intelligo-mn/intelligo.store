@@ -35,6 +35,10 @@
                 android:id="@+id/nav_help"
                 android:icon="@drawable/dgl_black_help"
                 android:title="Тусламж" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/dgl_white_idea"
+                android:title="@string/title_about" />
         </menu>
     </item>
 
