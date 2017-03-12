@@ -22,7 +22,7 @@ import com.dglproject.MainActivity;
 import com.dglproject.R;
 import com.dglproject.utils.PrefManager;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class ActivityWelcome extends AppCompatActivity {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -112,7 +112,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        startActivity(new Intent(ActivityWelcome.this, MainActivity.class));
         finish();
     }
 
