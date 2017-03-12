@@ -3,10 +3,13 @@ package com.dglproject;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         init();
         setupViewPager();
+        isStoragePermissionGranted();
     }
 
     // oncreate үйлдэл ажиллахад дуудагдах
@@ -399,5 +403,20 @@ public class MainActivity extends AppCompatActivity
 
     private void clearAll() {
         searchView.clearAll();
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 }
