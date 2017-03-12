@@ -64,7 +64,6 @@ public class ActivitySignup extends AppCompatActivity {
         progressDialog.setMessage("Бүртгэл үүсгэж байна...");
         progressDialog.show();
 
-        // TODO: Implement your own signup logic here.
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -96,6 +95,7 @@ public class ActivitySignup extends AppCompatActivity {
     }
 
     public boolean validate() {
+
         boolean valid = true;
         sharedPreferences = getSharedPreferences(ActivityLogin.PREFER_NAME, 0);
         editor = sharedPreferences.edit();
