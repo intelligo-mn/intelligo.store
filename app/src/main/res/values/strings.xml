@@ -25,7 +25,10 @@
     <string name="clear_all_order">Бүх захиалгаа цуцлах уу?</string>
     <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
     <string name="no_order">Захиалга байхгүй байна</string>
-
+    <string name="increase_order">+</string>
+    <string name="submit_order">Сагсанд хийх</string>
+    <string name="edit_submit_order">Хадгалах</string>
+    <string name="decrease_order">-</string>
     <string name="next">Дараагийн</string>
     <string name="start">Эхлэх</string>
     <string name="skip">Алгасах</string>

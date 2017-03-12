@@ -31,15 +31,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.DglConstants;
 import com.dglproject.R;
+import com.dglproject.database.CartProductsAdapter;
 import com.dglproject.database.DBHelper;
+import com.dglproject.models.CartProducts;
 import com.dglproject.utils.ImageLoader;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -64,6 +68,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Random;
+
 public class ActivityProductDetail extends AppCompatActivity {
 
     ImageView imgPreview;
@@ -71,12 +77,25 @@ public class ActivityProductDetail extends AppCompatActivity {
     WebView txtDescription;
     ProgressBar prgLoading;
     TextView txtAlert;
+    TextView totalOrderView;
+    TextView totalCostView;
+
+    Button increaseTotalCostButton;
+    Button decreaseTotalCostButton;
+    Button addToListButton;
 
     CoordinatorLayout coordinatorLayout;
 
     static DBHelper dbhelper;
 
     String Product_image, Product_name, Product_serve, Product_description;
+
+    double totalCostDouble;
+    int totalOrder;
+    String imageTitleString;
+    RatingBar rating;
+    double ratingValue;
+
     double Product_price;
     int Product_quantity;
     long Product_ID;
@@ -109,6 +128,36 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
+
+
+        increaseTotalCostButton = (Button)findViewById(R.id.increaseTotalCostButton);
+        addToListButton = (Button)findViewById(R.id.addToListButton);
+        decreaseTotalCostButton = (Button)findViewById(R.id.decreaseTotalCostButton);
+
+        rating =(RatingBar)findViewById(R.id.ratingBar);
+
+        displayRating();
+
+        increaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseTotalCost();
+            }
+        });
+
+        decreaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreaseTotalCost();
+            }
+        });
+
+        addToListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToList();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnAdd);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +195,18 @@ public class ActivityProductDetail extends AppCompatActivity {
 
 //        getSupportActionBar().setTitle(Product_name);
 
+        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
+        fabShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendInt = new Intent(Intent.ACTION_SEND);
+                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+                sendInt.setType("text/plain");
+                startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
+            }
+        });
+
     }
 
     @Override
@@ -158,6 +219,43 @@ public class ActivityProductDetail extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return false;
+    }
+
+    public void increaseTotalCost() {
+        totalOrder++;
+        totalCostDouble += Product_price;
+        displayUpdate();
+    }
+
+    public void decreaseTotalCost() {
+        totalOrder = (--totalOrder < 1) ? 1 : totalOrder;
+        totalCostDouble -= Product_price;
+        totalCostDouble = (totalCostDouble < Product_price) ? Product_price : totalCostDouble;
+        displayUpdate();
+    }
+
+    public void displayRating(){
+        Random r = new Random();
+        ratingValue = (r.nextDouble()*5.0);
+        rating.setRating((float)ratingValue);
+    }
+
+    public void displayUpdate() {
+        totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
+        totalCostView.setText("Нийт дүн: $ " + new DecimalFormat("#.##").format(totalCostDouble));
+
+        totalOrderView = (TextView) findViewById(R.id.total_item_number);
+        totalOrderView.setText("Нийт тоо: " + totalOrder);
+    }
+
+    public void addToList() {
+        CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
+        ratingValue = rating.getRating();
+        CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
+        item.setRatinng(ratingValue);
+        productAdapter.addProduct(item);
+        Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
+
     }
 
     void inputDialog() {

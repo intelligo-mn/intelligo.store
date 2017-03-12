@@ -26,7 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             CartProductsAdapter.PRODUCT_TOTAL_COST    + " TEXT,"+
             CartProductsAdapter.PRODUCT_TOTAL_ORDER    + " TEXT)";
 
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         myContext = context;
