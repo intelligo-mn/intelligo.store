@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -66,20 +67,20 @@ public class ActivityCart extends AppCompatActivity {
         for(CartProducts dat : data){
             subTotal += dat.getTotalCost();
         }
-        tax = subTotal*0.15;
+        tax = subTotal*0.1;
         total = tax + subTotal;
     }
 
     public void displayBill(){
         calculateBill();
         subTotalView = (TextView) findViewById(R.id.sub_total_text_view);
-        subTotalView.setText("Нийт дүн: $ " + new DecimalFormat("#.##").format(subTotal));
+        subTotalView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(subTotal)+" ₮");
 
         taxView = (TextView) findViewById(R.id.tax_text_view);
-        taxView.setText("Татвар: $ " + new DecimalFormat("#.##").format(tax));
+        taxView.setText("НӨАТ: " + new DecimalFormat("#.##").format(tax)+" ₮");
 
         totalView = (TextView) findViewById(R.id.total_text_view);
-        totalView.setText("Нийт: $ " + new DecimalFormat("#.##").format(total));
+        totalView.setText("Нийт: " + new DecimalFormat("#.##").format(total)+" ₮");
     }
 
     public void startPayment(View view){

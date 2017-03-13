@@ -153,7 +153,7 @@ public class ActivityLogin extends AppCompatActivity {
             passwordText.setError(null);
         }
 
-        if (prefManager.loginUser(username, password) == true){
+        if (username.trim().length() > 0 && password.trim().length() > 0){
             final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
