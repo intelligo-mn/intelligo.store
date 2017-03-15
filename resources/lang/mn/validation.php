@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'some_problems_input' => 'There were some problems with your input',
+    'some_problems_input' => 'Таны оруулсан өгөгдөл буруу байна.',
 
     'accepted'             => ':attribute баталсан байх шаардлагатай.',
     'active_url'           => ':attribute талбарт зөв URL хаяг оруулна уу.',
@@ -72,9 +72,9 @@ return [
     'required_unless'      => ':other :values дотор байхгүй бол :attribute талбарт утга оруулах шаардлагатай.',
     'required_with'        => ':values утгуудийн аль нэг байвал :attribute талбар шаардлагатай.',
     'required_with_all'    => ':values утгууд байвал :attribute талбар шаардлагатай.',
-    'required_without'     => 'The :attribute field is required when :values is not present.',
-    'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same'                 => 'The :attribute and :other must match.',
+    'required_without'     => ':attribute талбарт :values өгөгдөл байхгүй байна.',
+    'required_without_all' => ':attribute талбарын шаардагдсан :values байна.',
+    'same'                 => ':attribute and :other must match.',
     'size'                 => [
         'numeric' => ':attribute :size хэмжээтэй байх шаардлагатай.',
         'file'    => ':attribute :size килобайт хэмжээтэй байх шаардлагатай.',
