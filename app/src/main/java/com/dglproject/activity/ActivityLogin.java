@@ -95,6 +95,7 @@ public class ActivityLogin extends AppCompatActivity {
             onLoginFailed();
             return;
         }
+
         String username = nameText.getText().toString();
         String password = passwordText.getText().toString();
 
@@ -162,7 +163,6 @@ public class ActivityLogin extends AppCompatActivity {
             Toast.makeText(ActivityLogin.this,"Хэрэглэгчийн нэр нууц үг буруу байна", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-
 
         return valid;
     }
