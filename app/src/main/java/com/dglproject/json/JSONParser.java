@@ -1,4 +1,4 @@
-package com.dglproject;
+package com.dglproject.json;
 
 import android.util.Log;
 
@@ -56,14 +56,14 @@ public class JSONParser {
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params));
                 try {
-                    Log.e("API123", " " +convertStreamToString(httpPost.getEntity().getContent()));
-                    Log.e("API123",httpPost.getURI().toString());
+                    Log.e("JSON", " " +convertStreamToString(httpPost.getEntity().getContent()));
+                    Log.e("JSON",httpPost.getURI().toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 HttpResponse httpResponse = httpClient.execute(httpPost);
-                Log.e("API123",""+httpResponse.getStatusLine().getStatusCode());
+                Log.e("JSON",""+httpResponse.getStatusLine().getStatusCode());
                 error= String.valueOf(httpResponse.getStatusLine().getStatusCode());
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();

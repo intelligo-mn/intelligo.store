@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,10 +17,17 @@ import android.widget.Toast;
 
 import com.dglproject.MainActivity;
 import com.dglproject.R;
+import com.dglproject.json.JSONParser;
 import com.dglproject.utils.PrefManager;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -34,6 +42,10 @@ public class ActivityLogin extends AppCompatActivity {
     Button loginButton;
     TextView signUpLink;
     CheckBox rememberDetail;
+
+    String URL= "http://dgl.toroo.info/api/UserService.php";
+
+    JSONParser jsonParser=new JSONParser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,23 +95,12 @@ public class ActivityLogin extends AppCompatActivity {
             onLoginFailed();
             return;
         }
-        loginButton.setEnabled(false);
+        String username = nameText.getText().toString();
+        String password = passwordText.getText().toString();
 
-        final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Уншиж байна...");
-        progressDialog.show();
+        LoginUser userAttempt = new LoginUser();
+        userAttempt.execute(username,password);
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
     }
 
 
@@ -154,21 +155,6 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         if (username.trim().length() > 0 && password.trim().length() > 0){
-            final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-                    R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Уншиж байна...");
-            progressDialog.show();
-            new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                            progressDialog.dismiss();
-                        }
-                    }, 2000);
 
             valid = true;
         } else {
@@ -176,6 +162,7 @@ public class ActivityLogin extends AppCompatActivity {
             Toast.makeText(ActivityLogin.this,"Хэрэглэгчийн нэр нууц үг буруу байна", Toast.LENGTH_SHORT).show();
             valid = false;
         }
+
 
         return valid;
     }
@@ -202,6 +189,62 @@ public class ActivityLogin extends AppCompatActivity {
         }
         catch (NoSuchAlgorithmException e) {
             return s;
+        }
+    }
+
+    private class LoginUser extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+
+            String password = args[1];
+            String name= args[0];
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", name));
+            params.add(new BasicNameValuePair("password", password));
+
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+
+            return json;
+
+        }
+
+        protected void onPostExecute(JSONObject result) {
+
+            try {
+                if (result != null) {
+                    if(result.getString("success") == "1"){
+                        final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
+                                R.style.AppTheme_Dark_Dialog);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setMessage("Уншиж байна...");
+                        progressDialog.show();
+                        new android.os.Handler().postDelayed(
+                                new Runnable() {
+                                    public void run() {
+                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                        progressDialog.dismiss();
+                                    }
+                                }, 2000);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

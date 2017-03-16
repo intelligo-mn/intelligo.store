@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.JSONParser;
+import com.dglproject.json.JSONParser;
 import com.dglproject.R;
 import com.dglproject.utils.PrefManager;
 
