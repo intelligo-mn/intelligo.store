@@ -90,7 +90,8 @@
             android:theme="@style/AppFullScreen" />
         <activity android:name=".activity.ActivityProductAdd" />
         <activity android:name=".activity.ActivityAbout" />
-        <activity android:name=".activity.ActivityCartEdit"></activity>
+        <activity android:name=".activity.ActivityCartEdit" />
+        <activity android:name=".activity.ActivityBrandAdd"></activity>
     </application>
 
 </manifest>

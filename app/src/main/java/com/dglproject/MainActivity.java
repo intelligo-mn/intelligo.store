@@ -36,9 +36,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.activity.ActivityAbout;
+import com.dglproject.activity.ActivityBrandAdd;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
+import com.dglproject.activity.ActivityProductAdd;
 import com.dglproject.activity.ActivitySettings;
 import com.dglproject.activity.ActivitySignup;
 import com.dglproject.activity.ActivityUserSettings;
@@ -180,6 +182,23 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onVoiceClicked() {
                 Toast.makeText(getApplicationContext(), "Voice clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_company);
+        companyAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+
+            }
+        });
+        com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
+        productAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+
             }
         });
     }
