@@ -2,6 +2,7 @@ package com.dglproject.activity;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.JSONParser;
 import com.dglproject.R;
 import com.dglproject.utils.PrefManager;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class ActivitySignup extends AppCompatActivity {
 
@@ -24,6 +32,12 @@ public class ActivitySignup extends AppCompatActivity {
     Button signUpButton;
     TextView loginLink;
     PrefManager prefManager;
+
+    String URL= "http://dgl.toroo.info/api/UserService.php";
+
+    JSONParser jsonParser=new JSONParser();
+
+    int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +148,8 @@ public class ActivitySignup extends AppCompatActivity {
             confirmPasswordEditText.setError(null);
         }
 
+        CreateUser createUser = new CreateUser();
+        createUser.execute(name,password,email);
         return valid;
     }
 
@@ -156,6 +172,44 @@ public class ActivitySignup extends AppCompatActivity {
 
         } catch (NoSuchAlgorithmException e) {
             return s;
+        }
+    }
+    private class CreateUser extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+
+            String email = args[2];
+            String password = args[1];
+            String name= args[0];
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", name));
+            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("email",email));
+
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+
+            return json;
+
+        }
+
+        protected void onPostExecute(JSONObject result) {
+
+            try {
+                if (result != null) {
+                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

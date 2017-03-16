@@ -332,9 +332,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
+        item.setChecked(true);
+        int id = item.getItemId();
         if (id == R.id.nav_category) {
             // Handle the camera action
             Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
