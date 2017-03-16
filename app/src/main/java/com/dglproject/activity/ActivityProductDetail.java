@@ -134,10 +134,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         addToListButton = (Button)findViewById(R.id.addToListButton);
         decreaseTotalCostButton = (Button)findViewById(R.id.decreaseTotalCostButton);
 
-        rating =(RatingBar)findViewById(R.id.ratingBar);
-
-        displayRating();
-
         increaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,12 +252,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         totalCostDouble -= Product_price;
         totalCostDouble = (totalCostDouble < Product_price) ? Product_price : totalCostDouble;
         displayUpdate();
-    }
-
-    public void displayRating(){
-        Random r = new Random();
-        ratingValue = (r.nextDouble()*5.0);
-        rating.setRating((float)ratingValue);
     }
 
     public void displayUpdate() {
