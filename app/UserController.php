@@ -1,6 +1,6 @@
 <?php
     
-include_once '/config/db-connect.php';
+include_once '../config/db-connect.php';
 
 class User{
     
