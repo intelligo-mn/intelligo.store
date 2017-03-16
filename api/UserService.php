@@ -28,7 +28,7 @@
     
     
     
-    $userObject = new User();
+    $userObject = new UserController();
     
     // Бүртгүүлэх
     
