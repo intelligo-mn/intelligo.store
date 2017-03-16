@@ -103,7 +103,6 @@ public class ActivitySignup extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        prefManager.createUser(name, email, password);
 
     }
 

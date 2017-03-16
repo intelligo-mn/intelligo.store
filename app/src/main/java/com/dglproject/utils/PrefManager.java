@@ -17,10 +17,18 @@ public class PrefManager {
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+
     public PrefManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
+    }
+
+    public void setLogin(boolean isLoggedIn) {
+        editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
+        editor.commit();
+
     }
 
     public void setFirstTimeLaunch(boolean isFirstTime) {
@@ -32,22 +40,8 @@ public class PrefManager {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
-    public void createUser(String username, String email, String password) {
-        editor.putString("user_name", username);
-        editor.putString("user_email", email);
-        editor.putString("password", password);
-        editor.commit();
+    public boolean isLoggedIn(){
+        return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 
-    public boolean loginUser (String email, String password) {
-
-        return pref.getString("user_email", "") == email || pref.getString("password", "") == password;
-    }
-
-    public void saveLoggedInUser(String username, String email, String password) {
-        editor.putString("user_name", username);
-        editor.putString("user_email", email);
-        editor.putString("password", password);
-        editor.commit();
-    }
 }

@@ -20,7 +20,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             CartProductsAdapter.PRODUCT_ID       + " INTEGER PRIMARY KEY," +
             CartProductsAdapter.PRODUCT_TITLE    + " TEXT,"+
             CartProductsAdapter.PRODUCT_DESCRIPTION    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_RATING    + " TEXT,"+
             CartProductsAdapter.PRODUCT_COST    + " TEXT,"+
             CartProductsAdapter.PRODUCT_IMAGE    + " TEXT,"+
             CartProductsAdapter.PRODUCT_TOTAL_COST    + " TEXT,"+

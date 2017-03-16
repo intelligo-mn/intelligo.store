@@ -264,9 +264,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void addToList() {
         CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
-        ratingValue = rating.getRating();
         CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
-        item.setRatinng(ratingValue);
         productAdapter.addProduct(item);
         Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
 

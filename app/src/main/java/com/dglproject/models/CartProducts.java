@@ -12,7 +12,6 @@ public class CartProducts {
     String image;
     public double totalCost;
     int totalOrder;
-    double ratinng;
 
     public CartProducts(String title, String description, double cost, String image, double totalCost, int totalOrder) {
         this.title = title;
@@ -88,11 +87,4 @@ public class CartProducts {
         this.totalOrder = totalOrder;
     }
 
-    public double getRatinng() {
-        return ratinng;
-    }
-
-    public void setRatinng(double ratinng) {
-        this.ratinng = ratinng;
-    }
 }

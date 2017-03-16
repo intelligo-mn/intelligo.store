@@ -63,8 +63,7 @@ public class CartFragment extends android.app.Fragment {
                 String costString = "" + item.getCost();
                 String totalCostString = "" + item.totalCost;
                 String totalOrderString = "" + item.getTotalOrder();
-                String ratingString = "" + item.getRatinng();
-                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage(),ratingString};
+                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage()};
 //                Intent intent = new Intent(getActivity(), ActivityCartEdit.class);
 //                intent.putExtra(TAG, transferData);
 //                startActivity(intent);

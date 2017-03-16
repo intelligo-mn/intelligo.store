@@ -19,7 +19,6 @@ public class CartProductsAdapter extends DatabaseHelper{
     public static final String PRODUCT_ID          = "id";
     public static final String PRODUCT_TITLE       = "title";
     public static final String PRODUCT_DESCRIPTION = "description";
-    public static final String PRODUCT_RATING      = "rating";
     public static final String PRODUCT_COST        = "cost";
     public static final String PRODUCT_IMAGE       = "image";
     public static final String PRODUCT_TOTAL_COST  = "totalcost";
@@ -29,7 +28,6 @@ public class CartProductsAdapter extends DatabaseHelper{
             PRODUCT_ID,
             PRODUCT_TITLE,
             PRODUCT_DESCRIPTION,
-            PRODUCT_RATING,
             PRODUCT_COST,
             PRODUCT_IMAGE,
             PRODUCT_TOTAL_COST,
@@ -46,7 +44,6 @@ public class CartProductsAdapter extends DatabaseHelper{
         ContentValues values = new ContentValues();
         values.put(PRODUCT_TOTAL_COST, product.getTotalCost());
         values.put(PRODUCT_TOTAL_ORDER, product.getTotalOrder());
-        values.put(PRODUCT_RATING, product.getRatinng());
         CartProducts returnProduct = findByTitle(product.getTitle());
         SQLiteDatabase database = this.getWritableDatabase();
         if (returnProduct == null){
@@ -82,7 +79,6 @@ public class CartProductsAdapter extends DatabaseHelper{
                 PRODUCT_DESCRIPTION,
                 PRODUCT_COST,
                 PRODUCT_IMAGE,
-                PRODUCT_RATING,
                 PRODUCT_TOTAL_COST,
                 PRODUCT_TOTAL_ORDER
         };
@@ -101,9 +97,8 @@ public class CartProductsAdapter extends DatabaseHelper{
         );
 
         while(c.moveToNext()){
-            CartProducts product = new CartProducts(c.getString(1),c.getString(2),c.getDouble(3),c.getString(4),c.getDouble(6),c.getInt(7));
-            product.setRatinng(c.getDouble(5));
-            data.add(product);
+            CartProducts product = new CartProducts(c.getString(1),c.getString(2),c.getDouble(3),c.getString(4),c.getDouble(5),c.getInt(6));
+          data.add(product);
         };
         c.close();
         db.close();
@@ -137,8 +132,7 @@ public class CartProductsAdapter extends DatabaseHelper{
         if (c.moveToFirst()) {
             c.moveToFirst();
             product = new CartProducts(c.getString(1),c.getString(2),c.getDouble(4),c.getString(5),c.getDouble(6),c.getInt(7));
-            product.setRatinng(c.getDouble(3));
-            c.close();
+          c.close();
         } else {
             product = null;
         }
