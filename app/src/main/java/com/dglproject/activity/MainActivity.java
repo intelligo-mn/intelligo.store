@@ -104,6 +104,27 @@ public class MainActivity extends AppCompatActivity
         View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView, false);
         navigationView.addHeaderView(headerView);
 
+        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+
+        if (viewPager != null) {
+            viewPager.setPagingEnabled(false);
+            viewPager.setAdapter(pagerAdapter);
+        }
+
+        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        if (mTabLayout != null) {
+            mTabLayout.setupWithViewPager(viewPager);
+
+            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+                TabLayout.Tab tab = mTabLayout.getTabAt(i);
+                if (tab != null)
+                    tab.setCustomView(pagerAdapter.getTabView(i));
+            }
+
+            mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+        }
+
         userImage = (ImageView ) headerView.findViewById(R.id.imageViewNavUser);
 
         userImage.setOnClickListener(new View.OnClickListener() {
@@ -145,34 +166,9 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String suggestion = searchView.getSuggestionAtPosition(position);
-//                Log.d("Search : ",""+suggestion);
-//                home.searchData(suggestion);
                 searchView.setQuery(suggestion, true);
             }
         });
-
-
-//
-//        bt_clearHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearHistory();
-//            }
-//        });
-//
-//        bt_clearSuggestions.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearSuggestions();
-//            }
-//        });
-//
-//        bt_clearAll.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearAll();
-//            }
-//        });
 
         searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
@@ -263,7 +259,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         public View getTabView(int position) {
-            // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
             TextView title = (TextView) view.findViewById(R.id.title);
             title.setText(mTabsTitle[position]);
@@ -278,13 +273,13 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(0);
+                    return HomeItems.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(1);
+                    return HomeItems.newInstance(2);
                 case 2:
                     getSupportActionBar().setTitle("");
-                    return CategoryFragment.newInstance(2);
+                    return CategoryFragment.newInstance(3);
 
             }
             return null;
@@ -332,7 +327,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -381,7 +375,6 @@ public class MainActivity extends AppCompatActivity
         item.setChecked(true);
         int id = item.getItemId();
         if (id == R.id.nav_category) {
-            // Handle the camera action
             Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
