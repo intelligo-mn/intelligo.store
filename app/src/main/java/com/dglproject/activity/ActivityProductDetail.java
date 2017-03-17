@@ -201,7 +201,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (prefManager.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+
                 } else {
                     Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
                             .setAction("Нэвтрэх", new View.OnClickListener() {
@@ -231,22 +231,11 @@ public class ActivityProductDetail extends AppCompatActivity {
         fabShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (prefManager.isLoggedIn()) {
-                    Intent sendInt = new Intent(Intent.ACTION_SEND);
-                    sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
-                    sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
-                    sendInt.setType("text/plain");
-                    startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
-                } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                                }
-                            }).show();
-                }
-
+                Intent sendInt = new Intent(Intent.ACTION_SEND);
+                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+                sendInt.setType("text/plain");
+                startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
             }
         });
 
