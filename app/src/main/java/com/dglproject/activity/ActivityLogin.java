@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.MainActivity;
+import com.dglproject.activity.MainActivity;
 import com.dglproject.R;
 import com.dglproject.json.JSONParser;
 import com.dglproject.utils.PrefManager;
@@ -53,6 +53,12 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         prefManager = new PrefManager(this);
+
+        if(prefManager.isLoggedIn()){
+            Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         nameText = (EditText)findViewById(R.id.username);
         passwordText = (EditText)findViewById(R.id.password);
@@ -228,6 +234,7 @@ public class ActivityLogin extends AppCompatActivity {
                         new android.os.Handler().postDelayed(
                                 new Runnable() {
                                     public void run() {
+                                        prefManager.setLogin(true);
                                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

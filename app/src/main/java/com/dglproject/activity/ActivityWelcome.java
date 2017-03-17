@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.dglproject.MainActivity;
 import com.dglproject.R;
 import com.dglproject.utils.PrefManager;
 

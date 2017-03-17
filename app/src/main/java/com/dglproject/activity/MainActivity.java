@@ -1,4 +1,4 @@
-package com.dglproject;
+package com.dglproject.activity;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.R;
 import com.dglproject.activity.ActivityAbout;
 import com.dglproject.activity.ActivityBrandAdd;
 import com.dglproject.activity.ActivityCart;
@@ -50,6 +52,7 @@ import com.dglproject.activity.ActivityHelp;
 import com.dglproject.activity.ActivityUserProfile;
 import com.dglproject.fragments.CategoryFragment;
 import com.dglproject.fragments.HomeItems;
+import com.dglproject.utils.PrefManager;
 import com.dglproject.widgets.CustomViewPager;
 import com.dglproject.widgets.MaterialSearchView;
 
@@ -71,6 +74,8 @@ public class MainActivity extends AppCompatActivity
 
     public MaterialSearchView searchView;
 
+    PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +89,8 @@ public class MainActivity extends AppCompatActivity
     public void init () {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        prefManager = new PrefManager(getApplicationContext());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -189,15 +196,34 @@ public class MainActivity extends AppCompatActivity
         companyAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
-
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
         com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
         productAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
 
             }
         });
@@ -252,7 +278,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-//                    return HomeItems.newInstance(0);
+                    return HomeItems.newInstance(0);
                 case 1:
                     getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(1);

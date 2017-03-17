@@ -45,6 +45,7 @@ import com.dglproject.database.CartProductsAdapter;
 import com.dglproject.database.DBHelper;
 import com.dglproject.models.CartProducts;
 import com.dglproject.utils.ImageLoader;
+import com.dglproject.utils.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -102,16 +103,19 @@ public class ActivityProductDetail extends AppCompatActivity {
     String ProductDetailAPI;
     int IOConnect = 0;
 
+    PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
+        prefManager = new PrefManager(getApplicationContext());
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -151,7 +155,17 @@ public class ActivityProductDetail extends AppCompatActivity {
         addToListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToList();
+                if (prefManager.isLoggedIn()) {
+                    addToList();
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -167,30 +181,36 @@ public class ActivityProductDetail extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startActivity(new Intent(getApplicationContext(), ActivityCart.class));
 
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityCart.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
         com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_mail);
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {new AlertDialog.Builder(ActivityProductDetail.this)
-                    .setTitle("Нэвтэрнэ үү")
-                    .setMessage("Та нэвтэрсэн байх шаардлагатай?")
-                    .setPositiveButton("Нэврэх", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                        }
-                    })
-                    .setNegativeButton("Үгүй", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .setIcon(R.drawable.dgl_white_error)
-                    .show();
+            public void onClick(View v) {
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -211,11 +231,22 @@ public class ActivityProductDetail extends AppCompatActivity {
         fabShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sendInt = new Intent(Intent.ACTION_SEND);
-                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
-                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
-                sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
+                if (prefManager.isLoggedIn()) {
+                    Intent sendInt = new Intent(Intent.ACTION_SEND);
+                    sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+                    sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+                    sendInt.setType("text/plain");
+                    startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
+
             }
         });
 
