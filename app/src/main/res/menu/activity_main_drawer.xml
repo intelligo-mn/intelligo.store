@@ -4,24 +4,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_category"
-            android:icon="@drawable/dgl_white_list"
+            android:icon="@mipmap/dglsort"
             android:title="Ангилалууд" />
         <item
             android:id="@+id/nav_company"
-            android:icon="@drawable/dgl_white_app"
+            android:icon="@mipmap/dglcompany"
             android:title="Компаниуд" />
-        <item
-            android:id="@+id/nav_department"
-            android:icon="@drawable/dgl_white_favorite"
-            android:title="Салбарууд" />
 
         <item
-            android:id="@+id/nav_location"
-            android:icon="@drawable/dgl_white_map"
-            android:title="Байрлал" />
-        <item
             android:id="@+id/nav_checkout"
-            android:icon="@drawable/dgl_black_star"
             android:title="Төлбөр" />
     </group>
 
@@ -29,16 +20,12 @@
         <menu>
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/dgl_black_settings"
+                android:icon="@mipmap/dglsettings"
                 android:title="Тохиргоо" />
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/dgl_black_help"
+                android:icon="@mipmap/dglhelp"
                 android:title="Тусламж" />
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/dgl_white_idea"
-                android:title="@string/title_about" />
         </menu>
     </item>
 

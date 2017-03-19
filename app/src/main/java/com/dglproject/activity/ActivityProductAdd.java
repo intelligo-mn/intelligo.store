@@ -76,7 +76,7 @@ public class ActivityProductAdd extends AppCompatActivity {
             params.add(new BasicNameValuePair("price", price));
             params.add(new BasicNameValuePair("currency", currency));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
 
             return json;
 

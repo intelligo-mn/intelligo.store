@@ -380,12 +380,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_company) {
             Intent companyIntent = new Intent(MainActivity.this, ActivityCompany.class);
             startActivity(companyIntent);
-        } else if (id == R.id.nav_department) {
-            Intent depaIntent = new Intent(MainActivity.this, ActivityDepartment.class);
-            startActivity(depaIntent);
         } else if (id == R.id.nav_checkout) {
-
-        } else if (id == R.id.nav_location) {
 
         } else if (id == R.id.nav_settings) {
             Intent settingsIntent = new Intent(MainActivity.this, ActivityUserSettings.class);
@@ -393,9 +388,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
             startActivity(helpIntent);
-        } else if (id == R.id.nav_about) {
-            Intent aboutIntent = new Intent(MainActivity.this, ActivityAbout.class);
-            startActivity(aboutIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

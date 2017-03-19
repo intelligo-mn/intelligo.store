@@ -28,7 +28,6 @@
         android:layout_height="match_parent"
         style="@style/MaterialSearchViewStyle"/>
 
-
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu_add"
         android:layout_width="match_parent"
