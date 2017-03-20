@@ -57,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginBottom="50dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:fillViewport="true" >
 
@@ -102,18 +103,11 @@
                         android:layout_height="match_parent"
                         android:scrollbars="none"/>
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:numStars="5"
-                        android:paddingBottom="15dp"
-                        android:rating="2.5"
-                        android:stepSize="0.5" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -136,7 +130,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        >
 
                         <Button
                             android:layout_width="0dp"
@@ -178,10 +173,13 @@
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|end"
             android:clickable="true"
-            android:src="@drawable/dgl_white_cart"
-            android:background="@color/bg_screen3"
+            android:src="@drawable/dgl_white_heart"
+            android:background="@color/red_fav"
             app:borderWidth="0dp"
-            app:fabSize="normal" />
+            app:fabSize="normal"
+            app:fab_colorNormal="@color/red_fav"
+            app:fab_colorRipple="@color/red_fav"
+            />
 
         <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/menu_red"
@@ -202,9 +200,9 @@
                 android:id="@+id/send_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dgl_white_send_20"
+                android:src="@drawable/dgl_white_cart"
                 fab:fab_size="normal"
-                fab:fab_label="Мессеж илгээх" />
+                fab:fab_label="Таны сагс" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/send_mail"

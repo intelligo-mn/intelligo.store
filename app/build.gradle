@@ -11,14 +11,23 @@ android {
         applicationId "com.dglproject"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
 
         buildConfigField INT, "MAX_HISTORY", "10"
         consumerProguardFiles 'proguard-android.txt'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+    }
+
+    productFlavors {
+        demo {
+            versionName "1.1-demo"
+        }
+        full {
+
+        }
     }
     buildTypes {
         release {

@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -89,7 +89,9 @@
             android:name=".activity.ActivityWelcome"
             android:theme="@style/AppFullScreen" />
         <activity android:name=".activity.ActivityProductAdd" />
-        <activity android:name=".activity.ActivityAbout"></activity>
+        <activity android:name=".activity.ActivityAbout" />
+        <activity android:name=".activity.ActivityCartEdit" />
+        <activity android:name=".activity.ActivityBrandAdd"></activity>
     </application>
 
 </manifest>

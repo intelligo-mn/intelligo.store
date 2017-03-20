@@ -61,6 +61,7 @@
             android:layout_marginBottom="24dp"
             android:background="@color/colorPrimary"
             android:padding="12dp"
+            android:textColor="@color/white"
             android:text="Нэвтрэх"/>
         <LinearLayout
             android:orientation="horizontal"

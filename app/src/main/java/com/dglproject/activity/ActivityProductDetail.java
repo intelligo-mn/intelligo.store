@@ -45,6 +45,7 @@ import com.dglproject.database.CartProductsAdapter;
 import com.dglproject.database.DBHelper;
 import com.dglproject.models.CartProducts;
 import com.dglproject.utils.ImageLoader;
+import com.dglproject.utils.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -102,16 +103,19 @@ public class ActivityProductDetail extends AppCompatActivity {
     String ProductDetailAPI;
     int IOConnect = 0;
 
+    PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
+        prefManager = new PrefManager(getApplicationContext());
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -134,10 +138,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         addToListButton = (Button)findViewById(R.id.addToListButton);
         decreaseTotalCostButton = (Button)findViewById(R.id.decreaseTotalCostButton);
 
-        rating =(RatingBar)findViewById(R.id.ratingBar);
-
-        displayRating();
-
         increaseTotalCostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +155,17 @@ public class ActivityProductDetail extends AppCompatActivity {
         addToListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToList();
+                if (prefManager.isLoggedIn()) {
+                    addToList();
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -163,7 +173,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog();
+                
             }
         });
 
@@ -171,7 +181,18 @@ public class ActivityProductDetail extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ActivityCart.class));
+
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityCart.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -179,7 +200,17 @@ public class ActivityProductDetail extends AppCompatActivity {
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ActivityCheckout.class));
+                if (prefManager.isLoggedIn()) {
+
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -194,6 +225,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         new getDataTask().execute();
 
 //        getSupportActionBar().setTitle(Product_name);
+        displayData();
 
         com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
         fabShare.setOnClickListener(new View.OnClickListener() {
@@ -221,6 +253,14 @@ public class ActivityProductDetail extends AppCompatActivity {
         return false;
     }
 
+    public void displayData() {
+        totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
+        totalCostView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+
+        totalOrderView = (TextView) findViewById(R.id.total_item_number);
+        totalOrderView.setText("Нийт тоо: " + totalOrder);
+    }
+
     public void increaseTotalCost() {
         totalOrder++;
         totalCostDouble += Product_price;
@@ -234,15 +274,9 @@ public class ActivityProductDetail extends AppCompatActivity {
         displayUpdate();
     }
 
-    public void displayRating(){
-        Random r = new Random();
-        ratingValue = (r.nextDouble()*5.0);
-        rating.setRating((float)ratingValue);
-    }
-
     public void displayUpdate() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText("Нийт дүн: $ " + new DecimalFormat("#.##").format(totalCostDouble));
+        totalCostView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
         totalOrderView.setText("Нийт тоо: " + totalOrder);
@@ -250,61 +284,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void addToList() {
         CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
-        ratingValue = rating.getRating();
         CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
-        item.setRatinng(ratingValue);
         productAdapter.addProduct(item);
         Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
 
-    }
-
-    void inputDialog() {
-
-        try {
-            dbhelper.openDataBase();
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle(R.string.order);
-        alert.setMessage(R.string.number_order);
-        alert.setCancelable(false);
-        final EditText edtQuantity = new EditText(this);
-        int maxLength = 3;
-        edtQuantity.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-        edtQuantity.setInputType(InputType.TYPE_CLASS_NUMBER);
-        alert.setView(edtQuantity);
-
-        alert.setPositiveButton("Нэмэх", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String temp = edtQuantity.getText().toString();
-                int quantity = 0;
-
-                if (!temp.equalsIgnoreCase("")) {
-                    quantity = Integer.parseInt(temp);
-                    Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
-
-                    if (dbhelper.isDataExist(Product_ID)) {
-                        dbhelper.updateData(Product_ID, quantity, (Product_price * quantity));
-                    } else {
-                        dbhelper.addData(Product_ID, Product_name, quantity, (Product_price * quantity));
-                    }
-                } else {
-                    dialog.cancel();
-                }
-            }
-        });
-
-        alert.setNegativeButton("Буцах", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-                dialog.cancel();
-            }
-        });
-
-        alert.show();
     }
 
     public class getDataTask extends AsyncTask<Void, Void, Void> {

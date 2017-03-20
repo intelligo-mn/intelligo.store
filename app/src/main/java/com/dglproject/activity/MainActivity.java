@@ -1,4 +1,4 @@
-package com.dglproject;
+package com.dglproject.activity;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -35,10 +36,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.R;
 import com.dglproject.activity.ActivityAbout;
+import com.dglproject.activity.ActivityBrandAdd;
 import com.dglproject.activity.ActivityCart;
 import com.dglproject.activity.ActivityCategory;
 import com.dglproject.activity.ActivityLogin;
+import com.dglproject.activity.ActivityProductAdd;
 import com.dglproject.activity.ActivitySettings;
 import com.dglproject.activity.ActivitySignup;
 import com.dglproject.activity.ActivityUserSettings;
@@ -48,6 +52,7 @@ import com.dglproject.activity.ActivityHelp;
 import com.dglproject.activity.ActivityUserProfile;
 import com.dglproject.fragments.CategoryFragment;
 import com.dglproject.fragments.HomeItems;
+import com.dglproject.utils.PrefManager;
 import com.dglproject.widgets.CustomViewPager;
 import com.dglproject.widgets.MaterialSearchView;
 
@@ -69,6 +74,8 @@ public class MainActivity extends AppCompatActivity
 
     public MaterialSearchView searchView;
 
+    PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +90,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        prefManager = new PrefManager(getApplicationContext());
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -94,6 +103,27 @@ public class MainActivity extends AppCompatActivity
 
         View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView, false);
         navigationView.addHeaderView(headerView);
+
+        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+
+        if (viewPager != null) {
+            viewPager.setPagingEnabled(false);
+            viewPager.setAdapter(pagerAdapter);
+        }
+
+        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        if (mTabLayout != null) {
+            mTabLayout.setupWithViewPager(viewPager);
+
+            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+                TabLayout.Tab tab = mTabLayout.getTabAt(i);
+                if (tab != null)
+                    tab.setCustomView(pagerAdapter.getTabView(i));
+            }
+
+            mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+        }
 
         userImage = (ImageView ) headerView.findViewById(R.id.imageViewNavUser);
 
@@ -136,34 +166,9 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String suggestion = searchView.getSuggestionAtPosition(position);
-//                Log.d("Search : ",""+suggestion);
-//                home.searchData(suggestion);
                 searchView.setQuery(suggestion, true);
             }
         });
-
-
-//
-//        bt_clearHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearHistory();
-//            }
-//        });
-//
-//        bt_clearSuggestions.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearSuggestions();
-//            }
-//        });
-//
-//        bt_clearAll.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clearAll();
-//            }
-//        });
 
         searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
@@ -180,6 +185,42 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onVoiceClicked() {
                 Toast.makeText(getApplicationContext(), "Voice clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_company);
+        companyAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
+            }
+        });
+        com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
+        productAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+                } else {
+                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
+
             }
         });
     }
@@ -218,7 +259,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         public View getTabView(int position) {
-            // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
             TextView title = (TextView) view.findViewById(R.id.title);
             title.setText(mTabsTitle[position]);
@@ -233,13 +273,13 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-//                    return HomeItems.newInstance(0);
+                    return HomeItems.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(1);
+                    return HomeItems.newInstance(2);
                 case 2:
                     getSupportActionBar().setTitle("");
-                    return CategoryFragment.newInstance(2);
+                    return CategoryFragment.newInstance(3);
 
             }
             return null;
@@ -287,7 +327,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -332,22 +371,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
+        item.setChecked(true);
+        int id = item.getItemId();
         if (id == R.id.nav_category) {
-            // Handle the camera action
             Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
             Intent companyIntent = new Intent(MainActivity.this, ActivityCompany.class);
             startActivity(companyIntent);
-        } else if (id == R.id.nav_department) {
-            Intent depaIntent = new Intent(MainActivity.this, ActivityDepartment.class);
-            startActivity(depaIntent);
         } else if (id == R.id.nav_checkout) {
-
-        } else if (id == R.id.nav_location) {
 
         } else if (id == R.id.nav_settings) {
             Intent settingsIntent = new Intent(MainActivity.this, ActivityUserSettings.class);
@@ -355,9 +388,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
             startActivity(helpIntent);
-        } else if (id == R.id.nav_about) {
-            Intent aboutIntent = new Intent(MainActivity.this, ActivityAbout.class);
-            startActivity(aboutIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

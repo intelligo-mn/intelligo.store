@@ -6,6 +6,12 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:id="@+id/img"/>
+
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_marginTop="10dp"
         android:id="@+id/list_image_text_view"

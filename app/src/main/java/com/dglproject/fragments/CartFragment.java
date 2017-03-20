@@ -40,8 +40,9 @@ public class CartFragment extends android.app.Fragment {
         for (CartProducts x : data) {
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("Title", x.getTitle());
-            map.put("TotalOrder", "Бүтээгдэхүүний тоо: " + x.getTotalOrder());
-            map.put("TotalCost", "Нийт үнэ: $" + x.getTotalCost());
+            map.put("Image", x.getImage());
+            map.put("TotalOrder", "Тоо: " + x.getTotalOrder());
+            map.put("TotalCost", "Нийт үнэ: " + x.getTotalCost()+" ₮");
             dataList.add(map);
         }
 
@@ -49,8 +50,8 @@ public class CartFragment extends android.app.Fragment {
                 this.getActivity(),
                 dataList,
                 R.layout.item_cart,
-                new String[]{"Title", "TotalOrder", "TotalCost"},
-                new int[]{R.id.list_image_text_view, R.id.recepit_total_order_text_view, R.id.recepit_cost_text_view});
+                new String[]{"Title", "Image", "TotalOrder", "TotalCost"},
+                new int[]{R.id.list_image_text_view, R.id.img, R.id.recepit_total_order_text_view, R.id.recepit_cost_text_view});
 
         listView.setAdapter(adapter);
 
@@ -62,9 +63,8 @@ public class CartFragment extends android.app.Fragment {
                 String costString = "" + item.getCost();
                 String totalCostString = "" + item.totalCost;
                 String totalOrderString = "" + item.getTotalOrder();
-                String ratingString = "" + item.getRatinng();
-                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage(),ratingString};
-//                Intent intent = new Intent(getActivity(), CartEditActivity.class);
+                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage()};
+//                Intent intent = new Intent(getActivity(), ActivityCartEdit.class);
 //                intent.putExtra(TAG, transferData);
 //                startActivity(intent);
             }
