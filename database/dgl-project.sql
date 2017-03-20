@@ -23,124 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company`
---
-
-CREATE TABLE `company` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `name_foreign` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `logo_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `intro_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `intro_text` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `folder` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `founded_year` smallint(6) NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `post_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `fax` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `website` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `type_id` int(11) DEFAULT NULL,
-  `is_active` tinyint(4) DEFAULT NULL,
-  `fb_page` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tw_page` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `lat` double(18,2) NOT NULL,
-  `lon` double(18,2) NOT NULL,
-  `is_featured` tinyint(4) DEFAULT NULL,
-  `hitcounter` int(11) NOT NULL,
-  `ip_address` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `attr` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `updated_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`),
-  KEY `type_id_idx` (`type_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company_category`
---
-
-CREATE TABLE `company_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `level` tinyint(4) DEFAULT NULL,
-  `hitcounter` int(11) NOT NULL,
-  `is_featured` tinyint(4) DEFAULT NULL,
-  `folder` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `icon_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `sort_order` int(11) NOT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `updated_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `parent_id_idx` (`parent_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company_category_conn`
---
-
-CREATE TABLE `company_category_conn` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `company_id_idx` (`company_id`),
-  KEY `category_id_idx` (`category_id`),
-  KEY `created_user_id_idx` (`created_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company_type`
---
-
-CREATE TABLE `company_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sort_order` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `company_type`
---
-
-INSERT INTO `company_type` (`id`, `name`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'ХХК', 1, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(2, 'ХК', 2, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(3, 'ТБ', 3, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(4, 'ТББ', 4, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(5, 'ТӨХК', 5, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(6, 'ТӨУҮГ', 6, '2014-06-02 00:00:00', '2014-06-02 00:00:00'),
-(7, 'Бусад', 50, '2014-06-02 00:00:00', '2014-06-02 00:00:00');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `product`
 --
 
@@ -171,11 +53,6 @@ CREATE TABLE `product` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `company_id_idx` (`company_id`),
-  KEY `default_photo_id_idx` (`default_photo_id`),
-  KEY `brand_id_idx` (`brand_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -202,9 +79,6 @@ CREATE TABLE `product_brand` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `project_category_id_idx` (`project_category_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
@@ -235,10 +109,7 @@ CREATE TABLE `product_category` (
   `updated_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `parent_id_idx` (`parent_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
@@ -247,104 +118,6 @@ CREATE TABLE `product_category` (
 
 INSERT INTO `product_category` (`id`, `name`, `parent_id`, `level`, `hitcounter`, `is_featured`, `folder`, `icon_image`, `description`, `sort_order`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) VALUES
 (1, 'asdfasdfasdf', NULL, 1, 0, 1, '2017-03', '0f39c0020160a5f788175c392873aa1619ade145.jpg', '<p>\r\n  asdfasdfasfsadf</p>\r\n', 1, 1, 1, '2017-03-06 23:01:26', '2017-03-06 23:01:26');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_category_conn`
---
-
-CREATE TABLE `product_category_conn` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `category_id_idx` (`category_id`),
-  KEY `created_user_id_idx` (`created_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_hit`
---
-
-CREATE TABLE `product_hit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `ip_address` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `session_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `user_id_idx` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_list`
---
-
-CREATE TABLE `product_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `ip_address` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `access` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'private',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `created_user_id_idx` (`created_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_list_conn`
---
-
-CREATE TABLE `product_list_conn` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `list_id` int(11) DEFAULT NULL,
-  `added_user_id` int(11) DEFAULT NULL,
-  `sort_order` int(11) DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'product',
-  `ip_address` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `list_id_idx` (`list_id`),
-  KEY `added_user_id_idx` (`added_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_list_item`
---
-
-CREATE TABLE `product_list_item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `added_user_id` int(11) DEFAULT NULL,
-  `sort_order` int(11) DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'product',
-  `ip_address` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `added_user_id_idx` (`added_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -364,9 +137,7 @@ CREATE TABLE `product_photo` (
   `created_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `created_user_id_idx` (`created_user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -388,48 +159,7 @@ CREATE TABLE `product_sale` (
   `updated_user_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_tag`
---
-
-CREATE TABLE `product_tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `hitcounter` int(11) NOT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `updated_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_tag_conn`
---
-
-CREATE TABLE `product_tag_conn` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) DEFAULT NULL,
-  `tag_id` int(11) DEFAULT NULL,
-  `created_user_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`product_id`),
-  KEY `tag_id_idx` (`tag_id`),
-  KEY `created_user_id_idx` (`created_user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -491,15 +221,7 @@ CREATE TABLE `user` (
   `is_idea_owner` tinyint(4) DEFAULT NULL,
   `is_idea_buyer` tinyint(4) DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `project_user_sluggable_idx` (`slug`),
-  KEY `department_id_idx` (`department_id`),
-  KEY `rank_id_idx` (`rank_id`),
-  KEY `position_id_idx` (`position_id`),
-  KEY `created_user_id_idx` (`created_user_id`),
-  KEY `updated_user_id_idx` (`updated_user_id`),
-  KEY `aimag_id_idx` (`aimag_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
@@ -535,31 +257,6 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `firstname`, `lastnam
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `company`
---
-ALTER TABLE `company`
-  ADD CONSTRAINT `company_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_type_id_company_type_id` FOREIGN KEY (`type_id`) REFERENCES `company_type` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `company_category`
---
-ALTER TABLE `company_category`
-  ADD CONSTRAINT `company_category_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_category_parent_id_company_category_id` FOREIGN KEY (`parent_id`) REFERENCES `company_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_category_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `company_category_conn`
---
-ALTER TABLE `company_category_conn`
-  ADD CONSTRAINT `company_category_conn_category_id_company_category_id` FOREIGN KEY (`category_id`) REFERENCES `company_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_category_conn_company_id_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_category_conn_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
 --
 -- Constraints for table `product`
 --
@@ -587,42 +284,6 @@ ALTER TABLE `product_category`
   ADD CONSTRAINT `product_category_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_category_conn`
---
-ALTER TABLE `product_category_conn`
-  ADD CONSTRAINT `product_category_conn_category_id_product_category_id` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_category_conn_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_category_conn_product_id_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `product_hit`
---
-ALTER TABLE `product_hit`
-  ADD CONSTRAINT `product_hit_product_id_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_hit_user_id_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `product_list`
---
-ALTER TABLE `product_list`
-  ADD CONSTRAINT `product_list_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `product_list_conn`
---
-ALTER TABLE `product_list_conn`
-  ADD CONSTRAINT `product_list_conn_added_user_id_user_id` FOREIGN KEY (`added_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_list_conn_list_id_product_list_id` FOREIGN KEY (`list_id`) REFERENCES `product_list` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_list_conn_product_id_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `product_list_item`
---
-ALTER TABLE `product_list_item`
-  ADD CONSTRAINT `product_list_item_added_user_id_user_id` FOREIGN KEY (`added_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_list_item_product_id_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
 -- Constraints for table `product_photo`
 --
 ALTER TABLE `product_photo`
@@ -638,31 +299,8 @@ ALTER TABLE `product_sale`
   ADD CONSTRAINT `product_sale_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_tag`
---
-ALTER TABLE `product_tag`
-  ADD CONSTRAINT `product_tag_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_tag_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `product_tag_conn`
---
-ALTER TABLE `product_tag_conn`
-  ADD CONSTRAINT `product_tag_conn_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_tag_conn_product_id_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_tag_conn_tag_id_product_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `product_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `user`
---
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_aimag_id_aimag_id` FOREIGN KEY (`aimag_id`) REFERENCES `aimag` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_created_user_id_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_department_id_department_id` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_position_id_user_position_id` FOREIGN KEY (`position_id`) REFERENCES `user_position` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_rank_id_user_rank_id` FOREIGN KEY (`rank_id`) REFERENCES `user_rank` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_updated_user_id_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
