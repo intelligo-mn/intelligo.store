@@ -71,36 +71,34 @@ class UserController{
         
         else{
             
-        $isValid = $this->isValidEmail($email);
+            $isValid = $this->isValidEmail($email);
+                
+            $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, 
+              `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_user_id`, `updated_user_id`, 
+              `department_id`, `rank_id`, `position_id`, `aimag_id`, `created_at`, `updated_at`, `type`, `person_reg_number`, 
+              `person_profession`, `person_biography`, `person_start_year`, `company_name`, `company_register`, `company_description`, 
+              `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, 
+              `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, 
+              `registered_from_language`, `is_creator`, `is_investor`, `is_idea_owner`, `is_idea_buyer`, `slug`) 
+
+              values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-03-17 00:00:00', '2017-03-17 00:00:00', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
+
+
+            $inserted = mysqli_query($this->db->getDb(), $query);
             
+            if($inserted == 1){
+                
+                $json['success'] = 1;
+                $json['message'] = "Амжилттай бүртгэгдлээ";
+                
+            }else{
+                
+                $json['success'] = 0;
+                $json['message'] = "хэрэглэгчийн нэр мэйл хаяг бүртгэлтэй байна";
+                
+            }
             
-                $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, 
-                  `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_user_id`, `updated_user_id`, 
-                  `department_id`, `rank_id`, `position_id`, `aimag_id`, `created_at`, `updated_at`, `type`, `person_reg_number`, 
-                  `person_profession`, `person_biography`, `person_start_year`, `company_name`, `company_register`, `company_description`, 
-                  `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, 
-                  `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, 
-                  `registered_from_language`, `is_creator`, `is_investor`, `is_idea_owner`, `is_idea_buyer`, `slug`) 
-
-                  values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-03-17 00:00:00', '2017-03-17 00:00:00', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
-
-
-                $inserted = mysqli_query($this->db->getDb(), $query);
-                
-                if($inserted == 1){
-                    
-                    $json['success'] = 1;
-                    $json['message'] = "Амжилттай бүртгэгдлээ";
-                    
-                }else{
-                    
-                    $json['success'] = 0;
-                    $json['message'] = "хэрэглэгчийн нэр мэйл хаяг бүртгэлтэй байна";
-                    
-                }
-                
-                mysqli_close($this->db->getDb());
-                
+            mysqli_close($this->db->getDb());
             
         }
         
