@@ -1,5 +1,5 @@
 <?php
-	class functions{
+	class MainController{
 		
 		public $currency_info = array(
 			array('code' => 'EUR', 'name' => 'Euro'),
