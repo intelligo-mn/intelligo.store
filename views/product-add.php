@@ -1,6 +1,6 @@
 <?php
 	include_once('config/database.php'); 
-	include_once('app/functions.php'); 
+	include_once('app/MainController.php'); 
 ?>
 <div id="content" class="container col-md-12">
 	<?php 
@@ -94,8 +94,8 @@
 				
 				$string = '0123456789';
 				$file = preg_replace("/\s+/", "_", $_FILES['product_image']['name']);
-				$function = new functions;
-				$product_image = $function->get_random_string($string, 4)."-".date("Y-m-d").".".$extension;
+				$mainObject = new MainController;
+				$product_image = $mainObject->get_random_string($string, 4)."-".date("Y-m-d").".".$extension;
 					
 				$upload = move_uploaded_file($_FILES['product_image']['tmp_name'], 'upload/images/'.$product_image);
 		
