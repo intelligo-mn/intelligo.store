@@ -25,7 +25,6 @@ public class DglConstants {
 
     public static String UserService= "http://dgl.toroo.info/api/UserService.php";
 
-
     public static String AccessKey = "12345";
 
     public static String DBPath = "/data/data/com.dglproject/databases/";
