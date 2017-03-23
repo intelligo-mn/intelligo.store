@@ -13,13 +13,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingBottom="24dp">
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/bLogoImage"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="24dp" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
