@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity
             R.drawable.dgl_white_app,
             R.drawable.dgl_white_list};
 
-    public MaterialSearchView searchView;
-
     PrefManager prefManager;
 
     @Override
@@ -135,94 +133,42 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        searchView.setSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewOpened() {
-                // Do something once the view is open.
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-                // Do something once the view is closed.
-            }
-        });
-
-        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String suggestion = searchView.getSuggestionAtPosition(position);
-                searchView.setQuery(suggestion, true);
-            }
-        });
-
-        searchView.setTintAlpha(200);
-        searchView.adjustTintAlpha(0.8f);
-
-        searchView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "Long clicked position: " + i, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-        searchView.setOnVoiceClickedListener(new MaterialSearchView.OnVoiceClickedListener() {
-            @Override
-            public void onVoiceClicked() {
-                Toast.makeText(getApplicationContext(), "Voice clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_company);
-        companyAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (prefManager.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
-                } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                                }
-                            }).show();
-                }
-            }
-        });
-        com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
-        productAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (prefManager.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
-                } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                                }
-                            }).show();
-                }
-
-            }
-        });
+//        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_company);
+//        companyAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (prefManager.isLoggedIn()) {
+//                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+//                } else {
+//                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+//                            .setAction("Нэвтрэх", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+//                                }
+//                            }).show();
+//                }
+//            }
+//        });
+//        com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
+//        productAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (prefManager.isLoggedIn()) {
+//                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+//                } else {
+//                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+//                            .setAction("Нэвтрэх", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+//                                }
+//                            }).show();
+//                }
+//
+//            }
+//        });
     }
 
     public void setupViewPager () {
@@ -301,25 +247,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        if (searchView.isOpen()) {
-            searchView.closeSearch();
-        } else {
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                return;
-            }
-
-            this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Гарах бол дахин дарна уу.", Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce=false;
-                }
-            }, 2000);
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
         }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Гарах бол дахин дарна уу.", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+            }, 2000);
 
     }
 
@@ -338,7 +280,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                searchView.openSearch();
+//                searchView.openSearch();
+                Intent search = new Intent(MainActivity.this, ActivitySearch.class);
+                startActivity(search);
+
                 return true;
             case R.id.action_cart:
                 Intent cart = new Intent(MainActivity.this, ActivityCart.class);
@@ -403,7 +348,7 @@ public class MainActivity extends AppCompatActivity
             if (matches != null && matches.size() > 0) {
                 String searchWrd = matches.get(0);
                 if (!TextUtils.isEmpty(searchWrd)) {
-                    searchView.setQuery(searchWrd, false);
+//                    searchView.setQuery(searchWrd, false);
                 }
             }
 
@@ -415,29 +360,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        searchView.clearSuggestions();
+//        searchView.clearSuggestions();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        searchView.activityResumed();
-        String[] arr = getResources().getStringArray(R.array.suggestions);
-
-        searchView.addSuggestions(arr);
+//        searchView.activityResumed();
+//        String[] arr = getResources().getStringArray(R.array.suggestions);
+//
+//        searchView.addSuggestions(arr);
     }
 
-    private void clearHistory() {
-        searchView.clearHistory();
-    }
 
-    private void clearSuggestions() {
-        searchView.clearSuggestions();
-    }
-
-    private void clearAll() {
-        searchView.clearAll();
-    }
 
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {

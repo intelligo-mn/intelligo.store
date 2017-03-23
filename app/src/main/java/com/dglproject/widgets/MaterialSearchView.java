@@ -346,10 +346,8 @@ public class MaterialSearchView extends FrameLayout {
         if(mShouldAnimate) {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mRoot.setVisibility(View.VISIBLE);
-                AnimationUtils.circleRevealView(mSearchBar);
             }
             else {
-                AnimationUtils.fadeInView(mRoot);
             }
 
         } else {
