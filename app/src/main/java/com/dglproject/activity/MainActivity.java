@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         init();
         setupViewPager();
+        HomeItems.newInstance(1);
         isStoragePermissionGranted();
+
     }
 
     // oncreate үйлдэл ажиллахад дуудагдах
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity
                     tab.setCustomView(pagerAdapter.getTabView(i));
             }
 
-            mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+            mTabLayout.getTabAt(1).getCustomView().setSelected(true);
         }
     }
 

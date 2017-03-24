@@ -92,8 +92,9 @@
         <activity android:name=".activity.ActivityAbout" />
         <activity android:name=".activity.ActivityCartEdit" />
         <activity android:name=".activity.ActivityBrandAdd" />
-        <activity android:name=".activity.ActivitySearch"
-            android:theme="@style/AppTheme.NoActionBar" >
+        <activity
+            android:name=".activity.ActivitySearch"
+            android:theme="@style/AppTheme.NoActionBarGreen" >
 
         </activity>
     </application>

@@ -29,39 +29,39 @@ public class ActivitySearch extends AppCompatActivity {
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
-//        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-//
-//        searchView.setSearchViewListener(new MaterialSearchView.SearchViewListener() {
-//            @Override
-//            public void onSearchViewOpened() {
-//                // Do something once the view is open.
-//            }
-//
-//            @Override
-//            public void onSearchViewClosed() {
-//                // Do something once the view is closed.
-//            }
-//        });
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
-//        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                String suggestion = searchView.getSuggestionAtPosition(position);
-//                searchView.setQuery(suggestion, true);
-//            }
-//        });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewOpened() {
+                // Do something once the view is open.
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                // Do something once the view is closed.
+            }
+        });
+
+        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String suggestion = searchView.getSuggestionAtPosition(position);
+                searchView.setQuery(suggestion, true);
+            }
+        });
 
         searchView.setTintAlpha(200);
         searchView.adjustTintAlpha(0.8f);
