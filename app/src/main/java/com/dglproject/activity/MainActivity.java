@@ -294,21 +294,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(settings);
                 return true;
 
-            case R.id.action_pro:
-                Intent pro = new Intent(MainActivity.this, ActivityUserProfile.class);
-                startActivity(pro);
-                return true;
-
-            case R.id.action_login:
-                Intent l = new Intent(MainActivity.this, ActivityLogin.class);
-                startActivity(l);
-                return true;
-
-            case R.id.action_about:
-                Intent ab = new Intent(MainActivity.this, ActivityAbout.class);
-                startActivity(ab);
-                return true;
-
         }
 
         return super.onOptionsItemSelected(item);

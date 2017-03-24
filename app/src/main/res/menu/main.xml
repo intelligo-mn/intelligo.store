@@ -23,25 +23,4 @@
         app:showAsAction="never"
         android:title="Тохиргоо"/>
 
-    <item
-        android:id="@+id/action_pro"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Хэрэглэгчийн профайл"/>
-
-    <item
-        android:id="@+id/action_login"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Нэвтрэх"/>
-
-
-    <item
-        android:id="@+id/action_about"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Тухай"/>
 </menu>
