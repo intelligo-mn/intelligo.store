@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
 
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class ActivityBrandAdd extends AppCompatActivity {
 
-    String URL= "http://dgl.toroo.info/api/BrandService.php";
+    String URL= DglConstants.BrandService;
 
     JSONParser jsonParser = new JSONParser();
 
