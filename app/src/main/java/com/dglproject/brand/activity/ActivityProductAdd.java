@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class ActivityProductAdd extends AppCompatActivity {
 
-    String URL= "http://dgl.toroo.info/api/ProductService.php";
+    String URL= DglConstants.ProductService;
 
     JSONParser jsonParser=new JSONParser();
 
