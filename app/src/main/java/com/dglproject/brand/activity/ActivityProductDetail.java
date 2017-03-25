@@ -224,10 +224,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayData() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost) +" :"+ new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" :" + totalOrder);
     }
 
     public void increaseTotalCost() {
@@ -245,10 +245,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayUpdate() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost)+" :" + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" :" + totalOrder);
     }
 
     public void addToList() {
@@ -281,8 +281,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             prgLoading.setVisibility(View.GONE);
             if ((Product_name != null) && IOConnect == 0) {
                 coordinatorLayout.setVisibility(View.VISIBLE);
-                Log.d("","Details image url: "+DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image);
-                Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                  Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
                     @Override
                     public void onSuccess() {
                         Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
@@ -300,15 +299,13 @@ public class ActivityProductDetail extends AppCompatActivity {
                 });
 
                 txtText.setText(Product_name);
-                txtSubText.setText(getString(R.string.price) + Product_price + " ₮" );
+                txtSubText.setText(getString(R.string.price)+" :" + Product_price + " ₮" );
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
 
                 txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
                 WebSettings webSettings = txtDescription.getSettings();
                 Resources res = getResources();
-//                int fontSize = res.getInteger(R.integer.font_size);
-//                webSettings.setDefaultFontSize(fontSize);
 
             } else {
                 txtAlert.setVisibility(View.VISIBLE);
