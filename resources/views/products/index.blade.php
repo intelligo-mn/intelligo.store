@@ -9,9 +9,8 @@
 @stop
 
 @section('content')
-
-    <div id="menu-top-category" class="container">
-         <div class="row">&nbsp;</div>
+<div class="products-list">
+    <div id="menu-top-category">
          <ol class="breadcrumb">
             <li class="total">
                 <span class="badge">{{ $products->total() }}</span> <small> {{ trans('globals.searchResults') }} </small>
@@ -52,7 +51,7 @@
     @section('panel_left_content')
         <div  class="vertical-nav">
 
-            <div class="navbar navbar-default" role="navigation">
+            <div class="" role="navigation">
 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
@@ -64,7 +63,7 @@
                     <span class="visible-xs-block navbar-brand">{{ trans('globals.refine') }}</span>
                 </div>
 
-                <div id="menu-left-category" class="navbar-collapse collapse sidebar-navbar-collapse" ng-cloak>
+                <div id="menu-left-category" class="sidebar-navbar-collapse" ng-cloak>
 
                     <div class="filters-applied ng-cloak visible-xs" ng-show="filters" >
                         <span ng-repeat="filter in filters">
@@ -78,14 +77,16 @@
                    @foreach ($filters as $key => $filter)
                         {{-- filter menu --}}
                         <ul class="nav navbar-nav {{ $key }}" >
-                            <h4 class="small breadcrumb @if($key=='categories') no_margin_top @endif">{{ trans('globals.filters.'.$key) }}</h4>
+                            <h3 class="  @if($key=='categories') no_margin_top @endif">{{ trans('globals.filters.'.$key) }}</h3>
+                         
+                            <div class="titlelines"></div>
                             <?php $i=0; ?>
                             @if($key=='category')
                                 @foreach ($filter as $id => $item)
                                     <?php if (5<$i++){ break; } ?>
                                     <li>
                                         <a href="/products?{{ \Utility::getUrlQueryString($refine, 'category', urlencode($item['id'].'|'.$item['name'])) }}">
-                                            {{ ucfirst($item['name']) }} <small><span class="badge">{{ $item['qty'] }}</span></small>
+                                            {{ ucfirst($item['name']) }} <small><span class="">({{ $item['qty'] }})</span></small>
                                         </a>
                                     </li>
                                 @endforeach
@@ -96,7 +97,7 @@
                                     <?php if (5<$i++){ break; } ?>
                                     <li>
                                         <a href="/products?{{ \Utility::getUrlQueryString($refine, $key, urlencode($item)) }}">
-                                          {{ ucfirst($item) }} <span class="badge">{{ $count }}</span>
+                                          {{ ucfirst($item) }} <span class="">({{ $count }})</span>
                                         </a>
                                     </li>
                                 @endforeach
@@ -166,39 +167,38 @@
                     @endforeach
 
                     <ul class="nav navbar-nav list-group price-range">
-                        <h4 class="small breadcrumb">{{ trans('globals.filters.price_range') }}</h4>
+                        <h3>{{ trans('globals.filters.price_range') }}</h3>
+                        <div class="titlelines"></div>
                         <li>
                             <div class="row">
-                                <div class="col-md-10">
-                                    <form method="GET" action="/products" name="rangepriceForm" novalidate>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon input-sm">$</div>
-                                                <input class="form-control input-sm" type="number" value="{{ isset($refine['min']) ? $refine['min'] : '' }}" name="min" id="min" placeholder="{{ trans('globals.min_label') }}">
+                                <form method="GET" action="/products" name="rangepriceForm" novalidate>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon input-sm">₮</div>
+                                            <input class="form-control input-sm" type="number" value="{{ isset($refine['min']) ? $refine['min'] : '' }}" name="min" id="min" placeholder="{{ trans('globals.min_label') }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                             <div class="input-group">
+                                                <div class="input-group-addon input-sm">₮</div>
+                                                <input class="form-control input-sm" type="number" value="{{ isset($refine['max']) ? $refine['max'] : '' }}" name="max" id="max" placeholder="{{ trans('globals.max_label') }}">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                 <div class="input-group">
-                                                    <div class="input-group-addon input-sm">$</div>
-                                                    <input class="form-control input-sm" type="number" value="{{ isset($refine['max']) ? $refine['max'] : '' }}" name="max" id="max" placeholder="{{ trans('globals.max_label') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-sm">
-                                                <span class="glyphicon glyphicon-filter"></span>&nbsp;
-                                                {{ trans('globals.go_label') }}
-                                            </button>
-                                        </div>
-                                        @foreach ($refine as $key => $value)
-                                            @if (trim($value)!='' && $key != 'category_name' && $key != 'min' && $key != 'max')
-                                                <?php $value = $key == 'category' ? $value.'|'.urlencode($refine['category_name']) : $value; ?>
-                                                <input type="hidden" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}">
-                                            @endif
-                                        @endforeach
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <span class="glyphicon glyphicon-filter"></span>&nbsp;
+                                            {{ trans('globals.go_label') }}
+                                        </button>
+                                    </div>
+                                    @foreach ($refine as $key => $value)
+                                        @if (trim($value)!='' && $key != 'category_name' && $key != 'min' && $key != 'max')
+                                            <?php $value = $key == 'category' ? $value.'|'.urlencode($refine['category_name']) : $value; ?>
+                                            <input type="hidden" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}">
+                                        @endif
+                                    @endforeach
+                                </form>
                             </div>
                             <div class="col-md-2">&nbsp;</div>
                         </li>
@@ -209,7 +209,7 @@
     @stop
 
     @section('center_content')
-        <div class="container-fluid marketing">
+        <div class="marketing">
             @if (count($products) > 0)
                 <div class="row">
                     @foreach ($products->toArray()['data'] as $product)
@@ -261,5 +261,6 @@
             </div>
         </div>
     @stop
+    </div>
 @stop
 

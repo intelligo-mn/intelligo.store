@@ -26,8 +26,9 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="{{ route('products.myProducts') }}">{{ trans('globals.all') }}</a></li>
                 <li><a href="{{ route('products.myProducts').'?filter=active' }}">{{ trans('globals.active') }}</a></li>
-                <li><a href="{{ route('products.myProducts').'?filter=inactive' }}">{{ trans('globals.inactive') }}</a></li>
-                <li><a href="{{ route('products.myProducts').'?filter=low' }}">{{ trans('product.inputs_view.low_stock') }}</a></li>
+                <li><a href="{{ route('products.myProducts').'?filter=inactive' }}">{{ trans('globals.inactive') }}</a>
+                </li>
+                <!-- <li><a href="{{ route('products.myProducts').'?filter=low' }}">{{ trans('product.inputs_view.low_stock') }}</a></li> -->
                 </ul>
                 </div>
             </div>
@@ -57,7 +58,7 @@
                             <a href="{{ action('ProductsController@index') }}/{{ $product->id }}">
                                 @if (isset($product->features['images'][0]))
                                     <img class="thumbnail"  
-                                         src="{{ $product->features['images'][0] }}?w=100" alt="{{ $product->name }}" 
+                                         src="{{ $product->features['images'][0] }}" alt="{{ $product->name }}" 
                                          width="100" height="100">
                                 @else
                                     <img class="thumbnail" src="/img/no-image.jpg" alt="{{ $product->name }}" width="100" height="100">
@@ -66,19 +67,16 @@
                                     {{ $product->name }}</small>
                                 </p>
                             </a>
-                            @if ($product->stock <= $product->low_stock)
+                            <!-- @if ($product->stock <= $product->low_stock)
                                 <span>{{ $product->stock }} {{ trans('store.inStock') }} 
                                     <span class="label label-danger">{{ ' '.trans('product.inputs_view.low_stock') }}</span>
                                 </span>
-                            @endif
+                            @endif -->
                             <small>{{ $product->view_counts.' '.trans('product.globals.views') }} 
                             @if ($product->rate_count > 0)
                                 {{ Utility::showRate($product->rate_val) }}
                             @endif
                             </small>
-                            <p>
-                            {!! \Utility::printBarCode($product) !!}
-                            </p>
                             <p>
                                 <strong>{{ Utility::showPrice($product->price) }}</strong>
                                 <a class="btn-xs btn-primary" href="{{ action('ProductsController@index') }}/{{ $product->id }}/edit" role="button">{{ trans('globals.edit') }}</a>
