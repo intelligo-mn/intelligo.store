@@ -19,7 +19,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<a class="btn btn-info btn-sm pull-right" ng-href="{{route('products.create')}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{ trans('product.globals.add') }}</a>
+					<a class="btn btn-info btn-sm pull-right product-add" ng-href="{{route('products.create')}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{ trans('product.globals.add') }}</a>
 				</div>
 			</div>
 
@@ -30,7 +30,7 @@
 				<a href="{{ route('products.myProducts') }}" class="list-group-item">{{ trans('globals.all') }}<span class="badge">{{ $products['all'] }}</span></a>
 				<a href="{{ route('products.myProducts').'?filter=active' }}" class="list-group-item">{{ trans('globals.active') }}<span class="badge">{{ $products['active'] }}</span></a>
 				<a href="{{ route('products.myProducts').'?filter=inactive' }}" class="list-group-item">{{ trans('globals.inactive') }}<span class="badge">{{ $products['inactive'] }}</span></a>
-				<a href="{{ route('products.myProducts').'?filter=low' }}" class="list-group-item">{{ trans('product.inputs_view.low_stock') }}<span class="badge">{{ $products['lowStock'] }}</span></a>
+				<!-- <a href="{{ route('products.myProducts').'?filter=low' }}" class="list-group-item">{{ trans('product.inputs_view.low_stock') }}<span class="badge">{{ $products['lowStock'] }}</span></a> -->
 			</div>
 
 			<div class="list-group">
@@ -66,7 +66,7 @@
 <script>
 
 	(function() {
-		var app = angular.module('AntVel');
+		var app = angular.module('Bella');
 		app.controller('DashboardController',function(){});
 
 	})();

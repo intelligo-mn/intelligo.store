@@ -62,10 +62,6 @@
                             {!! Form::select('status',[1=>trans('globals.active'),0=>trans('globals.inactive')],null,['class'=>'form-control']) !!}
                         </div>
                         <div class="col-sm-3">
-                            {!! Form::label('condition',trans('product.inputs_view.condition')) !!}:&nbsp;
-                            {!! Form::select('condition',$condition,null,['class'=>'form-control',$disabled=>$disabled]) !!}
-                        </div>
-                        <div class="col-sm-3">
                             {!! Form::label('category_id',trans('product.globals.categories')) !!}:&nbsp;
                             {!! Form::select('category_id',$categories,null,['class'=>'form-control',$disabled=>$disabled,'required']) !!}
                         </div>
@@ -98,10 +94,10 @@
                             {!! Form::label('brand',trans('product.inputs_view.brand')) !!}:&nbsp;
                             {!! Form::text('brand',null,['class'=>'form-control','required']) !!}
                         </div>
-                        <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                             {!! Form::label('bar_code',trans('product.inputs_view.bar_code')) !!}:&nbsp;
                             {!! Form::text('bar_code',null,['class'=>'form-control']) !!}
-                        </div>
+                        </div> -->
                         <div class="col-sm-4">
                             {!! Form::label('price',trans('product.globals.price')) !!}:&nbsp;
                             {!! Form::number('price',null,['class'=>'form-control','step'=>'any','required']) !!}
@@ -109,14 +105,14 @@
                     </div>
 
                     <div class="form-group ng-cloak" ng-show="typeItem=='item'">
-                        <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                             {!! Form::label('stock',trans('product.globals.stock')) !!}:&nbsp;
                             {!! Form::number('stock',null,['class'=>'form-control','required']) !!}
                         </div>
                         <div class="col-sm-4">
                             {!! Form::label('low_stock',trans('product.inputs_view.low_stock')) !!}:&nbsp;
                             {!! Form::number('low_stock',null,['class'=>'form-control','required']) !!}
-                        </div>
+                        </div> -->
                         <div class="col-sm-4">&nbsp;</div>
                     </div>
 
@@ -214,8 +210,8 @@
 @stop
 @section('scripts')
     @parent
-    {!! Html::script('/js/vendor/file-upload/angular-file-upload-shim.min.js') !!}
-    {!! Html::script('/js/vendor/file-upload/angular-file-upload.min.js') !!}
+    {!! Html::script('/js/lib/file-upload/angular-file-upload-shim.min.js') !!}
+    {!! Html::script('/js/lib/file-upload/angular-file-upload.min.js') !!}
     
     <script>
         (function(app){
@@ -285,7 +281,7 @@
                 };
 
             }]);
-        })(angular.module("AntVel"))
+        })(angular.module("Bella"))
     </script>
 @stop
 @section('before.angular') ngModules.push('angularFileUpload'); @stop

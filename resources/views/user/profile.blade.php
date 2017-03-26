@@ -134,8 +134,8 @@
 {{-- Javascript --}}
 @section('scripts')
 	@parent
-	{!! Html::script('/js/vendor/file-upload/angular-file-upload-shim.min.js') !!}
-    {!! Html::script('/js/vendor/file-upload/angular-file-upload.min.js') !!}
+	{!! Html::script('/js/lib/file-upload/angular-file-upload-shim.min.js') !!}
+    {!! Html::script('/js/lib/file-upload/angular-file-upload.min.js') !!}
     <script>
         (function(app){
         	//Control del profile de usuario
@@ -257,7 +257,7 @@
 				}
             }]);
 
-        })(angular.module("AntVel"))
+        })(angular.module("Bella"))
     </script>
 @stop
 @section('before.angular') ngModules.push('angularFileUpload'); @stop
