@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ App::getLocale() }}" ng-app="AntVel">
+<html lang="{{ App::getLocale() }}" ng-app="Bella">
 <head>
 	@section('metaLabels')
 		<meta charset="utf-8">
@@ -19,13 +19,11 @@
 	};
 	</script>
 
-	{{-- Antvel CSS files --}}
-	{!! Html::style('/modu-bower/bootstrap/dist/css/bootstrap.css') !!}
 	@section('css')
-		{!! Html::style('/modu-bower/angular-notify/dist/angular-notify.min.css') !!}
-		{!! Html::style('/modu-bower/font-awesome/css/font-awesome.min.css') !!}
-		{!! Html::style('/css/carousel.css') !!}
-		{!! Html::style('/css/angucomplete-alt.css') !!}
+		{!! Html::style('/css/lib/angular-notify.min.css') !!}
+		{!! Html::style('/css/lib/font-awesome.min.css') !!}
+		{!! Html::style('/css/lib/carousel.css') !!}
+		{!! Html::style('/css/lib/angucomplete-alt.css') !!}
 		{!! Html::style('/css/app.css') !!}
 	@show
 
@@ -44,7 +42,7 @@
 	@show
 
 	{{-- Breadcrumbs section --}}
-	<div class="container">
+	<div>
 		@section('breadcrumbs')
 		@show
 	</div>
@@ -53,13 +51,13 @@
 	@section('content')
 		@section('panels')
 
-			<div class="container">
-				<div class="row global-panels">
+			<div>
+				<div class="global-panels">
 
 					{{-- left panel --}}
 					@if (isset($panel['left']))
 						{{-- desktops validation --}}
-						<div class="col-sm-{{ $panel['left']['width'] or '2' }} col-md-{{ $panel['left']['width'] or '2' }} {{ $panel['left']['class'] or '' }}">
+						<div class="col-sm-{{ $panel['left']['width'] or '3' }} col-md-{{ $panel['left']['width'] or '3' }} {{ $panel['left']['class'] or '' }}">
 							@section('panel_left_content')
 								Left content
 							@show
@@ -67,7 +65,7 @@
 					@endif
 
 					{{-- center content --}}
-					<div class="col-xs-12 col-sm-{{ $panel['center']['width'] or '10' }} col-md-{{ $panel['center']['width'] or '10' }}">
+					<div class="col-xs-12 col-sm-{{ $panel['center']['width'] or '9' }} col-md-{{ $panel['center']['width'] or '9' }}">
 						@section('center_content')
 							Center content
 						@show
@@ -96,26 +94,24 @@
 	</footer>
 @show
 
-{{-- Modu - Bower Components --}}
-{!! Html::script('/modu-bower/jquery/dist/jquery.min.js') !!}
-{!! Html::script('/modu-bower/angular/angular.min.js') !!}
-{!! Html::script('/modu-bower/angular-route/angular-route.min.js') !!}
-{!! Html::script('/modu-bower/angular-sanitize/angular-sanitize.min.js') !!}
-{!! Html::script('/modu-bower/angular-bootstrap/ui-bootstrap-tpls.min.js') !!}
-{!! Html::script('/modu-bower/angular-animate/angular-animate.min.js') !!}
-{!! Html::script('/modu-bower/angular-loading-bar/build/loading-bar.min.js') !!}
-{!! Html::script('/modu-bower/angular-mocks/angular-mocks.js') !!}
-{!! Html::script('/modu-bower/angular-touch/angular-touch.min.js') !!}
-{!! Html::script('/modu-bower/bootstrap/dist/js/bootstrap.min.js') !!}
-
-{!! Html::script('/js/vendor/xtForms/xtForm.js') !!}
-{!! Html::script('/js/vendor/xtForms/xtForm.tpl.min.js') !!}
+{!! Html::script('/js/lib/jquery.min.js') !!}
+{!! Html::script('/js/lib/angular.min.js') !!}
+{!! Html::script('/js/lib/angular-route.min.js') !!}
+{!! Html::script('/js/lib/angular-sanitize.min.js') !!}
+{!! Html::script('/js/lib/ui-bootstrap-tpls.min.js') !!}
+{!! Html::script('/js/lib/angular-animate.min.js') !!}
+{!! Html::script('/js/lib/loading-bar.min.js') !!}
+{!! Html::script('/js/lib/angular-mocks.js') !!}
+{!! Html::script('/js/lib/angular-touch.min.js') !!}
+{!! Html::script('/js/lib/bootstrap.min.js') !!}
+{!! Html::script('/js/lib/xtForms/xtForm.js') !!}
+{!! Html::script('/js/lib/xtForms/xtForm.tpl.min.js') !!}
 
 <script>
 
 	/**
 	 * ngModules
-	 * Angularjs modules requires by antvel
+	 * Angularjs modules requires by bella
 	 * @type {Array}
 	 */
 	var ngModules = [
@@ -127,7 +123,7 @@
 	@section('before.angular') @show
 
 	(function(){
-		angular.module('AntVel',ngModules,
+		angular.module('Bella',ngModules,
 		function($interpolateProvider){
 			$interpolateProvider.startSymbol('[[');
 			$interpolateProvider.endSymbol(']]');
@@ -140,16 +136,16 @@
 
 </script>
 
-{{-- Antvel functions --}}
+{{-- bella functions --}}
 {!! Html::script('/js/app.js') !!}
 
 @section('scripts')
-	{{-- Antvel angucomplete-alt.js version --}}
-	{!! Html::script('/js/vendor/angucomplete-alt.js') !!}
+	{{-- Bella angucomplete-alt.js version --}}
+	{!! Html::script('/js/lib/angucomplete-alt.js') !!}
 
-	{{-- Antvel-bower components --}}
-	{!! Html::script('/modu-bower/angular-notify/dist/angular-notify.min.js') !!}
-	{!! Html::script('/modu-bower/angular-local-storage/dist/angular-local-storage.min.js') !!}
+	{{-- Bella-bower components --}}
+	{!! Html::script('/js/lib/angular-notify.min.js') !!}
+	{!! Html::script('/js/lib/angular-local-storage.min.js') !!}
 @show
 
 </body>

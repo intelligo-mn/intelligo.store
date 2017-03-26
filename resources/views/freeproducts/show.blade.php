@@ -179,7 +179,7 @@
                     function ($animateProvider) {
                         $animateProvider.classNameFilter(/carousel/);
             }]);
-        })(angular.module("AntVel"));
+        })(angular.module("Bella"));
 
         //Carousel Free Products
         $('.carousel[data-type="multi"] .item').each(function(){

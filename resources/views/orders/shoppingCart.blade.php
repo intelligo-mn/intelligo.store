@@ -74,7 +74,7 @@
 						<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							@for ($i=2; $i <= $product['product']['stock']; $i++)
+							<!-- @for ($i=2; $i <= $product['product']['stock']; $i++)
 								@if ($i < 10)
 									<li ng-change = "changeQty('{{ $i }}');">
 										<a href="javascript:void(0);">{{ $i }}</a>
@@ -84,7 +84,7 @@
 							@if ($product['product']['stock'] > 10)
 								<li role="separator" class="divider"></li>
 								<li><a href="javascript:void(0);">10+</a></li>
-							@endif
+							@endif -->
 						</ul>
 						</div>
 					</div>
@@ -118,6 +118,6 @@
            }]);
 
 
-        })(angular.module("AntVel"));
+        })(angular.module("Bella"));
     </script>
 @stop

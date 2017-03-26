@@ -27,7 +27,7 @@
 
         </ol>
         @if ($hasWishList || $hasLaterCart)
-            <div class="panel panel-primary">
+            <div class="panel panel-primary wishpanel">
 
                 <div class="panel-heading">
                     <h6>

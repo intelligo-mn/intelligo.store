@@ -93,6 +93,6 @@
                     function ($animateProvider) {
                         $animateProvider.classNameFilter(/carousel/);
             }]);
-        })(angular.module("AntVel"));
+        })(angular.module("Bella"));
     </script>
 @stop

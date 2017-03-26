@@ -20,9 +20,9 @@
                 	<div>
                 		<ul>
                 			<li>{{ trans('product.globals.price') }}: <strong>[[product.price | number:0 ]]</strong></li>
-                            <li>
+                            <!-- <li>
                                 {{ trans('store.condition') }}: <strong>[[ product.condition ]]</strong> <span ng-attr-class="[[product.stock<= product.low_stock && 'label label-warning'|| 'label label-success' ]]"><span ng-show="product.stock <= product.low_stock">{{ trans('store.just') }} [[ product.stock ]]</span> {{ trans('store.inStock') }}</span>
-                            </li>
+                            </li> -->
                 			<li>{{ trans('product.showDetailsProductInCart_view.quantity') }}: <strong>[[order.quantity]]</strong></li>
                 			<li>{{ trans('globals.sub').' '.trans('globals.total') }}: <strong>[[order.quantity * product.price | number:0]]</strong></li>
                             <li>{{ trans('product.globals.description') }}: <small>[[product.description]]</small></li>

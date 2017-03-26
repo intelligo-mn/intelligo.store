@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="{{ App::getLocale() }}" ng-app="AntVel">
+<html lang="{{ App::getLocale() }}" ng-app="Bella">
 
 <head>
 	<meta charset="utf-8">

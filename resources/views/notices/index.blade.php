@@ -97,6 +97,6 @@
 		app.controller('topCategories',['$scope',function($scope){
 			$scope.actual=({!! json_encode('$listActual') !!});
 		}]);
-		})(angular.module("AntVel"));
+		})(angular.module("Bella"));
 	</script>
 @stop
