@@ -16,10 +16,6 @@
     ])
 @stop
 
-@section('breadcrumbs')
-    @parent
-    {!! Breadcrumbs::render('productDetail', $product) !!}
-@stop
 
 
 
@@ -69,15 +65,24 @@
 
 	@section('center_content')
 
-		<div class="page-header">
-            <h5>{{ $product->name }}</h5>
-        </div>
-
+	<div class="producttitle"  >
+	<div class="titlecolor text-center" >
+	<br>
+            <h1>{{ $product->name }}</h1>
+             <div class="breadcrumbstext">{!! Breadcrumbs::render('productDetail', $product) !!}</div>
+            <br>
+        </div>		
+</div>
+<div class="container container-fluid" >
+<br>
 		<div class="row">
 
 			{{-- Gallery --}}
 			<div class="col-md-6" ng-controller = "ProductsGallery">
-				<img src = "img/no-image.jpg" lazy-img = '[[getPortrait()]]' ng-init = "setPortrait('{{ $product->features['images'][0] }}?w=450')" class = "img-responsive img-rounded" >
+				<img src = "img/no-image.jpg" lazy-img = '[[getPortrait()]]' ng-init = "setPortrait('{{ $product->features['images'][0] }}')" class = "pdimage img-responsive img-rounded" >
+				
+
+
 				<hr>
 				{{-- Thumbnails --}}
 				<div class="row">
@@ -87,10 +92,10 @@
 					@foreach($product->features['images'] as $image)
 						<li>
 							<a class="thumbnail">
-								<img src = "img/no-image.jpg?h=60" lazy-img = "{{ $image }}?h=60" class="img-responsive img-rounded" ng-click = "setPortrait('{{ $image }}?w=450')">
+								<img  src = "img/no-image.jpg" lazy-img = "{{ $image }}" class="pd-image img-responsive img-rounded" ng-click = "setPortrait('{{ $image }}?w=450')">
 							</a>
 						</li>
-						<?php $gallery .= $image.'?w=450,'; ?>
+						<?php $gallery .= $image.''; ?>
 					@endforeach
 		        	</ul>
 		        	</div>
@@ -98,69 +103,95 @@
 			</div>
 
 			{{-- Product Information --}}
-	        <div class="col-md-3">
-				<hr class="visible-xs visible-sm">
-				<h5 class="black_color">{{ \Utility::showPrice($product->price) }}</h5>
-				<hr class="hidden-sm hidden-xs">
+	        <div class=" col-md-6">
+				
+	        <div>
+	        	<h1 class="price">{{ $product['price'] }} ₮</h1>
+	        </div>
+				
+				<div class="social ">
+				<button type="button" id="facebook" class="btn btn-sm full-width">
+									<span class="fa fa-facebook-square "></span>&nbsp;
+									{{ trans('globals.share_on_facebook') }}
+								</button>
+	                  
+	      
+	             <a id="twitter" href="https://twitter.com/intent/tweet?hashtags=bela.mn&text={{ urlencode($product->name) }}&url={{ Request::url() }}&via=bella.mn" class="btn twitter btn-sm full-width">
+					<span class="fa fa-twitter-square "></span>&nbsp;
+									{{ trans('globals.share_on_twitter') }}
+			      </a>
+			      <div class="fb-like" 
+		data-href="http://www.your-domain.com/your-page.html" 
+		data-layout="standard" 
+		data-action="like" 
+		data-show-faces="true">
+	</div>
+
+				</div>
+				
+
+				<div class="col-md-12" >
+				<hr>
 				<ul class="list-unstyled">
-					<li><label class="black_color">{{ trans('store.condition') }}:</label>&nbsp;{{ ucwords($product->condition) }}</li>
+					
 					<li><label class="black_color">{{ trans('globals.brand') }}:</label>&nbsp;{{ ucwords($product->brand) }}</li>
 					@foreach ($product->features as $key => $feature)
 						@if ($key != 'images')
 							<li><label class="black_color">{{ ucwords($key) }}:</label>&nbsp;{{  ucwords( is_array($feature) ? implode(' ', $feature) : $feature ) }}</li>
 						@endif
 					@endforeach
-					<li>
+					<!-- <li>
 						@if ($product->stock <= $product->low_stock)
 							<span class = "label label-warning">{{ trans('store.lowStock') }}</span>
 						@else
 							<span class = "label label-success">{{ trans('store.inStock') }}</span>
 						@endif
-					</li>
+					</li> -->
 				</ul>
-				<hr class="visible-xs visible-sm">
+				</div>
+				
 	        </div>
 
 			{{-- Purchase Box --}}
-	        <div class="col-md-3">
+	        <div class="col-md-6">
 
-	        	<div class="panel panel-default">
-		        	<div class="panel-body">
+	        	
+		        	
 
 	                    {!! Form::open(array('url' => route('orders.add_to_order',['cart',$product->id]), 'method' => 'put')) !!}
-	                    <div class="row">
+	                   
+
+
+
+
+	                    <hr>
+	                     <div class="row">
 							<div class="col-lg-12">
 								<label for = "quantity">{{ trans('store.quantity_long') }}:</label>
 									{!! Form::selectRange(
 			                            	'quantity', 1,
-			                            	$product->stock, 1,
-			                                ['class' => 'form-control input-sm']
+			                                ['class' => 'quantity']
 			                        ) !!}
-		                    </div>
+		                  	</div>
 	                    </div>
 
-	                    <hr>
-
+						<div class="row">&nbsp;</div>
 	                    <div class="row">
-	                    	<div class="col-lg-12">
-								<button type="submit" class="btn btn-warning btn-sm full-width">
+	                    	<div class="col-lg-6">
+								<button type="submit" class="btn  btn-sm full-width">
 									<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
 									{{ trans('store.add_to_cart') }}
 								</button>
 							</div>
-	                    </div>
+	                  <hr class=" visible-xs visible-sm 	visible-md	 ">
 
-						<div class="row">&nbsp;</div>
-
-	                    <div class="row">
-
-	                    	<div class="col-lg-12">
+	                    	<div class="col-lg-6">
 
 									@if (Auth::check())
 
 		                                <div class="dropdown">
 
-		                                    <button class="btn btn-default dropdown-toggle btn-sm full-width" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		                                    <button class="btn btn-info2 dropdown-toggle btn-sm full-width" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		                                        <span class="glyphicon glyphicon-heart"></span>&nbsp;
 		                                        {{ trans('store.addToWishList') }}
 		                                        <span class="caret"></span>
@@ -183,7 +214,7 @@
 		                                </div>
 
 	                                @else
-	                                    <a  href="/login" class="btn btn-info full-width">
+	                                    <a  href="/login" class="btn btn-info2 full-width">
 	                                    	<span class="glyphicon glyphicon-heart"></span>&nbsp;
 	                                    	{{ trans('store.addToWishList') }}
 	                                    </a>
@@ -192,25 +223,15 @@
 							</div>
 	                    </div>
 
-						<hr>
-	                    <div class="row">
-	                    	<div class="col-lg-12">
-	                    		<button type="button" id="facebook" class="btn btn-primary btn-sm full-width">
-									<span class="fa fa-facebook-square"></span>&nbsp;
-									{{ trans('globals.share_on_facebook') }}
-								</button>
-	                    	</div>
-	                    </div>
-	                    <div class="row">&nbsp;</div>
-	                    <div class="row">
-	                    	<div class="col-lg-12">
-	                    		<a id="twitter" href="https://twitter.com/intent/tweet?hashtags=antvel&text={{ urlencode($product->name) }}&url={{ Request::url() }}&via=_antvel" class="btn btn-success btn-sm full-width">
-									<span class="fa fa-twitter-square"></span>&nbsp;
-									{{ trans('globals.share_on_twitter') }}
-								</a>
-	                    	</div>
-	                    </div>
-
+						
+	                    <div class="return-shipping">        
+        <div class="content-quick">
+            <h3 > Дараах утсаар холбогдож дэлгэрэнгүй мэдээллийг авна уу. Утас: 89992681 </h3>
+        </div>
+	</div>
+	                    		
+	                    
+	                   
 						{{-- Virtual Products --}}
 	                    @if ($product->type=='key')
 	                    	<hr>
@@ -220,8 +241,8 @@
 
 	                    {!! Form::close() !!}
 
-					</div> {{-- panel-body --}}
-				</div>
+					 {{-- panel-body --}}
+				
 	        </div>
 		</div>
 
@@ -259,16 +280,21 @@
 
 		<div class="row">&nbsp;</div>
 
-		<div class="page-header">
+		<div class="page-headers">
             <h5>{{ trans('store.suggestions.product') }}</h5>
+            <div class="titlelines"></div>
         </div>
 		<div class="row">
+			<div class="col-md-12">
+				
+		
 			@if (count($product->group))
                 @include('products.group')
             @else
 	            <section class="products_view">
                     <div class="container-fluid marketing">
                         <div class="row">
+                        
                             @foreach ($suggestions as $productSuggestion)
                                 @include('products.partial.productBox', $productSuggestion)
                             @endforeach
@@ -276,16 +302,17 @@
                     </div>
 	            </section>
             @endif
+            	</div>
 		</div>
 
 	 @stop
 @stop
-
+</div>
 
 @section('scripts')
     @parent
 
-	{!! Html::script('/modu-bower/angular-lazy-img/release/angular-lazy-img.min.js') !!}
+	{!! Html::script('/js/lib/angular-lazy-img.min.js') !!}
 
 	<script src = "https://connect.facebook.net/en_US/sdk.js"></script>
 
@@ -309,15 +336,15 @@
             		return PassInfo.getProperty();
             	}
             });
-        })(angular.module("AntVel"));
+        })(angular.module("Bella"));
         //Social Buttons
         $(document).ready(function() {
 			$("#facebook").click(function() {
 				$.getScript('//connect.facebook.net/en_US/sdk.js', function(){
 				    FB.init({
-				      appId      : "{{ env('FB_APP_ID') }}",
+				      appId      : '1812565288956111',
 				      xfbml      : true,
-				      version    : 'v2.5',
+				      version    : 'v2.8',
 				      caption    : '{{ $product->name }}',
 				    });
 					FB.ui(
