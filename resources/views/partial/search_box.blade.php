@@ -1,4 +1,5 @@
-<div ng-controller="{{ $angularController }}">
+
+<div ng-controller="{{ $angularController }}" class="search-input">
 
 		<angucomplete-alt
 		id="{{ $idSearch }}"

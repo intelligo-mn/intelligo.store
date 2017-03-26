@@ -1,65 +1,68 @@
-<div class="container">
-	<!-- <div class="row">
-		<div class="col-xs-4 col-sm-4 col-md-4 menu">
-			<?php $menu=\Menu::help(true); ?>
-			<h3>{{ trans('globals.company_label') }}</h3>
-			<ul>
-				@foreach ($menu as $item)
-					<li><a href = '{{ $item['route'] }}'>{{ $item['text'] }}</a></li>
-				@endforeach
-			</ul>
-		</div>
+<div class="col-md-12 f-footer-area">
 
-		<div class="col-xs-4 col-sm-4 col-md-4 menu">
-			<h3>{{ trans('globals.social_label') }}</h3>
-			<ul>
-				<li><a href="https://www.facebook.com/{{ $main_company['facebook'] }}" target="_blank">{{ trans('globals.facebook_label') }}</a></li>
-				<li><a href="https://twitter.com/{{ $main_company['twitter'] }}" target="_blank">{{ trans('globals.twitter_label') }}</a></li>
-				<li><a href="https://plus.google.com/u/0/{{ $main_company['google_plus'] }}" target="_blank">{{ trans('globals.google_label') }}</a></li>
-			</ul>
-		</div>
+    <div class="row footer-row">
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <img class="logo-jpg" src="img/pt-default/logo.png">
+            
+        </div>
 
-		<div class="col-xs-4 col-sm-4 col-md-4 newsletter" ng-controller = "NewslettersCtrl">
-			@if (\Auth::user())
-				<p>{{ trans('globals.reach_us_msg') }}</p>
-				<p><strong><a href="/contact"><span class="glyphicon glyphicon-envelope"></span>&nbsp;{{ trans('globals.send_a_email_label') }}</a></strong></p>
-			@else
-				<div class="signup clearfix">
-					<p>{{ trans('user.newsletter_sign_up') }}</p>
-					<form>
-						<input type="text" ng-model = "newsEmail"  class = "form-control input-sm" placeholder = "{{ trans('user.your_email_address_label') }}">
-						<input type="button" ng-click = "save()" value = "{{ trans('user.sign_up_label') }}">
-					</form>
-				</div>
-			@endif
-		</div>
+        <div class="col-xs-4 col-sm-4 col-md-4 menu">
+            <h3 class="widget-title heading-title">Холбоо барих</h3>
+            <div class="line line-30"></div>
 
-	</div>
- -->
-	<div class="row credits">
-		<div class="col-md-12">
-			{{ trans('globals.power_by_label') }}&nbsp;<a href="http://github.com/tortuvshin/ecommerce">{{ trans('globals.antvel_eCommerce') }}</a>
-		</div>
-	</div>
+            <ul>
+                <li><i class="fa fa-map-marker"></i> <span class="footertext">  Сүхбаатар дүүрэг, 1-р хороо, Чингисийн өргөн чөлөө-14251, Гэрэгэ тауэр 4-р давхар</span>
+                </li>
+                <li><i class="fa fa-phone"></i> <span class="footertext">  +976 8999 2681</span>
+                </li>
+                <li><i class="fa fa-envelope"> </i><span class="footertext"> Bolormaa_345@yahoo.com</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 newsletter">
+            
+            <div class="footer-right">
+                <h3 class="widget-title heading-title">
+                        Сошиал                  </h3>
+                <div class="line line-30"></div>
+                <ul>
+                    <li>
+                        <div class="social-icons">
+                            <ul>
+                                <li class="icon-facebook fa-lg"><a href="https://www.facebook.com/pg/Make-up-artist-Bella-451092605001683/videos/?ref=page_internal" target="_blank" title="Become our fan"><i class="fa fa-facebook"></i></a>
+                                </li>
+
+                                <li class="icon-twitter fa-lg"><a href="http://twitter.com/#" target="_blank" title="Follow us"><i class="fa fa-twitter"></i></a>
+                                </li>
+
+                                <li class="icon-google fa-lg"><a href="https://plus.google.com/u/0/#" target="_blank" title="Get updates"><i class="fa fa-google-plus"></i></a>
+                                </li>
+
+                                <li class="icon-instagram fa-lg"><a href="https://www.instagram.com/isabellabellasmakeup/" target="_blank" title="Follow us"><i class="fa fa-instagram"></i></a>
+                                </li>                            
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fourth-footer-area row ">
+
+        <div id="copy-right" class="copy-right col-sm-12">
+            <div class="col-sm-8">
+                Зохиогчын эрх хуулиар хамгаалагдсан ©. 2016 он. Вэбсайтыг хөгжүүлсэн "Тагтаа Солюшн" ХХК.
+            </div>
+
+        </div>
+        <!-- end #copyright -->
+
+    </div>
 
 </div>
+@section('scripts') @parent
 
-@section('scripts')
-    @parent
-        <script>
-            (function(app){
-	                app.controller('NewslettersCtrl', function($scope, $window, notify)
-					{
-					  	$scope.newsEmail = '';
-					  	$scope.save = function()
-					  	{
-					  		if ($scope.newsEmail.trim() != '') {
-					  			$window.location.href = '/register?email='+$scope.newsEmail;
-					  		} else {
-					  			notify({ duration:5000, messageTemplate: '<strong>{{ trans('globals.validation_error_label') }}</strong><br><br><p>{{ trans('globals.newsletter_email_error') }}</p>', classes: 'alert alert-danger' });
-					  		}
-					  	};
-					});
-            })(angular.module("AntVel"));
-        </script>
-    @stop
+@stop
