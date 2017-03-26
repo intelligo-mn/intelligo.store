@@ -9,40 +9,36 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-| @author  Gustavo Ocanto <gustavoocanto@gmail.com>
-|
 */
 
 Auth::routes();
 
-// home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');
 });
 
-//users routes
+Route::get('tsag', ['uses' => 'MailController@getContact', 'as' => 'tsag']);
+Route::post('tsag', ['uses' => 'MailController@postContact', 'as' => 'tsag']);
+
+
+
 require __DIR__ . '/web/users.php';
 
-//business routes
 require __DIR__ . '/web/business.php';
 
-//Wpanel Routes
-require __DIR__ . '/web/wpanel.php';
+require __DIR__ . '/web/dashboard.php';
 
-//products lists
 require __DIR__ . '/web/products.php';
 
-//wish lists
 require __DIR__ . '/web/wish_lists.php';
 
-//orders lists
 require __DIR__ . '/web/orders.php';
 
-//about
 require __DIR__ . '/web/about.php';
 
-//utilities
 require __DIR__ . '/web/utilities.php';
+
+require __DIR__ . '/web/globals.php';
 
