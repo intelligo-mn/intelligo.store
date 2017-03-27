@@ -22,8 +22,11 @@ class UserController{
             
             mysqli_close($this->db->getDb());
             
+            while($row = ){
+
+            }
             
-            return $result["id"];
+            return $result->fetch_row()[0];
             
         }
         
