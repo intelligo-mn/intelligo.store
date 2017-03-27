@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
-        public final int PAGE_COUNT = 4;
+        public final int PAGE_COUNT = 3;
 
         private final String[] mTabsTitle = {"Бүтээгдэхүүн", "Брэндүүд", "Ангилалууд"};
 
@@ -283,10 +283,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-//                searchView.openSearch();
                 Intent search = new Intent(MainActivity.this, ActivitySearch.class);
                 startActivity(search);
-
                 return true;
             case R.id.action_cart:
                 Intent cart = new Intent(MainActivity.this, ActivityCart.class);
@@ -296,9 +294,7 @@ public class MainActivity extends AppCompatActivity
                 Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
                 startActivity(settings);
                 return true;
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -328,7 +324,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
@@ -336,7 +331,6 @@ public class MainActivity extends AppCompatActivity
             if (matches != null && matches.size() > 0) {
                 String searchWrd = matches.get(0);
                 if (!TextUtils.isEmpty(searchWrd)) {
-//                    searchView.setQuery(searchWrd, false);
                 }
             }
 
@@ -348,19 +342,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-//        searchView.clearSuggestions();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        searchView.activityResumed();
-//        String[] arr = getResources().getStringArray(R.array.suggestions);
-//
-//        searchView.addSuggestions(arr);
     }
-
-
 
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
