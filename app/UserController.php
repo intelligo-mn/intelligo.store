@@ -21,11 +21,7 @@ class UserController{
         if(mysqli_num_rows($result) > 0){
             
             mysqli_close($this->db->getDb());
-            
-            while($row = ){
 
-            }
-            
             return $result->fetch_row()[0];
             
         }
