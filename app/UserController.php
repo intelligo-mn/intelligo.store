@@ -23,7 +23,7 @@ class UserController{
             mysqli_close($this->db->getDb());
             
             
-            return $result;
+            return $result["id"];
             
         }
         
@@ -114,7 +114,7 @@ class UserController{
         
         if($canUserLogin != null){
             
-            $json['success'] = $canUserLogin["id"];
+            $json['success'] = $canUserLogin;
             $json['message'] = "Тавтай морилно уу";
             
         }else{
