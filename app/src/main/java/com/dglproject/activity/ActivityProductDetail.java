@@ -250,7 +250,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-        return false;
+        return false;   
     }
 
     public void displayData() {
@@ -405,7 +405,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         //imageLoader.clearCache();
         super.onDestroy();
     }
-
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig)
