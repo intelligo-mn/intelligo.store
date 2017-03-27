@@ -24,6 +24,7 @@ public class DglConstants {
     public static String CompanyAPI = "http://www.dgl.toroo.info/api/get-company.php";
 
     public static String UserService= "http://dgl.toroo.info/api/UserService.php";
+    public static String BrandService= "http://dgl.toroo.info/api/BrandService.php";
 
     public static String AccessKey = "12345";
 
