@@ -50,6 +50,7 @@ import com.dglproject.activity.ActivityCompany;
 import com.dglproject.activity.ActivityDepartment;
 import com.dglproject.activity.ActivityHelp;
 import com.dglproject.activity.ActivityUserProfile;
+import com.dglproject.fragments.BrandFragment;
 import com.dglproject.fragments.CategoryFragment;
 import com.dglproject.fragments.HomeItems;
 import com.dglproject.utils.PrefManager;
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity
     private int[] mTabsIcons = {
             R.drawable.dgl_white_heart,
             R.drawable.dgl_white_app,
-            R.drawable.dgl_white_list,
             R.drawable.dgl_white_list};
 
     PrefManager prefManager;
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity
 
         public final int PAGE_COUNT = 4;
 
-        private final String[] mTabsTitle = {"Бүтээгдэхүүн", "Брэндүүд", "Ангилалууд", "Ангилалууд"};
+        private final String[] mTabsTitle = {"Бүтээгдэхүүн", "Брэндүүд", "Ангилалууд"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity
                     return HomeItems.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(2);
+                    return BrandFragment.newInstance(2);
                 case 2:
                     getSupportActionBar().setTitle("");
                     return CategoryFragment.newInstance(3);
