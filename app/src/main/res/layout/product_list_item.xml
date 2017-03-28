@@ -14,21 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp">
-            <ImageView
-                android:id="@+id/imgFav"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dgl_red_heart"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="right" />
 
             <TextView
                 android:id="@+id/txtSubText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="bbb" />
+                android:text="bbb"
+                android:layout_gravity="right" />
 
             <ImageView
                 android:id="@+id/imgCart"

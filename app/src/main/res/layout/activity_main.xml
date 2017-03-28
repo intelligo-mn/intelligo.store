@@ -22,43 +22,4 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/activity_main_drawer" />
 
-    <com.dglproject.widgets.MaterialSearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/MaterialSearchViewStyle"/>
-
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu_add"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:paddingRight="10dp"
-        app:layout_collapseMode="pin"
-        android:paddingBottom="60dp"
-        android:paddingLeft="10dp"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true"
-        fab:menu_backgroundColor="#ccffffff"
-        fab:menu_fab_size="normal">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fab_add"
-            fab:fab_size="normal"
-            fab:fab_label="Бүтээгдэхүүн нэмэх" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fab_add"
-            fab:fab_size="normal"
-            fab:fab_label="Байгууллага нэмэх" />
-
-    </com.github.clans.fab.FloatingActionMenu>
-
 </android.support.v4.widget.DrawerLayout>

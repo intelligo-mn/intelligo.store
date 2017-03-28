@@ -1,45 +1,37 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.BrandFragment">
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"    >
 
+    <GridView
+        android:id="@+id/listBrand"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="58dp"
+        android:paddingBottom="58dp"
+        android:divider="@null"
+        android:numColumns="2"
+        android:visibility="gone" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/content_category"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".activity.ActivityCategory"
-        tools:showIn="@layout/activity_category">
+    <ProgressBar
+        android:id="@+id/bLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
-        <GridView
-            android:id="@+id/listCategory"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"
-            android:numColumns="2"
-            android:visibility="gone" />
-
-        <ProgressBar
-            android:id="@+id/prgLoading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:id="@+id/txtAlert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/no_internet"
-            android:textSize="14sp"
-            android:visibility="gone" />
-    </RelativeLayout>
-</FrameLayout>
+    <TextView
+        android:id="@+id/bAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_internet"
+        android:textSize="14sp"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/nav_help"
                 android:icon="@mipmap/dglhelp"
-                android:title="Тусламж" />
+                android:title="Тухай" />
         </menu>
     </item>
 

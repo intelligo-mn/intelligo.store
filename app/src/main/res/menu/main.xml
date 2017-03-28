@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@mipmap/dglsearch"
+        android:icon="@drawable/ic_action_search_white"
         android:orderInCategory="100"
         android:title="@string/abc_search_hint"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_cart"
-        android:icon="@mipmap/dglcart"
+        android:icon="@drawable/dgl_white_cart"
         android:orderInCategory="1000"
         app:showAsAction="always"
         android:title="Сагс"/>
@@ -23,25 +23,4 @@
         app:showAsAction="never"
         android:title="Тохиргоо"/>
 
-    <item
-        android:id="@+id/action_pro"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Хэрэглэгчийн профайл"/>
-
-    <item
-        android:id="@+id/action_login"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Нэвтрэх"/>
-
-
-    <item
-        android:id="@+id/action_about"
-        android:icon="@drawable/dgl_white_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Тухай"/>
 </menu>
