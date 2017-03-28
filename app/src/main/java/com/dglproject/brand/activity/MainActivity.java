@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -111,41 +113,24 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-//        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_company);
-//        companyAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (prefManager.isLoggedIn()) {
-//                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
-//                } else {
-//                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-//                            .setAction("Нэвтрэх", new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-//                                }
-//                            }).show();
-//                }
-//            }
-//        });
-//        com.github.clans.fab.FloatingActionButton productAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.add_product);
-//        productAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (prefManager.isLoggedIn()) {
-//                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
-//                } else {
-//                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-//                            .setAction("Нэвтрэх", new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-//                                }
-//                            }).show();
-//                }
-//
-//            }
-//        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addFab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), ActivityBrandAdd.class));
+                } else {
+                    Snackbar.make(view, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
+            }
+        });
+
     }
 
     public void setupViewPager () {
