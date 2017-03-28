@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 
 /**
  * Created by Tortuvshin Byambaa on 2/24/2017.

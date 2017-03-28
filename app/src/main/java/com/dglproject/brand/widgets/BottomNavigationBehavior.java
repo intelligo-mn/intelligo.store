@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.utils.VerticalScrollingBehavior;
 
 /**

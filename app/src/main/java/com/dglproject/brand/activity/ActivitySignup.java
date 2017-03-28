@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.brand.json.JSONParser;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.utils.PrefManager;
 
 import org.apache.http.NameValuePair;

@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.utils.PrefManager;
 
 public class ActivityWelcome extends AppCompatActivity {

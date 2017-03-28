@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.brand.DglConstants;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.ProductListAdapter;
 
 import org.apache.http.HttpResponse;

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        app:layout_behavior="com.dglproject.widgets.BottomNavigationBehavior"
+        app:layout_behavior="com.dglproject.brand.widgets.BottomNavigationBehavior"
         app:tabLayoutId="@+id/tab_layout"
         >
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dglproject.brand.DglConstants;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.utils.ImageLoader;
 

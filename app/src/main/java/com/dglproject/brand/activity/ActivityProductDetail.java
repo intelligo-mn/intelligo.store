@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dglproject.brand.DglConstants;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.database.DBHelper;
 import com.dglproject.brand.models.CartProducts;

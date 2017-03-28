@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 
 /**
  * Created by Tortuvshin Byambaa on 3/13/2017.

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 
 public class ActivityOrder extends AppCompatActivity {
 

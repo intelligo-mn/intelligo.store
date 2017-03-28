@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.AdapterList;
 
 public class ActivityAbout extends AppCompatActivity {

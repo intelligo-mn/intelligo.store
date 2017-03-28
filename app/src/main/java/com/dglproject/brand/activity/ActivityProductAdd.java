@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
 
 import org.apache.http.NameValuePair;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.utils.ImageLoader;
-import com.brand.R;
+import com.dglproject.brand.R;
 
 /**
  * Created by Tortuvshin Byambaa on 3/3/2017.

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dglproject.brand">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -24,11 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.dglproject.brand.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivitySplashScreen"
+            android:name="com.dglproject.brand.activity.ActivitySplashScreen"
             android:theme="@style/AppFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,63 +36,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ActivityUserSettings"
+            android:name="com.dglproject.brand.activity.ActivityUserSettings"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".activity.ActivityHelp"
+            android:name="com.dglproject.brand.activity.ActivityHelp"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivityCompany"
+            android:name="com.dglproject.brand.activity.ActivityCompany"
             android:label="@string/title_activity_company"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivityDepartment"
+            android:name="com.dglproject.brand.activity.ActivityDepartment"
             android:label="@string/title_activity_department"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivityProductDetail"
+            android:name="com.dglproject.brand.activity.ActivityProductDetail"
             android:label="@string/title_activity_product_detail"
             android:theme="@style/AppTheme.NoActionBarGreen" />
         <activity
-            android:name=".activity.ActivityUserProfile"
+            android:name="com.dglproject.brand.activity.ActivityUserProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.ActivityCategory"
+            android:name="com.dglproject.brand.activity.ActivityCategory"
             android:label="@string/title_activity_category"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivityOrder"
+            android:name="com.dglproject.brand.activity.ActivityOrder"
             android:label="@string/title_activity_card"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ActivityProductList" />
-        <activity android:name=".activity.ActivityCart" />
-        <activity android:name=".activity.ActivityCheckout" />
+        <activity android:name="com.dglproject.brand.activity.ActivityProductList" />
+        <activity android:name="com.dglproject.brand.activity.ActivityCart" />
+        <activity android:name="com.dglproject.brand.activity.ActivityCheckout" />
         <activity
-            android:name=".activity.ActivityLogin"
+            android:name="com.dglproject.brand.activity.ActivityLogin"
             android:theme="@style/AppAuth" />
         <activity
-            android:name=".activity.ActivitySignup"
+            android:name="com.dglproject.brand.activity.ActivitySignup"
             android:theme="@style/AppAuth" />
-        <activity android:name=".activity.ActivitySettings" />
+        <activity android:name="com.dglproject.brand.activity.ActivitySettings" />
 
         <provider
-            android:name=".database.HistoryProvider"
-            android:authorities="com.brand"
+            android:name="com.dglproject.brand.database.HistoryProvider"
+            android:authorities="com.dglproject.brand"
             android:exported="false"
             android:protectionLevel="signature"
             android:syncable="true" />
 
         <activity
-            android:name=".activity.ActivityWelcome"
+            android:name="com.dglproject.brand.activity.ActivityWelcome"
             android:theme="@style/AppFullScreen" />
-        <activity android:name=".activity.ActivityProductAdd" />
-        <activity android:name=".activity.ActivityAbout" />
-        <activity android:name=".activity.ActivityCartEdit" />
-        <activity android:name=".activity.ActivityBrandAdd" />
+        <activity android:name="com.dglproject.brand.activity.ActivityProductAdd" />
+        <activity android:name="com.dglproject.brand.activity.ActivityAbout" />
+        <activity android:name="com.dglproject.brand.activity.ActivityCartEdit" />
+        <activity android:name="com.dglproject.brand.activity.ActivityBrandAdd" />
         <activity
-            android:name=".activity.ActivitySearch"
+            android:name="com.dglproject.brand.activity.ActivitySearch"
             android:theme="@style/AppTheme.NoActionBarGreen" >
 
         </activity>

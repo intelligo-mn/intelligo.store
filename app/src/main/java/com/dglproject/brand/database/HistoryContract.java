@@ -18,11 +18,11 @@ public class HistoryContract {
     public static final String PATH_HISTORY = "history";
 
     private static String initAuthority() {
-        String authority = "com.dglproject";
+        String authority = "com.dglproject.brand";
 
         try {
             ClassLoader clazzLoader = HistoryContract.class.getClassLoader();
-            Class<?> clazz = clazzLoader.loadClass("com.dglproject.MsvAuthority");
+            Class<?> clazz = clazzLoader.loadClass("com.dglproject.brand.MsvAuthority");
             Field field = clazz.getDeclaredField("CONTENT_AUTHORITY");
 
             authority = field.get(null).toString();

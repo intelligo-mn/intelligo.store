@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.activity.MainActivity;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductDetail;
 import com.dglproject.brand.adapters.AllProductAdapter;
 

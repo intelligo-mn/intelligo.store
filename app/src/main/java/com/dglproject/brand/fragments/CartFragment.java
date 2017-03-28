@@ -9,7 +9,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.models.CartProducts;
 

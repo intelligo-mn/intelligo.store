@@ -38,8 +38,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.brand.BuildConfig;
-import com.brand.R;
+import com.dglproject.brand.BuildConfig;
+import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.SearchAdapter;
 import com.dglproject.brand.database.HistoryContract;
 import com.dglproject.brand.utils.AnimationUtils;

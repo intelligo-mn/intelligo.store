@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 
 public class ActivityUserSettings extends AppCompatActivity {
 

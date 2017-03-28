@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 
 public class ActivityUserProfile extends AppCompatActivity {
 

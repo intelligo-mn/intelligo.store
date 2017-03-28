@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.dglproject.brand.database.CartProductsAdapter;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.models.CartProducts;
 
 public class ActivityCart extends AppCompatActivity {

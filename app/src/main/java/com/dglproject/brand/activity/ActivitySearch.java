@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.widgets.MaterialSearchView;
 
 import java.util.ArrayList;

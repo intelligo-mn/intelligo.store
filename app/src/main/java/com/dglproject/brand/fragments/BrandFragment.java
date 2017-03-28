@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dglproject.brand.DglConstants;
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.BrandAdapter;
 

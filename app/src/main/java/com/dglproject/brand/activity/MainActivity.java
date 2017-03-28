@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.fragments.HomeItems;

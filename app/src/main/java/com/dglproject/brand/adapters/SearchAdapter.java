@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.brand.R;
+import com.dglproject.brand.R;
 import com.dglproject.brand.database.HistoryContract;
 
 /**
