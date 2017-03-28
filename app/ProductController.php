@@ -29,15 +29,11 @@ class ProductController{
         $inserted = mysqli_query($this->db->getDb(), $query);
         
         if($inserted == 1){
-            
             $json['success'] = 1;
             $json['message'] = "Амжилттай бүртгэгдлээ";
-            
         }else{
-            
             $json['success'] = 0;
             $json['message'] = "Бүтээгдэхүүн нэмэхэд алдаа гарлаа";
-            
         }
         
         mysqli_close($this->db->getDb());
@@ -46,7 +42,7 @@ class ProductController{
         
     }
 
-    public function getAllProduct () {
+    public function getProducts () {
         
         if(isset($_GET['accesskey'])) {
         $access_key_received = $_GET['accesskey'];
