@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home_fragment"
-    tools:context=".fragments.HomeItems">
+    tools:context="com.dglproject.brand.fragments.HomeItems">
 
     <GridView
         android:id="@+id/homeItemList"

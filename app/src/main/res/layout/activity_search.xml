@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.dglproject.activity.ActivitySearch">
+    tools:context="com.dglproject.brand.activity.ActivitySearch">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_search"
@@ -14,7 +14,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <com.dglproject.widgets.MaterialSearchView
+    <com.dglproject.brand.widgets.MaterialSearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

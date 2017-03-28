@@ -7,7 +7,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".activity.ActivityProductList">
+    tools:context="com.dglproject.brand.activity.ActivityProductList">
     <LinearLayout
         android:id="@+id/lytSearch"
         android:layout_width="fill_parent"

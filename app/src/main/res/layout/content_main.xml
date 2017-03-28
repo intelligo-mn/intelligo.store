@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <com.dglproject.widgets.CustomViewPager
+    <com.dglproject.brand.widgets.CustomViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
