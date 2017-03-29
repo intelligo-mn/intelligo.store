@@ -14,6 +14,27 @@
         android:paddingRight="24dp"
         android:paddingBottom="24dp">
 
+        <ImageView
+            android:id="@+id/Imageprev"
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
+
+        <Button
+            android:id="@+id/cpic"
+            android:text="Click Image"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Imageprev" />
+
+        <Button
+            android:id="@+id/up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:layout_below="@+id/cpic"
+            android:layout_centerInParent="true" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

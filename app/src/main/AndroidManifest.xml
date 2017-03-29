@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dglproject.brand">
 
+    <uses-feature
+        android:name="android.hardware.Camera"
+        android:required="true">
+    </uses-feature>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
