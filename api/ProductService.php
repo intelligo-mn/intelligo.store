@@ -7,6 +7,15 @@
     $description = "";
     $price = "";
     $currency = "";
+    $image = "";
+
+    $target_path = "upload/images/";
+
+    $response = array();
+
+    $file_upload_url = 'http://dgl.toroo.info/'.$target_path;
+
+
 
     if(isset($_GET['model'])){
         $model = $_GET['model'];
@@ -34,7 +43,20 @@
         $currency = $_GET['currency'];
         
     }
-    
+
+    if(isset($_GET['image'])){
+        $imgname = $_GET['image'];
+        $imsrc = str_replace(' ','+',$_GET['base64']);
+        $imsrc = base64_decode($imsrc);
+        $fp = fopen($imgname, 'w');
+        fwrite($fp, $imsrc);
+        if(fclose($fp)){
+             echo "Image uploaded";
+        } else {
+            echo "Error uploading image";
+        }
+    }
+
     $productObject = new ProductController();
     // Бараа нэмэх
     
@@ -45,4 +67,4 @@
         echo json_encode($json_product);
         
     }
-    ?>
+?>

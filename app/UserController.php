@@ -56,7 +56,7 @@ class UserController{
     }
     
     
-    public function createNewRegisterUser($username, $password, $email){
+    public function createUser($username, $password, $email){
         
         
         $isExisting = $this->isEmailUsernameExist($username, $email);

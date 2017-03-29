@@ -36,7 +36,7 @@
         
         $hashed_password = md5($password);
         
-        $json_registration = $userObject->createNewRegisterUser($username, $hashed_password, $email);
+        $json_registration = $userObject->createUser($username, $hashed_password, $email);
         
         echo json_encode($json_registration);
         

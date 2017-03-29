@@ -20,11 +20,8 @@ class ProductController{
                         `in_stock`, `is_top`, `is_fearured`, `hitcounter`, `ip_address`, `sort_order`, 
                         `created_user_id`, `updated_user_id`, `created_at`, `updated_at`)
 
-                    VALUES('$model', '$model', '$name', 1, '$description', '', '$price', '$currency', NULL, NULL, NULL, NULL, 'asdsad', 'asd', NULL, NULL, NULL, 1, 'dsadas', 1, NULL, NULL, '2017-03-01 00:00:00', '2017-03-01 00:00:00'
+                    VALUES('$model', '$model', '$name', 'image', '$description', '', '$price', '$currency', NULL, NULL, NULL, NULL, 'asdsad', 'asd', NULL, NULL, NULL, 1, 'dsadas', 1, NULL, NULL, '2017-03-01 00:00:00', '2017-03-01 00:00:00'
                     )";
-
-
-
 
         $inserted = mysqli_query($this->db->getDb(), $query);
         
