@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity
             Intent settingsIntent = new Intent(MainActivity.this, ActivityUserSettings.class);
             startActivity(settingsIntent);
         } else if (id == R.id.nav_help) {
-            Intent helpIntent = new Intent(MainActivity.this, ActivityHelp.class);
+            Intent helpIntent = new Intent(MainActivity.this, ActivityAbout.class);
             startActivity(helpIntent);
         }
 

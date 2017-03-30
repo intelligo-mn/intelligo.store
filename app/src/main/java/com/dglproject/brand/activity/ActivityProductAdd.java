@@ -76,68 +76,68 @@ public class ActivityProductAdd extends AppCompatActivity {
                 createProduct.execute(name.getText().toString(), model.getText().toString(), description.getText().toString(), price.getText().toString(), currency.getText().toString());
             }
         });
-
-        btpic = (Button) findViewById(R.id.cpic);
-        btpic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickpic();
-            }
-        });
-
-        btnup = (Button) findViewById(R.id.up);
-        btnup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                upload();
-            }
-        });
+//        btpic = (Button) findViewById(R.id.cpic);
+//        btpic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                clickpic();
+//            }
+//        });
+//
+//        btnup = (Button) findViewById(R.id.up);
+//        btnup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                upload();
+//            }
+//        });
+//
     }
 
     private void upload() {
 
-        Bitmap bm = BitmapFactory.decodeFile(picturePath);
-        ByteArrayOutputStream bao = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, bao);
-        byte[] ba = bao.toByteArray();
-        ba1 = Base64.encodeToString(ba, Base64.NO_WRAP);
-        new uploadToServer().execute();
+//        Bitmap bm = BitmapFactory.decodeFile(picturePath);
+//        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+//        bm.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+//        byte[] ba = bao.toByteArray();
+//        ba1 = Base64.encodeToString(ba, Base64.NO_WRAP);
+//        new uploadToServer().execute();
 
     }
 
     private void clickpic() {
 
-        if (getApplicationContext().getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA)) {
-
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-            startActivityForResult(intent, 100);
-
-        } else {
-            Toast.makeText(getApplication(), "Camera not supported", Toast.LENGTH_LONG).show();
-        }
+//        if (getApplicationContext().getPackageManager().hasSystemFeature(
+//                PackageManager.FEATURE_CAMERA)) {
+//
+//            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+//
+//            startActivityForResult(intent, 100);
+//
+//        } else {
+//            Toast.makeText(getApplication(), "Camera not supported", Toast.LENGTH_LONG).show();
+//        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
 
-            selectedImage = data.getData();
-            photo = (Bitmap) data.getExtras().get("data");
-
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
-            imageView.setImageBitmap(photo);
+//            selectedImage = data.getData();
+//            photo = (Bitmap) data.getExtras().get("data");
+//
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//            Cursor cursor = getContentResolver().query(selectedImage,
+//                    filePathColumn, null, null, null);
+//            cursor.moveToFirst();
+//
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            picturePath = cursor.getString(columnIndex);
+//            cursor.close();
+//
+//            Bitmap photo = (Bitmap) data.getExtras().get("data");
+//            ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
+//            imageView.setImageBitmap(photo);
         }
     }
 
