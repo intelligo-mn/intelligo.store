@@ -8,17 +8,17 @@
 		if($access_key_received == $access_key){
 			
 			$sql_query = "SELECT * 
-					FROM project_category";
+					FROM product_brand";
 			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
-			$departments = array();
-			while($department = $result->fetch_assoc()) {
-				$departments[] = array('department'=>$department);
+			$brand = array();
+			while($brand = $result->fetch_assoc()) {
+				$brands[] = array('product_brand'=>$brand);
 			}
 			
-			
-			$output = json_encode(array('data' => $departments));
+			$output = json_encode(array('data' => $brands));
+
 		}else{
 			die('accesskey is incorrect.');
 		}

@@ -12,13 +12,13 @@
 			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
-			$departments = array();
-			while($department = $result->fetch_assoc()) {
-				$departments[] = array('department'=>$department);
+			$project_category = array();
+			while($project_category = $result->fetch_assoc()) {
+				$project_categories[] = array('project_category'=>$project_category);
 			}
 			
 			
-			$output = json_encode(array('data' => $departments));
+			$output = json_encode(array('data' => $project_categories));
 		}else{
 			die('accesskey is incorrect.');
 		}
