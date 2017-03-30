@@ -82,7 +82,8 @@ public class BrandFragment extends Fragment {
 
         brandAdapter = new BrandAdapter(getActivity());
 
-        BrandAPI = DglConstants.BrandService+"?accesskey="+ DglConstants.AccessKey;
+//        BrandAPI = DglConstants.BrandService+"?accesskey="+ DglConstants.AccessKey;
+        BrandAPI = DglConstants.BrandService;
 
         new getDataTask().execute();
 
