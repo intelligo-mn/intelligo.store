@@ -2,29 +2,29 @@
 	include_once('../config/database.php'); 
 	include_once('../config/variables.php');
 	
-	if(isset($_GET['accesskey']) && isset($_GET['product_id'])) {
+	if(isset($_GET['accesskey'])) {
 		$access_key_received = $_GET['accesskey'];
-		$product_ID = $_GET['product_id'];
 		
 		if($access_key_received == $access_key){
-
+			// Бүх ангилал авах
 			$sql_query = "SELECT * 
-				FROM product 
-				WHERE id = ".$product_ID;
-				
+					FROM category 
+					ORDER BY category_name ASC ";
+			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
-			$products = array();
-			while($product = $result->fetch_assoc()) {
-				$products[] = array('product_detail'=>$product);
+			$categories = array();
+			while($category = $result->fetch_assoc()) {
+				$categories[] = array('category'=>$category);
 			}
-		 
-			$output = json_encode(array('data' => $products));
+			
+			// json бэлдэх
+			$output = json_encode(array('data' => $categories));
 		}else{
 			die('accesskey is incorrect.');
 		}
 	} else {
-		die('accesskey and product id are required.');
+		die('accesskey is required.');
 	}
  
 	echo $output;

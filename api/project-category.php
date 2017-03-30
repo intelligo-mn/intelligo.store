@@ -2,29 +2,28 @@
 	include_once('../config/database.php'); 
 	include_once('../config/variables.php');
 	
-	if(isset($_GET['accesskey']) && isset($_GET['product_id'])) {
+	if(isset($_GET['accesskey'])) {
 		$access_key_received = $_GET['accesskey'];
-		$product_ID = $_GET['product_id'];
 		
 		if($access_key_received == $access_key){
-
+			
 			$sql_query = "SELECT * 
-				FROM product 
-				WHERE id = ".$product_ID;
-				
+					FROM project_category";
+			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
-			$products = array();
-			while($product = $result->fetch_assoc()) {
-				$products[] = array('product_detail'=>$product);
+			$project_category = array();
+			while($project_category = $result->fetch_assoc()) {
+				$project_categories[] = array('project_category'=>$project_category);
 			}
-		 
-			$output = json_encode(array('data' => $products));
+			
+			
+			$output = json_encode(array('data' => $project_categories));
 		}else{
 			die('accesskey is incorrect.');
 		}
 	} else {
-		die('accesskey and product id are required.');
+		die('accesskey is required.');
 	}
  
 	echo $output;

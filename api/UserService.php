@@ -8,21 +8,21 @@
     
     $email = "";
     
-    if(isset($_POST['username'])){
+    if(isset($_GET['username'])){
         
-        $username = $_POST['username'];
-        
-    }
-    
-    if(isset($_POST['password'])){
-        
-        $password = $_POST['password'];
+        $username = $_GET['username'];
         
     }
     
-    if(isset($_POST['email'])){
+    if(isset($_GET['password'])){
         
-        $email = $_POST['email'];
+        $password = $_GET['password'];
+        
+    }
+    
+    if(isset($_GET['email'])){
+        
+        $email = $_GET['email'];
         
     }
     
@@ -36,7 +36,7 @@
         
         $hashed_password = md5($password);
         
-        $json_registration = $userObject->createNewRegisterUser($username, $hashed_password, $email);
+        $json_registration = $userObject->createUser($username, $hashed_password, $email);
         
         echo json_encode($json_registration);
         

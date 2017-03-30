@@ -6,10 +6,9 @@
 		$access_key_received = $_GET['accesskey'];
 		
 		if($access_key_received == $access_key){
-			// Бүх байгууллага авах
+			
 			$sql_query = "SELECT * 
-					FROM department 
-					ORDER BY department_name ASC ";
+					FROM project_category";
 			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 
@@ -18,7 +17,7 @@
 				$departments[] = array('department'=>$department);
 			}
 			
-			// json бэлдэх
+			
 			$output = json_encode(array('data' => $departments));
 		}else{
 			die('accesskey is incorrect.');

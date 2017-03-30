@@ -6,7 +6,7 @@ class UserController{
     
     private $db;
     
-    private $db_table = "duser";
+    private $db_table = "user";
     
     public function __construct(){
         $this->db = new DbConnect();
@@ -21,15 +21,14 @@ class UserController{
         if(mysqli_num_rows($result) > 0){
             
             mysqli_close($this->db->getDb());
-            
-            
-            return true;
+
+            return $result->fetch_row()[0];
             
         }
         
         mysqli_close($this->db->getDb());
         
-        return false;
+        return null;
         
     }
     
@@ -57,7 +56,7 @@ class UserController{
     }
     
     
-    public function createNewRegisterUser($username, $password, $email){
+    public function createUser($username, $password, $email){
         
         
         $isExisting = $this->isEmailUsernameExist($username, $email);
@@ -112,9 +111,9 @@ class UserController{
         
         $canUserLogin = $this->isLoginExist($username, $password);
         
-        if($canUserLogin){
+        if($canUserLogin != null){
             
-            $json['success'] = 1;
+            $json['success'] = $canUserLogin;
             $json['message'] = "Тавтай морилно уу";
             
         }else{

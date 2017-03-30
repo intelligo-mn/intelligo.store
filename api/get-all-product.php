@@ -14,14 +14,14 @@
 		if($access_key_received == $access_key){
 			if($keyword == ""){
 
-				$sql_query = "SELECT product_id, product_name, price, product_image 
+				$sql_query = "SELECT * 
 					FROM product 
-					ORDER BY product_id DESC";
+					ORDER BY id DESC";
 			}else{
-				$sql_query = "SELECT product_id, product_name, price, product_image 
+				$sql_query = "SELECT *
 					FROM product 
-					WHERE product_name LIKE '%".$keyword."%'
-					ORDER BY product_id DESC";
+					WHERE name LIKE '%".$keyword."%'
+					ORDER BY id DESC";
 			}
 			
 			$result = $connect->query($sql_query) or die("Error : ".mysql_error());
