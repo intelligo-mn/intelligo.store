@@ -50,6 +50,7 @@ public class BrandFragment extends Fragment {
     public static ArrayList<Long> Brand_ID = new ArrayList<Long>();
     public static ArrayList<String> Brand_name = new ArrayList<String>();
     public static ArrayList<String> Brand_image = new ArrayList<String>();
+    public static ArrayList<String> Brand_description = new ArrayList<String>();
 
     String BrandAPI;
     int IOConnect = 0;
@@ -159,11 +160,12 @@ public class BrandFragment extends Fragment {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
 
-                JSONObject category = object.getJSONObject("brand");
+                JSONObject brand = object.getJSONObject("product_brand");
 
-                Brand_ID.add(Long.parseLong(category.getString("brand_id")));
-                Brand_name.add(category.getString("brand_name"));
-                Brand_image.add(category.getString("brand_image"));
+                Brand_ID.add(Long.parseLong(brand.getString("id")));
+                Brand_name.add(brand.getString("name"));
+                Brand_image.add("uploads/"+brand.getString("folder")+"/"+brand.getString("icon_image"));
+                Brand_description.add(brand.getString("description"));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

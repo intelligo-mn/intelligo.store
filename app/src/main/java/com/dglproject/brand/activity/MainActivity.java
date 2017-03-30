@@ -117,17 +117,17 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (prefManager.isLoggedIn()) {
+                if (prefManager.isLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
-//                } else {
-//                    Snackbar.make(view, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-//                            .setAction("Нэвтрэх", new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-//                                }
-//                            }).show();
-//                }
+                } else {
+                    Snackbar.make(view, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
+                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
     }

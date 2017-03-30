@@ -39,7 +39,7 @@ public class ActivityLogin extends AppCompatActivity {
     TextView signUpLink;
     CheckBox rememberDetail;
 
-    String URL= "http://dgl.toroo.info/api/UserService.php";
+    String URL= "https://dglproject.com/applications/api/UserService.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -211,7 +211,7 @@ public class ActivityLogin extends AppCompatActivity {
             params.add(new BasicNameValuePair("username", name));
             params.add(new BasicNameValuePair("password", password));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
 
             return json;
 
@@ -221,7 +221,7 @@ public class ActivityLogin extends AppCompatActivity {
 
             try {
                 if (result != null) {
-                    if(result.getString("success") == "1"){
+                    if(result.getString("success") != "0"){
                         final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                                 R.style.AppTheme_Dark_Dialog);
                         progressDialog.setIndeterminate(true);

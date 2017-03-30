@@ -31,7 +31,7 @@ public class ActivitySignup extends AppCompatActivity {
     TextView loginLink;
     PrefManager prefManager;
 
-    String URL= "http://dgl.toroo.info/api/UserService.php";
+    String URL= "https://dglproject.com/applications/api/UserService.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -190,7 +190,7 @@ public class ActivitySignup extends AppCompatActivity {
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("email",email));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
 
             return json;
 
