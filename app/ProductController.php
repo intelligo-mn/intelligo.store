@@ -6,7 +6,7 @@ class ProductController{
     
     private $db;
     
-    private $db_table = "dproduct";
+    private $db_table = "product";
     
     public function __construct(){
         $this->db = new DbConnect();

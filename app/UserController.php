@@ -6,7 +6,7 @@ class UserController{
     
     private $db;
     
-    private $db_table = "duser";
+    private $db_table = "user";
     
     public function __construct(){
         $this->db = new DbConnect();

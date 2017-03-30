@@ -6,7 +6,7 @@ class BrandController{
     
     private $db;
     
-    private $db_table = "dproduct_brand";
+    private $db_table = "product_brand";
     
     public function __construct(){
         $this->db = new DbConnect();
