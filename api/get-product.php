@@ -8,9 +8,9 @@
 		
 		if($access_key_received == $access_key){
 
-			$sql_query = "SELECT product_id, product_name, product_image, price, serve_for, description, quantity 
+			$sql_query = "SELECT * 
 				FROM product 
-				WHERE product_id = ".$product_ID;
+				WHERE id = ".$product_ID;
 				
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
 	 

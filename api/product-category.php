@@ -8,7 +8,7 @@
 		if($access_key_received == $access_key){
 			// Бүх ангилал авах
 			$sql_query = "SELECT * 
-					FROM dcategory 
+					FROM category 
 					ORDER BY category_name ASC ";
 			
 			$result = $connect->query($sql_query) or die ("Error :".mysql_error());
