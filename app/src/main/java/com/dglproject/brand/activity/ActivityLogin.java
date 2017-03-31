@@ -106,7 +106,6 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
@@ -126,6 +125,7 @@ public class ActivityLogin extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Хэрэглэгчийн мэдээллээ шинэчлээд дахин оролдно уу !", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
+
 //    private void RememberMe() {
 //        boolean thisRemember = rememberDetail.isChecked();
 //        sharedPreferences = getSharedPreferences(PREFER_NAME, 0);
@@ -133,6 +133,7 @@ public class ActivityLogin extends AppCompatActivity {
 //        editor.putBoolean("Remember", thisRemember);
 //        editor.commit();
 //    }
+
     public boolean validate() {
         boolean valid = true;
         String username = nameText.getText().toString();
@@ -238,7 +239,6 @@ public class ActivityLogin extends AppCompatActivity {
                                         progressDialog.dismiss();
                                     }
                                 }, 2000);
-
                     } else {
                         Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     }

@@ -28,17 +28,14 @@ public class ProductListAdapter extends BaseAdapter{
     }
 
     public int getCount() {
-
         return ActivityProductList.Product_ID.size();
     }
 
     public Object getItem(int position) {
-
         return position;
     }
 
     public long getItemId(int position) {
-
         return position;
     }
 

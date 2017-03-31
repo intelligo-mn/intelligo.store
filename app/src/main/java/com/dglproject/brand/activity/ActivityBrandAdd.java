@@ -35,7 +35,6 @@ public class ActivityBrandAdd extends AppCompatActivity {
         getSupportActionBar().setTitle("Байгууллага нэмэх");
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         name = (EditText)findViewById(R.id.pName);
         description = (EditText)findViewById(R.id.pDescription);
         add = (Button)findViewById(R.id.productAdd);
@@ -70,7 +69,6 @@ public class ActivityBrandAdd extends AppCompatActivity {
             JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
 
             return json;
-
         }
 
         protected void onPostExecute(JSONObject result) {
@@ -86,6 +84,7 @@ public class ActivityBrandAdd extends AppCompatActivity {
             }
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

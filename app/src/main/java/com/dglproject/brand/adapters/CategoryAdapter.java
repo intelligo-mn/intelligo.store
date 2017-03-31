@@ -53,7 +53,6 @@ public class CategoryAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-
         holder.txtText = (TextView) convertView.findViewById(R.id.txtText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
@@ -67,5 +66,4 @@ public class CategoryAdapter extends BaseAdapter{
         TextView txtText;
         ImageView imgThumb;
     }
-
 }

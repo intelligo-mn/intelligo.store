@@ -67,5 +67,4 @@ public class BrandAdapter extends BaseAdapter {
         TextView txtText;
         ImageView imgThumb;
     }
-
 }

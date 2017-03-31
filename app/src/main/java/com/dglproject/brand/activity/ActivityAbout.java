@@ -19,7 +19,7 @@ public class ActivityAbout extends AppCompatActivity {
     String[] subtitleId;
 
     Integer[] imageId = {
-            R.drawable.dgl_white_app,
+            R.drawable.ic_other_appname,
             R.drawable.ic_other_build,
             R.drawable.ic_other_email,
             R.drawable.ic_other_copyright,

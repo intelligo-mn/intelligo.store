@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(1);
+                    return BrandFragment.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
                     return BrandFragment.newInstance(2);
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         } else {
-            return true;
+            return false;
         }
     }
 }
