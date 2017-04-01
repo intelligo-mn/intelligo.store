@@ -39,7 +39,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/dgl_white_x" />
+                android:src="@drawable/ic_action_navigation_arrow_back" />
 
             <ImageView
                 android:id="@+id/user_profile_set_btn"
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/dgl_white_settings" />
+                android:src="@drawable/dgl_icon_settings" />
 
             <TextView
                 android:id="@+id/user_profile_name"

@@ -4,21 +4,21 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_search_white"
+        android:icon="@drawable/dgl_icon_search"
         android:orderInCategory="100"
         android:title="@string/abc_search_hint"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_cart"
-        android:icon="@drawable/dgl_white_cart"
+        android:icon="@drawable/dgl_icon_shopping_cart"
         android:orderInCategory="1000"
         app:showAsAction="always"
         android:title="Сагс"/>
 
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/dgl_white_settings"
+        android:icon="@drawable/dgl_icon_settings"
         android:orderInCategory="100"
         app:showAsAction="never"
         android:title="Тохиргоо"/>

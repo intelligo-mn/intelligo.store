@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
-            R.drawable.dgl_white_heart,
-            R.drawable.dgl_white_app,
-            R.drawable.dgl_white_list};
+            R.drawable.dgl_icon_shop,
+            R.drawable.dgl_icon_list_1,
+            R.drawable.dgl_icon_apps};
 
     PrefManager prefManager;
 
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return BrandFragment.newInstance(1);
+                    return HomeItems.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
                     return BrandFragment.newInstance(2);
@@ -264,8 +264,7 @@ public class MainActivity extends AppCompatActivity
             Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
             startActivity(loginIntent);
         } else if (id == R.id.nav_company) {
-            Intent companyIntent = new Intent(MainActivity.this, ActivityCompany.class);
-            startActivity(companyIntent);
+
         } else if (id == R.id.nav_checkout) {
 
         } else if (id == R.id.nav_settings) {

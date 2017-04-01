@@ -84,13 +84,13 @@ public class ActivityCart extends AppCompatActivity {
 
     public void startPayment(View view){
         if (data.size() > 0){
-            Intent intent = new Intent(this, ActivityOrder.class);
-            String subTotalString = "" + subTotal;
-            String taxString = "" + tax;
-            String totalString = "" + total;
-            String[] transferData = {subTotalString,taxString,totalString};
-            intent.putExtra(TAG,transferData);
-            startActivity(intent);
+//            Intent intent = new Intent(this, ActivityOrder.class);
+//            String subTotalString = "" + subTotal;
+//            String taxString = "" + tax;
+//            String totalString = "" + total;
+//            String[] transferData = {subTotalString,taxString,totalString};
+//            intent.putExtra(TAG,transferData);
+//            startActivity(intent);
         }
     }
 

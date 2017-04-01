@@ -51,14 +51,6 @@
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.dglproject.brand.activity.ActivityCompany"
-            android:label="@string/title_activity_company"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.dglproject.brand.activity.ActivityDepartment"
-            android:label="@string/title_activity_department"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name="com.dglproject.brand.activity.ActivityProductDetail"
             android:label="@string/title_activity_product_detail"
             android:theme="@style/AppTheme.NoActionBarGreen" />
@@ -70,13 +62,8 @@
             android:name="com.dglproject.brand.activity.ActivityCategory"
             android:label="@string/title_activity_category"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.dglproject.brand.activity.ActivityOrder"
-            android:label="@string/title_activity_card"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.dglproject.brand.activity.ActivityProductList" />
         <activity android:name="com.dglproject.brand.activity.ActivityCart" />
-        <activity android:name="com.dglproject.brand.activity.ActivityCheckout" />
         <activity
             android:name="com.dglproject.brand.activity.ActivityLogin"
             android:theme="@style/AppAuth" />

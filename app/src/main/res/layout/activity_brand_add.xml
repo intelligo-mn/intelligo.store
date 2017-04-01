@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Байгууллагын нэр" />
+                android:hint="@string/company_name" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Байгууллагын танилцуулга" />
+                android:hint="@string/company_description" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
@@ -45,7 +45,7 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/colorPrimary"
-            android:text="Нэмэх"
+            android:text="@string/add"
             android:textColor="@color/white" />
 
     </LinearLayout>

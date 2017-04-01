@@ -85,7 +85,11 @@
     <string name="title_app_more">Бусад програмууд</string>
     <string name="more_apps"></string>
     <string name="share_content"></string>
+    
+    <string name="company_name">Байгууллагын нэр</string>
+    <string name="company_description">Байгууллагын танилцуулга</string>
+    <string name="add">Нэмэх</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+
 </resources>
