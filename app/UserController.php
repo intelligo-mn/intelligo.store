@@ -82,7 +82,6 @@ class UserController{
 
               values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-03-17 00:00:00', '2017-03-17 00:00:00', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
 
-
             $inserted = mysqli_query($this->db->getDb(), $query);
             
             if($inserted == 1){

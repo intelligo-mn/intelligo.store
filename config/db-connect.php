@@ -18,5 +18,7 @@ class DbConnect{
     public function getDb(){
         return $this->connect;
     }
+
+    $access_key = "12345";
 }
 ?>
