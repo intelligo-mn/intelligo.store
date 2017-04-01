@@ -1,6 +1,6 @@
 <?php
-	include_once('../config/database.php'); 
-	include_once('../config/variables.php');
+	include_once('config/database.php'); 
+	include_once('config/variables.php');
 	
 	if(isset($_GET['accesskey'])) {
 		$access_key_received = $_GET['accesskey'];
@@ -42,5 +42,5 @@
 	//Output the output.
 	echo $output;
 
-	include_once('../config/close_database.php'); 
+	include_once('config/close_database.php'); 
 ?>
