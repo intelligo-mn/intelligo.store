@@ -1,6 +1,5 @@
-<?php
-    
-include_once '../config/db-connect.php';
+<?php    
+include_once 'config/db-connect.php';
 
 class ProductController{
     
@@ -9,6 +8,7 @@ class ProductController{
     private $db_table = "product";
     
     public function __construct(){
+
         $this->db = new DbConnect();
     }
     
@@ -41,16 +41,14 @@ class ProductController{
 
     public function getProducts () {
         
-       $sql_query = "SELECT * 
-             FROM ".$this->db_table;
-        
+       $sql_query = "SELECT * FROM ".$this->db_table;
+        echo $sql_query."</br>";
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
         $products = array();
         while($product = $result->fetch_assoc()) {
             $products[] = $product;
         }
-
         return $products;
     }
 
