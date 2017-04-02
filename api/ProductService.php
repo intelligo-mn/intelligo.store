@@ -1,5 +1,5 @@
 <?php
-    
+
     require_once '../app/ProductController.php';
     
     if(isset($_GET['accesskey'])) {
@@ -13,12 +13,6 @@
             $price = "";
             $currency = "";
             $image = "";
-
-            $target_path = "upload/images/";
-
-            $response = array();
-
-            $file_upload_url = 'http://dgl.toroo.info/'.$target_path;
 
 
             if(isset($_GET['model'])){
@@ -48,19 +42,6 @@
                 
             }
 
-            if(isset($_GET['image'])){
-                $imgname = $_GET['image'];
-                $imsrc = str_replace(' ','+',$_GET['base64']);
-                $imsrc = base64_decode($imsrc);
-                $fp = fopen($imgname, 'w');
-                fwrite($fp, $imsrc);
-                if(fclose($fp)){
-                     echo "Image uploaded";
-                } else {
-                    echo "Error uploading image";
-                }
-            }
-
             $productObject = new ProductController();
             
             // Бараа нэмэх
@@ -73,17 +54,7 @@
                 
             }
 
-            $sql_query = "SELECT * 
-                FROM product 
-                ORDER BY id DESC";
-        
-            
-            $result = $connect->query($sql_query) or die("Error : ".mysql_error());
-            
-            $products = array();
-            while($product = $result->fetch_assoc()) {
-                $products[] = $product;
-            }
+            $products = $productObject->getProducts();
             
             echo json_encode($products);
 
@@ -92,46 +63,22 @@
             if(isset($_GET['brand_id'])) {
                 $brand_ID = $_GET['brand_id'];
                 
-                
-                $sql_query = "SELECT * 
-                    FROM product 
-                    WHERE brand_id = ".$brand_ID." 
-                    ORDER BY id DESC";  
+                $brandProduct = $productObject->getProductsBrand($brand_ID);
             
-                $result = $connect->query($sql_query) or die("Error : ".mysql_error());
-                
-                $products = array();
-             
-                while($product = $result->fetch_assoc()) {
-                    $products[] = $product;
-                }
-            
-                echo json_encode($products);
+                echo json_encode($brandProduct);
 
             } else {
                 die('brand id are required.');
             }
 
             //Сонгосон бүтээгдэхүүний дэлгэрэнгүй харуулах
-            
+
             if(isset($_GET['product_id'])) {
                 $product_ID = $_GET['product_id'];
                 
-                
-                $sql_query = "SELECT * 
-                    FROM product 
-                    WHERE id = ".$product_ID." 
-                    ORDER BY id DESC";  
-            
-                $result = $connect->query($sql_query) or die("Error : ".mysql_error());
-                
-                $products = array();
-             
-                while($product = $result->fetch_assoc()) {
-                    $products[] = $product;
-                }
-            
-                echo json_encode($products);
+                $product = $productObject->getProductDetail($product_ID);
+
+                echo json_encode($product);
 
             } else {
                 die('brand id are required.');

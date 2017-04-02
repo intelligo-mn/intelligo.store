@@ -19,6 +19,8 @@ class DbConnect{
         return $this->connect;
     }
 
-    $access_key = "12345";
 }
+
+$access_key = "12345";
+
 ?>
