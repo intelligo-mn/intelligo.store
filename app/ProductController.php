@@ -51,11 +51,37 @@ class ProductController{
             $products[] = $product;
         }
 
-        return json_encode($products);
+        return $products;
     }
 
-    public function getProductsCat () {
+    public function getProductsBrand ($brand_id) {
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table."
+             WHERE brand_id = ".$brand_id."";
         
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+
+        $products = array();
+        while($product = $result->fetch_assoc()) {
+            $products[] = $product;
+        }
+
+        return $products;
+    }
+
+    public function productDetail($id) {
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table."
+             WHERE id = ".$id."";
+        
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+
+        $products = array();
+        while($product = $result->fetch_assoc()) {
+            $products[] = $product;
+        }
+
+        return $products;
     }
    
 }

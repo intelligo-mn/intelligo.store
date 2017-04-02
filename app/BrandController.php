@@ -53,7 +53,7 @@ class BrandController{
             $brands[] = $brand;
         }
 
-        return json_encode($brands);
+        return $brands;
         
     }
 }
