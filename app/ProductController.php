@@ -42,7 +42,6 @@ class ProductController{
     public function getProducts () {
         
        $sql_query = "SELECT * FROM ".$this->db_table;
-        echo $sql_query."</br>";
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
         $products = array();

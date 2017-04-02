@@ -16,13 +16,15 @@ ini_set('display_errors', '1');
     $description = "";
     $price = "";
     $currency = "";
+    $user_id=null;
     
-    if(isset($_GET['model']) && isset($_GET['name']) && isset($_GET['description']) && isset($_GET['price']) && isset($_GET['currency'])){
+    if(isset($_GET['model']) && isset($_GET['name']) && isset($_GET['description']) && isset($_GET['price']) && isset($_GET['currency']) && isset($_GET["ui"])){
         $model = $_GET['model'];
         $name = $_GET['name'];
         $description = $_GET['description'];
         $doublePrice = (double)$_GET['price'];
         $currency = $_GET['currency'];
+        $_user_id = $_GET["ui"];
     }
 
     $productObject = new ProductController();
@@ -30,7 +32,7 @@ ini_set('display_errors', '1');
     //state == c -> Бараа нэмэх 
     if($_GET["state"] == "c" && !empty($model) && !empty($name) && !empty($description) && !empty($price) && !empty($currency)){
         
-        $json_product = $productObject->create($name, $model, $description, $doublePrice, $currency);
+        $json_product = $productObject->create($name, $model, $description, $doublePrice, $currency, $user_id);
         
         echo json_encode($json_product);
         
