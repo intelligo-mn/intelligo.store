@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
 
 /**
  * Created by Tortuvshin Byambaa on 3/3/2017.
@@ -14,21 +15,19 @@ import java.io.OutputStream;
 
 public class DglConstants {
 
-    public static String AdminPageURL = "http://www.dgl.toroo.info/";
-    public static String CategoryAPI = "http://www.dgl.toroo.info/api/get-category.php";
-    public static String ProductApi = "http://www.dgl.toroo.info/api/get-product-category-id.php";
-    public static String AllProductApi = "http://www.dgl.toroo.info/api/get-all-product.php";
-    public static String TaxCurrencyAPI = "http://www.dgl.toroo.info/api/get-currency.php";
-    public static String ProductDetailAPI = "http://www.dgl.toroo.info/api/get-product.php";
-    public static String SendDataAPI = "http://www.dgl.toroo.info/api/add-order.php";
-    public static String CompanyAPI = "http://www.dgl.toroo.info/api/get-company.php";
-
-    public static String UserService= "https://dglproject.com/applications/api/UserService.php";
-    public static String BrandService= "https://dglproject.com/applications/api/get-brand.php";
+    public static String AdminPageURL = "http://www.dglproject.com/applications/";
+    public static String ProductService = "http://www.dglproject.com/applications/ProductService.php";
+    public static String UserService= "https://www.dglproject.com/applications/UserService.php";
+    public static String BrandService= "https://www.dglproject.com/applications/BrandService.php";
 
     public static String AccessKey = "12345";
 
     public static String DBPath = "/data/data/com.dglproject/databases/";
+
+    private static long generateAccessKey(){
+        int y = Calendar.YEAR, m = Calendar.MONTH, d = Calendar.DAY_OF_MONTH, a = 4, b = 7, c = 12;
+        return (y+m+d)*a*b*c*(y*c+m*b+d*a);
+    }
 
     public static boolean isNetworkAvailable(Activity activity) {
         ConnectivityManager connectivity = (ConnectivityManager) activity
