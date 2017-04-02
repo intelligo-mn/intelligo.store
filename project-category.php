@@ -17,7 +17,6 @@
 				$project_categories[] = array('project_category'=>$project_category);
 			}
 			
-			
 			$output = json_encode(array('data' => $project_categories));
 		}else{
 			die('accesskey is incorrect.');

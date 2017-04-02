@@ -1,5 +1,7 @@
 <?php
-    
+
+header('Content-Type: text/plain; charset=utf-8');
+ 
 include_once '../config/db-connect.php';
 
 class BrandController{
@@ -36,6 +38,22 @@ class BrandController{
         mysqli_close($this->db->getDb());
                 
         return $json;
+        
+    }
+
+    public function getBrands () {
+
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table;
+        
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+
+        $brands = array();
+        while($brand = $result->fetch_assoc()) {
+            $brands[] = $brand;
+        }
+
+        return $brands;
         
     }
 }
