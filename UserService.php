@@ -1,6 +1,6 @@
 <?php
     
-    require_once '../app/UserController.php';
+    require_once 'app/UserController.php';
     
     $username = "";
     

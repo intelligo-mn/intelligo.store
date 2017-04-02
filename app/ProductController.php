@@ -57,7 +57,7 @@ class ProductController{
     public function getProductsBrand ($brand_id) {
         $sql_query = "SELECT * 
              FROM ".$this->db_table."
-             WHERE brand_id = ".$brand_id."";
+             WHERE brand_id = ".$brand_id;
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
@@ -69,10 +69,10 @@ class ProductController{
         return $products;
     }
 
-    public function productDetail($id) {
+    public function getProductDetail($id) {
         $sql_query = "SELECT * 
              FROM ".$this->db_table."
-             WHERE id = ".$id."";
+             WHERE id = ".$id;
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 

@@ -1,20 +1,20 @@
 <?php
 
-    require_once '../app/ProductController.php';
+    require_once '/app/ProductController.php';
     
-    if(isset($_GET['accesskey'])) {
-        $access_key_received = $_GET['accesskey'];
+    // $access_key = 12345;
+
+    // if(isset($_GET['accesskey'])) {
+    //     $access_key_received = $_GET['accesskey'];
        
-        if($access_key_received == $access_key){
+    //     if($access_key_received == $access_key){
 
             $model = "";
             $name = "";
             $description = "";
             $price = "";
             $currency = "";
-            $image = "";
-
-
+            
             if(isset($_GET['model'])){
                 $model = $_GET['model'];
             }
@@ -55,7 +55,7 @@
             }
 
             $products = $productObject->getProducts();
-            
+
             echo json_encode($products);
 
             // Сонгосон брэндийн мэдээлэл харуулах
@@ -83,11 +83,11 @@
             } else {
                 die('brand id are required.');
             }
-        }else{
-            die('accesskey is incorrect.');
-        }
-    } else {
-        die('accesskey required.');
-    }
+    //     }else{
+    //         die('accesskey is incorrect.');
+    //     }
+    // } else {
+    //     die('accesskey required.');
+    // }
  
 ?>

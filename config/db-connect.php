@@ -21,6 +21,5 @@ class DbConnect{
 
 }
 
-$access_key = "12345";
 
 ?>
