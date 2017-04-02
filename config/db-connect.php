@@ -20,8 +20,5 @@ class DbConnect{
     public function getDb(){
         return $this->connect;
     }
-
 }
-
-
 ?>

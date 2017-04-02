@@ -26,8 +26,6 @@
         
     }
     
-    
-    
     $userObject = new UserController();
     
     // Бүртгүүлэх
@@ -52,4 +50,4 @@
         
         echo json_encode($json_array);
     }
-    ?>
+?>
