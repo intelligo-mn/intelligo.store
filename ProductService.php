@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: text/plain; charset=utf-8');
     require_once 'app/ProductController.php';
-    $access_key = 12345;
+    require_once 'config/security.php';
+    $access_key = (new DGLSecure())->generateAccessKey();
     if(!isset($_GET['accesskey']) || $_GET['accesskey'] != $access_key) 
         die('accesskey required.');
     if(!isset($_GET["state"]))
