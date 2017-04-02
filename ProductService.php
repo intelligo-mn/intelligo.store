@@ -2,8 +2,9 @@
 header('Content-Type: text/plain; charset=utf-8');
     require_once 'app/ProductController.php';
     require_once 'config/security.php';
-    $access_key = (new DGLSecure())->generateAccessKey();
-    if(!isset($_GET['accesskey']) || $_GET['accesskey'] != $access_key) 
+    
+    if(!isset($_GET['accesskey']))
+        if (!(new DGLSecure())->generateAccessKey($_GET['accesskey'])) 
         die('accesskey required.');
     if(!isset($_GET["state"]))
         die('request state required.');
@@ -23,7 +24,6 @@ header('Content-Type: text/plain; charset=utf-8');
         $user_id = $_GET["ui"];
     }
     $productObject = new ProductController();
-    echo json_encode($productObject->getAll());
     //state == c -> Бараа нэмэх 
     if($state == "c" && !empty($model) && !empty($name) && !empty($description) && !empty($price) && !empty($currency))
         echo json_encode($productObject->create($name, $model, $description, $doublePrice, $currency, $user_id));

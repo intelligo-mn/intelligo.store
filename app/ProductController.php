@@ -48,14 +48,7 @@ class ProductController{
 
         $products = array();
         while($product = $result->fetch_assoc()) {
-            $photo_result = mysqli_query($this->db->getDb(), "SELECT * 
-             FROM product_photo
-             WHERE id = ".$product["default_photo_id"]) or die ("Error :".mysql_error());
-            $photos = array();
-            while($photo = $photo_result->fetch_assoc()) {
-                $photos = $photo;
-            }
-            $products[] = ["product"=>$product, "photos"=>$photos];
+            $products[] = $product;
         }
         return $products;
     }
