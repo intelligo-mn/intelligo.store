@@ -13,6 +13,8 @@ class DbConnect{
         if (mysqli_connect_errno($this->connect)){
             echo "Unable to connect to MySQL Database: " . mysqli_connect_error();
         }
+        $this->connect->set_charset('utf8mb4');       // object oriented style
+        mysqli_set_charset($this->connect, 'utf8mb4');  // procedural style
     }
     
     public function getDb(){
