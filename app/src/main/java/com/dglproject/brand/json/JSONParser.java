@@ -99,7 +99,6 @@ public class JSONParser {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     is, "iso-8859-1"), 8);
 
-
             StringBuilder sb = new StringBuilder();
 
             String line = null;

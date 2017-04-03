@@ -181,22 +181,22 @@ public class HomeItems extends Fragment {
 
         clearData();
         try {
-        HttpClient client = new DefaultHttpClient();
-        HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-        HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-        HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
-        HttpResponse response = client.execute(request);
-        InputStream atomInputStream = response.getEntity().getContent();
-        BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+            HttpClient client = new DefaultHttpClient();
+            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+            HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
+            HttpResponse response = client.execute(request);
+            InputStream atomInputStream = response.getEntity().getContent();
+            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
 
-        String line;
-        String str = "";
-        while ((line = in.readLine()) != null){
-            str += line;
-        }
+            String line;
+            String str = "";
+            while ((line = in.readLine()) != null){
+                str += line;
+            }
 
-        jsonObject = new JSONObject("{product=" + str+"}");
-        jsonArrayProducts = jsonObject.getJSONArray("product");
+            jsonObject = new JSONObject("{product=" + str+"}");
+            jsonArrayProducts = jsonObject.getJSONArray("product");
 
             for (int i=0; i<jsonArrayProducts.length(); i++){
                 Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
