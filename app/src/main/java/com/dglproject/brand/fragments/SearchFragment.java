@@ -10,15 +10,16 @@ import android.view.ViewGroup;
 
 import com.dglproject.brand.R;
 
-public class NavigationFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
-    public NavigationFragment() {
+    public SearchFragment() {
 
     }
 
-    public static NavigationFragment newInstance(String param1, String param2) {
-        NavigationFragment fragment = new NavigationFragment();
+    public static SearchFragment newInstance(String param1, String param2) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,9 +33,8 @@ public class NavigationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_navigation, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    
 }
