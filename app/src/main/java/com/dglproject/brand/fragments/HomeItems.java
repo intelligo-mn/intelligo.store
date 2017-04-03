@@ -59,12 +59,12 @@ public class HomeItems extends Fragment {
 
     MainActivity mainActivity;
 
-    public static ArrayList<Long> Product_ID = new ArrayList<Long>();
-    public static ArrayList<String> Product_name = new ArrayList<String>();
-    public static ArrayList<Double> Product_price = new ArrayList<Double>();
-    public static ArrayList<String> Product_image = new ArrayList<String>();
+    public ArrayList<Long> Product_ID = new ArrayList<Long>();
+    public ArrayList<String> Product_name = new ArrayList<String>();
+    public ArrayList<Double> Product_price = new ArrayList<Double>();
+    public ArrayList<String> Product_image = new ArrayList<String>();
 
-    String AllProductApi;
+    String ProductService;
 
     public static HomeItems newInstance(int pageNo) {
 
@@ -89,7 +89,7 @@ public class HomeItems extends Fragment {
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
-        AllProductApi = DglConstants.AllProductApi +"?accesskey="+DglConstants.AccessKey;
+        ProductService = DglConstants.ProductService +"?accesskey="+DglConstants.generateAccessKey();
 
         new getDataTask().execute();
 
@@ -120,7 +120,7 @@ public class HomeItems extends Fragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        AllProductApi += "&keyword="+Keyword;
+        ProductService += "&keyword="+Keyword;
 
         IOConnect = 0;
         homeItemList.invalidateViews();
@@ -171,7 +171,7 @@ public class HomeItems extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(AllProductApi);
+            HttpUriRequest request = new HttpGet(ProductService);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
 
@@ -184,7 +184,7 @@ public class HomeItems extends Fragment {
             }
 
             JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data"); // this is the "items: [ ] part
+            JSONArray data = json.getJSONArray(""); // this is the "items: [ ] part
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);

@@ -49,7 +49,7 @@ public class ActivityCategory extends AppCompatActivity {
     public static ArrayList<String> Category_name = new ArrayList<String>();
     public static ArrayList<String> Category_image = new ArrayList<String>();
 
-    String CategoryAPI;
+    String BrandService;
     int IOConnect = 0;
 
     @Override
@@ -67,7 +67,7 @@ public class ActivityCategory extends AppCompatActivity {
 
         categoryAdapter = new CategoryAdapter(ActivityCategory.this);
 
-        CategoryAPI = DglConstants.CategoryAPI+"?accesskey="+ DglConstants.AccessKey;
+        BrandService = DglConstants.BrandService+"?accesskey="+ DglConstants.generateAccessKey();
 
         new getDataTask().execute();
 
@@ -162,7 +162,7 @@ public class ActivityCategory extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(CategoryAPI);
+            HttpUriRequest request = new HttpGet(BrandService);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));

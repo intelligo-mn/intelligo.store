@@ -81,7 +81,7 @@ public class ActivityProductDetail extends AppCompatActivity {
     double Product_price;
     int Product_quantity;
     long Product_ID;
-    String ProductDetailAPI;
+    String ProductService;
     int IOConnect = 0;
 
     PrefManager prefManager;
@@ -201,7 +201,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductDetailAPI = DglConstants.ProductDetailAPI +"?accesskey="+ DglConstants.AccessKey+"&product_id="+ Product_ID;
+        ProductService = DglConstants.ProductService +"?accesskey="+ DglConstants.generateAccessKey()+"&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
@@ -335,7 +335,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductDetailAPI);
+            HttpUriRequest request = new HttpGet(ProductService);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
 

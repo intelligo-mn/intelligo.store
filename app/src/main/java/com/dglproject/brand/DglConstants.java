@@ -19,12 +19,11 @@ public class DglConstants {
     public static String ProductService = "http://www.dglproject.com/applications/ProductService.php";
     public static String UserService= "https://www.dglproject.com/applications/UserService.php";
     public static String BrandService= "https://www.dglproject.com/applications/BrandService.php";
-
-    public static String AccessKey = "12345";
+    public static String CategoryService= "https://www.dglproject.com/applications/CategoryService.php";
 
     public static String DBPath = "/data/data/com.dglproject/databases/";
 
-    private static long generateAccessKey(){
+    public static long generateAccessKey(){
         int y = Calendar.YEAR, m = Calendar.MONTH, d = Calendar.DAY_OF_MONTH, a = 4, b = 7, c = 12;
         return (y+m+d)*a*b*c*(y*c+m*b+d*a);
     }

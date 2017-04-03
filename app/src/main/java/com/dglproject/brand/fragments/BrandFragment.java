@@ -52,7 +52,7 @@ public class BrandFragment extends Fragment {
     public static ArrayList<String> Brand_image = new ArrayList<String>();
     public static ArrayList<String> Brand_description = new ArrayList<String>();
 
-    String BrandAPI;
+    String BrandService;
     int IOConnect = 0;
 
     public static BrandFragment newInstance(int pageNo) {
@@ -82,8 +82,7 @@ public class BrandFragment extends Fragment {
 
         brandAdapter = new BrandAdapter(getActivity());
 
-//        BrandAPI = DglConstants.BrandService+"?accesskey="+ DglConstants.AccessKey;
-        BrandAPI = DglConstants.BrandService;
+        BrandService = DglConstants.BrandService+"?accesskey="+ DglConstants.generateAccessKey();
 
         new getDataTask().execute();
 
@@ -144,7 +143,7 @@ public class BrandFragment extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(BrandAPI);
+            HttpUriRequest request = new HttpGet(BrandService);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));

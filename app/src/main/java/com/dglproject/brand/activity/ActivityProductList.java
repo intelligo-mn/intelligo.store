@@ -59,8 +59,7 @@ public class ActivityProductList extends AppCompatActivity {
     public static ArrayList<Double> Product_price = new ArrayList<Double>();
     public static ArrayList<String> Product_image = new ArrayList<String>();
 
-    String ProductAPI;
-    String TaxCurrencyAPI;
+    String ProductService;
     int IOConnect = 0;
     long Category_ID;
     String Category_name;
@@ -80,14 +79,12 @@ public class ActivityProductList extends AppCompatActivity {
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
-        ProductAPI = DglConstants.ProductApi +"?accesskey="+DglConstants.AccessKey+"&category_id=";
-
-        TaxCurrencyAPI = DglConstants.TaxCurrencyAPI+"?accesskey="+DglConstants.AccessKey;
+        ProductService = DglConstants.ProductService +"?accesskey="+DglConstants.generateAccessKey()+"&category_id=";
 
         Intent iGet = getIntent();
         Category_ID = iGet.getLongExtra("category_id",0);
         Category_name = iGet.getStringExtra("category_name");
-        ProductAPI += Category_ID;
+        ProductService += Category_ID;
 
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
 
@@ -102,7 +99,7 @@ public class ActivityProductList extends AppCompatActivity {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                ProductAPI += "&keyword="+Keyword;
+                ProductService += "&keyword="+Keyword;
                 IOConnect = 0;
                 listMenu.invalidateViews();
                 clearData();
@@ -243,7 +240,7 @@ public class ActivityProductList extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductAPI);
+            HttpUriRequest request = new HttpGet(ProductService);
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
 
