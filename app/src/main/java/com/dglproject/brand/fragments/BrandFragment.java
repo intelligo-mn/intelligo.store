@@ -13,6 +13,10 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
@@ -34,6 +38,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BrandFragment extends Fragment {
 
@@ -54,6 +59,8 @@ public class BrandFragment extends Fragment {
 
     String BrandService;
     int IOConnect = 0;
+
+    private SliderLayout homeSliderLayout;
 
     public static BrandFragment newInstance(int pageNo) {
 
@@ -79,6 +86,32 @@ public class BrandFragment extends Fragment {
         bLoading = (ProgressBar) rootView.findViewById(R.id.bLoading);
         listBrand = (GridView) rootView.findViewById(R.id.listBrand);
         bAlert = (TextView) rootView.findViewById(R.id.bAlert);
+
+        homeSliderLayout = (SliderLayout) rootView.findViewById(R.id.slider);
+
+        HashMap<String,String> url_maps = new HashMap<String, String>();
+        url_maps.put("DGL Project", "https://www.dglproject.com/images/main-banner.jpg");
+
+        for(String name : url_maps.keySet()){
+            TextSliderView textSliderView = new TextSliderView(getContext());
+            // initialize a SliderLayout
+            textSliderView
+                    .description(name)
+                    .image(url_maps.get(name))
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+//                    .setOnSliderClickListener(this);
+
+            //add your extra information
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle()
+                    .putString("extra",name);
+
+            homeSliderLayout.addSlider(textSliderView);
+        }
+        homeSliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        homeSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        homeSliderLayout.setCustomAnimation(new DescriptionAnimation());
+        homeSliderLayout.setDuration(4000);
 
         brandAdapter = new BrandAdapter(getActivity());
 
