@@ -2,8 +2,6 @@
 header('Content-Type: text/plain; charset=utf-8');
  
 include_once 'config/db-connect.php';
-$db;
-    
 $db = new DbConnect();
     
 if(isset($_GET["photo_id"])){
@@ -13,6 +11,6 @@ if(isset($_GET["photo_id"])){
 	while($photo = $photo_result->fetch_assoc()) {
 	    $photos = $photo;
 	}
-	return json_encode($photos);
+	echo json_encode($photos);
 }
 ?>

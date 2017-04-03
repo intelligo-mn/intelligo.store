@@ -47,10 +47,17 @@ class ProductController{
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
         $products = array();
+        $ps = array();
         while($product = $result->fetch_assoc()) {
+            $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
         return $products;
+    }
+    public function getPhotoPath($photoId){
+        $photo_result = mysqli_query($this->db->getDb(), "SELECT * FROM product_photo
+         WHERE id = ".$photoId) or die ("Error :".mysql_error());
+        return mysqli_fetch_assoc($photo_result)["photo_file"];
     }
 
     public function getByBrandId ($brand_id) {
