@@ -25,8 +25,9 @@ public class DglConstants {
     public static String DBPath = "/data/data/com.dglproject/databases/";
 
     public static long generateAccessKey(){
-        int y = Calendar.getInstance().get(Calendar.YEAR), m = Calendar.getInstance().get(Calendar.MONTH) + 1, d = Calendar.getInstance().get(Calendar.DAY_OF_MONTH), a = 4, b = 7, c = 12;
-        return (y+m+d)*a*b*c*(y*c+m*b+d*a);
+        long y = Calendar.getInstance().get(Calendar.YEAR), m = Calendar.getInstance().get(Calendar.MONTH) + 1, d = Calendar.getInstance().get(Calendar.DAY_OF_MONTH), a = 4, b = 7, c = 12;
+        long accesskey = (y+m+d)*a*b*c*(y*c+m*b+d*a);
+        return accesskey;
     }
 
     public static boolean isNetworkAvailable(Activity activity) {
