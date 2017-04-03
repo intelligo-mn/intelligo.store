@@ -17,7 +17,7 @@ import java.util.Date;
 public class DglConstants {
 
     public static String AdminPageURL = "http://www.dglproject.com/applications/";
-    public static String ProductService = "http://www.dglproject.com/applications/ProductService.php";
+    public static String ProductService = "https://www.dglproject.com/applications/ProductService.php";
     public static String UserService= "https://www.dglproject.com/applications/UserService.php";
     public static String BrandService= "https://www.dglproject.com/applications/BrandService.php";
     public static String CategoryService= "https://www.dglproject.com/applications/CategoryService.php";
@@ -26,8 +26,7 @@ public class DglConstants {
 
     public static long generateAccessKey(){
         long y = Calendar.getInstance().get(Calendar.YEAR), m = Calendar.getInstance().get(Calendar.MONTH) + 1, d = Calendar.getInstance().get(Calendar.DAY_OF_MONTH), a = 4, b = 7, c = 12;
-        long accesskey = (y+m+d)*a*b*c*(y*c+m*b+d*a);
-        return accesskey;
+        return (y+m+d)*a*b*c*(y*c+m*b+d*a);
     }
 
     public static boolean isNetworkAvailable(Activity activity) {

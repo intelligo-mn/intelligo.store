@@ -1,10 +1,13 @@
 package com.dglproject.brand.fragments;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +21,16 @@ import com.dglproject.brand.activity.MainActivity;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductDetail;
 import com.dglproject.brand.adapters.AllProductAdapter;
+import com.dglproject.brand.json.JSONParser;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +44,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Tortuvshin Byambaa on 2/24/2017.
@@ -65,6 +76,9 @@ public class HomeItems extends Fragment {
     public ArrayList<String> Product_image = new ArrayList<String>();
 
     String ProductService;
+    JSONObject jsonObject;
+    JSONArray jsonArrayProducts;
+    JSONParser jsonParser = new JSONParser();
 
     public static HomeItems newInstance(int pageNo) {
 
@@ -89,7 +103,7 @@ public class HomeItems extends Fragment {
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
-        ProductService = DglConstants.ProductService +"?accesskey="+DglConstants.generateAccessKey();
+        ProductService = DglConstants.ProductService;
 
         new getDataTask().execute();
 
@@ -166,43 +180,34 @@ public class HomeItems extends Fragment {
     public void parseJSONData(){
 
         clearData();
-
         try {
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductService);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
+        HttpClient client = new DefaultHttpClient();
+        HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+        HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+        HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
+        HttpResponse response = client.execute(request);
+        InputStream atomInputStream = response.getEntity().getContent();
+        BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+        String line;
+        String str = "";
+        while ((line = in.readLine()) != null){
+            str += line;
+        }
 
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
+        jsonObject = new JSONObject("{product=" + str+"}");
+        jsonArrayProducts = jsonObject.getJSONArray("product");
+
+            for (int i=0; i<jsonArrayProducts.length(); i++){
+                Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
+                Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
+                Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
             }
-
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray(""); // this is the "items: [ ] part
-
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
-
-                JSONObject product = object.getJSONObject("product_all");
-
-                Product_ID.add(Long.parseLong(product.getString("product_id")));
-                Product_name.add(product.getString("product_name"));
-                Product_price.add(product.getDouble("price"));
-                Product_image.add(product.getString("product_image"));
-
-            }
-
-        } catch (MalformedURLException e) {
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
