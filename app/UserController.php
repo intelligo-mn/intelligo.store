@@ -12,27 +12,7 @@ class UserController{
         $this->db = new DbConnect();
     }
     
-    public function isLoginExist($username, $password){
-        
-        $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
-        
-        $result = mysqli_query($this->db->getDb(), $query);
-        
-        if(mysqli_num_rows($result) > 0){
-            
-            mysqli_close($this->db->getDb());
-
-            return $result->fetch_row()[0];
-            
-        }
-        
-        mysqli_close($this->db->getDb());
-        
-        return null;
-        
-    }
-    
-    public function isEmailUsernameExist($username, $email){
+    public function isExist($username, $email){
         
         $query = "select * from ".$this->db_table." where username = '$username' AND email = '$email'";
         
@@ -50,16 +30,10 @@ class UserController{
         return false;
         
     }
-    
-    public function isValidEmail($email){
-        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-    }
-    
-    
-    public function createUser($username, $password, $email){
+    public function create($username, $password, $email){
         
         
-        $isExisting = $this->isEmailUsernameExist($username, $email);
+        $isExisting = $this->isExist($username, $email);
         
         
         if($isExisting){
@@ -69,11 +43,9 @@ class UserController{
         }
         
         else{
-            
-            $isValid = $this->isValidEmail($email);
-                
+            $photoPath = $this->savePhoto() ? mysqli_insert_id() : NULL;
             $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, 
-              `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_user_id`, `updated_user_id`, 
+              `status`, `email_verification_code`, `".date("Y-m")."`, `$photoPath`, `ip_address`, `created_user_id`, `updated_user_id`, 
               `department_id`, `rank_id`, `position_id`, `aimag_id`, `created_at`, `updated_at`, `type`, `person_reg_number`, 
               `person_profession`, `person_biography`, `person_start_year`, `company_name`, `company_register`, `company_description`, 
               `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, 
@@ -104,22 +76,32 @@ class UserController{
         
     }
     
-    public function loginUsers($username, $password){
+    public function signin($username, $password){
+        $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+        $result = mysqli_query($this->db->getDb(), $query);
+        return mysqli_num_rows($result) > 0 ? $result->fetch_row()[0] : ["result"=>"ERROR!"];
+    }
+    //хэрэглэгчийг id - аар нь авах
+    public function get($id){
+        $query = "select * from ".$this->db_table." where id=$id";
+        echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
+    }
+    //хэрэглэгчийг facebook id - аар нь авах
+    public function get($fb_id){
+        $query = "select * from ".$this->db_table." where fb_id=$fb_id";
+        echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
+    }
+    //хадгалсан зурагны зам нэрийг нь буцаах
+    private function savePhoto(){
+        $target_dir = "../uploads/user_avatars/".date("Y-m");
+    $fileUploaded = false;
+    
+    if(!file_exists($target_dir))
+        mkdir($target_dir, 0777, true);
         
-        $json = array();
-        
-        $canUserLogin = $this->isLoginExist($username, $password);
-        
-        if($canUserLogin != null){
-            
-            $json['success'] = $canUserLogin;
-            $json['message'] = "Тавтай морилно уу";
-            
-        }else{
-            $json['success'] = 0;
-            $json['message'] = "хэрэглэгчийн нэр нууц үг буруу байна";
-        }
-        return $json;
+        $target_dir = $target_dir . "/" . basename($_FILES["file"]["name"]);
+    
+        return move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir) ?  $target_dir : NULL;  
     }
 }
 ?>
