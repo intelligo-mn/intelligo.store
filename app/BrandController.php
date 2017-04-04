@@ -40,7 +40,7 @@ class BrandController{
         
     }
 
-    public function getBrands () {
+    public function getAll () {
 
         $sql_query = "SELECT * 
              FROM ".$this->db_table;

@@ -3,8 +3,7 @@
  
     require_once 'app/BrandController.php';
     require_once 'config/security.php';
-    $access_key = (new DGLSecure())->generateAccessKey();
-    if(!isset($_GET['accesskey']) || $_GET['accesskey'] != $access_key) 
+    if(!isset($_GET['accesskey']) && (new DGLSecure())->generateAccessKey($_GET["accesskey"])) 
         die('accesskey required.');
     if(!isset($_GET["state"]))
         die('request state required.');
