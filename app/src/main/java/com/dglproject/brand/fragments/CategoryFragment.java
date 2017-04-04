@@ -99,7 +99,6 @@ public class CategoryFragment extends Fragment {
         return  rootView;
     }
 
-
     void clearData(){
         Category_ID.clear();
         Category_name.clear();

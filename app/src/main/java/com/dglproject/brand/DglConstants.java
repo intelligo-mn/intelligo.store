@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class DglConstants {
 
-    public static String AdminPageURL = "http://www.dglproject.com/applications/";
+    public static String AdminPageURL = "https://www.dglproject.com";
     public static String ProductService = "https://www.dglproject.com/applications/ProductService.php";
     public static String UserService= "https://www.dglproject.com/applications/UserService.php";
     public static String BrandService= "https://www.dglproject.com/applications/BrandService.php";

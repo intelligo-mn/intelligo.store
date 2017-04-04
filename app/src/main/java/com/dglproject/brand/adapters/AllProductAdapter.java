@@ -2,6 +2,7 @@ package com.dglproject.brand.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,6 @@ public class AllProductAdapter extends BaseAdapter {
     private Activity activity;
     public ImageLoader imageLoader;
 
-    HomeItems homeItems = new HomeItems();
-
     public AllProductAdapter(Activity act) {
         this.activity = act;
         imageLoader = new ImageLoader(act);
@@ -31,7 +30,7 @@ public class AllProductAdapter extends BaseAdapter {
 
     public int getCount() {
 
-        return homeItems.Product_ID.size();
+        return HomeItems.Product_ID.size();
     }
 
     public Object getItem(int position) {
@@ -63,11 +62,11 @@ public class AllProductAdapter extends BaseAdapter {
         holder.txtSubText = (TextView) convertView.findViewById(R.id.txtSubText);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
-        holder.txtText.setText(homeItems.Product_name.get(position));
-        holder.txtSubText.setText(homeItems.Product_price.get(position)+" ₮");
+        holder.txtText.setText(HomeItems.Product_name.get(position));
+        holder.txtSubText.setText(HomeItems.Product_price.get(position)+" ₮");
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ homeItems.Product_image.get(position), holder.imgThumb);
-
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position), holder.imgThumb);
+        Log.d("",DglConstants.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position));
         return convertView;
     }
 

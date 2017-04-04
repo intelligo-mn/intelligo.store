@@ -70,10 +70,10 @@ public class HomeItems extends Fragment {
 
     MainActivity mainActivity;
 
-    public ArrayList<Long> Product_ID = new ArrayList<Long>();
-    public ArrayList<String> Product_name = new ArrayList<String>();
-    public ArrayList<Double> Product_price = new ArrayList<Double>();
-    public ArrayList<String> Product_image = new ArrayList<String>();
+    public static ArrayList<Long> Product_ID = new ArrayList<Long>();
+    public static ArrayList<String> Product_name = new ArrayList<String>();
+    public static ArrayList<Double> Product_price = new ArrayList<Double>();
+    public static ArrayList<String> Product_image = new ArrayList<String>();
 
     String ProductService;
     JSONObject jsonObject;
@@ -105,11 +105,11 @@ public class HomeItems extends Fragment {
 
         ProductService = DglConstants.ProductService;
 
-        new getDataTask().execute();
-
         mainActivity = new MainActivity();
 
         allProductAdapter = new AllProductAdapter(getActivity());
+
+        new getDataTask().execute();
 
         homeItemList.setNumColumns(2);
 
@@ -199,9 +199,11 @@ public class HomeItems extends Fragment {
             jsonArrayProducts = jsonObject.getJSONArray("product");
 
             for (int i=0; i<jsonArrayProducts.length(); i++){
+
                 Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
                 Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
                 Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
+                Product_image.add(jsonArrayProducts.getJSONObject(i).getString("folder"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
