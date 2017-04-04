@@ -176,7 +176,7 @@ public class BrandFragment extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(BrandService);
+            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
@@ -187,18 +187,15 @@ public class BrandFragment extends Fragment {
                 str += line;
             }
 
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data");
+            JSONObject json = new JSONObject("{brand="+str+"}");
+            JSONArray data = json.getJSONArray("brand");
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
 
-                JSONObject brand = object.getJSONObject("product_brand");
-
-                Brand_ID.add(Long.parseLong(brand.getString("id")));
-                Brand_name.add(brand.getString("name"));
-                Brand_image.add("uploads/"+brand.getString("folder")+"/"+brand.getString("icon_image"));
-                Brand_description.add(brand.getString("description"));
+                Brand_ID.add(data.getJSONObject(i).getLong("id"));
+                Brand_name.add(data.getJSONObject(i).getString("name"));
+                Brand_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
+                Brand_description.add(data.getJSONObject(i).getString("description"));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

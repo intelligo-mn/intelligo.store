@@ -18,7 +18,8 @@
         custom:auto_cycle="true"
         custom:indicator_visibility="visible"
         custom:pager_animation_span="1100"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:paddingTop="58dp"/>
 
     <com.daimajia.slider.library.Indicators.PagerIndicator
         android:id="@+id/custom_indicator"
@@ -54,7 +55,7 @@
         android:id="@+id/listBrand"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="58dp"
+        android:paddingTop="200dp"
         android:paddingBottom="58dp"
         android:divider="@null"
         android:numColumns="2"
