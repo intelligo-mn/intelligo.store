@@ -22,10 +22,6 @@
     }
 
     $brandObject = new BrandController();
-
-    $brands = $brandObject->getBrands();
-    
-    echo json_encode($brands);
     
     if($state == "c" && !empty($name) && !empty($description) && !empty($user_id))
         echo json_encode($brandObject->create($name, $description, $user_id));

@@ -88,7 +88,7 @@ class UserController{
     }
     //хэрэглэгчийг facebook id - аар нь авах
     public function get($fb_id){
-        $query = "select * from ".$this->db_table." where fb_id=$fb_id";
+        $query = "select * from ".$this->db_table." -where fb_id=$fb_id";
         echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
     }
     //хадгалсан зурагны зам нэрийг нь буцаах
