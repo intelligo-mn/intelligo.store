@@ -1,5 +1,6 @@
 <?php
-    
+
+header('Content-Type: text/plain; charset=utf-8');    
 include_once 'config/db-connect.php';
 
 class UserController{
@@ -79,7 +80,7 @@ class UserController{
     public function signin($username, $password){
         $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
         $result = mysqli_query($this->db->getDb(), $query);
-        return mysqli_num_rows($result) > 0 ? $result->fetch_row()[0] : ["result"=>"ERROR!"];
+        return mysqli_num_rows($result) > 0 ? $result->fetch_row()[0] : ["id"=>""];
     }
     //хэрэглэгчийг id - аар нь авах
     public function get($id){

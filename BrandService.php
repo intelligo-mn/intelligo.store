@@ -27,7 +27,7 @@
     else if($state == "u" && !empty($name) && !empty($description) && !empty($user_id))
         echo json_encode($brandObject->update($name, $description, $user_id));
     else if ($state == "r"){
-        echo json_encode($brandObject->getAll());
+        echo json_encode($brandObject->getAll(isset($_GET["created_user_id"]) ? $_GET["created_user_id"] : null));
     }else 
      echo json_encode(["result" => "invalid request!!!"]);
 

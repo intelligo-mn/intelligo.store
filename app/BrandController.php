@@ -40,10 +40,10 @@ class BrandController{
         
     }
 
-    public function getAll () {
+    public function getAll ($created_user_id) {
 
         $sql_query = "SELECT * 
-             FROM ".$this->db_table;
+             FROM ".$this->db_table.($created_user_id == null ? "" : ." where created_user_id=$created_user_id");
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 

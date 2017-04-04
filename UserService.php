@@ -33,7 +33,7 @@
     }else if($_GET["state"] == "update"){
 
     }else{
-
+        echo "invalid request!!!";
     }
     // Бүртгүүлэх
     if(isset($_GET["username"]) && isset($_GET["password"]) && isset($_GET["email"]))
