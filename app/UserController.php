@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 header('Content-Type: text/plain; charset=utf-8');    
 include_once 'config/db-connect.php';
 
@@ -80,15 +82,20 @@ class UserController{
     public function signin($username, $password){
         $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
         $result = mysqli_query($this->db->getDb(), $query);
-        return mysqli_num_rows($result) > 0 ? $result->fetch_row()[0] : ["id"=>""];
+
+        $users = array();
+        while($user = $result->fetch_assoc()) {
+            $users[] = $user;
+        }
+        return $users;
     }
     //хэрэглэгчийг id - аар нь авах
-    public function get($id){
+    public function getById($id){
         $query = "select * from ".$this->db_table." where id=$id";
         echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
     }
     //хэрэглэгчийг facebook id - аар нь авах
-    public function get($fb_id){
+    public function getByFbId($fb_id){
         $query = "select * from ".$this->db_table." -where fb_id=$fb_id";
         echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
     }
