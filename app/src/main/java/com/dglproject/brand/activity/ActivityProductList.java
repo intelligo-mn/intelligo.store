@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,9 +50,6 @@ public class ActivityProductList extends AppCompatActivity {
     ImageButton btnSearch;
     TextView txtAlert;
 
-    static double Tax;
-    public static String Currency;
-
     ProductListAdapter productListAdapter;
 
     public static ArrayList<Long> Product_ID = new ArrayList<Long>();
@@ -79,12 +77,15 @@ public class ActivityProductList extends AppCompatActivity {
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
-        ProductService = DglConstants.ProductService +"?accesskey="+DglConstants.generateAccessKey()+"&category_id=";
-
         Intent iGet = getIntent();
-        Category_ID = iGet.getLongExtra("category_id",0);
-        Category_name = iGet.getStringExtra("category_name");
-        ProductService += Category_ID;
+        Category_ID = iGet.getLongExtra("brand_id",0);
+        Category_name = iGet.getStringExtra("brand_name");
+
+        Log.d("","Brand ID: "+Category_ID);
+
+        ProductService = DglConstants.ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r&brand_id="+Category_ID;
+
+        Log.d("","URL: "+ProductService);
 
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
 
@@ -252,18 +253,15 @@ public class ActivityProductList extends AppCompatActivity {
                 str += line;
             }
 
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data"); // this is the "items: [ ] part
+            JSONObject json = new JSONObject("{pbi=" + str+"}");
+            JSONArray data = json.getJSONArray("pbi");
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
 
-                JSONObject product = object.getJSONObject("product");
-
-                Product_ID.add(Long.parseLong(product.getString("product_id")));
-                Product_name.add(product.getString("product_name"));
-                Product_price.add(Double.valueOf(formatData.format(product.getDouble("price"))));
-                Product_image.add(product.getString("product_image"));
+                Product_ID.add(data.getJSONObject(i).getLong("id"));
+                Product_name.add(data.getJSONObject(i).getString("name"));
+                Product_price.add(data.getJSONObject(i).getDouble("price"));
+                Product_image.add(data.getJSONObject(i).getString("folder"));
 
             }
 

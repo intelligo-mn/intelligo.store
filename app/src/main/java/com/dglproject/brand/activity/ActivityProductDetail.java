@@ -15,6 +15,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -293,8 +294,8 @@ public class ActivityProductDetail extends AppCompatActivity {
             prgLoading.setVisibility(View.GONE);
             if ((Product_name != null) && IOConnect == 0) {
                 coordinatorLayout.setVisibility(View.VISIBLE);
-
-                Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                Log.d("","Details image url: "+DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image);
+                Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
                     @Override
                     public void onSuccess() {
                         Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
