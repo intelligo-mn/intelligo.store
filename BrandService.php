@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     header('Content-Type: text/plain; charset=utf-8');
  
     require_once 'app/BrandController.php';
@@ -27,7 +31,7 @@
     else if($state == "u" && !empty($name) && !empty($description) && !empty($user_id))
         echo json_encode($brandObject->update($name, $description, $user_id));
     else if ($state == "r"){
-        echo json_encode($brandObject->getAll(isset($_GET["created_user_id"]) ? $_GET["created_user_id"] : null));
+        echo json_encode($brandObject->getAll());
     }else 
      echo json_encode(["result" => "invalid request!!!"]);
 

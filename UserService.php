@@ -24,14 +24,14 @@ error_reporting(E_ALL);
         }
         
     }else if($_GET["state"] == "signup"){
-        if (isset($_GET["username"]) && isset($_GET["password"]) && isset($_GET["email"]))
-            echo json_encode($userObject->create($_GET["username"], md5($_GET["password"]), $email));
-        else if (isset($_GET["fb_id"]) && isset($_GET["username"])){
-            $email = isset($_GET["email"]) ? $_GET["email"] : null;
-            $phone = isset($_GET["phone"]) ? $_GET["phone"] : null;
-            $json_array = $userObject->signin($_GET["fb_id"], $_GET["username"], $email, $phone);
-            echo json_encode($json_array);
-        }
+        $username = isset($_GET["username"]) ? $_GET["username"] : null;
+        $password = isset($_GET["password"]) ? $_GET["password"] : null;
+        $email = isset($_GET["email"]) ? $_GET["email"] : null;
+        $mobile = isset($_GET["mobile"]) ? $_GET["mobile"] : null;
+        $fb_id = isset($_GET["fb_id"]) ? $_GET["fb_id"] : null;
+
+        $json_array = $userObject->create($username, $password, $email, $mobile, $fb_id);
+        echo json_encode($json_array);
     }else if($_GET["state"] == "update"){
 
     }else{

@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 header('Content-Type: text/plain; charset=utf-8');
  
 include_once 'config/db-connect.php';
@@ -40,10 +42,9 @@ class BrandController{
         
     }
 
-    public function getAll ($created_user_id) {
-
+    public function getAll () {
         $sql_query = "SELECT * 
-             FROM ".$this->db_table.($created_user_id == null ? "" : ." where created_user_id=$created_user_id");
+             FROM ".$this->db_table;
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
