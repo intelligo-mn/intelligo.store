@@ -54,8 +54,8 @@ class UserController{
               `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, 
               `registered_from_language`, `is_creator`, `is_investor`, `is_idea_owner`, `is_idea_buyer`, `slug`) 
 
-              values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, '".date("Y-m")."', '$avatar_image', '".$_SERVER['REMOTE_ADDR']."', NULL, NULL, NULL, NULL, NULL, NULL, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
-
+              values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, '".date("Y-m")."', ".($avatar_image == "" ? NULL : "'".$avatar_image."'").", '".$_SERVER['REMOTE_ADDR']."', NULL, NULL, NULL, NULL, NULL, NULL, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
+           echo "query: $query";
             $inserted = mysqli_query($this->db->getDb(), $query);
             
             if($inserted == 1){
