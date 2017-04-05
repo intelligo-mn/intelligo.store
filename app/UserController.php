@@ -33,7 +33,7 @@ class UserController{
         return false;
         
     }
-    public function create($username, $password, $email, $mobile, $fb_id){
+    public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
         
         
         $isExisting = $this->isExist($username, $email, $fb_id);
@@ -45,7 +45,7 @@ class UserController{
             $json['success'] = 0;
             $json['message'] = "Алдаа хэрэглэгчийн нэр мэйл хаяг бүртгэлтэй байна";
         }else{
-            $photoPath = $this->savePhoto() ? mysqli_insert_id() : NULL;
+
             $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, 
               `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_user_id`, `updated_user_id`, 
               `department_id`, `rank_id`, `position_id`, `aimag_id`, `created_at`, `updated_at`, `type`, `person_reg_number`, 
@@ -54,7 +54,7 @@ class UserController{
               `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, 
               `registered_from_language`, `is_creator`, `is_investor`, `is_idea_owner`, `is_idea_buyer`, `slug`) 
 
-              values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, '".date("Y-m")."', '$photoPath', '".$_SERVER['REMOTE_ADDR']."', NULL, NULL, NULL, NULL, NULL, NULL, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
+              values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, '".date("Y-m")."', '$avatar_image', '".$_SERVER['REMOTE_ADDR']."', NULL, NULL, NULL, NULL, NULL, NULL, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$username')";
 
             $inserted = mysqli_query($this->db->getDb(), $query);
             
@@ -68,7 +68,6 @@ class UserController{
             mysqli_close($this->db->getDb());
             
         }
-        
         return $json;
         
     }
@@ -93,17 +92,7 @@ class UserController{
         $query = "select * from ".$this->db_table." -where fb_id=$fb_id";
         echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
     }
-    //хадгалсан зурагны зам нэрийг нь буцаах
-    private function savePhoto(){
-        $target_dir = "../../uploads/user_avatars/".date("Y-m");
-    $fileUploaded = false;
     
-    if(!file_exists($target_dir))
-        mkdir($target_dir, 0777, true);
-        
-        $target_dir = $target_dir . "/" . basename($_FILES["file"]["name"]);
-    
-        return move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir) ?  $target_dir : NULL;  
-    }
 }
+
 ?>
