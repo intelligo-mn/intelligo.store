@@ -42,6 +42,6 @@ date_default_timezone_set("UTC");
             
             $target_dir = $target_dir . basename($_FILES["file"]["name"]);
             $result = move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir) ?  $target_dir : "";  
-            return $result;
+            return basename($_FILES["file"]["name"]);
     }
 ?>
