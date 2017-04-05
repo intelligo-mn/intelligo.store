@@ -69,6 +69,7 @@ class ProductController{
 
         $products = array();
         while($product = $result->fetch_assoc()) {
+            $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
 
@@ -84,6 +85,7 @@ class ProductController{
 
         $products = array();
         while($product = $result->fetch_assoc()) {
+            $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
 
