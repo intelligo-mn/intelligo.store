@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.json.JSONParser;
 import com.dglproject.brand.R;
 import com.dglproject.brand.utils.PrefManager;
@@ -31,9 +33,9 @@ public class ActivitySignup extends AppCompatActivity {
     TextView loginLink;
     PrefManager prefManager;
 
-    String URL= "https://dglproject.com/applications/api/UserService.php";
-
     JSONParser jsonParser=new JSONParser();
+
+    String URL = DglConstants.UserService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=signup";
 
     int i=0;
 
@@ -147,6 +149,7 @@ public class ActivitySignup extends AppCompatActivity {
 
         CreateUser createUser = new CreateUser();
         createUser.execute(name,password,email);
+
         return valid;
     }
 
@@ -191,6 +194,8 @@ public class ActivitySignup extends AppCompatActivity {
             params.add(new BasicNameValuePair("email",email));
 
             JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
+
+            Log.d("","Json: "+json);
 
             return json;
 

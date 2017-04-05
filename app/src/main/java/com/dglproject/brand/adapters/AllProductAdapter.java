@@ -66,7 +66,6 @@ public class AllProductAdapter extends BaseAdapter {
         holder.txtSubText.setText(HomeItems.Product_price.get(position)+" ₮");
 
         imageLoader.DisplayImage(DglConstants.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position), holder.imgThumb);
-        Log.d("",DglConstants.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position));
         return convertView;
     }
 

@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartProductsAdapter;
-import com.dglproject.brand.database.DBHelper;
 import com.dglproject.brand.models.CartProducts;
 import com.dglproject.brand.utils.PrefManager;
 import com.squareup.picasso.Callback;
@@ -68,8 +67,6 @@ public class ActivityProductDetail extends AppCompatActivity {
     Button addToListButton;
 
     CoordinatorLayout coordinatorLayout;
-
-    static DBHelper dbhelper;
 
     String Product_image, Product_name, Product_serve, Product_description;
 
@@ -195,8 +192,6 @@ public class ActivityProductDetail extends AppCompatActivity {
                 }
             }
         });
-
-        dbhelper = new DBHelper(this);
 
         Intent iGet = getIntent();
 
@@ -374,13 +369,11 @@ public class ActivityProductDetail extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        dbhelper.close();
         finish();
     }
 
     @Override
     protected void onDestroy() {
-        //imageLoader.clearCache();
         super.onDestroy();
     }
 

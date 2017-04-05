@@ -50,6 +50,9 @@ public class ActivityProductList extends AppCompatActivity {
     ImageButton btnSearch;
     TextView txtAlert;
 
+    JSONObject jsonObject;
+    JSONArray jsonArrayProducts;
+
     ProductListAdapter productListAdapter;
 
     public static ArrayList<Long> Product_ID = new ArrayList<Long>();
@@ -89,8 +92,11 @@ public class ActivityProductList extends AppCompatActivity {
 
         productListAdapter = new ProductListAdapter(ActivityProductList.this);
 
-        getSupportActionBar().setTitle(Category_name);
         new getDataTask().execute();
+
+
+
+        getSupportActionBar().setTitle(Category_name);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
 
@@ -253,15 +259,16 @@ public class ActivityProductList extends AppCompatActivity {
                 str += line;
             }
 
-            JSONObject json = new JSONObject("{pbi=" + str+"}");
-            JSONArray data = json.getJSONArray("pbi");
+            Log.d("","JSON: "+str);
+            jsonObject = new JSONObject("{product=" + str+"}");
+            jsonArrayProducts = jsonObject.getJSONArray("product");
 
-            for (int i = 0; i < data.length(); i++) {
+            for (int i = 0; i < jsonArrayProducts.length(); i++) {
 
-                Product_ID.add(data.getJSONObject(i).getLong("id"));
-                Product_name.add(data.getJSONObject(i).getString("name"));
-                Product_price.add(data.getJSONObject(i).getDouble("price"));
-                Product_image.add(data.getJSONObject(i).getString("folder"));
+                Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
+                Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
+                Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
+                Product_image.add(jsonArrayProducts.getJSONObject(i).getString("folder"));
 
             }
 

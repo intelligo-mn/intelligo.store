@@ -58,7 +58,6 @@ public class BrandAdapter extends BaseAdapter {
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtText.setText(BrandFragment.Brand_name.get(position));
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ BrandFragment.Brand_name.get(position), holder.imgThumb);
         imageLoader.DisplayImage(DglConstants.AdminPageURL+ "/uploads/product_brand_icons/"+BrandFragment.Brand_image.get(position), holder.imgThumb);
 
         return convertView;

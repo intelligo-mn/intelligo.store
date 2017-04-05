@@ -126,7 +126,6 @@ public class HomeItems extends Fragment {
         return rootView;
     }
 
-
     public void searchData(String a){
 
         try {
@@ -171,7 +170,7 @@ public class HomeItems extends Fragment {
             if(Product_ID.size() > 0){
                 homeItemList.setVisibility(0);
                 homeItemList.setAdapter(allProductAdapter);
-            }else{
+            } else {
                 txtAlert.setVisibility(0);
             }
         }
