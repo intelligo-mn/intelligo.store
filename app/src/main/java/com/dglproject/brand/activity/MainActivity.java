@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
-            R.drawable.dgl_icon_shop,
             R.drawable.dgl_icon_list_1,
+            R.drawable.dgl_icon_shop,
             R.drawable.dgl_icon_apps};
 
     PrefManager prefManager;
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
 
         public final int PAGE_COUNT = 3;
 
-        private final String[] mTabsTitle = {"Бүтээгдэхүүн", "Брэндүүд", "Ангилалууд"};
+        private final String[] mTabsTitle = {"Брэндүүд","Бүтээгдэхүүн",  "Ангилалууд"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -180,10 +180,10 @@ public class MainActivity extends AppCompatActivity
 
                 case 0:
                     getSupportActionBar().setTitle("");
-                    return HomeItems.newInstance(1);
+                    return BrandFragment.newInstance(1);
                 case 1:
                     getSupportActionBar().setTitle("");
-                    return BrandFragment.newInstance(2);
+                    return HomeItems.newInstance(2);
                 case 2:
                     getSupportActionBar().setTitle("");
                     return CategoryFragment.newInstance(3);

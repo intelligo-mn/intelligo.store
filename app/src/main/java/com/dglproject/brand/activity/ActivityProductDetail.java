@@ -201,7 +201,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductService = DglConstants.ProductService +"?accesskey="+ DglConstants.generateAccessKey()+"&product_id="+ Product_ID;
+        ProductService = DglConstants.ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
@@ -347,20 +347,16 @@ public class ActivityProductDetail extends AppCompatActivity {
                 str += line;
             }
 
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data"); // this is the "items: [ ] part
+            JSONObject json = new JSONObject("{dp="+str+"}");
+            JSONArray data = json.getJSONArray("dp"); // this is the "items: [ ] part
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
 
-                JSONObject menu = object.getJSONObject("product_detail");
-
-                Product_image = menu.getString("product_image");
-                Product_name = menu.getString("product_name");
-                Product_price = menu.getDouble("price");
-                Product_serve = menu.getString("serve_for");
-                Product_description = menu.getString("description");
-                Product_quantity = menu.getInt("quantity");
+                Product_image = data.getJSONObject(i).getString("folder");
+                Product_name = data.getJSONObject(i).getString("name");
+                Product_price = data.getJSONObject(i).getDouble("price");
+                Product_description = data.getJSONObject(i).getString("description");
+                Product_quantity = data.getJSONObject(i).getInt("currency");
 
             }
 
