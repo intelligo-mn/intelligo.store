@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     private int[] mTabsIcons = {
             R.drawable.dgl_icon_list_1,
             R.drawable.dgl_icon_shop,
+            R.drawable.dgl_icon_apps,
+            R.drawable.dgl_icon_apps,
             R.drawable.dgl_icon_apps};
 
     PrefManager prefManager;
@@ -157,9 +159,9 @@ public class MainActivity extends AppCompatActivity
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
-        public final int PAGE_COUNT = 3;
+        public final int PAGE_COUNT = 5;
 
-        private final String[] mTabsTitle = {"Брэндүүд","Бүтээгдэхүүн",  "Ангилалууд"};
+        private final String[] mTabsTitle = {"Брэнд","Бүтээгдэхүүн",  "Ангилал", "Сагс", "Цэс"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);

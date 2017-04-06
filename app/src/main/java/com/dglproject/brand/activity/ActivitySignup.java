@@ -33,9 +33,9 @@ public class ActivitySignup extends AppCompatActivity {
     TextView loginLink;
     PrefManager prefManager;
 
-    JSONParser jsonParser=new JSONParser();
+    JSONParser jsonParser = new JSONParser();
 
-    String URL = DglConstants.UserService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=signup";
+    String URL = DglConstants.UserService;
 
     int i=0;
 
@@ -69,10 +69,10 @@ public class ActivitySignup extends AppCompatActivity {
         });
     }
     public void signup() {
-        if (!validate()) {
-            onSignupFailed();
-            return;
-        }
+//        if (!validate()) {
+//            onSignupFailed();
+//            return;
+//        }
         signUpButton.setEnabled(false);
         final ProgressDialog progressDialog = new ProgressDialog(ActivitySignup.this,
                 R.style.AppTheme_Dark_Dialog);
@@ -98,12 +98,14 @@ public class ActivitySignup extends AppCompatActivity {
                         finish();
                     }
                 }, 3000);
+
         Toast.makeText(getBaseContext(), "Бүртгэл амжилттай боллоо", Toast.LENGTH_LONG).show();
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-
+        CreateUser createUser = new CreateUser();
+        createUser.execute(String.valueOf(DglConstants.generateAccessKey()),"signup",name,password,email);
     }
 
     public void onSignupFailed() {
@@ -147,9 +149,6 @@ public class ActivitySignup extends AppCompatActivity {
             confirmPasswordEditText.setError(null);
         }
 
-        CreateUser createUser = new CreateUser();
-        createUser.execute(name,password,email);
-
         return valid;
     }
 
@@ -184,21 +183,25 @@ public class ActivitySignup extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... args) {
 
-            String email = args[2];
-            String password = args[1];
-            String name= args[0];
+
+            String email = args[4];
+            String password = args[3];
+            String name= args[2];
+            String state = args[1];
+            String accesskey = args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("accesskey", accesskey));
+            params.add(new BasicNameValuePair("state", state));
             params.add(new BasicNameValuePair("username", name));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("email",email));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 
             Log.d("","Json: "+json);
 
             return json;
-
         }
 
         protected void onPostExecute(JSONObject result) {
@@ -207,7 +210,7 @@ public class ActivitySignup extends AppCompatActivity {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Алдаа", Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
