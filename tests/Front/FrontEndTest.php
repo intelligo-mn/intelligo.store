@@ -13,7 +13,7 @@ class FrontEndTest extends AbstractTestCase
     public function test_if_can_render_the_homepage()
     {
         $this->visit('/')
-            ->see('Antvel eCommerce')
+            ->see('Bella eCommerce')
             ->assertResponseOk();
     }
 
