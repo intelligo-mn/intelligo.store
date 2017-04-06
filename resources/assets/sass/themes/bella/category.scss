@@ -1,0 +1,44 @@
+.li {
+    padding: 10px 0 0;
+}
+
+#menu-left-category ul{
+	li {
+		width: 100%;
+	 	
+	 	a {
+	 		padding: 0 0 10px 0 !important;
+			text-transform: uppercase;
+	 	}
+		
+		small {
+			float: right;
+		}
+		span {
+			float: right;
+		}
+
+	}
+	small{
+			font-size:17px;
+	}
+}
+
+.categories-panel {
+    max-width: 350px;
+    padding-left: 0 !important;
+}
+
+.brands, .category, .price-range {
+	width: 100% !important;
+
+	h3, h4 {
+		margin-top: 20px;
+    	margin-bottom: 10px;
+    	font-size: 20px;
+    	font-weight: 700;
+	}
+}
+
+
+

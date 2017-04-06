@@ -1,0 +1,49 @@
+* {
+	font-family: $font-family-sans-serif;
+}
+html,body{
+	height: 100%;
+	font-weight: 300;
+	font-family: $font-family-sans-serif;
+	background-color: white;
+}
+
+a {
+	color: #666666;
+}
+
+
+.header-top-right-area {
+	.dropdown-menu li {
+		width: 100%;
+		line-height: 20px !important;
+	}
+}
+
+.row {
+     margin-right: 0; 
+     margin-left: 0; 
+}
+
+.breadcrumb {
+	background-color: white;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+ 
+    background-color: $dark-color;
+    border-color: $dark-color;
+}
+
+.glyphicon {
+    font-family: 'Glyphicons Halflings' !important;
+    top: 0;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+footer {
+	width: 100%;
+	float: left;
+}
