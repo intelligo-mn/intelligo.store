@@ -1,0 +1,139 @@
+ .sidebar-navbar-collapse {
+ 	.list-group {
+ 	.list-group-item {
+        width: 100%;
+	 	position: relative;
+        display: block;
+ 	  }
+ 	}
+ }
+
+ .list-group-item.active {
+    background-color: #e7e7e7;
+    border-color: #f8f8f8;
+    &:hover {
+        border-color: #f8f8f8;
+        background:#b3b3b3;
+    }
+ }
+
+.product-add {
+    background-color: $bella-red !important;
+    border-color: $bella-red !important;
+
+    .btn-info:hover {
+        background-color: $bella-red;
+        border-color: $bella-red;
+    }
+}
+
+.btn-success{
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-success:hover {
+    background-color: $bella-red !important;
+    border-color: $bella-red !important;
+}
+
+.btn-info:hover {
+    
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-info {
+    color: #fff;
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+
+.btn-primary {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+a:hover, a:focus {
+    color: $bella-red;
+}
+.btn-primary:hover {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+
+.btn-info:active, .btn-info.active, .open > .dropdown-toggle.btn-info {
+ 
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-info:active:hover, .btn-info.active:hover, .open > .dropdown-toggle.btn-info:hover, .btn-info:active:focus, .btn-info.active:focus, .open > .dropdown-toggle.btn-info:focus, .btn-info:active.focus, .btn-info.active.focus, .open > .dropdown-toggle.btn-info.focus {
+  
+    background-color: $bella-red !important;
+    border-color: $bella-red !important;
+}
+
+.btn-primary:hover {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+
+.btn-primary {
+  
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn btn-primary btn-sm {
+	
+  
+    background-color: $bella-red !important;
+    border-color: $bella-red !important;
+
+}
+.btn-primary:hover {
+ 
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary:active:hover, .btn-primary.active:hover, .open > .dropdown-toggle.btn-primary:hover, .btn-primary:active:focus, .btn-primary.active:focus, .open > .dropdown-toggle.btn-primary:focus, .btn-primary:active.focus, .btn-primary.active.focus, .open > .dropdown-toggle.btn-primary.focus {
+  
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary:hover {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary:hover {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary:hover {
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary:hover {
+   
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-primary {
+    
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.wishpanel > .panel-heading {
+    color: #000;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+}
+.wishpanel {
+    border-color: #f5f5f5;
+}
+.btn-info {
+
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
+.btn-info:active, .btn-info.active, .open > .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: $bella-red;
+    border-color: $bella-red;
+}
