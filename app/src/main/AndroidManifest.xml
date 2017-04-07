@@ -42,22 +42,22 @@
         </activity>
         <activity
             android:name=".activity.ActivityUserSettings"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/settings" />
         <activity
             android:name=".activity.ActivityHelp"
-            android:label="@string/title_activity_help"
+            android:label="@string/help"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ActivityProductDetail"
-            android:label="@string/title_activity_product_detail"
+            android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
         <activity
             android:name=".activity.ActivityUserProfile"
-            android:label="@string/title_activity_user_profile"
+            android:label="@string/user"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ActivityCategory"
-            android:label="@string/title_activity_category"
+            android:label="@string/category"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ActivityProductList" />
         <activity android:name=".activity.ActivityCart" />

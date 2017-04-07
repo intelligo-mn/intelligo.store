@@ -59,7 +59,7 @@ public class ActivityCategory extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Ангилал");
+        getSupportActionBar().setTitle(R.string.category);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         listCategory = (GridView) findViewById(R.id.listCategory);

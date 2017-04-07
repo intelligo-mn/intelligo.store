@@ -212,7 +212,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                 sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
                 sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
                 sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
+                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
             }
         });
 

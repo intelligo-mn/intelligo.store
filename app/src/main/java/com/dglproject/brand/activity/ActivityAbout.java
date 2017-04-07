@@ -38,7 +38,7 @@ public class ActivityAbout extends AppCompatActivity {
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.title_about);
+            getSupportActionBar().setTitle(R.string.about);
         }
 
         titleId = getResources().getStringArray(R.array.title);
@@ -56,7 +56,7 @@ public class ActivityAbout extends AppCompatActivity {
                     sendInt.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                     sendInt.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name) + "\n" + getString(R.string.share_content) + "\n" + "https://play.google.com/store/apps/details?id=" + getPackageName());
                     sendInt.setType("text/plain");
-                    startActivity(Intent.createChooser(sendInt, "Хуваалцах"));
+                    startActivity(Intent.createChooser(sendInt, getString(R.string.about)));
                 }
                 if (position == 5) {
                     final String appName = getPackageName();

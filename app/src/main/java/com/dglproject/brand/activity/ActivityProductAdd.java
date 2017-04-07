@@ -214,7 +214,7 @@ public class ActivityProductAdd extends AppCompatActivity {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

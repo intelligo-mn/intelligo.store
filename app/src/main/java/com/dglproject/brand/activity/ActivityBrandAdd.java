@@ -32,7 +32,7 @@ public class ActivityBrandAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand_add);
-        getSupportActionBar().setTitle("Байгууллага нэмэх");
+        getSupportActionBar().setTitle(getString(R.string.company_add));
         getSupportActionBar().setHomeButtonEnabled(true);
 
         name = (EditText)findViewById(R.id.pName);
@@ -77,7 +77,7 @@ public class ActivityBrandAdd extends AppCompatActivity {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -122,7 +122,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Хэрэглэгчийн мэдээллээ шинэчлээд дахин оролдно уу !", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getString(R.string.err_try_again), Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
 
@@ -144,7 +144,7 @@ public class ActivityLogin extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "Хэрэглэгч нэвтэрсэн байдал: " + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
         //sharedPreferences = getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
         if (username.isEmpty() || password.length() < 3) {
-            nameText.setError("хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна");
+            nameText.setError(getString(R.string.err_username_short));
             valid = false;
         } else {
             nameText.setError(null);
@@ -152,7 +152,7 @@ public class ActivityLogin extends AppCompatActivity {
 
         if (password.isEmpty() || password.length() < 4 ) {
 
-            passwordText.setError("нууц үг 4-өөс олон тэмдэгт байна");
+            passwordText.setError(getString(R.string.err_pass_short));
             valid = false;
         } else {
             passwordText.setError(null);
@@ -163,7 +163,7 @@ public class ActivityLogin extends AppCompatActivity {
             valid = true;
         } else {
 
-            Toast.makeText(ActivityLogin.this,"Хэрэглэгчийн нэр нууц үг буруу байна", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityLogin.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_SHORT).show();
             valid = false;
         }
 
@@ -226,7 +226,7 @@ public class ActivityLogin extends AppCompatActivity {
                         final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                                 R.style.AppTheme_Dark_Dialog);
                         progressDialog.setIndeterminate(true);
-                        progressDialog.setMessage("Уншиж байна...");
+                        progressDialog.setMessage(getString(R.string.loading));
                         progressDialog.show();
                         new android.os.Handler().postDelayed(
                                 new Runnable() {
@@ -243,7 +243,7 @@ public class ActivityLogin extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Сэрвэрээс өгөгдөл авах боломжгүй байна", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

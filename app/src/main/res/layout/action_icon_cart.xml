@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:clickable="true"
-    android:contentDescription="@string/shopping_cart"
+    android:contentDescription="@string/card"
     android:focusable="true"
     android:gravity="center">
 
@@ -15,10 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:contentDescription="@string/shopping_cart"
+        android:contentDescription="@string/card"
         android:gravity="center"
         android:padding="3dp"
-        android:src="@drawable/dgl_icon_shopping_cart"/>
+        android:src="@drawable/dgl_cart"/>
 
     <!--<TextView-->
         <!--android:id="@+id/shopping_cart_notify"-->

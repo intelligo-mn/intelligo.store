@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
-            R.drawable.dgl_icon_list_1,
-            R.drawable.dgl_icon_shop,
-            R.drawable.dgl_icon_apps,
-            R.drawable.dgl_icon_apps,
-            R.drawable.dgl_icon_apps};
+            R.drawable.dgl_home,
+            R.drawable.dgl_dart_board,
+            R.drawable.dgl_category,
+            R.drawable.dgl_cart,
+            R.drawable.dgl_menu};
 
     PrefManager prefManager;
 

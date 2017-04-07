@@ -6,12 +6,12 @@
     <string name="settings">Тохиргоо</string>
     <string name="signup">Бүртгүүлэх</string>
     <string name="help">Тусламж</string>
-    <string name="company">Компаниуд</string>
+    <string name="company">Company</string>
     <string name="title_activity_department">Салбарууд</string>
     <string name="details">Дэлгэрэнгүй</string>
     <string name="user">Хэрэглэгч</string>
-    <string name="category">Ангилал</string>
-    <string name="card">Сагс</string>
+    <string name="category">Category</string>
+    <string name="card">Cart</string>
     <string name="no_internet">Интернет холболтоо шалгана уу</string>
     <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
     <string name="not_found">Хоосон байна</string>
@@ -94,7 +94,7 @@
     <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
     <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
     <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
-    <string name="loading">Уншиж байна...</string>
+    <string name="loading">Loading...</string>
 
 
 </resources>
