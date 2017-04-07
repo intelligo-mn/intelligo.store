@@ -22,7 +22,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/black_50"
         android:textSize="12sp"
         tools:text="Recents" />
 </LinearLayout>

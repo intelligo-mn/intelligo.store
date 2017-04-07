@@ -68,13 +68,11 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     CoordinatorLayout coordinatorLayout;
 
-    String Product_image, Product_name, Product_serve, Product_description;
+    String Product_image, Product_name, Product_description;
 
     double totalCostDouble;
     int totalOrder;
     String imageTitleString;
-    RatingBar rating;
-    double ratingValue;
 
     double Product_price;
     int Product_quantity;

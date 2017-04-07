@@ -184,6 +184,7 @@ public class HomeItems extends Fragment {
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
             HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
+            Log.d("",ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
