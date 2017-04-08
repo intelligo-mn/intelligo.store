@@ -20,26 +20,30 @@ class UserController{
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
     public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
-        if(!isExist($username, $email)){
-            $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, 
-              `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_user_id`, `updated_user_id`, 
-              `department_id`, `rank_id`, `position_id`, `aimag_id`, `created_at`, `updated_at`, `type`, `person_reg_number`, 
-              `person_profession`, `person_biography`, `person_start_year`, `company_name`, `company_register`, `company_description`, 
-              `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, 
-              `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, 
-              `registered_from_language`, `is_creator`, `is_investor`, `is_idea_owner`, `is_idea_buyer`, `slug`)values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, '".date("Y-m")."', ".($avatar_image == "" ? NULL : "'".$avatar_image."'").", '".$_SERVER['REMOTE_ADDR']."', NULL, NULL, NULL, NULL, NULL, NULL, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', NULL, '', '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, ".($fb_id != "" ? 1 : 0).", NULL, NULL, NULL, NULL, NULL, '".($username != "" ? $username : $fb_id)."')";
+
+        $isExisting = $this->isExist($username, $email);
+
+        if($isExisting){
+            $json['success'] = 0;
+            $json['message'] = "user already registered.";   
+        } else {
+            $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_at`, `updated_at`, `type`, `person_reg_number`, `person_profession`, `person_biography`, `company_name`, `company_register`, `company_description`, `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, `registered_from_language`, `slug`) values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, 
+            '".date("Y-m")."', '".($avatar_image == "" ? NULL : $avatar_image)."', '".$_SERVER['REMOTE_ADDR']."',  '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', '',  '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, ".($fb_id != "" ? 1 : 0).", NULL, '".($username != "" ? $username : $fb_id)."')";
+
+            echo json_encode($query);
+
             $inserted = mysqli_query($this->db->getDb(), $query);
         
             if($inserted == 1){
-                $ajson['id'] = mysqli_insert_id();
-                $ajson['success'] = 1;
-                $ajson['message'] = "succesfilly registered.";
-             return $ajson;   
+                $json['success'] = 1;
+                $json['message'] = "succesfilly registered.";
+            } else {
+                $json['success'] = 0;
+                $json['message'] = "User register error.";   
             }
+            mysqli_close($this->db->getDb());
         }
-        $bjson['success'] = 0;
-        $bjson['message'] = "user already registered.";
-        return $bjson;
+        return $json;
         
     }
     
