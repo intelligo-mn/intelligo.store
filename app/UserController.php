@@ -11,6 +11,7 @@ class UserController{
     
     private $db_table = "user";
     
+
     public function __construct(){
         $this->db = new DbConnect();
     }
@@ -20,10 +21,10 @@ class UserController{
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
     public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
-
-        $isExisting = $this->isExist($username, $email);
-
-        if($isExisting){
+        
+        $json = array();
+        
+        if($this->isExist($username, $email)){
             $json['success'] = 0;
             $json['message'] = "user already registered.";   
         } else {
