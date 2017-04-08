@@ -1,6 +1,6 @@
 package com.dglproject.brand.fragments;
-
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +16,20 @@ import com.dglproject.brand.models.CartProducts;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CartFragment extends android.app.Fragment {
+public class CartFragment extends Fragment {
 
     public final static String  TAG = "Cart";
+
+    public static CartFragment newInstance(int pageNo) {
+
+        Bundle args = new Bundle();
+        args.putInt(TAG, pageNo);
+        CartFragment fragment = new CartFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

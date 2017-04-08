@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dglproject.brand.DglConstants;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
 import com.dglproject.brand.utils.PrefManager;
@@ -38,8 +39,6 @@ public class ActivityLogin extends AppCompatActivity {
     Button loginButton;
     TextView signUpLink;
     CheckBox rememberDetail;
-
-    String URL= "https://dglproject.com/applications/api/UserService.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -102,7 +101,7 @@ public class ActivityLogin extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         LoginUser userAttempt = new LoginUser();
-        userAttempt.execute(username,password);
+        userAttempt.execute(String.valueOf(DglConstants.generateAccessKey()),"signin", username,password);
 
     }
 
@@ -205,14 +204,19 @@ public class ActivityLogin extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... args) {
 
-            String password = args[1];
-            String name= args[0];
+            String password = args[3];
+            String name= args[2];
+            String state = args[1];
+            String accesskey = args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            params.add(new BasicNameValuePair("accesskey", accesskey));
+            params.add(new BasicNameValuePair("state", state));
             params.add(new BasicNameValuePair("username", name));
             params.add(new BasicNameValuePair("password", password));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
+            JSONObject json = jsonParser.makeHttpRequest(DglConstants.UserService, "POST", params);
 
             return json;
 

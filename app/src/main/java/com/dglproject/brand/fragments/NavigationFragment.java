@@ -12,17 +12,19 @@ import com.dglproject.brand.R;
 
 public class NavigationFragment extends Fragment {
 
+    public static final String ARG_PAGE = "NAV";
     public NavigationFragment() {
 
     }
 
-    public static NavigationFragment newInstance(String param1, String param2) {
-        NavigationFragment fragment = new NavigationFragment();
+    public static NavigationFragment newInstance(int pageNo) {
+
         Bundle args = new Bundle();
+        args.putInt(ARG_PAGE, pageNo);
+        NavigationFragment fragment = new NavigationFragment();
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

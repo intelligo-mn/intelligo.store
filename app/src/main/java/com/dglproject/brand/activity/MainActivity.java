@@ -30,16 +30,17 @@ import android.widget.Toast;
 
 import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
+import com.dglproject.brand.fragments.CartFragment;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.fragments.HomeItems;
+import com.dglproject.brand.fragments.NavigationFragment;
 import com.dglproject.brand.utils.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
 import com.dglproject.brand.widgets.MaterialSearchView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     ImageView userImage;
     private TabLayout mTabLayout;
@@ -71,18 +72,6 @@ public class MainActivity extends AppCompatActivity
 
         prefManager = new PrefManager(getApplicationContext());
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView, false);
-        navigationView.addHeaderView(headerView);
-
         CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
 
@@ -103,17 +92,6 @@ public class MainActivity extends AppCompatActivity
 
             mTabLayout.getTabAt(0).getCustomView().setSelected(true);
         }
-
-        userImage = (ImageView ) headerView.findViewById(R.id.imageViewNavUser);
-
-        userImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(MainActivity.this, ActivityUserProfile.class);
-                startActivity(profile);
-            }
-        });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addFab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +167,12 @@ public class MainActivity extends AppCompatActivity
                 case 2:
                     getSupportActionBar().setTitle("");
                     return CategoryFragment.newInstance(3);
+                case 3:
+                    getSupportActionBar().setTitle("");
+                    return CartFragment.newInstance(4);
+                case 4:
+                    getSupportActionBar().setTitle("");
+                    return NavigationFragment.newInstance(5);
 
             }
             return null;
@@ -255,31 +239,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        item.setChecked(true);
-        int id = item.getItemId();
-        if (id == R.id.nav_category) {
-            Intent loginIntent = new Intent(MainActivity.this, ActivityCategory.class);
-            startActivity(loginIntent);
-        } else if (id == R.id.nav_company) {
-
-        } else if (id == R.id.nav_checkout) {
-
-        } else if (id == R.id.nav_settings) {
-            Intent settingsIntent = new Intent(MainActivity.this, ActivityUserSettings.class);
-            startActivity(settingsIntent);
-        } else if (id == R.id.nav_help) {
-            Intent helpIntent = new Intent(MainActivity.this, ActivityAbout.class);
-            startActivity(helpIntent);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override
