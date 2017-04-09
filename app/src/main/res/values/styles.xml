@@ -22,6 +22,8 @@
         <item name="android:inputType">textCapWords</item>
     </style>
 
+
+
     <style name="AppTheme.NoActionBarGreen" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>

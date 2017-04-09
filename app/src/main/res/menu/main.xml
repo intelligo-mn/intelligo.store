@@ -9,18 +9,4 @@
         android:title="@string/abc_search_hint"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_cart"
-        android:icon="@drawable/dgl_cart"
-        android:orderInCategory="1000"
-        app:showAsAction="always"
-        android:title="Сагс"/>
-
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/dgl_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Тохиргоо"/>
-
 </menu>

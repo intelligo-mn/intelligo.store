@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     // oncreate үйлдэл ажиллахад дуудагдах
     public void init () {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         prefManager = new PrefManager(getApplicationContext());
 
@@ -159,19 +157,14 @@ public class MainActivity extends AppCompatActivity {
             switch (pos) {
 
                 case 0:
-                    getSupportActionBar().setTitle("");
                     return BrandFragment.newInstance(1);
                 case 1:
-                    getSupportActionBar().setTitle("");
                     return HomeItems.newInstance(2);
                 case 2:
-                    getSupportActionBar().setTitle("");
                     return CategoryFragment.newInstance(3);
                 case 3:
-                    getSupportActionBar().setTitle("");
                     return CartFragment.newInstance(4);
                 case 4:
-                    getSupportActionBar().setTitle("");
                     return NavigationFragment.newInstance(5);
 
             }
@@ -228,14 +221,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_search:
                 Intent search = new Intent(MainActivity.this, ActivitySearch.class);
                 startActivity(search);
-                return true;
-            case R.id.action_cart:
-                Intent cart = new Intent(MainActivity.this, ActivityCart.class);
-                startActivity(cart);
-                return true;
-            case R.id.action_settings:
-                Intent settings = new Intent(MainActivity.this, ActivitySettings.class);
-                startActivity(settings);
                 return true;
         }
         return super.onOptionsItemSelected(item);
