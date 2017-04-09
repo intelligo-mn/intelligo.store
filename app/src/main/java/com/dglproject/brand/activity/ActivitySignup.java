@@ -77,7 +77,7 @@ public class ActivitySignup extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(ActivitySignup.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Бүртгэл үүсгэж байна...");
+        progressDialog.setMessage(getString(R.string.register_loaging));
         progressDialog.show();
 
         new android.os.Handler().postDelayed(
@@ -99,7 +99,7 @@ public class ActivitySignup extends AppCompatActivity {
                     }
                 }, 3000);
 
-        Toast.makeText(getBaseContext(), "Бүртгэл амжилттай боллоо", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getString(R.string.register_success), Toast.LENGTH_LONG).show();
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -109,7 +109,7 @@ public class ActivitySignup extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Бүртгүүлэхэд алдаа гарлаа", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getString(R.string.register_error), Toast.LENGTH_LONG).show();
         signUpButton.setEnabled(true);
     }
 
@@ -123,26 +123,26 @@ public class ActivitySignup extends AppCompatActivity {
         String confirmPassword = confirmPasswordEditText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            nameEditText.setError("хамгийн багадаа 3 тэмдэгт");
+            nameEditText.setError(getString(R.string.err_username_short));
             valid = false;
         } else {
             nameEditText.setError(null);
         }
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("И-мэйл хаягаа зөв оруулна уу");
+            emailEditText.setError(getString(R.string.err_mail));
             valid = false;
         } else {
             emailEditText.setError(null);
         }
         if (password.isEmpty() || password.length() < 4 || password.length() > 17) {
-            passwordEditText.setError("нууц үг 4-өөс 16 тэмдэгт");
+            passwordEditText.setError(getString(R.string.err_pass_short));
             passwordEditText.setText("");
             valid = false;
         } else {
             passwordEditText.setError(null);
         }
         if (!password.equals(confirmPassword)){
-            confirmPasswordEditText.setError("Нууц үг таарахгүй байна");
+            confirmPasswordEditText.setError(getString(R.string.err_pass_confirm));
             valid = false;
         }
         else{
@@ -210,7 +210,7 @@ public class ActivitySignup extends AppCompatActivity {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Алдаа", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

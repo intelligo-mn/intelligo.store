@@ -233,7 +233,7 @@ public class ActivityProductList extends AppCompatActivity {
                 listMenu.setAdapter(productListAdapter);
             }else{
                 txtAlert.setVisibility(0);
-                Toast.makeText(getApplicationContext(), "Бүтээгдэхүүний мэдээлэл байхгүй байна", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.no_product), Toast.LENGTH_SHORT).show();
             }
 
         }

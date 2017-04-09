@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         public final int PAGE_COUNT = 5;
 
-        private final String[] mTabsTitle = {"Брэнд","Бүтээгдэхүүн",  "Ангилал", "Сагс", "Цэс"};
+        private final String[] mTabsTitle = {getString(R.string.brand), getString(R.string.product),  getString(R.string.category), getString(R.string.card), getString(R.string.menu)};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Гарах бол дахин дарна уу.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

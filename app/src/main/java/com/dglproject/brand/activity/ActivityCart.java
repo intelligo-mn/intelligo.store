@@ -73,13 +73,13 @@ public class ActivityCart extends AppCompatActivity {
     public void displayBill(){
         calculateBill();
         subTotalView = (TextView) findViewById(R.id.sub_total_text_view);
-        subTotalView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(subTotal)+" ₮");
+        subTotalView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(subTotal)+" ₮");
 
         taxView = (TextView) findViewById(R.id.tax_text_view);
-        taxView.setText("НӨАТ: " + new DecimalFormat("#.##").format(tax)+" ₮");
+        taxView.setText(getString(R.string.tax) + new DecimalFormat("#.##").format(tax)+" ₮");
 
         totalView = (TextView) findViewById(R.id.total_text_view);
-        totalView.setText("Нийт: " + new DecimalFormat("#.##").format(total)+" ₮");
+        totalView.setText(getString(R.string.total) + new DecimalFormat("#.##").format(total)+" ₮");
     }
 
     public void startPayment(View view){

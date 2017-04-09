@@ -135,8 +135,8 @@ public class ActivityProductDetail extends AppCompatActivity {
                 if (prefManager.isLoggedIn()) {
                     addToList();
                 } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                            .setAction(getString(R.string.login), new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
@@ -162,8 +162,8 @@ public class ActivityProductDetail extends AppCompatActivity {
                 if (prefManager.isLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), ActivityCart.class));
                 } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                            .setAction(R.string.login, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
@@ -180,8 +180,8 @@ public class ActivityProductDetail extends AppCompatActivity {
                 if (prefManager.isLoggedIn()) {
 
                 } else {
-                    Snackbar.make(v, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                            .setAction(getString(R.string.login), new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
@@ -230,10 +230,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayData() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText("Нийт тоо: " + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
     }
 
     public void increaseTotalCost() {
@@ -251,17 +251,17 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayUpdate() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText("Нийт дүн: " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText("Нийт тоо: " + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
     }
 
     public void addToList() {
         CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
         CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
         productAdapter.addProduct(item);
-        Toast.makeText(getApplicationContext(), "Сагсанд амжилттай нэмлээ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.cart_add_success), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -306,7 +306,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                 });
 
                 txtText.setText(Product_name);
-                txtSubText.setText("Үнэ : " + Product_price + " ₮" );
+                txtSubText.setText(getString(R.string.price) + Product_price + " ₮" );
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
 

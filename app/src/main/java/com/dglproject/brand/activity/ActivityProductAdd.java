@@ -146,7 +146,7 @@ public class ActivityProductAdd extends AppCompatActivity {
         private ProgressDialog pd = new ProgressDialog(ActivityProductAdd.this);
         protected void onPreExecute() {
             super.onPreExecute();
-            pd.setMessage("Wait image uploading!");
+            pd.setMessage(getString(R.string.waiting_upload));
             pd.show();
         }
 
