@@ -3,135 +3,135 @@
     <string name="app_name">Dgl Brand</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="name">Нэр</string>
-    <string name="login">Нэвтрэх</string>
-    <string name="settings">Тохиргоо</string>
-    <string name="signup">Бүртгүүлэх</string>
-    <string name="help">Тусламж</string>
-    <string name="company">Компаниуд</string>
-    <string name="title_activity_department">Салбарууд</string>
-    <string name="details">Дэлгэрэнгүй</string>
-    <string name="user">Хэрэглэгч</string>
-    <string name="category">Ангилал</string>
-    <string name="product">Бүтээгдэхүүн</string>
-    <string name="card">Сагс</string>
-    <string name="share">Хуваалцах</string>
-    <string name="no_internet">Интернет холболтоо шалгана уу</string>
-    <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
-    <string name="not_found">Хоосон байна</string>
-    <string name="order">Захиалга</string>
-    <string name="number_order">Захиалгын хэмжээ</string>
-    <string name="my_order">Захиалгын дэлгэрэнгүй</string>
-    <string name="total_order">Нийт захиалга :</string>
-    <string name="clear_order">Бүх захиалга цуцлах</string>
-    <string name="clear_all_order">Бүх захиалгаа цуцлах уу?</string>
-    <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
-    <string name="no_order">Захиалга байхгүй байна</string>
+    <string name="name">Имя</string>
+    <string name="login">Войти</string>
+    <string name="settings">Настройки</string>
+    <string name="signup">Зарегистрироваться</string>
+    <string name="help">Помощь</string>
+    <string name="company">Компании</string>
+    <string name="title_activity_department">Ветви</string>
+    <string name="details">Более</string>
+    <string name="user">Пользователь</string>
+    <string name="category">Категория</string>
+    <string name="product">Продукты</string>
+    <string name="card">Корзины</string>
+    <string name="share">Поделиться</string>
+    <string name="no_internet">Пожалуйста, проверьте подключение к интернету</string>
+    <string name="product_list">Список продуктов</string>
+    <string name="not_found">Пустой</string>
+    <string name="order">Бронирование</string>
+    <string name="number_order">Подписка объем</string>
+    <string name="my_order">Подписка подробнее</string>
+    <string name="total_order">Всего резервирование</string>
+    <string name="clear_order">Отменить все резервирования</string>
+    <string name="clear_all_order">Отменить все подписки?</string>
+    <string name="clear_one_order">Пожалуйста, отменить этот заказ?</string>
+    <string name="no_order">Не резервирование</string>
     <string name="increase_order">+</string>
-    <string name="submit_order">Сагсанд хийх</string>
-    <string name="edit_submit_order">Хадгалах</string>
-    <string name="save">Хадгалах</string>
+    <string name="submit_order">Корзина</string>
+    <string name="edit_submit_order">Хранение</string>
+    <string name="save">Сохранить</string>
     <string name="decrease_order">-</string>
-    <string name="next">Дараагийн</string>
-    <string name="start">Эхлэх</string>
-    <string name="skip">Алгасах</string>
-    <string name="menu">Цэс</string>
-    <string name="my_card">Таны сагс</string>
-    <string name="send_mail">Мэйл илгээх</string>
-    <string name="loading">Уншиж байна...</string>
-    <string name="phone">Утасны дугаар</string>
-    <string name="about">Тухай</string>
-    <string name="introduction">Танилцуулга</string>
+    <string name="next">Следующий</string>
+    <string name="start">Начало</string>
+    <string name="skip">Пропускать</string>
+    <string name="menu">Меню</string>
+    <string name="my_card">Ваша корзина</string>
+    <string name="send_mail">Написать письмо</string>
+    <string name="loading">Чтение...</string>
+    <string name="phone">Номер телефона</string>
+    <string name="about">около</string>
+    <string name="introduction">Введения</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
     <string name="app_email">toroo.byamba@gmail.com</string>
-    <string name="share_summary">Бусад хүмүүст хуваалцан</string>
-    <string name="rate_summary">Та үнэлгээ болон саналаа өгнө үү</string>
+    <string name="share_summary">Другие люди делятся</string>
+    <string name="rate_summary">Вы также можете просматривать и комментировать</string>
     <string name="more_summary">DGL PROJECT бусад програмууд.</string>
-    <string name="title_app_name">Application Name</string>
+    <string name="title_app_name">Имя приложения</string>
     <string name="title_app_version">Програмын хувилбар</string>
-    <string name="title_app_email">Мэйл хаяг</string>
-    <string name="title_app_copyright">Зохиогчын эрх</string>
-    <string name="title_app_share">Хуваалцах</string>
-    <string name="title_app_rate">Үнэлгээ өгөх</string>
-    <string name="title_app_more">Бусад програмууд</string>
+    <string name="title_app_email">Е-писмо</string>
+    <string name="title_app_copyright">Авторские права</string>
+    <string name="title_app_share">Разделение</string>
+    <string name="title_app_rate">Оценивать</string>
+    <string name="title_app_more">Другие приложения</string>
     <string name="more_apps"></string>
     <string name="share_content"></string>
 
-    <string name="company_add">Байгууллага нэмэх</string>
-    <string name="company_name">Байгууллагын нэр</string>
-    <string name="company_description">Байгууллагын танилцуулга</string>
-    <string name="add">Нэмэх</string>
+    <string name="company_add">Тело плюс</string>
+    <string name="company_name">Компани имя</string>
+    <string name="company_description">Брошюры</string>
+    <string name="add">Плюс</string>
 
-    <string name="server_error">Сэрвэртэй холбогдох үед алдаа гарлаа</string>
+    <string name="server_error">Ошибка сервера связанной</string>
 
-    <string name="waiting_upload">Зураг хуулж байна</string>
-    <string name="login_required">Та нэвтрэх шаардлагатай</string>
-    <string name="cart_add_success">Сагсанд амжилттай нэмлээ</string>
-    <string name="total_cost">Нийт дүн</string>
-    <string name="total_number">Нийт тоо</string>
-    <string name="total">Нийт</string>
-    <string name="price">Үнэ</string>
-    <string name="tax">Татвар</string>
-    <string name="exit_two_press">Гарах бол дахин дарна уу</string>
-    <string name="brand">Брэнд</string>
-    <string name="model">Загвар/Модел/Код</string>
+    <string name="waiting_upload">Копирование</string>
+    <string name="login_required">Вы должны войти</string>
+    <string name="cart_add_success">Успешно добавлено в корзину</string>
+    <string name="total_cost">Общая сумма</string>
+    <string name="total_number">Общее количество</string>
+    <string name="total">Общий</string>
+    <string name="price">Цена</string>
+    <string name="tax">Налоги</string>
+    <string name="exit_two_press">Выход Нажмите</string>
+    <string name="brand">Марка</string>
+    <string name="model">Мода / Модель / код</string>
 
-    <string name="register_loaging">Бүртгэл үүсгэж байна</string>
-    <string name="register_success">Бүртгэл амжилттай боллоо</string>
-    <string name="register_error">Бүртгүүлэхэд алдаа гарлаа</string>
-    <string name="username">Хэрэглэгчийн нэр</string>
-    <string name="email">Мэйл хаяг</string>
-    <string name="password">Нууц үг</string>
-    <string name="re_enter_pass">Нууц үгээ дахин оруулна уу</string>
-    <string name="remember">Намайг сана</string>
+    <string name="register_loaging">Создание аккаунта</string>
+    <string name="register_success">Успешно зарегистрировано</string>
+    <string name="register_error">При регистрации произошла ошибка</string>
+    <string name="username">Имя пользователя</string>
+    <string name="email">Эл. адрес</string>
+    <string name="password">пароль</string>
+    <string name="re_enter_pass">повторно ввести пароль</string>
+    <string name="remember">Запомнить</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>
     <string name="twitter">Twitter</string>
-    <string name="err_try_again">Дахин оролдно уу</string>
-    <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
-    <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
-    <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
-    <string name="err_mail">Мэйл хаяг буруу байна</string>
-    <string name="err_pass_confirm">Нууц үг таарахгүй байна</string>
-    <string name="recover_account">Нууц үг марсан</string>
+    <string name="err_try_again">Пожалуйста, попробуйте еще раз</string>
+    <string name="err_username_short">Имя пользователя меньше 3-х символов</string>
+    <string name="err_pass_short">Пароли больше символов, чем 4</string>
+    <string name="err_username_pass_invalid">Неверная Имя пользователя Пароль</string>
+    <string name="err_mail">Адрес электронной почты недействителен</string>
+    <string name="err_pass_confirm">Пароли матч</string>
+    <string name="recover_account">Забыть пароль</string>
 
-    <string name="no_product">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
+    <string name="no_product">Нет информации о продукте</string>
 
     <string name="slide_1_title">DGL Brand!</string>
-    <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг
-                    манай сайтаас авч хамтын ажиллагаагаа өргөжүүлээрэй!</string>
+    <string name="slide_1_desc"> Новые идеи убежища
+                         расширить сотрудничество на наш сайт!</string>
 
     <string name="slide_2_title">DGL Brand</string>
-    <string name="slide_2_desc">Та нийгмийн сайн сайхны төлөө
-                    хөрөнгө оруулахад бэлэн үү?!</string>
+    <string name="slide_2_desc">Вы на благо общества
+                         Вы готовы инвестировать?!</string>
 
     <string name="slide_3_title">DGL Brand</string>
-    <string name="slide_3_desc">Бид танд хөрөнгө оруулагч
-                    хувь хүн, байгууллагатай хамтран
-                    ажиллах гүүрийг санал болгож байна.!</string>
+    <string name="slide_3_desc">Мы инвестор, вы активы
+                         проценты с людьми и организациями
+                         предлагает для моста.!</string>
 
     <string name="slide_4_title">DGL Brand</string>
-    <string name="slide_4_desc">Бид таныг сайн санаат байгууллага,
-                    хувь хүнтэй холбож өгнө.!</string>
+    <string name="slide_4_desc">Мы благонамеренные организации, вам
+                         будет подключаться только к одному человеку.!</string>
 
-    <string name="search_hint">Хайх&#8230;</string>
-    <string name="hint_prompt">Speak an item name or a number</string>
+    <string name="search_hint">поиск&#8230;</string>
+    <string name="hint_prompt">Произнесите название элемента или номер</string>
 
-    <string name="cd_up_button">Up navigation button</string>
+    <string name="cd_up_button">Кнопка навигации вверх</string>
     <string name="cd_voice_search">Voice search</string>
-    <string name="cd_clear_button">Clear field</string>
-    <string name="cd_suggestion_icon">List item icon</string>
+    <string name="cd_clear_button">Голосовой поиск</string>
+    <string name="cd_suggestion_icon">Значок элемента списка</string>
 
-    <string name="bt_clearHistory">Хайлтын түүх цэвэрлэх</string>
-    <string name="bt_clearSuggestions">Цэвэрлэх</string>
-    <string name="bt_clearAll">Clear all</string>
+    <string name="bt_clearHistory">Чистка История поиска</string>
+    <string name="bt_clearSuggestions">Очищающий</string>
+    <string name="bt_clearAll">Очистить все</string>
 
     <string-array name="suggestions">
-        <item>Цүнх</item>
-        <item>платье</item>
-        <item>эрэгтэй цамц</item>
+    <item>Цүнх</item>
+    <item>платье</item>
+    <item>эрэгтэй цамц</item>
     </string-array>
 
 
-</resources>
+    </resources>

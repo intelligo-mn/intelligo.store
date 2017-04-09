@@ -3,129 +3,127 @@
     <string name="app_name">Dgl Brand</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="name">Нэр</string>
-    <string name="login">Нэвтрэх</string>
-    <string name="settings">Тохиргоо</string>
-    <string name="signup">Бүртгүүлэх</string>
-    <string name="help">Тусламж</string>
-    <string name="company">Компаниуд</string>
-    <string name="title_activity_department">Салбарууд</string>
-    <string name="details">Дэлгэрэнгүй</string>
-    <string name="user">Хэрэглэгч</string>
-    <string name="category">Ангилал</string>
-    <string name="product">Бүтээгдэхүүн</string>
-    <string name="card">Сагс</string>
-    <string name="share">Хуваалцах</string>
-    <string name="no_internet">Интернет холболтоо шалгана уу</string>
-    <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
-    <string name="not_found">Хоосон байна</string>
-    <string name="order">Захиалга</string>
-    <string name="number_order">Захиалгын хэмжээ</string>
-    <string name="my_order">Захиалгын дэлгэрэнгүй</string>
-    <string name="total_order">Нийт захиалга :</string>
-    <string name="clear_order">Бүх захиалга цуцлах</string>
-    <string name="clear_all_order">Бүх захиалгаа цуцлах уу?</string>
-    <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
-    <string name="no_order">Захиалга байхгүй байна</string>
+    <string name="name">名</string>
+    <string name="login">登錄</string>
+    <string name="settings">設置</string>
+    <string name="signup">寄存器</string>
+    <string name="help">幫幫我</string>
+    <string name="company">公司</string>
+    <string name="title_activity_department">部</string>
+    <string name="details">細節</string>
+    <string name="user">用戶</string>
+    <string name="category">類別</string>
+    <string name="product">產品</string>
+    <string name="card">卡</string>
+    <string name="share">分享</string>
+    <string name="no_internet">请检查您的因特网连接</string>
+    <string name="product_list">產品列表</string>
+    <string name="not_found">有空</string>
+    <string name="order">訂購</string>
+    <string name="number_order">订购数量</string>
+    <string name="my_order">订阅详细</string>
+    <string name="total_order">总订购</string>
+    <string name="clear_order">取消所有订单</string>
+    <string name="clear_all_order">取消所有订阅</string>
+    <string name="clear_one_order">取消此订购</string>
+    <string name="no_order">无有订购</string>
     <string name="increase_order">+</string>
-    <string name="submit_order">Сагсанд хийх</string>
-    <string name="edit_submit_order">Хадгалах</string>
-    <string name="save">Хадгалах</string>
+    <string name="submit_order">加入卡片</string>
+    <string name="edit_submit_order">保存</string>
+    <string name="save">保存</string>
     <string name="decrease_order">-</string>
-    <string name="next">Дараагийн</string>
-    <string name="start">Эхлэх</string>
-    <string name="skip">Алгасах</string>
-    <string name="menu">Цэс</string>
-    <string name="my_card">Таны сагс</string>
-    <string name="send_mail">Мэйл илгээх</string>
-    <string name="loading">Уншиж байна...</string>
-    <string name="phone">Утасны дугаар</string>
-    <string name="about">Тухай</string>
-    <string name="introduction">Танилцуулга</string>
+    <string name="next">下一个</string>
+    <string name="start">开始</string>
+    <string name="skip">请绕跳</string>
+    <string name="menu">菜單</string>
+    <string name="my_card">我的購物車</string>
+    <string name="send_mail">發送郵件</string>
+    <string name="loading">正在载...</string>
+    <string name="phone">電話號碼</string>
+    <string name="about">關於</string>
+    <string name="introduction">簡介</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
     <string name="app_email">toroo.byamba@gmail.com</string>
-    <string name="share_summary">Бусад хүмүүст хуваалцан</string>
-    <string name="rate_summary">Та үнэлгээ болон саналаа өгнө үү</string>
-    <string name="more_summary">DGL PROJECT бусад програмууд.</string>
-    <string name="title_app_name">Application Name</string>
-    <string name="title_app_version">Програмын хувилбар</string>
-    <string name="title_app_email">Мэйл хаяг</string>
-    <string name="title_app_copyright">Зохиогчын эрх</string>
-    <string name="title_app_share">Хуваалцах</string>
-    <string name="title_app_rate">Үнэлгээ өгөх</string>
-    <string name="title_app_more">Бусад програмууд</string>
+    <string name="share_summary">其他人分享</string>
+    <string name="rate_summary">您還可以查看和評論</string>
+    <string name="more_summary">DGL PROJECT 其他應用.</string>
+    <string name="title_app_name">應用名稱</string>
+    <string name="title_app_version">應用</string>
+    <string name="title_app_email">電子郵件</string>
+    <string name="title_app_copyright">受版權保護</string>
+    <string name="title_app_share">分享</string>
+    <string name="title_app_rate">评测</string>
+    <string name="title_app_more">其他應用</string>
     <string name="more_apps"></string>
     <string name="share_content"></string>
+    <string name="company_add">機身加</string>
+    <string name="company_name">名</string>
+    <string name="company_description">小冊子</string>
+    <string name="add">加</string>
+    <string name="server_error">服務器錯誤相關</string>
 
-    <string name="company_add">Байгууллага нэмэх</string>
-    <string name="company_name">Байгууллагын нэр</string>
-    <string name="company_description">Байгууллагын танилцуулга</string>
-    <string name="add">Нэмэх</string>
+    <string name="waiting_upload">仿形</string>
+    <string name="login_required">你必須先登錄</string>
+    <string name="cart_add_success">成功添加到購物車</string>
+    <string name="total_cost">總量</string>
+    <string name="total_number">總數</string>
+    <string name="total">總</string>
+    <string name="price">價格</string>
+    <string name="tax">稅</string>
+    <string name="exit_two_press">點擊退出</string>
+    <string name="brand">牌</string>
+    <string name="model">時尚/型號/碼</string>
 
-    <string name="server_error">Сэрвэртэй холбогдох үед алдаа гарлаа</string>
-
-    <string name="waiting_upload">Зураг хуулж байна</string>
-    <string name="login_required">Та нэвтрэх шаардлагатай</string>
-    <string name="cart_add_success">Сагсанд амжилттай нэмлээ</string>
-    <string name="total_cost">Нийт дүн</string>
-    <string name="total_number">Нийт тоо</string>
-    <string name="total">Нийт</string>
-    <string name="price">Үнэ</string>
-    <string name="tax">Татвар</string>
-    <string name="exit_two_press">Гарах бол дахин дарна уу</string>
-    <string name="brand">Брэнд</string>
-    <string name="model">Загвар/Модел/Код</string>
-
-    <string name="register_loaging">Бүртгэл үүсгэж байна</string>
-    <string name="register_success">Бүртгэл амжилттай боллоо</string>
-    <string name="register_error">Бүртгүүлэхэд алдаа гарлаа</string>
-    <string name="username">Хэрэглэгчийн нэр</string>
-    <string name="email">Мэйл хаяг</string>
-    <string name="password">Нууц үг</string>
-    <string name="re_enter_pass">Нууц үгээ дахин оруулна уу</string>
-    <string name="remember">Намайг сана</string>
+    <string name="register_loaging">正在登录</string>
+    <string name="register_success">登录成功</string>
+    <string name="register_error">登记时出现有错</string>
+    <string name="username">用戶名</string>
+    <string name="email">電子郵件</string>
+    <string name="password">密碼</string>
+    <string name="re_enter_pass">請重新輸入您的密碼</string>
+    <string name="remember">記住我</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>
     <string name="twitter">Twitter</string>
-    <string name="err_try_again">Дахин оролдно уу</string>
-    <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
-    <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
-    <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
-    <string name="err_mail">Мэйл хаяг буруу байна</string>
-    <string name="err_pass_confirm">Нууц үг таарахгүй байна</string>
-    <string name="recover_account">Нууц үг марсан</string>
+    <string name="err_try_again">請再試一次</string>
+    <string name="err_username_short">客户名字需要无小于三个标记</string>
+    <string name="err_pass_short">客户名字需要无小于三个标记</string>
+    <string name="err_username_pass_invalid">不正確的用戶名或密碼</string>
+    <string name="err_mail">電子郵件地址無效</string>
+    <string name="err_pass_confirm">比賽密碼</string>
+    <string name="recover_account">忘記密碼</string>
 
-    <string name="no_product">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
+    <string name="no_product">沒有產品信息</string>
 
     <string name="slide_1_title">DGL Brand!</string>
-    <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг
-                    манай сайтаас авч хамтын ажиллагаагаа өргөжүүлээрэй!</string>
+    <string name="slide_1_desc"> 新思路求職者
+                    擴大合作，以我們的網站！</string>
 
     <string name="slide_2_title">DGL Brand</string>
-    <string name="slide_2_desc">Та нийгмийн сайн сайхны төлөө
-                    хөрөнгө оруулахад бэлэн үү?!</string>
+    <string name="slide_2_desc">你對社會的好
+                    你準備好投資嗎？！</string>
 
     <string name="slide_3_title">DGL Brand</string>
-    <string name="slide_3_desc">Бид танд хөрөнгө оруулагч
-                    хувь хүн, байгууллагатай хамтран
-                    ажиллах гүүрийг санал болгож байна.!</string>
+    <string name="slide_3_desc">我們的投資者，你的資產
+                    ％的與個人和組織
+                    提供了橋樑。！</string>
 
     <string name="slide_4_title">DGL Brand</string>
-    <string name="slide_4_desc">Бид таныг сайн санаат байгууллага,
-                    хувь хүнтэй холбож өгнө.!</string>
+    <string name="slide_4_desc">我們善意的組織，你
+                    將連接到只有一個人！</string>
 
     <string name="search_hint">Хайх&#8230;</string>
-    <string name="hint_prompt">Speak an item name or a number</string>
+    <string name="hint_prompt">说出一个项目名称或一个数字</string>
 
-    <string name="cd_up_button">Up navigation button</string>
-    <string name="cd_voice_search">Voice search</string>
-    <string name="cd_clear_button">Clear field</string>
-    <string name="cd_suggestion_icon">List item icon</string>
+    <string name="cd_up_button">向上导航按钮</string>
+    <string name="cd_voice_search">聲音搜索</string>
+    <string name="cd_clear_button">清除字段</string>
+    <string name="cd_suggestion_icon">列出项目图标</string>
 
-    <string name="bt_clearHistory">Хайлтын түүх цэвэрлэх</string>
-    <string name="bt_clearSuggestions">Цэвэрлэх</string>
-    <string name="bt_clearAll">Clear all</string>
+    <string name="bt_clearHistory">搜索歷史記錄清理</string>
+    <string name="bt_clearSuggestions">清潔的</string>
+    <string name="bt_clearAll">清除所有</string>
 
     <string-array name="suggestions">
         <item>Цүнх</item>
