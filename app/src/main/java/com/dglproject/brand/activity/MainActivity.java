@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 if (prefManager.isLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
                 } else {
-                    Snackbar.make(view, "Та нэвтрэх шаардлагатай !", Snackbar.LENGTH_LONG)
-                            .setAction("Нэвтрэх", new View.OnClickListener() {
+                    Snackbar.make(view, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                            .setAction(getString(R.string.login), new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
