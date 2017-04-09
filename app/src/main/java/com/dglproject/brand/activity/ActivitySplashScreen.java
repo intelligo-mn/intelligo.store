@@ -84,24 +84,6 @@ public class ActivitySplashScreen extends AppCompatActivity {
                 finish();
             }
         });
-        // Splash screen 2 секунд хүлээгээд MainActivity-руу шилжинэ
-//        try {
-//            Thread timerThread = new Thread(){
-//                public void run(){
-//                    try{
-//                        sleep(2000);
-//                    }catch(InterruptedException e){
-//                        e.printStackTrace();
-//                    }finally{
-//                        Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                }
-//            };
-//            timerThread.start();
-//        }catch (Exception e){
-//
-//        }
+
     }
 }

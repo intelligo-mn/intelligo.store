@@ -25,27 +25,6 @@
         android:layout_marginTop="100dp"
         android:layout_marginBottom="200dp" />
 
-    <com.dglproject.brand.widgets.DglProgressBar
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        app:dgl_thickness="@dimen/default_thickness"
-        app:dgl_inner_padding="@dimen/default_inner_padding"
-        app:dgl_inner_color="@color/colorPrimary"
-        app:dgl_outer_color="@color/colorPrimary"
-        android:layout_marginBottom="100dp"
-        android:id="@+id/dglProgressBar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loading"
-        android:id="@+id/textView2"
-        android:textColor="@color/colorPrimary"
-        android:layout_below="@+id/imageView2"
-        android:layout_marginBottom="60dp"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,31 +39,32 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/dglProgressBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp"
-        android:layout_alignParentRight="false">
+        android:layout_marginBottom="181dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langMn"
-            android:background="@drawable/dgl_lang_mn" />
+            android:background="@drawable/dgl_lang_mn"
+            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langEn"
-            android:background="@drawable/dgl_lang_en" />
+            android:background="@drawable/dgl_lang_en"
+            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langRu"
-            android:background="@drawable/dgl_lang_ru" />
+            android:background="@drawable/dgl_lang_ru"
+            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
