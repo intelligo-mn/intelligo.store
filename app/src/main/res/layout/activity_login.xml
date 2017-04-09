@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
 
-                android:hint="Хэрэглэгчийн нэр" />
+                android:hint="@string/username" />
         </android.support.design.widget.TextInputLayout>
         <!--  Password Label -->
         <android.support.design.widget.TextInputLayout
@@ -42,13 +42,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Нууц үг"/>
+                android:hint="@string/password"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:text="Намайг сана"
+            android:text="@string/remember"
             android:id="@+id/rememberMe"
             android:checked="false"
             android:layout_marginTop="20dp" />
@@ -62,7 +62,7 @@
             android:background="@color/colorPrimary"
             android:padding="12dp"
             android:textColor="@color/white"
-            android:text="Нэвтрэх"/>
+            android:text="@string/login"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -72,7 +72,7 @@
             <TextView android:id="@+id/passreset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Нууц үг мартсан"
+                android:text="@string/recover_account"
                 android:textSize="16dip"/>
 
             <TextView
@@ -86,7 +86,7 @@
             <TextView android:id="@+id/signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Бүртгүүлэх"
+                android:text="@string/signup"
                 android:textSize="16dip"/>
         </LinearLayout>
 
@@ -99,7 +99,7 @@
             android:background="@color/facebook_color"
             android:textColor="@color/white"
             android:padding="12dp"
-            android:text="Фэйсбүүкээр нэвтрэх"/>
+            android:text="@string/facebook"/>
 
         <GridLayout
             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/twitter_color"
                 android:padding="12dp"
-                android:text="Twitter"
+                android:text="@string/twitter"
                 android:textColor="@color/white"
                 android:layout_row="0"
                 android:layout_column="00"/>
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/google_color"
                 android:padding="12dp"
-                android:text="Google +"
+                android:text="@string/google"
                 android:textColor="@color/white"
                 android:layout_row="0"
                 android:layout_column="2" />

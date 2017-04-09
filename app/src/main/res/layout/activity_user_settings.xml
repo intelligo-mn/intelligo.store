@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Хэрэглэгчийн нэр" />
+                android:hint="@string/username" />
         </android.support.design.widget.TextInputLayout>
 
         <!--  Email Label -->
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="И-мэйл хаяг" />
+                android:hint="@string/email" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Танилцуулга" />
+                android:hint="@string/introduction" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Нууц үг"/>
+                android:hint="@string/password"/>
         </android.support.design.widget.TextInputLayout>
 
 
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Утасны дугаар" />
+                android:hint="@string/phone" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Байгууллагын нэр" />
+                android:hint="@string/company_name" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -107,7 +107,7 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/colorPrimary"
-            android:text="Хадгалах"
+            android:text="@string/save"
             android:textColor="@color/white" />
 
     </LinearLayout>

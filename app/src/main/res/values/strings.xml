@@ -2,6 +2,7 @@
     <string name="app_name">Dgl Brand</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="name">Нэр</string>
     <string name="login">Нэвтрэх</string>
     <string name="settings">Тохиргоо</string>
     <string name="signup">Бүртгүүлэх</string>
@@ -13,6 +14,7 @@
     <string name="category">Ангилал</string>
     <string name="product">Бүтээгдэхүүн</string>
     <string name="card">Сагс</string>
+    <string name="share">Хуваалцах</string>
     <string name="no_internet">Интернет холболтоо шалгана уу</string>
     <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
     <string name="not_found">Хоосон байна</string>
@@ -27,13 +29,18 @@
     <string name="increase_order">+</string>
     <string name="submit_order">Сагсанд хийх</string>
     <string name="edit_submit_order">Хадгалах</string>
+    <string name="save">Хадгалах</string>
     <string name="decrease_order">-</string>
     <string name="next">Дараагийн</string>
     <string name="start">Эхлэх</string>
     <string name="skip">Алгасах</string>
     <string name="menu">Цэс</string>
-
+    <string name="my_card">Таны сагс</string>
+    <string name="send_mail">Мэйл илгээх</string>
+    <string name="loading">Уншиж байна...</string>
+    <string name="phone">Утасны дугаар</string>
     <string name="about">Тухай</string>
+    <string name="introduction">Танилцуулга</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
     <string name="app_email">toroo.byamba@gmail.com</string>
@@ -57,28 +64,38 @@
 
     <string name="server_error">Сэрвэртэй холбогдох үед алдаа гарлаа</string>
 
+    <string name="waiting_upload">Зураг хуулж байна</string>
+    <string name="login_required">Та нэвтрэх шаардлагатай</string>
+    <string name="cart_add_success">Сагсанд амжилттай нэмлээ</string>
+    <string name="total_cost">Нийт дүн</string>
+    <string name="total_number">Нийт тоо</string>
+    <string name="total">Нийт</string>
+    <string name="price">Үнэ</string>
+    <string name="tax">Татвар</string>
+    <string name="exit_two_press">Гарах бол дахин дарна уу</string>
+    <string name="brand">Брэнд</string>
+    <string name="model">Загвар/Модел/Код</string>
+
+    <string name="register_loaging">Бүртгэл үүсгэж байна</string>
+    <string name="register_success">Бүртгэл амжилттай боллоо</string>
+    <string name="register_error">Бүртгүүлэхэд алдаа гарлаа</string>
+    <string name="username">Хэрэглэгчийн нэр</string>
+    <string name="email">Мэйл хаяг</string>
+    <string name="password">Нууц үг</string>
+    <string name="re_enter_pass">Нууц үгээ дахин оруулна уу</string>
+    <string name="remember">Намайг сана</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="twitter">Twitter</string>
     <string name="err_try_again">Дахин оролдно уу</string>
     <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
     <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
     <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
     <string name="err_mail">Мэйл хаяг буруу байна</string>
     <string name="err_pass_confirm">Нууц үг таарахгүй байна</string>
-
-    <string name="waiting_upload">Зураг хуулж байна</string>
-    <string name="login_required">Та нэвтрэх шаардлагатай</string>
-    <string name="cart_add_success">Сагсанд амжилттай нэмлээ</string>
-    <string name="total_cost">Нийт дүн: </string>
-    <string name="total_number">Нийт тоо: </string>
-    <string name="total">Нийт: </string>
-    <string name="price">Үнэ: </string>
-    <string name="tax">Татвар: </string>
-    <string name="exit_two_press">Гарах бол дахин дарна уу</string>
-    <string name="brand">Брэнд</string>
+    <string name="recover_account">Нууц үг марсан</string>
 
     <string name="no_product">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
-    <string name="register_loaging">Бүртгэл үүсгэж байна</string>
-    <string name="register_success">Бүртгэл амжилттай боллоо</string>
-    <string name="register_error">Бүртгүүлэхэд алдаа гарлаа</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг

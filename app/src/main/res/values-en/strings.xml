@@ -2,15 +2,16 @@
     <string name="app_name">Dgl Brand</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="login">Нэвтрэх</string>
-    <string name="settings">Тохиргоо</string>
-    <string name="signup">Бүртгүүлэх</string>
-    <string name="help">Тусламж</string>
+    <string name="login">Login</string>
+    <string name="settings">Settings</string>
+    <string name="signup">Register</string>
+    <string name="help">Help</string>
     <string name="company">Company</string>
     <string name="title_activity_department">Салбарууд</string>
-    <string name="details">Дэлгэрэнгүй</string>
-    <string name="user">Хэрэглэгч</string>
+    <string name="details">Details</string>
+    <string name="user">User</string>
     <string name="category">Category</string>
+    <string name="product">Product</string>
     <string name="card">Cart</string>
     <string name="no_internet">Интернет холболтоо шалгана уу</string>
     <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
@@ -25,11 +26,59 @@
     <string name="no_order">Захиалга байхгүй байна</string>
     <string name="increase_order">+</string>
     <string name="submit_order">Сагсанд хийх</string>
-    <string name="edit_submit_order">Хадгалах</string>
+    <string name="edit_submit_order">Save</string>
     <string name="decrease_order">-</string>
-    <string name="next">Дараагийн</string>
-    <string name="start">Эхлэх</string>
-    <string name="skip">Алгасах</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+    <string name="skip">Skip</string>
+    <string name="menu">Menu</string>
+
+    <string name="about">About</string>
+    <string name="app_version">Version 1.0.0</string>
+    <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
+    <string name="app_email">toroo.byamba@gmail.com</string>
+    <string name="share_summary">Бусад хүмүүст хуваалцан</string>
+    <string name="rate_summary">Та үнэлгээ болон саналаа өгнө үү</string>
+    <string name="more_summary">DGL PROJECT бусад програмууд.</string>
+    <string name="title_app_name">Application Name</string>
+    <string name="title_app_version">Програмын хувилбар</string>
+    <string name="title_app_email">Мэйл хаяг</string>
+    <string name="title_app_copyright">Зохиогчын эрх</string>
+    <string name="title_app_share">Хуваалцах</string>
+    <string name="title_app_rate">Үнэлгээ өгөх</string>
+    <string name="title_app_more">Бусад програмууд</string>
+    <string name="more_apps"></string>
+    <string name="share_content"></string>
+
+    <string name="company_add">Байгууллага нэмэх</string>
+    <string name="company_name">Байгууллагын нэр</string>
+    <string name="company_description">Байгууллагын танилцуулга</string>
+    <string name="add">Add</string>
+
+    <string name="server_error">Сэрвэртэй холбогдох үед алдаа гарлаа</string>
+
+    <string name="err_try_again">Дахин оролдно уу</string>
+    <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
+    <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
+    <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
+    <string name="err_mail">Мэйл хаяг буруу байна</string>
+    <string name="err_pass_confirm">Нууц үг таарахгүй байна</string>
+
+    <string name="waiting_upload">Зураг хуулж байна</string>
+    <string name="login_required">Та нэвтрэх шаардлагатай</string>
+    <string name="cart_add_success">Сагсанд амжилттай нэмлээ</string>
+    <string name="total_cost">Нийт дүн: </string>
+    <string name="total_number">Нийт тоо: </string>
+    <string name="total">Нийт: </string>
+    <string name="price">Үнэ: </string>
+    <string name="tax">Татвар: </string>
+    <string name="exit_two_press">Гарах бол дахин дарна уу</string>
+    <string name="brand">Brand</string>
+
+    <string name="no_product">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
+    <string name="register_loaging">Бүртгэл үүсгэж байна</string>
+    <string name="register_success">Бүртгэл амжилттай боллоо</string>
+    <string name="register_error">Бүртгүүлэхэд алдаа гарлаа</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг
@@ -65,36 +114,7 @@
         <item>платье</item>
         <item>эрэгтэй цамц</item>
     </string-array>
-
-    <string name="about">Тухай</string>
-    <string name="app_version">Version 1.0.0</string>
-    <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
-    <string name="app_email">toroo.byamba@gmail.com</string>
-    <string name="share_summary">Бусад хүмүүст хуваалцан</string>
-    <string name="rate_summary">Та үнэлгээ болон саналаа өгнө үү</string>
-    <string name="more_summary">DGL PROJECT бусад програмууд.</string>
-    <string name="title_app_name">Application Name</string>
-    <string name="title_app_version">Програмын хувилбар</string>
-    <string name="title_app_email">Мэйл хаяг</string>
-    <string name="title_app_copyright">Зохиогчын эрх</string>
-    <string name="title_app_share">Хуваалцах</string>
-    <string name="title_app_rate">Үнэлгээ өгөх</string>
-    <string name="title_app_more">Бусад програмууд</string>
-    <string name="more_apps"></string>
-    <string name="share_content"></string>
-
-    <string name="company_add">Байгууллага нэмэх</string>
-    <string name="company_name">Байгууллагын нэр</string>
-    <string name="company_description">Байгууллагын танилцуулга</string>
-    <string name="add">Нэмэх</string>
-
-    <string name="server_error">Сэрвэртэй холбогдох үед алдаа гарлаа</string>
-
-    <string name="err_try_again">Дахин оролдно уу</string>
-    <string name="err_username_short">Хэрэглэгчийн нэр 3-аас багагүй тэмдэгт байна</string>
-    <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
-    <string name="err_username_pass_invalid">Хэрэглэгчийн нэр нууц үг буруу байна</string>
-    <string name="loading">Loading...</string>
+    <string name="password"></string>
 
 
 </resources>

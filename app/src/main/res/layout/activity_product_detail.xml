@@ -202,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dgl_cart"
                 fab:fab_size="normal"
-                fab:fab_label="Таны сагс" />
+                fab:fab_label="@string/my_card" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/send_mail"
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dgl_mail"
                 fab:fab_size="normal"
-                fab:fab_label="Мэйл илгээх" />
+                fab:fab_label="@string/send_mail" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/share"
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dgl_share"
                 fab:fab_size="normal"
-                fab:fab_label="Хуваалцах" />
+                fab:fab_label="@string/share" />
 
         </com.github.clans.fab.FloatingActionMenu>
 
