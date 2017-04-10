@@ -9,8 +9,8 @@
     <string name="signup">Зарегистрироваться</string>
     <string name="help">Помощь</string>
     <string name="company">Компании</string>
-    <string name="title_activity_department">Ветви</string>
-    <string name="details">Более</string>
+    <string name="title_activity_department">Отрасли</string>
+    <string name="details">Подробно</string>
     <string name="user">Пользователь</string>
     <string name="category">Категория</string>
     <string name="product">Продукты</string>
@@ -19,16 +19,16 @@
     <string name="no_internet">Пожалуйста, проверьте подключение к интернету</string>
     <string name="product_list">Список продуктов</string>
     <string name="not_found">Пустой</string>
-    <string name="order">Бронирование</string>
-    <string name="number_order">Подписка объем</string>
-    <string name="my_order">Подписка подробнее</string>
-    <string name="total_order">Всего резервирование</string>
+    <string name="order">Заказ</string>
+    <string name="number_order">Объем заказ</string>
+    <string name="my_order">Подробности заказа</string>
+    <string name="total_order">Общий заказ</string>
     <string name="clear_order">Отменить все резервирования</string>
     <string name="clear_all_order">Отменить все подписки?</string>
     <string name="clear_one_order">Пожалуйста, отменить этот заказ?</string>
-    <string name="no_order">Не резервирование</string>
+    <string name="no_order">Нет заказ</string>
     <string name="increase_order">+</string>
-    <string name="submit_order">Корзина</string>
+    <string name="submit_order">Добавить в корзину</string>
     <string name="edit_submit_order">Хранение</string>
     <string name="save">Сохранить</string>
     <string name="decrease_order">-</string>
@@ -38,10 +38,9 @@
     <string name="menu">Меню</string>
     <string name="my_card">Ваша корзина</string>
     <string name="send_mail">Написать письмо</string>
-    <string name="loading">Чтение...</string>
+    <string name="loading">Загрузка</string>
     <string name="phone">Номер телефона</string>
-    <string name="about">около</string>
-    <string name="introduction">Введения</string>
+    <string name="introduction">Коллекция</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
     <string name="app_email">toroo.byamba@gmail.com</string>
@@ -49,7 +48,7 @@
     <string name="rate_summary">Вы также можете просматривать и комментировать</string>
     <string name="more_summary">DGL PROJECT бусад програмууд.</string>
     <string name="title_app_name">Имя приложения</string>
-    <string name="title_app_version">Програмын хувилбар</string>
+    <string name="title_app_version">Версия программного обеспечения</string>
     <string name="title_app_email">Е-писмо</string>
     <string name="title_app_copyright">Авторские права</string>
     <string name="title_app_share">Разделение</string>
@@ -65,7 +64,7 @@
 
     <string name="server_error">Ошибка сервера связанной</string>
 
-    <string name="waiting_upload">Копирование</string>
+    <string name="waiting_upload">Изображение копируется</string>
     <string name="login_required">Вы должны войти</string>
     <string name="cart_add_success">Успешно добавлено в корзину</string>
     <string name="total_cost">Общая сумма</string>
@@ -132,6 +131,7 @@
     <item>платье</item>
     <item>эрэгтэй цамц</item>
     </string-array>
+    <string name="about">O</string>
 
 
-    </resources>
+</resources>
