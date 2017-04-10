@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,8 @@ public class HomeItems extends Fragment {
     JSONArray jsonArrayProducts;
     JSONParser jsonParser = new JSONParser();
 
+    SwipeRefreshLayout swipeRefreshLayout = null;
+
     public static HomeItems newInstance(int pageNo) {
 
         Bundle args = new Bundle();
@@ -103,6 +107,9 @@ public class HomeItems extends Fragment {
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
+
         ProductService = DglConstants.ProductService;
 
         mainActivity = new MainActivity();
@@ -123,6 +130,23 @@ public class HomeItems extends Fragment {
                 startActivity(iDetail);
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        IOConnect = 0;
+                        homeItemList.invalidateViews();
+                        clearData();
+                        new getDataTask().execute();
+                    }
+                }, 3000);
+            }
+        });
+
         return rootView;
     }
 
