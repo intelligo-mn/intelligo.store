@@ -153,17 +153,13 @@ public class CategoryFragment extends Fragment {
                 str += line;
             }
 
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data");
+            JSONObject json = new JSONObject("{category="+str+"}");
+            JSONArray data = json.getJSONArray("category");
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
-
-                JSONObject category = object.getJSONObject("category");
-
-                Category_ID.add(Long.parseLong(category.getString("category_id")));
-                Category_name.add(category.getString("category_name"));
-                Category_image.add(category.getString("category_image"));
+                Category_ID.add(data.getJSONObject(i).getLong("id"));
+                Category_name.add(data.getJSONObject(i).getString("name"));
+                Category_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
                 Log.d("Category name", Category_name.get(i));
             }
         } catch (MalformedURLException e) {

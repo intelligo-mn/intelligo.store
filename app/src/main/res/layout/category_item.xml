@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="category"
+                android:maxLines="1"
                 android:padding="5dp"
                 android:textSize="14sp" />
 
