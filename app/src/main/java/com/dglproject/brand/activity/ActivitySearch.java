@@ -14,7 +14,7 @@ import com.dglproject.brand.R;
 import com.dglproject.brand.widgets.MaterialSearchView;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class ActivitySearch extends AppCompatActivity {
 
     public MaterialSearchView searchView;

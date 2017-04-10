@@ -52,10 +52,6 @@
             android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
         <activity
-            android:name=".activity.ActivityUserProfile"
-            android:label="@string/user"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".activity.ActivityCategory"
             android:label="@string/category"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.dgl_menu};
 
     PrefManager prefManager;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager();
         HomeItems.newInstance(1);
         isStoragePermissionGranted();
-
     }
 
     // oncreate үйлдэл ажиллахад дуудагдах
@@ -166,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
                     return CartFragment.newInstance(4);
                 case 4:
                     return NavigationFragment.newInstance(5);
-
             }
             return null;
         }
