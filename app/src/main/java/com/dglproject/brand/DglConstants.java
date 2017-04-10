@@ -46,7 +46,11 @@ public class DglConstants {
         }
         return false;
     }
+    private static long generateAccessKey(){
+        int y = Calendar.YEAR, m = Calendar.MONTH, d = Calendar.DAY_OF_MONTH, a = 4, b = 7, c = 12;
 
+        return (y+m+d)*a*b*c*(y*c+m*b+d*a);
+    }
     public static void CopyStream(InputStream is, OutputStream os)
     {
         final int buffer_size=1024;
