@@ -64,8 +64,8 @@ public class CartFragment extends Fragment {
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("Title", x.getTitle());
             map.put("Image", x.getImage());
-            map.put("TotalOrder", getString(R.string.total)+" :" + x.getTotalOrder());
-            map.put("TotalCost", getString(R.string.total_cost)+" :" + x.getTotalCost()+" ₮");
+            map.put("TotalOrder", getString(R.string.total)+" : " + x.getTotalOrder());
+            map.put("TotalCost", getString(R.string.total_cost)+" : " + x.getTotalCost()+" ₮");
             dataList.add(map);
         }
 
@@ -109,13 +109,13 @@ public class CartFragment extends Fragment {
     public void displayBill(){
         calculateBill();
         subTotalView = (TextView) rootView.findViewById(R.id.sub_total_text_view);
-        subTotalView.setText(getString(R.string.total_cost)+" :" + new DecimalFormat("#.##").format(subTotal)+" ₮");
+        subTotalView.setText(getString(R.string.total_cost)+" : " + new DecimalFormat("#.##").format(subTotal)+" ₮");
 
         taxView = (TextView) rootView.findViewById(R.id.tax_text_view);
-        taxView.setText(getString(R.string.tax)+" :" + new DecimalFormat("#.##").format(tax)+" ₮");
+        taxView.setText(getString(R.string.tax)+" : " + new DecimalFormat("#.##").format(tax)+" ₮");
 
         totalView = (TextView) rootView.findViewById(R.id.total_text_view);
-        totalView.setText(getString(R.string.total)+" :" + new DecimalFormat("#.##").format(total)+" ₮");
+        totalView.setText(getString(R.string.total)+" : " + new DecimalFormat("#.##").format(total)+" ₮");
     }
 
     public void startPayment(View view){
