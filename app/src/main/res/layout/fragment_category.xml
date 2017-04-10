@@ -4,23 +4,27 @@
     android:id="@+id/content_category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.dglproject.brand.activity.ActivityCategory"
-    tools:showIn="@layout/activity_category">
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingBottom="?attr/actionBarSize"
+    tools:context="com.dglproject.brand.fragments.CategoryFragment">
 
-    <GridView
-        android:id="@+id/listCategory"
-        android:layout_width="fill_parent"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshCat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="58dp"
-        android:paddingBottom="58dp"
-        android:divider="@null"
-        android:numColumns="2"
-        android:visibility="gone" />
+        android:padding="3dp">
+
+        <GridView
+            android:id="@+id/listCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:numColumns="2"
+            android:visibility="gone" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/prgLoading"

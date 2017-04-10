@@ -8,7 +8,7 @@
     tools:context="com.dglproject.brand.fragments.HomeItems">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+        android:id="@+id/swipeRefreshHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp">

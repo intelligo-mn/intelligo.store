@@ -90,7 +90,7 @@ public class BrandFragment extends Fragment {
         bLoading = (ProgressBar) rootView.findViewById(R.id.bLoading);
         listBrand = (GridView) rootView.findViewById(R.id.listBrand);
         bAlert = (TextView) rootView.findViewById(R.id.bAlert);
-        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshBrand);
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
         homeSliderLayout = (SliderLayout) rootView.findViewById(R.id.slider);
 

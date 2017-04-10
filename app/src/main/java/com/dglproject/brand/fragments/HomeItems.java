@@ -108,7 +108,7 @@ public class HomeItems extends Fragment {
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshHome);
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
 
         ProductService = DglConstants.ProductService;

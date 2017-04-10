@@ -50,11 +50,10 @@
         android:layout_marginBottom="20dp"
         />
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+        android:id="@+id/swipeRefreshBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp">
-
 
         <GridView
             android:id="@+id/listBrand"
