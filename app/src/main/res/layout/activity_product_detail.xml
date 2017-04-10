@@ -165,13 +165,45 @@
 
         </android.support.v4.widget.NestedScrollView>
 
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnIncrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|end"
+            android:clickable="true"
+            android:src="@drawable/dgl_cart"
+            android:background="@color/red_fav"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            app:fab_colorNormal="@color/red_fav"
+            app:fab_colorRipple="@color/red_fav"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnDecrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|right|end"
+            android:clickable="true"
+            android:src="@drawable/dgl_cart"
+            android:background="@color/red_fav"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            app:fab_colorNormal="@color/red_fav"
+            app:fab_colorRipple="@color/red_fav"
+            />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|right|end"
+            app:layout_anchorGravity="bottom|left|end"
             android:clickable="true"
             android:src="@drawable/dgl_cart"
             android:background="@color/red_fav"

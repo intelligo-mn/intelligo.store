@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingBottom="?attr/actionBarSize"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <ListView
         android:id="@+id/fragment_item_ordered_list_view"
@@ -15,7 +18,7 @@
         android:id="@+id/sub_total_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:gravity="center_vertical"
         android:paddingBottom="15dp"
         android:textStyle="bold" />
@@ -24,7 +27,7 @@
         android:id="@+id/tax_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:gravity="center_vertical"
         android:paddingBottom="15dp"
         android:textStyle="bold" />
@@ -33,15 +36,9 @@
         android:id="@+id/total_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:gravity="center_vertical"
         android:paddingBottom="15dp"
         android:textStyle="bold" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="startPayment"
-        android:text="@string/order" />
 
 </LinearLayout>
