@@ -132,17 +132,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         addToListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (prefManager.isLoggedIn()) {
-                    addToList();
-                } else {
-                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
-                            .setAction(getString(R.string.login), new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                                }
-                            }).show();
-                }
+                addToList();
             }
         });
 
@@ -163,17 +153,17 @@ public class ActivityProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (prefManager.isLoggedIn()) {
+//                if (prefManager.isLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), ActivityCart.class));
-                } else {
-                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
-                            .setAction(R.string.login, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
-                                }
-                            }).show();
-                }
+//                } else {
+//                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+//                            .setAction(R.string.login, new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+//                                }
+//                            }).show();
+//                }
             }
         });
 

@@ -90,7 +90,7 @@ public class BrandFragment extends Fragment {
         homeSliderLayout = (SliderLayout) rootView.findViewById(R.id.slider);
 
         HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("DGL Project", "https://www.dglproject.com/images/main-banner.jpg");
+        url_maps.put("DGL Project", "http://www.powerpointhintergrund.com/uploads/blue-lights-blurry-background-9.jpg");
 
         for(String name : url_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getContext());

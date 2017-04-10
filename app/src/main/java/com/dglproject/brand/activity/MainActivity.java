@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.exit_two_press), Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
