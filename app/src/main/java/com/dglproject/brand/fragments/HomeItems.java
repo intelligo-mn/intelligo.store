@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -146,6 +147,25 @@ public class HomeItems extends Fragment {
                 }, 3000);
             }
         });
+
+        homeItemList.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+                if (homeItemList != null && homeItemList.getChildCount() > 0) {
+                    boolean firstItemVisible = homeItemList.getFirstVisiblePosition() == 0;
+                    boolean topOfFirstItemVisible = homeItemList.getChildAt(0).getTop() == 0;
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                swipeRefreshLayout.setEnabled(enable);
+            }
+        });
+
 
         return rootView;
     }
