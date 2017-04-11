@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dgl Brand</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Открыт навигации drawer</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
     <string name="name">Имя</string>
     <string name="login">Войти</string>
     <string name="settings">Настройки</string>
     <string name="signup">Зарегистрироваться</string>
     <string name="help">Помощь</string>
     <string name="company">Компании</string>
-    <string name="title_activity_department">Ветви</string>
-    <string name="details">Более</string>
+    <string name="title_activity_department">Отрасли</string>
+    <string name="details">Подробно</string>
     <string name="user">Пользователь</string>
     <string name="category">Категория</string>
     <string name="product">Продукты</string>
@@ -19,16 +19,16 @@
     <string name="no_internet">Пожалуйста, проверьте подключение к интернету</string>
     <string name="product_list">Список продуктов</string>
     <string name="not_found">Пустой</string>
-    <string name="order">Бронирование</string>
-    <string name="number_order">Подписка объем</string>
-    <string name="my_order">Подписка подробнее</string>
-    <string name="total_order">Всего резервирование</string>
+    <string name="order">Заказ</string>
+    <string name="number_order">Объем заказ</string>
+    <string name="my_order">Подробности заказа</string>
+    <string name="total_order">Общий заказ</string>
     <string name="clear_order">Отменить все резервирования</string>
     <string name="clear_all_order">Отменить все подписки?</string>
     <string name="clear_one_order">Пожалуйста, отменить этот заказ?</string>
-    <string name="no_order">Не резервирование</string>
+    <string name="no_order">Нет заказ</string>
     <string name="increase_order">+</string>
-    <string name="submit_order">Корзина</string>
+    <string name="submit_order">Добавить в корзину</string>
     <string name="edit_submit_order">Хранение</string>
     <string name="save">Сохранить</string>
     <string name="decrease_order">-</string>
@@ -38,19 +38,18 @@
     <string name="menu">Меню</string>
     <string name="my_card">Ваша корзина</string>
     <string name="send_mail">Написать письмо</string>
-    <string name="loading">Чтение...</string>
+    <string name="loading">Загрузка</string>
     <string name="phone">Номер телефона</string>
-    <string name="about">около</string>
-    <string name="introduction">Введения</string>
-    <string name="app_version">Version 1.0.0</string>
-    <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
+    <string name="introduction">Коллекция</string>
+    <string name="app_version">Версия 1.0.0</string>
+    <string name="app_copyright">Авторское право © 2017 DGL BRAND.</string>
     <string name="app_email">toroo.byamba@gmail.com</string>
     <string name="share_summary">Другие люди делятся</string>
-    <string name="rate_summary">Вы также можете просматривать и комментировать</string>
+    <string name="rate_summary">Пожалуйста, дайте ваши отзывы и комментарии</string>
     <string name="more_summary">DGL PROJECT бусад програмууд.</string>
     <string name="title_app_name">Имя приложения</string>
-    <string name="title_app_version">Програмын хувилбар</string>
-    <string name="title_app_email">Е-писмо</string>
+    <string name="title_app_version">Версия программного обеспечения</string>
+    <string name="title_app_email">Е-мэйл адрасс</string>
     <string name="title_app_copyright">Авторские права</string>
     <string name="title_app_share">Разделение</string>
     <string name="title_app_rate">Оценивать</string>
@@ -58,14 +57,14 @@
     <string name="more_apps"></string>
     <string name="share_content"></string>
 
-    <string name="company_add">Тело плюс</string>
+    <string name="company_add">Добавить компании</string>
     <string name="company_name">Компани имя</string>
     <string name="company_description">Брошюры</string>
     <string name="add">Плюс</string>
 
-    <string name="server_error">Ошибка сервера связанной</string>
+    <string name="server_error">Произошла ошибка при подключении с сервера</string>
 
-    <string name="waiting_upload">Копирование</string>
+    <string name="waiting_upload">Загружает фото</string>
     <string name="login_required">Вы должны войти</string>
     <string name="cart_add_success">Успешно добавлено в корзину</string>
     <string name="total_cost">Общая сумма</string>
@@ -74,17 +73,17 @@
     <string name="price">Цена</string>
     <string name="tax">Налоги</string>
     <string name="exit_two_press">Выход Нажмите</string>
-    <string name="brand">Марка</string>
+    <string name="brand">Брэнд</string>
     <string name="model">Мода / Модель / код</string>
 
-    <string name="register_loaging">Создание аккаунта</string>
+    <string name="register_loaging">Придется создать учетную запись</string>
     <string name="register_success">Успешно зарегистрировано</string>
-    <string name="register_error">При регистрации произошла ошибка</string>
+    <string name="register_error">вы оцените и комментировате пожалуйста</string>
     <string name="username">Имя пользователя</string>
-    <string name="email">Эл. адрес</string>
+    <string name="email">Е-мэйл адрасс</string>
     <string name="password">пароль</string>
-    <string name="re_enter_pass">повторно ввести пароль</string>
-    <string name="remember">Запомнить</string>
+    <string name="re_enter_pass">Пожалуйста, введите пароль еще раз</string>
+    <string name="remember">Запомнить меня</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>
     <string name="twitter">Twitter</string>
@@ -94,7 +93,7 @@
     <string name="err_username_pass_invalid">Неверная Имя пользователя Пароль</string>
     <string name="err_mail">Адрес электронной почты недействителен</string>
     <string name="err_pass_confirm">Пароли матч</string>
-    <string name="recover_account">Забыть пароль</string>
+    <string name="recover_account">Забыли аккаунт</string>
 
     <string name="no_product">Нет информации о продукте</string>
 
@@ -119,7 +118,7 @@
     <string name="hint_prompt">Произнесите название элемента или номер</string>
 
     <string name="cd_up_button">Кнопка навигации вверх</string>
-    <string name="cd_voice_search">Voice search</string>
+    <string name="cd_voice_search">Голосовой поиск</string>
     <string name="cd_clear_button">Голосовой поиск</string>
     <string name="cd_suggestion_icon">Значок элемента списка</string>
 
@@ -132,6 +131,8 @@
     <item>платье</item>
     <item>эрэгтэй цамц</item>
     </string-array>
+    <string name="about">O</string>
+    <string name="product_add">Добавить продукты</string>
 
 
-    </resources>
+</resources>

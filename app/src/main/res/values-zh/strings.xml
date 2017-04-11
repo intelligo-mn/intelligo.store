@@ -130,6 +130,7 @@
         <item>платье</item>
         <item>эрэгтэй цамц</item>
     </string-array>
+    <string name="product_add">添加產品</string>
 
 
 </resources>

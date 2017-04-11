@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
     tools:context="com.dglproject.brand.fragments.NavigationFragment">
 
      <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,46 +14,28 @@
         <RelativeLayout
             android:id="@+id/content_user_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <RelativeLayout
                 android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="140dp"
                 android:background="@drawable/header_image"
                 android:elevation="4dp"
                 android:paddingBottom="24dp">
 
                 <ImageButton
                     android:id="@+id/user_profile_photo"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/profile_circular_image"
                     android:elevation="5dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:padding="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/logo" />
-
-                <ImageView
-                    android:id="@+id/profile_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_action_navigation_arrow_back" />
-
-                <ImageView
-                    android:id="@+id/user_profile_set_btn"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/dgl_settings" />
 
                 <TextView
                     android:id="@+id/user_profile_name"
@@ -60,93 +43,41 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/user_profile_photo"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="10dp"
                     android:text="Tortuvshin Byambaa"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/add_friend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/user_profile_name"
-                    android:layout_marginTop="6dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Түншлэх"
-                    android:textColor="#fff" />
 
                 <TextView
                     android:id="@+id/user_profile_f"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/add_friend"
                     android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/user_profile_name"
                     android:layout_marginTop="2dp"
                     android:text="Software engineering"
                     android:textColor="#fff"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/user_profile_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/add_friend"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:text="Software engineering"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
-
+                    android:textSize="8sp" />
 
             </RelativeLayout>
-
-
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/profile_layout"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
+                android:layout_marginTop="5dp">
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#fff"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Software engineering" />
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#fff"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Software engineering" />
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#fff"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Software engineering" />
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#fff"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Software engineering" />
+                <ListView
+                    android:id="@+id/listMenus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="308dp"
+                    android:layout_below="@+id/profile_layout">
 
+                </ListView>
             </LinearLayout>
+
+
         </RelativeLayout>
+
     </ScrollView>
 </FrameLayout>

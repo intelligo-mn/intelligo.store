@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -80,6 +83,8 @@ public class HomeItems extends Fragment {
     JSONArray jsonArrayProducts;
     JSONParser jsonParser = new JSONParser();
 
+    SwipeRefreshLayout swipeRefreshLayout = null;
+
     public static HomeItems newInstance(int pageNo) {
 
         Bundle args = new Bundle();
@@ -103,6 +108,9 @@ public class HomeItems extends Fragment {
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshHome);
+        swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
+
         ProductService = DglConstants.ProductService;
 
         mainActivity = new MainActivity();
@@ -123,6 +131,42 @@ public class HomeItems extends Fragment {
                 startActivity(iDetail);
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        IOConnect = 0;
+                        homeItemList.invalidateViews();
+                        clearData();
+                        new getDataTask().execute();
+                    }
+                }, 3000);
+            }
+        });
+
+        homeItemList.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+                if (homeItemList != null && homeItemList.getChildCount() > 0) {
+                    boolean firstItemVisible = homeItemList.getFirstVisiblePosition() == 0;
+                    boolean topOfFirstItemVisible = homeItemList.getChildAt(0).getTop() == 0;
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                swipeRefreshLayout.setEnabled(enable);
+            }
+        });
+
+
         return rootView;
     }
 

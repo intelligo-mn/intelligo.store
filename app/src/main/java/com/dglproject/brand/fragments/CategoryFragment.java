@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -45,6 +48,7 @@ public class CategoryFragment extends Fragment {
     GridView listCategory;
     ProgressBar prgLoading;
     TextView txtAlert;
+    SwipeRefreshLayout swipeRefreshLayout = null;
 
     CategoryAdapter categoryAdapter;
 
@@ -80,6 +84,9 @@ public class CategoryFragment extends Fragment {
         listCategory = (GridView) rootView.findViewById(R.id.listCategory);
         txtAlert = (TextView) rootView.findViewById(R.id.txtAlert);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshCat);
+        swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
+
         categoryAdapter = new CategoryAdapter(getActivity());
 
         CategoryService = DglConstants.CategoryService+"?accesskey="+ DglConstants.generateAccessKey();
@@ -96,6 +103,41 @@ public class CategoryFragment extends Fragment {
                 startActivity(iMenuList);
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        IOConnect = 0;
+                        listCategory.invalidateViews();
+                        clearData();
+                        new getDataTask().execute();
+                    }
+                }, 3000);
+            }
+        });
+
+//        listCategory.setOnScrollListener(new AbsListView.OnScrollListener() {
+//
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                boolean enable = false;
+//                if (listCategory != null && listCategory.getChildCount() > 0) {
+//                    boolean firstItemVisible = listCategory.getFirstVisiblePosition() == 0;
+//                    boolean topOfFirstItemVisible = listCategory.getChildAt(0).getTop() == 0;
+//                    enable = firstItemVisible && topOfFirstItemVisible;
+//                }
+//                swipeRefreshLayout.setEnabled(enable);
+//            }
+//        });
+
         return  rootView;
     }
 
@@ -153,17 +195,13 @@ public class CategoryFragment extends Fragment {
                 str += line;
             }
 
-            JSONObject json = new JSONObject(str);
-            JSONArray data = json.getJSONArray("data");
+            JSONObject json = new JSONObject("{category="+str+"}");
+            JSONArray data = json.getJSONArray("category");
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
-
-                JSONObject category = object.getJSONObject("category");
-
-                Category_ID.add(Long.parseLong(category.getString("category_id")));
-                Category_name.add(category.getString("category_name"));
-                Category_image.add(category.getString("category_image"));
+                Category_ID.add(data.getJSONObject(i).getLong("id"));
+                Category_name.add(data.getJSONObject(i).getString("name"));
+                Category_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
                 Log.d("Category name", Category_name.get(i));
             }
         } catch (MalformedURLException e) {

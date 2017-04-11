@@ -57,7 +57,7 @@ public class CategoryAdapter extends BaseAdapter{
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtText.setText(CategoryFragment.Category_name.get(position));
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ CategoryFragment.Category_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(DglConstants.AdminPageURL+"/uploads/project_category_icons/"+ CategoryFragment.Category_image.get(position), holder.imgThumb);
 
         return convertView;
     }

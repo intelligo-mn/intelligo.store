@@ -59,7 +59,7 @@
     <string name="share_content"></string>
 
     <string name="company_add">Company add</string>
-    <string name="company_name">Compaony name</string>
+    <string name="company_name">Company name</string>
     <string name="company_description">Company description</string>
     <string name="add">Add</string>
 
@@ -132,6 +132,7 @@
         <item>платье</item>
         <item>эрэгтэй цамц</item>
     </string-array>
+    <string name="product_add">Product add</string>
 
 
 </resources>
