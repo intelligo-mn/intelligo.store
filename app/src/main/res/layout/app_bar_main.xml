@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context="com.dglproject.brand.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -56,7 +55,7 @@
         android:layout_alignParentRight="true"
         android:paddingRight="10dp"
         app:layout_collapseMode="pin"
-        android:paddingBottom="10dp"
+        android:paddingBottom="60dp"
         android:paddingLeft="10dp"
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"

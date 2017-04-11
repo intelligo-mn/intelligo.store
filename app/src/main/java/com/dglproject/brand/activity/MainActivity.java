@@ -91,14 +91,17 @@ public class MainActivity extends AppCompatActivity {
             mTabLayout.getTabAt(0).getCustomView().setSelected(true);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addFab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        com.github.clans.fab.FloatingActionButton prodAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.product_add);
+
+        prodAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (prefManager.isLoggedIn()) {
-                    startActivity(new Intent(getApplicationContext(), ActivityProductAdd.class));
+                    Intent intent = new Intent(MainActivity.this, ActivityProductAdd.class);
+                    startActivity(intent);
                 } else {
-                    Snackbar.make(view, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
                             .setAction(getString(R.string.login), new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -109,22 +112,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        com.github.clans.fab.FloatingActionButton prodAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.product_add);
-
-        prodAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActivityProductAdd.class);
-                startActivity(intent);
-            }
-        });
-
         com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.company_add);
 
         companyAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityBrandAdd.class));
+
+                if (prefManager.isLoggedIn()) {
+                    startActivity(new Intent(MainActivity.this, ActivityBrandAdd.class));
+                } else {
+                    Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
+                            .setAction(getString(R.string.login), new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
+                                }
+                            }).show();
+                }
             }
         });
     }
