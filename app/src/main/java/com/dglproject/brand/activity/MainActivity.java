@@ -108,6 +108,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        com.github.clans.fab.FloatingActionButton prodAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.product_add);
+
+        prodAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActivityProductAdd.class);
+                startActivity(intent);
+            }
+        });
+
+        com.github.clans.fab.FloatingActionButton companyAdd = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.company_add);
+
+        companyAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ActivityBrandAdd.class));
+            }
+        });
     }
 
     public void setupViewPager () {

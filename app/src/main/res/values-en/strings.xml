@@ -132,6 +132,7 @@
         <item>платье</item>
         <item>эрэгтэй цамц</item>
     </string-array>
+    <string name="product_add">Product add</string>
 
 
 </resources>

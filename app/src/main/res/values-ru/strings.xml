@@ -132,6 +132,7 @@
     <item>эрэгтэй цамц</item>
     </string-array>
     <string name="about">O</string>
+    <string name="product_add">Добавить продукты</string>
 
 
 </resources>
