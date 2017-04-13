@@ -78,20 +78,20 @@ public class CartFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String title = dataList.get(position).get("Title");
-                CartProducts item = productAdapter.findByTitle(title);
-                String costString = "" + item.getCost();
-                String totalCostString = "" + item.totalCost;
-                String totalOrderString = "" + item.getTotalOrder();
-                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage()};
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                String title = dataList.get(position).get("Title");
+//                CartProducts item = productAdapter.findByTitle(title);
+//                String costString = "" + item.getCost();
+//                String totalCostString = "" + item.totalCost;
+//                String totalOrderString = "" + item.getTotalOrder();
+//                String[] transferData = {item.getTitle(), item.getDescription(), costString, totalCostString, totalOrderString, item.getImage()};
 //                Intent intent = new Intent(getActivity(), ActivityCartEdit.class);
 //                intent.putExtra(TAG, transferData);
 //                startActivity(intent);
-            }
-        });
+//            }
+//        });
         productAdapter.close();
         return rootView;
 

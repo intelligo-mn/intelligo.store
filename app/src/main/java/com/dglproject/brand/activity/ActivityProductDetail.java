@@ -196,17 +196,17 @@ public class ActivityProductDetail extends AppCompatActivity {
 //        getSupportActionBar().setTitle(Product_name);
         displayData();
 
-        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
-        fabShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sendInt = new Intent(Intent.ACTION_SEND);
-                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
-                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
-                sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
-            }
-        });
+//        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
+//        fabShare.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent sendInt = new Intent(Intent.ACTION_SEND);
+//                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+//                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+//                sendInt.setType("text/plain");
+//                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
+//            }
+//        });
 
     }
 
