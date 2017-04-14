@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
 
@@ -39,7 +40,7 @@ import java.util.ArrayList;
 
 public class ActivityProductAdd extends AppCompatActivity {
 
-    String URL= DglConstants.ProductService;
+    String URL= Config.ProductService;
 
     JSONParser jsonParser=new JSONParser();
 
