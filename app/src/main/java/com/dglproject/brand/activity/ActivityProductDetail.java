@@ -222,10 +222,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayData() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost) +" :"+ new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost) +" : "+ new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number)+" :" + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" : " + totalOrder);
     }
 
     public void increaseTotalCost() {
@@ -243,10 +243,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayUpdate() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost)+" :" + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost)+" : " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number)+" :" + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" : " + totalOrder);
     }
 
     public void addToList() {
@@ -297,7 +297,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                 });
 
                 txtText.setText(Product_name);
-                txtSubText.setText(getString(R.string.price)+" :" + Product_price + " ₮" );
+                txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
 
