@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
-import com.dglproject.brand.utils.ImageLoader;
+import com.dglproject.brand.Config;
+import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.R;
 
@@ -63,7 +63,7 @@ public class ProductListAdapter extends BaseAdapter{
 
         holder.txtSubText.setText(ActivityProductList.Product_price.get(position)+" ₮");
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ ActivityProductList.Product_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(Config.AdminPageURL+ ActivityProductList.Product_image.get(position), holder.imgThumb);
 
         return convertView;
     }

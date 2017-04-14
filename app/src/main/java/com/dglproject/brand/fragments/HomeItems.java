@@ -1,13 +1,11 @@
 package com.dglproject.brand.fragments;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +17,7 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.activity.MainActivity;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductDetail;
@@ -27,13 +25,11 @@ import com.dglproject.brand.adapters.AllProductAdapter;
 import com.dglproject.brand.json.JSONParser;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,13 +40,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Tortuvshin Byambaa on 2/24/2017.
@@ -111,7 +102,7 @@ public class HomeItems extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshHome);
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
 
-        ProductService = DglConstants.ProductService;
+        ProductService = Config.ProductService;
 
         mainActivity = new MainActivity();
 
@@ -227,8 +218,8 @@ public class HomeItems extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
-            Log.d("",ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
+            HttpUriRequest request = new HttpGet(ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
+            Log.d("",ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));

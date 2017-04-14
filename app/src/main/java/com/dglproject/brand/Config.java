@@ -14,7 +14,7 @@ import java.util.Date;
  * Created by Tortuvshin Byambaa on 3/3/2017.
  */
 
-public class DglConstants {
+public class Config {
 
     public static String AdminPageURL = "https://www.dglproject.com";
     public static String ProductService = "https://www.dglproject.com/applications/ProductService.php";

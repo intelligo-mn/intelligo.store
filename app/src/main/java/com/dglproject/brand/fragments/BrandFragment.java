@@ -20,7 +20,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.BrandAdapter;
@@ -120,7 +120,7 @@ public class BrandFragment extends Fragment {
 
         brandAdapter = new BrandAdapter(getActivity());
 
-        BrandService = DglConstants.BrandService+"?accesskey="+ DglConstants.generateAccessKey();
+        BrandService = Config.BrandService+"?accesskey="+ Config.generateAccessKey();
 
         new getDataTask().execute();
 
@@ -218,7 +218,7 @@ public class BrandFragment extends Fragment {
             HttpClient client = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
             HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r");
+            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
             HttpResponse response = client.execute(request);
             InputStream atomInputStream = response.getEntity().getContent();
             BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));

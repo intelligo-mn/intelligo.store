@@ -9,10 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
-import com.dglproject.brand.utils.ImageLoader;
+import com.dglproject.brand.utilities.ImageLoader;
 
 /**
  * Created by Tortuvshin Byambaa on 3/28/2017.
@@ -58,7 +58,7 @@ public class BrandAdapter extends BaseAdapter {
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtText.setText(BrandFragment.Brand_name.get(position));
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ "/uploads/product_brand_icons/"+BrandFragment.Brand_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(Config.AdminPageURL+ "/uploads/product_brand_icons/"+BrandFragment.Brand_image.get(position), holder.imgThumb);
 
         return convertView;
     }

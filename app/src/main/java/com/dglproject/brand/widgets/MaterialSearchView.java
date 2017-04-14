@@ -42,7 +42,7 @@ import com.dglproject.brand.BuildConfig;
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.SearchAdapter;
 import com.dglproject.brand.database.HistoryContract;
-import com.dglproject.brand.utils.AnimationUtils;
+import com.dglproject.brand.utilities.AnimationUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

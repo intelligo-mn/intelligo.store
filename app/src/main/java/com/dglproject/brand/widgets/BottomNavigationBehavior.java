@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
 import com.dglproject.brand.R;
-import com.dglproject.brand.utils.VerticalScrollingBehavior;
+import com.dglproject.brand.utilities.VerticalScrollingBehavior;
 
 /**
  * Created by Tortuvshin Byambaa on 2/24/2017.

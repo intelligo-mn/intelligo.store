@@ -15,7 +15,7 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.CategoryAdapter;
 
@@ -67,7 +67,7 @@ public class ActivityCategory extends AppCompatActivity {
 
         categoryAdapter = new CategoryAdapter(ActivityCategory.this);
 
-        BrandService = DglConstants.BrandService+"?accesskey="+ DglConstants.generateAccessKey();
+        BrandService = Config.BrandService+"?accesskey="+ Config.generateAccessKey();
 
         new getDataTask().execute();
 

@@ -15,7 +15,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -23,15 +22,14 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.models.CartProducts;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -189,7 +187,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductService = DglConstants.ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r&product_id="+ Product_ID;
+        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
@@ -281,7 +279,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             prgLoading.setVisibility(View.GONE);
             if ((Product_name != null) && IOConnect == 0) {
                 coordinatorLayout.setVisibility(View.VISIBLE);
-                  Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                  Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
                     @Override
                     public void onSuccess() {
                         Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();

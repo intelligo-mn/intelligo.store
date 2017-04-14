@@ -2,7 +2,6 @@ package com.dglproject.brand.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.HomeItems;
-import com.dglproject.brand.utils.ImageLoader;
+import com.dglproject.brand.utilities.ImageLoader;
 
 /**
  * Created by Tortuvshin Byambaa on 3/5/2017.
@@ -65,7 +64,7 @@ public class AllProductAdapter extends BaseAdapter {
         holder.txtText.setText(HomeItems.Product_name.get(position));
         holder.txtSubText.setText(HomeItems.Product_price.get(position)+" ₮");
 
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(Config.AdminPageURL+ "/uploads/product_photos/"+HomeItems.Product_image.get(position), holder.imgThumb);
         return convertView;
     }
 

@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.ProductListAdapter;
 
@@ -86,7 +86,7 @@ public class ActivityProductList extends AppCompatActivity {
 
         Log.d("","Brand ID: "+Category_ID);
 
-        ProductService = DglConstants.ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r&brand_id="+Category_ID;
+        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&brand_id="+Category_ID;
 
         Log.d("","URL: "+ProductService);
 

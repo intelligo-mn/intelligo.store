@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class ActivityBrandAdd extends AppCompatActivity {
 
-    String URL= DglConstants.BrandService;
+    String URL= Config.BrandService;
 
     JSONParser jsonParser = new JSONParser();
 

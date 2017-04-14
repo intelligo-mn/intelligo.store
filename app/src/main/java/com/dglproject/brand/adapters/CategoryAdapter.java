@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.fragments.CategoryFragment;
-import com.dglproject.brand.utils.ImageLoader;
+import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.R;
 
 /**
@@ -57,7 +57,7 @@ public class CategoryAdapter extends BaseAdapter{
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtText.setText(CategoryFragment.Category_name.get(position));
-        imageLoader.DisplayImage(DglConstants.AdminPageURL+"/uploads/project_category_icons/"+ CategoryFragment.Category_image.get(position), holder.imgThumb);
+        imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/project_category_icons/"+ CategoryFragment.Category_image.get(position), holder.imgThumb);
 
         return convertView;
     }

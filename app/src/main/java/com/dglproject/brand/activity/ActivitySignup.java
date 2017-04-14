@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.json.JSONParser;
 import com.dglproject.brand.R;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -35,7 +35,7 @@ public class ActivitySignup extends AppCompatActivity {
 
     JSONParser jsonParser = new JSONParser();
 
-    String URL = DglConstants.UserService;
+    String URL = Config.UserService;
 
     int i=0;
 
@@ -105,7 +105,7 @@ public class ActivitySignup extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
 
         CreateUser createUser = new CreateUser();
-        createUser.execute(String.valueOf(DglConstants.generateAccessKey()),"signup",name,password,email);
+        createUser.execute(String.valueOf(Config.generateAccessKey()),"signup",name,password,email);
     }
 
     public void onSignupFailed() {
