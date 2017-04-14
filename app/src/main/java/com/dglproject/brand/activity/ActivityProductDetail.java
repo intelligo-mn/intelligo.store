@@ -15,7 +15,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -23,15 +22,14 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.models.CartProducts;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -189,24 +187,24 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductService = DglConstants.ProductService+"?accesskey="+String.valueOf(DglConstants.generateAccessKey())+"&state=r&product_id="+ Product_ID;
+        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&product_id="+ Product_ID;
 
         new getDataTask().execute();
 
 //        getSupportActionBar().setTitle(Product_name);
         displayData();
 
-        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
-        fabShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sendInt = new Intent(Intent.ACTION_SEND);
-                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
-                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
-                sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
-            }
-        });
+//        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
+//        fabShare.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent sendInt = new Intent(Intent.ACTION_SEND);
+//                sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
+//                sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
+//                sendInt.setType("text/plain");
+//                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
+//            }
+//        });
 
     }
 
@@ -224,10 +222,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayData() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost) +" : "+ new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" : " + totalOrder);
     }
 
     public void increaseTotalCost() {
@@ -245,10 +243,10 @@ public class ActivityProductDetail extends AppCompatActivity {
 
     public void displayUpdate() {
         totalCostView = (TextView) findViewById(R.id.total_cost_text_view);
-        totalCostView.setText(getString(R.string.total_cost) + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
+        totalCostView.setText(getString(R.string.total_cost)+" : " + new DecimalFormat("#.##").format(totalCostDouble)+" ₮");
 
         totalOrderView = (TextView) findViewById(R.id.total_item_number);
-        totalOrderView.setText(getString(R.string.total_number) + totalOrder);
+        totalOrderView.setText(getString(R.string.total_number)+" : " + totalOrder);
     }
 
     public void addToList() {
@@ -281,8 +279,7 @@ public class ActivityProductDetail extends AppCompatActivity {
             prgLoading.setVisibility(View.GONE);
             if ((Product_name != null) && IOConnect == 0) {
                 coordinatorLayout.setVisibility(View.VISIBLE);
-                Log.d("","Details image url: "+DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image);
-                Picasso.with(getApplicationContext()).load(DglConstants.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                  Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
                     @Override
                     public void onSuccess() {
                         Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
@@ -300,15 +297,13 @@ public class ActivityProductDetail extends AppCompatActivity {
                 });
 
                 txtText.setText(Product_name);
-                txtSubText.setText(getString(R.string.price) + Product_price + " ₮" );
+                txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
                 txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
                 txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
 
                 txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
                 WebSettings webSettings = txtDescription.getSettings();
                 Resources res = getResources();
-//                int fontSize = res.getInteger(R.integer.font_size);
-//                webSettings.setDefaultFontSize(fontSize);
 
             } else {
                 txtAlert.setVisibility(View.VISIBLE);

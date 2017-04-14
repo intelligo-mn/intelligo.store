@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -16,10 +15,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -34,9 +29,8 @@ import com.dglproject.brand.fragments.CartFragment;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.fragments.NavigationFragment;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
-import com.dglproject.brand.widgets.MaterialSearchView;
 
 import java.util.ArrayList;
 
@@ -246,21 +240,6 @@ public class MainActivity extends AppCompatActivity {
 //                return true;
 //        }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if (matches != null && matches.size() > 0) {
-                String searchWrd = matches.get(0);
-                if (!TextUtils.isEmpty(searchWrd)) {
-                }
-            }
-
-            return;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.dglproject.brand.utils;
+package com.dglproject.brand.utilities;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -77,7 +77,7 @@ public class ImageLoader {
             conn.setInstanceFollowRedirects(true);
             InputStream is=conn.getInputStream();
             OutputStream os = new FileOutputStream(f);
-            DglConstants.CopyStream(is, os);
+            Utils.CopyStream(is, os);
             os.close();
             conn.disconnect();
             bitmap = decodeFile(f);

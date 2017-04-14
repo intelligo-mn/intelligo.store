@@ -162,55 +162,20 @@
 
             </android.support.v7.widget.CardView>
 
-
         </android.support.v4.widget.NestedScrollView>
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnIncrease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|end"
-            android:clickable="true"
-            android:src="@drawable/dgl_cart"
-            android:background="@color/red_fav"
-            app:borderWidth="0dp"
-            app:fabSize="normal"
-            app:fab_colorNormal="@color/red_fav"
-            app:fab_colorRipple="@color/red_fav"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnDecrease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|right|end"
-            android:clickable="true"
-            android:src="@drawable/dgl_cart"
-            android:background="@color/red_fav"
-            app:borderWidth="0dp"
-            app:fabSize="normal"
-            app:fab_colorNormal="@color/red_fav"
-            app:fab_colorRipple="@color/red_fav"
-            />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|left|end"
+            app:layout_anchorGravity="bottom|right|end"
             android:clickable="true"
-            android:src="@drawable/dgl_cart"
-            android:background="@color/red_fav"
+
+            android:src="@drawable/dgl_share_w"
             app:borderWidth="0dp"
             app:fabSize="normal"
-            app:fab_colorNormal="@color/red_fav"
-            app:fab_colorRipple="@color/red_fav"
             />
 
         <com.github.clans.fab.FloatingActionMenu
@@ -218,12 +183,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:paddingRight="10dp"
             app:layout_collapseMode="pin"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
-            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_ellipsize="start"
             fab:menu_labels_singleLine="true"
             fab:menu_backgroundColor="#ccffffff"
             fab:menu_fab_size="normal">
@@ -232,7 +197,7 @@
                 android:id="@+id/send_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dgl_cart"
+                android:src="@drawable/dgl_cart_w"
                 fab:fab_size="normal"
                 fab:fab_label="@string/my_card" />
 
@@ -240,17 +205,9 @@
                 android:id="@+id/send_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dgl_mail"
+                android:src="@drawable/dgl_mail_w"
                 fab:fab_size="normal"
                 fab:fab_label="@string/send_mail" />
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/dgl_share"
-                fab:fab_size="normal"
-                fab:fab_label="@string/share" />
 
         </com.github.clans.fab.FloatingActionMenu>
 

@@ -114,22 +114,7 @@
                     將連接到只有一個人！</string>
 
     <string name="search_hint">搜索…</string>
-    <string name="hint_prompt">说出一个项目名称或一个数字</string>
 
-    <string name="cd_up_button">向上导航按钮</string>
-    <string name="cd_voice_search">聲音搜索</string>
-    <string name="cd_clear_button">清除字段</string>
-    <string name="cd_suggestion_icon">列出项目图标</string>
-
-    <string name="bt_clearHistory">搜索歷史記錄清理</string>
-    <string name="bt_clearSuggestions">清潔的</string>
-    <string name="bt_clearAll">清除所有</string>
-
-    <string-array name="suggestions">
-        <item>Цүнх</item>
-        <item>платье</item>
-        <item>эрэгтэй цамц</item>
-    </string-array>
     <string name="product_add">添加產品</string>
 
 

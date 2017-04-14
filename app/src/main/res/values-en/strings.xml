@@ -90,7 +90,7 @@
     <string name="twitter">Twitter</string>
     <string name="err_try_again">Try again</string>
     <string name="err_username_short">Username is less than 3 characters</string>
-    <string name="err_pass_short">Нууц үг 4-өөс олон тэмдэгт байна</string>
+    <string name="err_pass_short">Password is less than 3 characters</string>
     <string name="err_username_pass_invalid">Passwords are more characters than 4</string>
     <string name="err_mail">Email address is invalid</string>
     <string name="err_pass_confirm">Passwords match</string>
@@ -116,22 +116,7 @@
                      will connect to only one person.!</string>
 
     <string name="search_hint">Search&#8230;</string>
-    <string name="hint_prompt">Speak an item name or a number</string>
 
-    <string name="cd_up_button">Up navigation button</string>
-    <string name="cd_voice_search">Voice search</string>
-    <string name="cd_clear_button">Clear field</string>
-    <string name="cd_suggestion_icon">List item icon</string>
-
-    <string name="bt_clearHistory">Clear search history</string>
-    <string name="bt_clearSuggestions">Clear</string>
-    <string name="bt_clearAll">Clear all</string>
-
-    <string-array name="suggestions">
-        <item>Цүнх</item>
-        <item>платье</item>
-        <item>эрэгтэй цамц</item>
-    </string-array>
     <string name="product_add">Product add</string>
 
 

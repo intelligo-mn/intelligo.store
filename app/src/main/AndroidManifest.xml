@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dglproject.brand">
 
-    <uses-feature
-        android:name="android.hardware.Camera"
-        android:required="true"></uses-feature>
-
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -18,8 +13,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -65,22 +58,12 @@
             android:theme="@style/AppAuth" />
         <activity android:name=".activity.ActivitySettings" />
 
-        <provider
-            android:name=".database.HistoryProvider"
-            android:authorities="com.dglproject.brand"
-            android:exported="false"
-            android:protectionLevel="signature"
-            android:syncable="true" />
-
         <activity
             android:name=".activity.ActivityWelcome"
             android:theme="@style/AppFullScreen" />
         <activity android:name=".activity.ActivityProductAdd" />
         <activity android:name=".activity.ActivityCartEdit" />
         <activity android:name=".activity.ActivityBrandAdd" />
-        <activity
-            android:name=".activity.ActivitySearch"
-            android:theme="@style/AppTheme.NoActionBarGreen"></activity>
         <activity android:name=".activity.ActivityAdd"></activity>
     </application>
 

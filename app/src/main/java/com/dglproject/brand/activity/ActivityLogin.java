@@ -12,10 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -101,7 +101,7 @@ public class ActivityLogin extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         LoginUser userAttempt = new LoginUser();
-        userAttempt.execute(String.valueOf(DglConstants.generateAccessKey()),"signin", username,password);
+        userAttempt.execute(String.valueOf(Config.generateAccessKey()),"signin", username,password);
 
     }
 
@@ -216,7 +216,7 @@ public class ActivityLogin extends AppCompatActivity {
             params.add(new BasicNameValuePair("username", name));
             params.add(new BasicNameValuePair("password", password));
 
-            JSONObject json = jsonParser.makeHttpRequest(DglConstants.UserService, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(Config.UserService, "POST", params);
 
             return json;
 

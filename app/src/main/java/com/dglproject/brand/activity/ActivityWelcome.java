@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dglproject.brand.R;
-import com.dglproject.brand.utils.PrefManager;
+import com.dglproject.brand.utilities.PrefManager;
 
 public class ActivityWelcome extends AppCompatActivity {
 

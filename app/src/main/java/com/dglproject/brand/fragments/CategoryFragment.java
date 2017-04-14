@@ -11,13 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.dglproject.brand.DglConstants;
+import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.CategoryAdapter;
@@ -89,7 +88,7 @@ public class CategoryFragment extends Fragment {
 
         categoryAdapter = new CategoryAdapter(getActivity());
 
-        CategoryService = DglConstants.CategoryService+"?accesskey="+ DglConstants.generateAccessKey();
+        CategoryService = Config.CategoryService+"?accesskey="+ Config.generateAccessKey();
 
         new getDataTask().execute();
 

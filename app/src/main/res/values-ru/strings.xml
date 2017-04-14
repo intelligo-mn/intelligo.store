@@ -115,22 +115,7 @@
                          будет подключаться только к одному человеку.!</string>
 
     <string name="search_hint">поиск&#8230;</string>
-    <string name="hint_prompt">Произнесите название элемента или номер</string>
 
-    <string name="cd_up_button">Кнопка навигации вверх</string>
-    <string name="cd_voice_search">Голосовой поиск</string>
-    <string name="cd_clear_button">Голосовой поиск</string>
-    <string name="cd_suggestion_icon">Значок элемента списка</string>
-
-    <string name="bt_clearHistory">Чистка История поиска</string>
-    <string name="bt_clearSuggestions">Очищающий</string>
-    <string name="bt_clearAll">Очистить все</string>
-
-    <string-array name="suggestions">
-    <item>Цүнх</item>
-    <item>платье</item>
-    <item>эрэгтэй цамц</item>
-    </string-array>
     <string name="about">O</string>
     <string name="product_add">Добавить продукты</string>
 
