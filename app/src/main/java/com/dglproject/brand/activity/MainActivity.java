@@ -31,7 +31,6 @@ import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.fragments.NavigationFragment;
 import com.dglproject.brand.utilities.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
-import com.dglproject.brand.widgets.MaterialSearchView;
 
 import java.util.ArrayList;
 

@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dglproject.brand.R;
-import com.dglproject.brand.database.HistoryContract;
 
 /**
  * Created by Tortuvshin Byambaa on 3/7/2017.
