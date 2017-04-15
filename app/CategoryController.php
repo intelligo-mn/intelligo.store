@@ -18,7 +18,8 @@ class CategoryController{
 
     public function getAll () {
         $sql_query = "SELECT * 
-             FROM ".$this->db_table;
+            FROM ".$this->db_table."
+            WHERE level = 2";
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
