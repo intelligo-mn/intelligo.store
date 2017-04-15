@@ -2,9 +2,10 @@ package com.dglproject.brand.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 /**
- * Created by Tortuvshin Byambaa on 3/9/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class PrefManager {
     SharedPreferences pref;

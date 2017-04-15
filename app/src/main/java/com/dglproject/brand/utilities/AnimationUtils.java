@@ -7,9 +7,10 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-
 /**
- * Created by Tortuvshin Byambaa on 3/7/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class AnimationUtils {
 

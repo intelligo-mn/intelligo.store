@@ -13,9 +13,10 @@ import com.dglproject.brand.Config;
 import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.R;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class ProductListAdapter extends BaseAdapter{
 

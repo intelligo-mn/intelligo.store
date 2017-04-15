@@ -7,9 +7,10 @@ import android.net.NetworkInfo;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-
 /**
- * Created by Tortuvshin Byambaa on 4/14/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class Utils {
 

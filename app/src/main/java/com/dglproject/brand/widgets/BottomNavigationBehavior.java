@@ -17,10 +17,10 @@ import com.dglproject.brand.R;
 import com.dglproject.brand.utilities.VerticalScrollingBehavior;
 
 /**
- * Created by Tortuvshin Byambaa on 2/24/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
-
 public class BottomNavigationBehavior<V extends View> extends VerticalScrollingBehavior<V> {
     private static final Interpolator INTERPOLATOR = new LinearOutSlowInInterpolator();
     private int mTabLayoutId;

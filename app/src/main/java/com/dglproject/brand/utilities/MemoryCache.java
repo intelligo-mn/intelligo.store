@@ -7,11 +7,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
 public class MemoryCache {
 
     private static final String TAG = "MemoryCache";

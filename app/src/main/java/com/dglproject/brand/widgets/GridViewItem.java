@@ -1,9 +1,10 @@
 package com.dglproject.brand.widgets;
 
 import android.graphics.drawable.Drawable;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class GridViewItem
 {

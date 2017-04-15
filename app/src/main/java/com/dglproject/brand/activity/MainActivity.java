@@ -33,7 +33,11 @@ import com.dglproject.brand.utilities.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
 
 import java.util.ArrayList;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class MainActivity extends AppCompatActivity {
 
     ImageView userImage;

@@ -3,9 +3,10 @@ package com.dglproject.brand.widgets;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class SquareImageView extends ImageView {
     public SquareImageView(Context context) {

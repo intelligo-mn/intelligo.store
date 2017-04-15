@@ -13,7 +13,11 @@ import android.widget.ListView;
 
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.AdapterList;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class NavigationFragment extends Fragment {
 
     public static final String ARG_PAGE = "NAV";

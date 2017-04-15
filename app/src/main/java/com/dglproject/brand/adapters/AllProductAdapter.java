@@ -13,9 +13,10 @@ import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.utilities.ImageLoader;
-
 /**
- * Created by Tortuvshin Byambaa on 3/5/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class AllProductAdapter extends BaseAdapter {
 

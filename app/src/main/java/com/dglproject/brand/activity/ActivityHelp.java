@@ -6,7 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.dglproject.brand.R;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityHelp extends AppCompatActivity {
 
     @Override
