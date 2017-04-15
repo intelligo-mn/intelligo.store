@@ -6,11 +6,11 @@ header('Content-Type: text/plain; charset=utf-8');
  
 include_once 'config/db-connect.php';
 
-class ProjectController{
+class CategoryController{
     
     private $db;
     
-    private $db_table = "project";
+    private $db_table = "project_category";
     
     public function __construct(){
         $this->db = new DbConnect();
@@ -18,16 +18,17 @@ class ProjectController{
 
     public function getAll () {
         $sql_query = "SELECT * 
-             FROM ".$this->db_table;
+            FROM ".$this->db_table."
+            WHERE level = 2";
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
-        $projects = array();
-        while($project = $result->fetch_assoc()) {
-            $projects[] = $project;
+        $categories = array();
+        while($category = $result->fetch_assoc()) {
+            $categories[] = $category;
         }
 
-        return $projects;
+        return $categories;
         
     }
 
