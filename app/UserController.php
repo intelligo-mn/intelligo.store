@@ -23,17 +23,12 @@ class UserController{
     public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
         
         $json = array();
+        $slug = $username != NULL ? $username : $fb_id;
         
-        if($this->isExist($username, $email)){
-            $json['success'] = 0;
-            $json['message'] = "user already registered.";   
-        } else {
             $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_at`, `updated_at`, `type`, `person_reg_number`, `person_profession`, `person_biography`, `company_name`, `company_register`, `company_description`, `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, `registered_from_language`, `slug`) 
 
             values ('$username', '$password', '$email', '', '', '', 1, '', 1, NULL, 
-            '".date("Y-m")."', '".($avatar_image == "" ? NULL : $avatar_image)."', '".$_SERVER['REMOTE_ADDR']."',  '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', '',  '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, ".($fb_id != "" ? 1 : 0).", NULL, '".($username != "" ? $username : $fb_id)."')";
-
-            echo json_encode($query);
+            '".date("Y-m")."', '".($avatar_image == "" ? NULL : $avatar_image)."', '".$_SERVER['REMOTE_ADDR']."',  '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."', 'person', '', '', '', '',  '', '', NULL, '', '', '', NULL, 0, '', '0', NULL, NULL, '$fb_id', NULL, NULL, NULL, NULL, ".($fb_id != "" ? 1 : 0).", NULL, '$slug')";
 
             $inserted = mysqli_query($this->db->getDb(), $query);
         
@@ -43,9 +38,10 @@ class UserController{
             } else {
                 $json['success'] = 0;
                 $json['message'] = "User register error.";   
+                $json['query'] = $query;
             }
             mysqli_close($this->db->getDb());
-        }
+        
         return $json;
         
     }
