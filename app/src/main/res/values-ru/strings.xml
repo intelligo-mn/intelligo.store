@@ -118,6 +118,9 @@
 
     <string name="about">O</string>
     <string name="product_add">Добавить продукты</string>
+    <string name="are_you_sure">Согласны ли вы?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
 
 
 </resources>

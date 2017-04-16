@@ -118,6 +118,9 @@
     <string name="search_hint">Search&#8230;</string>
 
     <string name="product_add">Product add</string>
+    <string name="are_you_sure">Do you agree?</string>
+    <string name="no">No</string>
+    <string name="yes">No</string>
 
 
 </resources>
