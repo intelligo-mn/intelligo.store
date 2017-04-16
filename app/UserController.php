@@ -57,7 +57,7 @@ class UserController{
             $users['username'] = $user['username'];
             $users['email'] = $user['email'];
             $users['mobile'] = $user['mobile'];
-            $users['imagePath'] = $user['folder'].$user['avatar_image'];
+            $users['imagePath'] = $user['folder']."/".$user['avatar_image'];
         }
         $json = array();
         $json['success'] = 0;
