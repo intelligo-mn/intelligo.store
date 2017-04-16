@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.AdapterList;
+import com.dglproject.brand.utilities.PrefManager;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -22,7 +25,7 @@ public class NavigationFragment extends Fragment {
 
     public static final String ARG_PAGE = "NAV";
 
-
+    PrefManager prefManager;
     ListView list;
     String[] titleId;
     String[] subtitleId;
@@ -61,10 +64,19 @@ public class NavigationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        prefManager = new PrefManager(getContext());
+
         titleId = getResources().getStringArray(R.array.title);
         subtitleId = getResources().getStringArray(R.array.subtitle);
 
         rootView = inflater.inflate(R.layout.fragment_navigation, container, false);
+
+        TextView name = (TextView)rootView.findViewById(R.id.user_profile_name);
+        TextView email = (TextView)rootView.findViewById(R.id.user_profile_email);
+
+        name.setText(prefManager.getUserName().toString());
+        email.setText(prefManager.getUserEmail().toString());
+
         AdapterList adapter = new AdapterList(this.getActivity(), titleId, subtitleId, imageId);
         list = (ListView) rootView.findViewById(R.id.listMenus);
         list.setAdapter(adapter);

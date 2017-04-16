@@ -50,13 +50,13 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/user_profile_f"
+                    android:id="@+id/user_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/user_profile_name"
                     android:layout_marginTop="2dp"
-                    android:text="Software engineering"
+                    android:text="toroo.byamba@gmail.com"
                     android:textColor="#fff"
                     android:textSize="8sp" />
 
