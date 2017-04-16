@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.dglproject.brand.R;
 
 /**
- * Created by Tortuvshin Byambaa on 3/13/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class AdapterList extends ArrayAdapter<String> {
 

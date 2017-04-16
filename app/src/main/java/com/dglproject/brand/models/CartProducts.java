@@ -1,9 +1,9 @@
 package com.dglproject.brand.models;
-
 /**
- * Created by Tortuvshin Byambaa on 3/13/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
 public class CartProducts {
     long id;
     String title;

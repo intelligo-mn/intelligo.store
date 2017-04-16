@@ -36,7 +36,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityCategory extends AppCompatActivity {
 
     GridView listCategory;

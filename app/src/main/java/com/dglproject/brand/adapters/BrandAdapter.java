@@ -15,7 +15,9 @@ import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.utilities.ImageLoader;
 
 /**
- * Created by Tortuvshin Byambaa on 3/28/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class BrandAdapter extends BaseAdapter {
 

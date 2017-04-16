@@ -19,7 +19,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityBrandAdd extends AppCompatActivity {
 
     String URL= Config.BrandService;

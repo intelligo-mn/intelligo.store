@@ -20,9 +20,10 @@ import android.view.animation.LinearInterpolator;
 import com.dglproject.brand.R;
 
 /**
- * Created by Tortuvshin Byambaa on 2/24/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
 public class DglProgressBar extends View {
 
     private static final float INDETERMINANT_MIN_SWEEP = 15f;

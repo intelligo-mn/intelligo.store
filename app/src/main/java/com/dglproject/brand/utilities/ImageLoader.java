@@ -23,11 +23,11 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
 public class ImageLoader {
 
     MemoryCache memoryCache=new MemoryCache();

@@ -9,11 +9,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Date;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
-
 public class Config {
 
     public static String AdminPageURL = "https://www.dglproject.com";

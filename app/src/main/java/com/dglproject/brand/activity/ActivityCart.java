@@ -15,7 +15,11 @@ import java.util.ArrayList;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.R;
 import com.dglproject.brand.models.CartProducts;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityCart extends AppCompatActivity {
 
     public final static String  TAG = "Cart";

@@ -42,9 +42,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-
 /**
- * Created by Tortuvshin Byambaa on 2/24/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 
 public class HomeItems extends Fragment {

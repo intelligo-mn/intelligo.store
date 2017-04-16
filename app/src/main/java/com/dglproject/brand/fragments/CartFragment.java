@@ -17,7 +17,11 @@ import com.dglproject.brand.models.CartProducts;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class CartFragment extends Fragment {
 
     public final static String  TAG = "Cart";

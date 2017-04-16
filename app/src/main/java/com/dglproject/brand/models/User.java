@@ -1,7 +1,8 @@
 package com.dglproject.brand.models;
-
 /**
- * Created by Tortuvshin Byambaa on 3/17/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class User {
     private int userId;

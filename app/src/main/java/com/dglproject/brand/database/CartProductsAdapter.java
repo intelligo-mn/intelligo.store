@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.dglproject.brand.models.CartProducts;
 import java.util.ArrayList;
-
 /**
- * Created by Tortuvshin Byambaa on 3/13/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class CartProductsAdapter extends DatabaseHelper{
 

@@ -2,9 +2,10 @@ package com.dglproject.brand.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 /**
- * Created by Tortuvshin Byambaa on 3/9/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class PrefManager {
     SharedPreferences pref;
@@ -18,6 +19,8 @@ public class PrefManager {
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    private static final String KEY_IS_LOGGED_IN_USERNAME = "loggedUsername";
+    private static final String KEY_IS_LOGGED_IN_EMAIL = "loggedEmail";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -29,6 +32,20 @@ public class PrefManager {
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.commit();
 
+    }
+
+    public void setUser(String username, String email) {
+        editor.putString(KEY_IS_LOGGED_IN_USERNAME, username);
+        editor.putString(KEY_IS_LOGGED_IN_EMAIL, email);
+        editor.commit();
+    }
+
+    public String getUserName () {
+        return pref.getString(KEY_IS_LOGGED_IN_USERNAME, "");
+    }
+
+    public String getUserEmail () {
+        return pref.getString(KEY_IS_LOGGED_IN_EMAIL, "");
     }
 
     public void setFirstTimeLaunch(boolean isFirstTime) {

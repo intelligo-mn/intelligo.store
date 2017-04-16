@@ -24,7 +24,11 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivitySignup extends AppCompatActivity {
 
     private static final String TAG = "SignUp";
@@ -69,10 +73,10 @@ public class ActivitySignup extends AppCompatActivity {
         });
     }
     public void signup() {
-//        if (!validate()) {
-//            onSignupFailed();
-//            return;
-//        }
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
         signUpButton.setEnabled(false);
         final ProgressDialog progressDialog = new ProgressDialog(ActivitySignup.this,
                 R.style.AppTheme_Dark_Dialog);

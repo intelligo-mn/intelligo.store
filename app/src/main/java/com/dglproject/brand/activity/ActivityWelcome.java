@@ -20,7 +20,11 @@ import android.widget.TextView;
 
 import com.dglproject.brand.R;
 import com.dglproject.brand.utilities.PrefManager;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityWelcome extends AppCompatActivity {
 
     private ViewPager viewPager;

@@ -9,9 +9,10 @@ import com.dglproject.brand.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- * Created by Tortuvshin Byambaa on 3/17/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class UserAdapter extends DatabaseHelper {
 

@@ -11,7 +11,11 @@ import android.widget.ImageButton;
 import com.dglproject.brand.R;
 
 import java.util.Locale;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivitySplashScreen extends AppCompatActivity {
 
     @Override

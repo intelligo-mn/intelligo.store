@@ -3,9 +3,10 @@ package com.dglproject.brand.utilities;
 import android.content.Context;
 
 import java.io.File;
-
 /**
- * Created by Tortuvshin Byambaa on 3/3/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 public class FileCache {
 

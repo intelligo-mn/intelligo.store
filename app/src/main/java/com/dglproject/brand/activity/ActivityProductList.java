@@ -40,7 +40,11 @@ import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
+ */
 public class ActivityProductList extends AppCompatActivity {
 
     ListView listMenu;

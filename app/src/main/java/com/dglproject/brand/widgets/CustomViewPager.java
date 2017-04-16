@@ -4,9 +4,10 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
 /**
- * Created by Tortuvshin Byambaa on 2/24/2017.
+ * Author: Tortuvshin Byambaa.
+ * Project: DglBrand
+ * URL: https://www.github.com/tortuvshin
  */
 
 public class CustomViewPager extends ViewPager {
