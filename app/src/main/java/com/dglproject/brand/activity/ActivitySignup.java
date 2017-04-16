@@ -73,10 +73,10 @@ public class ActivitySignup extends AppCompatActivity {
         });
     }
     public void signup() {
-//        if (!validate()) {
-//            onSignupFailed();
-//            return;
-//        }
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
         signUpButton.setEnabled(false);
         final ProgressDialog progressDialog = new ProgressDialog(ActivitySignup.this,
                 R.style.AppTheme_Dark_Dialog);
