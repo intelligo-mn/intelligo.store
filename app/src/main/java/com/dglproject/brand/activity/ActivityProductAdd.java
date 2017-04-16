@@ -64,7 +64,7 @@ public class ActivityProductAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_add);
-        getSupportActionBar().setTitle("Бүтээгдэхүүн нэмэх");
+        getSupportActionBar().setTitle(getString(R.string.product_add));
         getSupportActionBar().setHomeButtonEnabled(true);
 
         name = (EditText)findViewById(R.id.pName);

@@ -230,7 +230,9 @@ public class ActivityLogin extends AppCompatActivity {
 
             try {
                 if (result != null) {
+                    Toast.makeText(getApplicationContext(), result.getString("username").toString(), Toast.LENGTH_SHORT).show();
                     if(result.getString("success") != "0"){
+                        prefManager.setUser(result.getString("username"), result.getString("email"));
                         final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                                 R.style.AppTheme_Dark_Dialog);
                         progressDialog.setIndeterminate(true);
