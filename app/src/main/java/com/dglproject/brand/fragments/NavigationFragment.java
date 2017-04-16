@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dglproject.brand.R;
+import com.dglproject.brand.activity.ActivityWeb;
 import com.dglproject.brand.adapters.AdapterList;
 import com.dglproject.brand.utilities.PrefManager;
 
@@ -106,7 +107,8 @@ public class NavigationFragment extends Fragment {
                     }
                 }
                 if (position == 6) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.more_apps))));
+//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.more_apps))));'
+                    startActivity(new Intent(getActivity(), ActivityWeb.class));
                 }
             }
         });
