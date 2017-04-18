@@ -184,10 +184,8 @@ public class ActivityProductAdd extends AppCompatActivity {
     }
 
     private class CreateProduct extends AsyncTask<String, String, JSONObject> {
-
         @Override
         protected void onPreExecute() {
-
             super.onPreExecute();
         }
 

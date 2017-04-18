@@ -19,6 +19,7 @@ public class PrefManager {
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    private static final String KEY_IS_LOGGED_IN_USER_ID = "loggedUserId";
     private static final String KEY_IS_LOGGED_IN_USERNAME = "loggedUsername";
     private static final String KEY_IS_LOGGED_IN_EMAIL = "loggedEmail";
 
@@ -34,11 +35,14 @@ public class PrefManager {
 
     }
 
-    public void setUser(String username, String email) {
+    public void setUser(int id, String username, String email) {
+        editor.putInt(KEY_IS_LOGGED_IN_USER_ID, id);
         editor.putString(KEY_IS_LOGGED_IN_USERNAME, username);
         editor.putString(KEY_IS_LOGGED_IN_EMAIL, email);
         editor.commit();
     }
+
+    public int getUserId () { return pref.getInt(KEY_IS_LOGGED_IN_USER_ID, 0);}
 
     public String getUserName () {
         return pref.getString(KEY_IS_LOGGED_IN_USERNAME, "");

@@ -158,7 +158,6 @@ public class HomeItems extends Fragment {
             }
         });
 
-
         return rootView;
     }
 

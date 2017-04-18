@@ -78,21 +78,6 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        rememberDetail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                RememberMe();
-//            }
-//        });
-//        SharedPreferences prefs = getSharedPreferences(PREFER_NAME, 0);
-//        String thisUsername = prefs.getString("Username", "");
-//        String thisPassword = prefs.getString("Password", "");
-//        boolean thisRemember = prefs.getBoolean("Remember", false);
-//        if(thisRemember) {
-//            nameText.setText(thisUsername);
-//            passwordText.setText(thisPassword);
-//            rememberDetail.setChecked(thisRemember);
-//        }
     }
 
     public void login() {
@@ -113,7 +98,6 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-                // TODO: Implement successful signup logic here
                 this.finish();
             }
         }
@@ -129,23 +113,11 @@ public class ActivityLogin extends AppCompatActivity {
         loginButton.setEnabled(true);
     }
 
-//    private void RememberMe() {
-//        boolean thisRemember = rememberDetail.isChecked();
-//        sharedPreferences = getSharedPreferences(PREFER_NAME, 0);
-//        editor = sharedPreferences.edit();
-//        editor.putBoolean("Remember", thisRemember);
-//        editor.commit();
-//    }
-
     public boolean validate() {
         boolean valid = true;
         String username = nameText.getText().toString();
         String password = passwordText.getText().toString();
 
-        //password = PasswordEncryption(password);
-
-        //Toast.makeText(getApplicationContext(), "Хэрэглэгч нэвтэрсэн байдал: " + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
-        //sharedPreferences = getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
         if (username.isEmpty() || password.length() < 3) {
             nameText.setError(getString(R.string.err_username_short));
             valid = false;
@@ -154,7 +126,6 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         if (password.isEmpty() || password.length() < 4 ) {
-
             passwordText.setError(getString(R.string.err_pass_short));
             valid = false;
         } else {
@@ -162,40 +133,13 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         if (username.trim().length() > 0 && password.trim().length() > 0){
-
             valid = true;
         } else {
-
             Toast.makeText(ActivityLogin.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_SHORT).show();
             valid = false;
         }
 
         return valid;
-    }
-//
-//    private void saveLoggedInUser(long id, String username, String password) {
-//        SharedPreferences settings = getSharedPreferences(PREFER_NAME, 0);
-//        editor = settings.edit();
-//        editor.putLong("UserId", id);
-//        editor.putString("Username", username);
-//        editor.putString("Password", password);
-//        boolean rememberThis = rememberDetail.isChecked();
-//        editor.putBoolean("rememberThis", rememberThis);
-//        editor.commit();
-//    }
-
-    private String PasswordEncryption(String s) {
-        try {
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5"); digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
-            StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
-                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-            return hexString.toString();
-        }
-        catch (NoSuchAlgorithmException e) {
-            return s;
-        }
     }
 
     private class LoginUser extends AsyncTask<String, String, JSONObject> {
@@ -231,7 +175,7 @@ public class ActivityLogin extends AppCompatActivity {
             try {
                 if (result != null) {
                     if(result.getString("success") != "0"){
-                        prefManager.setUser(result.getString("username"), result.getString("email"));
+                        prefManager.setUser(Integer.parseInt(result.getString("id")), result.getString("username"), result.getString("email"));
                         final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
                                 R.style.AppTheme_Dark_Dialog);
                         progressDialog.setIndeterminate(true);

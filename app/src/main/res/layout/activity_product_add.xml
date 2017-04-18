@@ -94,12 +94,10 @@
                 android:hint="@string/details" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/productAdd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/colorPrimary"
             android:text="@string/add"
