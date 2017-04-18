@@ -52,9 +52,17 @@ class UserController{
 
         $users = array();
         while($user = $result->fetch_assoc()) {
-            $users[] = $user;
+            $users['success'] = 1;
+            $users['id'] = $user['id'];
+            $users['username'] = $user['username'];
+            $users['email'] = $user['email'];
+            $users['mobile'] = $user['mobile'];
+            $users['imagePath'] = $user['folder']."/".$user['avatar_image'];
         }
-        return $users;
+        $json = array();
+        $json['success'] = 0;
+        $json['query'] = $query;
+        return count($users) > 0 ? $users : $json;
     }
 
     public function login($usernmae, $password) {
