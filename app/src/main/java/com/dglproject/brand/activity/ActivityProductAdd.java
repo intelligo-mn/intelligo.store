@@ -192,13 +192,17 @@ public class ActivityProductAdd extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... args) {
 
-            String currency = args[4];
-            String price = args[3];
-            String desc = args[2];
-            String model = args[1];
-            String name = args[0];
+            String currency = args[6];
+            String price = args[5];
+            String desc = args[4];
+            String model = args[3];
+            String name = args[2];
+            String state = args[1];
+            String accesskey = args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("accesskey", accesskey));
+            params.add(new BasicNameValuePair("state", state));
             params.add(new BasicNameValuePair("name", name));
             params.add(new BasicNameValuePair("model", model));
             params.add(new BasicNameValuePair("description", desc));

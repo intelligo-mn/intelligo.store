@@ -86,18 +86,6 @@ public class ActivityCart extends AppCompatActivity {
         totalView.setText(getString(R.string.total) + new DecimalFormat("#.##").format(total)+" ₮");
     }
 
-    public void startPayment(View view){
-        if (data.size() > 0){
-//            Intent intent = new Intent(this, ActivityOrder.class);
-//            String subTotalString = "" + subTotal;
-//            String taxString = "" + tax;
-//            String totalString = "" + total;
-//            String[] transferData = {subTotalString,taxString,totalString};
-//            intent.putExtra(TAG,transferData);
-//            startActivity(intent);
-        }
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
