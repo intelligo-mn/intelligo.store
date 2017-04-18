@@ -26,13 +26,10 @@ class BrandController{
         
         if($inserted == 1){
             $json['success'] = 1;
-            $json['message'] = "Амжилттай бүртгэгдлээ";
-            $json['query'] = $query;
+            $json['message'] = "success";
         }else{
             $json['success'] = 0;
-            $json['message'] = "Брэнд нэмэхэд алдаа гарлаа";
-        
-            $json['query'] = $query;
+            $json['message'] = "error";
         }
         
         mysqli_close($this->db->getDb());
