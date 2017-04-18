@@ -121,6 +121,8 @@
     <string name="are_you_sure">Do you agree?</string>
     <string name="no">No</string>
     <string name="yes">No</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
 
 
 </resources>

@@ -78,7 +78,7 @@ public class ActivityProductAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CreateProduct createProduct = new CreateProduct();
-                createProduct.execute(name.getText().toString(), model.getText().toString(), description.getText().toString(), price.getText().toString(), currency.getText().toString());
+                createProduct.execute(String.valueOf(Config.generateAccessKey()), "c", name.getText().toString(), model.getText().toString(), description.getText().toString(), price.getText().toString(), currency.getText().toString());
             }
         });
 //        btpic = (Button) findViewById(R.id.cpic);
@@ -184,10 +184,8 @@ public class ActivityProductAdd extends AppCompatActivity {
     }
 
     private class CreateProduct extends AsyncTask<String, String, JSONObject> {
-
         @Override
         protected void onPreExecute() {
-
             super.onPreExecute();
         }
 

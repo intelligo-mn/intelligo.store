@@ -119,6 +119,8 @@
     <string name="are_you_sure">你同意吗？</string>
     <string name="no">没有</string>
     <string name="yes">是的</string>
+    <string name="success">已成功</string>
+    <string name="error">时出错</string>
 
 
 </resources>

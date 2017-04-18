@@ -120,6 +120,8 @@
     <string name="are_you_sure">Та зөвшөөрч байна уу?</string>
     <string name="yes">Тийм</string>
     <string name="no">Үгүй</string>
+    <string name="success">Амжилттай бүртгэгдлээ</string>
+    <string name="error">Алдаа гарлаа</string>
 
 
 </resources>

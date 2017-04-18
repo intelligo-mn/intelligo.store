@@ -63,8 +63,8 @@
         <activity android:name=".activity.ActivityProductAdd" />
         <activity android:name=".activity.ActivityCartEdit" />
         <activity android:name=".activity.ActivityBrandAdd" />
-        <activity android:name=".activity.ActivityAdd" />
-        <activity android:name=".activity.ActivityWeb"></activity>
+        <activity android:name=".activity.ActivityWeb" />
+        <activity android:name=".activity.ActivityAbout"></activity>
     </application>
 
 </manifest>
