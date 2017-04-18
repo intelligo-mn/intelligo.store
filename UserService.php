@@ -28,13 +28,15 @@ date_default_timezone_set("UTC");
         $mobile = isset($_POST["mobile"]) ? $_POST["mobile"] : null;
         $fb_id = isset($_POST["fb_id"]) ? $_POST["fb_id"] : null;
 
+        $pass = md5($password);
+
         if ($userObject->isExist($username, $email)){
             $json = array();
             $json['success'] = 0;
             $json['message'] = "user already registered.";       
             echo json_encode($json);    
         }else{
-            $json_array = $userObject->create($username, $password, $email, $mobile, $fb_id, savePhoto());
+            $json_array = $userObject->create($username, $pass, $email, $mobile, $fb_id, savePhoto());
             echo json_encode($json_array);    
         }
         
