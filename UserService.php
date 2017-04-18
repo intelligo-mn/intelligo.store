@@ -3,8 +3,10 @@ date_default_timezone_set("UTC");
   header('Content-Type: text/plain; charset=utf-8');
     require_once 'app/UserController.php';
     require_once 'config/security.php';
-    if(!isset($_POST['accesskey']) || !(new DGLSecure())->generateAccessKey($_POST['accesskey'])) 
-        die('accesskey required.');
+    if(!isset($_POST['accesskey'])) 
+        die('accesskey required!');
+    if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+        die('accesskey is wrong!');
     if(!isset($_POST["state"]))
         die('request state required.');
     $userObject = new UserController();
@@ -26,8 +28,19 @@ date_default_timezone_set("UTC");
         $mobile = isset($_POST["mobile"]) ? $_POST["mobile"] : null;
         $fb_id = isset($_POST["fb_id"]) ? $_POST["fb_id"] : null;
 
-        $json_array = $userObject->create($username, $password, $email, $mobile, $fb_id, savePhoto());
-        echo json_encode($json_array);
+        $pass = md5($password);
+
+        if ($userObject->isExist($username, $email)){
+            $json = array();
+            $json['success'] = 0;
+            $json['message'] = "user already registered.";       
+            echo json_encode($json);    
+        }else{
+            $json_array = $userObject->create($username, $pass, $email, $mobile, $fb_id, savePhoto());
+            echo json_encode($json_array);    
+        }
+        
+        
     }else if($_POST["state"] == "update"){
 
     }else{

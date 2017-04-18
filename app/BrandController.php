@@ -16,7 +16,7 @@ class BrandController{
         $this->db = new DbConnect();
     }
     
-    public function createBrand($name, $description, $userId){
+    public function create($name, $description, $userId){
             
         $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, `icon_image`, `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
         VALUES
@@ -25,15 +25,11 @@ class BrandController{
         $inserted = mysqli_query($this->db->getDb(), $query);
         
         if($inserted == 1){
-            
             $json['success'] = 1;
-            $json['message'] = "Амжилттай бүртгэгдлээ";
-            
+            $json['message'] = "success";
         }else{
-            
             $json['success'] = 0;
-            $json['message'] = "Брэнд нэмэхэд алдаа гарлаа";
-            
+            $json['message'] = "error";
         }
         
         mysqli_close($this->db->getDb());
