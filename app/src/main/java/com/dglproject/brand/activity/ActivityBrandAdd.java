@@ -49,6 +49,7 @@ public class ActivityBrandAdd extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
                 CreateBrand createBrand = new CreateBrand();
                 createBrand.execute(String.valueOf(Config.generateAccessKey()), "c", name.getText().toString(), description.getText().toString(),String.valueOf(prefManager.getUserId()));
             }
@@ -87,7 +88,11 @@ public class ActivityBrandAdd extends AppCompatActivity {
 
             try {
                 if (result != null) {
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    if(result.getString("message") == "success") {
+                        Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(),getString(R.string.error),Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }

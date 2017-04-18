@@ -121,6 +121,8 @@
     <string name="are_you_sure">Согласны ли вы?</string>
     <string name="no">Нет</string>
     <string name="yes">Да</string>
+    <string name="success">Был успешно</string>
+    <string name="error">Была ошибка</string>
 
 
 </resources>
