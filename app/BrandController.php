@@ -54,9 +54,9 @@ class BrandController{
     }
     private function savePhoto(){
         $target_dir = "../uploads/product_brand_icons/".date("Y-m");
-    $fileUploaded = false;
-    
-    if(!file_exists($target_dir))
+        $fileUploaded = false;
+        
+        if(!file_exists($target_dir))
         mkdir($target_dir, 0777, true);
         
     

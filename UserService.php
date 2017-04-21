@@ -21,7 +21,7 @@ date_default_timezone_set("UTC");
             echo json_encode($json_array);
         }
         
-    }else if($_POST["state"] == "signup"){
+    } else if($_POST["state"] == "signup"){
         $username = isset($_POST["username"]) ? $_POST["username"] : null;
         $password = isset($_POST["password"]) ? $_POST["password"] : null;
         $email = isset($_POST["email"]) ? $_POST["email"] : null;
@@ -35,15 +35,14 @@ date_default_timezone_set("UTC");
             $json['success'] = 0;
             $json['message'] = "user already registered.";       
             echo json_encode($json);    
-        }else{
+        } else {
             $json_array = $userObject->create($username, $pass, $email, $mobile, $fb_id, savePhoto());
             echo json_encode($json_array);    
         }
         
-        
-    }else if($_POST["state"] == "update"){
+    } else if($_POST["state"] == "update"){
 
-    }else{
+    } else {
         echo json_encode(["result" => "invalid request!!!"]);
     }
     //хадгалсан зурагны зам нэрийг нь буцаах

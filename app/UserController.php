@@ -11,7 +11,6 @@ class UserController{
     
     private $db_table = "user";
     
-
     public function __construct(){
         $this->db = new DbConnect();
     }
@@ -88,7 +87,6 @@ class UserController{
         echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
     }
     
-
      /**
      * Encrypting password
      * @param password
