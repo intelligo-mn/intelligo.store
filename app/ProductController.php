@@ -76,6 +76,22 @@ class ProductController{
         return $products;
     }
 
+    public function getByUserId ($created_user_id) {
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table."
+             WHERE created_user_id = ".$created_user_id;
+        
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+
+        $products = array();
+        while($product = $result->fetch_assoc()) {
+            $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
+            $products[] = $product;
+        }
+
+        return $products;
+    }
+
     public function getByProductId($id) {
         $sql_query = "SELECT * 
              FROM ".$this->db_table."
