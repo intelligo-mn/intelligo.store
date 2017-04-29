@@ -15,6 +15,11 @@ class BrandController{
     public function __construct(){
         $this->db = new DbConnect();
     }
+
+    public function isExist($name){
+        $query = "select * from ".$this->db_table." where name = '$name'";
+        return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
+    }
     
     public function create($name, $description, $userId, $catID, $language, $icon){
             
