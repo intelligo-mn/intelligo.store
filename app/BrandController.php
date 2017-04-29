@@ -16,11 +16,11 @@ class BrandController{
         $this->db = new DbConnect();
     }
     
-    public function create($name, $description, $userId){
+    public function create($name, $description, $userId, $catID, $language, $icon){
             
-        $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, `icon_image`, `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
+        $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, '".($icon == "" ? NULL : $icon)."', `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
         VALUES
-            ('$name', 0, '".date('Y-m')."', '', 0, 1, NULL, '<p>\r\n$description</p>\r\n', NULL, 'MN', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
+            ('$name', 0, '".date('Y-m')."', '', 0, 1, NULL, '<p>\r\n$description</p>\r\n', $catID, '".$language."', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
 
         $inserted = mysqli_query($this->db->getDb(), $query);
         
@@ -29,11 +29,12 @@ class BrandController{
             $json['message'] = "success";
         }else{
             $json['success'] = 0;
-            $json['message'] = "error";
+            $json['message'] = $query;
         }
         
         mysqli_close($this->db->getDb());
-                
+         
+        $json['message'] = $query;       
         return $json;
         
     }
