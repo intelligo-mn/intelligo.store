@@ -15,17 +15,17 @@ class BrandController{
     public function __construct(){
         $this->db = new DbConnect();
     }
-
+    // Ижил нэртэй брэнд байгаа эсэх
     public function isExist($name){
         $query = "select * from ".$this->db_table." where name = '$name'";
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
-    
+    // Брэнд нэмэх
     public function create($name, $description, $userId, $catID, $language, $icon){
             
-        $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, '".($icon == "" ? NULL : $icon)."', `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
+        $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, `icon_image`, `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
         VALUES
-            ('$name', 0, '".date('Y-m')."', '', 0, 1, NULL, '<p>\r\n$description</p>\r\n', $catID, '".$language."', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
+            ('$name', 0, '".date('Y-m')."', '".($icon == "" ? NULL : $icon)."', 0, 1, NULL, '<p>\r\n$description</p>\r\n', $catID, '".$language."', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
 
         $inserted = mysqli_query($this->db->getDb(), $query);
         
@@ -43,7 +43,7 @@ class BrandController{
         return $json;
         
     }
-
+    // Бүх брэнд буцаах
     public function getAll () {
         $sql_query = "SELECT * 
              FROM ".$this->db_table;
@@ -54,34 +54,7 @@ class BrandController{
         while($brand = $result->fetch_assoc()) {
             $brands[] = $brand;
         }
-
-        return $brands;
-        
-    }
-    private function savePhoto(){
-        $target_dir = "../uploads/product_brand_icons/".date("Y-m");
-        $fileUploaded = false;
-        
-        if(!file_exists($target_dir))
-        mkdir($target_dir, 0777, true);
-        
-    
-        $target_dir = $target_dir . "/" . basename($_FILES["file"]["name"]);
-    
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir)){
-            echo json_encode([
-            "Message" => "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.",
-            "Status" => "OK",
-            "userId" => $_REQUEST["userId"]
-            ]);
-            $fileUploaded  = true;
-        }
-        else 
-            echo json_encode([
-            "Message" => "Sorry, there was an error uploading your file.",
-            "Status" => "Error",
-            "userId" => $_REQUEST["userId"]
-            ]);    
+        return $brands;   
     }
 }
 ?>
