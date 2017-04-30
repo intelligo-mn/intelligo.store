@@ -338,13 +338,11 @@ public class ActivityProductDetail extends AppCompatActivity {
             JSONArray data = json.getJSONArray("dp"); // this is the "items: [ ] part
 
             for (int i = 0; i < data.length(); i++) {
-
                 Product_image = data.getJSONObject(i).getString("folder");
                 Product_name = data.getJSONObject(i).getString("name");
                 Product_price = data.getJSONObject(i).getDouble("price");
                 Product_description = data.getJSONObject(i).getString("description");
                 Product_quantity = data.getJSONObject(i).getInt("currency");
-
             }
 
         } catch (MalformedURLException e) {

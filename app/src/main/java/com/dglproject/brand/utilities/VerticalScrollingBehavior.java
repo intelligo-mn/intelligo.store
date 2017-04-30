@@ -16,7 +16,7 @@ import java.lang.annotation.RetentionPolicy;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-
+@Deprecated
 public abstract class VerticalScrollingBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
 
     private int mTotalDyUnconsumed = 0;

@@ -96,7 +96,6 @@ public class ActivityProductAdd extends AppCompatActivity {
 //                upload();
 //            }
 //        });
-//
     }
 
     private void upload() {
@@ -210,7 +209,6 @@ public class ActivityProductAdd extends AppCompatActivity {
             params.add(new BasicNameValuePair("currency", currency));
 
             JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
-
             return json;
 
         }

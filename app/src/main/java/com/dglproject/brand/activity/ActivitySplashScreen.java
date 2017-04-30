@@ -28,66 +28,43 @@ public class ActivitySplashScreen extends AppCompatActivity {
         ImageButton cn = (ImageButton)findViewById(R.id.langCn);
         ImageButton ru = (ImageButton)findViewById(R.id.langRu);
 
-
         en.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Resources res = getApplicationContext().getResources();
-                DisplayMetrics dm = res.getDisplayMetrics();
-                android.content.res.Configuration conf = res.getConfiguration();
-                conf.locale = new Locale("en");
-                res.updateConfiguration(conf, dm);
-
-                Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
-                startActivity(intent);
-                finish();
+                changeLanguage("en");
             }
         });
 
         mn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Resources res = getApplicationContext().getResources();
-                DisplayMetrics dm = res.getDisplayMetrics();
-                android.content.res.Configuration conf = res.getConfiguration();
-                conf.locale = new Locale("mn");
-                res.updateConfiguration(conf, dm);
-
-                Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
-                startActivity(intent);
-                finish();
+                changeLanguage("mn");
             }
         });
 
         cn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Resources res = getApplicationContext().getResources();
-                DisplayMetrics dm = res.getDisplayMetrics();
-                android.content.res.Configuration conf = res.getConfiguration();
-                conf.locale = new Locale("zh");
-                res.updateConfiguration(conf, dm);
-
-                Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
-                startActivity(intent);
-                finish();
+                changeLanguage("zh");
             }
         });
 
         ru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Resources res = getApplicationContext().getResources();
-                DisplayMetrics dm = res.getDisplayMetrics();
-                android.content.res.Configuration conf = res.getConfiguration();
-                conf.locale = new Locale("ru");
-                res.updateConfiguration(conf, dm);
-
-                Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
-                startActivity(intent);
-                finish();
+                changeLanguage("ru");
             }
         });
+    }
+    private void changeLanguage(String lang) {
+        Resources res = getApplicationContext().getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale(lang);
+        res.updateConfiguration(conf, dm);
 
+        Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
+        startActivity(intent);
+        finish();
     }
 }
