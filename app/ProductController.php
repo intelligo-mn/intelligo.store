@@ -12,8 +12,8 @@ class ProductController{
     public function __construct(){
         $this->db = new DbConnect();
     }
-    
-    public function create($name, $model, $description, $price, $currency, $userId){
+    // Бүтээгдэхүүн нэмэх
+    public function create($name, $model, $description, $price, $currency, $userId, $brandId){
         
         $photoId = $this->savePhoto($userId) ? mysqli_insert_id() : NULL;
         $query = "insert into ".$this->db_table." (`code`, `model`, `name`, `default_photo_id`, `description`, `folder`, `price`, 
@@ -21,7 +21,7 @@ class ProductController{
                         `in_stock`, `is_top`, `is_fearured`, `hitcounter`, `ip_address`, `sort_order`, 
                         `created_user_id`, `updated_user_id`, `created_at`, `updated_at`)
 
-                    VALUES('".$model.date("Y-m-d")."', '$model', '$name', $photoId, '$description', '".date('Y-m')."', '$price', '$currency', NULL, NULL, NULL, NULL, 'asdsad', 'asd', NULL, NULL, NULL, 1, '".$_SERVER['REMOTE_ADDR']."', 1, ".$userId.", ".$userId.", '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."'
+                    VALUES('".$model.date("Y-m-d")."', '$model', '$name', $photoId, '$description', '".date('Y-m')."', '$price', '$currency', NULL, NULL, '$brandId', NULL, 'asdsad', 'asd', NULL, NULL, NULL, 1, '".$_SERVER['REMOTE_ADDR']."', 1, ".$userId.", ".$userId.", '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."'
                     )";
 
         $inserted = mysqli_query($this->db->getDb(), $query);
@@ -34,12 +34,11 @@ class ProductController{
             $json['message'] = "Бүтээгдэхүүн нэмэхэд алдаа гарлаа";
         }
         
-        mysqli_close($this->db->getDb());
-                
+        mysqli_close($this->db->getDb());         
         return $json;
         
     }
-
+    // Бүх бүтээгдэхүүний мэдээлэл авах
     public function getAll () {
         
        $sql_query = "SELECT * FROM ".$this->db_table;
@@ -59,7 +58,7 @@ class ProductController{
          WHERE id = ".$photoId) or die ("Error :".mysql_error());
         return mysqli_fetch_assoc($photo_result)["photo_file"];
     }
-
+    // Тухайн брэндэд хамаатай бүтээгдэхүүнүүд авах
     public function getByBrandId ($brand_id) {
         $sql_query = "SELECT * 
              FROM ".$this->db_table."
@@ -72,7 +71,21 @@ class ProductController{
             $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
+        return $products;
+    }
+    // Тухайн хэрэглэгчийн оруулсан бүтээгдэхүүн авах
+    public function getByUserId ($created_user_id) {
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table."
+             WHERE created_user_id = ".$created_user_id;
+        
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
+        $products = array();
+        while($product = $result->fetch_assoc()) {
+            $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
+            $products[] = $product;
+        }
         return $products;
     }
 
@@ -88,37 +101,7 @@ class ProductController{
             $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
-
         return $products;
     }
-    private function savePhoto($userId){
-        $target_dir = "../uploads/product_photos/".date("Y-m");
-    $fileUploaded = false;
-    
-    if(!file_exists($target_dir))
-        mkdir($target_dir, 0777, true);
-        
-        $target_dir = $target_dir . "/" . basename($_FILES["file"]["name"]);
-    
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir)){
-            $query = "INSERT INTO `product_photo`(`product_id`, `caption`, `photo_file`, `thumb_file`, `is_default`, `sort_order`, `folder`, `created_user_id`, `created_at`, `updated_at`) VALUES (NULL,'','".basename( $_FILES["file"]["name"])."',NULL,1,NULL,'".data('Y-m')."',$userId,'".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s')."')";
-
-        $inserted = mysqli_query($this->db->getDb(), $query);
-            echo json_encode([
-            "Message" => "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.",
-            "Status" => "OK",
-            "userId" => $_REQUEST["userId"]
-            ]);
-            $fileUploaded  = true;
-        }
-        else 
-            echo json_encode([
-            "Message" => "Sorry, there was an error uploading your file.",
-            "Status" => "Error",
-            "userId" => $_REQUEST["userId"]
-            ]);  
-        return $fileUploaded;  
-    }
-   
 }
 ?>
