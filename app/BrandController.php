@@ -46,7 +46,8 @@ class BrandController{
     // Бүх брэнд буцаах
     public function getAll () {
         $sql_query = "SELECT * 
-             FROM ".$this->db_table;
+             FROM ".$this->db_table." 
+             ORDER BY created_at DESC";
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
 
@@ -55,6 +56,20 @@ class BrandController{
             $brands[] = $brand;
         }
         return $brands;   
+    }
+
+    public function getByUserId ($created_user_id) {
+        $sql_query = "SELECT * 
+             FROM ".$this->db_table."
+             WHERE created_user_id = ".$created_user_id;
+       
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+
+        $brands = array();
+        while($brand = $result->fetch_assoc()) {
+            $brands[] = $brand;
+        }
+        return $brands;  
     }
 }
 ?>
