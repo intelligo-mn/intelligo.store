@@ -38,9 +38,9 @@ header('Content-Type: text/plain; charset=utf-8');
     if($state == "r"){//state == r -> read
         if(isset($_GET['brand_id']))
             echo json_encode($productObject->getByBrandId($_GET['brand_id']));
-        if(isset($_GET['product_id'])) 
+        else if (isset($_GET['product_id'])) 
             echo json_encode($productObject->getByProductId($_GET['product_id']));
-        if(isset($_GET['user_id'])) 
+        else if (isset($_GET['user_id'])) 
             echo json_encode($productObject->getByUserId($_GET['user_id']));
         else
             echo json_encode($productObject->getAll());
