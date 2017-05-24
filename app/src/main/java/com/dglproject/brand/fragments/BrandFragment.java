@@ -172,9 +172,6 @@ public class BrandFragment extends Fragment {
                 swipeRefreshLayout.setEnabled(enable);
             }
         });
-
-
-
         return  rootView;
     }
 
@@ -258,5 +255,4 @@ public class BrandFragment extends Fragment {
     {
         super.onConfigurationChanged(newConfig);
     }
-
 }
