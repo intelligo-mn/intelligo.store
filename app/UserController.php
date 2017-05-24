@@ -19,6 +19,7 @@ class UserController{
         $query = "select * from ".$this->db_table." where username = '$username' OR email = '$email'";
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
+    
     public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
         
         $json = array();

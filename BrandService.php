@@ -8,27 +8,32 @@ header('Content-Type: text/plain; charset=utf-8');
 
 require_once 'app/BrandController.php';
 require_once 'config/security.php';
-if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+ if(!isset($_GET['accesskey'])) 
+        die('accesskey required!');
+    if(!(new DGLSecure())->generateAccessKey($_GET['accesskey']))
         die('accesskey is wrong!');
+if(!isset($_GET["state"]))
+    die('request state required.');
 
-$state = $_POST["state"];
+$state = $_GET["state"];
 $name = "";
 $description = "";
 $user_id = "";
 $category_id = "";
 $language = "";
 
-
-$name = $_POST['name'];
-$description = $_POST['description'];
-$user_id = $_POST["ui"];
-$category_id = $_POST["categoryId"];
-$language = $_POST["language"];
+//ui гэдэг нь User_id
+if(isset($_GET['name']) && isset($_GET['ui']) && isset($_GET['description']) && isset($_GET['categoryId']) && isset($_GET['language'])){
+    $name = $_GET['name'];
+    $description = $_GET['description'];
+    $user_id = $_GET["ui"];
+    $category_id = $_GET["categoryId"];
+    $language = $_GET["language"];
+}
 
 $brandObject = new BrandController();
 
 if($state == "c" && !empty($name) && !empty($description) && !empty($user_id) && !empty($category_id) && !empty($language) ){
-
     if($brandObject->isExist($name)){
         $json = array();
         $json['success'] = 0;

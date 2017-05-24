@@ -3,14 +3,14 @@ header('Content-Type: text/plain; charset=utf-8');
     require_once 'app/ProductController.php';
     require_once 'config/security.php';
     
-    if(!isset($_POST['accesskey'])) 
+    if(!isset($_GET['accesskey'])) 
         die('accesskey required!');
-    if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+    if(!(new DGLSecure())->generateAccessKey($_GET['accesskey']))
         die('accesskey is wrong!');
-    if(!isset($_POST["state"]))
+    if(!isset($_GET["state"]))
         die('request state required.');
 
-    $state = $_POST["state"];
+    $state = $_GET["state"];
     $model = "";
     $name = "";
     $description = "";
@@ -19,14 +19,14 @@ header('Content-Type: text/plain; charset=utf-8');
     $user_id = 1;
     $brand_id = "";
 
-    if(isset($_POST['model']) && isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['currency']) && isset($_POST["ui"]) && isset($_POST["brand_id"])){
-        $model = $_POST['model'];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $doublePrice = (double)$_POST['price'];
-        $currency = $_POST['currency'];
-        $user_id = $_POST["ui"];
-        $brand_id = $_POST["brand_id"];
+    if(isset($_GET['model']) && isset($_GET['name']) && isset($_GET['description']) && isset($_GET['price']) && isset($_GET['currency']) && isset($_GET["ui"]) && isset($_GET["brand_id"])){
+        $model = $_GET['model'];
+        $name = $_GET['name'];
+        $description = $_GET['description'];
+        $doublePrice = (double)$_GET['price'];
+        $currency = $_GET['currency'];
+        $user_id = $_GET["ui"];
+        $brand_id = $_GET["brand_id"];
     }
     $productObject = new ProductController();
     //state == c -> Бараа нэмэх 
@@ -36,12 +36,12 @@ header('Content-Type: text/plain; charset=utf-8');
         //TODO энд upate хийх үйлдэлүүд бичнэ
         echo json_encode(["result"=>"invalid request!!!"]);
     if($state == "r"){//state == r -> read
-        if(isset($_POST['brand_id']))
-            echo json_encode($productObject->getByBrandId($_POST['brand_id']));
-        if(isset($_POST['product_id'])) 
-            echo json_encode($productObject->getByProductId($_POST['product_id']));
-        if(isset($_POST['user_id'])) 
-            echo json_encode($productObject->getByUserId($_POST['user_id']));
+        if(isset($_GET['brand_id']))
+            echo json_encode($productObject->getByBrandId($_GET['brand_id']));
+        if(isset($_GET['product_id'])) 
+            echo json_encode($productObject->getByProductId($_GET['product_id']));
+        if(isset($_GET['user_id'])) 
+            echo json_encode($productObject->getByUserId($_GET['user_id']));
         else
             echo json_encode($productObject->getAll());
     }else {
