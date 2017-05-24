@@ -277,7 +277,6 @@ public class ActivityProductDetail extends AppCompatActivity {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void result) {
             prgLoading.setVisibility(View.GONE);
