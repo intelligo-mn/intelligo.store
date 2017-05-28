@@ -28,7 +28,7 @@
             <EditText android:id="@+id/sName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 android:hint="@string/username" />
         </android.support.design.widget.TextInputLayout>
 
