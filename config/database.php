@@ -56,7 +56,7 @@ return [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             // 'port'     => env('DB_PORT', 3324),
-            'database'  => env('DB_DATABASE', 'bella'),
+            'database'  => env('DB_DATABASE', 'shop'),
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
