@@ -4,7 +4,7 @@ namespace app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,11 @@ class AdminController extends Controller
      */
     public function index()
     {   
-        
+        $panel = [
+            'left'   => ['width' => '2'],
+            'center' => ['width' => '10'],
+        ];
+        return view('dashboard.home', compact('panel'));
     }
 
     /**
