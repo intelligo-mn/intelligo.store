@@ -12,9 +12,7 @@ class Company extends Model
      * @var string
      */
     protected $table = 'company';
-
     public $primaryKey = 'id';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -47,9 +45,7 @@ class Company extends Model
         'refund_policy',
         'privacy_policy',
         'terms_of_service',
-
     ];
-
     public function features()
     {
         return $this->hasMany('App\CompanyFeatures');

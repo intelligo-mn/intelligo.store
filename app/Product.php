@@ -14,7 +14,6 @@ class Product extends Model
      */
     protected $table = 'products';
     protected $appends = ['num_of_reviews'];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -36,65 +35,52 @@ class Product extends Model
         'status',
         'parent_id',
     ];
-
     protected $hidden = ['details', 'created_at'];
-
     public function details()
     {
         return $this->hasMany('App\OrderDetail');
     }
-
     public function categories()
     {
         return $this->belongsTo('App\Category', 'category_id');
     }
-
     public function user()
     {
         return $this->belongsTo('App\User');
     }
-
     public function group()
     {
         return $this->hasMany('App\Product', 'products_group', 'products_group');
     }
-
     public static function create(array $attr = [])
     {
         if (isset($attr['features']) && is_array($attr['features'])) {
             $attr['features'] = json_encode($attr['features']);
         }
-
         return parent::create($attr);
     }
-
     public function getLastCommentsAttribute()
     {
         return $this->details->take(5);
     }
-
     public function getFirstImageAttribute()
     {
         $features_array = $this->features;
-
         return $features_array['images'][0];
     }
-
     public function getFeaturesAttribute()
     {
         return json_decode($this->attributes['features'], true);
     }
-
     public function scopeActives($query)
     {
         return $query->where('status', 1);
+                     // ->where('stock', '>', 0);
     }
-
     public function scopeInactives($query)
     {
         return $query->where('status', 0);
     }
-
     public function scopeSearch($query, $seed)
     {
         return $query->where('name', 'like', '%'.$seed.'%')
@@ -103,7 +89,6 @@ class Product extends Model
             ->orWhere('brand', 'like', '%'.$seed.'%')
             ->orWhere('tags', 'like', '%'.$seed.'%');
     }
-
     public function scopeRefine($query, $filters)
     {
         foreach ($filters as $key => $value) {
@@ -111,26 +96,21 @@ class Product extends Model
                 case 'category':
                     $children = \Cache::remember('progeny_of_'.$value, 15, function () use ($value) {
                         Category::progeny($value, $children, ['id']);
-
                         return $children;
                     });
                     $children[] = ['id' => $value * 1];
                     $query->whereIn('category_id', $children);
                 break;
-
                 // case 'conditions':
                 //     $query->where('condition', 'LIKE', $value);
                 // break;
-
                 case 'brands':
                    $query->where('brand', 'LIKE', $value);
                 break;
-
                 case 'min':
                 case 'max':
                     $min = array_key_exists('min', $filters) ? (trim($filters['min']) != '' ? $filters['min'] : '') : '';
                     $max = array_key_exists('max', $filters) ? (trim($filters['max']) != '' ? $filters['max'] : '') : '';
-
                     if ($min != '' && $max != '') {
                         $query->whereBetween('price', [$min, $max]);
                     } elseif ($min == '' && $max != '') {
@@ -139,13 +119,10 @@ class Product extends Model
                         $query->where('price', '>=', $min);
                     }
                 break;
-
                 default:
                     if ($key != 'category_name' && $key != 'search' && $key != 'page') {
-
                         //changing url encoded character by the real ones
                         $value = urldecode($value);
-
                         //applying filter to json field
                         $query->whereRaw("features LIKE '%\"".$key.'":%"%'.str_replace('/', '%', $value)."%\"%'");
                     }
@@ -153,37 +130,31 @@ class Product extends Model
             }
         }
     }
-
     public function scopeName($query, $input)
     {
         if (trim($input) != '') {
             $query->where('name', 'LIKE', "%$input%");
         }
     }
-
     public function scopeType($query, $input)
     {
         if (count($input) > 0) {
             $query->whereIn('category_id', $input);
         }
     }
-
     public function getStatusLettersAttribute()
     {
         if ($this->status == 0) {
             return trans('globals.inactive');
         }
-
         return trans('globals.active');
     }
-
     public function scopeFree($query)
     {
         if (!config('app.offering_free_products')) {
             $query->where('type', '<>', 'freeproduct');
         }
     }
-
     /**
      * Products tags filter.
      *
@@ -197,9 +168,7 @@ class Product extends Model
         if (!is_array($search)) {
             $search = explode(' ', preg_replace('/\s+/', ' ', trim($search)));
         }
-
         $needle = '(';
-
         if (!is_array($attr)) {
             $attr = [$attr];
         }
@@ -210,14 +179,10 @@ class Product extends Model
                 }
             }
         }
-
         $needle = rtrim($needle, ' or ').')';
-
         $query->whereRaw($needle);
-
         return $query;
     }
-
     /**
      * categories filter.
      *
@@ -232,10 +197,8 @@ class Product extends Model
         } elseif (isset($data['category'])) {
             $query->where($attr, '=', $data['category']);
         }
-
         return $query;
     }
-
     public function getNumOfReviewsAttribute()
     {
         return $this->rate_count.' '.\Lang::choice('store.review', $this->rate_count);

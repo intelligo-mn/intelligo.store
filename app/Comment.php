@@ -14,13 +14,9 @@ class Comment extends Model
      * @var string
      */
     protected $table = 'comments';
-
     protected $fillable = ['action_type_id', 'comment', 'source_id', 'user_id'];
-
     //protected $appends = [ 'source_type', 'action_type' ];
-
     //protected $hidden = [ 'action', 'source' ];
-
     public function save(array $options = [])
     {
         $saved = parent::save($options);
@@ -53,12 +49,10 @@ class Comment extends Model
             }
         }
     }
-
     public function action()
     {
         return $this->hasOne('App\ActionType', 'id', 'action_type_id');
     }
-
     public function source()
     {
         //here we validate the type and return the source reference
@@ -67,15 +61,12 @@ class Comment extends Model
                 $source = 'App\Order';
             break;
         }
-
         return $source ? $this->hasOne($source) : null;
     }
-
     public function getSourceTypeAttribute()
     {
         return $this->action->source_type;
     }
-
     public function getActionTypeAttribute()
     {
         return $this->action->action;

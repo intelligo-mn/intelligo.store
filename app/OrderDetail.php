@@ -12,7 +12,6 @@ class OrderDetail extends Model
      * @var string
      */
     protected $table = 'order_details';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -28,14 +27,11 @@ class OrderDetail extends Model
         'rate',
         'rate_comment',
     ];
-
     protected $appends = ['product'];
-
     public function order()
     {
         return $this->belongsTo('App\Order');
     }
-
     public function getProductAttribute()
     {
         return $this->hasOne('App\Product', 'id', 'product_id')->first();

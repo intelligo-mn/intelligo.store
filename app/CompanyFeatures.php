@@ -12,11 +12,8 @@ class CompanyFeatures extends Model
      * @var string
      */
     protected $table = 'company_features';
-
     public $primaryKey = 'id';
-
     public $company_id = 'company_id';
-
     /**
      * The attributes that are mass assignable.
      *

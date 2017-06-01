@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Address extends Model
 {
     use SoftDeletes;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
     protected $table = 'addresses';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +29,5 @@ class Address extends Model
         'country',
         'state',
     ];
-
     protected $hidden = ['id'];
 }

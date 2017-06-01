@@ -13,11 +13,8 @@ class Notice extends Model
      * @var string
      */
     protected $table = 'notices';
-
     protected $fillable = ['user_id', 'sender_id', 'action_type_id', 'source_id', 'status'];
-
     protected $appends = [];
-
     /**
      * Notices type array list
      * this array is controlling kind of notice shown in the store, so any other value that is not here can not be shown who notice
@@ -26,9 +23,7 @@ class Notice extends Model
      * @var [array]
      */
     protected $actionsType = [1, 2, 3, 8, 9, 10, 11, 14, 15];
-
     // protected $hidden = [ 'action', 'source' ];
-
     /**
      * Create one or more notices.
      * If user and sender are the same, this notices will be ignored.
@@ -53,7 +48,6 @@ class Notice extends Model
             }
             $user = $attr['users'];
             unset($attr['users']);
-
             return self::createMany([
                 $attr + ['user_id' => $user[0], 'sender_id' => $user[1]],
                 $attr + ['user_id' => $user[1], 'sender_id' => $user[0]],
@@ -64,13 +58,11 @@ class Notice extends Model
             foreach ($users as $user) {
                 $notices[] = $attr + ['user_id' => $user];
             }
-
             return self::createMany($notices);
         } else {
             return ($attr['user_id'] == $attr['sender_id']) ? null : parent::create($attr);
         }
     }
-
     /**
      * create many notices.
      * If user and sender are the same, this notices will be ignored.
@@ -87,25 +79,20 @@ class Notice extends Model
                 $valids[] = $notice;
             }
         }
-
         return parent::createMany($valids);
     }
-
     public function getActionAttribute()
     {
         return $this->hasOne('App\ActionType', 'id', 'action_type_id')->first()->useAs('notice');
     }
-
     public function getUserAttribute()
     {
         return $this->hasOne('App\User', 'id', 'user_id')->first();
     }
-
     public function getSenderAttribute()
     {
         return $this->hasOne('App\User', 'id', 'sender_id')->first();
     }
-
     public function source()
     {
         //here we validate the type and return the source reference
@@ -117,7 +104,6 @@ class Notice extends Model
         //return $this->hasOne('App\xxx');
         return isset($source) ? $source : new Collection();
     }
-
     public function getPictureAttribute()
     {
         switch ($this->action->source_type) {
@@ -128,30 +114,24 @@ class Notice extends Model
                 return '';
             break;
         }
-
         return '';
     }
-
     public function scopeAfter($query, $input)
     {
         return $query->where('created_at', '>', $input);
     }
-
     public function scopeBefore($query, $input)
     {
         return $query->where('created_at', '<=', $input);
     }
-
     public function scopeDesc($query, $input = false)
     {
         return $query->orderBy('created_at', 'desc')->orderBy('id', 'desc');
     }
-
     public function scopeAuth($query, $input = false)
     {
         return $query->where('user_id', \Auth::id())->whereIn('action_type_id', $this->actionsType); //trans('notices.actions')
     }
-
     public function scopeOfStatus($query, $input)
     {
         return $query->where('status', 'like', $input);

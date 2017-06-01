@@ -22,7 +22,6 @@ class Order extends Model
      * @var string
      */
     protected $table = 'orders';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -37,24 +36,19 @@ class Order extends Model
         'end_date',
         'seller_id',
     ];
-
     protected $appends = ['translatedStatus'];
-
     public function user()
     {
         return $this->belongsTo('App\User');
     }
-
     public function details()
     {
         return $this->hasMany('App\OrderDetail');
     }
-
     public function freeproducts()
     {
         return $this->belongsToMany('App\FreeProduct')->withTimestamps();
     }
-
     public static function create(array $options = [])
     {
         //separate order details
@@ -70,10 +64,8 @@ class Order extends Model
         if (count($details)) {
             $order->inDetail()->saveMany(OrderDetail::createModels($details));
         }
-
         return $order;
     }
-
     public function save(array $options = [])
     {
         $status_changed = (isset($this->original['status']) && $this->attributes['status'] != $this->original['status']) || (isset($options['status']) && $this->attributes['status'] != $options['status']);
@@ -84,25 +76,20 @@ class Order extends Model
                 $this->sendNotice();
             }
         }
-
         return $saved;
     }
-
     public function getDetailsAttribute()
     {
         return $this->hasMany('App\OrderDetail')->get();
     }
-
     public function getTranslatedStatusAttribute()
     {
         return trans('globals.order_status.'.$this->status);
     }
-
     public function inDetail()
     {
         return $this->hasMany('App\OrderDetail');
     }
-
     public function createLog()
     {
         $actions = [];
@@ -111,7 +98,6 @@ class Order extends Model
                 $actions[$value['action']] = $value['id'];
             }
         }
-
         if (isset($actions[$this->status])) {
             Log::create([
             'action_type_id' => $actions[$this->status],
@@ -120,10 +106,8 @@ class Order extends Model
             'details'        => "Order #$this->id $this->status",
         ]);
         }
-
         return $this;
     }
-
     public function sendNotice()
     {
         if (!empty($this->seller_id) && !empty($this->user_id) && $this->type == 'order') {
@@ -172,7 +156,6 @@ class Order extends Model
         // $this->sendMail();
         return $this;
     }
-
     public function sendMail()
     {
         switch ($this->status) {
@@ -214,7 +197,6 @@ class Order extends Model
             });
         }
     }
-
     /**
      * Start the checkout process for any type of order.
      *
@@ -225,13 +207,9 @@ class Order extends Model
     public static function placeOrders($type_order)
     {
         $cart = self::ofType($type_order)->auth()->whereStatus('open')->orderBy('id', 'desc')->first();
-
         $show_order_route = ($type_order == 'freeproduct') ? 'freeproducts.show' : 'orders.show_cart';
-
         $cartDetail = OrderDetail::where('order_id', $cart->id)->get();
-
         $address_id = 0;
-
         //When address is invalid, it is because it comes from the creation of a free product. You must have a user direction (Default)
         if (is_null($cart->address_id)) {
             $useraddress = Address::auth()->orderBy('default', 'DESC')->first();
@@ -243,9 +221,7 @@ class Order extends Model
         } else {
             $address_id = $cart->address_id;
         }
-
         $address = Address::where('id', $address_id)->first();
-
         //Checks if the user has points for the cart price and the store has stock
         //and set the order prices to the current ones if different
         //Creates the lists or sellers to send mail to
@@ -285,13 +261,11 @@ class Order extends Model
                 return trans('store.insufficientStock');
             }
         }
-
         //Checks if the user has points for the cart price
         $user = \Auth::user();
         if ($user->current_points < $total_points && config('app.payment_method') == 'Points') {
             return trans('store.cart_view.insufficient_funds');
         }
-
         if (config('app.payment_method') == 'Points') {
             $negativeTotal = -1 * $total_points;
             //7 is the action type id for order checkout
@@ -299,7 +273,6 @@ class Order extends Model
         } else {
             $pointsModified = true;
         }
-
         if ($pointsModified) {
             //Separate the order for each seller
             //Looks for all the different sellers in the cart
@@ -325,17 +298,14 @@ class Order extends Model
                         $orderDetail->order_id = $newOrder->id;
                         $orderDetail->save();
                     }
-
                     //Increasing product counters.
                     ProductsController::setCounters($orderDetail->product, ['sale_counts' => trans('globals.product_value_counters.sale')], 'orders');
-
                     //saving tags in users preferences
                     if (trim($orderDetail->product->tags) != '') {
                         UserController::setPreferences('product_purchased', explode(',', $orderDetail->product->tags));
                     }
                 }
             }
-
             //virtual products
             //Changes the stock of each product in the order
             foreach ($cartDetail as $orderDetail) {
@@ -367,7 +337,6 @@ class Order extends Model
             }
             foreach ($seller_email as $email) {
                 $mailed_order = self::where('id', $newOrder->id)->with('details')->get()->first();
-
                 //Send a mail to the user: Order has been placed
                 $data = [
                     'orderId' => $newOrder->id,
@@ -384,29 +353,24 @@ class Order extends Model
                     $message->to($email)->subject(trans('email.new_order_for_seller.subject'));
                 });
             }
-
             return;
         } else {
             return trans('store.insufficientFunds');
         }
     }
-
     public function scopeOfType($query, $type)
     {
         return $query->whereType($type);
     }
-
     public function scopeOfStatus($query, $status)
     {
         return $query->where('orders.status', $status);
     }
-
     public function scopeOfDates($query, $from, $to = '')
     {
         if (trim($from) == '' && trim($to) == '') {
             return;
         }
-
         if (trim($from) != '' && trim($to) != '') {
             return $query->whereBetween(\DB::raw('DATE(orders.created_at)'), [$from, $to]);
         } elseif (trim($from) != '' && trim($to) == '') {

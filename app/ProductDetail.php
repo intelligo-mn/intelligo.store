@@ -12,7 +12,6 @@ class ProductDetail extends Model
      * @var string
      */
     protected $table = 'product_details';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -35,42 +34,34 @@ class ProductDetail extends Model
         'max_num_values',
         'status',
     ];
-
     public function product()
     {
         return $this->hasMany('App\Product');
     }
-
     public function order()
     {
         return $this->belongsTo('App\Order');
     }
-
     public function getIndexByNameAttribute()
     {
         return str_replace(' ', '', $this->name);
     }
-
     public function getHelpMessageArrayAttribute()
     {
         return json_decode($this->help_message, true);
     }
-
     public function getDefaultValuesArrayAttribute()
     {
         return json_decode($this->default_values, true);
     }
-
     public function getValidationRulesArrayAttribute()
     {
         return json_decode($this->validation_rules, true);
     }
-
     public function getUpperNameAttribute()
     {
         return ucwords($this->name);
     }
-
     /**
      * organize old data for the product form.
      *
@@ -81,11 +72,9 @@ class ProductDetail extends Model
     public static function oldFeatures($productFeatures)
     {
         $return = [];
-
         foreach (self::all() as $row) {
             if (isset($productFeatures[$row->indexByName])) {
                 $value = $productFeatures[$row->indexByName];
-
                 if ($row->max_num_values * 1 == 1) {
                     if (is_array($value[0])) {
                         $return['feature_'.$row->indexByName] = $value[0][0];
@@ -117,7 +106,6 @@ class ProductDetail extends Model
                 }
             }
         }
-
         return $return;
     }
 }

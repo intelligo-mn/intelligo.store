@@ -13,7 +13,6 @@ class Category extends Model
      * @var string
      */
     protected $table = 'categories';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -28,21 +27,18 @@ class Category extends Model
         'status',
         'type',
     ];
-
     /**
      * The attributes to append.
      *
      * @var array
      */
     protected $appends = [];
-
     /**
      * Select if return the categories family tree.
      *
      * @var bool
      */
     protected $family_tree = false;
-
     /**
      * Override Collection Method.
      *
@@ -54,17 +50,14 @@ class Category extends Model
     {
         return new Categories($models);
     }
-
     public function product()
     {
         return $this->hasMany('App\Product');
     }
-
     public function category()
     {
         return $this->hasMany('App\Category');
     }
-
     /**
      * Return a collection of a category's childs, or null if don't have.
      *
@@ -80,10 +73,8 @@ class Category extends Model
                 $cat->withFamilyTree();
             });
         }
-
         return $childs;
     }
-
     /**
      * Return the parent of a category, or null if don't have.
      *
@@ -93,7 +84,6 @@ class Category extends Model
     {
         return $this->belongsTo('App\Category', 'category_id')->first();
     }
-
     /**
      * Return the the full tree of parents of a category, or null if don't have.
      * The tree contains the master parent, and a child attribute that contains next element,
@@ -114,71 +104,57 @@ class Category extends Model
             $new->child = $tree;
             $tree = $new;
         }
-
         return $tree;
     }
-
     public function hasChilds()
     {
         return (bool) count($this->childs);
     }
-
     public function hasChildren()
     {
         return isset($this->children) && count($this->children);
     }
-
     public function hasParent()
     {
         return (bool) count($this->parent);
     }
-
     public function withChilds()
     {
         return $this;
     }
-
     public function withFamilyTree($value = true)
     {
         $children = self::childsOf($this->id)->get();
         if ($children->count()) {
             $this->children = $children->buildTree();
         }
-
         return $this;
     }
-
     public function withParentTree()
     {
         if (!in_array('parent_tree', $this->appends)) {
             $this->appends[] = 'parent_tree';
         }
-
         return $this;
     }
-
     public function scopeSearch($query, $name)
     {
         if (trim($name) != '') {
             $query->where('name', 'LIKE', "%$name%");
         }
     }
-
     public function scopeByName($query)
     {
         return $query->orderBy('name');
     }
-
     public function scopeActives($query)
     {
         return $query->where('status', 1);
     }
-
     public function scopeInactives($query)
     {
         return $query->where('status', 0);
     }
-
     /**
      * scopeChildsOf
      * Return all the children of a category. If the id is empty, 'parents' or 'others' will be given.
@@ -196,7 +172,6 @@ class Category extends Model
             return $query->where('category_id', $id);
         }
     }
-
     /**
      * scopeMothers
      * Retrieve the main categories.
@@ -209,17 +184,14 @@ class Category extends Model
     {
         return $query->whereNull('category_id');
     }
-
     public function scopeStore($query)
     {
         return $query->where('type', 'store');
     }
-
     public function scopeGroup($query)
     {
         return $query->where('type', 'group');
     }
-
     /**
      * scopeFull
      * Retrieve the total of products contained in a category.
@@ -234,7 +206,6 @@ class Category extends Model
             $sql->select(\DB::raw('COUNT(products.id)'))->from('products')->whereRaw('categories.id=products.category_id');
         });
     }
-
     /**
      * scopeLightSelection
      * Retrieve build the query select as scope.
@@ -245,7 +216,6 @@ class Category extends Model
     {
         return $query->select('categories.id', 'categories.name', 'categories.category_id');
     }
-
     /**
      * progeny
      * Retrieve all the categories children of one passed through parameter,
@@ -258,18 +228,14 @@ class Category extends Model
     public static function progeny($id, &$list, $fields = ['id', 'name'])
     {
         $childs = self::childsOf($id)->select($fields)->get();
-
         if (is_null($childs)) {
             return;
         }
-
         foreach ($childs as $value) {
             $list[] = $value->toArray();
-
             self::progeny($value->id, $list, $fields);
         }
     }
-
     /**
      * parentsTree
      * Retrieve all the categories parents of one passed through parameter,
@@ -285,11 +251,9 @@ class Category extends Model
             ->where('id', $id)
             ->get()
             ->toArray();
-
         if (is_null($categories)) {
             return;
         }
-
         foreach ($categories as $value) {
             $array[] = $value;
             self::parentsTree($value['category_id'], $array, $fields);
