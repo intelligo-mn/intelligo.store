@@ -15,6 +15,7 @@ class CreateTimeTable extends Migration
     {
         //sdf
         Schema::create('userTime', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('sector');
             $table->string('service');

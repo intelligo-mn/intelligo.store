@@ -12,6 +12,7 @@ class CreateVirtualProductsTable extends Migration
     public function up()
     {
         Schema::create('virtual_products', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->string('key')->nullable(); 

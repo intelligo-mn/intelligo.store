@@ -15,6 +15,7 @@ class CreateLogsTable extends Migration
     {
         //
         Schema::create('logs', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('action_type_id')->unsigned();
             $table->integer('source_id')->unsigned();

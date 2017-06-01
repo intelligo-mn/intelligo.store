@@ -15,6 +15,7 @@ class CreateUserPointsTable extends Migration
     {
         //
         Schema::create('user_points', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('action_type_id')->unsigned();

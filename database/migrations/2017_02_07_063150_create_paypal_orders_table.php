@@ -12,6 +12,7 @@ class CreatePaypalOrdersTable extends Migration
     public function up()
     {
         Schema::create('paypal_orders', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('payment_id');

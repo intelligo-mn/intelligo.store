@@ -14,6 +14,7 @@ class CreateCompanyFeaturesTable extends Migration
     public function up()
     {
         Schema::create('company_features', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('company_id')->unsigned();
             $table->string('description');

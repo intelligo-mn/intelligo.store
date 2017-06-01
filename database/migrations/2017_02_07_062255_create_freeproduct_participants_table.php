@@ -12,6 +12,7 @@ class CreateFreeproductParticipantsTable extends Migration
     public function up()
     {
         Schema::create('freeproduct_participants', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('freeproduct_id')->unsigned();
             $table->integer('user_id')->unsigned();

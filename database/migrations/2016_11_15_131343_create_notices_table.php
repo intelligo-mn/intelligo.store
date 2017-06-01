@@ -15,6 +15,7 @@ class CreateNoticesTable extends Migration
     {
         //
         Schema::create('notices', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('sender_id')->unsigned();

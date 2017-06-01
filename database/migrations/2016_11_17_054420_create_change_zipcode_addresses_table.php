@@ -15,6 +15,7 @@ class CreateChangeZipcodeAddressesTable extends Migration
     {
         Schema::table('addresses', function (Blueprint $table) {
             //
+            $table->engine = "InnoDB";
             $table->string('zipcode', 10)->change();
         });
     }
