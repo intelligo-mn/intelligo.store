@@ -19,15 +19,17 @@ $category_id = "";
 $language = "";
 
 
-$name = $_POST['name'];
-$description = $_POST['description'];
-$user_id = $_POST["ui"];
-$category_id = $_POST["categoryId"];
-$language = $_POST["language"];
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ui']) && isset($_POST['categoryId'])&& isset($_POST['language'])){
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $user_id = $_POST["ui"];
+    $category_id = $_POST["categoryId"];
+    $language = $_POST["language"];
+}
 
 $brandObject = new BrandController();
 
-if($state == "c" && !empty($name) && !empty($description) && !empty($user_id) && !empty($category_id) && !empty($language) ){
+if($state == "c"){
 
     if($brandObject->isExist($name)){
         $json = array();
@@ -53,9 +55,13 @@ function savePhoto(){
     if(!file_exists($target_dir))
         mkdir($target_dir, 0777, true);
         
-        $target_dir = $target_dir.basename($_FILES["file"]["name"]);
+        $fileName = microtime().basename($_FILES["file"]["name"]);
+        $fileName = preg_replace("/.(\d)/", "$1", $fileName);
+        $fileName = str_replace(" ", "_", $fileName);
+
+        $target_dir = $target_dir.$fileName;
         $result = move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir) ?  $target_dir : "";  
-        return basename($_FILES["file"]["name"]);
+        return $fileName;
 }
 
 ?>
