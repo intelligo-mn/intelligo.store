@@ -20,23 +20,23 @@
     <string name="product_list">Product list</string>
     <string name="not_found">Empty</string>
     <string name="order">Order</string>
-    <string name="number_order">Max order</string>
-    <string name="my_order">Details order </string>
-    <string name="total_order">Total order</string>
-    <string name="clear_order">Cancel order</string>
+    <string name="order_number">Max order</string>
+    <string name="order_my">Details order </string>
+    <string name="order_total">Total order</string>
+    <string name="order_clear">Cancel order</string>
     <string name="order_clear_all">Cancel all orders</string>
-    <string name="clear_one_order">Cancel order</string>
-    <string name="no_order">No order</string>
-    <string name="increase_order">+</string>
+    <string name="order_clear_one">Cancel order</string>
+    <string name="order_not_found">No order</string>
+    <string name="order_increase">+</string>
     <string name="submit_order">Add to card</string>
-    <string name="edit_submit_order">Edir card</string>
+    <string name="order_edit_submit">Edir card</string>
     <string name="save">Save</string>
-    <string name="decrease_order">-</string>
+    <string name="order_decrease">-</string>
     <string name="next">Next</string>
     <string name="start">Start</string>
     <string name="skip">Skip</string>
     <string name="menu">Menu</string>
-    <string name="my_card">My card</string>
+    <string name="card_my">My card</string>
     <string name="send_mail">Send mail</string>
     <string name="loading">Loading</string>
     <string name="phone">Phone number</string>
@@ -100,7 +100,7 @@
     <string name="err_pass_confirm">Passwords match</string>
     <string name="recover_account">Forget your password</string>
 
-    <string name="no_product">No product information</string>
+    <string name="product_not_found">No product information</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> New ideas seekers

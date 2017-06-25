@@ -20,23 +20,23 @@
     <string name="product_list">Бүтээгдэхүүний жагсаалт</string>
     <string name="not_found">Хоосон байна</string>
     <string name="order">Захиалга</string>
-    <string name="number_order">Захиалгын хэмжээ</string>
-    <string name="my_order">Захиалгын дэлгэрэнгүй</string>
-    <string name="total_order">Нийт захиалга :</string>
-    <string name="clear_order">Бүх захиалга цуцлах</string>
+    <string name="order_number">Захиалгын хэмжээ</string>
+    <string name="order_my">Захиалгын дэлгэрэнгүй</string>
+    <string name="order_total">Нийт захиалга :</string>
+    <string name="order_clear">Бүх захиалга цуцлах</string>
     <string name="order_clear_all">Бүх захиалгаа цуцлах уу?</string>
-    <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
-    <string name="no_order">Захиалга байхгүй байна</string>
-    <string name="increase_order">+</string>
+    <string name="order_clear_one">Энэхүү захиалгыг цуцлах уу?</string>
+    <string name="order_not_found">Захиалга байхгүй байна</string>
+    <string name="order_increase">+</string>
     <string name="submit_order">Сагсанд хийх</string>
-    <string name="edit_submit_order">Хадгалах</string>
+    <string name="order_edit_submit">Хадгалах</string>
     <string name="save">Хадгалах</string>
-    <string name="decrease_order">-</string>
+    <string name="order_decrease">-</string>
     <string name="next">Дараагийн</string>
     <string name="start">Эхлэх</string>
     <string name="skip">Алгасах</string>
     <string name="menu">Цэс</string>
-    <string name="my_card">Таны сагс</string>
+    <string name="card_my">Таны сагс</string>
     <string name="send_mail">Мэйл илгээх</string>
     <string name="loading">Уншиж байна...</string>
     <string name="phone">Утасны дугаар</string>
@@ -100,7 +100,7 @@
     <string name="err_pass_confirm">Нууц үг таарахгүй байна</string>
     <string name="recover_account">Нууц үг марсан</string>
 
-    <string name="no_product">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
+    <string name="product_not_found">Бүтээгдэхүүний мэдээлэл байхгүй байна</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> Шинэ санаа эрэлхийлэгчдийн мэдээллийг

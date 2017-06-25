@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.50"
                             android:gravity="center"
-                            android:text="@string/increase_order" />
+                            android:text="@string/order_increase" />
 
                         <Button
                             android:layout_width="0dp"
@@ -147,7 +147,7 @@
                             android:layout_weight="0.50"
                             android:gravity="center"
                             android:id="@+id/decreaseTotalCostButton"
-                            android:text="@string/decrease_order" />
+                            android:text="@string/order_decrease" />
 
                         <Button
                             android:layout_width="0dp"
@@ -199,7 +199,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dgl_cart_w"
                 fab:fab_size="normal"
-                fab:fab_label="@string/my_card" />
+                fab:fab_label="@string/card_my"
+                app:fab_label="@string/card_my" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/send_mail"

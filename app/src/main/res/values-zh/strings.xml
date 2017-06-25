@@ -20,23 +20,23 @@
     <string name="product_list">產品列表</string>
     <string name="not_found">有空</string>
     <string name="order">訂購</string>
-    <string name="number_order">订购数量</string>
-    <string name="my_order">订阅详细</string>
-    <string name="total_order">总订购</string>
-    <string name="clear_order">取消所有订单</string>
+    <string name="order_number">订购数量</string>
+    <string name="order_my">订阅详细</string>
+    <string name="order_total">总订购</string>
+    <string name="order_clear">取消所有订单</string>
     <string name="order_clear_all">取消所有订阅</string>
-    <string name="clear_one_order">取消此订购</string>
-    <string name="no_order">无有订购</string>
-    <string name="increase_order">+</string>
+    <string name="order_clear_one">取消此订购</string>
+    <string name="order_not_found">无有订购</string>
+    <string name="order_increase">+</string>
     <string name="submit_order">加入卡片</string>
-    <string name="edit_submit_order">保存</string>
+    <string name="order_edit_submit">保存</string>
     <string name="save">保存</string>
-    <string name="decrease_order">-</string>
+    <string name="order_decrease">-</string>
     <string name="next">下一个</string>
     <string name="start">开始</string>
     <string name="skip">请绕跳</string>
     <string name="menu">菜單</string>
-    <string name="my_card">我的購物車</string>
+    <string name="card_my">我的購物車</string>
     <string name="send_mail">發送郵件</string>
     <string name="loading">正在载...</string>
     <string name="phone">電話號碼</string>
@@ -99,7 +99,7 @@
     <string name="err_pass_confirm">比賽密碼</string>
     <string name="recover_account">忘記密碼</string>
 
-    <string name="no_product">沒有產品信息</string>
+    <string name="product_not_found">沒有產品信息</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> 新思路求職者

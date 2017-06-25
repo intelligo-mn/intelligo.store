@@ -20,23 +20,23 @@
     <string name="product_list">Список продуктов</string>
     <string name="not_found">Пустой</string>
     <string name="order">Заказ</string>
-    <string name="number_order">Объем заказ</string>
-    <string name="my_order">Подробности заказа</string>
-    <string name="total_order">Общий заказ</string>
-    <string name="clear_order">Отменить все резервирования</string>
+    <string name="order_number">Объем заказ</string>
+    <string name="order_my">Подробности заказа</string>
+    <string name="order_total">Общий заказ</string>
+    <string name="order_clear">Отменить все резервирования</string>
     <string name="order_clear_all">Отменить все подписки?</string>
-    <string name="clear_one_order">Пожалуйста, отменить этот заказ?</string>
-    <string name="no_order">Нет заказ</string>
-    <string name="increase_order">+</string>
+    <string name="order_clear_one">Пожалуйста, отменить этот заказ?</string>
+    <string name="order_not_found">Нет заказ</string>
+    <string name="order_increase">+</string>
     <string name="submit_order">Добавить в корзину</string>
-    <string name="edit_submit_order">Хранение</string>
+    <string name="order_edit_submit">Хранение</string>
     <string name="save">Сохранить</string>
-    <string name="decrease_order">-</string>
+    <string name="order_decrease">-</string>
     <string name="next">Следующий</string>
     <string name="start">Начало</string>
     <string name="skip">Пропускать</string>
     <string name="menu">Меню</string>
-    <string name="my_card">Ваша корзина</string>
+    <string name="card_my">Ваша корзина</string>
     <string name="send_mail">Написать письмо</string>
     <string name="loading">Загрузка</string>
     <string name="phone">Номер телефона</string>
@@ -99,7 +99,7 @@
     <string name="err_pass_confirm">Пароли матч</string>
     <string name="recover_account">Забыли аккаунт</string>
 
-    <string name="no_product">Нет информации о продукте</string>
+    <string name="product_not_found">Нет информации о продукте</string>
 
     <string name="slide_1_title">DGL Brand!</string>
     <string name="slide_1_desc"> Новые идеи убежища
