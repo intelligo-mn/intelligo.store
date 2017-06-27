@@ -67,8 +67,8 @@
             <EditText android:id="@+id/pPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/price" />
+                android:hint="@string/price"
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -79,7 +79,7 @@
             <EditText android:id="@+id/pCurrency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 android:hint="Нэгж" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout

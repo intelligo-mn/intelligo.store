@@ -23,21 +23,21 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
 
-                android:hint="@string/username" />
+                android:hint="@string/username"
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
         <!--  Password Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:text="@string/remember"
             android:id="@+id/rememberMe"
             android:checked="false"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/login"

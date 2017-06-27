@@ -23,12 +23,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/sName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 android:hint="@string/username" />
         </android.support.design.widget.TextInputLayout>
 
@@ -36,8 +36,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/sEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,8 +49,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/sPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,8 +61,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <EditText android:id="@+id/sComfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,8 +75,8 @@
             android:id="@+id/btnSignUp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="12dp"
             android:background="@color/colorPrimary"
             android:text="@string/signup"
@@ -85,17 +85,16 @@
         <TextView android:id="@+id/linkLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/login"
             android:gravity="center"
             android:textSize="16dip"/>
-
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/loginfb"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="@color/facebook_color"
             android:padding="12dp"

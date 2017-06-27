@@ -12,6 +12,8 @@ import android.view.ViewAnimationUtils;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
+
+@Deprecated
 public class AnimationUtils {
 
     public static final int ANIMATION_DURATION_SHORTEST = 150;

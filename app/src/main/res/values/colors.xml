@@ -3,6 +3,7 @@
     <color name="colorPrimary">#00c97b</color>
     <color name="colorPrimaryDark">#4c9e73</color>
     <color name="colorAccent">#555</color>
+    
     <color name="white">#FFF</color>
     <color name="white_87">#DEFFFFFF</color>
     <color name="white_54">#8AFFFFFF</color>
@@ -42,6 +43,7 @@
     <color name="dot_dark_screen2">#14a895</color>
     <color name="dot_dark_screen3">#2278d4</color>
     <color name="dot_dark_screen4">#a854d4</color>
+
 
     <!-- dots active colors -->
     <color name="dot_light_screen1">#f98da5</color>
