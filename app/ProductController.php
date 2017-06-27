@@ -15,13 +15,12 @@ class ProductController{
     // Бүтээгдэхүүн нэмэх
     public function create($name, $model, $description, $price, $currency, $userId, $brandId){
         
-        $photoId = $this->savePhoto($userId) ? mysqli_insert_id() : NULL;
         $query = "insert into ".$this->db_table." (`code`, `model`, `name`, `default_photo_id`, `description`, `folder`, `price`, 
                         `currency`, `is_sale`, `is_active`, `brand_id`, `company_id`, `info_url`, `attr`, 
-                        `in_stock`, `is_top`, `is_fearured`, `hitcounter`, `ip_address`, `sort_order`, 
+                        `in_stock`, `is_top`, `is_featured`, `hitcounter`, `ip_address`, `sort_order`, 
                         `created_user_id`, `updated_user_id`, `created_at`, `updated_at`)
 
-                    VALUES('".$model.date("Y-m-d")."', '$model', '$name', $photoId, '$description', '".date('Y-m')."', '$price', '$currency', NULL, NULL, '$brandId', NULL, 'asdsad', 'asd', NULL, NULL, NULL, 1, '".$_SERVER['REMOTE_ADDR']."', 1, ".$userId.", ".$userId.", '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."'
+                    VALUES('".$model.microtime()."', '$model', '$name', NULL, '$description', '".date('Y-m')."', $price, '$currency', NULL, NULL, '$brandId', NULL, 'asdsad', 'asd', NULL, NULL, 1, 1, '".$_SERVER['REMOTE_ADDR']."', 1, ".$userId.", ".$userId.", '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."'
                     )";
 
         $inserted = mysqli_query($this->db->getDb(), $query);
@@ -29,11 +28,14 @@ class ProductController{
         if($inserted == 1){
             $json['success'] = 1;
             $json['message'] = "Амжилттай бүртгэгдлээ";
+            $json['id'] = $this->db->getDb()->insert_id;
         }else{
+            var_dump(mysql_error());
             $json['success'] = 0;
             $json['message'] = "Бүтээгдэхүүн нэмэхэд алдаа гарлаа";
         }
-        
+
+        $json['query'] = $query;
         mysqli_close($this->db->getDb());         
         return $json;
         
