@@ -10,7 +10,7 @@ class ProductsTableSeeder extends Seeder
 {
 
     public function run () {
-        $this->bella();
+        $this->boxshop();
     }
 
     public function bella()
@@ -85,15 +85,13 @@ class ProductsTableSeeder extends Seeder
         $faker = Faker::create();
         $businesses = Business::get();
         $numCategories = DB::table('categories')->count();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $price = $faker->numberBetween(1, 99);
-            $tag = $faker->randomElement(['16 BRAND DRAW COLOR',
-                            'CENTELLA MASK',
+            $tag = $faker->randomElement(['Цаг',
+                            'Тоглоом',
                             'FOAM',
-                            '16 BRAND FINGERPEN',
-                            '16 BRAND FINGERPEN',
-                            'PINK TONE UP',
-                            '16 BLUR PACT SPF50+PA+++']);
+                            'Rockbros',
+                            'Smart']);
             $id = Product::create([
                 'category_id'  => $faker->numberBetween(1, $numCategories),
                 'user_id'      => '3',
@@ -101,23 +99,23 @@ class ProductsTableSeeder extends Seeder
                 'type'         => 'Product',
                 'sale_counts'  => $faker->randomNumber(9),
                 'view_counts'  => $faker->randomNumber(9),
-                'name'         => $faker->randomElement(['LESSO',
+                'name'         => $faker->randomElement(['Ухаалаг цаг',
                             'DR.VITA',
                             'CENTELLA MASK',
                             '16 BRAND FINGERPEN',
                             'MINK CREAM',
                             'DARK SPOT',
                             'SNOW PACK',
-                            'ZOMBIE PACK',
+                            'Dermacol BT Cell',
                             'CENTELLA AMPOULE',
                             'MONSTER PACK',
                             'WHITENING CREAM',
-                            'МОРЬТОЙ ТОС',
+                            'Гэдэс цэвэрлэх чавга',
                             'COCOON',
                             'BB FOUNCOVER',
                             'ZOMBIE PACK',
                             'PINK TONE UP',
-                            '16 BLUR PACT SPF50+PA+++']),
+                            'Нүүр цэвэрлэгч']),
                 'description'  => '',
                 'price'        => $price,
                 'brand'        => $faker->randomElement(['LESSO', 'Nevalend', 'FOX', 'SPRIT',
@@ -127,11 +125,11 @@ class ProductsTableSeeder extends Seeder
                  , 'Double A', 'Forever 21', 'Libero', 'Maccoffee', 'Puma']),
                 'features'     => json_encode([
                     'images' => [
-                    '/img/boxshop/'.$faker->numberBetween(1, 20).'.jpg',
-                    '/img/boxshop/'.$faker->numberBetween(1, 20).'.jpg',
-                    '/img/boxshop/'.$faker->numberBetween(1, 20).'.jpg',
-                    '/img/boxshop/'.$faker->numberBetween(1, 20).'.jpg',
-                    '/img/boxshop/'.$faker->numberBetween(1, 20).'.jpg',
+                    '/img/boxshop/'.$faker->numberBetween(1, 9).'.jpg',
+                    '/img/boxshop/'.$faker->numberBetween(1, 9).'.jpg',
+                    '/img/boxshop/'.$faker->numberBetween(1, 9).'.jpg',
+                    '/img/boxshop/'.$faker->numberBetween(1, 9).'.jpg',
+                    '/img/boxshop/'.$faker->numberBetween(1, 9).'.jpg',
                     ],
                 ]),
                 'condition' => $faker->randomElement(['new', 'refurbished', 'used']),
