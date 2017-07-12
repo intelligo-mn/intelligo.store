@@ -19,11 +19,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');
 });
 
-Route::get('tsag', ['uses' => 'MailController@getContact', 'as' => 'tsag']);
-Route::post('tsag', ['uses' => 'MailController@postContact', 'as' => 'tsag']);
-
-
-
 require __DIR__ . '/web/users.php';
 
 require __DIR__ . '/web/business.php';
@@ -41,4 +36,6 @@ require __DIR__ . '/web/about.php';
 require __DIR__ . '/web/utilities.php';
 
 require __DIR__ . '/web/globals.php';
+
+require __DIR__ . '/web/user_service.php';
 
