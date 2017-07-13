@@ -20,14 +20,6 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    productFlavors {
-        demo {
-            versionName "1.1-demo"
-        }
-        full {
-
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -56,4 +48,5 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.github.arimorty:floatingsearchview:2.0.3'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
 }
