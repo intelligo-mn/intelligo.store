@@ -11,12 +11,13 @@ import android.widget.ImageButton;
 import com.dglproject.brand.R;
 
 import java.util.Locale;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-public class ActivitySplashScreen extends AppCompatActivity {
+public class ActivitySplashScreen extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,34 +29,13 @@ public class ActivitySplashScreen extends AppCompatActivity {
         ImageButton cn = (ImageButton)findViewById(R.id.langCn);
         ImageButton ru = (ImageButton)findViewById(R.id.langRu);
 
-        en.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLanguage("en");
-            }
-        });
-
-        mn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLanguage("mn");
-            }
-        });
-
-        cn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLanguage("zh");
-            }
-        });
-
-        ru.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLanguage("ru");
-            }
-        });
+        mn.setOnClickListener(this);
+        en.setOnClickListener(this);
+        cn.setOnClickListener(this);
+        ru.setOnClickListener(this);
     }
+
+    // Хэл сонгох
     private void changeLanguage(String lang) {
         Resources res = getApplicationContext().getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -66,5 +46,23 @@ public class ActivitySplashScreen extends AppCompatActivity {
         Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.langEn:
+                changeLanguage("en");
+                break;
+            case R.id.langMn:
+                changeLanguage("mn");
+                break;
+            case R.id.langCn:
+                changeLanguage("cn");
+                break;
+            case R.id.langRu:
+                changeLanguage("ru");
+                break;
+        }
     }
 }
