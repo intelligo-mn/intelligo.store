@@ -31,6 +31,7 @@ import com.dglproject.brand.fragments.CartFragment;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.fragments.NavigationFragment;
+import com.dglproject.brand.fragments.ProductFragment;
 import com.dglproject.brand.utilities.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
 
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return BrandFragment.newInstance(1);
                 case 1:
-                    return HomeItems.newInstance(2);
+                    return ProductFragment.newInstance(2);
                 case 2:
                     return CategoryFragment.newInstance(3);
                 case 3:

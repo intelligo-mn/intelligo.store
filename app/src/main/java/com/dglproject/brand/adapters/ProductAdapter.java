@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
+import com.dglproject.brand.fragments.ProductFragment;
 import com.dglproject.brand.utilities.ImageLoader;
 
 import org.json.JSONArray;
