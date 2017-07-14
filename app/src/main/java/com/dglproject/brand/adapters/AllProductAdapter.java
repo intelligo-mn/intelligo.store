@@ -18,6 +18,8 @@ import com.dglproject.brand.utilities.ImageLoader;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
+
+@Deprecated
 public class AllProductAdapter extends BaseAdapter {
 
     private Activity activity;

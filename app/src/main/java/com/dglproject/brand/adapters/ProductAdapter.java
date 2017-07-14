@@ -1,6 +1,7 @@
 package com.dglproject.brand.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
+import com.dglproject.brand.activity.ActivityProductDetail;
 import com.dglproject.brand.fragments.ProductFragment;
 import com.dglproject.brand.utilities.ImageLoader;
 
@@ -37,7 +39,6 @@ public class ProductAdapter extends BaseAdapter{
         imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
     }
 
     @Override
@@ -74,6 +75,18 @@ public class ProductAdapter extends BaseAdapter{
             pName.setText(products.getJSONObject(position).getString("name"));
             pPrice.setText(products.getJSONObject(position).getString("price"));
             imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
+            pImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent iDetail = new Intent(context, ActivityProductDetail.class);
+                    try {
+                        iDetail.putExtra("product_id", products.getJSONObject(position).getString("id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    context.startActivity(iDetail);
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("ERROR", e.getMessage());

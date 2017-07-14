@@ -47,7 +47,7 @@ import java.util.ArrayList;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-
+@Deprecated
 public class HomeItems extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
