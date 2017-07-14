@@ -45,9 +45,25 @@ class UserController{
         return $json;
         
     }
+    public function update($userID, $username, $email, $mobile, $photoPath){
+        $json = array();
+        $query = "UPDATE ".$this->db_table." SET username='$username', email='$email', mobile='$mobile' ".($photoPath!="" ? ", avatar_image='$photoPath'" : "")." WHERE id=$userID";
+        $inserted = mysqli_query($this->db->getDb(), $query);
+    
+        if($inserted == 1){
+            $json['success'] = 1;
+            $json['message'] = "succesfilly update.";
+        } else {
+            $json['success'] = 0;
+            $json['message'] = "User update error.";   
+            $json['query'] = $query;
+        }
+
+        return $json;
+    }
     
     public function signin($username, $password){
-        $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+        $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password'"." Limit 1";
         $result = mysqli_query($this->db->getDb(), $query);
 
         $users = array();
@@ -65,10 +81,10 @@ class UserController{
         return count($users) > 0 ? $users : $json;
     }
 
-    //хэрэглэгчийг id - аар нь авах
-    public function getById($id){
-        $query = "select * from ".$this->db_table." where id=$id";
-        echo mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0 ? json_encode(mysqli_query($this->db->getDb(), $query)[0]) : json_encode(["result"=>"error"]);
+    //өгөгдсөн id тай хэрэглэгч бүртгэгдсэн эсэх
+    public function isRegisteredByFB($id){
+        $query = "select * from ".$this->db_table." where fb_id=$id";
+        return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
     //хэрэглэгчийг facebook id - аар нь авах
     public function getByFbId($fb_id){
