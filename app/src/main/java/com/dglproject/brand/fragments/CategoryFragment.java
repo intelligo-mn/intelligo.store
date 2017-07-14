@@ -205,8 +205,7 @@ public class CategoryFragment extends Fragment {
                 Category_ID.add(data.getJSONObject(i).getLong("id"));
                 Category_name.add(data.getJSONObject(i).getString("name"));
                 Category_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
-                Log.d("Category name", Category_name.get(i));
-            }
+           }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

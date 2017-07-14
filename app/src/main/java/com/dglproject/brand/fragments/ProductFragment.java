@@ -1,6 +1,7 @@
 package com.dglproject.brand.fragments;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,6 +24,7 @@ import com.dglproject.brand.activity.MainActivity;
 import com.dglproject.brand.adapters.AllProductAdapter;
 import com.dglproject.brand.adapters.ProductAdapter;
 import com.dglproject.brand.json.JSONParser;
+import com.dglproject.brand.utilities.DGLConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,8 +35,10 @@ import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -56,8 +60,6 @@ public class ProductFragment extends Fragment {
     int IOConnect = 0;
 
     MainActivity mainActivity;
-
-    String ProductService;
 
     SwipeRefreshLayout swipeRefreshLayout = null;
 
@@ -88,13 +90,14 @@ public class ProductFragment extends Fragment {
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
 
         mHandler = new Handler(Looper.getMainLooper());
-        ProductService = Config.ProductService;
 
         mainActivity = new MainActivity();
 
-        getProductList();
-
         homeItemList.setNumColumns(2);
+
+        homeItemList.setVisibility(View.VISIBLE);
+
+        getProductList();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -133,10 +136,16 @@ public class ProductFragment extends Fragment {
 
     public void getProductList () {
         prgLoading.setVisibility(View.VISIBLE);
-        String uri = ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r";
+        String uri = DGLConstants.ProductService+"?state=r";
+
         Log.e("Дуудсан холбоос: ", uri);
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(uri).build();
+        Request request = new Request.Builder()
+                .url(uri)
+                .build();
+
+        Log.e("Request: ", request.toString());
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

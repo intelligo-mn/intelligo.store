@@ -34,6 +34,7 @@ public class ProductAdapter extends BaseAdapter{
     public ProductAdapter(Context context, JSONArray products) {
         this.context = context;
         this.products = products;
+        imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -67,12 +68,12 @@ public class ProductAdapter extends BaseAdapter{
 
         TextView pName = (TextView) vi.findViewById(R.id.txtText);
         TextView pPrice = (TextView) vi.findViewById(R.id.txtSubText);
-        ImageView pImage  = (ImageView)vi.findViewById(R.id.imgThumb);
+        ImageView pImage  = (ImageView) vi.findViewById(R.id.imgThumb);
 
         try {
             pName.setText(products.getJSONObject(position).getString("name"));
-            pPrice.setText(products.getJSONObject(position).getString("price"+" ₮"));
-            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position), pImage);
+            pPrice.setText(products.getJSONObject(position).getString("price"));
+            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("ERROR", e.getMessage());
