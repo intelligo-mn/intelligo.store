@@ -14,8 +14,8 @@ date_default_timezone_set("UTC");
     if($_POST["state"] == "signin"){
         if (isset($_POST["username"]) && isset($_POST["password"])){
             echo json_encode($userObject->signin($_POST["username"], md5($_POST["password"])));
-        }else if (isset($_POST["fb_id"]) && isset($_POST["username"])){
-            $json_array = $userObject->signin($_POST["fb_id"], $_POST["username"]);
+        }else if (isset($_POST["fb_id"])){
+            $json_array = $userObject->signinByFB($_POST["fb_id"]);
             echo json_encode($json_array);
         }
         

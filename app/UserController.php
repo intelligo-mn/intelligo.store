@@ -73,6 +73,7 @@ class UserController{
             $users['username'] = $user['username'];
             $users['email'] = $user['email'];
             $users['mobile'] = $user['mobile'];
+            $users['level'] = $user['level'];
             $users['imagePath'] = $user['folder']."/".$user['avatar_image'];
         }
         $json = array();
@@ -80,7 +81,25 @@ class UserController{
         $json['query'] = $query;
         return count($users) > 0 ? $users : $json;
     }
+    public function signinByFB($fb_id){
+        $query = "select * from ".$this->db_table." where fb_id = '$fb_id' Limit 1";
+        $result = mysqli_query($this->db->getDb(), $query);
 
+        $users = array();
+        while($user = $result->fetch_assoc()) {
+            $users['success'] = 1;
+            $users['id'] = $user['id'];
+            $users['username'] = $user['username'];
+            $users['email'] = $user['email'];
+            $users['mobile'] = $user['mobile'];
+            $users['level'] = $user['level'];
+            $users['imagePath'] = $user['folder']."/".$user['avatar_image'];
+        }
+        $json = array();
+        $json['success'] = 0;
+        $json['query'] = $query;
+        return count($users) > 0 ? $users : $json;
+    }
     //өгөгдсөн id тай хэрэглэгч бүртгэгдсэн эсэх
     public function isRegisteredByFB($id){
         $query = "select * from ".$this->db_table." where fb_id=$id";
