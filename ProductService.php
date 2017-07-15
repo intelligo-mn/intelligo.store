@@ -37,13 +37,13 @@ header('Content-Type: text/plain; charset=utf-8');
         //TODO энд upate хийх үйлдэлүүд бичнэ
         echo json_encode(["result"=>"invalid request!!!"]);
     else if($state == "r"){//state == r -> read
-        if(isset($_POST['brand_id']))
-            echo json_encode($productObject->getByBrandId($_POST['brand_id']));
-        if(isset($_POST['product_id'])) 
-            echo json_encode($productObject->getByProductId($_POST['product_id']));
-        if(isset($_POST['user_id'])) 
-            echo json_encode($productObject->getByUserId($_POST['user_id']));
-        else
+        // if(isset($_POST['brand_id']))
+        //     echo json_encode($productObject->getByBrandId($_POST['brand_id']));
+        // if(isset($_POST['product_id'])) 
+        //     echo json_encode($productObject->getByProductId($_POST['product_id']));
+        // if(isset($_POST['user_id'])) 
+        //     echo json_encode($productObject->getByUserId($_POST['user_id']));
+        // else
             echo json_encode($productObject->getAll());
     }else {
         echo json_encode(["result" => "invalid request!!!"]);
