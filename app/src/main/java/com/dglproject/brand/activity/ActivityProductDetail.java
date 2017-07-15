@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -27,18 +30,12 @@ import android.widget.Toast;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
+import com.dglproject.brand.adapters.ProductAdapter;
 import com.dglproject.brand.database.CartProductsAdapter;
 import com.dglproject.brand.models.CartProducts;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +46,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -77,10 +83,12 @@ public class ActivityProductDetail extends AppCompatActivity {
     String imageTitleString;
 
     double Product_price;
-    int Product_quantity;
-    long Product_ID;
+    String Product_quantity;
+    String Product_ID;
     String ProductService;
     int IOConnect = 0;
+
+    private Handler mHandler;
 
     PrefManager prefManager;
 
@@ -90,6 +98,8 @@ public class ActivityProductDetail extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
 
         prefManager = new PrefManager(getApplicationContext());
+
+        mHandler = new Handler(Looper.getMainLooper());
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -187,17 +197,11 @@ public class ActivityProductDetail extends AppCompatActivity {
             }
         });
 
-        Intent iGet = getIntent();
-
-        Product_ID = iGet.getLongExtra("product_id", 0);
-
-        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&product_id="+ Product_ID;
-
-        new getDataTask().execute();
+//        new getDataTask().execute();
 
 //        getSupportActionBar().setTitle(Product_name);
-        displayData();
-
+//        displayData();
+        getProduct();
 //        com.github.clans.fab.FloatingActionButton fabShare = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.share);
 //        fabShare.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -260,98 +264,112 @@ public class ActivityProductDetail extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), getString(R.string.cart_add_success), Toast.LENGTH_SHORT).show();
 
     }
+//
+//    public class getDataTask extends AsyncTask<Void, Void, Void> {
+//
+//        getDataTask(){
+//            if(!prgLoading.isShown()){
+//                prgLoading.setVisibility(0);
+//                txtAlert.setVisibility(8);
+//            }
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... arg0) {
+//
+//            getProduct();
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            prgLoading.setVisibility(View.GONE);
+//            if ((Product_name != null) && IOConnect == 0) {
+//                coordinatorLayout.setVisibility(View.VISIBLE);
+//                  Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+//                    @Override
+//                    public void onSuccess() {
+//                        Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
+//                        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+//                            @Override
+//                            public void onGenerated(Palette palette) {
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onError() {
+//
+//                    }
+//                });
+//
+//                txtText.setText(Product_name);
+//                txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
+//                txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
+//                txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
+//
+//                txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
+//                WebSettings webSettings = txtDescription.getSettings();
+//                Resources res = getResources();
+//
+//            } else {
+//                txtAlert.setVisibility(View.VISIBLE);
+//            }
+//        }
+//    }
 
-    public class getDataTask extends AsyncTask<Void, Void, Void> {
+    public void getProduct () {
+        prgLoading.setVisibility(View.VISIBLE);
 
-        getDataTask(){
-            if(!prgLoading.isShown()){
-                prgLoading.setVisibility(0);
-                txtAlert.setVisibility(8);
+        Intent iGet = getIntent();
+
+        String uri = DGLConstants.ProductService+"?state=r&product_id="+ iGet.getStringExtra("product_id");
+//        String uri = DGLConstants.ProductService+"?state=r";
+
+        Log.e("Дуудсан холбоос: ", uri);
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(uri)
+                .addHeader("Content-Type","text/json;charset=utf-8")
+                .build();
+
+        Log.e("Request: ", request.toString());
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("Request Error ", "Алдаа:" + e.getMessage());
             }
-        }
 
-        @Override
-        protected Void doInBackground(Void... arg0) {
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String res = response.body().string();
 
-            parseJSONData();
-            return null;
-        }
+                Log.e("Res: ", ""+res);
+                mHandler.post(() -> {
+                    try {
+                        JSONObject prod = new JSONObject(String.valueOf(res));
+                        JSONArray prodItems = prod.getJSONArray("item");
+//                        prodItems.getString("name");
+//                        Log.e("Response: ", prodItems + "");
+//                        for (int i = 0; i < prodItems.length(); i++) {
+//                            Product_image = data.getJSONObject(i).getString("folder");
+//                            Product_name = data.getJSONObject(i).getString("name");
+//                            Product_price = data.getJSONObject(i).getDouble("price");
+//                            Product_description = data.getJSONObject(i).getString("description");
+//                            Product_quantity = data.getJSONObject(i).getInt("currency");
 
-        @Override
-        protected void onPostExecute(Void result) {
-            prgLoading.setVisibility(View.GONE);
-            if ((Product_name != null) && IOConnect == 0) {
-                coordinatorLayout.setVisibility(View.VISIBLE);
-                  Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
-                        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                            @Override
-                            public void onGenerated(Palette palette) {
-                            }
-                        });
+                            txtText.setText(prod.getString("name"));
+//                        }
+                        prgLoading.setVisibility(View.GONE);
+
+                    } catch (Exception ex){
+                        ex.printStackTrace();
                     }
 
-                    @Override
-                    public void onError() {
-
-                    }
                 });
-
-                txtText.setText(Product_name);
-                txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
-                txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
-                txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
-                WebSettings webSettings = txtDescription.getSettings();
-                Resources res = getResources();
-
-            } else {
-                txtAlert.setVisibility(View.VISIBLE);
             }
-        }
-    }
-
-    public void parseJSONData(){
-
-        try {
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductService);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
-            }
-
-            JSONObject json = new JSONObject("{dp="+str+"}");
-            JSONArray data = json.getJSONArray("dp"); // this is the "items: [ ] part
-
-            for (int i = 0; i < data.length(); i++) {
-                Product_image = data.getJSONObject(i).getString("folder");
-                Product_name = data.getJSONObject(i).getString("name");
-                Product_price = data.getJSONObject(i).getDouble("price");
-                Product_description = data.getJSONObject(i).getString("description");
-                Product_quantity = data.getJSONObject(i).getInt("currency");
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @Override
