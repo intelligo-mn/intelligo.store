@@ -28,12 +28,6 @@ import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.BrandAdapter;
 import com.dglproject.brand.utilities.DGLConstants;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
