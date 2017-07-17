@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.BrandAdapter;
+import com.dglproject.brand.utilities.DGLConstants;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -42,6 +44,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -49,7 +58,7 @@ import java.util.HashMap;
  */
 public class BrandFragment extends Fragment {
 
-    public static final String ARG_PAGE = "ARG_PAGE";
+    public static final String ARG_PAGE = "Brand fragment";
     private int mPageNo;
     private static View rootView;
 
@@ -59,11 +68,6 @@ public class BrandFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout = null;
 
     BrandAdapter brandAdapter;
-
-    public static ArrayList<Long> Brand_ID = new ArrayList<Long>();
-    public static ArrayList<String> Brand_name = new ArrayList<String>();
-    public static ArrayList<String> Brand_image = new ArrayList<String>();
-    public static ArrayList<String> Brand_description = new ArrayList<String>();
 
     String BrandService;
     int IOConnect = 0;
@@ -132,10 +136,10 @@ public class BrandFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                Intent brands = new Intent(getActivity(), ActivityProductList.class);
-                brands.putExtra("brand_id", Brand_ID.get(position));
-                brands.putExtra("brand_name", Brand_name.get(position));
-                startActivity(brands);
+//                Intent brands = new Intent(getActivity(), ActivityProductList.class);
+//                brands.putExtra("brand_id", Brand_ID.get(position));
+//                brands.putExtra("brand_name", Brand_name.get(position));
+//                startActivity(brands);
             }
         });
 
@@ -175,79 +179,101 @@ public class BrandFragment extends Fragment {
         return  rootView;
     }
 
+//
+//    void clearData(){
+//        Brand_ID.clear();
+//        Brand_name.clear();
+//        Brand_image.clear();
+//    }
+//
+//    public class getDataTask extends AsyncTask<Void, Void, Void> {
+//
+//        getDataTask(){
+//            if(!bLoading.isShown()){
+//                bLoading.setVisibility(0);
+//                bAlert.setVisibility(8);
+//            }
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... arg0) {
+//            parseJSONData();
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            bLoading.setVisibility(8);
+//
+//            if((Brand_ID.size() > 0) && (IOConnect == 0)){
+//                listBrand.setVisibility(0);
+//                listBrand.setAdapter(brandAdapter);
+//            }else{
+//                bAlert.setVisibility(0);
+//            }
+//        }
+//    }
 
-    void clearData(){
-        Brand_ID.clear();
-        Brand_name.clear();
-        Brand_image.clear();
-    }
+//    public void parseJSONData(){
+//
+//        clearData();
+//
+//        try {
+//
+//            HttpClient client = new DefaultHttpClient();
+//            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+//            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+//            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
+//            HttpResponse response = client.execute(request);
+//            InputStream atomInputStream = response.getEntity().getContent();
+//            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+//
+//            String line;
+//            String str = "";
+//            while ((line = in.readLine()) != null){
+//                str += line;
+//            }
+//
+//            JSONObject json = new JSONObject("{brand="+str+"}");
+//            JSONArray data = json.getJSONArray("brand");
+//
+//            for (int i = 0; i < data.length(); i++) {
+//
+//                Brand_ID.add(data.getJSONObject(i).getLong("id"));
+//                Brand_name.add(data.getJSONObject(i).getString("name"));
+//                Brand_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
+//                Brand_description.add(data.getJSONObject(i).getString("description"));
+//            }
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            IOConnect = 1;
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    public class getDataTask extends AsyncTask<Void, Void, Void> {
+    public void getBrandList () {
+        bLoading.setVisibility(View.VISIBLE);
+        String uri = DGLConstants.BrandService+"?state=r";
 
-        getDataTask(){
-            if(!bLoading.isShown()){
-                bLoading.setVisibility(0);
-                bAlert.setVisibility(8);
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request().Builder()
+                .url(uri)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("Error: ", "");
             }
-        }
 
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            parseJSONData();
-            return null;
-        }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
 
-        @Override
-        protected void onPostExecute(Void result) {
-            bLoading.setVisibility(8);
-
-            if((Brand_ID.size() > 0) && (IOConnect == 0)){
-                listBrand.setVisibility(0);
-                listBrand.setAdapter(brandAdapter);
-            }else{
-                bAlert.setVisibility(0);
             }
-        }
-    }
-
-    public void parseJSONData(){
-
-        clearData();
-
-        try {
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
-            }
-
-            JSONObject json = new JSONObject("{brand="+str+"}");
-            JSONArray data = json.getJSONArray("brand");
-
-            for (int i = 0; i < data.length(); i++) {
-
-                Brand_ID.add(data.getJSONObject(i).getLong("id"));
-                Brand_name.add(data.getJSONObject(i).getString("name"));
-                Brand_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
-                Brand_description.add(data.getJSONObject(i).getString("description"));
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @Override
