@@ -1,7 +1,5 @@
 package com.dglproject.brand.fragments;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,19 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.activity.ActivityProductDetail;
 import com.dglproject.brand.activity.MainActivity;
-import com.dglproject.brand.adapters.AllProductAdapter;
 import com.dglproject.brand.adapters.ProductAdapter;
-import com.dglproject.brand.json.JSONParser;
 import com.dglproject.brand.utilities.DGLConstants;
 
 import org.json.JSONArray;
@@ -32,14 +23,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
