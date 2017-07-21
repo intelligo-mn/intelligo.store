@@ -130,7 +130,7 @@ public class BrandFragment extends Fragment {
 
         BrandService = Config.BrandService+"?accesskey="+ Config.generateAccessKey();
 
-        new getDataTask().execute();
+//        new getDataTask().execute();
 
         listBrand.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -152,8 +152,8 @@ public class BrandFragment extends Fragment {
                         swipeRefreshLayout.setRefreshing(false);
                         IOConnect = 0;
                         listBrand.invalidateViews();
-                        clearData();
-                        new getDataTask().execute();
+//                        clearData();
+//                        new getDataTask().execute();
                     }
                 }, 3000);
             }
@@ -259,11 +259,12 @@ public class BrandFragment extends Fragment {
         String uri = DGLConstants.BrandService+"?state=r";
 
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request().Builder()
+        Request request = new Request.Builder()
                 .url(uri)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("Error: ", "");
@@ -271,7 +272,15 @@ public class BrandFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                final String res = response.body().string();
+                try {
+                    JSONObject brand = new JSONObject(String.valueOf("{brand="+res+"}"));
+                    JSONArray brandItems = brand.getJSONArray("brand");
+                    bLoading.setVisibility(View.GONE);
+                    listBrand.setAdapter(new BrandAdapter(getActivity(), brandItems));
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
