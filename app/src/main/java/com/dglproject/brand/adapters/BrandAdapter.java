@@ -60,18 +60,19 @@ public class BrandAdapter extends BaseAdapter {
         if (vi == null)
             vi = inflater.inflate(R.layout.category_item, null);
 
-        TextView txtText = (TextView) convertView.findViewById(R.id.txtText);
-        ImageView imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
+        TextView txtText = (TextView) vi.findViewById(R.id.catText);
+        ImageView imgThumb = (ImageView) vi.findViewById(R.id.catImg);
 
         try {
             txtText.setText(brands.getJSONObject(position).getString("name"));
-            imageLoader.DisplayImage(Config.AdminPageURL + "/uploads/product_brand_icons/" + brands.getJSONObject(position).getString("icon_image"), imgThumb);
+            imageLoader.DisplayImage(Config.AdminPageURL + "/uploads/product_brand_icons/" +
+                    brands.getJSONObject(position).getString("folder") + "/" +
+                    brands.getJSONObject(position).getString("icon_image"), imgThumb);
 
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
 
         return vi;
-
     }
 }

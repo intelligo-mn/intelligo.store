@@ -180,7 +180,7 @@ public class BrandFragment extends Fragment {
 
     public void getBrandList () {
         bLoading.setVisibility(View.VISIBLE);
-        String uri = Config.BrandService+"?state=r";
+        String uri = DGLConstants.BrandService+"?state=r";
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -199,7 +199,7 @@ public class BrandFragment extends Fragment {
                 final String res = response.body().string();
                 mHandler.post(() -> {
                     try {
-                        JSONObject brand = new JSONObject(String.valueOf("{brand="+res+"}"));
+                        JSONObject brand = new JSONObject(String.valueOf("{ brand="+res+"}"));
                         JSONArray brandItems = brand.getJSONArray("brand");
                         bLoading.setVisibility(View.GONE);
                         listBrand.setAdapter(new BrandAdapter(getActivity(), brandItems));
