@@ -71,9 +71,6 @@ public class BrandFragment extends Fragment {
     TextView bAlert;
     SwipeRefreshLayout swipeRefreshLayout = null;
 
-    BrandAdapter brandAdapter;
-
-    String BrandService;
     int IOConnect = 0;
 
     private SliderLayout homeSliderLayout;
@@ -134,10 +131,6 @@ public class BrandFragment extends Fragment {
         homeSliderLayout.setCustomAnimation(new DescriptionAnimation());
         homeSliderLayout.setDuration(4000);
 
-        BrandService = Config.BrandService+"?accesskey="+ Config.generateAccessKey();
-
-//        new getDataTask().execute();
-
         listBrand.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
@@ -185,84 +178,9 @@ public class BrandFragment extends Fragment {
         return  rootView;
     }
 
-//
-//    void clearData(){
-//        Brand_ID.clear();
-//        Brand_name.clear();
-//        Brand_image.clear();
-//    }
-//
-//    public class getDataTask extends AsyncTask<Void, Void, Void> {
-//
-//        getDataTask(){
-//            if(!bLoading.isShown()){
-//                bLoading.setVisibility(0);
-//                bAlert.setVisibility(8);
-//            }
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... arg0) {
-//            parseJSONData();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            bLoading.setVisibility(8);
-//
-//            if((Brand_ID.size() > 0) && (IOConnect == 0)){
-//                listBrand.setVisibility(0);
-//                listBrand.setAdapter(brandAdapter);
-//            }else{
-//                bAlert.setVisibility(0);
-//            }
-//        }
-//    }
-
-//    public void parseJSONData(){
-//
-//        clearData();
-//
-//        try {
-//
-//            HttpClient client = new DefaultHttpClient();
-//            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-//            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-//            HttpUriRequest request = new HttpGet(BrandService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r");
-//            HttpResponse response = client.execute(request);
-//            InputStream atomInputStream = response.getEntity().getContent();
-//            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-//
-//            String line;
-//            String str = "";
-//            while ((line = in.readLine()) != null){
-//                str += line;
-//            }
-//
-//            JSONObject json = new JSONObject("{brand="+str+"}");
-//            JSONArray data = json.getJSONArray("brand");
-//
-//            for (int i = 0; i < data.length(); i++) {
-//
-//                Brand_ID.add(data.getJSONObject(i).getLong("id"));
-//                Brand_name.add(data.getJSONObject(i).getString("name"));
-//                Brand_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
-//                Brand_description.add(data.getJSONObject(i).getString("description"));
-//            }
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            IOConnect = 1;
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void getBrandList () {
         bLoading.setVisibility(View.VISIBLE);
-        String uri = DGLConstants.BrandService+"?state=r";
+        String uri = Config.BrandService+"?state=r";
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -273,7 +191,7 @@ public class BrandFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("Error: ", "");
+                Log.e("Error: ", e.getMessage());
             }
 
             @Override
