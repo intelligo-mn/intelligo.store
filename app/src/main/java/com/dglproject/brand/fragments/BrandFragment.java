@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -45,6 +46,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.net.ssl.HandshakeCompletedEvent;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -62,6 +65,7 @@ public class BrandFragment extends Fragment {
     private int mPageNo;
     private static View rootView;
 
+    private Handler mHandler;
     GridView listBrand;
     ProgressBar bLoading;
     TextView bAlert;
@@ -102,6 +106,10 @@ public class BrandFragment extends Fragment {
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
         homeSliderLayout = (SliderLayout) rootView.findViewById(R.id.slider);
 
+        mHandler = new Handler(Looper.getMainLooper());
+        listBrand.setVisibility(View.VISIBLE);
+        getBrandList();
+
         HashMap<String,String> url_maps = new HashMap<String, String>();
         url_maps.put("DGL Project", "http://www.powerpointhintergrund.com/uploads/blue-lights-blurry-background-9.jpg");
 
@@ -125,8 +133,6 @@ public class BrandFragment extends Fragment {
         homeSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         homeSliderLayout.setCustomAnimation(new DescriptionAnimation());
         homeSliderLayout.setDuration(4000);
-
-        brandAdapter = new BrandAdapter(getActivity());
 
         BrandService = Config.BrandService+"?accesskey="+ Config.generateAccessKey();
 
@@ -273,14 +279,16 @@ public class BrandFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String res = response.body().string();
-                try {
-                    JSONObject brand = new JSONObject(String.valueOf("{brand="+res+"}"));
-                    JSONArray brandItems = brand.getJSONArray("brand");
-                    bLoading.setVisibility(View.GONE);
-                    listBrand.setAdapter(new BrandAdapter(getActivity(), brandItems));
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }
+                mHandler.post(() -> {
+                    try {
+                        JSONObject brand = new JSONObject(String.valueOf("{brand="+res+"}"));
+                        JSONArray brandItems = brand.getJSONArray("brand");
+                        bLoading.setVisibility(View.GONE);
+                        listBrand.setAdapter(new BrandAdapter(getActivity(), brandItems));
+                    } catch (JSONException ex) {
+                        ex.printStackTrace();
+                    }
+                });
             }
         });
     }
