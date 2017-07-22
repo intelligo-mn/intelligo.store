@@ -17,14 +17,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int    DATABASE_VERSION = 1;
     private static final String DATABASE_NAME    = "dglbrand.db";
 
-    private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "+CartProductsAdapter.TABLE_PRODUCT +" ("+
-            CartProductsAdapter.PRODUCT_ID       + " INTEGER PRIMARY KEY," +
-            CartProductsAdapter.PRODUCT_TITLE    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_DESCRIPTION    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_COST    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_IMAGE    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_TOTAL_COST    + " TEXT,"+
-            CartProductsAdapter.PRODUCT_TOTAL_ORDER    + " TEXT)";
+    private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "+CartTable.TABLE_PRODUCT +" ("+
+            CartTable.PRODUCT_ID       + " INTEGER PRIMARY KEY," +
+            CartTable.PRODUCT_TITLE    + " TEXT,"+
+            CartTable.PRODUCT_DESCRIPTION    + " TEXT,"+
+            CartTable.PRODUCT_COST    + " TEXT,"+
+            CartTable.PRODUCT_IMAGE    + " TEXT,"+
+            CartTable.PRODUCT_TOTAL_COST    + " TEXT,"+
+            CartTable.PRODUCT_TOTAL_ORDER    + " TEXT)";
+
+    private static final String CREATE_TABLE_BRAND = "CREATE TABLE "+BrandTable.TABLE_BRAND +" ("+
+            BrandTable.BRAND_ID + " INTEGER PRIMARY KEY," +
+            BrandTable.BRAND_NAME + " TEXT,"+
+            BrandTable.BRAND_IMAGE + " TEXT,"+
+            BrandTable.BRAND_DESCRIPTION + " TEXT)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,11 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL(CREATE_TABLE_PRODUCTS);
-
+        db.execSQL(CREATE_TABLE_BRAND);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        dropTable(CartProductsAdapter.TABLE_PRODUCT);
+        dropTable(CartTable.TABLE_PRODUCT);
+        dropTable(BrandTable.TABLE_BRAND);
         onCreate(db);
     }
     public void dropTable(String tableName) {
@@ -47,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (db == null || TextUtils.isEmpty(tableName)) {
             return;
         }
-        db.execSQL("DROP TABLE IF EXISTS " + CartProductsAdapter.TABLE_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + CartTable.TABLE_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + BrandTable.TABLE_BRAND);
     }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-public class CartProductsAdapter extends DatabaseHelper{
+public class CartTable extends DatabaseHelper{
 
     private static final String TAG = "===ProductAdapter===";
 
@@ -35,7 +35,7 @@ public class CartProductsAdapter extends DatabaseHelper{
             PRODUCT_TOTAL_ORDER
     };
 
-    public CartProductsAdapter(Context context) {
+    public CartTable(Context context) {
         super(context);
     }
 

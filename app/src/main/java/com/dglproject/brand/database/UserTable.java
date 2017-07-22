@@ -14,7 +14,7 @@ import java.util.List;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-public class UserAdapter extends DatabaseHelper {
+public class UserTable extends DatabaseHelper {
 
     private static final String TAG = "UserAdapter : ";
 
@@ -31,7 +31,7 @@ public class UserAdapter extends DatabaseHelper {
 
     private static final String[] PROJECTIONS_USERS = {USER_ID, USER_NAME, USER_EMAIL, USER_PASSWORD};
 
-    public UserAdapter(Context context) {
+    public UserTable(Context context) {
         super(context);
     }
 

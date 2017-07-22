@@ -15,9 +15,9 @@ import java.util.List;
  * Created by Tortuvshin Byambaa on 7/17/2017.
  */
 
-public class BrandAdapter extends DatabaseHelper{
+public class BrandTable extends DatabaseHelper{
 
-    private static final String TAG = BrandAdapter.class.getSimpleName();
+    private static final String TAG = BrandTable.class.getSimpleName();
 
     public static final String TABLE_BRAND = "brands";
     public static final String BRAND_ID     = "brandId";
@@ -32,7 +32,7 @@ public class BrandAdapter extends DatabaseHelper{
     private static final int BRAND_IMAGE_INDEX     = 2;
     private static final int BRAND_DESC_INDEX     = 3;
 
-    public BrandAdapter(Context context) {
+    public BrandTable(Context context) {
         super(context);
     }
 
