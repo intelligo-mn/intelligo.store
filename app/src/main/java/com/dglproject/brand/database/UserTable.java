@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class UserTable extends DatabaseHelper {
 
-    private static final String TAG = "UserAdapter : ";
+    private static final String TAG = UserTable.class.getSimpleName();
 
     public static final String TABLE_USERS   = "users";
     public static final String USER_ID       = "id";

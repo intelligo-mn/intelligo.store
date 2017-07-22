@@ -31,7 +31,7 @@ import android.widget.Toast;
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.ProductAdapter;
-import com.dglproject.brand.database.CartProductsAdapter;
+import com.dglproject.brand.database.CartTable;
 import com.dglproject.brand.models.CartProducts;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
@@ -254,7 +254,7 @@ public class ActivityProductDetail extends AppCompatActivity {
     }
 
     public void addToList() {
-        CartProductsAdapter productAdapter = new CartProductsAdapter(this);;
+        CartTable productAdapter = new CartTable(this);;
         CartProducts item = new CartProducts(Product_name, Product_description, Product_price, imageTitleString, totalCostDouble, totalOrder);
         productAdapter.addProduct(item);
         Toast.makeText(getApplicationContext(), getString(R.string.cart_add_success), Toast.LENGTH_SHORT).show();

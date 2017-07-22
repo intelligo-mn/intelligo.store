@@ -11,7 +11,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.dglproject.brand.R;
-import com.dglproject.brand.database.CartProductsAdapter;
+import com.dglproject.brand.database.CartTable;
 import com.dglproject.brand.models.CartProducts;
 
 import java.text.DecimalFormat;
@@ -26,7 +26,7 @@ public class CartFragment extends Fragment {
 
     private final static String  TAG = "CartFragment: ";
 
-    CartProductsAdapter productAdapter;
+    CartTable productAdapter;
     TextView subTotalView;
     TextView taxView;
     TextView totalView;
@@ -52,7 +52,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        productAdapter = new CartProductsAdapter(this.getActivity());
+        productAdapter = new CartTable(this.getActivity());
 
         data = productAdapter.readData();
         displayBill();

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import com.dglproject.brand.database.CartProductsAdapter;
+import com.dglproject.brand.database.CartTable;
 import com.dglproject.brand.R;
 import com.dglproject.brand.models.CartProducts;
 /**
@@ -24,7 +24,7 @@ public class ActivityCart extends AppCompatActivity {
 
     private final static String  TAG = "CartActivity";
 
-    final CartProductsAdapter productAdapter = new CartProductsAdapter(this);
+    final CartTable productAdapter = new CartTable(this);
     TextView subTotalView;
     TextView taxView;
     TextView totalView;
