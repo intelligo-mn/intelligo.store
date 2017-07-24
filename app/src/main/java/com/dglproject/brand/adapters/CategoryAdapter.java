@@ -1,6 +1,5 @@
 package com.dglproject.brand.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,10 @@ import com.dglproject.brand.Config;
 import com.dglproject.brand.fragments.CategoryFragment;
 import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -20,19 +23,30 @@ import com.dglproject.brand.R;
  */
 public class CategoryAdapter extends BaseAdapter{
 
-    private Activity activity;
+    final Context context;
+    final JSONArray category;
     public ImageLoader imageLoader;
 
-    public CategoryAdapter(Activity act) {
-        this.activity = act;
-        imageLoader = new ImageLoader(act);
+    private LayoutInflater inflater = null;
+
+    public CategoryAdapter(Context context, JSONArray category) {
+        this.context = context;
+        this.category = category;
+        imageLoader = new ImageLoader(context);
+        inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public int getCount() {
-        return CategoryFragment.Category_ID.size();
+        return category.length();
     }
 
     public Object getItem(int position) {
+        try {
+            return category.getJSONObject(position);
+        } catch (JSONException ex){
+            ex.printStackTrace();
+        }
         return position;
     }
 
@@ -41,30 +55,23 @@ public class CategoryAdapter extends BaseAdapter{
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        View vi = convertView;
+        if(vi == null)
+            vi = inflater.inflate(R.layout.category_item, null);
 
-        if(convertView == null){
-            LayoutInflater inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.category_item, null);
-            holder = new ViewHolder();
+        TextView txtText = (TextView) vi.findViewById(R.id.txtText);
+        ImageView imgThumb = (ImageView) vi.findViewById(R.id.imgThumb);
 
-            convertView.setTag(holder);
-        }else{
-            holder = (ViewHolder) convertView.getTag();
+        try {
+            txtText.setText(category.getJSONObject(position).getString("name"));
+
+            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/project_category_icons/"+
+                category.getJSONObject(position).getString("folder")+
+                "/"+
+                category.getJSONObject(position).getString("icon_image"), imgThumb);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
-        holder.txtText = (TextView) convertView.findViewById(R.id.txtText);
-        holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
-
-        holder.txtText.setText(CategoryFragment.Category_name.get(position));
-        imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/project_category_icons/"+ CategoryFragment.Category_image.get(position), holder.imgThumb);
-
-        return convertView;
-    }
-
-    static class ViewHolder {
-        TextView txtText;
-        ImageView imgThumb;
+        return vi;
     }
 }
