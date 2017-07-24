@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.CategoryAdapter;
+import com.dglproject.brand.utilities.DGLConstants;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -37,6 +39,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -44,7 +53,7 @@ import java.util.ArrayList;
  */
 public class CategoryFragment extends Fragment {
 
-    public static final String ARG_PAGE = "ARG_PAGE";
+    public static final String TAG = CategoryFragment.class.getSimpleName();
     private int mPageNo;
     private static View rootView;
 
@@ -53,19 +62,13 @@ public class CategoryFragment extends Fragment {
     TextView txtAlert;
     SwipeRefreshLayout swipeRefreshLayout = null;
 
-    CategoryAdapter categoryAdapter;
-
-    public static ArrayList<Long> Category_ID = new ArrayList<Long>();
-    public static ArrayList<String> Category_name = new ArrayList<String>();
-    public static ArrayList<String> Category_image = new ArrayList<String>();
-
-    String CategoryService;
+    private Handler mHandler;
     int IOConnect = 0;
 
     public static CategoryFragment newInstance(int pageNo) {
 
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, pageNo);
+        args.putInt(TAG, pageNo);
         CategoryFragment fragment = new CategoryFragment();
         fragment.setArguments(args);
         return fragment;
@@ -75,7 +78,7 @@ public class CategoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPageNo = getArguments().getInt(ARG_PAGE);
+        mPageNo = getArguments().getInt(TAG);
     }
 
     @Override
@@ -90,19 +93,15 @@ public class CategoryFragment extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshCat);
         swipeRefreshLayout.setColorSchemeResources(R.color.bg_screen1, R.color.bg_screen2, R.color.bg_screen3);
 
-        categoryAdapter = new CategoryAdapter(getActivity());
+        mHandler = new Handler(Looper.getMainLooper());
+        listCategory.setVisibility(View.VISIBLE);
 
-        CategoryService = Config.CategoryService+"?accesskey="+ Config.generateAccessKey();
-
-        new getDataTask().execute();
-
+        getCategoryList();
         listCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
                 Intent iMenuList = new Intent(getActivity(), ActivityProductList.class);
-                iMenuList.putExtra("category_id", Category_ID.get(position));
-                iMenuList.putExtra("category_name", Category_name.get(position));
                 startActivity(iMenuList);
             }
         });
@@ -116,104 +115,44 @@ public class CategoryFragment extends Fragment {
                         swipeRefreshLayout.setRefreshing(false);
                         IOConnect = 0;
                         listCategory.invalidateViews();
-                        clearData();
-                        new getDataTask().execute();
                     }
                 }, 3000);
             }
         });
-
-//        listCategory.setOnScrollListener(new AbsListView.OnScrollListener() {
-//
-//            @Override
-//            public void onScrollStateChanged(AbsListView view, int scrollState) {
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-//                boolean enable = false;
-//                if (listCategory != null && listCategory.getChildCount() > 0) {
-//                    boolean firstItemVisible = listCategory.getFirstVisiblePosition() == 0;
-//                    boolean topOfFirstItemVisible = listCategory.getChildAt(0).getTop() == 0;
-//                    enable = firstItemVisible && topOfFirstItemVisible;
-//                }
-//                swipeRefreshLayout.setEnabled(enable);
-//            }
-//        });
-
         return  rootView;
     }
 
-    void clearData(){
-        Category_ID.clear();
-        Category_name.clear();
-        Category_image.clear();
-    }
+    private void getCategoryList() {
+        prgLoading.setVisibility(View.VISIBLE);
+        String uri = DGLConstants.CategoryService+"?state=r";
 
-    public class getDataTask extends AsyncTask<Void, Void, Void> {
-
-        getDataTask(){
-            if(!prgLoading.isShown()){
-                prgLoading.setVisibility(0);
-                txtAlert.setVisibility(8);
-            }
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            parseJSONData();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            prgLoading.setVisibility(8);
-
-            if((Category_ID.size() > 0) && (IOConnect == 0)){
-                listCategory.setVisibility(0);
-                listCategory.setAdapter(categoryAdapter);
-            }else{
-                txtAlert.setVisibility(0);
-            }
-        }
-    }
-
-    public void parseJSONData(){
-
-        clearData();
-
-        try {
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(CategoryService);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(uri)
+                .build();
+        Log.e(TAG,request.toString());
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, e.getMessage());
             }
 
-            JSONObject json = new JSONObject("{category="+str+"}");
-            JSONArray data = json.getJSONArray("category");
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(() -> {
+                    try {
+                        JSONObject category = new JSONObject(String.valueOf("{category"+res+"}"));
+                        JSONArray catItems = category.getJSONArray("category");
+                        prgLoading.setVisibility(View.GONE);
+                        listCategory.setAdapter(new CategoryAdapter(getActivity(), catItems));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
 
-            for (int i = 0; i < data.length(); i++) {
-                Category_ID.add(data.getJSONObject(i).getLong("id"));
-                Category_name.add(data.getJSONObject(i).getString("name"));
-                Category_image.add(data.getJSONObject(i).getString("folder")+"/"+data.getJSONObject(i).getString("icon_image"));
-           }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

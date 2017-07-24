@@ -52,10 +52,6 @@
             android:name=".activity.ActivityProductDetail"
             android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
-        <activity
-            android:name=".activity.ActivityCategory"
-            android:label="@string/category"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ActivityProductList" />
         <activity android:name=".activity.ActivityCart" />
         <activity
