@@ -29,13 +29,11 @@ import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.fragments.CartFragment;
 import com.dglproject.brand.fragments.CategoryFragment;
-import com.dglproject.brand.fragments.HomeItems;
 import com.dglproject.brand.fragments.NavigationFragment;
 import com.dglproject.brand.fragments.ProductFragment;
 import com.dglproject.brand.utilities.PrefManager;
 import com.dglproject.brand.widgets.CustomViewPager;
 
-import java.util.ArrayList;
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -43,7 +41,6 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity {
 
-    ImageView userImage;
     private TabLayout mTabLayout;
 
     private int[] mTabsIcons = {
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         setupViewPager();
-        HomeItems.newInstance(1);
+        ProductFragment.newInstance(1);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(MainActivity.this,
                     Manifest.permission.CAMERA)

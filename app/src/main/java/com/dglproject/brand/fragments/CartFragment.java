@@ -24,7 +24,7 @@ import java.util.HashMap;
  */
 public class CartFragment extends Fragment {
 
-    public final static String  TAG = "Cart";
+    private final static String  TAG = "CartFragment: ";
 
     CartProductsAdapter productAdapter;
     TextView subTotalView;

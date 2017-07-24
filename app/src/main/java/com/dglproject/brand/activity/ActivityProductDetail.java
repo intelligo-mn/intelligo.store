@@ -83,10 +83,6 @@ public class ActivityProductDetail extends AppCompatActivity {
     String imageTitleString;
 
     double Product_price;
-    String Product_quantity;
-    String Product_ID;
-    String ProductService;
-    int IOConnect = 0;
 
     private Handler mHandler;
 

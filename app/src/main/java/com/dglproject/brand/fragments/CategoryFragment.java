@@ -142,7 +142,7 @@ public class CategoryFragment extends Fragment {
                 final String res = response.body().string();
                 mHandler.post(() -> {
                     try {
-                        JSONObject category = new JSONObject(String.valueOf("{category"+res+"}"));
+                        JSONObject category = new JSONObject(String.valueOf("{category="+res+"}"));
                         JSONArray catItems = category.getJSONArray("category");
                         prgLoading.setVisibility(View.GONE);
                         listCategory.setAdapter(new CategoryAdapter(getActivity(), catItems));

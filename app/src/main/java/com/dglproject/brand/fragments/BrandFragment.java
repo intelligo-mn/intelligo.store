@@ -61,15 +61,15 @@ import okhttp3.Response;
  */
 public class BrandFragment extends Fragment {
 
-    public static final String ARG_PAGE = "Brand fragment";
+    private static final String TAG = "BrandFragment";
     private int mPageNo;
     private static View rootView;
 
     private Handler mHandler;
-    GridView listBrand;
-    ProgressBar bLoading;
-    TextView bAlert;
-    SwipeRefreshLayout swipeRefreshLayout = null;
+    private GridView listBrand;
+    private ProgressBar bLoading;
+    private TextView bAlert;
+    private SwipeRefreshLayout swipeRefreshLayout = null;
 
     int IOConnect = 0;
 
@@ -78,7 +78,7 @@ public class BrandFragment extends Fragment {
     public static BrandFragment newInstance(int pageNo) {
 
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, pageNo);
+        args.putInt(TAG, pageNo);
         BrandFragment fragment = new BrandFragment();
         fragment.setArguments(args);
         return fragment;
@@ -88,7 +88,7 @@ public class BrandFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPageNo = getArguments().getInt(ARG_PAGE);
+        mPageNo = getArguments().getInt(TAG);
     }
 
     @Override
@@ -186,12 +186,12 @@ public class BrandFragment extends Fragment {
         Request request = new Request.Builder()
                 .url(uri)
                 .build();
-
+        Log.e(TAG,"Request: "+request.toString());
         client.newCall(request).enqueue(new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("Error: ", e.getMessage());
+                Log.e(TAG, e.getMessage());
             }
 
             @Override

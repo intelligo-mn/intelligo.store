@@ -22,7 +22,7 @@ import com.dglproject.brand.models.CartProducts;
  */
 public class ActivityCart extends AppCompatActivity {
 
-    public final static String  TAG = "Cart";
+    private final static String  TAG = "CartActivity";
 
     final CartProductsAdapter productAdapter = new CartProductsAdapter(this);
     TextView subTotalView;

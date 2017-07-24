@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
@@ -48,13 +49,14 @@ import okhttp3.Response;
  */
 
 public class ProductFragment extends Fragment {
-    public static final String ARG_PAGE = "ARG_PAGE";
+
+    private static final String TAG = ProductFragment.class.getSimpleName();
     private int mPageNo;
     private static View rootView;
 
-    GridView homeItemList;
-    ProgressBar prgLoading;
-    TextView txtAlert;
+    private GridView homeItemList;
+    private ProgressBar prgLoading;
+    private TextView txtAlert;
     private Handler mHandler;
 
     int IOConnect = 0;
@@ -66,7 +68,7 @@ public class ProductFragment extends Fragment {
     public static ProductFragment newInstance(int pageNo) {
 
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, pageNo);
+        args.putInt(TAG, pageNo);
         ProductFragment fragment = new ProductFragment();
         fragment.setArguments(args);
         return fragment;
@@ -75,7 +77,7 @@ public class ProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPageNo = getArguments().getInt(ARG_PAGE);
+        mPageNo = getArguments().getInt(TAG);
     }
 
     @Override
@@ -138,7 +140,7 @@ public class ProductFragment extends Fragment {
         prgLoading.setVisibility(View.VISIBLE);
         String uri = DGLConstants.ProductService+"?state=r";
 
-        Log.e("Дуудсан холбоос: ", uri);
+        Log.e(TAG, "Дуудсан холбоос: "+ uri);
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(uri)

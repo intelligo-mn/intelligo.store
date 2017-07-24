@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Dolly\AndroidStudioProjects\dglbrand-android\app\app.iml" filepath="C:\Users\Dolly\AndroidStudioProjects\dglbrand-android\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dglbrand.iml" filepath="$PROJECT_DIR$/dglbrand.iml" />
-      <module fileurl="file://C:\Users\Dolly\AndroidStudioProjects\dglbrand-android\.idea\dglbrand.iml" filepath="C:\Users\Dolly\AndroidStudioProjects\dglbrand-android\.idea\dglbrand.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dglbrand-android.iml" filepath="$PROJECT_DIR$/dglbrand-android.iml" />
     </modules>
   </component>
 </project>
