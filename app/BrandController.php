@@ -21,11 +21,11 @@ class BrandController{
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
     // Брэнд нэмэх
-    public function create($name, $description, $userId, $catID, $language, $icon){
+    public function create($name, $description, $userId, $catID, $language, $mobile, $email, $address, $icon){
             
-        $query = "INSERT INTO ".$this->db_table." (`name`, `sort_order`, `folder`, `icon_image`, `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
+        $query = "INSERT INTO ".$this->db_table." (`name`, `email`, `phone`, `address`, `sort_order`, `folder`, `icon_image`, `hit_counter`, `is_active`, `is_featured`, `description`, `project_category_id`, `language`, `ip_address`, `created_user_id`, `updated_user_id`, `created_at`, `updated_at`) 
         VALUES
-            ('$name', 0, '".date('Y-m')."', '".($icon == "" ? NULL : $icon)."', 0, 1, NULL, '<p>\r\n$description</p>\r\n', $catID, '".$language."', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
+            ('$name','$email', '$mobile' ,'$address', 0, '".date('Y-m')."', '".($icon == "" ? NULL : $icon)."', 0, 1, NULL, '<p>\r\n$description</p>\r\n', $catID, '".$language."', '".$_SERVER['REMOTE_ADDR']."', $userId, $userId, '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."')";
 
         $inserted = mysqli_query($this->db->getDb(), $query);
         
