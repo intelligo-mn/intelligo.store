@@ -30,12 +30,13 @@ date_default_timezone_set("UTC");
 
         $isRegistered = false;
         if($fb_id!=null)
-            $isRegistered = isRegisteredByFB($fb_id);
+            $isRegistered = $userObject->isRegisteredByFB($fb_id);
 
         if ($userObject->isExist($username, $email) || $isRegistered){
             $json = array();
             $json['success'] = 0;
-            $json['message'] = "энэ хэрэгдэгч аль хэдийн бүртгэгдсэн байна.";       
+            $json['message'] = "энэ хэрэгдэгч аль хэдийн бүртгэгдсэн байна.";  
+            $json['resultFB'] = $isRegistered;
             echo json_encode($json);    
         } else {
             $json_array = $userObject->create($username, $pass, $email, $mobile, $fb_id, savePhoto());

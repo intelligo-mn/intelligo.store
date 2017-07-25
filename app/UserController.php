@@ -22,7 +22,6 @@ class UserController{
     
     public function create($username, $password, $email, $mobile, $fb_id, $avatar_image){
         
-        $json = array();
         $slug = $username != NULL ? $username : $fb_id;
         
         $query = "insert into ".$this->db_table." (`username`, `password`, `email`, `firstname`, `lastname`, `mobile`, `gender`, `birthday`, `status`, `email_verification_code`, `folder`, `avatar_image`, `ip_address`, `created_at`, `updated_at`, `type`, `person_reg_number`, `person_profession`, `person_biography`, `company_name`, `company_register`, `company_description`, `company_founded_year`, `tel`, `fax`, `location`, `timezone`, `hit_counter`, `website`, `level`, `level_started_date`, `level_expire_date`, `fb_id`, `google_id`, `twitter_id`, `linkedin_id`, `instagram_id`, `is_registered_by_social`, `registered_from_language`, `slug`) 
@@ -38,10 +37,10 @@ class UserController{
         } else {
             $json['success'] = 0;
             $json['message'] = "User register error.";   
-            $json['query'] = $query;
+            
         }
         mysqli_close($this->db->getDb());
-        
+        $json['query'] = $query;
         return $json;
         
     }
@@ -74,6 +73,7 @@ class UserController{
             $users['email'] = $user['email'];
             $users['mobile'] = $user['mobile'];
             $users['level'] = $user['level'];
+            $users['level_expire_date'] = $user['level_expire_date'] == null ? 0 : $user['level_expire_date'];
             $users['imagePath'] = $user['folder']."/".$user['avatar_image'];
         }
         $json = array();
@@ -103,6 +103,7 @@ class UserController{
     //өгөгдсөн id тай хэрэглэгч бүртгэгдсэн эсэх
     public function isRegisteredByFB($id){
         $query = "select * from ".$this->db_table." where fb_id=$id";
+        var_dump($query);
         return mysqli_num_rows(mysqli_query($this->db->getDb(), $query)) > 0;
     }
     //хэрэглэгчийг facebook id - аар нь авах
