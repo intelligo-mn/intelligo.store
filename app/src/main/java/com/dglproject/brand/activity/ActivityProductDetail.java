@@ -35,6 +35,7 @@ import com.dglproject.brand.database.CartTable;
 import com.dglproject.brand.models.CartProducts;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,7 +70,6 @@ public class ActivityProductDetail extends AppCompatActivity {
     private ProgressBar prgLoading;
 
     private Button increaseTotalCostButton, decreaseTotalCostButton, addToListButton;
-
 
     CoordinatorLayout coordinatorLayout;
 
@@ -257,59 +257,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), getString(R.string.cart_add_success), Toast.LENGTH_SHORT).show();
 
     }
-//
-//    public class getDataTask extends AsyncTask<Void, Void, Void> {
-//
-//        getDataTask(){
-//            if(!prgLoading.isShown()){
-//                prgLoading.setVisibility(0);
-//                txtAlert.setVisibility(8);
-//            }
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... arg0) {
-//
-//            getProduct();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            prgLoading.setVisibility(View.GONE);
-//            if ((Product_name != null) && IOConnect == 0) {
-//                coordinatorLayout.setVisibility(View.VISIBLE);
-//                  Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
-//                    @Override
-//                    public void onSuccess() {
-//                        Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
-//                        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-//                            @Override
-//                            public void onGenerated(Palette palette) {
-//                            }
-//                        });
-//                    }
-//
-//                    @Override
-//                    public void onError() {
-//
-//                    }
-//                });
-//
-//                txtText.setText(Product_name);
-//                txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
-//                txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
-//                txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
-//
-//                txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
-//                WebSettings webSettings = txtDescription.getSettings();
-//                Resources res = getResources();
-//
-//            } else {
-//                txtAlert.setVisibility(View.VISIBLE);
-//            }
-//        }
-//    }
 
     public void getProduct () {
         prgLoading.setVisibility(View.VISIBLE);
@@ -317,7 +264,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         Intent iGet = getIntent();
 
         String uri = DGLConstants.ProductService+"?state=r&product_id="+ iGet.getStringExtra("product_id");
-//        String uri = DGLConstants.ProductService+"?state=r";
 
         Log.e("Дуудсан холбоос: ", uri);
         OkHttpClient client = new OkHttpClient();
@@ -341,19 +287,38 @@ public class ActivityProductDetail extends AppCompatActivity {
                 Log.e("Res: ", ""+res);
                 mHandler.post(() -> {
                     try {
-                        JSONObject prod = new JSONObject(String.valueOf(res));
-                        JSONArray prodItems = prod.getJSONArray("item");
-//                        prodItems.getString("name");
-//                        Log.e("Response: ", prodItems + "");
-//                        for (int i = 0; i < prodItems.length(); i++) {
-//                            Product_image = data.getJSONObject(i).getString("folder");
-//                            Product_name = data.getJSONObject(i).getString("name");
-//                            Product_price = data.getJSONObject(i).getDouble("price");
-//                            Product_description = data.getJSONObject(i).getString("description");
-//                            Product_quantity = data.getJSONObject(i).getInt("currency");
+                        JSONArray data = new JSONArray(res);
+                        for (int i = 0; i < data.length(); i++) {
+                            Product_image = data.getJSONObject(i).getString("folder");
+                            Product_name = data.getJSONObject(i).getString("name");
+                            Product_price = data.getJSONObject(i).getDouble("price");
+                            Product_description = data.getJSONObject(i).getString("description");
 
-                            txtText.setText(prod.getString("name"));
-//                        }
+                        }
+                        coordinatorLayout.setVisibility(View.VISIBLE);
+                        Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
+                                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+                                    @Override
+                                    public void onGenerated(Palette palette) {
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
+
+                        txtText.setText(Product_name);
+                        txtSubText.setText(getString(R.string.price)+" : " + Product_price + " ₮" );
+                        txtDescription.loadDataWithBaseURL("", Product_description, "text/html", "UTF-8", "");
+                        txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                        txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
                         prgLoading.setVisibility(View.GONE);
 
                     } catch (Exception ex){
