@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
+import com.dglproject.brand.activity.ActivityDetail;
 import com.dglproject.brand.activity.ActivityProductDetail;
 import com.dglproject.brand.fragments.ProductFragment;
 import com.dglproject.brand.utilities.ImageLoader;
@@ -78,7 +79,7 @@ public class ProductAdapter extends BaseAdapter{
             pImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent iDetail = new Intent(context, ActivityProductDetail.class);
+                    Intent iDetail = new Intent(context, ActivityDetail.class);
                     try {
                         iDetail.putExtra("product_id", products.getJSONObject(position).getString("id"));
                     } catch (JSONException e) {

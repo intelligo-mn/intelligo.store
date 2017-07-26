@@ -66,6 +66,7 @@
             android:name=".activity.ActivityWelcome"
             android:theme="@style/AppFullScreen" />
         <activity android:name=".activity.ActivityProductAdd" />
+        <activity android:name=".activity.ActivityDetail" />
         <activity android:name=".activity.ActivityCartEdit" />
         <activity android:name=".activity.ActivityBrandAdd" />
         <activity android:name=".activity.ActivityWeb" />
