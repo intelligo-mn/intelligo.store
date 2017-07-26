@@ -1,0 +1,47 @@
+[
+    {
+        "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 8,
+                    "endColumn": 24,
+                    "endOffset": 403
+                },
+                "from": {
+                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/attrs.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 16,
+                        "endLine": 7,
+                        "endColumn": 24,
+                        "endOffset": 369
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 408,
+                    "endColumn": 57,
+                    "endOffset": 461
+                },
+                "from": {
+                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endColumn": 57,
+                        "endOffset": 344
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,315 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+MERGED from [com.github.arimorty:floatingsearchview:2.0.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/floatingsearchview-2.0.3.aar/12769eaff5db32d0a8f6f94264008118/AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/AndroidManifest.xml:17:1-27:12
+MERGED from [com.bartoszlipinski:viewpropertyobjectanimator:1.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3f13940fc14adb5bb55d4681fb473400/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:transition:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/transition-25.2.0.aar/a11fc52e24bc230957ef0235c31bdb81/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-v4:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/0e9924b09565cbac95d832e36885d670/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.2.0.aar/936d5dcf87b24b98af7a8a8f97073d1a/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.2.0.aar/ea5b5da2aadb548927ccb93e8f7a8207/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:recyclerview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.2.0.aar/a97ea8160840903662a1af4a3f98b9ee/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/cardview-v7-25.2.0.aar/0b14741d7ac903fded66231452573dc8/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.clans:fab:1.6.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/fab-1.6.3.aar/cd4464031934f0489dd5c2a57f98d8a3/AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:palette-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/palette-v7-25.2.0.aar/d70bcc542711f96495e8a36647b35bd9/AndroidManifest.xml:17:1-25:12
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:support-fragment:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/f3ab19bdf7ba0b0029920c09db3fe083/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/c1607e47ddb1dad8a2aa072e9bb500cf/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/7d83764286a8a574106427464b3acedf/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/25c7aa8e8fe35ffb7cd5be9cca1a3aec/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/71cff9d1f6146e17dc0dc23e998cff3c/AndroidManifest.xml:17:1-27:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:1-76:12
+	package
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:3:5-35
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:5:5-71
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:5:22-68
+uses-permission#android.permission.READ_PROFILE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:6:5-71
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:6:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:7:5-72
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:7:22-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:8:5-67
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:11:5-67
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:8:22-64
+uses-permission#android.permission.CALL_PHONE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:9:5-69
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:9:22-66
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:10:5-81
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:12:5-81
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:10:22-78
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:11:5-75
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:11:22-72
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:12:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:13:5-76
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:13:22-73
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:14:5-78
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:14:22-75
+uses-permission#android.permission.GET_TASKS
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:15:5-68
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:15:22-65
+uses-permission#android.permission.CAMERA
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:16:5-65
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:16:22-62
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:17:5-68
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:17:22-65
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:18:5-73
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:18:22-70
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:19:5-74
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:19:22-71
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:20:5-68
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:20:22-65
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:21:5-80
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:21:22-77
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:22:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:23:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:24:5-66
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:24:22-63
+application
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:26:5-74:19
+MERGED from [com.github.arimorty:floatingsearchview:2.0.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/floatingsearchview-2.0.3.aar/12769eaff5db32d0a8f6f94264008118/AndroidManifest.xml:12:5-20
+MERGED from [com.github.arimorty:floatingsearchview:2.0.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/floatingsearchview-2.0.3.aar/12769eaff5db32d0a8f6f94264008118/AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:transition:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/transition-25.2.0.aar/a11fc52e24bc230957ef0235c31bdb81/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:transition:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/transition-25.2.0.aar/a11fc52e24bc230957ef0235c31bdb81/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/0e9924b09565cbac95d832e36885d670/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/0e9924b09565cbac95d832e36885d670/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.2.0.aar/936d5dcf87b24b98af7a8a8f97073d1a/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.2.0.aar/936d5dcf87b24b98af7a8a8f97073d1a/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.2.0.aar/ea5b5da2aadb548927ccb93e8f7a8207/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.2.0.aar/ea5b5da2aadb548927ccb93e8f7a8207/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:cardview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/cardview-v7-25.2.0.aar/0b14741d7ac903fded66231452573dc8/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/cardview-v7-25.2.0.aar/0b14741d7ac903fded66231452573dc8/AndroidManifest.xml:22:5-20
+MERGED from [com.github.clans:fab:1.6.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/fab-1.6.3.aar/cd4464031934f0489dd5c2a57f98d8a3/AndroidManifest.xml:12:5-20
+MERGED from [com.github.clans:fab:1.6.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/fab-1.6.3.aar/cd4464031934f0489dd5c2a57f98d8a3/AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:palette-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/palette-v7-25.2.0.aar/d70bcc542711f96495e8a36647b35bd9/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:palette-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/palette-v7-25.2.0.aar/d70bcc542711f96495e8a36647b35bd9/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:support-fragment:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/f3ab19bdf7ba0b0029920c09db3fe083/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/f3ab19bdf7ba0b0029920c09db3fe083/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/c1607e47ddb1dad8a2aa072e9bb500cf/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/c1607e47ddb1dad8a2aa072e9bb500cf/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/7d83764286a8a574106427464b3acedf/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/7d83764286a8a574106427464b3acedf/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/25c7aa8e8fe35ffb7cd5be9cca1a3aec/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/25c7aa8e8fe35ffb7cd5be9cca1a3aec/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/71cff9d1f6146e17dc0dc23e998cff3c/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/71cff9d1f6146e17dc0dc23e998cff3c/AndroidManifest.xml:25:5-20
+	android:supportsRtl
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:30:9-35
+	android:label
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:29:9-41
+	android:icon
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:28:9-43
+	android:allowBackup
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:27:9-35
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:31:9-40
+activity#com.dglproject.brand.activity.MainActivity
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:32:9-35:59
+	android:label
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:34:13-45
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:35:13-56
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:33:13-50
+activity#com.dglproject.brand.activity.ActivitySplashScreen
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:36:9-44:20
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:38:13-49
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:37:13-58
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:39:13-43:29
+action#android.intent.action.MAIN
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:40:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:42:17-77
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:42:27-74
+activity#com.dglproject.brand.activity.ActivityUserSettings
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:45:9-47:48
+	android:label
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:47:13-45
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:46:13-58
+activity#com.dglproject.brand.activity.ActivityHelp
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:48:9-51:59
+	android:label
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:50:13-41
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:51:13-56
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:49:13-50
+activity#com.dglproject.brand.activity.ActivityProductDetail
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:52:9-55:64
+	android:label
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:54:13-44
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:55:13-61
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:53:13-59
+activity#com.dglproject.brand.activity.ActivityBrandProduct
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:56:9-67
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:56:19-64
+activity#com.dglproject.brand.activity.ActivityCart
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:57:9-59
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:57:19-56
+activity#com.dglproject.brand.activity.ActivityLogin
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:58:9-60:46
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:60:13-43
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:59:13-51
+activity#com.dglproject.brand.activity.ActivitySignup
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:61:9-63:46
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:63:13-43
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:62:13-52
+activity#com.dglproject.brand.activity.ActivitySettings
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:64:9-63
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:64:19-60
+activity#com.dglproject.brand.activity.ActivityWelcome
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:65:9-67:52
+	android:theme
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:67:13-49
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:66:13-53
+activity#com.dglproject.brand.activity.ActivityProductAdd
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:68:9-65
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:68:19-62
+activity#com.dglproject.brand.activity.ActivityDetail
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:69:9-61
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:69:19-58
+activity#com.dglproject.brand.activity.ActivityCartEdit
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:70:9-63
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:70:19-60
+activity#com.dglproject.brand.activity.ActivityBrandAdd
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:71:9-63
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:71:19-60
+activity#com.dglproject.brand.activity.ActivityWeb
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:72:9-58
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:72:19-55
+activity#com.dglproject.brand.activity.ActivityAbout
+ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:73:9-69
+	android:name
+		ADDED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml:73:19-57
+uses-sdk
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+MERGED from [com.github.arimorty:floatingsearchview:2.0.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/floatingsearchview-2.0.3.aar/12769eaff5db32d0a8f6f94264008118/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.arimorty:floatingsearchview:2.0.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/floatingsearchview-2.0.3.aar/12769eaff5db32d0a8f6f94264008118/AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/AndroidManifest.xml:21:5-23:78
+MERGED from [com.bartoszlipinski:viewpropertyobjectanimator:1.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3f13940fc14adb5bb55d4681fb473400/AndroidManifest.xml:7:5-9:41
+MERGED from [com.bartoszlipinski:viewpropertyobjectanimator:1.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3f13940fc14adb5bb55d4681fb473400/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:transition:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/transition-25.2.0.aar/a11fc52e24bc230957ef0235c31bdb81/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/transition-25.2.0.aar/a11fc52e24bc230957ef0235c31bdb81/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/0e9924b09565cbac95d832e36885d670/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/0e9924b09565cbac95d832e36885d670/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.2.0.aar/936d5dcf87b24b98af7a8a8f97073d1a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.2.0.aar/936d5dcf87b24b98af7a8a8f97073d1a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.2.0.aar/ea5b5da2aadb548927ccb93e8f7a8207/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.2.0.aar/ea5b5da2aadb548927ccb93e8f7a8207/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:recyclerview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.2.0.aar/a97ea8160840903662a1af4a3f98b9ee/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.2.0.aar/a97ea8160840903662a1af4a3f98b9ee/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/cardview-v7-25.2.0.aar/0b14741d7ac903fded66231452573dc8/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/cardview-v7-25.2.0.aar/0b14741d7ac903fded66231452573dc8/AndroidManifest.xml:20:5-43
+MERGED from [com.github.clans:fab:1.6.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/fab-1.6.3.aar/cd4464031934f0489dd5c2a57f98d8a3/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.clans:fab:1.6.3] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/fab-1.6.3.aar/cd4464031934f0489dd5c2a57f98d8a3/AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:palette-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/palette-v7-25.2.0.aar/d70bcc542711f96495e8a36647b35bd9/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/palette-v7-25.2.0.aar/d70bcc542711f96495e8a36647b35bd9/AndroidManifest.xml:20:5-43
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:7:5-9:41
+MERGED from [com.daimajia.slider:library:1.1.5] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/0b80c3024862629a0a71b13c3d44a1dc/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-fragment:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/f3ab19bdf7ba0b0029920c09db3fe083/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/f3ab19bdf7ba0b0029920c09db3fe083/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/c1607e47ddb1dad8a2aa072e9bb500cf/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/c1607e47ddb1dad8a2aa072e9bb500cf/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/7d83764286a8a574106427464b3acedf/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/7d83764286a8a574106427464b3acedf/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/25c7aa8e8fe35ffb7cd5be9cca1a3aec/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/25c7aa8e8fe35ffb7cd5be9cca1a3aec/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/71cff9d1f6146e17dc0dc23e998cff3c/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/71cff9d1f6146e17dc0dc23e998cff3c/AndroidManifest.xml:21:5-23:58
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.2.0] /home/turtuvshin/.gradle/caches/transforms-1/files-1.1/design-25.2.0.aar/33e21547e4e4c88d04ca1e9ade095780/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/AndroidManifest.xml
