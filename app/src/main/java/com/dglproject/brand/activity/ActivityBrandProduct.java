@@ -2,7 +2,10 @@ package com.dglproject.brand.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.opengl.Visibility;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +23,8 @@ import android.widget.Toast;
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.adapters.BrandProductAdapter;
+import com.dglproject.brand.adapters.ProductAdapter;
+import com.dglproject.brand.utilities.DGLConstants;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -40,35 +45,36 @@ import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityBrandProduct extends AppCompatActivity {
+    private static final String TAG = ActivityBrandProduct.class.getSimpleName();
+    private ListView listMenu;
+    private ProgressBar prgLoading;
+    private TextView txtTitle;
+    private EditText edtKeyword;
+    private ImageButton btnSearch;
+    private TextView txtAlert;
 
-    ListView listMenu;
-    ProgressBar prgLoading;
-    //TextView txtTitle;
-    EditText edtKeyword;
-    ImageButton btnSearch;
-    TextView txtAlert;
+    private JSONObject jsonObject;
+    private JSONArray jsonArrayProducts;
 
-    JSONObject jsonObject;
-    JSONArray jsonArrayProducts;
-
-    BrandProductAdapter brandProductAdapter;
-
-    public static ArrayList<Long> Product_ID = new ArrayList<Long>();
-    public static ArrayList<String> Product_name = new ArrayList<String>();
-    public static ArrayList<Double> Product_price = new ArrayList<Double>();
-    public static ArrayList<String> Product_image = new ArrayList<String>();
-
-    String ProductService;
-    int IOConnect = 0;
-    long Category_ID;
-    String Category_name;
-    String Keyword;
+    private String ProductService;
+    private int IOConnect = 0;
+    private String brandId;
+    private String brandName;
+    private String Keyword;
+    private Handler mHandler;
 
     DecimalFormat formatData = new DecimalFormat("#.##");
 
@@ -78,6 +84,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         listMenu = (ListView) findViewById(R.id.listMenu);
         edtKeyword = (EditText) findViewById(R.id.edtKeyword);
@@ -85,49 +92,45 @@ public class ActivityBrandProduct extends AppCompatActivity {
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
         Intent iGet = getIntent();
-        Category_ID = iGet.getLongExtra("brand_id",0);
-        Category_name = iGet.getStringExtra("brand_name");
+        brandId = iGet.getStringExtra("brand_id");
+        brandName = iGet.getStringExtra("brand_name");
 
-        Log.d("","Brand ID: "+Category_ID);
+        Log.d("","Brand ID: "+brandId);
 
-        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&brand_id="+Category_ID;
+        getSupportActionBar().setTitle(brandName);
 
-        Log.d("","URL: "+ProductService);
+        mHandler = new Handler(Looper.getMainLooper());
 
-        brandProductAdapter = new BrandProductAdapter(ActivityBrandProduct.this);
+        listMenu.setVisibility(View.VISIBLE);
 
-        new getDataTask().execute();
+        getBrandProduct();
 
+//        btnSearch.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View arg0) {
+//                try {
+//                    Keyword = URLEncoder.encode(edtKeyword.getText().toString(), "utf-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//                ProductService += "&keyword="+Keyword;
+//                IOConnect = 0;
+//                listMenu.invalidateViews();
+//                clearData();
+//                new getDataTask().execute();
+//            }
+//        });
 
-
-        getSupportActionBar().setTitle(Category_name);
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-                try {
-                    Keyword = URLEncoder.encode(edtKeyword.getText().toString(), "utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                ProductService += "&keyword="+Keyword;
-                IOConnect = 0;
-                listMenu.invalidateViews();
-                clearData();
-                new getDataTask().execute();
-            }
-        });
-
-        listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-
-                Intent iDetail = new Intent(ActivityBrandProduct.this, ActivityProductDetail.class);
-                iDetail.putExtra("product_id", Product_ID.get(position));
-                startActivity(iDetail);
-            }
-        });
+//        listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+//                                    long arg3) {
+//
+//                Intent iDetail = new Intent(ActivityBrandProduct.this, ActivityProductDetail.class);
+//                iDetail.putExtra("product_id", Product_ID.get(position));
+//                startActivity(iDetail);
+//            }
+//        });
     }
 
 
@@ -193,8 +196,8 @@ public class ActivityBrandProduct extends AppCompatActivity {
             case R.id.refresh:
                 IOConnect = 0;
                 listMenu.invalidateViews();
-                clearData();
-                new getDataTask().execute();
+//                clearData();
+//                new getDataTask().execute();
                 return true;
 
             case android.R.id.home:
@@ -206,83 +209,118 @@ public class ActivityBrandProduct extends AppCompatActivity {
         }
     }
 
-    void clearData(){
-        Product_ID.clear();
-        Product_name.clear();
-        Product_price.clear();
-        Product_image.clear();
-    }
+//    void clearData(){
+//        Product_ID.clear();
+//        Product_name.clear();
+//        Product_price.clear();
+//        Product_image.clear();
+//    }
 
-    public class getDataTask extends AsyncTask<Void, Void, Void>{
+//    public class getDataTask extends AsyncTask<Void, Void, Void>{
+//
+//        getDataTask(){
+//            if(!prgLoading.isShown()){
+//                prgLoading.setVisibility(0);
+//                txtAlert.setVisibility(8);
+//            }
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... arg0) {
+//            parseJSONData();
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            prgLoading.setVisibility(8);
+//
+//            if(Product_ID.size() > 0){
+//                listMenu.setVisibility(0);
+//                listMenu.setAdapter(brandProductAdapter);
+//            }else{
+//                txtAlert.setVisibility(0);
+//                Toast.makeText(getApplicationContext(), getString(R.string.no_product), Toast.LENGTH_SHORT).show();
+//            }
+//
+//        }
+//    }
 
-        getDataTask(){
-            if(!prgLoading.isShown()){
-                prgLoading.setVisibility(0);
-                txtAlert.setVisibility(8);
+//    public void parseJSONData(){
+//
+//        clearData();
+//
+//        try {
+//            HttpClient client = new DefaultHttpClient();
+//            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+//            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+//            HttpUriRequest request = new HttpGet(ProductService);
+//            HttpResponse response = client.execute(request);
+//            InputStream atomInputStream = response.getEntity().getContent();
+//
+//            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+//
+//            String line;
+//            String str = "";
+//            while ((line = in.readLine()) != null){
+//                str += line;
+//            }
+//
+//            Log.d("","JSON: "+str);
+//            jsonObject = new JSONObject("{product=" + str+"}");
+//            jsonArrayProducts = jsonObject.getJSONArray("product");
+//
+//            for (int i = 0; i < jsonArrayProducts.length(); i++) {
+//
+//                Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
+//                Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
+//                Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
+//                Product_image.add(jsonArrayProducts.getJSONObject(i).getString("folder"));
+//
+//            }
+//
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void getBrandProduct (){
+        prgLoading.setVisibility(View.VISIBLE);
+        String uri = DGLConstants.ProductService+"?state=r&brand_id="+brandId;
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(uri)
+                .build();
+
+        Log.e(TAG, request.toString());
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("Request Error ", "Алдаа:" + e.getMessage());
             }
-        }
 
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            parseJSONData();
-            return null;
-        }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(() -> {
+                    try {
 
-        @Override
-        protected void onPostExecute(Void result) {
-            prgLoading.setVisibility(8);
-
-            if(Product_ID.size() > 0){
-                listMenu.setVisibility(0);
-                listMenu.setAdapter(brandProductAdapter);
-            }else{
-                txtAlert.setVisibility(0);
-                Toast.makeText(getApplicationContext(), getString(R.string.no_product), Toast.LENGTH_SHORT).show();
+                        JSONArray prodItems = new JSONArray(res);
+                        Log.e("Response: ", prodItems + "");
+                        prgLoading.setVisibility(View.GONE);
+                        listMenu.setAdapter(new ProductAdapter(ActivityBrandProduct.this, prodItems));
+                    } catch (JSONException ex){
+                        ex.printStackTrace();
+                    }
+                });
             }
-
-        }
-    }
-
-    public void parseJSONData(){
-
-        clearData();
-
-        try {
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductService);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
-            }
-
-            Log.d("","JSON: "+str);
-            jsonObject = new JSONObject("{product=" + str+"}");
-            jsonArrayProducts = jsonObject.getJSONArray("product");
-
-            for (int i = 0; i < jsonArrayProducts.length(); i++) {
-
-                Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
-                Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
-                Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
-                Product_image.add(jsonArrayProducts.getJSONObject(i).getString("folder"));
-
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @Override

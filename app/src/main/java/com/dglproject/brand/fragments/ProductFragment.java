@@ -134,12 +134,12 @@ public class ProductFragment extends Fragment {
                 .url(uri)
                 .build();
 
-        Log.e("Request: ", request.toString());
+        Log.e(TAG , request.toString());
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("Request Error ", "Алдаа:" + e.getMessage());
+                Log.e(TAG, "Алдаа:" + e.getMessage());
             }
 
             @Override
@@ -149,7 +149,7 @@ public class ProductFragment extends Fragment {
                     try {
                         JSONObject prod = new JSONObject(String.valueOf("{product=" + res+"}"));
                         JSONArray prodItems = prod.getJSONArray("product");
-                        Log.e("Response: ", prodItems + "");
+                        Log.e(TAG, prodItems + "");
                         prgLoading.setVisibility(View.GONE);
                         homeItemList.setAdapter(new ProductAdapter(getActivity(), prodItems));
                     } catch (JSONException ex){
