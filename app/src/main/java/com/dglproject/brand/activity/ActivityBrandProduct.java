@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.adapters.ProductListAdapter;
+import com.dglproject.brand.adapters.BrandProductAdapter;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -45,7 +45,7 @@ import java.util.ArrayList;
  * Project: DglBrand
  * URL: https://www.github.com/tortuvshin
  */
-public class ActivityProductList extends AppCompatActivity {
+public class ActivityBrandProduct extends AppCompatActivity {
 
     ListView listMenu;
     ProgressBar prgLoading;
@@ -57,7 +57,7 @@ public class ActivityProductList extends AppCompatActivity {
     JSONObject jsonObject;
     JSONArray jsonArrayProducts;
 
-    ProductListAdapter productListAdapter;
+    BrandProductAdapter brandProductAdapter;
 
     public static ArrayList<Long> Product_ID = new ArrayList<Long>();
     public static ArrayList<String> Product_name = new ArrayList<String>();
@@ -94,7 +94,7 @@ public class ActivityProductList extends AppCompatActivity {
 
         Log.d("","URL: "+ProductService);
 
-        productListAdapter = new ProductListAdapter(ActivityProductList.this);
+        brandProductAdapter = new BrandProductAdapter(ActivityBrandProduct.this);
 
         new getDataTask().execute();
 
@@ -123,7 +123,7 @@ public class ActivityProductList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
 
-                Intent iDetail = new Intent(ActivityProductList.this, ActivityProductDetail.class);
+                Intent iDetail = new Intent(ActivityBrandProduct.this, ActivityProductDetail.class);
                 iDetail.putExtra("product_id", Product_ID.get(position));
                 startActivity(iDetail);
             }
@@ -186,7 +186,7 @@ public class ActivityProductList extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent iMyOrder = new Intent(ActivityProductList.this, ActivityCart.class);
+                Intent iMyOrder = new Intent(ActivityBrandProduct.this, ActivityCart.class);
                 startActivity(iMyOrder);
                 return true;
 
@@ -234,7 +234,7 @@ public class ActivityProductList extends AppCompatActivity {
 
             if(Product_ID.size() > 0){
                 listMenu.setVisibility(0);
-                listMenu.setAdapter(productListAdapter);
+                listMenu.setAdapter(brandProductAdapter);
             }else{
                 txtAlert.setVisibility(0);
                 Toast.makeText(getApplicationContext(), getString(R.string.no_product), Toast.LENGTH_SHORT).show();
@@ -287,7 +287,7 @@ public class ActivityProductList extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        //productListAdapter.imageLoader.clearCache();
+        //brandProductAdapter.imageLoader.clearCache();
         listMenu.setAdapter(null);
         super.onDestroy();
     }

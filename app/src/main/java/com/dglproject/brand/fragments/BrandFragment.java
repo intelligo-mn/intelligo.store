@@ -1,8 +1,6 @@
 package com.dglproject.brand.fragments;
 
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -22,9 +20,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.activity.ActivityProductList;
 import com.dglproject.brand.adapters.BrandAdapter;
 import com.dglproject.brand.utilities.DGLConstants;
 
@@ -32,15 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.net.ssl.HandshakeCompletedEvent;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -129,7 +118,7 @@ public class BrandFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-//                Intent brands = new Intent(getActivity(), ActivityProductList.class);
+//                Intent brands = new Intent(getActivity(), ActivityBrandProduct.class);
 //                brands.putExtra("brand_id", Brand_ID.get(position));
 //                brands.putExtra("brand_name", Brand_name.get(position));
 //                startActivity(brands);

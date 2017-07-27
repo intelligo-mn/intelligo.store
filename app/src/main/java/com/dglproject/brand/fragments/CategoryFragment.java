@@ -2,7 +2,6 @@ package com.dglproject.brand.fragments;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,28 +16,16 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.activity.ActivityProductList;
+import com.dglproject.brand.activity.ActivityBrandProduct;
 import com.dglproject.brand.adapters.CategoryAdapter;
 import com.dglproject.brand.utilities.DGLConstants;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -101,7 +88,7 @@ public class CategoryFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                Intent iMenuList = new Intent(getActivity(), ActivityProductList.class);
+                Intent iMenuList = new Intent(getActivity(), ActivityBrandProduct.class);
                 startActivity(iMenuList);
             }
         });

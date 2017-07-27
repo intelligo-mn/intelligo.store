@@ -1,6 +1,7 @@
 package com.dglproject.brand.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.fragments.BrandFragment;
+import com.dglproject.brand.activity.ActivityBrandProduct;
 import com.dglproject.brand.utilities.ImageLoader;
 
 import org.json.JSONArray;
@@ -64,10 +65,22 @@ public class BrandAdapter extends BaseAdapter {
         ImageView imgThumb = (ImageView) vi.findViewById(R.id.catImg);
 
         try {
-            txtText.setText(brands.getJSONObject(position).getString("name"));
+            String id = brands.getJSONObject(position).getString("id");
+            String name = brands.getJSONObject(position).getString("name");
+            txtText.setText(name);
             imageLoader.DisplayImage(Config.AdminPageURL + "/uploads/product_brand_icons/" +
                     brands.getJSONObject(position).getString("folder") + "/" +
                     brands.getJSONObject(position).getString("icon_image"), imgThumb);
+
+            vi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent brands = new Intent(context, ActivityBrandProduct.class);
+                    brands.putExtra("brand_id", id);
+                    brands.putExtra("brand_name", name);
+                    context.startActivity(brands);
+                }
+            });
 
         } catch (JSONException ex) {
             ex.printStackTrace();

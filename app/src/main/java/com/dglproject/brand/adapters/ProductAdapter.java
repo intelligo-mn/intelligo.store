@@ -76,7 +76,7 @@ public class ProductAdapter extends BaseAdapter{
             pName.setText(products.getJSONObject(position).getString("name"));
             pPrice.setText(products.getJSONObject(position).getString("price"));
             imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
-            pImage.setOnClickListener(new View.OnClickListener() {
+            vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent iDetail = new Intent(context, ActivityProductDetail.class);

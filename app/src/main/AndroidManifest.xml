@@ -53,7 +53,7 @@
             android:name=".activity.ActivityProductDetail"
             android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
-        <activity android:name=".activity.ActivityProductList" />
+        <activity android:name=".activity.ActivityBrandProduct" />
         <activity android:name=".activity.ActivityCart" />
         <activity
             android:name=".activity.ActivityLogin"
