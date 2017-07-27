@@ -1,6 +1,7 @@
 package com.dglproject.brand.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,8 @@ public class CategoryAdapter extends BaseAdapter{
         if(vi == null)
             vi = inflater.inflate(R.layout.category_item, null);
 
-        TextView txtText = (TextView) vi.findViewById(R.id.txtText);
-        ImageView imgThumb = (ImageView) vi.findViewById(R.id.imgThumb);
+        TextView txtText = (TextView) vi.findViewById(R.id.catText);
+        ImageView imgThumb = (ImageView) vi.findViewById(R.id.catImg);
 
         try {
             txtText.setText(category.getJSONObject(position).getString("name"));

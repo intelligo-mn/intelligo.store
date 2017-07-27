@@ -111,7 +111,7 @@ public class CategoryFragment extends Fragment {
 
     private void getCategoryList() {
         prgLoading.setVisibility(View.VISIBLE);
-        String uri = DGLConstants.CategoryService+"?state=r";
+        String uri = DGLConstants.CategoryService;
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
