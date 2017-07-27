@@ -40,16 +40,25 @@ class ProductController{
         return $json;
         
     }
+    //хэрэглэгчийн утасны дугаарыг авах
+    public function getMobileByOwnerId($userId){
+        $result = mysqli_query($this->db->getDb(), "SELECT * FROM user WHERE id=".$userId) or die ("Баазаас өгөгдөл уншихад алдаа гарлаа  :".mysql_error());
+        while($user = $result->fetch_assoc()){
+            return ($user['mobile'] == '' || $user['mobile'] == null) ? 0 : $user['mobile'];
+        }
+        return 0;
+    }
     // Бүх бүтээгдэхүүний мэдээлэл авах
     public function getAll () {
         
        $sql_query = "SELECT * FROM ".$this->db_table;
         
-        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
+        $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Баазаас өгөгдөл уншихад алдаа гарлаа  :".mysql_error());
 
         $products = array();
         $ps = array();
         while($product = $result->fetch_assoc()) {
+            $product["mobile"] = $this->getMobileByOwnerId($product['created_user_id']); //тухайн бүттээгдэхүүн тавьсан хүний дугаарыг бүтээгдэхүүнтэй хамт буцаах
             $product["folder"] = $product["folder"]."/".$this->getPhotoPath($product["default_photo_id"]);
             $products[] = $product;
         }
@@ -57,7 +66,7 @@ class ProductController{
     }
     public function getPhotoPath($photoId){
         $photo_result = mysqli_query($this->db->getDb(), "SELECT * FROM product_photo
-         WHERE id = ".$photoId) or die ("Error :".mysql_error());
+         WHERE id = ".$photoId) or die ("Error in photoPath:".mysql_error());
         return mysqli_fetch_assoc($photo_result)["photo_file"];
     }
     // Тухайн брэндэд хамаатай бүтээгдэхүүнүүд авах

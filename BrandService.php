@@ -8,8 +8,8 @@ header('Content-Type: text/plain; charset=utf-8');
 
 require_once 'app/BrandController.php';
 require_once 'config/security.php';
-if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
-        die('accesskey is wrong!');
+// if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+//         die('accesskey is wrong!');
 
 $state = $_POST["state"];
 $name = "";
@@ -17,14 +17,19 @@ $description = "";
 $user_id = "";
 $category_id = "";
 $language = "";
+$mobile = "";
+$email = "";
+$address = "";
 
-
-if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ui']) && isset($_POST['categoryId'])&& isset($_POST['language'])){
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ui']) && isset($_POST['categoryId'])&& isset($_POST['language']), && isset($_POST['mobile'])&& isset($_POST['email'])&& isset($_POST['address'])){
     $name = $_POST['name'];
     $description = $_POST['description'];
     $user_id = $_POST["ui"];
     $category_id = $_POST["categoryId"];
     $language = $_POST["language"];
+    $mobile = $_POST["mobile"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
 }
 
 $brandObject = new BrandController();
@@ -37,7 +42,7 @@ if($state == "c"){
         $json['message'] = "brand already.";       
         echo json_encode($json); 
     } else {
-        echo json_encode($brandObject->create($name, $description, $user_id, $category_id, $language, savePhoto()));
+        echo json_encode($brandObject->create($name, $description, $user_id, $category_id, $language, $mobile, $email, $address, savePhoto()));
     }
 }
 else if($state == "u" && !empty($name) && !empty($description) && !empty($user_id)){
