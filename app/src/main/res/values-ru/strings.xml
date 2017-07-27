@@ -41,21 +41,25 @@
     <string name="loading">Загрузка</string>
     <string name="phone">Номер телефона</string>
     <string name="introduction">Коллекция</string>
-    <string name="app_version">Версия 1.0.0</string>
-    <string name="app_copyright">Авторское право © 2017 DGL BRAND.</string>
-    <string name="app_email">toroo.byamba@gmail.com</string>
-    <string name="share_summary">Другие люди делятся</string>
-    <string name="rate_summary">Пожалуйста, дайте ваши отзывы и комментарии</string>
-    <string name="more_summary">DGL PROJECT бусад програмууд.</string>
-    <string name="title_app_name">Имя приложения</string>
-    <string name="title_app_version">Версия программного обеспечения</string>
-    <string name="title_app_email">Е-мэйл адрасс</string>
-    <string name="title_app_copyright">Авторские права</string>
-    <string name="title_app_share">Разделение</string>
-    <string name="title_app_rate">Оценивать</string>
-    <string name="title_app_more">Другие приложения</string>
-    <string name="more_apps"></string>
-    <string name="share_content"></string>
+
+    <string name="menu_profile">Профайл</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_payment">Оплата</string>
+    <string name="menu_language">переключатель</string>
+    <string name="menu_agreement">Условия предоставления услуг</string>
+    <string name="menu_help">Помощь</string>
+    <string name="menu_about">O</string>
+    <string name="menu_apps">Другие приложения</string>
+
+    <string name="menu_desc_profile">Персональная информация</string>
+    <string name="menu_desc_settings">Личная информация и другие детали, установленные</string>
+    <string name="menu_desc_payment">Другие членские взносы и другие сборы</string>
+    <string name="menu_desc_language">Переключатель</string>
+    <string name="menu_desc_agreement">См условия обслуживания деталей</string>
+    <string name="menu_desc_help">Помощь и часто задаваемые вопросы более</string>
+    <string name="menu_desc_about">О DGLBrand детального просмотра</string>
+    <string name="menu_desc_apps">DGLProject посмотреть другие приложения</string>
+
 
     <string name="company_add">Добавить компании</string>
     <string name="company_name">Компани имя</string>

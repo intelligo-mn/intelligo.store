@@ -42,21 +42,26 @@
     <string name="phone">電話號碼</string>
     <string name="about">關於</string>
     <string name="introduction">簡介</string>
-    <string name="app_version">Version 1.0.0</string>
-    <string name="app_copyright">Copyright &#169; 2017 DGL BRAND.</string>
-    <string name="app_email">toroo.byamba@gmail.com</string>
-    <string name="share_summary">其他人分享</string>
-    <string name="rate_summary">您還可以查看和評論</string>
-    <string name="more_summary">DGL PROJECT 其他應用.</string>
-    <string name="title_app_name">應用名稱</string>
-    <string name="title_app_version">應用</string>
-    <string name="title_app_email">電子郵件</string>
-    <string name="title_app_copyright">受版權保護</string>
-    <string name="title_app_share">分享</string>
-    <string name="title_app_rate">评测</string>
-    <string name="title_app_more">其他應用</string>
-    <string name="more_apps"></string>
-    <string name="share_content"></string>
+
+    <string name="menu_profile">简介</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_payment">付款</string>
+    <string name="menu_language">英文切换</string>
+    <string name="menu_agreement">服务条款</string>
+    <string name="menu_help">帮助</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_apps">其他应用</string>
+
+    <string name="menu_desc_profile">个人信息</string>
+    <string name="menu_desc_settings">个人信息等细节设置</string>
+    <string name="menu_desc_payment">查看更多会员费，及其他费用</string>
+    <string name="menu_desc_language">英文切换</string>
+    <string name="menu_desc_agreement">看见服务条款细节</string>
+    <string name="menu_desc_help">请参阅帮助和常见问题的详细</string>
+    <string name="menu_desc_about">关于 DGL Brand 详细视图</string>
+    <string name="menu_desc_apps">" DGL Project 看其他应用程序"</string>
+
+
     <string name="company_add">機身加</string>
     <string name="company_name">名</string>
     <string name="company_description">小冊子</string>

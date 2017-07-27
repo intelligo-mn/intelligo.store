@@ -2,23 +2,23 @@
 <resources>
 
     <string-array name="title">
-        <item>@string/title_app_name</item>
-        <item>@string/title_app_version</item>
-        <item>@string/title_app_email</item>
-        <item>@string/title_app_copyright</item>
-        <item>@string/title_app_share</item>
-        <item>@string/title_app_rate</item>
-        <item>@string/title_app_more</item>
+        <item>@string/menu_profile</item>
+        <item>@string/menu_settings</item>
+        <item>@string/menu_payment</item>
+        <item>@string/menu_language</item>
+        <item>@string/menu_agreement</item>
+        <item>@string/menu_help</item>
+        <item>@string/menu_about</item>
     </string-array>
 
     <string-array name="subtitle">
-        <item>@string/app_name</item>
-        <item>@string/app_version</item>
-        <item>@string/app_email</item>
-        <item>@string/app_copyright</item>
-        <item>@string/share_summary</item>
-        <item>@string/rate_summary</item>
-        <item>@string/more_summary</item>
+        <item>@string/menu_desc_profile</item>
+        <item>@string/menu_desc_settings</item>
+        <item>@string/menu_desc_payment</item>
+        <item>@string/menu_desc_language</item>
+        <item>@string/menu_desc_agreement</item>
+        <item>@string/menu_desc_help</item>
+        <item>@string/menu_desc_about</item>
     </string-array>
 
 </resources>
