@@ -71,7 +71,7 @@ public class ProductFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.home_items, container, false);
+        rootView = inflater.inflate(R.layout.fragment_product, container, false);
         prgLoading = (ProgressBar) rootView.findViewById(R.id.homeLoading);
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
