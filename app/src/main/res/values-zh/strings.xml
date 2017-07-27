@@ -24,7 +24,7 @@
     <string name="my_order">订阅详细</string>
     <string name="total_order">总订购</string>
     <string name="clear_order">取消所有订单</string>
-    <string name="clear_all_order">取消所有订阅</string>
+    <string name="order_clear_all">取消所有订阅</string>
     <string name="clear_one_order">取消此订购</string>
     <string name="no_order">无有订购</string>
     <string name="increase_order">+</string>

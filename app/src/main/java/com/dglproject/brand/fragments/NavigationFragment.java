@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dglproject.brand.R;
+import com.dglproject.brand.activity.ActivityAbout;
+import com.dglproject.brand.activity.ActivityUserSettings;
 import com.dglproject.brand.activity.ActivityWeb;
 import com.dglproject.brand.adapters.AdapterList;
 import com.dglproject.brand.utilities.PrefManager;
@@ -91,24 +93,36 @@ public class NavigationFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 4) {
+                if (position == 0) {
+
+                } else if (position == 1) {
+                    startActivity(new Intent(getActivity(), ActivityUserSettings.class));
+                } else if (position == 2) {
+                    Intent payment = new Intent(getActivity(), ActivityWeb.class);
+                    payment.putExtra("web_name", getString(R.string.menu_payment));
+                    payment.putExtra("web_url", "https://www.dglproject.com/index.php/pricing");
+                    startActivity(payment);
+                } else if (position == 3) {
                     Intent sendInt = new Intent(Intent.ACTION_SEND);
                     sendInt.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                    sendInt.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name) + "\n" + getString(R.string.share_content) + "\n" + "https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
+                    sendInt.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name) + "\n" + "https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
                     sendInt.setType("text/plain");
                     startActivity(Intent.createChooser(sendInt, getString(R.string.about)));
-                }
-                if (position == 5) {
+                }else if (position == 4) {
                     final String appName = getActivity().getPackageName();
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appName)));
                     } catch (android.content.ActivityNotFoundException anfe) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appName)));
                     }
-                }
-                if (position == 6) {
-//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.more_apps))));'
-                    startActivity(new Intent(getActivity(), ActivityWeb.class));
+                } else if (position == 5) {
+                    Intent help = new Intent(getActivity(), ActivityWeb.class);
+                    help.putExtra("web_name", getString(R.string.menu_help));
+                    help.putExtra("web_url", "https://www.dglproject.com/index.php/help");
+                    startActivity(help);
+                } else if (position == 6) {
+                    Intent about = new Intent(getActivity(), ActivityAbout.class);
+                    startActivity(about);
                 }
             }
         });

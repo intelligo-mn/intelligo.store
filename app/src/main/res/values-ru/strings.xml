@@ -24,7 +24,7 @@
     <string name="my_order">Подробности заказа</string>
     <string name="total_order">Общий заказ</string>
     <string name="clear_order">Отменить все резервирования</string>
-    <string name="clear_all_order">Отменить все подписки?</string>
+    <string name="order_clear_all">Отменить все подписки?</string>
     <string name="clear_one_order">Пожалуйста, отменить этот заказ?</string>
     <string name="no_order">Нет заказ</string>
     <string name="increase_order">+</string>

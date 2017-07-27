@@ -1,5 +1,6 @@
 package com.dglproject.brand.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,9 @@ public class ActivityWeb extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-
+        Intent iGet = getIntent();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(iGet.getStringExtra("web_name"));
         dglWeb = (WebView)findViewById(R.id.dglWeb);
         WebSettings settings = dglWeb.getSettings();
         CookieManager.setAcceptFileSchemeCookies(true);
@@ -48,6 +51,12 @@ public class ActivityWeb extends AppCompatActivity {
                 //new Spawner().spawnView(WebContent.this, Offline.class); //TODO: Replace the offline-activity with an server-offline-activity
             }
         });
-        dglWeb.loadUrl("http://dglproject.com");
+        dglWeb.loadUrl(iGet.getStringExtra("web_url"));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

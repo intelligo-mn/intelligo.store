@@ -97,6 +97,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -149,7 +150,7 @@ public class ActivityProductDetail extends AppCompatActivity {
                 sendInt.putExtra(Intent.EXTRA_SUBJECT, Product_name);
                 sendInt.putExtra(Intent.EXTRA_TEXT, Product_description + "\n" + Product_image + "\n");
                 sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, getString(R.string.title_app_share)));
+                startActivity(Intent.createChooser(sendInt, getString(R.string.share)));
             }
         });
 

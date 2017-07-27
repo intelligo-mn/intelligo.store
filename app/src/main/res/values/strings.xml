@@ -23,7 +23,7 @@
     <string name="my_order">Захиалгын дэлгэрэнгүй</string>
     <string name="total_order">Нийт захиалга :</string>
     <string name="clear_order">Бүх захиалга цуцлах</string>
-    <string name="clear_all_order">Бүх захиалгаа цуцлах уу?</string>
+    <string name="order_clear_all">Бүх захиалгаа цуцлах уу?</string>
     <string name="clear_one_order">Энэхүү захиалгыг цуцлах уу?</string>
     <string name="no_order">Захиалга байхгүй байна</string>
     <string name="increase_order">+</string>
