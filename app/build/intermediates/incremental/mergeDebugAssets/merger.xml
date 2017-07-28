@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/assets"><file name="dglbrand" path="/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/assets/dglbrand"/></source><source path="/home/turtuvshin/StudioProjects/dglbrand-android/app/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/turtuvshin/StudioProjects/dglbrand-android/app/src/debug/assets"/></dataSet></merger>

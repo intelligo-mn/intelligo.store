@@ -1,4 +1,0 @@
-#Thu Jul 27 14:28:52 ULAT 2017
-base.0=/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/transforms/dexMerger/debug/2
-renamed.0=classes.dex
-file.0=/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/transforms/dexMerger/debug/2/classes.dex
