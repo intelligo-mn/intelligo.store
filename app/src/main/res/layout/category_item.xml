@@ -25,10 +25,10 @@
 
             <ImageView
                 android:id="@+id/catImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
                 android:background="#fff"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/loading" />
 
             <TextView

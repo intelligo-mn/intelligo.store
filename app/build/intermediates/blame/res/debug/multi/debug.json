@@ -1735,51 +1735,6 @@
         ]
     },
     {
-        "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-w820dp-v13_values-w820dp-v13.arsc.flat",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 8,
-                    "endColumn": 24,
-                    "endOffset": 403
-                },
-                "from": {
-                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/attrs.xml",
-                    "position": {
-                        "startLine": 1,
-                        "startColumn": 4,
-                        "startOffset": 16,
-                        "endLine": 7,
-                        "endColumn": 24,
-                        "endOffset": 369
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 408,
-                    "endColumn": 57,
-                    "endOffset": 461
-                },
-                "from": {
-                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/dimens.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 291,
-                        "endColumn": 57,
-                        "endOffset": 344
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-mr-rIN_values-mr-rIN.arsc.flat",
         "map": [
             {
@@ -2178,6 +2133,51 @@
                         "startOffset": 2101,
                         "endColumn": 100,
                         "endOffset": 2197
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-w820dp-v13_values-w820dp-v13.arsc.flat",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 8,
+                    "endColumn": 24,
+                    "endOffset": 403
+                },
+                "from": {
+                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/attrs.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 16,
+                        "endLine": 7,
+                        "endColumn": 24,
+                        "endOffset": 369
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 408,
+                    "endColumn": 57,
+                    "endOffset": 461
+                },
+                "from": {
+                    "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-w820dp/dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endColumn": 57,
+                        "endOffset": 344
                     }
                 }
             }
@@ -4811,30 +4811,6 @@
         ]
     },
     {
-        "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-v18_values-v18.arsc.flat",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 48,
-                    "endOffset": 99
-                },
-                "from": {
-                    "file": "/home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/res/values-v18/values-v18.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 48,
-                        "endOffset": 99
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-mn_values-mn.arsc.flat",
         "map": [
             {
@@ -6142,6 +6118,30 @@
                 },
                 "from": {
                     "file": "/home/turtuvshin/StudioProjects/dglbrand-android/app/src/main/res/values-mn/strings.xml"
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/turtuvshin/StudioProjects/dglbrand-android/app/build/intermediates/res/merged/debug/values-v18_values-v18.arsc.flat",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "/home/turtuvshin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.2.0.aar/58c5ffcbecf90be2fc98fdb7606dfd2d/res/values-v18/values-v18.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
                 }
             }
         ]

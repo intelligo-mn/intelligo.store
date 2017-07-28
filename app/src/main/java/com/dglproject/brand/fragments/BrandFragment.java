@@ -162,7 +162,7 @@ public class BrandFragment extends Fragment {
                                             brandItems.getJSONObject(i).getString("folder") + "/" +
                                             brandItems.getJSONObject(i).getString("icon_image"))
                                     .setScaleType(BaseSliderView.ScaleType.Fit);
-//                    .setOnSliderClickListener(this);
+//                          .setOnSliderClickListener(this);
 
                             //add your extra information
                             textSliderView.bundle(new Bundle());
