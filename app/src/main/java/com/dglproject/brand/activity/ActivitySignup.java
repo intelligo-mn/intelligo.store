@@ -1,7 +1,12 @@
 package com.dglproject.brand.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.dglproject.brand.Config;
 import com.dglproject.brand.json.JSONParser;
 import com.dglproject.brand.R;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 
 import org.apache.http.NameValuePair;
@@ -21,9 +28,19 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -31,7 +48,7 @@ import java.util.ArrayList;
  */
 public class ActivitySignup extends AppCompatActivity {
 
-    private static final String TAG = "SignUp";
+    private static final String TAG = ActivitySignup.class.getSimpleName();
     EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     Button signUpButton;
     TextView loginLink;
@@ -43,12 +60,18 @@ public class ActivitySignup extends AppCompatActivity {
 
     int i=0;
 
+    private SharedPreferences   sharedPreferences;
+    private MaterialDialog dialog;
+    private Handler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         prefManager = new PrefManager(this);
+        mHandler = new Handler(Looper.getMainLooper());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         nameEditText = (EditText)findViewById(R.id.sName);
         emailEditText = (EditText)findViewById(R.id.sEmail);
@@ -108,8 +131,7 @@ public class ActivitySignup extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        CreateUser createUser = new CreateUser();
-        createUser.execute(String.valueOf(Config.generateAccessKey()),"signup",name,password,email);
+        register(name,password,email);
     }
 
     public void onSignupFailed() {
@@ -156,69 +178,69 @@ public class ActivitySignup extends AppCompatActivity {
         return valid;
     }
 
-    /**
-     * Hashes the password with MD5.
-     * @param s
-     * @return
-     */
-    private String PasswordHashes(String s) {
-        try {
+    private void register(final String username, String password, String email) {
+        dialog = new MaterialDialog.Builder(ActivitySignup.this)
+                .title(R.string.app_name)
+                .content(R.string.loading)
+                .progress(true, 0)
+                .show();
 
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+        RequestBody formBody = new FormBody.Builder()
+                .add("state", "signup")
+                .add("username", username)
+                .add("password", password)
+                .add("email", email)
+                .build();
 
-            StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
-                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-            return hexString.toString();
+        String uri = DGLConstants.UserService;
+        Log.e(TAG, uri + " ");
 
-        } catch (NoSuchAlgorithmException e) {
-            return s;
-        }
-    }
-    private class CreateUser extends AsyncTask<String, String, JSONObject> {
+        OkHttpClient client = new OkHttpClient();
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
+        Request request = new Request.Builder()
+                .url(uri)
+                .post(formBody)
+                .build();
 
-        @Override
-        protected JSONObject doInBackground(String... args) {
-
-
-            String email = args[4];
-            String password = args[3];
-            String name= args[2];
-            String state = args[1];
-            String accesskey = args[0];
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("accesskey", accesskey));
-            params.add(new BasicNameValuePair("state", state));
-            params.add(new BasicNameValuePair("username", name));
-            params.add(new BasicNameValuePair("password", password));
-            params.add(new BasicNameValuePair("email",email));
-
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
-
-            Log.d("","Json: "+json);
-
-            return json;
-        }
-
-        protected void onPostExecute(JSONObject result) {
-
-            try {
-                if (result != null) {
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "Login failed : " + e.getMessage());
             }
-        }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject ob = new JSONObject(String.valueOf(res));
+                            String success = ob.getString("success");
+                            if (success == "1") {
+                                JSONObject o = ob.getJSONObject("id");
+                                String id = o.getString("id");
+                                String name = o.getString("name");
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(DGLConstants.USER_ID, id);
+                                editor.putString(DGLConstants.USER_NAME, name);
+                                editor.apply();
+                                Log.e("Sign up : ", "id id" + id + name);
+                                Intent i = new Intent(ActivitySignup.this, MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                Toast.makeText(ActivitySignup.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                            dialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("ERROR : ", e.getMessage() + " ");
+                        }
+                    }
+                });
+            }
+        });
     }
 }
