@@ -45,7 +45,7 @@ import okhttp3.Response;
  */
 public class BrandFragment extends Fragment {
 
-    private static final String TAG = "BrandFragment";
+    private static final String TAG = BrandFragment.class.getSimpleName();
     private int mPageNo;
     private static View rootView;
 
