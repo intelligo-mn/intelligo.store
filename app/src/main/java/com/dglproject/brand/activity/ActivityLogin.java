@@ -2,9 +2,14 @@ package com.dglproject.brand.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,9 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.json.JSONParser;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 
 import org.apache.http.NameValuePair;
@@ -22,9 +29,20 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -32,7 +50,7 @@ import java.util.ArrayList;
  */
 public class ActivityLogin extends AppCompatActivity {
 
-    private static final String TAG = "Login";
+    private static final String TAG = ActivityLogin.class.getSimpleName();
 
     private static final int REQUEST_SIGNUP = 0;
 
@@ -44,7 +62,9 @@ public class ActivityLogin extends AppCompatActivity {
     TextView signUpLink;
     CheckBox rememberDetail;
 
-    JSONParser jsonParser=new JSONParser();
+    private SharedPreferences   sharedPreferences;
+    private MaterialDialog dialog;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +72,8 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         prefManager = new PrefManager(this);
+        mHandler = new Handler(Looper.getMainLooper());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if(prefManager.isLoggedIn()){
             Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
@@ -89,9 +111,7 @@ public class ActivityLogin extends AppCompatActivity {
         String username = nameText.getText().toString();
         String password = passwordText.getText().toString();
 
-        LoginUser userAttempt = new LoginUser();
-        userAttempt.execute(String.valueOf(Config.generateAccessKey()),"signin", username,password);
-
+        loginUser(username, password);
     }
 
     @Override
@@ -142,65 +162,130 @@ public class ActivityLogin extends AppCompatActivity {
         return valid;
     }
 
-    private class LoginUser extends AsyncTask<String, String, JSONObject> {
+//    private class LoginUser extends AsyncTask<String, String, JSONObject> {
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected JSONObject doInBackground(String... args) {
+//
+//            String password = args[3];
+//            String name= args[2];
+//            String state = args[1];
+//            String accesskey = args[0];
+//
+//            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//
+//            params.add(new BasicNameValuePair("accesskey", accesskey));
+//            params.add(new BasicNameValuePair("state", state));
+//            params.add(new BasicNameValuePair("username", name));
+//            params.add(new BasicNameValuePair("password", password));
+//
+//            JSONObject json = jsonParser.makeHttpRequest(Config.UserService, "POST", params);
+//
+//            return json;
+//
+//        }
+//
+//        protected void onPostExecute(JSONObject result) {
+//
+//            try {
+//                if (result != null) {
+//                    if(result.getString("success") != "0"){
+//                        prefManager.setUser(Integer.parseInt(result.getString("id")), result.getString("username"), result.getString("email"));
+//                        final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
+//                                R.style.AppTheme_Dark_Dialog);
+//                        progressDialog.setIndeterminate(true);
+//                        progressDialog.setMessage(getString(R.string.loading));
+//                        progressDialog.show();
+//                        new android.os.Handler().postDelayed(
+//                                new Runnable() {
+//                                    public void run() {
+//                                        prefManager.setLogin(true);
+//                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                        startActivity(i);
+//                                        progressDialog.dismiss();
+//                                    }
+//                                }, 2000);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
+    private void loginUser(final String username, String password) {
+        dialog = new MaterialDialog.Builder(ActivityLogin.this)
+                .title(R.string.app_name)
+                .content(R.string.loading)
+                .progress(true, 0)
+                .show();
 
-        @Override
-        protected JSONObject doInBackground(String... args) {
+        RequestBody formBody = new FormBody.Builder()
+                .add("state", "signin")
+                .add("username", username)
+                .add("password", password)
+                .build();
 
-            String password = args[3];
-            String name= args[2];
-            String state = args[1];
-            String accesskey = args[0];
+        String uri = DGLConstants.UserService;
+        Log.e("Exection: ", uri + " ");
 
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        OkHttpClient client = new OkHttpClient();
 
-            params.add(new BasicNameValuePair("accesskey", accesskey));
-            params.add(new BasicNameValuePair("state", state));
-            params.add(new BasicNameValuePair("username", name));
-            params.add(new BasicNameValuePair("password", password));
+        Request request = new Request.Builder()
+                .url(uri)
+                .post(formBody)
+                .build();
 
-            JSONObject json = jsonParser.makeHttpRequest(Config.UserService, "POST", params);
-
-            return json;
-
-        }
-
-        protected void onPostExecute(JSONObject result) {
-
-            try {
-                if (result != null) {
-                    if(result.getString("success") != "0"){
-                        prefManager.setUser(Integer.parseInt(result.getString("id")), result.getString("username"), result.getString("email"));
-                        final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-                                R.style.AppTheme_Dark_Dialog);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setMessage(getString(R.string.loading));
-                        progressDialog.show();
-                        new android.os.Handler().postDelayed(
-                                new Runnable() {
-                                    public void run() {
-                                        prefManager.setLogin(true);
-                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(i);
-                                        progressDialog.dismiss();
-                                    }
-                                }, 2000);
-                    } else {
-                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "Login failed : " + e.getMessage());
             }
-        }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject ob = new JSONObject(String.valueOf(res));
+                            String success = ob.getString("success");
+                            if (success == "1") {
+                                JSONObject o = ob.getJSONObject("id");
+                                String id = o.getString("id");
+                                String name = o.getString("name");
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(DGLConstants.USER_ID, id);
+                                editor.putString(DGLConstants.USER_NAME, name);
+                                editor.apply();
+                                Log.e("LOGIN : ", "id id" + id + name);
+                                Intent i = new Intent(ActivityLogin.this, MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                Toast.makeText(ActivityLogin.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                            dialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("ERROR : ", e.getMessage() + " ");
+                        }
+                    }
+                });
+            }
+        });
     }
 }

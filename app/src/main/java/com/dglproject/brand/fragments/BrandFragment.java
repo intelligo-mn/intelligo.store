@@ -137,6 +137,7 @@ public class BrandFragment extends Fragment {
         Request request = new Request.Builder()
                 .url(uri)
                 .build();
+
         Log.e(TAG,"Request: "+request.toString());
         client.newCall(request).enqueue(new Callback() {
 
@@ -155,16 +156,14 @@ public class BrandFragment extends Fragment {
                         for (int i = 0; i < brandItems.length(); i++) {
 
                             TextSliderView textSliderView = new TextSliderView(getContext());
-                            // initialize a SliderLayout
                             textSliderView
                                     .description(brandItems.getJSONObject(i).getString("name"))
-                                    .image(Config.AdminPageURL + "/uploads/product_brand_icons/" +
+                                    .image(DGLConstants.WebURL + "/uploads/product_brand_icons/" +
                                             brandItems.getJSONObject(i).getString("folder") + "/" +
                                             brandItems.getJSONObject(i).getString("icon_image"))
                                     .setScaleType(BaseSliderView.ScaleType.Fit);
 //                          .setOnSliderClickListener(this);
 
-                            //add your extra information
                             textSliderView.bundle(new Bundle());
                             textSliderView.getBundle()
                                     .putString("extra",brandItems.getJSONObject(i).getString("name"));

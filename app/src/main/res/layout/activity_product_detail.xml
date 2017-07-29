@@ -172,8 +172,7 @@
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|end"
             android:clickable="true"
-
-            android:src="@drawable/dgl_share_w"
+            app:srcCompat="@drawable/dgl_share_w"
             app:borderWidth="0dp"
             app:fabSize="normal"
             />
@@ -197,16 +196,15 @@
                 android:id="@+id/send_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dgl_cart_w"
+                app:srcCompat="@drawable/dgl_cart_w"
                 fab:fab_size="normal"
-                fab:fab_label="@string/card_my"
-                app:fab_label="@string/card_my" />
+                fab:fab_label="@string/card_my"/>
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/send_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/dgl_mail_w"
+                app:srcCompat="@drawable/dgl_mail_w"
                 fab:fab_size="normal"
                 fab:fab_label="@string/send_mail" />
 

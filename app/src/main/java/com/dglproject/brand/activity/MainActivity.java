@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.dgl_menu};
 
     PrefManager prefManager;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
