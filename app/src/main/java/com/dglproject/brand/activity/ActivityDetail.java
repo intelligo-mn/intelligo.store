@@ -32,22 +32,6 @@ import com.dglproject.brand.models.CartProducts;
 import com.dglproject.brand.utilities.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 /**
  * Author: Tortuvshin Byambaa.
@@ -273,7 +257,6 @@ public class ActivityDetail extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            parseJSONData();
             return null;
         }
 
@@ -311,46 +294,6 @@ public class ActivityDetail extends AppCompatActivity {
             } else {
                 txtAlert.setVisibility(View.VISIBLE);
             }
-        }
-    }
-
-    public void parseJSONData(){
-
-        try {
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ProductService);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-
-            String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
-                str += line;
-            }
-
-            JSONObject json = new JSONObject("{dp="+str+"}");
-            JSONArray data = json.getJSONArray("dp"); // this is the "items: [ ] part
-
-            for (int i = 0; i < data.length(); i++) {
-                Product_image = data.getJSONObject(i).getString("folder");
-                Product_name = data.getJSONObject(i).getString("name");
-                Product_price = data.getJSONObject(i).getDouble("price");
-                Product_description = data.getJSONObject(i).getString("description");
-                Product_quantity = data.getJSONObject(i).getInt("currency");
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 

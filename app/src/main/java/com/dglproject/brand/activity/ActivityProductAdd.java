@@ -22,21 +22,10 @@ import android.widget.Toast;
 
 import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.json.JSONParser;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 /**
  * Author: Tortuvshin Byambaa.
  * Project: DglBrand
@@ -45,8 +34,6 @@ import java.util.ArrayList;
 public class ActivityProductAdd extends AppCompatActivity {
 
     String URL= Config.ProductService;
-
-    JSONParser jsonParser=new JSONParser();
 
     EditText name, model, description, price, currency;
     Button add;
@@ -77,8 +64,8 @@ public class ActivityProductAdd extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateProduct createProduct = new CreateProduct();
-                createProduct.execute(String.valueOf(Config.generateAccessKey()), "c", name.getText().toString(), model.getText().toString(), description.getText().toString(), price.getText().toString(), currency.getText().toString());
+//                CreateProduct createProduct = new CreateProduct();
+//                createProduct.execute(String.valueOf(Config.generateAccessKey()), "c", name.getText().toString(), model.getText().toString(), description.getText().toString(), price.getText().toString(), currency.getText().toString());
             }
         });
 //        btpic = (Button) findViewById(R.id.cpic);
@@ -145,87 +132,87 @@ public class ActivityProductAdd extends AppCompatActivity {
         }
     }
 
-    public class uploadToServer extends AsyncTask<Void, Void, String> {
-
-        private ProgressDialog pd = new ProgressDialog(ActivityProductAdd.this);
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pd.setMessage(getString(R.string.waiting_upload));
-            pd.show();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            nameValuePairs.add(new BasicNameValuePair("base64", ba1));
-            nameValuePairs.add(new BasicNameValuePair("image", System.currentTimeMillis() + ".jpg"));
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(URL);
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse response = httpclient.execute(httppost);
-                String st = EntityUtils.toString(response.getEntity());
-                Log.v("log_tag", "In the try Loop" + st);
-
-            } catch (Exception e) {
-                Log.v("log_tag", "Error in http connection " + e.toString());
-            }
-            return "Success";
-
-        }
-
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            pd.hide();
-            pd.dismiss();
-        }
-    }
-
-    private class CreateProduct extends AsyncTask<String, String, JSONObject> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected JSONObject doInBackground(String... args) {
-
-            String currency = args[6];
-            String price = args[5];
-            String desc = args[4];
-            String model = args[3];
-            String name = args[2];
-            String state = args[1];
-            String accesskey = args[0];
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("accesskey", accesskey));
-            params.add(new BasicNameValuePair("state", state));
-            params.add(new BasicNameValuePair("name", name));
-            params.add(new BasicNameValuePair("model", model));
-            params.add(new BasicNameValuePair("description", desc));
-            params.add(new BasicNameValuePair("price", price));
-            params.add(new BasicNameValuePair("currency", currency));
-
-            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
-            return json;
-
-        }
-
-        protected void onPostExecute(JSONObject result) {
-
-            try {
-                if (result != null) {
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public class uploadToServer extends AsyncTask<Void, Void, String> {
+//
+//        private ProgressDialog pd = new ProgressDialog(ActivityProductAdd.this);
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            pd.setMessage(getString(R.string.waiting_upload));
+//            pd.show();
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params) {
+//
+//            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//            nameValuePairs.add(new BasicNameValuePair("base64", ba1));
+//            nameValuePairs.add(new BasicNameValuePair("image", System.currentTimeMillis() + ".jpg"));
+//            try {
+//                HttpClient httpclient = new DefaultHttpClient();
+//                HttpPost httppost = new HttpPost(URL);
+//                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//                HttpResponse response = httpclient.execute(httppost);
+//                String st = EntityUtils.toString(response.getEntity());
+//                Log.v("log_tag", "In the try Loop" + st);
+//
+//            } catch (Exception e) {
+//                Log.v("log_tag", "Error in http connection " + e.toString());
+//            }
+//            return "Success";
+//
+//        }
+//
+//        protected void onPostExecute(String result) {
+//            super.onPostExecute(result);
+//            pd.hide();
+//            pd.dismiss();
+//        }
+//    }
+//
+//    private class CreateProduct extends AsyncTask<String, String, JSONObject> {
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected JSONObject doInBackground(String... args) {
+//
+//            String currency = args[6];
+//            String price = args[5];
+//            String desc = args[4];
+//            String model = args[3];
+//            String name = args[2];
+//            String state = args[1];
+//            String accesskey = args[0];
+//
+//            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("accesskey", accesskey));
+//            params.add(new BasicNameValuePair("state", state));
+//            params.add(new BasicNameValuePair("name", name));
+//            params.add(new BasicNameValuePair("model", model));
+//            params.add(new BasicNameValuePair("description", desc));
+//            params.add(new BasicNameValuePair("price", price));
+//            params.add(new BasicNameValuePair("currency", currency));
+//
+//            JSONObject json = jsonParser.makeHttpRequest(URL, "GET", params);
+//            return json;
+//
+//        }
+//
+//        protected void onPostExecute(JSONObject result) {
+//
+//            try {
+//                if (result != null) {
+//                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -2,8 +2,6 @@ package com.dglproject.brand.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.opengl.Visibility;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -12,39 +10,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.adapters.BrandProductAdapter;
 import com.dglproject.brand.adapters.ProductAdapter;
 import com.dglproject.brand.utilities.DGLConstants;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URLEncoder;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -77,8 +58,6 @@ public class ActivityBrandProduct extends AppCompatActivity {
     private String brandName;
     private String Keyword;
     private Handler mHandler;
-
-    DecimalFormat formatData = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
