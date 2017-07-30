@@ -1,5 +1,5 @@
 <?php    
-header('Content-Type: text/plain; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
  
 include_once 'config/db-connect.php';
 $db;
