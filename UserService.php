@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("UTC");
-  header('Content-Type: text/plain; charset=utf-8');
+  header('Content-Type: application/json; charset=utf-8');
     require_once 'app/UserController.php';
     require_once 'config/security.php';
     // if(!isset($_POST['accesskey'])) 
