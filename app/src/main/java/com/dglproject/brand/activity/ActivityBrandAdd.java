@@ -16,6 +16,7 @@ import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,7 +39,7 @@ public class ActivityBrandAdd extends AppCompatActivity {
 
     private static final String TAG = BrandFragment.class.getSimpleName();
 
-    EditText name, description, image;
+    EditText name, description, phone, email, image;
     private Handler mHandler;
     PrefManager prefManager;
 
@@ -51,6 +52,8 @@ public class ActivityBrandAdd extends AppCompatActivity {
 
         name = (EditText)findViewById(R.id.bName);
         description = (EditText)findViewById(R.id.bDescription);
+        phone = (EditText)findViewById(R.id.bPhone);
+        email = (EditText)findViewById(R.id.bEmail);
         Button add = (Button)findViewById(R.id.btnBrandAdd);
 
         prefManager = new PrefManager(this);
@@ -59,18 +62,31 @@ public class ActivityBrandAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
-                create(name.getText().toString(), description.getText().toString(),String.valueOf(prefManager.getUserId()));
+                create(name.getText().toString(),
+                        description.getText().toString(),
+                        String.valueOf(prefManager.getUserId()),
+                        "",
+                        "",
+                        phone.getText().toString(),
+                        email.getText().toString(),
+                        ""
+                );
             }
         });
     }
 
-    private void create (String name, String desc, String userId) {
+    private void create (String name, String desc, String userId, String catId, String lang, String mobile, String email, String address) {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("state", "c")
                 .add("name", name)
                 .add("description", desc)
                 .add("ui", userId)
+                .add("categoryId", catId)
+                .add("language", lang)
+                .add("mobile", mobile)
+                .add("email", email)
+                .add("address", address)
                 .build();
 
         String uri = DGLConstants.BrandService;
@@ -96,14 +112,20 @@ public class ActivityBrandAdd extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            JSONObject ob = new JSONObject(String.valueOf(res));
-                            String success = ob.getString("success");
+                            JSONArray ob = new JSONArray(String.valueOf(res));
+                            Log.e(TAG, ob.toString());
+                            String success = "";
+                            for (int i = 0; i < ob.length(); i++) {
+                                success = ob.getJSONObject(i).getString("success");
+                            }
+
                             if (success == "1") {
                                 finish();
                             } else {
                                 Toast.makeText(ActivityBrandAdd.this, getString(R.string.error), Toast.LENGTH_LONG)
                                         .show();
                             }
+                            
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("ERROR : ", e.getMessage() + " ");
