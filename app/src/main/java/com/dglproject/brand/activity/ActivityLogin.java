@@ -263,14 +263,8 @@ public class ActivityLogin extends AppCompatActivity {
                             JSONObject ob = new JSONObject(String.valueOf(res));
                             String success = ob.getString("success");
                             if (success == "1") {
-                                JSONObject o = ob.getJSONObject("id");
-                                String id = o.getString("id");
-                                String name = o.getString("name");
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(DGLConstants.USER_ID, id);
-                                editor.putString(DGLConstants.USER_NAME, name);
-                                editor.apply();
-                                Log.e("LOGIN : ", "id id" + id + name);
+                                prefManager.setUser(ob.getString("id"),ob.getString("username"), ob.getString("email"));
+                                Toast.makeText(getApplicationContext(), ob.getString("id")+ob.getString("username")+ob.getString("email"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(ActivityLogin.this, MainActivity.class);
                                 startActivity(i);
                                 finish();

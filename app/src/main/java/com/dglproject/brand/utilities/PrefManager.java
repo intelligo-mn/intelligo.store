@@ -35,8 +35,8 @@ public class PrefManager {
 
     }
 
-    public void setUser(int id, String username, String email) {
-        editor.putInt(KEY_IS_LOGGED_IN_USER_ID, id);
+    public void setUser(String id, String username, String email) {
+        editor.putString(KEY_IS_LOGGED_IN_USER_ID, id);
         editor.putString(KEY_IS_LOGGED_IN_USERNAME, username);
         editor.putString(KEY_IS_LOGGED_IN_EMAIL, email);
         editor.commit();
