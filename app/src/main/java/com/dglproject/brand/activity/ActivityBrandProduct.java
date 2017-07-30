@@ -48,8 +48,10 @@ import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -290,11 +292,15 @@ public class ActivityBrandProduct extends AppCompatActivity {
 
     public void getBrandProduct (){
         prgLoading.setVisibility(View.VISIBLE);
-        String uri = DGLConstants.ProductService+"?state=r&brand_id="+brandId;
-
+        String uri = DGLConstants.ProductService;
+        RequestBody formBody = new FormBody.Builder()
+                .add("state", "r")
+                .add("brand_id", brandId)
+                .build();
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(uri)
+                .post(formBody)
                 .build();
 
         Log.e(TAG, request.toString());

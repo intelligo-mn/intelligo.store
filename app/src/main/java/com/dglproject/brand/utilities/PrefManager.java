@@ -42,7 +42,7 @@ public class PrefManager {
         editor.commit();
     }
 
-    public int getUserId () { return pref.getInt(KEY_IS_LOGGED_IN_USER_ID, 0);}
+    public String getUserId () { return pref.getString(KEY_IS_LOGGED_IN_USER_ID, "");}
 
     public String getUserName () {
         return pref.getString(KEY_IS_LOGGED_IN_USERNAME, "");

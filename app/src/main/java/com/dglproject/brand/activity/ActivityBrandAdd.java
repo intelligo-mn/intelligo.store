@@ -107,7 +107,6 @@ public class ActivityBrandAdd extends AppCompatActivity {
                             JSONObject ob = new JSONObject(String.valueOf(res));
                             String success = ob.getString("success");
                             if (success == "1") {
-
                                 finish();
                             } else {
                                 Toast.makeText(ActivityBrandAdd.this, getString(R.string.error), Toast.LENGTH_LONG)

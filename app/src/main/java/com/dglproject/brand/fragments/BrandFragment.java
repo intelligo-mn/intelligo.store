@@ -34,8 +34,10 @@ import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -131,11 +133,16 @@ public class BrandFragment extends Fragment {
 
     public void getBrandList () {
         bLoading.setVisibility(View.VISIBLE);
-        String uri = DGLConstants.BrandService+"?state=r";
+        String uri = DGLConstants.BrandService;
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("state", "r")
+                .build();
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(uri)
+                .post(formBody)
                 .build();
 
         Log.e(TAG,"Request: "+request.toString());

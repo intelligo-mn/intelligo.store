@@ -264,6 +264,7 @@ public class ActivityLogin extends AppCompatActivity {
                             String success = ob.getString("success");
                             if (success == "1") {
                                 prefManager.setUser(ob.getString("id"),ob.getString("username"), ob.getString("email"));
+                                prefManager.setLogin(true);
                                 Toast.makeText(getApplicationContext(), ob.getString("id")+ob.getString("username")+ob.getString("email"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(ActivityLogin.this, MainActivity.class);
                                 startActivity(i);

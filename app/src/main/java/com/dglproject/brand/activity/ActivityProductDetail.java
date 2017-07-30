@@ -50,6 +50,7 @@ import java.text.DecimalFormat;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -264,13 +265,19 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         Intent iGet = getIntent();
 
-        String uri = DGLConstants.ProductService+"?state=r&product_id="+ iGet.getStringExtra("product_id");
+        String uri = DGLConstants.ProductService;
+
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("state", "r")
+                .add("product_id", iGet.getStringExtra("product_id"))
+                .build();
 
         Log.e("Дуудсан холбоос: ", uri);
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(uri)
-                .addHeader("Content-Type","text/json;charset=utf-8")
+                .post(formBody)
                 .build();
 
         Log.e("Request: ", request.toString());
