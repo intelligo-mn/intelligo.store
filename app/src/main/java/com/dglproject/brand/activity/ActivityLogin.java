@@ -159,68 +159,6 @@ public class ActivityLogin extends AppCompatActivity {
         return valid;
     }
 
-//    private class LoginUser extends AsyncTask<String, String, JSONObject> {
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected JSONObject doInBackground(String... args) {
-//
-//            String password = args[3];
-//            String name= args[2];
-//            String state = args[1];
-//            String accesskey = args[0];
-//
-//            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            params.add(new BasicNameValuePair("accesskey", accesskey));
-//            params.add(new BasicNameValuePair("state", state));
-//            params.add(new BasicNameValuePair("username", name));
-//            params.add(new BasicNameValuePair("password", password));
-//
-//            JSONObject json = jsonParser.makeHttpRequest(Config.UserService, "POST", params);
-//
-//            return json;
-//
-//        }
-//
-//        protected void onPostExecute(JSONObject result) {
-//
-//            try {
-//                if (result != null) {
-//                    if(result.getString("success") != "0"){
-//                        prefManager.setUser(Integer.parseInt(result.getString("id")), result.getString("username"), result.getString("email"));
-//                        final ProgressDialog progressDialog = new ProgressDialog(ActivityLogin.this,
-//                                R.style.AppTheme_Dark_Dialog);
-//                        progressDialog.setIndeterminate(true);
-//                        progressDialog.setMessage(getString(R.string.loading));
-//                        progressDialog.show();
-//                        new android.os.Handler().postDelayed(
-//                                new Runnable() {
-//                                    public void run() {
-//                                        prefManager.setLogin(true);
-//                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                        startActivity(i);
-//                                        progressDialog.dismiss();
-//                                    }
-//                                }, 2000);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-//                    }
-//                } else {
-//                    Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     private void loginUser(final String username, String password) {
         dialog = new MaterialDialog.Builder(ActivityLogin.this)
                 .title(R.string.app_name)

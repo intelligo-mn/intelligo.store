@@ -22,11 +22,8 @@ import com.dglproject.brand.utilities.DGLConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -48,12 +45,6 @@ public class ActivityBrandProduct extends AppCompatActivity {
     private EditText edtKeyword;
     private ImageButton btnSearch;
     private TextView txtAlert;
-
-    private JSONObject jsonObject;
-    private JSONArray jsonArrayProducts;
-
-    private String ProductService;
-    private int IOConnect = 0;
     private String brandId;
     private String brandName;
     private String Keyword;
@@ -175,10 +166,8 @@ public class ActivityBrandProduct extends AppCompatActivity {
                 return true;
 
             case R.id.refresh:
-                IOConnect = 0;
                 listMenu.invalidateViews();
-//                clearData();
-//                new getDataTask().execute();
+                getBrandProduct();
                 return true;
 
             case android.R.id.home:
@@ -189,85 +178,6 @@ public class ActivityBrandProduct extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    void clearData(){
-//        Product_ID.clear();
-//        Product_name.clear();
-//        Product_price.clear();
-//        Product_image.clear();
-//    }
-
-//    public class getDataTask extends AsyncTask<Void, Void, Void>{
-//
-//        getDataTask(){
-//            if(!prgLoading.isShown()){
-//                prgLoading.setVisibility(0);
-//                txtAlert.setVisibility(8);
-//            }
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... arg0) {
-//            parseJSONData();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            prgLoading.setVisibility(8);
-//
-//            if(Product_ID.size() > 0){
-//                listMenu.setVisibility(0);
-//                listMenu.setAdapter(brandProductAdapter);
-//            }else{
-//                txtAlert.setVisibility(0);
-//                Toast.makeText(getApplicationContext(), getString(R.string.no_product), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        }
-//    }
-
-//    public void parseJSONData(){
-//
-//        clearData();
-//
-//        try {
-//            HttpClient client = new DefaultHttpClient();
-//            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-//            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-//            HttpUriRequest request = new HttpGet(ProductService);
-//            HttpResponse response = client.execute(request);
-//            InputStream atomInputStream = response.getEntity().getContent();
-//
-//            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
-//
-//            String line;
-//            String str = "";
-//            while ((line = in.readLine()) != null){
-//                str += line;
-//            }
-//
-//            Log.d("","JSON: "+str);
-//            jsonObject = new JSONObject("{product=" + str+"}");
-//            jsonArrayProducts = jsonObject.getJSONArray("product");
-//
-//            for (int i = 0; i < jsonArrayProducts.length(); i++) {
-//
-//                Product_ID.add(jsonArrayProducts.getJSONObject(i).getLong("id"));
-//                Product_name.add(jsonArrayProducts.getJSONObject(i).getString("name"));
-//                Product_price.add(jsonArrayProducts.getJSONObject(i).getDouble("price"));
-//                Product_image.add(jsonArrayProducts.getJSONObject(i).getString("folder"));
-//
-//            }
-//
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void getBrandProduct (){
         prgLoading.setVisibility(View.VISIBLE);
@@ -310,7 +220,6 @@ public class ActivityBrandProduct extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        //brandProductAdapter.imageLoader.clearCache();
         listMenu.setAdapter(null);
         super.onDestroy();
     }
