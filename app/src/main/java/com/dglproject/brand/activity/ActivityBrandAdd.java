@@ -64,8 +64,8 @@ public class ActivityBrandAdd extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
                 create(name.getText().toString(),
                         description.getText().toString(),
-                        String.valueOf(prefManager.getUserId()),
-                        "",
+                        1,
+                        1,
                         "",
                         phone.getText().toString(),
                         email.getText().toString(),
@@ -75,14 +75,14 @@ public class ActivityBrandAdd extends AppCompatActivity {
         });
     }
 
-    private void create (String name, String desc, String userId, String catId, String lang, String mobile, String email, String address) {
+    private void create (String name, String desc, int userId, int catId, String lang, String mobile, String email, String address) {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("state", "c")
                 .add("name", name)
                 .add("description", desc)
-                .add("ui", userId)
-                .add("categoryId", catId)
+                .add("ui", String.valueOf(userId))
+                .add("categoryId", String.valueOf(catId))
                 .add("language", lang)
                 .add("mobile", mobile)
                 .add("email", email)
@@ -99,6 +99,8 @@ public class ActivityBrandAdd extends AppCompatActivity {
                 .post(formBody)
                 .build();
 
+        Log.e(TAG, request.toString());
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -108,6 +110,9 @@ public class ActivityBrandAdd extends AppCompatActivity {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
                 final String res = response.body().string();
+
+                Log.e(TAG, res);
+
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {

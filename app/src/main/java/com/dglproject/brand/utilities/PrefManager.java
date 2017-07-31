@@ -17,11 +17,11 @@ public class PrefManager {
     private static final String PREF_NAME = "DGLBRAND";
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
-
-    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
-    private static final String KEY_IS_LOGGED_IN_USER_ID = "loggedUserId";
-    private static final String KEY_IS_LOGGED_IN_USERNAME = "loggedUsername";
-    private static final String KEY_IS_LOGGED_IN_EMAIL = "loggedEmail";
+    private static final String LOGGED_IN = "isLoggedIn";
+    private static final String LOGGED_IN_USER_ID = "loggedUserId";
+    private static final String LOGGED_IN_USERNAME = "loggedUsername";
+    private static final String LOGGED_IN_EMAIL = "loggedEmail";
+    private static final String LANGUAGE = "language";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -29,40 +29,87 @@ public class PrefManager {
         editor = pref.edit();
     }
 
+    /**
+     * Хэрэглэгч нэвтрэх болон гарах үед ашиглана
+     *
+     * @param isLoggedIn нэвтрэх үед true гарах үед false
+     */
     public void setLogin(boolean isLoggedIn) {
-        editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
-        editor.commit();
-
-    }
-
-    public void setUser(String id, String username, String email) {
-        editor.putString(KEY_IS_LOGGED_IN_USER_ID, id);
-        editor.putString(KEY_IS_LOGGED_IN_USERNAME, username);
-        editor.putString(KEY_IS_LOGGED_IN_EMAIL, email);
+        editor.putBoolean(LOGGED_IN, isLoggedIn);
         editor.commit();
     }
 
-    public String getUserId () { return pref.getString(KEY_IS_LOGGED_IN_USER_ID, "");}
+    /**
+     * амжилттай нэвтэрсэн хэрэглэгчийн мэдээлэл хадгалах
+     *
+     * @param id хэрэглэгчийн id
+     * @param username хэрэглэгчийн нэр
+     * @param email хэрэглэгийн email
+     */
+    public void setUser(int id, String username, String email) {
+        editor.putInt(LOGGED_IN_USER_ID, id);
+        editor.putString(LOGGED_IN_USERNAME, username);
+        editor.putString(LOGGED_IN_EMAIL, email);
+        editor.commit();
+    }
+
+    /**
+     * нэвтэрсэн байгаа хэрэглэгчийн id авах
+     *
+     * @return нэвтэрсэн байгаа хэрэглэгчийн id
+     */
+    public int getUserId () { return pref.getInt(LOGGED_IN_USER_ID, 0);}
 
     public String getUserName () {
-        return pref.getString(KEY_IS_LOGGED_IN_USERNAME, "");
+        return pref.getString(LOGGED_IN_USERNAME, "");
     }
 
     public String getUserEmail () {
-        return pref.getString(KEY_IS_LOGGED_IN_EMAIL, "");
+        return pref.getString(LOGGED_IN_EMAIL, "");
     }
 
+    /**
+     * Application хамгийн анх ачааллахад
+     *
+     * @param isFirstTime анх програм нээхэд true
+     */
     public void setFirstTimeLaunch(boolean isFirstTime) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
         editor.commit();
     }
 
+    /**
+     * Application хамгийн анх ачааллаж байгаа эсэх
+     */
     public boolean isFirstTimeLaunch() {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
+    /**
+     * нэвтэрсэн хэрэглэгч байгаа эсэх
+     *
+     * @return хэрэглэгч нэвтэрсэн эсвэл нэвтрээгүй байна
+     */
     public boolean isLoggedIn(){
-        return pref.getBoolean(KEY_IS_LOGGED_IN, false);
+        return pref.getBoolean(LOGGED_IN, false);
+    }
+
+    /**
+     * Сонгогдсон хэлийг хадгалах
+     *
+     * @param language сонгосон хэлний нэрний товчлол
+     */
+    public void setLanguage(String language) {
+        editor.putString(LANGUAGE, language);
+        editor.commit();
+    }
+    /**
+     * Ямар хэл тохируулсан байгааг авах
+     *
+     * @return сонгосон хэлний нэрний товчлол
+     */
+    public String getLanguage () {
+        return pref.getString(LANGUAGE, "");
     }
 
 }

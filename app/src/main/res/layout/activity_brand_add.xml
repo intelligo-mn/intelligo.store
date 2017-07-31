@@ -45,7 +45,7 @@
             <EditText android:id="@+id/bEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textCapWords"
                 android:hint="@string/email" />
         </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +57,7 @@
             <EditText android:id="@+id/bPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="textCapWords"
                 android:hint="@string/phone" />
         </android.support.design.widget.TextInputLayout>
 

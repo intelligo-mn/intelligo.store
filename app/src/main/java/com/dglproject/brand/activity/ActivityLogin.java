@@ -198,9 +198,11 @@ public class ActivityLogin extends AppCompatActivity {
                             JSONObject ob = new JSONObject(String.valueOf(res));
                             String success = ob.getString("success");
                             if (success == "1") {
-                                prefManager.setUser(ob.getString("id"),ob.getString("username"), ob.getString("email"));
+                                prefManager.setUser(ob.getInt("id"),
+                                        ob.getString("username"),
+                                        ob.getString("email"));
                                 prefManager.setLogin(true);
-                                Toast.makeText(getApplicationContext(), ob.getString("id")+ob.getString("username")+ob.getString("email"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), ob.getInt("id")+ob.getString("username")+ob.getString("email"), Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(ActivityLogin.this, MainActivity.class);
                                 startActivity(i);
                                 finish();

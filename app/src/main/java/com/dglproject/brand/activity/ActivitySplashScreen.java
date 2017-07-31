@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.dglproject.brand.R;
+import com.dglproject.brand.utilities.PrefManager;
 
 import java.util.Locale;
 
@@ -18,11 +19,13 @@ import java.util.Locale;
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivitySplashScreen extends AppCompatActivity implements View.OnClickListener{
-
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        prefManager = new PrefManager(this);
 
         ImageButton en = (ImageButton)findViewById(R.id.langEn);
         ImageButton mn = (ImageButton)findViewById(R.id.langMn);
@@ -53,15 +56,19 @@ public class ActivitySplashScreen extends AppCompatActivity implements View.OnCl
         switch (view.getId()) {
             case R.id.langEn:
                 changeLanguage("en");
+                prefManager.setLanguage("EN");
                 break;
             case R.id.langMn:
                 changeLanguage("mn");
+                prefManager.setLanguage("MN");
                 break;
             case R.id.langCn:
                 changeLanguage("cn");
+                prefManager.setLanguage("CN");
                 break;
             case R.id.langRu:
                 changeLanguage("ru");
+                prefManager.setLanguage("RU");
                 break;
         }
     }
