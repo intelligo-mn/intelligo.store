@@ -22,6 +22,7 @@ public class PrefManager {
     private static final String LOGGED_IN_USERNAME = "loggedUsername";
     private static final String LOGGED_IN_EMAIL = "loggedEmail";
     private static final String LANGUAGE = "language";
+    private static final String BRAND_ID = "brandId";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -110,6 +111,24 @@ public class PrefManager {
      */
     public String getLanguage () {
         return pref.getString(LANGUAGE, "");
+    }
+
+    /**
+     * Брэндийн мэдээлэл хадгалах
+     *
+     * @param brandId
+     */
+    public void setBrand(int brandId) {
+        editor.putInt(BRAND_ID, brandId);
+        editor.commit();
+    }
+    /**
+     * Брэндийн id авах
+     *
+     * @return brand id
+     */
+    public int getBrandId () {
+        return pref.getInt(BRAND_ID, 0);
     }
 
 }

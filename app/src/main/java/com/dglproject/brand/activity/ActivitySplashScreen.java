@@ -38,14 +38,18 @@ public class ActivitySplashScreen extends AppCompatActivity implements View.OnCl
         ru.setOnClickListener(this);
     }
 
-    // Хэл сонгох
+    /**
+     * Нөөц дэх хэлний файлууд уншиж текстүүд орчуулах
+     *
+     * @param lang res/values/strings xml файлаас ямар хэл сонгохыг заана
+     */
     private void changeLanguage(String lang) {
         Resources res = getApplicationContext().getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         android.content.res.Configuration conf = res.getConfiguration();
         conf.locale = new Locale(lang);
         res.updateConfiguration(conf, dm);
-
+        prefManager.setLanguage(lang.toUpperCase());
         Intent intent = new Intent(ActivitySplashScreen.this, ActivityWelcome.class);
         startActivity(intent);
         finish();
@@ -53,22 +57,19 @@ public class ActivitySplashScreen extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.langEn:
                 changeLanguage("en");
-                prefManager.setLanguage("EN");
                 break;
             case R.id.langMn:
                 changeLanguage("mn");
-                prefManager.setLanguage("MN");
                 break;
             case R.id.langCn:
                 changeLanguage("cn");
-                prefManager.setLanguage("CN");
                 break;
             case R.id.langRu:
                 changeLanguage("ru");
-                prefManager.setLanguage("RU");
                 break;
         }
     }

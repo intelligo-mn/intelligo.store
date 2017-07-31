@@ -64,9 +64,9 @@ public class ActivityBrandAdd extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
                 create(name.getText().toString(),
                         description.getText().toString(),
+                        prefManager.getUserId(),
                         1,
-                        1,
-                        "",
+                        prefManager.getLanguage(),
                         phone.getText().toString(),
                         email.getText().toString(),
                         ""
