@@ -125,6 +125,8 @@ public class ActivityBrandAdd extends AppCompatActivity {
                             }
 
                             if (success == "1") {
+                                Toast.makeText(ActivityBrandAdd.this, getString(R.string.success), Toast.LENGTH_LONG)
+                                        .show();
                                 finish();
                             } else {
                                 Toast.makeText(ActivityBrandAdd.this, getString(R.string.error), Toast.LENGTH_LONG)
@@ -132,6 +134,8 @@ public class ActivityBrandAdd extends AppCompatActivity {
                             }
                             
                         } catch (JSONException e) {
+                            Toast.makeText(ActivityBrandAdd.this, getString(R.string.error)+e.getMessage(), Toast.LENGTH_LONG)
+                                    .show();
                             e.printStackTrace();
                             Log.e("ERROR : ", e.getMessage() + " ");
                         }

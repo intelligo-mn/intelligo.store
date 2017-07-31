@@ -64,23 +64,21 @@ public class ActivityProductAdd extends AppCompatActivity {
 
         mHandler = new Handler(Looper.getMainLooper());
 
-        double doublePrice = Double.parseDouble(String.valueOf(price.getText()));
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 create(name.getText().toString(),
                         model.getText().toString(),
                         description.getText().toString(),
-                        doublePrice,
+                        price.getText().toString(),
                         currency.getText().toString(),
                         prefManager.getUserId(),
-                        prefManager.getBrandId());
+                        40);
             }
         });
     }
 
-    private void create (String name, String model, String desc, double price, String currency, int userId, int brandId) {
+    private void create (String name, String model, String desc, String price, String currency, int userId, int brandId) {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("state", "c")
@@ -94,7 +92,6 @@ public class ActivityProductAdd extends AppCompatActivity {
                 .build();
 
         String uri = DGLConstants.ProductService;
-        Log.e("Exection: ", uri + " ");
 
         OkHttpClient client = new OkHttpClient();
 
@@ -108,7 +105,7 @@ public class ActivityProductAdd extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "Login failed : " + e.getMessage());
+                Log.e(TAG, e.getMessage());
             }
 
             @Override
