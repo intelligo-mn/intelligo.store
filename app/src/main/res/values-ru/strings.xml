@@ -127,6 +127,7 @@
     <string name="yes">Да</string>
     <string name="success">Был успешно</string>
     <string name="error">Была ошибка</string>
+    <string name="image_select">Выбрано изображения. Пожалуйста, выберите новый образ?</string>
 
 
 </resources>

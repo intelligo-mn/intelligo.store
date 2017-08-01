@@ -126,6 +126,7 @@
     <string name="yes">是的</string>
     <string name="success">已成功</string>
     <string name="error">时出错</string>
+    <string name="image_select">的图像被选择。请选择一个新的形象？</string>
 
 
 </resources>

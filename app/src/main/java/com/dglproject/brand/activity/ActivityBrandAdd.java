@@ -1,7 +1,13 @@
 package com.dglproject.brand.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,19 +25,24 @@ import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.models.Category;
 import com.dglproject.brand.utilities.DGLConstants;
+import com.dglproject.brand.utilities.DialogUtils;
 import com.dglproject.brand.utilities.PrefManager;
+import com.dglproject.brand.interfaces.UploadCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -54,6 +66,9 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
     private ArrayAdapter<Category> subCatAdapter;
     JSONObject category;
     JSONArray catItems;
+    Bitmap bitmap;
+    ImageView uploadedImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,14 +85,41 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         subCatSpinner = (Spinner) findViewById(R.id.subCatSpinner);
         catSpinner.setOnItemSelectedListener(this);
         subCatSpinner.setOnItemSelectedListener(this);
+        uploadedImage = (ImageView) findViewById(R.id.brand_add_photo);
 
         prefManager = new PrefManager(this);
         mHandler = new Handler(Looper.getMainLooper());
         getCategory();
+
+        uploadedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bitmap != null) {
+                    new AlertDialog.Builder(ActivityBrandAdd.this)
+                            .setMessage(getString(R.string.image_select))
+                            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    chooseFile();
+                                }
+                            }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(ActivityBrandAdd.this, "Cool, next time then...", Toast.LENGTH_SHORT).show();
+                        }
+                    }).create().show();
+                } else {
+                    chooseFile();
+                }
+
+            }
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
+                DialogUtils.getInstance().startProgress(ActivityBrandAdd.this, getString(R.string.loading));
                 create(name.getText().toString(),
                         description.getText().toString(),
                         prefManager.getUserId(),
@@ -85,30 +127,62 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                         prefManager.getLanguage(),
                         phone.getText().toString(),
                         email.getText().toString(),
-                        ""
+                        "",
+                        bitmap, new UploadCallback() {
+                            @Override
+                            public void OnUploadComplete(final String response, final Exception e) {
+                                if (e == null) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(ActivityBrandAdd.this, response, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            e.printStackTrace();
+                                            Toast.makeText(ActivityBrandAdd.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                }
+                                DialogUtils.getInstance().stopProgress();
+                            }
+                        }
                 );
             }
         });
     }
 
-    private void create (String name, String desc, int userId, String catId, String lang, String mobile, String email, String address) {
+    public void create (String name, String desc, int userId, String catId, String lang, String mobile, String email, String address, Bitmap bitmap, final UploadCallback callback) {
 
-        RequestBody formBody = new FormBody.Builder()
-                .add("state", "c")
-                .add("name", name)
-                .add("description", desc)
-                .add("ui", String.valueOf(userId))
-                .add("categoryId", catId)
-                .add("language", lang)
-                .add("mobile", mobile)
-                .add("email", email)
-                .add("address", address)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, baos);
+        byte[] imageBytes = baos.toByteArray();
+
+        String randomChunk = UUID.randomUUID().toString().substring(0, 8).replaceAll("-", "");
+        String imageName = randomChunk.concat(".jpg");
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("state", "c")
+                .addFormDataPart("name", name)
+                .addFormDataPart("description", desc)
+                .addFormDataPart("ui", String.valueOf(userId))
+                .addFormDataPart("categoryId", catId)
+                .addFormDataPart("language", lang)
+                .addFormDataPart("mobile", mobile)
+                .addFormDataPart("email", email)
+                .addFormDataPart("address", address)
+                .addFormDataPart("file", imageName, RequestBody.create(MediaType.parse("image/*"), imageBytes))
                 .build();
 
         String uri = DGLConstants.BrandService;
         Log.e("Exection: ", uri + " ");
-
-        OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
                 .url(uri)
@@ -121,6 +195,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "Login failed : " + e.getMessage());
+                callback.OnUploadComplete(null, e);
             }
 
             @Override
@@ -128,7 +203,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                 final String res = response.body().string();
 
                 Log.e(TAG, res);
-
+                callback.OnUploadComplete(response.body().string(), null);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -240,6 +315,27 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void chooseFile() {
+        Intent mIntent = new Intent();
+        mIntent.setType("image/*");
+        mIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(mIntent, "Choose an image..."), 2123);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2123 & data != null && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                uploadedImage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

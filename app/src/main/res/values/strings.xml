@@ -125,6 +125,7 @@
     <string name="no">Үгүй</string>
     <string name="success">Амжилттай бүртгэгдлээ</string>
     <string name="error">Алдаа гарлаа</string>
+    <string name="image_select">Зураг сонгогдсон байна. Шинээр зураг сонгох уу ?</string>
 
 
 </resources>

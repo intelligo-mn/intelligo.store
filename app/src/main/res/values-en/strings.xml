@@ -127,6 +127,7 @@
     <string name="yes">No</string>
     <string name="success">Success</string>
     <string name="error">Error</string>
+    <string name="image_select">Image selected. Choose a new picture?</string>
 
 
 </resources>
