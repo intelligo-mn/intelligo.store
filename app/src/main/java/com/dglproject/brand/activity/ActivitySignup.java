@@ -1,17 +1,23 @@
 package com.dglproject.brand.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +29,15 @@ import com.dglproject.brand.utilities.PrefManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -49,8 +59,9 @@ public class ActivitySignup extends AppCompatActivity {
     int i=0;
 
     private SharedPreferences   sharedPreferences;
-    private MaterialDialog dialog;
     private Handler mHandler;
+    Bitmap bitmap;
+    ImageView uploadedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +78,35 @@ public class ActivitySignup extends AppCompatActivity {
         confirmPasswordEditText = (EditText)findViewById(R.id.sComfirmPassword);
         signUpButton = (Button)findViewById(R.id.btnSignUp);
         loginLink = (TextView)findViewById(R.id.linkLogin);
+        uploadedImage = (ImageView) findViewById(R.id.signup_photo);
 
+        uploadedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bitmap != null) {
+                    new AlertDialog.Builder(ActivitySignup.this)
+                            .setMessage(getString(R.string.image_select))
+                            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    chooseFile();
+                                }
+                            }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(ActivitySignup.this, "Cool, next time then...", Toast.LENGTH_SHORT).show();
+                        }
+                    }).create().show();
+                } else {
+                    chooseFile();
+                }
+
+            }
+        });
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
-
             }
         });
         loginLink.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +153,7 @@ public class ActivitySignup extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        register(name,password,email);
+        register(name,password,email, bitmap);
     }
 
     public void onSignupFailed() {
@@ -166,18 +200,21 @@ public class ActivitySignup extends AppCompatActivity {
         return valid;
     }
 
-    private void register(final String username, String password, String email) {
-        dialog = new MaterialDialog.Builder(ActivitySignup.this)
-                .title(R.string.app_name)
-                .content(R.string.loading)
-                .progress(true, 0)
-                .show();
+    private void register(final String username, String password, String email, Bitmap bitmap) {
 
-        RequestBody formBody = new FormBody.Builder()
-                .add("state", "signup")
-                .add("username", username)
-                .add("password", password)
-                .add("email", email)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, baos);
+        byte[] imageBytes = baos.toByteArray();
+
+        String randomChunk = UUID.randomUUID().toString().substring(0, 8).replaceAll("-", "");
+        String imageName = randomChunk.concat(".jpg");
+
+        RequestBody formBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("state", "signup")
+                .addFormDataPart("username", username)
+                .addFormDataPart("password", password)
+                .addFormDataPart("file", imageName, RequestBody.create(MediaType.parse("image/*"), imageBytes))
                 .build();
 
         String uri = DGLConstants.UserService;
@@ -221,7 +258,6 @@ public class ActivitySignup extends AppCompatActivity {
                                 Toast.makeText(ActivitySignup.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_LONG)
                                         .show();
                             }
-                            dialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("ERROR : ", e.getMessage() + " ");
@@ -231,4 +267,26 @@ public class ActivitySignup extends AppCompatActivity {
             }
         });
     }
+
+    public void chooseFile() {
+        Intent mIntent = new Intent();
+        mIntent.setType("image/*");
+        mIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(mIntent, "Choose an image..."), 2123);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2123 & data != null && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                uploadedImage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
