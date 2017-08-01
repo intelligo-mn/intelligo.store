@@ -5,4 +5,5 @@ package com.dglproject.brand.widgets.Spinner;
  */
 
 public class SimpleSpinnerTextFormatter {
+
 }

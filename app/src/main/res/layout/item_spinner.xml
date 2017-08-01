@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_view_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:ellipsize="marquee"
+    android:gravity="center"
+    android:paddingBottom="@dimen/square_button_icon_size"
+    android:paddingTop="@dimen/square_button_padding"
+    android:singleLine="true"
+    android:textSize="15sp"
+    tools:textColor="@android:color/black"
+    tools:text="Item"/>

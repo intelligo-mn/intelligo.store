@@ -3,5 +3,12 @@
     <declare-styleable name="BottomNavigationBehavior_Params">
         <attr name="tabLayoutId" format="reference"></attr>
     </declare-styleable>
-
+    <declare-styleable name="DGLSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+        <attr name="arrowDrawable" format="reference|color"/>
+        <attr name="dropDownListPaddingBottom" format="dimension"/>
+        <attr name="backgroundSelector" format="integer"/>
+        <attr name="textTint" format="color"/>
+    </declare-styleable>
 </resources>
