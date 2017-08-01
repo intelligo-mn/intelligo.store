@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dglproject.brand.R;
+import com.dglproject.brand.adapters.CategoryAdapter;
 import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
@@ -49,6 +50,10 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
     EditText name, description, phone, email, image;
     private Handler mHandler;
     PrefManager prefManager;
+    private Spinner spinner;
+    private ArrayAdapter<String> dataAdapter;
+    JSONObject category;
+    JSONArray catItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,32 +66,12 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         phone = (EditText)findViewById(R.id.bPhone);
         email = (EditText)findViewById(R.id.bEmail);
         Button add = (Button)findViewById(R.id.btnBrandAdd);
-
-        // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.catSpinner);
-
-        // Spinner click listener
+        spinner = (Spinner) findViewById(R.id.catSpinner);
         spinner.setOnItemSelectedListener(this);
 
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
         prefManager = new PrefManager(this);
         mHandler = new Handler(Looper.getMainLooper());
+        getCategory();
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,13 +159,51 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         });
     }
 
-    public void getCategory(){
+    private void getCategory() {
+        String uri = DGLConstants.CategoryService;
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(uri)
+                .build();
+        Log.e(TAG,request.toString());
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(() -> {
+                    try {
+                        category = new JSONObject(String.valueOf("{category="+res+"}"));
+                        catItems = category.getJSONArray("category");
+                        List<String> categories = new ArrayList<String>();
+                        for (int i = 1; i < catItems.length(); i++){
+                           categories.add(catItems.getJSONObject(i).getString("name"));
+                        }
+                        dataAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, categories);
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(dataAdapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        try {
+            Toast.makeText(ActivityBrandAdd.this,
+                    catItems.getJSONObject(position).getString("id"), Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
