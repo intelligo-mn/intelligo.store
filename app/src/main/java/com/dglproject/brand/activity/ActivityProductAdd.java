@@ -1,8 +1,5 @@
 package com.dglproject.brand.activity;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 

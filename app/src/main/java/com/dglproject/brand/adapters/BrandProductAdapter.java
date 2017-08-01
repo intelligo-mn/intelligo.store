@@ -9,16 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.Config;
-import com.dglproject.brand.activity.ActivityBrandProduct;
 import com.dglproject.brand.activity.ActivityProductDetail;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.security.spec.ECField;
 
 /**
  * Author: Tortuvshin Byambaa.
@@ -73,7 +70,7 @@ public class BrandProductAdapter extends BaseAdapter{
         try {
             bpName.setText(brandProducts.getJSONObject(position).getString("name"));
             bpPrice.setText(brandProducts.getJSONObject(position).getString("price"));
-            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+brandProducts.getJSONObject(position).getString("folder"), imgThumb);
+            imageLoader.DisplayImage(DGLConstants.WebURL+"/uploads/product_photos/"+brandProducts.getJSONObject(position).getString("folder"), imgThumb);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

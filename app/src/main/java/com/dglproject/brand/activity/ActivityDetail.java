@@ -25,10 +25,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.database.CartTable;
 import com.dglproject.brand.models.CartProducts;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -175,8 +175,6 @@ public class ActivityDetail extends AppCompatActivity {
 
         Product_ID = iGet.getLongExtra("product_id", 0);
 
-        ProductService = Config.ProductService+"?accesskey="+String.valueOf(Config.generateAccessKey())+"&state=r&product_id="+ Product_ID;
-
         new getDataTask().execute();
 
 //        getSupportActionBar().setTitle(Product_name);
@@ -265,7 +263,7 @@ public class ActivityDetail extends AppCompatActivity {
             prgLoading.setVisibility(View.GONE);
             if ((Product_name != null) && IOConnect == 0) {
                 coordinatorLayout.setVisibility(View.VISIBLE);
-                Picasso.with(getApplicationContext()).load(Config.AdminPageURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
+                Picasso.with(getApplicationContext()).load(DGLConstants.WebURL + "/uploads/product_photos/" + Product_image).placeholder(R.drawable.loading).into(imgPreview, new Callback() {
                     @Override
                     public void onSuccess() {
                         Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();

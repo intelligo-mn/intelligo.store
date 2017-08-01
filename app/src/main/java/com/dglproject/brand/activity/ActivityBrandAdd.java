@@ -27,7 +27,6 @@ import com.dglproject.brand.models.Category;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.DialogUtils;
 import com.dglproject.brand.utilities.PrefManager;
-import com.dglproject.brand.interfaces.UploadCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -118,7 +117,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), String.valueOf(prefManager.getUserId()), Toast.LENGTH_LONG).show();
+                add.setEnabled(false);
                 DialogUtils.getInstance().startProgress(ActivityBrandAdd.this, getString(R.string.loading));
                 create(name.getText().toString(),
                         description.getText().toString(),
@@ -128,35 +127,16 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                         phone.getText().toString(),
                         email.getText().toString(),
                         "",
-                        bitmap, new UploadCallback() {
-                            @Override
-                            public void OnUploadComplete(final String response, final Exception e) {
-                                if (e == null) {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(ActivityBrandAdd.this, response, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                } else {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            e.printStackTrace();
-                                            Toast.makeText(ActivityBrandAdd.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-
-                                }
-                                DialogUtils.getInstance().stopProgress();
-                            }
-                        }
+                        bitmap
                 );
+
+                DialogUtils.getInstance().stopProgress();
+                finish();
             }
         });
     }
 
-    public void create (String name, String desc, int userId, String catId, String lang, String mobile, String email, String address, Bitmap bitmap, final UploadCallback callback) {
+    public void create (String name, String desc, int userId, String catId, String lang, String mobile, String email, String address, Bitmap bitmap) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 85, baos);
@@ -195,7 +175,6 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, "Login failed : " + e.getMessage());
-                callback.OnUploadComplete(null, e);
             }
 
             @Override
@@ -203,7 +182,6 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                 final String res = response.body().string();
 
                 Log.e(TAG, res);
-                callback.OnUploadComplete(response.body().string(), null);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -218,15 +196,12 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                             if (success == "1") {
                                 Toast.makeText(ActivityBrandAdd.this, getString(R.string.success), Toast.LENGTH_LONG)
                                         .show();
-                                finish();
                             } else {
                                 Toast.makeText(ActivityBrandAdd.this, getString(R.string.error), Toast.LENGTH_LONG)
                                         .show();
                             }
                             
                         } catch (JSONException e) {
-                            Toast.makeText(ActivityBrandAdd.this, getString(R.string.error)+e.getMessage(), Toast.LENGTH_LONG)
-                                    .show();
                             e.printStackTrace();
                             Log.e("ERROR : ", e.getMessage() + " ");
                         }

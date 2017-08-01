@@ -10,11 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
-import com.dglproject.brand.activity.ActivityDetail;
 import com.dglproject.brand.activity.ActivityProductDetail;
-import com.dglproject.brand.fragments.ProductFragment;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.ImageLoader;
 
 import org.json.JSONArray;
@@ -75,7 +73,7 @@ public class ProductAdapter extends BaseAdapter{
         try {
             pName.setText(products.getJSONObject(position).getString("name"));
             pPrice.setText(products.getJSONObject(position).getString("price"));
-            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
+            imageLoader.DisplayImage(DGLConstants.WebURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

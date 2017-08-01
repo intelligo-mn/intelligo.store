@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
@@ -46,8 +45,6 @@ public class ActivitySignup extends AppCompatActivity {
     Button signUpButton;
     TextView loginLink;
     PrefManager prefManager;
-
-    String URL = Config.UserService;
 
     int i=0;
 

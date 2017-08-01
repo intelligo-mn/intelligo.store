@@ -1,7 +1,6 @@
 package com.dglproject.brand.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.Config;
-import com.dglproject.brand.fragments.CategoryFragment;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.ImageLoader;
 import com.dglproject.brand.R;
 
@@ -66,7 +64,7 @@ public class CategoryAdapter extends BaseAdapter{
         try {
             txtText.setText(category.getJSONObject(position).getString("name"));
 
-            imageLoader.DisplayImage(Config.AdminPageURL+"/uploads/project_category_icons/"+
+            imageLoader.DisplayImage(DGLConstants.WebURL+"/uploads/project_category_icons/"+
                 category.getJSONObject(position).getString("folder")+
                 "/"+
                 category.getJSONObject(position).getString("icon_image"), imgThumb);

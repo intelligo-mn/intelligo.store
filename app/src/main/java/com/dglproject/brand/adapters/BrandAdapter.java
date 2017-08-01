@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dglproject.brand.Config;
 import com.dglproject.brand.R;
 import com.dglproject.brand.activity.ActivityBrandProduct;
+import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.ImageLoader;
 
 import org.json.JSONArray;
@@ -68,7 +68,7 @@ public class BrandAdapter extends BaseAdapter {
             String id = brands.getJSONObject(position).getString("id");
             String name = brands.getJSONObject(position).getString("name");
             txtText.setText(name);
-            imageLoader.DisplayImage(Config.AdminPageURL + "/uploads/product_brand_icons/" +
+            imageLoader.DisplayImage(DGLConstants.WebURL + "/uploads/product_brand_icons/" +
                     brands.getJSONObject(position).getString("folder") + "/" +
                     brands.getJSONObject(position).getString("icon_image"), imgThumb);
 
