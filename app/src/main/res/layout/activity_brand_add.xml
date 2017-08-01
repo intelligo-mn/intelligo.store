@@ -41,6 +41,17 @@
             android:id="@+id/catSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@color/light"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:prompt="@string/category"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/subCatSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
             android:prompt="@string/category"

@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dglproject.brand.R;
-import com.dglproject.brand.adapters.CategoryAdapter;
 import com.dglproject.brand.fragments.BrandFragment;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
@@ -26,8 +25,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -50,8 +47,10 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
     EditText name, description, phone, email, image;
     private Handler mHandler;
     PrefManager prefManager;
-    private Spinner spinner;
-    private ArrayAdapter<String> dataAdapter;
+    private Spinner catSpinner;
+    private Spinner subCatSpinner;
+    private ArrayAdapter<String> catAdapter;
+    private ArrayAdapter<String> subCatAdapter;
     JSONObject category;
     JSONArray catItems;
     @Override
@@ -66,8 +65,10 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         phone = (EditText)findViewById(R.id.bPhone);
         email = (EditText)findViewById(R.id.bEmail);
         Button add = (Button)findViewById(R.id.btnBrandAdd);
-        spinner = (Spinner) findViewById(R.id.catSpinner);
-        spinner.setOnItemSelectedListener(this);
+        catSpinner = (Spinner) findViewById(R.id.catSpinner);
+        subCatSpinner = (Spinner) findViewById(R.id.subCatSpinner);
+        catSpinner.setOnItemSelectedListener(this);
+        subCatSpinner.setOnItemSelectedListener(this);
 
         prefManager = new PrefManager(this);
         mHandler = new Handler(Looper.getMainLooper());
@@ -181,12 +182,13 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                         category = new JSONObject(String.valueOf("{category="+res+"}"));
                         catItems = category.getJSONArray("category");
                         List<String> categories = new ArrayList<String>();
-                        for (int i = 1; i < catItems.length(); i++){
-                           categories.add(catItems.getJSONObject(i).getString("name"));
+                        for (int i = 0; i < catItems.length(); i++){
+                            if(!catItems.getJSONObject(i).getString("level").equalsIgnoreCase("3"))
+                                categories.add(catItems.getJSONObject(i).getString("name"));
                         }
-                        dataAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, categories);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinner.setAdapter(dataAdapter);
+                        catAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, categories);
+                        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        catSpinner.setAdapter(catAdapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -198,11 +200,42 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        try {
-            Toast.makeText(ActivityBrandAdd.this,
-                    catItems.getJSONObject(position).getString("id"), Toast.LENGTH_SHORT).show();
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        switch (parent.getId()) {
+            case R.id.catSpinner:
+                List<String> subCats = new ArrayList<String>();
+                try {
+                    String catId = catItems.getJSONObject(position).getString("id");
+                    Log.e(TAG, catItems.getJSONObject(position).getString("id")+" "+catItems.getJSONObject(position).getString("name"));
+
+                    for (int i = 0; i < catItems.length(); i++){
+
+                        String parentId = catItems.getJSONObject(i).getString("parent_id");
+                        if (catId.equalsIgnoreCase(parentId)){
+                            Log.e(TAG, "Parent id: "+parentId+" name: "+catItems.getJSONObject(i).getString("name"));
+                            subCats.add(catItems.getJSONObject(i).getString("name"));
+                        } else {
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                subCatAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, subCats);
+                subCatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                subCatSpinner.setAdapter(subCatAdapter);
+
+                break;
+            case R.id.subCatSpinner:
+                try {
+                    Log.e(TAG, "Дэд ангилал сонгосон: "
+                            +catItems.getJSONObject(position).getInt("id")+" нэр: "
+                            +catItems.getJSONObject(position).getInt("name"));
+                    prefManager.setCat(catItems.getJSONObject(position).getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
 

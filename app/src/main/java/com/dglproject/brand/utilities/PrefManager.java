@@ -23,6 +23,7 @@ public class PrefManager {
     private static final String LOGGED_IN_EMAIL = "loggedEmail";
     private static final String LANGUAGE = "language";
     private static final String BRAND_ID = "brandId";
+    private static final String CATEGORY_ID = "catId";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -129,6 +130,25 @@ public class PrefManager {
      */
     public int getBrandId () {
         return pref.getInt(BRAND_ID, 0);
+    }
+
+
+    /**
+     * Ангиллалын мэдээлэл хадгалах
+     *
+     * @param catId
+     */
+    public void setCat(int catId) {
+        editor.putInt(CATEGORY_ID, catId);
+        editor.commit();
+    }
+    /**
+     * Ангилалын id авах
+     *
+     * @return category id
+     */
+    public int getCatId () {
+        return pref.getInt(CATEGORY_ID, 0);
     }
 
 }
