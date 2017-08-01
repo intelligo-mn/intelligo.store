@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.dglproject.brand.R;
 import com.dglproject.brand.fragments.BrandFragment;
+import com.dglproject.brand.models.Category;
 import com.dglproject.brand.utilities.DGLConstants;
 import com.dglproject.brand.utilities.PrefManager;
 
@@ -50,7 +51,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
     private Spinner catSpinner;
     private Spinner subCatSpinner;
     private ArrayAdapter<String> catAdapter;
-    private ArrayAdapter<String> subCatAdapter;
+    private ArrayAdapter<Category> subCatAdapter;
     JSONObject category;
     JSONArray catItems;
     @Override
@@ -80,7 +81,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                 create(name.getText().toString(),
                         description.getText().toString(),
                         prefManager.getUserId(),
-                        1,
+                        prefManager.getCatId(),
                         prefManager.getLanguage(),
                         phone.getText().toString(),
                         email.getText().toString(),
@@ -90,14 +91,14 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
         });
     }
 
-    private void create (String name, String desc, int userId, int catId, String lang, String mobile, String email, String address) {
+    private void create (String name, String desc, int userId, String catId, String lang, String mobile, String email, String address) {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("state", "c")
                 .add("name", name)
                 .add("description", desc)
                 .add("ui", String.valueOf(userId))
-                .add("categoryId", String.valueOf(catId))
+                .add("categoryId", catId)
                 .add("language", lang)
                 .add("mobile", mobile)
                 .add("email", email)
@@ -203,7 +204,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
 
         switch (parent.getId()) {
             case R.id.catSpinner:
-                List<String> subCats = new ArrayList<String>();
+                List<Category> subCats = new ArrayList<Category>();
                 try {
                     String catId = catItems.getJSONObject(position).getString("id");
                     Log.e(TAG, catItems.getJSONObject(position).getString("id")+" "+catItems.getJSONObject(position).getString("name"));
@@ -213,7 +214,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                         String parentId = catItems.getJSONObject(i).getString("parent_id");
                         if (catId.equalsIgnoreCase(parentId)){
                             Log.e(TAG, "Parent id: "+parentId+" name: "+catItems.getJSONObject(i).getString("name"));
-                            subCats.add(catItems.getJSONObject(i).getString("name"));
+                            subCats.add(new Category(catItems.getJSONObject(i).getString("id"), catItems.getJSONObject(i).getString("name")));
                         } else {
                         }
 
@@ -221,20 +222,17 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                subCatAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, subCats);
+                subCatAdapter = new ArrayAdapter<Category>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, subCats);
                 subCatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 subCatSpinner.setAdapter(subCatAdapter);
 
                 break;
             case R.id.subCatSpinner:
-                try {
-                    Log.e(TAG, "Дэд ангилал сонгосон: "
-                            +catItems.getJSONObject(position).getInt("id")+" нэр: "
-                            +catItems.getJSONObject(position).getInt("name"));
-                    prefManager.setCat(catItems.getJSONObject(position).getInt("id"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Category category = (Category) parent.getSelectedItem();
+                Log.e(TAG, "Дэд ангилал сонгосон: "
+                        +category.getCategoryId()+" нэр: "
+                        +category.getCategoryName());
+                prefManager.setCat(category.getCategoryId());
                 break;
         }
     }

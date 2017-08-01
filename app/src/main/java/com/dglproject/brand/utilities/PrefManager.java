@@ -138,8 +138,8 @@ public class PrefManager {
      *
      * @param catId
      */
-    public void setCat(int catId) {
-        editor.putInt(CATEGORY_ID, catId);
+    public void setCat(String catId) {
+        editor.putString(CATEGORY_ID, catId);
         editor.commit();
     }
     /**
@@ -147,8 +147,8 @@ public class PrefManager {
      *
      * @return category id
      */
-    public int getCatId () {
-        return pref.getInt(CATEGORY_ID, 0);
+    public String getCatId () {
+        return pref.getString(CATEGORY_ID, "");
     }
 
 }
