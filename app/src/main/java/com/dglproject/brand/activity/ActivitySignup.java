@@ -132,28 +132,17 @@ public class ActivitySignup extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        onSignupSuccess();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
-    }
 
-    public void onSignupSuccess() {
-        signUpButton.setEnabled(true);
-        setResult(RESULT_OK, null);
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
+                        Toast.makeText(getBaseContext(), getString(R.string.register_success), Toast.LENGTH_LONG).show();
+                        String name = nameEditText.getText().toString();
+                        String email = emailEditText.getText().toString();
+                        String password = passwordEditText.getText().toString();
+
+                        register(name,password,email, bitmap);
+                        progressDialog.dismiss();
                         finish();
                     }
                 }, 3000);
-
-        Toast.makeText(getBaseContext(), getString(R.string.register_success), Toast.LENGTH_LONG).show();
-        String name = nameEditText.getText().toString();
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-
-        register(name,password,email, bitmap);
     }
 
     public void onSignupFailed() {
@@ -200,7 +189,7 @@ public class ActivitySignup extends AppCompatActivity {
         return valid;
     }
 
-    private void register(final String username, String password, String email, Bitmap bitmap) {
+    private void register(String username, String password, String email, Bitmap bitmap) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 85, baos);
@@ -214,6 +203,7 @@ public class ActivitySignup extends AppCompatActivity {
                 .addFormDataPart("state", "signup")
                 .addFormDataPart("username", username)
                 .addFormDataPart("password", password)
+                .addFormDataPart("email", email)
                 .addFormDataPart("file", imageName, RequestBody.create(MediaType.parse("image/*"), imageBytes))
                 .build();
 
@@ -236,23 +226,17 @@ public class ActivitySignup extends AppCompatActivity {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
                 final String res = response.body().string();
+
+                Log.e(TAG, res);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             JSONObject ob = new JSONObject(String.valueOf(res));
                             String success = ob.getString("success");
+
+                            Log.e(TAG, success);
                             if (success == "1") {
-                                JSONObject o = ob.getJSONObject("id");
-                                String id = o.getString("id");
-                                String name = o.getString("name");
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(DGLConstants.USER_ID, id);
-                                editor.putString(DGLConstants.USER_NAME, name);
-                                editor.apply();
-                                Log.e("Sign up : ", "id id" + id + name);
-                                Intent i = new Intent(ActivitySignup.this, MainActivity.class);
-                                startActivity(i);
                                 finish();
                             } else {
                                 Toast.makeText(ActivitySignup.this, getString(R.string.err_username_pass_invalid), Toast.LENGTH_LONG)
