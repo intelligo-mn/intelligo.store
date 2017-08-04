@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.dglproject.brand.activity.ActivityWeb">
+    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityWeb">
 
     <WebView
         android:layout_width="fill_parent"

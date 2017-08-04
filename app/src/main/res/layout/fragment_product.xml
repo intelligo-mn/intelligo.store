@@ -5,7 +5,7 @@
     android:paddingTop="58dp"
     android:paddingBottom="58dp"
     android:id="@+id/home_fragment"
-    tools:context="com.dglproject.brand.fragments.ProductFragment">
+    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.fragments.ProductFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshHome"

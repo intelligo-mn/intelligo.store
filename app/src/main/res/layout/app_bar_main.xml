@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.dglproject.brand.activity.MainActivity">
+    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="fill_parent"

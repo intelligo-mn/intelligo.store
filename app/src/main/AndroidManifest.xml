@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dglproject.brand">
+    package="com.techstar.ecommerce">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -24,18 +24,18 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".AppStarter"
+        android:name="com.techstar.ecommerce.agency.techstar.ecommerce.AppStarter"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivitySplashScreen"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivitySplashScreen"
             android:theme="@style/AppFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,34 +44,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ActivityUserSettings"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityUserSettings"
             android:label="@string/settings" />
         <activity
-            android:name=".activity.ActivityHelp"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityHelp"
             android:label="@string/help"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ActivityProductDetail"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityProductDetail"
             android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
-        <activity android:name=".activity.ActivityBrandProduct" />
-        <activity android:name=".activity.ActivityCart" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityBrandProduct" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityCart" />
         <activity
-            android:name=".activity.ActivityLogin"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityLogin"
             android:theme="@style/AppAuth" />
         <activity
-            android:name=".activity.ActivitySignup"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivitySignup"
             android:theme="@style/AppAuth" />
-        <activity android:name=".activity.ActivitySettings" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivitySettings" />
         <activity
-            android:name=".activity.ActivityWelcome"
+            android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityWelcome"
             android:theme="@style/AppFullScreen" />
-        <activity android:name=".activity.ActivityProductAdd" />
-        <activity android:name=".activity.ActivityDetail" />
-        <activity android:name=".activity.ActivityCartEdit" />
-        <activity android:name=".activity.ActivityBrandAdd" />
-        <activity android:name=".activity.ActivityWeb" />
-        <activity android:name=".activity.ActivityAbout"></activity>
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityProductAdd" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityDetail" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityCartEdit" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityBrandAdd" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityWeb" />
+        <activity android:name="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivityAbout"></activity>
     </application>
 
 </manifest>

@@ -8,7 +8,7 @@
     android:paddingRight="0dp"
     android:paddingTop="?attr/actionBarSize"
     android:paddingBottom="?attr/actionBarSize"
-    tools:context="com.dglproject.brand.fragments.CategoryFragment">
+    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.fragments.CategoryFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshCat"

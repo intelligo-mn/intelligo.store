@@ -1,5 +1,5 @@
 <resources>
-    <declare-styleable name="DglProgressBar">
+    <declare-styleable name="TSProgressBar">
         <attr name="dgl_anim_duration" format="integer" />
         <attr name="dgl_outer_color" format="color" />
         <attr name="dgl_inner_color" format="color" />
