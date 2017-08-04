@@ -2,13 +2,13 @@
 
     <item
         android:id="@+id/cart"
-        android:icon="@drawable/dgl_cart"
+        android:icon="@drawable/ic_cart"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="cart"/>
     <item
         android:id="@+id/refresh"
-        android:icon="@drawable/dgl_refresh"
+        android:icon="@drawable/ic_refresh"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="refresh"/>

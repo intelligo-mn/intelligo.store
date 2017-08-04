@@ -1,1 +1,1 @@
-# DGLPROJECT BRAND APP
+# TechStar Agency Ecommerce Client android app

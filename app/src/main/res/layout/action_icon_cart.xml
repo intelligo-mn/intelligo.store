@@ -18,7 +18,7 @@
         android:contentDescription="@string/card"
         android:gravity="center"
         android:padding="3dp"
-        android:src="@drawable/dgl_cart"/>
+        android:src="@drawable/ic_cart"/>
 
     <!--<TextView-->
         <!--android:id="@+id/shopping_cart_notify"-->

@@ -49,27 +49,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langMn"
-            android:background="@drawable/dgl_lang_mn"
+            android:background="@drawable/ic_lang_mn"
             android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langEn"
-            android:background="@drawable/dgl_lang_en"
+            android:background="@drawable/ic_lang_en"
             android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langRu"
-            android:background="@drawable/dgl_lang_ru"
+            android:background="@drawable/ic_lang_ru"
             android:layout_marginRight="20dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langCn"
-            android:background="@drawable/dgl_lang_cn" />
+            android:background="@drawable/ic_lang_cn" />
     </LinearLayout>
 </RelativeLayout>

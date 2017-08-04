@@ -38,7 +38,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/dgl_cart"
+                    app:srcCompat="@drawable/ic_cart"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="right" />
 

@@ -35,13 +35,13 @@ public class NavigationFragment extends Fragment {
     String[] subtitleId;
 
     Integer[] imageId = {
-            R.drawable.dgl_account,
-            R.drawable.dgl_settings_black,
-            R.drawable.dgl_payment,
-            R.drawable.dgl_translate_black,
-            R.drawable.dgl_agreement,
-            R.drawable.dgl_round,
-            R.drawable.dgl_app
+            R.drawable.ic_account,
+            R.drawable.ic_settings_black,
+            R.drawable.ic_payment,
+            R.drawable.ic_translate_black,
+            R.drawable.ic_agreement,
+            R.drawable.ic_round,
+            R.drawable.ic_app
     };
 
     View rootView;
@@ -127,7 +127,7 @@ public class NavigationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 new android.app.AlertDialog.Builder(getActivity())
-                        .setIcon(R.drawable.dgl_round)
+                        .setIcon(R.drawable.ic_round)
                         .setTitle(getString(R.string.are_you_sure))
                         .setMessage(getString(R.string.are_you_sure))
                         .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
