@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dgl Brand</string>
+    <string name="app_name">TechStar Shop</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="name">Нэр</string>
@@ -57,7 +57,7 @@
     <string name="menu_desc_language">Хэл солих</string>
     <string name="menu_desc_agreement">Үйлчилгээний нөхцөл дэлгэрэнгүй харах</string>
     <string name="menu_desc_help">Тусламж, түгээмэл асуултуудыг дэлгэрэнгүй харах</string>
-    <string name="menu_desc_about">DGL Brand-ийн тухай дэлгэрэнгүй харах</string>
+    <string name="menu_desc_about">TechStar Shop-ийн тухай дэлгэрэнгүй харах</string>
     <string name="menu_desc_apps">DGL Project-ийн бусад програмууд харах</string>
 
     <string name="company_add">Байгууллага нэмэх</string>

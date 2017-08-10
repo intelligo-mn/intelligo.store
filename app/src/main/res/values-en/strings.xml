@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dgl Brand</string>
+    <string name="app_name">TechStar Shop</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="name">Name</string>
@@ -58,8 +58,8 @@
     <string name="menu_desc_language">Change language</string>
     <string name="menu_desc_agreement">Learn more about Terms of Service</string>
     <string name="menu_desc_help">Learn more about FAQs and Frequently Asked Questions</string>
-    <string name="menu_desc_about">Learn more about DGLBrand</string>
-    <string name="menu_desc_apps">View other DGLProject applications</string>
+    <string name="menu_desc_about">Learn more about TechStar Shop</string>
+    <string name="menu_desc_apps">View other TechStar applications</string>
 
 
     <string name="company_add">Company add</string>
@@ -102,20 +102,20 @@
 
     <string name="product_not_found">No product information</string>
 
-    <string name="slide_1_title">DGL Brand!</string>
+    <string name="slide_1_title">TechStar Shop</string>
     <string name="slide_1_desc"> New ideas seekers
                      extend cooperation to our site!</string>
 
-    <string name="slide_2_title">DGL Brand</string>
+    <string name="slide_2_title">TechStar Shop</string>
     <string name="slide_2_desc">You for the good of society
                      Are you ready to invest ?!</string>
 
-    <string name="slide_3_title">DGL Brand</string>
+    <string name="slide_3_title">TechStar Shop</string>
     <string name="slide_3_desc">We investor, you assets
                      percent with the people and organizations
                      offers for the bridge.!</string>
 
-    <string name="slide_4_title">DGL Brand</string>
+    <string name="slide_4_title">TechStar Shop</string>
     <string name="slide_4_desc">We are well-intentioned organization, you
                      will connect to only one person.!</string>
 

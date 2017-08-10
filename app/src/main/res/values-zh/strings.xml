@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dgl Brand</string>
+    <string name="app_name">TechStar Shop</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="name">名</string>
@@ -58,8 +58,8 @@
     <string name="menu_desc_language">英文切换</string>
     <string name="menu_desc_agreement">看见服务条款细节</string>
     <string name="menu_desc_help">请参阅帮助和常见问题的详细</string>
-    <string name="menu_desc_about">关于 DGL Brand 详细视图</string>
-    <string name="menu_desc_apps">" DGL Project 看其他应用程序"</string>
+    <string name="menu_desc_about">关于 TechStar Shop 详细视图</string>
+    <string name="menu_desc_apps">TechStar 看其他应用程序</string>
 
 
     <string name="company_add">機身加</string>
@@ -101,20 +101,20 @@
 
     <string name="product_not_found">沒有產品信息</string>
 
-    <string name="slide_1_title">DGL Brand!</string>
+    <string name="slide_1_title">TechStar Shop</string>
     <string name="slide_1_desc"> 新思路求職者
                     擴大合作，以我們的網站！</string>
 
-    <string name="slide_2_title">DGL Brand</string>
+    <string name="slide_2_title">TechStar Shop</string>
     <string name="slide_2_desc">你對社會的好
                     你準備好投資嗎？！</string>
 
-    <string name="slide_3_title">DGL Brand</string>
+    <string name="slide_3_title">TechStar Shop</string>
     <string name="slide_3_desc">我們的投資者，你的資產
                     ％的與個人和組織
                     提供了橋樑。！</string>
 
-    <string name="slide_4_title">DGL Brand</string>
+    <string name="slide_4_title">TechStar Shop</string>
     <string name="slide_4_desc">我們善意的組織，你
                     將連接到只有一個人！</string>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dgl Brand</string>
+    <string name="app_name">TechStar Shop</string>
     <string name="navigation_drawer_open">Открыт навигации drawer</string>
     <string name="navigation_drawer_close">Закрыть панель навигации</string>
     <string name="name">Имя</string>
@@ -57,8 +57,8 @@
     <string name="menu_desc_language">Переключатель</string>
     <string name="menu_desc_agreement">См условия обслуживания деталей</string>
     <string name="menu_desc_help">Помощь и часто задаваемые вопросы более</string>
-    <string name="menu_desc_about">О DGLBrand детального просмотра</string>
-    <string name="menu_desc_apps">DGLProject посмотреть другие приложения</string>
+    <string name="menu_desc_about">О TechStar Shop детального просмотра</string>
+    <string name="menu_desc_apps">TechStar посмотреть другие приложения</string>
 
 
     <string name="company_add">Добавить компании</string>
@@ -101,20 +101,20 @@
 
     <string name="product_not_found">Нет информации о продукте</string>
 
-    <string name="slide_1_title">DGL Brand!</string>
+    <string name="slide_1_title">TechStar Shop</string>
     <string name="slide_1_desc"> Новые идеи убежища
                          расширить сотрудничество на наш сайт!</string>
 
-    <string name="slide_2_title">DGL Brand</string>
+    <string name="slide_2_title">TechStar Shop</string>
     <string name="slide_2_desc">Вы на благо общества
                          Вы готовы инвестировать?!</string>
 
-    <string name="slide_3_title">DGL Brand</string>
+    <string name="slide_3_title">TechStar Shop</string>
     <string name="slide_3_desc">Мы инвестор, вы активы
                          проценты с людьми и организациями
                          предлагает для моста.!</string>
 
-    <string name="slide_4_title">DGL Brand</string>
+    <string name="slide_4_title">TechStar Shop</string>
     <string name="slide_4_desc">Мы благонамеренные организации, вам
                          будет подключаться только к одному человеку.!</string>
 

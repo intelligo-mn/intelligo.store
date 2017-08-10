@@ -9,13 +9,13 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.activity.ActivitySplashScreen"
+    tools:context="agency.techstar.ecommerce.activity.ActivitySplashScreen"
     android:background="@color/white">
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo"
+        app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/imageView2"
         android:background="@color/white"
         android:layout_alignParentLeft="false"
