@@ -5,7 +5,6 @@
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

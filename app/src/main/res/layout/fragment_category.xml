@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="?attr/actionBarSize"
     android:paddingBottom="?attr/actionBarSize"
-    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.fragments.CategoryFragment">
+    tools:context="agency.techstar.ecommerce.fragments.CategoryFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshCat"

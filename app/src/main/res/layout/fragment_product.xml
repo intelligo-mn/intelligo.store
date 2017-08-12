@@ -2,10 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="58dp"
-    android:paddingBottom="58dp"
+    android:paddingBottom="?attr/actionBarSize"
     android:id="@+id/home_fragment"
-    tools:context="com.techstar.ecommerce.agency.techstar.ecommerce.fragments.ProductFragment">
+    tools:context="agency.techstar.ecommerce.fragments.ProductFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshHome"
