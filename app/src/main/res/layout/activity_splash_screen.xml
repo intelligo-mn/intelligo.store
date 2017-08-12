@@ -45,31 +45,31 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langMn"
-            android:background="@drawable/ic_lang_mn"
+            app:srcCompat="@drawable/ic_lang_mn"
             android:layout_marginRight="20dp" />
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langEn"
-            android:background="@drawable/ic_lang_en"
+            app:srcCompat="@drawable/ic_lang_en"
             android:layout_marginRight="20dp" />
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langRu"
-            android:background="@drawable/ic_lang_ru"
+            app:srcCompat="@drawable/ic_lang_ru"
             android:layout_marginRight="20dp" />
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/langCn"
-            android:background="@drawable/ic_lang_cn" />
+            app:srcCompat="@drawable/ic_lang_cn" />
     </LinearLayout>
 </RelativeLayout>

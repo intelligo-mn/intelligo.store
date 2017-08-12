@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,15 +25,16 @@ public class ActivitySplashScreen extends AppCompatActivity implements View.OnCl
     PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
         prefManager = new PrefManager(this);
 
-        ImageButton en = (ImageButton)findViewById(R.id.langEn);
-        ImageButton mn = (ImageButton)findViewById(R.id.langMn);
-        ImageButton cn = (ImageButton)findViewById(R.id.langCn);
-        ImageButton ru = (ImageButton)findViewById(R.id.langRu);
+        AppCompatImageView en = (AppCompatImageView)findViewById(R.id.langEn);
+        AppCompatImageView mn = (AppCompatImageView)findViewById(R.id.langMn);
+        AppCompatImageView cn = (AppCompatImageView)findViewById(R.id.langCn);
+        AppCompatImageView ru = (AppCompatImageView)findViewById(R.id.langRu);
 
         mn.setOnClickListener(this);
         en.setOnClickListener(this);
