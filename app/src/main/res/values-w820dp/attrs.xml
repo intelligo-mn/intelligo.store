@@ -1,9 +1,9 @@
 <resources>
     <declare-styleable name="TSProgressBar">
-        <attr name="dgl_anim_duration" format="integer" />
-        <attr name="dgl_outer_color" format="color" />
-        <attr name="dgl_inner_color" format="color" />
-        <attr name="dgl_thickness" format="dimension" />
-        <attr name="dgl_inner_padding" format="dimension" />
+        <attr name="anim_duration" format="integer" />
+        <attr name="outer_color" format="color" />
+        <attr name="inner_color" format="color" />
+        <attr name="thickness" format="dimension" />
+        <attr name="inner_padding" format="dimension" />
     </declare-styleable>
 </resources>

@@ -30,6 +30,8 @@ import agency.techstar.ecommerce.database.CartTable;
 import agency.techstar.ecommerce.models.CartProducts;
 import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.utilities.PrefManager;
+import agency.techstar.ecommerce.widgets.TSProgressBar;
+
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
@@ -44,7 +46,7 @@ public class ActivityDetail extends AppCompatActivity {
     ImageView imgPreview;
     TextView txtText, txtSubText;
     WebView txtDescription;
-    ProgressBar prgLoading;
+    TSProgressBar prgLoading;
     TextView txtAlert;
     TextView totalOrderView;
     TextView totalCostView;
@@ -94,7 +96,7 @@ public class ActivityDetail extends AppCompatActivity {
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
 
-        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
+        prgLoading = (TSProgressBar) findViewById(R.id.prgLoading);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
 

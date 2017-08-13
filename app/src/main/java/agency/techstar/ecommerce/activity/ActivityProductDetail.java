@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -56,7 +57,7 @@ public class ActivityProductDetail extends AppCompatActivity {
     private ImageView imgPreview;
     private TextView txtText, txtSubText, txtAlert, totalOrderView, totalCostView;
     private WebView txtDescription;
-    private ProgressBar prgLoading;
+    private TSProgressBar prgLoading;
 
     private Button increaseTotalCostButton, decreaseTotalCostButton, addToListButton;
 
@@ -102,7 +103,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
 
-        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
+        prgLoading = (TSProgressBar) findViewById(R.id.prgLoading);
         txtAlert = (TextView) findViewById(R.id.txtAlert);
 
 

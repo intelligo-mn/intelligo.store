@@ -22,6 +22,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.techstar.ecommerce.R;
 import agency.techstar.ecommerce.adapters.BrandAdapter;
 import agency.techstar.ecommerce.utilities.TSConstants;
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +51,7 @@ public class BrandFragment extends Fragment {
 
     private Handler mHandler;
     private GridView listBrand;
-    private ProgressBar bLoading;
+    private TSProgressBar bLoading;
     private TextView bAlert;
     private SwipeRefreshLayout swipeRefreshLayout = null;
 
@@ -78,7 +79,7 @@ public class BrandFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_brand, container, false);
 
-        bLoading = (ProgressBar) rootView.findViewById(R.id.bLoading);
+        bLoading = (TSProgressBar) rootView.findViewById(R.id.bLoading);
         listBrand = (GridView) rootView.findViewById(R.id.listBrand);
         bAlert = (TextView) rootView.findViewById(R.id.bAlert);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshBrand);

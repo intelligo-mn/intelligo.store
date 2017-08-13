@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -45,7 +46,7 @@ public class ProductFragment extends Fragment {
     private static View rootView;
 
     private GridView homeItemList;
-    private ProgressBar prgLoading;
+    private TSProgressBar prgLoading;
     private TextView txtAlert;
     private Handler mHandler;
 
@@ -74,7 +75,7 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_product, container, false);
-        prgLoading = (ProgressBar) rootView.findViewById(R.id.homeLoading);
+        prgLoading = (TSProgressBar) rootView.findViewById(R.id.homeLoading);
         homeItemList = (GridView) rootView.findViewById(R.id.homeItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.homeTxtAlert);
 

@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -45,7 +46,7 @@ public class CategoryFragment extends Fragment {
     private static View rootView;
 
     GridView listCategory;
-    ProgressBar prgLoading;
+    TSProgressBar prgLoading;
     TextView txtAlert;
     SwipeRefreshLayout swipeRefreshLayout = null;
 
@@ -73,7 +74,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_category, container, false);
 
-        prgLoading = (ProgressBar) rootView.findViewById(R.id.prgLoading);
+        prgLoading = (TSProgressBar) rootView.findViewById(R.id.prgLoading);
         listCategory = (GridView) rootView.findViewById(R.id.listCategory);
         txtAlert = (TextView) rootView.findViewById(R.id.txtAlert);
 

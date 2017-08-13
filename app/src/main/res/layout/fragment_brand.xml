@@ -64,11 +64,16 @@
             android:visibility="gone" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-    <ProgressBar
+
+    <agency.techstar.ecommerce.widgets.TSProgressBar
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:thickness="@dimen/default_thickness"
+        app:inner_padding="@dimen/default_inner_padding"
+        app:inner_color="@color/colorPrimary"
+        app:outer_color="@color/colorPrimaryDark"
         android:id="@+id/bLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/bAlert"

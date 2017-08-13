@@ -25,6 +25,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -41,7 +42,7 @@ import okhttp3.Response;
 public class ActivityBrandProduct extends AppCompatActivity {
     private static final String TAG = ActivityBrandProduct.class.getSimpleName();
     private ListView listMenu;
-    private ProgressBar prgLoading;
+    private TSProgressBar prgLoading;
     private TextView txtTitle;
     private EditText edtKeyword;
     private ImageButton btnSearch;
@@ -58,7 +59,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
+        prgLoading = (TSProgressBar) findViewById(R.id.prgLoading);
         listMenu = (ListView) findViewById(R.id.listMenu);
         edtKeyword = (EditText) findViewById(R.id.edtKeyword);
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);

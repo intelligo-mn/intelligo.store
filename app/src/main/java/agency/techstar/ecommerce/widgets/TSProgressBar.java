@@ -87,16 +87,16 @@ public class TSProgressBar extends View {
 
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.TSProgressBar, defStyle, 0);
-        mThickness = a.getDimensionPixelSize(R.styleable.TSProgressBar_dgl_thickness,
+        mThickness = a.getDimensionPixelSize(R.styleable.TSProgressBar_thickness,
                 resources.getDimensionPixelSize(R.dimen.default_thickness));
-        mInnerPadding = a.getDimensionPixelSize(R.styleable.TSProgressBar_dgl_inner_padding,
+        mInnerPadding = a.getDimensionPixelSize(R.styleable.TSProgressBar_inner_padding,
                 resources.getDimensionPixelSize(R.dimen.default_inner_padding));
 
-        mOuterCircleColor = a.getColor(R.styleable.TSProgressBar_dgl_outer_color,
+        mOuterCircleColor = a.getColor(R.styleable.TSProgressBar_outer_color,
                 ContextCompat.getColor(getContext(), R.color.colorPrimary));
-        mInnerCircleColor = a.getColor(R.styleable.TSProgressBar_dgl_inner_color,
+        mInnerCircleColor = a.getColor(R.styleable.TSProgressBar_inner_color,
                 ContextCompat.getColor(getContext(), R.color.colorAccent));
-        mAnimDuration = a.getInteger(R.styleable.TSProgressBar_dgl_anim_duration,
+        mAnimDuration = a.getInteger(R.styleable.TSProgressBar_anim_duration,
                 resources.getInteger(R.integer.default_anim_duration));
         mSteps = resources.getInteger(R.integer.default_anim_step);
         mStartAngle = resources.getInteger(R.integer.default_start_angle);
@@ -286,7 +286,4 @@ public class TSProgressBar extends View {
             }
         }
     }
-
-
-
 }
