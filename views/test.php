@@ -44,4 +44,3 @@
 	<div class="separator"> </div>
 </div>
 			
-<?php include_once('config/close_database.php'); ?>

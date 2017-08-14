@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dgl</title>
+    <title>TECHSTAR</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="public/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
 
-                <li class="sidebar-brand"><a href="dashboard.php">DGL</a></li> 
+                <li class="sidebar-brand"><a href="dashboard.php">TECHSTAR</a></li> 
                 <li><a href="order.php">Захиалга</a></li>
                 <li><a href="category.php">Ангилал</a></li>
                 <li><a href="product.php">Бүтээгдэхүүн</a></li>    

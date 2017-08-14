@@ -1,6 +1,6 @@
 <?php
 	include_once('config/database.php'); 
-	include_once('app/functions.php'); 
+	include_once('app/Controllers/MainController.php'); 
 ?>
 <div id="content" class="container col-md-12">
 	<?php 
@@ -40,7 +40,7 @@
 				// create random image file name
 				$string = '0123456789';
 				$file = preg_replace("/\s+/", "_", $_FILES['brand_image']['name']);
-				$function = new functions;
+				$function = new MainController;
 				$menu_image = $function->get_random_string($string, 4)."-".date("Y-m-d").".".$extension;
 					
 				$upload = move_uploaded_file($_FILES['brand_image']['tmp_name'], 'upload/images/'.$menu_image);

@@ -61,7 +61,7 @@
 	      <div class="panel panel-default">
 			  <div class="panel-heading">
 				  <center><h3>Нэвтрэх</h3></center>
-				  <center>( DGL Project )</center>
+				  <center>TECHSTAR DASHBOARD</center>
 			  </div>
 			  <div class="panel-body">
 				<center><?php echo isset($error['failed']) ? $error['failed'] : '';?></center>
@@ -83,5 +83,3 @@
 	</div>
 </div>
 
-
-<?php include_once('config/close_database.php');?>
