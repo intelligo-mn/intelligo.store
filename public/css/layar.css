@@ -1,0 +1,34 @@
+  #atas{
+  height: 100px; /*Height of top section*/
+  background:url(items/header.jpg) repeat-x #2D1721;
+  }
+  
+  #atas h1{
+  margin: 0;
+  padding-top: 15px;
+  }
+  
+  #wrapper{
+  float: left;
+  width: 100%;
+  }
+  
+  #isi{
+  margin-right: 170px; 
+  }
+  
+  #kanan{
+  float: left;
+  width: 170px; /*Width of right column in pixels*/
+  margin-left: -170px; /*Set left margin to -(RightColumnWidth) */
+  }
+  
+  #bawah{
+  clear: left;
+  width: 100%;
+  background: black;
+  color: #FFF;
+  text-align: center;
+  padding: 4px 0;
+  }
+  

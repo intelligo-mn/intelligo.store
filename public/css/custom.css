@@ -1,0 +1,42 @@
+.tombol-selected {
+  font-family: Arial;
+  color: #eeeeee;
+  font-size: 14px;
+  background: #3498db;
+  padding: 6px 12px 6px 12px;
+  border: solid #3498db 0px;
+  text-decoration: none;
+}
+
+.tombol-selected:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.tombol {
+  font-family: Arial;
+  color: #000000;
+  font-size: 14px;
+  background: #eeeeee;
+  padding: 6px 12px 6px 12px;
+  border: solid #3498db 0px;
+  text-decoration: none;
+}
+
+.tombol:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.head {
+  background: #3cb0fd;
+}
+
+.tulisan {
+  font-family: Arial;
+  font-size: 10px;
+}
+
+.masuk {
+  background: #3fb9c1;
+}
