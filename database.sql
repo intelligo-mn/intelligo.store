@@ -97,7 +97,6 @@ CREATE TABLE `user` (
   `ip_address` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_user_id` int(11) DEFAULT NULL,
   `updated_user_id` int(11) DEFAULT NULL,
-  `department_id` int(11) DEFAULT NULL,
   `rank_id` int(11) DEFAULT NULL,
   `position_id` int(11) DEFAULT NULL,
   `aimag_id` int(11) DEFAULT NULL,
