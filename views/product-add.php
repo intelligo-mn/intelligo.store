@@ -199,7 +199,3 @@
 	<div class="separator"> </div>
 </div>
 			
-
-<?php 
-	$stmt_category->close();
-	include_once('config/close_database.php'); ?>

@@ -33,7 +33,6 @@
             <ul class="sidebar-nav">
 
                 <li class="sidebar-brand"><a href="dashboard.php">TECHSTAR</a></li> 
-                <li><a href="order.php">Захиалга</a></li>
                 <li><a href="category.php">Ангилал</a></li>
                 <li><a href="product.php">Бүтээгдэхүүн</a></li>    
                 <li><a href="setting.php">Тохиргоо</a></li>      
