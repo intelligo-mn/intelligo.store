@@ -1,7 +1,7 @@
 <?php    
 header('Content-Type: application/json; charset=utf-8');
- 
-include_once 'config/db-connect.php';
+include_once ($_SERVER['DOCUMENT_ROOT'].'/config/db-connect.php');
+
 $db;
     
 $db = new DbConnect();

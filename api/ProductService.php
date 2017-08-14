@@ -3,7 +3,7 @@ header('Content-Type: application/json; charset=utf-8');
     require_once 'app/ProductController.php';
     require_once 'config/security.php';
 
-    // if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+    // if(!(new AppBaseSecure())->generateAccessKey($_POST['accesskey']))
     //     die('accesskey is wrong!');
 
     $state = $_POST["state"];

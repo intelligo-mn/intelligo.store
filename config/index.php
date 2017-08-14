@@ -1,8 +1,8 @@
 <html>
   <head>
-    <title>DGLProject</title>
+    <title>Page not found</title>
   </head>
   <body>
-    <p>Hello </p>
+    <p>Page not found</p>
   </body>
 </html>

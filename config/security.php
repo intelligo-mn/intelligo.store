@@ -1,6 +1,6 @@
 <?php
 	date_default_timezone_set("UTC");
-	class DGLSecure{
+	class AppBaseSecure{
 		public function generateAccessKey($accesskey){
 			$year = date("Y");
 			$month = date("m");

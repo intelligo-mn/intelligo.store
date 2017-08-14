@@ -5,7 +5,7 @@ date_default_timezone_set("UTC");
     require_once 'config/security.php';
     // if(!isset($_POST['accesskey'])) 
     //     die('accesskey required!');
-    // if(!(new DGLSecure())->generateAccessKey($_POST['accesskey']))
+    // if(!(new AppBaseSecure())->generateAccessKey($_POST['accesskey']))
     //     die('accesskey is wrong!');
     // if(!isset($_POST["state"]))
     //     die('request state required.');
