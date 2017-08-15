@@ -21,7 +21,6 @@
 		if($stmt->prepare($sql_query)) {	
 			$stmt->execute();
 			$stmt->store_result();
-			$stmt->bind_result($currency);
 			$stmt->fetch();
 			$stmt->close();
 		}
@@ -177,7 +176,7 @@
 		<br>
 		<label>Тайлбар :</label><?php echo isset($error['description']) ? $error['description'] : '';?>
 		<textarea name="description" id="description" class="form-control" rows="16"></textarea>
-		<script type="text/javascript" src="css/js/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="public/js/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript">                        
             CKEDITOR.replace( 'description' );
         </script>

@@ -1,8 +1,7 @@
 <?php
 	include_once('config/database.php'); 
 	
-	// start session
-	//session_start();
+	session_start();
 	
 	if(isset($_POST['btnLogin'])){
 	
@@ -25,11 +24,9 @@
 		
 		if(!empty($username) && !empty($password)){
 			
-	
 			$username = strtolower($username);
 			
 		    $password = hash('sha256',$username.$password);
-			
 			
 			$sql_query = "SELECT * 
 				FROM user 
@@ -56,30 +53,51 @@
 		}	
 	}
 	?>
-<div id="login_content" class="col-md-11 login">
-  	<div class="col-md-4 col-md-offset-4">
-	      <div class="panel panel-default">
-			  <div class="panel-heading">
-				  <center><h3>Нэвтрэх</h3></center>
-				  <center>TECHSTAR DASHBOARD</center>
-			  </div>
-			  <div class="panel-body">
-				<center><?php echo isset($error['failed']) ? $error['failed'] : '';?></center>
-				<br>
-				    <form method="post">
-				            <label>Хэрэглэгчийн нэр :</label>
-				            <input type="text" name="username" class="form-control" required>
-							
-							<br>
-				            <label>Нууц үг :</label>
-				            <input type="password" class="form-control" name="password" required>
-							
-							<br>
-							<button type="submit" name="btnLogin" class="btn btn-primary pull-right">Нэвтрэх</button><br><br>		
-				    </form>
-				<a href="forget-password.php"><p class="pull-right">Нууц үг сэргээх?</p></a>
-			  </div>
-			</div>
-	</div>
-</div>
 
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">TECH<b>STAR</b></a>
+            <small>TECHSTAR DASHBOARD</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" method="POST">
+                    <div class="msg">Нэвтрэх хэсэг</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <center><?php echo isset($error['failed']) ? $error['failed'] : '';?></center>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Хэрэглэгчийн нэр" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Нууц үг" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Намайг сана</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" name="btnLogin" type="submit">НЭВТРЭХ</button>
+                        </div>
+                    </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="sign-up.html">БҮРТГҮҮЛЭХ!</a>
+                        </div>
+                        <div class="col-xs-6 align-right">
+                            <a href="forgot-password.html">НУУЦ ҮГ СЭРГЭЭХ?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
