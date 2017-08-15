@@ -6,30 +6,26 @@ header('Content-Type: application/json; charset=utf-8');
  
 include_once '../config/db-connect.php';
 
-class ProjectController{
+class OrgTypeController{
     
     private $db;
     
-    private $db_table = "project";
+    private $db_table = "org_type";
     
     public function __construct(){
         $this->db = new DbConnect();
     }
-
     public function getAll () {
         $sql_query = "SELECT * 
-             FROM ".$this->db_table;
+            FROM ".$this->db_table;
         
         $result = mysqli_query($this->db->getDb(), $sql_query) or die ("Error :".mysql_error());
-
-        $projects = array();
-        while($project = $result->fetch_assoc()) {
-            $projects[] = $project;
+        $org_types = array();
+        while($org_type = $result->fetch_assoc()) {
+            $org_types[] = $org_type;
         }
-
-        return $projects;
+        return $org_types;
         
     }
-
 }
 ?>

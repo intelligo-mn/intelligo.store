@@ -6,8 +6,10 @@ error_reporting(E_ALL);
 date_default_timezone_set("UTC");
 header('Content-Type: application/json; charset=utf-8');
 
-require_once 'app/BrandController.php';
-require_once 'config/security.php';
+require_once 'Controllers/BrandController.php';
+
+include_once '../config/security.php';
+
 // if(!(new AppBaseSecure())->generateAccessKey($_POST['accesskey']))
 //         die('accesskey is wrong!');
 
@@ -21,7 +23,7 @@ $mobile = "";
 $email = "";
 $address = "";
 
-if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ui']) && isset($_POST['categoryId'])&& isset($_POST['language']), && isset($_POST['mobile'])&& isset($_POST['email'])&& isset($_POST['address'])){
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ui']) && isset($_POST['categoryId'])&& isset($_POST['language']) && isset($_POST['mobile'])&& isset($_POST['email'])&& isset($_POST['address'])){
     $name = $_POST['name'];
     $description = $_POST['description'];
     $user_id = $_POST["ui"];

@@ -178,6 +178,17 @@
 
             <!-- Widgets -->
             <div class="row clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">business</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">БАЙГУУЛЛАГУУД</div>
+                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
@@ -192,7 +203,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-cyan hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">help</i>
+                            <i class="material-icons">card_giftcard</i>
                         </div>
                         <div class="content">
                             <div class="text">БҮТЭЭГДЭХҮҮН</div>
@@ -200,25 +211,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">forum</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEW COMMENTS</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-orange hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW VISITORS</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">ХЭРЭГЛЭГЧИД</div>
+                            <div class="number count-to" data-from="0" data-to="1" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -231,7 +232,7 @@
                         <div class="header">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-6">
-                                    <h2>CPU USAGE (%)</h2>
+                                    <h2>Сэрвэрийн ажиллагаа (%)</h2>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 align-right">
                                     <div class="switch panel-switch-btn">
@@ -246,9 +247,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                        <li><a href="javascript:void(0);">Тохиргоо</a></li>
                                     </ul>
                                 </li>
                             </ul>

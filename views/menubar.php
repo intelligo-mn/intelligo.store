@@ -23,11 +23,11 @@
     <!-- Search Bar -->
     <div class="search-bar">
         <div class="search-icon">
-            <i class="material-icons">хайх</i>
+            <i class="material-icons">search</i>
         </div>
         <input type="text" placeholder="ХАЙХ УТГАА БИЧ...">
         <div class="close-search">
-            <i class="material-icons">гарах</i>
+            <i class="material-icons">close</i>
         </div>
     </div>
     <!-- #END# Search Bar -->
@@ -47,7 +47,7 @@
                     <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">мэдэгдэл</i>
+                            <i class="material-icons">notifocation</i>
                             <span class="label-count">7</span>
                         </a>
                         <ul class="dropdown-menu">
@@ -452,43 +452,43 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_media</i>
-                            <span>Medias</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/medias/image-gallery.html">Image Gallery</a>
-                            </li>
-                            <li>
-                                <a href="pages/medias/carousel.html">Carousel</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
-                            <span>Charts</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/charts/morris.html">Morris</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/flot.html">Flot</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/chartjs.html">ChartJS</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/sparkline.html">Sparkline</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/jquery-knob.html">Jquery Knob</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <!--<li>-->
+                    <!--    <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--        <i class="material-icons">perm_media</i>-->
+                    <!--        <span>Medias</span>-->
+                    <!--    </a>-->
+                    <!--    <ul class="ml-menu">-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/medias/image-gallery.html">Image Gallery</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/medias/carousel.html">Carousel</a>-->
+                    <!--        </li>-->
+                    <!--    </ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--    <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--        <i class="material-icons">pie_chart</i>-->
+                    <!--        <span>Charts</span>-->
+                    <!--    </a>-->
+                    <!--    <ul class="ml-menu">-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/charts/morris.html">Morris</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/charts/flot.html">Flot</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/charts/chartjs.html">ChartJS</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/charts/sparkline.html">Sparkline</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/charts/jquery-knob.html">Jquery Knob</a>-->
+                    <!--        </li>-->
+                    <!--    </ul>-->
+                    <!--</li>-->
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">content_copy</i>
@@ -515,71 +515,71 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">map</i>
-                            <span>Maps</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/maps/google.html">Google Map</a>
-                            </li>
-                            <li>
-                                <a href="pages/maps/yandex.html">YandexMap</a>
-                            </li>
-                            <li>
-                                <a href="pages/maps/jvectormap.html">jVectorMap</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">trending_down</i>
-                            <span>Multi Level Menu</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item - 2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Level - 2</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Menu Item</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="menu-toggle">
-                                            <span>Level - 3</span>
-                                        </a>
-                                        <ul class="ml-menu">
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <span>Level - 4</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="pages/changelogs.html">
-                            <i class="material-icons">update</i>
-                            <span>Changelogs</span>
-                        </a>
-                    </li>
+                    <!--<li>-->
+                    <!--    <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--        <i class="material-icons">map</i>-->
+                    <!--        <span>Maps</span>-->
+                    <!--    </a>-->
+                    <!--    <ul class="ml-menu">-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/maps/google.html">Google Map</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/maps/yandex.html">YandexMap</a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="pages/maps/jvectormap.html">jVectorMap</a>-->
+                    <!--        </li>-->
+                    <!--    </ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--    <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--        <i class="material-icons">trending_down</i>-->
+                    <!--        <span>Multi Level Menu</span>-->
+                    <!--    </a>-->
+                    <!--    <ul class="ml-menu">-->
+                    <!--        <li>-->
+                    <!--            <a href="javascript:void(0);">-->
+                    <!--                <span>Menu Item</span>-->
+                    <!--            </a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="javascript:void(0);">-->
+                    <!--                <span>Menu Item - 2</span>-->
+                    <!--            </a>-->
+                    <!--        </li>-->
+                    <!--        <li>-->
+                    <!--            <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--                <span>Level - 2</span>-->
+                    <!--            </a>-->
+                    <!--            <ul class="ml-menu">-->
+                    <!--                <li>-->
+                    <!--                    <a href="javascript:void(0);">-->
+                    <!--                        <span>Menu Item</span>-->
+                    <!--                    </a>-->
+                    <!--                </li>-->
+                    <!--                <li>-->
+                    <!--                    <a href="javascript:void(0);" class="menu-toggle">-->
+                    <!--                        <span>Level - 3</span>-->
+                    <!--                    </a>-->
+                    <!--                    <ul class="ml-menu">-->
+                    <!--                        <li>-->
+                    <!--                            <a href="javascript:void(0);">-->
+                    <!--                                <span>Level - 4</span>-->
+                    <!--                            </a>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+                    <!--                </li>-->
+                    <!--            </ul>-->
+                    <!--        </li>-->
+                    <!--    </ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--    <a href="pages/changelogs.html">-->
+                    <!--        <i class="material-icons">update</i>-->
+                    <!--        <span>Changelogs</span>-->
+                    <!--    </a>-->
+                    <!--</li>-->
                     <!--<li class="header">LABELS</li>-->
                     <!--<li>-->
                     <!--    <a href="javascript:void(0);">-->
