@@ -95,6 +95,7 @@
     <script src="js/admin.js"></script>
     <script src="js/pages/index.js"></script>
 
+    <script src="js/pages/widgets/infobox/infobox-3.js"></script>
     <!-- Demo Js -->
     <script src="js/demo.js"></script>
 </body>
