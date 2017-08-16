@@ -43,6 +43,7 @@
 			$error = array();
 			
 			if(empty($product_name)){
+				
 				$error['product_name'] = " <span class='label label-danger'>Хоосон байна!</span>";
 			}
 				
