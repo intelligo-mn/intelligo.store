@@ -1,5 +1,5 @@
 
-	<?php include('views/header.php'); ?>
-	<?php include('views/menubar.php'); ?>
-	<?php include('views/dashboard-menu.php'); ?>
-	<?php include('views/footer.php'); ?>
+	<?php include('templates/header.php'); ?>
+	<?php include('templates/menubar.php'); ?>
+	<?php include('templates/dashboard-menu.php'); ?>
+	<?php include('templates/footer.php'); ?>
