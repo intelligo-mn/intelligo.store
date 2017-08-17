@@ -17,10 +17,10 @@
 	$total_product = $total_product['num'];
 
 
-  $sql_company = "SELECT COUNT(*) as num FROM brand";
-  $total_company = mysqli_query($connect, $sql_company);
-  $total_company = mysqli_fetch_array($total_company);
-  $total_company = $total_company['num'];
+    $sql_company = "SELECT COUNT(*) as num FROM brand";
+    $total_company = mysqli_query($connect, $sql_company);
+    $total_company = mysqli_fetch_array($total_company);
+    $total_company = $total_company['num'];
 
 ?>
 
