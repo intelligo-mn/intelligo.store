@@ -85,9 +85,6 @@
             $error['org_location'] = " <span class='label label-danger'>Хоосон байна!</span>";
         }
         
-        
-        
-        
         $allowedExts = array("gif", "jpeg", "jpg", "png");
         
         error_reporting(E_ERROR | E_PARSE);
@@ -120,39 +117,7 @@
             $org = new OrgController();
             
             $org->create($org_name,$org_type_id,$org_about, $upload_image,$org_email,$org_phone, $org_fb,$org_web, $org_location);
-            // $sql_query = "INSERT INTO organization (org_name, org_type_id, org_about, org_image, org_email, org_phone, org_fb, org_web, org_location)
-            //         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    
-            // $upload_image = 'upload/images/'.$org_image;
-            // $stmt = $connect->stmt_init();
-            // if($stmt->prepare($sql_query)) {    
-            //     // Bind your variables to replace the ?s
-            //     $stmt->bind_param('sssssss', 
-            //                 $org_name,
-            //                 $org_type_id,
-            //                 $org_about,
-            //                 $upload_image,
-            //                 $org_email,
-            //                 $org_phone,
-            //                 $org_fb,
-            //                 $org_web,
-            //                 $org_location
-            //                 );
-            //     var_dump($stmt);
-            //     $stmt->execute();
-            //     var_dump($stmt);
-                
-            //     $result = $stmt->store_result();
-            //     $stmt->close();
-            // }
             
-            // if($result){
-            //     $error['add_org'] = " <span class='label label-primary'>Амжилттай нэмлээ</span>";
-                
-            // }else {
-            //     $error['add_org'] = " <span class='label label-danger'>Алдаа</span>";
-                
-            // }
         }   
     }
 ?>
