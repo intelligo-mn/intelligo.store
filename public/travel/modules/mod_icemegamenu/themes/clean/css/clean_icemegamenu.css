@@ -1,0 +1,221 @@
+/**
+ * IceMegaMenu Extension for Joomla 3.0 By IceTheme
+ * 
+ * 
+ * @copyright	Copyright (C) 2013 IceTheme.com. All rights reserved.
+ * @license		GNU General Public License version 2
+ * 
+ * @Website 	http://www.icetheme.com/Joomla-Extensions/icemegamenu.html
+ *
+ 
+ Clean Theme
+ added on 29 April 2013
+ 
+ */
+
+ 
+ /* OpenSans Font emmbed */
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../font/OpenSans-Regular-webfont.eot');
+    src: url('../font/OpenSans-Regular-webfontd41d.eot?#iefix') format('embedded-opentype'),
+         url('../font/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../font/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../font/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+ 
+ 
+ 
+/* clear some styles */
+.icemegamenu ul, 
+.icemegamenu li {
+	list-style-type:none;
+	padding:0;
+	margin:0} 
+	
+ .collapse {
+  overflow: visible;}
+  
+  
+/* begin mainmenu */ 
+.icemegamenu > ul {
+	position: relative;
+	margin:0;
+	padding:0;
+	z-index: 999;
+	clear: both;
+	width: 100%;
+	height:50px;
+	background: #eee;}
+	
+	.icemegamenu > ul > li {
+		position: relative;
+		display: block;
+		float: left;}
+		
+		.icemegamenu > ul > li  a.iceMenuTitle {
+			font-family:OpenSansRegular, Arial, Helvetica, sans-serif;
+			position: relative;
+			z-index: 9999;
+			display: block;
+			padding: 0 16px;
+			height:50px;
+			line-height: 34px;
+			font-size: 18px;
+			margin:0 5px 0 0;
+			color: #666;
+			text-decoration:none;
+			text-shadow: 1px 1px 1px #fff;
+			-webkit-transition: all .25s ease-out;
+			-moz-transition: all .25s ease-out;
+			-ms-transition: all .25s ease-out;
+			-o-transition: all .25s ease-out;
+			transition: all .25s ease-out;}
+			
+			.icemegamenu > ul > li:hover > a {
+				background-color:#DEDEDE;}
+			
+			.icemegamenu ul > li  a.iceMenuTitle:hover,
+			.icemegamenu ul > li:hover > a.iceMenuTitle,
+			.icemegamenu ul > ul > li:hover >  a.iceMenuTitle,
+			ul.icesubMenu li.active a.iceMenuTitle  { 
+				color: #000!important; }
+				
+			div.icemegamenu ul#icemegamenu  li.active a.icemega_active > span.icemega_title { 
+				color: #000 }		
+				
+			/* subtitles */
+			.icemegamenu > ul > li span.icemega_desc {
+				display:block;
+				font-size:12px;
+				font-family:Verdana, Geneva, sans-serif;
+				padding:0;
+				line-height:1.25em;
+				color:#999!important;
+				margin-bottom: 7px;
+				margin-top:-8px;
+				text-shadow:none!important}
+
+ 				/* when dont have subtitle */
+				.icemegamenu > ul > li >  a.iceMenuTitle > span.icemega_nosubtitle {
+					padding-top:7px;
+					display:block}
+					
+					
+				/* when is current */	
+				.icemegamenu > ul > li.active > a {
+					background-color:#DEDEDE}
+					
+					
+			
+						
+
+ /* Submenu */
+ul.icesubMenu {
+    position: absolute;
+    z-index: 600;
+    padding: 0 0 10px;
+	margin:0;
+    top: 80px;
+    left: 0;
+	visibility:visible;
+	max-height:0;
+	overflow:hidden;
+    opacity: 0;
+    background: #eee;
+    border: 1px solid #DEDEDE;
+	border-top:none;
+    border-radius: 3px;
+	-webkit-transition: all .25s ease-out;
+	-moz-transition: all .25s ease-out;
+	-ms-transition: all .25s ease-out;
+	-o-transition: all .25s ease-out;
+	transition: all .25s ease-out;}
+	
+			
+		#icemegamenu > li:hover > ul.icesubMenu {
+			opacity: 1;
+			max-height:1000px;
+			overflow:visible;
+			top: 95px;}
+			
+			ul.icesubMenu ul > li {
+				position:relative;}
+				
+				ul.icesubMenu > li a.iceMenuTitle {
+					height:auto;
+					display:block;
+					font-size:14px;
+					padding:0 0 0 25px;
+					margin:0;
+					border-bottom:1px dashed #fff;
+					border-radius:0;
+					}
+	 
+	 
+				/* when is parent */
+				ul.icesubMenu li.parent {
+					background: url(../images/index6eed.html) no-repeat 93% 45%;}
+					
+				/* hover and active */
+				ul.icesubMenu ul > li:hover > a,
+				ul.icesubMenu ul > li.active > a  {
+					background-color:#DEDEDE;}
+					
+				
+				
+ 
+/* Second Level Dropdown */
+ul.sub_level_2,
+ul.sub_level_3,
+ul.sub_level_4,
+ul.sub_level_5 {
+	top: -1px;
+	left: 100%;
+	margin-left:15px;
+	z-index:99999;
+	box-shadow:none;
+	border:1px solid #DEDEDE;}
+	
+	
+	ul.icesubMenu ul > li:hover > ul {
+		opacity: 1;
+		max-height:1000px;
+		overflow:visible;
+		visibility:visible;
+		margin-left:0;}
+	
+ 
+ 
+ 
+/* Modules inside dropdown */
+.icesubMenu .icemega_cover_module {
+    padding: 10px 15px;
+	color:#666;}
+
+	.icesubMenu .icemega_cover_module span.iceModuleTile {
+		color:#555;
+		font-size:18px;
+		text-shadow:1px 1px 1px #fff;
+		margin-bottom:6px;
+		display:block;}
+
+	.icesubMenu .icemega_cover_module a {}
+
+
+
+/* for the respponsive part 
+there is antoher CSS file in the same folder */
+
+.ice-megamenu-toggle {
+	display:none}
+
+
+
+/* fix when there is no space for the dropdown on the right
+it will appear instead on the left */
+.ice_righttoleft{
+		left:auto!important;
+		right:0;}

@@ -1,0 +1,128 @@
+/**
+ * IceMegaMenu Extension for Joomla 3.0 By IceTheme
+ * 
+ * 
+ * @copyright	Copyright (C) 2012 IceTheme.com. All rights reserved.
+ * @license		GNU General Public License version 2
+ * 
+ * @Website 	http://www.icetheme.com/Joomla-Extensions/icemegamenu.html
+ *
+ */
+
+.collapse {
+  overflow: hidden}
+
+@media (min-width: 992px) {
+	.icemegamenu > ul{
+	 height:50px!important;}
+}
+
+
+@media (max-width: 991px) {
+	
+.ice-megamenu-toggle {
+    float: right;}
+
+	.ice-megamenu-toggle a {
+		cursor:pointer;
+		background: url("../images/mobile_menu_btn.png") no-repeat scroll 0 0 transparent;
+		display: block;
+		height: 37px;
+		margin: 15px 0;
+		text-indent: -9999px;
+		width: 42px;}		
+
+
+.icemegamenu > ul { background:#eee }
+
+  .ice-megamenu-toggle { display:inline-block; }
+  .icemegamenu > ul > li{ width: 100%;}
+  
+  
+	#icemegamenu > li > ul.icesubMenu {
+		float: left;
+		opacity: 1;
+		max-height:1000px;	
+		position: relative;
+		padding:0;
+		top: 0!important;
+		visibility: visible;
+		width: 100% !important;
+		background:transparent;}
+		
+			
+	#icemegamenu > li > ul.icesubMenu .iceCols{ width:100%!important;}
+	#icemegamenu > li > ul.icesubMenu li{
+		width:100%!important;
+	}
+	#icemegamenu .parent .icemodules{	}
+	
+	ul.icesubMenu{border:none}
+	
+	ul.icesubMenu li.parent{background:none;}		
+	
+	
+	.icemegamenu > ul > li a.iceMenuTitle{
+		font-size:15px;
+		margin:0;
+		height:auto;
+		padding-left:15px;
+		border-bottom:1px dashed #ccc!important}
+		
+		.icemegamenu > ul > li > a.iceMenuTitle > span.icemega_nosubtitle {
+			padding-top:0}
+	
+	ul.icesubMenu > li a.iceMenuTitle{
+		font-size:12px;
+		margin:0px;
+		padding-left:35px;
+		background-position:20px 10px}
+	
+		
+	.icemegamenu > ul > li.active{
+		background:none}
+	
+		#icemegamenu > li > ul.icesubMenu li > ul{
+			float: left;
+			opacity: 1;
+			max-height:1000px;	
+			position: relative;
+			top: 0!important;
+			visibility: visible;
+			width: 100% !important;
+			left: 0;		
+			margin:0px;
+			padding:0;
+			border:none;
+			background:transparent;}
+			
+			/* level 2 */
+			ul.sub_level_2 li > a.iceMenuTitle {
+				padding-left: 55px!important;
+				background-position: 40px 10px!important;}
+				
+			/* level 3 */
+			ul.sub_level_3 li > a.iceMenuTitle {
+				padding-left: 75px!important;
+				background-position: 60px 10px!important;}
+				
+					
+
+		/* hide modules */
+		.icesubMenu .icemega_cover_module { width: auto !important;}
+}
+
+
+@media (max-width: 480px){
+
+	ul.icesubMenu > li a.iceMenuTitle{
+		background:none!important;}
+		
+		#icemegamenu > li > ul.icesubMenu li > ul.sub_level_2,
+		#icemegamenu > li > ul.icesubMenu li > ul.sub_level_3,
+		#icemegamenu > li > ul.icesubMenu li > ul.sub_level_4{
+			left: 0px;}
+}
+
+
+

@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* CSS Document */
+
+.akordeon
+{
+    width: 100%;
+    font-size: 15px;
+    margin-top: 20px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.akordeon-item
+{
+    position: relative;
+}
+.akordeon-item .akordeon-item-head
+{
+    height: 50px;
+}
+.akordeon-item .akordeon-item-body
+{
+    border-bottom: none;
+    overflow: hidden;
+}
+.akordeon-icon
+{
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 8px 0 0;
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.akordeon-heading
+{
+    float: left;
+    padding-top: 8px;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.akordeon-icon span
+{
+    background: rgba(0, 0, 0, 0) url("../../images/expand-icon.png") no-repeat scroll 0 -24px;
+    width: 21px;
+    height: 21px;
+    display: block;
+    margin: 5px;
+}
+.akordeon-item.expanded .akordeon-icon span
+{
+    background-position: 0 0;
+}
+.akordeon-item-head-container
+{
+    width: 100%;
+}
+
+.box-up-sell .akordeon-item.expanded .akordeon-item-body
+{
+    min-height: 350px;
+}
+.akordeon-item.collapsed
+{
+}
+
+.akordeon-item.expanded .akordeon-heading
+{
+    
+}
+
+.akordeon-item.expanded .akordeon-item-head
+{
+
+}
+
+.block.block-category-nav .akordeon-item-content
+{
+    min-height: 0;
+}
+.box-up-sell .akordeon-item-content {
+    padding: 20px 0 10px;
+    min-height: 250px;
+}
+.block.block-layered-nav .akordeon-item-content
+{
+    min-height: 0;
+}
+.block.block-layered-nav .akordeon-item-content div.price {
+    padding: 0 10px;
+}
+.akordeon-border-bottom
+{
+   
+}
+.akordeon-border-top
+{
+    border-top: solid 1px black;
+}
+.akordeon-item.expanded .akordeon-item-body.akordeon-border-bottom
+{
+   
+    overflow: hidden;
+}
+.akordeon-item.akordeon-item-first .akordeon-item-head
+{
+
+}
+
+.akordeon-item.akordeon-item.collapsed .akordeon-item-head
+{
+    border-bottom: none;
+}
+.akordeon-item.akordeon-item.expanded .akordeon-item-head
+{
+    border-bottom: solid 1px #e1e1e1;
+}
+.akordeon-item.akordeon-item-last.expanded .akordeon-item-body
+{
+    
+}

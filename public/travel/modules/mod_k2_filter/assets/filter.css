@@ -1,0 +1,69 @@
+/* backend styles */
+
+.clear {clear: both;}
+
+select.FilterSelect { width: 300px; }
+
+#sortableFields {overflow: hidden; margin: 5px 0 10px 0; list-style: none; width: 95%;}
+
+#sortableFields li { position: relative; color:#369; margin:0; padding:5px 5px 5px 10px; background:#d5e7fa; border-bottom:1px solid #96b0cb; cursor: pointer; font-size: 12px; border-top: 1px solid #fff; border-radius: 3px;}
+
+#sortableFields li .sortableRightBlock { float: right; padding-right: 3px; }
+
+.field_type_select { margin: 0 7px 0 0; font-size: 10px; position: absolute; right: 15px; top: 5px; width: auto !important; height: auto !important; padding: 0 !important; font-size: 12px; }
+
+.deleteFilter { font-size: 11px; }
+
+/* --------------- */
+/* frontend styles */
+
+.k2filter-cell {
+	float: left;
+	padding: 0 10px 10px 0;
+	position: relative;
+}
+
+.K2FilterBlock input.button {
+	margin-top: 10px;
+}
+
+.k2filter-table button {
+	width: 100% !important;
+	min-width: 210px;
+}
+
+.K2FilterBlock .k2filter-field-slider {
+	padding-right: 20px;
+}
+
+.K2FilterBlock .k2filter-slider-amount {
+	border:0; 
+	color:#f6931f; 
+	font-weight:bold;
+	width: 100%;
+	background: transparent;
+	text-align: center;
+}
+
+.K2FilterClear {
+	display: block;
+	clear: both;
+}
+
+.ui-datepicker {
+	z-index: 3 !important;
+}
+
+.K2FilterBlock label {
+	display: inline !important;
+}
+
+.K2FilterBlock a.uncheck {
+	margin-top: 5px !important;
+}
+
+.K2FilterBlock .dynoloader {
+	position: absolute;
+	top: 15px;
+	right: 30px;
+}
