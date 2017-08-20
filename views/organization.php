@@ -102,15 +102,15 @@
                                     <td><?php echo $data['org_phone'];?></td>
                                     <td><?php echo $data['org_email'];?></td>
                                     <td><a href="organization.php?id=<?php echo $data['org_id'];?>">
-                                            Харах
+                                            <i class="material-icons">visibility</i>
                                         </a>&nbsp;
                         
                                         <a href="organization-edit.php?id=<?php echo $data['org_id'];?>">
-                                            Засах
+                                            <i class="material-icons">edit</i>
                                         </a>&nbsp;
                         
                                         <a href="organization-delete.php?id=<?php echo $data['org_id'];?>">
-                                            Устгах
+                                            <i class="material-icons">delete</i>
                                         </a>
                                     </td>
                                 </tr>
