@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 col-sm-2 col-xs-6 logo-block no-padding">
-                <a href="#"><img src="/src/public/images/master/logo.png" alt="logo" /></a>
+                <a href="#"><img src="/public/travel/images/master/logo.png" alt="logo" /></a>
             </div>
             <div class="col-md-10 col-sm-12 col-xs-12 menu-block">
                 <div class="moduletable ">

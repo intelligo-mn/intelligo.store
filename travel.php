@@ -13,13 +13,13 @@
                         <!-- SLIDE  1-->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
                             <!-- MAIN IMAGE -->
-                            <img src="/src/public/images/uniterevolution/slider/1.jpg" alt="1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <img src="/public/travel/images/uniterevolution/slider/1.jpg" alt="1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
                             <!-- LAYERS -->
                         </li>
                         <!-- SLIDE  2-->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
                             <!-- MAIN IMAGE -->
-                            <img src="/src/public/images/uniterevolution/slider/3_slider.jpg" alt="3_slider" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <img src="/public/travel/images/uniterevolution/slider/3_slider.jpg" alt="3_slider" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
                             <!-- LAYERS -->
                         </li>
                     </ul>
@@ -28,8 +28,8 @@
 
                 <script type="text/javascript">
                     /******************************************
-                    					-	PREPARE PLACEHOLDER FOR SLIDER	-
-                    				******************************************/
+                                        -   PREPARE PLACEHOLDER FOR SLIDER  -
+                                    ******************************************/
 
                     var setREVStartSize = function() {
                         var tpopt = new Object();
@@ -175,7 +175,7 @@
         </div>
     </div>
 
-	<div class="slider-text">
+    <div class="slider-text">
     <div class="container">
         <div class="row">
             <div class="moduletable  slider_text_p col-md-12 col-sm-12 col-xs-12">
@@ -197,300 +197,368 @@
         </div>
     </div>
 </div>
-
-<!-- Services Section -->
-<div id="service-section" class="service-section">
-    <div class="container">
-        <div class="moduletable ">
-            <div class="service-bg">
-                <img src="/src/public/images/master/deal-img.png" alt="service-bg" />
-                <h3> "Хямдрал<span class="service_span"> </span>
-				<br>
-
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30% <span class="service_span">хөнгөлнө.</span>
-				</h3>
-
-            </div>
-            <div id="k2ModuleBox95" class="k2ItemsBlock">
-
-                <div>
-                    <div class="col-md-6 ">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 pull-right">
-                                <a class="moduleItemImage" href="index.php/verious-packages/item/9-cruise-summer-sale.html" title="Continue reading &quot;Cruise Summer Sale&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/d61d44254608dd06ccdd2ff02982d14d_XS.jpg" alt="Cruise Summer Sale" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-ship fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/verious-packages/item/9-cruise-summer-sale.html">Cruise Summer Sale</a>
-		 </h3>
-
-                                <p>Улаан үд-Байгал нуур 4 өдөр /Наадмын аялал/<span class="inner_price">440,000₮</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 ">
-                                <a class="moduleItemImage" href="index.php/verious-packages/item/10-beach-vacation-deals.html" title="Continue reading &quot;Beach Vacation Deals&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/e31ace2a15a7c70645ad83df9ecd43b0_XS.jpg" alt="Beach Vacation Deals" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-beer fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/verious-packages/item/10-beach-vacation-deals.html">Beach Vacation Deals</a>
-		 </h3>
-
-                                <p>Манжуур аялал онгоцоор 6 өдөр /Наадмын аялал/ <span class="inner_price">720,000₮</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 pull-right">
-                                <a class="moduleItemImage" href="index.php/verious-packages/item/11-authentic-europe.html" title="Continue reading &quot;Authentic Europe&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/c82cc4e14a1d2c8c8ffff9840d24b558_XS.jpg" alt="Authentic Europe" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-eur fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/verious-packages/item/11-authentic-europe.html">Authentic Europe</a>
-		 </h3>
-
-                                <p>Дубай- Абу Даби аялал <span class="inner_price">	4,700,000₮</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 ">
-                                <a class="moduleItemImage" href="index.php/verious-packages/item/12-20-off-an-caribbean.html" title="Continue reading &quot;20% Off an Caribbean&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/3899dfe821816fbcb3db3e3b23f81585_XS.jpg" alt="20% Off an Caribbean" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-bed fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/verious-packages/item/12-20-off-an-caribbean.html">20% Off an Caribbean</a>
-		 </h3>
-
-                                <p>Хавай аялал 6 өдөр<span class="inner_price">4,990,000₮+тийз</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 pull-right">
-                                <a class="moduleItemImage" href="index.php/verious-packages/item/13-fabulous-las-vegas-deals.html" title="Continue reading &quot;Fabulous Las Vegas Deals&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/48ee1e8a0a8f50dce4f8cb9ab418e211_XS.jpg" alt="Fabulous Las Vegas Deals" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-life-ring fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/verious-packages/item/13-fabulous-las-vegas-deals.html">Fabulous Las Vegas Deals</a>
-		 </h3>
-
-                                <p> Эрхүү аялал 4 өдөр <span class="inner_price">1,790,000₮</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-                    <div class="col-md-6  lastItem">
-                        <div class="service-box-inner">
-                            <!-- Plugins: BeforeDisplay -->
-
-                            <!-- K2 Plugins: K2BeforeDisplay -->
-
-                            <div class="deal_img col-md-4 col-sm-5 ">
-                                <a class="moduleItemImage" href="index.php/south-africa.html" title="Continue reading &quot;Go Wild , Go Africa&quot;">
-                                    <img class="img-circle" src="/src/public/media/k2/items/cache/fd8b0f77d767f1f6640afba6916ff67c_XS.jpg" alt="Go Wild , Go Africa" />
-
-                                    <div class="deal_fa_icon">
-                                        <i class="fa fa-spinner fa-3x"></i>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayTitle -->
-
-                            <!-- K2 Plugins: K2AfterDisplayTitle -->
-
-                            <!-- Plugins: BeforeDisplayContent -->
-
-                            <!-- K2 Plugins: K2BeforeDisplayContent -->
-
-                            <div class="col-md-8 content-box col-sm-7">
-                                <h3 class="block-title">
-			<a class="moduleItemTitle" href="index.php/south-africa.html">Go Wild , Go Africa</a>
-		 </h3>
-
-                                <p>Nunc cursus libero purus ac congue lorem 9 Nights/ 10 Days from <span class="inner_price">$1800</span></p>
-
-                            </div>
-
-                            <!-- Plugins: AfterDisplayContent -->
-
-                            <!-- K2 Plugins: K2AfterDisplayContent -->
-
-                            <!-- Plugins: AfterDisplay -->
-
-                            <!-- K2 Plugins: K2AfterDisplay -->
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+<section id="destination-section" class="destination-section">
+	  <div class="container">
+		   <div class="row">
+				<div class="moduletable  master_destination"><div class="section-header animated fadeInDown"> <h2>Top Destinations</h2></div> 
+	 
+<div id="k2ModuleBox137" class="k2ItemsBlock  master_destination">
+
+	    <div class="customNavigation">
+    	<a class="btn next_destination">Next</a>
+    		<a class="btn prev_destination">Previous</a>
+     	
+	 </div>
+	  <ul id="k2-top-desti" class="animated fadeInUp owl-carousel owl-theme" style="opacity: 1; display: block;">
+        <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3516px; left: 0px; display: block;"><div class="owl-item" style="width: 293px;"><li class="item even">
+
+      <!-- Plugins: BeforeDisplay -->
+      
+      <!-- K2 Plugins: K2BeforeDisplay -->
+      
+      
+      
+      
+      <!-- Plugins: AfterDisplayTitle -->
+      
+      <!-- K2 Plugins: K2AfterDisplayTitle -->
+      
+      <!-- Plugins: BeforeDisplayContent -->
+      
+      <!-- K2 Plugins: K2BeforeDisplayContent -->
+      	   
+	  	   <div class="destination_img">
+	      <a class="moduleItemImage zoom_banner" href="/mojoomla/master/index.php/top-destination/item/27-beach-vacation-deals" title="Continue reading &quot;Beach Vaction Deals&quot;">
+	      	<img class="img-circle" src="/mojoomla/master/media/k2/items/cache/787ae9ec9023a82f5aa7e4c1a64f73cb_M.jpg" alt="Beach Vaction Deals">
+	      </a>
+	   </div>	  
+	   		
+      <div class="destination_bottom">		
+		  		   <div class="destination_title">
+				<a class="moduleItemTitle" href="/mojoomla/master/index.php/top-destination/item/27-beach-vacation-deals">Beach Vaction Deals</a>
+		   </div>	
+		  
+
+		  		  <div class="destination_intro">
+			<p>Warm Sun,golden sand,Crystal blue water-what more do you need for relaxing vacation ?</p>
+		  </div>
+		  
+	  
+		  		  <div class="moduleItemExtraFields">
+			  <ul>
+																<li class="typeTextfield group5">
+							
+							<span class="moduleItemExtraFieldsLabel">Price</span>
+							<span class="moduleItemExtraFieldsValue">$350</span>
+							
+							<div class="clr"></div>
+						</li>
+																																											  </ul>
+		  </div>
+		   		
+  </div><!-- End Destination Bottom --> 
+    
+      
+      <div class="clr"></div>
+
+      <!-- Plugins: AfterDisplayContent -->
+      
+      <!-- K2 Plugins: K2AfterDisplayContent -->
+      
+      
+      
+      
+      
+			
+			
+			
+      <!-- Plugins: AfterDisplay -->
+      
+      <!-- K2 Plugins: K2AfterDisplay -->
+      
+      <div class="clr"></div>
+    </li></div><div class="owl-item" style="width: 293px;"><li class="item odd">
+
+      <!-- Plugins: BeforeDisplay -->
+      
+      <!-- K2 Plugins: K2BeforeDisplay -->
+      
+      
+      
+      
+      <!-- Plugins: AfterDisplayTitle -->
+      
+      <!-- K2 Plugins: K2AfterDisplayTitle -->
+      
+      <!-- Plugins: BeforeDisplayContent -->
+      
+      <!-- K2 Plugins: K2BeforeDisplayContent -->
+      	   
+	  	   <div class="destination_img">
+	      <a class="moduleItemImage zoom_banner" href="/mojoomla/master/index.php/top-destination/item/28-cruise-summer-sale" title="Continue reading &quot;Cruise Sumer Sale&quot;">
+	      	<img class="img-circle" src="/mojoomla/master/media/k2/items/cache/01f1a05053c6242fcfa23075e5b963c1_M.jpg" alt="Cruise Sumer Sale">
+	      </a>
+	   </div>	  
+	   		
+      <div class="destination_bottom">		
+		  		   <div class="destination_title">
+				<a class="moduleItemTitle" href="/mojoomla/master/index.php/top-destination/item/28-cruise-summer-sale">Cruise Sumer Sale</a>
+		   </div>	
+		  
+
+		  		  <div class="destination_intro">
+			<p>Receive up to $750 Onboard credit.Offer 5/31/15 common cruise deals include on board create offer		  </p></div>
+		  
+	  
+		  		  <div class="moduleItemExtraFields">
+			  <ul>
+																<li class="typeTextfield group5">
+							
+							<span class="moduleItemExtraFieldsLabel">Price</span>
+							<span class="moduleItemExtraFieldsValue">$250</span>
+							
+							<div class="clr"></div>
+						</li>
+																																											  </ul>
+		  </div>
+		   		
+  </div><!-- End Destination Bottom --> 
+    
+      
+      <div class="clr"></div>
+
+      <!-- Plugins: AfterDisplayContent -->
+      
+      <!-- K2 Plugins: K2AfterDisplayContent -->
+      
+      
+      
+      
+      
+			
+			
+			
+      <!-- Plugins: AfterDisplay -->
+      
+      <!-- K2 Plugins: K2AfterDisplay -->
+      
+      <div class="clr"></div>
+    </li></div><div class="owl-item" style="width: 293px;"><li class="item even">
+
+      <!-- Plugins: BeforeDisplay -->
+      
+      <!-- K2 Plugins: K2BeforeDisplay -->
+      
+      
+      
+      
+      <!-- Plugins: AfterDisplayTitle -->
+      
+      <!-- K2 Plugins: K2AfterDisplayTitle -->
+      
+      <!-- Plugins: BeforeDisplayContent -->
+      
+      <!-- K2 Plugins: K2BeforeDisplayContent -->
+      	   
+	  	   <div class="destination_img">
+	      <a class="moduleItemImage zoom_banner" href="/mojoomla/master/index.php/top-destination/item/29-authentic-europe" title="Continue reading &quot;Authentic Europe&quot;">
+	      	<img class="img-circle" src="/mojoomla/master/media/k2/items/cache/fc34f61d23b74be53ee07d469bd32064_M.jpg" alt="Authentic Europe">
+	      </a>
+	   </div>	  
+	   		
+      <div class="destination_bottom">		
+		  		   <div class="destination_title">
+				<a class="moduleItemTitle" href="/mojoomla/master/index.php/top-destination/item/29-authentic-europe">Authentic Europe</a>
+		   </div>	
+		  
+
+		  		  <div class="destination_intro">
+			<p>Favorable exchange rates mean that all off europe is a deal! Authentic releting is beautifule pra		  </p></div>
+		  
+	  
+		  		  <div class="moduleItemExtraFields">
+			  <ul>
+																<li class="typeTextfield group5">
+							
+							<span class="moduleItemExtraFieldsLabel">Price</span>
+							<span class="moduleItemExtraFieldsValue">$330</span>
+							
+							<div class="clr"></div>
+						</li>
+																																											  </ul>
+		  </div>
+		   		
+  </div><!-- End Destination Bottom --> 
+    
+      
+      <div class="clr"></div>
+
+      <!-- Plugins: AfterDisplayContent -->
+      
+      <!-- K2 Plugins: K2AfterDisplayContent -->
+      
+      
+      
+      
+      
+			
+			
+			
+      <!-- Plugins: AfterDisplay -->
+      
+      <!-- K2 Plugins: K2AfterDisplay -->
+      
+      <div class="clr"></div>
+    </li></div><div class="owl-item" style="width: 293px;"><li class="item odd">
+
+      <!-- Plugins: BeforeDisplay -->
+      
+      <!-- K2 Plugins: K2BeforeDisplay -->
+      
+      
+      
+      
+      <!-- Plugins: AfterDisplayTitle -->
+      
+      <!-- K2 Plugins: K2AfterDisplayTitle -->
+      
+      <!-- Plugins: BeforeDisplayContent -->
+      
+      <!-- K2 Plugins: K2BeforeDisplayContent -->
+      	   
+	  	   <div class="destination_img">
+	      <a class="moduleItemImage zoom_banner" href="/mojoomla/master/index.php/top-destination/item/30-20-off-on-caribbean" title="Continue reading &quot;20% off on caribbean&quot;">
+	      	<img class="img-circle" src="/mojoomla/master/media/k2/items/cache/1c0ae2205709722b62e843abc0471a55_M.jpg" alt="20% off on caribbean">
+	      </a>
+	   </div>	  
+	   		
+      <div class="destination_bottom">		
+		  		   <div class="destination_title">
+				<a class="moduleItemTitle" href="/mojoomla/master/index.php/top-destination/item/30-20-off-on-caribbean">20% off on caribbean</a>
+		   </div>	
+		  
+
+		  		  <div class="destination_intro">
+			<p>Warm up on beautiful Caribbean beach Go and Enjoy Island Time marriott Rewared Latin caribbean 20		  </p></div>
+		  
+	  
+		  		  <div class="moduleItemExtraFields">
+			  <ul>
+																<li class="typeTextfield group5">
+							
+							<span class="moduleItemExtraFieldsLabel">Price</span>
+							<span class="moduleItemExtraFieldsValue">$270</span>
+							
+							<div class="clr"></div>
+						</li>
+																																											  </ul>
+		  </div>
+		   		
+  </div><!-- End Destination Bottom --> 
+    
+      <div class="clr"></div>
+
+      <!-- Plugins: AfterDisplayContent -->
+      
+      <!-- K2 Plugins: K2AfterDisplayContent -->
+      
+      
+      
+      
+      
+			
+			
+			
+      <!-- Plugins: AfterDisplay -->
+      
+      <!-- K2 Plugins: K2AfterDisplay -->
+      
+      <div class="clr"></div>
+    </li></div><div class="owl-item" style="width: 293px;"><li class="item even lastItem">
+
+      <!-- Plugins: BeforeDisplay -->
+      
+      <!-- K2 Plugins: K2BeforeDisplay -->
+      
+      
+      
+      
+      <!-- Plugins: AfterDisplayTitle -->
+      
+      <!-- K2 Plugins: K2AfterDisplayTitle -->
+      
+      <!-- Plugins: BeforeDisplayContent -->
+      
+      <!-- K2 Plugins: K2BeforeDisplayContent -->
+      	   
+	  	   <div class="destination_img">
+	      <a class="moduleItemImage zoom_banner" href="/mojoomla/master/index.php/top-destination/item/31-fabulous-las-vagas-deals" title="Continue reading &quot;Fabulous las vegas deals&quot;">
+	      	<img class="img-circle" src="/mojoomla/master/media/k2/items/cache/fa55c8bad0e242eb7986dc1135b50adb_M.jpg" alt="Fabulous las vegas deals">
+	      </a>
+	   </div>	  
+	   		
+      <div class="destination_bottom">		
+		  		   <div class="destination_title">
+				<a class="moduleItemTitle" href="/mojoomla/master/index.php/top-destination/item/31-fabulous-las-vagas-deals">Fabulous las vegas deals</a>
+		   </div>	
+		  
+
+		  		  <div class="destination_intro">
+			<p>Nunc cursus libero purus ac congue ar lorem cursus ut sed vitae pullvinar massa idend porta neque		  </p></div>
+		  
+	  
+		  		  <div class="moduleItemExtraFields">
+			  <ul>
+																<li class="typeTextfield group5">
+							
+							<span class="moduleItemExtraFieldsLabel">Price</span>
+							<span class="moduleItemExtraFieldsValue">$340</span>
+							
+							<div class="clr"></div>
+						</li>
+																																											  </ul>
+		  </div>
+		   		
+  </div><!-- End Destination Bottom --> 
+    
+      
+      <div class="clr"></div>
+
+      <!-- Plugins: AfterDisplayContent -->
+      
+      <!-- K2 Plugins: K2AfterDisplayContent -->
+      
+      
+      
+      
+      
+			
+			
+			
+      <!-- Plugins: AfterDisplay -->
+      
+      <!-- K2 Plugins: K2AfterDisplay -->
+      
+      <div class="clr"></div>
+    </li></div><div class="owl-item" style="width: 293px;"><li class="clearList"></li></div></div></div>
+        
+        
+        
+        
+        
+  <div class="owl-controls clickable" style="display: block;"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div></ul>
+  
+	
+	
 </div>
-<!-- Services Section Over -->
-
+</div>
+			</div>
+        </div> 			
+	</section>
 <!-- Features Section -->
 <section id="features-section">
     <div class="moduletable ">
-        <div class="features-section ow-background-no-size" style="background-image: url('/src/public/images/master/features/features-bg.jpg')">
+        <div class="features-section ow-background-no-size" style="background-image: url('/public/travel/images/master/features/features-bg.jpg')">
             <div class="container">
                 <div class="col-md-7">
                     <h2>Манай аялалууд</h2>
@@ -556,7 +624,7 @@
                 </div>
                 <div class="col-md-5">
                     <div class="mobile-iphone">
-                        <img src="/src/public/images/master/features/mobile.png" alt="mobile" />
+                        <img src="/public/travel/images/master/features/mobile.png" alt="mobile" />
                     </div>
                 </div>
             </div>
@@ -601,11 +669,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/71f67488b0857639cee631943a3fc6fa_M.jpg" alt="Rome city tour" />
+                                <img src="/public/travel/media/k2/items/cache/71f67488b0857639cee631943a3fc6fa_M.jpg" alt="Rome city tour" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/rome-city-tour.html" class="portfolio-title">
-				Rome city tour		   </a>
+                Rome city tour         </a>
                                 <h4>Tours</h4>
 
                             </div>
@@ -641,11 +709,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/184b7cb84d7b456c96a0bdfbbeaa5f14_M.jpg" alt="Hotel Hilton and Resorts" />
+                                <img src="/public/travel/media/k2/items/cache/184b7cb84d7b456c96a0bdfbbeaa5f14_M.jpg" alt="Hotel Hilton and Resorts" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/travle-guide1.html" class="portfolio-title">
-				Hotel Hilton and Resorts		   </a>
+                Hotel Hilton and Resorts           </a>
                                 <h4>Hotels</h4>
 
                             </div>
@@ -681,11 +749,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/c889234799e865bbe90cee71f6cd2e53_M.jpg" alt="Spicejet" />
+                                <img src="/public/travel/media/k2/items/cache/c889234799e865bbe90cee71f6cd2e53_M.jpg" alt="Spicejet" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/flights/item/20-spicejet.html" class="portfolio-title">
-				Spicejet		   </a>
+                Spicejet           </a>
                                 <h4>Flights</h4>
 
                             </div>
@@ -721,11 +789,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/233826a67be66a810b23a263230da62e_M.jpg" alt="Hawaii Life style" />
+                                <img src="/public/travel/media/k2/items/cache/233826a67be66a810b23a263230da62e_M.jpg" alt="Hawaii Life style" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/component/k2/item/24-hawai-life-style.html" class="portfolio-title">
-				Hawaii Life style		   </a>
+                Hawaii Life style          </a>
                                 <h4>Tours</h4>
 
                             </div>
@@ -761,11 +829,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/9b2c4b44fb86522964124ed80d03c5e8_M.jpg" alt="Paris Tour" />
+                                <img src="/public/travel/media/k2/items/cache/9b2c4b44fb86522964124ed80d03c5e8_M.jpg" alt="Paris Tour" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/component/k2/item/21-paris-tour.html" class="portfolio-title">
-				Paris Tour		   </a>
+                Paris Tour         </a>
                                 <h4>Tours</h4>
 
                             </div>
@@ -801,11 +869,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/f4b6dca0e2911082f0eb6e1df1a0e11d_M.jpg" alt="Jet Airways" />
+                                <img src="/public/travel/media/k2/items/cache/f4b6dca0e2911082f0eb6e1df1a0e11d_M.jpg" alt="Jet Airways" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/flights/item/19-jet-airways.html" class="portfolio-title">
-				Jet Airways		   </a>
+                Jet Airways        </a>
                                 <h4>Flights</h4>
 
                             </div>
@@ -841,11 +909,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/9caa2793658f3cc387f216157300b1ce_M.jpg" alt="Forte Do Vale" />
+                                <img src="/public/travel/media/k2/items/cache/9caa2793658f3cc387f216157300b1ce_M.jpg" alt="Forte Do Vale" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/hotels/item/7-forte-do-vale.html" class="portfolio-title">
-				Forte Do Vale		   </a>
+                Forte Do Vale          </a>
                                 <h4>Hotels</h4>
 
                             </div>
@@ -881,11 +949,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/e2bf3b11df0b872112757f1c2fee6e32_M.jpg" alt="Dubai city tour" />
+                                <img src="/public/travel/media/k2/items/cache/e2bf3b11df0b872112757f1c2fee6e32_M.jpg" alt="Dubai city tour" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/dubai.html" class="portfolio-title">
-				Dubai city tour		   </a>
+                Dubai city tour        </a>
                                 <h4>Tours</h4>
 
                             </div>
@@ -921,11 +989,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/077ab55046ce80eaf9a3ddea999597ca_M.jpg" alt="Lufthansa Flight" />
+                                <img src="/public/travel/media/k2/items/cache/077ab55046ce80eaf9a3ddea999597ca_M.jpg" alt="Lufthansa Flight" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/flights/item/17-lufthansa.html" class="portfolio-title">
-				Lufthansa Flight		   </a>
+                Lufthansa Flight           </a>
                                 <h4>Flights</h4>
 
                             </div>
@@ -961,11 +1029,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/ada9a09acea936d776a6f55c82778c43_M.jpg" alt="Gran Canaria" />
+                                <img src="/public/travel/media/k2/items/cache/ada9a09acea936d776a6f55c82778c43_M.jpg" alt="Gran Canaria" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/hotels/item/6-gran-canariaf.html" class="portfolio-title">
-				Gran Canaria		   </a>
+                Gran Canaria           </a>
                                 <h4>Hotels</h4>
 
                             </div>
@@ -1001,11 +1069,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/ffee2447b152494b43d9816faaea83c8_M.jpg" alt="Park Central" />
+                                <img src="/public/travel/media/k2/items/cache/ffee2447b152494b43d9816faaea83c8_M.jpg" alt="Park Central" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/hotels/item/5-park-central.html" class="portfolio-title">
-				Park Central		   </a>
+                Park Central           </a>
                                 <h4>Hotels</h4>
 
                             </div>
@@ -1041,11 +1109,11 @@
 
                         <div class="portfolio-image-block">
                             <a href=".html#">
-                                <img src="/src/public/media/k2/items/cache/4965657af186b9092c7a96976ffe881c_M.jpg" alt="Air India" />
+                                <img src="/public/travel/media/k2/items/cache/4965657af186b9092c7a96976ffe881c_M.jpg" alt="Air India" />
                             </a>
                             <div class="portfolio-block-hover">
                                 <a href="index.php/flights/item/18-air-india.html" class="portfolio-title">
-				Air India		   </a>
+                Air India          </a>
                                 <h4>Flights</h4>
 
                             </div>
@@ -1078,7 +1146,7 @@
 <section id="why-choose">
     <div class="moduletable ">
 
-        <div class="why-choose" style="background-image: url('/src/public/images/master/why-choose/why-choose-bg.jpg')">
+        <div class="why-choose" style="background-image: url('/public/travel/images/master/why-choose/why-choose-bg.jpg')">
             <div class="container">
                 <div class="col-md-6 pull-right">
                     <div class="why-choose-inner">
@@ -1170,7 +1238,7 @@
                             <!-- K2 Plugins: K2BeforeDisplay -->
 
                             <a class="moduleItemImage" href="index.php/travle-guide1.html" title="Continue reading &quot;Hotel Hilton and Resorts&quot;">
-                                <img src="/src/public/media/k2/items/cache/184b7cb84d7b456c96a0bdfbbeaa5f14_M.jpg" alt="Hotel Hilton and Resorts" />
+                                <img src="/public/travel/media/k2/items/cache/184b7cb84d7b456c96a0bdfbbeaa5f14_M.jpg" alt="Hotel Hilton and Resorts" />
                             </a>
 
                             <!-- Plugins: AfterDisplayTitle -->
@@ -1203,7 +1271,7 @@
                             <!-- K2 Plugins: K2AfterDisplayContent -->
 
                             <a class="moduleItemReadMore read-more" href="index.php/travle-guide1.html">
-				Бүртгүүлэх		</a>
+                Бүртгүүлэх      </a>
 
                             <!-- Plugins: AfterDisplay -->
 
@@ -1232,7 +1300,7 @@
                             <!-- K2 Plugins: K2BeforeDisplay -->
 
                             <a class="moduleItemImage" href="index.php/hotels/item/7-forte-do-vale.html" title="Continue reading &quot;Forte Do Vale&quot;">
-                                <img src="/src/public/media/k2/items/cache/9caa2793658f3cc387f216157300b1ce_M.jpg" alt="Forte Do Vale" />
+                                <img src="/public/travel/media/k2/items/cache/9caa2793658f3cc387f216157300b1ce_M.jpg" alt="Forte Do Vale" />
                             </a>
 
                             <!-- Plugins: AfterDisplayTitle -->
@@ -1265,7 +1333,7 @@
                             <!-- K2 Plugins: K2AfterDisplayContent -->
 
                             <a class="moduleItemReadMore read-more" href="index.php/hotels/item/7-forte-do-vale.html">
-				Бүртгүүлэх		</a>
+                Бүртгүүлэх      </a>
 
                             <!-- Plugins: AfterDisplay -->
 
@@ -1294,7 +1362,7 @@
                             <!-- K2 Plugins: K2BeforeDisplay -->
 
                             <a class="moduleItemImage" href="index.php/hotels/item/6-gran-canariaf.html" title="Continue reading &quot;Gran Canaria&quot;">
-                                <img src="/src/public/media/k2/items/cache/ada9a09acea936d776a6f55c82778c43_M.jpg" alt="Gran Canaria" />
+                                <img src="/public/travel/media/k2/items/cache/ada9a09acea936d776a6f55c82778c43_M.jpg" alt="Gran Canaria" />
                             </a>
 
                             <!-- Plugins: AfterDisplayTitle -->
@@ -1327,7 +1395,7 @@
                             <!-- K2 Plugins: K2AfterDisplayContent -->
 
                             <a class="moduleItemReadMore read-more" href="index.php/hotels/item/6-gran-canariaf.html">
-				Бүртгүүлэх			</a>
+                Бүртгүүлэх          </a>
 
                             <!-- Plugins: AfterDisplay -->
 
@@ -1351,7 +1419,7 @@
         <div class="section-header">
             <h2>Жуулчидын сэтгэгдэл</h2></div>
 
-        <div class="client-style1" style="background-image: url('/src/public/images/master/client/client-big-1.jpg')">
+        <div class="client-style1" style="background-image: url('/public/travel/images/master/client/client-big-1.jpg')">
             <svg width="0" height="0">
                 <clipPath id="client-1">
                     <polygon points="0 152,1920 310,1920 0,0 0">
@@ -1368,7 +1436,7 @@
             </div>
         </div>
 
-        <div class="client-style2 client-active" style="background-image: url('/src/public/images/master/client/client-2.jpg')">
+        <div class="client-style2 client-active" style="background-image: url('/public/travel/images/master/client/client-2.jpg')">
             <svg width="0" height="0">
                 <clipPath id="client-2">
                     <polygon points="-1 450,1920 289,1920 158,0 0">
@@ -1385,7 +1453,7 @@
             </div>
         </div>
 
-        <div class="client-style3" style="background-image: url('/src/public/images/master/client/client-big-3.jpg')">
+        <div class="client-style3" style="background-image: url('/public/travel/images/master/client/client-big-3.jpg')">
             <svg width="0" height="0">
                 <clipPath id="client-3">
                     <polygon points="-1 326,1920 316,1920 0,0 155">
@@ -1436,7 +1504,7 @@
                             <input type="hidden" name="2bfcef7bd37c807c378d8ca6861cfd77" value="1" /> </form>
                     </div>
                     <div class="ajaxLoader"></div>
-                    <img src="/src/public/media/mod_mailchimpsignup/images/ajax-loader.gif" alt="Please wait" style="display: none;" />
+                    <img src="/public/travel/media/mod_mailchimpsignup/images/ajax-loader.gif" alt="Please wait" style="display: none;" />
                     <div class="mcSignupResult" style="display:none;"></div>
                     <div class="mcSignupTryAgainWrapper" style="display:none;">
                         <a href="#" class="mcSignupTryAgain" data-id="5359">
