@@ -191,6 +191,7 @@
                             </li>
                         </ul>
                     </li>
+                    
                 </ul>
             </div>
             <!-- #Menu -->
@@ -205,3 +206,6 @@
             </div>
             <!-- #Footer -->
         </aside>
+        
+      <!-- #END# Left Sidebar -->
+    </section>

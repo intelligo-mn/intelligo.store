@@ -24,8 +24,6 @@
 
 ?>
 
-  <!-- #END# Left Sidebar -->
-    </section>
 
     <section class="content">
         <div class="container-fluid">
