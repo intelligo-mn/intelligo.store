@@ -1,1 +1,1 @@
-# TechStar Agency Ecommerce Client android app
+# TechStar Ecommerce android app
