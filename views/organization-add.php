@@ -166,7 +166,7 @@
                                             <option value="<?php echo $type_data['org_type_id']; ?>"><?php echo $type_data['org_type_name']; ?></option>
                                         <?php } ?>
                                     </select>    
-                                </div>
+                                </div> 
                                 
                                 <div class="form-group form-float">
                                     <div class="form-line">
@@ -205,7 +205,7 @@
                                 <div class="form-group form-float">
                                     <input type="file" name="org_image" id="org_image"/>
                                 </div>
-                                <button name="btnAdd" class="btn btn-ыprimary waves-effect" type="submit">НЭМЭХ</button>
+                                <button name="btnAdd" class="btn btn-primary waves-effect" type="submit">НЭМЭХ</button>
                             </form>
                         </div>
                     </div>

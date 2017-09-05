@@ -1,0 +1,17 @@
+{
+    "name": "tortuvshin/appbase",
+    "description": "Applications dashboard",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Turtuvshin Byambaa",
+            "email": "toroo.byamba@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^1.34",
+        "filp/whoops": "^2.1",
+        "altorouter/altorouter": "^1.2"
+    }
+}

@@ -4,15 +4,15 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8'); 
 
-include_once '../config/db-connect.php';
+include_once $_SERVER["DOCUMENT_ROOT"]."/config/db-connect.php";
 
 class UserController{
     
     private $db;
     
     private $db_table = "user";
-    
-    public function __construct(){
+    	
+	public function __construct(){
         $this->db = new DbConnect();
     }
     
@@ -61,7 +61,15 @@ class UserController{
 
         return $json;
     }
-    
+    public function login($username, $password){
+        $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+        $result = mysqli_query($this->db->getDb(), $query);
+        $users = array();
+        while($user = $result->fetch_assoc()) {
+            $users[] = $user;
+        }
+        return $users;
+    }
     public function signin($username, $password){
         $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password'"." Limit 1";
         $result = mysqli_query($this->db->getDb(), $query);
