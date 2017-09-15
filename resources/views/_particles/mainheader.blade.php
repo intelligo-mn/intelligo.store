@@ -1,7 +1,7 @@
 <header id="header" class="white-header">
    <div class="container-fluid">
       <div class="logo">
-         <a href="index-2.html">
+         <a href="{{ action('IndexController@index') }}">
          <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada">
          <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada">
          </a>
