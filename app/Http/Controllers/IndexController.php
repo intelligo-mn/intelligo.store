@@ -66,14 +66,16 @@ class IndexController extends Controller
                 return redirect('/');
             }
 
-        }else{
-
-            if(Posts::count() < 1){
-
-              return view('errors.starting');
-
-            }
         }
+
+        // else{
+
+        //     if(Posts::count() < 1){
+
+        //       return view('errors.starting');
+
+        //     }
+        // }
 
 
         return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
