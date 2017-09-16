@@ -1,15 +1,15 @@
-### Мэдээ мэдээллийн сошиал платпормын хөгжүүлэлтийн үндсэн эх код
+### Аялалын вэб програмын үндсэн эх код
 
 ##  
 
 ## Суулгах
 
 ```bash
-composer require tortuvshin/news
+composer require tortuvshin/tour
 ```
 
 ```
-git clone https://github.com/tortuvshin/news-platform.git
+git clone https://github.com/tortuvshin/tour.git
 ```
 
 ```

@@ -5,7 +5,7 @@ return array(
     'adminpanel' => 'Админ панел',
     'panel' => 'Самбар',
 
-    'news' => 'Нийтлэл',
+    'news' => 'Аялал',
     'lists' => 'Мэдээ',
     'quizzes' => 'Quiz',
     'polls' => 'Санал асуулга',

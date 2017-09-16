@@ -33,15 +33,7 @@ class UsersTableSeeder extends Seeder
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
-            'key' => 'p-buzzylists',
-            'value' => '"on"'
-        ]);
-        DB::table('settings')->insert([
             'key' => 'p-buzzyvideos',
-            'value' => '"on"'
-        ]);
-        DB::table('settings')->insert([
-            'key' => 'p-buzzypolls',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([

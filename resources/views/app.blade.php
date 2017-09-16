@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="{{ Lang::getLocale() }}">
+
 <head>
-    <title>@yield('head_title', getcong('sitetitle'))</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('head_description', getcong('sitemetadesc'))" />
+<title>@yield('head_title', getcong('sitetitle'))</title>
 
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="@yield('head_title',  getcong('sitetitle'))" />
-    <meta property="og:description" content="@yield('head_description', getcong('sitemetadesc'))" />
-    
-    <meta property="og:image" content="@yield('head_image', url('/assets/img/flogo.png'))" />
-    <meta property="og:url" content="@yield('head_url', url())" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="@yield('head_description', getcong('sitemetadesc'))" />
 
-    <meta name="twitter:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="@yield('head_url', url())">
-    <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
-    <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
-    
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/plugins.css">
-    <link rel="stylesheet" href="/assets/css/application.css">
-    <link rel="stylesheet" href="/assets/css/test.css">
+<meta property="og:type" content="article" />
+<meta property="og:title" content="@yield('head_title',  getcong('sitetitle'))" />
+<meta property="og:description" content="@yield('head_description', getcong('sitemetadesc'))" />
 
+<meta property="og:image" content="@yield('head_image', url('/assets/img/flogo.png'))" />
+<meta property="og:url" content="@yield('head_url', url())" />
 
-    <style type="text/css">
-        body {
-            font-family: 'Roboto Condensed', sans-serif;
-        }
-    </style>
+<meta name="twitter:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="@yield('head_url', url())">
+<meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
+<meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
 
-    {!! getcong('headcode') !!}
+<link rel="icon" type="image/png" sizes="16x16" href="travel/img/favicon-16x16.png">
+
+<link media="all" rel="stylesheet" href="travel/vendors/font-awesome/css/font-awesome.css">
+
+<link media="all" rel="stylesheet" href="travel/vendors/material-design-icons/material-icons.css">
+
+<link rel="stylesheet" type="text/css" href="travel/css/fonts/icomoon/icomoon.css">
+
+<link media="all" rel="stylesheet" href="travel/vendors/animate/animate.css">
+
+<link media="all" rel="stylesheet" href="travel/css/bootstrap.css">
+
+<link media="all" rel="stylesheet" href="travel/vendors/owl-carousel/owl.carousel.css">
+<link media="all" rel="stylesheet" href="travel/vendors/owl-carousel/owl.theme.css">
+
+<link media="all" rel="stylesheet" href="travel/css/main.css">
+
+<link rel="stylesheet" type="text/css" href="travel/vendors/revolution/css/settings.css">
+
+   {!! getcong('headcode') !!}
 
     @yield("header")
-
 </head>
+
 <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
 @include("_particles.header")
 
