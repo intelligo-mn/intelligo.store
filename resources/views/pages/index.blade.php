@@ -10,10 +10,10 @@
                    <div class="tp-caption tp-resizeme" id="slide-897-layer-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['160','120','-120','-70']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 9; white-space: nowrap; font-size: 60px; line-height: 100px;text-align:center;">
                       <span class="icon-wildlife"></span>
                    </div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">EXPEDITION OF UNEXPLORED</div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['340','290','70','70']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;">TERRITORY</div>
+                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">TRIP TO MONGOLIA</div>
+                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['340','290','70','70']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;"></div>
                    <div class="tp-caption rev-btn  rs-parallaxlevel-10" id="slide-163-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','160','180','150']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power3.easeOut;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[175%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_out="x:inherit;y:inherit;" data-start="1250" data-splitin="none" data-splitout="none" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-164","delay":""}]' data-responsive_offset="on">
-                      <a class="btn btn-banner" href="#">PURCHASE</a>
+                      <a class="btn btn-banner" href="#">EXPLORE</a>
                    </div>
                 </li>
                 <li data-index="rs-81" data-transition="slideoverup" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-rotate="0" data-saveperformance="off" data-title="The Menu" data-description="">
@@ -21,11 +21,11 @@
                    <div class="tp-caption tp-resizeme" id="slide-897-layer1-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['160','120','-120','-70']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 9; white-space: nowrap; font-size: 60px; line-height: 100px;text-align:center;">
                       <span class="icon-hiking-camping"></span>
                    </div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">ADEVENTURE TOUR TEMPLATE</div>
+                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">ADVENTURE TOUR MONGOLIA</div>
                    <div class="tp-caption tp-resizeme banner-heading-sub rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['-80','-80','-80','-60']" data-y="['top','top','middle','middle']" data-voffset="['330','280','60','60']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 300; font-style: italic; white-space: nowrap; color:">of</div>
-                   <div class="tp-caption tp-resizeme banner-heading-sub rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['30','30','30','20']" data-y="['top','top','middle','middle']" data-voffset="['330','280','60','60']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;">2016</div>
+                   <div class="tp-caption tp-resizeme banner-heading-sub rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['30','30','30','20']" data-y="['top','top','middle','middle']" data-voffset="['330','280','60','60']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;">2017</div>
                    <div class="tp-caption rev-btn rs-parallaxlevel-10" id="slide-163-layer1-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','160','180','150']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power3.easeOut;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[175%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_out="x:inherit;y:inherit;" data-start="800" data-splitin="none" data-splitout="none" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-164","delay":""}]' data-responsive_offset="on">
-                      <a class="btn btn-banner" href="#">PURCHASE</a>
+                      <a class="btn btn-banner" href="#">EXPLORE</a>
                    </div>
                 </li>
              </ul>
@@ -40,7 +40,7 @@
                    <span class="ico">
                    <span class="icon-bungee"></span>
                    </span>
-                   <span class="info">Bungee Jump</span>
+                   <span class="info">Cultural  </span>
                    </a>
                 </li>
                 <li>
@@ -56,7 +56,7 @@
                    <span class="ico">
                    <span class="icon-wildlife"></span>
                    </span>
-                   <span class="info">Wildlife Safari</span>
+                   <span class="info">Wildlife</span>
                    </a>
                 </li>
                 <li>
@@ -80,7 +80,7 @@
                    <span class="ico">
                    <span class="icon-scuba-diving"></span>
                    </span>
-                   <span class="info">Scuba Diving</span>
+                   <span class="info">Historical</span>
                    </a>
                 </li>
                 <li>
@@ -96,7 +96,7 @@
                    <span class="ico">
                    <span class="icon-boating"></span>
                    </span>
-                   <span class="info">Sailing Trips</span>
+                   <span class="info">Eco Tour</span>
                    </a>
                 </li>
              </ul>
@@ -107,7 +107,7 @@
        <section class="content-block bg-white">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">Аялалын чиглэлүүд</h2>
+                <h2 class="main-heading">Tour Destinations</h2>
                 
                 <div class="seperator"></div>
              </header>
@@ -166,9 +166,9 @@
                    </div>
                    <div class="col-md-6 text-block">
                       <div class="centered">
-                         <h2 class="intro-heading">Монголын хамгийн үзэсгэлэнтэй газарууд</h2>
-                         <p class="intro">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. </p>
-                         <a href="#" class="btn btn-info-sub btn-md btn-shadow radius">Дэлгэрэнгүй харах</a>
+                         <h2 class="intro-heading">Explore Mongolia</h2>
+                         <p class="intro">If you are an avid history buff, why not try a tour of some traditional monasteries, live with a nomad family and/or visit the birthplace of the legendary Genghis Khan. Better yet, combine all of these and go on the trip of a lifetime! There are 3 different tour types to choose from, making it easy to find the perfect itinerary and trip for you.  </p>
+                         <a href="#" class="btn btn-info-sub btn-md btn-shadow radius">Show more</a>
                       </div>
                    </div>
                 </div>
@@ -177,22 +177,22 @@
        </section>
        <aside class="special-block">
           <div class="container">
-             <p class="special-text">Танд тусламж хэрэгтэй юу. <strong>Утас <a href="tel:157757525">+1 5775 7525</a></strong></p>
+             <p class="special-text">Call us now tour <strong><a href="tel:94968096">+976 94968096</a></strong></p>
           </div>
        </aside>
        <div class="content-block content-spacing">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">ОНЦЛОХ АЯЛАЛУУД</h2>
+                <h2 class="main-heading">Top tours</h2>
                
                 <div class="seperator"></div>
              </header>
              <div class="content-holder">
 
-                @if($lastNews)
+                @if($lastFeaturestop)
                 <div class="row db-3-col">
-                  @foreach($lastNews as $key=>$item)
-                     @include('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'on','linkcolor' => 'default'])
+                  @foreach($lastFeaturestop as $key=>$item)
+                     @include('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'off','linkcolor' => 'default'])
 
                       @if($key ==0 )
                           @foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget)
@@ -220,9 +220,9 @@
                 </div>
                 <div class="col-xs-6 col-md-3 block-2">
                    <div class="holder">
-                      <span class="icon icon-fish-jumping"></span>
+                      <span class="icon icon-wildlife"></span>
                       <span class="info"><span class="counter">378</span></span>
-                      <span class="txt">ARCTIC EXPERIENCES</span>
+                      <span class="txt">DESTINATION</span>
                    </div>
                 </div>
                 <div class="col-xs-6 col-md-3 block-3">
@@ -247,180 +247,26 @@
           <div class="container">
              <header class="content-heading">
                 <h2 class="main-heading">TOP ADVENTURES</h2>
-                <span class="main-subtitle">Our collection of the most popular adventures in 2016.</span>
+                <span class="main-subtitle">Our collection of the most popular adventures in Mongolia.</span>
                 <div class="seperator"></div>
              </header>
              <div class="content-holder content-boxed">
+                 @if($lastNews)
                 <div class="row db-3-col">
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-07.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Evening with Panda in China</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-08.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Sleeping with Sea Lion in Arctic</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-09.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Following Zebras to Water hole</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-10.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Discovering Wild Trails in Africa</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-11.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Angola Safari for Family &amp; Children</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s1">
-                      <div class="thumbnail">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-12.jpg" height="228" width="350" alt="image description">
-                         </div>
-                         <h3 class="small-space"><a href="tour-detail.html">Royal Safari in Bangaladesh</a></h3>
-                         <span class="info">Nordic Walk, Swiss Alps or French Hiking?</span>
-                         <aside class="meta">
-                            <span class="country">
-                            <span class="icon-world"> </span>12 Countries
-                            </span>
-                            <span class="activity">
-                            <span class="icon-acitivities"> </span>79 Activities
-                            </span>
-                         </aside>
-                         <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                         <a href="tour-detail.html" class="btn btn-default">explore</a>
-                         <footer>
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                            <span class="price">from <span>$2749</span></span>
-                         </footer>
-                      </div>
-                   </article>
+                  @foreach($lastNews as $key=>$item)
+                     @include('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'off', 'descof' => 'on','linkcolor' => 'default', 'metaof' => 'off'])
+
+                      @if($key ==0 )
+                          @foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget)
+                              {!! $widget->text !!}
+                          @endforeach
+                      @endif
+
+                  @endforeach
+               
                 </div>
+                
+                @endif
              </div>
           </div>
        </section>

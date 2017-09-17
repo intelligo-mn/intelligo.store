@@ -6,10 +6,10 @@
       <div class="center-text">
          <div class="container">
             <h1><?php echo e($category->name); ?></h1>
-            <strong class="subtitle">2017 оны хамгийн шилдэг аялалын мэдээллүүд</strong>
+            <strong class="subtitle"><?php echo e($category->name); ?></strong>
             <nav class="breadcrumbs">
                <ul>
-                  <li><a href="#">НҮҮР</a></li>
+                  <li><a href="#"><?php echo e($category->name); ?></a></li>
                   
                     <?php foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat): ?>
 

@@ -7,10 +7,10 @@
       <div class="center-text">
          <div class="container">
             <h1>{{ $category->name }}</h1>
-            <strong class="subtitle">2017 оны хамгийн шилдэг аялалын мэдээллүүд</strong>
+            <strong class="subtitle">{{ $category->name }}</strong>
             <nav class="breadcrumbs">
                <ul>
-                  <li><a href="#">НҮҮР</a></li>
+                  <li><a href="#">{{ $category->name }}</a></li>
                   
                     @foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat)
 

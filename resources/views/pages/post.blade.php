@@ -29,14 +29,14 @@
             <div class="holder">
                <h1 class="small-size">{{ $post->title }}</h1>
                <div class="price">
-                  from <strong>US $979</strong>
+                  from <strong>{{ $post->body }}</strong>
                </div>
-               <div class="description">
+               <!-- <div class="description">
                   <p>{{ $post->body }}</p>
                </div>
-               
+                -->
                <div class="btn-holder">
-                  <a href="#" class="btn btn-lg btn-info">ЗАХИАЛАХ</a>
+                  <a href="#" class="btn btn-lg btn-info">Purchase</a>
                </div>
                <ul class="social-networks social-share">
                   <li>
@@ -174,7 +174,7 @@
             </div>
          </div>
          <div role="tabpanel" class="tab-pane" id="tab02">
-            <div class="row">
+            <!-- <div class="row">
                <div class="col-md-6">
                   <ol class="detail-accordion">
                      <li>
@@ -288,127 +288,24 @@
                      </div>
                   </article>
                </div>
-            </div>
+            </div> -->
          </div>
          <div role="tabpanel" class="tab-pane" id="tab03">
             <ul class="row gallery-list has-center">
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-10-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-10.jpg" height="750" width="450" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-11-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-11.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-12-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-12.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-13-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-13.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-14-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-14.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-15-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-15.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-16-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-16.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-17-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-17.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
-               <li class="col-sm-6">
-                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-18-2.jpg" title="Caption Goes Here">
-                  <span class="img-holder">
-                  <img src="travel/img/gallery/img-18.jpg" height="240" width="370" alt="image description">
-                  </span>
-                  <span class="caption">
-                  <span class="centered">
-                  <strong class="title">ANNAPURNA VIEW</strong>
-                  <span class="sub-text">The Classic Trek</span>
-                  </span>
-                  </span>
-                  </a>
-               </li>
+                @if($entry->type=='image')
+                    <li class="col-sm-6">
+                      <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-10-2.jpg" title="Caption Goes Here">
+                      <span class="img-holder">
+                      <img src="{ makepreview($entry->image, null, 'entries') }}" height="750" width="450" alt="image description">
+                      </span>
+                      <span class="caption">
+                      <span class="centered">
+                      <strong class="title">{{ $entry->title }}</strong>
+                      </span>
+                      </span>
+                      </a>
+                   </li>
+                @endif
             </ul>
          </div>
       </div>

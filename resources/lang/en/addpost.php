@@ -10,8 +10,8 @@ return [
     'create'            => 'Create :type',
     'title'             => 'Title',
     'titleplace'        => 'Type a Title',
-    'desc'              => 'Description',
-    'descplace'         => 'Type a Description',
+    'desc'              => 'Price',
+    'descplace'         => 'Type a tour price',
     'entries'           => ':type Entries',
 
     'listtype'          => 'List Type',

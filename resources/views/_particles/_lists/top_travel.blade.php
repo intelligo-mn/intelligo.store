@@ -4,7 +4,7 @@
   <div class="thumbnail">
      <div class="img-wrap" @if(isset($setmediamarginbottom))style="margin-bottom: {{ $setmediamarginbottom }};" @endif>
         <img src="{{ makepreview($item->thumb, 's', 'posts') }}" height="228" width="350" alt="{{ $item->title }}">
-        <div class="img-caption text-uppercase">{{ str_limit($item->title, 30) }}</div>
+        <div class="img-caption text-uppercase">{{ str_limit($item->title, 25) }}</div>
         
         @unless(isset($metaof))
         <div class="hover-article">
@@ -30,7 +30,7 @@
 
      @if($descof=='on')
         <h3 class="small-space"><a href="{{ makeposturl($item) }}">{!! $item->title  !!}</a></h3>
-        <!-- <p>{{ str_limit($item->body, 70) }}</p> -->
+        <p>{{ str_limit($item->body, 70) }}</p>
         <a href="{{ makeposturl($item) }}" class="btn btn-default">explore</a>
 
      <footer>

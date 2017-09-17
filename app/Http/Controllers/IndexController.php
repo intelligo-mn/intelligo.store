@@ -40,7 +40,7 @@ class IndexController extends Controller
           if($HomeColSec3Type1==null){ $HomeColSec3Type1=array('video');}
 
         //colums 1
-        $lastFeatures=        Posts::forhome()->typesAccepted($HomeColSec1Type1)->typesActivete()->approve('yes')->latest("published_at")->paginate(23);
+        $lastFeatures=        Posts::forhome()->typesAccepted($HomeColSec1Type1)->typesActivete()->approve('yes')->latest("published_at")->paginate(6);
 
         //colums 2
         $lastNews =           Posts::forhome()->typesAccepted($HomeColSec2Type1)->typesActivete()->approve('yes')->latest("published_at")->take(15)->get();
