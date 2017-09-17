@@ -154,3 +154,11 @@ Stack trace:
 #8 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(142): Illuminate\Foundation\Application->make('App\\Http\\Middle...')
 #9 C:\wamp64\www\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #10 {main}  
+[2017-09-17 10:04:02] local.ERROR: InvalidArgumentException: There are no commands defined in the "сшуц" namespace. in /var/www/html/vendor/symfony/console/Application.php:469
+Stack trace:
+#0 /var/www/html/vendor/symfony/console/Application.php(501): Symfony\Component\Console\Application->findNamespace('\xD1\x81\xD1\x88\xD1\x83\xD1\x86')
+#1 /var/www/html/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->find('\xD1\x81\xD1\x88\xD1\x83\xD1\x86:clear')
+#2 /var/www/html/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main}  
