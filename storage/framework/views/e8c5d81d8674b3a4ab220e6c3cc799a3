@@ -1,0 +1,49 @@
+<?php $__env->startSection('head_title', $category->name .' | '.getcong('sitename') ); ?>
+<?php $__env->startSection('head_description', $category->description ); ?>
+<?php $__env->startSection("content"); ?>
+<section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="gridview-3-col">
+   <div class="banner-text">
+      <div class="center-text">
+         <div class="container">
+            <h1><?php echo e($category->name); ?></h1>
+            <strong class="subtitle">2017 оны хамгийн шилдэг аялалын мэдээллүүд</strong>
+            <nav class="breadcrumbs">
+               <ul>
+                  <li><a href="#">НҮҮР</a></li>
+                  
+                    <?php foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat): ?>
+
+                        <li><a data-type="<?php echo e($cat->name_slug); ?>" href="/<?php echo e($cat->name_slug); ?>"><?php echo e($cat->name); ?></a></li>
+                    <?php endforeach; ?>
+                  
+               </ul>
+            </nav>
+         </div>
+      </div>
+   </div>
+</section>
+<main id="main">
+   <div class="content-block content-sub">
+      <div class="container">
+         
+         <div class="content-holder content-sub-holder">
+               <?php if($lastNews): ?>
+                    <div class="row db-3-col">
+                      <?php foreach($lastNews as $key=>$item): ?>
+                         <?php echo $__env->make('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'on','linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                          <?php if($key ==0 ): ?>
+                              <?php foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget): ?>
+                                  <?php echo $widget->text; ?>
+
+                              <?php endforeach; ?>
+                          <?php endif; ?>
+                      <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+         </div>
+      </div>
+   </div>
+</main>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -2,8 +2,9 @@
    <div class="container-fluid">
       <div class="logo">
          <a href="{{ action('IndexController@index') }}">
-         <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada">
-         <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada">
+         <!-- <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada"> -->
+         TripToMongolia
+       <!--   <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada"> -->
          </a>
       </div>
       <nav class="navbar navbar-default">

@@ -549,6 +549,9 @@ blockquote.normal {
     display: inline-block;
     vertical-align: middle;
     width: 100px;
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
 }
@@ -7307,10 +7310,6 @@ body>.jcf-select-drop.jcf-drop-flipped {
     margin: 0;
 }
 
-.footer-holder {
-    margin: 0 -15px 45px;
-}
-
 .footer-nav {
     letter-spacing: .02em;
     margin-bottom: 15px;
@@ -9577,9 +9576,6 @@ h4,
     }
     .newsletter-form .info {
         font-size: 1.286em;
-    }
-    .footer-holder {
-        margin-bottom: 90px;
     }
     .footer-nav {
         margin-bottom: 30px;
