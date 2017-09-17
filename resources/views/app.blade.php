@@ -22,15 +22,15 @@
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
     
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link media="all" rel="stylesheet" href="travel/vendors/font-awesome/css/font-awesome.css">
-    <link media="all" rel="stylesheet" href="travel/vendors/material-design-icons/material-icons.css">
-    <link rel="stylesheet" type="text/css" href="travel/css/fonts/icomoon/icomoon.css">
-    <link media="all" rel="stylesheet" href="travel/vendors/animate/animate.css">
-    <link media="all" rel="stylesheet" href="travel/css/bootstrap.css">
-    <link media="all" rel="stylesheet" href="travel/vendors/owl-carousel/owl.carousel.css">
-    <link media="all" rel="stylesheet" href="travel/vendors/owl-carousel/owl.theme.css">
-    <link media="all" rel="stylesheet" href="travel/css/main.css">
-    <link rel="stylesheet" type="text/css" href="travel/vendors/revolution/css/settings.css">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/font-awesome/css/font-awesome.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/material-design-icons/material-icons.css')!!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('travel/css/fonts/icomoon/icomoon.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/animate/animate.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/css/bootstrap.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/owl-carousel/owl.carousel.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/owl-carousel/owl.theme.css')!!}">
+    <link media="all" rel="stylesheet" href="{!! asset('travel/css/main.css')!!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('travel/vendors/revolution/css/settings.css')!!}">
 
     {!! getcong('headcode') !!}
 
@@ -106,17 +106,17 @@
       <script src="{!! asset('travel/js/sticky-kit-init.js') !!}"></script>
       <script src="{!! asset('travel/vendors/bootstrap-datetimepicker-master/dist/js/bootstrap-datepicker.js') !!}"></script>
       <script src="{!! asset('travel/js/jquery.main.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/jquery.themepunch.tools.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/jquery.themepunch.revolution.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/jquery.themepunch.tools.min838f.js?rev=5.0') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/jquery.themepunch.revolution.min838f.js?rev=5.0') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.actions.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.parallax.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.video.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.navigation.min.js') !!}"></script>
-      <script type="text/javascript" src="{!! ('travel/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/jquery.themepunch.tools.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/jquery.themepunch.revolution.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/jquery.themepunch.tools.min838f.js?rev=5.0') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/jquery.themepunch.revolution.min838f.js?rev=5.0') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.actions.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.parallax.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.video.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.navigation.min.js') !!}"></script>
+      <script type="text/javascript" src="{!! asset('travel/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js') !!}"></script>
       <script src="{!! asset('travel/js/revolution.js') !!}"></script>
    </body>
 </html>
