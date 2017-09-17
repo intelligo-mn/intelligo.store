@@ -19,27 +19,7 @@
                     <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys): ?>
                         <li class="cats_link" ><a href="<?php echo e(url($categorys->name_slug)); ?>" class="biga firsg" data-type="<?php echo e($categorys->id); ?>"><i class="fa fa-<?php echo e($categorys->icon); ?>"></i> <?php echo e($categorys->name); ?> <i class="fa fa-caret-right"></i></a></li>
                     <?php endforeach; ?>
-                        
                 </ul>
-                
-                <div class="search_link">
-                    <div class="searchbox_container">
-                        <form method="get" action="/search" >
-                            <input type="text" name="q" id="searchbox_text" placeholder="<?php echo e(trans('index.search')); ?>">
-                        </form>
-                    </div>
-                    <a id="searchbutton" href="javascript:"><i class="fa fa-search"></i></a>
-                    <a id="searchclosebutton" href="javascript:"><i class="fa fa-close"></i></a>
-                </div>
-                <div class="social-side mob">
-
-                    <?php if(getcong('facebookpage')): ?><a target="_blank" href="<?php echo getcong('facebookpage'); ?>"><i class="fa fa-facebook-square"></i></a> <?php endif; ?>
-                    <?php if(getcong('twitterpage')): ?><a target="_blank" href="<?php echo getcong('twitterpage'); ?>"><i class="fa fa-twitter"></i></a><?php endif; ?>
-                    <?php if(getcong('googlepage')): ?><a target="_blank" href="<?php echo getcong('googlepage'); ?>"><i class="fa fa-google-plus"></i></a><?php endif; ?>
-                    <?php if(getcong('instagrampage')): ?><a target="_blank" href="<?php echo getcong('instagrampage'); ?>"><i class="fa fa-instagram"></i></a><?php endif; ?>
-                    <a href="/index.xml"><i class="fa fa-rss"></i></a>
-
-                </div>
             </div>
             <div class="clear"></div>
         </div>

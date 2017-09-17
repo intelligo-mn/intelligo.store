@@ -1,6 +1,4 @@
-@extends("main")
-
-@section("content")
+<?php $__env->startSection("content"); ?>
    <div class="banner banner-home">
        <div id="rev_slider_279_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="restaurant-header" style="margin:0px auto;background-color:#474d4b;padding:0px;margin-top:0px;margin-bottom:0px;">
           <div id="rev_slider_70_1" class="rev_slider fullscreenabanner" style="display:none;" data-version="5.1.4">
@@ -755,4 +753,6 @@
           </div>
        </article>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

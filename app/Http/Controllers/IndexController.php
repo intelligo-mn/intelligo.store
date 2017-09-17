@@ -34,10 +34,10 @@ class IndexController extends Controller
             $HomeColSec2Type1=getcong('HomeColSec2Type1');
             $HomeColSec3Type1=getcong('HomeColSec3Type1');
         }
-        //set defult
-        if($HomeColSec1Type1==null){ $HomeColSec1Type1=array('list', 'quiz');}
-        if($HomeColSec2Type1==null){ $HomeColSec2Type1=array('news');}
-        if($HomeColSec3Type1==null){ $HomeColSec3Type1=array('video');}
+           //set defult
+          if($HomeColSec1Type1==null){ $HomeColSec1Type1=array('list', 'quiz');}
+          if($HomeColSec2Type1==null){ $HomeColSec2Type1=array('news');}
+          if($HomeColSec3Type1==null){ $HomeColSec3Type1=array('video');}
 
         //colums 1
         $lastFeatures=        Posts::forhome()->typesAccepted($HomeColSec1Type1)->typesActivete()->approve('yes')->latest("published_at")->paginate(23);
@@ -78,16 +78,16 @@ class IndexController extends Controller
         // }
 
 
-        return view('pages.main', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
+        return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
     }
 
 
     public function langpick($getlang)
     {
 
-        \Session::put('locale', $getlang);
+            \Session::put('locale', $getlang);
 
-        \App::setLocale(\Session::get('locale'));
+            \App::setLocale(\Session::get('locale'));
 
         return redirect()->back();
 
