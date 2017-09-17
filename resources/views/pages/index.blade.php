@@ -116,7 +116,7 @@
                 <div class="row">
                    <div class="col-md-6 img-block">
                       <ul class="gallery-list gallery-with-icon">
-                        @foreach($lastFeaturestop as $item)
+                        @foreach($lastNews as $item)
                          <li>
                             <a href="{{ makeposturl($item) }}" class="thumbnail">
                             <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" height="165" width="170" alt="image description" style="height: 165px !important;">
