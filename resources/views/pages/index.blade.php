@@ -273,16 +273,17 @@
        <section class="content-block guide-sub guide-add bg-white">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">Онцлох агшин</h2>
+                <h2 class="main-heading">Gallery</h2>
                 
                 <div class="seperator"></div>
              </header>
              <div class="content-holder">
                 <div class="row">
-                   <div class="col-sm-6 col-md-4 img-article">
+                    @foreach($lastFeaturestop as $item)
+                     <div class="col-sm-6 col-md-4 img-article">
                       <div class="holder">
                          <div class="img-wrap">
-                            <img src="travel/img/listing/img-13.jpg" height="436" width="370" alt="image description">
+                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" height="436" width="370" alt="image description">
                             <ul class="social-networks">
                                <li><a href="#"><span class="icon-facebook"></span></a></li>
                                <li><a href="#"><span class="icon-twitter"></span></a></li>
@@ -291,45 +292,12 @@
                             </ul>
                          </div>
                          <div class="caption">
-                            <h3 class="small-space">Jason Statham</h3>
-                            <span class="designation">TREKKING GUIDE</span>
+                            <h3 class="small-space">{{ $item->title }}</h3>
                          </div>
                       </div>
-                   </div>
-                   <div class="col-sm-6 col-md-4 img-article">
-                      <div class="holder">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-14.jpg" height="436" width="370" alt="image description">
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                         </div>
-                         <div class="caption">
-                            <h3 class="small-space">Cleona Tropez</h3>
-                            <span class="designation">TREKKING GUIDE</span>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="col-sm-6 col-md-4 img-article">
-                      <div class="holder">
-                         <div class="img-wrap">
-                            <img src="travel/img/listing/img-15.jpg" height="436" width="370" alt="image description">
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                         </div>
-                         <div class="caption">
-                            <h3 class="small-space">Martin Blake</h3>
-                            <span class="designation">TREKKING GUIDE</span>
-                         </div>
-                      </div>
-                   </div>
+                    </div>
+                    @endforeach
+                   
                 </div>
              </div>
           </div>

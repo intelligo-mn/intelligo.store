@@ -294,7 +294,7 @@
          </div>
          <div role="tabpanel" class="tab-pane" id="tab03">
             <ul class="row gallery-list has-center">
-                <!-- <?php if($entry->type=='image'): ?> -->
+                <?php if($entry->type=='image'): ?>
                     <li class="col-sm-6">
                       <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-10-2.jpg" title="Caption Goes Here">
                       <span class="img-holder">
@@ -307,7 +307,7 @@
                       </span>
                       </a>
                    </li>
-                <!-- <?php endif; ?> -->
+                <?php endif; ?>
             </ul>
          </div>
       </div>
