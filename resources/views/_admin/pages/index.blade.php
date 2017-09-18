@@ -46,11 +46,11 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>{{ $todayusers }}</h3>
-                <p>{{ trans('admin.todaysuserregistrations') }}</p>
+                <h3>{{ $videocount }}</h3>
+                <p>{{ trans('admin.NumberofVideos') }}</p>
             </div>
             <div class="icon">
-                <i class="fa fa-user-plus"></i>
+                <i class="fa fa-youtube-play"></i>
             </div>
             <a href="/admin/users" class="small-box-footer">{{ trans('admin.moreinfo') }} <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -59,8 +59,8 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>{{ $todaylogins }}</h3>
-                <p>{{ trans('admin.todaysuserregistrations') }}</p>
+                <h3>{{ $newscount }}</h3>
+                <p>{{ trans('admin.NumberofNews') }}</p>
             </div>
             <div class="icon">
                 <i class="fa fa-eye"></i>
@@ -69,6 +69,7 @@
         </div>
     </div><!-- ./col -->
 </div><!-- /.row -->
+
 <!-- Main row -->
 <div class="row">
     <!-- Left col -->
@@ -105,32 +106,7 @@
         </div>
         @endforeach
 
-    </div>       <!-- USERS LIST -->
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('admin.latestmembers') }}</h3>
-                    <div class="box-tools pull-right">
-                        <span class="label label-danger">{{ $todayusers }} {{ trans('admin.newmemberstoday') }}</span>
-                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div><!-- /.box-header -->
-                <div class="box-body no-padding">
-
-                    <ul class="users-list clearfix">
-                        @foreach($lastusers as $user)
-                            <li style=" width: 20%;">
-                                <img src="{{ makepreview($user->icon, 'b', 'members/avatar') }}" width="110" height="110" style="max-height:110px;min-height:110px" alt="User Image">
-                                <a class="users-list-name" target="_blank" href="/profile/{{ $user->username_slug }}">{{ $user->username }}</a>
-                                <span class="users-list-date">{{ $user->created_at->diffForHumans() }}</span>
-                            </li>
-                        @endforeach
-                    </ul><!-- /.users-list -->
-                </div><!-- /.box-body -->
-                <div class="box-footer text-center">
-                    <a href="/admin/users" class="uppercase">{{ trans('admin.viewall') }}</a>
-                </div><!-- /.box-footer -->
-            </div><!--/.box -->
+    </div>      
     </section><!-- /.Left col -->
 
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -214,9 +190,6 @@
                 <div class="box-tools pull-right">
                     <ul class="nav nav-tabs pull-right" style="border:0">
                         <li class="active"><a href="#news-chart" style="color:#000;border-radius: 5px;" class="btn btn-box-tool box-line-get" data-type="news" data-toggle="tab">{{ trans('admin.news') }}</a></li>
-                        <li><a href="#lists-chart" style="color:#000;border-radius: 5px;"  class="btn btn-box-tool box-line-get" data-type="lists" data-toggle="tab">{{ trans('admin.lists') }}</a></li>
-                        <li><a href="#quizzes-chart" style="color:#000;border-radius: 5px;"  class="btn btn-box-tool box-line-get" data-type="quizzes" data-toggle="tab">{{ trans('admin.quizzes') }}</a></li>
-                        <li><a href="#polls-chart" style="color:#000;border-radius: 5px;"  class="btn btn-box-tool box-line-get" data-type="polls" data-toggle="tab">{{ trans('admin.polls') }}</a></li>
                         <li><a href="#videos-chart" style="color:#000;border-radius: 5px;"  class="btn btn-box-tool box-line-get" data-type="videos" data-toggle="tab">{{ trans('admin.videos') }}</a></li>
                     </ul>
                 </div>
@@ -230,91 +203,10 @@
                 </div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
-<style>
-
-    #sales-chart path{
-        stroke: rgba(255, 255, 255, 0.4);
-        stroke-width: 3px;
-    }
-</style>
-        <div class="box box-info box-solid"  style="background: #00c0ef;">
-            <div class="box-header">
-                <i class="fa fa-th"></i>
-                <h3 class="box-title">{{ trans('admin.Last30DaysTotalPostsbyTypes') }}</h3>
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool box-donut-get" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div><!-- /.box-header -->
-            <div class="box-body" style="background-color: transparent">
-                <div class="chart tab-pane" id="sales-chart"  style="width: 100%;height: 300px;"></div>
-            </div><!-- /.box-body -->
-
-        </div>
-
-
-
-
-        <!-- solid sales graph -->
-        <div class="box box-solid bg-light-blue-gradient">
-            <div class="box-header">
-                <i class="fa fa-th"></i>
-                <h3 class="box-title">{{ trans('admin.Userregistersonlast30days') }}</h3>
-                <div class="box-tools pull-right">
-                    <button class="btn bg-light-blue btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn bg-light-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <div class="box-body border-radius-none">
-                <div class="chart" id="user-chart" style="height: 250px;"></div>
-            </div><!-- /.box-body -->
-
-        </div><!-- /.box -->
 
     </section><!-- right col -->
 </div><!-- /.row (main row) -->
-<div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-file-text"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">{{ trans('admin.NumberofNews') }}</span>
-                    <span class="info-box-number">{{ $newscount }}</span>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-th-list"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">{{ trans('admin.NumberofLists') }}</span>
-                    <span class="info-box-number">{{ $listcount }}</span>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
 
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-check-square-o"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">{{ trans('admin.NumberofPolls') }}</span>
-                    <span class="info-box-number">{{ $pollcount }}</span>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-youtube-play"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">{{ trans('admin.NumberofVideos') }}</span>
-                    <span class="info-box-number">{{ $videocount }}</span>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-    </div>
 </section><!-- /.content -->
 @endsection
 @section('footer')
