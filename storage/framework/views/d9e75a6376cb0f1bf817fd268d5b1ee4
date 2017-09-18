@@ -116,7 +116,7 @@
                       <ul class="gallery-list gallery-with-icon">
                         <?php foreach($lastFeaturestop as $item): ?>
                          <li>
-                            <a href="{ makeposturl($item) }}" class="thumbnail">
+                            <a href="<?php echo e(makeposturl($item)); ?>" class="thumbnail">
                             <img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" height="165" width="170" alt="image description" style="height: 165px !important;">
                             <span class="hover icon-bird"></span>
                             <span class="info"><?php echo e($item->title); ?></span>
@@ -186,170 +186,24 @@
                 <div class="seperator"></div>
              </header>
              <div class="content-holder">
+
+                <?php if($lastNews): ?>
                 <div class="row db-3-col">
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-01.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">Discover Timeless</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Jungle safari for families</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-02.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">Finding Egyptians</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Nature wildlife photography</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-03.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">Cave Adventures</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Polar arctic expeditions</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-04.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">Peak Climbing</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Marine diving excursions</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-05.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">Treasure Hunting</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Go wild at national parks</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
-                   <article class="col-sm-6 col-md-4 article has-hover-s3">
-                      <div class="img-wrap">
-                         <a href="#">
-                         <img src="travel/img/listing/img-06.jpg" height="215" width="370" alt="image description">
-                         </a>
-                         <div class="img-caption text-uppercase">A night with sky</div>
-                         <div class="hover-article">
-                            <div class="star-rating">
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span><span class="icon-star"></span></span>
-                               <span class="disable"><span class="icon-star"></span></span>
-                            </div>
-                            <div class="icons">
-                               <a href="#"><span class="icon-heart"></span></a>
-                               <a href="#"><span class="icon-reply"></span></a>
-                            </div>
-                            <div class="info-footer">
-                               <span class="price">from <span>$2749</span></span>
-                               <a href="#" class="link-more">Explore</a>
-                            </div>
-                         </div>
-                      </div>
-                      <h3><a href="#">Educational trips in wild</a></h3>
-                      <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,</p>
-                   </article>
+                  <?php foreach($lastNews as $key=>$item): ?>
+                     <?php echo $__env->make('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'on','linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                      <?php if($key ==0 ): ?>
+                          <?php foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget): ?>
+                              <?php echo $widget->text; ?>
+
+                          <?php endforeach; ?>
+                      <?php endif; ?>
+
+                  <?php endforeach; ?>
+               
                 </div>
+                
+                <?php endif; ?>
              </div>
           </div>
        </div>

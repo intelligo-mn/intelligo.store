@@ -19,21 +19,48 @@
             <ul class="nav navbar-nav">
                
                <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys): ?>
-                  <li class="dropdown">
-                     <a href="<?php echo e(url($categorys->name_slug)); ?>" class="dropdown-toggle" data-type="<?php echo e($categorys->id); ?>" data-toggle="dropdown"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
+                  <li>
+                     <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
                         
                   </li>
               <?php endforeach; ?>
-               <li class="visible-xs visible-sm">
-                  <a href="login.html">
-                  <span class="icon icon-user"></span>
-                  <span class="text">Login</span>
-                  </a>
-               </li>
-               <li class="hidden-xs hidden-sm v-divider">
-                  <a href="login.html">
+               
+               <li class="dropdown hidden-xs hidden-sm v-divider">
+                  <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
+                  <?php if(Auth::check()): ?>
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                           <a style="display:block;font-size:16px;font-weight: 600"><?php echo e(Auth::user()->username); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.myprofile')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@followfeed', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('updates.feedposts')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@draftposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.draft')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.trash')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.settings')); ?></a>
+                       </li>
+                       <?php if(Auth::user()->usertype=='Admin'): ?>
+                           <li>
+                               <a href="/admin"><?php echo e(trans('index.adminp')); ?></a>
+                           </li>
+                       <?php endif; ?>
+                       <li>
+                           <a href="<?php echo e(action('Auth\AuthController@logout')); ?>"><?php echo e(trans('index.logout')); ?></a>
+                       </li>
+                     </ul>
+                  </div>
+                  <?php endif; ?>
                </li>
              
                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
