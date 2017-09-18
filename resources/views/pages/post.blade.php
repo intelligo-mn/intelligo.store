@@ -1,4 +1,4 @@
-@extends("app")
+@extends("others")
 @section('head_title',  $post->title.' | '.getcong('sitename'))
 @section('head_description', $post->body)
 @section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))
@@ -6,178 +6,598 @@
 @section('modedefault', 'mode-default')
 @section("content")
 
-    <div class="content">
+@foreach($entrys as $key => $entry)
 
-        <div class="container">
-            <div class="mainside postmainside">
-
-                <div class="post-content" style="margin-top:7px;background: transparent" itemscope="" itemtype="http://schema.org/Article">
-
-                    <div class="post">
-                        <div class="post-head">
-                            @if($post->approve == 'draft')
-                                <div class="label label-staff" >{{ trans('updates.thisdraftpost') }}</div>
-                            @endif
-                            <h1 itemprop="name" class="post-title">
-                                {{ $post->title }}
-                            </h1>
-
-
-                            @can('update-post', $post)
-
-                            @if(Auth::user()->usertype=='Admin')
-
-                                <h5 class="pull-r" style="color:#aaa;line-height: 26px">{{ trans('index.admintools') }}</h5>
-
-                                @if($post->approve == 'no')
-                                    <a href="{{ action('Admin\PostsController@approvepost', $post->id) }}" class="button button-orange button-small"><i class="fa fa-check-square-o iconp"></i> {{ trans('index.approve') }}</a>
-                                @endif
-                            @else
-                                @if((getcong('UserEditPosts')=='true' and getcong('UserDeletePosts')=='true'))
-                                    <h5 class="pull-r" style="color:#aaa;line-height: 26px">{{ trans('index.ownertools') }}</h5>
-                                @endif
-                                @if($post->approve == 'no')
-                                    <a href="#" class="button button-orange button-small" style="cursor: default"><i class="fa fa-circle-o-notch fa-spin iconp"></i> {{ trans('index.waitapprove') }}</a>
-                                @endif
-                            @endif
-
-                            @if(getcong('UserEditPosts')=='true' or Auth::user()->usertype=='Admin')
-                                <a href="{{ action('PostsController@CreateEdit', [$post->id]) }}" class="button button-green button-small" ><i class="fa fa-pencil-square iconp"></i> {{ trans('index.edit') }}</a>
-                            @endif
-                            @if(getcong('UserDeletePosts')=='true' or Auth::user()->usertype=='Admin')
-                                <a href="{{ action('PostsController@sendtrashpost', [$post->id]) }}" onclick="confim()" class="button button-red button-small " ><i class="fa fa-trash"></i></a>
-                            @endif
-                            <BR><BR>
-                            @endcan
-
-                            <p>
-                                {!! nl2br($post->body) !!}
-                            </p>
-
-                            <div class="post-head__bar">
-                                @if(isset($post->user->username_slug))
-                                    <div class="user-info {{ $post->user->genre }} answerer">
-                                        <div class="avatar left">
-                                            <img src="{{ makepreview($post->user->icon , 's', 'members/avatar') }}" width="45" height="45" alt="{{ $post->user->username }}">
-                                        </div>
-                                        <div class="info">
-
-
-                                            <a class="name" href="{{ action('UsersController@index', [$post->user->username_slug ]) }}" target="_self">{{ $post->user->username}}</a>
-
-                                            @if($post->user->usertype == 'Admin')
-                                                <div class="label label-admin" style="margin-left:5px">{{ trans('updates.usertypeadmin') }}</div>
-                                            @elseif($post->user->usertype == 'Staff')
-                                                <div class="label label-staff" style="margin-left:5px">{{ trans('updates.usertypestaff') }}</div>
-                                            @elseif($post->user->usertype == 'banned')
-                                                <div class="label label-banned" style="margin-left:5px">{{ trans('updates.usertypebanned') }}</div>
-                                            @endif
-
-
-
-
-                                            <div class="detail">
-                                                {!! trans('index.postedon', ['time' => '<time itemprop="datePublished">'.$post->published_at->diffForHumans() .'</time>' ]) !!}
-
-                                                @unless($post->updated_at==$post->published_at)
-                                                    , {!! trans('index.updatedon', ['time' => '<time itemprop="datePublished">'.$post->updated_at->diffForHumans() .'</time>' ]) !!}
-                                                @endunless
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @endif
-
-                                <div class="post-head__meta">
-                                    <div class="posted-on">
-
-
-                                    </div>
-
-                                    <div class="topics-container clearfix">
-                                        @if(isset($post->category->name_slug))
-                                            <div class="item_category">
-                                                <a href="{{ action('PagesController@showCategory', ['id' => $post->category->name_slug ]) }}">{{ $post->category->name }}</a>
-                                            </div>
-                                        @endif
-
-
-                                        <div class="clear"></div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="clear"></div>
-                            @include("_particles.others.postsociallinks")
-                            <div class="clear"></div>
-
-                            @foreach(\App\Widgets::where('type', 'PostShareBw')->where('display', 'on')->get() as $widget)
-                                {!! $widget->text !!}
-                            @endforeach
-
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <article class="post-body" id="post-body" itemprop="text">
-
-                            @include("_particles._lists.entryslists")
-
-                        </article>
-
+<main id="main">
+   <section class="container-fluid trip-info">
+      <div class="same-height two-columns row">
+         <div class="height col-md-6">
+            <div id="tour-slide">
+                 <div class="slide">
+                    <div class="bg-stretch">
+                       <img src="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}" height="1104" width="966">
                     </div>
-                    @if ($post->tags != "")
-                        @foreach(explode(',', $post->tags) as $tag)
-                          <span class="tagy"><a href="{{ action('PagesController@showtag', $tag) }}"><i class="fa fa-tag"></i> {{$tag}}</a></span>
-                        @endforeach
-                    @endif
-
-
-                    @foreach(\App\Widgets::where('type', 'PostBelow')->where('display', 'on')->get() as $widget)
-                        {!! $widget->text !!}
-                    @endforeach
-
-
-                </div>
-
-                @include("_forms._reactionforms")
-
-                @include("_forms._commentforms")
-
-            </div>
-            <div class="sidebar">
-
-                @foreach(\App\Widgets::where('type', 'PostPageSidebar')->where('display', 'on')->get() as $widget)
-                    {!! $widget->text !!}
-                @endforeach
-
-                <div class="colheader" style="border:0;text-transform: uppercase;">
-                    <h1>{{ trans('index.today') }} {!! trans('index.top', ['type' => '<span style="color:#d92b2b">'.trans('index.posts').'</span>' ]) !!}</h1>
-                </div>
-
-                @include("_widgets.trendlist_sidebar")
-
-                @include("_widgets.facebooklike")
-
-            </div>
-            <div class="clear"></div>
-            <br><br> <br>
-            @if(isset($lastFeatures))
-                @if(count($lastFeatures) >= 3)
-                    <div class="colheader">
-                        <h1>{{ trans('index.maylike') }}</h1>
+                 </div>
+                 <div class="slide">
+                    <div class="bg-stretch">
+                       <img src="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}" height="1104" width="966">
                     </div>
-                    @include("_widgets.post-between-comments")
+                 </div>
+              </div>
+         </div>
+         <div class="height col-md-6 text-col">
+            <div class="holder">
+               <h1 class="small-size">{{ $post->title }}</h1>
+               <div class="price">
+                  from <strong>US $979</strong>
+               </div>
+               <div class="description">
+                  <p>{{ $post->body }}</p>
+               </div>
+               
+               <div class="btn-holder">
+                  <a href="#" class="btn btn-lg btn-info">ЗАХИАЛАХ</a>
+               </div>
+               <ul class="social-networks social-share">
+                  <li>
+                     <a href="#" class="facebook">
+                     <span class="ico">
+                     <span class="icon-facebook"></span>
+                     </span>
+                     <span class="text">Share</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="twitter">
+                     <span class="ico">
+                     <span class="icon-twitter"></span>
+                     </span>
+                     <span class="text">Tweet</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="google">
+                     <span class="ico">
+                     <span class="icon-google-plus"></span>
+                     </span>
+                     <span class="text">+1</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="pin">
+                     <span class="ico">
+                     <span class="icon-pin"></span>
+                     </span>
+                     <span class="text">Pin it</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class="tab-container">
+      <nav class="nav-wrap" id="sticky-tab">
+         <div class="container">
+            <ul class="nav nav-tabs text-center" role="tablist">
+               <li role="presentation" class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">Overview</a></li>
+               <li role="presentation"><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">Itinerary</a></li>
+               <li role="presentation"><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">Gallery</a></li>
+            </ul>
+         </div>
+      </nav>
+      <div class="container tab-content trip-detail">
+         <div role="tabpanel" class="tab-pane active" id="tab01">
+            <div class="row">
+               <div class="col-md-6">
+                  @if($entry->title)
+                    <h2 class="sub-title" >
+
+                            @if($post->ordertype != '')
+                                {{ $entry->order+1 }}.
+                             @endif
+
+                        {{ $entry->title }}
+                    </h2>
                 @endif
-            @endif
-        </div>
 
-    </div>
+                @if($entry->type=='image')
+                    <div class="media">
+                        <div class="sharemedia">
+                            @include('._particles.others.entrysharebuttons')
+                        </div>
+                        <a id="" class="gif-icon-a"><img class="img-responsive" style="display: block;@if($entry->type=='image')width:100%@endif" alt="{{ $entry->title }}" src="{{ makepreview($entry->image, null, 'entries') }}"></a>
+                        <small>{!! $entry->source !!}</small>
+                    </div>
+                @endif
+
+                @if($entry->type=='video' or $entry->type=='tweet' or $entry->type=='facebookpost' or $entry->type=='embed' or $entry->type=='soundcloud')
+
+                        @if($entry->type=='facebookpost')
+                            <div class="fb-post" data-href="{!!   $entry->video !!}" data-width="100%"></div>
+
+                        @elseif (strpos($entry->video, 'facebook'))
+                       <div id="{!! $entry->id !!}" class="fb-video" data-href="{!! $entry->video !!}" style="max-height: 360px;"><div class="fb-xfbml-parse-ignore"></div></div>
+
+                        @else
+                            {!! $entry->video !!}
+                        @endif
+                @endif
+                @if( $entry->type=='instagram')
+
+                    <div class='embed-containera'>
+                          <iframe id="instagram-embed-{{ $entry->order }}" src="{!! $entry->video !!}embed/captioned/?v=5" allowtransparency="true" frameborder="0" data-instgrm-payload-id="instagram-media-payload-{{ $entry->order }}" scrolling="no" style="border: 0; margin: 1px; max-width: 658px; width: calc(100% - 2px); border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 1px 0px, rgba(0, 0, 0, 0.14902) 0px 1px 10px 0px; display: block; padding: 0px; background: rgb(255, 255, 255);"></iframe>
+                          <script src="//platform.instagram.com/en_US/embeds.js"></script>
+                    </div>
+
+                @endif
 
 
+                 <p>
+                    {!! $entry->body !!}
+                </p>
+                 @if( $entry->type=='text')
+                <small>{!! $entry->source !!}</small>
+                 @endif
+               </div>
+               <div class="col-md-6">
+                  <strong class="header-box">The tour package inclusions and exclusions at a glance</strong>
+                  <div class="text-box">
+                     <div class="holder">
+                        <strong class="title">Whats included in this tour</strong>
+                        <span class="sub-title">Items that are covered in the cost of tour price.</span>
+                        <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
+                        <ul class="content-list tick-list">
+                           <li>All breakfasts, lunches and dinners &amp; dining</li>
+                           <li>All accommodation including tea houses en route</li>
+                           <li>All transportation including taxis and coaches</li>
+                           <li>Flights from Heathrow if booked inc. of flight</li>
+                           <li>Tour and trekking guide for entire journey</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="text-box not-included">
+                     <div class="holder">
+                        <strong class="title">Whats not included in this tour</strong>
+                        <span class="sub-title">Items that are covered in the cost of tour price.</span>
+                        <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
+                        <ul class="content-list cross-list">
+                           <li>Travel insurance and other emergencies</li>
+                           <li>Visa fees and entry clearing fees</li>
+                           <li>Single room accommodations</li>
+                           <li>Liquors, beeers and bootled beverages</li>
+                           <li>Photography ccessories like cameras etc.</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div role="tabpanel" class="tab-pane" id="tab02">
+            <div class="row">
+               <div class="col-md-6">
+                  <ol class="detail-accordion">
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 1</strong>
+                        <span>Depart London</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 2</strong>
+                        <span>Arrive in Kathmandu</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 3</strong>
+                        <span>Leave for Pokhara</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 4</strong>
+                        <span>Start Trekking at Besi</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 5</strong>
+                        <span>Day subtitle message</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 6</strong>
+                        <span>Day subtitle message</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <strong class="title">Day 7</strong>
+                        <span>Depart London</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="active">
+                        <a href="#">
+                        <strong class="title">Day 8</strong>
+                        <span>Return to London</span>
+                        </a>
+                        <div class="slide">
+                           <div class="slide-holder">
+                              <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+                              <p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
+                           </div>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+               <div class="col-md-6">
+                  <article class="img-article article-light">
+                     <div class="img-wrap">
+                        <img src="travel/img/generic/img-08.jpg" height="319" width="570" alt="image description">
+                     </div>
+                     <div class="text-block">
+                        <h3><a href="#">Member taking a short break</a></h3>
+                        <p>Consider packing your bag with folloing daily essentials.</p>
+                     </div>
+                  </article>
+                  <article class="img-article article-light">
+                     <div class="img-wrap">
+                        <img src="travel/img/generic/img-09.jpg" height="319" width="570" alt="image description">
+                     </div>
+                     <div class="text-block">
+                        <h3><a href="#">Couple enjoying the spectacular view</a></h3>
+                        <p>Consider packing your bag with folloing daily essentials.</p>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </div>
+         <div role="tabpanel" class="tab-pane" id="tab03">
+            <ul class="row gallery-list has-center">
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-10-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-10.jpg" height="750" width="450" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-11-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-11.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-12-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-12.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-13-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-13.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-14-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-14.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-15-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-15.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-16-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-16.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-17-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-17.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+               <li class="col-sm-6">
+                  <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-18-2.jpg" title="Caption Goes Here">
+                  <span class="img-holder">
+                  <img src="travel/img/gallery/img-18.jpg" height="240" width="370" alt="image description">
+                  </span>
+                  <span class="caption">
+                  <span class="centered">
+                  <strong class="title">ANNAPURNA VIEW</strong>
+                  <span class="sub-text">The Classic Trek</span>
+                  </span>
+                  </span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <aside class="recent-block recent-gray recent-wide-thumbnail">
+      <div class="container">
+         <h2 class="text-center text-uppercase">RECENTLY VIEWED</h2>
+         <div class="row">
+            @foreach($lastFeatures as $item)
+                @include('._particles._lists.travel_list', ['listtype' => 'big_image titm bolb','descof' => 'on', 'setbadgeof' => 'off', 'itembodyheight' => '50px', 'metaof' => 'off', 'linkcolor' => 'default'])
+            @endforeach
+        <!--     <article class="col-sm-6 col-md-3 article">
+               <div class="thumbnail">
+                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
+                  <strong class="info-title">Everest Region, Nepal</strong>
+                  <div class="img-wrap">
+                     <img src="travel/img/listing/img-31.jpg" height="210" width="250" alt="image description">
+                  </div>
+                  <footer>
+                     <div class="sub-info">
+                        <span>5 Days</span>
+                        <span>$299</span>
+                     </div>
+                     <ul class="ico-list">
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-hiking"></span>
+                           <span class="popup">
+                           Hiking
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-mountain"></span>
+                           <span class="popup">
+                           Mountain
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-level5"></span>
+                           <span class="popup">
+                           Level 5
+                           </span>
+                           </a>
+                        </li>
+                     </ul>
+                  </footer>
+               </div>
+            </article>
+            <article class="col-sm-6 col-md-3 article">
+               <div class="thumbnail">
+                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
+                  <strong class="info-title">Everest Region, Nepal</strong>
+                  <div class="img-wrap">
+                     <img src="travel/img/listing/img-32.jpg" height="210" width="250" alt="image description">
+                  </div>
+                  <footer>
+                     <div class="sub-info">
+                        <span>5 Days</span>
+                        <span>$299</span>
+                     </div>
+                     <ul class="ico-list">
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-hiking"></span>
+                           <span class="popup">
+                           Hiking
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-mountain"></span>
+                           <span class="popup">
+                           Mountain
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-level5"></span>
+                           <span class="popup">
+                           Level 5
+                           </span>
+                           </a>
+                        </li>
+                     </ul>
+                  </footer>
+               </div>
+            </article>
+            <article class="col-sm-6 col-md-3 article">
+               <div class="thumbnail">
+                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
+                  <strong class="info-title">Everest Region, Nepal</strong>
+                  <div class="img-wrap">
+                     <img src="travel/img/listing/img-33.jpg" height="210" width="250" alt="image description">
+                  </div>
+                  <footer>
+                     <div class="sub-info">
+                        <span>5 Days</span>
+                        <span>$299</span>
+                     </div>
+                     <ul class="ico-list">
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-hiking"></span>
+                           <span class="popup">
+                           Hiking
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-mountain"></span>
+                           <span class="popup">
+                           Mountain
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-level5"></span>
+                           <span class="popup">
+                           Level 5
+                           </span>
+                           </a>
+                        </li>
+                     </ul>
+                  </footer>
+               </div>
+            </article>
+            <article class="col-sm-6 col-md-3 article">
+               <div class="thumbnail">
+                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
+                  <strong class="info-title">Everest Region, Nepal</strong>
+                  <div class="img-wrap">
+                     <img src="travel/img/listing/img-34.jpg" height="210" width="250" alt="image description">
+                  </div>
+                  <footer>
+                     <div class="sub-info">
+                        <span>5 Days</span>
+                        <span>$299</span>
+                     </div>
+                     <ul class="ico-list">
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-hiking"></span>
+                           <span class="popup">
+                           Hiking
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-mountain"></span>
+                           <span class="popup">
+                           Mountain
+                           </span>
+                           </a>
+                        </li>
+                        <li class="pop-opener">
+                           <a href="#">
+                           <span class="icon-level5"></span>
+                           <span class="popup">
+                           Level 5
+                           </span>
+                           </a>
+                        </li>
+                     </ul>
+                  </footer>
+               </div>
+            </article> -->
+         </div>
+      </div>
+   </aside>
+</main>
+
+@endforeach
+
+   @if($key==1 and count($entrys) > 3)
+        @foreach(\App\Widgets::where('type', 'Post2nd3rdentry')->where('display', 'on')->get() as $widget)
+            {!! $widget->text !!}
+        @endforeach
+    @endif
 @endsection
+
 @section('footer')
     @if($post->type=="quiz")
     <script>
@@ -203,22 +623,28 @@
             $('.poll_main_color').each(function(i){
                 $(this).css('width', $(this).attr('data-percent')+'%');
             });
+            $('body').addClass('default-page');
         });
     </script>
     @endif
-    <script async defer src="//platform.instagram.com/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
+    <!-- <script async defer src="//platform.instagram.com/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+ -->
 
 
     <style> .fb_dialog{z-index:999999999} </style>
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+   <!--  <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/sdk.js#xfbml=1{!! getcong('facebookapp') > "" ? '&appId='.getcong('facebookapp') : '' !!}&version=v2.4";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
+        }(document, 'script', 'facebook-jssdk'));</script> -->
+    <script>
+        $( document ).ready(function() {
+           
+            $('#header').css('background', '#252525');
+        });
+    </script>
 @endsection
