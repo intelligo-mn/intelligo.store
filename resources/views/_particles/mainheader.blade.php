@@ -17,30 +17,13 @@
          </div>
          <div class="collapse navbar-collapse" id="nav">
             <ul class="nav navbar-nav">
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tour Listing <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li><a href="tour-detail.html">Tour Detail</a></li>
-               <li class="dropdown has-mega-dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Activities <b class="icon-angle-down"></b></a>
-                </li>
-               <li class="dropdown has-mega-dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="dropdown has-mega-dropdown mega-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements <b class="icon-angle-down"></b></a>
-                  
-               </li>
+               
+               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
+                  <li class="dropdown">
+                     <a href="{{ url($categorys->name_slug) }}" class="dropdown-toggle" data-type="{{ $categorys->id }}" data-toggle="dropdown">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                        
+                  </li>
+              @endforeach
                <li class="visible-xs visible-sm">
                   <a href="login.html">
                   <span class="icon icon-user"></span>
