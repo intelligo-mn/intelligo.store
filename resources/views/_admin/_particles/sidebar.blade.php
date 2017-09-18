@@ -27,13 +27,6 @@
             </a>
         </li>
         @endif
-       <!--  <li @if(Request::segment(2)=='plugins') class="active" @endif>
-            <a href="{{  action('Admin\DashboardController@plugins') }}">
-                <i class="fa fa-puzzle-piece"></i> <span>{{ trans('admin.Plugins') }}</span>
-                <span class="pull-right badge bg-red">{{ trans('admin.NEW') }}</span>
-
-            </a>
-        </li> -->
         <li class="treeview  @if(Request::segment(2)=='config') active @endif">
             <a href="{{ action('Admin\ConfigController@index') }}">
                 <i class="fa fa-cog"></i> <span>{{ trans('admin.Settings') }}</span>
@@ -95,7 +88,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li>
-                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"></i> {{ trans('admin.BannedUsers') }} </a></li>
+                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> --></i> {{ trans('admin.BannedUsers') }} </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> {{ trans('admin.Admins') }}</a></li>
                 <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li>
             </ul>
