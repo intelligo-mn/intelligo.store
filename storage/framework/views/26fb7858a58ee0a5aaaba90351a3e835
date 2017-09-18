@@ -27,13 +27,6 @@
             </a>
         </li>
         <?php endif; ?>
-       <!--  <li <?php if(Request::segment(2)=='plugins'): ?> class="active" <?php endif; ?>>
-            <a href="<?php echo e(action('Admin\DashboardController@plugins')); ?>">
-                <i class="fa fa-puzzle-piece"></i> <span><?php echo e(trans('admin.Plugins')); ?></span>
-                <span class="pull-right badge bg-red"><?php echo e(trans('admin.NEW')); ?></span>
-
-            </a>
-        </li> -->
         <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\ConfigController@index')); ?>">
                 <i class="fa fa-cog"></i> <span><?php echo e(trans('admin.Settings')); ?></span>
@@ -95,7 +88,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li>
-                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
+                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> --></i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Admins')); ?></a></li>
                 <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Staff')); ?></a></li>
             </ul>
