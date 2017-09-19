@@ -49,7 +49,7 @@ class IndexController extends Controller
         $lastTrendingVideos = Posts::forhome()->typesAccepted($HomeColSec3Type1)->typesActivete()->approve('yes')->latest("published_at")->take(10)->get();
 
 
-        $lastFeaturestop = Posts::forhome('Features')->typesActivete()->approve('yes')->where("featured_at", '>', '')->latest("featured_at")->take(4)->get();
+        $lastFeaturestop = Posts::forhome('Features')->typesActivete()->approve('yes')->where("featured_at", '>', '')->latest("featured_at")->take(3)->get();
 
         $lastvideoscol1  = Posts::forhome()->byType('video')->typesActivete()->approve('yes')->latest("published_at")->paginate(3);
 
@@ -80,6 +80,8 @@ class IndexController extends Controller
 
         return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
     }
+
+
 
 
     public function langpick($getlang)

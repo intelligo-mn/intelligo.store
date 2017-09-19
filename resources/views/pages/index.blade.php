@@ -33,6 +33,7 @@
        </div>
        <div class="feature-block">
           <div class="holder">
+          
              <ul>
                 <li>
                    <a href="#">
@@ -106,21 +107,25 @@
        <section class="content-block bg-white">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">THE ADVENTURE</h2>
-                <span class="main-subtitle">Mastering the art of perfect adventure for 10+ years in the wild.</span>
+                <h2 class="main-heading">Аялалын чиглэлүүд</h2>
+                
                 <div class="seperator"></div>
              </header>
              <div class="adventure-holder gallery-home-holder">
+             
                 <div class="row">
                    <div class="col-md-6 img-block">
                       <ul class="gallery-list gallery-with-icon">
+                        @foreach($lastFeaturestop as $item)
                          <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-01.jpg" height="165" width="170" alt="image description">
+                            <a href="{ makeposturl($item) }}" class="thumbnail">
+                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" height="165" width="170" alt="image description" style="height: 165px !important;">
                             <span class="hover icon-bird"></span>
-                            <span class="info">aerial</span>
+                            <span class="info">{{ $item->title }}</span>
                             </a>
                          </li>
+
+                        @endforeach
                          <li>
                             <a href="#" class="thumbnail">
                             <img src="travel/img/gallery/img-02.jpg" height="165" width="170" alt="image description">
@@ -156,34 +161,14 @@
                             <span class="info">africa</span>
                             </a>
                          </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-07.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-plant"></span>
-                            <span class="info">nature</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-08.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-wildlife"></span>
-                            <span class="info">wildness</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-09.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-diamond"></span>
-                            <span class="info">all</span>
-                            </a>
-                         </li>
+                         
                       </ul>
                    </div>
                    <div class="col-md-6 text-block">
                       <div class="centered">
-                         <h2 class="intro-heading">Living a Life of Adventure</h2>
+                         <h2 class="intro-heading">Монголын хамгийн үзэсгэлэнтэй газарууд</h2>
                          <p class="intro">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. </p>
-                         <a href="#" class="btn btn-info-sub btn-md btn-shadow radius">Dig More</a>
+                         <a href="#" class="btn btn-info-sub btn-md btn-shadow radius">Дэлгэрэнгүй харах</a>
                       </div>
                    </div>
                 </div>
@@ -192,14 +177,14 @@
        </section>
        <aside class="special-block">
           <div class="container">
-             <p class="special-text">Get special discount on select treks, this week. <strong>Call <a href="tel:157757525">+1 5775 7525</a></strong></p>
+             <p class="special-text">Танд тусламж хэрэгтэй юу. <strong>Утас <a href="tel:157757525">+1 5775 7525</a></strong></p>
           </div>
        </aside>
        <div class="content-block content-spacing">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">POPULAR TOURS</h2>
-                <span class="main-subtitle">We have a unique way of meeting your adventurous expectations!</span>
+                <h2 class="main-heading">ОНЦЛОХ АЯЛАЛУУД</h2>
+               
                 <div class="seperator"></div>
              </header>
              <div class="content-holder">
