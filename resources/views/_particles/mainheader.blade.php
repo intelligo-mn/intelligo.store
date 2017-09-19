@@ -19,21 +19,48 @@
             <ul class="nav navbar-nav">
                
                @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
-                  <li class="dropdown">
-                     <a href="{{ url($categorys->name_slug) }}" class="dropdown-toggle" data-type="{{ $categorys->id }}" data-toggle="dropdown">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                  <li>
+                     <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
                         
                   </li>
               @endforeach
-               <li class="visible-xs visible-sm">
-                  <a href="login.html">
-                  <span class="icon icon-user"></span>
-                  <span class="text">Login</span>
-                  </a>
-               </li>
-               <li class="hidden-xs hidden-sm v-divider">
-                  <a href="login.html">
+               
+               <li class="dropdown hidden-xs hidden-sm v-divider">
+                  <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
+                  @if(Auth::check())
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                           <a style="display:block;font-size:16px;font-weight: 600">{{ Auth::user()->username }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
+                       </li>
+                       @if(Auth::user()->usertype=='Admin')
+                           <li>
+                               <a href="/admin">{{ trans('index.adminp') }}</a>
+                           </li>
+                       @endif
+                       <li>
+                           <a href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
+                       </li>
+                     </ul>
+                  </div>
+                  @endif
                </li>
              
                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
