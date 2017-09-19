@@ -1,70 +1,108 @@
-<header id="header" class="header">
-
-    <div class="container">
-        <div class="header__logo">
-            <a href="/" title="">
-                <img  class="site-logo" src="{{ url('/assets/img/logo.png') }}" alt="">
-            </a>
-        </div>
-        <div class="header__nav">
-            <div class="coltrigger pull-l">
-                <a href="javascript:" id="menu-toggler">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-            <div id="colnav" class="toggle-nav pull-l" >
-                <ul class="navmenu">
-                    <li class="cats_link" ><a href="http://www.blog.toroo.info" class="biga firsg" data-type=""><i class="fa "></i> Нүүр хуудас <i class="fa fa-caret-right"></i></a></li>
-                    
-                    @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
-                        <li class="cats_link" ><a href="{{ url($categorys->name_slug) }}" class="biga firsg" data-type="{{ $categorys->id }}"><i class="fa fa-{{ $categorys->icon }}"></i> {{ $categorys->name }} <i class="fa fa-caret-right"></i></a></li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
-    
-      <div class="navmenu login-button">
-        @if(Auth::check())
-            <li class="profile-info hor pull-r">
-                <a href="javascript:;" class="user-profile">
-                    <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" width="32" height="32"  alt="{{ Auth::user()->username }}">
-                    <span class="name"><i class="fa fa-caret-down" style="margin-right:0;"></i> </span>
-                </a>
-                <ul class="sub-nav">
-                    <li>
-                        <strong style="display:block;padding:0 15px 10px 10px;font-size:16px;font-weight: 600">{{ Auth::user()->username }}</strong>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
-                    </li>
-                    @if(Auth::user()->usertype=='Admin')
+<header id="header" class="white-header">
+   <div class="container-fluid">
+      <div class="logo">
+         <a href="index-2.html">
+         <img class="normal" src="travel/img/logos/logo.svg" alt="Entrada">
+         <img class="gray-logo" src="travel/img/logos/logo-gray.svg" alt="Entrada">
+         </a>
+      </div>
+      <nav class="navbar navbar-default">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle nav-opener" data-toggle="collapse" data-target="#nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+         </div>
+         <div class="collapse navbar-collapse" id="nav">
+            <ul class="nav navbar-nav">
+               
+               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
+                  <li>
+                     <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                        
+                  </li>
+              @endforeach
+               
+               <li class="dropdown hidden-xs hidden-sm v-divider">
+                  <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="icon icon-user"></span>
+                  </a>
+                  @if(Auth::check())
+                  <div class="dropdown-menu">
+                     <ul>
                         <li>
-                            <a class="sub-item" href="/admin">{{ trans('index.adminp') }}</a>
-                        </li>
-                    @endif
-                    <li>
-                        <a class="sub-item" href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
-                    </li>
-
-                </ul>
-                <div class="clear"></div>
-            </li>
-        @endif
-
-    </div>
+                           <a style="display:block;font-size:16px;font-weight: 600">{{ Auth::user()->username }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
+                       </li>
+                       <li>
+                           <a href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
+                       </li>
+                       @if(Auth::user()->usertype=='Admin')
+                           <li>
+                               <a href="/admin">{{ trans('index.adminp') }}</a>
+                           </li>
+                       @endif
+                       <li>
+                           <a href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
+                       </li>
+                     </ul>
+                  </div>
+                  @endif
+               </li>
+             
+               <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
+                  <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
+                  <div class="dropdown-menu dropdown-sm">
+                     <div class="drop-wrap lang-wrap">
+                        <div class="lang-row">
+                           <div class="lang-col">
+                              <a href="#">
+                              <span class="text">English</span>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="lang-row">
+                           <div class="lang-col">
+                              <a href="#">
+                              <span class="text">Монгол</span>
+                              </a>
+                           </div>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </li>
+               <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
+            </ul>
+         </div>
+      </nav>
+   </div>
+   <form class="search-form" action="#">
+      <fieldset>
+         <a href="#" class="search-opener hidden-md hidden-lg">
+         <span class="icon-search"></span>
+         </a>
+         <div class="search-wrap">
+            <a href="#" class="search-opener close">
+            <span class="icon-cross"></span>
+            </a>
+            <div class="trip-form trip-form-v2 trip-search-main">
+              
+            </div>
+         </div>
+      </fieldset>
+   </form>
 </header>
-
