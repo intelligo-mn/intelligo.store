@@ -1,0 +1,8 @@
+<?php if($lastNews): ?>
+
+    <ul class="items_lists">
+        <?php foreach($lastNews as $item): ?>
+            <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'big_image titm bolb', 'featuredon' => 'on', 'descof' => 'off','linkcolor' => 'blue'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

@@ -1,0 +1,46 @@
+<?php $__env->startSection('head_title', $tagname .' | '.getcong('sitename') ); ?>
+<?php $__env->startSection('head_description', $tagname ); ?>
+
+
+
+<?php $__env->startSection("content"); ?>
+
+    <div class="content">
+
+        <div class="container">
+
+            <div class="mainside ">
+
+                <div class="colheader   none " style="padding:15px 0;font-size:16px;font-weight: 600;text-transform: uppercase">
+                   <?php echo e(trans('updates.tag')); ?>: <span style="color:red"> <?php echo e($tagname); ?></span>
+
+                </div>
+
+
+                <?php if(count($lastItems) > 0): ?>
+                    <div class="jscroll" data-auto="<?php echo getcong('AutoLoadLists') ?: 'false'; ?>">
+                    <?php echo $__env->make('pages.catpostloadpage', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    </div>
+                    <?php else: ?>
+                    <?php echo $__env->make('errors.emptycontent', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php endif; ?>
+
+            </div>
+            <div class="sidebar">
+
+                <?php foreach(\App\Widgets::where('type', 'CatSide')->where('display', 'on')->get() as $widget): ?>
+                    <?php echo $widget->text; ?>
+
+                <?php endforeach; ?>
+
+                <?php echo $__env->make("_widgets/facebooklike", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            </div>
+        </div>
+
+    </div>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

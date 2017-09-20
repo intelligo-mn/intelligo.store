@@ -1,0 +1,19 @@
+{
+  "name": "News",
+  "homepage": "https://github.com/tortuvshin/toroo.info",
+  "authors": [
+    "Tortuvshin Byambaa <toroo.byamba@gmail.com>"
+  ],
+  "description": "SMS",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+    
+}
