@@ -6,8 +6,8 @@
    <div class="banner-text">
       <div class="center-text">
          <div class="container">
-            <h1>Summer Adventures 2016</h1>
-            <strong class="subtitle">Three Column Adventure Grid View Show.</strong>
+            <h1>Мэдээллийн жагсаалт</h1>
+            <strong class="subtitle">2017 оны хамгийн шилдэг аялалын мэдээллүүд</strong>
             <nav class="breadcrumbs">
                <ul>
                   <li><a href="#">HOME</a></li>
@@ -22,12 +22,7 @@
 <main id="main">
    <div class="content-block content-sub">
       <div class="container">
-         <div class="filter-option">
-            <div class="layout-action">
-               <a href="#" class="link link-list"><span class="icon-list"></span></a>
-               <a href="#" class="link link-grid active"><span class="icon-grid"></span></a>
-            </div>
-         </div>
+         
          <div class="content-holder content-sub-holder">
                @if($lastNews)
                     <div class="row db-3-col">
@@ -45,177 +40,5 @@
          </div>
       </div>
    </div>
-   <aside class="recent-block recent-list recent-wide-thumbnail">
-      <div class="container">
-         <h2 class="text-center text-uppercase">RECENTLY VIEWED</h2>
-         <div class="row">
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="img/listing/img-31.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="img/listing/img-32.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="img/listing/img-33.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="img/listing/img-34.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-         </div>
-      </div>
-   </aside>
 </main>
-</div>
 @endsection
