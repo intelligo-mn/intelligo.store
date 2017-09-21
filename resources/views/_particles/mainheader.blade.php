@@ -17,7 +17,10 @@
          </div>
          <div class="collapse navbar-collapse" id="nav">
             <ul class="nav navbar-nav">
-               
+               <li>
+                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">НҮҮР ХУУДАС<b class="icon-angle-down"></b></a>
+                     
+               </li>
                @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
