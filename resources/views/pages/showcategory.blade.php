@@ -6,13 +6,17 @@
    <div class="banner-text">
       <div class="center-text">
          <div class="container">
-            <h1>Мэдээллийн жагсаалт</h1>
+            <h1>{{ $category->name }}</h1>
             <strong class="subtitle">2017 оны хамгийн шилдэг аялалын мэдээллүүд</strong>
             <nav class="breadcrumbs">
                <ul>
-                  <li><a href="#">HOME</a></li>
-                  <li><a href="#">ADVENTURES</a></li>
-                  <li><span>ALL</span></li>
+                  <li><a href="#">НҮҮР</a></li>
+                  
+                    @foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat)
+
+                        <li><a data-type="{{ $cat->name_slug }}" href="/{{ $cat->name_slug }}">{{ $cat->name }}</a></li>
+                    @endforeach
+                  
                </ul>
             </nav>
          </div>
