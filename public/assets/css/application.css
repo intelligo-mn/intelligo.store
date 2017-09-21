@@ -3067,7 +3067,7 @@ span.tagy a i {
 
 .profile-wrap .profile-content .profile-main {
     background: #fff;
-    width: calc(100% - 270px);
+    width: 800px;
     overflow: hidden;
     float: left;
     top: 1px;

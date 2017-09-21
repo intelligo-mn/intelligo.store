@@ -8,8 +8,8 @@
         <div class="container" style="padding: 0; ">
 
             <div class="profile-splash">
-        <div class="profile-splash-cov"></div>
-            <img src="{{ makepreview($userinfo->splash, 'b', 'members/splash') }}" width="100%" data-big="" alt="{{ $userinfo->username }}" class="profile-splash-img">
+                <div class="profile-splash-cov"></div>
+                <img src="{{ makepreview($userinfo->splash, 'b', 'members/splash') }}" width="100%" data-big="" alt="{{ $userinfo->username }}" class="profile-splash-img">
                <div class="profile-section">
 
 
@@ -86,14 +86,14 @@
 
                             @endforeach
        
-@if($userinfo->about )
+                        @if($userinfo->about )
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
                                 {{ trans('index.about') }}
                             </div>
                             <p>{{ $userinfo->about }}</p>
                         </div>
-@endif
+                        @endif
                         @if($userinfo->facebookurl or $userinfo->twitterurl or $userinfo->weburl )
                         <div class="profile-section">
                             <div class="profile-sidebar-label">

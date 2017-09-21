@@ -7,8 +7,8 @@
         <div class="container" style="padding: 0; ">
 
             <div class="profile-splash">
-        <div class="profile-splash-cov"></div>
-            <img src="<?php echo e(makepreview($userinfo->splash, 'b', 'members/splash')); ?>" width="100%" data-big="" alt="<?php echo e($userinfo->username); ?>" class="profile-splash-img">
+                <div class="profile-splash-cov"></div>
+                <img src="<?php echo e(makepreview($userinfo->splash, 'b', 'members/splash')); ?>" width="100%" data-big="" alt="<?php echo e($userinfo->username); ?>" class="profile-splash-img">
                <div class="profile-section">
 
 
@@ -88,7 +88,7 @@
 
                             <?php endforeach; ?>
        
-<?php if($userinfo->about ): ?>
+                        <?php if($userinfo->about ): ?>
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
                                 <?php echo e(trans('index.about')); ?>
@@ -96,7 +96,7 @@
                             </div>
                             <p><?php echo e($userinfo->about); ?></p>
                         </div>
-<?php endif; ?>
+                        <?php endif; ?>
                         <?php if($userinfo->facebookurl or $userinfo->twitterurl or $userinfo->weburl ): ?>
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
