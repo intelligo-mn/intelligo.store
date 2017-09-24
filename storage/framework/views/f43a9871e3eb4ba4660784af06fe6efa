@@ -1,7 +1,7 @@
 <header id="header" class="white-header">
    <div class="container-fluid">
       <div class="logo">
-         <a href="index-2.html">
+         <a href="<?php echo e(action('IndexController@index')); ?>">
          <img class="normal" src="<?php echo asset('travel/img/logos/logo.svg'); ?>" alt="Entrada">
          <img class="gray-logo" src="<?php echo asset('travel/img/logos/logo-gray.svg'); ?>" alt="Entrada">
          </a>
@@ -72,14 +72,14 @@
                      <div class="drop-wrap lang-wrap">
                         <div class="lang-row">
                            <div class="lang-col">
-                              <a href="#">
+                              <a href="/selectlanguge/en">
                               <span class="text">English</span>
                               </a>
                            </div>
                         </div>
                         <div class="lang-row">
                            <div class="lang-col">
-                              <a href="#">
+                              <a href="/selectlanguge/mn">
                               <span class="text">Монгол</span>
                               </a>
                            </div>

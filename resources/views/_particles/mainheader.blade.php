@@ -72,14 +72,14 @@
                      <div class="drop-wrap lang-wrap">
                         <div class="lang-row">
                            <div class="lang-col">
-                              <a href="#">
+                              <a href="/selectlanguge/en">
                               <span class="text">English</span>
                               </a>
                            </div>
                         </div>
                         <div class="lang-row">
                            <div class="lang-col">
-                              <a href="#">
+                              <a href="/selectlanguge/mn">
                               <span class="text">Монгол</span>
                               </a>
                            </div>
