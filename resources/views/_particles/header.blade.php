@@ -32,6 +32,16 @@
                   <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
+                   @if(!Auth::check())
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                            <a href="/login">{{ trans('index.login') }}</a>
+                       </li>
+                     </ul>
+                  </div>
+                  
+                  @endif
                   @if(Auth::check())
                   <div class="dropdown-menu">
                      <ul>

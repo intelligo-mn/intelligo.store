@@ -97,10 +97,10 @@ return [
 
     'custom' => [
         'type' => [
-            'required' => 'Error.',
+            'required' => 'Алдаа.',
         ],
         'title' => [
-            'required' => 'Title is required.',
+            'required' => 'Гарчиг оруулаагүй байна.',
             'unique'  => ' Title has already been taken by other post.',
             'min' => 'Title must be at least :min characters.',
             'max' => 'Title may not be greater than :max characters.',
@@ -117,7 +117,7 @@ return [
             'max' => 'Description may not be greater than :max characters.',
         ],
         'thumb' => [
-            'required' => 'Preview image is required.',
+            'required' => 'Зураг оруулна уу.',
         ],
         'username' => [
             'unique' => 'Username has already been taken by other user.',
@@ -125,7 +125,7 @@ return [
             'max' => 'Username may not be greater than :max characters.',
         ],
         'email' => [
-            'required' => 'Email is required.',
+            'required' => 'Мэйл хаяг оруулна уу.',
             'email' => 'Email must be a valid email address.',
             'max' => 'Email may not be greater than :max characters.',
             'unique' => 'Email has already been used.',

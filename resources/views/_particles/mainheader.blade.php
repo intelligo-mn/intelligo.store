@@ -29,9 +29,20 @@
               @endforeach
                
                <li class="dropdown hidden-xs hidden-sm v-divider">
-                  <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
+
+                  @if(!Auth::check())
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                            <a href="/login">{{ trans('index.login') }}</a>
+                       </li>
+                     </ul>
+                  </div>
+                  
+                  @endif
                   @if(Auth::check())
                   <div class="dropdown-menu">
                      <ul>
