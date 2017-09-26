@@ -126,41 +126,6 @@
                          </li>
 
                         @endforeach
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-02.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-peak"></span>
-                            <span class="info">land</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-03.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-water"></span>
-                            <span class="info">water</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-04.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-asia"></span>
-                            <span class="info">asia</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-05.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-arctic"></span>
-                            <span class="info">arctic</span>
-                            </a>
-                         </li>
-                         <li>
-                            <a href="#" class="thumbnail">
-                            <img src="travel/img/gallery/img-06.jpg" height="165" width="170" alt="image description">
-                            <span class="hover icon-africa"></span>
-                            <span class="info">africa</span>
-                            </a>
-                         </li>
                          
                       </ul>
                    </div>
