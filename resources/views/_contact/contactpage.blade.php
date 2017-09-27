@@ -1,6 +1,6 @@
 @extends("app")
 
-@section('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') )
+@section('head_title', Contact.' | '.getcong('sitename') )
 
 @section("header")
     <style>
