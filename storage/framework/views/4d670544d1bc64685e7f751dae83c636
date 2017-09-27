@@ -1,8 +1,6 @@
-@extends("app")
+<?php $__env->startSection('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') ); ?>
 
-@section('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') )
-
-@section("header")
+<?php $__env->startSection("header"); ?>
     <style>
         .form {
             background: #f6f6f6;
@@ -77,8 +75,8 @@
             color: #999;
         }
     </style>
-@endsection
-@section("content")
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection("content"); ?>
 
 
         <div class="content">
@@ -87,4 +85,5 @@
   </div>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
