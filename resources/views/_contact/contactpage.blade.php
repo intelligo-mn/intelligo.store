@@ -81,10 +81,4 @@
 @section("content")
 
 
-        <div class="content">
-
-    </div>
-  </div>
-
-
 @endsection

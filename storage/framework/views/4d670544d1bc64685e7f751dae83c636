@@ -1,4 +1,4 @@
-<?php $__env->startSection('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') ); ?>
+<?php $__env->startSection('head_title', Contact.' | '.getcong('sitename') ); ?>
 
 <?php $__env->startSection("header"); ?>
     <style>
@@ -77,12 +77,6 @@
     </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("content"); ?>
-
-
-        <div class="content">
-
-    </div>
-  </div>
 
 
 <?php $__env->stopSection(); ?>
