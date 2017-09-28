@@ -2,8 +2,12 @@
     <div class="container">
        
        <div class="row footer-holder">
-          <nav class="col-sm-4 col-lg-3 footer-nav active">
-             <h3>About TripToMongolia</h3>
+           <nav class="col-sm-6 col-lg-4 footer-nav">
+             <div class="fb-page" data-href="https://www.facebook.com/tsastsolutionweb/" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+          </nav>
+
+          <nav class="col-sm-6 col-lg-4 footer-nav active">
+             <h3>Main Menus</h3>
              <ul class="slide">
                 <li><a href="#">The Company</a></li>
                 <li><a href="#">Our Values</a></li>
@@ -13,28 +17,8 @@
                 <li><a href="#">Safety Concerns</a></li>
              </ul>
           </nav>
-          <nav class="col-sm-4 col-lg-3 footer-nav">
-             <h3>Destinations</h3>
-             <ul class="slide">
-                <li><a href="#">The Capital of Mongolia</a></li>
-                <li><a href="#">Mongolian South Gobi</a></li>
-                <li><a href="#">Western Mongolia</a></li>
-                <li><a href="#">Eastern Mongolia</a></li>
-                <li><a href="#">Northern Highlights</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-3 footer-nav">
-             <h3>Reservation</h3>
-             <ul class="slide">
-                <li><a href="#">Booking Conditions</a></li>
-                <li><a href="#">My Bookings</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">Includes &amp; Excludes</a></li>
-                <li><a href="#">Your Responsibilities</a></li>
-                <li><a href="#">Order a Brochure</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-3 footer-nav last">
+         
+          <nav class="col-sm-6 col-lg-4 footer-nav last">
              <h3>Contact us</h3>
              <ul class="slide address-block">
                 <li class="wrap-text"><span class="icon-tel"></span> <a href="tel:02072077878">(976) 94968096</a></li>
