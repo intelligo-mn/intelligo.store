@@ -52,10 +52,13 @@
     clear: both;
 }
 
-.trip-detail .detail .img-list,
-.tab-container .nav-tabs {
+.trip-detail .detail .img-list{
     text-align: justify;
     line-height: 0;
+}
+
+.tab-container .nav-tabs {
+    text-align: center !important;
 }
 
 .trip-detail .detail .img-list>*,

@@ -78,26 +78,7 @@
                </li>
              
                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
-                  <div class="dropdown-menu dropdown-sm">
-                     <div class="drop-wrap lang-wrap">
-                        <div class="lang-row">
-                           <div class="lang-col">
-                              <a href="/selectlanguge/en">
-                              <span class="text">English</span>
-                              </a>
-                           </div>
-                        </div>
-                        <div class="lang-row">
-                           <div class="lang-col">
-                              <a href="/selectlanguge/mn">
-                              <span class="text">Монгол</span>
-                              </a>
-                           </div>
-                        </div>
-                        
-                     </div>
-                  </div>
+                  <div id="google_translate_element"></div>
                </li>
                <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
             </ul>
