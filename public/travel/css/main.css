@@ -9201,7 +9201,7 @@ h4,
         max-width: none;
     }
     .content-block {
-        padding: 90px 0;
+        padding: 60px 0;
     }
     .content-block .article {
         margin-top: 45px;
@@ -9216,14 +9216,12 @@ h4,
     .content-block.guide-sub .img-article {
         margin-top: 60px;
     }
-    .content-block.article-boxed .content-heading {
+    .content-block.article-boxed  {
         margin-bottom: 15px;
     }
-    .content-block.content-spacing .content-heading {
-        margin-bottom: 15px;
-    }
+
     .adventure-holder .text-block .centered {
-        padding: 60px 15px;
+        padding: 0px 15px;
     }
     .adventure-holder.gallery-home-holder .text-block .centered {
         padding-bottom: 0;
@@ -10116,7 +10114,7 @@ h4,
         margin-top: 90px;
     }
     .content-block {
-        padding: 100px 0;
+        padding: 60px 0;
     }
     .content-block.content-sub {
         padding-top: 90px;

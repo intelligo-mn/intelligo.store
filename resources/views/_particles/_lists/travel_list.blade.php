@@ -21,7 +21,7 @@
             </div>
                 <div class="info-footer">
                 <span class="price">from <span>{{ str_limit($item->body, 70) }}</span></span>
-                <a href="{{ makeposturl($item) }}" class="link-more">Explore</a>
+                <a href="{{ makeposturl($item) }}" class="link-more">Show more</a>
             </div>
         </div>
         @endunless
@@ -31,7 +31,7 @@
      @if($descof=='on')
         <h3 class="small-space"><a href="{{ makeposturl($item) }}">{!! $item->title  !!}</a></h3>
         <!-- <p>{{ str_limit($item->body, 70) }}</p> -->
-        <a href="{{ makeposturl($item) }}" class="btn btn-default">explore</a>
+        <a href="{{ makeposturl($item) }}" class="btn btn-default">Show more</a>
 
      <footer>
         <ul class="social-networks">

@@ -2,11 +2,11 @@
     <div class="container">
        
        <div class="row footer-holder">
-           <nav class="col-sm-6 col-lg-4 footer-nav">
+           <nav class="col-sm-6 col-lg-5 footer-nav">
              <div class="fb-page" data-href="https://www.facebook.com/tsastsolutionweb/" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
           </nav>
 
-          <nav class="col-sm-6 col-lg-4 footer-nav active">
+          <nav class="col-sm-6 col-lg-3 footer-nav active">
              <h3>Main Menus</h3>
              <ul class="slide">
                 <li><a href="#">The Company</a></li>

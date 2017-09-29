@@ -21,7 +21,7 @@
             </div>
                 <div class="info-footer">
                 <span class="price">from <span><?php echo e(str_limit($item->body, 70)); ?></span></span>
-                <a href="<?php echo e(makeposturl($item)); ?>" class="link-more">Explore</a>
+                <a href="<?php echo e(makeposturl($item)); ?>" class="link-more">Show more</a>
             </div>
         </div>
         <?php endif; ?>
@@ -31,7 +31,7 @@
      <?php if($descof=='on'): ?>
         <h3 class="small-space"><a href="<?php echo e(makeposturl($item)); ?>"><?php echo $item->title; ?></a></h3>
         <!-- <p><?php echo e(str_limit($item->body, 70)); ?></p> -->
-        <a href="<?php echo e(makeposturl($item)); ?>" class="btn btn-default">explore</a>
+        <a href="<?php echo e(makeposturl($item)); ?>" class="btn btn-default">Show more</a>
 
      <footer>
         <ul class="social-networks">
