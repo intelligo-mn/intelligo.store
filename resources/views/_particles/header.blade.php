@@ -22,12 +22,17 @@
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME<b class="icon-angle-down"></b></a>
                      
                </li>
-               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+               <li>
+                 <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                    
+                </li>
+               <!-- @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
                         
                   </li>
-              @endforeach
+              @endforeach -->
+
                
                <li class="dropdown hidden-xs hidden-sm v-divider">
                   <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
@@ -78,7 +83,26 @@
                </li>
              
                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <div id="google_translate_element"></div>
+                  <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
+                   <div class="dropdown-menu dropdown-sm">
+                      <div class="drop-wrap lang-wrap">
+                         <div class="lang-row">
+                            <div class="lang-col">
+                              <a href="/selectlanguge/en">
+                               <span class="text">English</span>
+                               </a>
+                            </div>
+                        </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/mn">
+                               <span class="text">Монгол</span>
+                               </a>
+                            </div>
+                         </div>
+                         
+                      </div>
+                   </div>
                </li>
                <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
             </ul>
