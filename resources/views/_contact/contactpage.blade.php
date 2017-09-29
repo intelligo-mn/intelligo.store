@@ -80,5 +80,42 @@
 @endsection
 @section("content")
 
+   <div class="content">
+
+        <div class="container">
+            <div class="mainside" style="min-height: 900px">
+
+            <h1 style="margin-bottom:10px">{{ trans('contact.title') }}</h1>
+
+                {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
+
+                    <div class="form-field string  inpt">
+                        <label for="subject">{{ trans('contact.subject') }}</label>
+                        {!! Form::text('subject', null, ['id' => 'subject']) !!}
+                    </div>
+                    <div class="form-field text  inpt">
+                        <label for="description">{{ trans('contact.description') }}</label>
+                        {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px']) !!}
+                    </div>
+                    <div class="form-field string  inpt">
+                        <label for="name">{{ trans('contact.name') }}</label>
+                        {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name']) !!}
+                    </div>
+                    <div class="form-field inpt">
+                        <label for="email">{{ trans('contact.email') }}</label>
+                        {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email']) !!}
+                    </div>
+
+                {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'button button-orange button-full submit-button']) !!}
+
+                {!! Form::close() !!}
+            </div>
+            <div class="sidebar">
+
+                @include("_widgets.facebooklike")
+
+          </div>
+    </div>
+  </div>
 
 @endsection

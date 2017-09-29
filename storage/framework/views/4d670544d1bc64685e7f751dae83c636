@@ -78,6 +78,50 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("content"); ?>
 
+   <div class="content">
+
+        <div class="container">
+            <div class="mainside" style="min-height: 900px">
+
+            <h1 style="margin-bottom:10px"><?php echo e(trans('contact.title')); ?></h1>
+
+                <?php echo Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form','name' => 'contactform', 'enctype' => 'multipart/form-data')); ?>
+
+
+                    <div class="form-field string  inpt">
+                        <label for="subject"><?php echo e(trans('contact.subject')); ?></label>
+                        <?php echo Form::text('subject', null, ['id' => 'subject']); ?>
+
+                    </div>
+                    <div class="form-field text  inpt">
+                        <label for="description"><?php echo e(trans('contact.description')); ?></label>
+                        <?php echo Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px']); ?>
+
+                    </div>
+                    <div class="form-field string  inpt">
+                        <label for="name"><?php echo e(trans('contact.name')); ?></label>
+                        <?php echo Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name']); ?>
+
+                    </div>
+                    <div class="form-field inpt">
+                        <label for="email"><?php echo e(trans('contact.email')); ?></label>
+                        <?php echo Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email']); ?>
+
+                    </div>
+
+                <?php echo Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'button button-orange button-full submit-button']); ?>
+
+
+                <?php echo Form::close(); ?>
+
+            </div>
+            <div class="sidebar">
+
+                <?php echo $__env->make("_widgets.facebooklike", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+          </div>
+    </div>
+  </div>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
