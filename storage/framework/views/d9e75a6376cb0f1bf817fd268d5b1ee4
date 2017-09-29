@@ -257,7 +257,7 @@
                             </ul>
                          </div>
                          <div class="caption">
-                            <h3 class="small-space"><?php echo e($item->title); ?></h3>
+                            <h3 class="small-space"><?php echo e(str_limit($item->title, 30)); ?></h3>
                          </div>
                       </div>
                     </div>

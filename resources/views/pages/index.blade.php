@@ -257,7 +257,7 @@
                             </ul>
                          </div>
                          <div class="caption">
-                            <h3 class="small-space">{{ $item->title }}</h3>
+                            <h3 class="small-space">{{ str_limit($item->title, 30) }}</h3>
                          </div>
                       </div>
                     </div>
