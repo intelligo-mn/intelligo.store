@@ -1,0 +1,25 @@
+<?php $__env->startSection('head_title', $page->title .' | '.getcong('sitename') ); ?>
+
+<?php $__env->startSection("content"); ?>
+
+<section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="gridview-3-col">
+   <div class="banner-text">
+      <div class="center-text">
+         <div class="container">
+            <h1><?php echo e($page->title); ?></h1>
+         </div>
+      </div>
+   </div>
+</section>
+<main id="main">
+   <div class="content-block content-sub">
+      <div class="container">
+         <div class="content-holder content-sub-holder">  
+            <?php echo $page->text; ?>
+
+         </div>
+      </div>
+   </div>
+</main>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

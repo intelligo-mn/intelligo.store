@@ -22,10 +22,10 @@
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME<b class="icon-angle-down"></b></a>
                      
                </li>
-               <li>
-                 <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
-                    
-                </li>
+                @foreach(\App\Pages::where('footer', '1')->get() as $page)
+                    <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
+                @endforeach
+              
                <!-- @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
