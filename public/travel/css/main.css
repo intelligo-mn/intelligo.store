@@ -11493,3 +11493,7 @@ h4,
         opacity: 1;
     }
 }
+
+.goog-te-banner-frame {
+    visibility: hidden !important;
+}
