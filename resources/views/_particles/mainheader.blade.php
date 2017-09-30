@@ -25,7 +25,7 @@
                <li> <a href="/tours" title="/tours">{{ trans('index.tours') }}</a></li>
                <li> <a href="/pages/about" title="/pages/about">{{ trans('index.about') }}</a></li>
                <li> <a href="/pages/itinitary" title="/pages/itinitary">{{ trans('index.itinerary') }}</a></li>
-               <li> <a href="/pages/stayit" title="/pages/stayit">{{ trans('index.stayit') }}</a></li>
+               <li> <a href="/stayit" title="/pages/stayit">{{ trans('index.stayit') }}</a></li>
                <li> <a href="/contact" title="/contact">{{ trans('index.contact') }}</a></li>
                <!--  @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>

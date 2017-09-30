@@ -25,7 +25,7 @@
                 <li> <a href="/tours" title="/tours">TOURS</a></li>
                <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
                <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
-               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
+               <li> <a href="/stayit" title="/pages/stayit">STAY IT</a></li>
                <li> <a href="/contact" title="/contact">CONTACT US</a></li>
                <!--  @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
