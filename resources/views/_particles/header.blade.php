@@ -22,9 +22,14 @@
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME<b class="icon-angle-down"></b></a>
                      
                </li>
-                @foreach(\App\Pages::where('footer', '1')->get() as $page)
+                <li> <a href="/tours" title="/tours">TOURS</a></li>
+               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
+               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
+               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
+               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
+               <!--  @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
-                @endforeach
+                @endforeach -->
               
                <!-- @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
@@ -97,6 +102,20 @@
                             <div class="lang-col">
                                <a href="/selectlanguge/mn">
                                <span class="text">Монгол</span>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/cn">
+                               <span class="text">China</span>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/ru">
+                               <span class="text">Russia</span>
                                </a>
                             </div>
                          </div>

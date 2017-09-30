@@ -9,12 +9,15 @@
           <nav class="col-sm-6 col-lg-3 footer-nav active">
              <h3>Main Menus</h3>
              <ul class="slide">
-                <li><a href="#">The Company</a></li>
-                <li><a href="#">Our Values</a></li>
-                <li><a href="#">Responsiblity</a></li>
-                <li><a href="#">Our Mission</a></li>
-                <li><a href="#">Opportunity</a></li>
-                <li><a href="#">Safety Concerns</a></li>
+                <li>
+                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME
+                     
+               </li>
+               <li> <a href="/tours" title="/tours">TOURS</a></li>
+               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
+               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
+               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
+               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
              </ul>
           </nav>
          

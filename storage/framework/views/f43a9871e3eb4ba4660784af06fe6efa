@@ -22,9 +22,14 @@
                   <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>">HOME<b class="icon-angle-down"></b></a>
                      
                </li>
-                <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
+               <li> <a href="/tours" title="/tours">TOURS</a></li>
+               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
+               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
+               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
+               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
+               <!--  <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
                     <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
               
               <!--  <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
                   <li>
@@ -100,7 +105,20 @@
                                </a>
                             </div>
                          </div>
-                         
+                          <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/cn">
+                               <span class="text">China</span>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/ru">
+                               <span class="text">Russia</span>
+                               </a>
+                            </div>
+                         </div>
                       </div>
                    </div>
                </li>
