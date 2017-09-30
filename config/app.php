@@ -24,6 +24,16 @@ return [
             'name'      => 'Монгол',
             'rtl'       => false,
             'wideheader'=> true
+        ],  
+        'cn'            => [
+            'name'      => 'China',
+            'rtl'       => false,
+            'wideheader'=> false
+        ],
+        'ru'            => [
+            'name'      => 'Russia',
+            'rtl'       => false,
+            'wideheader'=> true
         ],
 
     ],
