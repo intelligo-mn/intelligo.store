@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     //General
+  
     'list'          => 'List',
     'new-s'         => 'News',
     'poll'          => 'Poll',
@@ -46,6 +47,13 @@ return [
     'register'      => 'Register',
     'login'         => 'Login',
 
+    'home' => 'HOME',
+    'tours' => 'TOURS',
+    'about' => 'ABOUT US',
+    'itinerary' => 'ITINERARY',
+    'stayit' => 'STAY IT',
+    'contact' => 'CONTACT US',
+
 
     // Post page
     'admintools'    => 'Admin Tools',
@@ -68,7 +76,6 @@ return [
     'usern'         => 'Name',
     'gender'        => 'Gender',
     'location'      => 'Location',
-    'about'         => 'ABOUT',
     'links'         => 'LINKS',
     'joinedat'      => 'joined at :time',
 
@@ -77,7 +84,6 @@ return [
     'onlycgange'     => 'Only if you want to change',
     'fullname'       => 'Full name',
     'savesettings'   => 'Save Settings',
-
 
     'all'           => 'All',
 
