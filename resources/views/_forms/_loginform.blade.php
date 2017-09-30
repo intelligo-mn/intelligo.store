@@ -27,10 +27,10 @@
              {!! Form::close() !!}
 
         </div>
-        <div class="signup-terms">
+        <!-- <div class="signup-terms">
             <div class="show-connect-forms">
                 {{ trans('index.youdonthaveanaccount') }} <a href="/register" @if(!isset($link)) rel="get:Signupform" @endif>{{ trans('index.register') }}</a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

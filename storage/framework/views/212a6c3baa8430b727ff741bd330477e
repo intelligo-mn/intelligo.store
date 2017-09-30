@@ -1,0 +1,21 @@
+<div class="modal-wrapper login-form">
+
+    <div class="login-container steps">
+
+        <div class="signin-form email-form">
+            <div class="hdr"><?php echo e(trans('passwords.resetpass')); ?></div>
+            <form  role="form" method="POST" action="/password/email">
+                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+
+                <div class="emailbox">
+
+                     <input type="email" class="cd-input" name="email" value="<?php echo e(old('email')); ?>" placeholder="<?php echo e(trans('passwords.passemail')); ?>">
+                </div>
+                <br>
+                <button type="submit" class="button button-orange button-full"> <?php echo e(trans('passwords.passwordreslink')); ?></button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

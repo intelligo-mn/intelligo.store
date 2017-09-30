@@ -19,14 +19,14 @@
          <div class="collapse navbar-collapse" id="nav">
             <ul class="nav navbar-nav">
                <li>
-                  <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>">HOME<b class="icon-angle-down"></b></a>
+                  <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?><b class="icon-angle-down"></b></a>
                      
                </li>
-               <li> <a href="/tours" title="/tours">TOURS</a></li>
-               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
-               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
-               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
-               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
+               <li> <a href="/tours" title="/tours"><?php echo e(trans('index.tours')); ?></a></li>
+               <li> <a href="/pages/about" title="/pages/about"><?php echo e(trans('index.about')); ?></a></li>
+               <li> <a href="/pages/itinitary" title="/pages/itinitary"><?php echo e(trans('index.itinerary')); ?></a></li>
+               <li> <a href="/pages/stayit" title="/pages/stayit"><?php echo e(trans('index.stayit')); ?></a></li>
+               <li> <a href="/contact" title="/contact"><?php echo e(trans('index.contact')); ?></a></li>
                <!--  <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
                     <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
                 <?php endforeach; ?> -->
@@ -105,13 +105,13 @@
                                </a>
                             </div>
                          </div>
-                          <div class="lang-row">
+                          <!-- <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/cn">
                                <span class="text">China</span>
                                </a>
                             </div>
-                         </div>
+                         </div> -->
                          <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/ru">

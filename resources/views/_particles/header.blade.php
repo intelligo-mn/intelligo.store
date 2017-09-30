@@ -105,13 +105,13 @@
                                </a>
                             </div>
                          </div>
-                         <div class="lang-row">
+                        <!--  <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/cn">
                                <span class="text">China</span>
                                </a>
                             </div>
-                         </div>
+                         </div> -->
                          <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/ru">
