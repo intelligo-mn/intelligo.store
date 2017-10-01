@@ -62,9 +62,9 @@
                        <li>
                            <a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
                        </li>
-                       <li>
+                       <!-- <li>
                            <a href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
-                       </li>
+                       </li> -->
                        <li>
                            <a href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
                        </li>

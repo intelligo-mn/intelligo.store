@@ -1,0 +1,22 @@
+<?php $__env->startSection("usercontent"); ?>
+
+    <h2><?php echo e($patitle); ?></h2>
+    <?php echo $__env->make('errors.adminlook', ['relatedid' => $userinfo->id], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <br>
+    <div class="recent-activity">
+        <?php if($lastPosts->total() > 0): ?>
+            <ul class="items_lists res-lists">
+
+                <?php foreach($lastPosts as $item): ?>
+                    <?php echo $__env->make('._particles._lists.items_list', ['listtype' => 'bolb titb','descof' => 'on','linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <?php echo $__env->make('errors.emptycontent', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php endif; ?>
+    </div>
+
+    <?php echo $lastPosts->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("pages.users.userapp", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
