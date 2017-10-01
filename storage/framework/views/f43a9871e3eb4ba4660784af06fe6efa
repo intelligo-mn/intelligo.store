@@ -25,7 +25,7 @@
                <li> <a href="/tours" title="/tours"><?php echo e(trans('index.tours')); ?></a></li>
                <li> <a href="/pages/about" title="/pages/about"><?php echo e(trans('index.about')); ?></a></li>
                <li> <a href="/pages/itinitary" title="/pages/itinitary"><?php echo e(trans('index.itinerary')); ?></a></li>
-               <li> <a href="/pages/stayit" title="/pages/stayit"><?php echo e(trans('index.stayit')); ?></a></li>
+               <li> <a href="/stayit" title="/pages/stayit"><?php echo e(trans('index.stayit')); ?></a></li>
                <li> <a href="/contact" title="/contact"><?php echo e(trans('index.contact')); ?></a></li>
                <!--  <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
                     <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>

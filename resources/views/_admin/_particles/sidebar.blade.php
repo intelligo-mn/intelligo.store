@@ -17,7 +17,7 @@
                 <i class="fa fa-dashboard"></i> <span>{{ trans('admin.dashboard') }}</span>
             </a>
         </li>
-        @if(getcong('p-buzzycontact') == 'on')
+       <!--  @if(getcong('p-buzzycontact') == 'on')
         <li class=" @if(Request::segment(2)=='mailbox') active @endif">
             <a href="{{  action('Admin\ContactController@index') }}">
                 <i class="fa fa-envelope"></i> <span>{{ trans('admin.Inbox') }}</span>
@@ -26,8 +26,8 @@
                 @endif
             </a>
         </li>
-        @endif
-        <li class="treeview  @if(Request::segment(2)=='config') active @endif">
+        @endif -->
+        <!-- <li class="treeview  @if(Request::segment(2)=='config') active @endif">
             <a href="{{ action('Admin\ConfigController@index') }}">
                 <i class="fa fa-cog"></i> <span>{{ trans('admin.Settings') }}</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -38,7 +38,7 @@
                 <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.SocialMediaSettings') }}</a></li>
                 <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'others']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.OtherSettings') }}</a></li>
             </ul>
-        </li>
+        </li> -->
         <li @if(Request::segment(2)=='categories') class="active" @endif>
             <a href="{{  action('Admin\CategoriesController@index') }}">
                 <i class="fa fa-folder"></i>
@@ -57,13 +57,13 @@
                 <span>{{ trans('admin.FeaturesPosts') }}</span>
             </a>
         </li>
-        <li class="treeview  @if(Request::segment(2)=='unapprove') active @endif">
+        <!-- <li class="treeview  @if(Request::segment(2)=='unapprove') active @endif">
             <a href="/admin/unapprove?only=unapprove">
                 <i class="fa fa-check-circle"></i>
                 <span>{{ trans('admin.UnapprovedPosts') }}</span>
                 <small class="label pull-right bg-aqua">{{ $toplamapprove }}</small>
             </a>
-        </li>
+        </li> -->
         @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat)
             <li class="treeview  @if(Request::segment(2)==$cat->name_slug) active @endif">
                 <a href="/admin/cat/{{ $cat->name_slug }}">
@@ -88,9 +88,10 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li>
-                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> --></i> {{ trans('admin.BannedUsers') }} </a></li>
+                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> -->
+                <!-- </i> {{ trans('admin.BannedUsers') }} </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> {{ trans('admin.Admins') }}</a></li>
-                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li>
+                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li> -->
             </ul>
         </li>
 
@@ -111,11 +112,11 @@
                 <span>{{ trans('admin.Widgets') }}</span>
             </a>
         </li>
-        <li class="treeview">
+       <!--  <li class="treeview">
             <a href="/sitemap.xml" target="_blank">
                 <i class="fa fa-rss"></i>
                 <span>{{ trans('admin.Sitemap') }}</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </section>

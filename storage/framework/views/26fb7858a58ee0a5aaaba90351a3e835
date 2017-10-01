@@ -17,7 +17,7 @@
                 <i class="fa fa-dashboard"></i> <span><?php echo e(trans('admin.dashboard')); ?></span>
             </a>
         </li>
-        <?php if(getcong('p-buzzycontact') == 'on'): ?>
+       <!--  <?php if(getcong('p-buzzycontact') == 'on'): ?>
         <li class=" <?php if(Request::segment(2)=='mailbox'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\ContactController@index')); ?>">
                 <i class="fa fa-envelope"></i> <span><?php echo e(trans('admin.Inbox')); ?></span>
@@ -26,8 +26,8 @@
                 <?php endif; ?>
             </a>
         </li>
-        <?php endif; ?>
-        <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
+        <?php endif; ?> -->
+        <!-- <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\ConfigController@index')); ?>">
                 <i class="fa fa-cog"></i> <span><?php echo e(trans('admin.Settings')); ?></span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -38,7 +38,7 @@
                 <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'social'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.SocialMediaSettings')); ?></a></li>
                 <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'others'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.OtherSettings')); ?></a></li>
             </ul>
-        </li>
+        </li> -->
         <li <?php if(Request::segment(2)=='categories'): ?> class="active" <?php endif; ?>>
             <a href="<?php echo e(action('Admin\CategoriesController@index')); ?>">
                 <i class="fa fa-folder"></i>
@@ -57,13 +57,13 @@
                 <span><?php echo e(trans('admin.FeaturesPosts')); ?></span>
             </a>
         </li>
-        <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
+        <!-- <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
             <a href="/admin/unapprove?only=unapprove">
                 <i class="fa fa-check-circle"></i>
                 <span><?php echo e(trans('admin.UnapprovedPosts')); ?></span>
                 <small class="label pull-right bg-aqua"><?php echo e($toplamapprove); ?></small>
             </a>
-        </li>
+        </li> -->
         <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat): ?>
             <li class="treeview  <?php if(Request::segment(2)==$cat->name_slug): ?> active <?php endif; ?>">
                 <a href="/admin/cat/<?php echo e($cat->name_slug); ?>">
@@ -88,9 +88,10 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li>
-                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> --></i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
+                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> -->
+                <!-- </i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Admins')); ?></a></li>
-                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Staff')); ?></a></li>
+                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Staff')); ?></a></li> -->
             </ul>
         </li>
 
@@ -111,11 +112,11 @@
                 <span><?php echo e(trans('admin.Widgets')); ?></span>
             </a>
         </li>
-        <li class="treeview">
+       <!--  <li class="treeview">
             <a href="/sitemap.xml" target="_blank">
                 <i class="fa fa-rss"></i>
                 <span><?php echo e(trans('admin.Sitemap')); ?></span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </section>
