@@ -62,9 +62,9 @@
                        <li>
                            <a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.myprofile')); ?></a>
                        </li>
-                       <li>
+                       <!-- <li>
                            <a href="<?php echo e(action('UsersController@followfeed', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('updates.feedposts')); ?></a>
-                       </li>
+                       </li> -->
                        <li>
                            <a href="<?php echo e(action('UsersController@draftposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.draft')); ?></a>
                        </li>

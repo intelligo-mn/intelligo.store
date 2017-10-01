@@ -88,7 +88,7 @@
       <div class="container tab-content trip-detail">
          <div role="tabpanel" class="tab-pane active" id="tab01">
             <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-8">
                   <?php if($entry->title): ?>
                     <h2 class="sub-title" >
 
@@ -142,37 +142,7 @@
                 <small><?php echo $entry->source; ?></small>
                  <?php endif; ?>
                </div>
-               <div class="col-md-6">
-                  <strong class="header-box">The tour package inclusions and exclusions at a glance</strong>
-                  <div class="text-box">
-                     <div class="holder">
-                        <strong class="title">Whats included in this tour</strong>
-                        <span class="sub-title">Items that are covered in the cost of tour price.</span>
-                        <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
-                        <ul class="content-list tick-list">
-                           <li>All breakfasts, lunches and dinners &amp; dining</li>
-                           <li>All accommodation including tea houses en route</li>
-                           <li>All transportation including taxis and coaches</li>
-                           <li>Flights from Heathrow if booked inc. of flight</li>
-                           <li>Tour and trekking guide for entire journey</li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="text-box not-included">
-                     <div class="holder">
-                        <strong class="title">Whats not included in this tour</strong>
-                        <span class="sub-title">Items that are covered in the cost of tour price.</span>
-                        <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
-                        <ul class="content-list cross-list">
-                           <li>Travel insurance and other emergencies</li>
-                           <li>Visa fees and entry clearing fees</li>
-                           <li>Single room accommodations</li>
-                           <li>Liquors, beeers and bootled beverages</li>
-                           <li>Photography ccessories like cameras etc.</li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+               
             </div>
          </div>
          <div role="tabpanel" class="tab-pane" id="tab02">
@@ -314,7 +284,7 @@
    </div>
    <aside class="recent-block recent-gray recent-wide-thumbnail">
       <div class="container">
-         <h2 class="text-center text-uppercase">RECENTLY VIEWED</h2>
+         <h2 class="text-center text-uppercase">Related tour</h2>
          <div class="row">
             <?php foreach($lastFeatures as $item): ?>
                 <?php echo $__env->make('._particles._lists.travel_list', ['listtype' => 'big_image titm bolb','descof' => 'on', 'setbadgeof' => 'off', 'itembodyheight' => '50px', 'metaof' => 'off', 'linkcolor' => 'default'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
