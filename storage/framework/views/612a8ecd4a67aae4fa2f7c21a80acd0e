@@ -47,11 +47,16 @@
                             </div>
                             <?php if($descof=='on'): ?>
                             <div class="item_meta__item pull-r" style="margin-right: 0; ">
-                                <div class="item_meta__item pull-r" style="margin-right: 0; ">
+                               <!--  <div class="item_meta__item pull-r" style="margin-right: 0; ">
                                     <a href="http://www.facebook.com/share.php?u=<?php echo e(url(makeposturl($item))); ?>" data-id="<?php echo e($item->id); ?>" class="share_social is-facebook  popup-action"><i class="fa fa-facebook"></i></a>
                                     <a href="http://twitter.com/share?url=<?php echo e(url(makeposturl($item))); ?>&amp;text=<?php echo e($item->title); ?>" data-id="<?php echo e($item->id); ?>" class="share_social is-twitter popup-action"><i class="fa fa-twitter"></i></a>
-                                </div>
-
+                                </div> -->
+                            <?php if( Auth::user()->usertype=='Admin'): ?>
+                                <a href="<?php echo e(action('PostsController@CreateEdit', [$item->id])); ?>" class="button button-small" ><i class="fa fa-pencil-square iconp"></i> <?php echo e(trans('index.edit')); ?></a>
+                            <?php endif; ?>
+                            <?php if( Auth::user()->usertype=='Admin'): ?>
+                                <a href="<?php echo e(action('PostsController@sendtrashpost', [$item->id])); ?>" onclick="confim()" class="button button-small " ><i class="fa fa-trash"></i></a>
+                            <?php endif; ?>
                             </div>
                             <?php endif; ?>
                         </div>
