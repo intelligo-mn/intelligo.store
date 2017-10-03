@@ -1,8 +1,6 @@
-@extends("main")
+<?php $__env->startSection('head_title', trans('contact.contact')); ?>
 
-@section('head_title', trans('contact.contact'))
-
-@section("header")
+<?php $__env->startSection("header"); ?>
     <style>
         .form {
             background: #f6f6f6;
@@ -77,18 +75,18 @@
             color: #999;
         }
     </style>
-@endsection
-@section("content")
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection("content"); ?>
     <section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="banner-contact">
        <div class="banner-text">
           <div class="center-text">
              <div class="container">
-                <h1>{{ trans('contact.contact') }}</h1>
-                <strong class="subtitle">{{ trans('contact.contact') }}!</strong>
+                <h1><?php echo e(trans('contact.contact')); ?></h1>
+                <strong class="subtitle"><?php echo e(trans('contact.contact')); ?>!</strong>
                 <nav class="breadcrumbs">
                    <ul>
                       <li><a href="#">HOME</a></li>
-                      <li><span>{{ trans('contact.contact') }}</span></li>
+                      <li><span><?php echo e(trans('contact.contact')); ?></span></li>
                    </ul>
                 </nav>
              </div>
@@ -120,46 +118,51 @@
          </div>
          <div class="row">
             <div class="col-md-6 wow fadeInLeft">
-                {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form contact-form has-border','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
+                <?php echo Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form contact-form has-border','name' => 'contactform', 'enctype' => 'multipart/form-data')); ?>
+
 
                   <fieldset>
                     <div class="form-group">
                         <div class="col-sm-4">
-                           <strong class="form-title"><label for="name">{{ trans('contact.name') }}</label></strong>
+                           <strong class="form-title"><label for="name"><?php echo e(trans('contact.name')); ?></label></strong>
                         </div>
                         <div class="col-sm-8">
                            <div class="input-wrap">
-                              {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']) !!}
+                              <?php echo Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']); ?>
+
                            </div>
                         </div>
                      </div>
                      <div class="form-group">
                         <div class="col-sm-4">
-                           <strong class="form-title"><label for="email">{{ trans('contact.email') }}</label></strong>
+                           <strong class="form-title"><label for="email"><?php echo e(trans('contact.email')); ?></label></strong>
                         </div>
                         <div class="col-sm-8">
                            <div class="input-wrap">
-                              {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']) !!}
+                              <?php echo Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']); ?>
+
                            </div>
                         </div>
                      </div>
                      <div class="form-group">
                         <div class="col-sm-4">
-                           <strong class="form-title"><label for="subject">{{ trans('contact.subject') }}</label></strong>
+                           <strong class="form-title"><label for="subject"><?php echo e(trans('contact.subject')); ?></label></strong>
                         </div>
                         <div class="col-sm-8">
                            <div class="input-wrap">
-                              {!! Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
+                              <?php echo Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']); ?>
+
                            </div>
                         </div>
                      </div>
                      <div class="form-group">
                         <div class="col-sm-4">
-                           <strong class="form-title"><label for="description">{{ trans('contact.description') }}</label></strong>
+                           <strong class="form-title"><label for="description"><?php echo e(trans('contact.description')); ?></label></strong>
                         </div>
                         <div class="col-sm-8">
                            <div class="input-wrap">
-                              {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']) !!}
+                              <?php echo Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']); ?>
+
                            </div>
                         </div>
                      </div>
@@ -168,13 +171,15 @@
                         <div class="col-sm-4">&nbsp;</div>
                         <div class="col-sm-8">
                            <div class="input-wrap">
-                              {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-white']) !!}
+                              <?php echo Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-white']); ?>
+
                            </div>
                         </div>
                      </div>
                   </fieldset>
               
-                {!! Form::close() !!}
+                <?php echo Form::close(); ?>
+
             </div>
             <div class="col-md-6 map-col-main wow fadeInRight">
                <div class="map-holder">
@@ -186,7 +191,8 @@
        <article class="partner-block">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.partner') }}</h2>
+                <h2 class="main-heading">Partner</h2>
+                <span class="main-subtitle">People who always support and endorse our good work</span>
                 <div class="seperator"></div>
              </header>
              <div class="partner-list" id="partner-slide">
@@ -249,4 +255,5 @@
        </article>
     </main>
  
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
