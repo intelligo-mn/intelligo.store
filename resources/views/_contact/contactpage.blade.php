@@ -1,6 +1,6 @@
-@extends("app")
+@extends("main")
 
-@section('head_title', Contact.' | '.getcong('sitename') )
+@section('head_title', trans('contact.contact'))
 
 @section("header")
     <style>
@@ -79,43 +79,175 @@
     </style>
 @endsection
 @section("content")
+    <section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="banner-contact">
+       <div class="banner-text">
+          <div class="center-text">
+             <div class="container">
+                <h1>{{ trans('contact.contact') }}</h1>
+                <strong class="subtitle">{{ trans('contact.contact') }}!</strong>
+                <nav class="breadcrumbs">
+                   <ul>
+                      <li><a href="#">HOME</a></li>
+                      <li><span>{{ trans('contact.contact') }}</span></li>
+                   </ul>
+                </nav>
+             </div>
+          </div>
+       </div>
+    </section>
+    <main id="main">
+      <div class="container">
+         
+         <div class="contact-info row">
+            <div class="col-sm-4">
+               <span class="tel has-border">
+               <span class="icon-tel-big"></span>
+               <a href="tel:02085775771">020 8577 5771</a>
+               </span>
+            </div>
+            <div class="col-sm-4">
+               <span class="tel has-border bg-blue">
+               <span class="icon-fax-big"></span>
+               <a href="tel:02085775771">info@triptomongolian.com</a>
+               </span>
+            </div>
+            <div class="col-sm-4">
+               <span class="tel has-border">
+               <span class="icon-tel"></span>
+               <a href="tel:02085775771">020 8577 5771</a>
+               </span>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 wow fadeInLeft">
+                {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form contact-form has-border','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
 
-   <div class="content">
-
-        <div class="container">
-            <div class="mainside" style="min-height: 900px">
-
-            <h1 style="margin-bottom:10px">{{ trans('contact.title') }}</h1>
-
-                {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
-
-                    <div class="form-field string  inpt">
-                        <label for="subject">{{ trans('contact.subject') }}</label>
-                        {!! Form::text('subject', null, ['id' => 'subject']) !!}
-                    </div>
-                    <div class="form-field text  inpt">
-                        <label for="description">{{ trans('contact.description') }}</label>
-                        {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px']) !!}
-                    </div>
-                    <div class="form-field string  inpt">
-                        <label for="name">{{ trans('contact.name') }}</label>
-                        {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name']) !!}
-                    </div>
-                    <div class="form-field inpt">
-                        <label for="email">{{ trans('contact.email') }}</label>
-                        {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email']) !!}
-                    </div>
-
-                {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'button button-orange button-full submit-button']) !!}
-
+                  <fieldset>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                           <strong class="form-title"><label for="name">{{ trans('contact.name') }}</label></strong>
+                        </div>
+                        <div class="col-sm-8">
+                           <div class="input-wrap">
+                              {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']) !!}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <div class="col-sm-4">
+                           <strong class="form-title"><label for="email">{{ trans('contact.email') }}</label></strong>
+                        </div>
+                        <div class="col-sm-8">
+                           <div class="input-wrap">
+                              {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']) !!}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <div class="col-sm-4">
+                           <strong class="form-title"><label for="subject">{{ trans('contact.subject') }}</label></strong>
+                        </div>
+                        <div class="col-sm-8">
+                           <div class="input-wrap">
+                              {!! Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <div class="col-sm-4">
+                           <strong class="form-title"><label for="description">{{ trans('contact.description') }}</label></strong>
+                        </div>
+                        <div class="col-sm-8">
+                           <div class="input-wrap">
+                              {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']) !!}
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="form-group btn-holder">
+                        <div class="col-sm-4">&nbsp;</div>
+                        <div class="col-sm-8">
+                           <div class="input-wrap">
+                              {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-white']) !!}
+                           </div>
+                        </div>
+                     </div>
+                  </fieldset>
+              
                 {!! Form::close() !!}
             </div>
-            <div class="sidebar">
-
-                @include("_widgets.facebooklike")
-
+            <div class="col-md-6 map-col-main wow fadeInRight">
+               <div class="map-holder">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5465.157030628598!2d-73.96073921239335!3d40.77310095275902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258957b88f9ed%3A0xac6ddf195a5da77a!2s77+St!5e0!3m2!1sne!2snp!4v1449890237045" width="600" height="670" allowfullscreen></iframe>
+               </div>
+            </div>
+         </div>
+      </div>
+       <article class="partner-block">
+          <div class="container">
+             <header class="content-heading">
+                <h2 class="main-heading">Partner</h2>
+                <span class="main-subtitle">People who always support and endorse our good work</span>
+                <div class="seperator"></div>
+             </header>
+             <div class="partner-list" id="partner-slide">
+                <div class="partner">
+                   <a href="#">
+                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
+                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
+                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="152" src="travel/img/logos/logo-tourist.svg" alt="image description">
+                   <img class="hover" width="152" src="travel/img/logos/logo-tourist-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
+                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
+                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
+                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
+                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
+                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
+                   </a>
+                </div>
+                <div class="partner">
+                   <a href="#">
+                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
+                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
+                   </a>
+                </div>
+             </div>
           </div>
-    </div>
-  </div>
-
+       </article>
+    </main>
+ 
 @endsection
