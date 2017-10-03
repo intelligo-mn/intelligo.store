@@ -178,7 +178,7 @@
             </div>
             <div class="col-md-6 map-col-main wow fadeInRight">
                <div class="map-holder">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5465.157030628598!2d-73.96073921239335!3d40.77310095275902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258957b88f9ed%3A0xac6ddf195a5da77a!2s77+St!5e0!3m2!1sne!2snp!4v1449890237045" width="600" height="670" allowfullscreen></iframe>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d10696.631340509159!2d106.9587067!3d47.9139834!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m3!3m2!1d47.9154215!2d106.95851359999999!4m0!5e0!3m2!1smn!2smn!4v1507048541684" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                </div>
             </div>
          </div>
