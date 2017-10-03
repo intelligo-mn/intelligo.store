@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ImageLoader {

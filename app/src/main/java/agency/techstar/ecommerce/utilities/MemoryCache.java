@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class MemoryCache {

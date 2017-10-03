@@ -35,7 +35,7 @@ import okhttp3.Response;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 

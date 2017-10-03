@@ -9,7 +9,7 @@ import agency.techstar.ecommerce.models.CartProducts;
 import java.util.ArrayList;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class CartTable extends DatabaseHelper{

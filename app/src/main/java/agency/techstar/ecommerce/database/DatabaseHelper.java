@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class DatabaseHelper extends SQLiteOpenHelper {

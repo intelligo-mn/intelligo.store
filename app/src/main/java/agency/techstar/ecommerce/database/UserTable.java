@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class UserTable extends DatabaseHelper {

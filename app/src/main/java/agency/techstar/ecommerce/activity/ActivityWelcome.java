@@ -22,7 +22,7 @@ import com.techstar.ecommerce.R;
 import agency.techstar.ecommerce.utilities.PrefManager;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityWelcome extends AppCompatActivity {

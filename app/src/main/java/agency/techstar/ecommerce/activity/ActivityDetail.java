@@ -38,7 +38,7 @@ import java.text.DecimalFormat;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityDetail extends AppCompatActivity {

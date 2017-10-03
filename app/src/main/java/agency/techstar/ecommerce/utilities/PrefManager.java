@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class PrefManager {

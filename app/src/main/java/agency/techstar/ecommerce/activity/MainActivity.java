@@ -32,7 +32,7 @@ import agency.techstar.ecommerce.widgets.CustomViewPager;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class MainActivity extends AppCompatActivity {

@@ -2,7 +2,7 @@ package agency.techstar.ecommerce.models;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class Brand {

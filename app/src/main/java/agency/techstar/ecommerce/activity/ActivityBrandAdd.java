@@ -49,7 +49,7 @@ import okhttp3.Response;
 import android.widget.AdapterView.OnItemSelectedListener;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelectedListener{

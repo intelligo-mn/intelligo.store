@@ -3,7 +3,7 @@ package agency.techstar.ecommerce.widgets;
 import android.graphics.drawable.Drawable;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class GridViewItem

@@ -16,7 +16,7 @@ import agency.techstar.ecommerce.models.CartProducts;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityCart extends AppCompatActivity {

@@ -19,7 +19,7 @@ import org.json.JSONException;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class BrandProductAdapter extends BaseAdapter{

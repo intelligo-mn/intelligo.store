@@ -256,7 +256,6 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         String uri = TSConstants.ProductService;
 
-
         RequestBody formBody = new FormBody.Builder()
                 .add("state", "r")
                 .add("product_id", iGet.getStringExtra("product_id"))

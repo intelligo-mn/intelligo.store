@@ -5,7 +5,7 @@ import android.content.Context;
 import java.io.File;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class FileCache {

@@ -18,7 +18,7 @@ import java.util.Locale;
 
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivitySplashScreen extends AppCompatActivity implements View.OnClickListener{

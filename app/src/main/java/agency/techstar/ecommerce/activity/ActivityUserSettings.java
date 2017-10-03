@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.techstar.ecommerce.R;
 /**
  * Author: Tortuvshin Byambaa.
- * Project: DglBrand
+ * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
 public class ActivityUserSettings extends AppCompatActivity {
