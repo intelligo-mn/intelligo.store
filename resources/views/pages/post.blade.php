@@ -36,7 +36,7 @@
                </div>
                 -->
                <div class="btn-holder">
-                  <a href="#" class="btn btn-lg btn-info">Purchase</a>
+                  <a href="#" class="btn btn-lg btn-info">{{ trans('index.purchase')}}</a>
                </div>
                <ul class="social-networks social-share">
                   <li>
@@ -80,9 +80,9 @@
       <nav class="nav-wrap" id="sticky-tab">
          <div class="container">
             <ul class="nav nav-tabs text-center" role="tablist">
-               <li role="presentation" class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">Overview</a></li>
-               <li role="presentation"><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">Itinerary</a></li>
-               <li role="presentation"><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">Gallery</a></li>
+               <li role="presentation" class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">{{ trans('index.overview') }}</a></li>
+               <li role="presentation"><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">{{ trans('index.itinerary') }}</a></li>
+               <li role="presentation"><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">{{ trans('index.gallery') }}</a></li>
             </ul>
          </div>
       </nav>

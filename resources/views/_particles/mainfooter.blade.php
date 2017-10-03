@@ -7,7 +7,7 @@
           </nav>
 
           <nav class="col-sm-6 col-lg-3 footer-nav active">
-             <h3>Main Menus</h3>
+             <h3>{{ trans('index.mainmenus') }}</h3>
              <ul class="slide">
                 <li>
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME
@@ -22,7 +22,7 @@
           </nav>
          
           <nav class="col-sm-6 col-lg-4 footer-nav last">
-             <h3>Contact us</h3>
+             <h3>{{ trans('index.contactus') }}</h3>
              <ul class="slide address-block">
                 <li class="wrap-text"><span class="icon-tel"></span> <a href="tel:02072077878">(976) 94968096</a></li>
                 <li class="wrap-text"><span class="icon-fax"></span> <a href="tel:02088828282">(976) 88828282</a></li>

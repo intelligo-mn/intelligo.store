@@ -107,7 +107,7 @@
        <section class="content-block bg-white">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.showmore') }}</h2>
+                <h2 class="main-heading">{{ trans('index.where_would') }}</h2>
                 
                 <div class="seperator"></div>
              </header>

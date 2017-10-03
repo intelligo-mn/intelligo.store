@@ -131,7 +131,7 @@ return [
     'minthreeca'            => 'Min 2 character required!',
 
     'showmore' => 'Show more',
-    'wherewould' => 'WHERE WOULD YOU LIKE TO GO',
+    'where_would' => 'WHERE WOULD YOU LIKE TO GO',
     'callnow' => 'Call us now tour',
     'toptour' => 'Top Tour',
     'adventure' => 'Adventure',
@@ -139,5 +139,9 @@ return [
     'gallery' => 'Gallery',
     'partner' => 'Partner',
     'mainmenus' => 'Main Menus',
-    'contactus' => 'Contact Us'
+    'contactus' => 'Contact Us',
+    'purchase' => 'Purchase',
+    'overview' => 'Overview',
+    'itinerary' => 'Itinerary',
+    'price' => 'Price'
 ];

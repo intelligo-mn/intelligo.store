@@ -20,8 +20,8 @@
                 <a href="#"><span class="icon-reply"></span></a>
             </div>
                 <div class="info-footer">
-                <span class="price">from <span>{{ str_limit($item->body, 30) }}</span></span>
-                <a href="{{ makeposturl($item) }}" class="link-more">Show more</a>
+                <span class="price">{{ trans('index.price') }} <span>{{ str_limit($item->body, 30) }}</span></span>
+                <a href="{{ makeposturl($item) }}" class="link-more">{{ trans('index.showmore') }}</a>
             </div>
         </div>
         @endunless
@@ -31,7 +31,7 @@
      @if($descof=='on')
         <h3 class="small-space"><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 35) }}</a></h3>
         <!-- <p>{{ str_limit($item->body, 70) }}</p> -->
-        <a href="{{ makeposturl($item) }}" class="btn btn-default">Show more</a>
+        <a href="{{ makeposturl($item) }}" class="btn btn-default">{{ trans('index.showmore') }}</a>
 
      <footer>
         <ul class="social-networks">
@@ -40,7 +40,7 @@
            <li><a href="http://www.facebook.com/share.php?u={{ url(makeposturl($item)) }}"><span class="icon-facebook" data-id="{{ $item->id }}" class="share_social is-facebook  popup-action"></span></a></li>
            <li><a href="#"><span class="icon-linkedin"></span></a></li>
         </ul>
-        <span class="price">from <span>{{ str_limit($item->body, 50) }}</span></span>
+        <span class="price">{{ trans('index.price') }} <span>{{ str_limit($item->body, 50) }}</span></span>
      </footer>
      @endif
   </div>
