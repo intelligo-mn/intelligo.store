@@ -130,7 +130,14 @@ return [
 
     'minthreeca'            => 'Min 2 character required!',
 
-
-
-
+    'showmore' => 'Show more',
+    'wherewould' => 'WHERE WOULD YOU LIKE TO GO',
+    'callnow' => 'Call us now tour',
+    'toptour' => 'Top Tour',
+    'adventure' => 'Adventure',
+    'adventure_text' => 'Our collection of the most popular adventures in Mongolia.',
+    'gallery' => 'Gallery',
+    'partner' => 'Partner',
+    'mainmenus' => 'Main Menus',
+    'contactus' => 'Contact Us'
 ];
