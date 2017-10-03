@@ -143,5 +143,6 @@ return [
     'purchase' => 'Purchase',
     'overview' => 'Overview',
     'itinerary' => 'Itinerary',
-    'price' => 'Price'
+    'price' => 'Price',
+    'related_tour' => 'Related tour'
 ];
