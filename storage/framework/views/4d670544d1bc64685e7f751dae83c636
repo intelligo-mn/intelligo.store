@@ -191,8 +191,7 @@
        <article class="partner-block">
           <div class="container">
              <header class="content-heading">
-                <h2 class="main-heading">Partner</h2>
-                <span class="main-subtitle">People who always support and endorse our good work</span>
+                <h2 class="main-heading"><?php echo e(trans('index.partner')); ?></h2>
                 <div class="seperator"></div>
              </header>
              <div class="partner-list" id="partner-slide">

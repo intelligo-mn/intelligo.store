@@ -31,7 +31,7 @@
     <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/owl-carousel/owl.theme.css')!!}">
     <link media="all" rel="stylesheet" href="{!! asset('travel/css/main.css')!!}">
     <link rel="stylesheet" type="text/css" href="{!! asset('travel/vendors/revolution/css/settings.css')!!}">
-
+    <script src="{!! asset('travel/vendors/jquery/jquery-2.1.4.min.js') !!}"></script>
     {!! getcong('headcode') !!}
 
     @yield("header")
@@ -94,7 +94,7 @@
          <a href="javascript:" id="scroll-to-top"><i class="icon-arrow-down"></i></a>
       </div>
       <script>!function(e,t,r,n,c,h,o){function a(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return r}try{for(c=e.getElementsByTagName('a'),o='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(h=c[n]).href.indexOf(o))>-1&&(h.href='mailto:'+a(h.href,t+o.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(h=c[n]).parentNode.replaceChild(e.createTextNode(a(h.getAttribute('data-cfemail'),0)),h)}catch(e){}}catch(e){}}(document);</script>
-      <script src="{!! asset('travel/vendors/jquery/jquery-2.1.4.min.js') !!}"></script>
+     
       <script src="{!! asset('travel/vendors/bootstrap/javascripts/bootstrap.min.js') !!}"></script>
       <script src="{!! asset('travel/vendors/jquery-placeholder/jquery.placeholder.min.js') !!}"></script>
       <script src="{!! asset('travel/vendors/match-height/jquery.matchHeight.js') !!}"></script>

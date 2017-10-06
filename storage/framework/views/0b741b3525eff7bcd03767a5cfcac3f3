@@ -469,53 +469,21 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer'); ?>
-    <?php if($post->type=="quiz"): ?>
-    <script>
-         BuzzyQuizzes = {
-            'lang_1': '<?php echo e(trans('buzzyquiz.shareonface')); ?>',
-            'lang_2': '<?php echo e(trans('buzzyquiz.shareontwitter')); ?>',
-            'lang_3': '<?php echo e(trans('buzzyquiz.shareface')); ?>',
-            'lang_4': '<?php echo e(trans('buzzyquiz.sharetweet')); ?>',
-            'lang_5': '<?php echo e(trans('buzzyquiz.sharedone')); ?>',
-            'lang_6': '<?php echo e(trans('buzzyquiz.sharedonedesc')); ?>'
-        };
-
-
-        $( document ).ready(function() {
-
-            App.initQuizzesClicks();
-        });
-    </script>
-    <?php endif; ?>
-    <?php if($post->type=="poll"): ?>
-    <script>
-        $( document ).ready(function() {
-            $('.poll_main_color').each(function(i){
-                $(this).css('width', $(this).attr('data-percent')+'%');
-            });
-            $('body').addClass('default-page');
-        });
-    </script>
-    <?php endif; ?>
-    <!-- <script async defer src="//platform.instagram.com/<?php echo e(getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US'); ?>/embeds.js"></script>
+    <script async defer src="//platform.instagram.com/<?php echo e(getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US'); ?>/embeds.js"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
- -->
-
-
     <style> .fb_dialog{z-index:999999999} </style>
     <div id="fb-root"></div>
-   <!--  <script>(function(d, s, id) {
+    <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/<?php echo e(getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US'); ?>/sdk.js#xfbml=1<?php echo getcong('facebookapp') > "" ? '&appId='.getcong('facebookapp') : ''; ?>&version=v2.4";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script> -->
+        }(document, 'script', 'facebook-jssdk'));</script>
     <script>
         $( document ).ready(function() {
-           
-            $('#header').css('background', '#252525');
+            $('body').addClass('default-page js-ready');
         });
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make("others", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

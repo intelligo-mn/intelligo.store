@@ -1,4 +1,4 @@
-@extends("others")
+@extends("main")
 @section('head_title',  $post->title.' | '.getcong('sitename'))
 @section('head_description', $post->body)
 @section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))
@@ -466,52 +466,20 @@
 @endsection
 
 @section('footer')
-    @if($post->type=="quiz")
-    <script>
-         BuzzyQuizzes = {
-            'lang_1': '{{ trans('buzzyquiz.shareonface') }}',
-            'lang_2': '{{ trans('buzzyquiz.shareontwitter') }}',
-            'lang_3': '{{ trans('buzzyquiz.shareface') }}',
-            'lang_4': '{{ trans('buzzyquiz.sharetweet') }}',
-            'lang_5': '{{ trans('buzzyquiz.sharedone') }}',
-            'lang_6': '{{ trans('buzzyquiz.sharedonedesc') }}'
-        };
-
-
-        $( document ).ready(function() {
-
-            App.initQuizzesClicks();
-        });
-    </script>
-    @endif
-    @if($post->type=="poll")
-    <script>
-        $( document ).ready(function() {
-            $('.poll_main_color').each(function(i){
-                $(this).css('width', $(this).attr('data-percent')+'%');
-            });
-            $('body').addClass('default-page');
-        });
-    </script>
-    @endif
-    <!-- <script async defer src="//platform.instagram.com/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
+    <script async defer src="//platform.instagram.com/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
- -->
-
-
     <style> .fb_dialog{z-index:999999999} </style>
     <div id="fb-root"></div>
-   <!--  <script>(function(d, s, id) {
+    <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/sdk.js#xfbml=1{!! getcong('facebookapp') > "" ? '&appId='.getcong('facebookapp') : '' !!}&version=v2.4";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script> -->
+        }(document, 'script', 'facebook-jssdk'));</script>
     <script>
         $( document ).ready(function() {
-           
-            $('#header').css('background', '#252525');
+            $('body').addClass('default-page js-ready');
         });
     </script>
 @endsection
