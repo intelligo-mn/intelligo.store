@@ -18,9 +18,9 @@
                         <input class="left" id="remember" name="remember" type="checkbox" value="true" checked>
                         <label class="show left" for="remember">{{ trans('index.remember') }}</label>
                     </div>
-                    <div class="forgot-pass">
+                    <!-- <div class="forgot-pass">
                         <a href="/password/email">{{ trans('passwords.forgotpassword') }}</a>
-                    </div>
+                    </div> -->
                 </div>
                 <button type="submit" class="button button-orange button-full" id="PostUserLogin">{{ trans('index.login') }}</button>
 
