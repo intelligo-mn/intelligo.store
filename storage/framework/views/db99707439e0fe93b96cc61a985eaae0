@@ -66,7 +66,7 @@
       <div id="wrapper">
          <div class="page-wrapper">
 
-    <?php echo $__env->make("_particles.mainheader", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make("_particles.header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="content-wrapper" id="container-wrapper">
         <?php if(!Request::is('create') ): ?> <?php if(Request::segment(1)!=='profile'): ?> <?php if(Request::segment(1)!=='edit'): ?>
@@ -85,7 +85,7 @@
 
     </div>
 
-    <?php echo $__env->make("_particles.mainfooter", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make("_particles.footer", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <?php echo $__env->yieldContent("footer"); ?>
     <?php echo $__env->make('.errors.swalerror', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

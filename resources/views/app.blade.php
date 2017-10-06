@@ -48,7 +48,7 @@
 
 </head>
 <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
-@include("_particles.mainheader")
+@include("_particles.header")
 <body class="default-page js-ready">  
 <div class="content-wrapper" id="container-wrapper">
     @if(!Request::is('create') ) @if(Request::segment(1)!=='profile') @if(Request::segment(1)!=='edit')
@@ -66,7 +66,6 @@
 
 </div>
 
-@include("_particles.footer")
 
 <div id="fb-root"></div>
 <script src="/assets/js/plugins.js"></script>

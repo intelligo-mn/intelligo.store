@@ -65,7 +65,7 @@
       <div id="wrapper">
          <div class="page-wrapper">
 
-    @include("_particles.mainheader")
+    @include("_particles.header")
 
     <div class="content-wrapper" id="container-wrapper">
         @if(!Request::is('create') ) @if(Request::segment(1)!=='profile') @if(Request::segment(1)!=='edit')
@@ -83,7 +83,7 @@
 
     </div>
 
-    @include("_particles.mainfooter")
+    @include("_particles.footer")
 
     @yield("footer")
     @include('.errors.swalerror')

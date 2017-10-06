@@ -2,9 +2,9 @@
    <div class="container-fluid">
       <div class="logo">
          <a href="{{ action('IndexController@index') }}">
-        <!--  <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada">
-         <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada"> -->
+         <!-- <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada"> -->
          TripToMongolia
+       <!--   <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada"> -->
          </a>
       </div>
       <nav class="navbar navbar-default">
@@ -19,31 +19,31 @@
          <div class="collapse navbar-collapse" id="nav">
             <ul class="nav navbar-nav">
                <li>
-                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME<b class="icon-angle-down"></b></a>
+                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
                      
                </li>
-                <li> <a href="/tours" title="/tours">TOURS</a></li>
-               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
-               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
-               <li> <a href="/stayit" title="/pages/stayit">STAY IT</a></li>
-               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
+               <li> <a href="/tours" title="/tours">{{ trans('index.tours') }}</a></li>
+               <li> <a href="/pages/about" title="/pages/about">{{ trans('index.about') }}</a></li>
+               <li> <a href="/pages/itinitary" title="/pages/itinitary">{{ trans('index.itinerary') }}</a></li>
+               <li> <a href="/stayit" title="/pages/stayit">{{ trans('index.stayit') }}</a></li>
+               <li> <a href="/contact" title="/contact">{{ trans('index.contact') }}</a></li>
                <!--  @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
                 @endforeach -->
               
-               <!-- @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+              <!--  @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
                         
                   </li>
               @endforeach -->
-
                
                <li class="dropdown hidden-xs hidden-sm v-divider">
-                  <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
-                   @if(!Auth::check())
+
+                  @if(!Auth::check())
                   <div class="dropdown-menu">
                      <ul>
                         <li>
@@ -87,7 +87,7 @@
                   @endif
                </li>
              
-               <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
+                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
                   <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
                    <div class="dropdown-menu dropdown-sm">
                       <div class="drop-wrap lang-wrap">
@@ -105,7 +105,7 @@
                                </a>
                             </div>
                          </div>
-                        <!--  <div class="lang-row">
+                          <!-- <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/cn">
                                <span class="text">China</span>
@@ -119,7 +119,6 @@
                                </a>
                             </div>
                          </div>
-                         
                       </div>
                    </div>
                </li>
