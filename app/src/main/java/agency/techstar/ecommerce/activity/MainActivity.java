@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
         public final int PAGE_COUNT = 5;
 
-        private final String[] mTabsTitle = {getString(R.string.brand), getString(R.string.product),  getString(R.string.category), getString(R.string.card), getString(R.string.menu)};
+        private final String[] mTabsTitle = {getString(R.string.company), getString(R.string.product),  getString(R.string.category), getString(R.string.card), getString(R.string.menu)};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);

@@ -52,23 +52,23 @@ public class UserTable extends DatabaseHelper {
         db.close();
     }
 
-    public User getUser(int id) {
-        SQLiteDatabase db = getReadableDatabase();
-        if (db == null) {
-            return null;
-        }
-        Cursor cursor = db.query(TABLE_USERS, PROJECTIONS_USERS, USER_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-        if (!cursor.moveToFirst()) {
-            return null;
-        }
-        User user = new User(cursor.getInt(USER_ID_INDEX),
-                cursor.getString(USER_NAME_INDEX),
-                cursor.getString(USER_EMAIL_INDEX),
-                cursor.getString(USER_PASSWORD_INDEX));
-        cursor.close();
-        return user;
-    }
+//    public User getUser(int id) {
+//        SQLiteDatabase db = getReadableDatabase();
+//        if (db == null) {
+//            return null;
+//        }
+//        Cursor cursor = db.query(TABLE_USERS, PROJECTIONS_USERS, USER_ID + "=?",
+//                new String[]{String.valueOf(id)}, null, null, null, null);
+//        if (!cursor.moveToFirst()) {
+//            return null;
+//        }
+//        User user = new User(cursor.getInt(USER_ID_INDEX),
+//                cursor.getString(USER_NAME_INDEX),
+//                cursor.getString(USER_EMAIL_INDEX),
+//                cursor.getString(USER_PASSWORD_INDEX));
+//        cursor.close();
+//        return user;
+//    }
 
     public Cursor checkUser(String username,String password){
 
@@ -94,7 +94,8 @@ public class UserTable extends DatabaseHelper {
                 String name = cursor.getString(USER_NAME_INDEX);
                 String email = cursor.getString(USER_EMAIL_INDEX);
                 String password = cursor.getString(USER_PASSWORD_INDEX);
-                User user = new User(id, name, email, password);
+                byte[] a = new byte[0];
+                User user = new User(id, name, email, password, a);
                 users.add(user);
             } while (cursor.moveToNext());
         }

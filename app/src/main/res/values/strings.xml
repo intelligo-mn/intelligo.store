@@ -7,7 +7,6 @@
     <string name="settings">Тохиргоо</string>
     <string name="signup">Бүртгүүлэх</string>
     <string name="help">Тусламж</string>
-    <string name="company">Компаниуд</string>
     <string name="title_activity_department">Салбарууд</string>
     <string name="details">Дэлгэрэнгүй</string>
     <string name="user">Хэрэглэгч</string>
@@ -76,7 +75,6 @@
     <string name="price">Үнэ</string>
     <string name="tax">Татвар</string>
     <string name="exit_two_press">Гарах бол дахин дарна уу</string>
-    <string name="company">Брэнд</string>
     <string name="model">Загвар/Модел/Код</string>
 
     <string name="register_loaging">Бүртгэл үүсгэж байна</string>

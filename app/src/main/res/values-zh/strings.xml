@@ -8,7 +8,6 @@
     <string name="settings">設置</string>
     <string name="signup">寄存器</string>
     <string name="help">幫幫我</string>
-    <string name="company">公司</string>
     <string name="title_activity_department">部</string>
     <string name="details">細節</string>
     <string name="user">用戶</string>
@@ -77,7 +76,6 @@
     <string name="price">價格</string>
     <string name="tax">稅</string>
     <string name="exit_two_press">點擊退出</string>
-    <string name="company">牌</string>
     <string name="model">時尚/型號/碼</string>
 
     <string name="register_loaging">正在登录</string>
