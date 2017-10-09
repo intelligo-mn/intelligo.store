@@ -9,32 +9,28 @@ public class User {
     private String userName;
     private String userEmail;
     private String userPassword;
-    public User(){
+    private byte[] avatar;
 
+    public User(int userId, String userName, String userEmail, String userPassword, byte[] avatar) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.avatar = avatar;
     }
-    public User(int _userId,String _userName,String _userEmail,String _userPassword){
-        userId = _userId;
-        userName = _userName;
-        userEmail = _userEmail;
-        userPassword = _userPassword;
-    }
-
-    public User(String name, String email, String password) {
-        userName = name;
-        userEmail = email;
-        userPassword = password;
-    }
-
 
     public int getUserId() {
         return userId;
     }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -42,6 +38,7 @@ public class User {
     public String getUserEmail() {
         return userEmail;
     }
+
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
@@ -49,10 +46,16 @@ public class User {
     public String getUserPassword() {
         return userPassword;
     }
+
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 
+    public byte[] getAvatar() {
+        return avatar;
+    }
 
-
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
 }
