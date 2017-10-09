@@ -5,14 +5,14 @@ package agency.techstar.ecommerce.models;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class Brand {
+public class Company {
 
     private long brandId;
     private String brandName;
     private String brandImage;
     private String brandDescription;
 
-    public Brand(long brandId, String brandName, String brandImage, String brandDescription) {
+    public Company(long brandId, String brandName, String brandImage, String brandDescription) {
         this.brandId = brandId;
         this.brandName = brandName;
         this.brandImage = brandImage;

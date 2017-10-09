@@ -13,11 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.activity.ActivityBrandProduct;
+import agency.techstar.ecommerce.activity.ActivityCompanyProduct;
 import agency.techstar.ecommerce.adapters.CategoryAdapter;
 import agency.techstar.ecommerce.utilities.TSConstants;
 
@@ -89,7 +88,7 @@ public class CategoryFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                Intent iMenuList = new Intent(getActivity(), ActivityBrandProduct.class);
+                Intent iMenuList = new Intent(getActivity(), ActivityCompanyProduct.class);
                 startActivity(iMenuList);
             }
         });

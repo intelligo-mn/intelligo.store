@@ -8,7 +8,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="agency.techstar.ecommerce.activity.ActivityBrandProduct">
+    tools:context="agency.techstar.ecommerce.activity.ActivityCompanyProduct">
     <LinearLayout
         android:id="@+id/lytSearch"
         android:layout_width="fill_parent"

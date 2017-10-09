@@ -54,7 +54,7 @@
             android:name="agency.techstar.ecommerce.activity.ActivityProductDetail"
             android:label="@string/details"
             android:theme="@style/AppTheme.NoActionBarGreen" />
-        <activity android:name="agency.techstar.ecommerce.activity.ActivityBrandProduct" />
+        <activity android:name="agency.techstar.ecommerce.activity.ActivityCompanyProduct" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityCart" />
         <activity
             android:name="agency.techstar.ecommerce.activity.ActivityLogin"
@@ -69,7 +69,7 @@
         <activity android:name="agency.techstar.ecommerce.activity.ActivityProductAdd" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityDetail" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityCartEdit" />
-        <activity android:name="agency.techstar.ecommerce.activity.ActivityBrandAdd" />
+        <activity android:name="agency.techstar.ecommerce.activity.ActivityCompanyAdd" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityWeb" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityAbout"></activity>
     </application>

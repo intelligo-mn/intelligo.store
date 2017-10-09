@@ -22,7 +22,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.fragments.BrandFragment;
+import agency.techstar.ecommerce.fragments.CompanyFragment;
 import agency.techstar.ecommerce.models.Category;
 import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.utilities.DialogUtils;
@@ -52,9 +52,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelectedListener{
+public class ActivityCompanyAdd extends AppCompatActivity implements OnItemSelectedListener{
 
-    private static final String TAG = BrandFragment.class.getSimpleName();
+    private static final String TAG = CompanyFragment.class.getSimpleName();
 
     EditText name, description, phone, email, image;
     private Handler mHandler;
@@ -94,7 +94,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
             @Override
             public void onClick(View v) {
                 if (bitmap != null) {
-                    new AlertDialog.Builder(ActivityBrandAdd.this)
+                    new AlertDialog.Builder(ActivityCompanyAdd.this)
                             .setMessage(getString(R.string.image_select))
                             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                 @Override
@@ -104,7 +104,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                             }).setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(ActivityBrandAdd.this, "Cool, next time then...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActivityCompanyAdd.this, "Cool, next time then...", Toast.LENGTH_SHORT).show();
                         }
                     }).create().show();
                 } else {
@@ -118,7 +118,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
             @Override
             public void onClick(View v) {
                 add.setEnabled(false);
-                DialogUtils.getInstance().startProgress(ActivityBrandAdd.this, getString(R.string.loading));
+                DialogUtils.getInstance().startProgress(ActivityCompanyAdd.this, getString(R.string.loading));
                 create(name.getText().toString(),
                         description.getText().toString(),
                         prefManager.getUserId(),
@@ -194,10 +194,10 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                             }
 
                             if (success == "1") {
-                                Toast.makeText(ActivityBrandAdd.this, getString(R.string.success), Toast.LENGTH_LONG)
+                                Toast.makeText(ActivityCompanyAdd.this, getString(R.string.success), Toast.LENGTH_LONG)
                                         .show();
                             } else {
-                                Toast.makeText(ActivityBrandAdd.this, getString(R.string.error), Toast.LENGTH_LONG)
+                                Toast.makeText(ActivityCompanyAdd.this, getString(R.string.error), Toast.LENGTH_LONG)
                                         .show();
                             }
                             
@@ -237,7 +237,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                             if(!catItems.getJSONObject(i).getString("level").equalsIgnoreCase("3"))
                                 categories.add(catItems.getJSONObject(i).getString("name"));
                         }
-                        catAdapter = new ArrayAdapter<String>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, categories);
+                        catAdapter = new ArrayAdapter<String>(ActivityCompanyAdd.this, android.R.layout.simple_spinner_item, categories);
                         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         catSpinner.setAdapter(catAdapter);
                     } catch (JSONException e) {
@@ -272,7 +272,7 @@ public class ActivityBrandAdd extends AppCompatActivity implements OnItemSelecte
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                subCatAdapter = new ArrayAdapter<Category>(ActivityBrandAdd.this, android.R.layout.simple_spinner_item, subCats);
+                subCatAdapter = new ArrayAdapter<Category>(ActivityCompanyAdd.this, android.R.layout.simple_spinner_item, subCats);
                 subCatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 subCatSpinner.setAdapter(subCatAdapter);
 

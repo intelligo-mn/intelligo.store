@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.techstar.ecommerce.R;
@@ -39,8 +38,8 @@ import okhttp3.Response;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class ActivityBrandProduct extends AppCompatActivity {
-    private static final String TAG = ActivityBrandProduct.class.getSimpleName();
+public class ActivityCompanyProduct extends AppCompatActivity {
+    private static final String TAG = ActivityCompanyProduct.class.getSimpleName();
     private ListView listMenu;
     private TSProgressBar prgLoading;
     private TextView txtTitle;
@@ -69,7 +68,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
         brandId = iGet.getStringExtra("brand_id");
         brandName = iGet.getStringExtra("brand_name");
 
-        Log.d("","Brand ID: "+brandId);
+        Log.d("","Company ID: "+brandId);
 
         getSupportActionBar().setTitle(brandName);
 
@@ -100,7 +99,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
 //            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 //                                    long arg3) {
 //
-//                Intent iDetail = new Intent(ActivityBrandProduct.this, ActivityProductDetail.class);
+//                Intent iDetail = new Intent(ActivityCompanyProduct.this, ActivityProductDetail.class);
 //                iDetail.putExtra("product_id", Product_ID.get(position));
 //                startActivity(iDetail);
 //            }
@@ -163,7 +162,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent iMyOrder = new Intent(ActivityBrandProduct.this, ActivityCart.class);
+                Intent iMyOrder = new Intent(ActivityCompanyProduct.this, ActivityCart.class);
                 startActivity(iMyOrder);
                 return true;
 
@@ -211,7 +210,7 @@ public class ActivityBrandProduct extends AppCompatActivity {
                         JSONArray prodItems = new JSONArray(res);
                         Log.e("Response: ", prodItems + "");
                         prgLoading.setVisibility(View.GONE);
-                        listMenu.setAdapter(new ProductAdapter(ActivityBrandProduct.this, prodItems));
+                        listMenu.setAdapter(new ProductAdapter(ActivityCompanyProduct.this, prodItems));
                     } catch (JSONException ex){
                         ex.printStackTrace();
                     }

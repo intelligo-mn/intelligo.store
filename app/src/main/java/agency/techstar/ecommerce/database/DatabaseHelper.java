@@ -26,11 +26,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             CartTable.PRODUCT_TOTAL_COST    + " TEXT,"+
             CartTable.PRODUCT_TOTAL_ORDER    + " TEXT)";
 
-    private static final String CREATE_TABLE_BRAND = "CREATE TABLE "+BrandTable.TABLE_BRAND +" ("+
-            BrandTable.BRAND_ID + " INTEGER PRIMARY KEY," +
-            BrandTable.BRAND_NAME + " TEXT,"+
-            BrandTable.BRAND_IMAGE + " TEXT,"+
-            BrandTable.BRAND_DESCRIPTION + " TEXT)";
+    private static final String CREATE_TABLE_COMPANY = "CREATE TABLE "+ CompanyTable.TABLE_COMPANY +" ("+
+            CompanyTable.COMPANY_ID + " INTEGER PRIMARY KEY," +
+            CompanyTable.COMPANY_NAME + " TEXT,"+
+            CompanyTable.COMPANY_IMAGE + " TEXT,"+
+            CompanyTable.COMPANY_DESCRIPTION + " TEXT)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,13 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL(CREATE_TABLE_PRODUCTS);
-        db.execSQL(CREATE_TABLE_BRAND);
+        db.execSQL(CREATE_TABLE_COMPANY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         dropTable(CartTable.TABLE_PRODUCT);
-        dropTable(BrandTable.TABLE_BRAND);
+        dropTable(CompanyTable.TABLE_COMPANY);
         onCreate(db);
     }
     public void dropTable(String tableName) {
@@ -56,6 +56,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return;
         }
         db.execSQL("DROP TABLE IF EXISTS " + CartTable.TABLE_PRODUCT);
-        db.execSQL("DROP TABLE IF EXISTS " + BrandTable.TABLE_BRAND);
+        db.execSQL("DROP TABLE IF EXISTS " + CompanyTable.TABLE_COMPANY);
     }
 }

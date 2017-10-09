@@ -77,7 +77,7 @@
     <string name="price">Цена</string>
     <string name="tax">Налоги</string>
     <string name="exit_two_press">Выход Нажмите</string>
-    <string name="brand">Брэнд</string>
+    <string name="company">Брэнд</string>
     <string name="model">Мода / Модель / код</string>
 
     <string name="register_loaging">Придется создать учетную запись</string>

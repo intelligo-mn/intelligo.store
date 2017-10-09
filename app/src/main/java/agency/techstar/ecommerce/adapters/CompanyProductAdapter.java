@@ -22,14 +22,14 @@ import org.json.JSONException;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class BrandProductAdapter extends BaseAdapter{
+public class CompanyProductAdapter extends BaseAdapter{
 
     final Context context;
     final JSONArray brandProducts;
     public ImageLoader imageLoader;
     private LayoutInflater inflater = null;
 
-    public BrandProductAdapter(Context context, JSONArray brandProducts) {
+    public CompanyProductAdapter(Context context, JSONArray brandProducts) {
         this.context = context;
         this.brandProducts = brandProducts;
         imageLoader = new ImageLoader(context);

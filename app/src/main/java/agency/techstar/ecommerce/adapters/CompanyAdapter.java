@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.activity.ActivityBrandProduct;
+import agency.techstar.ecommerce.activity.ActivityCompanyProduct;
 import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.utilities.ImageLoader;
 
@@ -22,7 +22,7 @@ import org.json.JSONException;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class BrandAdapter extends BaseAdapter {
+public class CompanyAdapter extends BaseAdapter {
 
     final Context context;
     final JSONArray brands;
@@ -30,7 +30,7 @@ public class BrandAdapter extends BaseAdapter {
 
     private LayoutInflater inflater = null;
 
-    public BrandAdapter(Context context, JSONArray brands) {
+    public CompanyAdapter(Context context, JSONArray brands) {
         this.context = context;
         this.brands = brands;
         imageLoader = new ImageLoader(context);
@@ -75,7 +75,7 @@ public class BrandAdapter extends BaseAdapter {
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent brands = new Intent(context, ActivityBrandProduct.class);
+                    Intent brands = new Intent(context, ActivityCompanyProduct.class);
                     brands.putExtra("brand_id", id);
                     brands.putExtra("brand_name", name);
                     context.startActivity(brands);

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.fragments.BrandFragment;
+import agency.techstar.ecommerce.fragments.CompanyFragment;
 import agency.techstar.ecommerce.fragments.CartFragment;
 import agency.techstar.ecommerce.fragments.CategoryFragment;
 import agency.techstar.ecommerce.fragments.NavigationFragment;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (prefManager.isLoggedIn()) {
-                    startActivity(new Intent(MainActivity.this, ActivityBrandAdd.class));
+                    startActivity(new Intent(MainActivity.this, ActivityCompanyAdd.class));
                 } else {
                     Snackbar.make(v, getString(R.string.login_required), Snackbar.LENGTH_LONG)
                             .setAction(getString(R.string.login), new View.OnClickListener() {
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             switch (pos) {
 
                 case 0:
-                    return BrandFragment.newInstance(1);
+                    return CompanyFragment.newInstance(1);
                 case 1:
                     return ProductFragment.newInstance(2);
                 case 2:

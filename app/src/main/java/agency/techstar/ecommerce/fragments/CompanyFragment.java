@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -20,7 +19,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.adapters.BrandAdapter;
+import agency.techstar.ecommerce.adapters.CompanyAdapter;
 import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.widgets.TSProgressBar;
 
@@ -43,9 +42,9 @@ import okhttp3.Response;
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class BrandFragment extends Fragment {
+public class CompanyFragment extends Fragment {
 
-    private static final String TAG = BrandFragment.class.getSimpleName();
+    private static final String TAG = CompanyFragment.class.getSimpleName();
     private int mPageNo;
     private static View rootView;
 
@@ -59,11 +58,11 @@ public class BrandFragment extends Fragment {
 
     private SliderLayout homeSliderLayout;
 
-    public static BrandFragment newInstance(int pageNo) {
+    public static CompanyFragment newInstance(int pageNo) {
 
         Bundle args = new Bundle();
         args.putInt(TAG, pageNo);
-        BrandFragment fragment = new BrandFragment();
+        CompanyFragment fragment = new CompanyFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -176,7 +175,7 @@ public class BrandFragment extends Fragment {
                             homeSliderLayout.addSlider(textSliderView);
                         }
                         bLoading.setVisibility(View.GONE);
-                        listBrand.setAdapter(new BrandAdapter(getActivity(), brandItems));
+                        listBrand.setAdapter(new CompanyAdapter(getActivity(), brandItems));
                     } catch (JSONException ex) {
                         ex.printStackTrace();
                     }

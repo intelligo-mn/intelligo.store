@@ -78,7 +78,7 @@
     <string name="price">Price</string>
     <string name="tax">Tax</string>
     <string name="exit_two_press">Exit two press</string>
-    <string name="brand">Brand</string>
+    <string name="company">Brand</string>
     <string name="model">Model</string>
 
     <string name="register_loaging">Loading register</string>
