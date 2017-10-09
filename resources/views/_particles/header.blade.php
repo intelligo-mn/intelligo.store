@@ -94,28 +94,29 @@
                          <div class="lang-row">
                             <div class="lang-col">
                               <a href="/selectlanguge/en">
-                               <span class="text">English</span>
+
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">  English</span>
                                </a>
                             </div>
                         </div>
                          <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/mn">
-                               <span class="text">Монгол</span>
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">  Монгол</span>
                                </a>
                             </div>
                          </div>
-                          <!-- <div class="lang-row">
+                          <div class="lang-row">
                             <div class="lang-col">
-                               <a href="/selectlanguge/cn">
-                               <span class="text">China</span>
+                               <a href="/selectlanguge/en">
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
                                </a>
                             </div>
-                         </div> -->
+                         </div>
                          <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/ru">
-                               <span class="text">Russia</span>
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English">  Russia</span>
                                </a>
                             </div>
                          </div>
