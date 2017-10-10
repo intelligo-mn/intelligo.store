@@ -88,7 +88,7 @@
                </li>
              
                 <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
+                  <a href="#"><span class="text"><?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?></span> <span class="icon-angle-down"></span></a>
                    <div class="dropdown-menu dropdown-sm">
                       <div class="drop-wrap lang-wrap">
                          <div class="lang-row">

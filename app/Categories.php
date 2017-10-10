@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
+
+    use Translatable;
     protected $table = 'categories';
 
-    protected $fillable = ['name', 'name_slug', 'posturl_slug',  'icon', 'description', 'type'];
+    public $translatebles = ['name'];
 
+    protected $fillable = ['name', 'name_slug', 'posturl_slug',  'icon', 'description', 'type'];
 
     public function post()
     {
@@ -33,6 +36,4 @@ class Categories extends Model
     {
         return $query->where("type", $type);
     }
-
-
 }

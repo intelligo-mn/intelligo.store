@@ -4,6 +4,7 @@
 @section('modeboxed', 'mode-boxed')
 @section("header")
     <link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 @endsection
 @section("content")
 
@@ -101,13 +102,13 @@
 
                             </div>
 
-                            @if($typene=='quiz')
+                            <!-- @if($typene=='quiz')
                                 <a class="submit-button button button-blue button-full postable"  style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="entries" data-puttype="append" data-type="questionform" href="{{ action('FormController@addnewform') }}?addnew=question"><i class="fa fa-question-circle"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.question')]) }}</a>
 
 
                                 <div class="clear"></div>
                                 <br><br><br>
-                            @endif
+                            @endif -->
 
                         </section>
 
