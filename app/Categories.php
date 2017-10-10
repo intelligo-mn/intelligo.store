@@ -30,8 +30,6 @@ class Categories extends Model
         return $this->hasMany('App\Contacts', 'label_id');
     }
 
-
-
     public function scopeByType($query, $type)
     {
         return $query->where("type", $type);

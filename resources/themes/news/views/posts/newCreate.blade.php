@@ -132,5 +132,5 @@
 
 @endsection
 @section("footer")
-    @include('posts.create-footerjs')
+    <!-- @include('posts.create-footerjs') -->
 @endsection
