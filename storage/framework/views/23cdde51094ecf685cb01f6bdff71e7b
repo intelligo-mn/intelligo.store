@@ -1,7 +1,7 @@
 
-<script src="/assets/plugins/editor/module.min.js"></script>
+<!-- <script src="/assets/plugins/editor/module.min.js"></script>
 <script src="/assets/plugins/editor/hotkeys.min.js"></script>
-<script src="/assets/plugins/editor/simditor.js"></script>
+<script src="/assets/plugins/editor/simditor.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
 <script src="/assets/plugins/jquery.tagsinput.min.js"></script>
@@ -22,25 +22,6 @@
         'lang_11': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_11')); ?>',
         'lang_12': '<?php echo e(trans('updates.BuzzyEditor.lang.lang_12')); ?>',
         'errorl': '<?php echo e(trans('updates.error')); ?>'
-    };
-
-     Simditor.i18n = {
-        'en_EN': {
-            'normalText': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.normalText')); ?>',
-            'title': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.title')); ?>',
-            'blockquote': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.blockquote')); ?>',
-            'bold': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.bold')); ?>',
-            'italic': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.italic')); ?>',
-            'link': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.link')); ?>',
-            'text': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.text')); ?>',
-            'linkText': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.linkText')); ?>',
-            'linkUrl': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.linkUrl')); ?>',
-            'removeLink': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.removeLink')); ?>',
-            'ol': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.ol')); ?>',
-            'ul': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.ul')); ?>',
-            'strikethrough': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.strikethrough')); ?>',
-            'underline': '<?php echo e(trans('updates.BuzzyEditor.TextEditor.underline')); ?>',
-        }
     };
 
 </script>

@@ -2,7 +2,7 @@
 <?php $__env->startSection('modedefault', 'mode-default'); ?>
 <?php $__env->startSection('modeboxed', 'mode-boxed'); ?>
 <?php $__env->startSection("header"); ?>
-    <link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("content"); ?>
 
@@ -137,5 +137,11 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("footer"); ?>
     <?php echo $__env->make('posts.create-footerjs', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('edit');
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

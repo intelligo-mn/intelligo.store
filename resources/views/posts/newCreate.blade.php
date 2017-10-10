@@ -3,7 +3,7 @@
 @section('modedefault', 'mode-default')
 @section('modeboxed', 'mode-boxed')
 @section("header")
-    <link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
 @endsection
 @section("content")
 
@@ -132,4 +132,10 @@
 @endsection
 @section("footer")
     @include('posts.create-footerjs')
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('edit');
+        });
+    </script>
 @endsection

@@ -65,7 +65,7 @@
 @section("footer")
 
     <!-- Bootstrap WYSIHTML5 -->
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
     <script>
         $(function () {
             CKEDITOR.replace('textarea');

@@ -7,7 +7,7 @@
 
     </div>
     <div class="inpunting">
-        <?php echo Form::textarea(null, isset($entry->body) ? $entry->body : null, ['data-type' => 'body', 'class' => 'message','id' => 'edit', 'placeholder' => trans('addpost.entry_body')]); ?>
+        <?php echo Form::textarea(null, isset($entry->body) ? $entry->body : null, ['data-type' => 'body', 'class' => 'message edit newCreateArea','id' => 'edit', 'placeholder' => trans('addpost.entry_body')]); ?>
 
     </div>
 
