@@ -16,9 +16,6 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('order',2)->nullable();
             $table->string('name',50);
-            $table->string('name_en',50);
-            $table->string('name_cn',50);
-            $table->string('name_ru',50);
             $table->string('name_slug',70);
             $table->string('posturl_slug', 25)->nullable();
             $table->string('description',550)->nullable();

@@ -135,8 +135,10 @@ class PagesController extends Controller
      */
     public function showpage($catname, Request $req)
     {
-
-        $page = Pages::where("slug", $catname)->first();
+        $lang = \Session::get('locale');
+        $page = Pages::where("slug", $catname)
+                ->where("lang", $lang)
+                ->first();
 
         if(!$page){
             abort('404');
