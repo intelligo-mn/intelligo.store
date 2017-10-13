@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('posturl_slug', 25)->nullable();
             $table->string('description',550)->nullable();
             $table->string('type');
+            $table->string('lang');
             $table->string('icon', 25)->nullable();
             $table->string('disabled', 1)->default('0');
             $table->string('main', 1)->default('0');

@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <label>Language</label>
-                           <?php echo Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'],isset($page->lang) ? $page->lang : null, ['class' => 'form-control']); ?>
+                           <?php echo Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']); ?>
 
                         </div>
 
