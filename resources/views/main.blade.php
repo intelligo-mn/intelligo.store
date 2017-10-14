@@ -31,6 +31,7 @@
     <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/owl-carousel/owl.theme.css')!!}">
     <link media="all" rel="stylesheet" href="{!! asset('travel/css/main.css')!!}">
     <link rel="stylesheet" type="text/css" href="{!! asset('travel/vendors/revolution/css/settings.css')!!}">
+
     <script src="{!! asset('travel/vendors/jquery/jquery-2.1.4.min.js') !!}"></script>
     {!! getcong('headcode') !!}
 

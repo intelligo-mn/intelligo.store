@@ -21,7 +21,10 @@ class CategoriesController extends MainAdminController
     public function index(Request $request)
     {
 
-        $categories = Categories::where("main", '1')->orwhere("main", '2')->orderBy('order')->get();
+        $categories = Categories::where("main", '1')
+                        ->orwhere("main", '2')
+                        ->orderBy('order')
+                        ->get();
 
         $category="";
 
