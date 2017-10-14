@@ -6,19 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-
-    use Translatable;
     protected $table = 'categories';
 
-    public $translatebles = ['name'];
-
-    protected $fillable = ['name', 'name_slug', 'posturl_slug',  'icon', 'description', 'type'];
+    protected $fillable = ['name', 'name_slug', 'posturl_slug',  'icon', 'description', 'type', 'lang'];
 
     public function post()
     {
         return $this->hasMany('App\Posts', 'category_id');
     }
-
 
     public function mailcontact()
     {
