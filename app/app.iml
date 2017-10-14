@@ -126,6 +126,7 @@
     <orderEntry type="library" name="library-2.4.0" level="project" />
     <orderEntry type="library" name="okio-1.13.0" level="project" />
     <orderEntry type="library" name="okhttp-3.8.1" level="project" />
+    <orderEntry type="library" name="android-image-loader-v1.0.0" level="project" />
     <orderEntry type="library" name="fab-1.6.3" level="project" />
     <orderEntry type="library" name="support-v4-25.3.1" level="project" />
     <orderEntry type="library" name="support-media-compat-25.3.1" level="project" />

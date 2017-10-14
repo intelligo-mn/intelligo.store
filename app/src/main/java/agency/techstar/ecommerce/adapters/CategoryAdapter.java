@@ -9,7 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.ecommerce.utilities.ImageLoader;
+import agency.techstar.imageloader.ImageLoader;
+
 import com.techstar.ecommerce.R;
 
 import org.json.JSONArray;
