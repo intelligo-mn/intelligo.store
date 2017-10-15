@@ -3,7 +3,7 @@
       <div class="logo">
          <a href="{{ action('IndexController@index') }}">
          <!-- <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada"> -->
-         TripToMongolia
+         TravelToMongolia
        <!--   <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada"> -->
          </a>
       </div>
@@ -88,7 +88,19 @@
                </li>
              
                 <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <a href="#"><span class="text">{{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}</span> <span class="icon-angle-down"></span></a>
+                  <a href="#">
+                    <span class="text">
+                    @if(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'en')
+                      <img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">
+                    @elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'mn')
+                      <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
+                    @elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'cn')
+                      <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
+                    @endif
+                    {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
+                    </span> 
+                    <span class="icon-angle-down"></span>
+                  </a>
                    <div class="dropdown-menu dropdown-sm">
                       <div class="drop-wrap lang-wrap">
                          <div class="lang-row">
