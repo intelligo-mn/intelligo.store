@@ -11,7 +11,7 @@ class Posts extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['slug', 'title', 'body', 'user_id', 'category_id',  'pagination', 'shared', 'tags', 'type','ordertype', 'thumb', 'approve', 'show_in_homepage',  'show_in_homepage', 'featured_at', 'published_at', 'deleted_at'];
+    protected $fillable = ['slug', 'title', 'body', 'user_id', 'category_id',  'pagination', 'shared', 'tags', 'lang', 'type','ordertype', 'thumb', 'approve', 'show_in_homepage',  'show_in_homepage', 'featured_at', 'published_at', 'deleted_at'];
 
     protected $dates = ['featured_at', 'published_at','deleted_at'];
 

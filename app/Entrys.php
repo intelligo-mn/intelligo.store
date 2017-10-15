@@ -11,7 +11,7 @@ class Entrys extends Model
 
     protected $table = 'entrys';
 
-    protected $fillable = ['post_id', 'user_id', 'order', 'type', 'title', 'image', 'video', 'body', 'source', 'deleted_at'];
+    protected $fillable = ['post_id', 'user_id', 'order', 'type', 'title', 'lang', 'image', 'video', 'body', 'source', 'deleted_at'];
 
     protected $dates = ['deleted_at'];
 

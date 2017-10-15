@@ -89,7 +89,7 @@
                                 @endif
                                 <div class="form-group">
                                 <label>Language</label>
-                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
+                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($category->lang), ['class' => 'form-control']) !!}
                                 </div>
 
                             </div><!-- /.box-body -->

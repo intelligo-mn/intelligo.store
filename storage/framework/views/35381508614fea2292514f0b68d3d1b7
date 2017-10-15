@@ -34,6 +34,13 @@
 
             </p>
         </div>
+        <div class="cd-form">
+            <legend>Language</legend>
+            <p class="cd-select icon">
+                <?php echo Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($post->lang)); ?>
+
+            </p>
+        </div>
         <?php if ( ! ($typene=='quiz' or $typene=='poll')): ?>
         <div class="cd-form">
             <legend><?php echo e(trans('updates.pagination')); ?></legend>
