@@ -27,11 +27,15 @@
                <li> <a href="/pages/itinitary" title="/pages/itinitary"><?php echo e(trans('index.itinerary')); ?></a></li>
                <li> <a href="/stayit" title="/pages/stayit"><?php echo e(trans('index.stayit')); ?></a></li>
                <li> <a href="/contact" title="/contact"><?php echo e(trans('index.contact')); ?></a></li> -->
-                <?php foreach(\App\Pages::where('footer', '1')->get() as $page): ?>
+
+                <?php foreach(\App\Pages::where('footer', '1')->
+                where("lang", \Session::get('locale'))->get() as $page): ?>
                     <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
                 <?php endforeach; ?>
-              
-               <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
+            
+               <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+               where("lang", \Session::get('locale'))->
+               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
                   <li>
                      <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
                         
@@ -65,12 +69,12 @@
                        <!-- <li>
                            <a href="<?php echo e(action('UsersController@followfeed', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('updates.feedposts')); ?></a>
                        </li> -->
-                       <li>
+                    <!--    <li>
                            <a href="<?php echo e(action('UsersController@draftposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.draft')); ?></a>
                        </li>
                        <li>
                            <a href="<?php echo e(action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.trash')); ?></a>
-                       </li>
+                       </li> -->
                        <li>
                            <a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.settings')); ?></a>
                        </li>

@@ -66,7 +66,7 @@ class PagesController extends Controller
 
         $lang = \Session::get('locale');
         $category = Categories::where("name_slug", $catname)
-                    // ->where("lang", $lang)
+                    ->where("lang", $lang)
                     ->first();
 
         if(!$category){
