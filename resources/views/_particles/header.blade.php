@@ -22,21 +22,22 @@
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
                      
                </li>
-               <li> <a href="/tours" title="/tours">{{ trans('index.tours') }}</a></li>
+               <!-- <li> <a href="/tours" title="/tours">{{ trans('index.tours') }}</a></li>
                <li> <a href="/pages/about" title="/pages/about">{{ trans('index.about') }}</a></li>
                <li> <a href="/pages/itinitary" title="/pages/itinitary">{{ trans('index.itinerary') }}</a></li>
                <li> <a href="/stayit" title="/pages/stayit">{{ trans('index.stayit') }}</a></li>
-               <li> <a href="/contact" title="/contact">{{ trans('index.contact') }}</a></li>
-               <!--  @foreach(\App\Pages::where('footer', '1')->get() as $page)
+               <li> <a href="/contact" title="/contact">{{ trans('index.contact') }}</a></li> -->
+               
+                @foreach(\App\Pages::where('footer', '1')->get() as $page)
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
-                @endforeach -->
+                @endforeach
               
-              <!--  @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
                         
                   </li>
-              @endforeach -->
+              @endforeach
                
                <li class="dropdown hidden-xs hidden-sm v-divider">
                   <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
@@ -65,12 +66,12 @@
                        <!-- <li>
                            <a href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
                        </li> -->
-                       <li>
+                    <!--    <li>
                            <a href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
                        </li>
                        <li>
                            <a href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
-                       </li>
+                       </li> -->
                        <li>
                            <a href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
                        </li>
