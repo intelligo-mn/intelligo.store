@@ -90,11 +90,11 @@
                 <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
                   <a href="#">
                     <span class="text">
-                    <?php if(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'en'): ?>
+                    <?php if(Session::get ('locale') == 'en'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">
-                    <?php elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'mn'): ?>
+                    <?php elseif(Session::get ('locale') == 'mn'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
-                    <?php elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'cn'): ?>
+                    <?php elseif(Session::get ('locale') == 'cn'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
                     <?php endif; ?>
                     <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?>

@@ -90,11 +90,11 @@
                 <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
                   <a href="#">
                     <span class="text">
-                    @if(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'en')
+                    @if(Session::get ('locale') == 'en')
                       <img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">
-                    @elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'mn')
+                    @elseif(Session::get ('locale') == 'mn')
                       <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
-                    @elseif(Config::get('app.language.'.$DB_USER_LANG)['name'] == 'cn')
+                    @elseif(Session::get ('locale') == 'cn')
                       <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
                     @endif
                     {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
