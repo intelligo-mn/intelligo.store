@@ -137,6 +137,7 @@ class PagesController extends Controller
     public function showpage($catname, Request $req)
     {
         $lang = \Session::get('locale');
+        
         $page = Pages::where("slug", $catname)
                 ->where("lang", $lang)
                 ->first();
