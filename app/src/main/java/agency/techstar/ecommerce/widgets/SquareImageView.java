@@ -1,14 +1,15 @@
 package agency.techstar.ecommerce.widgets;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
 /**
  * Author: Tortuvshin Byambaa.
  * Project: TechstarShop
  * URL: https://www.github.com/tortuvshin
  */
-public class SquareImageView extends ImageView {
+public class SquareImageView extends AppCompatImageView {
     public SquareImageView(Context context) {
         super(context);
     }

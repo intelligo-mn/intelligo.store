@@ -68,7 +68,6 @@
             android:theme="@style/AppFullScreen" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityProductAdd" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityDetail" />
-        <activity android:name="agency.techstar.ecommerce.activity.ActivityCartEdit" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityCompanyAdd" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityWeb" />
         <activity android:name="agency.techstar.ecommerce.activity.ActivityAbout"></activity>

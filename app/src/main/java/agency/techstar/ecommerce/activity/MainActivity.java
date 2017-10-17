@@ -12,19 +12,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.fragments.CompanyFragment;
+
 import agency.techstar.ecommerce.fragments.CartFragment;
 import agency.techstar.ecommerce.fragments.CategoryFragment;
+import agency.techstar.ecommerce.fragments.CompanyFragment;
 import agency.techstar.ecommerce.fragments.NavigationFragment;
 import agency.techstar.ecommerce.fragments.ProductFragment;
 import agency.techstar.ecommerce.utilities.PrefManager;

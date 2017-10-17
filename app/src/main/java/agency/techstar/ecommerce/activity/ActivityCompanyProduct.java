@@ -2,10 +2,10 @@ package agency.techstar.ecommerce.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,14 +16,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.adapters.ProductAdapter;
-import agency.techstar.ecommerce.utilities.TSConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
 
+import agency.techstar.ecommerce.adapters.ProductAdapter;
+import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;

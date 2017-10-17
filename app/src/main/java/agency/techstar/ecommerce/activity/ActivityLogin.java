@@ -2,11 +2,11 @@ package agency.techstar.ecommerce.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,14 +17,14 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.ecommerce.utilities.PrefManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
+import agency.techstar.ecommerce.utilities.PrefManager;
+import agency.techstar.ecommerce.utilities.TSConstants;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;

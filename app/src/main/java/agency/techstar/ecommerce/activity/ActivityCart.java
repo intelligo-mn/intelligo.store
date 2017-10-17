@@ -1,17 +1,18 @@
 package agency.techstar.ecommerce.activity;
 
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.techstar.ecommerce.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import agency.techstar.ecommerce.database.CartTable;
-import com.techstar.ecommerce.R;
 import agency.techstar.ecommerce.models.CartProducts;
 
 /**

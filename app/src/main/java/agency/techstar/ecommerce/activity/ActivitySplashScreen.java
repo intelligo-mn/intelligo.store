@@ -2,19 +2,18 @@ package agency.techstar.ecommerce.activity;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.utilities.PrefManager;
 
 import java.util.Locale;
+
+import agency.techstar.ecommerce.utilities.PrefManager;
 
 /**
  * Author: Tortuvshin Byambaa.

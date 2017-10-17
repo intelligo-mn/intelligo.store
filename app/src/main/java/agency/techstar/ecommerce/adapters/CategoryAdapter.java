@@ -8,13 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.imageloader.ImageLoader;
-
 import com.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import agency.techstar.ecommerce.utilities.TSConstants;
+import agency.techstar.imageloader.ImageLoader;
 
 /**
  * Author: Tortuvshin Byambaa.

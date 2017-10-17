@@ -4,12 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +19,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.ecommerce.utilities.DialogUtils;
-import agency.techstar.ecommerce.utilities.PrefManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +27,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+import agency.techstar.ecommerce.utilities.DialogUtils;
+import agency.techstar.ecommerce.utilities.PrefManager;
+import agency.techstar.ecommerce.utilities.TSConstants;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;

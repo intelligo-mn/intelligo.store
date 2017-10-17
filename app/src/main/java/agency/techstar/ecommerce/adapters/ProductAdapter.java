@@ -11,12 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.activity.ActivityProductDetail;
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.imageloader.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import agency.techstar.ecommerce.activity.ActivityProductDetail;
+import agency.techstar.ecommerce.utilities.TSConstants;
+import agency.techstar.imageloader.ImageLoader;
 
 /*
  * Copyright (c) 2017.

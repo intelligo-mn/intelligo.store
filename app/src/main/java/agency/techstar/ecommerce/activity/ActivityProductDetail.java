@@ -21,22 +21,21 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.database.CartTable;
-import agency.techstar.ecommerce.models.CartProducts;
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.ecommerce.utilities.PrefManager;
 import com.squareup.picasso.Picasso;
+import com.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import agency.techstar.ecommerce.database.CartTable;
+import agency.techstar.ecommerce.models.CartProducts;
+import agency.techstar.ecommerce.utilities.PrefManager;
+import agency.techstar.ecommerce.utilities.TSConstants;
 import agency.techstar.ecommerce.widgets.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;

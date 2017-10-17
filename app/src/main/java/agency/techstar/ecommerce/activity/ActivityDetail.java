@@ -21,20 +21,20 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.techstar.ecommerce.R;
-import agency.techstar.ecommerce.database.CartTable;
-import agency.techstar.ecommerce.models.CartProducts;
-import agency.techstar.ecommerce.utilities.TSConstants;
-import agency.techstar.ecommerce.utilities.PrefManager;
-import agency.techstar.ecommerce.widgets.TSProgressBar;
-
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.techstar.ecommerce.R;
+
 import java.text.DecimalFormat;
+
+import agency.techstar.ecommerce.database.CartTable;
+import agency.techstar.ecommerce.models.CartProducts;
+import agency.techstar.ecommerce.utilities.PrefManager;
+import agency.techstar.ecommerce.utilities.TSConstants;
+import agency.techstar.ecommerce.widgets.TSProgressBar;
 
 /**
  * Author: Tortuvshin Byambaa.
