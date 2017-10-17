@@ -17,7 +17,7 @@
                 <i class="fa fa-dashboard"></i> <span>{{ trans('admin.dashboard') }}</span>
             </a>
         </li>
-       <!--  @if(getcong('p-buzzycontact') == 'on')
+        @if(getcong('p-buzzycontact') == 'on')
         <li class=" @if(Request::segment(2)=='mailbox') active @endif">
             <a href="{{  action('Admin\ContactController@index') }}">
                 <i class="fa fa-envelope"></i> <span>{{ trans('admin.Inbox') }}</span>
@@ -26,19 +26,31 @@
                 @endif
             </a>
         </li>
-        @endif -->
-        <!-- <li class="treeview  @if(Request::segment(2)=='config') active @endif">
+        @endif
+        <li class="treeview  @if(Request::segment(2)=='config') active @endif">
             <a href="{{ action('Admin\ConfigController@index') }}">
                 <i class="fa fa-cog"></i> <span>{{ trans('admin.Settings') }}</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{ action('Admin\ConfigController@index') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.GeneralSettings') }}</a></li>
-                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'layout']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.LayoutSettings') }}</a></li>
+               <!--  <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'layout']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.LayoutSettings') }}</a></li> -->
                 <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.SocialMediaSettings') }}</a></li>
                 <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'others']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.OtherSettings') }}</a></li>
             </ul>
-        </li> -->
+        </li>
+
+         <li class="treeview  @if(Request::segment(2)=='pages') active @endif">
+            <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>{{ trans('admin.Pages') }}</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ action('Admin\PagesController@index') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.ViewPages') }}</a></li>
+                <li><a href="{{ action('Admin\PagesController@add') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.AddNewPage') }}</a></li>
+            </ul>
+        </li>
         <li @if(Request::segment(2)=='categories') class="active" @endif>
             <a href="{{  action('Admin\CategoriesController@index') }}">
                 <i class="fa fa-folder"></i>
@@ -81,31 +93,21 @@
         @endforeach
 
         <li class="treeview @if(Request::segment(2)=='users') active @endif">
+         <!-- <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li> -->
             <a href="users">
                 <i class="fa fa-users"></i>
                 <span>{{ trans('admin.Users') }}</span>
-                <i class="fa fa-angle-left pull-right"></i>
             </a>
-            <ul class="treeview-menu">
+            <!-- <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li>
-                <!-- <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"> -->
-                <!-- </i> {{ trans('admin.BannedUsers') }} </a></li>
+                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right">
+                </i> {{ trans('admin.BannedUsers') }} </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> {{ trans('admin.Admins') }}</a></li>
-                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li> -->
-            </ul>
+                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li>
+            </ul> -->
         </li>
 
-        <li class="treeview  @if(Request::segment(2)=='pages') active @endif">
-            <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>{{ trans('admin.Pages') }}</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="{{ action('Admin\PagesController@index') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.ViewPages') }}</a></li>
-                <li><a href="{{ action('Admin\PagesController@add') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.AddNewPage') }}</a></li>
-            </ul>
-        </li>
+       
         <li class="treeview  @if(Request::segment(2)=='widgets') active @endif">
             <a href="{{ action('Admin\WidgetsController@index') }}">
                 <i class="fa fa-plus-square"></i>
