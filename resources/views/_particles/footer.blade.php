@@ -10,17 +10,27 @@
              <h3>{{ trans('index.mainmenus') }}</h3>
              <ul class="slide">
                 <li>
-                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">HOME
+                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}</a>
                      
                </li>
-               <li> <a href="/tours" title="/tours">TOURS</a></li>
-               <li> <a href="/pages/about" title="/pages/about">ABOUT US</a></li>
-               <li> <a href="/pages/itinitary" title="/pages/itinitary">ITINERARY</a></li>
-               <li> <a href="/pages/stayit" title="/pages/stayit">STAY IT</a></li>
-               <li> <a href="/contact" title="/contact">CONTACT US</a></li>
+
+                @foreach(\App\Pages::where('footer', '1')->
+                where("lang", \Session::get('locale'))->get() as $page)
+                    <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
+                @endforeach
+            
+               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+               where("lang", \Session::get('locale'))->
+               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                  <li>
+                     <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} </a>
+                        
+                  </li>
+              @endforeach
              </ul>
           </nav>
          
+
           <nav class="col-sm-6 col-lg-4 footer-nav last">
              <h3>{{ trans('index.contactus') }}</h3>
              <ul class="slide address-block">
