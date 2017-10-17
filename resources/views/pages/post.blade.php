@@ -36,7 +36,7 @@
                </div>
                 -->
                <div class="btn-holder">
-                  <a href="#" class="btn btn-lg btn-info">{{ trans('index.purchase')}}</a>
+                  <a href="/contact" class="btn btn-lg btn-info">{{ trans('index.purchase')}}</a>
                </div>
                <ul class="social-networks social-share">
                   <li>

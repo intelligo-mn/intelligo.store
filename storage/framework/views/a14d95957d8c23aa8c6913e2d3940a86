@@ -93,7 +93,7 @@
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">
                     <?php elseif(Session::get ('locale') == 'mn'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
-                    <?php elseif(Session::get ('locale') == 'cn'): ?>
+                    <?php elseif(Session::get ('locale') == 'zh'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
                     <?php elseif(Session::get ('locale') == 'ru'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="Russia">
