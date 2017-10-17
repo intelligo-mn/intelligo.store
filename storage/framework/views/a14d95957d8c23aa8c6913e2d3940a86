@@ -22,11 +22,6 @@
                   <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?><b class="icon-angle-down"></b></a>
                      
                </li>
-               <!-- <li> <a href="/tours" title="/tours"><?php echo e(trans('index.tours')); ?></a></li>
-               <li> <a href="/pages/about" title="/pages/about"><?php echo e(trans('index.about')); ?></a></li>
-               <li> <a href="/pages/itinitary" title="/pages/itinitary"><?php echo e(trans('index.itinerary')); ?></a></li>
-               <li> <a href="/stayit" title="/pages/stayit"><?php echo e(trans('index.stayit')); ?></a></li>
-               <li> <a href="/contact" title="/contact"><?php echo e(trans('index.contact')); ?></a></li> -->
 
                 <?php foreach(\App\Pages::where('footer', '1')->
                 where("lang", \Session::get('locale'))->get() as $page): ?>
@@ -100,6 +95,8 @@
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
                     <?php elseif(Session::get ('locale') == 'cn'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
+                    <?php elseif(Session::get ('locale') == 'ru'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="Russia">
                     <?php endif; ?>
                     <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?>
 
@@ -125,7 +122,7 @@
                          </div>
                           <div class="lang-row">
                             <div class="lang-col">
-                               <a href="/selectlanguge/en">
+                               <a href="/selectlanguge/zh">
                                <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="English">  China</span>
                                </a>
                             </div>

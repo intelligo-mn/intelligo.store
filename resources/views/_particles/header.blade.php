@@ -22,11 +22,6 @@
                   <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
                      
                </li>
-               <!-- <li> <a href="/tours" title="/tours">{{ trans('index.tours') }}</a></li>
-               <li> <a href="/pages/about" title="/pages/about">{{ trans('index.about') }}</a></li>
-               <li> <a href="/pages/itinitary" title="/pages/itinitary">{{ trans('index.itinerary') }}</a></li>
-               <li> <a href="/stayit" title="/pages/stayit">{{ trans('index.stayit') }}</a></li>
-               <li> <a href="/contact" title="/contact">{{ trans('index.contact') }}</a></li> -->
 
                 @foreach(\App\Pages::where('footer', '1')->
                 where("lang", \Session::get('locale'))->get() as $page)
@@ -98,8 +93,10 @@
                       <img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">
                     @elseif(Session::get ('locale') == 'mn')
                       <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
-                    @elseif(Session::get ('locale') == 'cn')
+                    @elseif(Session::get ('locale') == 'zh')
                       <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
+                    @elseif(Session::get ('locale') == 'ru')
+                      <img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="Russia">
                     @endif
                     {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
                     </span> 
@@ -124,7 +121,7 @@
                          </div>
                           <div class="lang-row">
                             <div class="lang-col">
-                               <a href="/selectlanguge/en">
+                               <a href="/selectlanguge/zh">
                                <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
                                </a>
                             </div>

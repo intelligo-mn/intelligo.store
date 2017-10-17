@@ -25,7 +25,7 @@ return [
             'rtl'       => false,
             'wideheader'=> true
         ],  
-        'cn'            => [
+        'zh'            => [
             'name'      => 'China',
             'rtl'       => false,
             'wideheader'=> false
