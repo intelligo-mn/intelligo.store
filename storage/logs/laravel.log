@@ -16994,3 +16994,36 @@ Stack trace:
 #45 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #46 /var/www/html/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #47 {main}  
+[2017-10-22 10:19:26] production.ERROR: RuntimeException: No supported encrypter found. The cipher and / or key length are invalid. in /var/www/html/vendor/laravel/framework/src/Illuminate/Encryption/EncryptionServiceProvider.php:29
+Stack trace:
+#0 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): Illuminate\Encryption\EncryptionServiceProvider->Illuminate\Encryption\{closure}(Object(Illuminate\Foundation\Application), Array)
+#1 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build(Object(Closure), Array)
+#2 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('encrypter', Array)
+#3 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('encrypter')
+#4 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(775): Illuminate\Container\Container->getDependencies(Array, Array)
+#6 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('App\\Http\\Middle...', Array)
+#7 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('App\\Http\\Middle...', Array)
+#8 /var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(123): Illuminate\Foundation\Application->make('App\\Http\\Middle...')
+#9 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(44): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#10 [internal function]: Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 /var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#12 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 /var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(102): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#14 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(122): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#15 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#16 /var/www/html/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#17 {main}  
+[2017-10-22 10:19:26] production.ERROR: RuntimeException: No supported encrypter found. The cipher and / or key length are invalid. in /var/www/html/vendor/laravel/framework/src/Illuminate/Encryption/EncryptionServiceProvider.php:29
+Stack trace:
+#0 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): Illuminate\Encryption\EncryptionServiceProvider->Illuminate\Encryption\{closure}(Object(Illuminate\Foundation\Application), Array)
+#1 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build(Object(Closure), Array)
+#2 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('encrypter', Array)
+#3 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('encrypter')
+#4 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(775): Illuminate\Container\Container->getDependencies(Array, Array)
+#6 /var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('App\\Http\\Middle...', Array)
+#7 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('App\\Http\\Middle...', Array)
+#8 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(142): Illuminate\Foundation\Application->make('App\\Http\\Middle...')
+#9 /var/www/html/public/index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+#10 {main}  
