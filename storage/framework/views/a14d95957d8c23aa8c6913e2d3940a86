@@ -3,7 +3,7 @@
       <div class="logo">
          <a href="<?php echo e(action('IndexController@index')); ?>">
          <!-- <img class="normal" src="<?php echo asset('travel/img/logos/logo.svg'); ?>" alt="Entrada"> -->
-         TravelToMongolia
+         <?php echo $__env->yieldContent('head_title', getcong('sitetitle')); ?>
        <!--   <img class="gray-logo" src="<?php echo asset('travel/img/logos/logo-gray.svg'); ?>" alt="Entrada"> -->
          </a>
       </div>

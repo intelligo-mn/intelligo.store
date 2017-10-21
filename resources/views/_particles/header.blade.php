@@ -2,9 +2,9 @@
    <div class="container-fluid">
       <div class="logo">
          <a href="{{ action('IndexController@index') }}">
-         <!-- <img class="normal" src="{!! asset('travel/img/logos/logo.svg')!!}" alt="Entrada"> -->
-         TravelToMongolia
-       <!--   <img class="gray-logo" src="{!! asset('travel/img/logos/logo-gray.svg')!!}" alt="Entrada"> -->
+        
+         @yield('head_title', getcong('sitetitle'))
+    
          </a>
       </div>
       <nav class="navbar navbar-default">
