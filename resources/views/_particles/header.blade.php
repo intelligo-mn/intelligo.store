@@ -36,6 +36,10 @@
                         
                   </li>
               @endforeach
+              <li>
+                 <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a>
+                    
+              </li>
                
                <li class="dropdown hidden-xs hidden-sm v-divider">
                   <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
@@ -136,7 +140,7 @@
                       </div>
                    </div>
                </li>
-               <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
+             <!--   <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li> -->
             </ul>
          </div>
       </nav>
