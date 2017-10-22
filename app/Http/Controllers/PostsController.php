@@ -16,17 +16,15 @@ use Image;
 class PostsController extends Controller
 {
 
-
-
     public function __construct(){
 
         parent::__construct();
 
         $this->s3url=awsurl();
 
-        // $this->middleware('DemoAdmin', ['only' => ['sendtrashpost', 'CreateEditPost']]);
+        $this->middleware('DemoAdmin', ['only' => ['sendtrashpost', 'CreateEditPost']]);
 
-        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware('auth', ['except' => ['index', 'amp', 'ajax_previous', 'commentload']]);
     }
 
 
@@ -37,6 +35,9 @@ class PostsController extends Controller
      */
     public function index($catname, $slug)
     {
+        if(getenvcong('Siteactive')=='no'){
+            return view('errors.maintenance');
+        }
 
         $post = getposturl($catname, $slug);
 
@@ -45,17 +46,13 @@ class PostsController extends Controller
         }
 
         if ($post->approve == 'no' or $post->approve == 'draft' ) {
-            if (Auth::check() == false or $post->user_id !== Auth::user()->id) {
-                if (Auth::user()->usertype !== 'Admin') {
+            if (!Auth::check() or $post->user_id != Auth::user()->id and Auth::user()->usertype != 'Admin') {
                    return redirect('404');
-                }
             }
         }
 
-        Cookie::queue('BuzzyPostHit'.$post->id, true, 45000);
-        if (Cookie::get('BuzzyPostHit'.$post->id) !== true){
-            $post->hit();
-        }
+      
+		$post->hit();
 
 
         $entrys = $post->entry();
@@ -71,22 +68,132 @@ class PostsController extends Controller
             $entrysquizresults=$post->entry()->byType("quizresult")->oldest("order")->get();
 
         }
+//where('published_at', '>=', Carbon::yesterday())->
+        $lastTrending = Posts::approve('yes')->where('posts.id', '!=', $post->id)->typesActivete()->getStats('one_day_stats', 'DESC', 10)->get();
 
-        $lastNews = Posts::approve('yes')->where('posts.id', '!=', $post->id)->typesActivete()->getStats('seven_days_stats', 'DESC', 8)->get();
 
-   
-		$lastFeatures = Posts::approve('yes')->where('posts.id', '!=', $post->id)->where('category_id', $post->category_id)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
-
+        $lastFeatures = Posts::approve('yes')->where('type', $post->type)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
 
 
         $reactions=false;
-        if(getcong('p-reactionform') == 'on'){
+        if(getenvcong('p-reactionform') == 'on'){
         $reactions = $post->reactions;
         }
-
-        return view("pages/post", compact('post', 'entrys', 'reactions', 'entrysquizquest', 'entrysquizresults', 'lastNews', 'lastFeatures'));
+        $commentson=true;
+        return view("pages/post", compact('post', 'entrys', 'reactions', 'entrysquizquest', 'entrysquizresults', 'lastTrending', 'lastFeatures', 'commentson'));
     }
 
+
+    /**
+     * Show a Amp Post
+     *
+     * @return \Illuminate\View\View
+     */
+    public function amp($catname, $id)
+    {
+        $post= Posts::where('id', $id)->first();
+
+        if (!$post) {
+            return redirect('404');
+        }
+
+        if($post->type=='quiz' || $post->type=='poll'){
+            return redirect('404');
+        }
+
+        if ($post->approve == 'no' or $post->approve == 'draft' ) {
+            if (!Auth::check() or $post->user_id != Auth::user()->id and Auth::user()->usertype != 'Admin') {
+                   return redirect('404');
+            }
+        }
+
+        $entrys = $post->entry();
+        $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->get();
+
+
+        $lastFeatures = Posts::approve('yes')->where('type', $post->type)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
+
+        return view("amp/post", compact('post', 'entrys', 'lastFeatures'));
+    }
+
+    /**
+     *
+     * @return \Illuminate\View\View
+     */
+    public function ajax_previous(Request $request){
+
+        $post ="";
+
+        $id = $request->query('id');
+        $type = $request->query('type');
+        $pid = $request->query('pid');
+
+        $posta = Posts::findOrFail($id);
+
+        if ($posta->type=='quiz') {
+            return "";
+        }
+
+        $pids = explode('|', $pid);
+        $idarays = array();
+        foreach($pids as $pi) {
+            array_push($idarays,$pi);
+        }
+
+        $post="";
+        if(!empty($posta->tags)){
+            $tags = explode(',',$posta->tags);
+
+            foreach($tags as $key) {
+                $posto = Posts::approve('yes')->whereNotIn('id', $idarays)->where('tags', 'LIKE',  '%'.$key.'%')->typesActivete()->latest()->first();
+                if ($posto) {
+                    $post=$posto;
+                }
+            }
+
+        }
+
+        if(empty($post)){
+            $categories = explode(',',$posta->categories);
+
+            foreach($categories as $keya) {
+                $posto = Posts::approve('yes')->whereNotIn('id',  $idarays)->where('type', $type)->where('categories', 'LIKE',  '%'.$keya.'%')->typesActivete()->latest()->first();
+                if ($posto) {
+                    $post=$posto;
+                }
+            }
+        }
+
+        if (!$post) {
+            return "";
+        }
+
+        $entrys = $post->entry();
+        if($post->pagination==null){
+            $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->get();
+        }else{
+            $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->paginate($post->pagination);
+        }
+
+        $reactions=false;
+        if(getenvcong('p-reactionform') == 'on'){
+            $reactions = $post->reactions;
+        }
+
+        return view("pages.postloadpage", compact("post", 'entrys', 'reactions'));
+    }
+
+    /**
+     *
+     * @return \Illuminate\View\View
+     */
+    public function commentload(Request $request){
+
+        $id = $request->query('id');
+        $url = $request->query('url');
+
+        return view('_forms._commentforms', compact('id', 'url'));
+    }
 
 
     /**
@@ -107,7 +214,7 @@ class PostsController extends Controller
             return redirect('/');
         }
 
-        $categories = Categories::where('type', $category->id)->lists('name', 'id');
+        $categories = [];
 
         $typene = $category->type;
 
@@ -115,10 +222,14 @@ class PostsController extends Controller
     }
 
 
-    public function CreateEdit($id)
+    public function CreateEdit($id, Request $request)
     {
 
         $post = Posts::findOrFail($id);
+
+        if($post->ordertype=="trivia" and $request->query('qtype')!=='trivia'){
+            return redirect(action('PostsController@CreateEdit', [$post->id]).'?qtype=trivia');
+        }
 
 
             if (\Gate::denies('update-post', $post)) {
@@ -128,15 +239,14 @@ class PostsController extends Controller
                 return redirect('/');
             }
 
-        if(getcong('UserEditPosts')=='false' and Auth::user()->usertype != 'Admin'){
+        if(getenvcong('UserEditPosts')=='no' and Auth::user()->usertype != 'Admin'){
 
-            if(getcong('UserEditPosts')=='false' or $post->user_id !== Auth::user()->id){
+            if(getenvcong('UserEditPosts')=='no' or $post->user_id !== Auth::user()->id){
 
             \Session::flash('error.message',  trans('index.nopermission'));
             return redirect('/');
             }
         }
-
 
 
         $entrys = $post->entry()->where('type','!=', 'answer')->oldest("order")->get();
@@ -149,7 +259,6 @@ class PostsController extends Controller
         $category = Categories::where('type', $typene)->first();
 
 
-        $categories = Categories::byType($category->id)->lists('name', 'id');
 
         $entrysquizquest=""; $entrysquizresults="";$entrysquizresultsseletc="";
 
@@ -174,7 +283,7 @@ class PostsController extends Controller
                                                 "entrys",
                                                 "entrysquizquest",
                                                 "entrysquizresults",
-                                                "categories",
+                                                "category",
                                                 "typene",
                                                 "typenetitle"));
 
@@ -199,7 +308,7 @@ class PostsController extends Controller
             return redirect('/');
         }
 
-        if(getcong('UserDeletePosts')=='false' and Auth::user()->usertype != 'Admin'){
+        if(getenvcong('UserDeletePosts')=='no' and Auth::user()->usertype != 'Admin'){
 
             \Session::flash('error.message',  trans('index.nopermission'));
             return redirect('/');
@@ -220,14 +329,12 @@ class PostsController extends Controller
      * @return \Illuminate\View\View
      */
     public function CreateNewPost(Request $request){
-
-         $okay = $this->getfailsvalidator($request);
-        if($okay!='pas'){
-         return $okay;
-        }
-
         $inputs = $request->all();
 
+        $okay = $this->getfailsvalidator($request);
+        if($okay!='pas'){
+            return $okay;
+        }
         $titleslug = str_slug($inputs['title'], "-");
 
         if(empty($titleslug)){
@@ -251,8 +358,7 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->lang = $inputs['lang'];
-        $post->category_id = $inputs['category'];
+        $post->categories = json_encode($inputs['category']);
         if(isset($inputs['pagination'])){
         $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
@@ -263,7 +369,7 @@ class PostsController extends Controller
 
         if($inputs['datapostt']=='draft'){
             $post->approve = 'draft';
-        }elseif(getcong('AutoApprove')=='true' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
+        }elseif(getenvcong('AutoApprove')=='yes' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
             $post->approve = 'yes';
         }else{
             $post->approve = 'no';
@@ -315,6 +421,9 @@ class PostsController extends Controller
 
             $imgWW = $this->resizepostimage($inputs['thumb'], $titleslug);
 
+            \File::delete(public_path("upload/media/posts/".$post->thumb."-s.jpg"));
+            \File::delete(public_path("upload/media/posts/".$post->thumb."-b.jpg"));
+
         }else{
             $imgWW=$post->thumb;
         }
@@ -331,8 +440,7 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->lang = $inputs['lang'];
-        $post->category_id = $inputs['category'];
+        $post->categories = json_encode($inputs['category']);
         if(isset($inputs['pagination'])) {
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
@@ -342,7 +450,7 @@ class PostsController extends Controller
 
         if($inputs['datapostt']=='draft'){
             $post->approve = 'draft';
-        }elseif(getcong('AutoEdited')=='true' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
+        }elseif(getenvcong('AutoEdited')=='yes' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
             $post->approve = 'yes';
         }else{
             $post->approve = 'no';
@@ -512,8 +620,8 @@ class PostsController extends Controller
         $imgWW = Image::make($imgWsr);
         $imgWW2 = Image::make($imgWsr);
 
-       $imbig= $imgWW->fit(650, 370)->save($saveFilePath.'-b.jpg');
-        $imsmal= $imgWW2->fit(300, 190)->save($saveFilePath.'-s.jpg');
+        $imbig= $imgWW->fit(config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_big_width'), config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_big_height'))->save($saveFilePath.'-b.jpg');
+        $imsmal= $imgWW2->fit(config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_small_width'), config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_small_height'))->save($saveFilePath.'-s.jpg');
 
 
         if(env('APP_FILESYSTEM')=="s3"){
@@ -524,7 +632,6 @@ class PostsController extends Controller
 
             \File::delete(public_path($saveFilePath.'-b.jpg'));
             \File::delete(public_path($saveFilePath.'-s.jpg'));
-
 
             return $this->s3url.$saveFilePath;
         }
@@ -583,11 +690,7 @@ class PostsController extends Controller
 
         }
 
-
-
-
         return $tmpFileDate.$tmpFileName.$ext;
-
     }
 
     private function moveanswersimage($thumb, $postid, $entryorder)
@@ -651,8 +754,8 @@ class PostsController extends Controller
     {
         $rules = [
             'type' => 'required',
-            'title' => 'required|min:10|max:255|unique:posts',
-            'category' => 'required|exists:categories,id',
+            'title' => 'required|min:5|max:255|unique:posts',
+            'category' => 'required',
             'pagination' => 'max:2',
             'description'  => 'required|min:4|max:500',
             'tags'  => 'max:2500',
@@ -687,15 +790,15 @@ class PostsController extends Controller
         $rules=[];
         if($entrytype=="text"){
 
-            $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => 'required', 'source' => ''];
+            $rules = ['type' => 'required', 'title' => 'min:1|max:255', 'body' => 'required', 'source' => ''];
 
         }else if($entrytype=="image"){
 
-            $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'image' => 'required'];
+            $rules = ['type' => 'required', 'title' => 'min:1|max:255', 'body' => '', 'source' => '', 'image' => 'required'];
 
         }else if($entrytype=="video"){
 
-            $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'video' => 'required|max:500'];
+            $rules = ['type' => 'required', 'title' => 'min:1|max:255', 'body' => '', 'source' => '', 'video' => 'required|max:500'];
 
         }else if($entrytype=="embed" or $entrytype=="tweet"  or $entrytype=="facebookpost" or $entrytype=="instagram" or $entrytype=="soundcloud"){
 
@@ -707,11 +810,11 @@ class PostsController extends Controller
 
         }elseif($entrytype=="quizquestion"){
 
-            $rules = ['type' => 'required', 'title' => 'min:2|max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
+            $rules = ['type' => 'required', 'title' => 'min:2|max:255', 'body' => 'max:500', 'image' => '', 'listtype' => 'required'];
 
         }else if($entrytype=="poll"){
 
-            $rules = ['type' => 'required', 'title' => 'max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
+            $rules = ['type' => 'required', 'title' => 'max:255', 'body' => 'max:500', 'image' => '', 'listtype' => 'required'];
 
         }
 
@@ -758,7 +861,7 @@ class PostsController extends Controller
                 }
             }
 
-            if($quizresultcount < 2){
+            if($quizresultcount < 2 and $inputs['ordertype'] !== 'trivia'){
                 return array('status' => trans('buzzyquiz.quizerror'), 'errors' => trans('buzzyquiz.atlest2result'));
             }
 
