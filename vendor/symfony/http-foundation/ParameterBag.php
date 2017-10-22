@@ -129,7 +129,7 @@ class ParameterBag implements \IteratorAggregate, \Countable
         }
 
         if (null !== $currentKey) {
-            throw new \InvalidArgumentException(sprintf('Malformed path. Path must end with "]".'));
+            throw new \InvalidArgumentException('Malformed path. Path must end with "]".');
         }
 
         return $value;
@@ -242,11 +242,11 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Filter key.
      *
-     * @param string $key     Key.
-     * @param mixed  $default Default = null.
-     * @param bool   $deep    Default = false.
-     * @param int    $filter  FILTER_* constant.
-     * @param mixed  $options Filter options.
+     * @param string $key     Key
+     * @param mixed  $default Default = null
+     * @param bool   $deep    Default = false
+     * @param int    $filter  FILTER_* constant
+     * @param mixed  $options Filter options
      *
      * @see http://php.net/manual/en/function.filter-var.php
      *

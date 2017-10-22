@@ -14,7 +14,7 @@ namespace League\Fractal;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\NullResource;
-use League\Fractal\Resource\ResourceAbstract;
+use League\Fractal\Resource\ResourceInterface;
 
 /**
  * Transformer Abstract
@@ -89,9 +89,16 @@ abstract class TransformerAbstract
     private function figureOutWhichIncludes(Scope $scope)
     {
         $includes = $this->getDefaultIncludes();
+
         foreach ($this->getAvailableIncludes() as $include) {
             if ($scope->isRequested($include)) {
                 $includes[] = $include;
+            }
+        }
+
+        foreach ($includes as $include) {
+            if ($scope->isExcluded($include)) {
+                $includes = array_diff($includes, [$include]);
             }
         }
 
@@ -181,13 +188,13 @@ abstract class TransformerAbstract
             return false;
         }
 
-        if (! $resource instanceof ResourceAbstract) {
+        if (! $resource instanceof ResourceInterface) {
             throw new \Exception(sprintf(
                 'Invalid return value from %s::%s(). Expected %s, received %s.',
                 __CLASS__,
                 $methodName,
-                'League\Fractal\Resource\ResourceAbstract',
-                gettype($resource)
+                'League\Fractal\Resource\ResourceInterface',
+                is_object($resource) ? get_class($resource) : gettype($resource)
             ));
         }
 

@@ -24,7 +24,7 @@ class Controller extends BaseController
             $groups->whereNotIn('group', $excludedGroups);
         }
 
-        $groups = $groups->lists('group', 'group');
+        $groups = $groups->select('group')->get()->pluck('group', 'group');
         if ($groups instanceof Collection) {
             $groups = $groups->all();
         }
@@ -50,19 +50,19 @@ class Controller extends BaseController
             ->with('deleteEnabled', $this->manager->getConfig('delete_enabled'));
     }
 
-    public function getView($group, $sub_group = null)
+    public function getView($group = null)
     {
-        if ($sub_group) {
-            return $this->getIndex($group.'/'.$sub_group);
-        }
-
         return $this->getIndex($group);
     }
 
     protected function loadLocales()
     {
         //Set the default locale as the first one.
-        $locales = Translation::groupBy('locale')->lists('locale');
+        $locales = Translation::groupBy('locale')
+            ->select('locale')
+            ->get()
+            ->pluck('locale');
+
         if ($locales instanceof Collection) {
             $locales = $locales->all();
         }
@@ -70,13 +70,9 @@ class Controller extends BaseController
         return array_unique($locales);
     }
 
-    public function postAdd(Request $request, $group, $sub_group = null)
+    public function postAdd($group = null)
     {
-        $keys = explode("\n", $request->get('keys'));
-
-        if ($sub_group) {
-            $group = $group . "/" . $sub_group;
-        }
+        $keys = explode("\n", request()->get('keys'));
 
         foreach($keys as $key){
             $key = trim($key);
@@ -87,16 +83,16 @@ class Controller extends BaseController
         return redirect()->back();
     }
 
-    public function postEdit(Request $request, $group, $sub_group = null)
+    public function postEdit($group = null)
     {
         if(!in_array($group, $this->manager->getConfig('exclude_groups'))) {
-            $name = $request->get('name');
-            $value = $request->get('value');
+            $name = request()->get('name');
+            $value = request()->get('value');
 
             list($locale, $key) = explode('|', $name, 2);
             $translation = Translation::firstOrNew([
                 'locale' => $locale,
-                'group' => $sub_group ? $group . "/" . $sub_group: $group,
+                'group' => $group,
                 'key' => $key,
             ]);
             $translation->value = (string) $value ?: null;
@@ -106,7 +102,7 @@ class Controller extends BaseController
         }
     }
 
-    public function postDelete($group, $key, $sub_group = null)
+    public function postDelete($group = null)
     {
         if(!in_array($group, $this->manager->getConfig('exclude_groups')) && $this->manager->getConfig('delete_enabled')) {
             Translation::where('group', $group)->where('key', $key)->delete();
@@ -129,13 +125,9 @@ class Controller extends BaseController
         return ['status' => 'ok', 'counter' => (int) $numFound];
     }
 
-    public function postPublish($group, $sub_group = null)
+    public function postPublish($group = null)
     {
-        if ($sub_group) {
-            $this->manager->exportTranslations($group.'/'.$sub_group);
-        } else {
-            $this->manager->exportTranslations($group);
-        }
+        $this->manager->exportTranslations($group);
 
         return ['status' => 'ok'];
     }

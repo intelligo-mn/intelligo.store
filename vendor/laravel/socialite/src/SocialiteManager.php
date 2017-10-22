@@ -43,11 +43,8 @@ class SocialiteManager extends Manager implements Contracts\Factory
      */
     protected function createFacebookDriver()
     {
-        $config = [
-            'client_id' => getcong('facebookapp'),
-            'client_secret' => getcong('facebookappsecret'),
-            'redirect' => PHP_SAPI === 'cli' ? false : url('auth/social/facebook/callback')
-        ];
+        $config = $this->app['config']['services.facebook'];
+
         return $this->buildProvider(
             'Laravel\Socialite\Two\FacebookProvider', $config
         );
@@ -60,11 +57,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
      */
     protected function createGoogleDriver()
     {
-        $config = [
-            'client_id' => getcong('googleapp'),
-            'client_secret' => getcong('googleappsecret'),
-            'redirect' => PHP_SAPI === 'cli' ? false : url('auth/social/google/callback')
-        ];
+        $config = $this->app['config']['services.google'];
 
         return $this->buildProvider(
             'Laravel\Socialite\Two\GoogleProvider', $config
@@ -107,11 +100,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
      */
     protected function createTwitterDriver()
     {
-        $config = [
-            'client_id' => getcong('twitterapp'),
-            'client_secret' => getcong('twitterappsecret'),
-            'redirect' => PHP_SAPI === 'cli' ? false : url('auth/social/twitter/callback')
-        ];
+        $config = $this->app['config']['services.twitter'];
 
         return new TwitterProvider(
             $this->app['request'], new TwitterServer($this->formatConfig($config))

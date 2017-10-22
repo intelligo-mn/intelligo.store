@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\HttpKernel\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class HttpKernelTest extends \PHPUnit_Framework_TestCase
+class HttpKernelTest extends TestCase
 {
     /**
      * @expectedException \RuntimeException
@@ -261,7 +262,7 @@ class HttpKernelTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request();
 
-        $stack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack', array('push', 'pop'));
+        $stack = $this->getMockBuilder('Symfony\Component\HttpFoundation\RequestStack')->setMethods(array('push', 'pop'))->getMock();
         $stack->expects($this->at(0))->method('push')->with($this->equalTo($request));
         $stack->expects($this->at(1))->method('pop');
 
@@ -271,13 +272,34 @@ class HttpKernelTest extends \PHPUnit_Framework_TestCase
         $kernel->handle($request, HttpKernelInterface::MASTER_REQUEST);
     }
 
+    /**
+     * @expectedException \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+     */
+    public function testInconsistentClientIpsOnMasterRequests()
+    {
+        $dispatcher = new EventDispatcher();
+        $dispatcher->addListener(KernelEvents::REQUEST, function ($event) {
+            $event->getRequest()->getClientIp();
+        });
+
+        $kernel = new HttpKernel($dispatcher, $this->getResolver());
+
+        $request = new Request();
+        $request->setTrustedProxies(array('1.1.1.1'));
+        $request->server->set('REMOTE_ADDR', '1.1.1.1');
+        $request->headers->set('FORWARDED', 'for=2.2.2.2');
+        $request->headers->set('X_FORWARDED_FOR', '3.3.3.3');
+
+        $kernel->handle($request, $kernel::MASTER_REQUEST, false);
+    }
+
     protected function getResolver($controller = null)
     {
         if (null === $controller) {
             $controller = function () { return new Response('Hello'); };
         }
 
-        $resolver = $this->getMock('Symfony\\Component\\HttpKernel\\Controller\\ControllerResolverInterface');
+        $resolver = $this->getMockBuilder('Symfony\\Component\\HttpKernel\\Controller\\ControllerResolverInterface')->getMock();
         $resolver->expects($this->any())
             ->method('getController')
             ->will($this->returnValue($controller));

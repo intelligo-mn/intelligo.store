@@ -93,7 +93,7 @@ class Table
      *
      * @param string $name The style name
      *
-     * @return TableStyle A TableStyle instance
+     * @return TableStyle
      */
     public static function getStyleDefinition($name)
     {
@@ -101,11 +101,11 @@ class Table
             self::$styles = self::initStyles();
         }
 
-        if (!self::$styles[$name]) {
-            throw new \InvalidArgumentException(sprintf('Style "%s" is not defined.', $name));
+        if (isset(self::$styles[$name])) {
+            return self::$styles[$name];
         }
 
-        return self::$styles[$name];
+        throw new \InvalidArgumentException(sprintf('Style "%s" is not defined.', $name));
     }
 
     /**
@@ -113,17 +113,11 @@ class Table
      *
      * @param TableStyle|string $name The style name or a TableStyle instance
      *
-     * @return Table
+     * @return $this
      */
     public function setStyle($name)
     {
-        if ($name instanceof TableStyle) {
-            $this->style = $name;
-        } elseif (isset(self::$styles[$name])) {
-            $this->style = self::$styles[$name];
-        } else {
-            throw new \InvalidArgumentException(sprintf('Style "%s" is not defined.', $name));
-        }
+        $this->style = $this->resolveStyle($name);
 
         return $this;
     }
@@ -347,7 +341,7 @@ class Table
                 if (!strstr($cell, "\n")) {
                     continue;
                 }
-                $lines = explode("\n", $cell);
+                $lines = explode("\n", str_replace("\n", "<fg=default;bg=default>\n</>", $cell));
                 foreach ($lines as $lineKey => $line) {
                     if ($cell instanceof TableCell) {
                         $line = new TableCell($line, array('colspan' => $cell->getColspan()));
@@ -388,7 +382,7 @@ class Table
                 $nbLines = $cell->getRowspan() - 1;
                 $lines = array($cell);
                 if (strstr($cell, "\n")) {
-                    $lines = explode("\n", $cell);
+                    $lines = explode("\n", str_replace("\n", "<fg=default;bg=default>\n</>", $cell));
                     $nbLines = count($lines) > $nbLines ? substr_count($cell, "\n") : $nbLines;
 
                     $rows[$line][$column] = new TableCell($lines[0], array('colspan' => $cell->getColspan()));
@@ -396,10 +390,13 @@ class Table
                 }
 
                 // create a two dimensional array (rowspan x colspan)
-                $unmergedRows = array_replace_recursive(array_fill($line + 1, $nbLines, ''), $unmergedRows);
+                $unmergedRows = array_replace_recursive(array_fill($line + 1, $nbLines, array()), $unmergedRows);
                 foreach ($unmergedRows as $unmergedRowKey => $unmergedRow) {
                     $value = isset($lines[$unmergedRowKey - $line]) ? $lines[$unmergedRowKey - $line] : '';
                     $unmergedRows[$unmergedRowKey][$column] = new TableCell($value, array('colspan' => $cell->getColspan()));
+                    if ($nbLines === $unmergedRowKey - $line) {
+                        break;
+                    }
                 }
             }
         }
@@ -517,6 +514,8 @@ class Table
             return $this->columnWidths[$column];
         }
 
+        $lengths = array();
+
         foreach (array_merge($this->headers, $this->rows) as $row) {
             if ($row instanceof TableSeparator) {
                 continue;
@@ -524,9 +523,10 @@ class Table
 
             foreach ($row as $i => $cell) {
                 if ($cell instanceof TableCell) {
-                    $textLength = strlen($cell);
+                    $textContent = Helper::removeDecoration($this->output->getFormatter(), $cell);
+                    $textLength = Helper::strlen($textContent);
                     if ($textLength > 0) {
-                        $contentColumns = str_split($cell, ceil($textLength / $cell->getColspan()));
+                        $contentColumns = str_split($textContent, ceil($textLength / $cell->getColspan()));
                         foreach ($contentColumns as $position => $content) {
                             $row[$i + $position] = $content;
                         }
@@ -610,5 +610,18 @@ class Table
             'compact' => $compact,
             'symfony-style-guide' => $styleGuide,
         );
+    }
+
+    private function resolveStyle($name)
+    {
+        if ($name instanceof TableStyle) {
+            return $name;
+        }
+
+        if (isset(self::$styles[$name])) {
+            return self::$styles[$name];
+        }
+
+        throw new \InvalidArgumentException(sprintf('Style "%s" is not defined.', $name));
     }
 }

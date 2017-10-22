@@ -202,9 +202,9 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
         }
         $this->traces[$request->getMethod().' '.$path] = array();
 
-        if (!$request->isMethodSafe()) {
+        if (!$request->isMethodSafe(false)) {
             $response = $this->invalidate($request, $catch);
-        } elseif ($request->headers->has('expect')) {
+        } elseif ($request->headers->has('expect') || !$request->isMethodCacheable()) {
             $response = $this->pass($request, $catch);
         } else {
             $response = $this->lookup($request, $catch);
@@ -374,7 +374,9 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
         $subRequest = clone $request;
 
         // send no head requests because we want content
-        $subRequest->setMethod('GET');
+        if ('HEAD' === $request->getMethod()) {
+            $subRequest->setMethod('GET');
+        }
 
         // add our cached last-modified validator
         $subRequest->headers->set('if_modified_since', $entry->headers->get('Last-Modified'));
@@ -435,7 +437,9 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
         $subRequest = clone $request;
 
         // send no head requests because we want content
-        $subRequest->setMethod('GET');
+        if ('HEAD' === $request->getMethod()) {
+            $subRequest->setMethod('GET');
+        }
 
         // avoid that the backend sends no content
         $subRequest->headers->remove('if_modified_since');
@@ -600,6 +604,9 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      */
     protected function store(Request $request, Response $response)
     {
+        if (!$response->headers->has('Date')) {
+            $response->setDate(\DateTime::createFromFormat('U', time()));
+        }
         try {
             $this->store->write($request, $response);
 

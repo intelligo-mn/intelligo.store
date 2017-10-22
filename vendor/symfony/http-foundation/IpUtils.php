@@ -57,15 +57,18 @@ class IpUtils
      * @param string $requestIp IPv4 address to check
      * @param string $ip        IPv4 address or subnet in CIDR notation
      *
-     * @return bool Whether the request IP matches the IP, or whether the request IP is within the CIDR subnet.
+     * @return bool Whether the request IP matches the IP, or whether the request IP is within the CIDR subnet
      */
     public static function checkIp4($requestIp, $ip)
     {
+        if (!filter_var($requestIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return false;
+        }
+
         if (false !== strpos($ip, '/')) {
             list($address, $netmask) = explode('/', $ip, 2);
 
             if ($netmask === '0') {
-                // Ensure IP is valid - using ip2long below implicitly validates, but we need to do it manually here
                 return filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
             }
 
