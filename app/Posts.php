@@ -11,9 +11,11 @@ class Posts extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['slug', 'title', 'body', 'user_id', 'category_id',  'pagination', 'shared', 'tags', 'lang', 'type','ordertype', 'thumb', 'approve', 'show_in_homepage',  'show_in_homepage', 'featured_at', 'published_at', 'deleted_at'];
+    protected $fillable = ['slug', 'title', 'body', 'user_id', 'category_id', 'categories', 'pagination', 'shared', 'tags', 'lang', 'type','ordertype', 'thumb', 'approve', 'show_in_homepage',  'show_in_homepage', 'featured_at', 'published_at', 'deleted_at'];
 
     protected $dates = ['featured_at', 'published_at','deleted_at'];
+
+    protected $casts = ['shared', 'categories'];
 
     protected $softDelete = true;
 
@@ -87,8 +89,6 @@ class Posts extends Model
     {
         return $this->morphOne('App\Stats', 'trackable');
     }
-
-
 
     public function hit()
     {
@@ -178,7 +178,7 @@ class Posts extends Model
     public function scopeForhome($query, $features = null)
     {
         if( $features == null){
-                if(getcong('AutoInHomepage') == 'true' ){
+                if(getenvcong('AutoInHomepage') == 'yes' ){
                     return;
                 }
         }
@@ -191,20 +191,19 @@ class Posts extends Model
     public function scopeTypesActivete($query)
     {
 
-        if(getcong('p-buzzynews') != 'on'){
+        if(getenvcong('p-buzzynews') != 'on'){
            $query->where("posts.type", '!=', 'news');
         }
-        if(getcong('p-buzzylists') != 'on'){
+        if(getenvcong('p-buzzylists') != 'on'){
             $query->where("posts.type", '!=', 'list');
         }
-        if(getcong('p-buzzypolls') != 'on'){
+        if(getenvcong('p-buzzypolls') != 'on'){
            $query->where("posts.type", '!=', 'poll');
         }
-        if(getcong('p-buzzyquizzes') != 'on'){
+        if(getenvcong('p-buzzyquizzes') != 'on'){
             $query->where("posts.type", '!=', 'quiz');
         }
-
-        if(getcong('p-buzzyvideos') != 'on'){
+        if(getenvcong('p-buzzyvideos') != 'on'){
             $query->where("posts.type", '!=', 'video');
         }
 
@@ -213,11 +212,11 @@ class Posts extends Model
 
     public function scopetypesAccepted($query, $types)
     {
-        $this->types=$types;
+
+        $this->types=json_decode($types);
 
         $query->where(function($query) {
             foreach($this->types as $kk =>  $type){
-
                 if($type=='news' or $type=='list' or $type=='quiz' or $type=='poll' or $type=='video')  {
 
                     if($kk==0){
@@ -226,18 +225,25 @@ class Posts extends Model
                         $query->orWhere("posts.type",  $type);
                     }
                 } else {
+
+
                     $type=intval($type);
                     if($kk==0){
-                        $query->where("posts.category_id", $type);
+                        $query->where('categories', 'LIKE',  '%"'.$type.',%')->orWhere('categories', 'LIKE',  '%,'.$type.',%');
                     }else{
-                        $query->orWhere("posts.category_id",  $type);
+                        $query->orWhere('categories', 'LIKE',  '%"'.$type.',%')->orWhere('categories', 'LIKE',  '%,'.$type.',%');
                     }
                 }
-
 
             }
         });
         return $query;
+    }
+
+
+    public function getSharedAttribute($value)
+    {
+        return json_decode($value);
     }
 
 
