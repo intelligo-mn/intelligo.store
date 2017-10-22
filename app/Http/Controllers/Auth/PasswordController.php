@@ -68,7 +68,7 @@ class PasswordController extends Controller
 
         $response = Password::sendResetLink($request->only('email'), function (Message $message) {
             $message->subject(trans('passwords.yourpasswordreslink'));
-            $message->sender(getcong('siteemail'));
+            $message->sender(getenvcong('siteemail'));
         });
 
 

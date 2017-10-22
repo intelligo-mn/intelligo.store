@@ -48,7 +48,7 @@ class ContactController extends Controller
 
         if(getenvcong('BuzzyContactCopyEmail') > ""){
             if(!isset($ll['g-recaptcha-response'])){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('contact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
@@ -57,7 +57,7 @@ class ContactController extends Controller
             $res= json_decode($content, true);
 
             if($res['success'] == false){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('contact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
@@ -91,7 +91,7 @@ class ContactController extends Controller
 
 
 
-        \Session::flash('success.message', trans('buzzycontact.successgot'));
+        \Session::flash('success.message', trans('contact.successgot'));
         return redirect('/');
     }
 
