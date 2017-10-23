@@ -64,9 +64,10 @@ class PagesController extends Controller
     {
         $this->cat= $catname;
 
-        $category = Categories::where("name_slug", $catname)->first();
-
-
+        $lang = \Session::get('locale');
+        $category = Categories::where("name_slug", $catname)
+                    ->where("lang", $lang)
+                    ->first();
 
         if(!$category){
             abort('404');
@@ -135,8 +136,11 @@ class PagesController extends Controller
      */
     public function showpage($catname, Request $req)
     {
-
-        $page = Pages::where("slug", $catname)->first();
+        $lang = \Session::get('locale');
+        
+        $page = Pages::where("slug", $catname)
+                ->where("lang", $lang)
+                ->first();
 
         if(!$page){
             abort('404');

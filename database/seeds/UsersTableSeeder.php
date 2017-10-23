@@ -1,9 +1,7 @@
 <?php
-
 use App\Events\Inst;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -14,7 +12,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-
         // Create admin account
         DB::table('users')->insert([
             'usertype' => 'Admin',
@@ -27,13 +24,20 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-
         DB::table('settings')->insert([
             'key' => 'p-buzzynews',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
+            'key' => 'p-buzzylists',
+            'value' => '"on"'
+        ]);
+        DB::table('settings')->insert([
             'key' => 'p-buzzyvideos',
+            'value' => '"on"'
+        ]);
+        DB::table('settings')->insert([
+            'key' => 'p-buzzypolls',
             'value' => '"on"'
         ]);
         DB::table('settings')->insert([
@@ -56,8 +60,5 @@ class UsersTableSeeder extends Seeder
             'key' => 'googlefont',
             'value' => '"Lato:400,500,500italic,600,700&amp;subset=latin,latin-ext"'
         ]);
-
-
-       // factory('App\User', 20)->create();
     }
 }

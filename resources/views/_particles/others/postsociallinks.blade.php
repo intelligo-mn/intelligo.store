@@ -12,6 +12,6 @@
     </div>
 
     <div style="float:right;color:#888;width:60px;text-align:right;font-size:13px;margin-top: 2px">
-         <b>{!! number_format($post->popularityStats->all_time_stats) !!}</b><br> {{ trans('updates.views') }}
+        
     </div>
 </div>

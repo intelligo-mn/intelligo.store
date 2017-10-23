@@ -202,7 +202,7 @@ class Command
      *
      * @return int The command exit code
      *
-     * @throws \Exception
+     * @throws \Exception When binding input fails. Bypass this by calling {@link ignoreValidationErrors()}.
      *
      * @see setCode()
      * @see execute()
@@ -229,7 +229,14 @@ class Command
 
         if (null !== $this->processTitle) {
             if (function_exists('cli_set_process_title')) {
-                cli_set_process_title($this->processTitle);
+                if (false === @cli_set_process_title($this->processTitle)) {
+                    if ('Darwin' === PHP_OS) {
+                        $output->writeln('<comment>Running "cli_get_process_title" as an unprivileged user is not supported on MacOS.</comment>');
+                    } else {
+                        $error = error_get_last();
+                        trigger_error($error['message'], E_USER_WARNING);
+                    }
+                }
             } elseif (function_exists('setproctitle')) {
                 setproctitle($this->processTitle);
             } elseif (OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity()) {
@@ -267,7 +274,7 @@ class Command
      *
      * @param callable $code A callable(InputInterface $input, OutputInterface $output)
      *
-     * @return Command The current instance
+     * @return $this
      *
      * @throws \InvalidArgumentException
      *
@@ -316,7 +323,7 @@ class Command
      *
      * @param array|InputDefinition $definition An array of argument and option instances or a definition instance
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function setDefinition($definition)
     {
@@ -364,7 +371,7 @@ class Command
      * @param string $description A description text
      * @param mixed  $default     The default value (for InputArgument::OPTIONAL mode only)
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function addArgument($name, $mode = null, $description = '', $default = null)
     {
@@ -382,7 +389,7 @@ class Command
      * @param string $description A description text
      * @param mixed  $default     The default value (must be null for InputOption::VALUE_NONE)
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function addOption($name, $shortcut = null, $mode = null, $description = '', $default = null)
     {
@@ -401,7 +408,7 @@ class Command
      *
      * @param string $name The command name
      *
-     * @return Command The current instance
+     * @return $this
      *
      * @throws \InvalidArgumentException When the name is invalid
      */
@@ -424,7 +431,7 @@ class Command
      *
      * @param string $title The process title
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function setProcessTitle($title)
     {
@@ -448,7 +455,7 @@ class Command
      *
      * @param string $description The description for the command
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function setDescription($description)
     {
@@ -472,7 +479,7 @@ class Command
      *
      * @param string $help The help for the command
      *
-     * @return Command The current instance
+     * @return $this
      */
     public function setHelp($help)
     {
@@ -518,7 +525,7 @@ class Command
      *
      * @param string[] $aliases An array of aliases for the command
      *
-     * @return Command The current instance
+     * @return $this
      *
      * @throws \InvalidArgumentException When an alias is invalid
      */
@@ -569,6 +576,8 @@ class Command
      * Add a command usage example.
      *
      * @param string $usage The usage, it'll be prefixed with the command name
+     *
+     * @return $this
      */
     public function addUsage($usage)
     {

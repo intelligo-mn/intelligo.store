@@ -251,6 +251,7 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
+        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])){
         $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
@@ -330,6 +331,7 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
+        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])) {
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];

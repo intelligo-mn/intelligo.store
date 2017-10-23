@@ -1,9 +1,10 @@
 <header id="header" class="white-header">
    <div class="container-fluid">
       <div class="logo">
-         <a href="index-2.html">
-         <img class="normal" src="travel/img/logos/logo.svg" alt="Entrada">
-         <img class="gray-logo" src="travel/img/logos/logo-gray.svg" alt="Entrada">
+         <a href="<?php echo e(action('IndexController@index')); ?>">
+         <!-- <img class="normal" src="<?php echo asset('travel/img/logos/logo.svg'); ?>" alt="Entrada"> -->
+         TravelToMongolia
+       <!--   <img class="gray-logo" src="<?php echo asset('travel/img/logos/logo-gray.svg'); ?>" alt="Entrada"> -->
          </a>
       </div>
       <nav class="navbar navbar-default">
@@ -17,63 +18,124 @@
          </div>
          <div class="collapse navbar-collapse" id="nav">
             <ul class="nav navbar-nav">
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="icon-angle-down"></b></a>
-                  
+               <li>
+                  <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?><b class="icon-angle-down"></b></a>
+                     
                </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tour Listing <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li><a href="tour-detail.html">Tour Detail</a></li>
-               <li class="dropdown has-mega-dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Activities <b class="icon-angle-down"></b></a>
-                </li>
-               <li class="dropdown has-mega-dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="dropdown has-mega-dropdown mega-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements <b class="icon-angle-down"></b></a>
-                  
-               </li>
-               <li class="visible-xs visible-sm">
-                  <a href="login.html">
-                  <span class="icon icon-user"></span>
-                  <span class="text">Login</span>
-                  </a>
-               </li>
-               <li class="hidden-xs hidden-sm v-divider">
-                  <a href="login.html">
+
+                <?php foreach(\App\Pages::where('footer', '1')->
+                where("lang", \Session::get('locale'))->get() as $page): ?>
+                    <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
+                <?php endforeach; ?>
+            
+               <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+               where("lang", \Session::get('locale'))->
+               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
+                  <li>
+                     <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
+                        
+                  </li>
+              <?php endforeach; ?>
+               
+               <li class="dropdown hidden-xs hidden-sm v-divider">
+                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
+
+                  <?php if(!Auth::check()): ?>
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                            <a href="/login"><?php echo e(trans('index.login')); ?></a>
+                       </li>
+                     </ul>
+                  </div>
+                  
+                  <?php endif; ?>
+                  <?php if(Auth::check()): ?>
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                           <a style="display:block;font-size:16px;font-weight: 600"><?php echo e(Auth::user()->username); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.myprofile')); ?></a>
+                       </li>
+                       <!-- <li>
+                           <a href="<?php echo e(action('UsersController@followfeed', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('updates.feedposts')); ?></a>
+                       </li> -->
+                    <!--    <li>
+                           <a href="<?php echo e(action('UsersController@draftposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.draft')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.trash')); ?></a>
+                       </li> -->
+                       <li>
+                           <a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.settings')); ?></a>
+                       </li>
+                       <?php if(Auth::user()->usertype=='Admin'): ?>
+                           <li>
+                               <a href="/admin"><?php echo e(trans('index.adminp')); ?></a>
+                           </li>
+                       <?php endif; ?>
+                       <li>
+                           <a href="<?php echo e(action('Auth\AuthController@logout')); ?>"><?php echo e(trans('index.logout')); ?></a>
+                       </li>
+                     </ul>
+                  </div>
+                  <?php endif; ?>
                </li>
              
-               <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <a href="#"><span class="text">EN</span> <span class="icon-angle-down"></span></a>
-                  <div class="dropdown-menu dropdown-sm">
-                     <div class="drop-wrap lang-wrap">
-                        <div class="lang-row">
-                           <div class="lang-col">
-                              <a href="#">
-                              <span class="text">English</span>
-                              </a>
-                           </div>
+                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
+                  <a href="#">
+                    <span class="text">
+                    <?php if(Session::get ('locale') == 'en'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">
+                    <?php elseif(Session::get ('locale') == 'mn'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
+                    <?php elseif(Session::get ('locale') == 'zh'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
+                    <?php elseif(Session::get ('locale') == 'ru'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="Russia">
+                    <?php endif; ?>
+                    <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?>
+
+                    </span> 
+                    <span class="icon-angle-down"></span>
+                  </a>
+                   <div class="dropdown-menu dropdown-sm">
+                      <div class="drop-wrap lang-wrap">
+                         <div class="lang-row">
+                            <div class="lang-col">
+                              <a href="/selectlanguge/en">
+
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">  English</span>
+                               </a>
+                            </div>
                         </div>
-                        <div class="lang-row">
-                           <div class="lang-col">
-                              <a href="#">
-                              <span class="text">Монгол</span>
-                              </a>
-                           </div>
-                        </div>
-                        
-                     </div>
-                  </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/mn">
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">  Монгол</span>
+                               </a>
+                            </div>
+                         </div>
+                          <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/zh">
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="English">  China</span>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/ru">
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="English">  Russia</span>
+                               </a>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
                </li>
                <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
             </ul>

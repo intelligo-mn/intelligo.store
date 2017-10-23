@@ -18,14 +18,12 @@ class ContactController extends Controller
         parent::__construct();
     }
 
-
     public function index()
     {
         $labels=Categories::byType('maillabel')->lists('name','id' );
 
         return view('_contact.contactpage', compact('labels'));
     }
-
 
     public function create(Request $request)
     {
@@ -48,7 +46,7 @@ class ContactController extends Controller
 
         if(getcong('BuzzyContactCopyEmail') > ""){
             if(!isset($ll['g-recaptcha-response'])){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('contact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
@@ -57,14 +55,14 @@ class ContactController extends Controller
             $res= json_decode($content, true);
 
             if($res['success'] == false){
-                \Session::flash('error.message', trans('buzzycontact.yourresponseincorrect'));
+                \Session::flash('error.message', trans('contact.yourresponseincorrect'));
                 return redirect()->back()->withInput($ll);
             }
 
             $this->composesubject=$ll['subject'];
             $this->fromemail=$ll['email'];
-            $this->composeto = getcong('BuzzyContactCopyEmail')>"" ? getcong('BuzzyContactCopyEmail') : getcong('siteemail');
-            $this->sitename =getcong('BuzzyContactName')>"" ? getcong('BuzzyContactName') : getcong('sitename');
+            $this->composeto = getcong('siteemail');
+            $this->sitename = getcong('sitename');
 
 
             $this->mail->send('_contact.emails.mailbox', array('body' => $ll['text']), function($message)
@@ -77,15 +75,11 @@ class ContactController extends Controller
             });
         }
 
-
-        $cat=Categories::byType('mailcat')->where('name_slug', 'inbox')->first();
         $newrecord= new Contacts;
         $newrecord->name=$ll['name'];
         $newrecord->email=$ll['email'];
         $newrecord->subject=$ll['subject'];
         $newrecord->text=$ll['text'];
-        $newrecord->category_id=$cat->id;
-        $newrecord->label_id=$ll['label'];
         $newrecord->read=0;
         $newrecord->save();
 

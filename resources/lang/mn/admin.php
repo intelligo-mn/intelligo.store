@@ -6,7 +6,7 @@ return array(
     'panel' => 'Самбар',
 
     'news' => 'Аялал',
-    'lists' => 'Мэдээ',
+    'lists' => 'Аялал',
     'quizzes' => 'Quiz',
     'polls' => 'Санал асуулга',
     'videos' => 'Бичлэг',
@@ -64,7 +64,7 @@ return array(
     'todaysuserlogins' => 'Өнөөдөр нэвтэрсэн хэрэглэгч',
     'viewall' => 'Бүгдийг харах',
     'recentlyadded' => 'Саяхан нэмэгдсэн ',
-    'recentlyaddednews' => 'Шинэ нэмэгдсэн мэдээ',
+    'recentlyaddednews' => 'Шинэ нэмэгдсэн аялал',
     'recentlyaddedlists' => 'Шинэ нэмэгдсэн жагсаалт',
     'recentlyaddedpolls' => 'Шинэ нэмэгдсэн санал асуулга',
     'recentlyaddedvideos' => 'Шинэ нэмэгдсэн видео',
@@ -75,12 +75,12 @@ return array(
     'Postsonlast30days' => 'Сүүлийн 30 хоногийн мэдэээ',
 
     'thumb' => 'Thumb',
-    'posts' => 'Мэдээ',
+    'posts' => 'Аялал',
     'type' => 'Төрөл',
     'actions' => 'Үйл ажиллагаа',
 
     'approvepost' => 'Зөвшөөрөл олгох',
-    'editpost' => 'Мэдээ засах',
+    'editpost' => 'Аялал засах',
     'sendtrash' => 'Хогийн саванд хийх',
     'deletepermanently' => 'Бүр мөсөн устгах',
 
@@ -89,7 +89,7 @@ return array(
     'Last30DaysTotalPostsbyTypes' => 'Сүүлийн сарын бүх төрлийн бичлэгүүд',
     'Userregistersonlast30days' => 'Сүүлийн сарын бүртгүүлсэн хэрэглэгчид',
 
-    'NumberofNews' => 'Мэдээний тоо',
+    'NumberofNews' => 'Аялал тоо',
     'NumberofLists' => 'Жагсаалтын тоо',
     'NumberofPolls' => 'Санал асуулгын тоо',
     'NumberofVideos' => 'Бичлэгийн тоо',
@@ -203,7 +203,7 @@ return array(
     'Enterpoststitleslug' => 'Ангилалын холбоос оруул',
     'Categoryname' => 'Ангилалын нэр',
     'CategorySlug' => 'Ангилалын холбоос',
-    'PostUrlSlug' => 'Мэдээний холбоос',
+    'PostUrlSlug' => 'Аялал холбоос',
     'CategoryDescription' => 'Ангилалын тайлбар (заавалд оруулах шаардлагагүй)',
     'ContentType' => 'Контентийн төрөл',
     'Submit' => 'Нэмэх',
@@ -233,11 +233,11 @@ return array(
 
 
     //widgets
-    'PostPageSidebar' => 'Мэдээний хажууд',
+    'PostPageSidebar' => 'Аялал хажууд',
     'CategoriesPageSidebar' => 'Ангилалын хажууд',
     'HeaderBelow' => 'Хамгийн дээд талд',
-    'PostBelow' => 'Мэдээний дээр',
-    'PostPageBetween2nd3rdentry' => 'Мэдээний хажууд',
+    'PostBelow' => 'Аялал дээр',
+    'PostPageBetween2nd3rdentry' => 'Аялал хажууд',
     'HomePageFirst(List)Column' => 'Үндсэн нүүр',
     'HomePageSecond(News)Column' => 'Ангилал нүүр',
     'PostPagesShareBelow' => 'Дэлгэрэнгүй мэдээний хуудас',
@@ -353,7 +353,7 @@ return array(
    'NotEditorStaff' => 'Нийтлэгчийн эрх болиулах',
    'MakeEditorStaff' => 'Сэтгүүлч нийтлэгч болгох',
 
-   'Posts' => 'Мэдээ',
+   'Posts' => 'Аялал',
    'AllPosts' => 'Бүх мэдээ',
    'Deletedpermanently' => 'Бүр мөсөн устгах',
 
@@ -366,10 +366,10 @@ return array(
    'Approve' => 'Зөвшөөрөх',
    'UndoApprove' => 'Зөвшөөрөл буцаах',
    'PickforFeatured' => 'Онцлох мэдээ болгох',
-   'UndoFeatured' => 'Онцлох мэдээнээс устгах',
+   'UndoFeatured' => 'Онцлох аялалаас устгах',
    'PickforHomepage' => 'Нүүр хуудсанд нэмэх',
    'UndofromHomepage' => 'Нүүр хуудаснаас устгах',
-   'EditPost' => 'Мэдээ засах',
+   'EditPost' => 'Аялал засах',
    'SendtoTrash' => 'Хогийн саванд хийх',
    'RetrievefromTrash' => 'Хогийн савнаас сэргээх',
    'Deletepermanently' => 'Бүр мөсөн устгах',

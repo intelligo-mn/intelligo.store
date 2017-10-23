@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     //General
+  
     'list'          => 'List',
     'new-s'         => 'News',
     'poll'          => 'Poll',
@@ -46,6 +47,13 @@ return [
     'register'      => 'Register',
     'login'         => 'Login',
 
+    'home' => 'HOME',
+    'tours' => 'TOURS',
+    'about' => 'ABOUT US',
+    'itinerary' => 'ITINERARY',
+    'stayit' => 'STAY IT',
+    'contact' => 'CONTACT US',
+
 
     // Post page
     'admintools'    => 'Admin Tools',
@@ -68,7 +76,6 @@ return [
     'usern'         => 'Name',
     'gender'        => 'Gender',
     'location'      => 'Location',
-    'about'         => 'ABOUT',
     'links'         => 'LINKS',
     'joinedat'      => 'joined at :time',
 
@@ -77,7 +84,6 @@ return [
     'onlycgange'     => 'Only if you want to change',
     'fullname'       => 'Full name',
     'savesettings'   => 'Save Settings',
-
 
     'all'           => 'All',
 
@@ -124,7 +130,19 @@ return [
 
     'minthreeca'            => 'Min 2 character required!',
 
-
-
-
+    'showmore' => 'Show more',
+    'where_would' => 'WHERE WOULD YOU LIKE TO GO',
+    'callnow' => 'Call us now tour',
+    'toptour' => 'Top Tour',
+    'adventure' => 'Adventure',
+    'adventure_text' => 'Our collection of the most popular adventures in Mongolia.',
+    'gallery' => 'Gallery',
+    'partner' => 'Partner',
+    'mainmenus' => 'Main Menus',
+    'contactus' => 'Contact Us',
+    'purchase' => 'Purchase',
+    'overview' => 'Overview',
+    'itinerary' => 'Itinerary',
+    'price' => 'Price',
+    'related_tour' => 'Related tour'
 ];

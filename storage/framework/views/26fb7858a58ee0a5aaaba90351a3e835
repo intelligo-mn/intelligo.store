@@ -27,13 +27,6 @@
             </a>
         </li>
         <?php endif; ?>
-       <!--  <li <?php if(Request::segment(2)=='plugins'): ?> class="active" <?php endif; ?>>
-            <a href="<?php echo e(action('Admin\DashboardController@plugins')); ?>">
-                <i class="fa fa-puzzle-piece"></i> <span><?php echo e(trans('admin.Plugins')); ?></span>
-                <span class="pull-right badge bg-red"><?php echo e(trans('admin.NEW')); ?></span>
-
-            </a>
-        </li> -->
         <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\ConfigController@index')); ?>">
                 <i class="fa fa-cog"></i> <span><?php echo e(trans('admin.Settings')); ?></span>
@@ -41,9 +34,21 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="<?php echo e(action('Admin\ConfigController@index')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.GeneralSettings')); ?></a></li>
-                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'layout'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.LayoutSettings')); ?></a></li>
+               <!--  <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'layout'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.LayoutSettings')); ?></a></li> -->
                 <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'social'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.SocialMediaSettings')); ?></a></li>
                 <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'others'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.OtherSettings')); ?></a></li>
+            </ul>
+        </li>
+
+         <li class="treeview  <?php if(Request::segment(2)=='pages'): ?> active <?php endif; ?>">
+            <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span><?php echo e(trans('admin.Pages')); ?></span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(action('Admin\PagesController@index')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.ViewPages')); ?></a></li>
+                <li><a href="<?php echo e(action('Admin\PagesController@add')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.AddNewPage')); ?></a></li>
             </ul>
         </li>
         <li <?php if(Request::segment(2)=='categories'): ?> class="active" <?php endif; ?>>
@@ -64,13 +69,13 @@
                 <span><?php echo e(trans('admin.FeaturesPosts')); ?></span>
             </a>
         </li>
-        <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
+        <!-- <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
             <a href="/admin/unapprove?only=unapprove">
                 <i class="fa fa-check-circle"></i>
                 <span><?php echo e(trans('admin.UnapprovedPosts')); ?></span>
                 <small class="label pull-right bg-aqua"><?php echo e($toplamapprove); ?></small>
             </a>
-        </li>
+        </li> -->
         <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat): ?>
             <li class="treeview  <?php if(Request::segment(2)==$cat->name_slug): ?> active <?php endif; ?>">
                 <a href="/admin/cat/<?php echo e($cat->name_slug); ?>">
@@ -88,41 +93,32 @@
         <?php endforeach; ?>
 
         <li class="treeview <?php if(Request::segment(2)=='users'): ?> active <?php endif; ?>">
+         <!-- <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li> -->
             <a href="users">
                 <i class="fa fa-users"></i>
                 <span><?php echo e(trans('admin.Users')); ?></span>
-                <i class="fa fa-angle-left pull-right"></i>
             </a>
-            <ul class="treeview-menu">
+            <!-- <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li>
-                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
+                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right">
+                </i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
                 <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Admins')); ?></a></li>
                 <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Staff')); ?></a></li>
-            </ul>
+            </ul> -->
         </li>
 
-        <li class="treeview  <?php if(Request::segment(2)=='pages'): ?> active <?php endif; ?>">
-            <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span><?php echo e(trans('admin.Pages')); ?></span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="<?php echo e(action('Admin\PagesController@index')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.ViewPages')); ?></a></li>
-                <li><a href="<?php echo e(action('Admin\PagesController@add')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.AddNewPage')); ?></a></li>
-            </ul>
-        </li>
+       
         <li class="treeview  <?php if(Request::segment(2)=='widgets'): ?> active <?php endif; ?>">
             <a href="<?php echo e(action('Admin\WidgetsController@index')); ?>">
                 <i class="fa fa-plus-square"></i>
                 <span><?php echo e(trans('admin.Widgets')); ?></span>
             </a>
         </li>
-        <li class="treeview">
+       <!--  <li class="treeview">
             <a href="/sitemap.xml" target="_blank">
                 <i class="fa fa-rss"></i>
                 <span><?php echo e(trans('admin.Sitemap')); ?></span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </section>

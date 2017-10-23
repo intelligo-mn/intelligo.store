@@ -59,25 +59,4 @@ class MainAdminController extends Controller
         parent::__construct();
 
     }
-
-    public function code($type = 'buzzy')
-    {
-
-            return true;
-    
-    }
-
-    public function necodep($type,$code)
-    {
-        if (file_exists(base_path('storage/.'.$type))){
-            return false;
-        }
-        try {
-
-            file_put_contents(base_path('storage/.'.$type), $code);
-        }catch(Exception $e) {
-            return redirect()->back();
-        }
-        return true;
-    }
 }

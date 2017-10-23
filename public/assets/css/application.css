@@ -136,7 +136,7 @@ var {
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 100px;
     font-style: normal;
     font-size: 13px;
     color: #000;
@@ -156,6 +156,11 @@ table {
     padding: 0;
     font-weight: inherit;
     border-spacing: 0
+}
+
+.white-header,
+.fixed-position {
+    z-index: 100;
 }
 
 caption,
@@ -3062,7 +3067,7 @@ span.tagy a i {
 
 .profile-wrap .profile-content .profile-main {
     background: #fff;
-    width: auto;
+    width: 800px;
     overflow: hidden;
     float: left;
     top: 1px;

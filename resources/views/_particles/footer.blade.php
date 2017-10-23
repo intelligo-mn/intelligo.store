@@ -2,69 +2,44 @@
     <div class="container">
        
        <div class="row footer-holder">
-          <nav class="col-sm-4 col-lg-2 footer-nav active">
-             <h3>About Entrada</h3>
+           <nav class="col-sm-6 col-lg-5 footer-nav">
+             <div class="fb-page" data-href="https://www.facebook.com/tsastsolutionweb/" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+          </nav>
+
+          <nav class="col-sm-6 col-lg-3 footer-nav active">
+             <h3>{{ trans('index.mainmenus') }}</h3>
              <ul class="slide">
-                <li><a href="#">The Company</a></li>
-                <li><a href="#">Our Values</a></li>
-                <li><a href="#">Responsiblity</a></li>
-                <li><a href="#">Our Mission</a></li>
-                <li><a href="#">Opportunity</a></li>
-                <li><a href="#">Safety Concerns</a></li>
+                <li>
+                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}</a>
+                     
+               </li>
+
+                @foreach(\App\Pages::where('footer', '1')->
+                where("lang", \Session::get('locale'))->get() as $page)
+                    <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
+                @endforeach
+            
+               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+               where("lang", \Session::get('locale'))->
+               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                  <li>
+                     <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} </a>
+                        
+                  </li>
+              @endforeach
              </ul>
           </nav>
-          <nav class="col-sm-4 col-lg-2 footer-nav">
-             <h3>Destinations</h3>
-             <ul class="slide">
-                <li><a href="#">Nepal</a></li>
-                <li><a href="#">Thailand</a></li>
-                <li><a href="#">Vietnam</a></li>
-                <li><a href="#">Fiji Island</a></li>
-                <li><a href="#">United States</a></li>
-                <li><a href="#">Australia</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-2 footer-nav">
-             <h3>themes</h3>
-             <ul class="slide">
-                <li><a href="#">Hiking and Camping</a></li>
-                <li><a href="#">Trekking Tours</a></li>
-                <li><a href="#">Jungle Safaris</a></li>
-                <li><a href="#">Bungee Jumping</a></li>
-                <li><a href="#">Wildlife &amp; Polar</a></li>
-                <li><a href="#">Peak Climbing</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-2 footer-nav">
-             <h3>reservation</h3>
-             <ul class="slide">
-                <li><a href="#">Booking Conditions</a></li>
-                <li><a href="#">My Bookings</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">Includes &amp; Excludes</a></li>
-                <li><a href="#">Your Responsibilities</a></li>
-                <li><a href="#">Order a Brochure</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-2 footer-nav">
-             <h3>ask Entrada</h3>
-             <ul class="slide">
-                <li><a href="#">Why Entrada?</a></li>
-                <li><a href="#">Ask an Expert</a></li>
-                <li><a href="#">Safety Updates</a></li>
-                <li><a href="#">We Help When...</a></li>
-                <li><a href="#">Personal Matters</a></li>
-             </ul>
-          </nav>
-          <nav class="col-sm-4 col-lg-2 footer-nav last">
-             <h3>contact Entrada</h3>
+         
+
+          <nav class="col-sm-6 col-lg-4 footer-nav last">
+             <h3>{{ trans('index.contactus') }}</h3>
              <ul class="slide address-block">
-                <li class="wrap-text"><span class="icon-tel"></span> <a href="tel:02072077878">(020) 72077878</a></li>
-                <li class="wrap-text"><span class="icon-fax"></span> <a href="tel:02088828282">(020) 88828282</a></li>
-                <li class="wrap-text"><span class="icon-email"></span> <a href="https://www.waituk.net/cdn-cgi/l/email-protection#dbb2b5bdb49bbeb5afa9babfbaf5b8b4b6"><span class="__cf_email__" data-cfemail="30595e565f70555e44425154511e535f5d">[email&#160;protected]</span></a></li>
+                <li class="wrap-text"><span class="icon-tel"></span> <a href="tel:02072077878">(976) 94968096</a></li>
+                <li class="wrap-text"><span class="icon-fax"></span> <a href="tel:02088828282">(976) 88828282</a></li>
+                <li class="wrap-text"><span class="icon-email"></span> <a href="mailto:info@triptomongolian.com/">info@triptomongolian.com/</a></li>
                 <li>
                    <span class="icon-home"></span> 
-                   <address>707 London Road Isleworth, Middx TW7 7QD</address>
+                   <address>Ulaanbaatar, Mongolia</address>
                 </li>
              </ul>
           </nav>
@@ -75,7 +50,7 @@
           <div class="row">
              <div class="col-lg-6">
                 <strong class="copyright"><i class="fa fa-copyright"></i>
-                {{ trans("updates.copyright") }}
+                    Copyright 2017 - Trip to Mongolia
                 </strong>
              </div>
              <div class="col-lg-6">

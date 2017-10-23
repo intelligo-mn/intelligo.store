@@ -59,6 +59,7 @@ class PagesController extends MainAdminController
             'slug' => 'required|unique:pages,slug,'.$input['id'],
             'title' => 'required|unique:pages,title,'.$input['id'],
             'description' => 'required',
+            'lang' => 'required',
         ]);
 
         if ($v->fails()) {
@@ -74,6 +75,7 @@ class PagesController extends MainAdminController
             $pages->description = $input['description'];
             $pages->text = $input['text'];
             $pages->footer = $input['footer'];
+            $pages->lang = $input['lang'];
             $pages->save();
 
             \Session::flash('success.message', trans("admin.ChangesSaved"));

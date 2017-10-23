@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Process\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Exception\LogicException;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Exception\RuntimeException;
@@ -21,7 +22,7 @@ use Symfony\Component\Process\Process;
 /**
  * @author Robert Schönthal <seroscho@googlemail.com>
  */
-class ProcessTest extends \PHPUnit_Framework_TestCase
+class ProcessTest extends TestCase
 {
     private static $phpBin;
     private static $process;
@@ -54,6 +55,9 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testThatProcessDoesNotThrowWarningDuringRun()
     {
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            $this->markTestSkipped('This test is transient on Windows');
+        }
         @trigger_error('Test Error', E_USER_NOTICE);
         $process = $this->getProcess(self::$phpBin." -r 'sleep(3)'");
         $process->run();
@@ -923,7 +927,14 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
     public function testMethodsThatNeedARunningProcess($method)
     {
         $process = $this->getProcess('foo');
-        $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', sprintf('Process must be started before calling %s.', $method));
+
+        if (method_exists($this, 'expectException')) {
+            $this->expectException('Symfony\Component\Process\Exception\LogicException');
+            $this->expectExceptionMessage(sprintf('Process must be started before calling %s.', $method));
+        } else {
+            $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', sprintf('Process must be started before calling %s.', $method));
+        }
+
         $process->{$method}();
     }
 
@@ -940,7 +951,7 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideMethodsThatNeedATerminatedProcess
-     * @expectedException Symfony\Component\Process\Exception\LogicException
+     * @expectedException \Symfony\Component\Process\Exception\LogicException
      * @expectedExceptionMessage Process must be terminated before calling
      */
     public function testMethodsThatNeedATerminatedProcess($method)
@@ -1077,7 +1088,14 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
     {
         $p = $this->getProcess('foo');
         $p->disableOutput();
-        $this->setExpectedException($exception, $exceptionMessage);
+
+        if (method_exists($this, 'expectException')) {
+            $this->expectException($exception);
+            $this->expectExceptionMessage($exceptionMessage);
+        } else {
+            $this->setExpectedException($exception, $exceptionMessage);
+        }
+
         if ('mustRun' === $startMethod) {
             $this->skipIfNotEnhancedSigchild();
         }
@@ -1180,7 +1198,8 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideVariousIncrementals
      */
-    public function testIncrementalOutputDoesNotRequireAnotherCall($stream, $method) {
+    public function testIncrementalOutputDoesNotRequireAnotherCall($stream, $method)
+    {
         $process = $this->getProcess(self::$phpBin.' -r '.escapeshellarg('$n = 0; while ($n < 3) { file_put_contents(\''.$stream.'\', $n, 1); $n++; usleep(1000); }'), null, null, null, null);
         $process->start();
         $result = '';
@@ -1195,7 +1214,8 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
         $process->stop();
     }
 
-    public function provideVariousIncrementals() {
+    public function provideVariousIncrementals()
+    {
         return array(
             array('php://stdout', 'getIncrementalOutput'),
             array('php://stderr', 'getIncrementalErrorOutput'),
@@ -1224,7 +1244,7 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
             } catch (RuntimeException $e) {
                 $this->assertSame('This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method.', $e->getMessage());
                 if ($enhance) {
-                    $process->setEnhanceSigChildCompatibility(true);
+                    $process->setEnhanceSigchildCompatibility(true);
                 } else {
                     self::$notEnhancedSigchild = true;
                 }
@@ -1244,7 +1264,12 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
             if (!$expectException) {
                 $this->markTestSkipped('PHP is compiled with --enable-sigchild.');
             } elseif (self::$notEnhancedSigchild) {
-                $this->setExpectedException('Symfony\Component\Process\Exception\RuntimeException', 'This PHP has been compiled with --enable-sigchild.');
+                if (method_exists($this, 'expectException')) {
+                    $this->expectException('Symfony\Component\Process\Exception\RuntimeException');
+                    $this->expectExceptionMessage('This PHP has been compiled with --enable-sigchild.');
+                } else {
+                    $this->setExpectedException('Symfony\Component\Process\Exception\RuntimeException', 'This PHP has been compiled with --enable-sigchild.');
+                }
             }
         }
     }

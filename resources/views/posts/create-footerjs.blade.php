@@ -1,7 +1,7 @@
 
-<script src="/assets/plugins/editor/module.min.js"></script>
+<!-- <script src="/assets/plugins/editor/module.min.js"></script>
 <script src="/assets/plugins/editor/hotkeys.min.js"></script>
-<script src="/assets/plugins/editor/simditor.js"></script>
+<script src="/assets/plugins/editor/simditor.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
 <script src="/assets/plugins/jquery.tagsinput.min.js"></script>
@@ -22,25 +22,6 @@
         'lang_11': '{{ trans('updates.BuzzyEditor.lang.lang_11') }}',
         'lang_12': '{{ trans('updates.BuzzyEditor.lang.lang_12') }}',
         'errorl': '{{ trans('updates.error') }}'
-    };
-
-     Simditor.i18n = {
-        'en_EN': {
-            'normalText': '{{ trans('updates.BuzzyEditor.TextEditor.normalText') }}',
-            'title': '{{ trans('updates.BuzzyEditor.TextEditor.title') }}',
-            'blockquote': '{{ trans('updates.BuzzyEditor.TextEditor.blockquote') }}',
-            'bold': '{{ trans('updates.BuzzyEditor.TextEditor.bold') }}',
-            'italic': '{{ trans('updates.BuzzyEditor.TextEditor.italic') }}',
-            'link': '{{ trans('updates.BuzzyEditor.TextEditor.link') }}',
-            'text': '{{ trans('updates.BuzzyEditor.TextEditor.text') }}',
-            'linkText': '{{ trans('updates.BuzzyEditor.TextEditor.linkText') }}',
-            'linkUrl': '{{ trans('updates.BuzzyEditor.TextEditor.linkUrl') }}',
-            'removeLink': '{{ trans('updates.BuzzyEditor.TextEditor.removeLink') }}',
-            'ol': '{{ trans('updates.BuzzyEditor.TextEditor.ol') }}',
-            'ul': '{{ trans('updates.BuzzyEditor.TextEditor.ul') }}',
-            'strikethrough': '{{ trans('updates.BuzzyEditor.TextEditor.strikethrough') }}',
-            'underline': '{{ trans('updates.BuzzyEditor.TextEditor.underline') }}',
-        }
     };
 
 </script>

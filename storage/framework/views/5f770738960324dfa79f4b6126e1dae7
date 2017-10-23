@@ -7,8 +7,8 @@
         <div class="container" style="padding: 0; ">
 
             <div class="profile-splash">
-        <div class="profile-splash-cov"></div>
-            <img src="<?php echo e(makepreview($userinfo->splash, 'b', 'members/splash')); ?>" width="100%" data-big="" alt="<?php echo e($userinfo->username); ?>" class="profile-splash-img">
+                <div class="profile-splash-cov"></div>
+                <img src="<?php echo e(makepreview($userinfo->splash, 'b', 'members/splash')); ?>" width="100%" data-big="" alt="<?php echo e($userinfo->username); ?>" class="profile-splash-img">
                <div class="profile-section">
 
 
@@ -74,9 +74,9 @@
 
                         <div class="profile-section">
                             <?php if($DB_PLUGIN_NEWS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-file-text"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.news') ])); ?></span>    </div>      <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/news"><?php echo e($newscount); ?> </a>     </div><?php endif; ?>
-                            <?php if($DB_PLUGIN_LISTS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-th-list"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.lists') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/lists"><?php echo e($listscount); ?> </a>      </div><?php endif; ?>
+                            <!-- <?php if($DB_PLUGIN_LISTS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-th-list"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.lists') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/lists"><?php echo e($listscount); ?> </a>      </div><?php endif; ?>
                             <?php if($DB_PLUGIN_QUIZS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-question-circle"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('buzzyquiz.quizzes') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/quizzes"><?php echo e($quizzescount); ?> </a>  </div><?php endif; ?>
-                            <?php if($DB_PLUGIN_POLLS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.polls') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/polls"><?php echo e($pollscount); ?> </a>  </div><?php endif; ?>
+                            <?php if($DB_PLUGIN_POLLS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.polls') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/polls"><?php echo e($pollscount); ?> </a>  </div><?php endif; ?> -->
                             <?php if($DB_PLUGIN_VIDEOS == 'on'): ?><div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text"><?php echo e(trans('index.total', ['type' => trans('index.videos') ])); ?></span>    </div>    <a class="profile-stat-count" href="/profile/<?php echo e($userinfo->username_slug); ?>/videos"><?php echo e($videoscount); ?> </a>   </div><?php endif; ?>
        
                              <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $categorys): ?>
@@ -88,7 +88,7 @@
 
                             <?php endforeach; ?>
        
-<?php if($userinfo->about ): ?>
+                        <?php if($userinfo->about ): ?>
                         <div class="profile-section">
                             <div class="profile-sidebar-label">
                                 <?php echo e(trans('index.about')); ?>
@@ -96,7 +96,7 @@
                             </div>
                             <p><?php echo e($userinfo->about); ?></p>
                         </div>
-<?php endif; ?>
+                        <?php endif; ?>
                         <?php if($userinfo->facebookurl or $userinfo->twitterurl or $userinfo->weburl ): ?>
                         <div class="profile-section">
                             <div class="profile-sidebar-label">

@@ -21,7 +21,10 @@ class CategoriesController extends MainAdminController
     public function index(Request $request)
     {
 
-        $categories = Categories::where("main", '1')->orwhere("main", '2')->orderBy('order')->get();
+        $categories = Categories::where("main", '1')
+                        ->orwhere("main", '2')
+                        ->orderBy('order')
+                        ->get();
 
         $category="";
 
@@ -74,20 +77,13 @@ class CategoriesController extends MainAdminController
         }
 
         if(!empty($inputs['id'])){
-
-
-
             $cat = Categories::findOrFail($inputs['id']);
-
             if($cat->main==1 or $cat->main==2){
                 $typo=$cat->type;
             }
 
         }else{
-
-
             $cat = new Categories;
-
             if(empty($inputs['type'])){
                 $cat->main = '2';
                 $typo = $inputs['name_slug'];
@@ -99,11 +95,10 @@ class CategoriesController extends MainAdminController
 
         }
 
-
-
        $cat->order = isset($inputs['order']) ? $inputs['order'] : "";
        $cat->name = $inputs['name'];
        $cat->name_slug = $inputs['name_slug'];
+       $cat->lang = $inputs['lang'];
        $cat->posturl_slug = isset($inputs['posturl_slug']) ? $inputs['posturl_slug'] : "";
        $cat->description = isset($inputs['description']) ? $inputs['description'] : "";
        $cat->type = $typo;
