@@ -33,7 +33,7 @@ class Event
     private $propagationStopped = false;
 
     /**
-     * @var EventDispatcher Dispatcher that dispatched this event
+     * @var EventDispatcherInterface Dispatcher that dispatched this event
      */
     private $dispatcher;
 
@@ -47,7 +47,7 @@ class Event
      *
      * @see Event::stopPropagation()
      *
-     * @return bool Whether propagation was already stopped for this event.
+     * @return bool Whether propagation was already stopped for this event
      */
     public function isPropagationStopped()
     {
@@ -109,7 +109,7 @@ class Event
     /**
      * Sets the event's name property.
      *
-     * @param string $name The event name.
+     * @param string $name The event name
      *
      * @deprecated since version 2.4, to be removed in 3.0. The event name is passed to the listener call.
      */
