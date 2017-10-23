@@ -3,10 +3,13 @@ Route::get('admin/docs', function () {
     return view('vendor.docs.index');
 });
 
+Route::get('verify', 'AkbilisimController@index');
+
 Route::get('{type}.xml', 'RssController@index');
 
-Route::get('{type}.json', 'RssController@json');
+Route::get('fbinstant.rss', 'RssController@fbinstant');
 
+Route::get('{type}.json', 'RssController@json');
 
 Route::get('/selectlanguge/{lang}', 'IndexController@langpick');
 
@@ -38,6 +41,12 @@ Route::group(['middleware' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('plugins', 'Admin\DashboardController@plugins');
     Route::post('activeteplugin', 'Admin\DashboardController@activeplugin');
     Route::post('checkinputcodeforplugin', 'Admin\DashboardController@checkinputcodeforplugin');
+
+    Route::get('themes/{theme}', 'Admin\DashboardController@themesetting');
+    Route::get('themes', 'Admin\DashboardController@themes');
+    Route::post('activetheme', 'Admin\DashboardController@activetheme');
+    Route::post('downloadtheme', 'Admin\DashboardController@downloadtheme');
+
 
     Route::post('addnewcategory', 'Admin\CategoriesController@addnew');
     Route::get('categories/delete/{id}', 'Admin\CategoriesController@delete');
@@ -73,10 +82,23 @@ Route::group(['middleware' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('widgets/delete/{id}', 'Admin\WidgetsController@delete');
     Route::get('widgets', 'Admin\WidgetsController@index');
 
+    Route::post('reactions/addnew', 'Admin\ReactionController@addnew');
+    Route::get('reactions/delete/{id}', 'Admin\ReactionController@delete');
+    Route::get('reactions', 'Admin\ReactionController@index');
+
 });
 
 
+
+
 Route::get('/', 'IndexController@index');
+Route::get('ajax_previous',  'PostsController@ajax_previous');
+Route::get('get_content_data',  'FormController@get_content_data');
+Route::get('search',  'PagesController@search');
+Route::post('shared', 'PollController@Shared');
+Route::get('commentload',  'PostsController@commentload');
+Route::get('reactions/{reaction}',  'PagesController@showReaction');
+Route::get('404', 'PagesController@dort');
 
 
 Route::get('contact', 'ContactController@index');
@@ -115,11 +137,12 @@ Route::get('edit/{id}',  'PostsController@CreateEdit');
 Route::post('edit/{id}',  'PostsController@CreateEditPost');
 Route::get('delete/{id}',  'PostsController@sendtrashpost');
 
-Route::get('search',  'PagesController@search');
+
 
 Route::get('tag/{tag}',  'PagesController@showtag');
 
 Route::get('pages/{page}',  'PagesController@showpage');
+
 
 Route::post('profile/{userslug}/settings', 'UsersController@updatesettings');
 Route::post('profile/{userslug}/follow', 'UsersController@follow');
@@ -127,19 +150,33 @@ Route::get('profile/{userslug}/settings', 'UsersController@settings');
 Route::get('profile/{userslug}/following', 'UsersController@following');
 Route::get('profile/{userslug}/followers', 'UsersController@followers');
 Route::get('profile/{userslug}/feed', 'UsersController@followfeed');
-Route::get('profile/{userslug}/news', 'UsersController@index');
-Route::get('profile/{userslug}/lists', 'UsersController@index');
-Route::get('profile/{userslug}/quizzes', 'UsersController@index');
-Route::get('profile/{userslug}/polls', 'UsersController@index');
-Route::get('profile/{userslug}/videos', 'UsersController@index');
 Route::get('profile/{userslug}/draft', 'UsersController@draftposts');
 Route::get('profile/{userslug}/trash', 'UsersController@deletedposts');
 Route::get('profile/{userslug}', 'UsersController@index');
 
+
+
+
+Route::group(['prefix' => 'amp'], function () {
+
+    Route::get('{catname}/{slug}', 'PostsController@amp');
+
+    Route::get('/', 'IndexController@amp');
+
+});
+
+
 Route::post('{catname}/{postname}/newvote', 'PollController@VoteANewPoll');
 Route::post('{catname}/{postname}/vote', 'PollController@VoteAPoll');
 Route::post('{catname}/{postname}/reaction', 'PollController@VoteReaction');
-Route::post('shared/{postid}', 'PollController@Shared');
+
+Route::get('{catname}/{postname}/vote', function(){
+    return redirect()->back();
+});
+Route::get('{catname}/{postname}/reaction', function(){
+    return redirect()->back();
+});
+
 
 Route::get('{catname}/{slug}', 'PostsController@index');
 Route::get('{catname}', 'PagesController@showCategory');
