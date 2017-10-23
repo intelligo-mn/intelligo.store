@@ -17042,3 +17042,18 @@ Stack trace:
 #10 C:\wamp64\www\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle()
 #11 C:\wamp64\www\public\index.php(0): {main}()
 #12 {main}  
+[2017-10-22 16:27:14] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Terbium\DbConfig\DbConfigServiceProvider' not found' in C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:146
+Stack trace:
+#0 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(74): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#5 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#6 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#7 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(222): Illuminate\Foundation\Application->bootstrapWith()
+#8 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->bootstrap()
+#9 C:\wamp64\www\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#10 C:\wamp64\www\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle()
+#11 C:\wamp64\www\public\index.php(0): {main}()
+#12 {main}  
