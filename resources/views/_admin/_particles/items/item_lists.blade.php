@@ -10,4 +10,4 @@
          <i class="fa fa-user" style="font-size:11px"></i> <a href="/profile/{{ $item->user->username_slug }}" target="_blank" style="color:#ccc">{{ $item->user->username }}</a>  <i class="fa fa-clock-o" style="margin-left:7px;font-size:11px"></i> {{ $item->created_at->diffForHumans() }}
         </span>
     </div>
-</li>
+</li><!-- /.item -->

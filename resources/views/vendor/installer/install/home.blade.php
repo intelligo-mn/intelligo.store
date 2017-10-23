@@ -1,7 +1,7 @@
 @extends('installer::layouts.master')
 
 @section('container')
-    <link rel="stylesheet" href="/assets/css/plugins.css">
+    <link rel="stylesheet" href="/themes/modern/css/plugins.css">
     <div class="panel panel-success">
        <div class="panel-body">
             @if(null == Session::get('ok'))
@@ -46,7 +46,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="/assets/js/plugins.js"></script>
+    <script src="/themes/modern/js/plugins.js"></script>
     @include('errors.swalerror')
     <script>
         $(".popup-action").on("click", function (e) {

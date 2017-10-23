@@ -44,7 +44,7 @@
     @endforeach
     @foreach($posts as $post)
         <url>
-            <loc>{{ url(makeposturl($post)) }}</loc>
+            <loc>{{ makeposturl($post) }}</loc>
             <priority>1.0</priority>
             <lastmod>{{ $post->updated_at->toW3cString() }}</lastmod>
             <changefreq>monthly</changefreq>
