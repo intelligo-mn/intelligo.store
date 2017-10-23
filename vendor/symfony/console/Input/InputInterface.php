@@ -58,9 +58,11 @@ interface InputInterface
     public function bind(InputDefinition $definition);
 
     /**
-     * Validates the input.
+     * Validates if arguments given are correct.
      *
-     * @throws \RuntimeException When not enough arguments are given
+     * Throws an exception when not enough arguments are given.
+     *
+     * @throws \RuntimeException
      */
     public function validate();
 
@@ -72,13 +74,11 @@ interface InputInterface
     public function getArguments();
 
     /**
-     * Returns the argument value for a given argument name.
+     * Gets argument by name.
      *
-     * @param string $name The argument name
+     * @param string $name The name of the argument
      *
-     * @return mixed The argument value
-     *
-     * @throws \InvalidArgumentException When argument given doesn't exist
+     * @return mixed
      */
     public function getArgument($name);
 
@@ -109,13 +109,11 @@ interface InputInterface
     public function getOptions();
 
     /**
-     * Returns the option value for a given option name.
+     * Gets an option by name.
      *
-     * @param string $name The option name
+     * @param string $name The name of the option
      *
-     * @return mixed The option value
-     *
-     * @throws \InvalidArgumentException When option given doesn't exist
+     * @return mixed
      */
     public function getOption($name);
 

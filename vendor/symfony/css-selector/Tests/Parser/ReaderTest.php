@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\CssSelector\Tests\Parser;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\CssSelector\Parser\Reader;
 
-class ReaderTest extends TestCase
+class ReaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsEOF()
     {

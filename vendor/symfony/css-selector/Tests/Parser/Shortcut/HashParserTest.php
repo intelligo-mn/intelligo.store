@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\CssSelector\Tests\Parser\Shortcut;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\CssSelector\Node\SelectorNode;
 use Symfony\Component\CssSelector\Parser\Shortcut\HashParser;
 
 /**
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
  */
-class HashParserTest extends TestCase
+class HashParserTest extends \PHPUnit_Framework_TestCase
 {
     /** @dataProvider getParseTestData */
     public function testParse($source, $representation)

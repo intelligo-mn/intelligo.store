@@ -63,7 +63,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      * @param int    $port
      * @param string $crypto as "tls" or "ssl"
      *
-     * @return self
+     * @return Swift_Plugins_PopBeforeSmtpPlugin
      */
     public static function newInstance($host, $port = 110, $crypto = null)
     {
@@ -75,7 +75,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      *
      * @param Swift_Plugins_Pop_Pop3Connection $connection
      *
-     * @return $this
+     * @return Swift_Plugins_PopBeforeSmtpPlugin
      */
     public function setConnection(Swift_Plugins_Pop_Pop3Connection $connection)
     {
@@ -99,7 +99,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      *
      * @param int $timeout
      *
-     * @return $this
+     * @return Swift_Plugins_PopBeforeSmtpPlugin
      */
     public function setTimeout($timeout)
     {
@@ -113,7 +113,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      *
      * @param string $username
      *
-     * @return $this
+     * @return Swift_Plugins_PopBeforeSmtpPlugin
      */
     public function setUsername($username)
     {
@@ -127,7 +127,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      *
      * @param string $password
      *
-     * @return $this
+     * @return Swift_Plugins_PopBeforeSmtpPlugin
      */
     public function setPassword($password)
     {

@@ -56,7 +56,7 @@
 
 
 
-<section class="entry results" id="quiz_result" data-popup="{{ getenvcong('BuzzyQuizzesPopup') }}">
+<section class="entry results" id="quiz_result" data-popup="{{ getcong('BuzzyQuizzesPopup') }}">
     <div class="quiz_result_area">
         <h2 class="post-title">{{ $post->title }}</h2>
         <ol>

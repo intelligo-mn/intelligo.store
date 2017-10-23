@@ -35,8 +35,6 @@ class WhatFailureGroupHandler extends GroupHandler
                 $handler->handle($record);
             } catch (\Exception $e) {
                 // What failure?
-            } catch (\Throwable $e) {
-                // What failure?
             }
         }
 
@@ -52,8 +50,6 @@ class WhatFailureGroupHandler extends GroupHandler
             try {
                 $handler->handleBatch($records);
             } catch (\Exception $e) {
-                // What failure?
-            } catch (\Throwable $e) {
                 // What failure?
             }
         }

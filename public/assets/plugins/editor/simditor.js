@@ -472,9 +472,8 @@ Formatter = (function(superClass) {
 
   Formatter.prototype._init = function() {
     this.editor = this._module;
-    this._allowedTags = $.merge(['br', 'b', 'strong', 'i', 'u', 'p', 'ul', 'ol', 'li', 'img', 'blockquote'], this.opts.allowedTags);
+    this._allowedTags = $.merge(['br', 'b', 'strong', 'i', 'u', 'p', 'ul', 'ol', 'li', 'blockquote'], this.opts.allowedTags);
     this._allowedAttributes = $.extend({
-      img: ['src', 'alt', 'width', 'height', 'data-non-image'],
       a: ['href', 'target']
     }, this.opts.allowedAttributes);
     this._allowedStyles = $.extend({
@@ -712,7 +711,7 @@ Formatter = (function(superClass) {
           if (children && children.length > 0) {
             result += _this.clearHtml(children);
           }
-          if (lineBreak && i < contents.length - 1 && $node.is('br, p, div,  li,trqqq, pre, address, artticle, aside, dl, figcaption, footer, h1, h2,h3, h4, header')) {
+          if (lineBreak && i < contents.length - 1 && $node.is('br, p, div, li,trqqq, pre, address, artticle, aside, dl, figcaption, footer, h1, h2,h3, h4, header')) {
             return result += '\n';
           }
         }
@@ -1812,7 +1811,7 @@ Util = (function(superClass) {
     return $(node).is('[class^="simditor-"]');
   };
 
-  Util.prototype.blockNodes = ["div", "p", "a", "pre", "h1", "h2", "h3", "h4", "table"];
+  Util.prototype.blockNodes = ["div", "p", "a", "ul", "ol", "li", "blockquote", "hr", "pre", "h1", "h2", "h3", "h4", "table"];
 
   Util.prototype.isBlockNode = function(node) {
     node = $(node)[0];
@@ -2318,7 +2317,7 @@ Simditor = (function(superClass) {
   Simditor.prototype.opts = {
     textarea: null,
     placeholder: '',
-    defaultImage: 'assets/img/flogo.png',
+    defaultImage: 'images/image.png',
     params: {},
     upload: false,
     indentWidth: 40

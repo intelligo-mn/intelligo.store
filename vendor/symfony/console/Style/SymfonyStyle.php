@@ -17,6 +17,7 @@ use Symfony\Component\Console\Helper\Helper;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\SymfonyQuestionHelper;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -121,7 +122,7 @@ class SymfonyStyle extends OutputStyle
     {
         $this->autoPrependBlock();
         $this->writeln(array(
-            sprintf('<comment>%s</>', OutputFormatter::escapeTrailingBackslash($message)),
+            sprintf('<comment>%s</>', $message),
             sprintf('<comment>%s</>', str_repeat('=', strlen($message))),
         ));
         $this->newLine();
@@ -134,7 +135,7 @@ class SymfonyStyle extends OutputStyle
     {
         $this->autoPrependBlock();
         $this->writeln(array(
-            sprintf('<comment>%s</>', OutputFormatter::escapeTrailingBackslash($message)),
+            sprintf('<comment>%s</>', $message),
             sprintf('<comment>%s</>', str_repeat('-', strlen($message))),
         ));
         $this->newLine();
@@ -217,13 +218,21 @@ class SymfonyStyle extends OutputStyle
      */
     public function table(array $headers, array $rows)
     {
-        $style = clone Table::getStyleDefinition('symfony-style-guide');
-        $style->setCellHeaderFormat('<info>%s</info>');
+        array_walk_recursive($headers, function (&$value) {
+            if ($value instanceof TableCell) {
+                $value = new TableCell(sprintf('<info>%s</>', $value), array(
+                    'colspan' => $value->getColspan(),
+                    'rowspan' => $value->getRowspan(),
+                ));
+            } else {
+                $value = sprintf('<info>%s</>', $value);
+            }
+        });
 
         $table = new Table($this);
         $table->setHeaders($headers);
         $table->setRows($rows);
-        $table->setStyle($style);
+        $table->setStyle('symfony-style-guide');
 
         $table->render();
         $this->newLine();

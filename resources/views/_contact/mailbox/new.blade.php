@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <textarea name="email-body" id="compose-textarea" class="form-control" style="height: 400px">
-                        {!!   getenvcong('BuzzyContactSignature') ? '<br><br><br>'.getenvcong('BuzzyContactSignature'): '' !!}
+                        {!!   getcong('BuzzyContactSignature') ? '<br><br><br>'.getcong('BuzzyContactSignature'): '' !!}
                         {{ isset($lastmail) ? '<blockquote><br><hr>'.$lastmail->text.'</blockquote>' : '' }}
                     </textarea>
                 </div>

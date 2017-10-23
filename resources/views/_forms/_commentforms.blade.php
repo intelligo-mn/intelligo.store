@@ -1,5 +1,5 @@
 <div class="answers-form">
-    @if(getenvcong('p-easycomment')=='on')
+    @if(getcong('p-easycomment')=='on')
             <!-- easyComment Content Div -->
     <div id="easyComment_Content"></div>
     <br><br>
@@ -11,15 +11,15 @@
 
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
-        var easyComment_Theme = '{{ getenvcong('easyCommentTheme') ? getenvcong('easyCommentTheme') : 'Default' }}'; // Title of easyComment area. Yu can change this if you want.
-        var easyComment_Title = '{{ getenvcong('easyCommentTitle') ? getenvcong('easyCommentTitle') : 'Comments' }}'; // Title of easyComment area. Yu can change this if you want.
+        var easyComment_Theme = '{{ getcong('easyCommentTheme') ? getcong('easyCommentTheme') : 'Default' }}'; // Title of easyComment area. Yu can change this if you want.
+        var easyComment_Title = '{{ getcong('easyCommentTitle') ? getcong('easyCommentTitle') : 'Comments' }}'; // Title of easyComment area. Yu can change this if you want.
 
         var easyComment_userid = '{{ Auth::check() ? Auth::user()->id : '' }}';
         var easyComment_username = '{{ Auth::check() ? Auth::user()->username : '' }}';
         var easyComment_usericon = '{{ Auth::check() ? makepreview(Auth::user()->icon, 's', 'members/avatar') : '' }}';
         var easyComment_profillink = '{{ Auth::check() ? action('UsersController@index', [Auth::user()->username_slug ]) : '' }}';
 
-        var easyComment_Domain = '{{ getenvcong('easyCommentcode') }}';
+        var easyComment_Domain = '{{ getcong('easyCommentcode') }}';
 
         (function() {
             var EC = document.createElement('script');
@@ -32,18 +32,18 @@
 
     @endif
 
-    @if(getenvcong('p-facebookcomments')=='on')
+    @if(getcong('p-facebookcomments')=='on')
         <div class="colheader">
             <h1>{{ trans('index.conversations') }}</h1>
         </div>
         <div class="fb-comments" data-href="{{  Request::url() }}" data-numposts="5" data-width="100%" style="width: 100%"></div>
         <br><br>
     @endif
-    @if(getenvcong('p-disquscomments')=='on')
+    @if(getcong('p-disquscomments')=='on')
         <div class="colheader">
             <h1>{{ trans('index.disqusconversations') }}</h1>
         </div>
-        {!! getenvcong('DisqussCommentcode') !!}
+        {!! getcong('DisqussCommentcode') !!}
         <br><br>
     @endif
 

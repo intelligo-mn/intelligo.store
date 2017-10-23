@@ -41,9 +41,8 @@ class ProgressBar
     private $stepWidth;
     private $percent = 0.0;
     private $formatLineCount;
-    private $messages = array();
+    private $messages;
     private $overwrite = true;
-    private $firstRun = true;
 
     private static $formatters;
     private static $formats;
@@ -140,16 +139,6 @@ class ProgressBar
         return isset(self::$formats[$name]) ? self::$formats[$name] : null;
     }
 
-    /**
-     * Associates a text with a named placeholder.
-     *
-     * The text is displayed when the progress bar is rendered but only
-     * when the corresponding placeholder is part of the custom format line
-     * (by wrapping the name with %).
-     *
-     * @param string $message The text to associate with the placeholder
-     * @param string $name    The name of the placeholder
-     */
     public function setMessage($message, $name = 'message')
     {
         $this->messages[$name] = $message;
@@ -523,23 +512,19 @@ class ProgressBar
     private function overwrite($message)
     {
         if ($this->overwrite) {
-            if (!$this->firstRun) {
-                // Move the cursor to the beginning of the line
-                $this->output->write("\x0D");
+            // Move the cursor to the beginning of the line
+            $this->output->write("\x0D");
 
-                // Erase the line
-                $this->output->write("\x1B[2K");
+            // Erase the line
+            $this->output->write("\x1B[2K");
 
-                // Erase previous lines
-                if ($this->formatLineCount > 0) {
-                    $this->output->write(str_repeat("\x1B[1A\x1B[2K", $this->formatLineCount));
-                }
+            // Erase previous lines
+            if ($this->formatLineCount > 0) {
+                $this->output->write(str_repeat("\x1B[1A\x1B[2K", $this->formatLineCount));
             }
         } elseif ($this->step > 0) {
             $this->output->writeln('');
         }
-
-        $this->firstRun = false;
 
         $this->output->write($message);
     }

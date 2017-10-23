@@ -39,7 +39,7 @@ class MoFileLoader extends ArrayLoader
     /**
      * The size of the header of a MO file in bytes.
      *
-     * @var int Number of bytes
+     * @var int Number of bytes.
      */
     const MO_HEADER_SIZE = 28;
 
@@ -117,7 +117,7 @@ class MoFileLoader extends ArrayLoader
         $messages = array();
 
         for ($i = 0; $i < $count; ++$i) {
-            $pluralId = null;
+            $singularId = $pluralId = null;
             $translated = null;
 
             fseek($stream, $offsetId + $i * 8);
@@ -174,7 +174,7 @@ class MoFileLoader extends ArrayLoader
     }
 
     /**
-     * Reads an unsigned long from stream respecting endianness.
+     * Reads an unsigned long from stream respecting endianess.
      *
      * @param resource $stream
      * @param bool     $isBigEndian

@@ -18,7 +18,7 @@
             <div class="under-email-signin clearfix">
                 <div class="forgot-pass">
 
-                    {!!  trans('index.termslink', ['url' => '<a href="'.getenvcong('termspage').'" target="_blank">'.trans('index.terms').'</a>']) !!}
+                    {!!  trans('index.termslink', ['url' => '<a href="'.getcong('termspage').'" target="_blank">'.trans('index.terms').'</a>']) !!}
                 </div>
             </div>
             <button type="button" class="button button-orange button-full"  id="PostNewUser">{{ trans('index.register') }}</button>

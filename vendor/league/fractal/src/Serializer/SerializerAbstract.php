@@ -38,13 +38,6 @@ abstract class SerializerAbstract
     abstract public function item($resourceKey, array $data);
 
     /**
-     * Serialize null resource.
-     *
-     * @return array
-     */
-    abstract public function null();
-
-    /**
      * Serialize the included data.
      *
      * @param ResourceInterface $resource
@@ -126,15 +119,5 @@ abstract class SerializerAbstract
     public function filterIncludes($includedData, $data)
     {
         return $includedData;
-    }
-
-    /**
-     * Get the mandatory fields for the serializer
-     *
-     * @return array
-     */
-    public function getMandatoryFields()
-    {
-        return [];
     }
 }

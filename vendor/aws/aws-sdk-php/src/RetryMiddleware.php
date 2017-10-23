@@ -91,13 +91,13 @@ class RetryMiddleware
      *
      * Exponential backoff with jitter, 100ms base, 20 sec ceiling
      *
-     * @param $retries - The number of retries that have already been attempted
+     * @param $retries
      *
      * @return int
      */
     public static function exponentialDelay($retries)
     {
-        return mt_rand(0, (int) min(20000, (int) pow(2, $retries) * 100));
+        return mt_rand(0, (int) min(20000, (int) pow(2, $retries - 1) * 100));
     }
 
     /**
@@ -130,7 +130,7 @@ class RetryMiddleware
         ) {
             $this->updateHttpStats($value, $requestStats);
 
-            if ($value instanceof \Exception || $value instanceof \Throwable) {
+            if ($value instanceof \Exception) {
                 if (!$decider($retries, $command, $request, null, $value)) {
                     return \GuzzleHttp\Promise\rejection_for(
                         $this->bindStatsToReturn($value, $requestStats)

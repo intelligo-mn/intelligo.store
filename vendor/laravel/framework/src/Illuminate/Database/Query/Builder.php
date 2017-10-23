@@ -1664,7 +1664,7 @@ class Builder
      * Retrieve the minimum value of a given column.
      *
      * @param  string  $column
-     * @return mixed
+     * @return float|int
      */
     public function min($column)
     {
@@ -1675,7 +1675,7 @@ class Builder
      * Retrieve the maximum value of a given column.
      *
      * @param  string  $column
-     * @return mixed
+     * @return float|int
      */
     public function max($column)
     {
@@ -1686,18 +1686,20 @@ class Builder
      * Retrieve the sum of the values of a given column.
      *
      * @param  string  $column
-     * @return mixed
+     * @return float|int
      */
     public function sum($column)
     {
-        return $this->aggregate(__FUNCTION__, [$column]);
+        $result = $this->aggregate(__FUNCTION__, [$column]);
+
+        return $result ?: 0;
     }
 
     /**
      * Retrieve the average of the values of a given column.
      *
      * @param  string  $column
-     * @return mixed
+     * @return float|int
      */
     public function avg($column)
     {
@@ -1708,7 +1710,7 @@ class Builder
      * Alias for the "avg" method.
      *
      * @param  string  $column
-     * @return mixed
+     * @return float|int
      */
     public function average($column)
     {
@@ -1720,7 +1722,7 @@ class Builder
      *
      * @param  string  $function
      * @param  array   $columns
-     * @return mixed
+     * @return float|int
      */
     public function aggregate($function, $columns = ['*'])
     {
@@ -1747,34 +1749,10 @@ class Builder
         $this->bindings['select'] = $previousSelectBindings;
 
         if (isset($results[0])) {
-            return array_change_key_case((array) $results[0])['aggregate'];
+            $result = array_change_key_case((array) $results[0]);
+
+            return $result['aggregate'];
         }
-    }
-
-    /**
-     * Execute a numeric aggregate function on the database.
-     *
-     * @param  string  $function
-     * @param  array   $columns
-     * @return float|int
-     */
-    public function numericAggregate($function, $columns = ['*'])
-    {
-        $result = $this->aggregate($function, $columns);
-
-        if (! $result) {
-            return 0;
-        }
-
-        if (is_int($result) || is_float($result)) {
-            return $result;
-        }
-
-        if (strpos((string) $result, '.') === false) {
-            return (int) $result;
-        }
-
-        return (float) $result;
     }
 
     /**
@@ -1868,10 +1846,6 @@ class Builder
      */
     public function increment($column, $amount = 1, array $extra = [])
     {
-        if (! is_numeric($amount)) {
-            throw new InvalidArgumentException('Non-numeric value passed to increment method.');
-        }
-
         $wrapped = $this->grammar->wrap($column);
 
         $columns = array_merge([$column => $this->raw("$wrapped + $amount")], $extra);
@@ -1889,10 +1863,6 @@ class Builder
      */
     public function decrement($column, $amount = 1, array $extra = [])
     {
-        if (! is_numeric($amount)) {
-            throw new InvalidArgumentException('Non-numeric value passed to decrement method.');
-        }
-
         $wrapped = $this->grammar->wrap($column);
 
         $columns = array_merge([$column => $this->raw("$wrapped - $amount")], $extra);

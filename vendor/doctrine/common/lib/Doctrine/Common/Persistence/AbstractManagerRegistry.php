@@ -258,7 +258,5 @@ abstract class AbstractManagerRegistry implements ManagerRegistry
         // force the creation of a new document manager
         // if the current one is closed
         $this->resetService($this->managers[$name]);
-
-        return $this->getManager($name);
     }
 }

@@ -19,8 +19,7 @@
 
 namespace Doctrine\DBAL\Schema;
 
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Driver\DriverException;
+use Doctrine\DBAL\Driver\SQLSrv\SQLSrvException;
 use Doctrine\DBAL\Types\Type;
 
 /**
@@ -35,34 +34,6 @@ use Doctrine\DBAL\Types\Type;
  */
 class SQLServerSchemaManager extends AbstractSchemaManager
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function dropDatabase($database)
-    {
-        try {
-            parent::dropDatabase($database);
-        } catch (DBALException $exception) {
-            $exception = $exception->getPrevious();
-
-            if (! $exception instanceof DriverException) {
-                throw $exception;
-            }
-
-            // If we have a error code 3702, the drop database operation failed
-            // because of active connections on the database.
-            // To force dropping the database, we first have to close all active connections
-            // on that database and issue the drop database operation again.
-            if ($exception->getErrorCode() !== 3702) {
-                throw $exception;
-            }
-
-            $this->closeActiveDatabaseConnections($database);
-
-            parent::dropDatabase($database);
-        }
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -241,7 +212,7 @@ class SQLServerSchemaManager extends AbstractSchemaManager
             } else {
                 throw $e;
             }
-        } catch (DBALException $e) {
+        } catch (SQLSrvException $e) {
             if (strpos($e->getMessage(), 'SQLSTATE [01000, 15472]') === 0) {
                 return array();
             } else {
@@ -286,26 +257,5 @@ class SQLServerSchemaManager extends AbstractSchemaManager
             INNER JOIN SysColumns Col ON Col.[ColID] = DefCons.[parent_column_id] AND Col.[ID] = Tab.[ID]
             WHERE Col.[Name] = " . $this->_conn->quote($column) ." AND Tab.[Name] = " . $this->_conn->quote($table) . "
             ORDER BY Col.[Name]";
-    }
-
-    /**
-     * Closes currently active connections on the given database.
-     *
-     * This is useful to force DROP DATABASE operations which could fail because of active connections.
-     *
-     * @param string $database The name of the database to close currently active connections for.
-     *
-     * @return void
-     */
-    private function closeActiveDatabaseConnections($database)
-    {
-        $database = new Identifier($database);
-
-        $this->_execSql(
-            sprintf(
-                'ALTER DATABASE %s SET SINGLE_USER WITH ROLLBACK IMMEDIATE',
-                $database->getQuotedName($this->_platform)
-            )
-        );
     }
 }

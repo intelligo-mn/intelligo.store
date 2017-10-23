@@ -64,7 +64,7 @@ class Swift_Transport_SendmailTransport extends Swift_Transport_AbstractSmtpTran
      *
      * @param string $command
      *
-     * @return $this
+     * @return Swift_Transport_SendmailTransport
      */
     public function setCommand($command)
     {

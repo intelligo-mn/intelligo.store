@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\HttpFoundation\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class JsonResponseTest extends TestCase
+class JsonResponseTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructorEmptyCreatesJsonObject()
     {
@@ -213,14 +212,6 @@ class JsonResponseTest extends TestCase
         $serializable = new JsonSerializableObject();
 
         JsonResponse::create($serializable);
-    }
-
-    public function testSetComplexCallback()
-    {
-        $response = JsonResponse::create(array('foo' => 'bar'));
-        $response->setCallback('ಠ_ಠ["foo"].bar[0]');
-
-        $this->assertEquals('/**/ಠ_ಠ["foo"].bar[0]({"foo":"bar"});', $response->getContent());
     }
 }
 

@@ -50,9 +50,9 @@ class PostUpdatedListener
 
             $this->mailer->send($view, compact('username', 'PostTitle', 'Postlink'), function($message)
             {
-                $message->sender(getenvcong('siteemail'), getenvcong('sitename'));
+                $message->sender(getcong('siteemail'), getcong('sitename'));
                 $message->subject($this->subject);
-                $message->from(getenvcong('siteemail'), getenvcong('sitename'));
+                $message->from(getcong('siteemail'), getcong('sitename'));
                 $message->to($this->useremail);
                 $message->getSwiftMessage();
             });

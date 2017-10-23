@@ -1,5 +1,5 @@
 @extends("main")
-@section('head_title', $category->name .' | '.getenvcong('sitename') )
+@section('head_title', $category->name .' | '.getcong('sitename') )
 @section('head_description', $category->description )
 @section("content")
 <section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="gridview-3-col">

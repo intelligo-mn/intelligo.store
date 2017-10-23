@@ -92,9 +92,9 @@
                     {data: 'icon', name: 'icon', orderable: false, searchable: false},
                     {data: 'username', name: 'username', orderable: false},
                     {data: 'email', name: 'email', orderable: false},
-                    {data: 'status', name: 'status', orderable: false, searchable: false},
-                    {data: 'created_at', name: 'created_at', searchable: false},
-                    {data: 'updated_at', name: 'updated_at', searchable: false},
+                    {data: 'status', name: 'status', orderable: false},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });

@@ -102,17 +102,17 @@
 
                         <div class="form-group">
                             <label class="control-label">{{ trans("admin.easyCommentTheme") }}</label>
-                            {!! Form::select('easyCommentTheme', ['Default' => 'Default','Dark' => 'Dark','Boxed' => 'Boxed','Envato' => 'Envato', 'Blog' => 'Blog'], getenvcong('easyCommentTheme'), ['class' => 'form-control'])  !!}
+                            {!! Form::select('easyCommentTheme', ['Default' => 'Default','Dark' => 'Dark','Boxed' => 'Boxed','Envato' => 'Envato', 'Blog' => 'Blog'], getcong('easyCommentTheme'), ['class' => 'form-control'])  !!}
                             <p >{!! trans("admin.easyCommentThemeDesc")  !!}</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{!! trans("admin.easyCommentTitle")  !!}</label>
-                            <input type="text" class="form-control input-lg" name="easyCommentTitle" value="{{  getenvcong('easyCommentTitle') }}">
+                            <input type="text" class="form-control input-lg" name="easyCommentTitle" value="{{  getcong('easyCommentTitle') }}">
                             <p >{!! trans("admin.easyCommentTitleDesc")  !!}</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{!! trans("admin.easyCommentInitiationUrl")  !!}</label>
-                            <input type="text" class="form-control input-lg" name="easyCommentcode" value="{{  getenvcong('easyCommentcode') }}">
+                            <input type="text" class="form-control input-lg" name="easyCommentcode" value="{{  getcong('easyCommentcode') }}">
                         </div>
                     </div>
             @elseif($p_code == "disquscomments")
@@ -125,8 +125,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.DisqusCode")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="DisqussCommentcode" value="{{  getenvcong('DisqussCommentcode') }}">
-
+                                <textarea name="DisqussCommentcode" style="height:120px" class="form-control">{{  getcong('DisqussCommentcode') }}</textarea>
                             </div>
                         </div>
                     @elseif($p_code == "buzzyquizzes")
@@ -141,7 +140,7 @@
 
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.QuizzesPluginResultType")  !!}</label>
-                                {!! Form::select('BuzzyQuizzesPopup', ['on' => trans("admin.BuzzyQuizzesSpecialResultPopup"), 'off' => trans("admin.OnlyBuzzFeedStyleResult")], getenvcong('BuzzyQuizzesPopup'), ['class' => 'form-control'])  !!}
+                                {!! Form::select('BuzzyQuizzesPopup', ['on' => trans("admin.BuzzyQuizzesSpecialResultPopup"), 'off' => trans("admin.OnlyBuzzFeedStyleResult")], getcong('BuzzyQuizzesPopup'), ['class' => 'form-control'])  !!}
                                 <p>{!! trans("admin.QuizzesPluginResultTypeDesc")  !!}</p>
                             </div>
 
@@ -170,38 +169,38 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.BuzzyContactName")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactName" value="{{  getenvcong('BuzzyContactName') }}">
+                                <input type="text" class="form-control input-lg" name="BuzzyContactName" value="{{  getcong('BuzzyContactName') }}">
                                 <p>{!! trans("admin.BuzzyContactNameDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.BuzzyContactEmail")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactEmail" value="{{  getenvcong('BuzzyContactEmail') }}">
+                                <input type="text" class="form-control input-lg" name="BuzzyContactEmail" value="{{  getcong('BuzzyContactEmail') }}">
                                 <p>{!! trans("admin.BuzzyContactEmailDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.EmailSignature")  !!}</label>
-                                <textarea  class="form-control input-lg" name="BuzzyContactSignature">{{  getenvcong('BuzzyContactSignature') }}</textarea>
+                                <textarea  class="form-control input-lg" name="BuzzyContactSignature">{{  getcong('BuzzyContactSignature') }}</textarea>
                                 <p>{!! trans("admin.EmailSignatureDesc")  !!}</p>
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.Sendacopytomyemail")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="BuzzyContactCopyEmail" value="{{  getenvcong('BuzzyContactCopyEmail') }}">
+                                <input type="text" class="form-control input-lg" name="BuzzyContactCopyEmail" value="{{  getcong('BuzzyContactCopyEmail') }}">
                                 <p>{!! trans("admin.SendacopytomyemailDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.Usecaptchaoncontactform")  !!}</label>
-                                {!! Form::select('BuzzyContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getenvcong('BuzzyContactCaptcha'), ['class' => 'form-control'])  !!}
+                                {!! Form::select('BuzzyContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getcong('BuzzyContactCaptcha'), ['class' => 'form-control'])  !!}
                             </div>
                             <div class="form-group">
                                 <label class="control-label">{!! trans("admin.GooglereCaptchaApiKey")  !!}</label>
-                                <input type="text" class="form-control input-lg" name="reCaptchaKey" value="{{  getenvcong('reCaptchaKey') }}">
+                                <input type="text" class="form-control input-lg" name="reCaptchaKey" value="{{  getcong('reCaptchaKey') }}">
 
                                 <p>{!! trans("admin.GooglereCaptchaApiKeyDesc")  !!}</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Google reCaptcha Api Secret</label>
-                                <input type="text" class="form-control input-lg" name="reCaptchaSecret" value="{{  \Auth::user()->email == 'demo@admin.com' ?  trans("admin.youPERMISSION") : getenvcong('reCaptchaSecret')  }}">
+                                <input type="text" class="form-control input-lg" name="reCaptchaSecret" value="{{  \Auth::user()->email == 'demo@admin.com' ?  trans("admin.youPERMISSION") : getcong('reCaptchaSecret')  }}">
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -218,12 +217,11 @@
                                 <h2 class="control-label"> {!! trans("admin.Column")  !!} 1</h2>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.Section1Title")  !!}</label>
-                                    <input type="text" class="form-control input-lg" name="HomeColSec1Tit1" value="{{ getenvcong('HomeColSec1Tit1') }}">
+                                    <input type="text" class="form-control input-lg" name="HomeColSec1Tit1" value="{{ getcong('HomeColSec1Tit1') }}">
                                 </div>
                                 <div class="form-group">
-
                                     <label class="control-label">{!! trans("admin.SelectedTypesorCategories")  !!}</label>
-                                    {!! Form::select('HomeColSec1Type1[]', $typeos, json_decode(getenvcong('HomeColSec1Type1')), ['class' => 'form-control','style' => 'height:220px','multiple' => 'multiple'])  !!}
+                                    {!! Form::select('HomeColSec1Type1[]', $typeos, getcong('HomeColSec1Type1'), ['class' => 'form-control','style' => 'height:220px','multiple' => 'multiple'])  !!}
                                 </div>
 
                             </div>
@@ -231,27 +229,27 @@
                                 <h2 class="control-label">{!! trans("admin.Column")  !!} 2</h2>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.Section2Title")  !!}</label>
-                                    <input type="text" class="form-control input-lg" name="HomeColSec2Tit1" value="{{ getenvcong('HomeColSec2Tit1') }}">
+                                    <input type="text" class="form-control input-lg" name="HomeColSec2Tit1" value="{{ getcong('HomeColSec2Tit1') }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.SelectedTypesorCategories")  !!}</label>
-                                    {!! Form::select('HomeColSec2Type1[]', $typeos, json_decode(getenvcong('HomeColSec2Type1')), ['class' => 'form-control','style' => 'height:220px','multiple' => 'multiple'])  !!}
+                                    {!! Form::select('HomeColSec2Type1[]', $typeos, getcong('HomeColSec2Type1'), ['class' => 'form-control','style' => 'height:220px','multiple' => 'multiple'])  !!}
                                 </div>
                             </div>
                             <div class="col-lg-2 col-xs-3">
                                 <h2 class="control-label">{!! trans("admin.Column")  !!} 3</h2>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.TrendingsOnOff")  !!}</label>
-                                    {!! Form::select('HomeCol3Trends', ['true' => trans("admin.on"), 'false' => trans("admin.of")], getenvcong('HomeCol3Trends'), ['class' => 'form-control'])  !!}
+                                    {!! Form::select('HomeCol3Trends', ['true' => trans("admin.on"), 'false' => trans("admin.of")], getcong('HomeCol3Trends'), ['class' => 'form-control'])  !!}
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.Section3Title")  !!}</label>
-                                    <input type="text" class="form-control input-lg" name="HomeColSec3Tit1" value="{{ getenvcong('HomeColSec3Tit1') }}">
+                                    <input type="text" class="form-control input-lg" name="HomeColSec3Tit1" value="{{ getcong('HomeColSec3Tit1') }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">{!! trans("admin.SelectedTypesorCategories")  !!}</label>
 
-                                    {!! Form::select('HomeColSec3Type1[]', $typeos, json_decode(getenvcong('HomeColSec3Type1')), ['class' => 'form-control','style' => 'height:150px','multiple' => 'multiple'])  !!}
+                                    {!! Form::select('HomeColSec3Type1[]', $typeos, getcong('HomeColSec3Type1'), ['class' => 'form-control','style' => 'height:150px','multiple' => 'multiple'])  !!}
                                 </div>
 
                             </div>

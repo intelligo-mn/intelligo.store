@@ -4,7 +4,6 @@ namespace Aws;
 use Aws\Endpoint\PartitionEndpointProvider;
 use Aws\Endpoint\PartitionInterface;
 use GuzzleHttp\Promise\FulfilledPromise;
-use Psr\Http\Message\RequestInterface;
 
 class MultiRegionClient implements AwsClientInterface
 {
@@ -20,8 +19,6 @@ class MultiRegionClient implements AwsClientInterface
     private $args;
     /** @var array */
     private $config;
-    /** @var HandlerList */
-    private $handlerList;
 
     public static function getArguments()
     {
@@ -106,18 +103,9 @@ class MultiRegionClient implements AwsClientInterface
             $args['service'] = $this->parseClass();
         }
 
-        $this->handlerList = new HandlerList(function (
-            CommandInterface $command
-        ) {
-            list($region, $args) = $this->getRegionFromArgs($command->toArray());
-            $command = $this->getClientFromPool($region)
-                ->getCommand($command->getName(), $args);
-            return $this->executeAsync($command);
-        });
-
         $argDefinitions = static::getArguments();
         $resolver = new ClientResolver($argDefinitions);
-        $args = $resolver->resolve($args, $this->handlerList);
+        $args = $resolver->resolve($args, new HandlerList);
         $this->config = $args['config'];
         $this->factory = $args['client_factory'];
         $this->partition = $args['partition'];
@@ -155,7 +143,9 @@ class MultiRegionClient implements AwsClientInterface
      */
     public function getCommand($name, array $args = [])
     {
-        return new Command($name, $args, clone $this->getHandlerList());
+        list($region, $args) = $this->getRegionFromArgs($args);
+
+        return $this->getClientFromPool($region)->getCommand($name, $args);
     }
 
     public function getConfig($option = null)
@@ -178,7 +168,7 @@ class MultiRegionClient implements AwsClientInterface
 
     public function getHandlerList()
     {
-        return $this->handlerList;
+        return $this->getClientFromPool()->getHandlerList();
     }
 
     public function getApi()

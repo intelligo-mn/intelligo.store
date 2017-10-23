@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\HttpFoundation\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RequestMatcher;
 use Symfony\Component\HttpFoundation\Request;
 
-class RequestMatcherTest extends TestCase
+class RequestMatcherTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider getMethodData
+     * @dataProvider testMethodFixtures
      */
     public function testMethod($requestMethod, $matcherMethod, $isMatch)
     {
@@ -32,7 +31,7 @@ class RequestMatcherTest extends TestCase
         $this->assertSame($isMatch, $matcher->matches($request));
     }
 
-    public function getMethodData()
+    public function testMethodFixtures()
     {
         return array(
             array('get', 'get', true),
@@ -64,7 +63,7 @@ class RequestMatcherTest extends TestCase
     }
 
     /**
-     * @dataProvider getHostData
+     * @dataProvider testHostFixture
      */
     public function testHost($pattern, $isMatch)
     {
@@ -78,7 +77,7 @@ class RequestMatcherTest extends TestCase
         $this->assertSame($isMatch, $matcher->matches($request));
     }
 
-    public function getHostData()
+    public function testHostFixture()
     {
         return array(
             array('.*\.example\.com', true),

@@ -11,11 +11,10 @@
 
 namespace Symfony\Component\CssSelector\Tests\Parser;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\CssSelector\Parser\Token;
 use Symfony\Component\CssSelector\Parser\TokenStream;
 
-class TokenStreamTest extends TestCase
+class TokenStreamTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNext()
     {
@@ -53,7 +52,7 @@ class TokenStreamTest extends TestCase
 
     public function testFailToGetNextIdentifier()
     {
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}('Symfony\Component\CssSelector\Exception\SyntaxErrorException');
+        $this->setExpectedException('Symfony\Component\CssSelector\Exception\SyntaxErrorException');
 
         $stream = new TokenStream();
         $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));
@@ -73,7 +72,7 @@ class TokenStreamTest extends TestCase
 
     public function testFailToGetNextIdentifierOrStar()
     {
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}('Symfony\Component\CssSelector\Exception\SyntaxErrorException');
+        $this->setExpectedException('Symfony\Component\CssSelector\Exception\SyntaxErrorException');
 
         $stream = new TokenStream();
         $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));

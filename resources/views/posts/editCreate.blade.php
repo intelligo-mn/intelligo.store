@@ -1,5 +1,5 @@
 @extends("app")
-@section('head_title', trans('addpost.edit', ['type' => $post->title ]).' | '.getenvcong('sitename'))
+@section('head_title', trans('addpost.edit', ['type' => $post->title ]).' | '.getcong('sitename'))
 @section('modedefault', 'mode-default')
 @section('modeboxed', 'mode-boxed')
 @section("header")

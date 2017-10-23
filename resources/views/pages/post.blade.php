@@ -1,5 +1,5 @@
 @extends("main")
-@section('head_title',  $post->title.' | '.getenvcong('sitename'))
+@section('head_title',  $post->title.' | '.getcong('sitename'))
 @section('head_description', $post->body)
 @section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))
 @section('head_url', Request::url())
@@ -466,7 +466,7 @@
 @endsection
 
 @section('footer')
-    <script async defer src="//platform.instagram.com/{{  getenvcong('sitelanguage') > "" ? getenvcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
+    <script async defer src="//platform.instagram.com/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/embeds.js"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <style> .fb_dialog{z-index:999999999} </style>
     <div id="fb-root"></div>
@@ -474,7 +474,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/{{  getenvcong('sitelanguage') > "" ? getenvcong('sitelanguage') : 'en_US' }}/sdk.js#xfbml=1{!! getenvcong('facebookapp') > "" ? '&appId='.getenvcong('facebookapp') : '' !!}&version=v2.4";
+            js.src = "//connect.facebook.net/{{  getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US' }}/sdk.js#xfbml=1{!! getcong('facebookapp') > "" ? '&appId='.getcong('facebookapp') : '' !!}&version=v2.4";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
     <script>

@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\HttpKernel\Profiler;
 
-use Symfony\Component\HttpFoundation\Exception\ConflictingHeadersException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
@@ -78,7 +77,7 @@ class Profiler
      *
      * @param Response $response A Response instance
      *
-     * @return Profile|false A Profile instance
+     * @return Profile A Profile instance
      */
     public function loadProfileFromResponse(Response $response)
     {
@@ -149,7 +148,7 @@ class Profiler
      *
      * @param string $data A data string as exported by the export() method
      *
-     * @return Profile|false A Profile instance
+     * @return Profile A Profile instance
      */
     public function import($data)
     {
@@ -201,13 +200,9 @@ class Profiler
         $profile = new Profile(substr(hash('sha256', uniqid(mt_rand(), true)), 0, 6));
         $profile->setTime(time());
         $profile->setUrl($request->getUri());
+        $profile->setIp($request->getClientIp());
         $profile->setMethod($request->getMethod());
         $profile->setStatusCode($response->getStatusCode());
-        try {
-            $profile->setIp($request->getClientIp());
-        } catch (ConflictingHeadersException $e) {
-            $profile->setIp('Unknown');
-        }
 
         $response->headers->set('X-Debug-Token', $profile->getToken());
 

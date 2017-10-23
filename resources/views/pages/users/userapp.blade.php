@@ -1,5 +1,5 @@
 @extends("app")
-@section('head_title', $userinfo->username.' | '. getenvcong('sitename'))
+@section('head_title', $userinfo->username.' | '. getcong('sitename'))
 @section('modeboxed', 'mode-boxed')
 @section("content")
 

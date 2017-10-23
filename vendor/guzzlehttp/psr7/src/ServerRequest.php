@@ -55,24 +55,26 @@ class ServerRequest extends Request implements ServerRequestInterface
     private $uploadedFiles = [];
 
     /**
-     * @param string                               $method       HTTP method
-     * @param string|UriInterface                  $uri          URI
-     * @param array                                $headers      Request headers
-     * @param string|null|resource|StreamInterface $body         Request body
-     * @param string                               $version      Protocol version
-     * @param array                                $serverParams Typically the $_SERVER superglobal
+     * @param null|string $method HTTP method for the request
+     * @param null|string|UriInterface $uri URI for the request
+     * @param array $headers Headers for the message
+     * @param string|resource|StreamInterface $body Message body
+     * @param string $protocolVersion HTTP protocol version
+     * @param array $serverParams the value of $_SERVER superglobal
+     *
+     * @throws InvalidArgumentException for an invalid URI
      */
     public function __construct(
         $method,
         $uri,
         array $headers = [],
         $body = null,
-        $version = '1.1',
+        $protocolVersion = '1.1',
         array $serverParams = []
     ) {
         $this->serverParams = $serverParams;
 
-        parent::__construct($method, $uri, $headers, $body, $version);
+        parent::__construct($method, $uri, $headers, $body, $protocolVersion);
     }
 
     /**
@@ -188,37 +190,25 @@ class ServerRequest extends Request implements ServerRequestInterface
     public static function getUriFromGlobals() {
         $uri = new Uri('');
 
-        $uri = $uri->withScheme(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http');
-
-        $hasPort = false;
-        if (isset($_SERVER['HTTP_HOST'])) {
-            $hostHeaderParts = explode(':', $_SERVER['HTTP_HOST']);
-            $uri = $uri->withHost($hostHeaderParts[0]);
-            if (isset($hostHeaderParts[1])) {
-                $hasPort = true;
-                $uri = $uri->withPort($hostHeaderParts[1]);
-            }
-        } elseif (isset($_SERVER['SERVER_NAME'])) {
-            $uri = $uri->withHost($_SERVER['SERVER_NAME']);
-        } elseif (isset($_SERVER['SERVER_ADDR'])) {
-            $uri = $uri->withHost($_SERVER['SERVER_ADDR']);
+        if (isset($_SERVER['HTTPS'])) {
+            $uri = $uri->withScheme($_SERVER['HTTPS'] == 'on' ? 'https' : 'http');
         }
 
-        if (!$hasPort && isset($_SERVER['SERVER_PORT'])) {
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $uri = $uri->withHost($_SERVER['HTTP_HOST']);
+        } elseif (isset($_SERVER['SERVER_NAME'])) {
+            $uri = $uri->withHost($_SERVER['SERVER_NAME']);
+        }
+
+        if (isset($_SERVER['SERVER_PORT'])) {
             $uri = $uri->withPort($_SERVER['SERVER_PORT']);
         }
 
-        $hasQuery = false;
         if (isset($_SERVER['REQUEST_URI'])) {
-            $requestUriParts = explode('?', $_SERVER['REQUEST_URI']);
-            $uri = $uri->withPath($requestUriParts[0]);
-            if (isset($requestUriParts[1])) {
-                $hasQuery = true;
-                $uri = $uri->withQuery($requestUriParts[1]);
-            }
+            $uri = $uri->withPath(current(explode('?', $_SERVER['REQUEST_URI'])));
         }
 
-        if (!$hasQuery && isset($_SERVER['QUERY_STRING'])) {
+        if (isset($_SERVER['QUERY_STRING'])) {
             $uri = $uri->withQuery($_SERVER['QUERY_STRING']);
         }
 
@@ -346,8 +336,8 @@ class ServerRequest extends Request implements ServerRequestInterface
      */
     public function withoutAttribute($attribute)
     {
-        if (false === array_key_exists($attribute, $this->attributes)) {
-            return $this;
+        if (false === isset($this->attributes[$attribute])) {
+            return clone $this;
         }
 
         $new = clone $this;

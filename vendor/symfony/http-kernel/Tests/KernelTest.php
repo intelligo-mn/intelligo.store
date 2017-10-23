@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\HttpKernel\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Config\EnvParametersResource;
@@ -23,7 +22,7 @@ use Symfony\Component\HttpKernel\Tests\Fixtures\KernelForTest;
 use Symfony\Component\HttpKernel\Tests\Fixtures\KernelForOverrideName;
 use Symfony\Component\HttpKernel\Tests\Fixtures\FooBarBundle;
 
-class KernelTest extends TestCase
+class KernelTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
@@ -66,7 +65,7 @@ class KernelTest extends TestCase
 
     public function testBootSetsTheContainerToTheBundles()
     {
-        $bundle = $this->getMockBuilder('Symfony\Component\HttpKernel\Bundle\Bundle')->getMock();
+        $bundle = $this->getMock('Symfony\Component\HttpKernel\Bundle\Bundle');
         $bundle->expects($this->once())
             ->method('setContainer');
 
@@ -163,7 +162,7 @@ class KernelTest extends TestCase
 
     public function testShutdownCallsShutdownOnAllBundles()
     {
-        $bundle = $this->getMockBuilder('Symfony\Component\HttpKernel\Bundle\Bundle')->getMock();
+        $bundle = $this->getMock('Symfony\Component\HttpKernel\Bundle\Bundle');
         $bundle->expects($this->once())
             ->method('shutdown');
 
@@ -175,7 +174,7 @@ class KernelTest extends TestCase
 
     public function testShutdownGivesNullContainerToAllBundles()
     {
-        $bundle = $this->getMockBuilder('Symfony\Component\HttpKernel\Bundle\Bundle')->getMock();
+        $bundle = $this->getMock('Symfony\Component\HttpKernel\Bundle\Bundle');
         $bundle->expects($this->at(3))
             ->method('setContainer')
             ->with(null);
@@ -760,14 +759,6 @@ EOF;
 
         $kernel->boot();
         $kernel->terminate(Request::create('/'), new Response());
-    }
-
-    public function testKernelRootDirNameStartingWithANumber()
-    {
-        $dir = __DIR__.'/Fixtures/123';
-        require_once $dir.'/Kernel123.php';
-        $kernel = new \Symfony\Component\HttpKernel\Tests\Fixtures\_123\Kernel123('dev', true);
-        $this->assertEquals('_123', $kernel->getName());
     }
 
     /**

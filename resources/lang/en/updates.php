@@ -21,9 +21,6 @@ return [
             'lang_10' => 'Add some entry',
             'lang_11' => 'Invalid Url',
             'lang_12' => 'You can not select greater then entry for per page.',
-            'lang_13' => "Enter the post URL!",
-            'lang_14' => 'Paste a Post URL',
-            'lang_15' => 'OK',
         ],
         'TextEditor' => [
             'normalText' => 'Normal Text',
@@ -136,15 +133,8 @@ return [
     'tags'    => 'Tags',
     'addatag'    => 'add a tag',
     'tag'    => 'tag',
+
     'success'    => 'Success',
-    'copyright'    => ' Copyright © '.date("Y").' '.getenvcong("sitename").'. All rights reserved.',
-    'shared'    => 'Share',
-
-    'home'    => 'Home',
-    'heycommunity'    => 'Hey '.getenvcong("sitename").' Community!',
-    'heycommunitydesc'    => '<a href="/login">Log in</a> or <a href="/register">sign up</a> to create your own posts.',
-    'heycommunitydesc2'    => '<a href="/create">Create</a> your own posts.',
-    'nodata'    => 'No data available for this URL',
-
+    'copyright'    => ' Copyright © 2015 Buzzy. All rights reserved.',
 
 ];

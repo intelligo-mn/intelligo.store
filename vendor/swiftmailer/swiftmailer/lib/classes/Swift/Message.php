@@ -68,7 +68,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      * @param string $contentType
      * @param string $charset
      *
-     * @return $this
+     * @return Swift_Message
      */
     public static function newInstance($subject = null, $body = null, $contentType = null, $charset = null)
     {
@@ -82,19 +82,21 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      * @param string                        $contentType
      * @param string                        $charset
      *
-     * @return $this
+     * @return Swift_Mime_SimpleMessage
      */
     public function addPart($body, $contentType = null, $charset = null)
     {
-        return $this->attach(Swift_MimePart::newInstance($body, $contentType, $charset)->setEncoder($this->getEncoder()));
+        return $this->attach(Swift_MimePart::newInstance(
+            $body, $contentType, $charset
+            ));
     }
 
     /**
-     * Detach a signature handler from a message.
+     * Attach a new signature handler to the message.
      *
      * @param Swift_Signer $signer
      *
-     * @return $this
+     * @return Swift_Message
      */
     public function attachSigner(Swift_Signer $signer)
     {
@@ -112,7 +114,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      *
      * @param Swift_Signer $signer
      *
-     * @return $this
+     * @return Swift_Message
      */
     public function detachSigner(Swift_Signer $signer)
     {
@@ -279,11 +281,11 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     {
         parent::__clone();
         foreach ($this->bodySigners as $key => $bodySigner) {
-            $this->bodySigners[$key] = clone $bodySigner;
+            $this->bodySigners[$key] = clone($bodySigner);
         }
 
         foreach ($this->headerSigners as $key => $headerSigner) {
-            $this->headerSigners[$key] = clone $headerSigner;
+            $this->headerSigners[$key] = clone($headerSigner);
         }
     }
 }

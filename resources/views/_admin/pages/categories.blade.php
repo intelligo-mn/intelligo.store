@@ -57,7 +57,7 @@
                                 <input type="hidden" name="id" value="{{ isset($category->id) ? $category->id : null }}">
                                 <div class="form-group">
                                     {!! Form::label('order',  trans('admin.Order') ) !!}
-                                    {!! Form::text('order',  isset($category->order) ? $category->order : null, ['id' => 'order', 'class' => 'form-control input-lg', 'placeholder' => trans('admin.Order') ]) !!}
+                                    {!! Form::text('order',  isset($category->order) ? $category->order : null, ['id' => 'order', 'class' => 'form-control input-lg', 'placeholder' => trans('admin.Entercategoryname') ]) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('name',trans('admin.Categoryname')) !!}
@@ -74,21 +74,24 @@
                                 <div class="form-group">
                                     {!! Form::label('icon', 'icon') !!}
                                     {!! Form::text('icon',  isset($category->icon) ? $category->icon : null, ['id' => 'icon', 'class' => 'form-control input-lg', 'placeholder' => trans('admin.Enterpoststitleslug')]) !!}
-
-                                    For Classic Theme: Find yor font code <a href="http://fontawesome.io/icons/" target="_blank">here.</a> Example code: <code>&lt;i class="fa fa-pencil-square-o"&gt;&lt;/i&gt;</code><br>
-                                    For Modern Theme: Find yor font code <a href="https://material.io/icons/" target="_blank">here.</a> Example code: <code>&lt;i class="material-icons"&gt;&#xE853;&lt;/i&gt;</code><br>
-
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('description',trans('admin.CategoryDescription')) !!}
                                     {!! Form::textarea('description', isset($category->description) ? $category->description : null, ['id' => 'description', 'class' => 'form-control']) !!}
                                 </div>
-                                @if(isset($category->id)) @if($category->main==2)
+                                @if(isset($category->id)) 
+                                    @if($category->main==2)
+                                    <div class="form-group">
+                                        {!! Form::label('disabled', trans('admin.disable')) !!}
+                                        {!! Form::select('disabled', ['0' => trans('admin.no'), '1' => trans('admin.yes')], isset($category->disabled) ? $category->disabled : null , ['class' => 'form-control'])  !!}
+                                    </div>
+                                    @endif 
+                                @endif
                                 <div class="form-group">
-                                    {!! Form::label('disabled', trans('admin.disable')) !!}
-                                    {!! Form::select('disabled', ['0' => trans('admin.no'), '1' => trans('admin.yes')], isset($category->disabled) ? $category->disabled : null , ['class' => 'form-control'])  !!}
+                                <label>Language</label>
+                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($category->lang), ['class' => 'form-control']) !!}
                                 </div>
-                                @endif @endif
+
                             </div><!-- /.box-body -->
 
                             <div class="box-footer">
@@ -99,7 +102,7 @@
                         <!-- /#fa-icons -->
 
                         <!-- glyphicons-->
-                        <div class="tab-pane @if(isset($category->id)) @if($category->main==0 or $category->main==3) active @endif @endif" id="glyphicons">
+                        <div class="tab-pane @if(isset($category->id)) @if(!$category->main==1 or !$category->main==2) active @endif @endif" id="glyphicons">
 
                             <!-- form start -->
                             {!! Form::open(array('action' => array('Admin\CategoriesController@addnew'), 'method' => 'POST')) !!}
@@ -121,15 +124,12 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('type',trans('admin.ContentType')) !!}
-                                    {!! Form::select('type', $allaltcategories, isset($category->type) ? $category->type : null , ['class' => 'form-control'])  !!}
+                                    {!! Form::select('type', $categories->lists('name', 'id'), isset($category->type) ? $category->type : null , ['class' => 'form-control'])  !!}
                                 </div>
-
                                 <div class="form-group">
-                                    {!! Form::label('type',trans('admin.ContentType')) !!}
-                                    {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
-
+                                    <label>Language</label>
+                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
                                 </div>
-
 
 
                             </div><!-- /.box-body -->

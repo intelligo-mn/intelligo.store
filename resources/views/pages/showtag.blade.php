@@ -1,6 +1,6 @@
 @extends("app")
 
-@section('head_title', $tagname .' | '.getenvcong('sitename') )
+@section('head_title', $tagname .' | '.getcong('sitename') )
 @section('head_description', $tagname )
 
 
@@ -20,7 +20,7 @@
 
 
                 @if(count($lastItems) > 0)
-                    <div class="jscroll" data-auto="{!!  getenvcong('AutoLoadLists') ?: 'false' !!}">
+                    <div class="jscroll" data-auto="{!!  getcong('AutoLoadLists') ?: 'false' !!}">
                     @include('pages.catpostloadpage')
                     </div>
                     @else
