@@ -1,6 +1,6 @@
 @extends("main")
 
-@section('head_title', $page->title .' | '.getcong('sitename') )
+@section('head_title', $page->title .' | '.getenvcong('sitename') )
 
 @section("content")
 

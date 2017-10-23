@@ -15,8 +15,7 @@ abstract class Controller extends BaseController
 
     public function __construct(){
 
-
-        Theme::init(getenvcong('CurrentTheme'));
+        Theme::init('coolmon');
 
         $lang = \Session::get('locale');
         if ($lang == null){

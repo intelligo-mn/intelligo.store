@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ Lang::getLocale() }}">
 <head>
-    <title>@yield('head_title', getcong('sitetitle'))</title>
+    <title>@yield('head_title', getenvcong('sitetitle'))</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('head_description', getcong('sitemetadesc'))" />
+    <meta name="description" content="@yield('head_description', getenvcong('sitemetadesc'))" />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="@yield('head_title',  getcong('sitetitle'))" />
-    <meta property="og:description" content="@yield('head_description', getcong('sitemetadesc'))" />
+    <meta property="og:title" content="@yield('head_title',  getenvcong('sitetitle'))" />
+    <meta property="og:description" content="@yield('head_description', getenvcong('sitemetadesc'))" />
     
     <meta property="og:image" content="@yield('head_image', url('/assets/img/flogo.png'))" />
     <meta property="og:url" content="@yield('head_url', url())" />
@@ -16,8 +16,8 @@
     <meta name="twitter:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="@yield('head_url', url())">
-    <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
-    <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
+    <meta name="twitter:title" content="@yield('head_title',  getenvcong('sitetitle'))">
+    <meta name="twitter:description" content="@yield('head_description', getenvcong('sitemetadesc'))">
     
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
@@ -42,7 +42,7 @@
         }
     </style>
 
-    {!! getcong('headcode') !!}
+    {!! getenvcong('headcode') !!}
 
     @yield("header")
 
@@ -89,7 +89,7 @@
     <input name="_requesttoken" id="requesttoken" type="hidden" value="{{ csrf_token() }}" />
 </div>
 
-{!!  getcong('footercode')  !!}
+{!!  getenvcong('footercode')  !!}
 
 </body>
 </html>
