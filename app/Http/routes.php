@@ -3,8 +3,6 @@ Route::get('admin/docs', function () {
     return view('vendor.docs.index');
 });
 
-Route::get('verify', 'AkbilisimController@index');
-
 Route::get('{type}.xml', 'RssController@index');
 
 Route::get('fbinstant.rss', 'RssController@fbinstant');
@@ -35,8 +33,6 @@ Route::group(['middleware' => 'Admin', 'prefix' => 'admin'], function () {
 
 
     Route::get('/reports/{type}', 'Admin\ReportsController@index');
-
-    Route::post('updatepurcahecheck', 'Admin\DashboardController@updatepurcahecheck');
 
     Route::get('plugins', 'Admin\DashboardController@plugins');
     Route::post('activeteplugin', 'Admin\DashboardController@activeplugin');

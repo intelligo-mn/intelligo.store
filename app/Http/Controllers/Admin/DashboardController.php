@@ -288,65 +288,22 @@ class DashboardController extends MainAdminController
      public function checkupdate(){
 
         $content = curlit($this->server);
-        if ($content and $content != \Config::get('installer.last_version')){
-            return $content;
-        }else{
-            return \Config::get('installer.last_version');
-        }
-
+        return $content;
+   
     }
      public function checkcode(){
 
         $content = curlit($this->server);
         if ($content){
             return $content;
-        }else{
-            \Session::flash('error.message', trans("admin.pluginsnotavailable"));
-            return redirect('/admin');
         }
 
     }
     public function sickupdate(){
 
         $content = curlit($this->servercore);
-        if ($content){
-            return $content;
-        }
-       return "";
-    }
-
-    public function updatepurcahecheck(Request $request){
-
-        $code = $request->all();
-        $autoupload=$code['dataauto'];
-
-        $message=[];
-        $content = $this->code();
-
-        if ($autoupload=='on'){
-
-            if(!$this->getr($this->serverrar.$this->checkupdate().$this->sickupdate().'.zip')){
-                $message['type']='error';
-                $message['message']=trans("admin.unabletoupdate");
-                $message['url']="";
-            }
-            $message['type']='success';
-            $message['message']=trans("admin.doneupdate").$this->checkupdate();
-            $message['url']="";
-            return $message;
-        }elseif ($content){
-            $message['type']='success';
-            $message['message']=trans("admin.donedownload");
-            $message['url']=$this->serverrar.$this->checkupdate().$this->sickupdate().'.zip';
-            return $message;
-        }else{
-            $message['type']='error';
-            $message['message']=trans("admin.purchaseincorrect");
-            $message['url']="";
-            return $message;
-
-        }
-
+        return $content;
+        
     }
 
     public function checkinputcodeforplugin(Request $request){
@@ -357,17 +314,9 @@ class DashboardController extends MainAdminController
         $jok=curlit($this->verifyapiserver.$code.'?r=2&t='.$dataitem.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $jok= json_decode($jok, true);
 
-        if (rop($jok['d'])){
-            $this->necodep($dataitem,$code);
-            return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
-        }elseif ($jok==null){
-            return response()->json(['type'=>'error','message' => trans("admin.norecord")]);
-        }elseif (!rop($jok['d'])){
-            return response()->json(['type'=>'error','message' =>  trans("admin.codealreadytaken")]);
-        }else{
-            return response()->json(['type'=>'error','message' => trans("admin.notcorrectpur")]);
-        }
-
+       
+        return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
+        
     }
 
 
