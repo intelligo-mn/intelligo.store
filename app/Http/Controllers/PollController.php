@@ -19,7 +19,7 @@ class PollController extends Controller
 
             parent::__construct();
 
-        if(getcong('sitevoting')=="1"){
+        if(getenvcong('sitevoting')=="1"){
             $this->middleware('auth');
         }
     }
@@ -46,7 +46,7 @@ class PollController extends Controller
 
             if($request->ajax()){
 
-                       return view('_particles._lists.polllistanswers', compact("post", "entry"));
+               return view('_particles.lists.polllistanswers', compact("post", "entry"));
 
             }
 
@@ -78,10 +78,9 @@ class PollController extends Controller
 
             if($request->ajax()){
 
-                       return view('_particles._lists.entryslists', compact("post", "entrys"));
+                   return view('_particles.lists.entryslists', compact("post", "entrys"));
 
             }
-
 
 
         return true;
@@ -122,16 +121,59 @@ class PollController extends Controller
 
     }
 
-    public function shared($id){
+    public function shared(Request $request){
 
+        $inputs = $request->all();
+
+        $id=$inputs['contentId'];
+        $shareType=$inputs['shareType'];
         $post = Posts::findOrFail($id);
 
-        Cookie::queue('BuzzyPostshared'.$post->id, true, 45000);
-        if (Cookie::get('BuzzyPostshared'.$post->id) == true){
+        if(!isset($shareType)){
+            $shareType='facebook';
+        }
+
+
+        if (null ==  $request->cookie('BuzzyPostshared'.$shareType.$post->id)){
+            cookie('BuzzyPostshared'.$shareType.$post->id, $post->id, 15000);
+        }else{
             return "ok";
         }
 
-        $post->shared = $post->shared+1;
+        $pshared=[];
+        $oshared=$post->shared;
+
+        if(isset($post->shared->facebook)){
+            $pshared['facebook'] = $shareType == 'facebook' ? $oshared->facebook + 1 : $oshared->facebook;
+        }else{
+            $pshared['facebook'] = $shareType == 'facebook' ?  1 : 0;
+        }
+
+        if(isset($post->shared->twitter)){
+            $pshared['twitter'] =  $shareType == 'twitter' ? $oshared->twitter + 1 : $oshared->twitter;
+        }else{
+            $pshared['twitter'] = $shareType == 'twitter' ?  1 : 0;
+        }
+
+        if(isset($post->shared->gplus)){
+            $pshared['gplus'] = $shareType == 'gplus' ? $oshared->gplus + 1 : $oshared->gplus;
+        }else{
+            $pshared['gplus'] = $shareType == 'gplus' ?  1 : 0;
+        }
+
+        if(isset($post->shared->mail)){
+            $pshared['mail'] = $shareType == 'mail' ? $oshared->mail + 1 : $oshared->mail;
+        }else{
+            $pshared['mail'] = $shareType == 'mail' ?  1 : 0;
+        }
+
+        if(isset($post->shared->whatsapp)){
+            $pshared['whatsapp'] = $shareType == 'whatsapp' ? $oshared->whatsapp + 1 : $oshared->whatsapp;
+        }else{
+            $pshared['whatsapp'] = $shareType == 'whatsapp' ?  1 : 0;
+        }
+
+        $post->shared = json_encode($pshared);
         $post->save();
 
         return "ok";
