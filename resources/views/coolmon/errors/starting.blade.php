@@ -1,4 +1,4 @@
-@extends("main")
+@extends("app")
 
 @section("content")
    <div class="banner banner-home">

@@ -14,7 +14,7 @@ return [
     */
 
     'paths' => [
-        realpath(base_path('resources/views/modern')),
+        realpath(base_path('resources/views/coolmon')),
     ],
 
     /*

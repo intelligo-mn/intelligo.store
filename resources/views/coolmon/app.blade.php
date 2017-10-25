@@ -77,21 +77,7 @@
 
 @include("_particles.header")
 
-<div class="content-wrapper" id="container-wrapper">
-    @if(!Request::is('create') ) @if(Request::segment(1)!=='profile') @if(Request::segment(1)!=='edit')
-            @foreach(\App\Widgets::where('type', 'HeaderBelow')->where('display', 'on')->get() as $widget)
-                <div class="content">
-                    <div class="container" style="text-align: center;padding-top:20px;padding-bottom:20px ">
-                        <center>
-                         {!! $widget->text !!}
-                        </center>
-                    </div>
-                </div>
-            @endforeach
-    @endif @endif @endif
     @yield("content")
-
-</div>
 
     @include("_particles.footer")
 

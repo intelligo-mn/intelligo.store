@@ -1,374 +1,1238 @@
-@extends("main")
+@extends("app")
 
 @section("content")
-   <div class="banner banner-home">
-       <div id="rev_slider_279_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="restaurant-header" style="margin:0px auto;background-color:#474d4b;padding:0px;margin-top:0px;margin-bottom:0px;">
-          <div id="rev_slider_70_1" class="rev_slider fullscreenabanner" style="display:none;" data-version="5.1.4">
-             <ul>
-                <li class="slider-color-schema-dark" data-index="rs-2" data-transition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-                   <img src="travel/img/banner/img-01.jpg" alt="image description" data-bgposition="center center" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-bgfit="cover" data-no-retina>
-                   <div class="tp-caption tp-resizeme" id="slide-897-layer-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['160','120','-120','-70']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 9; white-space: nowrap; font-size: 60px; line-height: 100px;text-align:center;">
-                      <span class="icon-wildlife"></span>
-                   </div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">TRAVELTOMONGOLIA</div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['340','290','70','70']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;"></div>
-                   <div class="tp-caption rev-btn  rs-parallaxlevel-10" id="slide-163-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','160','180','150']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power3.easeOut;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[175%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_out="x:inherit;y:inherit;" data-start="1250" data-splitin="none" data-splitout="none" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-164","delay":""}]' data-responsive_offset="on">
-                      <a class="btn btn-banner" href="#">{{ trans('index.showmore') }}</a>
-                   </div>
-                </li>
-                <li data-index="rs-81" data-transition="slideoverup" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-rotate="0" data-saveperformance="off" data-title="The Menu" data-description="">
-                   <img alt="image description" src="travel/img/banner/img-02.jpg" data-lazyload="img/banner/img-02.jpg" data-bgposition="right center" data-kenburns="on" data-duration="30000" data-ease="Power1.easeOut" data-scalestart="110" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
-                   <div class="tp-caption tp-resizeme" id="slide-897-layer1-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['160','120','-120','-70']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 9; white-space: nowrap; font-size: 60px; line-height: 100px;text-align:center;">
-                      <span class="icon-hiking-camping"></span>
-                   </div>
-                   <div class="tp-caption banner-heading-sub tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','middle','middle']" data-voffset="['280','240','10','20']" data-fontsize="['48','48','44','28']" data-lineheight="['85','85','50','50']" data-width="['1200','1000','750','480']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; letter-spacing: 0; font-weight: 100; text-align: center; color: #ffffff">ADVENTURE TOUR MONGOLIA</div>
-                   <div class="tp-caption tp-resizeme banner-heading-sub rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['-80','-80','-80','-60']" data-y="['top','top','middle','middle']" data-voffset="['330','280','60','60']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 300; font-style: italic; white-space: nowrap; color:">of</div>
-                   <div class="tp-caption tp-resizeme banner-heading-sub rs-parallaxlevel-10" data-x="['center','center','center','center']" data-hoffset="['30','30','30','20']" data-y="['top','top','middle','middle']" data-voffset="['330','280','60','60']" data-fontsize="['60','60','60','40']" data-lineheight="['110','110','100','60']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 8; padding-right: 10px; text-indent: 5px; font-weight: 900; white-space: nowrap;">2017</div>
-                   <div class="tp-caption rev-btn rs-parallaxlevel-10" id="slide-163-layer1-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','160','180','150']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power3.easeOut;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[175%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_out="x:inherit;y:inherit;" data-start="800" data-splitin="none" data-splitout="none" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-164","delay":""}]' data-responsive_offset="on">
-                      <a class="btn btn-banner" href="#">{{ trans('index.showmore') }}</a>
-                   </div>
-                </li>
-             </ul>
-          </div>
-       </div>
-       <div class="feature-block">
-          <div class="holder">
-          
-             <ul>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-bungee"></span>
-                   </span>
-                   <span class="info">Cultural  </span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-hiking"></span>
-                   </span>
-                   <span class="info">Hiking Trips</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-wildlife"></span>
-                   </span>
-                   <span class="info">Wildlife</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-peak-climbing"></span>
-                   </span>
-                   <span class="info">Peak Climbing</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-mountain-biking"></span>
-                   </span>
-                   <span class="info">Mount Biking</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-scuba-diving"></span>
-                   </span>
-                   <span class="info">Historical</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-hunting"></span>
-                   </span>
-                   <span class="info">Hunting Trip</span>
-                   </a>
-                </li>
-                <li>
-                   <a href="#">
-                   <span class="ico">
-                   <span class="icon-boating"></span>
-                   </span>
-                   <span class="info">Eco Tour</span>
-                   </a>
-                </li>
-             </ul>
-          </div>
-       </div>
-    </div>
-    <main id="main">
-       <section class="content-block bg-white">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.where_would') }}</h2>
-                
-                <div class="seperator"></div>
-             </header>
-             <div class="adventure-holder gallery-home-holder">
-             
-                <div class="row">
-                   <div class="col-md-6 img-block">
-                      <ul class="gallery-list gallery-with-icon">
-                        @foreach($lastNews as $item)
-                         <li>
-                            <a href="{{ makeposturl($item) }}" class="thumbnail">
-                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" height="165" width="170" alt="image description" style="height: 165px !important;">
-                            <span class="hover icon-bird"></span>
-                            <span class="info">{{ $item->title }}</span>
-                            </a>
-                         </li>
-
-                        @endforeach
-                         
-                      </ul>
-                   </div>
-                   <div class="col-md-6 text-block">
-                      <div class="centered">
-                         <h2 class="intro-heading">Mongolia At First Glance</h2>
-                         <p class="intro">Mongolia referred as “The land of blue sky” is a place to savour complete serenity and to enjoy endless grassland with a unique animal and bird world. The landscape of Mongolia is incredibly versatile: from the north, which is characterized by extensive forests and clear rivers and lakes, to the giant sand dunes of Gobi desert, home to thousands of gazelles and wild argali sheep.  </p>
-                         <a href="#" class="btn btn-info-sub btn-md btn-shadow radius">{{ trans('index.showmore') }}</a>
-                      </div>
-                   </div>
+  <!--Header area end here-->
+    <!-- Slider Section Start Here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-0">
+                <div class="wrapper">
+                <!-- News Slider -->
+                    <div class="ticker marg-botm">
+                        <div class="ticker-wrap">
+                            <!-- News Slider Title -->
+                            <div class="ticker-head up-case backg-colr col-md-2">Breaking News <i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+                            <div class="tickers col-md-10">
+                                <div id="top-news-slider" class="owl-carousel ">
+                                    <div class="item">
+                                        <a href="blog-single.html"> <img src="images/breaking/1.jpg" alt="news image"> <span>Migrants Told: Stay in France </span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"><img src="images/breaking/2.jpg" alt="news image"> <span>Duo Scripta An The Prieirmod</span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"><img src="images/breaking/3.jpg" alt="news image"> <span>Two Loser Idaho Pot Smugglers </span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"><img src="images/breaking/4.jpg" alt="news image"> <span>Car racer gives herself a mid-Event</span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"><img src="images/breaking/5.jpg" alt="news image"> <span>Aaron Rodgers Criticizes </span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"> <img src="images/breaking/1.jpg" alt="news image"> <span>Detroit Natives Wary & Recovery</span></a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog-single.html"><img src="images/breaking/4.jpg" alt="news image"> <span>Clinton campaign jilted as FBI</span></a>
+                                    </div>                             
+                               </div>
+                           </div>
+                        </div>
+                    </div>  
+                    <!-- End News Slider -->              
                 </div>
-             </div>
-          </div>
-       </section>
-       <aside class="special-block">
-          <div class="container">
-             <p class="special-text">{{ trans('index.callnow') }} <strong><a href="tel:94968096">+976 94968096</a></strong></p>
-          </div>
-       </aside>
-       <div class="content-block content-spacing">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.toptour') }}</h2>
-               
-                <div class="seperator"></div>
-             </header>
-             <div class="content-holder">
-
-                @if($lastFeaturestop)
-                <div class="row db-3-col">
-                  @foreach($lastFeaturestop as $key=>$item)
-                     @include('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'on', 'descof' => 'off','linkcolor' => 'default'])
-
-                      @if($key ==0 )
-                          @foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget)
-                              {!! $widget->text !!}
-                          @endforeach
-                      @endif
-
-                  @endforeach
-               
-                </div>
-                
-                @endif
-             </div>
-          </div>
-       </div>
-       <aside class="count-block">
-          <div class="container-fluid">
-             <div class="row">
-                <div class="col-xs-6 col-md-3 block-1">
-                   <div class="holder">
-                      <span class="icon icon-step"></span>
-                      <span class="info"><span class="counter">8702</span></span>
-                      <span class="txt">WILDLIFE SPECIES</span>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-md-3 block-2">
-                   <div class="holder">
-                      <span class="icon icon-wildlife"></span>
-                      <span class="info"><span class="counter">378</span></span>
-                      <span class="txt">DESTINATION</span>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-md-3 block-3">
-                   <div class="holder">
-                      <span class="icon icon-tree"></span>
-                      <span class="info"><span class="counter">377</span></span>
-                      <span class="txt">NATIONAL PARKS</span>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-md-3 block-4">
-                   <div class="holder">
-                      <span class="icon icon-duration"></span>
-                      <span class="info"><span class="counter">8973</span></span>
-                      <span class="txt">DAYS IN THE WILD</span>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </aside>
-    
-       <section class="content-block article-boxed">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.adventure') }}</h2>
-                <span class="main-subtitle">{{ trans('index.adventure_text') }}.</span>
-                <div class="seperator"></div>
-             </header>
-             <div class="content-holder content-boxed">
-                 @if($lastNews)
-                <div class="row db-3-col">
-                  @foreach($lastNews as $key=>$item)
-                     @include('._particles._lists.travel_list', ['listtype' => 'big_image small-h bolb titm','featuredon' => 'off', 'descof' => 'on','linkcolor' => 'default', 'metaof' => 'off'])
-
-                      @if($key ==0 )
-                          @foreach(\App\Widgets::where('type', 'Homencolsec')->where('display', 'on')->get() as $widget)
-                              {!! $widget->text !!}
-                          @endforeach
-                      @endif
-
-                  @endforeach
-               
-                </div>
-                
-                @endif
-             </div>
-          </div>
-       </section>
-       <section class="content-block guide-sub guide-add bg-white">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.gallery') }}</h2>
-                
-                <div class="seperator"></div>
-             </header>
-             <div class="content-holder">
-                <div class="row">
-                    @foreach($lastFeaturestop as $item)
-                     <div class="col-sm-6 col-md-4 img-article">
-                      <div class="holder">
-                         <div class="img-wrap">
-                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" height="436" width="370" alt="image description">
-                            <ul class="social-networks">
-                               <li><a href="#"><span class="icon-facebook"></span></a></li>
-                               <li><a href="#"><span class="icon-twitter"></span></a></li>
-                               <li><a href="#"><span class="icon-google-plus"></span></a></li>
-                               <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                            </ul>
-                         </div>
-                         <div class="caption">
-                            <h3 class="small-space">{{ str_limit($item->title, 30) }}</h3>
-                         </div>
-                      </div>
+            </div>            
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padding-0">
+                <div class="slider-area">
+                    <div class="bend niceties preview-2">
+                        <div id="ensign-nivoslider" class="slides">
+                            <img src="images/slider/slide_1.jpg" alt="" title="#slider-direction-1" />
+                            <img src="images/slider/slide_3.jpg" alt="" title="#slider-direction-2" />
+                        </div>
+                        <!-- direction 2 -->
+                        <div id="slider-direction-1" class="slider-direction">
+                            <div class="slider-content t-cn s-tb slider-1">
+                                <div class="title-container s-tb-c">
+                                    <div class="slider-botton">
+                                        <ul>
+                                            <li>
+                                                <a class="cat-link" href="category.html">Business</a> 
+                                                <span class="date"> 
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h1 class="title1"><a href="blog.html"><span>Record</span> proportion of women<br/>on degrees</a></h1>
+                                    <div class="title2">The exhibition Banksy doesn’t want to see whle travelling hear.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- direction 2 -->
+                        <div id="slider-direction-2" class="slider-direction">
+                            <div class="slider-content t-cn s-tb slider-2">
+                                <div class="title-container s-tb-c">
+                                    <div class="slider-botton">
+                                        <ul>
+                                            <li>
+                                                <a class="cat-link" href="category-world.html">World</a> 
+                                                <span class="date"> 
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h1 class="title1"><a href="blog.html"><span>John</span> to retire as director</a></h1>
+                                    <div class="title2">The exhibition Banksy doesn’t want to see whle travelling hear.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @endforeach
-                   
                 </div>
-             </div>
-          </div>
-       </section>
-       <div class="testimonial-holder parallax" data-stellar-background-ratio="0.25" id="testimonial-home-page">
-          <div class="container">
-             <div id="testimonial-home-slide">
-                <div class="slide">
-                   <blockquote class="testimonial-quote">
-                      <div class="img">
-                         <img src="travel/img/thumbs/img-01.jpg" height="112" width="112" alt="image description">
-                      </div>
-                      <div class="text">
-                         <cite>STEVE JORGAN - NORWAY</cite>
-                         <q>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.”</q>
-                      </div>
-                   </blockquote>
+            </div>
+            <!-- Slider Area End Here-->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
+                <div class="slider-right">
+                    <ul>
+                        <li>
+                            <div class="right-content">
+                                <span class="category"><a class="cat-link" href="blog.html">Business</a></span> 
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                <h3><a href="blog-single.html">Trudeau forced to refugees.</a></h3>
+                            </div>
+                            <div class="right-image"><a href="blog-single.html"><img src="images/sidebar-images/1.jpg" alt="sidebar image"></a></div>
+                        </li>
+                        <li>
+                            <div class="right-content">
+                                <span class="category"><a class="cat-link" href="blog.html">Health</a></span> 
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June  28,  2017 </span>
+                                <h3><a href="blog-single.html">The exhibition Bankasy</a></h3>
+                            </div>
+                            <div class="right-image"><a href="blog-single.html"><img src="images/sidebar-images/2.jpg" alt="sidebar image"></a></div>
+                        </li>
+                        <li>
+                            <div class="right-content">
+                                <span class="category"><a class="cat-link" href="blog.html">Science</a></span> 
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017 </span> 
+                                <h3><a href="blog-single.html">Hurricane Harvey: evacuations.</a></h3>                  
+                            </div>
+                            <div class="right-image"><a href="blog-single.html"><img src="images/sidebar-images/3.jpg" alt="sidebar image"></a></div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="slide">
-                   <blockquote class="testimonial-quote">
-                      <div class="img">
-                         <img src="travel/img/thumbs/img-02.jpg" height="112" width="112" alt="image description">
-                      </div>
-                      <div class="text">
-                         <cite>DARREN SPRATT - AUSTRALIA</cite>
-                         <q>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.”</q>
-                      </div>
-                   </blockquote>
+            </div>
+        </div>
+    </div>
+    <!-- Slider Section end Here -->
+    <!-- All News Section Start Here -->
+    <div class="all-news-area">
+        <div class="container">
+            <!-- latest news Start Here -->
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 tab-home">
+                    <ul class="nav nav-tabs">
+                        <li class="title-bg">Latest News</li>
+                        <li class="active"><a data-toggle="tab" href="#tab1">Highest Rated</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Week</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Hot Articals</a></li>
+                        <li><a data-toggle="tab" href="#tab4">Previous</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="tab-top-content">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                        <a href="blog-single.html"><img src="images/tab/1.jpg" alt="sidebar image"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
+                                        <a href="blog-single.html" class="read-more hvr-bounce-to-right">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-bottom-content">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
+                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
+                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/4.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
+                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/5.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
+                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab-pane fade">
+                            <div class="tab-top-content">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                        <a href="blog-single.html"><img src="images/tab/7.jpg" alt="sidebar image"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
+                                        <a href="blog-single.html" class="read-more hvr-bounce-to-right">READ MORE</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-bottom-content">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/5.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+
+                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab3" class="tab-pane fade">
+                            <div class="tab-top-content">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                        <a href="blog-single.html"><img src="images/tab/8.jpg" alt="sidebar image"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
+                                        <a href="#" class="read-more hvr-bounce-to-right">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-bottom-content">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                           
+
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab4" class="tab-pane fade">
+                            <div class="tab-top-content">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                        <a href="blog-single.html"><img src="images/tab/1.jpg" alt="sidebar image"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
+                                        <a href="#" class="read-more hvr-bounce-to-right">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-bottom-content fadeInUp">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                           
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/4.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                          
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab5" class="tab-pane fade">
+                            <div class="tab-top-content">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                        <a href="blog-single.html"><img src="images/tab/7.jpg" alt="sidebar image"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                        <span class="date">james Bond </span><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 50</a> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
+                                        <a href="#" class="read-more hvr-bounce-to-right">READ MORE</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-bottom-content fadeInUp">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/3.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                  
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/2.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+
+                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                        <div class="col-sm-12 col-xs-3 img-tab">
+                                            <a href="blog-single.html"><img src="images/tab/4.jpg" alt="News image"></a>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-9 img-content">
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                       <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Trending news  here-->
+                    <div class="trending-news separator-large">
+                        <div class="row">
+                            <div class="view-area">
+                                <div class="col-sm-8"> 
+                                    <h3 class="title-bg">Trending News</h3>
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    <a href="#">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                            </div>    
+                             
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="list-col">
+                                    <a href="blog-single.html"> <img src="images/Trending/1.jpg" alt="" title="Trending image" /></a>
+                                    <div class="dsc">
+                                        <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                        <h3><a href="blog-single.html">Two Loser Idaho Pot Smugglers Freak Out, Call 911 on Themselves </a></h3>
+                                        <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul class="news-post">                        
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                                <div class="item-post">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 paddimg-right-none">
+                                                            <a href="blog-single.html"> <img src="images/Trending/2.jpg" alt="" title="Trending image"></a>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9">
+                                                            <h4><a href="blog-single.html">Suspendisse Non Metus Consectetur Nunc </a></h4>
+                                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                                <div class="item-post">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 paddimg-right-none">
+                                                            <a href="blog-single.html"> <img src="images/Trending/3.jpg" alt="" title="Trending image"></a>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9">
+                                                            <h4><a href="blog-single.html">Duo Scripta An The Prieirmod</a></h4>
+                                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                                <div class="item-post">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 paddimg-right-none">
+                                                            <a href="blog-single.html"> <img src="images/Trending/4.jpg" alt="" title="Trending image"></a>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9">
+                                                            <h4><a href="blog-single.html">Terrorism Concerns Get UK Tourists </a></h4>
+                                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                                <div class="item-post">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 paddimg-right-none">
+                                                            <a href="blog-single.html"> <img src="images/Trending/5.jpg" alt="" title="Trending image"></a>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9">
+                                                            <h4><a href="blog-single.html">Ranking The Royal King Comeback Win </a></h4>
+                                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Start what’s hot now -->
+                    <div class="hot-news">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="view-area">
+                                    <div class="row">
+                                        <div class="col-sm-8"> 
+                                            <h3 class="title-bg">What’s hot now</h3>
+                                        </div>
+                                        <div class="col-sm-4 text-right">
+                                            <a href="#">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="featured">
+                                    <div class="blog-img">
+                                        <a href="blog-single.html"><img src="images/hot-news/1.jpg" alt="" title="News image" /></a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <a href="category-sports.html" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017</span>
+                                        <h4><a href="#">Car racer gives herself a mid-Event haicut</a></h4>
+                                    </div>
+                                </div>
+                                <ul class="news-post news-feature-mb">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                <a href="blog-single.html"><img src="images/hot-news/3.jpg" alt="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
+                                                <h4><a href="#">Clinton Campaign Jilted & Search Emails</a></h4>
+                                                <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> yeamin</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                <a href="blog-single.html"><img src="images/hot-news/2.jpg" alt="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
+                                                <h4><a href="#">Aaron Rodgers Criticizes For</a></h4> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                <a href="blog-single.html"><img src="images/hot-news/4.jpg" alt="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
+                                                <h4><a href="#">Detroit Natives Wary & Recovery Threatens</a></h4>
+                                                <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> yeamin</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End what’s hot now -->
                 </div>
-                <div class="slide">
-                   <blockquote class="testimonial-quote">
-                      <div class="img">
-                         <img src="travel/img/thumbs/img-03.jpg" height="112" width="112" alt="image description">
-                      </div>
-                      <div class="text">
-                         <cite>RIYA YAHIDA - SPAIN</cite>
-                         <q>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.”</q>
-                      </div>
-                   </blockquote>
+                <!--Sidebar Start Here -->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none sidebar-latest">
+                    <!--Like Box Start Here -->
+                    <div class="like-box">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> </a><span>210,956 <br />likes</span>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a><span>350,580 <br />followers</span>
+                            </li>
+                            <li class="last">
+                                <a href="#"><i class="fa fa-rss" aria-hidden="true"></i> </a><span>210,956 <br />subscribers</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Like Box End Here -->
+
+                    <!--Add Start Here -->
+                    <div class="add-section">
+                        <img src="images/add/2.jpg" alt="add image">
+                    </div>
+                    <!--Add Box End Here -->
+                    
+                    <!--Newsletter Start Here -->
+                    <div class="newsletter-info">
+                        <form>
+                            <fieldset>
+                                <div class="form-group">
+                                    <h4>Subscribe to Newsletter</h4>                                
+                                    <div class="newsletter">
+                                    <input class="form-control" placeholder="Email address..." type="text">
+                                    <button class="btn-send" type="submit">Subscribe</button>
+                                    <p>Get the latest news stories in your inbox</p>
+                                    </div> 
+                                </div>                                       
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <!--Newsletter End Here -->
+
+                    <!--popular Post Start Here -->
+                    <div class="sidebar popular">
+                        <h3 class="title-bg">Popular Now</h3>
+                        <ul>
+                            <li>
+                                <a href="category.html" class="category-btn hvr-bounce-to-right">Business</a>
+                                <div class="post-image"><img src="images/sidebar/1.jpg" alt="News image"></div>
+                                <div class="content">
+                                    <h4>
+                                        <a href="#">The exhibition Bankasy doesn’t want you to see</a>
+                                    </h4>
+                                    <span class="date"> 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                    </span> 
+                                    <span class="comment">
+                                        <a href="#">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                        </a>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul> 
+                    </div>
+                     
+
+                    <div class="hot-news popular-related">
+                        <ul class="news-post">
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                        <div class="item-post">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
+                                                    <img src="images/popular/1.jpg" alt="" title="News image">
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
+                                                    <h4><a href="#"> US should prepare for <br /> Russian election</a></h4>
+                                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                        <div class="item-post">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
+                                                    <img src="images/popular/2.jpg" alt="" title="News image">
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
+                                                    <h4><a href="blog-single.html"> Pellentesque Odio Nisi<br /> Euismod In Pharet</a></h4>
+                                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                        <div class="item-post">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
+                                                    <img src="images/popular/3.jpg" alt="" title="News image">
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
+                                                    <h4><a href="blog-single.html"> Erant Aeque Neius No <br />Numes Electram</a></h4>
+                                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                        <div class="item-post">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
+                                                    <img src="images/popular/4.jpg" alt="" title="News image">
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
+                                                    <h4><a href="blog-single.html"> Erant Aeque Neius No <br />Numes Electram</a></h4>
+                                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                    <!--popular Post End Here --> 
+
+                    <!--Recent comments Start Here -->
+                        <div class="recent-comments separator-large">
+                            <div id="comments-Carousel" class="carousel carousel-comments slide" data-ride="carousel">
+                                    <!-- Wrapper for slides -->
+                                    <!-- Left and right controls -->
+                                <div class="next-prev-top">
+                                    <div class="row">
+                                        <div class="col-sm-9 col-xs-9">
+                                            <div class="view-area">
+                                                <h3 class="title-bg">Recent Comments</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-xs-3 next-prev">
+                                            <a class="left news-control" href="#comments-Carousel" data-slide="prev">
+                                                <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                            </a>
+                                            <a class="right news-control" href="#comments-Carousel" data-slide="next">
+                                                <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <div class="dsc">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipe isicing elit, sed do they eiusmod tempor incidin dunt ut labore et dolore</p>
+                                            <span>- Thesera Minton</span>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="dsc">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipe isicing elit, sed do they eiusmod tempor incidin dunt ut labore et dolore</p>
+                                            <span>- Jon Min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    <!--Recent comments Start Here -->
+                     <!--Add Start Here -->
+                    <div class="add-section add-section2">
+                        <img src="images/add/3.jpg" alt="add image">
+                    </div>
+                    <!--Add Box End Here -->          
                 </div>
-             </div>
-          </div>
-       </div>
-       <article class="partner-block">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.partner') }}</h2>
-                <div class="seperator"></div>
-             </header>
-             <div class="partner-list" id="partner-slide">
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
+            </div>
+        </div>
+    </div>
+    <!-- Fetuered videos Start Here -->
+            <div class="fetuered-videos">
+                <div class="container">
+                    <div class="row">
+                        <div class="view-area">
+                            <div class="col-sm-12"> 
+                                <h3 class="title-bg">Fetuered Videos</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="featured-videos-section" class="owl-carousel">
+              <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/1.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                           
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
+                                    <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+            <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/2.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                      
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Woman Endure Five Year Slvery</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="152" src="travel/img/logos/logo-tourist.svg" alt="image description">
-                   <img class="hover" width="152" src="travel/img/logos/logo-tourist-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+            <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/3.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                      
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Health Benefits of Morning Running</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
-                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+            <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/4.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                  
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+            <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/5.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                  
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+            <div class="item">
+              <div class="single-videos">
+                <div class="images">
+                  <a href="#"><img src="images/fetuered/2.jpg" alt=""></a>
+                  <div class="overley">
+                    <div class="videos-icon">
+                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="images/fetuered/video-icon.png" alt=""></a>                  
+                    </div>
+                  </div>
+                </div>                            
+                <div class="videos-text">
+                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
-                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
-                   </a>
+              </div>
+            </div>
+                    </div>
+                </div>    
+            </div>
+        
+    <!-- Fetuered videos End Here -->
+
+    <!-- Hot News Start Here -->
+    <div class="hot-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div id="news-Carousel" class="carousel carousel-news slide" data-ride="carousel">
+                                    <!-- Wrapper for slides -->
+                                    <!-- Left and right controls -->
+                                    <div class="next-prev-top">
+                                        <div class="row">
+                                            <div class="col-sm-9 col-xs-9">
+                                                <div class="view-area">
+                                                    <h3 class="title-bg">Health & LIFESTYLE</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 next-prev col-xs-3">
+                                                <a class="left news-control" href="#news-Carousel" data-slide="prev">
+                                                    <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                                </a>
+                                                <a class="right news-control" href="#news-Carousel" data-slide="next">
+                                                    <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <a href="#"><img src="images/news-slider-image/1.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                    November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="blog-single.html"> Nam suscipit pretium consectetur. Proin tristique fermentum.</a></h4>
+                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="item">
+                                            <a href="#"><img src="images/news-slider-image/3.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="blog-single.html"> Nam suscipit pretium consectetur. Proin tristique fermentum.</a></h4>
+                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div id="news-Carousel2" class="carousel carousel-news slide" data-ride="carousel">
+                                    <!-- Wrapper for slides -->
+                                    <!-- Left and right controls -->
+                                    <div class="next-prev-top">
+                                        <div class="row">
+                                            <div class="col-sm-9 col-xs-9">
+                                                <div class="view-area">
+                                                    <h3 class="title-bg">Politics</h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3 col-xs-3 next-prev">
+                                                <a class="left news-control" href="#news-Carousel2" data-slide="prev">
+                                                    <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                                </a>
+                                                <a class="right news-control" href="#news-Carousel2" data-slide="next">
+                                                    <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <a href="#"><img src="images/news-slider-image/2.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                    November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="blog-single.html">Disabled people must be front and centre on TV – representation</a></h4>
+                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <a href="#"><img src="images/news-slider-image/4.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017 </span>
+                                                <span class="comment">
+                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                </a></span>
+                                                <h4><a href="blog-single.html">After Kim Briggs’s death, cyclists must realise that they are traffic too</a></h4>
+                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <a href="#"><img src="images/news-slider-image/2.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017 </span>
+                                                <span class="comment">
+                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                </a></span>
+                                                <h4><a href="blog-single.html">The new-style GCSEs show why politicians must do more explaining.</a></h4>
+                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Two Slider -->
+                        <!--Around Area Start Here -->
+                        <div class="view-area separator-large3">
+                                <div class="row">
+                                    <div class="col-sm-8"> 
+                                        <h3 class="title-bg">Around the world</h3>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
+                                        <a href="#">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </div>
+                            </div>
+                        </div> 
+                    <ul class="news-post news-post2 around-news">
+                        <li>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 content">
+                                    <div class="item-post">
+
+                                        <div class="blog-image">
+                                            <a href="blog-single.html"><img src="images/world/5.jpg" alt="" title="News image" /></a>
+                                        </div>
+                                        <div class="content">
+                                           <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017 
+                                            </span>
+                                            <span class="comment">
+                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                </a>
+                                            </span>
+                                            <h4><a href="blog-single.html">Clinton campaign jilted as FBI to search emails</a></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 content">
+                                    <div class="item-post">
+                                        <div class="blog-image">
+                                            <a href="blog-single.html"><img src="images/world/6.jpg" alt="" title="News image" /></a>
+                                        </div>
+                                        <div class="content">
+                                            <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017 
+                                            </span>
+                                            <span class="comment">
+                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                </a>
+                                            </span>
+                                            <h4><a href="blog-single.html">Clinton campaign jilted as FBI to search emails</a></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="news-post news-post2 related">
+                        <li>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 content">
+                                    <div class="item-post">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 paddimg-right-none">
+                                                <a href="blog-single.html"><img src="images/world/1.jpg" alt="" title="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
+                                                <h4><a href="blog-single.html">Pellentesque Odio Nisi Euismod In Pharet</a></h4>
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 content">
+                                    <div class="item-post">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 paddimg-right-none">
+                                                <a href="blog-single.html"><img src="images/world/2.jpg" alt="" title="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
+                                                <h4><a href="blog-single.html">prepare for Russian election</a></h4>
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                June 28, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 content">
+                                    <div class="item-post">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 paddimg-right-none">
+                                                <a href="blog-single.html"><img src="images/world/3.jpg" alt="" title="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
+                                                <h4><a href="blog-single.html"> Erant Aeque Neius No Numes Electram </a></h4>
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                November 28, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 content">
+                                    <div class="item-post">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 paddimg-right-none">
+                                                <a href="blog-single.html"><img src="images/world/4.jpg" alt="" title="News image" /></a>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
+                                                <h4><a href="blog-single.html">YouTube Acquire Twitch <br />For $1Billion</a></h4>
+                                                <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                June 28, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
+                    <h3 class="title-bg featured-title">Featured News</h3>
+                    <div class="sidebar">
+                        <ul>
+                            <li>
+                                <a href="#" class="category-btn hvr-bounce-to-right">Business</a>
+                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/1.jpg" alt="News image" /></a></div>
+                                <div class="content">
+                                    <h4><a href="blog-single.html">The exhibition Bankasy doesn’t want you to see</a></h4>
+                                    <span class="date"> 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                    </span> 
+                                    <span class="comment">
+                                        <a href="#">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                        </a>
+                                    </span>
+                                   
+                                </div>
+                            </li>
+                            <li>
+                                <a href="category-health.html" class="category-btn hvr-bounce-to-right">Health</a>
+                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/2.jpg" alt="News image" /></a></div>
+                                <div class="content">
+                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
+                                    <span class="date"> 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                    </span>
+                                    <span class="comment">
+                                        <a href="#">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                        </a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="category-btn hvr-bounce-to-right">Fashion</a>
+                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/3.jpg" alt="News image" /></a></div>
+                                <div class="content">
+                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
+                                    <span class="date"> 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                    </span> 
+                                    <span class="comment">
+                                        <a href="#">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="categories-home separator-large3">
+                            <h3 class="title-bg">Categories</h3>
+                            <ul>
+                                <li><a href="category.html"> <i class="fa fa-angle-right" aria-hidden="true"></i> Business <span>45</span></a></li>
+                                <li><a href="category-world.html"><i class="fa fa-angle-right" aria-hidden="true"></i> World <span>70</span></a></li>
+                                <li><a href="category-fashion.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Fashion <span>45</span></a></li>
+                                <li><a href="category-politics.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Politics <span>55</span></a></li>
+                                <li><a href="category-sports.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Sports <span>50</span></a></li>
+                                <li><a href="category-health.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Health <span>65</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
+            </div>
+        </div>
+    </div>
+    <!-- All News Section end Here -->
+    <!-- Footer Area Section Start Here -->
+    <div class="add-section separator-large2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img src="images/footer-top.png" alt="footer">
                 </div>
-             </div>
-          </div>
-       </article>
-    </main>
+            </div>
+        </div>
+    </div>
 @endsection
