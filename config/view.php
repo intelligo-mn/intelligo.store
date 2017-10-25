@@ -14,7 +14,7 @@ return [
     */
 
     'paths' => [
-        realpath(base_path('resources/themes/travelto')),
+        realpath(base_path('resources/views/news')),
     ],
 
     /*
