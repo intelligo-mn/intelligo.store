@@ -6,9 +6,9 @@
                         <div class="header-top-left">
                             <ul>
                                 <li>{{ date('Y-m-d H:i:s') }}</li>
-                                <li><a href="account.html">Sign In / Join</a>
+                                <li><a href="account.html">Нэвтрэх хэсэг</a>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="contact.html">Холбоо барих</a></li>
                             </ul>
                         </div>
                     </div>

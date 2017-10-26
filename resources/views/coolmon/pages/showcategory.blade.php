@@ -1,4 +1,4 @@
-@extends("main")
+@extends("app")
 @section('head_title', $category->name .' | '.getcong('sitename') )
 @section('head_description', $category->description )
 @section("content")
