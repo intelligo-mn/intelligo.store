@@ -37,7 +37,7 @@
                           <li>
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                   <div class="blog-image">
-                                      <a href="#">
+                                      <a href="{{ makeposturl($item) }}">
                                           <i class="fa fa-link" aria-hidden="true"></i>
                                           <img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}" srcset="{{ makepreview($item->thumb, 's', 'posts') }}">
                                       </a>
