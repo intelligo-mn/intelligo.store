@@ -12,11 +12,11 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="header-page-locator">
                             <ul>
-                                <li><a href="index.html">Home <i class="fa fa-compress" aria-hidden="true"></i> </a> Blog Post</li>
+                                <li><a href="index.html">Home <i class="fa fa-compress" aria-hidden="true"></i> </a> {{ $category->name }}</li>
                             </ul>
                         </div>
                         <div class="header-page-title">
-                            <h1>Blog</h1>
+                            <h1>{{ $category->name }}</h1>
                         </div>
                         <div class="header-page-subtitle">
                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
@@ -27,9 +27,7 @@
             </div>
         </div>
     </div>
-    <!-- Inner Page Header serction end here -->
- 
-   <!-- Blog Page Start Here -->
+    
     <div class="blog-page-area">
         <div class="container">
             @if($lastNews)
