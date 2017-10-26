@@ -19,7 +19,13 @@ class IndexController extends Controller
     {
         $homepagebuilder=getcong('p-homepagebuilder');
 
-        $HomeColSec1Tit1=null; $HomeColSec2Tit1=null; $HomeColSec3Tit1=null;$HomeColSec1Type1=null; $HomeColSec2Type1=null; $HomeColSec3Type1=null;
+        $HomeColSec1Tit1=null; 
+        $HomeColSec2Tit1=null; 
+        $HomeColSec3Tit1=null;
+        $HomeColSec1Type1=null; 
+        $HomeColSec2Type1=null; 
+        $HomeColSec3Type1=null;
+
         if($homepagebuilder=="on"){
             $HomeColSec1Tit1=getcong('HomeColSec1Tit1');
             $HomeColSec2Tit1=getcong('HomeColSec2Tit1');
@@ -64,8 +70,8 @@ class IndexController extends Controller
 
 
         $lastFeaturestop = Posts::forhome('Features')->
-            typesActivete()->a
-            pprove('yes')->
+            typesActivete()->
+            approve('yes')->
             where("lang", $lang)->
             where("featured_at", '>', '')->
             latest("featured_at")->
