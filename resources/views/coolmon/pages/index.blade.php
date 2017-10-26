@@ -59,7 +59,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="blog.html">{{ $item->title }}</a></h1>
+                                    <h1 class="title1"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h1>
                                     <div class="title2">{{ str_limit($item->body, 100) }}.</div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="blog.html">{{ $item->title }}</a></h1>
+                                    <h1 class="title1"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h1>
                                     <div class="title2">{{ str_limit($item->body, 100) }}.</div>
                                 </div>
                             </div>
