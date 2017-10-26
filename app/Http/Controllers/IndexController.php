@@ -36,30 +36,46 @@ class IndexController extends Controller
         $lang = \Session::get('locale');
 
         //colums 1
-        $lastFeatures=        Posts::forhome()->typesAccepted($HomeColSec1Type1)->
+        $lastFeatures = Posts::forhome()->
+                    typesAccepted($HomeColSec1Type1)->
                     where("lang", $lang)->
-                    typesActivete()->approve('yes')->latest("published_at")->paginate(6);
+                    typesActivete()->
+                    approve('yes')->
+                    latest("published_at")->
+                    paginate(6);
 
         //colums 2
-        $lastNews =           Posts::forhome()->typesAccepted($HomeColSec2Type1)->
+        $lastNews = Posts::forhome()->
+                    typesAccepted($HomeColSec2Type1)->
                     where("lang", $lang)->
-                    typesActivete()->approve('yes')->latest("published_at")->take(15)->get();
+                    typesActivete()->
+                    approve('yes')->
+                    latest("published_at")->
+                    take(15)->get();
 
         //colums 3
-        $lastTrendingVideos = Posts::forhome()->typesAccepted($HomeColSec3Type1)->
+        $lastTrendingVideos = Posts::forhome()->
+            typesAccepted($HomeColSec3Type1)->
             where("lang", $lang)->
-            typesActivete()->approve('yes')->latest("published_at")->take(10)->get();
+            typesActivete()->
+            approve('yes')->
+            latest("published_at")->
+            take(10)->get();
 
 
-        $lastFeaturestop = Posts::forhome('Features')->typesActivete()->approve('yes')->where("lang", $lang)->
-            where("featured_at", '>', '')->latest("featured_at")->take(3)->get();
+        $lastFeaturestop = Posts::forhome('Features')->
+            typesActivete()->a
+            pprove('yes')->
+            where("lang", $lang)->
+            where("featured_at", '>', '')->
+            latest("featured_at")->
+            take(3)->get();
 
         $lastvideoscol1  = Posts::forhome()->byType('video')->typesActivete()->approve('yes')->latest("published_at")->paginate(3);
 
         $lastpoll        = Posts::forhome()->byType('poll')->typesActivete()->approve('yes')->latest("published_at")->paginate(2);
 
         $lastTrending    = Posts::forhome()->typesActivete()->approve('yes')->getStats('one_day_stats', 'DESC', 10)->get();
-
 
         if(\Request::query('page')){
 
@@ -68,31 +84,23 @@ class IndexController extends Controller
             }else{
                 return redirect('/');
             }
-
         }
-
         else{
 
             if(Posts::where("lang", $lang)->count() < 5){
-
               return view('errors.starting');
-
             }
         }
-
 
         return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
     }
 
-
-
-
     public function langpick($getlang)
     {
 
-            \Session::put('locale', $getlang);
+        \Session::put('locale', $getlang);
 
-            \App::setLocale(\Session::get('locale'));
+        \App::setLocale(\Session::get('locale'));
 
         return redirect()->back();
 
