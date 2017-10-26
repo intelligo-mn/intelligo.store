@@ -1,4 +1,4 @@
-@extends("main")
+@extends("app")
 @section('head_title',  $post->title.' | '.getcong('sitename'))
 @section('head_description', $post->body)
 @section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))
@@ -8,461 +8,338 @@
 
 @foreach($entrys as $key => $entry)
 
-<main id="main">
-   <section class="container-fluid trip-info">
-      <div class="same-height two-columns row">
-         <div class="height col-md-6">
-            <div id="tour-slide">
-                 <div class="slide">
-                    <div class="bg-stretch">
-                       <img src="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}" height="1104" width="966">
+  <div class="inner-page-header">
+        <div class="banner">
+            <img src="images/banner/3.jpg" alt="Banner">
+        </div>
+        <div class="banner-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="header-page-locator">
+                            <ul>
+                                <li><a href="index.html">Home <i class="fa fa-compress" aria-hidden="true"></i> </a> Single Post</li>
+                            </ul>
+                        </div>
+                        <div class="header-page-title">
+                            <h1>Blog Single</h1>
+                        </div>
+                        <div class="header-page-subtitle">
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                                <br>alteration in some form, by injected humou</p>
+                        </div>
                     </div>
-                 </div>
-                 <div class="slide">
-                    <div class="bg-stretch">
-                       <img src="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}" height="1104" width="966">
-                    </div>
-                 </div>
-              </div>
-         </div>
-         <div class="height col-md-6 text-col">
-            <div class="holder">
-               <h1 class="small-size">{{ $post->title }}</h1>
-               <div class="price">
-                  {{ trans('index.price') }} <strong>{{ $post->body }}</strong>
-               </div>
-               <!-- <div class="description">
-                  <p>{{ $post->body }}</p>
-               </div>
-                -->
-               <div class="btn-holder">
-                  <a href="/contact" class="btn btn-lg btn-info">{{ trans('index.purchase')}}</a>
-               </div>
-               <ul class="social-networks social-share">
-                  <li>
-                     <a href="#" class="facebook">
-                     <span class="ico">
-                     <span class="icon-facebook"></span>
-                     </span>
-                     <span class="text">Share</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#" class="twitter">
-                     <span class="ico">
-                     <span class="icon-twitter"></span>
-                     </span>
-                     <span class="text">Tweet</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#" class="google">
-                     <span class="ico">
-                     <span class="icon-google-plus"></span>
-                     </span>
-                     <span class="text">+1</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#" class="pin">
-                     <span class="ico">
-                     <span class="icon-pin"></span>
-                     </span>
-                     <span class="text">Pin it</span>
-                     </a>
-                  </li>
-               </ul>
+                </div>
             </div>
-         </div>
-      </div>
-   </section>
-   <div class="tab-container">
-      <nav class="nav-wrap" id="sticky-tab">
-         <div class="container">
-            <ul class="nav nav-tabs text-center" role="tablist">
-               <li role="presentation" class="active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab">{{ trans('index.overview') }}</a></li>
-               <li role="presentation"><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab">{{ trans('index.itinerary') }}</a></li>
-               <li role="presentation"><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab">{{ trans('index.gallery') }}</a></li>
-            </ul>
-         </div>
-      </nav>
-      <div class="container tab-content trip-detail">
-         <div role="tabpanel" class="tab-pane active" id="tab01">
+        </div>
+    </div>
+    <!-- Inner Page Header serction end here -->
+ 
+   <!-- Blog Single Start Here -->
+    <div class="single-blog-page-area">
+        <div class="container">
             <div class="row">
-               <div class="col-md-8">
-                  @if($entry->title)
-                    <h2 class="sub-title" >
-
-                            @if($post->ordertype != '')
-                                {{ $entry->order+1 }}.
-                             @endif
-
-                        {{ $entry->title }}
-                    </h2>
-                @endif
-
-                @if($entry->type=='image')
-                    <div class="media">
-                        <div class="sharemedia">
-                            @include('._particles.others.entrysharebuttons')
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="single-image">
+                        <img src="images/single/1.jpg" alt="Blog single photo">
+                    </div>
+                    <h3><a href="#">Two Loser Idaho Pot Smugglers Freak Out, Call 911 on Themselves</a></h3>
+                    <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is has been the try’s stasn ndard dummy text ever since the 1500s, when an unknown printer took a galley of it to make. Lorem Ipsum is the simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indus try’s standard they dummy text ever since the 1500s, when an unknown printer took a galley of type and scram bled it to make a type specimen book.</p>
+                    <blockquote>
+                        <i class="fa fa-quote-right" aria-hidden="true"></i>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indus try’s standard.</p>
+                    </blockquote>
+                    <h2>Lorem Ipsum Dolor</h2>
+                    <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is has been the industry’s stasn ndard dummy text ever since the 1500s, when an unknown printer took a galley of it to make. Lorem Ipsum is the simply dummy text of the printing and typesetting industry. </p> 
+                    <ul class="cercle">
+                        <li><i class="fa fa-check-circle" aria-hidden="true"></i>  List one is awesome. Adding list item is very easily.</li>
+                        <li><i class="fa fa-check-circle" aria-hidden="true"></i> List one is awesome. Adding list item is very easily.</li>
+                        <li><i class="fa fa-check-circle" aria-hidden="true"></i> List one is awesome. Adding list item is very easily.</li>
+                    </ul> 
+                    <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is has been the industry’s stasn ndard dummy text ever since the 1500s, when an unknown printer took a galley of it to make. Lorem Ipsum is the simply dummy text of the printing and typesetting industry. </p>
+                    <div class="share-section">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 life-style">
+                                <span class="author"> 
+                                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> Admin </a>
+                                </span> 
+                                <span class="comment"> 
+                                <a href="#"> 
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                                </span>
+                                <span class="date">
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017 
+                                </span>
+                                <span class="cat">
+                                    <a href="#"><i class="fa fa-folder-o" aria-hidden="true"></i> Life Style </a>
+                                </span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="share-link">
+                                    <li class="hvr-bounce-to-right"><a href="#"> Tags:</a></li>
+                                    <li class="hvr-bounce-to-right"><a href="#"> Food</a></li>
+                                    <li class="hvr-bounce-to-right"><a href="#"> Fashion</a></li>
+                                    <li class="hvr-bounce-to-right"><a href="#"> Travel</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <a id="" class="gif-icon-a"><img class="img-responsive" style="display: block;@if($entry->type=='image')width:100%@endif" alt="{{ $entry->title }}" src="{{ makepreview($entry->image, null, 'entries') }}"></a>
-                        <small>{!! $entry->source !!}</small>
-                    </div>
-                @endif
-
-                @if($entry->type=='video' or $entry->type=='tweet' or $entry->type=='facebookpost' or $entry->type=='embed' or $entry->type=='soundcloud')
-
-                        @if($entry->type=='facebookpost')
-                            <div class="fb-post" data-href="{!!   $entry->video !!}" data-width="100%"></div>
-
-                        @elseif (strpos($entry->video, 'facebook'))
-                       <div id="{!! $entry->id !!}" class="fb-video" data-href="{!! $entry->video !!}" style="max-height: 360px;"><div class="fb-xfbml-parse-ignore"></div></div>
-
-                        @else
-                            {!! $entry->video !!}
-                        @endif
-                @endif
-                @if( $entry->type=='instagram')
-
-                    <div class='embed-containera'>
-                          <iframe id="instagram-embed-{{ $entry->order }}" src="{!! $entry->video !!}embed/captioned/?v=5" allowtransparency="true" frameborder="0" data-instgrm-payload-id="instagram-media-payload-{{ $entry->order }}" scrolling="no" style="border: 0; margin: 1px; max-width: 658px; width: calc(100% - 2px); border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 1px 0px, rgba(0, 0, 0, 0.14902) 0px 1px 10px 0px; display: block; padding: 0px; background: rgb(255, 255, 255);"></iframe>
-                          <script src="//platform.instagram.com/en_US/embeds.js"></script>
                     </div>
 
-                @endif
+                    <div class="share-section share-section2">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <span> You Can Share It : </span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="share-link">
+                                    <li class="hvr-bounce-to-right"><a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                                    <li class="hvr-bounce-to-right"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+                                    <li class="hvr-bounce-to-right"><a href="#"><i class="fa fa-google" aria-hidden="true"></i> Google</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <ul class="next-pre-section">
+                                <li class="left-arrow"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous Post</a></li>
+                                <li class="right-arrow"><a href="#">Next Post <i class="fa fa-angle-right" aria-hidden="true"></i> </a></li>
+                            </ul>
+                        </div>
+                    </div>    
+                    <div class="like-section">
+                        <h3 class="title-bg">YOU MIGHT ALSO LIKE</h3>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="popular-post-img">
+                                    <a href="#"><img src="images/single/2.jpg" alt="Blog single photo"></a>                                   
+                                </div>                                
+                                <h3>
+                                    <a href="#">Easy to Use Your Gallery</a>
+                                </h3>
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="popular-post-img">
+                                    <a href="#"><img src="images/single/4.jpg" alt="Blog single photo"></a>                                   
+                                </div>                                
+                                <h3>
+                                    <a href="#">Easy to Use Your Gallery</a>
+                                </h3>
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="popular-post-img">
+                                    <a href="#"><img src="images/single/5.jpg" alt="Blog single photo"></a>                                  
+                                </div>                                
+                                <h3>
+                                    <a href="#">Easy to Use Your Gallery</a>
+                                </h3>
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="author-comment">
+                        <h3 class="title-bg">Recent Comments</h3>
+                        <ul>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <div class="image-comments"><img src="images/single/3.jpg" alt="Blog single photo"></div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <span class="reply"> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span></span>
+                                        <div class="dsc-comments">
+                                            <h4>Thesera Minton</h4>                                            
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do they eiusmod tempor incidi dunt ut labore et dolore magna aliquat enim ad minim veniam ad minim veniam.</p>
+                                            <a href="#"> Reply</a>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <div class="image-comments"><img src="images/single/3.jpg" alt="Blog single photo"></div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <span class="reply"> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span></span>
+                                        <div class="dsc-comments">
+                                            <h4>Thesera Minton</h4>                                            
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do they eiusmod tempor.</p>
+                                            <a href="#"> Reply</a>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <div class="image-comments"><img src="images/single/3.jpg" alt="Blog single photo"></div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <span class="reply"><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Sep 13, 2017</span></span>
+                                        <div class="dsc-comments">
+                                            <h4>Thesera Minton</h4>                                            
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do they eiusmod tempor incidi dunt ut labore et dolore magna aliquat enim ad minim veniam ad minim veniam.</p>
+                                            <a href="#"> Reply</a>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                       <div class="leave-comments-area">
+                            <h4 class="title-bg">Leave Comments</h4>
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label>Name*</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email*</label>
+                                        <input type="email" class="form-control">
+                                    </div>
 
-                 <p>
-                    {!! $entry->body !!}
-                </p>
-                 @if( $entry->type=='text')
-                <small>{!! $entry->source !!}</small>
-                 @endif
-               </div>
-               
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="website" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Your comment here...</label>
+                                        <textarea cols="40" rows="10" class="textarea form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn-send" type="submit">Post Comment</button>
+                                    </div>
+                            </fieldset>
+                        </form>
+                    </div>                                 
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <!-- Blog Single Sidebar Start Here -->
+                    <div class="sidebar-area">
+                        <div class="like-box-area">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> <span class="like-page">like our facebook page <br/>210,956 likes</span> <span class="like"><i class="fa fa-plus" aria-hidden="true"></i></span></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> <span class="like-page">Follow us on twitter<br/>2109 followers</span> <span class="like">
+                                <i class="fa fa-plus" aria-hidden="true"></i></span></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> <span class="like-page">Subscribe to our rss <br/>210,956 likes</span> <span class="like"><i class="fa fa-plus" aria-hidden="true"></i></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="recent-post-area hot-news">
+                            <h3 class="title-bg">Recent Post</h3>
+                            <ul class="news-post">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                            <div class="item-post">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
+                                                        <a href="blog-single.html"><img src="images/popular/1.jpg" alt="" title="News image" /></a>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                        <h4><a href="blog-single.html"> US should prepare for<br/> Russian election</a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                  <li>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                            <div class="item-post">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
+                                                        <a href="blog-single.html"><img src="images/popular/2.jpg" alt="" title="News image" /></a>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                        <h4><a href="blog-single.html">Pellentesque Odio Nisi <br/>Euismod In Pharet</a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>June 28, 2017</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                  <li>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                            <div class="item-post">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
+                                                        <a href="blog-single.html"><img src="images/popular/3.jpg" alt="" title="News image" /></a>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                        <h4><a href="blog-single.html"> Erant Aeque Neius No <br/>Numes Electram</a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                  <li>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                                            <div class="item-post">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
+                                                        <a href="blog-single.html"><img src="images/popular/4.jpg" alt="" title="News image" /></a>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                        <h4><a href="blog-single.html">Erant Aeque Neius No <br/>Numes Electram</a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>June 28, 2017</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="trending-post-area">
+                            <h3 class="title-bg">Trending Post</h3>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <ul>
+                                        <li>
+                                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
+                                        </li>
+                                        <li>
+                                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
+                                        </li>
+                                        <li>
+                                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
+                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add">
+                            <img src="images/add/4.jpg" alt="Add">
+                        </div>
+                    </div>
+                </div>                
             </div>
-         </div>
-         <div role="tabpanel" class="tab-pane" id="tab02">
-            <!-- <div class="row">
-               <div class="col-md-6">
-                  <ol class="detail-accordion">
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 1</strong>
-                        <span>Depart London</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 2</strong>
-                        <span>Arrive in Kathmandu</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 3</strong>
-                        <span>Leave for Pokhara</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 4</strong>
-                        <span>Start Trekking at Besi</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 5</strong>
-                        <span>Day subtitle message</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 6</strong>
-                        <span>Day subtitle message</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <strong class="title">Day 7</strong>
-                        <span>Depart London</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ctetur, adipisci velit, sed quia non numquam eius modi.</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li class="active">
-                        <a href="#">
-                        <strong class="title">Day 8</strong>
-                        <span>Return to London</span>
-                        </a>
-                        <div class="slide">
-                           <div class="slide-holder">
-                              <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                              <p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
-                           </div>
-                        </div>
-                     </li>
-                  </ol>
-               </div>
-               <div class="col-md-6">
-                  <article class="img-article article-light">
-                     <div class="img-wrap">
-                        <img src="travel/img/generic/img-08.jpg" height="319" width="570" alt="image description">
-                     </div>
-                     <div class="text-block">
-                        <h3><a href="#">Member taking a short break</a></h3>
-                        <p>Consider packing your bag with folloing daily essentials.</p>
-                     </div>
-                  </article>
-                  <article class="img-article article-light">
-                     <div class="img-wrap">
-                        <img src="travel/img/generic/img-09.jpg" height="319" width="570" alt="image description">
-                     </div>
-                     <div class="text-block">
-                        <h3><a href="#">Couple enjoying the spectacular view</a></h3>
-                        <p>Consider packing your bag with folloing daily essentials.</p>
-                     </div>
-                  </article>
-               </div>
-            </div> -->
-         </div>
-         <div role="tabpanel" class="tab-pane" id="tab03">
-            <ul class="row gallery-list has-center">
-                @if($entry->type=='image')
-                    <li class="col-sm-6">
-                      <a class="fancybox" data-fancybox-group="group" href="img/gallery/img-10-2.jpg" title="Caption Goes Here">
-                      <span class="img-holder">
-                      <img src="{ makepreview($entry->image, null, 'entries') }}" height="750" width="450" alt="image description">
-                      </span>
-                      <span class="caption">
-                      <span class="centered">
-                      <strong class="title">{{ $entry->title }}</strong>
-                      </span>
-                      </span>
-                      </a>
-                   </li>
-                @endif
-            </ul>
-         </div>
-      </div>
-   </div>
-   <aside class="recent-block recent-gray recent-wide-thumbnail">
-      <div class="container">
-         <h2 class="text-center text-uppercase">{{ trans('index.related_tour') }}</h2>
-         <div class="row">
-            @foreach($lastFeatures as $item)
-                @include('._particles._lists.travel_list', ['listtype' => 'big_image titm bolb','descof' => 'on', 'setbadgeof' => 'off', 'itembodyheight' => '50px', 'metaof' => 'off', 'linkcolor' => 'default'])
-            @endforeach
-        <!--     <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="travel/img/listing/img-31.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="travel/img/listing/img-32.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="travel/img/listing/img-33.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article>
-            <article class="col-sm-6 col-md-3 article">
-               <div class="thumbnail">
-                  <h3 class="no-space"><a href="#">Everest Basecamp Trek</a></h3>
-                  <strong class="info-title">Everest Region, Nepal</strong>
-                  <div class="img-wrap">
-                     <img src="travel/img/listing/img-34.jpg" height="210" width="250" alt="image description">
-                  </div>
-                  <footer>
-                     <div class="sub-info">
-                        <span>5 Days</span>
-                        <span>$299</span>
-                     </div>
-                     <ul class="ico-list">
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-hiking"></span>
-                           <span class="popup">
-                           Hiking
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-mountain"></span>
-                           <span class="popup">
-                           Mountain
-                           </span>
-                           </a>
-                        </li>
-                        <li class="pop-opener">
-                           <a href="#">
-                           <span class="icon-level5"></span>
-                           <span class="popup">
-                           Level 5
-                           </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </footer>
-               </div>
-            </article> -->
-         </div>
-      </div>
-   </aside>
-</main>
+        </div>
+    </div>
 
 @endforeach
 
-   @if($key==1 and count($entrys) > 3)
-        @foreach(\App\Widgets::where('type', 'Post2nd3rdentry')->where('display', 'on')->get() as $widget)
-            {!! $widget->text !!}
-        @endforeach
-    @endif
 @endsection
 
 @section('footer')
