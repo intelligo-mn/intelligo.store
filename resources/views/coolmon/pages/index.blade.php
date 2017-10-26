@@ -1,8 +1,6 @@
 @extends("app")
 
 @section("content")
-  <!--Header area end here-->
-    <!-- Slider Section Start Here -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-0">
@@ -14,27 +12,13 @@
                             <div class="ticker-head up-case backg-colr col-md-2">Breaking News <i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
                             <div class="tickers col-md-10">
                                 <div id="top-news-slider" class="owl-carousel ">
-                                    <div class="item">
-                                        <a href="blog-single.html"> <img src="cooltheme/images/breaking/1.jpg" alt="news image"> <span>Migrants Told: Stay in France </span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"><img src="cooltheme/images/breaking/2.jpg" alt="news image"> <span>Duo Scripta An The Prieirmod</span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"><img src="cooltheme/images/breaking/3.jpg" alt="news image"> <span>Two Loser Idaho Pot Smugglers </span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"><img src="cooltheme/images/breaking/4.jpg" alt="news image"> <span>Car racer gives herself a mid-Event</span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"><img src="cooltheme/images/breaking/5.jpg" alt="news image"> <span>Aaron Rodgers Criticizes </span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"> <img src="cooltheme/images/breaking/1.jpg" alt="news image"> <span>Detroit Natives Wary & Recovery</span></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="blog-single.html"><img src="cooltheme/images/breaking/4.jpg" alt="news image"> <span>Clinton campaign jilted as FBI</span></a>
-                                    </div>                             
+                                    @foreach($lastNews as $item)
+                                        <div class="item">
+                                            <a href="{{ makeposturl($item) }}"> <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"> <span>{{ $item->title }} </span></a>
+                                        </div>
+                                            
+                                    @endforeach
+                                                      
                                </div>
                            </div>
                         </div>
@@ -46,19 +30,27 @@
                 <div class="slider-area">
                     <div class="bend niceties preview-2">
                         <div id="ensign-nivoslider" class="slides">
-                            <img src="cooltheme/images/slider/slide_1.jpg" alt="" title="#slider-direction-1" />
-                            <img src="cooltheme/images/slider/slide_3.jpg" alt="" title="#slider-direction-2" />
+                            
+                            @foreach($lastFeaturestop->slice(0,1) as $item)
+                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="#slider-direction-1" />
+                             @endforeach
+
+                             @foreach($lastFeaturestop->slice(1,1) as $item)
+                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="#slider-direction-2" />
+                             @endforeach
                         </div>
                         <!-- direction 2 -->
+
+                        @foreach($lastFeaturestop->slice(0,1) as $item)
                         <div id="slider-direction-1" class="slider-direction">
-                            <div class="slider-content t-cn s-tb slider-1">
+                             <div class="slider-content t-cn s-tb slider-1">
                                 <div class="title-container s-tb-c">
                                     <div class="slider-botton">
                                         <ul>
                                             <li>
                                                 <a class="cat-link" href="category.html">Business</a> 
                                                 <span class="date"> 
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -67,21 +59,23 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="blog.html"><span>Record</span> proportion of women<br/>on degrees</a></h1>
-                                    <div class="title2">The exhibition Banksy doesn’t want to see whle travelling hear.</div>
+                                    <h1 class="title1"><a href="blog.html">{{ $item->title }}</a></h1>
+                                    <div class="title2">{{ str_limit($item->body, 100) }}.</div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- direction 2 -->
+                         @foreach($lastFeaturestop->slice(1,1) as $item)
                         <div id="slider-direction-2" class="slider-direction">
-                            <div class="slider-content t-cn s-tb slider-2">
+                             <div class="slider-content t-cn s-tb slider-1">
                                 <div class="title-container s-tb-c">
                                     <div class="slider-botton">
                                         <ul>
                                             <li>
-                                                <a class="cat-link" href="category-world.html">World</a> 
+                                                <a class="cat-link" href="category.html">Business</a> 
                                                 <span class="date"> 
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -90,11 +84,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="blog.html"><span>John</span> to retire as director</a></h1>
-                                    <div class="title2">The exhibition Banksy doesn’t want to see whle travelling hear.</div>
+                                    <h1 class="title1"><a href="blog.html">{{ $item->title }}</a></h1>
+                                    <div class="title2">{{ str_limit($item->body, 100) }}.</div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -102,30 +97,10 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
                 <div class="slider-right">
                     <ul>
-                        <li>
-                            <div class="right-content">
-                                <span class="category"><a class="cat-link" href="blog.html">Business</a></span> 
-                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
-                                <h3><a href="blog-single.html">Trudeau forced to refugees.</a></h3>
-                            </div>
-                            <div class="right-image"><a href="blog-single.html"><img src="cooltheme/images/sidebar-images/1.jpg" alt="sidebar image"></a></div>
-                        </li>
-                        <li>
-                            <div class="right-content">
-                                <span class="category"><a class="cat-link" href="blog.html">Health</a></span> 
-                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June  28,  2017 </span>
-                                <h3><a href="blog-single.html">The exhibition Bankasy</a></h3>
-                            </div>
-                            <div class="right-image"><a href="blog-single.html"><img src="cooltheme/images/sidebar-images/2.jpg" alt="sidebar image"></a></div>
-                        </li>
-                        <li>
-                            <div class="right-content">
-                                <span class="category"><a class="cat-link" href="blog.html">Science</a></span> 
-                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017 </span> 
-                                <h3><a href="blog-single.html">Hurricane Harvey: evacuations.</a></h3>                  
-                            </div>
-                            <div class="right-image"><a href="blog-single.html"><img src="cooltheme/images/sidebar-images/3.jpg" alt="sidebar image"></a></div>
-                        </li>
+                        @foreach($lastFeaturestop->slice(1,2) as $item)
+                                @include('._particles._lists.top_slider_list', ['metaon' => 'on'])
+
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -147,285 +122,174 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab1" class="tab-pane fade in active">
-                            <div class="tab-top-content">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="cooltheme/images/tab/1.jpg" alt="sidebar image"></a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
-                                        <a href="blog-single.html" class="read-more hvr-bounce-to-right">Read More</a>
+                            @if($lastNews)
+                                <div class="tab-top-content">
+                                     @foreach($lastNews->slice(0, 1) as $item)
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
+                                                <p>{{ str_limit($item->body, 100) }}</p>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tab-bottom-content">
+                                    <div class="row">
+                                         @foreach($lastNews->slice(1,4) as $item)
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                            <div class="col-sm-12 col-xs-3 img-tab">
+                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                            </div>
+                                            <div class="col-sm-12 col-xs-9 img-content">
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
+                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-bottom-content">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
-                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
-                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/4.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
-                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/5.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June 28, 2017</span>
-                                            <h4><a href="blog-single.html">The Soccer Field Close.</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div id="tab2" class="tab-pane fade">
-                            <div class="tab-top-content">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="cooltheme/images/tab/7.jpg" alt="sidebar image"></a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
-                                        <a href="blog-single.html" class="read-more hvr-bounce-to-right">READ MORE</a>
+                             @if($lastNews)
+                                <div class="tab-top-content">
+                                     @foreach($lastNews->slice(1, 1) as $item)
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
+                                                <p>{{ str_limit($item->body, 100) }}</p>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tab-bottom-content">
+                                    <div class="row">
+                                         @foreach($lastNews->slice(4,7) as $item)
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                            <div class="col-sm-12 col-xs-3 img-tab">
+                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                            </div>
+                                            <div class="col-sm-12 col-xs-9 img-content">
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
+                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-bottom-content">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/5.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-
-                                            <h4><a href="blog-single.html">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div id="tab3" class="tab-pane fade">
-                            <div class="tab-top-content">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="cooltheme/images/tab/8.jpg" alt="sidebar image"></a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
-                                        <a href="#" class="read-more hvr-bounce-to-right">Read More</a>
+                            @if($lastNews)
+                                <div class="tab-top-content">
+                                     @foreach($lastNews->slice(2, 1) as $item)
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
+                                                <p>{{ str_limit($item->body, 100) }}</p>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tab-bottom-content">
+                                    <div class="row">
+                                         @foreach($lastNews->slice(5,7) as $item)
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                            <div class="col-sm-12 col-xs-3 img-tab">
+                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                            </div>
+                                            <div class="col-sm-12 col-xs-9 img-content">
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
+                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-bottom-content">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                           
-
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div id="tab4" class="tab-pane fade">
-                            <div class="tab-top-content">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="cooltheme/images/tab/1.jpg" alt="sidebar image"></a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                        <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> james Bond </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
-                                        <a href="#" class="read-more hvr-bounce-to-right">Read More</a>
+                            @if($lastNews)
+                                <div class="tab-top-content">
+                                     @foreach($lastNews->slice(0, 1) as $item)
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
+                                                <p>{{ str_limit($item->body, 100) }}</p>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tab-bottom-content">
+                                    <div class="row">
+                                         @foreach($lastNews->slice(1,4) as $item)
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                            <div class="col-sm-12 col-xs-3 img-tab">
+                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                            </div>
+                                            <div class="col-sm-12 col-xs-9 img-content">
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
+                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-bottom-content fadeInUp">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                           
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/4.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                          
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div id="tab5" class="tab-pane fade">
-                            <div class="tab-top-content">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="cooltheme/images/tab/7.jpg" alt="sidebar image"></a>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                        <span class="date">james Bond </span><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 50</a> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                        <h3><a href="#">Migrants Told: Stay in France or go back to your country</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisl risus, tristique diam id, blandit condimentum</p>
-                                        <a href="#" class="read-more hvr-bounce-to-right">READ MORE</a>
+                           @if($lastNews)
+                                <div class="tab-top-content">
+                                     @foreach($lastNews->slice(0, 1) as $item)
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
+                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
+                                                <p>{{ str_limit($item->body, 100) }}</p>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tab-bottom-content">
+                                    <div class="row">
+                                         @foreach($lastNews->slice(1,4) as $item)
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
+                                            <div class="col-sm-12 col-xs-3 img-tab">
+                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                            </div>
+                                            <div class="col-sm-12 col-xs-9 img-content">
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
+                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-bottom-content fadeInUp">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/3.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                  
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/2.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-
-                                            <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
-                                        <div class="col-sm-12 col-xs-3 img-tab">
-                                            <a href="blog-single.html"><img src="cooltheme/images/tab/4.jpg" alt="News image"></a>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-9 img-content">
-                                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                       <h4><a href="#">SIS puts fierce fight & bombing</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <!-- Trending news  here-->
@@ -792,103 +656,103 @@
                         </div>
                     </div>
                     <div id="featured-videos-section" class="owl-carousel">
-              <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/1.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/1.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
                                     <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Woman Endure Five Year Slvery</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/3.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Health Benefits of Morning Running</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/4.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/5.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="single-videos">
-                <div class="images">
-                  <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
-                  <div class="overley">
-                    <div class="videos-icon">
-                      <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                    </div>
-                  </div>
-                </div>                            
-                <div class="videos-text">
-                  <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                  <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                </div>
-              </div>
-            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Woman Endure Five Year Slvery</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/3.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Health Benefits of Morning Running</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/4.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/5.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="single-videos">
+                                <div class="images">
+                                    <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
+                                    <div class="overley">
+                                        <div class="videos-icon">
+                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <div class="videos-text">
+                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>    
             </div>
@@ -1235,4 +1099,5 @@
             </div>
         </div>
     </div>
+
 @endsection
