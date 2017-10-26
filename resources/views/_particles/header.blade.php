@@ -3,7 +3,7 @@
       <div class="logo">
          <a href="{{ action('IndexController@index') }}">
         
-         @yield('head_title', getcong('sitetitle'))
+         {{ getcong('sitename') }}
     
          </a>
       </div>

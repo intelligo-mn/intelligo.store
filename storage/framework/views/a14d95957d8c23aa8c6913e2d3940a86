@@ -3,7 +3,8 @@
       <div class="logo">
          <a href="<?php echo e(action('IndexController@index')); ?>">
         
-         <?php echo $__env->yieldContent('head_title', getcong('sitetitle')); ?>
+         <?php echo e(getcong('sitename')); ?>
+
     
          </a>
       </div>

@@ -1,0 +1,26 @@
+<?php if(getcong('facebookapp') or getcong('googleapp') or getcong('twitterapp')): ?>
+<div class="login-container steps">
+    <div class="connect-forms ">
+        <div class="hdr"><?php echo e(trans('index.connect')); ?></div>
+        <div class="external-sign-in">
+            <?php if(getcong('facebookapp')): ?>
+            <a class="Facebook do-signup" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'facebook'])); ?>"><?php echo e(trans('index.connectfacebok')); ?></a>
+            <a class="Facebook mini" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'facebook'])); ?>"></a>
+            <?php endif; ?>
+            <?php if(getcong('googleapp')): ?>
+            <a class="Google do-signup " href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'google'])); ?>"><?php echo e(trans('index.connectgoogle')); ?></a>
+            <a class="Google mini" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'google'])); ?>"></a>
+            <?php endif; ?>
+            <?php if(getcong('twitterapp')): ?>
+            <a class="Twitter do-signup " href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'twitter'])); ?>"><?php echo e(trans('index.connecttwitter')); ?></a>
+            <a class="Twitter mini" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'twitter'])); ?>"></a>
+            <?php endif; ?>
+            <?php if(env('VKONTAKTE_KEY')): ?>
+            <a class="Vkontakte do-signup" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'vkontakte'])); ?>"><?php echo e(trans('updates.connectvkontakte')); ?></a>
+           <a class="Vkontakte mini" href="<?php echo e(action('Auth\AuthController@socialConnectRedirect', ['type' => 'vkontakte'])); ?>"></a>
+            <?php endif; ?>
+        </div>
+<div class="clear"></div>
+    </div>
+</div>
+<?php endif; ?>

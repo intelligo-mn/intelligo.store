@@ -552,9 +552,9 @@ blockquote.normal {
 .logo a {
     display: inline-block;
     vertical-align: middle;
-    width: 100px;
+    width: 100%;
     color: white;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 800;
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
@@ -9741,7 +9741,7 @@ h4,
         border-right: 1px solid #2d2d2d;
     }
     .logo a {
-        width: 120px;
+        width: 100%;
     }
     .logo img {
         width: 100%;
@@ -10724,7 +10724,7 @@ h4,
         border-right-color: #181818;
     }
     #header.fixed-position .logo a {
-        width: 98px;
+        width: 100%;
     }
     #header.fixed-position .navbar-default .navbar-nav>li>a:hover {
         color: #b0a377;
