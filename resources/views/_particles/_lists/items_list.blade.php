@@ -44,16 +44,11 @@
                             </div>
                             @if($descof=='on')
                             <div class="item_meta__item pull-r" style="margin-right: 0; ">
-                               <!--  <div class="item_meta__item pull-r" style="margin-right: 0; ">
+                                <div class="item_meta__item pull-r" style="margin-right: 0; ">
                                     <a href="http://www.facebook.com/share.php?u={{ url(makeposturl($item)) }}" data-id="{{ $item->id }}" class="share_social is-facebook  popup-action"><i class="fa fa-facebook"></i></a>
                                     <a href="http://twitter.com/share?url={{ url(makeposturl($item)) }}&amp;text={{ $item->title  }}" data-id="{{ $item->id }}" class="share_social is-twitter popup-action"><i class="fa fa-twitter"></i></a>
-                                </div> -->
-                            @if( Auth::user()->usertype=='Admin')
-                                <a href="{{ action('PostsController@CreateEdit', [$item->id]) }}" class="button button-small" ><i class="fa fa-pencil-square iconp"></i> {{ trans('index.edit') }}</a>
-                            @endif
-                            @if( Auth::user()->usertype=='Admin')
-                                <a href="{{ action('PostsController@sendtrashpost', [$item->id]) }}" onclick="confim()" class="button button-small " ><i class="fa fa-trash"></i></a>
-                            @endif
+                                </div>
+
                             </div>
                             @endif
                         </div>

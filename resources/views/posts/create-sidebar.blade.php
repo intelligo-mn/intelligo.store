@@ -32,12 +32,6 @@
                 {!! Form::select('category', $categories, isset($post->category_id) ? $post->category_id : null) !!}
             </p>
         </div>
-        <div class="cd-form">
-            <legend>Language</legend>
-            <p class="cd-select icon">
-                {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($post->lang)) !!}
-            </p>
-        </div>
         @unless($typene=='quiz' or $typene=='poll')
         <div class="cd-form">
             <legend>{{ trans('updates.pagination') }}</legend>

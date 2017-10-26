@@ -1,62 +1,132 @@
-<footer id="footer">
-    <div class="container">
-       
-       <div class="row footer-holder">
-           <nav class="col-sm-6 col-lg-5 footer-nav">
-             <div class="fb-page" data-href="https://www.facebook.com/tsastsolutionweb/" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
-          </nav>
+  <footer>
+        <div class="footer-top-area">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer About Section Start Here -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="single-footer footer-one">
+                            <h3>About</h3>
+                            <div class="footer-logo"><img src="cooltheme/images/footer-logo.png" alt="footer-logo"></div>
+                            <p>Your source for the lifestyle news. This demo is crafted specifically to exhibit the use of the theme as a lifestyle site. Visit our main page for more </p>
+                            <p>We're social, connect with us:</p>
+                            <div class="footer-social-media-area">
+                                <nav>
+                                    <ul>
+                                        <!-- Facebook Icon Here -->
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <!-- Google Icon Here -->
+                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                        <!-- Twitter Icon Here -->
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <!-- Vimeo Icon Here -->
+                                        <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                                        <!-- Pinterest Icon Here -->
+                                        <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer About Section End Here -->
 
-          <nav class="col-sm-6 col-lg-3 footer-nav active">
-             <h3><?php echo e(trans('index.mainmenus')); ?></h3>
-             <ul class="slide">
-                <li>
-                  <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?></a>
-                     
-               </li>
+                    <!-- Footer Popular Post Section Start Here -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="single-footer footer-two">
+                            <h3>Popular Posts</h3>
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                                            <a href="blog-single.html"><img src="cooltheme/images/post-images/post-1.jpg" alt="post photo"></a>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                            <p><a href="blog-single.html">US should prepare for Russian election</a></p>
+                                            <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                                            <a href="blog-single.html"><img src="cooltheme/images/post-images/post-2.jpg" alt="post photo"></a>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                            <p><a href="blog-single.html">US should prepare for Russian election</a></p>
+                                            <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                                            <a href="blog-single.html"><img src="cooltheme/images/post-images/post-3.jpg" alt="post photo"></a>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                            <p><a href="blog-single.html">US should prepare for Russian election</a></p>
+                                            <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Footer Popular Post Section End Here -->
 
-                <?php foreach(\App\Pages::where('footer', '1')->
-                where("lang", \Session::get('locale'))->get() as $page): ?>
-                    <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
-                <?php endforeach; ?>
-            
-               <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
-               where("lang", \Session::get('locale'))->
-               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
-                  <li>
-                     <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> </a>
-                        
-                  </li>
-              <?php endforeach; ?>
-             </ul>
-          </nav>
-         
-
-          <nav class="col-sm-6 col-lg-4 footer-nav last">
-             <h3><?php echo e(trans('index.contactus')); ?></h3>
-             <ul class="slide address-block">
-                <li class="wrap-text"><span class="icon-tel"></span> <a href="tel:02072077878">(976) 94968096</a></li>
-                <li class="wrap-text"><span class="icon-fax"></span> <a href="tel:02088828282">(976) 88828282</a></li>
-                <li class="wrap-text"><span class="icon-email"></span> <a href="mailto:info@triptomongolian.com/">info@triptomongolian.com/</a></li>
-                <li>
-                   <span class="icon-home"></span> 
-                   <address>Ulaanbaatar, Mongolia</address>
-                </li>
-             </ul>
-          </nav>
-       </div>
-    </div>
-    <div class="footer-bottom">
-       <div class="container">
-          <div class="row">
-             <div class="col-lg-6">
-                <strong class="copyright"><i class="fa fa-copyright"></i>
-                    Copyright 2017 - Trip to Mongolia
-                </strong>
-             </div>
-             <div class="col-lg-6">
-              
-             </div>
-          </div>
-       </div>
-    </div>
- </footer>
+                    <!-- Footer From Flickr Section Start Here -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="single-footer footer-three">
+                            <h3>From Flickr</h3>
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/1.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/2.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/3.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/4.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/5.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/6.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/7.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/8.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/9.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/10.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/11.png" alt="flicker photo"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="cooltheme/images/flicker/12.png" alt="flicker photo"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer From Flickr Section End Here -->
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyright Area Start Here -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-bottom">
+                            <p> &copy; Copyrights 2017. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyright Area End Here -->
+    </footer>

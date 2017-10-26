@@ -1,163 +1,114 @@
-<header id="header" class="white-header">
-   <div class="container-fluid">
-      <div class="logo">
-         <a href="{{ action('IndexController@index') }}">
-        
-         {{ getcong('sitename') }}
-    
-         </a>
-      </div>
-      <nav class="navbar navbar-default">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle nav-opener" data-toggle="collapse" data-target="#nav">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-         </div>
-         <div class="collapse navbar-collapse" id="nav">
-            <ul class="nav navbar-nav">
-               <li>
-                  <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
-                     
-               </li>
-
-                @foreach(\App\Pages::where('footer', '1')->
-                where("lang", \Session::get('locale'))->get() as $page)
-                    <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
-                @endforeach
-            
-               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
-               where("lang", \Session::get('locale'))->
-               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
-                  <li>
-                     <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
-                        
-                  </li>
-              @endforeach
-              <li>
-                 <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a>
-                    
-              </li>
-               
-               <li class="dropdown hidden-xs hidden-sm v-divider">
-                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="icon icon-user"></span>
-                  </a>
-
-                  @if(!Auth::check())
-                  <div class="dropdown-menu">
-                     <ul>
-                        <li>
-                            <a href="/login">{{ trans('index.login') }}</a>
-                       </li>
-                     </ul>
-                  </div>
-                  
-                  @endif
-                  @if(Auth::check())
-                  <div class="dropdown-menu">
-                     <ul>
-                        <li>
-                           <a style="display:block;font-size:16px;font-weight: 600">{{ Auth::user()->username }}</a>
-                       </li>
-                       <li>
-                           <a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
-                       </li>
-                       <!-- <li>
-                           <a href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
-                       </li> -->
-                    <!--    <li>
-                           <a href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
-                       </li>
-                       <li>
-                           <a href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
-                       </li> -->
-                       <li>
-                           <a href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
-                       </li>
-                       @if(Auth::user()->usertype=='Admin')
-                           <li>
-                               <a href="/admin">{{ trans('index.adminp') }}</a>
-                           </li>
-                       @endif
-                       <li>
-                           <a href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
-                       </li>
-                     </ul>
-                  </div>
-                  @endif
-               </li>
-             
-                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
-                  <a href="#">
-                    <span class="text">
-                    @if(Session::get ('locale') == 'en')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">
-                    @elseif(Session::get ('locale') == 'mn')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
-                    @elseif(Session::get ('locale') == 'zh')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
-                    @elseif(Session::get ('locale') == 'ru')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="Russia">
-                    @endif
-                    {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
-                    </span> 
-                    <span class="icon-angle-down"></span>
-                  </a>
-                   <div class="dropdown-menu dropdown-sm">
-                      <div class="drop-wrap lang-wrap">
-                         <div class="lang-row">
-                            <div class="lang-col">
-                              <a href="/selectlanguge/en">
-
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">  English</span>
-                               </a>
-                            </div>
+   <header>
+        <div class="header-top-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div class="header-top-left">
+                            <ul>
+                                <li>{{ date('Y-m-d H:i:s') }}</li>
+                                <li><a href="account.html">Sign In / Join</a>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
                         </div>
-                         <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/mn">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">  Монгол</span>
-                               </a>
-                            </div>
-                         </div>
-                          <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/zh">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
-                               </a>
-                            </div>
-                         </div>
-                         <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/ru">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English">  Russia</span>
-                               </a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-               </li>
-             <!--   <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li> -->
-            </ul>
-         </div>
-      </nav>
-   </div>
-   <form class="search-form" action="#">
-      <fieldset>
-         <a href="#" class="search-opener hidden-md hidden-lg">
-         <span class="icon-search"></span>
-         </a>
-         <div class="search-wrap">
-            <a href="#" class="search-opener close">
-            <span class="icon-cross"></span>
-            </a>
-            <div class="trip-form trip-form-v2 trip-search-main">
-              
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="social-media-area">
+                            <nav>
+                                <ul>
+                                    <li><a href="#" class="active"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </fieldset>
-   </form>
-</header>
+        </div>
+        <div class="header-middle-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="logo-area">
+                            <a href="index.html"><img src="cooltheme/images/logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <div class="right-banner">
+                            <img src="cooltheme/images/add/1.png" alt="add image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom-area" id="sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <div class="navbar-header">
+                            <div class="col-sm-8 col-xs-8 padding-null">
+                                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="col-sm-4 col-xs-4 hidden-desktop text-right search">
+                                <a href="#search-mobile" data-toggle="collapse" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                <div id="search-mobile" class="collapse search-box">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="main-menu navbar-collapse collapse">
+                            <nav>
+                                <ul>
+                                   <!--  <li><a href="index.html" class="has dropdown-toggle">Home <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="index.html">Home 1</a></li>
+                                            <li><a href="index2.html">Home 2</a></li>
+                                            <li><a href="index3.html">Home 3</a></li>
+                                        </ul>
+                                    </li>
+                               
+                                    <li><a href="category-videos.html">Videos</a></li> -->
+                                     <li>
+                                          <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
+                                             
+                                       </li>
+
+                                        @foreach(\App\Pages::where('footer', '1')->
+                                        where("lang", \Session::get('locale'))->get() as $page)
+                                            <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
+                                        @endforeach
+                                    
+                                       @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+                                       where("lang", \Session::get('locale'))->
+                                       where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                                          <li>
+                                             <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                                                
+                                          </li>
+                                      @endforeach
+                                      <li>
+                                         <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a>
+                                            
+                                      </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-hidden col-xs-hidden text-right search hidden-mobile">
+                        <a href="#search" data-toggle="collapse" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        <div id="search" class="collapse search-box">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </header>

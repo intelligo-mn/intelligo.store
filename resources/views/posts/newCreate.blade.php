@@ -3,7 +3,7 @@
 @section('modedefault', 'mode-default')
 @section('modeboxed', 'mode-boxed')
 @section("header")
-    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/assets/plugins/editor/simditor.css">
 @endsection
 @section("content")
 
@@ -34,7 +34,7 @@
                                 {!! Form::text('tags', null , ['class' => 'cd-input ','id' => 'tags', 'placeholder' => ""]) !!}
                             </div>
                         </section>
-                        @if($typene=='list')
+                     <!--    @if($typene=='list')
                         <section class="form">
                             <legend>{{ trans('addpost.listtype') }}</legend>
                             <div class="lists-types">
@@ -54,9 +54,9 @@
                             </div>
                         </section>
                         @endif
+ -->
 
-
-                        @if($typene=='quiz')
+                        <!-- @if($typene=='quiz')
                             <section class="form last" id="addnew"  style="border-bottom: 1px solid #e3e3e3;">
 
 
@@ -72,7 +72,7 @@
                                 <a class="submit-button button button-rosy button-big button-full postable" style="width:100%;float:none;padding-left:0;padding-right:0;" data-method="Get" data-target="results" data-puttype="append" data-type="resultform" href="{{ action('FormController@addnewform') }}?addnew=result" ><i class="fa fa-check-circle-o"></i>{{ trans('addpost.add', ['type' => trans('buzzyquiz.result')]) }}</a>
                                 <br><br><br><br>
                             </section>
-                        @endif
+                        @endif -->
 
                         <section class="form" >
                             <legend>{{ trans('addpost.entries', ['type' => ucfirst($category->posturl_slug) ]) }}</legend><br>
@@ -81,7 +81,7 @@
 
                                     @include('_forms.__addvideoform')
 
-                                    @elseif($typene=='list')
+                                   <!--  @elseif($typene=='list') -->
 
                                     @include('_forms.__addimageform')
 
@@ -111,12 +111,12 @@
 
                         </section>
 
-                        @unless($typene=='quiz')
+                        <!-- @unless($typene=='quiz')
                         <section class="form last" id="addnew">
                             @include('posts.add-entry')
                         </section>
                         @endunless
-                        <div class="clear"></div>
+                        <div class="clear"></div> -->
                     </fieldset>
 
                 </div>
@@ -132,10 +132,4 @@
 @endsection
 @section("footer")
     @include('posts.create-footerjs')
-    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
-    <script>
-        $(function () {
-            CKEDITOR.replace('edit');
-        });
-    </script>
 @endsection
