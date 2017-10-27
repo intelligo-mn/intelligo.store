@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Followers;
 use App\Posts;
 use App\User;
+use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Cmgmyr\Messenger\Models\Message;
+use Cmgmyr\Messenger\Models\Participant;
+use Cmgmyr\Messenger\Models\Thread;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -22,7 +28,7 @@ class UsersController extends Controller
 
         parent::__construct();
 
-        // $this->middleware('DemoAdmin', ['only' => ['updatesettings']]);
+        $this->middleware('DemoAdmin', ['only' => ['updatesettings']]);
 
         $userslug = $request->segment('2');
 
@@ -34,28 +40,9 @@ class UsersController extends Controller
 
         $this->userinfo = $userinfo;
 
-
         $this->s3url=awsurl();
 
-
-        $newscount = $userinfo->posts()->typesActivete()->approve('yes')->byType('news')->count();
-
-        $listscount = $userinfo->posts()->typesActivete()->approve('yes')->byType('list')->count();
-
-        $quizzescount = $userinfo->posts()->typesActivete()->approve('yes')->byType('quiz')->count();
-
-        $videoscount = $userinfo->posts()->typesActivete()->approve('yes')->byType('video')->count();
-
-        $pollscount = $userinfo->posts()->typesActivete()->approve('yes')->byType('poll')->count();
-
-
-        \View::share(['userinfo' => $userinfo,
-            'newscount' => $newscount,
-            'listscount' => $listscount,
-            'quizzescount' => $quizzescount,
-            'videoscount' => $videoscount,
-            'pollscount' => $pollscount
-        ]);
+        \View::share(['userinfo' => $userinfo ]);
 
     }
 
@@ -247,14 +234,14 @@ class UsersController extends Controller
             }
         }
 
-        if(getcong('UserEditUsername')=='true' or Auth::user()->usertype=='Admin'){
+        if(getenvcong('UserEditUsername')=='true' or Auth::user()->usertype=='Admin'){
             if($username){
                 $this->userinfo->username = $username;
                 $this->userinfo->username_slug =  str_slug($username, '-');
             }
         }
 
-        if(getcong('UserEditEmail')=='true' or Auth::user()->usertype=='Admin'){
+        if(getenvcong('UserEditEmail')=='true' or Auth::user()->usertype=='Admin'){
             if($email){
                 $this->userinfo->email = $email;
             }
@@ -305,6 +292,7 @@ class UsersController extends Controller
         return \Validator::make($request, $rules);
 
     }
+
 
 
 }

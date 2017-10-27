@@ -14,13 +14,12 @@ class ContactController extends MainAdminController
     public function __construct(Mailer $mailer)
     {
 
-        // $this->middleware('DemoAdmin', ['only' => ['dostar', 'doimportant', 'addcat', 'mailcatdelete', 'maillabeldelete', 'doaction', 'newmailsent']]);
+        $this->middleware('DemoAdmin', ['only' => ['dostar', 'doimportant', 'addcat', 'mailcatdelete', 'maillabeldelete', 'doaction', 'newmailsent']]);
 
         $this->mail =$mailer;
 
-        $this->fromemail = getcong('BuzzyContactEmail') > "" ? getcong('BuzzyContactEmail') : getcong('siteemail');
-        $this->sitename =getcong('BuzzyContactName') > "" ? getcong('BuzzyContactName') : getcong('sitename');
-
+        $this->fromemail = getenvcong('BuzzyContactEmail') > "" ? getenvcong('BuzzyContactEmail') : getenvcong('siteemail');
+        $this->sitename =getenvcong('BuzzyContactName') > "" ? getenvcong('BuzzyContactName') : getenvcong('sitename');
 
         $mailcat = Categories::byType('mailcat')->oldest('id')->get();
         $mailprivatecat = Categories::byType('mailprivatecat')->oldest('id')->get();
@@ -181,7 +180,7 @@ class ContactController extends MainAdminController
     {
         $cat  = Categories::findOrFail($id);
         $cat->delete();
-        \Session::flash('success.message', trans("admin.Deleted"));
+        \Session::flash('success.message', 'Deleted');
         return redirect('admin/mailbox');
     }
 

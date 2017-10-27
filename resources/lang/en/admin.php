@@ -2,6 +2,7 @@
 
 return array(
 
+    'SiteLanguage' => 'Site Default Language',
     'adminpanel' => 'Admin Panel',
     'panel' => 'Panel',
 
@@ -25,6 +26,7 @@ return array(
     'NEW' => 'NEW',
     'Settings' => 'Settings',
     'GeneralSettings' => 'General Settings',
+    'MailSettings' => 'Mail Settings',
     'LayoutSettings' => 'Layout Settings',
     'SocialMediaSettings' => 'Social Media Settings',
     'OtherSettings' => 'Other Settings',
@@ -45,7 +47,7 @@ return array(
    'Pages' => 'Pages',
    'ViewPages' => 'View Pages',
    'AddNewPage' => 'Add New Page',
-   'Widgets' => 'Widgets',
+   'Widgets' => 'Ads',
    'Sitemap' => 'Sitemap',
    'documentation' => 'Documentation',
    'UNAPPROVEDPOSTS' => 'UNAPPROVED POSTS',
@@ -148,6 +150,8 @@ return array(
 
 
    'MainConfiguration' => 'Main Configuration',
+   'Siteactive' => 'Site Active? (Maintenance Mode)',
+   'Siteactivenote' => 'Maintenance Mode Note',
    'SiteName' => 'Site Name',
    'SiteLogo' => 'Site Logo',
    'SiteLogohelp' => 'Upload a site logo here. (Only PNG)',
@@ -243,13 +247,15 @@ return array(
     'PostPagesShareBelow' => 'Post Pages Share Below',
     'Footer' => 'Footer',
 
-    'AddWidget' => 'Add Widget',
+    'AddWidget' => 'Add New Ad',
     'Location' => 'Location',
-    'WidgetName' => 'Widget Name',
+    'WidgetName' => 'Ad Name',
     'PasteHtml' => 'Paste Html Content / Adsense Code / Social Media Embeds here',
     'Display' => 'Display',
     'Cancel' => 'Cancel',
     'Disabled' => 'Disabled',
+    'showonweb' => 'Show on Web',
+    'showonmobile' => 'Show on Mobile',
 
 
     //plugins
@@ -300,6 +306,9 @@ return array(
     'Section3Title' => 'Section 3 Title',
     'TrendingsOnOff' => 'Trendings On/Off?',
     'close' => 'Close',
+    'download' => 'Download',
+
+
 
     //posts
     'Preview' => 'Preview',

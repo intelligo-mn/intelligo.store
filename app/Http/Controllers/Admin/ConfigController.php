@@ -8,9 +8,10 @@ class ConfigController extends MainAdminController
 {
     public function __construct()
     {
-        // $this->middleware('DemoAdmin', ['only' => ['setconfig']]);
+        $this->middleware('DemoAdmin', ['only' => ['setconfig']]);
 
         parent::__construct();
+
 
     }
 
@@ -55,19 +56,29 @@ class ConfigController extends MainAdminController
 
 
         if(isset($input['HomeColSec1Type1'])){
-            $this->deletebuilderconfigs('HomeColSec1Type1');
+            $input['HomeColSec1Type1'] = json_encode($input['HomeColSec1Type1']);
         }
         if(isset($input['HomeColSec2Type1'])){
-            $this->deletebuilderconfigs('HomeColSec2Type1');
+            $input['HomeColSec2Type1'] = json_encode($input['HomeColSec2Type1']);
         }
         if(isset($input['HomeColSec3Type1'])){
-            $this->deletebuilderconfigs('HomeColSec3Type1');
+            $input['HomeColSec3Type1'] = json_encode($input['HomeColSec3Type1']);
         }
+
+        if(isset($input['headcode'])){
+            $input['headcode'] = rawurlencode($input['headcode']);
+        }
+        if(isset($input['footercode'])){
+            $input['footercode'] = rawurlencode($input['footercode']);
+        }
+
+
 
         foreach($input as $key => $int){
-
-            \DbConfig::store($key, $int);
+            writeConfig($key, $int);
         }
+
+
 
         \Session::flash('success.message', trans("admin.ChangesSaved"));
 
@@ -77,11 +88,9 @@ class ConfigController extends MainAdminController
     public function deletebuilderconfigs($type)
     {
 
-        $aaa=Settings::where('key', 'LIKE', "%$type%")->get();
-        if(isset($aaa)){
-            foreach($aaa as $tp){
-                $tp->delete();
-            }
-        }
+
     }
+
+
+
 }

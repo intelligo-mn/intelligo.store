@@ -11,10 +11,11 @@
 
 namespace Symfony\Component\DomCrawler\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\CssSelector\CssSelector;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CrawlerTest extends \PHPUnit_Framework_TestCase
+class CrawlerTest extends TestCase
 {
     public function testConstructor()
     {
@@ -206,7 +207,13 @@ EOF
         $crawler = new Crawler();
         $crawler->addContent('<html><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><span>中文</span></html>');
         $this->assertEquals('中文', $crawler->filterXPath('//span')->text(), '->addContent() guess wrong charset');
+    }
 
+    /**
+     * @requires extension iconv
+     */
+    public function testAddContentNonUtf8()
+    {
         $crawler = new Crawler();
         $crawler->addContent(iconv('UTF-8', 'SJIS', '<html><head><meta charset="Shift_JIS"></head><body>日本語</body></html>'));
         $this->assertEquals('日本語', $crawler->filterXPath('//body')->text(), '->addContent() can recognize "Shift_JIS" in html5 meta charset tag');
@@ -387,6 +394,7 @@ EOF
         $this->assertCount(5, $crawler->filterXPath('(//a | //div)//img'));
         $this->assertCount(7, $crawler->filterXPath('((//a | //div)//img | //ul)'));
         $this->assertCount(7, $crawler->filterXPath('( ( //a | //div )//img | //ul )'));
+        $this->assertCount(1, $crawler->filterXPath("//a[./@href][((./@id = 'Klausi|Claudiu' or normalize-space(string(.)) = 'Klausi|Claudiu' or ./@title = 'Klausi|Claudiu' or ./@rel = 'Klausi|Claudiu') or .//img[./@alt = 'Klausi|Claudiu'])]"));
     }
 
     public function testFilterXPath()
@@ -548,7 +556,7 @@ EOF
 
         $this->assertCount(0, $crawler->filterXPath('self::a'), 'The fake root node has no "real" element name');
         $this->assertCount(0, $crawler->filterXPath('self::a/img'), 'The fake root node has no "real" element name');
-        $this->assertCount(9, $crawler->filterXPath('self::*/a'));
+        $this->assertCount(10, $crawler->filterXPath('self::*/a'));
     }
 
     public function testFilter()
@@ -878,6 +886,8 @@ HTML;
             $crawler = new Crawler('<p></p>');
             $crawler->filter('p')->children();
             $this->assertTrue(true, '->children() does not trigger a notice if the node has no children');
+        } catch (\PHPUnit\Framework\Error\Notice $e) {
+            $this->fail('->children() does not trigger a notice if the node has no children');
         } catch (\PHPUnit_Framework_Error_Notice $e) {
             $this->fail('->children() does not trigger a notice if the node has no children');
         }
@@ -968,6 +978,8 @@ HTML;
                     <a href="/bar"><img alt="\' Fabien&quot;s Bar"/></a>
 
                     <a href="?get=param">GetLink</a>
+
+                    <a href="/example">Klausi|Claudiu</a>
 
                     <form action="foo" id="FooFormId">
                         <input type="text" value="TextValue" name="TextName" />

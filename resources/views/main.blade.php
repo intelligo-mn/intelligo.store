@@ -3,14 +3,14 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('head_title', getcong('sitetitle'))</title>
+    <title>@yield('head_title', getenvcong('sitetitle'))</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('head_description', getcong('sitemetadesc'))" />
+    <meta name="description" content="@yield('head_description', getenvcong('sitemetadesc'))" />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="@yield('head_title',  getcong('sitetitle'))" />
-    <meta property="og:description" content="@yield('head_description', getcong('sitemetadesc'))" />
+    <meta property="og:title" content="@yield('head_title',  getenvcong('sitetitle'))" />
+    <meta property="og:description" content="@yield('head_description', getenvcong('sitemetadesc'))" />
     
     <meta property="og:image" content="@yield('head_image', url('/assets/img/flogo.png'))" />
     <meta property="og:url" content="@yield('head_url', url())" />
@@ -18,8 +18,8 @@
     <meta name="twitter:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="@yield('head_url', url())">
-    <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
-    <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
+    <meta name="twitter:title" content="@yield('head_title',  getenvcong('sitetitle'))">
+    <meta name="twitter:description" content="@yield('head_description', getenvcong('sitemetadesc'))">
     
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link media="all" rel="stylesheet" href="{!! asset('travel/vendors/font-awesome/css/font-awesome.css')!!}">
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{!! asset('travel/vendors/revolution/css/settings.css')!!}">
 
     <script src="{!! asset('travel/vendors/jquery/jquery-2.1.4.min.js') !!}"></script>
-    {!! getcong('headcode') !!}
+    {!! getenvcong('headcode') !!}
 
     @yield("header")
     </head>

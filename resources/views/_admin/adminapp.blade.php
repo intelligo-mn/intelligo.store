@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ getcong('sitename') }} | {{ trans('admin.adminpanel') }}</title>
+    <title>{{ getenvcong('sitename') }} | {{ trans('admin.adminpanel') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/adminlte/bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -31,6 +32,14 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .material-icons{
+            vertical-align: middle;
+            font-size:15px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -39,9 +48,9 @@
         <!-- Logo -->
         <a href="/admin" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>{{ substr(getcong('sitename'),0,1) }}</b>P</span>
+            <span class="logo-mini"><b>{{ substr(getenvcong('sitename'),0,1) }}</b>P</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>{{ getcong('sitename') }}</b>{{ trans('admin.panel') }}</span>
+            <span class="logo-lg"><b>{{ getenvcong('sitename') }}</b>{{ trans('admin.panel') }}</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -96,7 +105,7 @@
                             <li class="user-header">
                                 <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" class="img-circle" alt="User Image">
                                 <p>
-                                    {{  Auth::user()->username }} - Админ
+                                    {{  Auth::user()->username }} - Admin
                                     <small>{{ trans('admin.Membersince') }} {{  Auth::user()->created_at }}</small>
                                 </p>
                             </li>

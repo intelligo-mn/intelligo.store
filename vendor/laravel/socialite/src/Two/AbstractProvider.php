@@ -3,6 +3,7 @@
 namespace Laravel\Socialite\Two;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\ClientInterface;
@@ -139,7 +140,7 @@ abstract class AbstractProvider implements ProviderContract
         $state = null;
 
         if ($this->usesState()) {
-            $this->request->getSession()->set('state', $state = Str::random(40));
+            $this->request->session()->set('state', $state = $this->getState());
         }
 
         return new RedirectResponse($this->getAuthUrl($state));
@@ -167,7 +168,7 @@ abstract class AbstractProvider implements ProviderContract
     {
         $fields = [
             'client_id' => $this->clientId, 'redirect_uri' => $this->redirectUrl,
-            'scope' => $this->formatScopes($this->scopes, $this->scopeSeparator),
+            'scope' => $this->formatScopes($this->getScopes(), $this->scopeSeparator),
             'response_type' => 'code',
         ];
 
@@ -202,12 +203,12 @@ abstract class AbstractProvider implements ProviderContract
         $response = $this->getAccessTokenResponse($this->getCode());
 
         $user = $this->mapUserToObject($this->getUserByToken(
-            $token = array_get($response, 'access_token')
+            $token = Arr::get($response, 'access_token')
         ));
 
         return $user->setToken($token)
-                    ->setRefreshToken(array_get($response, 'refresh_token'))
-                    ->setExpiresIn(array_get($response, 'expires_in'));
+                    ->setRefreshToken(Arr::get($response, 'refresh_token'))
+                    ->setExpiresIn(Arr::get($response, 'expires_in'));
     }
 
     /**
@@ -234,7 +235,7 @@ abstract class AbstractProvider implements ProviderContract
             return false;
         }
 
-        $state = $this->request->getSession()->pull('state');
+        $state = $this->request->session()->pull('state');
 
         return ! (strlen($state) > 0 && $this->request->input('state') === $state);
     }
@@ -302,6 +303,19 @@ abstract class AbstractProvider implements ProviderContract
     public function getScopes()
     {
         return $this->scopes;
+    }
+
+    /**
+     * Set the redirect URL.
+     *
+     * @param  string  $url
+     * @return $this
+     */
+    public function redirectUrl($url)
+    {
+        $this->redirectUrl = $url;
+
+        return $this;
     }
 
     /**
@@ -374,6 +388,16 @@ abstract class AbstractProvider implements ProviderContract
         $this->stateless = true;
 
         return $this;
+    }
+
+    /**
+     * Get the string used for session state.
+     *
+     * @return string
+     */
+    protected function getState()
+    {
+        return Str::random(40);
     }
 
     /**

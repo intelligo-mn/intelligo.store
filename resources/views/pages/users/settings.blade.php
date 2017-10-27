@@ -8,13 +8,13 @@
                 <div class="diviner">
                     <i class="fa fa-cogs"></i> {{ trans('index.account') }}
                 </div>
-        @if(getcong('UserEditUsername')=='true' or Auth::user()->usertype=='Admin')
+        @if(getenvcong('UserEditUsername')=='true' or Auth::user()->usertype=='Admin')
                 <div class="form-group">
                     {!! Form::label('username', trans('index.username')) !!}
                     {!! Form::text('username', $userinfo->username, ['class' => 'cd-input','id' => 'username']) !!}
                 </div>
         @endif
-        @if(getcong('UserEditEmail')=='true' or Auth::user()->usertype=='Admin')
+        @if(getenvcong('UserEditEmail')=='true' or Auth::user()->usertype=='Admin')
                 <div class="form-group">
                     {!! Form::label('email', trans('index.email')) !!}
                     {!! Form::text('email', Auth::user()->email == 'demo@admin.com' ? 'HIDDEN ON DEMO' : $userinfo->email, ['class' => 'cd-input','id' => 'email']) !!}
@@ -63,7 +63,7 @@
                     {!! Form::textarea('about', $userinfo->about, ['id' => 'aboutyou', 'placeholder' => trans('updates.abouttext')]) !!}
                 </div>
 
-        @if(getcong('UserAddSocial')=='true' or Auth::user()->usertype=='Admin')
+        @if(getenvcong('UserAddSocial')=='true' or Auth::user()->usertype=='Admin')
                 <div class="diviner">
                     <i class="fa fa-link"></i>  {{ trans('index.links') }}
                 </div>

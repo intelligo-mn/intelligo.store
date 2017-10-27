@@ -221,12 +221,12 @@ class Str
     {
         $string = '';
 
-        while (($len = static::length($string)) < $length) {
+        while (($len = strlen($string)) < $length) {
             $size = $length - $len;
 
             $bytes = static::randomBytes($size);
 
-            $string .= static::substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $size);
+            $string .= substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $size);
         }
 
         return $string;
@@ -255,7 +255,7 @@ class Str
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-        return static::substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+        return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
     }
 
     /**
@@ -365,10 +365,10 @@ class Str
      */
     public static function snake($value, $delimiter = '_')
     {
-        $key = $value.$delimiter;
+        $key = $value;
 
-        if (isset(static::$snakeCache[$key])) {
-            return static::$snakeCache[$key];
+        if (isset(static::$snakeCache[$key][$delimiter])) {
+            return static::$snakeCache[$key][$delimiter];
         }
 
         if (! ctype_lower($value)) {
@@ -377,7 +377,7 @@ class Str
             $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $value));
         }
 
-        return static::$snakeCache[$key] = $value;
+        return static::$snakeCache[$key][$delimiter] = $value;
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace Aws\S3;
 
 use Aws\CommandInterface;
+use Aws\Exception\AwsException;
 use Aws\HandlerList;
 use Aws\ResultInterface;
 use Aws\S3\Exception\S3Exception;
@@ -14,6 +15,9 @@ use GuzzleHttp\Promise\RejectedPromise;
  */
 trait S3ClientTrait
 {
+    /**
+     * @see S3ClientInterface::upload()
+     */
     public function upload(
         $bucket,
         $key,
@@ -26,6 +30,9 @@ trait S3ClientTrait
             ->wait();
     }
 
+    /**
+     * @see S3ClientInterface::uploadAsync()
+     */
     public function uploadAsync(
         $bucket,
         $key,
@@ -37,6 +44,9 @@ trait S3ClientTrait
             ->promise();
     }
 
+    /**
+     * @see S3ClientInterface::copy()
+     */
     public function copy(
         $fromB,
         $fromK,
@@ -49,6 +59,9 @@ trait S3ClientTrait
             ->wait();
     }
 
+    /**
+     * @see S3ClientInterface::copyAsync()
+     */
     public function copyAsync(
         $fromB,
         $fromK,
@@ -73,11 +86,17 @@ trait S3ClientTrait
             ->promise();
     }
 
+    /**
+     * @see S3ClientInterface::registerStreamWrapper()
+     */
     public function registerStreamWrapper()
     {
         StreamWrapper::register($this);
     }
 
+    /**
+     * @see S3ClientInterface::deleteMatchingObjects()
+     */
     public function deleteMatchingObjects(
         $bucket,
         $prefix = '',
@@ -88,6 +107,9 @@ trait S3ClientTrait
             ->wait();
     }
 
+    /**
+     * @see S3ClientInterface::deleteMatchingObjectsAsync()
+     */
     public function deleteMatchingObjectsAsync(
         $bucket,
         $prefix = '',
@@ -113,6 +135,9 @@ trait S3ClientTrait
             ->promise();
     }
 
+    /**
+     * @see S3ClientInterface::uploadDirectory()
+     */
     public function uploadDirectory(
         $directory,
         $bucket,
@@ -123,6 +148,9 @@ trait S3ClientTrait
             ->wait();
     }
 
+    /**
+     * @see S3ClientInterface::uploadDirectoryAsync()
+     */
     public function uploadDirectoryAsync(
         $directory,
         $bucket,
@@ -133,6 +161,9 @@ trait S3ClientTrait
         return (new Transfer($this, $directory, $d, $options))->promise();
     }
 
+    /**
+     * @see S3ClientInterface::downloadBucket()
+     */
     public function downloadBucket(
         $directory,
         $bucket,
@@ -143,6 +174,9 @@ trait S3ClientTrait
             ->wait();
     }
 
+    /**
+     * @see S3ClientInterface::downloadBucketAsync()
+     */
     public function downloadBucketAsync(
         $directory,
         $bucket,
@@ -153,12 +187,17 @@ trait S3ClientTrait
         return (new Transfer($this, $s, $directory, $options))->promise();
     }
 
+    /**
+     * @see S3ClientInterface::determineBucketRegion()
+     */
     public function determineBucketRegion($bucketName)
     {
         return $this->determineBucketRegionAsync($bucketName)->wait();
     }
 
     /**
+     * @see S3ClientInterface::determineBucketRegionAsync()
+     *
      * @param string $bucketName
      *
      * @return PromiseInterface
@@ -174,9 +213,18 @@ trait S3ClientTrait
         return $handler($command)
             ->then(static function (ResultInterface $result) {
                 return $result['@metadata']['headers']['x-amz-bucket-region'];
+            }, static function (AwsException $exception) {
+                $response = $exception->getResponse();
+                if ($response === null) {
+                    throw $exception;
+                }
+                return $response->getHeaderLine('x-amz-bucket-region');
             });
     }
 
+    /**
+     * @see S3ClientInterface::doesBucketExist()
+     */
     public function doesBucketExist($bucket)
     {
         return $this->checkExistenceWithCommand(
@@ -184,6 +232,9 @@ trait S3ClientTrait
         );
     }
 
+    /**
+     * @see S3ClientInterface::doesObjectExist()
+     */
     public function doesObjectExist($bucket, $key, array $options = [])
     {
         return $this->checkExistenceWithCommand(
@@ -218,16 +269,26 @@ trait S3ClientTrait
         }
     }
 
+    /**
+     * @see S3ClientInterface::execute()
+     */
     abstract public function execute(CommandInterface $command);
 
+    /**
+     * @see S3ClientInterface::getCommand()
+     */
     abstract public function getCommand($name, array $args = []);
 
     /**
+     * @see S3ClientInterface::getHandlerList()
+     *
      * @return HandlerList
      */
     abstract public function getHandlerList();
 
     /**
+     * @see S3ClientInterface::getIterator()
+     *
      * @return \Iterator
      */
     abstract public function getIterator($name, array $args = []);

@@ -28,13 +28,13 @@
         "yajra\\Datatables\\DatatablesServiceProvider",
         "Intervention\\Image\\ImageServiceProvider",
         "Laravel\\Socialite\\SocialiteServiceProvider",
-        "Terbium\\DbConfig\\DbConfigServiceProvider",
         "Simexis\\Installer\\InstallerServiceProvider",
         "SocialiteProviders\\Manager\\ServiceProvider",
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\AuthServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "YAAP\\Theme\\ThemeServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -51,12 +51,12 @@
         "Barryvdh\\TranslationManager\\ManagerServiceProvider",
         "yajra\\Datatables\\DatatablesServiceProvider",
         "Intervention\\Image\\ImageServiceProvider",
-        "Terbium\\DbConfig\\DbConfigServiceProvider",
         "Simexis\\Installer\\InstallerServiceProvider",
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\AuthServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "YAAP\\Theme\\ThemeServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -148,50 +148,20 @@
         "Laravel\\Socialite\\Contracts\\Factory": "SocialiteProviders\\Manager\\ServiceProvider"
     },
     "when": {
-        "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [
-
-        ],
-        "Illuminate\\Broadcasting\\BroadcastServiceProvider": [
-
-        ],
-        "Illuminate\\Bus\\BusServiceProvider": [
-
-        ],
-        "Illuminate\\Cache\\CacheServiceProvider": [
-
-        ],
-        "Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider": [
-
-        ],
-        "Illuminate\\Hashing\\HashServiceProvider": [
-
-        ],
-        "Illuminate\\Mail\\MailServiceProvider": [
-
-        ],
-        "Illuminate\\Pipeline\\PipelineServiceProvider": [
-
-        ],
-        "Illuminate\\Queue\\QueueServiceProvider": [
-
-        ],
-        "Illuminate\\Redis\\RedisServiceProvider": [
-
-        ],
-        "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [
-
-        ],
-        "Illuminate\\Translation\\TranslationServiceProvider": [
-
-        ],
-        "Illuminate\\Html\\HtmlServiceProvider": [
-
-        ],
-        "Laravel\\Socialite\\SocialiteServiceProvider": [
-
-        ],
-        "SocialiteProviders\\Manager\\ServiceProvider": [
-
-        ]
+        "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
+        "Illuminate\\Broadcasting\\BroadcastServiceProvider": [],
+        "Illuminate\\Bus\\BusServiceProvider": [],
+        "Illuminate\\Cache\\CacheServiceProvider": [],
+        "Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider": [],
+        "Illuminate\\Hashing\\HashServiceProvider": [],
+        "Illuminate\\Mail\\MailServiceProvider": [],
+        "Illuminate\\Pipeline\\PipelineServiceProvider": [],
+        "Illuminate\\Queue\\QueueServiceProvider": [],
+        "Illuminate\\Redis\\RedisServiceProvider": [],
+        "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
+        "Illuminate\\Translation\\TranslationServiceProvider": [],
+        "Illuminate\\Html\\HtmlServiceProvider": [],
+        "Laravel\\Socialite\\SocialiteServiceProvider": [],
+        "SocialiteProviders\\Manager\\ServiceProvider": []
     }
 }

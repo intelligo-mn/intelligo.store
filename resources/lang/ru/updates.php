@@ -134,12 +134,12 @@ return [
     'addatag'    => 'добавьте тег',
     'tag'    => 'тег',
     'success'    => 'Успешно',
-    'copyright'    => '© Все права защищены.',
+    'copyright'    => '© '.date("Y").' '.getenvcong("sitetitle").'. Все права защищены.',
     'shared'    => 'Поделиться',
 
     'home'    => 'Главная',
 	
-	'heycommunity'    => '',
+	'heycommunity'    => getenvcong("sitename"),
     'heycommunitydesc'    => '<a href="/login">Войди</a> или <a href="/register">зарегистрируйся</a> для публикации на сайте',
     'heycommunitydesc2'    => '<a href="/create">Создай</a> свою запись',
     'nodata'    => 'Ничего не найдено по ссылке',

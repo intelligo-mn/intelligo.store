@@ -5,7 +5,7 @@
         <?php  $keya=$keya+1;?>
 
         <li>
-            @if(!Auth::check() and getcong('sitevoting')=="1")
+            @if(!Auth::check() and getenvcong('sitevoting')=="1")
                 <a class=""  href="{{ url('/login') }}" rel="get:Loginform">
                     @else
                         @if($answers->vote()->VoteOnPost()->first())

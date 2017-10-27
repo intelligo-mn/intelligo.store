@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     //General
-  
+
     'list'          => 'List',
     'new-s'         => 'News',
     'poll'          => 'Poll',
@@ -17,6 +17,8 @@ return [
     'news'          => 'News',
     'polls'         => 'Polls',
     'videos'        => 'Videos',
+    'quiz'          => 'Quiz',
+    'quizzes'           => 'Quizzes',
     'videonews'     => 'VideoNews',
     'posts'         => 'Posts',
 
@@ -76,6 +78,7 @@ return [
     'usern'         => 'Name',
     'gender'        => 'Gender',
     'location'      => 'Location',
+    'about'         => 'ABOUT',
     'links'         => 'LINKS',
     'joinedat'      => 'joined at :time',
 
@@ -84,6 +87,7 @@ return [
     'onlycgange'     => 'Only if you want to change',
     'fullname'       => 'Full name',
     'savesettings'   => 'Save Settings',
+
 
     'all'           => 'All',
 

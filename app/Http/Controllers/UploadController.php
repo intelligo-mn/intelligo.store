@@ -69,14 +69,15 @@ class UploadController extends Controller
 
                     if($type=='entry'){
 
-                        $img->resize(740, null, function ($constraint) {
+                        $img->resize(config('buzzytheme_'.getenvcong('CurrentTheme').'.entry-image_big_width'), null, function ($constraint) {
                          $constraint->aspectRatio();
                          $constraint->upsize();
                         });
 
                     }else if($type=='preview'){
 
-                        $img->fit(650, 370);
+                        $img->fit(config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_big_width'), config('buzzytheme_'.getenvcong('CurrentTheme').'.preview-image_big_height'));
+
 
                     }else if($type=='answer'){
 
@@ -104,7 +105,7 @@ class UploadController extends Controller
 
             return response()->json(array('path'=> $patha), 200);
         } else {
-            return response()->json(array('error'=> 'Зураг сонгоно уу'),  200);
+            return response()->json(array('error'=> 'Pick a image'),  200);
         }
 
     }
