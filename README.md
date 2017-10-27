@@ -1,92 +1,73 @@
-## Цахим худалдааны системийн танилцуулга
+<p align="center">
+<a href="http://boxshop.mn/">
+</a><br>
+	<b>Laravel Ecommerce Platform</b>
+</p>
 
-Энэхүү онлайн худалдааны платпормыг Laravel 5.3. хувилбар дээр хөгжүүлж байна.
+This is a e-commerce platform I made mostly using Laravel 5.4
+
+## Requirements
+
+	PHP >= 5.6.4
+	MySQL >= 5.7
+	OpenSSL PHP Extension
+	PDO PHP Extension
+	Mbstring PHP Extension
+	Tokenizer PHP Extension
+	XML PHP Extension
+
 
 <a name="installation"></a>
-## Суулгах
+## Install
 
-Дараах коммандыг ажиллуулж энэхүү төслийг clone хийж авна:
+Clone repo
 
 ```
 git clone https://github.com/tortuvshin/ecommerce.git
 ```
 
-Дараа нь, энэхүү төслийг татаж авсан хавтаст орж composer update/install комманд ажиллуулна
+Install Composer
 
 ```
-composer update/install
+[Download Composer](https://getcomposer.org/download/)
 ```
 
-## Тохируулах
-
-Дараа нь .env-example файлыг өөрчилж .env болгон өөрийн өгөгдлийн сан болон серверийг тохируулна
-
-Өгөгдлийн санг үүсгэж тохируулсаны дараа дараах коммандаар хүснэгтүүдийг үүсгэнэ:
+composer update/install 
 
 ```
-php artisan migrate:refresh
+composer install
 ```
 
-Туршилтын өгөгдөл дараах коммандаар оруулна:
+Install Nodejs
 
 ```
-php artisan migrate:refresh --seed
+https://nodejs.org/en/download/
+```
+
+NPM dependencies
+```
+npm install
+```
+
+Using Laravel Mix 
+
+```
+npm run dev
+```
+
+## How to setting 
+
+
+```
+php artisan migrate
+php artisan db:seed
 ```
 	
-Frontend хөгжүүлэлтэнд хамааралтай сангуудыг дараах командаар оруулна:
-
+Generating a New Application Key
 ```
-bower install
-```
-
-reChaptcha код авах: 
-
-```
-https://www.google.com/recaptcha/admin#list
+php artisan key:generate
 ```
 
-```
-RECAPTCHA_PUBLIC_KEY, and RECAPTCHA_PRIVATE_KEY
-```
-
-reCaptcha кодуудаа .env файлд оруулна. Жишээ нь: 
-
-```
-RECAPTCHA_PUBLIC_KEY = ModuRecaptcahPublicKeyObtained
-
-RECAPTCHA_PRIVATE_KEY = ModuRecaptcahPrivateKeyObtained
-```
-
-***Note:*** ```APP_DEBUG == true```, reCaptcha will not be applied
-
-## Laravel Elixir ашиглах
- 
- Gulp суулгах:
-
-```
-npm install --global gulp
-```
-NPM сангууд суулгах:
-
-```
-npm install 
-```
-
-Хэрвээ Window үйлдлийн систем  болон VM ашиглаж хөгжүүлэлт хийж байгаа бол дараах коммандыг ажиллуулна: 
-```
-npm install --no-bin-links
-```
-Gulp ашиглах:
-
-```
-gulp
-```
-
-[Features](https://github.com/tortuvshin/ecommerce/blob/master/ToDo.md)
-[Үндсэн эх код](https://github.com/ant-vel/antVel)
-
-
-
-
-
-
+[NODEJS]: https://nodejs.org/en/download/
+[COMPOSER]: https://getcomposer.org/download/
+[RECAPTCHA]: https://www.google.com/recaptcha/admin#list
