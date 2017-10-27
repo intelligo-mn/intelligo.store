@@ -10,7 +10,7 @@ return [
     | The current running version is stored in framework/installed
     |
     */
-    'last_version' => '1.4',
+    'last_version' => '2.5',
     'upgrade' => [
         'migrations' => '',
         'seeds' => '',

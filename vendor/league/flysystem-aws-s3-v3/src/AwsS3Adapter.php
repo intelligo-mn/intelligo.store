@@ -7,11 +7,12 @@ use Aws\S3\Exception\DeleteMultipleObjectsException;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use League\Flysystem\Adapter\AbstractAdapter;
+use League\Flysystem\Adapter\CanOverwriteFiles;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 use League\Flysystem\Util;
 
-class AwsS3Adapter extends AbstractAdapter
+class AwsS3Adapter extends AbstractAdapter implements CanOverwriteFiles
 {
     const PUBLIC_GRANT_URI = 'http://acs.amazonaws.com/groups/global/AllUsers';
 
@@ -39,6 +40,7 @@ class AwsS3Adapter extends AbstractAdapter
         'ContentEncoding',
         'ContentDisposition',
         'ContentLength',
+        'WebsiteRedirectLocation'
     ];
 
     /**
@@ -80,6 +82,16 @@ class AwsS3Adapter extends AbstractAdapter
     public function getBucket()
     {
         return $this->bucket;
+    }
+
+    /**
+     * Set the S3Client bucket.
+     *
+     * @return string
+     */
+    public function setBucket($bucket)
+    {
+        $this->bucket =  $bucket;
     }
 
     /**
@@ -377,16 +389,15 @@ class AwsS3Adapter extends AbstractAdapter
      */
     public function copy($path, $newpath)
     {
-        $visibility = $this->getRawVisibility($path);
-
         $command = $this->s3Client->getCommand(
             'copyObject',
             [
                 'Bucket' => $this->bucket,
                 'Key' => $this->applyPathPrefix($newpath),
                 'CopySource' => urlencode($this->bucket . '/' . $this->applyPathPrefix($path)),
-                'ACL' => $visibility === AdapterInterface::VISIBILITY_PUBLIC ? 'public-read' : 'private',
-            ]
+                'ACL' => $this->getRawVisibility($path) === AdapterInterface::VISIBILITY_PUBLIC
+                    ? 'public-read' : 'private',
+            ] + $this->options
         );
 
         try {
@@ -426,16 +437,16 @@ class AwsS3Adapter extends AbstractAdapter
      */
     protected function readObject($path)
     {
-        $command = $this->s3Client->getCommand(
-            'getObject',
-            [
-                'Bucket' => $this->bucket,
-                'Key' => $this->applyPathPrefix($path),
-                '@http' => [
-                    'stream' => true,
-                ],
-            ]
-        );
+        $options = [
+            'Bucket' => $this->bucket,
+            'Key' => $this->applyPathPrefix($path),
+        ];
+
+        if (isset($this->options['@http'])) {
+            $options['@http'] = $this->options['@http'];
+        }
+
+        $command = $this->s3Client->getCommand('getObject', $options);
 
         try {
             /** @var Result $response */
@@ -490,9 +501,9 @@ class AwsS3Adapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    public function applyPathPrefix($prefix)
+    public function applyPathPrefix($path)
     {
-        return ltrim(parent::applyPathPrefix($prefix), '/');
+        return ltrim(parent::applyPathPrefix($path), '/');
     }
 
     /**
@@ -552,14 +563,18 @@ class AwsS3Adapter extends AbstractAdapter
     {
         $key = $this->applyPathPrefix($path);
         $options = $this->getOptionsFromConfig($config);
-        $acl = isset($options['ACL']) ? $options['ACL'] : 'private';
+        $acl = array_key_exists('ACL', $options) ? $options['ACL'] : 'private';
 
-        if ( ! isset($options['ContentType']) && is_string($body)) {
+        if ( ! isset($options['ContentType'])) {
             $options['ContentType'] = Util::guessMimeType($path, $body);
         }
 
         if ( ! isset($options['ContentLength'])) {
             $options['ContentLength'] = is_string($body) ? Util::contentSize($body) : Util::getStreamSize($body);
+        }
+
+        if ($options['ContentLength'] === null) {
+            unset($options['ContentLength']);
         }
 
         $this->s3Client->upload($this->bucket, $key, $body, $acl, ['params' => $options]);

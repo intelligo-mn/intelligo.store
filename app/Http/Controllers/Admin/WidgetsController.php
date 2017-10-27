@@ -13,7 +13,7 @@ class WidgetsController extends MainAdminController
     public function __construct()
     {
 
-        // $this->middleware('DemoAdmin', ['only' => ['delete', 'addnew']]);
+        $this->middleware('DemoAdmin', ['only' => ['delete', 'addnew']]);
 
         parent::__construct();
 
@@ -88,6 +88,8 @@ class WidgetsController extends MainAdminController
         $cat->text = $inputs['text'];
         $cat->type = $inputs['type'];
         $cat->display = $inputs['display'];
+        $cat->showweb = $inputs['showweb'];
+        $cat->showmobile = $inputs['showmobile'];
         $cat->save();
 
         if(!empty($inputs['id'])){

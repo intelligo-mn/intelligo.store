@@ -1,17 +1,17 @@
-@if(getcong('facebookapp') or getcong('googleapp') or getcong('twitterapp'))
+@if(getenvcong('facebookapp') or getenvcong('googleapp') or getenvcong('twitterapp'))
 <div class="login-container steps">
     <div class="connect-forms ">
         <div class="hdr">{{ trans('index.connect') }}</div>
         <div class="external-sign-in">
-            @if(getcong('facebookapp'))
+            @if(getenvcong('facebookapp'))
             <a class="Facebook do-signup" href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'facebook']) }}">{{ trans('index.connectfacebok') }}</a>
             <a class="Facebook mini" href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'facebook']) }}"></a>
             @endif
-            @if(getcong('googleapp'))
+            @if(getenvcong('googleapp'))
             <a class="Google do-signup " href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'google']) }}">{{ trans('index.connectgoogle') }}</a>
             <a class="Google mini" href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'google']) }}"></a>
             @endif
-            @if(getcong('twitterapp'))
+            @if(getenvcong('twitterapp'))
             <a class="Twitter do-signup " href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'twitter']) }}">{{ trans('index.connecttwitter') }}</a>
             <a class="Twitter mini" href="{{ action('Auth\AuthController@socialConnectRedirect', ['type' => 'twitter']) }}"></a>
             @endif

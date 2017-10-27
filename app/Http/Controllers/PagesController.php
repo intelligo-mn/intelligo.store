@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Pages;
 use App\Posts;
+use App\Reactions;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -168,4 +171,40 @@ class PagesController extends Controller
         return view("pages.showtag", compact("lastItems", "tagname"));
     }
 
+    /**
+     * Show Reaction Pages
+     *
+     * @param $catname
+     * @param Request $req
+     * @return \BladeView|bool|\Illuminate\View\View
+     */
+    public function showReaction($reaction_id)
+    {
+
+        $lastItems = Posts::select('posts.*')
+
+            ->leftJoin('reactions', function($leftJoin){
+                $leftJoin->on('reactions.post_id', '=', 'posts.id');
+            })
+            ->where('reactions.reaction_type', '=', $reaction_id)
+            ->typesActivete()
+            ->approve('yes')
+            ->orderBy(DB::raw('COUNT(reactions.post_id) '), 'desc')
+            ->groupBy("reactions.post_id")->paginate(15);
+
+
+        if(!$lastItems){
+            abort('404');
+        }
+
+        $reaction = \App\Reaction::where('reaction_type', $reaction_id)->first()->name;
+
+
+        return view("pages.showreactions", compact("lastItems", "reaction"));
+    }
+
+    public function dort()
+    {
+        return view("errors.404");
+    }
 }

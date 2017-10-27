@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 19, 2017 at 01:24 PM
+-- Generation Time: Oct 18, 2017 at 08:05 PM
 -- Server version: 5.7.19-0ubuntu0.17.04.1
 -- PHP Version: 7.0.22-0ubuntu0.17.04.1
 
@@ -54,7 +54,7 @@ INSERT INTO `categories` (`id`, `order`, `name`, `name_slug`, `posturl_slug`, `d
 (13, '', 'Nature & Wildlife Tours', 'nature', '', '', '1', '', '0', '0', 'en', '2017-09-25 20:38:58', '2017-09-25 20:38:58'),
 (14, '', 'Private Sightseeing Tours', 'private', '', '', '1', '', '0', '0', 'en', '2017-09-25 20:39:39', '2017-09-25 20:39:39'),
 (15, '', 'Bus & Minivan Tours', 'minivan', '', '', '1', '', '0', '0', 'en', '2017-09-25 20:40:15', '2017-09-25 20:40:15'),
-(20, '1', 'Холбоо барих', 'contact', 'contact', '', 'contact', '', '0', '2', 'en', '2017-10-18 21:01:48', '2017-10-18 21:05:17'),
+(20, '1', 'Холбоо барих', 'contact', 'contact', '', 'contact', '', '0', '2', 'mn', '2017-10-18 21:01:48', '2017-10-18 21:05:17'),
 (21, '1', 'Аяллууд', 'tours', 'tours', '', 'tours', '', '0', '2', 'mn', '2017-10-18 21:03:44', '2017-10-18 21:03:44');
 
 -- --------------------------------------------------------
@@ -295,15 +295,15 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `category_id`, `type`, `ordertype`, `slug`, `title`, `body`, `thumb`, `approve`, `show_in_homepage`, `shared`, `tags`, `lang`, `created_at`, `updated_at`, `featured_at`, `published_at`, `deleted_at`, `pagination`) VALUES
-(5, 1, 12, 'news', '', 'ulaanbaatar-private-day-tour', 'Ulaanbaatar Private Day Tour', '168,000', '2017-09/26/ulaanbaatar-private-day-tour_1506409828', 'yes', NULL, '0', 'tour,city,ulaanbaatar', '', '2017-09-25 22:48:56', '2017-09-25 23:10:28', NULL, '2017-09-25 22:48:56', NULL, NULL),
-(6, 1, 12, 'news', '', 'full-day-tour-of-ulaanbaatar-with-museum-and-black-market', 'Full-Day Tour of Ulaanbaatar With Museum and Black-market', '180000', '2017-09/26/full-day-tour-of-ulaanbaatar-with-museum-and-black-market_1506410209', 'yes', NULL, '0', '', '', '2017-09-25 23:16:49', '2017-09-25 23:16:49', NULL, '2017-09-25 23:16:49', NULL, NULL),
-(7, 1, 14, 'news', '', 'genghis-khan-day-tour', 'Genghis Khan Day Tour', '270000', '2017-09/26/genghis-khan-day-tour_1506411317', 'yes', NULL, '0', '', '', '2017-09-25 23:35:17', '2017-09-25 23:35:17', NULL, '2017-09-25 23:35:17', NULL, NULL),
-(8, 1, 3, 'news', '', 'small-group-horseback-riding-day-tour', 'Small-Group Horseback Riding Day Tour', '200000', '2017-09/26/small-group-horseback-riding-day-tour_1506411643', 'yes', NULL, '0', '', '', '2017-09-25 23:40:43', '2017-09-25 23:40:43', NULL, '2017-09-25 23:40:43', NULL, NULL),
-(9, 1, 13, 'news', '', 'day-tour-of-hustai-national-park', 'Day Tour of Hustai National Park', '218000', '2017-09/26/day-tour-of-hustai-national-park_1506411901', 'yes', 'yes', '0', '', '', '2017-09-25 23:45:01', '2017-09-25 23:54:40', '2017-09-25 23:54:40', '2017-09-25 23:45:01', NULL, NULL),
-(10, 1, 13, 'news', '', '1-day-semi-gobi-tour-including-lunch-and-free-camel-or-horseback-ride', '1 Day Semi-Gobi Tour Including Lunch And Free Camel or Horseback Ride', '220000', '2017-09/26/1-day-semi-gobi-tour-including-lunch-and-free-camel-or-horseback-ride_1506411987', 'yes', NULL, '0', '', '', '2017-09-25 23:46:27', '2017-09-25 23:46:27', NULL, '2017-09-25 23:46:27', NULL, NULL),
-(11, 1, 13, 'news', '', '1-day-shaman-tour-including-lunch', '1 Day Shaman Tour Including Lunch', '400000', '2017-09/26/1-day-shaman-tour-including-lunch_1506412046', 'yes', 'yes', '0', '', '', '2017-09-25 23:47:26', '2017-09-25 23:54:32', '2017-09-25 23:54:32', '2017-09-25 23:47:26', NULL, NULL),
-(12, 1, 3, 'news', '', 'day-tour-with-a-native-creative-ulaanbaatar', 'Day Tour With A Native Creative Ulaanbaatar', '233000', '2017-09/26/day-tour-with-a-native-creative-ulaanbaatar_1506412198', 'yes', NULL, '0', '', '', '2017-09-25 23:49:58', '2017-09-25 23:49:58', NULL, '2017-09-25 23:49:58', NULL, NULL),
-(13, 1, 3, 'news', '', 'genghis-khan-statue-complex-and-terelj-national-park-including-lunch', 'Genghis Khan Statue Complex and Terelj National Park Including Lunch', '180000', '2017-10/01/genghis-khan-statue-complex-and-terelj-national-park-including-lunch_1506868833', 'yes', 'yes', '0', '', '', '2017-09-25 23:50:54', '2017-10-01 06:40:33', '2017-09-25 23:52:13', '2017-09-25 23:50:54', NULL, NULL);
+(5, 1, 12, 'news', '', 'ulaanbaatar-private-day-tour', 'Ulaanbaatar Private Day Tour', '168,000', '2017-09/26/ulaanbaatar-private-day-tour_1506409828', 'yes', NULL, '0', 'tour,city,ulaanbaatar', 'en', '2017-09-25 22:48:56', '2017-09-25 23:10:28', NULL, '2017-09-25 22:48:56', NULL, NULL),
+(6, 1, 12, 'news', '', 'full-day-tour-of-ulaanbaatar-with-museum-and-black-market', 'Full-Day Tour of Ulaanbaatar With Museum and Black-market', '180000', '2017-09/26/full-day-tour-of-ulaanbaatar-with-museum-and-black-market_1506410209', 'yes', NULL, '0', '', 'en', '2017-09-25 23:16:49', '2017-09-25 23:16:49', NULL, '2017-09-25 23:16:49', NULL, NULL),
+(7, 1, 14, 'news', '', 'genghis-khan-day-tour', 'Genghis Khan Day Tour', '270000', '2017-09/26/genghis-khan-day-tour_1506411317', 'yes', NULL, '0', '', 'en', '2017-09-25 23:35:17', '2017-09-25 23:35:17', NULL, '2017-09-25 23:35:17', NULL, NULL),
+(8, 1, 3, 'news', '', 'small-group-horseback-riding-day-tour', 'Small-Group Horseback Riding Day Tour', '200000', '2017-09/26/small-group-horseback-riding-day-tour_1506411643', 'yes', NULL, '0', '', 'en', '2017-09-25 23:40:43', '2017-09-25 23:40:43', NULL, '2017-09-25 23:40:43', NULL, NULL),
+(9, 1, 13, 'news', '', 'day-tour-of-hustai-national-park', 'Day Tour of Hustai National Park', '218000', '2017-09/26/day-tour-of-hustai-national-park_1506411901', 'yes', 'yes', '0', '', 'en', '2017-09-25 23:45:01', '2017-09-25 23:54:40', '2017-09-25 23:54:40', '2017-09-25 23:45:01', NULL, NULL),
+(10, 1, 13, 'news', '', '1-day-semi-gobi-tour-including-lunch-and-free-camel-or-horseback-ride', '1 Day Semi-Gobi Tour Including Lunch And Free Camel or Horseback Ride', '220000', '2017-09/26/1-day-semi-gobi-tour-including-lunch-and-free-camel-or-horseback-ride_1506411987', 'yes', NULL, '0', '', 'en', '2017-09-25 23:46:27', '2017-09-25 23:46:27', NULL, '2017-09-25 23:46:27', NULL, NULL),
+(11, 1, 13, 'news', '', '1-day-shaman-tour-including-lunch', '1 Day Shaman Tour Including Lunch', '400000', '2017-09/26/1-day-shaman-tour-including-lunch_1506412046', 'yes', 'yes', '0', '', 'en', '2017-09-25 23:47:26', '2017-09-25 23:54:32', '2017-09-25 23:54:32', '2017-09-25 23:47:26', NULL, NULL),
+(12, 1, 3, 'news', '', 'day-tour-with-a-native-creative-ulaanbaatar', 'Day Tour With A Native Creative Ulaanbaatar', '233000', '2017-09/26/day-tour-with-a-native-creative-ulaanbaatar_1506412198', 'yes', NULL, '0', '', 'en', '2017-09-25 23:49:58', '2017-09-25 23:49:58', NULL, '2017-09-25 23:49:58', NULL, NULL),
+(13, 1, 3, 'news', '', 'genghis-khan-statue-complex-and-terelj-national-park-including-lunch', 'Genghis Khan Statue Complex and Terelj National Park Including Lunch', '180000', '2017-10/01/genghis-khan-statue-complex-and-terelj-national-park-including-lunch_1506868833', 'yes', 'yes', '0', '', 'en', '2017-09-25 23:50:54', '2017-10-01 06:40:33', '2017-09-25 23:52:13', '2017-09-25 23:50:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -547,7 +547,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `entrys`
 --
 ALTER TABLE `entrys`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `followers`
 --
@@ -577,7 +577,7 @@ ALTER TABLE `popularity_stats`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `reactions`
 --

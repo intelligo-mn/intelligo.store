@@ -11,12 +11,13 @@
 
 namespace Symfony\Component\VarDumper\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class VarClonerTest extends \PHPUnit_Framework_TestCase
+class VarClonerTest extends TestCase
 {
     public function testMaxIntBoundary()
     {
@@ -133,6 +134,76 @@ Symfony\Component\VarDumper\Cloner\Data Object
 
 EOTXT;
         $this->assertStringMatchesFormat($expected, print_r($clone, true));
+    }
+
+    public function testJsonCast()
+    {
+        if (ini_get('xdebug.overload_var_dump') == 2) {
+            $this->markTestSkipped('xdebug is active');
+        }
+
+        $data = (array) json_decode('{"1":{}}');
+
+        $cloner = new VarCloner();
+        $clone = $cloner->cloneVar($data);
+
+        $expected = <<<'EOTXT'
+object(Symfony\Component\VarDumper\Cloner\Data)#%i (4) {
+  ["data":"Symfony\Component\VarDumper\Cloner\Data":private]=>
+  array(2) {
+    [0]=>
+    array(1) {
+      [0]=>
+      object(Symfony\Component\VarDumper\Cloner\Stub)#%i (7) {
+        ["type"]=>
+        string(5) "array"
+        ["class"]=>
+        string(5) "assoc"
+        ["value"]=>
+        int(1)
+        ["cut"]=>
+        int(0)
+        ["handle"]=>
+        int(0)
+        ["refCount"]=>
+        int(0)
+        ["position"]=>
+        int(1)
+      }
+    }
+    [1]=>
+    array(1) {
+      ["1"]=>
+      object(Symfony\Component\VarDumper\Cloner\Stub)#%i (7) {
+        ["type"]=>
+        string(6) "object"
+        ["class"]=>
+        string(8) "stdClass"
+        ["value"]=>
+        NULL
+        ["cut"]=>
+        int(0)
+        ["handle"]=>
+        int(%i)
+        ["refCount"]=>
+        int(0)
+        ["position"]=>
+        int(0)
+      }
+    }
+  }
+  ["maxDepth":"Symfony\Component\VarDumper\Cloner\Data":private]=>
+  int(20)
+  ["maxItemsPerDepth":"Symfony\Component\VarDumper\Cloner\Data":private]=>
+  int(-1)
+  ["useRefHandles":"Symfony\Component\VarDumper\Cloner\Data":private]=>
+  int(-1)
+}
+
+EOTXT;
+        ob_start();
+        var_dump($clone);
+        $this->assertStringMatchesFormat($expected, ob_get_clean());
     }
 
     public function testCaster()

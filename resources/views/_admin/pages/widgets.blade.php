@@ -170,10 +170,17 @@
                         ], isset($widgeta->type) ? $widgeta->type : null , ['class' => 'form-control'])  !!}
                     </div>
                     <div class="form-group">
+                        {!! Form::label('showweb',trans('admin.showonweb')) !!}
+                        {!! Form::select('showweb', ['on' => trans('admin.yes'),'off' => trans('admin.no')], isset($widgeta->showweb) ? $widgeta->showweb : null , ['class' => 'form-control'])  !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('showmobile',trans('admin.showonmobile')) !!}
+                        {!! Form::select('showmobile', ['on' => trans('admin.yes'),'off' => trans('admin.no')], isset($widgeta->showmobile) ? $widgeta->showmobile : null , ['class' => 'form-control'])  !!}
+                    </div>
+                    <div class="form-group">
                         {!! Form::label('display',trans('admin.Display')) !!}
                         {!! Form::select('display', ['on' => trans('admin.on'),'off' => trans('admin.off')], isset($widgeta->display) ? $widgeta->display : null , ['class' => 'form-control'])  !!}
                     </div>
-
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
