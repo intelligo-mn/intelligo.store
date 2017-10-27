@@ -101,46 +101,5 @@
             android:text="@string/login"
             android:gravity="center"
             android:textSize="16dip"/>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/loginfb"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/facebook_color"
-            android:padding="12dp"
-            android:text="@string/facebook"
-            android:textColor="@color/white" />
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:columnCount="3">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/loginTw"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@color/twitter_color"
-                android:padding="12dp"
-                android:text="@string/twitter"
-                android:textColor="@color/white"
-                android:layout_row="0"
-                android:layout_column="00"/>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/loginGl"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@color/google_color"
-                android:textColor="@color/white"
-                android:padding="12dp"
-                android:text="@string/google"
-                android:layout_row="0"
-                android:layout_column="2" />
-
-        </GridLayout>
     </LinearLayout>
 </ScrollView>
