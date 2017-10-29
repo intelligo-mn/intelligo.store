@@ -1,5 +1,4 @@
 @extends('layouts/master')
-
 @section('page_class') wrapper-page @stop
 
 @section('navigation')
@@ -8,78 +7,41 @@
 
 @include('partial.message')
 
+
 @section('content')
 
-	<div class="content_wrapper_header">
-		<h3>
-			<a href="/" title="{{ trans('globals.go_back_label') }}">
-		    	{{ trans('user.sign_in_your_account') }}
-		    </a>
-	    </h3>
-    </div>
+	<div class="login-page">
+	  <div class="login" ng-controller="LoginController">
 
-	<div class="content_wrapper">
-	    <div class="row" ng-controller="LoginController">
-	    	<div class="col-md-12">
+		{!! Form::open(['url'=>'/login','name'=>'loginForm', 'class'=>'form-horizontal','role'=>"form",'method'=>"POST"]) !!}
 
-	    		{!! Form::open(['url'=>'/login','name'=>'loginForm', 'class'=>'form-horizontal','role'=>"form",'method'=>"POST"]) !!}
+		{{ csrf_field() }}
 
-				{{ csrf_field() }}
+	    <form class="login-form">
+	      <input type="email" placeholder="{{ trans('user.email_address') }}" name="email" value="{{ old('email') }}" required/>
+	      <input type="password" placeholder="{{ trans('user.password_message.do_you_have') }}" ng-disabled="!havePassword" name="password"/>
+	      <button>{{ trans('user.sign_in_my_account') }}</button>
+	      <button class="btn-back">Буцах</button>
+	      <!-- нүүр хуудаслуу буцах товч-->
 
-				<div class="form-group">
-					<h6 class="black_color">{{ trans('user.email_address') }}</h6>
-					<div class="input-group">
-	      				<div class="input-group-addon"><span class="fa fa-envelope-o"></span></div>
-						<input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-					</div>
-				</div>
+		<!-- {!! Recaptcha::render() !!} -->
+			
+		<!-- <input ng-disabled="!havePassword" type="checkbox" name="remember"> {{ trans('user.remember_me') }} -->
+					
+	    <p class="message"><a href="{{ url('/register') }}">{{ trans('user.register') }}</a> | <a href="{{ url('/password/reset') }}">{{ trans('user.forgot_your_password') }}?</a></p>
+	    </form>
 
-				<div class="form-group">
-					<h6 class="black_color">{{ trans('user.password_message.do_you_have') }}</h6>
-					<div class="input-group">
-	  					<div class="input-group-addon"><span class="fa fa-lock"></span></div>
-						<input ng-disabled="!havePassword" type="password" class="form-control" name="password">
-					</div>
-					<label>
-						&nbsp;<input name="newuser" type="radio" value="0" ng-click="setHavePassword(true)" checked="havePassword">&nbsp;{{ trans('user.password_message.have') }}
-						<br>
-						&nbsp;<input name="newuser" type="radio" value="1" ng-click="setHavePassword(false)">&nbsp;{{ trans('user.password_message.nohave') }}
-					</label>
-				</div>
-
-				<div class="form-group" style="height: 120px">
-					<h6 class="black_color">{{ trans('user.are_you_human') }}</h6>
-					{!! Recaptcha::render() !!}
-				</div>
-
-				<div class="form-group">
-					<label>
-						<input ng-disabled="!havePassword" type="checkbox" name="remember"> {{ trans('user.remember_me') }}
-						&nbsp;|&nbsp;
-						<a style="100%" href="{{ url('/password/reset') }}">
-						<span class="fa fa-paper-plane-o"></span>&nbsp;
-						{{ trans('user.forgot_your_password') }}?
-					</a>
-					</label>
-				</div>
-
-				<div class="form-group">
-					<hr>
-					<button type="submit" class="btn btn-primary">
-						<span class="fa fa-sign-out"></span>&nbsp;
-						{{ trans('user.sign_in_my_account') }}
-					</button>
-				</div>
-
-				{!! Form::close() !!}
-
-	    	</div> {{-- col --}}
-
-	    </div> {{-- row --}}
-
-	</div> {{-- panel --}}
+		{!! Form::close() !!}
+	  
+	  </div>
+	</div>
 @endsection
 
 @section('footer')
 	&nbsp;
-@endsection
+@stop
+
+@section('scripts')
+@parent
+
+@stop
