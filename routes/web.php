@@ -36,6 +36,3 @@ require __DIR__ . '/web/about.php';
 require __DIR__ . '/web/utilities.php';
 
 require __DIR__ . '/web/globals.php';
-
-require __DIR__ . '/web/user_service.php';
-
