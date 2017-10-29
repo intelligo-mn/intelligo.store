@@ -94,7 +94,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->update($data);
 
-        return redirect()->to('wpanel/profile');
+        return redirect()->to('admin/profile');
     }
 
     /**
@@ -112,19 +112,19 @@ class CompanyController extends Controller
     public static function defaultCompany()
     {
         return [
-            'name'                => 'Bella',
-            'website_name'        => 'hhtp://Bella.mn',
+            'name'                => 'Techstar Agency',
+            'website_name'        => 'hhtp://techstar.agency',
             'slogan'              => 'An Laravel eCommerce',
-            'phone_number'        => '+1 (405) - 669.63.31',
-            'cell_phone'          => '+1 (405) - 669.63.31',
+            'phone_number'        => '+976 99999999',
+            'cell_phone'          => '+976 99999999',
             'address'             => 'Northwest',
             'state'               => 'Ulaanbaatar',
             'city'                => 'Ulaanbaatar city',
-            'facebook'            => 'https://www.facebook.com/bella.mn',
-            'facebook_app_id'     => 'Bella facebook appID',
-            'twitter'             => 'https://twitter.com/bella.mn',
-            'zip_code'            => '73116',
-            'google_maps_key_api' => 'bella google appID',
+            'facebook'            => 'https://www.facebook.com/techstar.agency',
+            'facebook_app_id'     => 'Techstar facebook appID',
+            'twitter'             => 'https://twitter.com/techstar.agency',
+            'zip_code'            => '110000',
+            'google_maps_key_api' => 'techstar google appID',
             'email'               => 'toroo.byamba@gmail.com',
             'contact_email'       => 'toroo.byamba@gmail.com',
             'sales_email'         => 'toroo.byamba@gmail.com',
