@@ -1,4 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "themes/boxshop";
+@import "themes/variables";
+@import "themes/globals";
+@import "themes/card";
+@import "themes/category";
+@import "themes/footer";
+@import "themes/header";
+@import "themes/auth";
+@import "themes/product";
+@import "themes/home";
+@import "themes/time";
+@import "themes/admin";
+@import "themes/dashboard";
+@import "themes/responsive";
