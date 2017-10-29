@@ -18,14 +18,14 @@ class CloseOrdersByTime extends Command
      *
      * @var string
      */
-    protected $name = 'antvel:closeorders';
+    protected $name = 'techstar:closeorders';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '(AntVel) This command is used to close orders that has been marked as SENT, but the receiving user has not marked as closed.';
+    protected $description = '(techstar) This command is used to close orders that has been marked as SENT, but the receiving user has not marked as closed.';
 
     /**
      * Create a new command instance.

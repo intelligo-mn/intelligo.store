@@ -50,7 +50,7 @@
 <table border="0" width="100%" cellpadding="0" cellspacing="0" class="report-font-style">
     <tr>
         <td>
-            <a href="{{ url() }}"><img src="{{ $main_company['logo'] }}" alt="antvel"></a>
+            <a href="{{ url() }}"><img src="{{ $main_company['logo'] }}" alt="techstar"></a>
         </td>
         <td>
         	<span>{{ $main_company['name'] }}</span><br>

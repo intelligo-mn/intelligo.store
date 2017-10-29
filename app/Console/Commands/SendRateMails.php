@@ -18,14 +18,14 @@ class SendRateMails extends Command
      *
      * @var string
      */
-    protected $name = 'antvel:mailrates';
+    protected $name = 'techstar:mailrates';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '(AntVel) This command is used to check for pending order rates, and mail the clients the reminder.';
+    protected $description = '(techstar) This command is used to check for pending order rates, and mail the clients the reminder.';
 
     /**
      * Create a new command instance.
