@@ -137,7 +137,7 @@
 					}
 				};
 			}]);
-		})(angular.module("AntVel"))
+		})(angular.module("Bella"))
 	</script>
 @stop
 @section('before.angular') ngModules.push('angularFileUpload'); @stop

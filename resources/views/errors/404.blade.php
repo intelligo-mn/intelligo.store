@@ -1,24 +1,47 @@
-@extends('layouts.notfound')
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Хуудас олдосонгүй.</title>
 
-@section('title')@parent - 404 {{ trans('globals.404_error.title') }}  @stop
+        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-@section('classPanel') error-404 @stop
+        <style>
+            html, body {
+                height: 100%;
+            }
 
-@section('content')
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                color: #B0BEC5;
+                display: table;
+                font-weight: 100;
+                font-family: 'Lato', sans-serif;
+            }
 
-	<h1> <span class="glyphicon glyphicon-alert"></span> {{ $main_company['name'] }} 404!</h1>
-	
-	<p class="lead">
-		
-		{{ trans('globals.404_error.message_01') }}
-		
-		<a href="javascript.void(0)" onclick="window.history.back();">{{ trans('globals.404_error.link_01') }}</a>
-		
-		{{ trans('globals.404_error.message_02') }} <a href="/home">{{ trans('globals.404_error.link_02') }}</a>
-	</p>
+            .container {
+                text-align: center;
+                display: table-cell;
+                vertical-align: middle;
+            }
 
-@stop
+            .content {
+                text-align: center;
+                display: inline-block;
+            }
 
-@section('btn-back')
-	<span class="glyphicon glyphicon-home"></span> {{ trans('globals.404_error.link_02') }}
-@stop
+            .title {
+                font-size: 72px;
+                margin-bottom: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <div class="title">404.</div>
+            </div>
+        </div>
+    </body>
+</html>
