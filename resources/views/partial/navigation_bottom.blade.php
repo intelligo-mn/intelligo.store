@@ -6,8 +6,6 @@
         <ul class="line-menu">
             <li><a class="kk-1" href="{{ route('home') }}">Нүүр</a></li>
             <li><a class="kk-1" href="{{ route('products') }}">Бүтээгдэхүүний жагсаалт</a></li>
-            <li><a class="kk-1" href="#">Танилцуулга</a></li>
-            <li><a class="kk-1" href="{{ route('tsag') }}">Цаг авах</a></li>
         </ul>
     </div>
 </div>
