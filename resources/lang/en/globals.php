@@ -285,7 +285,7 @@ return [
   'company_label'          => 'Company',
   'social_label'           => 'Social',
   'power_by_label'         => 'Power By',
-  'antvel_eCommerce'       => 'Antvel eCommerce',
+  'techstar_eCommerce'       => 'techstar eCommerce',
   'validation_error_label' => 'Validation Error',
   'success_label'          => 'Success',
   'newsletter_email_error' => 'Email is required!',

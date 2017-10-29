@@ -129,7 +129,7 @@ return [
     ],
 
     'paypal' => [
-        'antvel_points_bundle' => 'Store Points Bundle',
+        'techstar_points_bundle' => 'Store Points Bundle',
         'item_name1'           => 'Store Points (',
         'item_name2'           => ' each)',
         'user_cancelled'       => 'You have canceled the purchase at PayPal',

@@ -23,14 +23,14 @@ class SelectWinnersFreeProducts extends Command
      *
      * @var string
      */
-    protected $name = 'antvel:selectwinners';
+    protected $name = 'techstar:selectwinners';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '(AntVel) This command is used to select the winners of a freeproduct. If there are products that meet the conditions to select the winner, are chosen at random. And the type associated freeproduct free products are marked as inactive. Email notification is sent to both the winner and participants.';
+    protected $description = '(techstar) This command is used to select the winners of a freeproduct. If there are products that meet the conditions to select the winner, are chosen at random. And the type associated freeproduct free products are marked as inactive. Email notification is sent to both the winner and participants.';
 
     /**
      * Create a new command instance.

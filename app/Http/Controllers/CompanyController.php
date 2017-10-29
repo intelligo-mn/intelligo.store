@@ -130,7 +130,7 @@ class CompanyController extends Controller
             'sales_email'         => 'toroo.byamba@gmail.com',
             'support_email'       => 'toroo.byamba@gmail.com',
             'description'         => ' eStore ready to use',
-            'keywords'            => 'antvel, toroo, laravel, php',
+            'keywords'            => 'techstar, toroo, laravel, php',
             'about_us'            => 'I am Web Developer',
             'refund_policy'       => 'Refund Policy',
             'privacy_policy'      => 'Privacy Policy',

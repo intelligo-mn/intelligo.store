@@ -29,17 +29,17 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //$schedule->command('inspire')->hourly();
-        $schedule->command('antvel:mailrates')
+        $schedule->command('techstar:mailrates')
             ->dailyAt('06:00')
-            ->sendOutputTo(storage_path().'/logs/antvel.cron.rates.log');
-        $schedule->command('antvel:closeorders')
+            ->sendOutputTo(storage_path().'/logs/techstar.cron.rates.log');
+        $schedule->command('techstar:closeorders')
             ->dailyAt('06:00')
-            ->sendOutputTo(storage_path().'/logs/antvel.cron.close.log');
-        $schedule->command('antvel:selectwinners')
+            ->sendOutputTo(storage_path().'/logs/techstar.cron.close.log');
+        $schedule->command('techstar:selectwinners')
             ->dailyAt('05:00')
-            ->sendOutputTo(storage_path().'/logs/antvel.cron.winners.log');
-        //$schedule->command('antvel:mailrates')
+            ->sendOutputTo(storage_path().'/logs/techstar.cron.winners.log');
+        //$schedule->command('techstar:mailrates')
         //    ->cron('* * * * *')
-        //    ->sendOutputTo(storage_path().'/logs/antvel.cron.rates.log');
+        //    ->sendOutputTo(storage_path().'/logs/techstar.cron.rates.log');
     }
 }

@@ -19,7 +19,7 @@
         <env name="CACHE_DRIVER" value="file"/>
         <env name="SESSION_DRIVER" value="file"/>
         <env name="QUEUE_DRIVER" value="sync"/>
-        <env name="DB_DATABASE" value="antvel"/>
+        <env name="DB_DATABASE" value="techstar"/>
         <env name="DB_USER" value="root"/>
         <env name="DB_PASS" value="root"/>
     </php>

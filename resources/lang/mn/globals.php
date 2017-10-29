@@ -286,7 +286,7 @@ return [
   'company_label'          => 'Компани',
   'social_label'           => 'Сошиал',
   'power_by_label'         => 'Powered By',
-  'antvel_eCommerce'       => 'Techstar eCommerce',
+  'techstar_eCommerce'       => 'Techstar eCommerce',
   'validation_error_label' => 'Баталгаажуулалтын алдаа',
   'success_label'          => 'Амжилттай',
   'newsletter_email_error' => 'И-мэйл оруулах шаардлагатай!',
