@@ -2,9 +2,30 @@
 </a><br>
 	<b>Laravel Ecommerce Platform</b>
 </p>
+<p align="center">
+    <a href="https://github.com/techstar-agency/ecommerce/issues">
+        <img src="https://img.shields.io/github/issues/techstar-agency/ecommerce.svg"
+            alt="Issues"></a>
+     <a href="https://github.com/techstar-agency/ecommerce/fork">
+        <img src="https://img.shields.io/github/forks/techstar-agency/ecommerce.svg?style=social&label=Fork"
+            alt="Forks"></a>
+    <a href="https://github.com/techstar-agency/ecommerce/stargers">
+        <img src="https://img.shields.io/github/stars/techstar-agency/ecommerce.svg?style=social&label=Stars"
+            alt="Stars"></a>
+    <a href="https://github.com/tortuvshin/">
+        <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
+            alt="Followers"></a>
+    <a href="https://raw.githubusercontent.com/techstar-agency/ecommerce/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg"
+            alt="LICENSE"></a>
+    <a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D">
+        <img src="https://img.shields.io/twitter/url/https/github.com/techstar-agency/ecommerce.svg?style=social"
+            alt="Tweet"></a>
+</p>
 
+<p align="center">
 This is a e-commerce platform I made mostly using Laravel 5.4
-
+</p>
 ## Requirements
 
 	PHP >= 5.6.4
