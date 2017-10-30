@@ -9,7 +9,7 @@
      <a href="https://github.com/techstar-agency/ecommerce/fork">
         <img src="https://img.shields.io/github/forks/techstar-agency/ecommerce.svg?style=social&label=Fork"
             alt="Forks"></a>
-    <a href="https://github.com/techstar-agency/ecommerce/stargers">
+    <a href="https://github.com/techstar-agency/ecommerce/stargazers">
         <img src="https://img.shields.io/github/stars/techstar-agency/ecommerce.svg?style=social&label=Stars"
             alt="Stars"></a>
     <a href="https://github.com/tortuvshin/">
