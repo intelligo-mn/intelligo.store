@@ -26,6 +26,7 @@
 <p align="center">
 This is a e-commerce platform I made mostly using Laravel 5.4
 </p>
+
 ## Requirements
 
 	PHP >= 5.6.4
@@ -91,6 +92,33 @@ Generating a New Application Key
 ```
 php artisan key:generate
 ```
+
+## Features 
+- Multiple language display for front and back end
+- Automatic cross sell / up sell / related product offerings
+- Open Source
+- Social Media Integration
+- Unlimited Categories
+- Unlimited Products
+- Related Products, Recommendations for you in our categories, Store Trending
+- Create custom transaction emails
+- Newsletter management
+- Create different sales rules for groups of products
+- Customer loyalty discounts
+- Accept orders by phone/fax/check/”furikomi bank transfer”/COD
+- An “intelligent” search form
+- Custom page creation
+- Contact forms
+- Manage orders/invoicing/shipment processing
+- Manage different sales tax arrangements
+- Stock control
+- Integration with Social Media promotion tools
+- Tier pricing
+- Multiple Currency
+- Wish Lists
+- Ability to Ship to Multiple Addresses
+- Single step checkout for registered customers
+
 
 [NODEJS]: https://nodejs.org/en/download/
 [COMPOSER]: https://getcomposer.org/download/
