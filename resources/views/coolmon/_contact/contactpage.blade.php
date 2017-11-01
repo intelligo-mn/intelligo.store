@@ -26,15 +26,13 @@
             </div>
         </div>
     </div>
-    <!-- Inner Page Header serction end here -->
- 
-   <!-- Contact Us Page Start Here -->
+    
     <div class="single-blog-page-area contact-page-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="google-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9364273.363926433!2d-12.392661146939734!3d55.03971934808962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited+Kingdom!5e0!3m2!1sen!2sbd!4v1500619264549" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1589.9194262598237!2d106.91776172542028!3d47.918680335165746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1smn!2smn!4v1509519289961" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div> 
                                   
                     <div class="leave-comments-area">
