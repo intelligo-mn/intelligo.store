@@ -74,12 +74,9 @@ class IndexController extends Controller
         else{
 
             if(Posts::where("lang", $lang)->count() < 5){
-
-              return view('errors.starting');
-
+                return view('errors.starting');
             }
         }
-
 
         return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
     }
@@ -90,9 +87,9 @@ class IndexController extends Controller
     public function langpick($getlang)
     {
 
-            \Session::put('locale', $getlang);
+        \Session::put('locale', $getlang);
 
-            \App::setLocale(\Session::get('locale'));
+        \App::setLocale(\Session::get('locale'));
 
         return redirect()->back();
 
