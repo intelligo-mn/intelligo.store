@@ -5,7 +5,6 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <div class="header-top-left">
                             <ul>
-                                <li><?php echo e(date('Y-m-d H:i:s')); ?></li>
                                 <li><a href="login">Нэвтрэх хэсэг</a>
                                 </li>
                                 <li><a href="contact">Холбоо барих</a></li>
@@ -98,8 +97,7 @@
                                           </li>
                                       <?php endforeach; ?>
                                       <li>
-                                         <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('contact.contact')); ?> <b class="icon-angle-down"></b></a>
-                                            
+                                         <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('contact.contact')); ?> <b class="icon-angle-down"></b></a> 
                                       </li>
                                 </ul>
                             </nav>
