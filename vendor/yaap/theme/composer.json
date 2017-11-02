@@ -1,0 +1,21 @@
+{
+    "name": "yaap/theme",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Biluk Andrey",
+            "email": "biluk.a@newway.com.ua"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "YAAP\\Theme": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
