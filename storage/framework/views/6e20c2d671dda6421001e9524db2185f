@@ -79,25 +79,25 @@
                                
                                     <li><a href="category-videos.html">Videos</a></li> -->
                                      <li>
-                                          <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}<b class="icon-angle-down"></b></a>
+                                          <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?><b class="icon-angle-down"></b></a>
                                              
                                        </li>
 
-                                        @foreach(\App\Pages::where('footer', '1')->
-                                        where("lang", \Session::get('locale'))->get() as $page)
-                                            <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
-                                        @endforeach
+                                        <?php foreach(\App\Pages::where('footer', '1')->
+                                        where("lang", \Session::get('locale'))->get() as $page): ?>
+                                            <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
+                                        <?php endforeach; ?>
                                     
-                                       @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+                                       <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
                                        where("lang", \Session::get('locale'))->
-                                       where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                                       where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
                                           <li>
-                                             <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
+                                             <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
                                                 
                                           </li>
-                                      @endforeach
+                                      <?php endforeach; ?>
                                       <li>
-                                         <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a> 
+                                         <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('contact.contact')); ?> <b class="icon-angle-down"></b></a> 
                                       </li>
                                 </ul>
                             </nav>
