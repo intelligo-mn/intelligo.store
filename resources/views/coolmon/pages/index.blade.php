@@ -309,53 +309,45 @@
                                     </div>
                                 </div>
                                 <div class="featured">
-                                    <div class="blog-img">
-                                        <a href="blog-single.html"><img src="cooltheme/images/hot-news/1.jpg" alt="" title="News image" /></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="category-sports.html" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017</span>
-                                        <h4><a href="#">Car racer gives herself a mid-Event haicut</a></h4>
-                                    </div>
+                                   
+                                    @if(isset($lastTrending))
+                                        
+                                        
+                                        @foreach($lastTrending->slice(0,1) as $item)
+                                     
+                                        <div class="blog-img">
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="{{ $item->title }}" /></a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <a href="{{ makeposturl($item) }}" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
+                                            </span>
+                                            <h4><a href="#">{{ $item->title }}</a></h4>
+                                        </div>
+                                        @endforeach
+                                    
+                                    @endif
                                 </div>
                                 <ul class="news-post news-feature-mb">
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
-                                                <a href="blog-single.html"><img src="cooltheme/images/hot-news/3.jpg" alt="News image" /></a>
+                                    @if(isset($lastTrending))
+                                        
+                                        
+                                        @foreach($lastTrending->slice(2,4) as $item)
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}" /></a>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
+                                                    <h4><a href="#">{{ $item->title }}</a></h4>
+                                                    <span class="author"><a href=""><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }}</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}</span>
+                                                    <p>{{ str_limit($item->body, 150) }}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
-                                                <h4><a href="#">Clinton Campaign Jilted & Search Emails</a></h4>
-                                                <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> yeamin</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
-                                                <a href="blog-single.html"><img src="cooltheme/images/hot-news/2.jpg" alt="News image" /></a>
-                                            </div>
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
-                                                <h4><a href="#">Aaron Rodgers Criticizes For</a></h4> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
-                                                <a href="blog-single.html"><img src="cooltheme/images/hot-news/4.jpg" alt="News image" /></a>
-                                            </div>
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
-                                                <h4><a href="#">Detroit Natives Wary & Recovery Threatens</a></h4>
-                                                <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> yeamin</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                                <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestib vitae libero vel purus tincidunt aliquet at nec erat. Mauris the diam, ultrices quis leo sed lacinia egestas.The wise man there always holds in these matters.</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                        @endforeach
+                                    
+                                    @endif
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -465,18 +457,10 @@
                             </li>
                         </ul>
                     </div> 
-                    <!--popular Post End Here --> 
-
-                    <!--Recent comments Start Here -->
-                        <div class="recent-comments separator-large">
-                           
-                        </div>  
-                    <!--Recent comments Start Here -->
-                     <!--Add Start Here -->
-                    <div class="add-section add-section2">
+                    <div class=" separator-large add-section add-section2">
                         <img src="cooltheme/images/add/3.jpg" alt="add image">
                     </div>
-                    <!--Add Box End Here -->          
+
                 </div>
             </div>
         </div>
@@ -492,103 +476,27 @@
                         </div>
                     </div>
                     <div id="featured-videos-section" class="owl-carousel">
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/1.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
+                        @if(isset($lastTrendingVideos))
+                            @foreach($lastTrendingVideos as $item)
+                               <div class="item">
+                                    <div class="single-videos">
+                                        <div class="images">
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt=""></a>
+                                            <div class="overley">
+                                                <div class="videos-icon">
+                                                    <a class="popup-videos" href="{{ makeposturl($item) }}"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
+                                                </div>
+                                            </div>
+                                        </div>                            
+                                        <div class="videos-text">
+                                            <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                            <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
+                                            <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                                         </div>
                                     </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
-                                    <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
-                                        </div>
-                                    </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Woman Endure Five Year Slvery</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/3.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                      
-                                        </div>
-                                    </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Health Benefits of Morning Running</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/4.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                                        </div>
-                                    </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/5.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                                        </div>
-                                    </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single-videos">
-                                <div class="images">
-                                    <a href="#"><img src="cooltheme/images/fetuered/2.jpg" alt=""></a>
-                                    <div class="overley">
-                                        <div class="videos-icon">
-                                            <a class="popup-videos" href="http://www.youtube.com/watch?v=Cdajfy4voyY"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                  
-                                        </div>
-                                    </div>
-                                </div>                            
-                                <div class="videos-text">
-                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span><span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>    
             </div>
