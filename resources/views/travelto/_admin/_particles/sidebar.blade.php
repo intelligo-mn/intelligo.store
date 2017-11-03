@@ -76,10 +76,19 @@
                 <small class="label pull-right bg-aqua">{{ $toplamapprove }}</small>
             </a>
         </li> -->
-        @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat)
+        @foreach(\App\Categories::where("main", '1')->
+            where("disabled", '0')->
+            orwhere("main", '2')->
+            where("disabled", '0')->
+            where("lang", \Session::get('locale'))->
+            orderBy('order')->get() as $cat)
             <li class="treeview  @if(Request::segment(2)==$cat->name_slug) active @endif">
                 <a href="/admin/cat/{{ $cat->name_slug }}">
-                    <i class="fa fa-{{ $cat->icon }}"></i>
+                    @if ($cat->icon == null) 
+                        <i class="fa fa-folder"></i>
+                    @else 
+                        <i class="fa fa-{{ $cat->icon }}"></i>
+                    @endif
                     <span>{{ $cat->name }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
