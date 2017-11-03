@@ -1,12 +1,11 @@
-@extends("main")
-@section('head_title',  $post->title.' | '.getcong('sitename'))
-@section('head_description', $post->body)
-@section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))
-@section('head_url', Request::url())
-@section('modedefault', 'mode-default')
-@section("content")
+<?php $__env->startSection('head_title',  $post->title.' | '.getcong('sitename')); ?>
+<?php $__env->startSection('head_description', $post->body); ?>
+<?php $__env->startSection('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg')); ?>
+<?php $__env->startSection('head_url', Request::url()); ?>
+<?php $__env->startSection('modedefault', 'mode-default'); ?>
+<?php $__env->startSection("content"); ?>
 
-@foreach($entrys as $key => $entry)
+<?php foreach($entrys as $key => $entry): ?>
 
    <!-- Blog Single Start Here -->
     <div class="single-blog-page-area">
@@ -14,33 +13,35 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="single-image">
-                        <img src="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}">
+                        <img src="<?php echo e(makepreview($post->thumb, 'b', 'posts')); ?>" alt="<?php echo e($post->title); ?>">
                     </div>
-                    <h3><a href="#">{{ $post->title }}</a></h3>
-                    <p>{{ $post->body }}</p>
+                    <h3><a href="#"><?php echo e($post->title); ?></a></h3>
+                    <p><?php echo e($post->body); ?></p>
             
-                    @if($entry->title)
+                    <?php if($entry->title): ?>
                       <h2 class="sub-title" >
 
-                              @if($post->ordertype != '')
-                                  {{ $entry->order+1 }}.
-                               @endif
+                              <?php if($post->ordertype != ''): ?>
+                                  <?php echo e($entry->order+1); ?>.
+                               <?php endif; ?>
 
-                          {{ $entry->title }}
+                          <?php echo e($entry->title); ?>
+
                       </h2>
-                    @endif
+                    <?php endif; ?>
 
-                    <p>{!! $entry->body !!}</p> 
+                    <p><?php echo $entry->body; ?></p> 
                    
                     <div class="share-section">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 life-style">
                                 <span class="author"> 
-                                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $post->user->username }} </a>
+                                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($post->user->username); ?> </a>
                                 </span> 
                         
                                 <span class="date">
-                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $post->created_at->diffForHumans() }}
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <?php echo e($post->created_at->diffForHumans()); ?>
+
                                 </span>
                                 <span class="cat">
                                     <a href="#"><i class="fa fa-folder-o" aria-hidden="true"></i> Life Style </a>
@@ -76,17 +77,17 @@
                     <div class="like-section">
                         <h3 class="title-bg">YOU MIGHT ALSO LIKE</h3>
                         <div class="row">
-                          @foreach($lastFeatures as $item)
+                          <?php foreach($lastFeatures as $item): ?>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="popular-post-img">
-                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>                                   
+                                    <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>                                   
                                 </div>                                
                                 <h3>
-                                    <a href="#">{{ $item->title }}</a>
+                                    <a href="#"><?php echo e($item->title); ?></a>
                                 </h3>
-                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}</span>
+                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <?php echo e($item->created_at->diffForHumans()); ?></span>
                             </div>
-                          @endforeach
+                          <?php endforeach; ?>
                         </div>
                     </div>  
                                 
@@ -97,19 +98,19 @@
                         <div class="recent-post-area hot-news">
                             <h3 class="title-bg">Recent Post</h3>
                             <ul class="news-post">
-                               @if($lastNews)
-                                @foreach($lastNews as $key=>$item)
+                               <?php if($lastNews): ?>
+                                <?php foreach($lastNews as $key=>$item): ?>
                                 <li>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
                                             <div class="item-post">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-                                                        <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="" title="{{ $item->title }}" /></a>
+                                                        <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="" title="<?php echo e($item->title); ?>" /></a>
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                        <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}</a></h4>
-                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}</span>
+                                                        <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e($item->title); ?></a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><?php echo e($item->created_at->diffForHumans()); ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,8 +118,8 @@
                                     </div>
                                 </li>
                                
-                                @endforeach
-                              @endif
+                                <?php endforeach; ?>
+                              <?php endif; ?>
                             </ul>
                         </div>
                     
@@ -128,10 +129,11 @@
         </div>
     </div>
 
-@endforeach
+<?php endforeach; ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
+<?php $__env->startSection('footer'); ?>
    
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
