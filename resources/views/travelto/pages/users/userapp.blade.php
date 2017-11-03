@@ -77,7 +77,14 @@
                             @if($DB_PLUGIN_POLLS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.polls') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/polls">{{ $pollscount }} </a>  </div>@endif -->
                            <!--  @if($DB_PLUGIN_VIDEOS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.videos') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/videos">{{ $videoscount }} </a>   </div>@endif -->
        
-                             @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $categorys)
+                             @foreach(\App\Categories::where("main", '1')->
+                                where("disabled", '0')->
+                                orwhere("main", '2')->
+                                where("lang", \Session::get('locale'))->
+                                where("disabled", '0')->
+                                orderBy('order')->
+                                get() as $categorys)
+
                                 <div class="profile-stat">
                                     <div class="profile-stat-label">
                                     <a href="{{ action('PostsController@CreateNew', ['new'=>$categorys->posturl_slug]) }}" class="sub-item"><i class="fa fa-{{ $categorys->icon }}"></i> {{ trans('index.new', ['type' => ucfirst($categorys->name) ]) }}</a>
