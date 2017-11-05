@@ -788,9 +788,9 @@ class Builder
 
         $hasQuery = $hasQuery->getModel()->removeGlobalScopes($hasQuery);
 
-        $whereBindings = array_get($relationQuery->getRawBindings(), 'where', []);
-
-        $hasQuery->mergeWheres($relationQuery->wheres, $whereBindings);
+        $hasQuery->mergeWheres(
+            $relationQuery->wheres, $relationQuery->getBindings()
+        );
 
         $this->query->addBinding($hasQuery->getQuery()->getBindings(), 'where');
     }

@@ -19,14 +19,14 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
      *
      * @var string
      */
-    protected $version = 'v2.8';
+    protected $version = 'v2.6';
 
     /**
      * The user fields being requested.
      *
      * @var array
      */
-    protected $fields = ['name', 'email', 'gender', 'verified', 'link'];
+    protected $fields = ['name', 'email', 'gender', 'verified'];
 
     /**
      * The scopes being requested.
@@ -62,7 +62,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return $this->graphUrl.'/'.$this->version.'/oauth/access_token';
+        return $this->graphUrl.'/oauth/access_token';
     }
 
     /**
@@ -78,7 +78,7 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
 
         $data = [];
 
-        $data = json_decode($response->getBody(), true);
+        parse_str($response->getBody(), $data);
 
         return Arr::add($data, 'expires_in', Arr::pull($data, 'expires'));
     }
@@ -88,15 +88,9 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $meUrl = $this->graphUrl.'/'.$this->version.'/me?access_token='.$token.'&fields='.implode(',', $this->fields);
+        $appSecretProof = hash_hmac('sha256', $token, $this->clientSecret);
 
-        if (! empty($this->clientSecret)) {
-            $appSecretProof = hash_hmac('sha256', $token, $this->clientSecret);
-
-            $meUrl .= '&appsecret_proof='.$appSecretProof;
-        }
-
-        $response = $this->getHttpClient()->get($meUrl, [
+        $response = $this->getHttpClient()->get($this->graphUrl.'/'.$this->version.'/me?access_token='.$token.'&appsecret_proof='.$appSecretProof.'&fields='.implode(',', $this->fields), [
             'headers' => [
                 'Accept' => 'application/json',
             ],
@@ -116,7 +110,6 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
             'id' => $user['id'], 'nickname' => null, 'name' => isset($user['name']) ? $user['name'] : null,
             'email' => isset($user['email']) ? $user['email'] : null, 'avatar' => $avatarUrl.'?type=normal',
             'avatar_original' => $avatarUrl.'?width=1920',
-            'profileUrl' => isset($user['link']) ? $user['link'] : null,
         ]);
     }
 
@@ -171,7 +164,5 @@ class FacebookProvider extends AbstractProvider implements ProviderInterface
     public function reRequest()
     {
         $this->reRequest = true;
-
-        return $this;
     }
 }

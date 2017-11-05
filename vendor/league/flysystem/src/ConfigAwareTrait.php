@@ -19,7 +19,7 @@ trait ConfigAwareTrait
      */
     protected function setConfig($config)
     {
-        $this->config = $config ? Util::ensureConfig($config) : new Config;
+        $this->config = $config ? Util::ensureConfig($config) : null;
     }
 
     /**
@@ -29,6 +29,10 @@ trait ConfigAwareTrait
      */
     public function getConfig()
     {
+        if ($this->config === null) {
+            return $this->config = new Config;
+        }
+
         return $this->config;
     }
 

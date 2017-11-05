@@ -181,31 +181,6 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->assertEquals(304, $this->response->getStatusCode());
     }
 
-    public function testIncrementsMaxAgeWhenNoDateIsSpecifiedEventWhenUsingETag()
-    {
-        $this->setNextResponse(
-            200,
-            array(
-                'ETag' => '1234',
-                'Cache-Control' => 'public, s-maxage=60',
-            )
-        );
-
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsCalled();
-        $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertTraceContains('miss');
-        $this->assertTraceContains('store');
-
-        sleep(2);
-
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsNotCalled();
-        $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertTraceContains('fresh');
-        $this->assertEquals(2, $this->response->headers->get('Age'));
-    }
-
     public function testValidatesPrivateResponsesCachedOnTheClient()
     {
         $this->setNextResponse(200, array(), '', function ($request, $response) {
@@ -799,21 +774,6 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->assertTraceNotContains('miss');
     }
 
-    public function testValidatesCachedResponsesUseSameHttpMethod()
-    {
-        $test = $this;
-
-        $this->setNextResponse(200, array(), 'Hello World', function ($request, $response) use ($test) {
-            $test->assertSame('OPTIONS', $request->getMethod());
-        });
-
-        // build initial request
-        $this->request('OPTIONS', '/');
-
-        // build subsequent request
-        $this->request('OPTIONS', '/');
-    }
-
     public function testValidatesCachedResponsesWithETagAndNoFreshnessInformation()
     {
         $this->setNextResponse(200, array(), 'Hello World', function ($request, $response) {
@@ -847,42 +807,6 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->assertTraceContains('valid');
         $this->assertTraceContains('store');
         $this->assertTraceNotContains('miss');
-    }
-
-    public function testServesResponseWhileFreshAndRevalidatesWithLastModifiedInformation()
-    {
-        $time = \DateTime::createFromFormat('U', time());
-
-        $this->setNextResponse(200, array(), 'Hello World', function (Request $request, Response $response) use ($time) {
-            $response->setSharedMaxAge(10);
-            $response->headers->set('Last-Modified', $time->format(DATE_RFC2822));
-        });
-
-        // prime the cache
-        $this->request('GET', '/');
-
-        // next request before s-maxage has expired: Serve from cache
-        // without hitting the backend
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsNotCalled();
-        $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertEquals('Hello World', $this->response->getContent());
-        $this->assertTraceContains('fresh');
-
-        sleep(15); // expire the cache
-
-        $that = $this;
-
-        $this->setNextResponse(304, array(), '', function (Request $request, Response $response) use ($time, $that) {
-            $that->assertEquals($time->format(DATE_RFC2822), $request->headers->get('IF_MODIFIED_SINCE'));
-        });
-
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsCalled();
-        $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertEquals('Hello World', $this->response->getContent());
-        $this->assertTraceContains('stale');
-        $this->assertTraceContains('valid');
     }
 
     public function testReplacesCachedResponsesWhenValidationResultsInNon304Response()
@@ -1299,21 +1223,6 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->request('GET', '/', array(), array(), true);
         $this->assertNull($this->response->getETag());
         $this->assertNull($this->response->getLastModified());
-    }
-
-    public function testDoesNotCacheOptionsRequest()
-    {
-        $this->setNextResponse(200, array('Cache-Control' => 'public, s-maxage=60'), 'get');
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsCalled();
-
-        $this->setNextResponse(200, array('Cache-Control' => 'public, s-maxage=60'), 'options');
-        $this->request('OPTIONS', '/');
-        $this->assertHttpKernelIsCalled();
-
-        $this->request('GET', '/');
-        $this->assertHttpKernelIsNotCalled();
-        $this->assertSame('get', $this->response->getContent());
     }
 }
 

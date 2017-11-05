@@ -11,20 +11,19 @@
 
 namespace Symfony\Component\HttpFoundation\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\IpUtils;
 
-class IpUtilsTest extends TestCase
+class IpUtilsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider getIpv4Data
+     * @dataProvider testIpv4Provider
      */
     public function testIpv4($matches, $remoteAddr, $cidr)
     {
         $this->assertSame($matches, IpUtils::checkIp($remoteAddr, $cidr));
     }
 
-    public function getIpv4Data()
+    public function testIpv4Provider()
     {
         return array(
             array(true, '192.168.1.1', '192.168.1.1'),
@@ -38,12 +37,11 @@ class IpUtilsTest extends TestCase
             array(true, '1.2.3.4', '0.0.0.0/0'),
             array(true, '1.2.3.4', '192.168.1.0/0'),
             array(false, '1.2.3.4', '256.256.256/0'), // invalid CIDR notation
-            array(false, 'an_invalid_ip', '192.168.1.0/24'),
         );
     }
 
     /**
-     * @dataProvider getIpv6Data
+     * @dataProvider testIpv6Provider
      */
     public function testIpv6($matches, $remoteAddr, $cidr)
     {
@@ -54,7 +52,7 @@ class IpUtilsTest extends TestCase
         $this->assertSame($matches, IpUtils::checkIp($remoteAddr, $cidr));
     }
 
-    public function getIpv6Data()
+    public function testIpv6Provider()
     {
         return array(
             array(true, '2a01:198:603:0:396e:4789:8e99:890f', '2a01:198:603:0::/65'),

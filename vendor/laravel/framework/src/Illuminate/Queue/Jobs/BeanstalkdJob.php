@@ -97,8 +97,6 @@ class BeanstalkdJob extends Job implements JobContract
      */
     public function bury()
     {
-        parent::release();
-
         $this->pheanstalk->bury($this->job);
     }
 

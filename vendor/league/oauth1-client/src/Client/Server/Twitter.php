@@ -45,7 +45,7 @@ class Twitter extends Server
     {
         $user = new User();
 
-        $user->uid = $data['id_str'];
+        $user->uid = $data['id'];
         $user->nickname = $data['screen_name'];
         $user->name = $data['name'];
         $user->location = $data['location'];

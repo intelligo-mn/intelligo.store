@@ -53,18 +53,11 @@ class SQLSrvStatement implements IteratorAggregate, Statement
     private $stmt;
 
     /**
-     * References to the variables bound as statement parameters.
+     * Parameters to bind.
      *
      * @var array
      */
-    private $variables = array();
-
-    /**
-     * Bound parameter types.
-     *
-     * @var array
-     */
-    private $types = array();
+    private $params = array();
 
     /**
      * Translations.
@@ -106,13 +99,6 @@ class SQLSrvStatement implements IteratorAggregate, Statement
     private $lastInsertId;
 
     /**
-     * Indicates whether the statement is in the state when fetching results is possible
-     *
-     * @var bool
-     */
-    private $result = false;
-
-    /**
      * Append to any INSERT query to retrieve the last insert id.
      *
      * @var string
@@ -140,14 +126,7 @@ class SQLSrvStatement implements IteratorAggregate, Statement
      */
     public function bindValue($param, $value, $type = null)
     {
-        if (!is_numeric($param)) {
-            throw new SQLSrvException(
-                'sqlsrv does not support named parameters to queries, use question mark (?) placeholders instead.'
-            );
-        }
-
-        $this->variables[$param] = $value;
-        $this->types[$param] = $type;
+        return $this->bindParam($param, $value, $type, null);
     }
 
     /**
@@ -159,11 +138,11 @@ class SQLSrvStatement implements IteratorAggregate, Statement
             throw new SQLSrvException("sqlsrv does not support named parameters to queries, use question mark (?) placeholders instead.");
         }
 
-        $this->variables[$column] =& $variable;
-        $this->types[$column] = $type;
-
-        // unset the statement resource if it exists as the new one will need to be bound to the new variable
-        $this->stmt = null;
+        if ($type === \PDO::PARAM_LOB) {
+            $this->params[$column-1] = array($variable, SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STREAM(SQLSRV_ENC_BINARY), SQLSRV_SQLTYPE_VARBINARY('max'));
+        } else {
+            $this->params[$column-1] = $variable;
+        }
     }
 
     /**
@@ -171,20 +150,9 @@ class SQLSrvStatement implements IteratorAggregate, Statement
      */
     public function closeCursor()
     {
-        // not having the result means there's nothing to close
-        if (!$this->result) {
-            return true;
+        if ($this->stmt) {
+            sqlsrv_free_stmt($this->stmt);
         }
-
-        // emulate it by fetching and discarding rows, similarly to what PDO does in this case
-        // @link http://php.net/manual/en/pdostatement.closecursor.php
-        // @link https://github.com/php/php-src/blob/php-7.0.11/ext/pdo/pdo_stmt.c#L2075
-        // deliberately do not consider multiple result sets, since doctrine/dbal doesn't support them
-        while (sqlsrv_fetch($this->stmt));
-
-        $this->result = false;
-
-        return true;
     }
 
     /**
@@ -229,11 +197,8 @@ class SQLSrvStatement implements IteratorAggregate, Statement
             }
         }
 
+        $this->stmt = sqlsrv_query($this->conn, $this->sql, $this->params);
         if ( ! $this->stmt) {
-            $this->stmt = $this->prepare();
-        }
-
-        if (!sqlsrv_execute($this->stmt)) {
             throw SQLSrvException::fromSqlSrvErrors();
         }
 
@@ -242,40 +207,6 @@ class SQLSrvStatement implements IteratorAggregate, Statement
             sqlsrv_fetch($this->stmt);
             $this->lastInsertId->setId(sqlsrv_get_field($this->stmt, 0));
         }
-
-        $this->result = true;
-    }
-
-    /**
-     * Prepares SQL Server statement resource
-     *
-     * @return resource
-     * @throws SQLSrvException
-     */
-    private function prepare()
-    {
-        $params = array();
-
-        foreach ($this->variables as $column => &$variable) {
-            if ($this->types[$column] === \PDO::PARAM_LOB) {
-                $params[$column - 1] = array(
-                    &$variable,
-                    SQLSRV_PARAM_IN,
-                    SQLSRV_PHPTYPE_STREAM(SQLSRV_ENC_BINARY),
-                    SQLSRV_SQLTYPE_VARBINARY('max'),
-                );
-            } else {
-                $params[$column - 1] =& $variable;
-            }
-        }
-
-        $stmt = sqlsrv_prepare($this->conn, $this->sql, $params);
-
-        if (!$stmt) {
-            throw SQLSrvException::fromSqlSrvErrors();
-        }
-
-        return $stmt;
     }
 
     /**
@@ -305,12 +236,6 @@ class SQLSrvStatement implements IteratorAggregate, Statement
      */
     public function fetch($fetchMode = null)
     {
-        // do not try fetching from the statement if it's not expected to contain result
-        // in order to prevent exceptional situation
-        if (!$this->result) {
-            return false;
-        }
-
         $args      = func_get_args();
         $fetchMode = $fetchMode ?: $this->defaultFetchMode;
 

@@ -5,7 +5,6 @@ use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\RejectedPromise;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Middleware that retries requests based on the boolean result of
@@ -26,8 +25,8 @@ class RetryMiddleware
      *                              retried.
      * @param callable $nextHandler Next handler to invoke.
      * @param callable $delay       Function that accepts the number of retries
-     *                              and [response] and returns the number of
-     *                              milliseconds to delay.
+     *                              and returns the number of milliseconds to
+     *                              delay.
      */
     public function __construct(
         callable $decider,
@@ -83,7 +82,7 @@ class RetryMiddleware
             )) {
                 return $value;
             }
-            return $this->doRetry($req, $options, $value);
+            return $this->doRetry($req, $options);
         };
     }
 
@@ -103,9 +102,9 @@ class RetryMiddleware
         };
     }
 
-    private function doRetry(RequestInterface $request, array $options, ResponseInterface $response = null)
+    private function doRetry(RequestInterface $request, array $options)
     {
-        $options['delay'] = call_user_func($this->delay, ++$options['retries'], $response);
+        $options['delay'] = call_user_func($this->delay, ++$options['retries']);
 
         return $this($request, $options);
     }

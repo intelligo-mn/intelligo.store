@@ -2,8 +2,7 @@
 
 namespace League\OAuth1\Client\Signature;
 
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Uri;
+use Guzzle\Http\Url;
 
 class HmacSha1Signature extends Signature implements SignatureInterface
 {
@@ -36,7 +35,7 @@ class HmacSha1Signature extends Signature implements SignatureInterface
      */
     protected function createUrl($uri)
     {
-        return Psr7\uri_for($uri);
+        return Url::factory($uri);
     }
 
     /**
@@ -49,11 +48,11 @@ class HmacSha1Signature extends Signature implements SignatureInterface
      *
      * @return string
      */
-    protected function baseString(Uri $url, $method = 'POST', array $parameters = array())
+    protected function baseString(Url $url, $method = 'POST', array $parameters = array())
     {
         $baseString = rawurlencode($method).'&';
 
-        $schemeHostPath = Uri::fromParts(array(
+        $schemeHostPath = Url::buildUrl(array(
            'scheme' => $url->getScheme(),
            'host' => $url->getHost(),
            'path' => $url->getPath(),
@@ -63,52 +62,17 @@ class HmacSha1Signature extends Signature implements SignatureInterface
 
         $data = array();
         parse_str($url->getQuery(), $query);
-        $data = array_merge($query, $parameters);
+        foreach (array_merge($query, $parameters) as $key => $value) {
+            $data[rawurlencode($key)] = rawurlencode($value);
+        }
 
-        // normalize data key/values
-        array_walk_recursive($data, function (&$key, &$value) {
-            $key   = rawurlencode(rawurldecode($key));
-            $value = rawurlencode(rawurldecode($value));
-        });
         ksort($data);
-
-        $baseString .= $this->queryStringFromData($data);
+        array_walk($data, function (&$value, $key) {
+            $value = $key.'='.$value;
+        });
+        $baseString .= rawurlencode(implode('&', $data));
 
         return $baseString;
-    }
-
-    /**
-     * Creates an array of rawurlencoded strings out of each array key/value pair
-     * Handles multi-demensional arrays recursively.
-     *
-     * @param  array  $data        Array of parameters to convert.
-     * @param  array  $queryParams Array to extend. False by default.
-     * @param  string $prevKey     Optional Array key to append
-     *
-     * @return string              rawurlencoded string version of data
-     */
-    protected function queryStringFromData($data, $queryParams = false, $prevKey = '')
-    {
-        if ($initial = (false === $queryParams)) {
-            $queryParams = array();
-        }
-
-        foreach ($data as $key => $value) {
-            if ($prevKey) {
-                $key = $prevKey.'['.$key.']'; // Handle multi-dimensional array
-            }
-            if (is_array($value)) {
-                $queryParams = $this->queryStringFromData($value, $queryParams, $key);
-            } else {
-                $queryParams[] = rawurlencode($key.'='.$value); // join with equals sign
-            }
-        }
-
-        if ($initial) {
-            return implode('%26', $queryParams); // join with ampersand
-        }
-
-        return $queryParams;
     }
 
     /**

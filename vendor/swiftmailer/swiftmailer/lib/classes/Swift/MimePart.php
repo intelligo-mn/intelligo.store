@@ -50,7 +50,7 @@ class Swift_MimePart extends Swift_Mime_MimePart
      * @param string $contentType
      * @param string $charset
      *
-     * @return self
+     * @return Swift_Mime_MimePart
      */
     public static function newInstance($body = null, $contentType = null, $charset = null)
     {

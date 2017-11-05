@@ -47,9 +47,7 @@ class TrelloTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('post')->with('https://trello.com/1/OAuthGetRequestToken', m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-
+        $client->shouldReceive('post')->with('https://trello.com/1/OAuthGetRequestToken', m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
 
             // OAuth protocol specifies a strict number of
@@ -61,7 +59,9 @@ class TrelloTest extends PHPUnit_Framework_TestCase
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
+        }))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
         $response->shouldReceive('getBody')->andReturn('oauth_token=temporarycredentialsidentifier&oauth_token_secret=temporarycredentialssecret&oauth_callback_confirmed=true');
 
         $credentials = $server->getTemporaryCredentials();
@@ -200,10 +200,7 @@ class TrelloTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('post')->with('https://trello.com/1/OAuthGetAccessToken', m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-            $body = $options['form_params'];
-
+        $client->shouldReceive('post')->with('https://trello.com/1/OAuthGetAccessToken', m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
 
             // OAuth protocol specifies a strict number of
@@ -214,10 +211,10 @@ class TrelloTest extends PHPUnit_Framework_TestCase
             $matches = preg_match($pattern, $headers['Authorization']);
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
-            $me->assertSame($body, array('oauth_verifier' => 'myverifiercode'));
-
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
+        }), array('oauth_verifier' => 'myverifiercode'))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
         $response->shouldReceive('getBody')->andReturn('oauth_token=tokencredentialsidentifier&oauth_token_secret=tokencredentialssecret');
 
         $credentials = $server->getTokenCredentials($temporaryCredentials, 'temporarycredentialsidentifier', 'myverifiercode');
@@ -237,9 +234,7 @@ class TrelloTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('get')->with('https://trello.com/1/members/me?key='.$this->getApplicationKey().'&token='.$this->getAccessToken(), m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-
+        $client->shouldReceive('get')->with('https://trello.com/1/members/me?key='.$this->getApplicationKey().'&token='.$this->getAccessToken(), m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
 
             // OAuth protocol specifies a strict number of
@@ -251,8 +246,10 @@ class TrelloTest extends PHPUnit_Framework_TestCase
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
-        $response->shouldReceive('getBody')->once()->andReturn($this->getUserPayload());
+        }))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
+        $response->shouldReceive('json')->once()->andReturn($this->getUserPayload());
 
         $user = $server
             ->setAccessToken($this->getAccessToken())
@@ -300,7 +297,7 @@ class TrelloTest extends PHPUnit_Framework_TestCase
 
     private function getUserPayload()
     {
-        return '{
+        $user = '{
             "id": "545df696e29c0dddaed31967",
             "avatarHash": null,
             "bio": "I have magical powers",
@@ -345,5 +342,6 @@ class TrelloTest extends PHPUnit_Framework_TestCase
             "premiumFeatures": [],
             "idBoardsPinned": null
         }';
+        return json_decode($user, true);
     }
 }

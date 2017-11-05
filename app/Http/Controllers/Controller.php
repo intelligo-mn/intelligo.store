@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use YAAP\Theme\Facades\Theme;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,11 +14,9 @@ abstract class Controller extends BaseController
 
     public function __construct(){
 
-        Theme::init('coolmon');
-
-        $lang = \Session::get('locale');
+        $lang = \Session::get ('locale');
         if ($lang == null){
-            $lang = getenvcong('sitedefaultlanguage');
+            $lang = \App::getLocale();
             \Session::put('locale', $lang);
         }
 
@@ -27,18 +24,13 @@ abstract class Controller extends BaseController
         \App::setLocale($lang);
 
 
-
-        \View::share(['DB_PLUGIN_NEWS' => getenvcong('p-buzzynews'),
-            'DB_PLUGIN_LISTS' => getenvcong('p-buzzylists'),
-            'DB_PLUGIN_POLLS' => getenvcong('p-buzzypolls'),
-            'DB_PLUGIN_VIDEOS' =>  getenvcong('p-buzzyvideos'),
-            'DB_PLUGIN_QUIZS' => getenvcong('p-buzzyquizzes'),
+        \View::share(['DB_PLUGIN_NEWS' => getcong('p-buzzynews'),
+            'DB_PLUGIN_LISTS' => getcong('p-buzzylists'),
+            'DB_PLUGIN_POLLS' => getcong('p-buzzypolls'),
+            'DB_PLUGIN_VIDEOS' =>  getcong('p-buzzyvideos'),
+            'DB_PLUGIN_QUIZS' => getcong('p-buzzyquizzes'),
             'DB_USER_LANG' => $lang
         ]);
-
-
-
-
     }
 
 }

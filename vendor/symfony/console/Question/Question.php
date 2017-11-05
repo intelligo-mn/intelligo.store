@@ -74,7 +74,7 @@ class Question
      *
      * @param bool $hidden
      *
-     * @return $this
+     * @return Question The current instance
      *
      * @throws \LogicException In case the autocompleter is also used
      */
@@ -104,7 +104,7 @@ class Question
      *
      * @param bool $fallback
      *
-     * @return $this
+     * @return Question The current instance
      */
     public function setHiddenFallback($fallback)
     {
@@ -128,7 +128,7 @@ class Question
      *
      * @param null|array|\Traversable $values
      *
-     * @return $this
+     * @return Question The current instance
      *
      * @throws \InvalidArgumentException
      * @throws \LogicException
@@ -159,7 +159,7 @@ class Question
      *
      * @param null|callable $validator
      *
-     * @return $this
+     * @return Question The current instance
      */
     public function setValidator($validator)
     {
@@ -185,7 +185,7 @@ class Question
      *
      * @param null|int $attempts
      *
-     * @return $this
+     * @return Question The current instance
      *
      * @throws \InvalidArgumentException In case the number of attempts is invalid.
      */
@@ -219,7 +219,7 @@ class Question
      *
      * @param callable $normalizer
      *
-     * @return $this
+     * @return Question The current instance
      */
     public function setNormalizer($normalizer)
     {

@@ -15,29 +15,23 @@ class DashboardController extends MainAdminController
 
     protected $verifyapiserver  =  'http://envato.akbilisim.com/api/BA';
 
-    protected $verifythemeapiserver  =  'http://envato.akbilisim.com/api/TE/';
-
     protected $server  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestupdate.txt';
 
     protected $servercore  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestcore.txt';
 
     protected $serverrar  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/updates/update';
 
-    protected $servertheme  =  'http://envato.akbilisim.com/productbuzzy/buzzythemes/updates/';
-
     protected $pluginsapi = 'http://envato.akbilisim.com/api/allplugins';
-
-    protected $themesapi = 'http://envato.akbilisim.com/api/allthemes';
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->middleware('DemoAdmin', ['only' => ['activeplugin','activetheme','downloadtheme','checkupdate','updatepurcahecheck','checkinputcodeforplugin','getr']]);
+        // $this->middleware('DemoAdmin', ['only' => ['activeplugin','checkupdate','updatepurcahecheck','checkinputcodeforplugin','getr']]);
 
     }
 
-    public function index(Posts $posts, User $users)
+  public function index(Posts $posts, User $users)
     {
 
         $rangetoday = Carbon::now()->subDays(1);
@@ -115,7 +109,7 @@ class DashboardController extends MainAdminController
         $categories = Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get();
 
             foreach($categories as $cat){
-                $typeos[$cat->id]=$cat->name;
+                $typeos[$cat->type]=$cat->name;
 
                 foreach(Categories::where('type', $cat->id)->orderBy('name')->get() as $cata){
                     $typeos[$cata->id]="---- " .$cata->name;
@@ -131,54 +125,6 @@ class DashboardController extends MainAdminController
         ));
     }
 
-    public function themes()
-    {
-        $version=\Config::get('installer.last_version');
-        $code=file_get_contents(base_path('storage/.buzzy'), true);
-
-        $content = curlit($this->themesapi.'?i=buzzy&v='.$version.'&c='.$code.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-
-        $themes= json_decode($content, true);
-
-
-        if (!$themes){
-            \Session::flash('error.message', trans("admin.themesnotavailable"));
-            return redirect('/admin');
-        }
-
-        return view('_admin.pages.themes', compact(
-            'themes',
-            'updateversion'
-        ));
-    }
-
-    public function themesetting($theme, Request $request)
-    {
-        $themeid = $request->query("t");
-
-
-
-        $version=\Config::get('installer.last_version');
-        $code=file_get_contents(base_path('storage/.buzzy'), true);
-
-        $content = curlit($this->themesapi.'?i=buzzy&v='.$version.'&c='.$code.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-
-        $themes= json_decode($content, true);
-
-        if (!$themes){
-            \Session::flash('error.message', trans("admin.themesnotavailable"));
-            return redirect('/admin');
-        }
-
-        $theme = $themes[$themeid];
-
-
-        return view('_admin.pages.themesettings', compact(
-            'theme',
-            'themes'
-        ));
-    }
-
     public function activeplugin(Request $request)
     {
         $plugin = $request->all();
@@ -187,7 +133,10 @@ class DashboardController extends MainAdminController
         $pluginverify=$plugin['dataverify'];
 
 
-        if(getenvcong('p-'.$pluginiten)=='on'){
+
+
+
+        if(\DbConfig::get('p-'.$pluginiten)=='on'){
             $type='off';
             $typeq='1';
 
@@ -204,80 +153,26 @@ class DashboardController extends MainAdminController
             }
         }
 
-        $actite="";
-        if($pluginiten=='buzzynews'){
-            $actite="news";
-        }else if($pluginiten=='buzzylists'){
-            $actite="list";
-        }else if($pluginiten=='buzzypolls'){
-            $actite="poll";
-        }else if($pluginiten=='buzzyvideos'){
-            $actite="video";
-        }else if($pluginiten=='buzzyquizzes'){
-            $actite="quiz";
-        }
+                        $actite="";
+                        if($pluginiten=='buzzynews'){
+                            $actite="news";
+                        }else if($pluginiten=='buzzylists'){
+                            $actite="list";
+                        }else if($pluginiten=='buzzypolls'){
+                            $actite="poll";
+                        }else if($pluginiten=='buzzyvideos'){
+                            $actite="video";
+                        }else if($pluginiten=='buzzyquizzes'){
+                            $actite="quiz";
+                        }
 
-        if($actite!==""){
-            $catees = Categories::where("type", $actite)->first();
-            $catees->disabled=$typeq;
-            $catees->save();
-        }
+                        if($actite!==""){
+                            $catees = Categories::where("type", $actite)->first();
+                            $catees->disabled=$typeq;
+                            $catees->save();
+                        }
 
-        writeConfig('p-'.$pluginiten, $type);
-
-        $message['type']='success';
-        $message['message']='';
-        $message['url']="";
-        return $message;
-    }
-
-    public function activetheme(Request $request)
-    {
-        $theme = $request->all();
-
-        $themeiten=$theme['dataitem'];
-        $themeverify=$theme['dataverify'];
-
-
-        if($themeverify=="on"){
-            if(!$this->code($themeiten)){
-                \Session::flash('error.message', trans("admin.wecaninstallplugin"));
-                $message['type']='success';
-                return $message;
-            }
-        }
-
-        writeConfig('CurrentTheme', $themeiten);
-
-        $message['type']='success';
-        $message['message']='';
-        $message['url']="";
-        return $message;
-    }
-
-    public function downloadtheme(Request $request)
-    {
-        $theme = $request->all();
-
-        $themeiten=$theme['dataitem'];
-        $themeverify=$theme['dataverify'];
-
-        if($themeverify=="on"){
-            if(!$this->code($themeiten)){
-                \Session::flash('error.message', trans("admin.wecaninstallplugin"));
-                $message['type']='success';
-                return $message;
-            }
-            $code=file_get_contents(base_path('storage/.'.$themeiten), true);
-            $content = curlit($this->verifythemeapiserver.$code.'?r=2&t='.$themeiten.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            $contents= json_decode($content, true);
-            $this->getr($contents['z']);
-        }else{
-            $code=file_get_contents(base_path('storage/.buzzy'), true);
-            $content = curlit($this->verifythemeapiserver.$code.'?r=1&t='.$themeiten.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            $contents= json_decode($content, true);
-            $this->getr($contents['z']);
-        }
+        \DbConfig::store('p-'.$pluginiten, $type);
 
         $message['type']='success';
         $message['message']='';
@@ -288,54 +183,72 @@ class DashboardController extends MainAdminController
      public function checkupdate(){
 
         $content = curlit($this->server);
-        return $content;
-   
+        if ($content and $content != \Config::get('installer.last_version')){
+            return $content;
+        }else{
+            return \Config::get('installer.last_version');
+        }
+
     }
      public function checkcode(){
 
-        $content = curlit($this->server);
-        if ($content){
-            return $content;
-        }
+            \Session::flash('error.message', trans("admin.pluginsnotavailable"));
+            return redirect('/admin');
+        
 
     }
     public function sickupdate(){
 
         $content = curlit($this->servercore);
-        return $content;
-        
+        if ($content){
+            return $content;
+        }
+       return "";
+    }
+
+    public function updatepurcahecheck(Request $request){
+
+        $code = $request->all();
+        $autoupload=$code['dataauto'];
+
+        $message=[];
+        $content = $this->code();
+
+        if ($autoupload=='on'){
+
+            if(!$this->getr($this->serverrar.$this->checkupdate().$this->sickupdate().'.zip')){
+                $message['type']='error';
+                $message['message']=trans("admin.unabletoupdate");
+                $message['url']="";
+            }
+            $message['type']='success';
+            $message['message']=trans("admin.doneupdate").$this->checkupdate();
+            $message['url']="";
+            return $message;
+        }elseif ($content){
+            $message['type']='success';
+            $message['message']=trans("admin.donedownload");
+            $message['url']=$this->serverrar.$this->checkupdate().$this->sickupdate().'.zip';
+            return $message;
+        }else{
+            $message['type']='error';
+            $message['message']=trans("admin.purchaseincorrect");
+            $message['url']="";
+            return $message;
+
+        }
+
     }
 
     public function checkinputcodeforplugin(Request $request){
-        $request=$request->all();
-        $code=$request['code'];
-        $dataitem=$request['dataitem'];
+            return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
 
-        $jok=curlit($this->verifyapiserver.$code.'?r=2&t='.$dataitem.'&u='.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        $jok= json_decode($jok, true);
-
-       
-        return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
-        
     }
 
 
     public function getr($zurl)
     {
-        $zip_path = base_path().'/tmp.zip';
-        try {
-            file_put_contents($zip_path, fopen($zurl, 'r'));
-        }catch(Exception $e) {
-            return false;
-        }
-        $zip = new ZipArchive;
-        if (! $zip) {
-            return false;
-        }
-        $zip->open("$zip_path");
-        $zip->extractTo(base_path());
-        $zip->close();
-        unlink($zip_path);
+    
         return true;
     }
 }

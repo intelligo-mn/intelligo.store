@@ -318,7 +318,7 @@ class PostgreSqlPlatform extends AbstractPlatform
     public function getListTableConstraintsSQL($table)
     {
         $table = new Identifier($table);
-        $table = $this->quoteStringLiteral($table->getName());
+        $table = $table->getName();
 
         return "SELECT
                     quote_ident(relname) as relname
@@ -327,7 +327,7 @@ class PostgreSqlPlatform extends AbstractPlatform
                 WHERE oid IN (
                     SELECT indexrelid
                     FROM pg_index, pg_class
-                    WHERE pg_class.relname = $table
+                    WHERE pg_class.relname = '$table'
                         AND pg_class.oid = pg_index.indrelid
                         AND (indisunique = 't' OR indisprimary = 't')
                         )";
@@ -364,14 +364,13 @@ class PostgreSqlPlatform extends AbstractPlatform
         $whereClause = $namespaceAlias.".nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast') AND ";
         if (strpos($table, ".") !== false) {
             list($schema, $table) = explode(".", $table);
-            $schema = $this->quoteStringLiteral($schema);
+            $schema = "'" . $schema . "'";
         } else {
             $schema = "ANY(string_to_array((select replace(replace(setting,'\"\$user\"',user),' ','') from pg_catalog.pg_settings where name = 'search_path'),','))";
         }
 
         $table = new Identifier($table);
-        $table = $this->quoteStringLiteral($table->getName());
-        $whereClause .= "$classAlias.relname = " . $table . " AND $namespaceAlias.nspname = $schema";
+        $whereClause .= "$classAlias.relname = '" . $table->getName() . "' AND $namespaceAlias.nspname = $schema";
 
         return $whereClause;
     }
@@ -446,9 +445,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getCloseActiveDatabaseConnectionsSQL($database)
     {
-        $database = $this->quoteStringLiteral($database);
-
-        return "SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname = $database";
+        return "SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname = '$database'";
     }
 
     /**
@@ -1071,14 +1068,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getTruncateTableSQL($tableName, $cascade = false)
     {
-        $tableIdentifier = new Identifier($tableName);
-        $sql = 'TRUNCATE ' . $tableIdentifier->getQuotedName($this);
-
-        if ($cascade) {
-            $sql .= ' CASCADE';
-        }
-
-        return $sql;
+        return 'TRUNCATE '.$tableName.' '.(($cascade)?'CASCADE':'');
     }
 
     /**
@@ -1174,15 +1164,5 @@ class PostgreSqlPlatform extends AbstractPlatform
     public function getBlobTypeDeclarationSQL(array $field)
     {
         return 'BYTEA';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function quoteStringLiteral($str)
-    {
-        $str = str_replace('\\', '\\\\', $str); // PostgreSQL requires backslashes to be escaped aswell.
-
-        return parent::quoteStringLiteral($str);
     }
 }

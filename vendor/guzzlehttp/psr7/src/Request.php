@@ -11,7 +11,9 @@ use Psr\Http\Message\UriInterface;
  */
 class Request implements RequestInterface
 {
-    use MessageTrait;
+    use MessageTrait {
+        withHeader as protected withParentHeader;
+    }
 
     /** @var string */
     private $method;
@@ -19,37 +21,44 @@ class Request implements RequestInterface
     /** @var null|string */
     private $requestTarget;
 
-    /** @var UriInterface */
+    /** @var null|UriInterface */
     private $uri;
 
     /**
-     * @param string                               $method  HTTP method
-     * @param string|UriInterface                  $uri     URI
-     * @param array                                $headers Request headers
-     * @param string|null|resource|StreamInterface $body    Request body
-     * @param string                               $version Protocol version
+     * @param null|string $method HTTP method for the request.
+     * @param null|string|UriInterface $uri URI for the request.
+     * @param array $headers Headers for the message.
+     * @param string|resource|StreamInterface $body Message body.
+     * @param string $protocolVersion HTTP protocol version.
+     *
+     * @throws InvalidArgumentException for an invalid URI
      */
     public function __construct(
         $method,
         $uri,
         array $headers = [],
         $body = null,
-        $version = '1.1'
+        $protocolVersion = '1.1'
     ) {
-        if (!($uri instanceof UriInterface)) {
+        if (is_string($uri)) {
             $uri = new Uri($uri);
+        } elseif (!($uri instanceof UriInterface)) {
+            throw new \InvalidArgumentException(
+                'URI must be a string or Psr\Http\Message\UriInterface'
+            );
         }
 
         $this->method = strtoupper($method);
         $this->uri = $uri;
         $this->setHeaders($headers);
-        $this->protocol = $version;
+        $this->protocol = $protocolVersion;
 
-        if (!$this->hasHeader('Host')) {
-            $this->updateHostFromUri();
+        $host = $uri->getHost();
+        if ($host && !$this->hasHeader('Host')) {
+            $this->updateHostFromUri($host);
         }
 
-        if ($body !== '' && $body !== null) {
+        if ($body) {
             $this->stream = stream_for($body);
         }
     }
@@ -61,10 +70,10 @@ class Request implements RequestInterface
         }
 
         $target = $this->uri->getPath();
-        if ($target == '') {
+        if ($target == null) {
             $target = '/';
         }
-        if ($this->uri->getQuery() != '') {
+        if ($this->uri->getQuery()) {
             $target .= '?' . $this->uri->getQuery();
         }
 
@@ -111,32 +120,30 @@ class Request implements RequestInterface
         $new->uri = $uri;
 
         if (!$preserveHost) {
-            $new->updateHostFromUri();
+            if ($host = $uri->getHost()) {
+                $new->updateHostFromUri($host);
+            }
         }
 
         return $new;
     }
 
-    private function updateHostFromUri()
+    public function withHeader($header, $value)
     {
-        $host = $this->uri->getHost();
+        /** @var Request $newInstance */
+        $newInstance = $this->withParentHeader($header, $value);
+        return $newInstance;
+    }
 
-        if ($host == '') {
-            return;
-        }
-
-        if (($port = $this->uri->getPort()) !== null) {
+    private function updateHostFromUri($host)
+    {
+        // Ensure Host is the first header.
+        // See: http://tools.ietf.org/html/rfc7230#section-5.4
+        if ($port = $this->uri->getPort()) {
             $host .= ':' . $port;
         }
 
-        if (isset($this->headerNames['host'])) {
-            $header = $this->headerNames['host'];
-        } else {
-            $header = 'Host';
-            $this->headerNames['host'] = 'Host';
-        }
-        // Ensure Host is the first header.
-        // See: http://tools.ietf.org/html/rfc7230#section-5.4
-        $this->headers = [$header => [$host]] + $this->headers;
+        $this->headerLines = ['Host' => [$host]] + $this->headerLines;
+        $this->headers = ['host' => [$host]] + $this->headers;
     }
 }

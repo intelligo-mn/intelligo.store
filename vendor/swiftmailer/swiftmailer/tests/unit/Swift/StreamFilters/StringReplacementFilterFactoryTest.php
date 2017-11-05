@@ -5,7 +5,7 @@ class Swift_StreamFilters_StringReplacementFilterFactoryTest extends \PHPUnit_Fr
     public function testInstancesOfStringReplacementFilterAreCreated()
     {
         $factory = $this->_createFactory();
-        $this->assertInstanceOf(
+        $this->assertInstanceof(
             'Swift_StreamFilters_StringReplacementFilter',
             $factory->createFilter('a', 'b')
         );
@@ -28,6 +28,8 @@ class Swift_StreamFilters_StringReplacementFilterFactoryTest extends \PHPUnit_Fr
             '%s: Differing instances should not be cached'
             );
     }
+
+    // -- Creation methods
 
     private function _createFactory()
     {

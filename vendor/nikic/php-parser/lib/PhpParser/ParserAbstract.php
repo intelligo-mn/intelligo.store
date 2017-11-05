@@ -351,9 +351,7 @@ abstract class ParserAbstract implements Parser
                 && ($idx = $this->actionBase[$state + $this->YYNLSTATES] + $symbol) >= 0
                 && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $symbol
             ) {
-                if ($this->action[$idx] != $this->unexpectedTokenRule
-                    && $this->action[$idx] != $this->defaultAction
-                ) {
+                if ($this->action[$idx] != $this->unexpectedTokenRule) {
                     if (count($expected) == 4) {
                         /* Too many expected tokens */
                         return array();

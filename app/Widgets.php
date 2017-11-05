@@ -8,5 +8,5 @@ class Widgets extends Model
 {
     protected $table = 'widgets';
 
-    protected $fillable = ['key', 'text', 'display', 'showweb', 'showmobile', 'type'];
+    protected $fillable = ['key', 'text', 'display', 'type'];
 }

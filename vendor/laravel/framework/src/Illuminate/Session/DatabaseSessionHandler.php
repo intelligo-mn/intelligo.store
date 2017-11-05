@@ -4,7 +4,6 @@ namespace Illuminate\Session;
 
 use Carbon\Carbon;
 use SessionHandlerInterface;
-use Illuminate\Database\QueryException;
 use Illuminate\Database\ConnectionInterface;
 
 class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareInterface
@@ -77,8 +76,6 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
 
         if (isset($session->last_activity)) {
             if ($session->last_activity < Carbon::now()->subMinutes($this->minutes)->getTimestamp()) {
-                $this->exists = true;
-
                 return;
             }
         }
@@ -96,44 +93,16 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     public function write($sessionId, $data)
     {
         if ($this->exists) {
-            $this->performUpdate($sessionId, $data);
+            $this->getQuery()->where('id', $sessionId)->update([
+                'payload' => base64_encode($data), 'last_activity' => time(),
+            ]);
         } else {
-            $this->performInsert($sessionId, $data);
+            $this->getQuery()->insert([
+                'id' => $sessionId, 'payload' => base64_encode($data), 'last_activity' => time(),
+            ]);
         }
 
         $this->exists = true;
-    }
-
-    /**
-     * Perform an insert operation on the session ID.
-     *
-     * @param  string  $sessionId
-     * @param  string  $data
-     * @return void
-     */
-    protected function performInsert($sessionId, $data)
-    {
-        try {
-            return $this->getQuery()->insert([
-                'id' => $sessionId, 'payload' => base64_encode($data), 'last_activity' => time(),
-            ]);
-        } catch (QueryException $e) {
-            $this->performUpdate($sessionId, $data);
-        }
-    }
-
-    /**
-     * Perform an update operation on the session ID.
-     *
-     * @param  string  $sessionId
-     * @param  string  $data
-     * @return int
-     */
-    protected function performUpdate($sessionId, $data)
-    {
-        return $this->getQuery()->where('id', $sessionId)->update([
-            'payload' => base64_encode($data), 'last_activity' => time(),
-        ]);
     }
 
     /**

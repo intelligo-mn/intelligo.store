@@ -171,9 +171,7 @@ class ProviderRepository
         if ($this->files->exists($this->manifestPath)) {
             $manifest = json_decode($this->files->get($this->manifestPath), true);
 
-            if ($manifest) {
-                return array_merge(['when' => []], $manifest);
-            }
+            return array_merge(['when' => []], $manifest);
         }
     }
 

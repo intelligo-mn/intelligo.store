@@ -80,7 +80,7 @@ interface ServerRequestInterface extends RequestInterface
      * updated cookie values.
      *
      * @param array $cookies Array of key/value pairs representing cookies.
-     * @return static
+     * @return self
      */
     public function withCookieParams(array $cookies);
 
@@ -118,7 +118,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @param array $query Array of query string arguments, typically from
      *     $_GET.
-     * @return static
+     * @return self
      */
     public function withQueryParams(array $query);
 
@@ -143,8 +143,8 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that has the
      * updated body parameters.
      *
-     * @param array $uploadedFiles An array tree of UploadedFileInterface instances.
-     * @return static
+     * @param array An array tree of UploadedFileInterface instances.
+     * @return self
      * @throws \InvalidArgumentException if an invalid structure is provided.
      */
     public function withUploadedFiles(array $uploadedFiles);
@@ -190,7 +190,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @param null|array|object $data The deserialized body data. This will
      *     typically be in an array or object.
-     * @return static
+     * @return self
      * @throws \InvalidArgumentException if an unsupported argument type is
      *     provided.
      */
@@ -239,7 +239,7 @@ interface ServerRequestInterface extends RequestInterface
      * @see getAttributes()
      * @param string $name The attribute name.
      * @param mixed $value The value of the attribute.
-     * @return static
+     * @return self
      */
     public function withAttribute($name, $value);
 
@@ -255,7 +255,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @see getAttributes()
      * @param string $name The attribute name.
-     * @return static
+     * @return self
      */
     public function withoutAttribute($name);
 }

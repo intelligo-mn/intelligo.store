@@ -158,10 +158,10 @@ class Response
         410 => 'Gone',
         411 => 'Length Required',
         412 => 'Precondition Failed',
-        413 => 'Payload Too Large',
-        414 => 'URI Too Long',
+        413 => 'Request Entity Too Large',
+        414 => 'Request-URI Too Long',
         415 => 'Unsupported Media Type',
-        416 => 'Range Not Satisfiable',
+        416 => 'Requested Range Not Satisfiable',
         417 => 'Expectation Failed',
         418 => 'I\'m a teapot',                                               // RFC2324
         421 => 'Misdirected Request',                                         // RFC7540
@@ -180,7 +180,7 @@ class Response
         503 => 'Service Unavailable',
         504 => 'Gateway Timeout',
         505 => 'HTTP Version Not Supported',
-        506 => 'Variant Also Negotiates',                                     // RFC2295
+        506 => 'Variant Also Negotiates (Experimental)',                      // RFC2295
         507 => 'Insufficient Storage',                                        // RFC4918
         508 => 'Loop Detected',                                               // RFC5842
         510 => 'Not Extended',                                                // RFC2774
@@ -219,7 +219,7 @@ class Response
      * @param int   $status  The response status code
      * @param array $headers An array of response headers
      *
-     * @return static
+     * @return Response
      */
     public static function create($content = '', $status = 200, $headers = array())
     {
@@ -262,7 +262,7 @@ class Response
      *
      * @param Request $request A Request instance
      *
-     * @return $this
+     * @return Response The current response.
      */
     public function prepare(Request $request)
     {
@@ -324,7 +324,7 @@ class Response
     /**
      * Sends HTTP headers.
      *
-     * @return $this
+     * @return Response
      */
     public function sendHeaders()
     {
@@ -354,7 +354,7 @@ class Response
     /**
      * Sends content for the current web response.
      *
-     * @return $this
+     * @return Response
      */
     public function sendContent()
     {
@@ -366,7 +366,7 @@ class Response
     /**
      * Sends HTTP headers and content.
      *
-     * @return $this
+     * @return Response
      */
     public function send()
     {
@@ -389,7 +389,7 @@ class Response
      *
      * @param mixed $content Content that can be cast to string
      *
-     * @return $this
+     * @return Response
      *
      * @throws \UnexpectedValueException
      */
@@ -419,7 +419,7 @@ class Response
      *
      * @param string $version The HTTP protocol version
      *
-     * @return $this
+     * @return Response
      */
     public function setProtocolVersion($version)
     {
@@ -447,7 +447,7 @@ class Response
      * If the status text is null it will be automatically populated for the known
      * status codes and left empty otherwise.
      *
-     * @return $this
+     * @return Response
      *
      * @throws \InvalidArgumentException When the HTTP status code is not valid
      */
@@ -490,7 +490,7 @@ class Response
      *
      * @param string $charset Character set
      *
-     * @return $this
+     * @return Response
      */
     public function setCharset($charset)
     {
@@ -563,7 +563,7 @@ class Response
      *
      * It makes the response ineligible for serving other clients.
      *
-     * @return $this
+     * @return Response
      */
     public function setPrivate()
     {
@@ -578,7 +578,7 @@ class Response
      *
      * It makes the response eligible for serving other clients.
      *
-     * @return $this
+     * @return Response
      */
     public function setPublic()
     {
@@ -620,7 +620,7 @@ class Response
      *
      * @param \DateTime $date A \DateTime instance
      *
-     * @return $this
+     * @return Response
      */
     public function setDate(\DateTime $date)
     {
@@ -647,7 +647,7 @@ class Response
     /**
      * Marks the response stale by setting the Age header to be equal to the maximum age of the response.
      *
-     * @return $this
+     * @return Response
      */
     public function expire()
     {
@@ -680,7 +680,7 @@ class Response
      *
      * @param \DateTime|null $date A \DateTime instance or null to remove the header
      *
-     * @return $this
+     * @return Response
      */
     public function setExpires(\DateTime $date = null)
     {
@@ -726,7 +726,7 @@ class Response
      *
      * @param int $value Number of seconds
      *
-     * @return $this
+     * @return Response
      */
     public function setMaxAge($value)
     {
@@ -742,7 +742,7 @@ class Response
      *
      * @param int $value Number of seconds
      *
-     * @return $this
+     * @return Response
      */
     public function setSharedMaxAge($value)
     {
@@ -776,7 +776,7 @@ class Response
      *
      * @param int $seconds Number of seconds
      *
-     * @return $this
+     * @return Response
      */
     public function setTtl($seconds)
     {
@@ -792,7 +792,7 @@ class Response
      *
      * @param int $seconds Number of seconds
      *
-     * @return $this
+     * @return Response
      */
     public function setClientTtl($seconds)
     {
@@ -820,7 +820,7 @@ class Response
      *
      * @param \DateTime|null $date A \DateTime instance or null to remove the header
      *
-     * @return $this
+     * @return Response
      */
     public function setLastModified(\DateTime $date = null)
     {
@@ -851,7 +851,7 @@ class Response
      * @param string|null $etag The ETag unique identifier or null to remove the header
      * @param bool        $weak Whether you want a weak ETag or not
      *
-     * @return $this
+     * @return Response
      */
     public function setEtag($etag = null, $weak = false)
     {
@@ -875,7 +875,7 @@ class Response
      *
      * @param array $options An array of cache options
      *
-     * @return $this
+     * @return Response
      *
      * @throws \InvalidArgumentException
      */
@@ -926,7 +926,7 @@ class Response
      * This sets the status, removes the body, and discards any headers
      * that MUST NOT be included in 304 responses.
      *
-     * @return $this
+     * @return Response
      *
      * @see http://tools.ietf.org/html/rfc2616#section-10.3.5
      */
@@ -978,7 +978,7 @@ class Response
      * @param string|array $headers
      * @param bool         $replace Whether to replace the actual value or not (true by default)
      *
-     * @return $this
+     * @return Response
      */
     public function setVary($headers, $replace = true)
     {
@@ -1000,7 +1000,7 @@ class Response
      */
     public function isNotModified(Request $request)
     {
-        if (!$request->isMethodCacheable()) {
+        if (!$request->isMethodSafe()) {
             return false;
         }
 
@@ -1163,7 +1163,7 @@ class Response
     /**
      * Checks if we need to remove Cache-Control for SSL encrypted downloads when using IE < 9.
      *
-     * @see http://support.microsoft.com/kb/323308
+     * @link http://support.microsoft.com/kb/323308
      */
     protected function ensureIEOverSSLCompatibility(Request $request)
     {

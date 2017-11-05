@@ -46,8 +46,8 @@ class MailgunTransport extends Transport
      */
     public function __construct(ClientInterface $client, $key, $domain)
     {
-        $this->key = $key;
         $this->client = $client;
+        $this->key = $key;
         $this->setDomain($domain);
     }
 

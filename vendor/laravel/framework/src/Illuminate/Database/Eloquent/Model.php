@@ -19,11 +19,11 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Collection as BaseCollection;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -625,7 +625,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * Reload a fresh model instance from the database.
      *
      * @param  array  $with
-     * @return static|null
+     * @return $this|null
      */
     public function fresh(array $with = [])
     {
@@ -796,11 +796,11 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         list($type, $id) = $this->getMorphs($name, $type, $id);
 
         // If the type value is null it is probably safe to assume we're eager loading
-        // the relationship. In this case we'll just pass in a dummy query where we
-        // need to remove any eager loads that may already be defined on a model.
+        // the relationship. When that is the case we will pass in a dummy query as
+        // there are multiple types in the morph and we can't use single queries.
         if (empty($class = $this->$type)) {
             return new MorphTo(
-                $this->newQuery()->setEagerLoads([]), $this, $id, null, $type, $name
+                $this->newQuery(), $this, $id, null, $type, $name
             );
         }
 

@@ -21,8 +21,6 @@ use Symfony\Component\CssSelector\Exception\SyntaxErrorException;
  * which is copyright Ian Bicking, @see https://github.com/SimonSapin/cssselect.
  *
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
- *
- * @internal
  */
 class TokenStream
 {
@@ -61,7 +59,7 @@ class TokenStream
      *
      * @param Token $token
      *
-     * @return $this
+     * @return TokenStream
      */
     public function push(Token $token)
     {
@@ -73,7 +71,7 @@ class TokenStream
     /**
      * Freezes stream.
      *
-     * @return $this
+     * @return TokenStream
      */
     public function freeze()
     {

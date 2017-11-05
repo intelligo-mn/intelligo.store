@@ -11,8 +11,6 @@
 
 namespace League\Fractal\Resource;
 
-use League\Fractal\TransformerAbstract;
-
 abstract class ResourceAbstract implements ResourceInterface
 {
     /**
@@ -39,16 +37,18 @@ abstract class ResourceAbstract implements ResourceInterface
     /**
      * A callable to process the data attached to this resource.
      *
-     * @var callable|TransformerAbstract|null
+     * @var callable|string
      */
     protected $transformer;
 
     /**
      * Create a new resource instance.
      *
-     * @param mixed                             $data
-     * @param callable|TransformerAbstract|null $transformer
-     * @param string                            $resourceKey
+     * @param mixed           $data
+     * @param callable|string $transformer
+     * @param string          $resourceKey
+     *
+     * @return void
      */
     public function __construct($data = null, $transformer = null, $resourceKey = null)
     {
@@ -71,8 +71,7 @@ abstract class ResourceAbstract implements ResourceInterface
      * Set the data.
      *
      * @param mixed $data
-     *
-     * @return $this
+     * @return \League\Fractal\Resource\ResourceAbstract
      */
     public function setData($data)
     {
@@ -116,7 +115,7 @@ abstract class ResourceAbstract implements ResourceInterface
     /**
      * Get the transformer.
      *
-     * @return callable|TransformerAbstract
+     * @return callable|string
      */
     public function getTransformer()
     {
@@ -126,9 +125,8 @@ abstract class ResourceAbstract implements ResourceInterface
     /**
      * Set the transformer.
      *
-     * @param callable|TransformerAbstract $transformer
-     *
-     * @return $this
+     * @param callable|string $transformer
+     * @return \League\Fractal\Resource\ResourceAbstract
      */
     public function setTransformer($transformer)
     {
@@ -171,7 +169,7 @@ abstract class ResourceAbstract implements ResourceInterface
      *
      * @param string $resourceKey
      *
-     * @return $this
+     * @return \League\Fractal\Resource\ResourceAbstract
      */
     public function setResourceKey($resourceKey)
     {

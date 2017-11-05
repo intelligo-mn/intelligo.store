@@ -97,24 +97,21 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
 
                         break;
                     } elseif (isset($trace[$i]['object']) && $trace[$i]['object'] instanceof \Twig_Template) {
-                        $template = $trace[$i]['object'];
-                        $name = $template->getTemplateName();
-                        $src = method_exists($template, 'getSourceContext') ? $template->getSourceContext()->getCode() : (method_exists($template, 'getSource') ? $template->getSource() : false);
-                        $info = $template->getDebugInfo();
-                        if (isset($info[$trace[$i - 1]['line']])) {
+                        $info = $trace[$i]['object'];
+                        $name = $info->getTemplateName();
+                        $src = method_exists($info, 'getSource') ? $info->getSource() : $info->getEnvironment()->getLoader()->getSource($name);
+                        $info = $info->getDebugInfo();
+                        if (null !== $src && isset($info[$trace[$i - 1]['line']])) {
+                            $file = false;
                             $line = $info[$trace[$i - 1]['line']];
-                            $file = method_exists($template, 'getSourceContext') ? $template->getSourceContext()->getPath() : false;
+                            $src = explode("\n", $src);
+                            $fileExcerpt = array();
 
-                            if ($src) {
-                                $src = explode("\n", $src);
-                                $fileExcerpt = array();
-
-                                for ($i = max($line - 3, 1), $max = min($line + 3, count($src)); $i <= $max; ++$i) {
-                                    $fileExcerpt[] = '<li'.($i === $line ? ' class="selected"' : '').'><code>'.$this->htmlEncode($src[$i - 1]).'</code></li>';
-                                }
-
-                                $fileExcerpt = '<ol start="'.max($line - 3, 1).'">'.implode("\n", $fileExcerpt).'</ol>';
+                            for ($i = max($line - 3, 1), $max = min($line + 3, count($src)); $i <= $max; ++$i) {
+                                $fileExcerpt[] = '<li'.($i === $line ? ' class="selected"' : '').'><code>'.$this->htmlEncode($src[$i - 1]).'</code></li>';
                             }
+
+                            $fileExcerpt = '<ol start="'.max($line - 3, 1).'">'.implode("\n", $fileExcerpt).'</ol>';
                         }
                         break;
                     }
@@ -173,8 +170,6 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
             return 'a:0:{}';
         }
 
-        $this->data[] = $this->fileLinkFormat;
-        $this->data[] = $this->charset;
         $ser = serialize($this->data);
         $this->data = array();
         $this->dataCount = 0;
@@ -189,10 +184,8 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
     public function unserialize($data)
     {
         parent::unserialize($data);
-        $charset = array_pop($this->data);
-        $fileLinkFormat = array_pop($this->data);
         $this->dataCount = count($this->data);
-        self::__construct($this->stopwatch, $fileLinkFormat, $charset);
+        self::__construct($this->stopwatch);
     }
 
     public function getDumpsCount()
@@ -218,7 +211,8 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
                 // getLimitedClone is @deprecated, to be removed in 3.0
                 $dumper->dump($dump['data']->getLimitedClone($maxDepthLimit, $maxItemsPerDepth));
             }
-            $dump['data'] = stream_get_contents($data, -1, 0);
+            rewind($data);
+            $dump['data'] = stream_get_contents($data);
             ftruncate($data, 0);
             rewind($data);
             $dumps[] = $dump;
@@ -298,7 +292,7 @@ class DumpDataCollector extends DataCollector implements DataDumperInterface
     {
         $html = '';
 
-        $dumper = new HtmlDumper(function ($line) use (&$html) { $html .= $line; }, $this->charset);
+        $dumper = new HtmlDumper(function ($line) use (&$html) {$html .= $line;}, $this->charset);
         $dumper->setDumpHeader('');
         $dumper->setDumpBoundaries('', '');
 

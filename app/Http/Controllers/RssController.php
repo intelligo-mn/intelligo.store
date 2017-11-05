@@ -17,7 +17,7 @@ class RssController extends Controller
 
         }
 
-        $posts = $this->getdata($type);
+         $posts = $this->getdata($type);
         if(count($posts) == 0){
             \Session::flash('error.message',  trans('index.emptyplace'));
             return redirect()->back();
@@ -27,54 +27,38 @@ class RssController extends Controller
     }
 
 
-    public function fbinstant()
-    {
-
-        $posts= Posts::approve('yes')->where('type', '!=', 'quiz')->latest("published_at")->limit(150)->get();
-
-        return  response()->view('vendor.instant-rss', compact('posts'))->header('Content-Type', 'text/rss');
-    }
-
-
     public function getdata($type)
     {
         if($type=='index'){
 
             $posts= Posts::approve('yes')->latest("published_at")->limit(50)->get();
 
-        }elseif($type=='bugununeniyileri'){
-
-            $posts    = Posts::forhome()->typesActivete()->approve('yes')->getStats('one_day_stats', 'DESC', 10)->get();
-
         }else{
 
+            $category = Categories::where("name_slug", $type)->first();
 
-            $categories = Categories::where("name_slug", $type)->get();
-
-            if(!isset($categories)){
-                return redirect('/');
+            if(!$category){
+                abort('404');
             }
 
+            if($category->main=="1" or $category->main=="2" ){
 
-            $categoryarray=array();
-            foreach($categories as $categor){
-                array_push($categoryarray, $categor->id);
+                $posts = Posts::byType($category->type)
+                    ->approve('yes')
+                    ->latest("published_at")
+                    ->take(20)->get();
+
+            }else{
+
+                $posts = Posts::select('posts.*')
+
+                    ->leftJoin('categories', function($leftJoin){
+                        $leftJoin->on('categories.id', '=', 'posts.category_id');
+                    })
+                    ->where('categories.name_slug', '=',  $type)
+                    ->latest("published_at")->approve('yes')->take(20)->get();
+
             }
-            $this->categoryarray = $categoryarray;
-
-
-            $posts = Posts::where(function($query){
-                foreach($this->categoryarray as $kk => $value){
-
-                    if($kk==0){
-                        $query->where('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
-                    }else{
-                        $query->orWhere('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
-                    }
-
-                }
-            })->latest("published_at")->approve('yes')->take(50)->get();
-
 
         }
 
@@ -101,8 +85,8 @@ class RssController extends Controller
 
         }else{
 
-            $posts = Posts::where('categories', 'LIKE',  '%,'.$category->id.'"%')->approve('yes')->orwhere('categories', 'LIKE',  '%,'.$category->id.',%')->approve('yes')
-                ->latest("published_at")->take(6)->get();
+            $posts = Posts::where('category_id',  $category->id)->approve('yes')
+                    ->latest("published_at")->take(6)->get();
 
         }
 

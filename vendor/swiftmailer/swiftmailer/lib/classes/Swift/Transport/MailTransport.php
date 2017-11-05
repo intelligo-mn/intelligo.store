@@ -20,8 +20,6 @@
  * all-or-nothing result from sending.
  *
  * @author Chris Corbyn
- *
- * @deprecated since 5.4.5 (to be removed in 6.0)
  */
 class Swift_Transport_MailTransport implements Swift_Transport
 {
@@ -42,8 +40,6 @@ class Swift_Transport_MailTransport implements Swift_Transport
      */
     public function __construct(Swift_Transport_MailInvoker $invoker, Swift_Events_EventDispatcher $eventDispatcher)
     {
-        @trigger_error(sprintf('The %s class is deprecated since version 5.4.5 and will be removed in 6.0. Use the Sendmail or SMTP transport instead.', __CLASS__), E_USER_DEPRECATED);
-
         $this->_invoker = $invoker;
         $this->_eventDispatcher = $eventDispatcher;
     }
@@ -77,7 +73,7 @@ class Swift_Transport_MailTransport implements Swift_Transport
      *
      * @param string $params
      *
-     * @return $this
+     * @return Swift_Transport_MailTransport
      */
     public function setExtraParams($params)
     {
@@ -129,10 +125,10 @@ class Swift_Transport_MailTransport implements Swift_Transport
         $toHeader = $message->getHeaders()->get('To');
         $subjectHeader = $message->getHeaders()->get('Subject');
 
-        if (0 === $count) {
+        if (!$toHeader) {
             $this->_throwException(new Swift_TransportException('Cannot send message without a recipient'));
         }
-        $to = $toHeader ? $toHeader->getFieldBody() : '';
+        $to = $toHeader->getFieldBody();
         $subject = $subjectHeader ? $subjectHeader->getFieldBody() : '';
 
         $reversePath = $this->_getReversePath($message);
@@ -143,9 +139,7 @@ class Swift_Transport_MailTransport implements Swift_Transport
 
         $messageStr = $message->toString();
 
-        if ($toHeader) {
-            $message->getHeaders()->set($toHeader);
-        }
+        $message->getHeaders()->set($toHeader);
         $message->getHeaders()->set($subjectHeader);
 
         // Separate headers from body
@@ -164,13 +158,11 @@ class Swift_Transport_MailTransport implements Swift_Transport
             $headers = str_replace("\r\n", PHP_EOL, $headers);
             $subject = str_replace("\r\n", PHP_EOL, $subject);
             $body = str_replace("\r\n", PHP_EOL, $body);
-            $to = str_replace("\r\n", PHP_EOL, $to);
         } else {
             // Windows, using SMTP
             $headers = str_replace("\r\n.", "\r\n..", $headers);
             $subject = str_replace("\r\n.", "\r\n..", $subject);
             $body = str_replace("\r\n.", "\r\n..", $body);
-            $to = str_replace("\r\n.", "\r\n..", $to);
         }
 
         if ($this->_invoker->mail($to, $subject, $body, $headers, $this->_formatExtraParams($this->_extraParams, $reversePath))) {
@@ -245,36 +237,6 @@ class Swift_Transport_MailTransport implements Swift_Transport
     }
 
     /**
-     * Fix CVE-2016-10074 by disallowing potentially unsafe shell characters.
-     *
-     * Note that escapeshellarg and escapeshellcmd are inadequate for our purposes, especially on Windows.
-     *
-     * @param string $string The string to be validated
-     *
-     * @return bool
-     */
-    private function _isShellSafe($string)
-    {
-        // Future-proof
-        if (escapeshellcmd($string) !== $string || !in_array(escapeshellarg($string), array("'$string'", "\"$string\""))) {
-            return false;
-        }
-
-        $length = strlen($string);
-        for ($i = 0; $i < $length; ++$i) {
-            $c = $string[$i];
-            // All other characters have a special meaning in at least one common shell, including = and +.
-            // Full stop (.) has a special meaning in cmd.exe, but its impact should be negligible here.
-            // Note that this does permit non-Latin alphanumeric characters based on the current locale.
-            if (!ctype_alnum($c) && strpos('@_-.', $c) === false) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
      * Return php mail extra params to use for invoker->mail.
      *
      * @param $extraParams
@@ -285,11 +247,7 @@ class Swift_Transport_MailTransport implements Swift_Transport
     private function _formatExtraParams($extraParams, $reversePath)
     {
         if (false !== strpos($extraParams, '-f%s')) {
-            if (empty($reversePath) || false === $this->_isShellSafe($reversePath)) {
-                $extraParams = str_replace('-f%s', '', $extraParams);
-            } else {
-                $extraParams = sprintf($extraParams, $reversePath);
-            }
+            $extraParams = empty($reversePath) ? str_replace('-f%s', '', $extraParams) : sprintf($extraParams, escapeshellarg($reversePath));
         }
 
         return !empty($extraParams) ? $extraParams : null;

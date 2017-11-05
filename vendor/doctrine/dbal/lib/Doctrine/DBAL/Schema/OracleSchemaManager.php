@@ -19,8 +19,6 @@
 
 namespace Doctrine\DBAL\Schema;
 
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Driver\DriverException;
 use Doctrine\DBAL\Types\Type;
 
 /**
@@ -33,34 +31,6 @@ use Doctrine\DBAL\Types\Type;
  */
 class OracleSchemaManager extends AbstractSchemaManager
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function dropDatabase($database)
-    {
-        try {
-            parent::dropDatabase($database);
-        } catch (DBALException $exception) {
-            $exception = $exception->getPrevious();
-
-            if (! $exception instanceof DriverException) {
-                throw $exception;
-            }
-
-            // If we have a error code 1940 (ORA-01940), the drop database operation failed
-            // because of active connections on the database.
-            // To force dropping the database, we first have to close all active connections
-            // on that database and issue the drop database operation again.
-            if ($exception->getErrorCode() !== 1940) {
-                throw $exception;
-            }
-
-            $this->killUserSessions($database);
-
-            parent::dropDatabase($database);
-        }
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -132,7 +102,7 @@ class OracleSchemaManager extends AbstractSchemaManager
 
         $dbType = strtolower($tableColumn['data_type']);
         if (strpos($dbType, "timestamp(") === 0) {
-            if (strpos($dbType, "with time zone")) {
+            if (strpos($dbType, "WITH TIME ZONE")) {
                 $dbType = "timestamptz";
             } else {
                 $dbType = "timestamp";
@@ -335,7 +305,7 @@ class OracleSchemaManager extends AbstractSchemaManager
         $query  = 'CREATE USER ' . $username . ' IDENTIFIED BY ' . $password;
         $this->_conn->executeUpdate($query);
 
-        $query = 'GRANT DBA TO ' . $username;
+        $query = 'GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE, CREATE SEQUENCE, CREATE TRIGGER TO ' . $username;
         $this->_conn->executeUpdate($query);
 
         return true;
@@ -383,43 +353,5 @@ class OracleSchemaManager extends AbstractSchemaManager
         }
 
         return $identifier;
-    }
-
-    /**
-     * Kills sessions connected with the given user.
-     *
-     * This is useful to force DROP USER operations which could fail because of active user sessions.
-     *
-     * @param string $user The name of the user to kill sessions for.
-     *
-     * @return void
-     */
-    private function killUserSessions($user)
-    {
-        $sql = <<<SQL
-SELECT
-    s.sid,
-    s.serial#
-FROM
-    gv\$session s,
-    gv\$process p
-WHERE
-    s.username = ?
-    AND p.addr(+) = s.paddr
-SQL;
-
-        $activeUserSessions = $this->_conn->fetchAll($sql, array(strtoupper($user)));
-
-        foreach ($activeUserSessions as $activeUserSession) {
-            $activeUserSession = array_change_key_case($activeUserSession, \CASE_LOWER);
-
-            $this->_execSql(
-                sprintf(
-                    "ALTER SYSTEM KILL SESSION '%s, %s' IMMEDIATE",
-                    $activeUserSession['sid'],
-                    $activeUserSession['serial#']
-                )
-            );
-        }
     }
 }
