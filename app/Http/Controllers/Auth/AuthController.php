@@ -30,12 +30,10 @@ class AuthController extends Controller
     public function socialConnectRedirect($type)
     {
         if($type=='facebook'){
-            return Socialite::driver($type)->stateless()->scopes(['email', 'public_profile'])->redirect();
-        }else{
-            return Socialite::driver($type)->redirect();
+            return Socialite::driver($type)->scopes(['email', 'public_profile'])->redirect();
         }
 
-        return Socialite::driver($type)->stateless()->redirect();
+        return Socialite::driver($type)->redirect();
     }
 
     /**
@@ -46,19 +44,14 @@ class AuthController extends Controller
     public function handleSocialCallback($type, User $user)
     {
 
-        if($type=='facebook'){
-            $money = Socialite::driver($type)->stateless()->user();
-        }else {
-            $money = Socialite::driver($type)->user();
-        }
+        $money = Socialite::driver($type)->user();
 
-
-        if($money->getEmail() > ""){
-            $checkUser = User::where('email', '=', $money->getEmail())->first();
-            if($checkUser){
-                Auth::login($checkUser);
-                return redirect('/');
-            }
+        if(null !== $money->getEmail()){
+                $checkUser = User::where('email', '=', $money->getEmail())->first();
+                if($checkUser){
+                    Auth::login($checkUser);
+                    return redirect('/');
+                }
         }else{
             \Session::flash('error.message', trans('auth.cantgetemail'));
             \Session::flash('username',  $money->getNickname());
@@ -70,18 +63,11 @@ class AuthController extends Controller
         }else{
             $username=$money->getNickname();
         }
-
-        $checkUserslug = User::where('username', $username)->orwhere('username_slug', $username)->first();
-        if(isset($checkUserslug)){
-            $username=$username.'-'.substr(md5(time()),0,5);
-            $username_slug=str_slug($username, '-').'-'.substr(md5(time()),0,5);
-        }else{
-           $username_slug=str_slug($username, '-');
-        }
+        $key=substr(md5(time()),0,5);
 
         $user->facebook_id = $money->getId();
         $user->username = $username;
-        $user->username_slug = $username_slug;
+        $user->username_slug = str_slug($username, '-').'-'.$key;
         $user->name = $money->getName();
         $user->email = $money->getEmail();
         $user->icon  = $money->getAvatar();
@@ -157,12 +143,8 @@ class AuthController extends Controller
     public function newlogin(Request $request)
     {
 
-        $req = $request->all();
-
-
-        $okay = Validator::make($req, [
-            'email' => 'required|email',
-            'password' => 'required',
+        $okay = Validator::make($request->all(), [
+            'email' => 'required|email', 'password' => 'required',
         ]);
 
         if($okay->fails()){
@@ -223,16 +205,7 @@ class AuthController extends Controller
     public function newRegister(Request $request)
     {
 
-
-        $req = $request->all();
-
-        $val = $this->validator($req);
-
-        if(getenvcong('BuzzyContactCaptcha')=="on"){
-            if(empty($req['g-recaptcha-response'])){
-                return array("errors" => trans('buzzycontact.areyouhuman'));
-            }
-        }
+        $val = $this->validator($request->all());
 
         if($val->fails()){
 
@@ -240,12 +213,9 @@ class AuthController extends Controller
 
         }
 
-
-
-
         Auth::login($this->create($request->all()));
 
-        if(!empty(getenvcong('MAIL_USERNAME'))){
+        if(!empty(env('MAIL_USERNAME'))){
             $this->mailtoregistareduser();
         }
 
@@ -260,15 +230,15 @@ class AuthController extends Controller
         try{
             $this->mail->send('emails.registered', compact(""), function($message)
             {
-                $message->sender(getenvcong('siteemail'), getenvcong('sitename'));
+                $message->sender(getcong('siteemail'), getcong('sitename'));
                 $message->subject(trans('updates.registermailsubject'));
-                $message->from(getenvcong('siteemail'), getenvcong('sitename'));
+                $message->from(getcong('siteemail'), getcong('sitename'));
                 $message->to(Auth::user()->email);
                 $message->getSwiftMessage();
             });
         }
         catch(\Exception $e){
-            return true;
+           return true;
         }
 
 

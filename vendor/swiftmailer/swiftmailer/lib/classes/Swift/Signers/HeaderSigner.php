@@ -20,21 +20,21 @@ interface Swift_Signers_HeaderSigner extends Swift_Signer, Swift_InputByteStream
      *
      * @param string $header_name
      *
-     * @return self
+     * @return Swift_Signers_HeaderSigner
      */
     public function ignoreHeader($header_name);
 
     /**
      * Prepare the Signer to get a new Body.
      *
-     * @return self
+     * @return Swift_Signers_HeaderSigner
      */
     public function startBody();
 
     /**
      * Give the signal that the body has finished streaming.
      *
-     * @return self
+     * @return Swift_Signers_HeaderSigner
      */
     public function endBody();
 
@@ -43,7 +43,7 @@ interface Swift_Signers_HeaderSigner extends Swift_Signer, Swift_InputByteStream
      *
      * @param Swift_Mime_SimpleHeaderSet $headers
      *
-     * @return self
+     * @return Swift_Signers_HeaderSigner
      */
     public function setHeaders(Swift_Mime_HeaderSet $headers);
 
@@ -52,7 +52,7 @@ interface Swift_Signers_HeaderSigner extends Swift_Signer, Swift_InputByteStream
      *
      * @param Swift_Mime_HeaderSet $headers
      *
-     * @return self
+     * @return Swift_Signers_HeaderSigner
      */
     public function addSignature(Swift_Mime_HeaderSet $headers);
 

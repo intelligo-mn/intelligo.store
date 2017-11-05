@@ -36,7 +36,7 @@ class Swift_LoadBalancedTransport extends Swift_Transport_LoadBalancedTransport
      *
      * @param array $transports
      *
-     * @return self
+     * @return Swift_LoadBalancedTransport
      */
     public static function newInstance($transports = array())
     {

@@ -63,7 +63,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param string $host
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setHost($host)
     {
@@ -87,7 +87,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param int $port
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setPort($port)
     {
@@ -111,7 +111,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param int $timeout seconds
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setTimeout($timeout)
     {
@@ -136,11 +136,11 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param string $encryption
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setEncryption($encryption)
     {
-        $encryption = strtolower($encryption);
+        $encryption = strtolower($encryption);    
         if ('tls' == $encryption) {
             $this->_params['protocol'] = 'tcp';
             $this->_params['tls'] = true;
@@ -167,7 +167,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param array $options
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setStreamOptions($options)
     {
@@ -191,7 +191,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param string $source
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setSourceIp($source)
     {
@@ -215,7 +215,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
      *
      * @param Swift_Transport_EsmtpHandler[] $handlers
      *
-     * @return $this
+     * @return Swift_Transport_EsmtpTransport
      */
     public function setExtensionHandlers(array $handlers)
     {
@@ -270,6 +270,8 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
         return parent::executeCommand($command, $codes, $failures);
     }
 
+    // -- Mixin invocation code
+
     /** Mixin handling method for ESMTP handlers */
     public function __call($method, $args)
     {
@@ -279,7 +281,7 @@ class Swift_Transport_EsmtpTransport extends Swift_Transport_AbstractSmtpTranspo
                 )) {
                 $return = call_user_func_array(array($handler, $method), $args);
                 // Allow fluid method calls
-                if (null === $return && substr($method, 0, 3) == 'set') {
+                if (is_null($return) && substr($method, 0, 3) == 'set') {
                     return $this;
                 } else {
                     return $return;

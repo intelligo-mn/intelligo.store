@@ -237,13 +237,12 @@ class Marshaler
      * returned instead.
      *
      * @param array $data Item from a DynamoDB result.
-     * @param bool  $mapAsObject Whether maps should be represented as stdClass.
      *
      * @return array|\stdClass
      */
-    public function unmarshalItem(array $data, $mapAsObject = false)
+    public function unmarshalItem(array $data)
     {
-        return $this->unmarshalValue(['M' => $data], $mapAsObject);
+        return $this->unmarshalValue(['M' => $data]);
     }
 
     /**
@@ -283,8 +282,8 @@ class Marshaler
                 }
                 // NOBREAK: Unmarshal M the same way as L, for arrays.
             case 'L':
-                foreach ($value as $k => $v) {
-                    $value[$k] = $this->unmarshalValue($v, $mapAsObject);
+                foreach ($value as &$v) {
+                    $v = $this->unmarshalValue($v, $mapAsObject);
                 }
                 return $value;
             case 'B':
@@ -292,8 +291,8 @@ class Marshaler
             case 'SS':
             case 'NS':
             case 'BS':
-                foreach ($value as $k => $v) {
-                    $value[$k] = $this->unmarshalValue([$type[0] => $v]);
+                foreach ($value as &$v) {
+                    $v = $this->unmarshalValue([$type[0] => $v]);
                 }
                 return new SetValue($value);
         }

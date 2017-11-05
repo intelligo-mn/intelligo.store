@@ -5,14 +5,13 @@ namespace PhpParser;
 abstract class CodeTestAbstract extends \PHPUnit_Framework_TestCase
 {
     protected function getTests($directory, $fileExtension) {
-        $directory = realpath($directory);
         $it = new \RecursiveDirectoryIterator($directory);
         $it = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::LEAVES_ONLY);
         $it = new \RegexIterator($it, '(\.' . preg_quote($fileExtension) . '$)');
 
         $tests = array();
         foreach ($it as $file) {
-            $fileName = $file->getPathname();
+            $fileName = realpath($file->getPathname());
             $fileContents = file_get_contents($fileName);
             $fileContents = canonicalize($fileContents);
 
@@ -30,7 +29,7 @@ abstract class CodeTestAbstract extends \PHPUnit_Framework_TestCase
 
             // first part is the name
             $name = array_shift($parts) . ' (' . $fileName . ')';
-            $shortName = ltrim(str_replace($directory, '', $fileName), '/\\');
+            $shortName = basename($fileName, '.test');
 
             // multiple sections possible with always two forming a pair
             $chunks = array_chunk($parts, 2);

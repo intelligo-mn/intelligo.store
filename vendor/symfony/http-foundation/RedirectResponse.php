@@ -66,7 +66,7 @@ class RedirectResponse extends Response
      *
      * @param string $url The URL to redirect to
      *
-     * @return $this
+     * @return RedirectResponse The current response.
      *
      * @throws \InvalidArgumentException
      */

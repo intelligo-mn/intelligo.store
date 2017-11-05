@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +89,7 @@ return [
     |
     */
 
-    'locale' => env('CONF_sitedefaultlanguage', 'en'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'mn',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,7 @@ return [
         yajra\Datatables\DatatablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Terbium\DbConfig\DbConfigServiceProvider::class,
         Simexis\Installer\InstallerServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
         /*
@@ -187,7 +188,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        YAAP\Theme\ThemeServiceProvider::class,
+
     ],
 
     /*
@@ -241,8 +242,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Datatables'=> yajra\Datatables\Datatables::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Theme'     => YAAP\Theme\Facades\Theme::class,
+        'DbConfig'  => Terbium\DbConfig\Facade::class,
     ],
 
 ];
-                    

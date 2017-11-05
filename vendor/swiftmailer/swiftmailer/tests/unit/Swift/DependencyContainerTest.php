@@ -2,9 +2,7 @@
 
 class One
 {
-    public $arg1;
-    public $arg2;
-
+    public $arg1, $arg2;
     public function __construct($arg1 = null, $arg2 = null)
     {
         $this->arg1 = $arg1;
@@ -16,7 +14,7 @@ class Swift_DependencyContainerTest extends \PHPUnit_Framework_TestCase
 {
     private $_container;
 
-    protected function setUp()
+    public function setUp()
     {
         $this->_container = new Swift_DependencyContainer();
     }
@@ -41,7 +39,7 @@ class Swift_DependencyContainerTest extends \PHPUnit_Framework_TestCase
     public function testRegisterAndLookupNewInstance()
     {
         $this->_container->register('one')->asNewInstanceOf('One');
-        $this->assertInstanceOf('One', $this->_container->lookup('one'));
+        $this->assertInstanceof('One', $this->_container->lookup('one'));
     }
 
     public function testHasReturnsTrueForRegisteredInstance()
@@ -61,7 +59,7 @@ class Swift_DependencyContainerTest extends \PHPUnit_Framework_TestCase
     public function testRegisterAndLookupSharedInstance()
     {
         $this->_container->register('one')->asSharedInstanceOf('One');
-        $this->assertInstanceOf('One', $this->_container->lookup('one'));
+        $this->assertInstanceof('One', $this->_container->lookup('one'));
     }
 
     public function testHasReturnsTrueForSharedInstance()

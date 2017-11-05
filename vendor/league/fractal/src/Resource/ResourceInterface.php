@@ -14,13 +14,6 @@ namespace League\Fractal\Resource;
 interface ResourceInterface
 {
     /**
-     * Get the resource key.
-     *
-     * @return string
-     */
-    public function getResourceKey();
-
-    /**
      * Get the data.
      *
      * @return mixed
@@ -30,7 +23,7 @@ interface ResourceInterface
     /**
      * Get the transformer.
      *
-     * @return callable|\League\Fractal\TransformerAbstract
+     * @return callable|string
      */
     public function getTransformer();
 
@@ -38,17 +31,15 @@ interface ResourceInterface
      * Set the data.
      *
      * @param mixed $data
-     *
-     * @return $this
+     * @return \League\Fractal\Resource\ResourceAbstract
      */
     public function setData($data);
 
     /**
      * Set the transformer.
      *
-     * @param callable|\League\Fractal\TransformerAbstract $transformer
-     *
-     * @return $this
+     * @param callable|string $transformer
+     * @return \League\Fractal\Resource\ResourceAbstract
      */
     public function setTransformer($transformer);
 }

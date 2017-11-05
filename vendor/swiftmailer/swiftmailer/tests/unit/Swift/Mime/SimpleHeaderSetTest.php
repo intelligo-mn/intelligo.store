@@ -357,13 +357,8 @@ class Swift_Mime_SimpleHeaderSetTest extends \PHPUnit_Framework_TestCase
         $set = $this->_createSet($factory);
         $set->addIdHeader('Message-ID', 'some@id');
         $set->addIdHeader('Message-ID', 'other@id');
-        $set->remove('Message-ID', 0);
-        $this->assertFalse($set->has('Message-ID', 0));
-        $this->assertTrue($set->has('Message-ID', 1));
-        $this->assertTrue($set->has('Message-ID'));
         $set->remove('Message-ID', 1);
         $this->assertFalse($set->has('Message-ID', 1));
-        $this->assertFalse($set->has('Message-ID'));
     }
 
     public function testRemoveWithSpecifiedIndexLeavesOtherHeaders()
@@ -500,7 +495,7 @@ class Swift_Mime_SimpleHeaderSetTest extends \PHPUnit_Framework_TestCase
     {
         $set = $this->_createSet($this->_createFactory());
         $instance = $set->newInstance();
-        $this->assertInstanceOf('Swift_Mime_HeaderSet', $instance);
+        $this->assertInstanceof('Swift_Mime_HeaderSet', $instance);
     }
 
     public function testToStringJoinsHeadersTogether()
@@ -709,6 +704,8 @@ class Swift_Mime_SimpleHeaderSetTest extends \PHPUnit_Framework_TestCase
         $set->setCharset('utf-8');
     }
 
+    // -- Creation methods
+
     private function _createSet($factory)
     {
         return new Swift_Mime_SimpleHeaderSet($factory);
@@ -716,12 +713,12 @@ class Swift_Mime_SimpleHeaderSetTest extends \PHPUnit_Framework_TestCase
 
     private function _createFactory()
     {
-        return $this->getMockBuilder('Swift_Mime_HeaderFactory')->getMock();
+        return $this->getMock('Swift_Mime_HeaderFactory');
     }
 
     private function _createHeader($name, $body = '')
     {
-        $header = $this->getMockBuilder('Swift_Mime_Header')->getMock();
+        $header = $this->getMock('Swift_Mime_Header');
         $header->expects($this->any())
                ->method('getFieldName')
                ->will($this->returnValue($name));

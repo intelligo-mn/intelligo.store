@@ -371,6 +371,8 @@ class ProgressHelper extends Helper
         }
 
         if (isset($this->formatVars['bar'])) {
+            $completeBars = 0;
+
             if ($this->max > 0) {
                 $completeBars = floor($percent * $this->barWidth);
             } else {

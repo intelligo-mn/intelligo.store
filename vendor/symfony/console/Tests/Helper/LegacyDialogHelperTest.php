@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Console\Tests\Helper;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Helper\DialogHelper;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -22,7 +21,7 @@ use Symfony\Component\Console\Output\StreamOutput;
 /**
  * @group legacy
  */
-class LegacyDialogHelperTest extends TestCase
+class LegacyDialogHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testSelect()
     {
@@ -247,6 +246,11 @@ class LegacyDialogHelperTest extends TestCase
         $output->setErrorOutput($stderr);
 
         return $output;
+    }
+
+    private function hasStderrSupport()
+    {
+        return false === $this->isRunningOS400();
     }
 
     private function hasSttyAvailable()

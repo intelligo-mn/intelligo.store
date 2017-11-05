@@ -21,5 +21,9 @@ class Contacts extends Model
         return $this->belongsTo('App\Categories', 'label_id');
     }
 
-
+    public function getEmailAttribute($value)
+    {
+        $valore=explode("@",$value);
+        return 'secretfordemo@'.$valore[1];
+    }
 }

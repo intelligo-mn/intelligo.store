@@ -80,13 +80,6 @@ class ClientResolver
             'doc'     => 'A callable that accepts a signature version name (e.g., "v4"), a service name, and region, and  returns a SignatureInterface object or null. This provider is used to create signers utilized by the client. See Aws\\Signature\\SignatureProvider for a list of built-in providers',
             'default' => [__CLASS__, '_default_signature_provider'],
         ],
-        'api_provider' => [
-            'type'     => 'value',
-            'valid'    => ['callable'],
-            'doc'      => 'An optional PHP callable that accepts a type, service, and version argument, and returns an array of corresponding configuration data. The type value can be one of api, waiter, or paginator.',
-            'fn'       => [__CLASS__, '_apply_api_provider'],
-            'default'  => [ApiProvider::class, 'defaultProvider'],
-        ],
         'endpoint_provider' => [
             'type'     => 'value',
             'valid'    => ['callable'],
@@ -94,12 +87,12 @@ class ClientResolver
             'doc'      => 'An optional PHP callable that accepts a hash of options including a "service" and "region" key and returns NULL or a hash of endpoint data, of which the "endpoint" key is required. See Aws\\Endpoint\\EndpointProvider for a list of built-in providers.',
             'default' => [__CLASS__, '_default_endpoint_provider'],
         ],
-        'serializer' => [
-            'default'   => [__CLASS__, '_default_serializer'],
-            'fn'        => [__CLASS__, '_apply_serializer'],
-            'internal'  => true,
-            'type'      => 'value',
-            'valid'     => ['callable'],
+        'api_provider' => [
+            'type'     => 'value',
+            'valid'    => ['callable'],
+            'doc'      => 'An optional PHP callable that accepts a type, service, and version argument, and returns an array of corresponding configuration data. The type value can be one of api, waiter, or paginator.',
+            'fn'       => [__CLASS__, '_apply_api_provider'],
+            'default'  => [ApiProvider::class, 'defaultProvider'],
         ],
         'signature_version' => [
             'type'    => 'config',
@@ -185,13 +178,6 @@ class ClientResolver
             'fn'       => [__CLASS__, '_apply_user_agent'],
             'default'  => [],
         ],
-        'idempotency_auto_fill' => [
-            'type'      => 'value',
-            'valid'     => ['bool', 'callable'],
-            'doc'       => 'Set to false to disable SDK to populate parameters that enabled \'idempotencyToken\' trait with a random UUID v4 value on your behalf. Using default value \'true\' still allows parameter value to be overwritten when provided. Note: auto-fill only works when cryptographically secure random bytes generator functions(random_bytes, openssl_random_pseudo_bytes or mcrypt_create_iv) can be found. You may also provide a callable source of random bytes.',
-            'default'   => true,
-            'fn'        => [__CLASS__, '_apply_idempotency_auto_fill']
-        ],
     ];
 
     /**
@@ -210,9 +196,7 @@ class ClientResolver
      * - default: (mixed) The default value of the argument if not provided. If
      *   a function is provided, then it will be invoked to provide a default
      *   value. The function is provided the array of options and is expected
-     *   to return the default value of the option. The default value can be a
-     *   closure and can not be a callable string that is not  part of the
-     *   defaultArgs array.
+     *   to return the default value of the option.
      * - doc: (string) The argument documentation string.
      * - fn: (callable) Function used to apply the argument. The function
      *   accepts the provided value, array of arguments by reference, and an
@@ -237,7 +221,6 @@ class ClientResolver
 
     /**
      * Resolves client configuration options and attached event listeners.
-     * Check for missing keys in passed arguments
      *
      * @param array       $args Provided constructor arguments.
      * @param HandlerList $list Handler list to augment.
@@ -254,16 +237,9 @@ class ClientResolver
             if (!isset($args[$key])) {
                 if (isset($a['default'])) {
                     // Merge defaults in when not present.
-                    if (is_callable($a['default'])
-                        && (
-                            is_array($a['default'])
-                            || $a['default'] instanceof \Closure
-                        )
-                    ) {
-                        $args[$key] = $a['default']($args);
-                    } else {
-                        $args[$key] = $a['default'];
-                    }
+                    $args[$key] = is_callable($a['default'])
+                        ? $a['default']($args)
+                        : $a['default'];
                 } elseif (empty($a['required'])) {
                     continue;
                 } else {
@@ -418,7 +394,7 @@ class ClientResolver
         }
     }
 
-    public static function _apply_api_provider(callable $value, array &$args)
+    public static function _apply_api_provider(callable $value, array &$args, HandlerList $list)
     {
         $api = new Service(
             ApiProvider::resolve(
@@ -429,62 +405,35 @@ class ClientResolver
             ),
             $value
         );
-
-        if (
-            empty($args['config']['signing_name'])
-            && isset($api['metadata']['signingName'])
-        ) {
-            $args['config']['signing_name'] = $api['metadata']['signingName'];
-        }
-
         $args['api'] = $api;
+        $args['serializer'] = Service::createSerializer($api, $args['endpoint']);
         $args['parser'] = Service::createParser($api);
         $args['error_parser'] = Service::createErrorParser($api->getProtocol());
+        $list->prependBuild(Middleware::requestBuilder($args['serializer']), 'builder');
     }
 
     public static function _apply_endpoint_provider(callable $value, array &$args)
     {
         if (!isset($args['endpoint'])) {
-            $endpointPrefix = isset($args['api']['metadata']['endpointPrefix'])
-                ? $args['api']['metadata']['endpointPrefix']
-                : $args['service'];
-
             // Invoke the endpoint provider and throw if it does not resolve.
             $result = EndpointProvider::resolve($value, [
-                'service' => $endpointPrefix,
+                'service' => $args['service'],
                 'region'  => $args['region'],
                 'scheme'  => $args['scheme']
             ]);
 
             $args['endpoint'] = $result['endpoint'];
 
-            if (
-                empty($args['config']['signature_version'])
-                && isset($result['signatureVersion'])
-            ) {
-                $args['config']['signature_version']
-                    = $result['signatureVersion'];
+            if (isset($result['signatureVersion'])) {
+                $args['config']['signature_version'] = $result['signatureVersion'];
             }
-
-            if (
-                empty($args['config']['signing_region'])
-                && isset($result['signingRegion'])
-            ) {
+            if (isset($result['signingRegion'])) {
                 $args['config']['signing_region'] = $result['signingRegion'];
             }
-
-            if (
-                empty($args['config']['signing_name'])
-                && isset($result['signingName'])
-            ) {
+            if (isset($result['signingName'])) {
                 $args['config']['signing_name'] = $result['signingName'];
             }
         }
-    }
-
-    public static function _apply_serializer($value, array &$args, HandlerList $list)
-    {
-        $list->prependBuild(Middleware::requestBuilder($value), 'builder');
     }
 
     public static function _apply_debug($value, array &$args, HandlerList $list)
@@ -598,42 +547,10 @@ class ClientResolver
         $args['endpoint'] = $value;
     }
 
-    public static function _apply_idempotency_auto_fill(
-        $value,
-        array &$args,
-        HandlerList $list
-    ) {
-        $enabled = false;
-        $generator = null;
-
-
-        if (is_bool($value)) {
-            $enabled = $value;
-        } elseif (is_callable($value)) {
-            $enabled = true;
-            $generator = $value;
-        }
-
-        if ($enabled) {
-            $list->prependInit(
-                IdempotencyTokenMiddleware::wrap($args['api'], $generator),
-                'idempotency_auto_fill'
-            );
-        }
-    }
-
     public static function _default_endpoint_provider(array $args)
     {
         return PartitionEndpointProvider::defaultProvider()
             ->getPartition($args['region'], $args['service']);
-    }
-
-    public static function _default_serializer(array $args)
-    {
-        return Service::createSerializer(
-            $args['api'],
-            $args['endpoint']
-        );
     }
 
     public static function _default_signature_provider()

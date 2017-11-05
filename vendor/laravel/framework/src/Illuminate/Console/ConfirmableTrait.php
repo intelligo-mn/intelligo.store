@@ -9,9 +9,7 @@ trait ConfirmableTrait
     /**
      * Confirm before proceeding with the action.
      *
-     * This method only asks for confirmation in production.
-     *
-     * @param  string  $warning
+     * @param  string    $warning
      * @param  \Closure|bool|null  $callback
      * @return bool
      */

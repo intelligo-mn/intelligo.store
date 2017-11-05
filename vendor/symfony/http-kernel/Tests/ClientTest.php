@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\HttpKernel\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -19,7 +18,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\Tests\Fixtures\TestClient;
 
-class ClientTest extends TestCase
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testDoRequest()
     {

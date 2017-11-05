@@ -82,9 +82,7 @@ class ServerTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('post')->with('http://www.example.com/temporary', m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-
+        $client->shouldReceive('post')->with('http://www.example.com/temporary', m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
 
             // OAuth protocol specifies a strict number of
@@ -96,7 +94,9 @@ class ServerTest extends PHPUnit_Framework_TestCase
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
+        }))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
         $response->shouldReceive('getBody')->andReturn('oauth_token=temporarycredentialsidentifier&oauth_token_secret=temporarycredentialssecret&oauth_callback_confirmed=true');
 
         $credentials = $server->getTemporaryCredentials();
@@ -142,10 +142,7 @@ class ServerTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('post')->with('http://www.example.com/token', m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-            $body = $options['form_params'];
-
+        $client->shouldReceive('post')->with('http://www.example.com/token', m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
             $me->assertFalse(isset($headers['User-Agent']));
 
@@ -157,10 +154,10 @@ class ServerTest extends PHPUnit_Framework_TestCase
             $matches = preg_match($pattern, $headers['Authorization']);
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
-            $me->assertSame($body, array('oauth_verifier' => 'myverifiercode'));
-
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
+        }), array('oauth_verifier' => 'myverifiercode'))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
         $response->shouldReceive('getBody')->andReturn('oauth_token=tokencredentialsidentifier&oauth_token_secret=tokencredentialssecret');
 
         $credentials = $server->getTokenCredentials($temporaryCredentials, 'temporarycredentialsidentifier', 'myverifiercode');
@@ -181,10 +178,7 @@ class ServerTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('post')->with('http://www.example.com/token', m::on(function($options) use ($me, $userAgent) {
-            $headers = $options['headers'];
-            $body = $options['form_params'];
-
+        $client->shouldReceive('post')->with('http://www.example.com/token', m::on(function($headers) use ($me, $userAgent) {
             $me->assertTrue(isset($headers['Authorization']));
             $me->assertTrue(isset($headers['User-Agent']));
             $me->assertEquals($userAgent, $headers['User-Agent']);
@@ -197,10 +191,10 @@ class ServerTest extends PHPUnit_Framework_TestCase
             $matches = preg_match($pattern, $headers['Authorization']);
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
-            $me->assertSame($body, array('oauth_verifier' => 'myverifiercode'));
-
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
+        }), array('oauth_verifier' => 'myverifiercode'))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
         $response->shouldReceive('getBody')->andReturn('oauth_token=tokencredentialsidentifier&oauth_token_secret=tokencredentialssecret');
 
         $credentials = $server->setUserAgent($userAgent)->getTokenCredentials($temporaryCredentials, 'temporarycredentialsidentifier', 'myverifiercode');
@@ -221,9 +215,7 @@ class ServerTest extends PHPUnit_Framework_TestCase
         $server->shouldReceive('createHttpClient')->andReturn($client = m::mock('stdClass'));
 
         $me = $this;
-        $client->shouldReceive('get')->with('http://www.example.com/user', m::on(function($options) use ($me) {
-            $headers = $options['headers'];
-
+        $client->shouldReceive('get')->with('http://www.example.com/user', m::on(function($headers) use ($me) {
             $me->assertTrue(isset($headers['Authorization']));
 
             // OAuth protocol specifies a strict number of
@@ -235,8 +227,10 @@ class ServerTest extends PHPUnit_Framework_TestCase
             $me->assertEquals(1, $matches, 'Asserting that the authorization header contains the correct expression.');
 
             return true;
-        }))->once()->andReturn($response = m::mock('stdClass'));
-        $response->shouldReceive('getBody')->once()->andReturn(json_encode(array('foo' => 'bar', 'id' => 123, 'contact_email' => 'baz@qux.com', 'username' => 'fred')));
+        }))->once()->andReturn($request = m::mock('stdClass'));
+
+        $request->shouldReceive('send')->once()->andReturn($response = m::mock('stdClass'));
+        $response->shouldReceive('json')->once()->andReturn(array('foo' => 'bar', 'id' => 123, 'contact_email' => 'baz@qux.com', 'username' => 'fred'));
 
         $user = $server->getUserDetails($temporaryCredentials);
         $this->assertInstanceOf('League\OAuth1\Client\Server\User', $user);

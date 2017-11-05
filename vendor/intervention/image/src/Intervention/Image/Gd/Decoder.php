@@ -42,7 +42,7 @@ class Decoder extends \Intervention\Image\AbstractDecoder
                 );
         }
 
-        if (empty($core)) {
+        if ($core === false) {
             throw new \Intervention\Image\Exception\NotReadableException(
                 "Unable to read image from file ({$path})."
             );

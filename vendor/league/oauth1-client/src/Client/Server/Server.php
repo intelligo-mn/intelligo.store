@@ -2,8 +2,8 @@
 
 namespace League\OAuth1\Client\Server;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Exception\BadResponseException;
+use Guzzle\Service\Client as GuzzleClient;
+use Guzzle\Http\Exception\BadResponseException;
 use League\OAuth1\Client\Credentials\ClientCredentialsInterface;
 use League\OAuth1\Client\Credentials\ClientCredentials;
 use League\OAuth1\Client\Credentials\CredentialsInterface;
@@ -86,14 +86,12 @@ abstract class Server
         $headers = $this->buildHttpClientHeaders($authorizationHeader);
 
         try {
-            $response = $client->post($uri, [
-                'headers' => $headers,
-            ]);
+            $response = $client->post($uri, $headers)->send();
         } catch (BadResponseException $e) {
             return $this->handleTemporaryCredentialsBadResponse($e);
         }
 
-        return $this->createTemporaryCredentials((string) $response->getBody());
+        return $this->createTemporaryCredentials($response->getBody());
     }
 
     /**
@@ -162,15 +160,12 @@ abstract class Server
         $headers = $this->getHeaders($temporaryCredentials, 'POST', $uri, $bodyParameters);
 
         try {
-            $response = $client->post($uri, [
-                'headers' => $headers,
-                'form_params' => $bodyParameters,
-            ]);
+            $response = $client->post($uri, $headers, $bodyParameters)->send();
         } catch (BadResponseException $e) {
             return $this->handleTokenCredentialsBadResponse($e);
         }
 
-        return $this->createTokenCredentials((string) $response->getBody());
+        return $this->createTokenCredentials($response->getBody());
     }
 
     /**
@@ -251,9 +246,7 @@ abstract class Server
             $headers = $this->getHeaders($tokenCredentials, 'GET', $url);
 
             try {
-                $response = $client->get($url, [
-                    'headers' => $headers,
-                ]);
+                $response = $client->get($url, $headers)->send();
             } catch (BadResponseException $e) {
                 $response = $e->getResponse();
                 $body = $response->getBody();
@@ -263,17 +256,18 @@ abstract class Server
                     "Received error [$body] with status code [$statusCode] when retrieving token credentials."
                 );
             }
+
             switch ($this->responseType) {
                 case 'json':
-                    $this->cachedUserDetailsResponse = json_decode((string) $response->getBody(), true);
+                    $this->cachedUserDetailsResponse = $response->json();
                     break;
 
                 case 'xml':
-                    $this->cachedUserDetailsResponse = simplexml_load_string((string) $response->getBody());
+                    $this->cachedUserDetailsResponse = $response->xml();
                     break;
 
                 case 'string':
-                    parse_str((string) $response->getBody(), $this->cachedUserDetailsResponse);
+                    parse_str($response->getBody(), $this->cachedUserDetailsResponse);
                     break;
 
                 default:
@@ -307,11 +301,11 @@ abstract class Server
     /**
      * Creates a Guzzle HTTP client for the given URL.
      *
-     * @return GuzzleHttpClient
+     * @return GuzzleClient
      */
     public function createHttpClient()
     {
-        return new GuzzleHttpClient();
+        return new GuzzleClient();
     }
 
     /**

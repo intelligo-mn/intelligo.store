@@ -56,10 +56,11 @@ class SessionCookieJar extends CookieJar
      */
     protected function load()
     {
-        if (!isset($_SESSION[$this->sessionKey])) {
-            return;
-        }
-        $data = json_decode($_SESSION[$this->sessionKey], true);
+        $cookieJar = isset($_SESSION[$this->sessionKey])
+            ? $_SESSION[$this->sessionKey]
+            : null;
+
+        $data = json_decode($cookieJar, true);
         if (is_array($data)) {
             foreach ($data as $cookie) {
                 $this->setCookie(new SetCookie($cookie));

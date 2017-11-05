@@ -17,12 +17,12 @@ if (class_exists('Swift', false)) {
 }
 
 // Load Swift utility class
-require __DIR__.'/classes/Swift.php';
+require dirname(__FILE__).'/classes/Swift.php';
 
 if (!function_exists('_swiftmailer_init')) {
     function _swiftmailer_init()
     {
-        require __DIR__.'/swift_init.php';
+        require dirname(__FILE__).'/swift_init.php';
     }
 }
 

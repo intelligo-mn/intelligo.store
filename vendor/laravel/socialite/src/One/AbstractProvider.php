@@ -4,7 +4,6 @@ namespace Laravel\Socialite\One;
 
 use Illuminate\Http\Request;
 use InvalidArgumentException;
-use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Server\Server;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Laravel\Socialite\Contracts\Provider as ProviderContract;
@@ -45,7 +44,7 @@ abstract class AbstractProvider implements ProviderContract
      */
     public function redirect()
     {
-        $this->request->session()->set(
+        $this->request->getSession()->set(
             'oauth.temp', $temp = $this->server->getTemporaryCredentials()
         );
 
@@ -76,38 +75,13 @@ abstract class AbstractProvider implements ProviderContract
     }
 
     /**
-     * Get a Social User instance from a known access token and secret.
-     *
-     * @param  string  $token
-     * @param  string  $secret
-     * @return \Laravel\Socialite\One\User
-     */
-    public function userFromTokenAndSecret($token, $secret)
-    {
-        $tokenCredentials = new TokenCredentials();
-
-        $tokenCredentials->setIdentifier($token);
-        $tokenCredentials->setSecret($secret);
-
-        $user = $this->server->getUserDetails($tokenCredentials);
-
-        $instance = (new User)->setRaw($user->extra)
-            ->setToken($tokenCredentials->getIdentifier(), $tokenCredentials->getSecret());
-
-        return $instance->map([
-            'id' => $user->uid, 'nickname' => $user->nickname,
-            'name' => $user->name, 'email' => $user->email, 'avatar' => $user->imageUrl,
-        ]);
-    }
-
-    /**
      * Get the token credentials for the request.
      *
      * @return \League\OAuth1\Client\Credentials\TokenCredentials
      */
     protected function getToken()
     {
-        $temp = $this->request->session()->get('oauth.temp');
+        $temp = $this->request->getSession()->get('oauth.temp');
 
         return $this->server->getTokenCredentials(
             $temp, $this->request->get('oauth_token'), $this->request->get('oauth_verifier')

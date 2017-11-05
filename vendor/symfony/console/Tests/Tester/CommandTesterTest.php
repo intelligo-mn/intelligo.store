@@ -11,13 +11,12 @@
 
 namespace Symfony\Component\Console\Tests\Tester;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class CommandTesterTest extends TestCase
+class CommandTesterTest extends \PHPUnit_Framework_TestCase
 {
     protected $command;
     protected $tester;

@@ -565,7 +565,7 @@ class Request extends SymfonyRequest implements ArrayAccess
             return $this->json();
         }
 
-        return $this->getRealMethod() == 'GET' ? $this->query : $this->request;
+        return $this->getMethod() == 'GET' ? $this->query : $this->request;
     }
 
     /**

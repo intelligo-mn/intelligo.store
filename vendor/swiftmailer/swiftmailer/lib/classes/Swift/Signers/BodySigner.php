@@ -20,7 +20,7 @@ interface Swift_Signers_BodySigner extends Swift_Signer
      *
      * @param Swift_Message $message
      *
-     * @return self
+     * @return Swift_Signers_BodySigner
      */
     public function signMessage(Swift_Message $message);
 

@@ -47,14 +47,14 @@ interface ValueInterface
     /**
      * @param string $expr
      *
-     * @return $this
+     * @return ValueInterface
      */
     public function prepend($expr);
 
     /**
      * @param string $expr
      *
-     * @return $this
+     * @return ValueInterface
      */
     public function append($expr);
 }

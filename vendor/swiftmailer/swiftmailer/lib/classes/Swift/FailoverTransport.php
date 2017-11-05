@@ -36,7 +36,7 @@ class Swift_FailoverTransport extends Swift_Transport_FailoverTransport
      *
      * @param Swift_Transport[] $transports
      *
-     * @return self
+     * @return Swift_FailoverTransport
      */
     public static function newInstance($transports = array())
     {

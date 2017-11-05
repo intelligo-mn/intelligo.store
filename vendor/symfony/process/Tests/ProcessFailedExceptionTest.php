@@ -11,25 +11,28 @@
 
 namespace Symfony\Component\Process\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 /**
  * @author Sebastian Marek <proofek@gmail.com>
  */
-class ProcessFailedExceptionTest extends TestCase
+class ProcessFailedExceptionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * tests ProcessFailedException throws exception if the process was successful.
      */
     public function testProcessFailedExceptionThrowsException()
     {
-        $process = $this->getMockBuilder('Symfony\Component\Process\Process')->setMethods(array('isSuccessful'))->setConstructorArgs(array('php'))->getMock();
+        $process = $this->getMock(
+            'Symfony\Component\Process\Process',
+            array('isSuccessful'),
+            array('php')
+        );
         $process->expects($this->once())
             ->method('isSuccessful')
             ->will($this->returnValue(true));
 
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(
+        $this->setExpectedException(
             '\InvalidArgumentException',
             'Expected a failed process, but the given process was successful.'
         );
@@ -49,7 +52,11 @@ class ProcessFailedExceptionTest extends TestCase
         $output = 'Command output';
         $errorOutput = 'FATAL: Unexpected error';
 
-        $process = $this->getMockBuilder('Symfony\Component\Process\Process')->setMethods(array('isSuccessful', 'getOutput', 'getErrorOutput', 'getExitCode', 'getExitCodeText', 'isOutputDisabled'))->setConstructorArgs(array($cmd))->getMock();
+        $process = $this->getMock(
+            'Symfony\Component\Process\Process',
+            array('isSuccessful', 'getOutput', 'getErrorOutput', 'getExitCode', 'getExitCodeText', 'isOutputDisabled'),
+            array($cmd)
+        );
         $process->expects($this->once())
             ->method('isSuccessful')
             ->will($this->returnValue(false));
@@ -92,7 +99,11 @@ class ProcessFailedExceptionTest extends TestCase
         $exitCode = 1;
         $exitText = 'General error';
 
-        $process = $this->getMockBuilder('Symfony\Component\Process\Process')->setMethods(array('isSuccessful', 'isOutputDisabled', 'getExitCode', 'getExitCodeText', 'getOutput', 'getErrorOutput'))->setConstructorArgs(array($cmd))->getMock();
+        $process = $this->getMock(
+            'Symfony\Component\Process\Process',
+            array('isSuccessful', 'isOutputDisabled', 'getExitCode', 'getExitCodeText', 'getOutput', 'getErrorOutput'),
+            array($cmd)
+        );
         $process->expects($this->once())
             ->method('isSuccessful')
             ->will($this->returnValue(false));

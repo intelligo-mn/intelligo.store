@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\VarDumper\Tests\Caster;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Caster\PdoCaster;
 use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class PdoCasterTest extends TestCase
+class PdoCasterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @requires extension pdo_sqlite

@@ -56,7 +56,7 @@ class ChoiceQuestion extends Question
      *
      * @param bool $multiselect
      *
-     * @return $this
+     * @return ChoiceQuestion The current instance
      */
     public function setMultiselect($multiselect)
     {
@@ -64,16 +64,6 @@ class ChoiceQuestion extends Question
         $this->setValidator($this->getDefaultValidator());
 
         return $this;
-    }
-
-    /**
-     * Returns whether the choices are multiselect.
-     *
-     * @return bool
-     */
-    public function isMultiselect()
-    {
-        return $this->multiselect;
     }
 
     /**
@@ -91,7 +81,7 @@ class ChoiceQuestion extends Question
      *
      * @param string $prompt
      *
-     * @return $this
+     * @return ChoiceQuestion The current instance
      */
     public function setPrompt($prompt)
     {
@@ -107,7 +97,7 @@ class ChoiceQuestion extends Question
      *
      * @param string $errorMessage
      *
-     * @return $this
+     * @return ChoiceQuestion The current instance
      */
     public function setErrorMessage($errorMessage)
     {

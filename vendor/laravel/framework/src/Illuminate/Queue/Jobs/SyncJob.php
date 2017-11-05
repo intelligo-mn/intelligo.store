@@ -26,12 +26,10 @@ class SyncJob extends Job implements JobContract
      *
      * @param  \Illuminate\Container\Container  $container
      * @param  string  $payload
-     * @param  string  $queue
      * @return void
      */
-    public function __construct(Container $container, $payload, $queue)
+    public function __construct(Container $container, $payload)
     {
-        $this->queue = $queue;
         $this->payload = $payload;
         $this->container = $container;
     }

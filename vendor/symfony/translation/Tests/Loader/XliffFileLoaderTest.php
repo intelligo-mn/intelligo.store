@@ -11,11 +11,10 @@
 
 namespace Symfony\Component\Translation\Tests\Loader;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Config\Resource\FileResource;
 
-class XliffFileLoaderTest extends TestCase
+class XliffFileLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoad()
     {
@@ -45,20 +44,6 @@ class XliffFileLoaderTest extends TestCase
 
         libxml_clear_errors();
         libxml_use_internal_errors($internalErrors);
-    }
-
-    public function testLoadWithExternalEntitiesDisabled()
-    {
-        $disableEntities = libxml_disable_entity_loader(true);
-
-        $loader = new XliffFileLoader();
-        $resource = __DIR__.'/../fixtures/resources.xlf';
-        $catalogue = $loader->load($resource, 'en', 'domain1');
-
-        libxml_disable_entity_loader($disableEntities);
-
-        $this->assertEquals('en', $catalogue->getLocale());
-        $this->assertEquals(array(new FileResource($resource)), $catalogue->getResources());
     }
 
     public function testLoadWithResname()
@@ -142,14 +127,7 @@ class XliffFileLoaderTest extends TestCase
     {
         $loader = new XliffFileLoader();
         $resource = __DIR__.'/../fixtures/empty.xlf';
-
-        if (method_exists($this, 'expectException')) {
-            $this->expectException('Symfony\Component\Translation\Exception\InvalidResourceException');
-            $this->expectExceptionMessage(sprintf('Unable to load "%s":', $resource));
-        } else {
-            $this->setExpectedException('Symfony\Component\Translation\Exception\InvalidResourceException', sprintf('Unable to load "%s":', $resource));
-        }
-
+        $this->setExpectedException('Symfony\Component\Translation\Exception\InvalidResourceException', sprintf('Unable to load "%s":', $resource));
         $loader->load($resource, 'en', 'domain1');
     }
 

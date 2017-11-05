@@ -1,19 +1,10 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-socialite.svg"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/socialite"><img src="https://travis-ci.org/laravel/socialite.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/license.svg" alt="License"></a>
-</p>
+# Laravel Socialite
 
 ## Introduction
 
 Laravel Socialite provides an expressive, fluent interface to OAuth authentication with Facebook, Twitter, Google, LinkedIn, GitHub and Bitbucket. It handles almost all of the boilerplate social authentication code you are dreading writing.
 
 **We are not accepting new adapters.**
-
-Adapters for other platforms are listed at the community driven [Socialite Providers](https://socialiteproviders.github.io/) website.
 
 ## License
 
@@ -23,7 +14,7 @@ Laravel Socialite is open-sourced software licensed under the [MIT license](http
 
 In addition to typical, form based authentication, Laravel also provides a simple, convenient way to authenticate with OAuth providers using [Laravel Socialite](https://github.com/laravel/socialite). Socialite currently supports authentication with Facebook, Twitter, LinkedIn, Google, GitHub and Bitbucket.
 
-To get started with Socialite, use Composer to add the package to your project's dependencies:
+To get started with Socialite, add to your `composer.json` file as a dependency:
 
     composer require laravel/socialite
 
@@ -113,15 +104,6 @@ return Socialite::driver('google')
 
 When using the `with` method, be careful not to pass any reserved keywords such as `state` or `response_type`.
 
-#### Stateless Authentication
-
-The `stateless` method may be used to disable session state verification. This is useful when adding social authentication to an API:
-
-```php
-return Socialite::driver('google')->stateless()->user();
-```
-
-
 #### Retrieving User Details
 
 Once you have a user instance, you can grab a few more details about the user:
@@ -144,12 +126,4 @@ $user->getNickname();
 $user->getName();
 $user->getEmail();
 $user->getAvatar();
-```
-
-#### Retrieving User Details From Token
-
-If you already have a valid access token for a user, you can retrieve their details using the `userFromToken` method:
-
-```php
-$user = Socialite::driver('github')->userFromToken($token);
 ```

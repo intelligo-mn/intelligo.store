@@ -159,7 +159,7 @@ class Route implements \Serializable
      *
      * @param string $pattern The path pattern
      *
-     * @return $this
+     * @return Route The current Route instance
      *
      * @deprecated since version 2.2, to be removed in 3.0. Use setPath instead.
      */
@@ -187,7 +187,7 @@ class Route implements \Serializable
      *
      * @param string $pattern The path pattern
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setPath($pattern)
     {
@@ -216,7 +216,7 @@ class Route implements \Serializable
      *
      * @param string $pattern The host pattern
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setHost($pattern)
     {
@@ -245,7 +245,7 @@ class Route implements \Serializable
      *
      * @param string|array $schemes The scheme or an array of schemes
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setSchemes($schemes)
     {
@@ -294,7 +294,7 @@ class Route implements \Serializable
      *
      * @param string|array $methods The method or an array of methods
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setMethods($methods)
     {
@@ -329,7 +329,7 @@ class Route implements \Serializable
      *
      * @param array $options The options
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setOptions(array $options)
     {
@@ -347,7 +347,7 @@ class Route implements \Serializable
      *
      * @param array $options The options
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function addOptions(array $options)
     {
@@ -367,7 +367,7 @@ class Route implements \Serializable
      * @param string $name  An option name
      * @param mixed  $value The option value
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setOption($name, $value)
     {
@@ -418,7 +418,7 @@ class Route implements \Serializable
      *
      * @param array $defaults The defaults
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setDefaults(array $defaults)
     {
@@ -434,7 +434,7 @@ class Route implements \Serializable
      *
      * @param array $defaults The defaults
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function addDefaults(array $defaults)
     {
@@ -476,7 +476,7 @@ class Route implements \Serializable
      * @param string $name    A variable name
      * @param mixed  $default The default value
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setDefault($name, $default)
     {
@@ -503,7 +503,7 @@ class Route implements \Serializable
      *
      * @param array $requirements The requirements
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setRequirements(array $requirements)
     {
@@ -519,7 +519,7 @@ class Route implements \Serializable
      *
      * @param array $requirements The requirements
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function addRequirements(array $requirements)
     {
@@ -567,7 +567,7 @@ class Route implements \Serializable
      * @param string $key   The key
      * @param string $regex The regex
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setRequirement($key, $regex)
     {
@@ -594,7 +594,7 @@ class Route implements \Serializable
      *
      * @param string $condition The condition
      *
-     * @return $this
+     * @return Route The current Route instance
      */
     public function setCondition($condition)
     {

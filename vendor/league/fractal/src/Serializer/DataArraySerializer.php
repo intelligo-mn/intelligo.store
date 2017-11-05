@@ -38,14 +38,4 @@ class DataArraySerializer extends ArraySerializer
     {
         return ['data' => $data];
     }
-
-    /**
-     * Serialize null resource.
-     *
-     * @return array
-     */
-    public function null()
-    {
-        return ['data' => []];
-    }
 }
