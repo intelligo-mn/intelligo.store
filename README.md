@@ -44,13 +44,13 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 Clone repo
 
 ```
-git clone https://github.com/techstar-agency/ecommerce.git
+git clone https://github.com/techstar-inc/techstar-ecommerce.git
 ```
 
 Install Composer
 
 ```
-[Download Composer](https://getcomposer.org/download/)
+Download Composer (https://getcomposer.org/download/)
 ```
 
 composer update/install 
@@ -105,7 +105,6 @@ php artisan key:generate
 - Newsletter management
 - Create different sales rules for groups of products
 - Customer loyalty discounts
-- Accept orders by phone/fax/check/”furikomi bank transfer”/COD
 - An “intelligent” search form
 - Custom page creation
 - Contact forms
