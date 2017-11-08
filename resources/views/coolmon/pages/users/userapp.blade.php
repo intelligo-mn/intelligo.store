@@ -11,7 +11,10 @@
                 <div class="profile-splash-cov"></div>
                 <img src="{{ makepreview($userinfo->splash, 'b', 'members/splash') }}" width="100%" data-big="" alt="{{ $userinfo->username }}" class="profile-splash-img">
                <div class="profile-section">
+
+
                     <a href="/profile/{{ $userinfo->username_slug }}"><img src="{{ makepreview($userinfo->icon, 'b', 'members/avatar') }}" width="180" height="180" data-big="" alt="{{ $userinfo->username }}" class="profile-image"></a>
+
                 </div>
 
                 <div class="profile-display-name">
@@ -68,16 +71,23 @@
                         </div>
 
                         <div class="profile-section">
-                            @if($DB_PLUGIN_NEWS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-file-text"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.news') ]) }}</span>    </div>      <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/news">{{ $newscount }} </a>     </div>@endif
+                           <!--  @if($DB_PLUGIN_NEWS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-file-text"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.news') ]) }}</span>    </div>      <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/news">{{ $newscount }} </a>     </div>@endif -->
                             <!-- @if($DB_PLUGIN_LISTS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-th-list"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.lists') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/lists">{{ $listscount }} </a>      </div>@endif
                             @if($DB_PLUGIN_QUIZS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-question-circle"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('buzzyquiz.quizzes') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/quizzes">{{ $quizzescount }} </a>  </div>@endif
                             @if($DB_PLUGIN_POLLS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-check-circle-o"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.polls') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/polls">{{ $pollscount }} </a>  </div>@endif -->
-                            @if($DB_PLUGIN_VIDEOS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.videos') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/videos">{{ $videoscount }} </a>   </div>@endif
+                           <!--  @if($DB_PLUGIN_VIDEOS == 'on')<div class="profile-stat">    <div class="profile-stat-label">   <i class="fa fa-youtube-play"></i>   <span class="stat-text">{{ trans('index.total', ['type' => trans('index.videos') ]) }}</span>    </div>    <a class="profile-stat-count" href="/profile/{{ $userinfo->username_slug }}/videos">{{ $videoscount }} </a>   </div>@endif -->
        
-                             @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $categorys)
+                             @foreach(\App\Categories::where("main", '1')->
+                                where("disabled", '0')->
+                                orwhere("main", '2')->
+                                where("lang", \Session::get('locale'))->
+                                where("disabled", '0')->
+                                orderBy('order')->
+                                get() as $categorys)
+
                                 <div class="profile-stat">
                                     <div class="profile-stat-label">
-                                    <a href="{{ action('PostsController@CreateNew', ['new'=>$categorys->posturl_slug]) }}" class="sub-item"><i class="fa fa-{{ $categorys->icon }}"></i> {{ trans('index.new', ['type' => ucfirst($categorys->posturl_slug) ]) }}</a>
+                                    <a href="{{ action('PostsController@CreateNew', ['new'=>$categorys->posturl_slug]) }}" class="sub-item"><i class="fa fa-{{ $categorys->icon }}"></i> {{ trans('index.new', ['type' => ucfirst($categorys->name) ]) }}</a>
                                     </div>
                                 </div>
 
