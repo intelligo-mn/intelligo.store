@@ -47,12 +47,8 @@ return [
     'register'      => 'Register',
     'login'         => 'Login',
 
-    'home' => 'HOME',
-    'tours' => 'TOURS',
-    'about' => 'ABOUT US',
-    'itinerary' => 'ITINERARY',
-    'stayit' => 'STAY IT',
-    'contact' => 'CONTACT US',
+    'home' => '首页',
+    'contact' => '联系我们',
 
 
     // Post page
