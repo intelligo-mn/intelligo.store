@@ -122,7 +122,7 @@
                           <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/zh">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  简体中文</span>
                                </a>
                             </div>
                          </div>
