@@ -5,10 +5,9 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <div class="header-top-left">
                             <ul>
-                                <li>{{ date('Y-m-d H:i:s') }}</li>
-                                <li><a href="account.html">Нэвтрэх хэсэг</a>
+                                <li><a href="login">Нэвтрэх хэсэг</a>
                                 </li>
-                                <li><a href="contact.html">Холбоо барих</a></li>
+                                <li><a href="contact">Холбоо барих</a></li>
                             </ul>
                         </div>
                     </div>
@@ -21,8 +20,11 @@
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                    <li><a href="/selectlanguge/mn">MN</a></li>
+                                    <li><a href="/selectlanguge/en">EN</a></li>
                                 </ul>
                             </nav>
+
                         </div>
                     </div>
                 </div>
@@ -33,7 +35,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="logo-area">
-                            <a href="index.html"><img src="cooltheme/images/logo.png" alt="logo"></a>
+                            <a href="index.html">Cool Mongolia</a>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -95,8 +97,7 @@
                                           </li>
                                       @endforeach
                                       <li>
-                                         <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a>
-                                            
+                                         <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }} <b class="icon-angle-down"></b></a> 
                                       </li>
                                 </ul>
                             </nav>

@@ -36,7 +36,7 @@
                           <li>
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                   <div class="blog-image">
-                                      <a href="#">
+                                      <a href="<?php echo e(makeposturl($item)); ?>">
                                           <i class="fa fa-link" aria-hidden="true"></i>
                                           <img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>" srcset="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>">
                                       </a>
@@ -57,4 +57,4 @@
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

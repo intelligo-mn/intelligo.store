@@ -50,6 +50,12 @@
     <link rel="stylesheet" href="{!! asset('cooltheme/css/responsive.css') !!}">
     <!-- modernizr js -->
     <script src="{!! asset('cooltheme/js/modernizr-2.8.3.min.js') !!}"></script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{!! asset('/assets/css/plugins.css') !!}">
+    <link rel="stylesheet" href="{!! asset('/assets/css/application.css') !!}">
+    <link rel="stylesheet" href="{!! asset('/assets/css/test.css') !!}">
 
     {!! getcong('headcode') !!}
 
@@ -116,7 +122,8 @@
     <script src="{!! asset('cooltheme/inc/custom-slider/home.js') !!}" type="text/javascript"></script>
     <!-- main js -->
     <script src="{!! asset('cooltheme/js/main.js') !!}"></script>
-
+    <script src="{!! asset('/assets/js/plugins.js') !!}"></script>
+    <script src="{!! asset('/assets/js/app.min.js') !!}"></script>
     @yield("footer")
     @include('.errors.swalerror')
 

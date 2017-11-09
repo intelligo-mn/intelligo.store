@@ -11,10 +11,7 @@
                 <div class="profile-splash-cov"></div>
                 <img src="{{ makepreview($userinfo->splash, 'b', 'members/splash') }}" width="100%" data-big="" alt="{{ $userinfo->username }}" class="profile-splash-img">
                <div class="profile-section">
-
-
                     <a href="/profile/{{ $userinfo->username_slug }}"><img src="{{ makepreview($userinfo->icon, 'b', 'members/avatar') }}" width="180" height="180" data-big="" alt="{{ $userinfo->username }}" class="profile-image"></a>
-
                 </div>
 
                 <div class="profile-display-name">

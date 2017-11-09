@@ -112,9 +112,7 @@
                     
                     <div class="seperator"></div>
                  </header>
-                 <div class="adventure-holder gallery-home-holder">
-                 
-                 </div>
+                
               </div>
            </section>
        </main>

@@ -319,13 +319,12 @@ class PostsController extends Controller
             $imgWW=$post->thumb;
         }
 
-
-       $ordertype = null;
+        $ordertype = null;
 		if(isset($inputs['ordertype'])){
-        $ordertype = $inputs['ordertype'];
-        if($ordertype == 'none'){
-            $ordertype = null;
-        }
+            $ordertype = $inputs['ordertype'];
+            if($ordertype == 'none'){
+                $ordertype = null;
+            }
 		}
 
         $post->slug = $titleslug;
@@ -374,27 +373,21 @@ class PostsController extends Controller
             $entry->type = $entrytypey;
             $entry->title = isset($entryorder['title']) ? $entryorder['title'] : null;
 
+			$asdsadasd ="";
+			if(isset($entryorder['body'])){
+				 $asdsadasd =  $entryorder['body'];
+			}
+		
+            $entry->body =  $asdsadasd;
 
-				$asdsadasd ="";
-				if(isset($entryorder['body'])){
-					 $asdsadasd =  $entryorder['body'];
-				}
+            if($entrytypey!="video" or $entrytypey!="embed" or $entrytypey!="tweet" or  $entrytypey!="facebookpost" or $entrytypey!="instagram" or $entrytypey!="soundcloud") {
 			
-                $entry->body =  $asdsadasd;
-
-                if($entrytypey!="video" or $entrytypey!="embed" or $entrytypey!="tweet" or  $entrytypey!="facebookpost" or $entrytypey!="instagram" or $entrytypey!="soundcloud") {
-				
-					$asasf ="";
-					if(isset($entryorder['source'])){
-						 $asasf =  $entryorder['source'];
-					}
-				
-					$entry->source =  $asasf;
-
-				
-                }
-
-
+				$asasf ="";
+				if(isset($entryorder['source'])){
+					 $asasf =  $entryorder['source'];
+				}
+				$entry->source =  $asasf;
+            }
 
             if($entrytypey=="image" or $entrytypey=="poll" or  $entrytypey=="quizquestion" or   $entrytypey=="quizresult") {
 
@@ -403,9 +396,7 @@ class PostsController extends Controller
 
                     $entry->image = $imgRR;
                 }
-
             }
-
 
             if($entrytypey=="quizquestion" or $entrytypey=="poll") {
                 $entry->video =  $entryorder['listtype'];
