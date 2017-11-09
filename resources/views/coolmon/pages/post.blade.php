@@ -1,4 +1,4 @@
-@extends("app")
+@extends("main")
 @section('head_title',  $post->title.' | '.getcong('sitename'))
 @section('head_description', $post->body)
 @section('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg'))

@@ -50,6 +50,12 @@
     <link rel="stylesheet" href="<?php echo asset('cooltheme/css/responsive.css'); ?>">
     <!-- modernizr js -->
     <script src="<?php echo asset('cooltheme/js/modernizr-2.8.3.min.js'); ?>"></script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="<?php echo asset('/assets/css/plugins.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('/assets/css/application.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('/assets/css/test.css'); ?>">
 
     <?php echo getcong('headcode'); ?>
 
@@ -117,7 +123,8 @@
     <script src="<?php echo asset('cooltheme/inc/custom-slider/home.js'); ?>" type="text/javascript"></script>
     <!-- main js -->
     <script src="<?php echo asset('cooltheme/js/main.js'); ?>"></script>
-
+    <script src="<?php echo asset('/assets/js/plugins.js'); ?>"></script>
+    <script src="<?php echo asset('/assets/js/app.min.js'); ?>"></script>
     <?php echo $__env->yieldContent("footer"); ?>
     <?php echo $__env->make('.errors.swalerror', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
