@@ -8,6 +8,7 @@ Get back your time with Buddy’s delivery pipelines that eliminate repeatable t
 
 [![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64556/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64556)
 [![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64557/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64557)
+[![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64561/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64561)
 
 #### Install
 
