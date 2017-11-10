@@ -2,8 +2,6 @@
 
 Techstar Laravel Content Management System.
 
-##  
-
 #### Continuous Delivery
 
 Get back your time with Buddy’s delivery pipelines that eliminate repeatable tasks in your daily development.
