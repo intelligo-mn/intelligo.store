@@ -128,9 +128,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Language</label>
-                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'zh'=>'zh', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
+                                   {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($page->lang), ['class' => 'form-control']) !!}
                                 </div>
-
 
                             </div><!-- /.box-body -->
 
