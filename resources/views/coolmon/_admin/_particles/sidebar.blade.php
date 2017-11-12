@@ -9,6 +9,7 @@
             <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('admin.Online') }}</a>
         </div>
     </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="header">{{ trans('admin.MAINNAVIGATION') }}</li>
         <li @if(Request::segment(2)=='') class="active" @endif>
@@ -33,7 +34,8 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{ action('Admin\ConfigController@index') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.GeneralSettings') }}</a></li>
-               <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.SocialMediaSettings') }}</a></li>
+               <!--  <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'layout']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.LayoutSettings') }}</a></li> -->
+                <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'social']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.SocialMediaSettings') }}</a></li>
                 <li><a href="{{ action('Admin\ConfigController@index', ['q' => 'others']) }}"><i class="fa fa-caret-right"></i> {{ trans('admin.OtherSettings') }}</a></li>
             </ul>
         </li>
@@ -67,10 +69,26 @@
                 <span>{{ trans('admin.FeaturesPosts') }}</span>
             </a>
         </li>
-        @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat)
+        <!-- <li class="treeview  @if(Request::segment(2)=='unapprove') active @endif">
+            <a href="/admin/unapprove?only=unapprove">
+                <i class="fa fa-check-circle"></i>
+                <span>{{ trans('admin.UnapprovedPosts') }}</span>
+                <small class="label pull-right bg-aqua">{{ $toplamapprove }}</small>
+            </a>
+        </li> -->
+        @foreach(\App\Categories::where("main", '1')->
+            where("disabled", '0')->
+            orwhere("main", '2')->
+            where("disabled", '0')->
+            where("lang", \Session::get('locale'))->
+            orderBy('order')->get() as $cat)
             <li class="treeview  @if(Request::segment(2)==$cat->name_slug) active @endif">
                 <a href="/admin/cat/{{ $cat->name_slug }}">
-                    <i class="fa fa-{{ $cat->icon }}"></i>
+                    @if ($cat->icon == null) 
+                        <i class="fa fa-folder"></i>
+                    @else 
+                        <i class="fa fa-{{ $cat->icon }}"></i>
+                    @endif
                     <span>{{ $cat->name }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -84,16 +102,32 @@
         @endforeach
 
         <li class="treeview @if(Request::segment(2)=='users') active @endif">
+         <!-- <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li> -->
             <a href="users">
                 <i class="fa fa-users"></i>
                 <span>{{ trans('admin.Users') }}</span>
             </a>
+            <!-- <ul class="treeview-menu">
+                <li><a href="/admin/users"><i class="fa fa-caret-right"></i> {{ trans('admin.Users') }}</a></li>
+                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right">
+                </i> {{ trans('admin.BannedUsers') }} </a></li>
+                <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> {{ trans('admin.Admins') }}</a></li>
+                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> {{ trans('admin.Staff') }}</a></li>
+            </ul> -->
         </li>
+
+       
         <li class="treeview  @if(Request::segment(2)=='widgets') active @endif">
             <a href="{{ action('Admin\WidgetsController@index') }}">
                 <i class="fa fa-plus-square"></i>
                 <span>{{ trans('admin.Widgets') }}</span>
             </a>
         </li>
+       <!--  <li class="treeview">
+            <a href="/sitemap.xml" target="_blank">
+                <i class="fa fa-rss"></i>
+                <span>{{ trans('admin.Sitemap') }}</span>
+            </a>
+        </li> -->
     </ul>
 </section>

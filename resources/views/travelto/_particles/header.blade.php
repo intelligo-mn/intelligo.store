@@ -28,16 +28,18 @@
                     <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
                 @endforeach
             
-               @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
-               where("lang", \Session::get('locale'))->
-               where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+                where("lang", \Session::get('locale'))->
+                where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
                   <li>
                      <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} <b class="icon-angle-down"></b></a>
                         
                   </li>
-              @endforeach
-               
-               <li class="dropdown hidden-xs hidden-sm v-divider">
+                @endforeach
+                <li>
+                   <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }}<b class="icon-angle-down"></b></a>
+                </li>
+                <li class="dropdown hidden-xs hidden-sm v-divider">
                   <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="icon icon-user"></span>
                   </a>
@@ -95,9 +97,7 @@
                       <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
                     @elseif(Session::get ('locale') == 'zh')
                       <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
-                    @elseif(Session::get ('locale') == 'ru')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="Russia">
-                    @endif
+                    @endif 
                     {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
                     </span> 
                     <span class="icon-angle-down"></span>
@@ -123,13 +123,6 @@
                             <div class="lang-col">
                                <a href="/selectlanguge/zh">
                                <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
-                               </a>
-                            </div>
-                         </div>
-                         <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/ru">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English">  Russia</span>
                                </a>
                             </div>
                          </div>

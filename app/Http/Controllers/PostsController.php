@@ -816,15 +816,8 @@ class PostsController extends Controller
                         }
                     }
                 }
-
             }
-
-
         }
-
         return 'pas';
     }
-
-
-
 }
