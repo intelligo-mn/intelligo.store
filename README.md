@@ -1,27 +1,21 @@
-### Аялалын вэб програмын үндсэн эх код
+### Laravel Content Management System
 
 ##  
 
-## Суулгах
-
-```bash
-composer require tortuvshin/tour
-```
+## Install
 
 ```
-git clone https://github.com/tortuvshin/tour.git
+git clone https://github.com/techstar-inc/techstar-cms.git
 ```
 
 ```
 composer update/install
 ```
 
-## Тохируулах
-
 ```
-php artisan migrate:refresh
+php artisan migrate
 ```
 
 ```
-php artisan migrate:refresh --seed
+php artisan db:seed
 ```

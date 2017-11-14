@@ -97,9 +97,7 @@
                       <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
                     @elseif(Session::get ('locale') == 'zh')
                       <img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="China">
-                    @elseif(Session::get ('locale') == 'ru')
-                      <img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="Russia">
-                    @endif
+                    @endif 
                     {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}
                     </span> 
                     <span class="icon-angle-down"></span>
@@ -125,13 +123,6 @@
                             <div class="lang-col">
                                <a href="/selectlanguge/zh">
                                <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
-                               </a>
-                            </div>
-                         </div>
-                         <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/ru">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English">  Russia</span>
                                </a>
                             </div>
                          </div>
