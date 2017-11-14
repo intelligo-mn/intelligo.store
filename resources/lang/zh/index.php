@@ -131,6 +131,21 @@ return [
     'minthreeca'            => 'Min 2 character required!',
 
 
+    'showmore' => '显示更多',
+    'where_would' => '你想去的地方吗',
+    'callnow' => '给我们打电话',
+    'toptour' => '顶级旅游',
+    'adventure' => '冒险',
+    'adventure_text' => '我们蒙古最受欢迎的冒险之旅',
+    'gallery' => '图库',
+    'partner' => '伙伴',
+    'mainmenus' => '主菜单',
+    'contactus' => '联系我们',
+    'purchase' => '购买',
+    'overview' => '概述',
+    'itinerary' => '行程',
+    'price' => '价格',
+    'related_tour' => '相关旅游'
 
-
+   
 ];
