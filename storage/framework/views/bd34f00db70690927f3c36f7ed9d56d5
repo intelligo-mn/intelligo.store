@@ -97,9 +97,7 @@
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
                     <?php elseif(Session::get ('locale') == 'zh'): ?>
                       <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
-                    <?php elseif(Session::get ('locale') == 'ru'): ?>
-                      <img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="Russia">
-                    <?php endif; ?>
+                    <?php endif; ?> 
                     <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?>
 
                     </span> 
@@ -126,13 +124,6 @@
                             <div class="lang-col">
                                <a href="/selectlanguge/zh">
                                <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="English">  China</span>
-                               </a>
-                            </div>
-                         </div>
-                         <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/ru">
-                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/ru.svg'); ?>" alt="English">  Russia</span>
                                </a>
                             </div>
                          </div>

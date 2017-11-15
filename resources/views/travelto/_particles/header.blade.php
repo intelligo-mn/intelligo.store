@@ -112,20 +112,21 @@
                                </a>
                             </div>
                         </div>
+                        <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/zh">
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  简体中文</span>
+                               </a>
+                            </div>
+                         </div>
                          <div class="lang-row">
                             <div class="lang-col">
                                <a href="/selectlanguge/mn">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">  Монгол</span>
+                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">  Монгол хэл</span>
                                </a>
                             </div>
                          </div>
-                          <div class="lang-row">
-                            <div class="lang-col">
-                               <a href="/selectlanguge/zh">
-                               <span class="text"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English">  China</span>
-                               </a>
-                            </div>
-                         </div>
+                          
                       </div>
                    </div>
                </li>
