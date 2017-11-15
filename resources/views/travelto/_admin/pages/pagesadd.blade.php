@@ -48,7 +48,7 @@
 
                         <div class="form-group">
                             <label>Language</label>
-                           {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
+                           {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'zh'=>'zh', 'ru'=>'ru'], isset($page->lang), ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

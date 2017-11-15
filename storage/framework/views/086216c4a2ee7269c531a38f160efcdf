@@ -52,7 +52,7 @@
             <div class="icon">
                 <i class="fa fa-youtube-play"></i>
             </div>
-            <a href="/admin/users" class="small-box-footer"><?php echo e(trans('admin.moreinfo')); ?> <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/admin/all" class="small-box-footer"><?php echo e(trans('admin.moreinfo')); ?> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
@@ -65,7 +65,7 @@
             <div class="icon">
                 <i class="fa fa-eye"></i>
             </div>
-            <a href="/admin/users" class="small-box-footer"><?php echo e(trans('admin.moreinfo')); ?> <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/admin/all" class="small-box-footer"><?php echo e(trans('admin.moreinfo')); ?> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
 </div><!-- /.row -->
@@ -101,7 +101,7 @@
                     <?php endif; ?>
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
-                    <a href="/admin/news" class="uppercase"><?php echo e(trans('admin.viewall')); ?></a>
+                    <a href="/admin/all" class="uppercase"><?php echo e(trans('admin.viewall')); ?></a>
                 </div><!-- /.box-footer -->
             </div>
         </div>

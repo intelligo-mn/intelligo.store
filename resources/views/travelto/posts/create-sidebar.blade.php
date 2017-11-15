@@ -35,7 +35,7 @@
         <div class="cd-form">
             <legend>Language</legend>
             <p class="cd-select icon">
-                {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($post->lang)) !!}
+                {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'zh'=>'zh', 'ru'=>'ru'], isset($post->lang)) !!}
             </p>
         </div>
         @unless($typene=='quiz' or $typene=='poll')
