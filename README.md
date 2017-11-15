@@ -1,6 +1,31 @@
-## Techstar CMS
+<p align="center">
+</a><br>
+	<b>Techstar CMS</b>
+</p>
+<p align="center">
+    <a href="https://github.com/techstar-inc/techstar-cms/issues">
+        <img src="https://img.shields.io/github/issues/techstar-inc/techstar-cms.svg"
+            alt="Issues"></a>
+     <a href="https://github.com/techstar-inc/techstar-cms/fork">
+        <img src="https://img.shields.io/github/forks/techstar-inc/techstar-cms.svg?style=social&label=Fork"
+            alt="Forks"></a>
+    <a href="https://github.com/techstar-inc/techstar-cms/stargazers">
+        <img src="https://img.shields.io/github/stars/techstar-inc/techstar-cms.svg?style=social&label=Stars"
+            alt="Stars"></a>
+    <a href="https://github.com/tortuvshin/">
+        <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
+            alt="Followers"></a>
+    <a href="https://raw.githubusercontent.com/techstar-inc/techstar-cms/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg"
+            alt="LICENSE"></a>
+    <a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D">
+        <img src="https://img.shields.io/twitter/url/https/github.com/techstar-inc/techstar-cms.svg?style=social"
+            alt="Tweet"></a>
+</p>
 
+<p align="center">
 Techstar Laravel Content Management System.
+</p>
 
 #### Continuous Delivery
 
