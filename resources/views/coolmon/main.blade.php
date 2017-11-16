@@ -115,6 +115,8 @@
     <script src="{!! asset('cooltheme/inc/custom-slider/js/jquery.nivo.slider.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('cooltheme/inc/custom-slider/home.js') !!}" type="text/javascript"></script>
 
+    <script src="{!! asset('cooltheme/js/main.js') !!}"></script>
+
     @yield("footer")
     @include('.errors.swalerror')
 
