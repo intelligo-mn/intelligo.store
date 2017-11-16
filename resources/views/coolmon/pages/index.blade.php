@@ -116,9 +116,9 @@
                     <ul class="nav nav-tabs">
                         <li class="title-bg">Шинэ мэдээ</li>
                         <li class="active"><a data-toggle="tab" href="#tab1">Их уншсан</a></li>
-                        <li><a data-toggle="tab" href="#tab2">Week</a></li>
-                        <li><a data-toggle="tab" href="#tab3">Hot Articals</a></li>
-                        <li><a data-toggle="tab" href="#tab4">Previous</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Долоо хоног</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Шилдэг</a></li>
+                        <li><a data-toggle="tab" href="#tab4">Өнөөдөр</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab1" class="tab-pane fade in active">
@@ -201,7 +201,7 @@
                                                 <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
                                                 <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
                                                 <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
                                     @endforeach
@@ -235,7 +235,7 @@
                                                 <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
                                                 <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
                                                 <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
                                     @endforeach
@@ -269,7 +269,7 @@
                                                 <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
                                                 <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
                                                 <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Read More</a>
+                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
                                     @endforeach
@@ -301,10 +301,10 @@
                                 <div class="view-area">
                                     <div class="row">
                                         <div class="col-sm-8"> 
-                                            <h3 class="title-bg">What’s hot now</h3>
+                                            <h3 class="title-bg">ЭВЭНТ</h3>
                                         </div>
                                         <div class="col-sm-4 text-right">
-                                            <a href="#">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                            <a href="#">Дэлгэрэнгүй <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@
                                     @if(isset($lastTrending))
                                         
                                         
-                                        @foreach($lastTrending->slice(2,4) as $item)
+                                        @foreach($lastTrending->slice(2,3) as $item)
                                         <li>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
@@ -364,7 +364,7 @@
                         </div>
 
                         <div class="sidebar popular separator-large">
-                            <h3 class="title-bg">Popular Now</h3>
+                            <h3 class="title-bg">ОНЦЛОХ МЭДЭЭЛЭЛ</h3>
                             <ul>
                                 <li>
                                     <a href="{{ makeposturl($item) }}" class="category-btn hvr-bounce-to-right">Business</a>
@@ -393,7 +393,7 @@
                     <div class="hot-news popular-related">
                         <ul class="news-post">
                             @if(isset($lastTrending))
-                                @foreach($lastTrending->slice(1, 6) as $item)
+                                @foreach($lastTrending->slice(1, 4) as $item)
 
                                 <li>
                                     <div class="row">
@@ -401,7 +401,7 @@
                                             <div class="item-post">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                                        <img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="" title="News image">
+                                                        <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="News image">
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
                                                         <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}</a></h4>
@@ -415,7 +415,7 @@
                                 @endforeach
                             @endif                  
                    
-                     
+                
                         </ul>
                     </div> 
                     <div class=" separator-large add-section add-section2">
@@ -432,17 +432,17 @@
             <div class="row">
                 <div class="view-area">
                     <div class="col-sm-12"> 
-                        <h3 class="title-bg">Fetuered Videos</h3>
+                        <h3 class="title-bg">ГАЛИРРЕЙ</h3>
                     </div>
                 </div>
             </div>
             <div id="featured-videos-section" class="owl-carousel">
-                @if(isset($lastTrending))
-                    @foreach($lastTrending->slice(1, 6) as $item)
+                @if(isset($lastNews))
+                    @foreach($lastNews->slice(1, 6) as $item)
                        <div class="item">
                             <div class="single-videos">
                                 <div class="images">
-                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt=""></a>
+                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
                                     <div class="overley">
                                         <div class="videos-icon">
                                             <a class="popup-videos" href="{{ makeposturl($item) }}"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
@@ -450,7 +450,7 @@
                                     </div>
                                 </div>                            
                                 <div class="videos-text">
-                                    <h3><a href="#">Smart Packs Parking Sensor Tech</a></h3>
+                                    <h3><a href="#">{{ $item->title }}</a></h3>
                                     <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
                                     <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                                 </div>
@@ -467,141 +467,150 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div id="news-Carousel" class="carousel carousel-news slide" data-ride="carousel">
-                                    <!-- Wrapper for slides -->
-                                    <!-- Left and right controls -->
-                                    <div class="next-prev-top">
-                                        <div class="row">
-                                            <div class="col-sm-9 col-xs-9">
-                                                <div class="view-area">
-                                                    <h3 class="title-bg">Health & LIFESTYLE</h3>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3 next-prev col-xs-3">
-                                                <a class="left news-control" href="#news-Carousel" data-slide="prev">
-                                                    <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-                                                </a>
-                                                <a class="right news-control" href="#news-Carousel" data-slide="next">
-                                                    <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <a href="#"><img src="images/news-slider-image/1.jpg" alt="" title="#slider-direction-1" /></a>
-                                            <div class="dsc">
-                                                <span class="date">
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
-                                                </span>
-                                                <span class="comment">
-                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                                    </a>
-                                                </span>
-                                                <h4><a href="blog-single.html"> Nam suscipit pretium consectetur. Proin tristique fermentum.</a></h4>
-                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div id="news-Carousel" class="carousel carousel-news slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <!-- Left and right controls -->
+                                <div class="next-prev-top">
+                                    <div class="row">
+                                        <div class="col-sm-9 col-xs-9">
+                                            <div class="view-area">
+                                                <h3 class="title-bg">БАХАРХАЛ</h3>
                                             </div>
                                         </div>
-                                        
-                                        <div class="item">
-                                            <a href="#"><img src="images/news-slider-image/3.jpg" alt="" title="#slider-direction-1" /></a>
-                                            <div class="dsc">
-                                                <span class="date">
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
-                                                </span>
-                                                <span class="comment">
-                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                                    </a>
-                                                </span>
-                                                <h4><a href="blog-single.html"> Nam suscipit pretium consectetur. Proin tristique fermentum.</a></h4>
-                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
-                                            </div>
+                                        <div class="col-sm-3 next-prev col-xs-3">
+                                            <a class="left news-control" href="#news-Carousel" data-slide="prev">
+                                                <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                            </a>
+                                            <a class="right news-control" href="#news-Carousel" data-slide="next">
+                                                <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            </a>
                                         </div>
-                                    </div>
+                                    </div>    
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div id="news-Carousel2" class="carousel carousel-news slide" data-ride="carousel">
-                                    <!-- Wrapper for slides -->
-                                    <!-- Left and right controls -->
-                                    <div class="next-prev-top">
-                                        <div class="row">
-                                            <div class="col-sm-9 col-xs-9">
-                                                <div class="view-area">
-                                                    <h3 class="title-bg">Politics</h3>
-                                                </div>
-                                            </div>
+                                <div class="carousel-inner">
+                                    @if(isset($lastNews))
+                                        @foreach($lastNews->slice(0, 1) as $item)
 
-                                            <div class="col-sm-3 col-xs-3 next-prev">
-                                                <a class="left news-control" href="#news-Carousel2" data-slide="prev">
-                                                    <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-                                                </a>
-                                                <a class="right news-control" href="#news-Carousel2" data-slide="next">
-                                                    <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                    <div class="carousel-inner">
                                         <div class="item active">
-                                            <a href="#"><img src="images/news-slider-image/2.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="blog-single.html">Disabled people must be front and centre on TV – representation</a></h4>
-                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                                <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}.</a></h4>
+                                                <p>{{ $item->title }}</p>
                                             </div>
                                         </div>
+                                        @endforeach
+                                    @endif
+                                    @if(isset($lastNews))
+                                        @foreach($lastNews->slice(1, 2) as $item)
+
                                         <div class="item">
-                                            <a href="#"><img src="images/news-slider-image/4.jpg" alt="" title="#slider-direction-1" /></a>
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
-                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                November 28, 2017 </span>
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                    November 28, 2017 
+                                                </span>
                                                 <span class="comment">
-                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                                </a></span>
-                                                <h4><a href="blog-single.html">After Kim Briggs’s death, cyclists must realise that they are traffic too</a></h4>
-                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
+                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}.</a></h4>
+                                                <p>{{ $item->title }}</p>
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <a href="#"><img src="images/news-slider-image/2.jpg" alt="" title="#slider-direction-1" /></a>
-                                            <div class="dsc">
-                                                <span class="date">
-                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                November 28, 2017 </span>
-                                                <span class="comment">
-                                                <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                                </a></span>
-                                                <h4><a href="blog-single.html">The new-style GCSEs show why politicians must do more explaining.</a></h4>
-                                                <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem the purus eu sapien curabitur.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <!--End Two Slider -->
-                        <!--Around Area Start Here -->
-                        <div class="view-area separator-large3">
-                                <div class="row">
-                                    <div class="col-sm-8"> 
-                                        <h3 class="title-bg">Around the world</h3>
-                                    </div>
-                                    <div class="col-sm-4 text-right">
-                                        <a href="#">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                                    </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div id="news-Carousel2" class="carousel carousel-news slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <!-- Left and right controls -->
+                                <div class="next-prev-top">
+                                    <div class="row">
+                                        <div class="col-sm-9 col-xs-9">
+                                            <div class="view-area">
+                                                <h3 class="title-bg">БРЭНД</h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3 col-xs-3 next-prev">
+                                            <a class="left news-control" href="#news-Carousel2" data-slide="prev">
+                                                <span class="news-arrow-left"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                            </a>
+                                            <a class="right news-control" href="#news-Carousel2" data-slide="next">
+                                                <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="carousel-inner">
+                                    @if(isset($lastNews))
+                                        @foreach($lastNews->slice(1, 1) as $item)
+
+                                        <div class="item active">
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                    November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}.</a></h4>
+                                                <p>{{ $item->title }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                    @if(isset($lastNews))
+                                        @foreach($lastNews->slice(3, 5) as $item)
+
+                                        <div class="item">
+                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <div class="dsc">
+                                                <span class="date">
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                                    November 28, 2017 
+                                                </span>
+                                                <span class="comment">
+                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    </a>
+                                                </span>
+                                                <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}.</a></h4>
+                                                <p>{{ $item->title }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
-                        </div> 
+                        </div>
+                    </div>
+                    <!--End Two Slider -->
+                    <!--Around Area Start Here -->
+                    <div class="view-area separator-large3">
+                            <div class="row">
+                                <div class="col-sm-8"> 
+                                    <h3 class="title-bg">БИЗНЕС</h3>
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    <a href="#">Дэлгэрэнгүй<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                        </div>
+                    </div> 
                     <ul class="news-post news-post2 around-news">
                         <li>
                             <div class="row">
@@ -723,14 +732,15 @@
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
-                    <h3 class="title-bg featured-title">Featured News</h3>
+                    <h3 class="title-bg featured-title">ТАНИН МЭДЭХҮЙ</h3>
                     <div class="sidebar">
                         <ul>
+                            @foreach($lastFeaturestop->slice(0,3) as $item)
                             <li>
-                                <a href="#" class="category-btn hvr-bounce-to-right">Business</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/1.jpg" alt="News image" /></a></div>
+                                <a href="#" class="category-btn hvr-bounce-to-right">ТАНИН МЭДЭХҮЙ</a>
+                                <div class="post-image"><a href="blog-single.html"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
                                 <div class="content">
-                                    <h4><a href="blog-single.html">The exhibition Bankasy doesn’t want you to see</a></h4>
+                                    <h4><a href="blog-single.html">{{ $item->title }}</a></h4>
                                     <span class="date"> 
                                         <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
                                     </span> 
@@ -742,49 +752,10 @@
                                    
                                 </div>
                             </li>
-                            <li>
-                                <a href="category-health.html" class="category-btn hvr-bounce-to-right">Health</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/2.jpg" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
-                                    <span class="date"> 
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
-                                    </span>
-                                    <span class="comment">
-                                        <a href="#">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                        </a>
-                                    </span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" class="category-btn hvr-bounce-to-right">Fashion</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="images/sidebar/3.jpg" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
-                                    <span class="date"> 
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
-                                    </span> 
-                                    <span class="comment">
-                                        <a href="#">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                        </a>
-                                    </span>
 
-                                </div>
-                            </li>
+                             @endforeach
                         </ul>
-                        <div class="categories-home separator-large3">
-                            <h3 class="title-bg">Categories</h3>
-                            <ul>
-                                <li><a href="category.html"> <i class="fa fa-angle-right" aria-hidden="true"></i> Business <span>45</span></a></li>
-                                <li><a href="category-world.html"><i class="fa fa-angle-right" aria-hidden="true"></i> World <span>70</span></a></li>
-                                <li><a href="category-fashion.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Fashion <span>45</span></a></li>
-                                <li><a href="category-politics.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Politics <span>55</span></a></li>
-                                <li><a href="category-sports.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Sports <span>50</span></a></li>
-                                <li><a href="category-health.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Health <span>65</span></a></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -794,7 +765,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <img src="cooltheme/images/footer-top.png" alt="footer">
+                    <img src="cooltheme/images/banner/banner.png" alt="footer">
                 </div>
             </div>
         </div>
