@@ -35,6 +35,10 @@ You need to publish the config file for this package. This will add the file `co
 
     $ php artisan vendor:publish --provider="Barryvdh\TranslationManager\ManagerServiceProvider" --tag=config
 
+In order to edit the default template, the views must be published as well. The views will then be placed in `resources/views/vendor/translation-manager`.
+
+    $ php artisan vendor:publish --provider="Barryvdh\TranslationManager\ManagerServiceProvider" --tag=views
+
 Routes are added in the ServiceProvider. You can set the group parameters for the routes in the configuration.
 You can change the prefix or filter/middleware for the routes. If you want full customisation, you can extend the ServiceProvider and override the `map()` function.
 
@@ -69,7 +73,7 @@ to
 
 ### Web interface
 
-When you have imported your translation (via buttons or command), you can view them in the webinterface (on the url you defined the with the controller).
+When you have imported your translation (via buttons or command), you can view them in the webinterface (on the url you defined with the controller).
 You can click on a translation and an edit field will popup. Just click save and it is saved :)
 When a translation is not yet created in a different locale, you can also just edit it to create it.
 
@@ -137,5 +141,5 @@ This package is still very alpha. Few thinks that are on the todo-list:
 
     - Add locales/groups via webinterface
     - Improve webinterface (more selection/filtering, behavior of popup after save etc)
-    - Seed existing languages (https://github.com/caouecs/Laravel4-lang)
+    - Seed existing languages (https://github.com/caouecs/Laravel-lang)
     - Suggestions are welcome :)

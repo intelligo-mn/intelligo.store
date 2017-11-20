@@ -79,13 +79,11 @@
     </div>
     <!--Preloader area end here-->
 
-<?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
+    <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
 
-@include("_particles.header")
+    @include("_particles.header")
 
     @yield("content")
-
-    @include("_particles.footer")
 
     <!-- Start scrollUp  -->
     <div id="return-to-top">
@@ -98,7 +96,7 @@
     <!-- all js here -->
     <script src="{!! asset('cooltheme/js/jquery.min.js') !!}"></script>
     <!-- jquery latest version -->
-    <script src="{!! asset('cooltheme/js/jquery.min.js') !!}"></script>
+    <script src="{!! asset('counterupooltheme/js/jquery.min.js') !!}"></script>
      <!-- jquery-ui js -->
     <script src="{!! asset('cooltheme/js/jquery-ui.min.js') !!}"></script>
     <!-- bootstrap js -->
@@ -124,6 +122,7 @@
     <script src="{!! asset('cooltheme/js/main.js') !!}"></script>
     <script src="{!! asset('/assets/js/plugins.js') !!}"></script>
     <script src="{!! asset('/assets/js/app.min.js') !!}"></script>
+    
     @yield("footer")
     @include('.errors.swalerror')
 
