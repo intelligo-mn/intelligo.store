@@ -54,7 +54,9 @@
                 </strong>
              </div>
              <div class="col-lg-6">
-              
+               <strong class="copyright"><i class="fa fa-copyright"></i>
+                    Copyright 2017 - Trip to Mongolia
+                </strong>
              </div>
           </div>
        </div>

@@ -415,7 +415,7 @@
                         </ul>
                     </div> 
                     <div class=" separator-large add-section add-section2">
-                        <img src="cooltheme/images/add/3.jpg" alt="add image">
+                        <img src="cooltheme/images/3.jpg" alt="add image">
                     </div>
 
                 </div>
@@ -441,7 +441,7 @@
                                     <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
                                     <div class="overley">
                                         <div class="videos-icon">
-                                            <a class="popup-videos" href="{{ makeposturl($item) }}"><img src="cooltheme/images/fetuered/video-icon.png" alt=""></a>                           
+                                            <a class="popup-videos" href="{{ makeposturl($item) }}"><img src="cooltheme/images/video-icon.png" alt=""></a>                           
                                         </div>
                                     </div>
                                 </div>                            
@@ -730,7 +730,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <img src="cooltheme/images/banner/banner.png" alt="footer">
+                    <img src="cooltheme/images/banner.png" alt="footer">
                 </div>
             </div>
         </div>
