@@ -6,19 +6,20 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*",
+        "laravel/framework": "5.1.38",
         "illuminate/html": "^5.0",
         "intervention/image": "^2.3",
         "yajra/laravel-datatables-oracle": "~5.0",
-        "laravel/socialite": "^2.0",
+        "laravel/socialite": "^2.0.17",
         "terbium/db-config": "^2.0",
         "socialiteproviders/vkontakte": "^1.1",
         "simexis/installer": "1.61",
         "league/flysystem-aws-s3-v3": "^1.0",
         "barryvdh/laravel-translation-manager": "0.2.x",
         "doctrine/dbal": "*",
-        "guzzlehttp/guzzle": "~4.0",
-        "laravelcollective/html": "5.1.*"
+        "guzzlehttp/guzzle": "~6.2.0",
+        "laravelcollective/html": "5.1.*",
+        "barryvdh/laravel-debugbar": "~2.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
