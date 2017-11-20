@@ -1,52 +1,6 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto:400,500,700');
-/**
-*
-* -----------------------------------------------------------------------------
-*
-* Template : Responsive News Magazine HTML5 Template
-* Author : rs-theme
-* Author URI : http://www.rstheme.com/
-*
-* -----------------------------------------------------------------------------
-*
-**/
-/* Table Of Content
----------------------------------------------------------
-1.General CSS
-2.Header area start here
-3.Breaking News Slider Here 
-4.Slide Menu Section Start Here
-    4.1.Home Two Slider Area Start Here
-5 Latest News Area Start Here
-6.Home carousel Slider Start Here
-7.Trending news Start Here
-8.Hot News Start Here
-9.Fetuered Videos Start Here 
-10.Sidebar Home Start Here 
-11.sidebar Start Here
-12.Gallery Page Start Here
-13.Home Page Gellary Start Here
-14.Testimonial Page Start Here 
-15.Error 404 page Start Here 
-16.Footer Area Section Start Here
-17.Inner Page Header serction start Here
-18.About Team Start Here 
-19.Pagination Area Start Here 
-20.Blog Page Start Here 
-21.Blog Details Page start here 
-22.Sidebar area Blog Single Start Here
-23.Contact Page Start Here
-24.Team Page Start Here
-25.Single team Page Start Here
-26.About page core services start here
-27.About Page Counter up Section Start Here
-28.Category Page Start Here
-29.Account Page Start Here 
-30.Scroll To Css Start Here 
-31.Sticky Menu To Css Start Here
-32.Preloader CSS 
-....................................*/
+
 html,
 body {
   height: 100%;
@@ -57,7 +11,10 @@ body {
   line-height: 25px;
   font-weight: 400;
   background: #fff;
+  padding-top: 0 !important;
 }
+
+
 /* ....................................
 1. General CSS
 .......................................*/
