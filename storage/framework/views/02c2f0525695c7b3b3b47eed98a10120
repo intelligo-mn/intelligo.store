@@ -35,7 +35,7 @@
              <h3><?php echo e(trans('index.contactus')); ?></h3>
              <ul class="slide address-block">
                 <li class="wrap-text"><span class="icon-tel"></span> <a href="#"><?php echo e(trans('travel.mobile_text')); ?></a></li>
-                <li class="wrap-text"><span class="icon-web"></span> <a href="#"><?php echo e(trans('travel.website_text')); ?></a></li>
+                <li class="wrap-text"><span class="icon-earth"></span> <a href="#"><?php echo e(trans('travel.website_text')); ?></a></li>
                 <li class="wrap-text"><span class="icon-email"></span> <a href="#"><?php echo e(trans('travel.email_text')); ?></a></li>
                 <li>
                    <span class="icon-home"></span> 
@@ -57,8 +57,8 @@
                
              </div>
              <div class="col-lg-4">
-               <strong class="copyright"><i class="fa fa-polymer"></i>
-                    ВЭБ БҮТЭЭСЭН ЦАСТ СОЛЮШН Утас: 88014334
+               <strong class="copyright"><i class="fa fa-code"></i>
+                    <a href="https://www.tsastsolution.mn">ВЭБ БҮТЭЭСЭН ЦАСТ СОЛЮШН Утас: 88014334</a>
                 </strong>
              </div>
           </div>
