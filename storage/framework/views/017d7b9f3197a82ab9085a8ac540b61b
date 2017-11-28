@@ -80,13 +80,11 @@
     </div>
     <!--Preloader area end here-->
 
-<?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
+    <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
 
-<?php echo $__env->make("_particles.header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make("_particles.header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <?php echo $__env->yieldContent("content"); ?>
-
-    <?php echo $__env->make("_particles.footer", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <!-- Start scrollUp  -->
     <div id="return-to-top">
@@ -99,7 +97,7 @@
     <!-- all js here -->
     <script src="<?php echo asset('cooltheme/js/jquery.min.js'); ?>"></script>
     <!-- jquery latest version -->
-    <script src="<?php echo asset('cooltheme/js/jquery.min.js'); ?>"></script>
+    <script src="<?php echo asset('counterupooltheme/js/jquery.min.js'); ?>"></script>
      <!-- jquery-ui js -->
     <script src="<?php echo asset('cooltheme/js/jquery-ui.min.js'); ?>"></script>
     <!-- bootstrap js -->
@@ -125,6 +123,7 @@
     <script src="<?php echo asset('cooltheme/js/main.js'); ?>"></script>
     <script src="<?php echo asset('/assets/js/plugins.js'); ?>"></script>
     <script src="<?php echo asset('/assets/js/app.min.js'); ?>"></script>
+    
     <?php echo $__env->yieldContent("footer"); ?>
     <?php echo $__env->make('.errors.swalerror', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
