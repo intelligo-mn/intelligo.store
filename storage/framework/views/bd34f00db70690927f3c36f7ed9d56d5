@@ -1,0 +1,154 @@
+<header id="header" class="white-header">
+   <div class="container-fluid">
+      <div class="logo">
+         <a href="<?php echo e(action('IndexController@index')); ?>">
+         <!-- <img class="normal" src="<?php echo asset('travel/img/logos/logo.svg'); ?>" alt="Entrada"> -->
+         TravelToMongolia
+       <!--   <img class="gray-logo" src="<?php echo asset('travel/img/logos/logo-gray.svg'); ?>" alt="Entrada"> -->
+         </a>
+      </div>
+      <nav class="navbar navbar-default">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle nav-opener" data-toggle="collapse" data-target="#nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+         </div>
+         <div class="collapse navbar-collapse" id="nav">
+            <ul class="nav navbar-nav">
+               <li>
+                  <a href="<?php echo e(action('IndexController@index')); ?>" data-type="<?php echo e(action('IndexController@index')); ?>"><?php echo e(trans('index.home')); ?><b class="icon-angle-down"></b></a>
+                     
+               </li>
+
+                <?php foreach(\App\Pages::where('footer', '1')->
+                where("lang", \Session::get('locale'))->get() as $page): ?>
+                    <li> <a href="<?php echo e(action('PagesController@showpage', [$page->slug ])); ?>" title="<?php echo e($page->title); ?>"><?php echo e($page->title); ?></a></li>
+                <?php endforeach; ?>
+            
+                <?php foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+                where("lang", \Session::get('locale'))->
+                where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys): ?>
+                  <li>
+                     <a href="<?php echo e(url($categorys->name_slug)); ?>" data-type="<?php echo e($categorys->id); ?>"><?php echo e($categorys->name); ?> <b class="icon-angle-down"></b></a>
+                        
+                  </li>
+                <?php endforeach; ?>
+                <li>
+                   <a href="<?php echo e(action('ContactController@index')); ?>"><?php echo e(trans('contact.contact')); ?><b class="icon-angle-down"></b></a>
+                </li>
+                <li class="dropdown hidden-xs hidden-sm v-divider">
+                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="icon icon-user"></span>
+                  </a>
+
+                  <?php if(!Auth::check()): ?>
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                            <a href="/login"><?php echo e(trans('index.login')); ?></a>
+                       </li>
+                     </ul>
+                  </div>
+                  
+                  <?php endif; ?>
+                  <?php if(Auth::check()): ?>
+                  <div class="dropdown-menu">
+                     <ul>
+                        <li>
+                           <a style="display:block;font-size:16px;font-weight: 600"><?php echo e(Auth::user()->username); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.myprofile')); ?></a>
+                       </li>
+                       <!-- <li>
+                           <a href="<?php echo e(action('UsersController@followfeed', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('updates.feedposts')); ?></a>
+                       </li> -->
+                    <!--    <li>
+                           <a href="<?php echo e(action('UsersController@draftposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.draft')); ?></a>
+                       </li>
+                       <li>
+                           <a href="<?php echo e(action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.trash')); ?></a>
+                       </li> -->
+                       <li>
+                           <a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.settings')); ?></a>
+                       </li>
+                       <?php if(Auth::user()->usertype=='Admin'): ?>
+                           <li>
+                               <a href="/admin"><?php echo e(trans('index.adminp')); ?></a>
+                           </li>
+                       <?php endif; ?>
+                       <li>
+                           <a href="<?php echo e(action('Auth\AuthController@logout')); ?>"><?php echo e(trans('index.logout')); ?></a>
+                       </li>
+                     </ul>
+                  </div>
+                  <?php endif; ?>
+               </li>
+             
+                <li class="dropdown hidden-xs hidden-sm last-dropdown v-divider">
+                  <a href="#">
+                    <span class="text">
+                    <?php if(Session::get ('locale') == 'en'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">
+                    <?php elseif(Session::get ('locale') == 'mn'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">
+                    <?php elseif(Session::get ('locale') == 'zh'): ?>
+                      <img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="China">
+                    <?php endif; ?> 
+                    <?php echo e(\Config::get('app.language.'.$DB_USER_LANG)['name']); ?>
+
+                    </span> 
+                    <span class="icon-angle-down"></span>
+                  </a>
+                   <div class="dropdown-menu dropdown-sm">
+                      <div class="drop-wrap lang-wrap">
+                         <div class="lang-row">
+                            <div class="lang-col">
+                              <a href="/selectlanguge/en">
+
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/en.svg'); ?>" alt="English">  English</span>
+                               </a>
+                            </div>
+                        </div>
+                        <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/zh">
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/cn.svg'); ?>" alt="English">  简体中文</span>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="lang-row">
+                            <div class="lang-col">
+                               <a href="/selectlanguge/mn">
+                               <span class="text"><img width="24px" height="24px" src="<?php echo asset('assets/img/mn.svg'); ?>" alt="Mongolia">  Монгол хэл</span>
+                               </a>
+                            </div>
+                         </div>
+                          
+                      </div>
+                   </div>
+               </li>
+               <li class="visible-md visible-lg nav-visible v-divider"><a href="#" class="search-opener"><span class="icon icon-search"></span></a></li>
+            </ul>
+         </div>
+      </nav>
+   </div>
+   <form class="search-form" action="#">
+      <fieldset>
+         <a href="#" class="search-opener hidden-md hidden-lg">
+         <span class="icon-search"></span>
+         </a>
+         <div class="search-wrap">
+            <a href="#" class="search-opener close">
+            <span class="icon-cross"></span>
+            </a>
+            <div class="trip-form trip-form-v2 trip-search-main">
+              
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</header>
