@@ -1,6 +1,6 @@
 <p align="center">
 </a><br>
-	<b>Techstar CMS</b>
+    <b>Techstar CMS</b>
 </p>
 <p align="center">
     <a href="https://github.com/techstar-inc/techstar-cms/issues">
@@ -27,12 +27,15 @@
 Techstar Laravel Content Management System.
 </p>
 
-#### Build the webs
+### Build the webs
 
-[![Web](https://img.shields.io/badge/www.traveltomongolian.com-build-green.svg)]()
-[![Web](https://img.shields.io/badge/www.coolmongolia.com-build-green.svg)]()
-[![Web](https://img.shields.io/badge/www.silkroadmongolian.com-build-green.svg)]()
-[![Web](https://img.shields.io/badge/www.uriankhai.mn-build-green.svg)]()
+[![Web](https://img.shields.io/badge/web-www.traveltomongolian.com-brightgreen.svg?style=for-the-badge)]()
+
+[![Web](https://img.shields.io/badge/web-www.coolmongolia.com-brightgreen.svg?style=for-the-badge)]()
+
+[![Web](https://img.shields.io/badge/web-www.silkroadmongolian.com-red.svg?style=for-the-badge)]()
+
+[![Web](https://img.shields.io/badge/web-www.uriankhai.mn-green.svg?style=for-the-badge)]()
 
 #### Continuous Delivery
 
