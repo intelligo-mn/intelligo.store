@@ -29,7 +29,7 @@ Techstar Laravel Content Management System.
 
 ### Build the webs
 
-[![Web](https://img.shields.io/badge/web-www.traveltomongolian.com-brightgreen.svg?style=flat-square)](http://www.traveltomongolian.com)
+[![Web](https://img.shields.io/badge/web-www.traveltomongolia.net-brightgreen.svg?style=flat-square)](http://www.traveltomongolia.net)
 
 [![Web](https://img.shields.io/badge/web-www.coolmongolia.com-brightgreen.svg?style=flat-square)](http://www.coolmongolia.com)
 
