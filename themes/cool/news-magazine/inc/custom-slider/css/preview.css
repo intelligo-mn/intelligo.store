@@ -1,0 +1,215 @@
+/*
+Skin Name: Nivo Slider Default Theme
+Skin URI: http://nivo.dev7studios.com
+Description: The default skin for the Nivo Slider.
+Version: 1.3
+Author: Gilbert Pellegrom
+Author URI: http://dev7studios.com
+Supports Thumbs: true
+*/
+/* -------------------------------------
+preview-1 
+---------------------------------------- */
+.preview-1 .nivoSlider {
+	position:relative;
+	background: url(../img/loading.gif) no-repeat 50% 50%;
+}
+.preview-1 .nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.preview-1 .nivoSlider a {
+	border:0;
+	display:block;
+}
+
+.preview-1 .nivo-controlNav {
+	text-align: center;
+	padding: 20px 0;
+}
+.preview-1 .nivo-controlNav a {
+	display:inline-block;
+	width:22px;
+	height:22px;
+	background:url(../img/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin: 0 2px;
+}
+.preview-1 .nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.preview-1 .nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(../img/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	opacity: 1;
+	-webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+.preview-1:hover .nivo-directionNav a { opacity: 1; }
+.preview-1 a.nivo-nextNav {
+	background-position:-30px 0;
+	right:15px;
+}
+.preview-1 a.nivo-prevNav {
+	left:15px;
+}
+.preview-1 .nivo-caption {
+    font-family: Helvetica, Arial, sans-serif;
+}
+.preview-1 .nivo-caption a {
+    color:#fff;
+    border-bottom:1px dotted #fff;
+}
+.preview-1 .nivo-caption a:hover {
+    color:#fff;
+}
+
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled {
+	width: 100%;
+}
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled a {
+	width: auto;
+	height: auto;
+	background: none;
+	margin-bottom: 5px;
+}
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled img {
+	display: block;
+	width: 120px;
+	height: auto;
+}
+.preview-1 .nivo-controlNav {
+    position: relative;
+    z-index: 99999;
+    bottom: 68px;
+}
+.preview-1 .nivo-controlNav a {
+	border:5px solid #fff;
+	display: inline-block;
+	height:18px;
+	margin: 0 5px;
+	text-indent: -9999px;
+	width:18px;
+	line-height: 8px;
+	background: #3c3c3c;
+	cursor: pointer;
+	position: relative;
+	z-index: 9;
+	border-radius: 100%;
+	opacity: 1;
+	z-index: 999;
+}
+.preview-1:hover .nivo-controlNav a{
+  opacity: 1;
+  z-index: 999999;
+}
+.preview-1 .nivo-controlNav a:hover, .preview-1 .nivo-controlNav a.active {
+    background: #000;
+    cursor: pointer;
+}
+/* -------------------------------------
+preview-2
+---------------------------------------- */
+.preview-2 .nivoSlider:hover .nivo-directionNav a.nivo-prevNav {
+  left: 15px;
+}
+.preview-2 .nivoSlider:hover .nivo-directionNav a.nivo-nextNav{
+  right: 65px;
+}
+.preview-2 .nivoSlider .nivo-directionNav a.nivo-prevNav {
+  left:0px;
+  font-size: 0;
+}
+.preview-2 .nivoSlider .nivo-directionNav a.nivo-nextNav {
+  right: 50px;
+    font-size: 0;
+}
+.preview-2 .nivo-directionNav a.nivo-prevNav:hover:before{
+  background:#981313;
+  color: #ffffff;
+}
+.preview-2 .nivo-directionNav a.nivo-prevNav:before{
+  background:rgba(255, 255, 255, 0.1);
+  content: "\f053";
+  font: normal normal normal 14px/1 FontAwesome;
+  color: #0070aa;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 400;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 45%;
+  transition: all 300ms ease-in 0s;
+  width: 50px;
+  z-index: 9;
+  border-radius:0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+}
+.preview-2 .nivo-directionNav a.nivo-nextNav:hover:before{
+  background:#981313;
+  color: #ffffff;
+}
+.preview-2 .nivo-directionNav a.nivo-nextNav:before{
+  background:rgba(255, 255, 255, 0.1);
+  content: "\f054";
+  font: normal normal normal 14px/1 FontAwesome;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 400;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 45%;
+  transition: all 300ms ease-in 0s;
+  width: 50px;
+  z-index: 9;
+  border-radius:5px 0px 0 5px;
+  -moz-border-radius: 5px 0px 0 5px;
+  -webkit-border-radius: 5px 0px 0 5px;
+}
+.preview-2 .nivo-controlNav {
+    position: relative;
+    z-index: 99999;
+    bottom: 100px;
+    display: none;
+}
+.preview-2 .nivo-controlNav a {
+	background: #d32f2f none repeat scroll 0 0;
+	border: 2px solid #ffffff;
+	border-radius: 6px;
+	cursor: pointer;
+	display: inline-block;
+	height: 8px;
+	line-height: 15px;
+	margin: 0 5px;
+	opacity: 1;
+	position: relative;
+	text-indent: -9999px;
+	width: 25px;
+	z-index: 999;
+}
+.preview-2:hover .nivo-controlNav a{
+  opacity: 1;
+  z-index: 999999;
+}
+.preview-2 .nivo-controlNav a:hover, .preview-2 .nivo-controlNav a.active {
+    background: #ffffff;
+    cursor: pointer;
+}
