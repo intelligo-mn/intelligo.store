@@ -147,7 +147,7 @@ body {
   padding-right: 0;
 }
 .separator-large {
-  margin: 50px 0;
+  margin: 50px 0 0 0;
 }
 .separator-large2 {
   margin-top: 50px;
@@ -1999,6 +1999,7 @@ span.cat i {
 .sidebar ul {
   margin: 0;
   padding: 0;
+  margin-top: 5px;
 }
 .sidebar ul li {
   list-style: none;
