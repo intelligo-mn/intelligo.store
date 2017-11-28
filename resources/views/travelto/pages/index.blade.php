@@ -142,7 +142,7 @@
        </section>
        <aside class="special-block">
           <div class="container">
-             <p class="special-text">{{ trans('index.callnow') }} <strong><a href="tel:94968096">+976 94968096</a></strong></p>
+             <p class="special-text">{{ trans('index.callnow') }} <strong><a href="#">{{ trans('travel.mobile_text') }}</a></strong></p>
           </div>
        </aside>
        <div class="content-block content-spacing">
