@@ -29,13 +29,13 @@ Techstar Laravel Content Management System.
 
 ### Build the webs
 
-[![Web](https://img.shields.io/badge/web-www.traveltomongolian.com-brightgreen.svg?style=flat-square)](www.traveltomongolian.com)
+[![Web](https://img.shields.io/badge/web-www.traveltomongolian.com-brightgreen.svg?style=flat-square)](http://www.traveltomongolian.com)
 
-[![Web](https://img.shields.io/badge/web-www.coolmongolia.com-brightgreen.svg?style=flat-square)](www.coolmongolia.com)
+[![Web](https://img.shields.io/badge/web-www.coolmongolia.com-brightgreen.svg?style=flat-square)](http://www.coolmongolia.com)
 
-[![Web](https://img.shields.io/badge/web-www.silkroadmongolian.com-red.svg?style=flat-square)](www.silkroadmongolian.com)
+[![Web](https://img.shields.io/badge/web-www.silkroadmongolian.com-red.svg?style=flat-square)](http://www.silkroadmongolian.com)
 
-[![Web](https://img.shields.io/badge/web-www.uriankhai.mn-green.svg?style=flat-square)](www.uriankhai.mn)
+[![Web](https://img.shields.io/badge/web-www.uriankhai.mn-green.svg?style=flat-square)](http://www.uriankhai.mn)
 
 #### Continuous Delivery
 
