@@ -389,7 +389,7 @@
                     <div class="hot-news popular-related">
                         <ul class="news-post">
                             @if(isset($lastTrending))
-                                @foreach($lastTrending->slice(1, 4) as $item)
+                                @foreach($lastTrending->slice(1, 3) as $item)
 
                                 <li>
                                     <div class="row">
