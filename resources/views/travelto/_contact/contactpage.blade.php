@@ -102,19 +102,19 @@
             <div class="col-sm-4">
                <span class="tel has-border">
                <span class="icon-tel-big"></span>
-               <a href="tel:02085775771">020 8577 5771</a>
+               <a href="#">{{ trans('travel.mobile_text') }}</a>
                </span>
             </div>
             <div class="col-sm-4">
                <span class="tel has-border bg-blue">
                <span class="icon-fax-big"></span>
-               <a href="tel:02085775771">info@triptomongolian.com</a>
+               <a href="#">info@triptomongolian.com</a>
                </span>
             </div>
             <div class="col-sm-4">
                <span class="tel has-border">
                <span class="icon-tel"></span>
-               <a href="tel:02085775771">020 8577 5771</a>
+               <a href="#">{{ trans('travel.mobile_text') }}</a>
                </span>
             </div>
          </div>
