@@ -27,6 +27,13 @@
 Techstar Laravel Content Management System.
 </p>
 
+#### Build the webs
+
+[![Web](https://img.shields.io/badge/www.traveltomongolian.com-build-green.svg)]()
+[![Web](https://img.shields.io/badge/www.coolmongolia.com-build-green.svg)]()
+[![Web](https://img.shields.io/badge/www.silkroadmongolian.com-build-green.svg)]()
+[![Web](https://img.shields.io/badge/www.uriankhai.mn-build-green.svg)]()
+
 #### Continuous Delivery
 
 Get back your time with Buddy’s delivery pipelines that eliminate repeatable tasks in your daily development.
