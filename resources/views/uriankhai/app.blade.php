@@ -22,16 +22,16 @@
     <meta name="twitter:url" content="@yield('head_url', url())">
     <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
-    
+
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="../../../../fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fontawesome-stars-o.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive-style.css">
-    <link rel="stylesheet" href="css/colors/theme-color-1.css" id="changeColorScheme">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/font-awesome.min.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/bootstrap.min.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/fontawesome-stars-o.min.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/responsive-style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/colors/theme-color-1.css')!!}" id="changeColorScheme">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/custom.css')!!}">
     <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
@@ -1891,22 +1891,22 @@
     </div>
     <div id="backToTop"> <a href="#"><i class="fa fa-angle-double-up"></i></a> </div>
     <script src="../../../cdn-cgi/scripts/0e574bed/cloudflare-static/email-decode.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.sticky.min.js"></script>
-    <script src="js/jquery.hoverIntent.min.js"></script>
-    <script src="js/jquery.marquee.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/resizesensor.min.js"></script>
-    <script src="js/theia-sticky-sidebar.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.barrating.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/retina.min.js"></script>
+    <script src="{!! asset('uriankhai/js/jquery-3.2.1.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/bootstrap.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.sticky.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.hoverIntent.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.marquee.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.validate.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/isotope.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/resizesensor.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/theia-sticky-sidebar.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.zoom.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.barrating.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/jquery.countdown.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/retina.min.js')!!}"></script>
     <script src="../../../../external.html?link=https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
-    <script src="js/color-switcher.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{!! asset('uriankhai/js/color-switcher.min.js')!!}"></script>
+    <script src="{!! asset('uriankhai/js/main.js')!!}"></script>
 </body>
 
 </html>
