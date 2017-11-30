@@ -101,6 +101,25 @@
     <script src="../../../../external.html?link=https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{!! asset('uriankhai/js/color-switcher.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/main.js')!!}"></script>
+
+    <script>!function(e,t,r,n,c,h,o){function a(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return r}try{for(c=e.getElementsByTagName('a'),o='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(h=c[n]).href.indexOf(o))>-1&&(h.href='mailto:'+a(h.href,t+o.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(h=c[n]).parentNode.replaceChild(e.createTextNode(a(h.getAttribute('data-cfemail'),0)),h)}catch(e){}}catch(e){}}(document);</script>
+
+    <script>
+        $( document ).ready(function() {
+            App.init();
+        });
+    </script>
+    @yield("footer")
+    @include('.errors.swalerror')
+
+    <div id="auth-modal" class="modal auth-modal"></div>
+
+    <div class="hide">
+        <input name="_requesttoken" id="requesttoken" type="hidden" value="{{ csrf_token() }}" />
+    </div>
+
+    {!!  getcong('footercode')  !!}
+
 </body>
 
 </html>
