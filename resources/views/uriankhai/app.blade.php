@@ -78,9 +78,9 @@
             <div class="header--mainbar">
                 <div class="container">
                     <div class="header--logo float--left float--sm-none text-sm-center">
-                        <h1 class="h1"> <a href="home-1.html" class="btn-link"> <img src="img/logo.png" alt="USNews Logo"> <span class="hidden">USNews Logo</span> </a> </h1> </div>
+                        <h1 class="h1"> <a href="home-1.html" class="btn-link"> <img src="uriankhai/img/logo.png" alt="USNews Logo"> <span class="hidden">USNews Logo</span> </a> </h1> </div>
                     <div class="header--ad float--right float--sm-none hidden-xs">
-                        <a href="#"> <img src="img/ads-img/ad-728x90-01.jpg" alt="Advertisement"> </a>
+                        <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-01.jpg" alt="Advertisement"> </a>
                     </div>
                 </div>
             </div>
@@ -144,16 +144,16 @@
                                                     <ul class="row" data-ajax-content="inner">
                                                         <li class="col-md-3">
                                                             <div class="img">
-                                                                <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-01.jpg" alt=""> </a> <a href="#" class="cat">Beach</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                                <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-01.jpg" alt=""> </a> <a href="#" class="cat">Beach</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                         <li class="col-md-3">
                                                             <div class="img">
-                                                                <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-02.jpg" alt=""> </a> <a href="#" class="cat">News</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                                <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-02.jpg" alt=""> </a> <a href="#" class="cat">News</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                         <li class="col-md-3">
                                                             <div class="img">
-                                                                <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-03.jpg" alt=""> </a> <a href="#" class="cat">Ice Hiking</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                                <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-03.jpg" alt=""> </a> <a href="#" class="cat">Ice Hiking</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                         <li class="col-md-3">
                                                             <div class="img">
-                                                                <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-04.jpg" alt=""> </a> <a href="#" class="cat">Mountain</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                                <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-04.jpg" alt=""> </a> <a href="#" class="cat">Mountain</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                     </ul>
                                                     <div class="preloader bg--color-0--b" data-preloader="1">
                                                         <div class="preloader--inner"></div>
@@ -181,16 +181,16 @@
                                             <ul class="row" data-ajax-content="inner">
                                                 <li class="col-md-3">
                                                     <div class="img">
-                                                        <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-01.jpg" alt=""> </a> <a href="#" class="cat">Beach</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                        <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-01.jpg" alt=""> </a> <a href="#" class="cat">Beach</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                 <li class="col-md-3">
                                                     <div class="img">
-                                                        <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-02.jpg" alt=""> </a> <a href="#" class="cat">News</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                        <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-02.jpg" alt=""> </a> <a href="#" class="cat">News</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                 <li class="col-md-3">
                                                     <div class="img">
-                                                        <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-03.jpg" alt=""> </a> <a href="#" class="cat">Ice Hiking</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                        <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-03.jpg" alt=""> </a> <a href="#" class="cat">Ice Hiking</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                                 <li class="col-md-3">
                                                     <div class="img">
-                                                        <a href="news-single-v1.html" class="thumb"> <img src="img/megamenu-img/post-04.jpg" alt=""> </a> <a href="#" class="cat">Mountain</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
+                                                        <a href="news-single-v1.html" class="thumb"> <img src="uriankhai/img/megamenu-img/post-04.jpg" alt=""> </a> <a href="#" class="cat">Mountain</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a> </div><a href="news-single-v1.html" class="title">It is a long established fact that a reader will be distracted by</a> </li>
                                             </ul>
                                             <div class="preloader bg--color-0--b" data-preloader="1">
                                                 <div class="preloader--inner"></div>
@@ -406,7 +406,7 @@
                             <div class="col-md-6">
                                 <div class="post--item post--layout-1 post--title-larger">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/banner-01.jpg" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/banner-01.jpg" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                         <div class="post--map">
                                             <p class="btn-link"><i class="fa fa-map-o"></i>Location in Google Map</p>
                                             <div class="map--wrapper">
@@ -429,7 +429,7 @@
                                     <div class="col-xs-6 col-xss-12">
                                         <div class="post--item post--layout-1 post--title-large">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/banner-02.jpg" alt=""></a> <a href="#" class="cat">Travel</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/banner-02.jpg" alt=""></a> <a href="#" class="cat">Travel</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Corey I. Dean</a></li>
@@ -444,7 +444,7 @@
                                     <div class="col-xs-6 hidden-xss">
                                         <div class="post--item post--layout-1 post--title-large">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/banner-03.jpg" alt=""></a> <a href="#" class="cat">Education</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/banner-03.jpg" alt=""></a> <a href="#" class="cat">Education</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                                 <div class="post--map">
                                                     <p class="btn-link"><i class="fa fa-map-o"></i>Location in Google Map</p>
                                                     <div class="map--wrapper">
@@ -465,7 +465,7 @@
                                     <div class="col-sm-12 hidden-sm hidden-xs">
                                         <div class="post--item post--layout-1 post--title-larger">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/banner-04.jpg" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/banner-04.jpg" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Balam</a></li>
@@ -499,7 +499,7 @@
                                             <li class="col-xs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/world-news-01.jpg" alt=""></a> <a href="#" class="cat">War</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/world-news-01.jpg" alt=""></a> <a href="#" class="cat">War</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -516,7 +516,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/world-news-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/world-news-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Hantu Raya</a></li>
@@ -531,7 +531,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/world-news-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/world-news-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -548,7 +548,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/world-news-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/world-news-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -563,7 +563,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/world-news-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/world-news-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Hantu Raya</a></li>
@@ -594,7 +594,7 @@
                                             <li>
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/technology-01.jpg" alt=""></a> <a href="#" class="cat">Computer</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/technology-01.jpg" alt=""></a> <a href="#" class="cat">Computer</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bathin</a></li>
@@ -609,7 +609,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/technology-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/technology-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -624,7 +624,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/technology-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/technology-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -639,7 +639,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/technology-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/technology-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -654,7 +654,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/technology-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/technology-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -674,7 +674,7 @@
                                 </div>
                                 <div class="col-md-12 ptop--30 pbottom--30">
                                     <div class="ad--space">
-                                        <a href="#"> <img src="img/ads-img/ad-728x90-01.jpg" alt="" class="center-block"> </a>
+                                        <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-01.jpg" alt="" class="center-block"> </a>
                                     </div>
                                 </div>
                                 <div class="col-md-12 ptop--30 pbottom--30">
@@ -690,7 +690,7 @@
                                             <li class="col-md-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/finance-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Vassago</a></li>
@@ -709,7 +709,7 @@
                                                     <li class="col-xs-6">
                                                         <div class="post--item post--layout-2">
                                                             <div class="post--img">
-                                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/finance-02.jpg" alt=""></a>
+                                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-02.jpg" alt=""></a>
                                                                 <div class="post--info">
                                                                     <ul class="nav meta">
                                                                         <li><a href="#">Zepar</a></li>
@@ -724,7 +724,7 @@
                                                     <li class="col-xs-6">
                                                         <div class="post--item post--layout-2">
                                                             <div class="post--img">
-                                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/finance-03.jpg" alt=""></a>
+                                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-03.jpg" alt=""></a>
                                                                 <div class="post--info">
                                                                     <ul class="nav meta">
                                                                         <li><a href="#">Demiurge</a></li>
@@ -741,7 +741,7 @@
                                                     <li class="col-xs-6">
                                                         <div class="post--item post--layout-2">
                                                             <div class="post--img">
-                                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/finance-04.jpg" alt=""></a>
+                                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-04.jpg" alt=""></a>
                                                                 <div class="post--info">
                                                                     <ul class="nav meta">
                                                                         <li><a href="#">Demiurge</a></li>
@@ -756,7 +756,7 @@
                                                     <li class="col-xs-6">
                                                         <div class="post--item post--layout-2">
                                                             <div class="post--img">
-                                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/finance-05.jpg" alt=""></a>
+                                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-05.jpg" alt=""></a>
                                                                 <div class="post--info">
                                                                     <ul class="nav meta">
                                                                         <li><a href="#">Zepar</a></li>
@@ -789,7 +789,7 @@
                                             <li class="col-xs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/politics-01.jpg" alt=""></a> <a href="#" class="cat">Election</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-01.jpg" alt=""></a> <a href="#" class="cat">Election</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -806,7 +806,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/politics-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Hantu Raya</a></li>
@@ -821,7 +821,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/politics-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -838,7 +838,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/politics-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -853,7 +853,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/politics-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Hantu Raya</a></li>
@@ -884,7 +884,7 @@
                                             <li>
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/sports-01.jpg" alt=""></a> <a href="#" class="cat">Basketball</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-01.jpg" alt=""></a> <a href="#" class="cat">Basketball</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bathin</a></li>
@@ -899,7 +899,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/sports-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -914,7 +914,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/sports-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -929,7 +929,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/sports-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -944,7 +944,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/sports-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bune</a></li>
@@ -969,7 +969,7 @@
                         <div class="sticky-content-inner">
                             <div class="widget">
                                 <div class="ad--widget">
-                                    <a href="#"> <img src="img/ads-img/ad-300x250-1.jpg" alt=""> </a>
+                                    <a href="#"> <img src="uriankhai/img/ads-img/ad-300x250-1.jpg" alt=""> </a>
                                 </div>
                             </div>
                             <div class="widget">
@@ -1032,7 +1032,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/news-widget-01.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-01.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Ninurta</a></li>
@@ -1047,7 +1047,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/news-widget-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Orcus</a></li>
@@ -1062,7 +1062,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/news-widget-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Rahab</a></li>
@@ -1077,7 +1077,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/news-widget-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Tannin</a></li>
@@ -1100,7 +1100,7 @@
                                 <div class="widget--title">
                                     <h2 class="h4">Advertisement</h2> <i class="icon fa fa-bullhorn"></i> </div>
                                 <div class="ad--widget">
-                                    <a href="#"> <img src="img/ads-img/ad-300x250-2.jpg" alt=""> </a>
+                                    <a href="#"> <img src="uriankhai/img/ads-img/ad-300x250-2.jpg" alt=""> </a>
                                 </div>
                             </div>
                         </div>
@@ -1119,7 +1119,7 @@
                             <li class="col-md-8">
                                 <div class="post--item post--layout-1 post--type-video post--title-large">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/audio-video-01.jpg" alt=""></a> <a href="#" class="cat">Wave</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/audio-video-01.jpg" alt=""></a> <a href="#" class="cat">Wave</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
                                         <div class="post--info">
                                             <ul class="nav meta">
                                                 <li><a href="#">Succubus</a></li>
@@ -1136,7 +1136,7 @@
                                     <li>
                                         <div class="post--item post--type-audio post--layout-3">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/audio-video-02.jpg" alt=""></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/audio-video-02.jpg" alt=""></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Maclaan John</a></li>
@@ -1151,7 +1151,7 @@
                                     <li>
                                         <div class="post--item post--type-video post--layout-3">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/audio-video-03.jpg" alt=""></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/audio-video-03.jpg" alt=""></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Maclaan John</a></li>
@@ -1166,7 +1166,7 @@
                                     <li>
                                         <div class="post--item post--type-video post--layout-3">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/audio-video-04.jpg" alt=""></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/audio-video-04.jpg" alt=""></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Maclaan John</a></li>
@@ -1181,7 +1181,7 @@
                                     <li>
                                         <div class="post--item post--type-audio post--layout-3">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="img/home-img/audio-video-05.jpg" alt=""></a>
+                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/audio-video-05.jpg" alt=""></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Maclaan John</a></li>
@@ -1202,7 +1202,7 @@
                     </div>
                 </div>
                 <div class="ad--space pd--30-0">
-                    <a href="#"> <img src="img/ads-img/ad-970x90.jpg" alt="" class="center-block"> </a>
+                    <a href="#"> <img src="uriankhai/img/ads-img/ad-970x90.jpg" alt="" class="center-block"> </a>
                 </div>
                 <div class="row">
                     <div class="main--content col-md-8 col-sm-7" data-sticky-content="true">
@@ -1221,7 +1221,7 @@
                                             <li>
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/health-and-fitness-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Bathin</a></li>
@@ -1236,7 +1236,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/health-and-fitness-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Maclaan John</a></li>
@@ -1251,7 +1251,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/health-and-fitness-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Ziminiar</a></li>
@@ -1266,7 +1266,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/health-and-fitness-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Vanth</a></li>
@@ -1281,7 +1281,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/health-and-fitness-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Vanth</a></li>
@@ -1312,7 +1312,7 @@
                                             <li class="col-xs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/lifestyle-01.jpg" alt=""></a> <a href="#" class="cat">Fashion</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-01.jpg" alt=""></a> <a href="#" class="cat">Fashion</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1329,7 +1329,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/lifestyle-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1344,7 +1344,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/lifestyle-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1361,7 +1361,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/lifestyle-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1376,7 +1376,7 @@
                                             <li class="col-xs-6">
                                                 <div class="post--item post--layout-2">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/lifestyle-05.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-05.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1407,7 +1407,7 @@
                                             <li class="col-md-4 col-xs-6 col-xxs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/food-and-resturent-01.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-01.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1424,7 +1424,7 @@
                                             <li class="col-md-4 col-xs-6 col-xxs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/food-and-resturent-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1439,7 +1439,7 @@
                                             <li class="col-md-4 hidden-sm hidden-xs">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/food-and-resturent-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1470,7 +1470,7 @@
                                             <li class="col-md-12">
                                                 <div class="post--item post--layout-1 post--title-large">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/photo-gallery-01.jpg" alt=""></a> <a href="#" class="cat">Serfer</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-01.jpg" alt=""></a> <a href="#" class="cat">Serfer</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1485,7 +1485,7 @@
                                             <li class="col-md-4 col-xs-6 col-xxs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/photo-gallery-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1500,7 +1500,7 @@
                                             <li class="col-md-4 col-xs-6 col-xxs-12">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/photo-gallery-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1515,7 +1515,7 @@
                                             <li class="col-md-4 hidden-sm hidden-xs">
                                                 <div class="post--item post--layout-1">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/home-img/photo-gallery-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Astaroth</a></li>
@@ -1618,10 +1618,10 @@
                                 <div class="ad--widget">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <a href="#"> <img src="img/ads-img/ad-150x150-1.jpg" alt=""> </a>
+                                            <a href="#"> <img src="uriankhai/img/ads-img/ad-150x150-1.jpg" alt=""> </a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <a href="#"> <img src="img/ads-img/ad-150x150-2.jpg" alt=""> </a>
+                                            <a href="#"> <img src="uriankhai/img/ads-img/ad-150x150-2.jpg" alt=""> </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1639,7 +1639,7 @@
                                         <ul class="nav" data-ajax-content="inner">
                                             <li>
                                                 <div class="post--item post--layout-3">
-                                                    <div class="post--img"> <span class="thumb"><img src="img/widgets-img/readers-opinion-01.png" alt=""></span>
+                                                    <div class="post--img"> <span class="thumb"><img src="uriankhai/img/widgets-img/readers-opinion-01.png" alt=""></span>
                                                         <div class="post--info">
                                                             <div class="title">
                                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
@@ -1653,7 +1653,7 @@
                                             </li>
                                             <li>
                                                 <div class="post--item post--layout-3">
-                                                    <div class="post--img"> <span class="thumb"><img src="img/widgets-img/readers-opinion-02.png" alt=""></span>
+                                                    <div class="post--img"> <span class="thumb"><img src="uriankhai/img/widgets-img/readers-opinion-02.png" alt=""></span>
                                                         <div class="post--info">
                                                             <div class="title">
                                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
@@ -1667,7 +1667,7 @@
                                             </li>
                                             <li>
                                                 <div class="post--item post--layout-3">
-                                                    <div class="post--img"> <span class="thumb"><img src="img/widgets-img/readers-opinion-03.png" alt=""></span>
+                                                    <div class="post--img"> <span class="thumb"><img src="uriankhai/img/widgets-img/readers-opinion-03.png" alt=""></span>
                                                         <div class="post--info">
                                                             <div class="title">
                                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
@@ -1700,7 +1700,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/editors-choice-01.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-01.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Ninurta</a></li>
@@ -1715,7 +1715,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/editors-choice-02.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-02.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Orcus</a></li>
@@ -1730,7 +1730,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/editors-choice-03.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-03.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Rahab</a></li>
@@ -1745,7 +1745,7 @@
                                             <li>
                                                 <div class="post--item post--layout-3">
                                                     <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="img/widgets-img/editors-choice-04.jpg" alt=""></a>
+                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-04.jpg" alt=""></a>
                                                         <div class="post--info">
                                                             <ul class="nav meta">
                                                                 <li><a href="#">Tannin</a></li>
