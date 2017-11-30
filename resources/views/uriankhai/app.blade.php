@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="{{ Lang::getLocale() }}">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>USNews - Multipurpose News, Magazine and Blog HTML5 Template</title>
-    <meta name="author" content="ThemeLooks">
-    <meta name="description" content="USNews - Multipurpose News and Magazine Template">
-    <meta name="keywords" content="news, newspaper, magazine, blog, post, article, editorial, publishing, modern, responsive, html5, template">
+    <title>@yield('head_title', getcong('sitetitle'))</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="@yield('head_description', getcong('sitemetadesc'))" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@yield('head_title',  getcong('sitetitle'))" />
+    <meta property="og:description" content="@yield('head_description', getcong('sitemetadesc'))" />
+    
+    <meta property="og:image" content="@yield('head_image', url('/assets/img/flogo.png'))" />
+    <meta property="og:url" content="@yield('head_url', url())" />
+
+    <meta name="twitter:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="@yield('head_url', url())">
+    <meta name="twitter:title" content="@yield('head_title',  getcong('sitetitle'))">
+    <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
+    
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="../../../../fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
     <link rel="stylesheet" href="css/font-awesome.min.css">
