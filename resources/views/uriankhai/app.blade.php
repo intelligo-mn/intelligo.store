@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{!! asset('uriankhai/css/font-awesome.min.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/bootstrap.min.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/fontawesome-stars-o.min.css')!!}">
-    <link rel="stylesheet" href="{!! asset('uriankhai/style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('uriankhai/css/style.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/responsive-style.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/colors/theme-color-1.css')!!}" id="changeColorScheme">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/custom.css')!!}">
