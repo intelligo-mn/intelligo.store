@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
 
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
 
     <link rel="stylesheet" href="/assets/css/plugins.css">
     <link rel="stylesheet" href="/assets/css/application.css">
