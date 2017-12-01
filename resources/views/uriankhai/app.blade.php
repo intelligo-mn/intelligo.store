@@ -107,7 +107,7 @@
     <script src="{!! asset('uriankhai/js/jquery.barrating.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/jquery.countdown.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/retina.min.js')!!}"></script>
-    <script src="../../../../external.html?link=https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{!! asset('uriankhai/js/color-switcher.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/main.js')!!}"></script>
 </body>
