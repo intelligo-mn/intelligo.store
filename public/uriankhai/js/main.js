@@ -315,34 +315,34 @@
             switcherTitle: "Main Colors:&lrm;",
             switcherColors: [{
                 bgColor: "#da0000",
-                filepath: "css/colors/theme-color-1.css"
+                filepath: "uriankhai/css/colors/theme-color-1.css"
             }, {
                 bgColor: "#119ee6",
-                filepath: "css/colors/theme-color-2.css"
+                filepath: "uriankhai/css/colors/theme-color-2.css"
             }, {
                 bgColor: "#179ea8",
-                filepath: "css/colors/theme-color-3.css"
+                filepath: "uriankhai/css/colors/theme-color-3.css"
             }, {
                 bgColor: "#82b440",
-                filepath: "css/colors/theme-color-4.css"
+                filepath: "uriankhai/css/colors/theme-color-4.css"
             }, {
                 bgColor: "#f69323",
-                filepath: "css/colors/theme-color-5.css"
+                filepath: "uriankhai/css/colors/theme-color-5.css"
             }, {
                 bgColor: "#fc5143",
-                filepath: "css/colors/theme-color-6.css"
+                filepath: "uriankhai/css/colors/theme-color-6.css"
             }, {
                 bgColor: "#d48b91",
-                filepath: "css/colors/theme-color-7.css"
+                filepath: "uriankhai/css/colors/theme-color-7.css"
             }, {
                 bgColor: "#8cbeb2",
-                filepath: "css/colors/theme-color-8.css"
+                filepath: "uriankhai/css/colors/theme-color-8.css"
             }, {
                 bgColor: "#00b249",
-                filepath: "css/colors/theme-color-9.css"
+                filepath: "uriankhai/css/colors/theme-color-9.css"
             }, {
                 bgColor: "#924cf3",
-                filepath: "css/colors/theme-color-10.css"
+                filepath: "uriankhai/css/colors/theme-color-10.css"
             }],
             switcherTarget: b("#changeColorScheme")
         })
