@@ -1,4 +1,4 @@
-@extends("app")
+@extends("main")
 
 @section("content")
       <div class="posts--filter-bar style--1 hidden-xs">
