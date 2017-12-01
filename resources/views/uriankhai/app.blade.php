@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
 
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="../../../../fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
 
     <link rel="stylesheet" href="/assets/css/plugins.css">
     <link rel="stylesheet" href="/assets/css/application.css">
@@ -89,7 +89,7 @@
         </ul>
     </div>
     <div id="backToTop"> <a href="#"><i class="fa fa-angle-double-up"></i></a> </div>
-    <script src="../../../cdn-cgi/scripts/0e574bed/cloudflare-static/email-decode.min.js"></script>
+    <script src="http://ajax.cloudflare.com/cdn-cgi/scripts/78d64697/cloudflare-static/email-decode.min.js"></script>
 
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/app.min.js"></script>
