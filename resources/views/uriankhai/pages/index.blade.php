@@ -30,7 +30,8 @@
                 @foreach($lastNews as $item)
                     <li>
                         <h3 class="h3"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3> 
-                    </li>        
+                    </li>
+                            
                 @endforeach
 
             </ul>
@@ -42,27 +43,32 @@
         <div class="main--content">
             <div class="post--items post--items-1 pd--30-0">
                 <div class="row gutter--15">
-                    <div class="col-md-6">
-                        <div class="post--item post--layout-1 post--title-larger">
-                            <div class="post--img">
-                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/banner-01.jpg" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
-                                <div class="post--map">
-                                    <p class="btn-link"><i class="fa fa-map-o"></i>Location in Google Map</p>
-                                    <div class="map--wrapper">
-                                        <div data-map-latitude="23.790546" data-map-longitude="90.375583" data-map-zoom="6" data-map-marker="[[23.790546, 90.375583]]"></div>
+                    
+                    @foreach($lastFeaturestop->slice(0,1) as $item)
+                        
+                        <div class="col-md-6">
+                            <div class="post--item post--layout-1 post--title-larger">
+                                <div class="post--img">
+                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                    <div class="post--map">
+                                        <p class="btn-link"><i class="fa fa-map-o"></i>Location in Google Map</p>
+                                        <div class="map--wrapper">
+                                            <div data-map-latitude="23.790546" data-map-longitude="90.375583" data-map-zoom="6" data-map-marker="[[23.790546, 90.375583]]"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="post--info">
-                                    <ul class="nav meta">
-                                        <li><a href="#">Norma R. Hogan</a></li>
-                                        <li><a href="#">20 April 2017</a></li>
-                                    </ul>
-                                    <div class="title">
-                                        <h2 class="h4"><a href="news-single-v1.html" class="btn-link">Siriyan civil war getting righteous indignation and dislike men who are so beguiled and demoralized by the sure.</a></h2> </div>
+                                    <div class="post--info">
+                                        <ul class="nav meta">
+                                            <li><a href="#">Norma R. Hogan</a></li>
+                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                        </ul>
+                                        <div class="title">
+                                            <h2 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h2> </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    @endforeach
                     <div class="col-md-6">
                         <div class="row gutter--15">
                             <div class="col-xs-6 col-xss-12">
