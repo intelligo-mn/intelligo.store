@@ -13,11 +13,21 @@
                     <li><a href="/login"><i class="fa fm fa-user-o"></i>Login/Register</a></li>
                 </ul>
                 <ul class="header--topbar-lang nav">
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fm fa-language"></i>English<i class="fa flm fa-angle-down"></i></a>
+                    <li class="dropdown"> 
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @if(Session::get ('locale') == 'en')
+                          <img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English">
+                        @elseif(Session::get ('locale') == 'mn')
+                          <img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia">
+                        @elseif(Session::get ('locale') == 'ru')
+                          <img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="Russia">
+                        @endif 
+                        {{ \Config::get('app.language.'.$DB_USER_LANG)['name']  }}<i class="fa flm fa-angle-down"></i>
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">Spanish</a></li>
-                            <li><a href="#">French</a></li>
+                            <li><a href="/selectlanguge/en"><img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English"> English</a></li>
+                            <li><a href="/selectlanguge/ru"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English"> Russia</a></li>
+                            <li><a href="/selectlanguge/mn"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="English"> Mongolia</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -34,7 +44,7 @@
     <div class="header--mainbar">
         <div class="container">
             <div class="header--logo float--left float--sm-none text-sm-center">
-                <h1 class="h1"> <a href="home-1.html" class="btn-link"> <img src="uriankhai/img/logo.png" alt="USNews Logo"> <span class="hidden">USNews Logo</span> </a> </h1> </div>
+                <h1 class="h1"> <a href="{{ action('IndexController@index') }}" class="btn-link"> <img src="uriankhai/img/logo.png" alt="USNews Logo"> <span class="hidden">USNews Logo</span> </a> </h1> </div>
             <div class="header--ad float--right float--sm-none hidden-xs">
                 <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-01.jpg" alt="Advertisement"> </a>
             </div>
