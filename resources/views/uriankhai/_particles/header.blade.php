@@ -91,6 +91,10 @@
                             <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} </a>
                         </li>
                     @endforeach
+
+                    <li>
+                       <a href="{{ action('ContactController@index') }}">{{ trans('contact.contact') }}<b class="icon-angle-down"></b></a>
+                    </li>
                 </ul>
             </div>
             <form action="#" class="header--search-form float--right" data-form="validate">
