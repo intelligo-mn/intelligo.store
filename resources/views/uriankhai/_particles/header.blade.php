@@ -10,7 +10,24 @@
             </div>
             <div class="float--right float--xs-none text-xs-center">
                 <ul class="header--topbar-action nav">
-                    <li><a href="/login"><i class="fa fm fa-user-o"></i>Login/Register</a></li>
+                    @if(!Auth::check())
+                        <li ><a href="/login"><i class="fa fm fa-user-o"></i>{{ trans('index.login') }}</a></li>
+                    @endif
+                    @if(Auth::check())
+                        <li ><a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fm fa-user-o"></i>{{ Auth::user()->username }}</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}"> { trans('index.settings') }}</a></li>
+                               @if(Auth::user()->usertype=='Admin')
+                                    <li>
+                                        <a href="/admin">{{ trans('index.adminp') }}</a>
+                                    </li>
+                               @endif
+                                <li>
+                                    <a href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="header--topbar-lang nav">
                     <li class="dropdown"> 
