@@ -47,17 +47,23 @@
             </div>
             <div id="headerNav" class="navbar-collapse collapse float--left">
                 <ul class="header--menu-links nav navbar-nav" data-trigger="hoverIntent">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="world-news.html">Worlds News</a></li>
-                    <li><a href="national.html">National</a></li>
-                    <li><a href="financial.html">Financial</a></li>
-                    <li><a href="entertainment.html">Entertainment</a></li>
-                    <li><a href="lifestyle.html">Lifestyle</a></li>
-                    <li><a href="technology.html">Technology</a></li>
-                    <li><a href="travel.html">Travel</a></li>
-                    <li><a href="sports.html">Sports</a></li>
-                    <li><a href="#">Catagory</a></li>
-                    <li><a href="#">Pages</a></li>
+                    <li>
+                      <a href="{{ action('IndexController@index') }}" data-type="{{ action('IndexController@index') }}">{{ trans('index.home') }}</a>
+                         
+                   </li>
+
+                    @foreach(\App\Pages::where('footer', '1')->
+                    where("lang", \Session::get('locale'))->get() as $page)
+                        <li> <a href="{{ action('PagesController@showpage', [$page->slug ]) }}" title="{{ $page->title }}">{{ $page->title }}</a></li>
+                    @endforeach
+                
+                    @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->
+                        where("lang", \Session::get('locale'))->
+                        where("disabled", '0')->orderBy('order')->limit(5)->get() as $categorys)
+                        <li>
+                            <a href="{{ url($categorys->name_slug) }}" data-type="{{ $categorys->id }}">{{ $categorys->name }} </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <form action="#" class="header--search-form float--right" data-form="validate">
