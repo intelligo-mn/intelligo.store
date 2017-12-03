@@ -53,7 +53,14 @@
             <div class="navbar-custom-menu">
                 <!-- Sidebar toggle button-->
 
+                <a href="{{ url('/selectlanguge/mn') }}" style="margin-top:10px;" class="btn btn-sm pull-left"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="Mongolia"></a>
+                
+                <a href="{{ url('/selectlanguge/en') }}" style="margin-top:10px;" class="btn btn-sm pull-left"><img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English"></a>
+                
+                <a href="{{ url('/selectlanguge/ru') }}" style="margin-top:10px;" class="btn btn-sm pull-left"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="China"></a>
+                
                 <a href="{{ url('/') }}" target="_blank"  style="margin-top:10px;color:#fff!important;" class="btn btn-sm btn-success pull-left"><i class="fa fa-eye"></i>  {{ trans('admin.viewsite') }}</a>
+
                 <ul class="nav navbar-nav">
 
                     <li class="dropdown messages-menu">
@@ -132,9 +139,9 @@
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <strong>Copyright &copy; 2015 <a href="http://tortuvshin.github.io" target="_blank">Tortuvshin</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2017 <a href="http://tsastsolution.mn" target="_blank">TSAST SOLUTION</a>.</strong> All rights reserved.
         </div>
-        <b><a href="http://tortuvshin.github.io" target="_blank">Modu</a></b> Version : {{ Config::get('installer.last_version') }}
+        <b><a href="http://tsastsolution.mn" target="_blank">Tsast CMS </a></b> Version : {{ Config::get('installer.last_version') }}
     </footer>
 
 </div><!-- ./wrapper -->
