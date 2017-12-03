@@ -45,6 +45,12 @@
                            <textarea name="text" class="textarea" id="textarea" placeholder="{{ trans('admin.Placesometexthere') }}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ isset($page->text) ? $page->text : null }}</textarea>
                         </div>
                         <hr>
+
+                        <div class="form-group">
+                            <label>Language</label>
+                                   {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($page->lang) ? $page->lang : null, ['class' => 'form-control']) !!}
+                        </div>
+
                         <div class="form-group">
                             <label>Footer Link?</label>
                             {!! Form::select('footer', ['1' => trans('admin.yes'),'0' => trans('admin.no')], isset($page->footer) ? $page->footer : null, ['class' => 'form-control'])  !!}
@@ -65,7 +71,7 @@
 @section("footer")
 
     <!-- Bootstrap WYSIHTML5 -->
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
     <script>
         $(function () {
             CKEDITOR.replace('textarea');
