@@ -79,12 +79,19 @@
                                     {!! Form::label('description',trans('admin.CategoryDescription')) !!}
                                     {!! Form::textarea('description', isset($category->description) ? $category->description : null, ['id' => 'description', 'class' => 'form-control']) !!}
                                 </div>
-                                @if(isset($category->id)) @if($category->main==2)
+                                @if(isset($category->id)) 
+                                    @if($category->main==2)
+                                    <div class="form-group">
+                                        {!! Form::label('disabled', trans('admin.disable')) !!}
+                                        {!! Form::select('disabled', ['0' => trans('admin.no'), '1' => trans('admin.yes')], isset($category->disabled) ? $category->disabled : null , ['class' => 'form-control'])  !!}
+                                    </div>
+                                    @endif 
+                                @endif
                                 <div class="form-group">
-                                    {!! Form::label('disabled', trans('admin.disable')) !!}
-                                    {!! Form::select('disabled', ['0' => trans('admin.no'), '1' => trans('admin.yes')], isset($category->disabled) ? $category->disabled : null , ['class' => 'form-control'])  !!}
+                                <label>Language</label>
+                                   {!! Form::select('lang', ['en'=>'en', 'mn'=>'mn', 'cn'=>'cn', 'ru'=>'ru'], isset($category->lang), ['class' => 'form-control']) !!}
                                 </div>
-                                @endif @endif
+
                             </div><!-- /.box-body -->
 
                             <div class="box-footer">
@@ -119,7 +126,10 @@
                                     {!! Form::label('type',trans('admin.ContentType')) !!}
                                     {!! Form::select('type', $categories->lists('name', 'id'), isset($category->type) ? $category->type : null , ['class' => 'form-control'])  !!}
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Language</label>
+                                   {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($page->lang) ? $page->lang : null, ['class' => 'form-control']) !!}
+                                </div>
 
                             </div><!-- /.box-body -->
 
