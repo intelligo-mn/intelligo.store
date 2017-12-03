@@ -6,7 +6,7 @@
         {!! Form::text(null, isset($entry->title) ? $entry->title : null, ['data-type' => 'title', 'class' => 'cd-input', 'placeholder' => trans('addpost.entry_titleop')]) !!}
     </div>
     <div class="inpunting">
-        {!! Form::textarea(null, isset($entry->body) ? $entry->body : null, ['data-type' => 'body', 'class' => 'message','id' => 'edit', 'placeholder' => trans('addpost.entry_body')]) !!}
+        {!! Form::textarea(null, isset($entry->body) ? $entry->body : null, ['data-type' => 'body', 'class' => 'message edit newCreateArea','id' => 'edit', 'placeholder' => trans('addpost.entry_body')]) !!}
     </div>
 
     <div class="moredetail text">
