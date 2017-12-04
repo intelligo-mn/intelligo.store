@@ -48,3 +48,6 @@ Stack trace:
 #20 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #21 /var/www/html/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #22 {main}  
+[2017-12-04 06:10:06] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Cannot use empty array elements in arrays in /var/www/html/storage/framework/views/ecb57b9ef77054f1b26324edf32fd0f0:115
+Stack trace:
+#0 {main}  

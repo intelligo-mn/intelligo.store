@@ -68,7 +68,9 @@
         </ul>
       </div>
     </div>
-    <div class="map--fluid mtop--30" data-trigger="map" data-map-latitude="23.790546" data-map-longitude="90.375583" data-map-zoom="16" data-map-marker="[[23.790546, 90.375583]]"></div>
+    <div class="map--fluid mtop--30">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d10696.631340509159!2d106.9587067!3d47.9139834!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m3!3m2!1d47.9154215!2d106.95851359999999!4m0!5e0!3m2!1smn!2smn!4v1507048541684" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
     <div class="contact--section pd--30-0">
       <div class="container">
         <div class="row">
@@ -112,30 +114,32 @@
           <div class="col-md-9 col-sm-8 ptop--30 pbottom--30">
             <div class="comment--form">
               <div class="comment-respond">
-                <form action="../../../../external.html?link=http://themelooks.us/demo/usnews/html/forms/contact-form.php" data-form="ajax">
+                 {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
+
                   <div class="status"></div>
                   <div class="row">
                     <div class="col-xs-6 col-xxs-12">
-                      <label> <span>Name *</span> 
-                        <input type="text" name="name" class="form-control" required>
+                      <label> <span>{{ trans('contact.name') }} *</span> 
+                        {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']) !!}
                       </label>
-                      <label> <span>Email Address *</span> 
-                        <input type="email" name="email" class="form-control" required>
+                      <label> <span>{{ trans('contact.email') }} *</span> 
+                        {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']) !!}
                       </label>
-                      <label> <span>Website</span> 
-                        <input type="text" name="website" class="form-control">
+                      <label> <span>{{ trans('contact.subject') }}</span> 
+                        {!! Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
                       </label>
                     </div>
                     <div class="col-xs-6 col-xxs-12">
-                      <label> <span>Comment *</span> 
-                        <textarea name="message" class="form-control" required></textarea>
+                      <label> <span>{{ trans('contact.description') }} *</span> 
+                        
+                        {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']) !!}
                       </label>
                     </div>
                     <div class="col-md-12 text-right">
-                      <button type="submit" class="btn btn-primary">Send Message</button>
+                       {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-primary']) !!}
                     </div>
                   </div>
-                </form>
+                {!! Form::close() !!}
               </div>
             </div>
           </div>
