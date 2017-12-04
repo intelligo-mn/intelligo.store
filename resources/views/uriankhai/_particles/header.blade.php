@@ -9,7 +9,10 @@
                 </ul>
             </div>
             <div class="float--right float--xs-none text-xs-center">
-                <ul class="header--topbar-action nav">
+                <ul class="header--topbar-lang nav">
+                    
+                </ul>
+                <ul class="header--topbar-lang nav">
                     @if(!Auth::check())
                         <li ><a href="/login"><i class="fa fm fa-user-o"></i>{{ trans('index.login') }}</a></li>
                     @endif
@@ -28,8 +31,6 @@
                             </ul>
                         </li>
                     @endif
-                </ul>
-                <ul class="header--topbar-lang nav">
                     <li class="dropdown"> 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         @if(Session::get ('locale') == 'en')

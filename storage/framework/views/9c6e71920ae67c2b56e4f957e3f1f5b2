@@ -1,0 +1,133 @@
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="<?php echo e(makepreview(Auth::user()->icon, 's', 'members/avatar')); ?>" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+            <p><?php echo e(Auth::user()->username); ?></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> <?php echo e(trans('admin.Online')); ?></a>
+        </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+        <li class="header"><?php echo e(trans('admin.MAINNAVIGATION')); ?></li>
+        <li <?php if(Request::segment(2)==''): ?> class="active" <?php endif; ?>>
+            <a href="<?php echo e(action('Admin\DashboardController@index')); ?>">
+                <i class="fa fa-dashboard"></i> <span><?php echo e(trans('admin.dashboard')); ?></span>
+            </a>
+        </li>
+        <?php if(getcong('p-buzzycontact') == 'on'): ?>
+        <li class=" <?php if(Request::segment(2)=='mailbox'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(action('Admin\ContactController@index')); ?>">
+                <i class="fa fa-envelope"></i> <span><?php echo e(trans('admin.Inbox')); ?></span>
+                <?php if($unapproveinbox >0): ?>
+                <span class="pull-right badge bg-green"><?php echo e($unapproveinbox); ?></span>
+                <?php endif; ?>
+            </a>
+        </li>
+        <?php endif; ?>
+        <li class="treeview  <?php if(Request::segment(2)=='config'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(action('Admin\ConfigController@index')); ?>">
+                <i class="fa fa-cog"></i> <span><?php echo e(trans('admin.Settings')); ?></span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(action('Admin\ConfigController@index')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.GeneralSettings')); ?></a></li>
+               <!--  <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'layout'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.LayoutSettings')); ?></a></li> -->
+                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'social'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.SocialMediaSettings')); ?></a></li>
+                <li><a href="<?php echo e(action('Admin\ConfigController@index', ['q' => 'others'])); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.OtherSettings')); ?></a></li>
+            </ul>
+        </li>
+
+         <li class="treeview  <?php if(Request::segment(2)=='pages'): ?> active <?php endif; ?>">
+            <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span><?php echo e(trans('admin.Pages')); ?></span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo e(action('Admin\PagesController@index')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.ViewPages')); ?></a></li>
+                <li><a href="<?php echo e(action('Admin\PagesController@add')); ?>"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.AddNewPage')); ?></a></li>
+            </ul>
+        </li>
+        <li <?php if(Request::segment(2)=='categories'): ?> class="active" <?php endif; ?>>
+            <a href="<?php echo e(action('Admin\CategoriesController@index')); ?>">
+                <i class="fa fa-folder"></i>
+                <span><?php echo e(trans('admin.Categories')); ?></span>
+            </a>
+        </li>
+        <li class=" <?php if(Request::segment(2)=='all'): ?> active <?php endif; ?>">
+            <a href="/admin/all/">
+                <i class="fa fa-book"></i>
+                <span><?php echo e(trans('admin.LatestPosts')); ?></span>
+            </a>
+        </li>
+        <li class=" <?php if(Request::segment(2)=='features'): ?> active <?php endif; ?>">
+            <a href="/admin/features/">
+                <i class="fa fa-star"></i>
+                <span><?php echo e(trans('admin.FeaturesPosts')); ?></span>
+            </a>
+        </li>
+        <!-- <li class="treeview  <?php if(Request::segment(2)=='unapprove'): ?> active <?php endif; ?>">
+            <a href="/admin/unapprove?only=unapprove">
+                <i class="fa fa-check-circle"></i>
+                <span><?php echo e(trans('admin.UnapprovedPosts')); ?></span>
+                <small class="label pull-right bg-aqua"><?php echo e($toplamapprove); ?></small>
+            </a>
+        </li> -->
+        <?php foreach(\App\Categories::where("main", '1')->
+            where("disabled", '0')->
+            orwhere("main", '2')->
+            where("disabled", '0')->
+            where("lang", \Session::get('locale'))->
+            orderBy('order')->get() as $cat): ?>
+            <li class="treeview  <?php if(Request::segment(2)==$cat->name_slug): ?> active <?php endif; ?>">
+                <a href="/admin/cat/<?php echo e($cat->name_slug); ?>">
+                    <?php if($cat->icon == null): ?> 
+                        <i class="fa fa-folder"></i>
+                    <?php else: ?> 
+                        <i class="fa fa-<?php echo e($cat->icon); ?>"></i>
+                    <?php endif; ?>
+                    <span><?php echo e($cat->name); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/cat/<?php echo e($cat->name_slug); ?>"><i class="fa fa-eye"></i> <?php echo e(trans('admin.view', ['type' => $cat->name ])); ?></a></li>
+                    <li><a href="/admin/cat/<?php echo e($cat->name_slug); ?>/?only=unapprove"><i class="fa fa-check-circle"></i><?php echo e(trans('admin.Unapproved', ['type' => $cat->name ])); ?> <small class="label pull-right bg-aqua"><?php echo e($napprovenews); ?></small></a></li>
+                    <li><a href="/admin/cat/<?php echo e($cat->name_slug); ?>/?only=deleted"><i class="fa fa-trash-o"></i> <?php echo e(trans('admin.Trash', ['type' => $cat->name ])); ?></a></li>
+                </ul>
+            </li>
+
+        <?php endforeach; ?>
+
+        <li class="treeview <?php if(Request::segment(2)=='users'): ?> active <?php endif; ?>">
+         <!-- <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li> -->
+            <a href="users">
+                <i class="fa fa-users"></i>
+                <span><?php echo e(trans('admin.Users')); ?></span>
+            </a>
+            <!-- <ul class="treeview-menu">
+                <li><a href="/admin/users"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Users')); ?></a></li>
+                <li><a href="/admin/users/?only=banned"><i class="fa fa-caret-right">
+                </i> <?php echo e(trans('admin.BannedUsers')); ?> </a></li>
+                <li><a href="/admin/users/?only=admins"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Admins')); ?></a></li>
+                <li><a href="/admin/users/?only=staff"><i class="fa fa-caret-right"></i> <?php echo e(trans('admin.Staff')); ?></a></li>
+            </ul> -->
+        </li>
+
+       
+        <li class="treeview  <?php if(Request::segment(2)=='widgets'): ?> active <?php endif; ?>">
+            <a href="<?php echo e(action('Admin\WidgetsController@index')); ?>">
+                <i class="fa fa-plus-square"></i>
+                <span><?php echo e(trans('admin.Widgets')); ?></span>
+            </a>
+        </li>
+       <!--  <li class="treeview">
+            <a href="/sitemap.xml" target="_blank">
+                <i class="fa fa-rss"></i>
+                <span><?php echo e(trans('admin.Sitemap')); ?></span>
+            </a>
+        </li> -->
+    </ul>
+</section>
