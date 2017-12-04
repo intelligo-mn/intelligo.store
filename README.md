@@ -29,6 +29,8 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 
 ## Requirements
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c)](https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&utm_medium=referral&utm_content=techstar-inc/techstar-ecommerce&utm_campaign=badger)
+
 	PHP >= 5.6.4
 	MySQL >= 5.7
 	OpenSSL PHP Extension
