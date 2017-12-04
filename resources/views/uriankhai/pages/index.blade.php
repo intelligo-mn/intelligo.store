@@ -47,7 +47,7 @@
                     @foreach($lastFeaturestop->slice(0,1) as $item)
                         
                         <div class="col-md-7">
-                            <div class="post--item post--layout-1 post--title-larger">
+                            <div class="post--item post--layout-1 featured-big post--title-larger">
                                 <div class="post--img">
                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                     <div class="post--map">
