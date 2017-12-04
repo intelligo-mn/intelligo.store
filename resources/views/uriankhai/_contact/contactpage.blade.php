@@ -3,250 +3,143 @@
 @section('head_title', trans('contact.contact'))
 
 @section("header")
-    <style>
-        .form {
-            background: #f6f6f6;
-            background: rgba(0, 0, 0, 0.02);
-            border: 1px solid #ECECEC;
-            border: 1px solid rgba(0, 0, 0, 0.07);
-            border-radius: 3px;
-            overflow: hidden;
-            padding: 35px 35px;
-        }
 
-        .form-field{
-
-            margin-bottom: 25px;
-        }
-       .form-field label{
-           display: block;
-           font-weight: 600;
-           margin-bottom: 6px;
-        }
-       .form-field p{
-              color: #4d4d4d;
-              font-size: 11px;
-        }
-
-        .inpt input, .inpt textarea{
-
-            background: #fff;
-            border-radius: 5px;
-            font-size: 20px;
-            padding: 10px 15px;
-            -webkit-appearance: none;
-            display: block;
-            width: 100%;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            box-sizing: border-box;
-            border: 1px solid #DDDDDD;
-            border: 1px solid rgba(0, 0, 0, 0.13);
-            box-shadow: inset 0 1px #E3E3E3;
-            box-shadow: inset 0 1px rgba(0, 0, 0, 0.11);
-        }
-
-        #recaptcha_challenge_image, #recaptcha_image {
-            width: 100%!important;
-            height: auto!important;
-            -webkit-border-radius: .5em;
-            -moz-border-radius: .5em;
-            border-radius: .5em;
-            -moz-background-clip: padding;
-            -webkit-background-clip: padding-box;
-            background-clip: padding-box;
-            margin-bottom: 5px;
-        }
-        #recaptcha_widget .options {
-            margin-bottom: 10px;
-            width: 100%;
-            display: inline-block;
-        }
-        #recaptcha_widget .solution span {
-            color: #999;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        #recaptcha_widget .options a {
-            display: block;
-            float: left;
-            margin-right: 10px;
-            font-size: 11px;
-            color: #999;
-        }
-    </style>
 @endsection
 @section("content")
-    <section class="banner banner-inner parallax" data-stellar-background-ratio="0.5" id="banner-contact">
-       <div class="banner-text">
-          <div class="center-text">
-             <div class="container">
-                <h1>{{ trans('contact.contact') }}</h1>
-                <strong class="subtitle">{{ trans('contact.contact') }}!</strong>
-                <nav class="breadcrumbs">
-                   <ul>
-                      <li><a href="#">HOME</a></li>
-                      <li><span>{{ trans('contact.contact') }}</span></li>
-                   </ul>
-                </nav>
-             </div>
-          </div>
-       </div>
-    </section>
-    <main id="main">
+<div class="posts--filter-bar style--1 hidden-xs">
       <div class="container">
-         
-         <div class="contact-info row">
-            <div class="col-sm-4">
-               <span class="tel has-border">
-               <span class="icon-tel-big"></span>
-               <a href="#">{{ trans('travel.mobile_text') }}</a>
-               </span>
-            </div>
-            <div class="col-sm-4">
-               <span class="tel has-border bg-blue">
-               <span class="icon-fax-big"></span>
-               <a href="#">info@triptomongolian.com</a>
-               </span>
-            </div>
-            <div class="col-sm-4">
-               <span class="tel has-border">
-               <span class="icon-tel"></span>
-               <a href="#">{{ trans('travel.mobile_text') }}</a>
-               </span>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-6 wow fadeInLeft">
-                {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form contact-form has-border','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
-
-                  <fieldset>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                           <strong class="form-title"><label for="name">{{ trans('contact.name') }}</label></strong>
-                        </div>
-                        <div class="col-sm-8">
-                           <div class="input-wrap">
-                              {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']) !!}
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <div class="col-sm-4">
-                           <strong class="form-title"><label for="email">{{ trans('contact.email') }}</label></strong>
-                        </div>
-                        <div class="col-sm-8">
-                           <div class="input-wrap">
-                              {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']) !!}
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <div class="col-sm-4">
-                           <strong class="form-title"><label for="subject">{{ trans('contact.subject') }}</label></strong>
-                        </div>
-                        <div class="col-sm-8">
-                           <div class="input-wrap">
-                              {!! Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <div class="col-sm-4">
-                           <strong class="form-title"><label for="description">{{ trans('contact.description') }}</label></strong>
-                        </div>
-                        <div class="col-sm-8">
-                           <div class="input-wrap">
-                              {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']) !!}
-                           </div>
-                        </div>
-                     </div>
-                     
-                     <div class="form-group btn-holder">
-                        <div class="col-sm-4">&nbsp;</div>
-                        <div class="col-sm-8">
-                           <div class="input-wrap">
-                              {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-white']) !!}
-                           </div>
-                        </div>
-                     </div>
-                  </fieldset>
-              
-                {!! Form::close() !!}
-            </div>
-            <div class="col-md-6 map-col-main wow fadeInRight">
-               <div class="map-holder">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d10696.631340509159!2d106.9587067!3d47.9139834!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m3!3m2!1d47.9154215!2d106.95851359999999!4m0!5e0!3m2!1smn!2smn!4v1507048541684" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-               </div>
-            </div>
-         </div>
+        <ul class="nav">
+          <li>
+            <a href="#"> <i class="fa fa-star-o"></i>  <span>Featured News</span> 
+            </a>
+          </li>
+          <li>
+            <a href="#"> <i class="fa fa-heart-o"></i>  <span>Most Popular</span> 
+            </a>
+          </li>
+          <li>
+            <a href="#"> <i class="fa fa-fire"></i>  <span>Hot News</span> 
+            </a>
+          </li>
+          <li>
+            <a href="#"> <i class="fa fa-flash"></i>  <span>Trending News</span> 
+            </a>
+          </li>
+          <li>
+            <a href="#"> <i class="fa fa-eye"></i>  <span>Most Watched</span> 
+            </a>
+          </li>
+        </ul>
       </div>
-       <article class="partner-block">
-          <div class="container">
-             <header class="content-heading">
-                <h2 class="main-heading">{{ trans('index.partner') }}</h2>
-                <div class="seperator"></div>
-             </header>
-             <div class="partner-list" id="partner-slide">
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="152" src="travel/img/logos/logo-tourist.svg" alt="image description">
-                   <img class="hover" width="152" src="travel/img/logos/logo-tourist-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
-                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="87" src="travel/img/logos/logo-adventure.svg" alt="image description">
-                   <img class="hover" width="87" src="travel/img/logos/logo-adventure-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="101" src="travel/img/logos/logo-around-world.svg" alt="image description">
-                   <img class="hover" width="101" src="travel/img/logos/logo-around-world-hover.svg" alt="image description">
-                   </a>
-                </div>
-                <div class="partner">
-                   <a href="#">
-                   <img width="141" src="travel/img/logos/logo-travelagancy.svg" alt="image description">
-                   <img class="hover" width="141" src="travel/img/logos/logo-travelagancy-hover.svg" alt="image description">
-                   </a>
-                </div>
-             </div>
+    </div>
+    <div class="news--ticker">
+      <div class="container">
+        <div class="title">
+          <h2>News Updates</h2>  <span>(Update 12 minutes ago)</span> 
+        </div>
+        <div class="news-updates--list" data-marquee="true">
+          <ul class="nav">
+            <li>
+              <h3 class="h3"><a href="#">Contrary to popular belief Lorem Ipsum is not simply random text.</a></h3> 
+            </li>
+            <li>
+              <h3 class="h3"><a href="#">Education to popular belief Lorem Ipsum is not simply</a></h3> 
+            </li>
+            <li>
+              <h3 class="h3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3> 
+            </li>
+            <li>
+              <h3 class="h3"><a href="#">Corporis repellendus perspiciatis reprehenderit.</a></h3> 
+            </li>
+            <li>
+              <h3 class="h3"><a href="#">Deleniti consequatur laudantium sit aspernatur?</a></h3> 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="main--breadcrumb">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li><a href="home-1.html" class="btn-link"><i class="fa fm fa-home"></i>Home</a>
+          </li>
+          <li class="active"><span>{{ trans('contact.contact') }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="map--fluid mtop--30" data-trigger="map" data-map-latitude="23.790546" data-map-longitude="90.375583" data-map-zoom="16" data-map-marker="[[23.790546, 90.375583]]"></div>
+    <div class="contact--section pd--30-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-4 ptop--30 pbottom--30">
+            <div class="contact--info">
+              <ul class="nav">
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-phone-square"></i>Telephone</h3> 
+                  </div>
+                  <div class="content">
+                    <p><a href="tel:0055667788991122">0055667788991122</a>
+                    </p>
+                    <p><a href="tel:0055667788991122">0055667788991122</a>
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-envelope-open"></i>E-mail Address</h3> 
+                  </div>
+                  <div class="content">
+                    <p><a href="../../../../external.html?link=http://themelooks.us/cdn-cgi/l/email-protection#6b0e130a061b070e2b0e130a061b070e45080406"><span class="__cf_email__" data-cfemail="a2c7dac3cfd2cec7e2c7dac3cfd2cec78cc1cdcf">[email&#160;protected]</span></a>
+                    </p>
+                    <p><a href="../../../../external.html?link=http://themelooks.us/cdn-cgi/l/email-protection#cfaab7aea2bfa3aa8faab7aea2bfa3aae1aca0a2"><span class="__cf_email__" data-cfemail="315449505c415d54715449505c415d541f525e5c">[email&#160;protected]</span></a>
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-map-marker"></i>Address</h3> 
+                  </div>
+                  <div class="content">
+                    <p>House - 896, East Shewrapara</p>
+                    <p>Kafrul, Dhaka -1219, Bangladesh</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-       </article>
-    </main>
- 
+          <div class="col-md-9 col-sm-8 ptop--30 pbottom--30">
+            <div class="comment--form">
+              <div class="comment-respond">
+                <form action="../../../../external.html?link=http://themelooks.us/demo/usnews/html/forms/contact-form.php" data-form="ajax">
+                  <div class="status"></div>
+                  <div class="row">
+                    <div class="col-xs-6 col-xxs-12">
+                      <label> <span>Name *</span> 
+                        <input type="text" name="name" class="form-control" required>
+                      </label>
+                      <label> <span>Email Address *</span> 
+                        <input type="email" name="email" class="form-control" required>
+                      </label>
+                      <label> <span>Website</span> 
+                        <input type="text" name="website" class="form-control">
+                      </label>
+                    </div>
+                    <div class="col-xs-6 col-xxs-12">
+                      <label> <span>Comment *</span> 
+                        <textarea name="message" class="form-control" required></textarea>
+                      </label>
+                    </div>
+                    <div class="col-md-12 text-right">
+                      <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
