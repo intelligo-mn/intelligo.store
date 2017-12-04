@@ -19,12 +19,17 @@
                     <?php if(Auth::check()): ?>
                         <li ><a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fm fa-user-o"></i><?php echo e(Auth::user()->username); ?></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"> { trans('index.settings') }}</a></li>
-                               <?php if(Auth::user()->usertype=='Admin'): ?>
+                                <li>
+                                    <a href="<?php echo e(action('UsersController@index', [ Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.myprofile')); ?></a>
+                                </li>
+                                <li>
+                                   <a href="<?php echo e(action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ])); ?>"><?php echo e(trans('index.settings')); ?></a>
+                               </li>
+                                <?php if(Auth::user()->usertype=='Admin'): ?>
                                     <li>
                                         <a href="/admin"><?php echo e(trans('index.adminp')); ?></a>
                                     </li>
-                               <?php endif; ?>
+                                <?php endif; ?>
                                 <li>
                                     <a href="<?php echo e(action('Auth\AuthController@logout')); ?>"><?php echo e(trans('index.logout')); ?></a>
                                 </li>
