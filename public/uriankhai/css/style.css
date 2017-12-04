@@ -6797,3 +6797,19 @@ body.isScrolling #backToTop {
     font-size: 24px;
     line-height: 50px
 }
+
+.featured-big {
+    height: 410px;
+}
+
+.featured-big .post--img {
+    height: 100%;
+}
+
+.featured-big .post--img .thumb{
+    height: 100%;
+}
+
+.featured-big .post--img .thumb img{
+    height: 100%;
+}
