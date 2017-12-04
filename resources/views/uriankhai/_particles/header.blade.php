@@ -3,9 +3,9 @@
         <div class="container">
             <div class="float--left float--xs-none text-xs-center">
                 <ul class="header--topbar-info nav">
-                    <li><i class="fa fm fa-map-marker"></i>New York</li>
+                    <li><i class="fa fm fa-map-marker"></i>Ulaanbaatar</li>
                     <li><i class="fa fm fa-mixcloud"></i>21<sup>0</sup> C</li>
-                    <li><i class="fa fm fa-calendar"></i>Today (Sunday 19 April 2017)</li>
+                    <li><i class="fa fm fa-calendar"></i>Today (2017)</li>
                 </ul>
             </div>
             <div class="float--right float--xs-none text-xs-center">
@@ -17,7 +17,7 @@
                         <li ><a href="/login"><i class="fa fm fa-user-o"></i>{{ trans('index.login') }}</a></li>
                     @endif
                     @if(Auth::check())
-                        <li ><a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fm fa-user-o"></i>{{ Auth::user()->username }}</a>
+                        <li class="dropdown"><a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fm fa-user-o"></i>{{ Auth::user()->username }}</a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
@@ -67,9 +67,9 @@
     <div class="header--mainbar">
         <div class="container">
             <div class="header--logo float--left float--sm-none text-sm-center">
-                <h1 class="h1"> <a href="{{ action('IndexController@index') }}" class="btn-link"> <img src="uriankhai/img/logo.png" alt="USNews Logo"> <span class="hidden">USNews Logo</span> </a> </h1> </div>
+                <h1 class="h1"> <a href="{{ action('IndexController@index') }}" class="btn-link">URAANHAA.COM </a> </h1> </div>
             <div class="header--ad float--right float--sm-none hidden-xs">
-                <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-01.jpg" alt="Advertisement"> </a>
+                <a href="#"> <img src="http://tugeene.mn/assets/images/banner.png" alt="Advertisement"> </a>
             </div>
         </div>
     </div>
