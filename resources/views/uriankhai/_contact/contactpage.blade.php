@@ -6,8 +6,7 @@
 
 @endsection
 @section("content")
-<div class="posts--filter-bar style--1 hidden-xs">
-      
+    
     @include('_particles.headerbottom')
     
     <div class="main--breadcrumb">

@@ -4,8 +4,7 @@
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("content"); ?>
-<div class="posts--filter-bar style--1 hidden-xs">
-      
+    
     <?php echo $__env->make('_particles.headerbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
     <div class="main--breadcrumb">
