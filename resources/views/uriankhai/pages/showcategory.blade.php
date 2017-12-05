@@ -9,62 +9,36 @@
 
 <div class="main-content--section pbottom--30">
     <div class="container">
-        <div class="main--content">
-            <div class="post--items pd--30-0" data-ajax-content="outer">
-                <ul class="nav row gutter--0" data-ajax-content="inner">
-                    <li class="col-md-4 col-xs-6 col-xxs-12">
-                        <div class="post--item post--layout-1">
-                            <div class="post--img">
-                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-01.jpg" alt="" data-rjs="2"></a>
-                                <div class="post--info">
-                                    <ul class="nav meta">
-                                        <li><a href="#">Astaroth</a></li>
-                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                    </ul>
-                                    <div class="title">
-                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+        @if(!empty($lastFeaturestop))
+
+            <div class="main--content">
+                <div class="post--items pd--30-0" data-ajax-content="outer">
+                       
+                    <ul class="nav row gutter--0" data-ajax-content="inner">
+                        @foreach($lastFeaturestop->slice(0,3) as $item)
+                            <li class="col-md-4 col-xs-6 col-xxs-12">
+                                <div class="post--item post--layout-1">
+                                    <div class="post--img">
+                                        <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" data-rjs="2"></a>
+                                        <div class="post--info">
+                                            <ul class="nav meta">
+                                                <li><a href="#">{{ $item->user->username }}</a></li>
+                                                <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                            </ul>
+                                            <div class="title">
+                                                <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 hidden shown-xxs">
-                        <hr class="divider"> </li>
-                    <li class="col-md-4 col-xs-6 col-xxs-12">
-                        <div class="post--item post--layout-1">
-                            <div class="post--img">
-                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-02.jpg" alt="" data-rjs="2"></a>
-                                <div class="post--info">
-                                    <ul class="nav meta">
-                                        <li><a href="#">Astaroth</a></li>
-                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                    </ul>
-                                    <div class="title">
-                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-md-4 hidden-sm hidden-xs">
-                        <div class="post--item post--layout-1">
-                            <div class="post--img">
-                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-03.jpg" alt="" data-rjs="2"></a>
-                                <div class="post--info">
-                                    <ul class="nav meta">
-                                        <li><a href="#">Astaroth</a></li>
-                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                    </ul>
-                                    <div class="title">
-                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="preloader bg--color-0--b" data-preloader="1">
-                    <div class="preloader--inner"></div>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="preloader bg--color-0--b" data-preloader="1">
+                        <div class="preloader--inner"></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="row" style="transform: none;">
     <div class="main--content col-md-8 col-sm-7" data-sticky-content="true" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
         <div class="sticky-content-inner" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
