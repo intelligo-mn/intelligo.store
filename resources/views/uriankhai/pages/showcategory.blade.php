@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-01.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Kids</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-01.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Kids</a> </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 col-xs-8 col-xxs-12">
                                     <div class="post--info">
@@ -99,7 +99,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-02.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">War</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-02.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">War</a> </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 col-xs-8 col-xxs-12">
                                     <div class="post--info">
@@ -123,7 +123,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-03.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Fashion</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-03.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Fashion</a> </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 col-xs-8 col-xxs-12">
                                     <div class="post--info">
@@ -147,7 +147,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-04.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Foods</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-04.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Foods</a> </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 col-xs-8 col-xxs-12">
                                     <div class="post--info">
@@ -169,7 +169,7 @@
                 </ul>
             </div>
             <div class="ad--space">
-                <a href="#"> <img src="img/ads-img/ad-728x90-02.jpg" alt="" class="center-block" data-rjs="2"> </a>
+                <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-02.jpg" alt="" class="center-block" data-rjs="2"> </a>
             </div>
             <div class="post--items post--items-5 pd--30-0">
                 <ul class="nav">
@@ -178,7 +178,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-05.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Old City</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-05.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Old City</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -202,7 +202,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-06.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Travel</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-06.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Travel</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -226,7 +226,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-07.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Human</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-07.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Human</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -250,7 +250,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-08.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Politics</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-08.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Politics</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -274,7 +274,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-09.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Gadgets</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-09.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Gadgets</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -296,7 +296,7 @@
                 </ul>
             </div>
             <div class="ad--space">
-                <a href="#"> <img src="img/ads-img/ad-728x90-03.jpg" alt="" class="center-block" data-rjs="2"> </a>
+                <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-03.jpg" alt="" class="center-block" data-rjs="2"> </a>
             </div>
             <div class="post--items post--items-5 pd--30-0">
                 <ul class="nav">
@@ -305,7 +305,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-10.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">World News</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-10.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">World News</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -329,7 +329,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="post--img">
-                                        <a href="news-single-v1.html" class="thumb"><img src="img/blog-img/post-11.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Sports</a> </div>
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-11.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Sports</a> </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="post--info">
@@ -496,7 +496,7 @@
                             <li>
                                 <div class="post--item post--layout-3">
                                     <div class="post--img">
-                                        <a href="#" class="thumb"><img src="img/widgets-img/news-widget-01.jpg" alt="" data-rjs="2"></a>
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-01.jpg" alt="" data-rjs="2"></a>
                                         <div class="post--info">
                                             <ul class="nav meta">
                                                 <li><a href="#">Ninurta</a></li>
@@ -511,7 +511,7 @@
                             <li>
                                 <div class="post--item post--layout-3">
                                     <div class="post--img">
-                                        <a href="#" class="thumb"><img src="img/widgets-img/news-widget-02.jpg" alt="" data-rjs="2"></a>
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-02.jpg" alt="" data-rjs="2"></a>
                                         <div class="post--info">
                                             <ul class="nav meta">
                                                 <li><a href="#">Orcus</a></li>
@@ -526,7 +526,7 @@
                             <li>
                                 <div class="post--item post--layout-3">
                                     <div class="post--img">
-                                        <a href="#" class="thumb"><img src="img/widgets-img/news-widget-03.jpg" alt="" data-rjs="2"></a>
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-03.jpg" alt="" data-rjs="2"></a>
                                         <div class="post--info">
                                             <ul class="nav meta">
                                                 <li><a href="#">Rahab</a></li>
@@ -541,7 +541,7 @@
                             <li>
                                 <div class="post--item post--layout-3">
                                     <div class="post--img">
-                                        <a href="#" class="thumb"><img src="img/widgets-img/news-widget-04.jpg" alt="" data-rjs="2"></a>
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-04.jpg" alt="" data-rjs="2"></a>
                                         <div class="post--info">
                                             <ul class="nav meta">
                                                 <li><a href="#">Tannin</a></li>
@@ -564,7 +564,7 @@
                 <div class="widget--title">
                     <h2 class="h4">Advertisement</h2> <i class="icon fa fa-bullhorn"></i> </div>
                 <div class="ad--widget">
-                    <a href="#"> <img src="img/ads-img/ad-300x250-2.jpg" alt="" data-rjs="2"> </a>
+                    <a href="#"> <img src="uriankhai/img/ads-img/ad-300x250-2.jpg" alt="" data-rjs="2"> </a>
                 </div>
             </div>
             <div class="widget">
@@ -580,7 +580,7 @@
                         <ul class="nav" data-ajax-content="inner">
                             <li>
                                 <div class="post--item post--layout-3">
-                                    <div class="post--img"> <span class="thumb"> <img src="img/widgets-img/readers-opinion-01.png" alt="" data-rjs="2"> </span>
+                                    <div class="post--img"> <span class="thumb"> <img src="uriankhai/img/widgets-img/readers-opinion-01.png" alt="" data-rjs="2"> </span>
                                         <div class="post--info">
                                             <div class="title">
                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
@@ -594,7 +594,7 @@
                             </li>
                             <li>
                                 <div class="post--item post--layout-3">
-                                    <div class="post--img"> <span class="thumb"> <img src="img/widgets-img/readers-opinion-02.png" alt="" data-rjs="2"> </span>
+                                    <div class="post--img"> <span class="thumb"> <img src="uriankhai/img/widgets-img/readers-opinion-02.png" alt="" data-rjs="2"> </span>
                                         <div class="post--info">
                                             <div class="title">
                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
@@ -608,7 +608,7 @@
                             </li>
                             <li>
                                 <div class="post--item post--layout-3">
-                                    <div class="post--img"> <span class="thumb"> <img src="img/widgets-img/readers-opinion-03.png" alt="" data-rjs="2"> </span>
+                                    <div class="post--img"> <span class="thumb"> <img src="uriankhai/img/widgets-img/readers-opinion-03.png" alt="" data-rjs="2"> </span>
                                         <div class="post--info">
                                             <div class="title">
                                                 <h3 class="h4">Long established fact that a reader will be distracted</h3> </div>
