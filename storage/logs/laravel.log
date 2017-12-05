@@ -4900,3 +4900,30 @@ Stack trace:
 #45 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #46 /var/www/html/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #47 {main}  
+[2017-12-05 11:56:09] local.ERROR: InvalidArgumentException: There are no commands defined in the "sessions" namespace.
+
+Did you mean this?
+    session in /var/www/html/vendor/symfony/console/Application.php:469
+Stack trace:
+#0 /var/www/html/vendor/symfony/console/Application.php(501): Symfony\Component\Console\Application->findNamespace('sessions')
+#1 /var/www/html/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->find('sessions:clear')
+#2 /var/www/html/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main}  
+[2017-12-05 11:56:13] local.ERROR: InvalidArgumentException: Command "session:clear" is not defined.
+
+Did you mean one of these?
+    config:clear
+    route:clear
+    view:clear
+    cache:clear
+    translations:clean
+    auth:clear-resets
+    session:table in /var/www/html/vendor/symfony/console/Application.php:515
+Stack trace:
+#0 /var/www/html/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->find('session:clear')
+#1 /var/www/html/vendor/symfony/console/Application.php(120): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
