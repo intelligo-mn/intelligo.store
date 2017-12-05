@@ -5,6 +5,7 @@
 @section("header")
 
 @endsection
+
 @section("content")
     
     @include('_particles.headerbottom')
