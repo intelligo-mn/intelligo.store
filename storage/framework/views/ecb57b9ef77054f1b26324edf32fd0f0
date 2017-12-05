@@ -1,145 +1,107 @@
-<?php $__env->startSection('head_title', trans('buzzycontact.contact').' | '.getcong('sitename') ); ?>
+<?php $__env->startSection('head_title', trans('contact.contact')); ?>
 
 <?php $__env->startSection("header"); ?>
-    <style>
-        .form {
-            background: #f6f6f6;
-            background: rgba(0, 0, 0, 0.02);
-            border: 1px solid #ECECEC;
-            border: 1px solid rgba(0, 0, 0, 0.07);
-            border-radius: 3px;
-            overflow: hidden;
-            padding: 35px 35px;
-        }
 
-        .form-field{
-
-            margin-bottom: 25px;
-        }
-       .form-field label{
-           display: block;
-           font-weight: 600;
-           margin-bottom: 6px;
-        }
-       .form-field p{
-              color: #4d4d4d;
-              font-size: 11px;
-        }
-
-        .inpt input, .inpt textarea{
-
-            background: #fff;
-            border-radius: 5px;
-            font-size: 20px;
-            padding: 10px 15px;
-            -webkit-appearance: none;
-            display: block;
-            width: 100%;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            box-sizing: border-box;
-            border: 1px solid #DDDDDD;
-            border: 1px solid rgba(0, 0, 0, 0.13);
-            box-shadow: inset 0 1px #E3E3E3;
-            box-shadow: inset 0 1px rgba(0, 0, 0, 0.11);
-        }
-
-        #recaptcha_challenge_image, #recaptcha_image {
-            width: 100%!important;
-            height: auto!important;
-            -webkit-border-radius: .5em;
-            -moz-border-radius: .5em;
-            border-radius: .5em;
-            -moz-background-clip: padding;
-            -webkit-background-clip: padding-box;
-            background-clip: padding-box;
-            margin-bottom: 5px;
-        }
-        #recaptcha_widget .options {
-            margin-bottom: 10px;
-            width: 100%;
-            display: inline-block;
-        }
-        #recaptcha_widget .solution span {
-            color: #999;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        #recaptcha_widget .options a {
-            display: block;
-            float: left;
-            margin-right: 10px;
-            font-size: 11px;
-            color: #999;
-        }
-    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("content"); ?>
+<div class="posts--filter-bar style--1 hidden-xs">
+      
+    <?php echo $__env->make('_particles.headerbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
+    <div class="main--breadcrumb">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li><a href="home-1.html" class="btn-link"><i class="fa fm fa-home"></i>Home</a>
+          </li>
+          <li class="active"><span><?php echo e(trans('contact.contact')); ?></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="map--fluid mtop--30">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d10696.631340509159!2d106.9587067!3d47.9139834!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m3!3m2!1d47.9154215!2d106.95851359999999!4m0!5e0!3m2!1smn!2smn!4v1507048541684" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="contact--section pd--30-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-4 ptop--30 pbottom--30">
+            <div class="contact--info">
+              <ul class="nav">
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-phone-square"></i>Telephone</h3> 
+                  </div>
+                  <div class="content">
+                    <p><a href="tel:0055667788991122">0055667788991122</a>
+                    </p>
+                    <p><a href="tel:0055667788991122">0055667788991122</a>
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-envelope-open"></i>E-mail Address</h3> 
+                  </div>
+                  <div class="content">
+                    <p><a href="../../../../external.html?link=http://themelooks.us/cdn-cgi/l/email-protection#6b0e130a061b070e2b0e130a061b070e45080406"><span class="__cf_email__" data-cfemail="a2c7dac3cfd2cec7e2c7dac3cfd2cec78cc1cdcf">[email&#160;protected]</span></a>
+                    </p>
+                    <p><a href="../../../../external.html?link=http://themelooks.us/cdn-cgi/l/email-protection#cfaab7aea2bfa3aa8faab7aea2bfa3aae1aca0a2"><span class="__cf_email__" data-cfemail="315449505c415d54715449505c415d541f525e5c">[email&#160;protected]</span></a>
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h3 class="h5"><i class="fa fa-map-marker"></i>Address</h3> 
+                  </div>
+                  <div class="content">
+                    <p>House - 896, East Shewrapara</p>
+                    <p>Kafrul, Dhaka -1219, Bangladesh</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-8 ptop--30 pbottom--30">
+            <div class="comment--form">
+              <div class="comment-respond">
+                 <?php echo Form::open(array('action' => 'ContactController@create', 'method' => 'POST','name' => 'contactform', 'enctype' => 'multipart/form-data')); ?>
 
 
-        <div class="content">
+                  <div class="status"></div>
+                  <div class="row">
+                    <div class="col-xs-6 col-xxs-12">
+                      <label> <span><?php echo e(trans('contact.name')); ?> *</span> 
+                        <?php echo Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']); ?>
 
-        <div class="container">
-            <div class="mainside" style="min-height: 900px">
-<br>
-            <h1 style="margin-bottom:10px"><?php echo e(trans('buzzycontact.contact')); ?></h1>
+                      </label>
+                      <label> <span><?php echo e(trans('contact.email')); ?> *</span> 
+                        <?php echo Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']); ?>
 
-                <?php echo Form::open(array('action' => 'ContactController@create', 'method' => 'POST','class' => 'form','name' => 'contactform', 'enctype' => 'multipart/form-data')); ?>
+                      </label>
+                      <label> <span><?php echo e(trans('contact.subject')); ?></span> 
+                        <?php echo Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']); ?>
 
+                      </label>
+                    </div>
+                    <div class="col-xs-6 col-xxs-12">
+                      <label> <span><?php echo e(trans('contact.description')); ?> *</span> 
+                        
+                        <?php echo Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']); ?>
 
-                    <div class="form-field string  inpt">
-                        <label for="subject"><?php echo e(trans('buzzycontact.subject')); ?></label>
-                        <?php echo Form::text('subject', null, ['id' => 'subject']); ?>
+                      </label>
+                    </div>
+                    <div class="col-md-12 text-right">
+                       <?php echo Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-primary']); ?>
 
                     </div>
-                    <div class="form-field text  inpt">
-                        <label for="description"><?php echo e(trans('buzzycontact.description')); ?></label>
-                        <?php echo Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px']); ?>
-
-                        <p><?php echo e(trans('buzzycontact.descriptioninfo')); ?></p>
-                    </div>
-                    <div class="form-field string  inpt">
-                        <label for="name"><?php echo e(trans('buzzycontact.name')); ?></label>
-                        <?php echo Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name']); ?>
-
-                        <p><?php echo e(trans('buzzycontact.nameinfo')); ?></p>
-                    </div>
-                    <div class="form-field inpt">
-                        <label for="email"><?php echo e(trans('buzzycontact.email')); ?></label>
-                        <?php echo Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email']); ?>
-
-                    </div>
-
-                    <div class="form-field string  inpt">
-                        <label for="label"><?php echo e(trans('buzzycontact.label')); ?></label>
-                        <?php echo Form::select('label', $labels, ['id' => 'label']); ?>
-
-                        <p><?php echo e(trans('buzzycontact.labelinfo')); ?></p>
-                    </div>
-                <?php if(getcong('BuzzyContactCaptcha')=="on"): ?>
-                <div class="form-field inpt">
-                    <label><?php echo e(trans('buzzycontact.areyouhuman')); ?></label>
-                    <script src='https://www.google.com/recaptcha/api.js'></script>
-                    <div class="g-recaptcha" data-sitekey="<?php echo e(getcong('reCaptchaKey')); ?>"></div>
-                </div>
-                <?php endif; ?>
-
-                <?php echo Form::submit(isset($post->id) ? trans('addpost.savec') : trans('buzzycontact.send'), ['class' => 'button button-orange button-full submit-button']); ?>
-
-
+                  </div>
                 <?php echo Form::close(); ?>
 
+              </div>
             </div>
-            <div class="sidebar">
-
-                <?php echo $__env->make("_widgets.facebooklike", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
           </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
