@@ -22,16 +22,15 @@
 <div class="news--ticker">
     <div class="container">
         <div class="title">
-            <h2>News Updates</h2> <span>(Update 12 minutes ago)</span> </div>
+            <h2>Breaking news</h2>
+        </div>
         <div class="news-updates--list" data-marquee="true">
             <ul class="nav">
                 @foreach($lastNews as $item)
                     <li>
                         <h3 class="h3"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3> 
                     </li>
-                            
                 @endforeach
-
             </ul>
         </div>
     </div>
