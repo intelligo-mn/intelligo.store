@@ -40,7 +40,7 @@ class Manager{
     public function importTranslations($replace = false)
     {
         $counter = 0;
-        foreach($this->files->directories($this->app['path.lang']) as $langPath){
+        foreach($this->files->directories($this->app->langPath()) as $langPath){
             $locale = basename($langPath);
 
             foreach($this->files->allfiles($langPath) as $file) {
@@ -52,7 +52,7 @@ class Manager{
                     continue;
                 }
 
-                $subLangPath = str_replace($langPath . DIRECTORY_SEPARATOR, "", $info['dirname']);
+                $subLangPath = str_replace($langPath . "\\", "", $info['dirname']);
                 if ($subLangPath != $langPath) {
                     $group = $subLangPath . "/" . $group;
                 }
@@ -96,7 +96,7 @@ class Manager{
     {
         $path = $path ?: base_path();
         $keys = array();
-        $functions =  array('trans', 'trans_choice', 'Lang::get', 'Lang::choice', 'Lang::trans', 'Lang::transChoice', '@lang', '@choice', '__');
+        $functions =  array('trans', 'trans_choice', 'Lang::get', 'Lang::choice', 'Lang::trans', 'Lang::transChoice', '@lang', '@choice');
         $pattern =                              // See http://regexr.com/392hu
             "[^\w|>]".                          // Must not have an alphanum or _ or > before real method
             "(".implode('|', $functions) .")".  // Must start with one of the functions
@@ -143,23 +143,23 @@ class Manager{
             if($group == '*')
                 return $this->exportAllTranslations();
 
-            $tree = $this->makeTree(Translation::ofTranslatedGroup($group)->orderByGroupKeys(array_get($this->config, 'sort_keys', false))->get());
+            $tree = $this->makeTree(Translation::where('group', $group)->whereNotNull('value')->get());
 
             foreach($tree as $locale => $groups){
                 if(isset($groups[$group])){
                     $translations = $groups[$group];
-                    $path = $this->app['path.lang'].'/'.$locale.'/'.$group.'.php';
+                    $path = $this->app->langPath().'/'.$locale.'/'.$group.'.php';
                     $output = "<?php\n\nreturn ".var_export($translations, true).";\n";
                     $this->files->put($path, $output);
                 }
             }
-            Translation::ofTranslatedGroup($group)->update(array('status' => Translation::STATUS_SAVED));
+            Translation::where('group', $group)->whereNotNull('value')->update(array('status' => Translation::STATUS_SAVED));
         }
     }
 
     public function exportAllTranslations()
     {
-        $groups = Translation::whereNotNull('value')->selectDistinctGroup()->get('group');
+        $groups = Translation::whereNotNull('value')->select(DB::raw('DISTINCT `group`'))->get('group');
 
         foreach($groups as $group){
             $this->exportTranslations($group->group);

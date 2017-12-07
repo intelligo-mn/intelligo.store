@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
 
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="../../../../fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/font-awesome.min.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/bootstrap.min.css')!!}">
     <link rel="stylesheet" href="{!! asset('uriankhai/css/fontawesome-stars-o.min.css')!!}">
@@ -84,7 +84,7 @@
         </ul>
     </div>
     <div id="backToTop"> <a href="#"><i class="fa fa-angle-double-up"></i></a> </div>
-    <script src="../../../cdn-cgi/scripts/0e574bed/cloudflare-static/email-decode.min.js"></script>
+    <script src="http://ajax.cloudflare.com/cdn-cgi/scripts/78d64697/cloudflare-static/email-decode.min.js"></script>
     <script src="{!! asset('uriankhai/js/jquery-3.2.1.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/bootstrap.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/jquery.sticky.min.js')!!}"></script>
@@ -98,7 +98,7 @@
     <script src="{!! asset('uriankhai/js/jquery.barrating.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/jquery.countdown.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/retina.min.js')!!}"></script>
-    <script src="../../../../external.html?link=https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{!! asset('uriankhai/js/color-switcher.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/main.js')!!}"></script>
 

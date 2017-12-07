@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="@yield('head_description', getcong('sitemetadesc'))">
 
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="../../../../fonts.googleapis.com/css9841.css?family=Source+Sans+Pro:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
 
     <link rel="stylesheet" href="/assets/css/plugins.css">
     <link rel="stylesheet" href="/assets/css/application.css">
@@ -51,6 +51,8 @@
         </div>
     </div>
     <div class="wrapper">
+
+        <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
 
         @include("_particles.header")
 
@@ -89,11 +91,12 @@
         </ul>
     </div>
     <div id="backToTop"> <a href="#"><i class="fa fa-angle-double-up"></i></a> </div>
-    <script src="../../../cdn-cgi/scripts/0e574bed/cloudflare-static/email-decode.min.js"></script>
+    <script src="http://ajax.cloudflare.com/cdn-cgi/scripts/78d64697/cloudflare-static/email-decode.min.js"></script>
 
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/app.min.js"></script>
-    
+
+
     <script src="{!! asset('uriankhai/js/jquery-3.2.1.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/bootstrap.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/jquery.sticky.min.js')!!}"></script>
@@ -107,9 +110,23 @@
     <script src="{!! asset('uriankhai/js/jquery.barrating.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/jquery.countdown.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/retina.min.js')!!}"></script>
-    <script src="../../../../external.html?link=https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{!! asset('uriankhai/js/color-switcher.min.js')!!}"></script>
     <script src="{!! asset('uriankhai/js/main.js')!!}"></script>
+    <script>!function(e,t,r,n,c,h,o){function a(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return r}try{for(c=e.getElementsByTagName('a'),o='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(h=c[n]).href.indexOf(o))>-1&&(h.href='mailto:'+a(h.href,t+o.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(h=c[n]).parentNode.replaceChild(e.createTextNode(a(h.getAttribute('data-cfemail'),0)),h)}catch(e){}}catch(e){}}(document);</script>
+
+    <script>
+        $( document ).ready(function() {
+            App.init();
+        });
+    </script>
+    <div id="auth-modal" class="modal auth-modal"></div>
+
+    <div class="hide">
+        <input name="_requesttoken" id="requesttoken" type="hidden" value="{{ csrf_token() }}" />
+    </div>
+
+    {!!  getcong('footercode')  !!}
 </body>
 
 </html>
