@@ -1,3 +1,9 @@
+
+<!-- 
+Project     : Techstar CMS - Laravel Content Management System
+Author      : Techstar, Inc.
+Author URI  : https://github.com/techstar-inc
+ -->
 <!DOCTYPE html>
 <html dir="ltr" lang="{{ Lang::getLocale() }}">
 
