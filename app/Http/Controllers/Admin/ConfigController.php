@@ -1,4 +1,12 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php 
+
+/*
+ * Techstar CMS - Laravel Content Management System
+ * Author  Techstar, Inc.
+ * Author URI  : https://github.com/techstar-inc
+ */
+
+namespace App\Http\Controllers\Admin;
 
 use App\Settings;
 use Illuminate\Http\Request;
