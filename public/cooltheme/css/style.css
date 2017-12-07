@@ -502,6 +502,14 @@ ul {
 .header-middle-area .logo-area {
   padding-top: 16px;
 }
+
+.header-middle-area .logo-area a{
+  color: black;
+  font-size: 38px;
+  font-style: italic;
+  line-height: 60px;
+}
+   
 .header-middle-area .right-banner p {
   font-size: 12px;
   text-transform: uppercase;
