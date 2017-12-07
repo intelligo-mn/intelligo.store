@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Techstar CMS - Laravel Content Management System
+ * Author  Techstar, Inc.
+ * Author URI  : https://github.com/techstar-inc
+ */
+
 namespace App\Http\Controllers;
 
 use Auth;
