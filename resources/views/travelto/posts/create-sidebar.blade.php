@@ -32,12 +32,14 @@
                 {!! Form::select('category', $categories, isset($post->category_id) ? $post->category_id : null) !!}
             </p>
         </div>
+
         <div class="cd-form">
             <legend>Language</legend>
             <p class="cd-select icon">
-                {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($page->lang) ? $page->lang : null, ['class' => 'form-control']) !!}                  
+                {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($post->lang) ? $post->lang : null) !!}                  
             </p>
         </div>
+
         @unless($typene=='quiz' or $typene=='poll')
         <div class="cd-form">
             <legend>{{ trans('updates.pagination') }}</legend>
