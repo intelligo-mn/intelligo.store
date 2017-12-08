@@ -418,8 +418,6 @@ class PostsController extends Controller
                 }else{
                     $entry->video = $entryorder['video'];
                 }
-
-
             }
 
             $savedidentry = $post->entry()->save($entry);
@@ -480,9 +478,8 @@ class PostsController extends Controller
         $imgWW = Image::make($imgWsr);
         $imgWW2 = Image::make($imgWsr);
 
-       $imbig= $imgWW->fit(650, 370)->save($saveFilePath.'-b.jpg');
+        $imbig= $imgWW->fit(650, 370)->save($saveFilePath.'-b.jpg');
         $imsmal= $imgWW2->fit(300, 190)->save($saveFilePath.'-s.jpg');
-
 
         if(env('APP_FILESYSTEM')=="s3"){
 
@@ -493,10 +490,8 @@ class PostsController extends Controller
             \File::delete(public_path($saveFilePath.'-b.jpg'));
             \File::delete(public_path($saveFilePath.'-s.jpg'));
 
-
             return $this->s3url.$saveFilePath;
         }
-
 
         return $tmpFileDate.$tmpFileName;
     }
@@ -584,7 +579,6 @@ class PostsController extends Controller
         }
 
         return $tmpFileDate.$tmpFileName.$ext;
-
     }
 
     private function makeimagedir($path)
@@ -632,8 +626,6 @@ class PostsController extends Controller
         return Validator::make($inputs, $rules);
 
     }
-
-
     /**
      * Validator of question posts
      *
@@ -644,37 +636,21 @@ class PostsController extends Controller
     {
         $rules=[];
         if($entrytype=="text"){
-
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => 'required', 'source' => ''];
-
-        }else if($entrytype=="image"){
-
+        } else if($entrytype=="image"){
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'image' => 'required'];
-
-        }else if($entrytype=="video"){
-
+        } else if($entrytype=="video"){
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'video' => 'required|max:500'];
-
-        }else if($entrytype=="embed" or $entrytype=="tweet"  or $entrytype=="facebookpost" or $entrytype=="instagram" or $entrytype=="soundcloud"){
-
+        } else if($entrytype=="embed" or $entrytype=="tweet"  or $entrytype=="facebookpost" or $entrytype=="instagram" or $entrytype=="soundcloud"){
             $rules = ['type' => 'required', 'title' => 'max:255', 'body' => '', 'source' => '', 'video' => 'required|max:1000'];
-
-        }elseif($entrytype=="quizresult"){
-
+        } elseif($entrytype=="quizresult"){
             $rules = ['type' => 'required', 'title' => 'required|min:2|max:255', 'body' => 'required|min:5|max:500', 'image' => ''];
-
-        }elseif($entrytype=="quizquestion"){
-
+        } elseif($entrytype=="quizquestion"){
             $rules = ['type' => 'required', 'title' => 'min:2|max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
-
-        }else if($entrytype=="poll"){
-
+        } else if($entrytype=="poll"){
             $rules = ['type' => 'required', 'title' => 'max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
-
         }
-
         return Validator::make($inputs, $rules);
-
     }
 
     /**
@@ -683,8 +659,7 @@ class PostsController extends Controller
      * @param $inputs
      * @return array|bool
      */
-    protected function QuizAnswerValidator(array $inputs, $listtype)
-    {
+    protected function QuizAnswerValidator(array $inputs, $listtype){
 
         if($listtype=="1" or $listtype=="2"){
             $rules = ['type' => 'required', 'title' => 'max:45', 'image' => 'required', 'assign' => 'required'];
@@ -753,15 +728,15 @@ class PostsController extends Controller
 
                     return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya-$quizresultcount, 'error' => $v->errors()->first()]));
 
-               }elseif($entrytype=="poll"){
+                }elseif($entrytype=="poll"){
 
                     return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
 
-               }else{
+                }else{
                    return array('status' => trans('updates.error'), 'errors' => trans('updates.entryerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
-               }
+                }
 
-            }else{
+            } else {
                 if($entrytype=="poll"){
                     $quizresultcount=0;
                 }
