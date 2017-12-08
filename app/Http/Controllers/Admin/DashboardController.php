@@ -58,8 +58,6 @@ class DashboardController extends MainAdminController
 
         $lastusers = $users->latest("created_at")->take('10')->get();
 
-        $updateversion = $this->checkupdate();
-
         return view('_admin.pages.index', compact(
             'todaypost',
             'todaypost',
@@ -166,17 +164,6 @@ class DashboardController extends MainAdminController
         return $message;
     }
 
-    public function checkupdate(){
-
-        $content = curlit($this->server);
-        if ($content and $content != \Config::get('installer.last_version')){
-            return $content;
-        }else{
-            return \Config::get('installer.last_version');
-        }
-
-    }
-    
     public function checkcode(){
 
         \Session::flash('error.message', trans("admin.pluginsnotavailable"));
