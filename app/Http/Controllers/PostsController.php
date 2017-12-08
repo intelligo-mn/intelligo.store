@@ -21,9 +21,6 @@ use Image;
 
 class PostsController extends Controller
 {
-
-
-
     public function __construct(){
 
         parent::__construct();
@@ -63,15 +60,16 @@ class PostsController extends Controller
             $post->hit();
         }
 
-
         $entrys = $post->entry();
+        
         if($post->pagination==null){
             $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->get();
-        }else{
+        } else{
             $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->paginate($post->pagination);
         }
 
         $entrysquizquest=""; $entrysquizresults="";
+        
         if($post->type=='quiz'){
             $entrysquizquest=$post->entry()->where('type', 'quizquestion')->oldest("order")->get();
             $entrysquizresults=$post->entry()->byType("quizresult")->oldest("order")->get();
@@ -83,18 +81,14 @@ class PostsController extends Controller
    
 		$lastFeatures = Posts::approve('yes')->where('posts.id', '!=', $post->id)->where('category_id', $post->category_id)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
 
-
-
         $reactions=false;
+        
         if(getcong('p-reactionform') == 'on'){
-        $reactions = $post->reactions;
+            $reactions = $post->reactions;
         }
 
         return view("pages/post", compact('post', 'entrys', 'reactions', 'entrysquizquest', 'entrysquizresults', 'lastNews', 'lastFeatures'));
     }
-
-
-
     /**
      *
      * @return \Illuminate\View\View
@@ -227,7 +221,7 @@ class PostsController extends Controller
      */
     public function CreateNewPost(Request $request){
 
-         $okay = $this->getfailsvalidator($request);
+        $okay = $this->getfailsvalidator($request);
         if($okay!='pas'){
          return $okay;
         }
@@ -247,20 +241,21 @@ class PostsController extends Controller
 
 		$ordertype = null;
 		if(isset($inputs['ordertype'])){
-        $ordertype = $inputs['ordertype'];
-        if($ordertype == 'none'){
-            $ordertype = null;
-        }
+            $ordertype = $inputs['ordertype'];
+            if($ordertype == 'none'){
+                $ordertype = null;
+            }
 		}
-		
         $post = new Posts;
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
+        if(isset($inputs['lang'])){
+            $post->lang = $inputs['lang'] == 0 ? null : \Session::get('locale');
+        }
         if(isset($inputs['pagination'])){
-        $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
         $post->type = $inputs['type'];
         $post->tags = isset($inputs['tags']) ? $inputs['tags'] : '';
@@ -336,8 +331,10 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
+        if(isset($inputs['lang'])){
+            $post->lang = $inputs['lang'] == 0 ? null : \Session::get('locale');
+        }
         if(isset($inputs['pagination'])) {
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
