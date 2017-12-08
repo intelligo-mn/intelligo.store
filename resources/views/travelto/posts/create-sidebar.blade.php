@@ -36,7 +36,7 @@
         <div class="cd-form">
             <legend>Language</legend>
             <p class="cd-select icon">
-                {!! Form::select('lang', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($post->lang)) !!}              
+                {!! Form::select('language', ['en'=>'English', 'mn'=>'Монгол', 'zh'=>'简体中文', 'ru'=>'Russia'], isset($post->lang)) !!}              
             </p>
         </div>
 
