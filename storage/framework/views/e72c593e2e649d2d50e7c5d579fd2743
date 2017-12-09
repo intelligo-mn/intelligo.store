@@ -19,9 +19,9 @@
                         <input class="left" id="remember" name="remember" type="checkbox" value="true" checked>
                         <label class="show left" for="remember"><?php echo e(trans('index.remember')); ?></label>
                     </div>
-                    <div class="forgot-pass">
+                    <!-- <div class="forgot-pass">
                         <a href="/password/email"><?php echo e(trans('passwords.forgotpassword')); ?></a>
-                    </div>
+                    </div> -->
                 </div>
                 <button type="submit" class="button button-orange button-full" id="PostUserLogin"><?php echo e(trans('index.login')); ?></button>
 
@@ -29,10 +29,10 @@
 
 
         </div>
-        <div class="signup-terms">
+        <!-- <div class="signup-terms">
             <div class="show-connect-forms">
                 <?php echo e(trans('index.youdonthaveanaccount')); ?> <a href="/register" <?php if(!isset($link)): ?> rel="get:Signupform" <?php endif; ?>><?php echo e(trans('index.register')); ?></a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
