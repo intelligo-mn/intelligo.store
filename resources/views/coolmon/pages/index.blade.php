@@ -309,7 +309,7 @@
                                             @foreach($lastFeaturestop->slice(0, 4) as $item)
                                                 <li class="col-md-4 col-sm-4 col-sm-12" style="padding: 0 !important">
                                                     <div class="right-content">
-                                                        <span class="category"><a href="category-politics.html">Politics</a></span>
+                                                        <span class="category"><a href="category-politics.html">ЗУРГИЙН ЦОМОГ</a></span>
                                                         <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
                                                         <!-- <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}.</a></h3> -->
                                                     </div>
@@ -348,7 +348,7 @@
                                             <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="{{ $item->title }}" /></a>
                                         </div>
                                         <div class="blog-content">
-                                            <a href="{{ makeposturl($item) }}" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
+                                            <a href="{{ makeposturl($item) }}" class="cat-link">EVENT</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
                                             </span>
                                             <h4><a href="#">{{ $item->title }}</a></h4>
                                         </div>
