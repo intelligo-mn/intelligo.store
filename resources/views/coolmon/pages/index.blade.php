@@ -301,7 +301,7 @@
                                 <div class="view-area">
                                     <div class="row">
                                         <div class="col-sm-8"> 
-                                            <h3 class="title-bg">ЭВЭНТ</h3>
+                                            <h3 class="title-bg">EVENT</h3>
                                         </div>
                                         <div class="col-sm-4 text-right">
                                             <a href="#">Дэлгэрэнгүй <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
@@ -351,6 +351,38 @@
                                 </ul> -->
                             </div>
                         </div>
+                        
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="view-area">
+                                <div class="col-sm-12"> 
+                                    <h3 class="title-bg">ЗУРГИЙН ЦОМОГ</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="slider-right">
+                                    <ul>
+                                        @if(isset($lastFeaturestop))
+                                            @foreach($lastFeaturestop->slice(0, 4) as $item)
+                                                <li class="col-md-4 col-sm-4 col-sm-12">
+                                                    <div class="right-content">
+                                                        <span class="category"><a href="category-politics.html">Politics</a></span>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                                        <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}.</a></h3>
+                                                    </div>
+                                                    <div class="right-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a></div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <!-- End what’s hot now -->
                 </div>
@@ -360,7 +392,7 @@
                         @foreach($lastTrending->slice(0,1) as $item)
 
                         <div class="sidebar popular separator-large">
-                            <h3 class="title-bg">ОНЦЛОХ МЭДЭЭЛЭЛ</h3>
+                            <h3 class="title-bg">ОНЦЛОХ БИЗНЕС</h3>
                             <ul>
                                 <li>
                                     <a href="{{ makeposturl($item) }}" class="category-btn hvr-bounce-to-right">Business</a>
@@ -422,19 +454,20 @@
             </div>
         </div>
     </div>
+
     <!-- Fetuered videos Start Here -->
     <div class="fetuered-videos">
         <div class="container">
             <div class="row">
                 <div class="view-area">
                     <div class="col-sm-12"> 
-                        <h3 class="title-bg">ГАЛИРРЕЙ</h3>
+                        <h3 class="title-bg">БИЧЛЭГ</h3>
                     </div>
                 </div>
             </div>
             <div id="featured-videos-section" class="owl-carousel">
                 @if(isset($lastNews))
-                    @foreach($lastNews->slice(1, 6) as $item)
+                    @foreach($lastNews->slice(1, 3) as $item)
                        <div class="item">
                             <div class="single-videos">
                                 <div class="images">
