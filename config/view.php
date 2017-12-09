@@ -14,7 +14,7 @@ return [
     */
 
     'paths' => [
-        realpath(base_path('resources/views/uriankhai')),
+        realpath(base_path('resources/views/coolmon')),
     ],
 
     /*

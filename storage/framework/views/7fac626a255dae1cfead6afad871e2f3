@@ -1,6 +1,4 @@
-@extends("main")
-
-@section("content")
+<?php $__env->startSection("content"); ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-0">
@@ -12,12 +10,12 @@
                             <div class="ticker-head up-case backg-colr col-md-2">Шуурхай<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
                             <div class="tickers col-md-10">
                                 <div id="top-news-slider" class="owl-carousel ">
-                                    @foreach($lastNews as $item)
+                                    <?php foreach($lastNews as $item): ?>
                                         <div class="item">
-                                            <a href="{{ makeposturl($item) }}"> <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"> <span>{{ $item->title }} </span></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"> <img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="<?php echo e($item->title); ?>"> <span><?php echo e($item->title); ?> </span></a>
                                         </div>
                                             
-                                    @endforeach
+                                    <?php endforeach; ?>
                                                       
                                </div>
                            </div>
@@ -31,17 +29,17 @@
                     <div class="bend niceties preview-2">
                         <div id="ensign-nivoslider" class="slides">
                             
-                            @foreach($lastFeaturestop->slice(0,1) as $item)
-                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="#slider-direction-1" />
-                             @endforeach
+                            <?php foreach($lastFeaturestop->slice(0,1) as $item): ?>
+                            <img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="<?php echo e($item->title); ?>" title="#slider-direction-1" />
+                             <?php endforeach; ?>
 
-                             @foreach($lastFeaturestop->slice(1,1) as $item)
-                            <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="#slider-direction-2" />
-                             @endforeach
+                             <?php foreach($lastFeaturestop->slice(1,1) as $item): ?>
+                            <img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="<?php echo e($item->title); ?>" title="#slider-direction-2" />
+                             <?php endforeach; ?>
                         </div>
                         <!-- direction 2 -->
 
-                        @foreach($lastFeaturestop->slice(0,1) as $item)
+                        <?php foreach($lastFeaturestop->slice(0,1) as $item): ?>
                         <div id="slider-direction-1" class="slider-direction">
                              <div class="slider-content t-cn s-tb slider-1">
                                 <div class="title-container s-tb-c">
@@ -50,7 +48,8 @@
                                             <li>
                                                 <a class="cat-link" href="category.html">Business</a> 
                                                 <span class="date"> 
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i><?php echo e($item->created_at->diffForHumans()); ?>
+
                                                 </span>
                                                 <span class="comment">
                                                     <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -59,14 +58,14 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h1>
-                                    <div class="title2">{{ str_limit($item->body, 100) }}.</div>
+                                    <h1 class="title1"><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h1>
+                                    <div class="title2"><?php echo e(str_limit($item->body, 100)); ?>.</div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        <?php endforeach; ?>
                         <!-- direction 2 -->
-                         @foreach($lastFeaturestop->slice(1,1) as $item)
+                         <?php foreach($lastFeaturestop->slice(1,1) as $item): ?>
                         <div id="slider-direction-2" class="slider-direction">
                              <div class="slider-content t-cn s-tb slider-1">
                                 <div class="title-container s-tb-c">
@@ -75,7 +74,8 @@
                                             <li>
                                                 <a class="cat-link" href="category.html">Business</a> 
                                                 <span class="date"> 
-                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}
+                                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i><?php echo e($item->created_at->diffForHumans()); ?>
+
                                                 </span>
                                                 <span class="comment">
                                                     <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -84,12 +84,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <h1 class="title1"><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h1>
-                                    <div class="title2">{{ str_limit($item->body, 100) }}.</div>
+                                    <h1 class="title1"><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h1>
+                                    <div class="title2"><?php echo e(str_limit($item->body, 100)); ?>.</div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -97,10 +97,10 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
                 <div class="slider-right">
                     <ul>
-                        @foreach($lastFeaturestop->slice(1,2) as $item)
-                                @include('._particles._lists.top_slider_list', ['metaon' => 'on'])
+                        <?php foreach($lastFeaturestop->slice(1,2) as $item): ?>
+                                <?php echo $__env->make('._particles._lists.top_slider_list', ['metaon' => 'on'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                        @endforeach
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -122,174 +122,174 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab1" class="tab-pane fade in active">
-                            @if($lastNews)
+                            <?php if($lastNews): ?>
                                 <div class="tab-top-content">
-                                     @foreach($lastNews->slice(0, 1) as $item)
+                                     <?php foreach($lastNews->slice(0, 1) as $item): ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                                 <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="sidebar image"></a>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
-                                                <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?> </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3>
+                                                <p><?php echo e(str_limit($item->body, 100)); ?></p>
+                                                <a href="<?php echo e(makeposturl($item)); ?>" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="tab-bottom-content">
                                     <div class="row">
-                                         @foreach($lastNews->slice(1,4) as $item)
+                                         <?php foreach($lastNews->slice(1,4) as $item): ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
                                             <div class="col-sm-12 col-xs-3 img-tab">
-                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>
                                             </div>
                                             <div class="col-sm-12 col-xs-9 img-content">
-                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 40)); ?></a></h4>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div id="tab2" class="tab-pane fade">
-                             @if($lastNews)
+                             <?php if($lastNews): ?>
                                 <div class="tab-top-content">
-                                     @foreach($lastNews->slice(1, 1) as $item)
+                                     <?php foreach($lastNews->slice(1, 1) as $item): ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                                 <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="sidebar image"></a>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
-                                                <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?> </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3>
+                                                <p><?php echo e(str_limit($item->body, 100)); ?></p>
+                                                <a href="<?php echo e(makeposturl($item)); ?>" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="tab-bottom-content">
                                     <div class="row">
-                                         @foreach($lastNews->slice(4,7) as $item)
+                                         <?php foreach($lastNews->slice(4,7) as $item): ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
                                             <div class="col-sm-12 col-xs-3 img-tab">
-                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>
                                             </div>
                                             <div class="col-sm-12 col-xs-9 img-content">
-                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 40)); ?></a></h4>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div id="tab3" class="tab-pane fade">
-                            @if($lastNews)
+                            <?php if($lastNews): ?>
                                 <div class="tab-top-content">
-                                     @foreach($lastNews->slice(2, 1) as $item)
+                                     <?php foreach($lastNews->slice(2, 1) as $item): ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                                 <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="sidebar image"></a>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
-                                                <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?> </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3>
+                                                <p><?php echo e(str_limit($item->body, 100)); ?></p>
+                                                <a href="<?php echo e(makeposturl($item)); ?>" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="tab-bottom-content">
                                     <div class="row">
-                                         @foreach($lastNews->slice(5,7) as $item)
+                                         <?php foreach($lastNews->slice(5,7) as $item): ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
                                             <div class="col-sm-12 col-xs-3 img-tab">
-                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>
                                             </div>
                                             <div class="col-sm-12 col-xs-9 img-content">
-                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 40)); ?></a></h4>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div id="tab4" class="tab-pane fade">
-                            @if($lastNews)
+                            <?php if($lastNews): ?>
                                 <div class="tab-top-content">
-                                     @foreach($lastNews->slice(0, 1) as $item)
+                                     <?php foreach($lastNews->slice(0, 1) as $item): ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                                 <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="sidebar image"></a>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
-                                                <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?> </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3>
+                                                <p><?php echo e(str_limit($item->body, 100)); ?></p>
+                                                <a href="<?php echo e(makeposturl($item)); ?>" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="tab-bottom-content">
                                     <div class="row">
-                                         @foreach($lastNews->slice(1,4) as $item)
+                                         <?php foreach($lastNews->slice(1,4) as $item): ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
                                             <div class="col-sm-12 col-xs-3 img-tab">
-                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>
                                             </div>
                                             <div class="col-sm-12 col-xs-9 img-content">
-                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 40)); ?></a></h4>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div id="tab5" class="tab-pane fade">
-                           @if($lastNews)
+                           <?php if($lastNews): ?>
                                 <div class="tab-top-content">
-                                     @foreach($lastNews->slice(0, 1) as $item)
+                                     <?php foreach($lastNews->slice(0, 1) as $item): ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 paddimg-right-none">
-                                                 <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a>
+                                                 <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="sidebar image"></a>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 last-col">
-                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }} </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
-                                                <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h3>
-                                                <p>{{ str_limit($item->body, 100) }}</p>
-                                                <a href="{{ makeposturl($item) }}" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
+                                                <span class="date"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?> </a></span> <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50</a></span>
+                                                <h3><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3>
+                                                <p><?php echo e(str_limit($item->body, 100)); ?></p>
+                                                <a href="<?php echo e(makeposturl($item)); ?>" class="read-more hvr-bounce-to-right">Дэлгэрэнгүй</a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="tab-bottom-content">
                                     <div class="row">
-                                         @foreach($lastNews->slice(1,4) as $item)
+                                         <?php foreach($lastNews->slice(1,4) as $item): ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 tab-area">
                                             <div class="col-sm-12 col-xs-3 img-tab">
-                                                <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a>
                                             </div>
                                             <div class="col-sm-12 col-xs-9 img-content">
-                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 40) }}</a></h4>
+                                                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 40)); ?></a></h4>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!-- Trending news  here-->
@@ -310,43 +310,44 @@
                                 </div>
                                 <div class="featured">
                                    
-                                    @if(isset($lastTrending))
+                                    <?php if(isset($lastTrending)): ?>
                                         
                                         
-                                        @foreach($lastTrending->slice(0,1) as $item)
+                                        <?php foreach($lastTrending->slice(0,1) as $item): ?>
                                      
                                         <div class="blog-img">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}" title="{{ $item->title }}" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="<?php echo e($item->title); ?>" title="<?php echo e($item->title); ?>" /></a>
                                         </div>
                                         <div class="blog-content">
-                                            <a href="{{ makeposturl($item) }}" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
+                                            <a href="<?php echo e(makeposturl($item)); ?>" class="cat-link">Sports</a><span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <?php echo e($item->created_at->diffForHumans()); ?>
+
                                             </span>
-                                            <h4><a href="#">{{ $item->title }}</a></h4>
+                                            <h4><a href="#"><?php echo e($item->title); ?></a></h4>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                                 <!-- <ul class="news-post news-feature-mb">
-                                    @if(isset($lastTrending))
+                                    <?php if(isset($lastTrending)): ?>
                                         
                                         
-                                        @foreach($lastTrending->slice(2,3) as $item)
+                                        <?php foreach($lastTrending->slice(2,3) as $item): ?>
                                         <li>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
-                                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}" /></a>
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>" /></a>
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
-                                                    <h4><a href="#">{{ $item->title }}</a></h4>
-                                                    <span class="author"><a href=""><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->user->username }}</a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}</span>
-                                                    <p>{{ str_limit($item->body, 150) }}</p>
+                                                    <h4><a href="#"><?php echo e($item->title); ?></a></h4>
+                                                    <span class="author"><a href=""><i class="fa fa-user-o" aria-hidden="true"></i> <?php echo e($item->user->username); ?></a></span> <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><?php echo e($item->created_at->diffForHumans()); ?></span>
+                                                    <p><?php echo e(str_limit($item->body, 150)); ?></p>
                                                 </div>
                                             </div>
                                         </li>
-                                        @endforeach
+                                        <?php endforeach; ?>
                                     
-                                    @endif
+                                    <?php endif; ?>
                                     
                                 </ul> -->
                             </div>
@@ -356,21 +357,21 @@
                 </div>
                 <!--Sidebar Start Here -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none sidebar-latest">
-                    @if(isset($lastTrending))
-                        @foreach($lastTrending->slice(0,1) as $item)
+                    <?php if(isset($lastTrending)): ?>
+                        <?php foreach($lastTrending->slice(0,1) as $item): ?>
 
                         <div class="sidebar popular separator-large">
                             <h3 class="title-bg">ОНЦЛОХ МЭДЭЭЛЭЛ</h3>
                             <ul>
                                 <li>
-                                    <a href="{{ makeposturl($item) }}" class="category-btn hvr-bounce-to-right">Business</a>
-                                    <div class="post-image"><img src="{{ makepreview($item->thumb, 's', 'posts') }}" alt="{{ $item->title }}"></div>
+                                    <a href="<?php echo e(makeposturl($item)); ?>" class="category-btn hvr-bounce-to-right">Business</a>
+                                    <div class="post-image"><img src="<?php echo e(makepreview($item->thumb, 's', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></div>
                                     <div class="content">
                                         <h4>
-                                            <a href="{{ makeposturl($item) }}">{{ $item->title }}</a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a>
                                         </h4>
                                         <span class="date"> 
-                                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }} 
+                                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <?php echo e($item->created_at->diffForHumans()); ?> 
                                         </span> 
                                         <span class="comment">
                                             <a href="#">
@@ -381,15 +382,15 @@
                                 </li>
                             </ul> 
                         </div>
-                        @endforeach
-                    @endif                  
+                        <?php endforeach; ?>
+                    <?php endif; ?>                  
                    
                      
 
                     <div class="hot-news popular-related">
                         <ul class="news-post">
-                            @if(isset($lastTrending))
-                                @foreach($lastTrending->slice(1, 3) as $item)
+                            <?php if(isset($lastTrending)): ?>
+                                <?php foreach($lastTrending->slice(1, 3) as $item): ?>
 
                                 <li>
                                     <div class="row">
@@ -397,19 +398,19 @@
                                             <div class="item-post">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                                        <img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="News image">
+                                                        <img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="News image">
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
-                                                        <h4><a href="{{ makeposturl($item) }}"> {{ $item->title }}</a></h4>
-                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $item->created_at->diffForHumans() }}</span>                                                
+                                                        <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e($item->title); ?></a></h4>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><?php echo e($item->created_at->diffForHumans()); ?></span>                                                
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                @endforeach
-                            @endif                  
+                                <?php endforeach; ?>
+                            <?php endif; ?>                  
                    
                 
                         </ul>
@@ -433,27 +434,27 @@
                 </div>
             </div>
             <div id="featured-videos-section" class="owl-carousel">
-                @if(isset($lastNews))
-                    @foreach($lastNews->slice(1, 6) as $item)
+                <?php if(isset($lastNews)): ?>
+                    <?php foreach($lastNews->slice(1, 6) as $item): ?>
                        <div class="item">
                             <div class="single-videos">
                                 <div class="images">
-                                    <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
+                                    <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt=""></a>
                                     <div class="overley">
                                         <div class="videos-icon">
-                                            <a class="popup-videos" href="{{ makeposturl($item) }}"><img src="cooltheme/images/video-icon.png" alt=""></a>                           
+                                            <a class="popup-videos" href="<?php echo e(makeposturl($item)); ?>"><img src="cooltheme/images/video-icon.png" alt=""></a>                           
                                         </div>
                                     </div>
                                 </div>                            
                                 <div class="videos-text">
-                                    <h3><a href="#">{{ $item->title }}</a></h3>
+                                    <h3><a href="#"><?php echo e($item->title); ?></a></h3>
                                     <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
                                     <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>    
     </div>
@@ -485,46 +486,46 @@
                                     </div>    
                                 </div>
                                 <div class="carousel-inner">
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(0, 1) as $item)
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(0, 1) as $item): ?>
 
                                         <div class="item active">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(1, 2) as $item)
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(1, 2) as $item): ?>
 
                                         <div class="item">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -551,46 +552,46 @@
                                     </div>    
                                 </div>
                                 <div class="carousel-inner">
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(1, 1) as $item)
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(1, 1) as $item): ?>
 
                                         <div class="item active">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(3, 5) as $item)
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(3, 5) as $item): ?>
 
                                         <div class="item">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
 
                             </div>
@@ -600,46 +601,46 @@
                             <div id="news-Carousel2" class="carousel carousel-news slide" data-ride="carousel">
                                 
                                 <div class="carousel-inner">
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(3, 1) as $item)
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(3, 1) as $item): ?>
 
                                         <div class="item active">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(3, 5) as $item)
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(3, 5) as $item): ?>
 
                                         <div class="item">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                                 
                             </div>
@@ -649,46 +650,46 @@
                             <div id="news-Carousel2" class="carousel carousel-news slide" data-ride="carousel">
                                
                                 <div class="carousel-inner">
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(2, 1) as $item)
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(2, 1) as $item): ?>
 
                                         <div class="item active">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
-                                    @if(isset($lastNews))
-                                        @foreach($lastNews->slice(3, 5) as $item)
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php if(isset($lastNews)): ?>
+                                        <?php foreach($lastNews->slice(3, 5) as $item): ?>
 
                                         <div class="item">
-                                            <a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="" title="#slider-direction-1" /></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="" title="#slider-direction-1" /></a>
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                                     November 28, 2017 
                                                 </span>
                                                 <span class="comment">
-                                                    <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                                    <a href="<?php echo e(makeposturl($item)); ?>"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
                                                     </a>
                                                 </span>
-                                                <h4><a href="{{ makeposturl($item) }}"> {{ str_limit($item->title, 30) }}.</a></h4>
-                                                <p>{{ str_limit($item->title, 30) }}</p>
+                                                <h4><a href="<?php echo e(makeposturl($item)); ?>"> <?php echo e(str_limit($item->title, 30)); ?>.</a></h4>
+                                                <p><?php echo e(str_limit($item->title, 30)); ?></p>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                                 
                             </div>
@@ -700,12 +701,12 @@
                     <h3 class="title-bg featured-title">ТАНИН МЭДЭХҮЙ</h3>
                     <div class="sidebar">
                         <ul>
-                            @foreach($lastFeaturestop->slice(0,3) as $item)
+                            <?php foreach($lastFeaturestop->slice(0,3) as $item): ?>
                             <li>
                                 <a href="#" class="category-btn hvr-bounce-to-right">ТАНИН МЭДЭХҮЙ</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
+                                <div class="post-image"><a href="blog-single.html"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="News image" /></a></div>
                                 <div class="content">
-                                    <h4><a href="blog-single.html">{{ $item->title }}</a></h4>
+                                    <h4><a href="blog-single.html"><?php echo e($item->title); ?></a></h4>
                                     <span class="date"> 
                                         <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
                                     </span> 
@@ -718,7 +719,7 @@
                                 </div>
                             </li>
 
-                             @endforeach
+                             <?php endforeach; ?>
                         </ul>
                         
                     </div>
@@ -736,4 +737,5 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
