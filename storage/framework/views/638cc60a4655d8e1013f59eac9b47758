@@ -1,0 +1,231 @@
+<?php $__env->startSection('head_title',  $post->title.' | '.getcong('sitename')); ?>
+<?php $__env->startSection('head_description', $post->body); ?>
+<?php $__env->startSection('head_image', asset('/upload/media/posts/'.$post->thumb.'-b.jpg')); ?>
+<?php $__env->startSection('head_url', Request::url()); ?>
+<?php $__env->startSection('modedefault', 'mode-default'); ?>
+<?php $__env->startSection("content"); ?>
+
+    <div class="content">
+
+        <div class="container">
+            <div class="mainside postmainside">
+
+                <div class="post-content" style="margin-top:7px;background: transparent" itemscope="" itemtype="http://schema.org/Article">
+
+                    <div class="post">
+                        <div class="post-head">
+                            <?php if($post->approve == 'draft'): ?>
+                                <div class="label label-staff" ><?php echo e(trans('updates.thisdraftpost')); ?></div>
+                            <?php endif; ?>
+                            <h1 itemprop="name" class="post-title">
+                                <?php echo e($post->title); ?>
+
+                            </h1>
+
+
+                            <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check('update-post', $post)): ?>
+
+                            <?php if(Auth::user()->usertype=='Admin'): ?>
+
+                                <h5 class="pull-r" style="color:#aaa;line-height: 26px"><?php echo e(trans('index.admintools')); ?></h5>
+
+                                <?php if($post->approve == 'no'): ?>
+                                    <a href="<?php echo e(action('Admin\PostsController@approvepost', $post->id)); ?>" class="button button-orange button-small"><i class="fa fa-check-square-o iconp"></i> <?php echo e(trans('index.approve')); ?></a>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <?php if((getcong('UserEditPosts')=='true' and getcong('UserDeletePosts')=='true')): ?>
+                                    <h5 class="pull-r" style="color:#aaa;line-height: 26px"><?php echo e(trans('index.ownertools')); ?></h5>
+                                <?php endif; ?>
+                                <?php if($post->approve == 'no'): ?>
+                                    <a href="#" class="button button-orange button-small" style="cursor: default"><i class="fa fa-circle-o-notch fa-spin iconp"></i> <?php echo e(trans('index.waitapprove')); ?></a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+
+                            <?php if(getcong('UserEditPosts')=='true' or Auth::user()->usertype=='Admin'): ?>
+                                <a href="<?php echo e(action('PostsController@CreateEdit', [$post->id])); ?>" class="button button-green button-small" ><i class="fa fa-pencil-square iconp"></i> <?php echo e(trans('index.edit')); ?></a>
+                            <?php endif; ?>
+                            <?php if(getcong('UserDeletePosts')=='true' or Auth::user()->usertype=='Admin'): ?>
+                                <a href="<?php echo e(action('PostsController@sendtrashpost', [$post->id])); ?>" onclick="confim()" class="button button-red button-small " ><i class="fa fa-trash"></i></a>
+                            <?php endif; ?>
+                            <BR><BR>
+                            <?php endif; ?>
+
+                            <p>
+                                <?php echo nl2br($post->body); ?>
+
+                            </p>
+
+                            <div class="post-head__bar">
+                                <?php if(isset($post->user->username_slug)): ?>
+                                    <div class="user-info <?php echo e($post->user->genre); ?> answerer">
+                                        <div class="avatar left">
+                                            <img src="<?php echo e(makepreview($post->user->icon , 's', 'members/avatar')); ?>" width="45" height="45" alt="<?php echo e($post->user->username); ?>">
+                                        </div>
+                                        <div class="info">
+
+
+                                            <a class="name" href="<?php echo e(action('UsersController@index', [$post->user->username_slug ])); ?>" target="_self"><?php echo e($post->user->username); ?></a>
+
+                                            <?php if($post->user->usertype == 'Admin'): ?>
+                                                <div class="label label-admin" style="margin-left:5px"><?php echo e(trans('updates.usertypeadmin')); ?></div>
+                                            <?php elseif($post->user->usertype == 'Staff'): ?>
+                                                <div class="label label-staff" style="margin-left:5px"><?php echo e(trans('updates.usertypestaff')); ?></div>
+                                            <?php elseif($post->user->usertype == 'banned'): ?>
+                                                <div class="label label-banned" style="margin-left:5px"><?php echo e(trans('updates.usertypebanned')); ?></div>
+                                            <?php endif; ?>
+
+
+
+
+                                            <div class="detail">
+                                                <?php echo trans('index.postedon', ['time' => '<time itemprop="datePublished">'.$post->published_at->diffForHumans() .'</time>' ]); ?>
+
+
+                                                <?php if ( ! ($post->updated_at==$post->published_at)): ?>
+                                                    , <?php echo trans('index.updatedon', ['time' => '<time itemprop="datePublished">'.$post->updated_at->diffForHumans() .'</time>' ]); ?>
+
+                                                <?php endif; ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="post-head__meta">
+                                    <div class="posted-on">
+
+
+                                    </div>
+
+                                    <div class="topics-container clearfix">
+                                        <?php if(isset($post->category->name_slug)): ?>
+                                            <div class="item_category">
+                                                <a href="<?php echo e(action('PagesController@showCategory', ['id' => $post->category->name_slug ])); ?>"><?php echo e($post->category->name); ?></a>
+                                            </div>
+                                        <?php endif; ?>
+
+
+                                        <div class="clear"></div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="clear"></div>
+                            <?php echo $__env->make("_particles.others.postsociallinks", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            <div class="clear"></div>
+
+                            <?php foreach(\App\Widgets::where('type', 'PostShareBw')->where('display', 'on')->get() as $widget): ?>
+                                <?php echo $widget->text; ?>
+
+                            <?php endforeach; ?>
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <article class="post-body" id="post-body" itemprop="text">
+
+                            <?php echo $__env->make("_particles._lists.entryslists", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                        </article>
+
+                    </div>
+                    <?php if($post->tags != ""): ?>
+                        <?php foreach(explode(',', $post->tags) as $tag): ?>
+                          <span class="tagy"><a href="<?php echo e(action('PagesController@showtag', $tag)); ?>"><i class="fa fa-tag"></i> <?php echo e($tag); ?></a></span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+
+                    <?php foreach(\App\Widgets::where('type', 'PostBelow')->where('display', 'on')->get() as $widget): ?>
+                        <?php echo $widget->text; ?>
+
+                    <?php endforeach; ?>
+
+
+                </div>
+
+                <?php echo $__env->make("_forms._reactionforms", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php echo $__env->make("_forms._commentforms", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            </div>
+            <div class="sidebar">
+
+                <?php foreach(\App\Widgets::where('type', 'PostPageSidebar')->where('display', 'on')->get() as $widget): ?>
+                    <?php echo $widget->text; ?>
+
+                <?php endforeach; ?>
+
+                <div class="colheader" style="border:0;text-transform: uppercase;">
+                    <h1><?php echo e(trans('index.today')); ?> <?php echo trans('index.top', ['type' => '<span style="color:#d92b2b">'.trans('index.posts').'</span>' ]); ?></h1>
+                </div>
+
+                <?php echo $__env->make("_widgets.trendlist_sidebar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php echo $__env->make("_widgets.facebooklike", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            </div>
+            <div class="clear"></div>
+            <br><br> <br>
+            <?php if(isset($lastFeatures)): ?>
+                <?php if(count($lastFeatures) >= 3): ?>
+                    <div class="colheader">
+                        <h1><?php echo e(trans('index.maylike')); ?></h1>
+                    </div>
+                    <?php echo $__env->make("_widgets.post-between-comments", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
+    </div>
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+    <?php if($post->type=="quiz"): ?>
+    <script>
+         BuzzyQuizzes = {
+            'lang_1': '<?php echo e(trans('buzzyquiz.shareonface')); ?>',
+            'lang_2': '<?php echo e(trans('buzzyquiz.shareontwitter')); ?>',
+            'lang_3': '<?php echo e(trans('buzzyquiz.shareface')); ?>',
+            'lang_4': '<?php echo e(trans('buzzyquiz.sharetweet')); ?>',
+            'lang_5': '<?php echo e(trans('buzzyquiz.sharedone')); ?>',
+            'lang_6': '<?php echo e(trans('buzzyquiz.sharedonedesc')); ?>'
+        };
+
+
+        $( document ).ready(function() {
+
+            App.initQuizzesClicks();
+        });
+    </script>
+    <?php endif; ?>
+    <?php if($post->type=="poll"): ?>
+    <script>
+        $( document ).ready(function() {
+            $('.poll_main_color').each(function(i){
+                $(this).css('width', $(this).attr('data-percent')+'%');
+            });
+        });
+    </script>
+    <?php endif; ?>
+    <script async defer src="//platform.instagram.com/<?php echo e(getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US'); ?>/embeds.js"></script>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+    <style> .fb_dialog{z-index:999999999} </style>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/<?php echo e(getcong('sitelanguage') > "" ? getcong('sitelanguage') : 'en_US'); ?>/sdk.js#xfbml=1<?php echo getcong('facebookapp') > "" ? '&appId='.getcong('facebookapp') : ''; ?>&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("app", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
