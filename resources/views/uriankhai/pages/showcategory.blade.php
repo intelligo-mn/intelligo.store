@@ -1,107 +1,281 @@
-@extends("app")
+@extends("main")
 
 @section('head_title', $category->name .' | '.getcong('sitename') )
 @section('head_description', $category->description )
 
-
-
 @section("content")
 
-@if(!empty($lastFeaturestop))
+@include('._particles.headerbottom')
 
-    <div class="content shay">
-
-        <div class="container shay">
-
-            <div class="row homefeatures clearfix">
-                <h1 style="margin-left: 5px;"><span style="font-weight: 700;">{{ $category->name }}</span>  <small style="color:#f1f1f1">|</small>
-
-                        @foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat)
-
-                                <a style="font-size:16px;margin-left:10px;color:#999;" data-type="{{ $cat->name_slug }}" href="/{{ $cat->name_slug }}"> {{ $cat->name }}</a>
-
-                        @endforeach
-
-                </h1>
-                <div class="pull-l">
-                    @foreach($lastFeaturestop->slice(0,1) as $item)
-                        <div class="tile tile-2">
-                            @include('._particles._lists.features_list', ['descof' => 'on','metaon' => 'on'])
-
+<div class="main-content--section pbottom--30">
+    <div class="container">
+        <div class="main--content">
+            <div class="post--items pd--30-0" data-ajax-content="outer">
+                <ul class="nav row gutter--0" data-ajax-content="inner">
+                    <li class="col-md-4 col-xs-6 col-xxs-12">
+                        <div class="post--item post--layout-1">
+                            <div class="post--img">
+                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-01.jpg" alt="" data-rjs="2"></a>
+                                <div class="post--info">
+                                    <ul class="nav meta">
+                                        <li><a href="#">Astaroth</a></li>
+                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
+                                    </ul>
+                                    <div class="title">
+                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
-
+                    </li>
+                    <li class="col-xs-12 hidden shown-xxs">
+                        <hr class="divider"> </li>
+                    <li class="col-md-4 col-xs-6 col-xxs-12">
+                        <div class="post--item post--layout-1">
+                            <div class="post--img">
+                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-02.jpg" alt="" data-rjs="2"></a>
+                                <div class="post--info">
+                                    <ul class="nav meta">
+                                        <li><a href="#">Astaroth</a></li>
+                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
+                                    </ul>
+                                    <div class="title">
+                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-4 hidden-sm hidden-xs">
+                        <div class="post--item post--layout-1">
+                            <div class="post--img">
+                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/food-and-resturent-03.jpg" alt="" data-rjs="2"></a>
+                                <div class="post--info">
+                                    <ul class="nav meta">
+                                        <li><a href="#">Astaroth</a></li>
+                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
+                                    </ul>
+                                    <div class="title">
+                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="preloader bg--color-0--b" data-preloader="1">
+                    <div class="preloader--inner"></div>
                 </div>
-                <div class="pull-l">
-                    @foreach($lastFeaturestop->slice(1,1) as $item)
-                        <div class="tile tile-1">
-                            @include('._particles._lists.features_list', ['descof' => 'on','metaon' => 'on'])
-
+            </div>
+        </div>
+        <div class="row" style="transform: none;">
+    <div class="main--content col-md-8 col-sm-7" data-sticky-content="true" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+        <div class="sticky-content-inner" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+            <div class="post--items post--items-5 pd--30-0">
+                <ul class="nav">
+                    <li>
+                        <div class="post--item post--title-larger">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
+                                    <div class="post--img">
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-01.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Kids</a> </div>
+                                </div>
+                                <div class="col-md-8 col-sm-12 col-xs-8 col-xxs-12">
+                                    <div class="post--info">
+                                        <ul class="nav meta">
+                                            <li><a href="#">Bushyasta</a></li>
+                                            <li><a href="#">16 April 2016</a></li>
+                                        </ul>
+                                        <div class="title">
+                                            <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Credibly pontificate highly efficient manufactured products and enabled data.</a></h3> </div>
+                                    </div>
+                                    <div class="post--content">
+                                        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+                                    </div>
+                                    <div class="post--action"> <a href="news-single-v1.html">Continue Reading...</a> </div>
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
-
+                    </li>
+                </ul>
+            </div>
+            <div class="ad--space">
+                <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-02.jpg" alt="" class="center-block" data-rjs="2"> </a>
+            </div>
+            <div class="post--items post--items-5 pd--30-0">
+                <ul class="nav">
+                    <li>
+                        <div class="post--item post--title-larger">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="post--img">
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-05.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">Old City</a> </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="post--info">
+                                        <ul class="nav meta">
+                                            <li><a href="#">Bune</a></li>
+                                            <li><a href="#">16 April 2016</a></li>
+                                        </ul>
+                                        <div class="title">
+                                            <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Credibly pontificate highly efficient manufactured products and enabled data.</a></h3> </div>
+                                    </div>
+                                    <div class="post--content">
+                                        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+                                    </div>
+                                    <div class="post--action"> <a href="news-single-v1.html">Continue Reading...</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ad--space">
+                <a href="#"> <img src="uriankhai/img/ads-img/ad-728x90-03.jpg" alt="" class="center-block" data-rjs="2"> </a>
+            </div>
+            <div class="post--items post--items-5 pd--30-0">
+                <ul class="nav">
+                    <li>
+                        <div class="post--item post--title-larger">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="post--img">
+                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/blog-img/post-10.jpg" alt="" data-rjs="2"></a> <a href="#" class="cat">World News</a> </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="post--info">
+                                        <ul class="nav meta">
+                                            <li><a href="#">Onoskelis</a></li>
+                                            <li><a href="#">22 May 2016</a></li>
+                                        </ul>
+                                        <div class="title">
+                                            <h3 class="h4"><a href="news-single-v1.html" class="btn-link">What are they doing highly efficient manufactured products and enabled data.</a></h3> </div>
+                                    </div>
+                                    <div class="post--content">
+                                        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+                                    </div>
+                                    <div class="post--action"> <a href="news-single-v1.html">Continue Reading...</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pagination--wrapper clearfix bdtop--1 bd--color-2 ptop--60 pbottom--30">
+                <p class="pagination-hint float--left">Page 02 of 03</p>
+                <ul class="pagination float--right">
+                    <li><a href="#"><i class="fa fa-long-arrow-left"></i></a></li>
+                    <li><a href="#">01</a></li>
+                    <li class="active"><span>02</span></li>
+                    <li><a href="#">03</a></li>
+                    <li> <i class="fa fa-angle-double-right"></i> <i class="fa fa-angle-double-right"></i> <i class="fa fa-angle-double-right"></i> </li>
+                    <li><a href="#">20</a></li>
+                    <li><a href="#"><i class="fa fa-long-arrow-right"></i></a></li>
+                </ul>
+            </div>
+            <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 790px; height: 2867px;"></div>
                 </div>
-
-                <div class="pull-l tway">
-                    @foreach($lastFeaturestop->slice(2,2) as $item)
-                        <div class="tile tile-3">
-                            @include('._particles._lists.features_list', ['metaon' => 'on'])
-
-                        </div>
-                    @endforeach
-
+                <div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
                 </div>
             </div>
         </div>
     </div>
-@endif
-
-    <div class="content">
-
-        <div class="container">
-
-            <div class="mainside cat">
-                <div class="external-sign-in rss" style="margin:0;padding:0;width:auto;float:right">
-                    <a class="Rss mini"  target=_blank style="width:24px;height:24px;margin:6px 0 0 0" href="{{ $category->name_slug }}.xml"></a></div>
-                <style>.external-sign-in.rss a:after{ font-size:14px!important;  top: 5px!important;left:-7px}</style>
-                <div class="colheader   none ">
-                    @if(isset($search))
-                            <h1>{{ $search }}</h1>
-                    @elseif(isset($category->name))
-                        <h1>{{ trans('index.latest', ['type' => $category->name ]) }}</h1>
-                    @endif
-
+    <div class="main--sidebar col-md-4 col-sm-5 ptop--30 pbottom--30" data-sticky-content="true" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+        <div class="sticky-content-inner" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+            
+            <div class="widget">
+                <div class="widget--title">
+                    <h2 class="h4">Featured News</h2> <i class="icon fa fa-newspaper-o"></i> </div>
+                <div class="list--widget list--widget-1">
+                    
+                    <div class="post--items post--items-3" data-ajax-content="outer">
+                        <ul class="nav" data-ajax-content="inner">
+                            <li>
+                                <div class="post--item post--layout-3">
+                                    <div class="post--img">
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-01.jpg" alt="" data-rjs="2"></a>
+                                        <div class="post--info">
+                                            <ul class="nav meta">
+                                                <li><a href="#">Ninurta</a></li>
+                                                <li><a href="#">16 April 2017</a></li>
+                                            </ul>
+                                            <div class="title">
+                                                <h3 class="h4"><a href="#" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post--item post--layout-3">
+                                    <div class="post--img">
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-02.jpg" alt="" data-rjs="2"></a>
+                                        <div class="post--info">
+                                            <ul class="nav meta">
+                                                <li><a href="#">Orcus</a></li>
+                                                <li><a href="#">16 April 2017</a></li>
+                                            </ul>
+                                            <div class="title">
+                                                <h3 class="h4"><a href="#" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post--item post--layout-3">
+                                    <div class="post--img">
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-03.jpg" alt="" data-rjs="2"></a>
+                                        <div class="post--info">
+                                            <ul class="nav meta">
+                                                <li><a href="#">Rahab</a></li>
+                                                <li><a href="#">16 April 2017</a></li>
+                                            </ul>
+                                            <div class="title">
+                                                <h3 class="h4"><a href="#" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post--item post--layout-3">
+                                    <div class="post--img">
+                                        <a href="#" class="thumb"><img src="uriankhai/img/widgets-img/news-widget-04.jpg" alt="" data-rjs="2"></a>
+                                        <div class="post--info">
+                                            <ul class="nav meta">
+                                                <li><a href="#">Tannin</a></li>
+                                                <li><a href="#">16 April 2017</a></li>
+                                            </ul>
+                                            <div class="title">
+                                                <h3 class="h4"><a href="#" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="preloader bg--color-0--b" data-preloader="1">
+                            <div class="preloader--inner"></div>
+                        </div>
+                    </div>
                 </div>
-
-
-                @if($lastItems->total() > 0)
-                    <div class="jscroll" data-auto="{!!  getcong('AutoLoadLists') ?: 'false' !!}">
-                    @include('pages.catpostloadpage')
-                    </div>
-                    @else
-                    @include('errors.emptycontent')
-
-                @endif
-
             </div>
-            <div class="sidebar">
-
-                @foreach(\App\Widgets::where('type', 'CatSide')->where('display', 'on')->get() as $widget)
-                    {!! $widget->text !!}
-                @endforeach
-                    @if($lastNews)
-
-                    <div class="colheader" style="border:0;text-transform: uppercase">
-                        <h1>{{ trans('index.weekly') }} {!! trans('index.top', ['type' => '<span style="color:#d92b2b">'.$category->name.'</span>' ]) !!}</h1>
-                    </div>
-                @include("_widgets.trendlist_sidebar")
-                    @endif
-                @include("_widgets/facebooklike")
-
+            <div class="widget">
+                <div class="widget--title">
+                    <h2 class="h4">Advertisement</h2> <i class="icon fa fa-bullhorn"></i> </div>
+                <div class="ad--widget">
+                    <a href="#"> <img src="uriankhai/img/ads-img/ad-300x250-2.jpg" alt="" data-rjs="2"> </a>
+                </div>
+            </div>
+            <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 400px; height: 3554px;"></div>
+                </div>
+                <div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
+                </div>
             </div>
         </div>
-
     </div>
-
+</div>
+    </div>
+</div>
 
 @endsection
