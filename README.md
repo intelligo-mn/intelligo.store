@@ -35,7 +35,7 @@ Techstar Laravel Content Management System.
 
 ![Progress](http://progressed.io/bar/30) [![Web](https://img.shields.io/badge/web-www.silkroadmongolian.com-red.svg?style=flat-square)](http://www.silkroadmongolian.com)
 
-![Progress](http://progressed.io/bar/60) [![Web](https://img.shields.io/badge/web-www.uriankhai.mn-green.svg?style=flat-square)](http://www.uriankhai.mn)
+![Progress](http://progressed.io/bar/60) [![Web](https://img.shields.io/badge/web-www.uraanhaa.com-green.svg?style=flat-square)](http://www.uraanhaa.com)
 
 #### Continuous Delivery
 
@@ -44,6 +44,14 @@ Get back your time with Buddy’s delivery pipelines that eliminate repeatable t
 [![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64556/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64556)
 [![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64557/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64557)
 [![buddy pipeline](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64561/badge.svg?token=fdea9a0514ed5c7478259f1dc3cb36f755de061e14cae07b50d635501cb3c62a "buddy pipeline")](https://app.buddy.works/tortuvshin/techstar-cms/pipelines/pipeline/64561)
+
+#### Themes
+
+https://techstar-inc.github.io/techstar-cms/themes/uriankhai/
+
+https://techstar-inc.github.io/techstar-cms/themes/cool/
+
+https://techstar-inc.github.io/techstar-cms/themes/travelto/
 
 #### Install
 

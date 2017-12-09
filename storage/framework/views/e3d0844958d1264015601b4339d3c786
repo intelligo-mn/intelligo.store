@@ -1,20 +1,54 @@
-@extends("main")
-@section("content")
+<?php $__env->startSection("content"); ?>
+<div class="posts--filter-bar style--1 hidden-xs">
+    <div class="container">
+        <ul class="nav">
+            <li>
+                <a href="#"> <i class="fa fa-star-o"></i> <span>Featured News</span> </a>
+            </li>
+            <li>
+                <a href="#"> <i class="fa fa-heart-o"></i> <span>Most Popular</span> </a>
+            </li>
+            <li>
+                <a href="#"> <i class="fa fa-fire"></i> <span>Hot News</span> </a>
+            </li>
+            <li>
+                <a href="#"> <i class="fa fa-flash"></i> <span>Trending News</span> </a>
+            </li>
+            <li>
+                <a href="#"> <i class="fa fa-eye"></i> <span>Most Watched</span> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="news--ticker">
+    <div class="container">
+        <div class="title">
+            <h2>News Updates</h2> <span>(Update 12 minutes ago)</span> </div>
+        <div class="news-updates--list" data-marquee="true">
+            <ul class="nav">
+                <?php foreach($lastNews as $item): ?>
+                    <li>
+                        <h3 class="h3"><a href="<?php echo e(makeposturl($item)); ?>"><?php echo e($item->title); ?></a></h3> 
+                    </li>
+                            
+                <?php endforeach; ?>
 
-@include('._particles.headerbottom')
-
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="main-content--section pbottom--30">
     <div class="container">
         <div class="main--content">
             <div class="post--items post--items-1 pd--30-0">
                 <div class="row gutter--15">
                     
-                    @foreach($lastFeaturestop->slice(0,1) as $item)
+                    <?php foreach($lastFeaturestop->slice(0,1) as $item): ?>
                         
                         <div class="col-md-7">
                             <div class="post--item post--layout-1 featured-big post--title-larger">
                                 <div class="post--img">
-                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                    <a href="<?php echo e(makeposturl($item)); ?>" class="thumb"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt="<?php echo e($item->title); ?>"></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                     <div class="post--map">
                                         <p class="btn-link"><i class="fa fa-map-o"></i>Location in Google Map</p>
                                         <div class="map--wrapper">
@@ -24,56 +58,56 @@
                                     <div class="post--info">
                                         <ul class="nav meta">
                                             <li><a href="#">Norma R. Hogan</a></li>
-                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                            <li><a href="#"><?php echo e($item->created_at->diffForHumans()); ?></a></li>
                                         </ul>
                                         <div class="title">
-                                            <h2 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h2> </div>
+                                            <h2 class="h4"><a href="<?php echo e(makeposturl($item)); ?>" class="btn-link"><?php echo e($item->title); ?></a></h2> </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    @endforeach
+                    <?php endforeach; ?>
                     <div class="col-md-5">
                         <div class="row gutter--15">
                             
-                            @foreach($lastFeaturestop->slice(1,2) as $item)
+                            <?php foreach($lastFeaturestop->slice(1,2) as $item): ?>
                                 <div class="col-xs-6 col-xss-12">
                                     <div class="post--item post--layout-1 post--title-large">
                                         <div class="post--img">
-                                            <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">Travel</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>" class="thumb"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt=""></a> <a href="#" class="cat">Travel</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                             <div class="post--info">
                                                 <ul class="nav meta">
                                                     <li><a href="#">Corey I. Dean</a></li>
                                                     <li>
-                                                        <a href="#">{{ $item->created_at->diffForHumans() }}</a>
+                                                        <a href="#"><?php echo e($item->created_at->diffForHumans()); ?></a>
                                                     </li>
                                                 </ul>
                                                 <div class="title">
-                                                    <h2 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h2> </div>
+                                                    <h2 class="h4"><a href="<?php echo e(makeposturl($item)); ?>" class="btn-link"><?php echo e($item->title); ?></a></h2> </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; ?>
 
-                            @foreach($lastFeaturestop->slice(2,1) as $item)
+                            <?php foreach($lastFeaturestop->slice(2,1) as $item): ?>
                                 <div class="col-sm-12 hidden-sm hidden-xs">
                                     <div class="post--item post--layout-1 post--title-larger">
                                         <div class="post--img">
-                                            <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
+                                            <a href="<?php echo e(makeposturl($item)); ?>" class="thumb"><img src="<?php echo e(makepreview($item->thumb, 'b', 'posts')); ?>" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
                                             <div class="post--info">
                                                 <ul class="nav meta">
                                                     <li><a href="#">Balam</a></li>
-                                                    <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                    <li><a href="#"><?php echo e($item->created_at->diffForHumans()); ?></a></li>
                                                 </ul>
                                                 <div class="title">
-                                                    <h2 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h2> </div>
+                                                    <h2 class="h4"><a href="<?php echo e(makeposturl($item)); ?>" class="btn-link"><?php echo e($item->title); ?></a></h2> </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -1367,4 +1401,6 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

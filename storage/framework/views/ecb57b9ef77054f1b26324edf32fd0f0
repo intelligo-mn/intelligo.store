@@ -1,21 +1,18 @@
-@extends("main")
+<?php $__env->startSection('head_title', trans('contact.contact')); ?>
 
-@section('head_title', trans('contact.contact'))
+<?php $__env->startSection("header"); ?>
 
-@section("header")
-
-@endsection
-
-@section("content")
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection("content"); ?>
     
-    @include('_particles.headerbottom')
+    <?php echo $__env->make('_particles.headerbottom', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
     <div class="main--breadcrumb">
       <div class="container">
         <ul class="breadcrumb">
           <li><a href="home-1.html" class="btn-link"><i class="fa fm fa-home"></i>Home</a>
           </li>
-          <li class="active"><span>{{ trans('contact.contact') }}</span>
+          <li class="active"><span><?php echo e(trans('contact.contact')); ?></span>
           </li>
         </ul>
       </div>
@@ -66,36 +63,44 @@
           <div class="col-md-9 col-sm-8 ptop--30 pbottom--30">
             <div class="comment--form">
               <div class="comment-respond">
-                 {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
+                 <?php echo Form::open(array('action' => 'ContactController@create', 'method' => 'POST','name' => 'contactform', 'enctype' => 'multipart/form-data')); ?>
+
 
                   <div class="status"></div>
                   <div class="row">
                     <div class="col-xs-6 col-xxs-12">
-                      <label> <span>{{ trans('contact.name') }} *</span> 
-                        {!! Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']) !!}
+                      <label> <span><?php echo e(trans('contact.name')); ?> *</span> 
+                        <?php echo Form::text('name', isset(Auth::user()->username) ? Auth::user()->username : null, ['id' => 'name', 'class' => 'form-control']); ?>
+
                       </label>
-                      <label> <span>{{ trans('contact.email') }} *</span> 
-                        {!! Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']) !!}
+                      <label> <span><?php echo e(trans('contact.email')); ?> *</span> 
+                        <?php echo Form::text('email', isset(Auth::user()->email) ? Auth::user()->email : null, ['id' => 'email', 'class' => 'form-control']); ?>
+
                       </label>
-                      <label> <span>{{ trans('contact.subject') }}</span> 
-                        {!! Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
+                      <label> <span><?php echo e(trans('contact.subject')); ?></span> 
+                        <?php echo Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control']); ?>
+
                       </label>
                     </div>
                     <div class="col-xs-6 col-xxs-12">
-                      <label> <span>{{ trans('contact.description') }} *</span> 
+                      <label> <span><?php echo e(trans('contact.description')); ?> *</span> 
                         
-                        {!! Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']) !!}
+                        <?php echo Form::textarea('text', null, ['id' => 'text', 'style' => 'height:125px', 'class' => 'form-control']); ?>
+
                       </label>
                     </div>
                     <div class="col-md-12 text-right">
-                       {!! Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-primary']) !!}
+                       <?php echo Form::submit(isset($post->id) ? trans('addpost.savec') : trans('contact.send'), ['class' => 'btn btn-primary']); ?>
+
                     </div>
                   </div>
-                {!! Form::close() !!}
+                <?php echo Form::close(); ?>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("main", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
