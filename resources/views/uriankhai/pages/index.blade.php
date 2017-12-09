@@ -615,15 +615,8 @@
                     </div>
                     <div class="widget">
                         <div class="widget--title">
-                            <h2 class="h4">Featured News</h2> <i class="icon fa fa-newspaper-o"></i> </div>
+                            <h2 class="h4">TREND</h2> <i class="icon fa fa-newspaper-o"></i> </div>
                         <div class="list--widget list--widget-1">
-                            <div class="list--widget-nav" data-ajax="tab">
-                                <ul class="nav nav-justified">
-                                    <li> <a href="#" data-ajax-action="load_widget_hot_news">Hot News</a> </li>
-                                    <li class="active"> <a href="#" data-ajax-action="load_widget_trendy_news">Trendy News</a> </li>
-                                    <li> <a href="#" data-ajax-action="load_widget_most_watched">Most Watched</a> </li>
-                                </ul>
-                            </div>
                             <div class="post--items post--items-3" data-ajax-content="outer">
                                 <ul class="nav" data-ajax-content="inner">
                                     <li>
@@ -808,7 +801,7 @@
                         
                         <div class="col-md-12 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Foods &amp; Recipes</h2>
+                                <h2 class="h4">БАХАРХАЛ</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_food_resturent_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_food_resturent_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -871,7 +864,7 @@
                         </div>
                         <div class="col-md-12 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Photo Gallery</h2>
+                                <h2 class="h4">ЗУРГИЙН ЦОМОГ</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_photo_gallery_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_photo_gallery_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -879,10 +872,25 @@
                             </div>
                             <div class="post--items post--items-1" data-ajax-content="outer">
                                 <ul class="nav row gutter--15" data-ajax-content="inner">
-                                    <li class="col-md-12">
-                                        <div class="post--item post--layout-1 post--title-large">
+                                    <li class="col-md-6 col-xs-6 col-xxs-12">
+                                        <div class="post--item post--layout-1">
                                             <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-01.jpg" alt=""></a> <a href="#" class="cat">Serfer</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
+                                                 <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-02.jpg" alt=""></a><a href="#" class="cat">Serfer</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
+                                                <div class="post--info">
+                                                    <ul class="nav meta">
+                                                        <li><a href="#">Astaroth</a></li>
+                                                        <li><a href="#">Today 05:52 pm</a></li>
+                                                    </ul>
+                                                    <div class="title text-xxs-ellipsis">
+                                                        <h2 class="h4"><a href="news-single-v1.html" class="btn-link">Standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum</a></h2> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-md-6 col-xs-6 col-xxs-12">
+                                        <div class="post--item post--layout-1">
+                                            <div class="post--img">
+                                                 <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/photo-gallery-02.jpg" alt=""></a><a href="#" class="cat">Serfer</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
                                                 <div class="post--info">
                                                     <ul class="nav meta">
                                                         <li><a href="#">Astaroth</a></li>
