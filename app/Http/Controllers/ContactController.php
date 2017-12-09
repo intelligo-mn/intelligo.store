@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Contacts;
 use Illuminate\Http\Request;
-
+use App\Posts;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Mail\Mailer;
@@ -21,8 +21,15 @@ class ContactController extends Controller
     public function index()
     {
         $labels=Categories::byType('maillabel')->lists('name','id' );
+        
+        $lang = \Session::get('locale');
 
-        return view('_contact.contactpage', compact('labels'));
+        // Uraankhai.com contact breaking news
+        $lastNews =           Posts::forhome()->
+                    where("lang", $lang)->
+                    typesActivete()->approve('yes')->latest("published_at")->take(15)->get();
+
+        return view('_contact.contactpage', compact('labels', 'lastNews'));
     }
 
     public function create(Request $request)
