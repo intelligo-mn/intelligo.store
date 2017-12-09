@@ -792,7 +792,7 @@
             </div>
         </div>
         <div class="ad--space pd--30-0">
-            <a href="#"> <img src="uriankhai/img/ads-img/ad-970x90.jpg" alt="" class="center-block"> </a>
+            <a href="#"> <img src="uriankhai/img/ads-img/ad-970x90.jpg" alt="" class="center-block" style="height: 120px;"> </a>
         </div>
         <div class="row">
             <div class="main--content col-md-8 col-sm-7" data-sticky-content="true">
