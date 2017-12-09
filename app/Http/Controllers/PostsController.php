@@ -233,7 +233,10 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->language = $inputs['language'];
+        if(isset($inputs['lang'])){
+            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+        }
+        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])){
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
@@ -308,7 +311,7 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->language = $inputs['language'];
+        $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])) {
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
@@ -598,7 +601,7 @@ class PostsController extends Controller
             'title' => 'required|min:10|max:255|unique:posts',
             'category' => 'required|exists:categories,id',
             'pagination' => 'max:2',
-            'language' => 'required',
+            'lang' => 'required',
             'description'  => 'required|min:4|max:500',
             'tags'  => 'max:2500',
             'thumb' => 'required|min:10',
@@ -666,7 +669,7 @@ class PostsController extends Controller
 
         $inputs = $request->all();
 
-        $v = $this->Postvalidator($request->only('title', 'description', 'category', 'tags', 'language', 'pagination',  'type', 'thumb'), $id);
+        $v = $this->Postvalidator($request->only('title', 'description', 'category', 'tags', 'lang', 'pagination',  'type', 'thumb'), $id);
 
         if ($v->fails()) {
             return array('status' => trans('updates.error'), 'errors' => $v->errors()->first());

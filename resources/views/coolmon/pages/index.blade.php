@@ -116,9 +116,9 @@
                     <ul class="nav nav-tabs">
                         <li class="title-bg">Шинэ мэдээ</li>
                         <li class="active"><a data-toggle="tab" href="#tab1">Их уншсан</a></li>
-                        <li><a data-toggle="tab" href="#tab2">Долоо хоног</a></li>
-                        <li><a data-toggle="tab" href="#tab3">Шилдэг</a></li>
-                        <li><a data-toggle="tab" href="#tab4">Өнөөдөр</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Соёл</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Түүх</a></li>
+                        <li><a data-toggle="tab" href="#tab4">Шинэ</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab1" class="tab-pane fade in active">
