@@ -293,9 +293,38 @@
                         </div>
                     </div>
                     <!-- Trending news  here-->
-           
+                    <div class="gallery" style="padding-top: 20px">
+                        <div class="row">
+                            <div class="view-area">
+                                <div class="col-sm-12"> 
+                                    <h3 class="title-bg">ЗУРГИЙН ЦОМОГ</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="slider-right">
+                                    <ul>
+                                        @if(isset($lastFeaturestop))
+                                            @foreach($lastFeaturestop->slice(0, 4) as $item)
+                                                <li class="col-md-4 col-sm-4 col-sm-12" style="padding: 0 !important">
+                                                    <div class="right-content">
+                                                        <span class="category"><a href="category-politics.html">Politics</a></span>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                                        <!-- <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}.</a></h3> -->
+                                                    </div>
+                                                    <div class="right-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a></div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--Start what’s hot now -->
-                    <div class="hot-news separator-large">
+                    <div class="hot-news" style="padding-top: 20px">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="view-area">
@@ -351,41 +380,10 @@
                                 </ul> -->
                             </div>
                         </div>
-                        
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="view-area">
-                                <div class="col-sm-12"> 
-                                    <h3 class="title-bg">ЗУРГИЙН ЦОМОГ</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="slider-right">
-                                    <ul>
-                                        @if(isset($lastFeaturestop))
-                                            @foreach($lastFeaturestop->slice(0, 4) as $item)
-                                                <li class="col-md-4 col-sm-4 col-sm-12">
-                                                    <div class="right-content">
-                                                        <span class="category"><a href="category-politics.html">Politics</a></span>
-                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
-                                                        <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}.</a></h3>
-                                                    </div>
-                                                    <div class="right-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a></div>
-                                                </li>
-                                            @endforeach
-                                        @endif
-                                      
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <!-- End what’s hot now -->
                 </div>
+
                 <!--Sidebar Start Here -->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none sidebar-latest">
                     @if(isset($lastTrending))
@@ -421,7 +419,7 @@
                     <div class="hot-news popular-related">
                         <ul class="news-post">
                             @if(isset($lastTrending))
-                                @foreach($lastTrending->slice(1, 3) as $item)
+                                @foreach($lastTrending->slice(1, 5) as $item)
 
                                 <li>
                                     <div class="row">
@@ -446,7 +444,7 @@
                 
                         </ul>
                     </div> 
-                    <div class=" separator-large add-section add-section2">
+                    <div class="add-section add-section2" style="padding-top: 60px">
                         <img src="cooltheme/images/3.jpg" alt="add image">
                     </div>
 
