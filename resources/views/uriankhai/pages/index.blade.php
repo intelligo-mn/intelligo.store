@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-md-6 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Worlds News</h2>
+                                <h2 class="h4">СОЁЛ</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_world_news_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_world_news_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -180,7 +180,7 @@
                         </div>
                         <div class="col-md-6 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Technology</h2>
+                                <h2 class="h4">СҮҮЛД НЭМЭГДСЭН</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_technology_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_technology_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -276,7 +276,7 @@
                         </div>
                         <div class="col-md-12 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Finance</h2>
+                                <h2 class="h4">ТҮҮХ</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_finance_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_finance_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -375,7 +375,7 @@
                         </div>
                         <div class="col-md-6 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Politics</h2>
+                                <h2 class="h4">УРЛАГ</h2>
                                 <div class="nav">
                                     <a href="#" class="prev btn-link" data-ajax-action="load_prev_politics_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
                                     <a href="#" class="next btn-link" data-ajax-action="load_next_politics_posts"> <i class="fa fa-long-arrow-right"></i> </a>
@@ -805,192 +805,7 @@
             <div class="main--content col-md-8 col-sm-7" data-sticky-content="true">
                 <div class="sticky-content-inner">
                     <div class="row">
-                        <div class="col-md-6 ptop--30 pbottom--30">
-                            <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Health &amp; fitness</h2>
-                                <div class="nav">
-                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_health_fitness_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
-                                    <a href="#" class="next btn-link" data-ajax-action="load_next_health_fitness_posts"> <i class="fa fa-long-arrow-right"></i> </a>
-                                </div>
-                            </div>
-                            <div class="post--items post--items-3" data-ajax-content="outer">
-                                <ul class="nav" data-ajax-content="inner">
-                                    <li>
-                                        <div class="post--item post--layout-1">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bathin</a></li>
-                                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-02.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Maclaan John</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Established fact that a reader will be distracted by the readable content</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-03.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Ziminiar</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-04.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Vanth</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/health-and-fitness-05.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Vanth</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="preloader bg--color-0--b" data-preloader="1">
-                                    <div class="preloader--inner"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 ptop--30 pbottom--30">
-                            <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Lifestyle</h2>
-                                <div class="nav">
-                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_lifestyle_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
-                                    <a href="#" class="next btn-link" data-ajax-action="load_next_lifestyle_posts"> <i class="fa fa-long-arrow-right"></i> </a>
-                                </div>
-                            </div>
-                            <div class="post--items post--items-2" data-ajax-content="outer">
-                                <ul class="nav row gutter--15" data-ajax-content="inner">
-                                    <li class="col-xs-12">
-                                        <div class="post--item post--layout-1">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-01.jpg" alt=""></a> <a href="#" class="cat">Fashion</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Siriya attaced by a long established fact that a reader will be distracted by</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-12">
-                                        <hr class="divider"> </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-02.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-03.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-12">
-                                        <hr class="divider"> </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-04.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/lifestyle-05.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="preloader bg--color-0--b" data-preloader="1">
-                                    <div class="preloader--inner"></div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="col-md-12 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
                                 <h2 class="h4">Foods &amp; Recipes</h2>
