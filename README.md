@@ -35,7 +35,7 @@ Techstar Laravel Content Management System.
 
 ![Progress](http://progressed.io/bar/30) [![Web](https://img.shields.io/badge/web-www.silkroadmongolian.com-red.svg?style=flat-square)](http://www.silkroadmongolian.com)
 
-![Progress](http://progressed.io/bar/60) [![Web](https://img.shields.io/badge/web-www.uriankhai.mn-green.svg?style=flat-square)](http://www.uriankhai.mn)
+![Progress](http://progressed.io/bar/60) [![Web](https://img.shields.io/badge/web-www.uraanhaa.com-green.svg?style=flat-square)](http://www.uraanhaa.com)
 
 #### Continuous Delivery
 
