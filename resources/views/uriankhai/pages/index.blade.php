@@ -292,96 +292,74 @@
                                     <div class="preloader--inner"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 ptop--30 pbottom--30">
+                        </div><div class="col-md-6 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
                                 <h2 class="h4">УРЛАГ</h2>
                                 <div class="nav">
-                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_politics_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
-                                    <a href="#" class="next btn-link" data-ajax-action="load_next_politics_posts"> <i class="fa fa-long-arrow-right"></i> </a>
+                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_world_news_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
+                                    <a href="#" class="next btn-link" data-ajax-action="load_next_world_news_posts"> <i class="fa fa-long-arrow-right"></i> </a>
                                 </div>
                             </div>
                             <div class="post--items post--items-2" data-ajax-content="outer">
                                 <ul class="nav row gutter--15" data-ajax-content="inner">
-                                    <li class="col-xs-12">
-                                        <div class="post--item post--layout-1">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-01.jpg" alt=""></a> <a href="#" class="cat">Election</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+                                    
+                                    @foreach($lastNews->slice(6, 1) as $item)
+                                        <li class="col-xs-12">
+                                            <div class="post--item post--layout-1">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">War</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-12">
-                                        <hr class="divider"> </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-02.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Hantu Raya</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-03.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
+                                
                                     <li class="col-xs-12">
                                         <hr class="divider"> </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-04.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Astaroth</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
+                                     @foreach($lastNews->slice(1, 2) as $item)
+                                        <li class="col-xs-6">
+                                            <div class="post--item post--layout-2">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-xs-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/politics-05.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Hantu Raya</a></li>
-                                                        <li><a href="#">17 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will done</a></h3> </div>
+                                        </li>
+                                    @endforeach
+                                    
+                                    <li class="col-xs-12">
+                                        <hr class="divider"> </li>
+                                     @foreach($lastNews->slice(2, 2) as $item)
+                                        <li class="col-xs-6">
+                                            <div class="post--item post--layout-2">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                                 <div class="preloader bg--color-0--b" data-preloader="1">
                                     <div class="preloader--inner"></div>
@@ -390,89 +368,49 @@
                         </div>
                         <div class="col-md-6 ptop--30 pbottom--30">
                             <div class="post--items-title" data-ajax="tab">
-                                <h2 class="h4">Sports</h2>
+                                <h2 class="h4">СПОРТ</h2>
                                 <div class="nav">
-                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_sports_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
-                                    <a href="#" class="next btn-link" data-ajax-action="load_next_sports_posts"> <i class="fa fa-long-arrow-right"></i> </a>
+                                    <a href="#" class="prev btn-link" data-ajax-action="load_prev_technology_posts"> <i class="fa fa-long-arrow-left"></i> </a> <span class="divider">/</span>
+                                    <a href="#" class="next btn-link" data-ajax-action="load_next_technology_posts"> <i class="fa fa-long-arrow-right"></i> </a>
                                 </div>
                             </div>
                             <div class="post--items post--items-3" data-ajax-content="outer">
                                 <ul class="nav" data-ajax-content="inner">
-                                    <li>
-                                        <div class="post--item post--layout-1">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-01.jpg" alt=""></a> <a href="#" class="cat">Basketball</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bathin</a></li>
-                                                        <li><a href="#">Yeasterday 03:52 pm</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be distracted by</a></h3> </div>
+                                    @foreach($lastNews->slice(0,1) as $item)
+                                        <li>
+                                            <div class="post--item post--layout-1">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Computer</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-02.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bune</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
+                                        </li>
+                                    @endforeach
+                                    
+                                    @foreach($lastNews->slice(1,4) as $item)
+                                        <li>
+                                            <div class="post--item post--layout-3">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-03.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bune</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-04.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bune</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/sports-05.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Bune</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted by the readable</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                                 <div class="preloader bg--color-0--b" data-preloader="1">
                                     <div class="preloader--inner"></div>
