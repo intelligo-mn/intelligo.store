@@ -223,87 +223,68 @@
                             </div>
                             <div class="post--items post--items-2" data-ajax-content="outer">
                                 <ul class="nav row" data-ajax-content="inner">
-                                    <li class="col-md-6">
-                                        <div class="post--item post--layout-2">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-01.jpg" alt=""></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Vassago</a></li>
-                                                        <li><a href="#">Today 03:30 am</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.</a></h3> </div>
+                                    @foreach($lastNews->slice(1,1) as $item)
+                                        <li class="col-md-6">
+                                            <div class="post--item post--layout-2">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img style="min-height: 320px;" src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Vassago</a></li>
+                                                            <li><a href="#">Today 03:30 am</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}.</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
+                                    
                                     <li class="col-md-6">
                                         <ul class="nav row">
                                             <li class="col-xs-12 hidden-md hidden-lg">
                                                 <hr class="divider"> </li>
-                                            <li class="col-xs-6">
-                                                <div class="post--item post--layout-2">
-                                                    <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-02.jpg" alt=""></a>
-                                                        <div class="post--info">
-                                                            <ul class="nav meta">
-                                                                <li><a href="#">Zepar</a></li>
-                                                                <li><a href="#">Today 03:52 pm</a></li>
-                                                            </ul>
-                                                            <div class="title">
-                                                                <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be</a></h3> </div>
+                                            @foreach($lastNews->slice(1,2) as $item)
+                                    
+                                                <li class="col-xs-6">
+                                                    <div class="post--item post--layout-2">
+                                                        <div class="post--img">
+                                                            <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                            <div class="post--info">
+                                                                <ul class="nav meta">
+                                                                    <li><a href="#">Zepar</a></li>
+                                                                    <li><a href="#">Today 03:52 pm</a></li>
+                                                                </ul>
+                                                                <div class="title">
+                                                                    <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-xs-6">
-                                                <div class="post--item post--layout-2">
-                                                    <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-03.jpg" alt=""></a>
-                                                        <div class="post--info">
-                                                            <ul class="nav meta">
-                                                                <li><a href="#">Demiurge</a></li>
-                                                                <li><a href="#">Today 03:02 pm</a></li>
-                                                            </ul>
-                                                            <div class="title">
-                                                                <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be</a></h3> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+
+                                            @endforeach
                                             <li class="col-xs-12">
                                                 <hr class="divider"> </li>
-                                            <li class="col-xs-6">
-                                                <div class="post--item post--layout-2">
-                                                    <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-04.jpg" alt=""></a>
-                                                        <div class="post--info">
-                                                            <ul class="nav meta">
-                                                                <li><a href="#">Demiurge</a></li>
-                                                                <li><a href="#">Today 02:05 am</a></li>
-                                                            </ul>
-                                                            <div class="title">
-                                                                <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be</a></h3> </div>
+                                            @foreach($lastNews->slice(2,2) as $item)
+                                    
+                                                <li class="col-xs-6">
+                                                    <div class="post--item post--layout-2">
+                                                        <div class="post--img">
+                                                            <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
+                                                            <div class="post--info">
+                                                                <ul class="nav meta">
+                                                                    <li><a href="#">Zepar</a></li>
+                                                                    <li><a href="#">Today 03:52 pm</a></li>
+                                                                </ul>
+                                                                <div class="title">
+                                                                    <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-xs-6">
-                                                <div class="post--item post--layout-2">
-                                                    <div class="post--img">
-                                                        <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/home-img/finance-05.jpg" alt=""></a>
-                                                        <div class="post--info">
-                                                            <ul class="nav meta">
-                                                                <li><a href="#">Zepar</a></li>
-                                                                <li><a href="#">Today 12:35 am</a></li>
-                                                            </ul>
-                                                            <div class="title">
-                                                                <h3 class="h4"><a href="news-single-v1.html" class="btn-link">It is a long established fact that a reader will be</a></h3> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
