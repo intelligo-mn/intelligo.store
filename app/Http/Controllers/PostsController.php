@@ -234,10 +234,8 @@ class PostsController extends Controller
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
         if(isset($inputs['lang'])){
-            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+            $post->lang = $inputs['lang'] == 0 ? null : $inputs['lang'];
         }
-        $post->lang = $inputs['lang'];
-        $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])){
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
@@ -311,7 +309,9 @@ class PostsController extends Controller
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
-        $post->lang = $inputs['lang'];
+         if(isset($inputs['lang'])){
+            $post->lang = $inputs['lang'] == 0 ? null : $inputs['lang'];
+        }
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])) {
             $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
@@ -601,7 +601,7 @@ class PostsController extends Controller
             'title' => 'required|min:10|max:255|unique:posts',
             'category' => 'required|exists:categories,id',
             'pagination' => 'max:2',
-            'lang' => 'required',
+            // 'lang' => 'required',
             'description'  => 'required|min:4|max:500',
             'tags'  => 'max:2500',
             'thumb' => 'required|min:10',

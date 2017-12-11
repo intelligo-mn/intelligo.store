@@ -1,7 +1,7 @@
 
-<!-- <script src="/assets/plugins/editor/module.min.js"></script>
+<script src="/assets/plugins/editor/module.min.js"></script>
 <script src="/assets/plugins/editor/hotkeys.min.js"></script>
-<script src="/assets/plugins/editor/simditor.js"></script> -->
+<script src="/assets/plugins/editor/simditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
 <script src="/assets/plugins/jquery.tagsinput.min.js"></script>
