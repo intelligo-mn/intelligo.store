@@ -3,9 +3,9 @@
        
        <div class="row footer-holder">
            <nav class="col-sm-6 col-lg-5 footer-nav">
-             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fimarketingsuvagagency%2F&tabs=timeline&width=340&height=300px&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1506365282758684" width="340" height="300px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+             <div class="fb-page" data-href="https://www.facebook.com/imarketingsuvagagency/" data-tabs="timeline" data-height="300px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/imarketingsuvagagency/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/imarketingsuvagagency/">I Marketing suvag agency</a></blockquote></div>
           </nav>
-<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fimarketingsuvagagency%2F&tabs=timeline&width=340&height=300px&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1506365282758684" width="340" height="300px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
           <nav class="col-sm-6 col-lg-3 footer-nav active">
              <h3>{{ trans('index.mainmenus') }}</h3>
              <ul class="slide">
