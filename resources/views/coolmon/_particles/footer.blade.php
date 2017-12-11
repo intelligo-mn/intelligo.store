@@ -35,33 +35,17 @@
                         <h3>Popular Posts</h3>
                         <nav>
                             <ul>
-                                <li>
-                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                                        <a href="blog-single.html"><img src="images/post-images/post-1.jpg" alt="post photo"></a>
-                                    </div>
-                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
-                                        <p><a href="blog-single.html">US should prepare for Russian election</a></p>
-                                        <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                                        <a href="blog-single.html"><img src="images/post-images/post-2.jpg" alt="post photo"></a>
-                                    </div>
-                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
-                                        <p><a href="blog-single.html">US should prepare for Russian election</a></p>
-                                        <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                                        <a href="blog-single.html"><img src="images/post-images/post-3.jpg" alt="post photo"></a>
-                                    </div>
-                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
-                                        <p><a href="blog-single.html">US should prepare for Russian election</a></p>
-                                        <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
-                                    </div>
-                                </li>
+                                @foreach($lastFeaturestop->slice(0,3) as $item)
+                                    <li>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                                            <a href="blog-single.html"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="post photo"></a>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                            <p><a href="blog-single.html">{{ str_limit($item->title, 30) }}</a></p>
+                                            <span><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> {{ $item->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </nav>
                     </div>
@@ -73,42 +57,13 @@
                     <div class="single-footer footer-three">
                         <h3>From Flickr</h3>
                         <ul>
-                            <li>
-                                <a href="#"><img src="images/flicker/1.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/2.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/3.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/4.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/5.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/6.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/7.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/8.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/9.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/10.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/11.png" alt="flicker photo"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="images/flicker/12.png" alt="flicker photo"></a>
-                            </li>
+                            @foreach($lastNews->slice(0,12) as $item)
+                                    
+                                <li>
+                                    <a href="#"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="flicker photo"></a>
+                                </li>
+                                
+                            @endforeach
                         </ul>
                     </div>
                 </div>
