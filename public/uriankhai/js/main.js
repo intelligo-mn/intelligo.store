@@ -1,3 +1,11 @@
+/*
+
+Project     : Techstar CMS - Laravel Content Management System
+Author      : Techstar, Inc.
+Author URI  : https://github.com/techstar-inc
+
+*/
+
 ;(function(b) {
     var p = b(window),
         l = b(document),

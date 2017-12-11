@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Techstar CMS - Laravel Content Management System
+ * Author  Techstar, Inc.
+ * Author URI  : https://github.com/techstar-inc
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use App\Categories;
@@ -13,16 +19,6 @@ use Illuminate\Http\Request;
 class DashboardController extends MainAdminController
 {
 
-    protected $verifyapiserver  =  'http://envato.akbilisim.com/api/BA';
-
-    protected $server  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestupdate.txt';
-
-    protected $servercore  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/latestcore.txt';
-
-    protected $serverrar  =  'http://envato.akbilisim.com/productbuzzy/buzzyupdates/updates/update';
-
-    protected $pluginsapi = 'http://envato.akbilisim.com/api/allplugins';
-
     public function __construct()
     {
         parent::__construct();
@@ -31,7 +27,7 @@ class DashboardController extends MainAdminController
 
     }
 
-  public function index(Posts $posts, User $users)
+    public function index(Posts $posts, User $users)
     {
 
         $rangetoday = Carbon::now()->subDays(1);
@@ -62,9 +58,7 @@ class DashboardController extends MainAdminController
 
         $lastusers = $users->latest("created_at")->take('10')->get();
 
-
         $updateversion = $this->checkupdate();
-
 
         return view('_admin.pages.index', compact(
             'todaypost',
@@ -85,9 +79,6 @@ class DashboardController extends MainAdminController
             'lastusers',
             'updateversion'
         ));
-
-
-
     }
 
     public function plugins()
@@ -108,15 +99,14 @@ class DashboardController extends MainAdminController
         $typeos=[];
         $categories = Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get();
 
-            foreach($categories as $cat){
-                $typeos[$cat->type]=$cat->name;
+        foreach($categories as $cat){
+            $typeos[$cat->type]=$cat->name;
 
-                foreach(Categories::where('type', $cat->id)->orderBy('name')->get() as $cata){
-                    $typeos[$cata->id]="---- " .$cata->name;
-                }
-
+            foreach(Categories::where('type', $cat->id)->orderBy('name')->get() as $cata){
+                $typeos[$cata->id]="---- " .$cata->name;
             }
 
+        }
 
         return view('_admin.pages.plugins', compact(
             'plugins',
@@ -131,10 +121,6 @@ class DashboardController extends MainAdminController
 
         $pluginiten=$plugin['dataitem'];
         $pluginverify=$plugin['dataverify'];
-
-
-
-
 
         if(\DbConfig::get('p-'.$pluginiten)=='on'){
             $type='off';
@@ -153,24 +139,24 @@ class DashboardController extends MainAdminController
             }
         }
 
-                        $actite="";
-                        if($pluginiten=='buzzynews'){
-                            $actite="news";
-                        }else if($pluginiten=='buzzylists'){
-                            $actite="list";
-                        }else if($pluginiten=='buzzypolls'){
-                            $actite="poll";
-                        }else if($pluginiten=='buzzyvideos'){
-                            $actite="video";
-                        }else if($pluginiten=='buzzyquizzes'){
-                            $actite="quiz";
-                        }
+        $actite="";
+        if($pluginiten=='buzzynews'){
+            $actite="news";
+        }else if($pluginiten=='buzzylists'){
+            $actite="list";
+        }else if($pluginiten=='buzzypolls'){
+            $actite="poll";
+        }else if($pluginiten=='buzzyvideos'){
+            $actite="video";
+        }else if($pluginiten=='buzzyquizzes'){
+            $actite="quiz";
+        }
 
-                        if($actite!==""){
-                            $catees = Categories::where("type", $actite)->first();
-                            $catees->disabled=$typeq;
-                            $catees->save();
-                        }
+        if($actite!==""){
+            $catees = Categories::where("type", $actite)->first();
+            $catees->disabled=$typeq;
+            $catees->save();
+        }
 
         \DbConfig::store('p-'.$pluginiten, $type);
 
@@ -180,7 +166,7 @@ class DashboardController extends MainAdminController
         return $message;
     }
 
-     public function checkupdate(){
+    public function checkupdate(){
 
         $content = curlit($this->server);
         if ($content and $content != \Config::get('installer.last_version')){
@@ -190,12 +176,12 @@ class DashboardController extends MainAdminController
         }
 
     }
-     public function checkcode(){
+    
+    public function checkcode(){
 
-            \Session::flash('error.message', trans("admin.pluginsnotavailable"));
-            return redirect('/admin');
-        
-
+        \Session::flash('error.message', trans("admin.pluginsnotavailable"));
+        return redirect('/admin');
+    
     }
     public function sickupdate(){
 
@@ -235,20 +221,15 @@ class DashboardController extends MainAdminController
             $message['message']=trans("admin.purchaseincorrect");
             $message['url']="";
             return $message;
-
         }
-
     }
 
     public function checkinputcodeforplugin(Request $request){
             return response()->json(['type'=>'success', 'message' => trans("admin.accessok")]);
-
     }
-
 
     public function getr($zurl)
     {
-    
         return true;
     }
 }

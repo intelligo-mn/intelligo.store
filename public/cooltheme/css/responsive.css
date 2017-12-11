@@ -1,4 +1,10 @@
-/* Extra Large Devices, Wide Screens */
+/*
+
+Project     : Techstar CMS - Laravel Content Management System
+Author      : Techstar, Inc.
+Author URI  : https://github.com/techstar-inc
+
+*/
 
 @media only screen and (max-width: 1199px) {
     .header-top-area .header-top-left ul li{

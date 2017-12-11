@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Techstar CMS - Laravel Content Management System
+ * Author  Techstar, Inc.
+ * Author URI  : https://github.com/techstar-inc
+ */
+
 namespace App\Http\Controllers\Admin;
 
 
@@ -9,12 +15,9 @@ use App\Posts;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\AkbilisimController;
 
 class MainAdminController extends Controller
 {
-    protected $verify  = 'http://envato.akbilisim.com/api/BA';
-
     /**
      * Display a listing of the resource.
      *

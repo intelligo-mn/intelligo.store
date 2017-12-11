@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Techstar CMS - Laravel Content Management System
+ * Author  Techstar, Inc.
+ * Author URI  : https://github.com/techstar-inc
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use App\Categories;
@@ -24,7 +30,6 @@ class PostsController extends MainAdminController
 
     }
 
-    
     public function features(){
 
         return view('_admin.pages.posts')->with(['title' => trans("admin.FeaturesPosts"), 'desc' => '', 'type' => 'features']);
