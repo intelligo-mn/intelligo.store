@@ -19,8 +19,7 @@
                             <h1>{{ $category->name }}</h1>
                         </div>
                         <div class="header-page-subtitle">
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                                <br>alteration in some form, by injected humou</p>
+                            <p> {{ $category->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -45,7 +44,7 @@
                               </div>
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                   <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $item->created_at->diffForHumans() }}</span>
-                                  <h3><a href="#">{{ str_limit($item->title, 45) }}</a></h3>
+                                  <h3><a href="{{ makeposturl($item) }}">{{ str_limit($item->title, 45) }}</a></h3>
                                   <span class="admin"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>  {{ $item->user->username }}</a></span> <span class="like"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>  12 </a></span>
                                   <p>{{ str_limit($item->body, 100) }}</p>
                                   <a href="{{ makeposturl($item) }}" class="more">{{ trans('index.showmore') }}<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
