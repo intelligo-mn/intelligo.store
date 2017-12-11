@@ -1,6 +1,12 @@
 <!doctype html>
 <html class="no-js" lang="{{ Lang::getLocale() }}">
 
+<!-- 
+Project     : Techstar CMS - Laravel Content Management System
+Author      : Techstar, Inc.
+Author URI  : https://github.com/techstar-inc
+ -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
