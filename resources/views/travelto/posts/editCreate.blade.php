@@ -187,4 +187,10 @@
 @endsection
 @section("footer")
     @include('posts.create-footerjs')
+    <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('edit');
+        });
+    </script>
 @endsection
