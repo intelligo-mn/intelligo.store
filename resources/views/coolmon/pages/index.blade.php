@@ -734,9 +734,9 @@
                             @foreach($lastFeaturestop->slice(0,3) as $item)
                             <li>
                                 <a href="#" class="category-btn hvr-bounce-to-right">ТАНИН МЭДЭХҮЙ</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
+                                <div class="post-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
                                 <div class="content">
-                                    <h4><a href="blog-single.html">{{ $item->title }}</a></h4>
+                                    <h4><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h4>
                                     <span class="date"> 
                                         <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
                                     </span> 
