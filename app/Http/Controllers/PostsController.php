@@ -21,9 +21,6 @@ use Image;
 
 class PostsController extends Controller
 {
-
-
-
     public function __construct(){
 
         parent::__construct();
@@ -34,7 +31,6 @@ class PostsController extends Controller
 
         $this->middleware('auth', ['except' => ['index']]);
     }
-
 
     /**
      * Show a Post
@@ -80,10 +76,7 @@ class PostsController extends Controller
 
         $lastNews = Posts::approve('yes')->where('posts.id', '!=', $post->id)->typesActivete()->getStats('seven_days_stats', 'DESC', 8)->get();
 
-   
 		$lastFeatures = Posts::approve('yes')->where('posts.id', '!=', $post->id)->where('category_id', $post->category_id)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
-
-
 
         $reactions=false;
         if(getcong('p-reactionform') == 'on'){
@@ -92,8 +85,6 @@ class PostsController extends Controller
 
         return view("pages/post", compact('post', 'entrys', 'reactions', 'entrysquizquest', 'entrysquizresults', 'lastNews', 'lastFeatures'));
     }
-
-
 
     /**
      *
@@ -120,40 +111,28 @@ class PostsController extends Controller
         return view("posts.newCreate", compact("categories", "category", "typene"));
     }
 
-
     public function CreateEdit($id)
     {
 
         $post = Posts::findOrFail($id);
 
-
-            if (\Gate::denies('update-post', $post)) {
-
-                \Session::flash('error.message',  trans('index.nopermission'));
-
-                return redirect('/');
-            }
+        if (\Gate::denies('update-post', $post)) {
+            \Session::flash('error.message',  trans('index.nopermission'));
+            return redirect('/');
+        }
 
         if(getcong('UserEditPosts')=='false' and Auth::user()->usertype != 'Admin'){
-
             if(getcong('UserEditPosts')=='false' or $post->user_id !== Auth::user()->id){
-
             \Session::flash('error.message',  trans('index.nopermission'));
             return redirect('/');
             }
         }
 
-
-
         $entrys = $post->entry()->where('type','!=', 'answer')->oldest("order")->get();
-
 
         $typene = $post->type;
 
-
-
         $category = Categories::where('type', $typene)->first();
-
 
         $categories = Categories::byType($category->id)->lists('name', 'id');
 
@@ -165,8 +144,6 @@ class PostsController extends Controller
             $typenetitle = trans('index.list');
         }elseif($typene == 'quiz'){
             $typenetitle = trans('buzzyquiz.quiz');
-
-
             $entrysquizquest=$post->entry()->where('type', 'quizquestion')->oldest("order")->get();
             $entrysquizresults=$post->entry()->byType("quizresult")->oldest("order")->get();
 
@@ -186,13 +163,11 @@ class PostsController extends Controller
 
     }
 
-
     /**
      * Delete posts but not permanently
      *
      * @return \Illuminate\View\View
      */
-
     public function sendtrashpost($id)
     {
 
@@ -227,7 +202,7 @@ class PostsController extends Controller
      */
     public function CreateNewPost(Request $request){
 
-         $okay = $this->getfailsvalidator($request);
+        $okay = $this->getfailsvalidator($request);
         if($okay!='pas'){
          return $okay;
         }
@@ -243,24 +218,28 @@ class PostsController extends Controller
             $titleslug = preg_replace("/[\s_]/", '-', $titleslug);
 
         }
+
         $imgWW = $this->resizepostimage($inputs['thumb'], $titleslug);
 
 		$ordertype = null;
 		if(isset($inputs['ordertype'])){
-        $ordertype = $inputs['ordertype'];
-        if($ordertype == 'none'){
-            $ordertype = null;
-        }
+            $ordertype = $inputs['ordertype'];
+            if($ordertype == 'none'){
+                $ordertype = null;
+            }
 		}
 		
         $post = new Posts;
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
         $post->body = $inputs['description'];
+        if(isset($inputs['lang'])){
+            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+        }
         $post->lang = $inputs['lang'];
         $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])){
-        $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
         $post->type = $inputs['type'];
         $post->tags = isset($inputs['tags']) ? $inputs['tags'] : '';
@@ -269,19 +248,17 @@ class PostsController extends Controller
 
         if($inputs['datapostt']=='draft'){
             $post->approve = 'draft';
-        }elseif(getcong('AutoApprove')=='true' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
+        } elseif(getcong('AutoApprove')=='true' or Auth::user()->usertype == 'Staff' or Auth::user()->usertype == 'Admin' and Auth::user()->email !== 'demo@admin.com'){
             $post->approve = 'yes';
-        }else{
+        } else{
             $post->approve = 'no';
         }
 
         $post->published_at = Carbon::now();
 
-
         Auth::user()->posts()->save($post);
 
         $this->createentrys($request, $post);
-
 
         //burda aynı resim adresini kulllanıyordur.
         \File::delete($inputs['thumb']); //delete tmp image
@@ -291,8 +268,6 @@ class PostsController extends Controller
         return array('url' =>  makeposturl($post) );
 
     }
-
-
 
     public function CreateEditPost($id, Request $request)
     {
@@ -439,8 +414,6 @@ class PostsController extends Controller
                 }else{
                     $entry->video = $entryorder['video'];
                 }
-
-
             }
 
             $savedidentry = $post->entry()->save($entry);
@@ -451,34 +424,28 @@ class PostsController extends Controller
                 $this->createanswers($entryorder['answers'], $post, $savedidentry->id, $entryorder['listtype']);
 
             }
-
-
         }
-
-
     }
 
-  private function createanswers($request, $post, $savedidentry, $listtype){
+    private function createanswers($request, $post, $savedidentry, $listtype){
 
-                foreach($request as $keya => $na ){
-                    $entry = new Entrys;
-                    $entry->user_id = Auth::user()->id;
-                    $entry->order = $keya;
-                    $entry->type = 'answer';
-                    $entry->title = $na['title'];
+        foreach($request as $keya => $na ){
+            $entry = new Entrys;
+            $entry->user_id = Auth::user()->id;
+            $entry->order = $keya;
+            $entry->type = 'answer';
+            $entry->title = $na['title'];
 
-                    if($listtype!=="3"){
-                    $imgRR = $this->moveanswersimage($na['image'], $post->id, 'qu-'.$savedidentry.'-answer-'.$keya);
-                    $entry->image = $imgRR;
-                    }
+            if($listtype!=="3"){
+            $imgRR = $this->moveanswersimage($na['image'], $post->id, 'qu-'.$savedidentry.'-answer-'.$keya);
+            $entry->image = $imgRR;
+            }
 
-                    $entry->video = $na['assign'];
-                    $entry->source = $savedidentry;
+            $entry->video = $na['assign'];
+            $entry->source = $savedidentry;
 
-                    $post->entry()->save($entry);
-
-                }
-
+            $post->entry()->save($entry);
+        }
     }
 
     private function resizepostimage($imgWW, $slug)
@@ -492,9 +459,7 @@ class PostsController extends Controller
 
         $saveFilePath = $tmpFilePath.$tmpFileDate.$tmpFileName;
 
-
         $this->makeimagedir($tmpFilePath.$tmpFileDate);
-
 
         if(substr($imgWW, 0, 4) == 'http'){
 
@@ -509,9 +474,8 @@ class PostsController extends Controller
         $imgWW = Image::make($imgWsr);
         $imgWW2 = Image::make($imgWsr);
 
-       $imbig= $imgWW->fit(650, 370)->save($saveFilePath.'-b.jpg');
+        $imbig= $imgWW->fit(650, 370)->save($saveFilePath.'-b.jpg');
         $imsmal= $imgWW2->fit(300, 190)->save($saveFilePath.'-s.jpg');
-
 
         if(env('APP_FILESYSTEM')=="s3"){
 
@@ -522,10 +486,8 @@ class PostsController extends Controller
             \File::delete(public_path($saveFilePath.'-b.jpg'));
             \File::delete(public_path($saveFilePath.'-s.jpg'));
 
-
             return $this->s3url.$saveFilePath;
         }
-
 
         return $tmpFileDate.$tmpFileName;
     }
@@ -541,9 +503,7 @@ class PostsController extends Controller
         $this->makeimagedir($tmpFilePath.$tmpFileDate);
 
         if(substr($thumb, 0, 4) != 'http'){
-
             $thumb = substr($thumb, 1);
-
         }
 
         $img = Image::make($thumb);
@@ -575,20 +535,14 @@ class PostsController extends Controller
         }
 
         if(substr($thumb, 0, 4) != 'http'){
-
             unlink($thumb);
-
         }
-
-
-
-
         return $tmpFileDate.$tmpFileName.$ext;
 
     }
 
-    private function moveanswersimage($thumb, $postid, $entryorder)
-    {
+    private function moveanswersimage($thumb, $postid, $entryorder){
+        
         $tmpFilePath = 'upload/media/answers/';
 
         $tmpFileDate =  date('Y-m') .'/'.date('d').'/';
@@ -602,16 +556,13 @@ class PostsController extends Controller
             $thumb = substr($thumb, 1);
 
         }
+
         $img = Image::make($thumb);
-
-
         $ext ='.jpg';
         $img->fit(250, 250)->save($tmpFilePath.$tmpFileDate.$tmpFileName.$ext);
 
         if(substr($thumb, 0, 4) != 'http'){
-
           unlink($thumb);
-
         }
 
         if(env('APP_FILESYSTEM')=="s3"){
@@ -624,7 +575,6 @@ class PostsController extends Controller
         }
 
         return $tmpFileDate.$tmpFileName.$ext;
-
     }
 
     private function makeimagedir($path)
@@ -651,6 +601,7 @@ class PostsController extends Controller
             'title' => 'required|min:10|max:255|unique:posts',
             'category' => 'required|exists:categories,id',
             'pagination' => 'max:2',
+            'lang' => 'required',
             'description'  => 'required|min:4|max:500',
             'tags'  => 'max:2500',
             'thumb' => 'required|min:10',
@@ -671,8 +622,6 @@ class PostsController extends Controller
         return Validator::make($inputs, $rules);
 
     }
-
-
     /**
      * Validator of question posts
      *
@@ -683,37 +632,21 @@ class PostsController extends Controller
     {
         $rules=[];
         if($entrytype=="text"){
-
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => 'required', 'source' => ''];
-
-        }else if($entrytype=="image"){
-
+        } else if($entrytype=="image"){
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'image' => 'required'];
-
-        }else if($entrytype=="video"){
-
+        } else if($entrytype=="video"){
             $rules = ['type' => 'required', 'title' => 'min:5|max:255', 'body' => '', 'source' => '', 'video' => 'required|max:500'];
-
-        }else if($entrytype=="embed" or $entrytype=="tweet"  or $entrytype=="facebookpost" or $entrytype=="instagram" or $entrytype=="soundcloud"){
-
+        } else if($entrytype=="embed" or $entrytype=="tweet"  or $entrytype=="facebookpost" or $entrytype=="instagram" or $entrytype=="soundcloud"){
             $rules = ['type' => 'required', 'title' => 'max:255', 'body' => '', 'source' => '', 'video' => 'required|max:1000'];
-
-        }elseif($entrytype=="quizresult"){
-
+        } elseif($entrytype=="quizresult"){
             $rules = ['type' => 'required', 'title' => 'required|min:2|max:255', 'body' => 'required|min:5|max:500', 'image' => ''];
-
-        }elseif($entrytype=="quizquestion"){
-
+        } elseif($entrytype=="quizquestion"){
             $rules = ['type' => 'required', 'title' => 'min:2|max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
-
-        }else if($entrytype=="poll"){
-
+        } else if($entrytype=="poll"){
             $rules = ['type' => 'required', 'title' => 'max:255', 'body' => 'max:500', 'image' => 'required', 'listtype' => 'required'];
-
         }
-
         return Validator::make($inputs, $rules);
-
     }
 
     /**
@@ -722,29 +655,25 @@ class PostsController extends Controller
      * @param $inputs
      * @return array|bool
      */
-    protected function QuizAnswerValidator(array $inputs, $listtype)
-    {
+    protected function QuizAnswerValidator(array $inputs, $listtype){
 
         if($listtype=="1" or $listtype=="2"){
             $rules = ['type' => 'required', 'title' => 'max:45', 'image' => 'required', 'assign' => 'required'];
         }elseif($listtype=="3"){
             $rules = ['type' => 'required', 'title' => 'required|min:2|max:250', 'image' => '', 'assign' => 'required'];
         }
-
         return Validator::make($inputs, $rules);
-
     }
 
     protected function getfailsvalidator($request, $id = null){
 
         $inputs = $request->all();
 
-        $v = $this->Postvalidator($request->only('title', 'description', 'category', 'tags', 'pagination',  'type', 'thumb'), $id);
+        $v = $this->Postvalidator($request->only('title', 'description', 'category', 'tags', 'lang', 'pagination',  'type', 'thumb'), $id);
 
         if ($v->fails()) {
             return array('status' => trans('updates.error'), 'errors' => $v->errors()->first());
         }
-
 
         //quiz validators
         if($inputs['type']=="quiz"){
@@ -792,15 +721,15 @@ class PostsController extends Controller
 
                     return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya-$quizresultcount, 'error' => $v->errors()->first()]));
 
-               }elseif($entrytype=="poll"){
+                }elseif($entrytype=="poll"){
 
                     return array('status' => trans('buzzyquiz.questionerror'), 'errors' => trans('buzzyquiz.questionerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
 
-               }else{
+                }else{
                    return array('status' => trans('updates.error'), 'errors' => trans('updates.entryerrors', ['numberofentry' => $keya, 'error' => $v->errors()->first()]));
-               }
+                }
 
-            }else{
+            } else {
                 if($entrytype=="poll"){
                     $quizresultcount=0;
                 }
