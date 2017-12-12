@@ -23,67 +23,45 @@ class PostsController extends MainAdminController
 
     public function __construct()
     {
-
         // $this->middleware('DemoAdmin', ['only' => ['approvepost', 'showhomepage', 'pickfeatured', 'sendtrashpost', 'forcetrashpost']]);
-
         parent::__construct();
-
     }
 
     public function features(){
-
         return view('_admin.pages.posts')->with(['title' => trans("admin.FeaturesPosts"), 'desc' => '', 'type' => 'features']);
-
     }
     public function unapprove(){
-
         return view('_admin.pages.posts')->with(['title' => trans("admin.Posts"), 'desc' => '', 'type' => 'all']);
-
     }
     public function all(){
-
         return view('_admin.pages.posts')->with(['title' => trans("admin.AllPosts"), 'desc' => '', 'type' => 'all']);
-
     }
     public function showcatposts($name){
-
         $cats = Categories::where("name_slug", $name)->first();
-
         if(!$cats){
             return redirect()->back();
         }
-
         return view('_admin.pages.posts')->with(['title' => $cats->name, 'desc' => $cats->name, 'type' => $cats->type]);
-
     }
-
 
     public function approvepost($id)
     {
-
         $post = Posts::findOrFail($id);
-
         if($post->approve == 'no'){
             $post->approve = 'yes';
             $post->save();
-
             try{
                 event(new PostUpdated($post, 'Approved'));
             }catch(\Exception $e){
 
             }
-
-
-        }else{
+        } else {
             $post->approve = 'no';
             $post->save();
-
         }
 
         \Session::flash('success.message', 'Approved');
-
         return redirect()->back();
-
     }
 
     public function showhomepage($id)
@@ -92,46 +70,31 @@ class PostsController extends MainAdminController
         $post = Posts::findOrFail($id);
 
         if($post->show_in_homepage == null){
-
             $post->show_in_homepage = 'yes';
-
         }else{
             $post->show_in_homepage = null;
         }
-
         $post->save();
-
         \Session::flash('success.message', trans("admin.ChangesSaved"));
-
         return redirect()->back();
-
     }
 
     public function pickfeatured($id)
     {
-
         $post = Posts::findOrFail($id);
-
         if($post->featured_at == null){
-
             $post->featured_at = Carbon::now();
-
         }else{
             $post->featured_at = null;
         }
-
         $post->save();
-
         \Session::flash('success.message', trans("admin.ChangesSaved"));
-
         return redirect()->back();
-
     }
 
     public function sendtrashpost($id)
     {
         $post = Posts::withTrashed()->findOrFail($id);
-
         if($post->deleted_at == null){
             $post->approve = 'no';
             $post->delete();
@@ -139,33 +102,22 @@ class PostsController extends MainAdminController
             $post->approve = 'yes';
             $post->restore();
         }
-
         try{
             event(new PostUpdated($post, 'Trash'));
 
         }catch(Exception $e){
 
         }
-
-
-
         \Session::flash('success.message', trans("admin.ChangesSaved"));
-
         return redirect()->back();
-
     }
 
     public function forcetrashpost($id)
     {
-
         $post = Posts::withTrashed()->where('id', $id)->first();
-
         foreach($post->entry as $entr){
-
             if($entr->type=='image'){
-
                 \File::delete(public_path() .'/upload/media/entries/'.$entr->image);
-
             }
             $entr->forceDelete(); //del entry
         }
@@ -176,9 +128,7 @@ class PostsController extends MainAdminController
         $post->forceDelete();
 
         \Session::flash('success.message', trans("admin.Deletedpermanently"));
-
         return redirect()->back();
-
     }
 
 
@@ -191,21 +141,18 @@ class PostsController extends MainAdminController
     {
 
         $typew = $request->query('type');
-         $type=$typew;
-
-
+        $type=$typew;
 
         $only = $request->query('only');
-
 
         $post = Posts::leftJoin('users', 'posts.user_id', '=', 'users.id');
         $post->select('posts.*');
 
         if($typew == 'all'){
-//not set
-        }elseif($typew !== 'features'){
+
+        } elseif($typew !== 'features'){
             $post->where('type', $type);
-        }else{
+        } else {
             $post->where("featured_at", '>', '');
         }
 
@@ -215,23 +162,13 @@ class PostsController extends MainAdminController
             $post->where('deleted_at', null);
         }
 
-
         if($only=='unapprove'){
             $post->where('approve', 'no');
         }
 
-        return Datatables::of($post)
-
-            ->editColumn('thumb', function ($post) {
-
-
+        return Datatables::of($post)->editColumn('thumb', function ($post) {
                 return '<img src="'.makepreview($post->thumb, 's', 'posts') .'" width="125">';
-            })
-
-
-            ->editColumn('title', function ($post) {
-
-
+            })->editColumn('title', function ($post) {
                 $fsdfd = '<a href="'.makeposturl($post).'" target=_blank style="font-size:16px;font-weight: 600">
                                     '.$post->title.'
                                      </a>
@@ -358,13 +295,6 @@ class PostsController extends MainAdminController
 
                 return $edion;
             })
-
-
-
-            ->make(true);
-
+             ->make(true);
     }
-
-
-
 }
