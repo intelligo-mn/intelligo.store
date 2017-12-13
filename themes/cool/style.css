@@ -1,0 +1,20 @@
+@import url('../../../external.html?link=https://fonts.googleapis.com/css?family=Cookie|Great+Vibes|Lobster|Tangerine');
+@import url('../../../external.html?link=https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700');
+@import url('../../../external.html?link=https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700');
+/*.....................................
+    Template Name:Your Product Name
+    Template URI: http://www.yourtemplate.com/
+    Description: Your Product Details Here
+    Author: myname
+    Author URI: http://www.yourtemplate.com/
+.......................................    
+    CSS INDEX
+    ===================	
+    1. Theme Default CSS
+.......................................*/
+body {
+  font-size: 14px;
+  line-height: 28px;
+  font-family: 'Lobster', cursive;
+  color: #333333;
+}
