@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2017-12-08 02:42:38] local.ERROR: ErrorException: Undefined index: lang in /var/www/html/app/Http/Controllers/PostsController.php:334
 Stack trace:
 #0 /var/www/html/app/Http/Controllers/PostsController.php(334): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined index...', '/var/www/html/a...', 334, Array)
@@ -13164,3 +13165,5 @@ Stack trace:
 #49 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 /var/www/html/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
+=======
+>>>>>>> 02ee9d5c746b82bf6288f84ec7d565eb7bbdb890
