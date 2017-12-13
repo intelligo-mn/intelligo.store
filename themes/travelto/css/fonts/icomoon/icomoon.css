@@ -1,0 +1,517 @@
+@font-face {
+	font-family: 'icomoon';
+	src: url('../../../fonts/icomoon/icomoon8ce7.eot?pnm0hs');
+	src: url('../../../fonts/icomoon/icomoon8ce7.eot?pnm0hs#iefix') format('embedded-opentype'), url('../../../fonts/icomoon/icomoon8ce7.ttf?pnm0hs') format('truetype'), url('../../../fonts/icomoon/icomoon8ce7.woff?pnm0hs') format('woff'), url('../../../fonts/icomoon/icomoon8ce7.svg?pnm0hs#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^='icon-'],
+[class*=' icon-'] { /* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1; /* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cart-add:before {
+	content: '\e97a';
+}
+
+.icon-user-add:before {
+	content: '\e97b';
+}
+
+.icon-download:before {
+	content: '\e979';
+}
+
+.icon-remove-favourite:before {
+	content: '\e978';
+}
+
+.icon-heart:before {
+	content: '\e976';
+}
+
+.icon-reply:before {
+	content: '\e977';
+}
+
+.icon-level7:before {
+	content: '\e900';
+}
+
+.icon-acitivities:before {
+	content: '\e901';
+}
+
+.icon-africa:before {
+	content: '\e902';
+}
+
+.icon-angle-down:before {
+	content: '\e903';
+}
+
+.icon-arctic:before {
+	content: '\e904';
+}
+
+.icon-arrow-left:before {
+	content: '\e905';
+}
+
+.icon-arrow-down:before {
+	content: '\e906';
+}
+
+.icon-angle-right:before {
+	content: '\e907';
+}
+
+.icon-arrow-right:before {
+	content: '\e908';
+}
+
+.icon-asia:before {
+	content: '\e909';
+}
+
+.icon-beach:before {
+	content: '\e90a';
+}
+
+.icon-big-cat:before {
+	content: '\e90b';
+}
+
+.icon-bird:before {
+	content: '\e90c';
+}
+
+.icon-boat:before {
+	content: '\e90d';
+}
+
+.icon-boating:before {
+	content: '\e90e';
+}
+
+.icon-budget:before {
+	content: '\e90f';
+}
+
+.icon-bulb:before {
+	content: '\e910';
+}
+
+.icon-bungee:before {
+	content: '\e911';
+}
+
+.icon-camping:before {
+	content: '\e912';
+}
+
+.icon-cart:before {
+	content: '\e913';
+}
+
+.icon-cross:before {
+	content: '\e914';
+}
+
+.icon-culture:before {
+	content: '\e915';
+}
+
+.icon-culture1:before {
+	content: '\e916';
+}
+
+.icon-cup:before {
+	content: '\e917';
+}
+
+.icon-desert:before {
+	content: '\e918';
+}
+
+.icon-diamond:before {
+	content: '\e919';
+}
+
+.icon-distance:before {
+	content: '\e91a';
+}
+
+.icon-dolphin-60:before {
+	content: '\e91b';
+}
+
+.icon-dolphin-76:before {
+	content: '\e91c';
+}
+
+.icon-dribble:before {
+	content: '\e91d';
+}
+
+.icon-drop:before {
+	content: '\e91e';
+}
+
+.icon-duration:before {
+	content: '\e91f';
+}
+
+.icon-egypt:before {
+	content: '\e920';
+}
+
+.icon-email:before {
+	content: '\e921';
+}
+
+.icon-europe:before {
+	content: '\e922';
+}
+
+.icon-facebook:before {
+	content: '\e923';
+}
+
+.icon-family:before {
+	content: '\e924';
+}
+
+.icon-favs:before {
+	content: '\e925';
+}
+
+.icon-fax-big:before {
+	content: '\e926';
+}
+
+.icon-fax:before {
+	content: '\e927';
+}
+
+.icon-filter:before {
+	content: '\e928';
+}
+
+.icon-fish-jumping:before {
+	content: '\e929';
+}
+
+.icon-food-wine:before {
+	content: '\e92a';
+}
+
+.icon-foot-step:before {
+	content: '\e92b';
+}
+
+.icon-foots:before {
+	content: '\e92c';
+}
+
+.icon-globe:before {
+	content: '\e92d';
+}
+
+.icon-google-plus:before {
+	content: '\e92e';
+}
+
+.icon-grid:before {
+	content: '\e92f';
+}
+
+.icon-group-large:before {
+	content: '\e930';
+}
+
+.icon-group-medium:before {
+	content: '\e931';
+}
+
+.icon-group-small:before {
+	content: '\e932';
+}
+
+.icon-hiking-camping:before {
+	content: '\e933';
+}
+
+.icon-home:before {
+	content: '\e934';
+}
+
+.icon-hunting:before {
+	content: '\e935';
+}
+
+.icon-jeep:before {
+	content: '\e936';
+}
+
+.icon-jungle:before {
+	content: '\e937';
+}
+
+.icon-level1:before {
+	content: '\e938';
+}
+
+.icon-level2:before {
+	content: '\e939';
+}
+
+.icon-level3:before {
+	content: '\e93a';
+}
+
+.icon-level4:before {
+	content: '\e93b';
+}
+
+.icon-level5:before {
+	content: '\e93c';
+}
+
+.icon-level6:before {
+	content: '\e93d';
+}
+
+.icon-level8:before {
+	content: '\e93e';
+}
+
+.icon-linkedin:before {
+	content: '\e93f';
+}
+
+.icon-list:before {
+	content: '\e940';
+}
+
+.icon-locals:before {
+	content: '\e941';
+}
+
+.icon-lock:before {
+	content: '\e942';
+}
+
+.icon-luggage:before {
+	content: '\e943';
+}
+
+.icon-middle-east:before {
+	content: '\e944';
+}
+
+.icon-minus-normal:before {
+	content: '\e945';
+}
+
+.icon-plus-normal:before {
+	content: '\e946';
+}
+
+.icon-minus:before {
+	content: '\e947';
+}
+
+.icon-mount:before {
+	content: '\e948';
+}
+
+.icon-mountain-biking:before {
+	content: '\e949';
+}
+
+.icon-mountain:before {
+	content: '\e94a';
+}
+
+.icon-music:before {
+	content: '\e94b';
+}
+
+.icon-north-america:before {
+	content: '\e94c';
+}
+
+.icon-panda:before {
+	content: '\e94d';
+}
+
+.icon-peak-climbing:before {
+	content: '\e94e';
+}
+
+.icon-peak:before {
+	content: '\e94f';
+}
+
+.icon-penguin:before {
+	content: '\e950';
+}
+
+.icon-person-budget:before {
+	content: '\e951';
+}
+
+.icon-person:before {
+	content: '\e952';
+}
+
+.icon-tel:before {
+	content: '\e953';
+}
+
+.icon-pin:before {
+	content: '\e954';
+}
+
+.icon-plane:before {
+	content: '\e955';
+}
+
+.icon-plant:before {
+	content: '\e956';
+}
+
+.icon-plus:before {
+	content: '\e957';
+}
+
+.icon-rural:before {
+	content: '\e958';
+}
+
+.icon-scuba-diving:before {
+	content: '\e959';
+}
+
+.icon-search:before {
+	content: '\e95a';
+}
+
+.icon-share:before {
+	content: '\e95b';
+}
+
+.icon-snow-ice:before {
+	content: '\e95c';
+}
+
+.icon-star:before {
+	content: '\e95d';
+}
+
+.icon-step:before {
+	content: '\e95e';
+}
+
+.icon-sunny:before {
+	content: '\e95f';
+}
+
+.icon-tel-big:before {
+	content: '\e960';
+}
+
+.icon-tent:before {
+	content: '\e961';
+}
+
+.icon-tick:before {
+	content: '\e962';
+}
+
+.icon-trash:before {
+	content: '\e963';
+}
+
+.icon-tree:before {
+	content: '\e964';
+}
+
+.icon-hiking:before {
+	content: '\e965';
+}
+
+.icon-twitter:before {
+	content: '\e966';
+}
+
+.icon-urban:before {
+	content: '\e967';
+}
+
+.icon-vimeo:before {
+	content: '\e968';
+}
+
+.icon-water-sea:before {
+	content: '\e969';
+}
+
+.icon-water-spot:before {
+	content: '\e96a';
+}
+
+.icon-water:before {
+	content: '\e96b';
+}
+
+.icon-weight:before {
+	content: '\e96c';
+}
+
+.icon-wildlife:before {
+	content: '\e96d';
+}
+
+.icon-world:before {
+	content: '\e96e';
+}
+
+.icon-link:before {
+	content: '\e96f';
+}
+
+.icon-copyright:before {
+	content: '\e970';
+}
+
+.icon-order-history:before {
+	content: '\e971';
+}
+
+.icon-signout:before {
+	content: '\e972';
+}
+
+.icon-update-billing:before {
+	content: '\e973';
+}
+
+.icon-update-profile:before {
+	content: '\e974';
+}
+
+.icon-user:before {
+	content: '\e975';
+}
+
