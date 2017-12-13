@@ -14,7 +14,11 @@ return [
     */
 
     'paths' => [
+<<<<<<< HEAD
         realpath(base_path('resources/views/news')),
+=======
+        realpath(base_path('resources/views/uriankhai')),
+>>>>>>> 02ee9d5c746b82bf6288f84ec7d565eb7bbdb890
     ],
 
     /*

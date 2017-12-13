@@ -3,7 +3,7 @@
        
        <div class="row footer-holder">
            <nav class="col-sm-6 col-lg-5 footer-nav">
-             <div class="fb-page" data-href="https://www.facebook.com/tsastsolutionweb/" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+             <div class="fb-page" data-href="https://www.facebook.com/imarketingsuvagagency/" data-tabs="timeline" data-height="300px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/imarketingsuvagagency/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/imarketingsuvagagency/">I Marketing suvag agency</a></blockquote></div>
           </nav>
 
           <nav class="col-sm-6 col-lg-3 footer-nav active">
