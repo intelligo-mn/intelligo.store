@@ -14,13 +14,6 @@
 <!-- Main content -->
 <section class="content">
 
-@if($updateversion != Config::get('installer.last_version'))
-    <div class="callout callout-warning lead">
-        <h4>{{ trans('admin.newupdate') }}</h4>
-        <p>New update is available. <a href="javascript:;" class="updatedownload" data-auto="on">Click here</a> and get automatically your Buzzy latest version. Or <a href="javascript:;" class="updatedownload" data-auto="off">Click here</a> for download link.</p>
-    </div>
-@endif
-
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-xs-6">

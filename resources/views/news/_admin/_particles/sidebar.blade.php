@@ -27,13 +27,6 @@
             </a>
         </li>
         @endif
-       <!--  <li @if(Request::segment(2)=='plugins') class="active" @endif>
-            <a href="{{  action('Admin\DashboardController@plugins') }}">
-                <i class="fa fa-puzzle-piece"></i> <span>{{ trans('admin.Plugins') }}</span>
-                <span class="pull-right badge bg-red">{{ trans('admin.NEW') }}</span>
-
-            </a>
-        </li> -->
         <li class="treeview  @if(Request::segment(2)=='config') active @endif">
             <a href="{{ action('Admin\ConfigController@index') }}">
                 <i class="fa fa-cog"></i> <span>{{ trans('admin.Settings') }}</span>
@@ -62,6 +55,8 @@
             <a href="/admin/features/">
                 <i class="fa fa-star"></i>
                 <span>{{ trans('admin.FeaturesPosts') }}</span>
+                
+                <span class="pull-right badge bg-red">{{ trans('admin.NEW') }}</span>
             </a>
         </li>
         <li class="treeview  @if(Request::segment(2)=='unapprove') active @endif">
@@ -124,12 +119,12 @@
                 <span>{{ trans('admin.Sitemap') }}</span>
             </a>
         </li>
-       <!--  <li>
+        <li>
             <a href="/admin/docs/">
                 <i class="fa fa-book"></i>
                 <span> {{ trans('admin.documentation') }}</span>
             </a>
-        </li> -->
+        </li>
         <li class="header">{{ trans('admin.UNAPPROVEDPOSTS') }}</li>
         @if($DB_PLUGIN_NEWS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-aqua"></i> <span>{{ trans('admin.news') }}</span><small class="label pull-right bg-aqua">{{ $napprovenews }}</small></a></li> @endif
         @if($DB_PLUGIN_LISTS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-green"></i> <span>{{ trans('admin.lists') }}</span><small class="label pull-right bg-green">{{ $napprovelists }}</small></a></li> @endif
