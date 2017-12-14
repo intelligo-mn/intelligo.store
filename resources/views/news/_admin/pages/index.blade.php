@@ -14,6 +14,13 @@
 <!-- Main content -->
 <section class="content">
 
+@if($updateversion != Config::get('installer.last_version'))
+    <div class="callout callout-warning lead">
+        <h4>{{ trans('admin.newupdate') }}</h4>
+        <p>New update is available. <a href="javascript:;" class="updatedownload" data-auto="on">Click here</a> and get automatically your Buzzy latest version. Or <a href="javascript:;" class="updatedownload" data-auto="off">Click here</a> for download link.</p>
+    </div>
+@endif
+
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-xs-6">
@@ -237,8 +244,39 @@
         stroke-width: 3px;
     }
 </style>
+        <div class="box box-info box-solid"  style="background: #00c0ef;">
+            <div class="box-header">
+                <i class="fa fa-th"></i>
+                <h3 class="box-title">{{ trans('admin.Last30DaysTotalPostsbyTypes') }}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool box-donut-get" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body" style="background-color: transparent">
+                <div class="chart tab-pane" id="sales-chart"  style="width: 100%;height: 300px;"></div>
+            </div><!-- /.box-body -->
+
+        </div>
 
 
+
+
+        <!-- solid sales graph -->
+        <div class="box box-solid bg-light-blue-gradient">
+            <div class="box-header">
+                <i class="fa fa-th"></i>
+                <h3 class="box-title">{{ trans('admin.Userregistersonlast30days') }}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn bg-light-blue btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn bg-light-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body border-radius-none">
+                <div class="chart" id="user-chart" style="height: 250px;"></div>
+            </div><!-- /.box-body -->
+
+        </div><!-- /.box -->
 
     </section><!-- right col -->
 </div><!-- /.row (main row) -->
@@ -249,6 +287,28 @@
                 <div class="info-box-content">
                     <span class="info-box-text">{{ trans('admin.NumberofNews') }}</span>
                     <span class="info-box-number">{{ $newscount }}</span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-th-list"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ trans('admin.NumberofLists') }}</span>
+                    <span class="info-box-number">{{ $listcount }}</span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-check-square-o"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ trans('admin.NumberofPolls') }}</span>
+                    <span class="info-box-number">{{ $pollcount }}</span>
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div><!-- /.col -->

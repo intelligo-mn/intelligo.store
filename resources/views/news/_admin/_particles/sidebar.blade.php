@@ -124,5 +124,17 @@
                 <span>{{ trans('admin.Sitemap') }}</span>
             </a>
         </li>
+       <!--  <li>
+            <a href="/admin/docs/">
+                <i class="fa fa-book"></i>
+                <span> {{ trans('admin.documentation') }}</span>
+            </a>
+        </li> -->
+        <li class="header">{{ trans('admin.UNAPPROVEDPOSTS') }}</li>
+        @if($DB_PLUGIN_NEWS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-aqua"></i> <span>{{ trans('admin.news') }}</span><small class="label pull-right bg-aqua">{{ $napprovenews }}</small></a></li> @endif
+        @if($DB_PLUGIN_LISTS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-green"></i> <span>{{ trans('admin.lists') }}</span><small class="label pull-right bg-green">{{ $napprovelists }}</small></a></li> @endif
+        @if($DB_PLUGIN_QUIZS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-purple"></i> <span>{{ trans('admin.quizzes') }}</span><small class="label pull-right bg-purple">{{ $unapprovequizzes }}</small></a></li> @endif
+        @if($DB_PLUGIN_VIDEOS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-yellow"></i> <span>{{ trans('admin.polls') }}</span><small class="label pull-right bg-yellow">{{ $napprovepolls }}</small></a></li> @endif
+        @if($DB_PLUGIN_POLLS == 'on')<li><a href="javascript:"><i class="fa fa-circle-o text-red"></i> <span>{{ trans('admin.videos') }}</span><small class="label pull-right bg-red">{{ $napprovevideos }}</small></a></li> @endif
     </ul>
 </section>
