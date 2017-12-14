@@ -26,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->string('show_in_homepage',5)->nullable();
             $table->string('shared', 1)->default('0');
             $table->text('tags', 1)->nullable();
+            $table->string('lang');
             $table->timestamps();
             $table->timestamp('featured_at')->nullable();
             $table->timestamp('published_at');
