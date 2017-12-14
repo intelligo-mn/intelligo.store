@@ -20,7 +20,6 @@ class CreateEntrysTable extends Migration
             $table->string('type');
             $table->string('title', 255);
             $table->text('body');
-            $table->string('lang');
             $table->string('image')->nullable();
             $table->string('video', 1000)->nullable();
             $table->string('source', 1000)->nullable();
