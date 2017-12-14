@@ -24,16 +24,6 @@ return [
             'name'      => 'Монгол',
             'rtl'       => false,
             'wideheader'=> true
-        ],  
-        'zh'            => [
-            'name'      => 'China',
-            'rtl'       => false,
-            'wideheader'=> false
-        ],
-        'ru'            => [
-            'name'      => 'Russia',
-            'rtl'       => false,
-            'wideheader'=> true
         ],
 
     ],
@@ -50,7 +40,7 @@ return [
     |
     */
 
-    'debug' => true,
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +53,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/toroo.info'),
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'mn',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +92,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'mn',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,7 +171,6 @@ return [
         Terbium\DbConfig\DbConfigServiceProvider::class,
         Simexis\Installer\InstallerServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
