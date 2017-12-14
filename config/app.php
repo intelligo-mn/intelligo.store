@@ -25,6 +25,16 @@ return [
             'rtl'       => false,
             'wideheader'=> true
         ],
+        'zh'            => [
+            'name'      => 'China',
+            'rtl'       => false,
+            'wideheader'=> true
+        ],
+        'ru'            => [
+            'name'      => 'Russia',
+            'rtl'       => false,
+            'wideheader'=> true
+        ],
 
     ],
 
@@ -53,7 +63,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/toroo.info'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
