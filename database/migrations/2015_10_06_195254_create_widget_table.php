@@ -16,7 +16,6 @@ class CreateWidgetTable extends Migration
             $table->increments('id');
             $table->string('key');
             $table->text('text');
-            $table->text('lang');
             $table->string('display',20);
             $table->string('type',20);
             $table->timestamps();
