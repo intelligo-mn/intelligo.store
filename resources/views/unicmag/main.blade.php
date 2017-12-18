@@ -23,19 +23,19 @@
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{!! asset('css/bootstrap.min.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/font-awesome.min.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/superfish.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/owl.carousel.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/owl.theme.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/jquery.navgoco.css')!!}"/>
-    <link rel="stylesheet" href="{!! asset('css/flexslider.css')!!}"/>
-    <link rel="stylesheet" href="{!! asset('css/color-options.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('style.css')!!}">
-    <link rel="stylesheet" href="{!! asset('demo.css')!!}">
-    <link rel="stylesheet" href="{!! asset('css/responsive.css')!!}"/>
-    <script src="js/modernizr.custom.js"></script>
-    <link rel="stylesheet" href="css/skin/red.css" type="text/css" id="colors" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/bootstrap.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/font-awesome.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/superfish.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/owl.carousel.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/owl.theme.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/jquery.navgoco.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/flexslider.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/color-options.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('unicmag/demo.css')!!}">
+    <link rel="stylesheet" href="{!! asset('unicmag/css/responsive.css')!!}"/>
+    <script src="{!! asset('unicmag/js/modernizr.custom.js')!!}"></script>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/skin/red.css')!!}" type="text/css" id="colors" />
     <link href='https://fonts.googleapis.com/cssff1c.css?family=Raleway:400,300,700,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css9cba.css?family=Lato:400,300italic,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
@@ -45,32 +45,37 @@
 
 </head>
 <?php $DB_USER_LANG = isset($DB_USER_LANG) ? $DB_USER_LANG : '' ?>
+
+<body class="punica-home-1">
+
+<div id="theme-option">
+    <div class="theme-opt-wrapper">
+        <p><em>You can use Unlimited Colors</em></p>
+        <ul class="choose-color">
+            <li><a href="#" class="color red">&nbsp;</a></li>
+            <li><a href="#" class="color blue">&nbsp;</a></li>
+            <li><a href="#" class="color cyan">&nbsp;</a></li>
+            <li><a href="#" class="color pink">&nbsp;</a></li>
+            <li><a href="#" class="color green">&nbsp;</a></li>            
+            <li><a href="#" class="color oran">&nbsp;</a></li>
+            <li><a href="#" class="color purple">&nbsp;</a></li>
+        </ul>
+        <div class="text-center"><a href="#" class="reset" onClick="return punica_theme_option_reset_CLICK();">Reset</a></div>
+    </div><!--end:theme-opt-wrapper-->
+    <a href="#" class="fa fa-cog open-close-button"> </a><!--open-close-button-->
+</div><!--end:theme-option -->
+
 @include("_particles.header")
 
-<div class="content-wrapper" id="container-wrapper">
-    @if(!Request::is('create') ) @if(Request::segment(1)!=='profile') @if(Request::segment(1)!=='edit')
-            @foreach(\App\Widgets::where('type', 'HeaderBelow')->where('display', 'on')->get() as $widget)
-                <div class="content">
-                    <div class="container" style="text-align: center;padding-top:20px;padding-bottom:20px ">
-                        <center>
-                         {!! $widget->text !!}
-                        </center>
-                    </div>
-                </div>
-            @endforeach
-    @endif @endif @endif
-    @yield("content")
-
-</div>
 
 @include("_particles.footer")
 
 <div id="fb-root"></div>
 
-<script src="{!! asset('js/jquery-1.11.1.min.html')!!}"></script>
-<script src="{!! asset('js/bootstrap.min.html')!!}"></script>
-<script src="{!! asset('js/colorswitch.js')!!}"></script>
-<script src="{!! asset('js/custom.html')!!}" charset="utf-8"></script>
+<script src="{!! asset('unicmag/js/jquery-1.11.1.min.html')!!}"></script>
+<script src="{!! asset('unicmag/js/bootstrap.min.html')!!}"></script>
+<script src="{!! asset('unicmag/js/colorswitch.js')!!}"></script>
+<script src="{!! asset('unicmag/js/custom.html')!!}" charset="utf-8"></script>
 
 <script>
     $( document ).ready(function() {
