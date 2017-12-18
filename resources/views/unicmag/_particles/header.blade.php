@@ -1,123 +1,358 @@
-<header id="header" class="header">
+<header id="punica-page-header">
 
-    <div class="container">
-        <div class="header__logo">
-            <a href="/" title="">
-                <img  class="site-logo" src="{{ url('/assets/img/logo.png') }}" alt="">
-            </a>
-        </div>
-        <div class="header__nav">
-            <div class="coltrigger pull-l">
-                <a href="javascript:" id="menu-toggler">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-            <div id="colnav" class="toggle-nav pull-l" >
-                <ul class="navmenu">
-                    <li class="cats_link" ><a href="http://www.blog.toroo.info" class="biga firsg" data-type=""><i class="fa "></i> Нүүр хуудас <i class="fa fa-caret-right"></i></a></li>
-                    
-                    @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(9)->get() as $categorys)
-                        <li class="cats_link" ><a href="{{ url($categorys->name_slug) }}" class="biga firsg" data-type="{{ $categorys->id }}"><i class="fa fa-{{ $categorys->icon }}"></i> {{ $categorys->name }} <i class="fa fa-caret-right"></i></a></li>
-                    @endforeach
-                        
-                </ul>
+    <div id="header-top" class="clearfix">
+
+        <div class="wrapper clearfix">
+
+            <div class="left-col pull-left">
                 
-                <div class="search_link">
-                    <div class="searchbox_container">
-                        <form method="get" action="/search" >
-                            <input type="text" name="q" id="searchbox_text" placeholder="{{ trans('index.search') }}">
-                        </form>
-                    </div>
-                    <a id="searchbutton" href="javascript:"><i class="fa fa-search"></i></a>
-                    <a id="searchclosebutton" href="javascript:"><i class="fa fa-close"></i></a>
-                </div>
-                <div class="social-side mob">
+                <div class="widget widget_awesomeweatherwidget">
 
-                    @if(getcong('facebookpage'))<a target="_blank" href="{!!  getcong('facebookpage') !!}"><i class="fa fa-facebook-square"></i></a> @endif
-                    @if(getcong('twitterpage'))<a target="_blank" href="{!!  getcong('twitterpage') !!}"><i class="fa fa-twitter"></i></a>@endif
-                    @if(getcong('googlepage'))<a target="_blank" href="{!!  getcong('googlepage') !!}"><i class="fa fa-google-plus"></i></a>@endif
-                    @if(getcong('instagrampage'))<a target="_blank" href="{!!  getcong('instagrampage') !!}"><i class="fa fa-instagram"></i></a>@endif
-                    <a href="/index.xml"><i class="fa fa-rss"></i></a>
-
+                    <div class="awesome-weather-wrap awecf temp5 awe_with_stats awe_wide" id="awesome-weather-hanoi">
+                
+                        <div class="awesome-weather-header">Ha Noi City</div>
+                        
+                        <div class="awesome-weather-current-temp">
+                            17<sup>C</sup>
+                        </div> <!-- /.awesome-weather-current-temp -->
+                
+                            
+                            <div class="awesome-weather-todays-stats">
+                                <div class="awe_desc">Overcast clouds</div>
+                                <div class="awe_humidty">Humidity: 70% </div>
+                                <div class="awe_wind">Wind: 2km/h NNE</div>
+                                <div class="awe_highlow"> H 17 • L 17 </div>    
+                            </div> <!-- /.awesome-weather-todays-stats -->
+                    </div> <!-- /.awesome-weather-wrap -->
                 </div>
+                <!-- end:widget_awesomeweatherwidget -->
+
             </div>
+            <!-- end:left-col -->
 
-           
-            <div class="clear"></div>
+            <div class="right-col pull-right">
+                <div class="top-banner"><a href="#"><img src="placeholders/banner-1.jpg" alt=""></a></div>
+            </div>
+            <!-- end:right-col -->
+            
         </div>
-        
-       
+        <!-- end:wrapper -->
 
-        <div class="sections" id="sections">
-            <div class="scol2 col_sec">
-                <div>
+    </div>
+    <!-- end:header-top -->
 
-                    @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->limit(5)->get() as $cat)
-                        <ul id="cats_{{ $cat->id }}">
-                                <li>
-                                    <a class="biga firsg active"  data-type="{{ $cat->id }}" href="{{ url('/'.$cat->name_slug) }}"> {{ $cat->name }}</a>
-                                </li>
-                                @foreach(\App\Categories::where('type', $cat->id)->orderBy('order')->limit(7)->get() as $cata)
-                                <li>
-                                    <a class="biga"  data-type="{{ $cata->id }}" href="{{ url('/'.$cata->name_slug) }}"> {{ $cata->name }}</a>
-                                </li>
-                                @endforeach
+    <div id="header-middle" class="clearfix">
+
+        <div class="wrapper clearfix">
+            
+            <div id="logo-image" class="pull-left"><a href="index-2.html"><img src="placeholders/logo.png" alt=""></a></div>
+
+            <nav id="main-nav" class="pull-left">
+                
+                <ul id="main-menu" class="clearfix">
+                    <li class="current-menu-item">
+                        <a href="#">Home</a>
+                        <ul>
+                            <li><a href="index-2.html">Home - FullWidth Slider</a></li>
+                            <li><a href="index-eislider.html">Home - EI Slider</a></li>
+                            <li><a href="index-flexslider.html">Home - Flex Slider</a></li>
                         </ul>
-                    @endforeach
+                    </li>
+                    <li>
+                        <a href="#">Categories</a>
+                        <ul>
+                            <li>
+                                <a href="#">Categories page</a>
+                                <ul>
+                                    <li><a href="category-1.html">Category style 1</a></li>
+                                    <li><a href="category-2.html">Category style 2</a></li>
+                                    <li><a href="category-3.html">Category style 3</a></li>
+                                    <li><a href="category-4.html">Category style 4</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Single post</a>
+                                <ul>
+                                    <li><a href="single.html">Standard post</a></li>
+                                    <li><a href="single-audio.html">Audio post</a></li>
+                                    <li><a href="single-gallery.html">Gallery post</a></li>
+                                    <li><a href="single-video.html">Video post</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="single.html">Single page</a>
+                        <ul>
+                            <li><a href="single.html">Standard post</a></li>
+                            <li><a href="single-audio.html">Audio post</a></li>
+                            <li><a href="single-gallery.html">Gallery post</a></li>
+                            <li><a href="single-video.html">Video post</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                        <ul>
+                            <li><a href="search.html">Search page</a></li>
+                            <li><a href="404.html">Error 404 page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="elements.html">Shortcode</a></li>
+                    <li>
+                        <a href="#">Shop</a>
+                        <ul>
+                            <li><a href="shop.html">Product list</a></li>
+                            <li><a href="single-product.html">Product detail</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu">
+                        <a href="#">Mega menu</a>
+                        <div class="sf-mega sf-mega-s1">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3">
+                                    <article class="entry-item standard-post">
+                                        <span class="entry-icon"></span>
+                                        <a class="entry-categories" href="#">Business</a>
+                                        <div class="entry-thumb">
+                                            <div class="punica-zoom-effect"><a href="#"><img src="placeholders/post-image/post-50.jpg" alt=""></a></div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="entry-content-header clearfix">
+                                                <span class="entry-date pull-left clearfix">
+                                                    <i class="fa fa-clock-o pull-left"></i>
+                                                    <span class="month pull-left">Sep.</span>
+                                                    <span class="date pull-left">23</span>
+                                                </span>
+                                                <!-- end:entry-date -->
+                                                <span class="entry-meta pull-left">,&nbsp;</span>
+                                                <span class="entry-author clearfix pull-left">
+                                                    <span class="pull-left">By&nbsp;</span>
+                                                    <a class="pull-left" href="#">Jack grove</a>
+                                                </span>
+                                                <!-- end:entry-author -->
+                                            </div>
 
+                                            <h6 class="entry-title"><a href="#">Warning of a ‘winter of discontent’ over university pensions</a></h6>
 
+                                            <p>Proin eu sapien non tortor mattis auctor ac sit amet justo. Aliquam pellentesque odio quis eleifend aliquet. In id sodales dui. Pellentesque ac est risus. Vestibulum</p>
+                                        </div>
+                                        <!-- end:entry-content -->
+                                    </article>
+                                </div>
+                                <!-- col-md-3 -->
+                                <div class="col-md-3 col-sm-3">
+                                    <article class="entry-item audio-post">
+                                        <span class="entry-icon"></span>
+                                        <a class="entry-categories green" href="#">Technology</a>
+                                        <div class="entry-thumb">
+                                            <div class="punica-zoom-effect"><a href="#"><img src="placeholders/post-image/post-51.jpg" alt=""></a></div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="entry-content-header clearfix">
+                                                <span class="entry-date pull-left clearfix">
+                                                    <i class="fa fa-clock-o pull-left"></i>
+                                                    <span class="month pull-left">Sep.</span>
+                                                    <span class="date pull-left">23</span>
+                                                </span>
+                                                <!-- end:entry-date -->
+                                                <span class="entry-meta pull-left">,&nbsp;</span>
+                                                <span class="entry-author clearfix pull-left">
+                                                    <span class="pull-left">By&nbsp;</span>
+                                                    <a class="pull-left" href="#">Jack grove</a>
+                                                </span>
+                                                <!-- end:entry-author -->
+                                            </div>
+
+                                            <h6 class="entry-title"><a href="#">Warning of a ‘winter of discontent’ over university pensions</a></h6>
+
+                                            <p>Proin eu sapien non tortor mattis auctor ac sit amet justo. Aliquam pellentesque odio quis eleifend aliquet. In id sodales dui. Pellentesque ac est risus. Vestibulum</p>
+                                        </div>
+                                        <!-- end:entry-content -->
+                                    </article>
+                                </div>
+                                <!-- col-md-3 -->
+                                <div class="col-md-3 col-sm-3">
+                                    <article class="entry-item gallery-post">
+                                        <span class="entry-icon"></span>
+                                        <a class="entry-categories blue" href="#">Video</a>
+                                        <div class="entry-thumb">
+                                            <div class="punica-zoom-effect"><a href="#"><img src="placeholders/post-image/post-52.jpg" alt=""></a></div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="entry-content-header clearfix">
+                                                <span class="entry-date pull-left clearfix">
+                                                    <i class="fa fa-clock-o pull-left"></i>
+                                                    <span class="month pull-left">Sep.</span>
+                                                    <span class="date pull-left">23</span>
+                                                </span>
+                                                <!-- end:entry-date -->
+                                                <span class="entry-meta pull-left">,&nbsp;</span>
+                                                <span class="entry-author clearfix pull-left">
+                                                    <span class="pull-left">By&nbsp;</span>
+                                                    <a class="pull-left" href="#">Jack grove</a>
+                                                </span>
+                                                <!-- end:entry-author -->
+                                            </div>
+
+                                            <h6 class="entry-title"><a href="#">Warning of a ‘winter of discontent’ over university pensions</a></h6>
+
+                                            <p>Proin eu sapien non tortor mattis auctor ac sit amet justo. Aliquam pellentesque odio quis eleifend aliquet. In id sodales dui. Pellentesque ac est risus. Vestibulum</p>
+                                        </div>
+                                        <!-- end:entry-content -->
+                                    </article>
+                                </div>
+                                <!-- col-md-3 -->
+                                <div class="col-md-3 col-sm-3">
+                                    <article class="entry-item video-post">
+                                        <span class="entry-icon"></span>
+                                        <a class="entry-categories pink" href="#">News</a>
+                                        <div class="entry-thumb">
+                                            <div class="punica-zoom-effect"><a href="#"><img src="placeholders/post-image/post-53.jpg" alt=""></a></div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="entry-content-header clearfix">
+                                                <span class="entry-date pull-left clearfix">
+                                                    <i class="fa fa-clock-o pull-left"></i>
+                                                    <span class="month pull-left">Sep.</span>
+                                                    <span class="date pull-left">23</span>
+                                                </span>
+                                                <!-- end:entry-date -->
+                                                <span class="entry-meta pull-left">,&nbsp;</span>
+                                                <span class="entry-author clearfix pull-left">
+                                                    <span class="pull-left">By&nbsp;</span>
+                                                    <a class="pull-left" href="#">Jack grove</a>
+                                                </span>
+                                                <!-- end:entry-author -->
+                                            </div>
+
+                                            <h6 class="entry-title"><a href="#">Warning of a ‘winter of discontent’ over university pensions</a></h6>
+
+                                            <p>Proin eu sapien non tortor mattis auctor ac sit amet justo. Aliquam pellentesque odio quis eleifend aliquet. In id sodales dui. Pellentesque ac est risus. Vestibulum</p>
+                                        </div>
+                                        <!-- end:entry-content -->
+                                    </article>
+                                </div>
+                                <!-- col-md-3 -->
+                            </div>
+                            <!-- row --> 
+                        </div>
+                        <!-- sf-mega -->
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- end:main-menu -->
+
+                <i class='fa fa-align-justify'></i>
+                
+                <div class="mobile-menu-wrapper">
+                    <ul id="mobile-menu">
+                        <li class="current-menu-item">
+                            <a href="#">Home</a>
+                            <ul>
+                                <li class="current-menu-item">
+                                    <a href="index-2.html">Home - FullWidth Slider</a>
+                                </li>
+                                <li>
+                                    <a href="index-eislider.html">Home - EI Slider</a>
+                                </li>
+                                <li>
+                                    <a href="index-flexslider.html">Home - Flex Slider</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Categories page</a>
+                            <ul>
+                                <li><a href="category-1.html">Category page style 1</a></li>
+                                <li><a href="category-2.html">Category page style 2</a></li>
+                                <li><a href="category-3.html">Category page style 3</a></li>
+                                <li><a href="category-4.html">Category page style 4</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Single page</a>
+                            <ul>
+                                <li><a href="single.html">Standard post</a></li>
+                                <li><a href="single-audio.html">Audio post</a></li>
+                                <li><a href="single-gallery.html">Gallery post</a></li>
+                                <li><a href="single-video.html">Video post</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul>
+                                <li><a href="search.html">Search page</a></li>
+                                <li><a href="404.html">Error 404 page</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="elements.html">Shortcodes</a></li>
+                        <li>
+                            <a href="#">Shop page</a>
+                            <ul>
+                                <li><a href="shop.html">Products list</a></li>
+                                <li><a href="single-product.html">Product detail</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <!-- mobile-menu -->
                 </div>
-            </div>
-            <div class="scol3">
-                <div id="catnews_last">
+                <!-- mobile-menu-wrapper -->
 
-                </div>
-                <div class="clear" style="padding:0"></div>
+            </nav>
+            <!-- end:main-nav -->
+
+            <div class="sb-search-wrapper">
+                <div id="sb-search" class="sb-search">
+                    <form>
+                        <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+                        <input class="sb-search-submit" type="submit" value="">
+                        <span class="sb-icon-search"></span>
+                    </form>
+                </div><!--sb-search-->
             </div>
+            <!-- end:sb-search-wrapper -->
 
         </div>
+        <!-- end:wrapper -->
+        
     </div>
-    
-      <div class="navmenu login-button">
-        @if(Auth::check())
-            <li class="profile-info hor pull-r">
-                <a href="javascript:;" class="user-profile">
-                    <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" width="32" height="32"  alt="{{ Auth::user()->username }}">
-                    <span class="name"><i class="fa fa-caret-down" style="margin-right:0;"></i> </span>
-                </a>
-                <ul class="sub-nav">
-                    <li>
-                        <strong style="display:block;padding:0 15px 10px 10px;font-size:16px;font-weight: 600">{{ Auth::user()->username }}</strong>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@index', [ Auth::user()->username_slug ]) }}">{{ trans('index.myprofile') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@followfeed', ['id' => Auth::user()->username_slug ]) }}">{{ trans('updates.feedposts') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@draftposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.draft') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@deletedposts', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.trash') }}</a>
-                    </li>
-                    <li>
-                        <a class="sub-item" href="{{ action('UsersController@updatesettings', ['id' => Auth::user()->username_slug ]) }}">{{ trans('index.settings') }}</a>
-                    </li>
-                    @if(Auth::user()->usertype=='Admin')
-                        <li>
-                            <a class="sub-item" href="/admin">{{ trans('index.adminp') }}</a>
-                        </li>
-                    @endif
-                    <li>
-                        <a class="sub-item" href="{{ action('Auth\AuthController@logout') }}">{{ trans('index.logout') }}</a>
-                    </li>
+    <!-- end:header-middle -->
 
+    <div id="header-bottom" class="clearfix">
+        
+        <div class="wrapper clearfix">
+            
+            <ul class="social-links pull-left clearfix">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-rss"></a></li>
+                <li><a href="#" class="fa fa-skype"></a></li>
+                <li><a href="#" class="fa fa-youtube"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <!-- end:social-links -->
+
+            <nav id="secondary" class="pull-left">
+                <ul id="secondary-menu" class="pull-left clearfix">
+                    <li><a href="#">Magazine</a></li>
+                    <li><a href="#">Picture off the week</a></li>
+                    <li><a href="#">Also in the news</a></li>
+                    <li><a href="#">Editors'Blogs </a></li>
+                    <li><a href="#">Special reports</a></li>
+                    <li><a href="#">World news</a></li>
+                    <li><a href="#">Video news</a></li>
                 </ul>
-                <div class="clear"></div>
-            </li>
-        @endif
+                <!-- end:secondary-menu -->
+            </nav>
+            <!-- end:secondary-nav -->
+
+        </div>
+        <!-- end:wrapper -->
 
     </div>
+    <!-- end:header-bottom -->
+    
 </header>
-

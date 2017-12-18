@@ -23,28 +23,21 @@
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{!! asset('css/bootstrap.min.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/font-awesome.min.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/superfish.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/owl.carousel.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/owl.theme.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('css/jquery.navgoco.css')!!}"/>
-    <link rel="stylesheet" href="{!! asset('css/flexslider.css')!!}"/>
-    <link rel="stylesheet" href="{!! asset('css/color-options.css')!!}" media="all" />
-    <link rel="stylesheet" href="{!! asset('style.css')!!}">
-    <link rel="stylesheet" href="{!! asset('demo.css')!!}">
-    <link rel="stylesheet" href="{!! asset('css/responsive.css')!!}"/>
-    <script src="js/modernizr.custom.js"></script>
-
-
-    <!-- Color Switch -->
-    <link rel="stylesheet" href="css/skin/red.css" type="text/css" id="colors" />
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="img/favicon.html">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="stylesheet" href="{!! asset('unicmag/css/bootstrap.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/font-awesome.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/superfish.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/owl.carousel.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/owl.theme.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/css/jquery.navgoco.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/flexslider.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/color-options.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('unicmag/style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('unicmag/demo.css')!!}">
+    <link rel="stylesheet" href="{!! asset('unicmag/css/responsive.css')!!}"/>
+    <script src="{!! asset('unicmag/js/modernizr.custom.js')!!}"></script>
+    <link rel="stylesheet" href="{!! asset('unicmag/css/skin/red.css')!!}" type="text/css" id="colors" />
+    <link href='https://fonts.googleapis.com/cssff1c.css?family=Raleway:400,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css9cba.css?family=Lato:400,300italic,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/cssff1c.css?family=Raleway:400,300,700,600' rel='stylesheet' type='text/css'>
@@ -90,10 +83,11 @@
 <script src="/assets/js/plugins.js"></script>
 <script src="/assets/js/app.min.js"></script>
 
-<script src="{!! asset('js/jquery-1.11.1.min.html')!!}"></script>
-<script src="{!! asset('js/bootstrap.min.html')!!}"></script>
-<script src="{!! asset('js/colorswitch.js')!!}"></script>
-<script src="{!! asset('js/custom.html')!!}" charset="utf-8"></script>
+
+<script src="{!! asset('unicmag/js/jquery-1.11.1.min.html')!!}"></script>
+<script src="{!! asset('unicmag/js/bootstrap.min.html')!!}"></script>
+<script src="{!! asset('unicmag/js/colorswitch.js')!!}"></script>
+<script src="{!! asset('unicmag/js/custom.html')!!}" charset="utf-8"></script>
 
 <script>
     $( document ).ready(function() {
