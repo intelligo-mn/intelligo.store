@@ -22,16 +22,22 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="{{ url('/assets/img/favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/plugins.css">
-    <link rel="stylesheet" href="/assets/css/application.css">
-    <link rel="stylesheet" href="/assets/css/test.css">
 
-
-    <style type="text/css">
-        body {
-            font-family: 'Roboto Condensed', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="{!! asset('css/bootstrap.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('css/font-awesome.min.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('css/superfish.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('css/owl.carousel.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('css/owl.theme.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('css/jquery.navgoco.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('css/flexslider.css')!!}"/>
+    <link rel="stylesheet" href="{!! asset('css/color-options.css')!!}" media="all" />
+    <link rel="stylesheet" href="{!! asset('style.css')!!}">
+    <link rel="stylesheet" href="{!! asset('demo.css')!!}">
+    <link rel="stylesheet" href="{!! asset('css/responsive.css')!!}"/>
+    <script src="js/modernizr.custom.js"></script>
+    <link rel="stylesheet" href="css/skin/red.css" type="text/css" id="colors" />
+    <link href='https://fonts.googleapis.com/cssff1c.css?family=Raleway:400,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css9cba.css?family=Lato:400,300italic,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
     {!! getcong('headcode') !!}
 
@@ -60,8 +66,11 @@
 @include("_particles.footer")
 
 <div id="fb-root"></div>
-<script src="/assets/js/plugins.js"></script>
-<script src="/assets/js/app.min.js"></script>
+
+<script src="{!! asset('js/jquery-1.11.1.min.html')!!}"></script>
+<script src="{!! asset('js/bootstrap.min.html')!!}"></script>
+<script src="{!! asset('js/colorswitch.js')!!}"></script>
+<script src="{!! asset('js/custom.html')!!}" charset="utf-8"></script>
 
 <script>
     $( document ).ready(function() {
