@@ -1,0 +1,7 @@
+Mirror in progress since Пү, 21 12-р сар 2017 17:41:16 .. please wait!
+httraqt -q -%i -i http://punicatheme.com/demo/unicmag/html/ -%e0 -C2 -%P -n -x -s2 -%s -%u -N0 -p7 -D -a -K0 -m0,0 -c8 -%k -Q -F "Mozilla/5.0 (X11; U; Linux i686; I; rv:17.0.1) Gecko/20100101 Firefox/17.0.1" -%F "<!-- Mirrored from %s%s by HTTraQt Website Copier/1.x [Karbofos 2012-2017] %s -->" -%l ua,en -O "/home/turtuvshin/My Web Sites/unicmac/" +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* 
+To pause the engine: create an empty file named 'hts-stop.lock'
+PID=24116
+UID=1000
+GID=1000
+START=1513849276

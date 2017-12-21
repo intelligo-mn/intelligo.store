@@ -1,0 +1,8 @@
+-q -%i -w https://www.radiustheme.com/demo/html/newsedge/ -%e0 -C2 -%P -n -x -s2 -%s -%u -N0 -p7 -D -a -K0 -m0,0 -c8 -%k -Q -A0 -F "Mozilla/5.0 (X11; U; Linux i686; I; rv:17.0.1) Gecko/20100101 Firefox/17.0.1" -%F "<!-- Mirrored from %s%s by HTTraQt Website Copier/1.x [Karbofos 2012-2017] %s -->" -%l ua,en -O "/home/turtuvshin/My Web Sites/newsedge/" +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/*
+File generated automatically on Пү, 21 12-р сар 2017 17:12:47, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+
