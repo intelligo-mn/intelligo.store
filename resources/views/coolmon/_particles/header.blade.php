@@ -22,8 +22,6 @@
                                     <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
                                     <li><a href="/selectlanguge/mn"><img width="24px" height="24px" src="{!! asset('assets/img/mn.svg')!!}" alt="English"></a></li>
                                     <li><a href="/selectlanguge/en"><img width="24px" height="24px" src="{!! asset('assets/img/en.svg')!!}" alt="English"></a></li>
-                                    <li><a href="/selectlanguge/zh"><img width="24px" height="24px" src="{!! asset('assets/img/cn.svg')!!}" alt="English"></a></li>
-                                    <li><a href="/selectlanguge/ru"><img width="24px" height="24px" src="{!! asset('assets/img/ru.svg')!!}" alt="English"></a></li>
                                 </ul>
                             </nav>
 
