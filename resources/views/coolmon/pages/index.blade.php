@@ -310,7 +310,7 @@
                                                 <li class="col-md-4 col-sm-4 col-sm-12" style="padding: 0 !important">
                                                     <div class="right-content">
                                                         <span class="category"><a href="category-politics.html">ЗУРГИЙН ЦОМОГ</a></span>
-                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
+                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> {{ $item->created_at->diffForHumans() }}</span>
                                                         <!-- <h3><a href="{{ makeposturl($item) }}">{{ $item->title }}.</a></h3> -->
                                                     </div>
                                                     <div class="right-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="sidebar image"></a></div>
@@ -478,7 +478,7 @@
                                 </div>                            
                                 <div class="videos-text">
                                     <h3><a href="#">{{ $item->title }}</a></h3>
-                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 </span>
+                                    <span class="date"> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}</span>
                                     <span class="comment"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50 </a></span>
                                 </div>
                             </div>
@@ -524,7 +524,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -544,7 +544,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                   {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -590,7 +590,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -610,7 +610,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -639,7 +639,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -659,7 +659,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -688,7 +688,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -708,7 +708,7 @@
                                             <div class="dsc">
                                                 <span class="date">
                                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                                    November 28, 2017 
+                                                    {{ $item->created_at->diffForHumans() }}
                                                 </span>
                                                 <span class="comment">
                                                     <a href="{{ makeposturl($item) }}"> <i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -734,11 +734,11 @@
                             @foreach($lastFeaturestop->slice(0,3) as $item)
                             <li>
                                 <a href="#" class="category-btn hvr-bounce-to-right">ТАНИН МЭДЭХҮЙ</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
+                                <div class="post-image"><a href="{{ makeposturl($item) }}"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="News image" /></a></div>
                                 <div class="content">
-                                    <h4><a href="blog-single.html">{{ $item->title }}</a></h4>
+                                    <h4><a href="{{ makeposturl($item) }}">{{ $item->title }}</a></h4>
                                     <span class="date"> 
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $item->created_at->diffForHumans() }}
                                     </span> 
                                     <span class="comment">
                                         <a href="#">

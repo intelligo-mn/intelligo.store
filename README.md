@@ -56,17 +56,13 @@ https://techstar-inc.github.io/techstar-cms/themes/travelto/
 #### Install
 
 ```
-git clone https://github.com/techstar-inc/techstar-cms.git
-```
+$ git clone https://github.com/techstar-inc/techstar-cms.git
 
-```
-composer update/install
-```
+$ cd techstar-cms
 
-```
-php artisan migrate
-```
+$ composer update/install
 
-```
-php artisan db:seed
+$ php artisan migrate
+
+$ php artisan db:seed
 ```

@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="post--info">
                                         <ul class="nav meta">
-                                            <li><a href="#">Norma R. Hogan</a></li>
+                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                         </ul>
                                         <div class="title">
@@ -44,7 +44,7 @@
                                             <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">Travel</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                             <div class="post--info">
                                                 <ul class="nav meta">
-                                                    <li><a href="#">Corey I. Dean</a></li>
+                                                    <li><a href="#">{{ $item->user->username }} </a></li>
                                                     <li>
                                                         <a href="#">{{ $item->created_at->diffForHumans() }}</a>
                                                     </li>
@@ -64,7 +64,7 @@
                                             <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">Politics</a> <a href="#" class="icon"><i class="fa fa-fire"></i></a>
                                             <div class="post--info">
                                                 <ul class="nav meta">
-                                                    <li><a href="#">Balam</a></li>
+                                                    <li><a href="#">{{ $item->user->username }} </a></li>
                                                     <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                 </ul>
                                                 <div class="title">
@@ -101,7 +101,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">War</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -121,7 +121,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -141,7 +141,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -174,7 +174,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Computer</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -192,7 +192,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -230,8 +230,8 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img style="min-height: 320px;" src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Business</a> <a href="#" class="icon"><i class="fa fa-star-o"></i></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Vassago</a></li>
-                                                            <li><a href="#">Today 03:30 am</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
                                                             <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}.</a></h3> </div>
@@ -253,8 +253,8 @@
                                                             <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
                                                             <div class="post--info">
                                                                 <ul class="nav meta">
-                                                                    <li><a href="#">Zepar</a></li>
-                                                                    <li><a href="#">Today 03:52 pm</a></li>
+                                                                    <li><a href="#">{{ $item->user->username }} </a></li>
+                                                                    <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                                 </ul>
                                                                 <div class="title">
                                                                     <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
@@ -274,8 +274,8 @@
                                                             <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
                                                             <div class="post--info">
                                                                 <ul class="nav meta">
-                                                                    <li><a href="#">Zepar</a></li>
-                                                                    <li><a href="#">Today 03:52 pm</a></li>
+                                                                    <li><a href="#">{{ $item->user->username }} </a></li>
+                                                                    <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                                 </ul>
                                                                 <div class="title">
                                                                     <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
@@ -310,7 +310,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">War</a> <a href="#" class="icon"><i class="fa fa-flash"></i></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -330,7 +330,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -350,7 +350,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> 
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -383,7 +383,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a> <a href="#" class="cat">Computer</a> <a href="#" class="icon"><i class="fa fa-heart-o"></i></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -401,7 +401,7 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt="{{ $item->title }}"></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Bathin</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -477,14 +477,14 @@
                         <div class="list--widget list--widget-1">
                             <div class="post--items post--items-3" data-ajax-content="outer">
                                 <ul class="nav" data-ajax-content="inner">
-                                    @foreach($lastNews->slice(1, 4) as $item)
+                                    @foreach($lastTrending->slice(1, 4) as $item)
                                         <li class="col-xs-12">
                                             <div class="post--item post--layout-3">
                                                 <div class="post--img">
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
@@ -528,7 +528,7 @@
                                     <a href="{{ makeposturl($item) }}" class="thumb"><img style="height: 375px;"src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a> <a href="#" class="cat">Wave</a> <a href="#" class="icon"><i class="fa fa-eye"></i></a>
                                     <div class="post--info">
                                         <ul class="nav meta">
-                                            <li><a href="#">Succubus</a></li>
+                                            <li><a href="#">{{ $item->user->username }} </a></li>
                                             <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                         </ul>
                                         <div class="title">
@@ -549,8 +549,8 @@
                                             <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
                                             <div class="post--info">
                                                 <ul class="nav meta">
-                                                    <li><a href="#">Maclaan John</a></li>
-                                                    <li><a href="#">16 April 2017</a></li>
+                                                    <li><a href="#">{{ $item->user->username }} </a></li>
+                                                    <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                 </ul>
                                                 <div class="title">
                                                     <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
@@ -592,8 +592,8 @@
                                                     <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
                                                     <div class="post--info">
                                                         <ul class="nav meta">
-                                                            <li><a href="#">Astaroth</a></li>
-                                                            <li><a href="#">Yeasterday 03:52 pm</a></li>
+                                                            <li><a href="#">{{ $item->user->username }} </a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
                                                         </ul>
                                                         <div class="title">
                                                             <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
@@ -814,66 +814,23 @@
                         <div class="list--widget list--widget-1" data-ajax-content="outer">
                             <div class="post--items post--items-3">
                                 <ul class="nav" data-ajax-content="inner">
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-01.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Ninurta</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
+                                    @foreach($lastFeaturestop->slice(0, 4) as $item)
+                                        <li class="col-xs-12">
+                                            <div class="post--item post--layout-3">
+                                                <div class="post--img">
+                                                    <a href="{{ makeposturl($item) }}" class="thumb"><img src="{{ makepreview($item->thumb, 'b', 'posts') }}" alt=""></a>
+                                                    <div class="post--info">
+                                                        <ul class="nav meta">
+                                                            <li><a href="#">Astaroth</a></li>
+                                                            <li><a href="#">{{ $item->created_at->diffForHumans() }}</a></li>
+                                                        </ul>
+                                                        <div class="title">
+                                                            <h3 class="h4"><a href="{{ makeposturl($item) }}" class="btn-link">{{ $item->title }}</a></h3> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-02.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Orcus</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-03.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Rahab</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="post--item post--layout-3">
-                                            <div class="post--img">
-                                                <a href="news-single-v1.html" class="thumb"><img src="uriankhai/img/widgets-img/editors-choice-04.jpg" alt=""></a>
-                                                <div class="post--info">
-                                                    <ul class="nav meta">
-                                                        <li><a href="#">Tannin</a></li>
-                                                        <li><a href="#">16 April 2017</a></li>
-                                                    </ul>
-                                                    <div class="title">
-                                                        <h3 class="h4"><a href="news-single-v1.html" class="btn-link">Long established fact that a reader will be distracted</a></h3> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                                 <div class="preloader bg--color-0--b" data-preloader="1">
                                     <div class="preloader--inner"></div>

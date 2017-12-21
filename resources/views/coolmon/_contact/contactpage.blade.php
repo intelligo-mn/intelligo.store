@@ -36,7 +36,7 @@
                     </div> 
                                   
                     <div class="leave-comments-area">
-                        <h3>Contact Us</h3>
+                        <h3>{{ trans('contact.contact') }}</h3>
                         <div id="form-messages"></div>
                         {!!   Form::open(array('action' => 'ContactController@create', 'method' => 'POST','id' => 'form contact-form has-border','name' => 'contactform', 'enctype' => 'multipart/form-data')) !!}
                             <fieldset>
