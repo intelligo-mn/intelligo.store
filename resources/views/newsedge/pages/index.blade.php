@@ -40,9 +40,6 @@
 <div class="content">
 
     <div class="container">
-
-
-
         <div class="row homecolums">
             <div class="column1 ">
                 <div class="colheader sea">
