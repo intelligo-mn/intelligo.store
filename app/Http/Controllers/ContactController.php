@@ -88,11 +88,15 @@ class ContactController extends Controller
             });
         }
 
+
+        $cat=Categories::byType('mailcat')->where('name_slug', 'inbox')->first();
         $newrecord= new Contacts;
         $newrecord->name=$ll['name'];
         $newrecord->email=$ll['email'];
         $newrecord->subject=$ll['subject'];
         $newrecord->text=$ll['text'];
+        $newrecord->category_id=$cat->id;
+        $newrecord->label_id=$ll['label'];
         $newrecord->read=0;
         $newrecord->save();
 
