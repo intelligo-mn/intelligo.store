@@ -82,9 +82,9 @@ git clone https://github.com/techstar-inc/techstar-ecommerce.git
 
 Install Composer
 
-```
-Download Composer (https://getcomposer.org/download/)
-```
+
+[Download Composer](https://getcomposer.org/download/)
+
 
 composer update/install 
 
@@ -94,9 +94,9 @@ composer install
 
 Install Nodejs
 
-```
-https://nodejs.org/en/download/
-```
+
+[Download Node.js](https://nodejs.org/en/download/)
+
 
 NPM dependencies
 ```
@@ -134,10 +134,6 @@ This project exists thanks to all the people who contribute. [[Contribute]](./CO
 ## License
 
 MIT
-
-[NODEJS]: https://nodejs.org/en/download/
-[COMPOSER]: https://getcomposer.org/download/
-[RECAPTCHA]: https://www.google.com/recaptcha/admin#list
 
 
 **[⬆ back to top](#table-of-contents)**
