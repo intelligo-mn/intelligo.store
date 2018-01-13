@@ -135,8 +135,7 @@ or translating any document here to your language. [Find more information in CON
 
 ## License
 
-MIT
-
+Techstar Ecommerce is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 **[⬆ back to top](#laravel-ecommerce-platform)**
 
