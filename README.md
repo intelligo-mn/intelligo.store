@@ -3,36 +3,31 @@
 </p>
 
 <p align="center">
-</a><br>
-	<b>Laravel Ecommerce Platform</b>
-</p>
-<p align="center">
-    <a href="https://github.com/techstar-inc/techstar-ecommerce/issues">
-        <img src="https://img.shields.io/github/issues/techstar-inc/techstar-ecommerce.svg"
+    <a href="https://github.com/techstar-cloud/techstar-ecommerce/issues">
+        <img src="https://img.shields.io/github/issues/techstar-cloud/techstar-ecommerce.svg"
             alt="Issues"></a>
-     <a href="https://github.com/techstar-inc/techstar-ecommerce/fork">
-        <img src="https://img.shields.io/github/forks/techstar-inc/techstar-ecommerce.svg?style=social&label=Fork"
+     <a href="https://github.com/techstar-cloud/techstar-ecommerce/fork">
+        <img src="https://img.shields.io/github/forks/techstar-cloud/techstar-ecommerce.svg?style=social&label=Fork"
             alt="Forks"></a>
-    <a href="https://github.com/techstar-inc/techstar-ecommerce/stargazers">
-        <img src="https://img.shields.io/github/stars/techstar-inc/techstar-ecommerce.svg?style=social&label=Stars"
+    <a href="https://github.com/techstar-cloud/techstar-ecommerce/stargazers">
+        <img src="https://img.shields.io/github/stars/techstar-cloud/techstar-ecommerce.svg?style=social&label=Stars"
             alt="Stars"></a>
     <a href="https://github.com/tortuvshin/">
         <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
             alt="Followers"></a>
-    <a href="https://raw.githubusercontent.com/techstar-inc/techstar-ecommerce/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/techstar-cloud/techstar-ecommerce/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg"
             alt="LICENSE"></a>
     <a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D">
-        <img src="https://img.shields.io/twitter/url/https/github.com/techstar-inc/techstar-ecommerce.svg?style=social"
+        <img src="https://img.shields.io/twitter/url/https/github.com/techstar-cloud/techstar-ecommerce.svg?style=social"
             alt="Tweet"></a>
-	  <a href="https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techstar-inc/techstar-ecommerce&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c"/></a>
+	  <a href="https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techstar-cloud/techstar-ecommerce&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c"/></a>
 </p>
 
-<p align="center">
+
+## Laravel Ecommerce Platform
+
 This is a e-commerce platform I made mostly using Laravel 5.4
-</p>
-
-## Table of Contents
 
 | [Features][] | [Requirements][] | [Install][] | [How to setting][] | [Contributors][] | [License][] |
 |---|---|---|---|---|---|
@@ -77,7 +72,7 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 Clone repo
 
 ```
-git clone https://github.com/techstar-inc/techstar-ecommerce.git
+git clone https://github.com/techstar-cloud/techstar-ecommerce.git
 ```
 
 Install Composer
@@ -126,9 +121,16 @@ Generating a New Application Key
 php artisan key:generate
 ```
 
+## Authors
+
+[![Turtuvshin Byambaa](https://avatars0.githubusercontent.com/u/12738721?s=80)](https://github.com/tortuvshin) | [![Enkhbayar Doljinsuren](https://avatars1.githubusercontent.com/u/23227403?s=80)](https://github.com/doljko) 
+---|---
+[Turtuvshin](https://github.com/tortuvshin) | [Doljinsuren](https://github.com/doljko) 
+
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute]](./CONTRIBUTING.md).
+You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
+or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
 <a href="https://github.com/techstar-cloud/techstar-ecommerce/graphs/contributors">Contributors</a>
 
 ## License
@@ -136,11 +138,12 @@ This project exists thanks to all the people who contribute. [[Contribute]](./CO
 MIT
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#laravel-ecommerce-platform)**
 
 [Features]:#features
 [Requirements]:#requirements
 [Install]:#install
 [How to setting]:#how-to-setting
+[Authors]:#authors
 [Contributors]:#contributors
 [License]:#license
