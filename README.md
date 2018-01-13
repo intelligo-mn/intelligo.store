@@ -1,4 +1,8 @@
 <p align="center">
+	<img src="/public/img/logo.png" width="200"/>
+</p>
+
+<p align="center">
 </a><br>
 	<b>Laravel Ecommerce Platform</b>
 </p>
@@ -28,6 +32,36 @@
 This is a e-commerce platform I made mostly using Laravel 5.4
 </p>
 
+## Table of Contents
+
+| [Features][] | [Requirements][] | [Install][] | [How to setting][] | [Contributors][] | [License][] |
+|---|---|---|---|---|---|---|---|
+
+## Features 
+- Multiple language display for front and back end
+- Automatic cross sell / up sell / related product offerings
+- Open Source
+- Social Media Integration
+- Unlimited Categories
+- Unlimited Products
+- Related Products, Recommendations for you in our categories, Store Trending
+- Create custom transaction emails
+- Newsletter management
+- Create different sales rules for groups of products
+- Customer loyalty discounts
+- An “intelligent” search form
+- Custom page creation
+- Contact forms
+- Manage orders/invoicing/shipment processing
+- Manage different sales tax arrangements
+- Stock control
+- Integration with Social Media promotion tools
+- Tier pricing
+- Multiple Currency
+- Wish Lists
+- Ability to Ship to Multiple Addresses
+- Single step checkout for registered customers
+
 ## Requirements
 
 	PHP >= 5.6.4
@@ -38,8 +72,6 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 	Tokenizer PHP Extension
 	XML PHP Extension
 
-
-<a name="installation"></a>
 ## Install
 
 Clone repo
@@ -94,32 +126,26 @@ Generating a New Application Key
 php artisan key:generate
 ```
 
-## Features 
-- Multiple language display for front and back end
-- Automatic cross sell / up sell / related product offerings
-- Open Source
-- Social Media Integration
-- Unlimited Categories
-- Unlimited Products
-- Related Products, Recommendations for you in our categories, Store Trending
-- Create custom transaction emails
-- Newsletter management
-- Create different sales rules for groups of products
-- Customer loyalty discounts
-- An “intelligent” search form
-- Custom page creation
-- Contact forms
-- Manage orders/invoicing/shipment processing
-- Manage different sales tax arrangements
-- Stock control
-- Integration with Social Media promotion tools
-- Tier pricing
-- Multiple Currency
-- Wish Lists
-- Ability to Ship to Multiple Addresses
-- Single step checkout for registered customers
+## Contributors
 
+This project exists thanks to all the people who contribute. [[Contribute]](./CONTRIBUTING.md).
+<a href="https://github.com/techstar-cloud/techstar-ecommerce/graphs/contributors">Contributors</a>
+
+## License
+
+MIT
 
 [NODEJS]: https://nodejs.org/en/download/
 [COMPOSER]: https://getcomposer.org/download/
 [RECAPTCHA]: https://www.google.com/recaptcha/admin#list
+
+
+**[⬆ back to top](#table-of-contents)**
+
+[Features]:#features
+[Requirements]:#requirements
+[Install]:#install
+[How to setting]:#how-to-setting
+[Examples]:#examples
+[Credits]:#credits
+[License]:#license
