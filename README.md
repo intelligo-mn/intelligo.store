@@ -35,7 +35,7 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 ## Table of Contents
 
 | [Features][] | [Requirements][] | [Install][] | [How to setting][] | [Contributors][] | [License][] |
-|---|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|
 
 ## Features 
 - Multiple language display for front and back end
@@ -146,6 +146,5 @@ MIT
 [Requirements]:#requirements
 [Install]:#install
 [How to setting]:#how-to-setting
-[Examples]:#examples
-[Credits]:#credits
+[Contributors]:#contributors
 [License]:#license
