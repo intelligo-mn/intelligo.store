@@ -24,11 +24,11 @@ return [
             'name'      => 'Монгол',
             'rtl'       => false,
             'wideheader'=> true
-        ],  
+        ],
         'zh'            => [
             'name'      => 'China',
             'rtl'       => false,
-            'wideheader'=> false
+            'wideheader'=> true
         ],
         'ru'            => [
             'name'      => 'Russia',
@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'debug' => true,
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -181,7 +181,6 @@ return [
         Terbium\DbConfig\DbConfigServiceProvider::class,
         Simexis\Installer\InstallerServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
-
         /*
          * Application Service Providers...
          */

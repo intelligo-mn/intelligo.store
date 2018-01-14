@@ -35,7 +35,7 @@ class IndexController extends Controller
             $HomeColSec3Type1=getcong('HomeColSec3Type1');
         }
            //set defult
-          if($HomeColSec1Type1==null){ $HomeColSec1Type1=array('list', 'quiz');}
+          if($HomeColSec1Type1==null){ $HomeColSec1Type1=array('news', 'list', 'quiz');}
           if($HomeColSec2Type1==null){ $HomeColSec2Type1=array('news');}
           if($HomeColSec3Type1==null){ $HomeColSec3Type1=array('video');}
 
@@ -79,7 +79,7 @@ class IndexController extends Controller
 
         else{
 
-            if(Posts::where("lang", $lang)->count() < 5){
+            if(Posts::where("lang", $lang)->count() < 1){
                 return view('errors.starting');
             }
         }

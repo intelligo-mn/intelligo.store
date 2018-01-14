@@ -158,15 +158,15 @@ table {
     border-spacing: 0
 }
 
-.white-header,
-.fixed-position {
-    z-index: 100;
-}
-
 caption,
 td,
 th {
     padding: 0
+}
+
+.white-header,
+.fixed-position {
+    z-index: 100;
 }
 
 ::-moz-focus-inner {
