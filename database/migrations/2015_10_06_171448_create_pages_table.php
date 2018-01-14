@@ -18,8 +18,8 @@ class CreatePagesTable extends Migration
             $table->string('slug');
             $table->string('description');
             $table->text('text');
-            $table->boolean('footer');
             $table->string('lang');
+            $table->boolean('footer');
             $table->timestamps();
         });
     }

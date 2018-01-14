@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->string('type',25);
             $table->string('ordertype',25)->nullable();
             $table->string('slug',225);
-            $table->string('lang',10);
             $table->string('title',225)->nullable();
             $table->string('body',1000)->nullable();
             $table->string('thumb',255)->nullable();
@@ -27,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->string('show_in_homepage',5)->nullable();
             $table->string('shared', 1)->default('0');
             $table->text('tags', 1)->nullable();
+            $table->string('lang');
             $table->timestamps();
             $table->timestamp('featured_at')->nullable();
             $table->timestamp('published_at');
