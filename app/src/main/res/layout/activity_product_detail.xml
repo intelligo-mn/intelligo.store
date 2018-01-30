@@ -212,7 +212,7 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <agency.techstar.ecommerce.widgets.TSProgressBar
+    <cloud.techstar.ecommerce.widgets.TSProgressBar
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:thickness="@dimen/default_thickness"

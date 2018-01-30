@@ -8,7 +8,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="agency.techstar.ecommerce.activity.ActivityCompanyProduct">
+    tools:context="cloud.techstar.ecommerce.activity.ActivityCompanyProduct">
     <LinearLayout
         android:id="@+id/lytSearch"
         android:layout_width="fill_parent"
@@ -48,7 +48,7 @@
         android:divider="@null"
         android:padding="5dp" />
 
-    <agency.techstar.ecommerce.widgets.TSProgressBar
+    <cloud.techstar.ecommerce.widgets.TSProgressBar
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:thickness="@dimen/default_thickness"

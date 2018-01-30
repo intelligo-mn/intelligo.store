@@ -9,7 +9,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="agency.techstar.ecommerce.activity.ActivitySplashScreen"
+    tools:context="cloud.techstar.ecommerce.activity.ActivitySplashScreen"
     android:background="@color/white">
 
     <ImageView
