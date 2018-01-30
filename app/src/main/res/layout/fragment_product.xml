@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="?attr/actionBarSize"
     android:id="@+id/home_fragment"
-    tools:context="agency.techstar.ecommerce.fragments.ProductFragment">
+    tools:context="cloud.techstar.ecommerce.fragments.ProductFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshHome"
@@ -21,7 +21,7 @@
             android:visibility="gone" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <agency.techstar.ecommerce.widgets.TSProgressBar
+    <cloud.techstar.ecommerce.widgets.TSProgressBar
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:thickness="@dimen/default_thickness"
