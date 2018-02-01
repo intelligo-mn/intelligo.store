@@ -25,7 +25,7 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <cloud.techstar.ecommerce.widgets.TSProgressBar
+    <cloud.techstar.progressbar.TSProgressBar
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:thickness="@dimen/default_thickness"
