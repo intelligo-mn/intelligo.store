@@ -2,8 +2,6 @@ package cloud.techstar.ecommerce.activity
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.AsyncTask
@@ -17,7 +15,6 @@ import android.support.v7.graphics.Palette
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.ImageView
@@ -34,7 +31,7 @@ import cloud.techstar.ecommerce.database.CartTable
 import cloud.techstar.ecommerce.models.CartProducts
 import cloud.techstar.ecommerce.utilities.PrefManager
 import cloud.techstar.ecommerce.utilities.TSConstants
-import cloud.techstar.ecommerce.widgets.TSProgressBar
+import cloud.techstar.progressbar.TSProgressBar
 
 /**
  * Author: Tortuvshin Byambaa.

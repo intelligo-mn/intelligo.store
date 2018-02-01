@@ -21,7 +21,6 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.adapters.CompanyAdapter;
 import cloud.techstar.ecommerce.utilities.TSConstants;
-import cloud.techstar.ecommerce.widgets.TSProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +28,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import cloud.techstar.progressbar.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;

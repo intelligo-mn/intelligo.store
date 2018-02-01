@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import cloud.techstar.ecommerce.widgets.TSProgressBar;
+import cloud.techstar.progressbar.TSProgressBar;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
