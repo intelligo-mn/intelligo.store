@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

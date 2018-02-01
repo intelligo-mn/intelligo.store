@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.activity.ActivityAbout;
 import cloud.techstar.ecommerce.activity.ActivityUserSettings;
 import cloud.techstar.ecommerce.activity.ActivityWeb;

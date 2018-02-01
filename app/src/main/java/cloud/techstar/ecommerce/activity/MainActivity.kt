@@ -21,7 +21,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
-import com.techstar.ecommerce.R
+import cloud.techstar.ecommerce.R
 
 import cloud.techstar.ecommerce.fragments.CartFragment
 import cloud.techstar.ecommerce.fragments.CategoryFragment
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // oncreate үйлдэл ажиллахад дуудагдах
-    fun init() {
+    private fun init() {
 
         prefManager = PrefManager(applicationContext)
 
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setupViewPager() {
+    private fun setupViewPager() {
         val viewPager = findViewById<View>(R.id.view_pager) as CustomViewPager
         val pagerAdapter = MyPagerAdapter(supportFragmentManager)
 

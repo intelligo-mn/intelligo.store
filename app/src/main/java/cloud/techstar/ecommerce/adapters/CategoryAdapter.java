@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 /**
  * Author: Tortuvshin Byambaa.
  * Project: TechstarShop

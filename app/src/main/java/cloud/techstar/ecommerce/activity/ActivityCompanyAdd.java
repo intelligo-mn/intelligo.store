@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.fragments.CompanyFragment;
 import cloud.techstar.ecommerce.models.Category;
 import cloud.techstar.ecommerce.utilities.TSConstants;

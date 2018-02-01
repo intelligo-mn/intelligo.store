@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 
