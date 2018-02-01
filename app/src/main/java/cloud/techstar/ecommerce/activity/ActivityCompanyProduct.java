@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

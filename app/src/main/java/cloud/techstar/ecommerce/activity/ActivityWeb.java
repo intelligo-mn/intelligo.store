@@ -10,7 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 public class ActivityWeb extends AppCompatActivity {
 

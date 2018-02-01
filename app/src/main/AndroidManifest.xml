@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.techstar.ecommerce">
+    package="cloud.techstar.ecommerce">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -70,7 +70,9 @@
         <activity android:name="cloud.techstar.ecommerce.activity.ActivityDetail" />
         <activity android:name="cloud.techstar.ecommerce.activity.ActivityCompanyAdd" />
         <activity android:name="cloud.techstar.ecommerce.activity.ActivityWeb" />
-        <activity android:name="cloud.techstar.ecommerce.activity.ActivityAbout"></activity>
+        <activity android:name="cloud.techstar.ecommerce.activity.ActivityAbout">
+
+        </activity>
     </application>
 
 </manifest>

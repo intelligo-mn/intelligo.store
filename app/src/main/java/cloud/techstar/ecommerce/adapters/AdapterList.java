@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 /**
  * Author: Tortuvshin Byambaa.

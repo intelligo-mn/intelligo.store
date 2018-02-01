@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.activity.ActivityCompanyProduct;
 import cloud.techstar.ecommerce.adapters.CategoryAdapter;
 import cloud.techstar.ecommerce.utilities.TSConstants;

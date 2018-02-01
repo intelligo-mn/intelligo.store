@@ -3,7 +3,7 @@ package cloud.techstar.ecommerce.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 public class ActivityAbout extends AppCompatActivity {
 

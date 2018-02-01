@@ -18,7 +18,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.adapters.CompanyAdapter;
 import cloud.techstar.ecommerce.utilities.TSConstants;
 

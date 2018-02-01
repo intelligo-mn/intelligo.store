@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.TextView;
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 import cloud.techstar.ecommerce.activity.MainActivity;
 import cloud.techstar.ecommerce.adapters.ProductAdapter;
 import cloud.techstar.ecommerce.utilities.TSConstants;

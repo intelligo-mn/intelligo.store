@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

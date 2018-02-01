@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.techstar.ecommerce.R;
+import cloud.techstar.ecommerce.R;
 /**
  * Author: Tortuvshin Byambaa.
  * Project: TechstarShop

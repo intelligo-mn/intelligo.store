@@ -23,7 +23,7 @@ import android.widget.Toast
 
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import com.techstar.ecommerce.R
+import cloud.techstar.ecommerce.R
 
 import java.text.DecimalFormat
 
