@@ -218,17 +218,16 @@ class PostsController extends Controller
             $titleslug = preg_replace("/[\s_]/", '-', $titleslug);
 
         }
-
         $imgWW = $this->resizepostimage($inputs['thumb'], $titleslug);
 
-		$ordertype = null;
-		if(isset($inputs['ordertype'])){
+    		$ordertype = null;
+    		if(isset($inputs['ordertype'])){
             $ordertype = $inputs['ordertype'];
             if($ordertype == 'none'){
                 $ordertype = null;
             }
-		}
-		
+    		}
+
         $post = new Posts;
         $post->slug = $titleslug;
         $post->title = $inputs['title'];
@@ -236,8 +235,9 @@ class PostsController extends Controller
         if(isset($inputs['lang'])){
             $post->lang = $inputs['lang'] == 0 ? null : $inputs['lang'];
         }
+        $post->category_id = $inputs['category'];
         if(isset($inputs['pagination'])){
-            $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
+          $post->pagination = $inputs['pagination'] == 0 ? null : $inputs['pagination'];
         }
         $post->type = $inputs['type'];
         $post->tags = isset($inputs['tags']) ? $inputs['tags'] : '';
@@ -358,11 +358,11 @@ class PostsController extends Controller
 			if(isset($entryorder['body'])){
 				 $asdsadasd =  $entryorder['body'];
 			}
-		
+
             $entry->body =  $asdsadasd;
 
             if($entrytypey!="video" or $entrytypey!="embed" or $entrytypey!="tweet" or  $entrytypey!="facebookpost" or $entrytypey!="instagram" or $entrytypey!="soundcloud") {
-			
+
 				$asasf ="";
 				if(isset($entryorder['source'])){
 					 $asasf =  $entryorder['source'];
@@ -542,7 +542,7 @@ class PostsController extends Controller
     }
 
     private function moveanswersimage($thumb, $postid, $entryorder){
-        
+
         $tmpFilePath = 'upload/media/answers/';
 
         $tmpFileDate =  date('Y-m') .'/'.date('d').'/';
