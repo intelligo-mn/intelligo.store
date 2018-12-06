@@ -223,7 +223,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
