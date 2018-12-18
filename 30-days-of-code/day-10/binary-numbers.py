@@ -1,6 +1,7 @@
 #!/bin/python3
 
 if __name__ == '__main__':
+
     n = int(input())
 
     numbers = str(bin(n)[2:]).split('0')
