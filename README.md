@@ -3,25 +3,25 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/techstar-cloud/techstar-ecommerce/issues">
-        <img src="https://img.shields.io/github/issues/techstar-cloud/techstar-ecommerce.svg"
+    <a href="https://github.com/opengineer/laravel-ecommerce/issues">
+        <img src="https://img.shields.io/github/issues/opengineer/laravel-ecommerce.svg"
             alt="Issues"></a>
-     <a href="https://github.com/techstar-cloud/techstar-ecommerce/fork">
-        <img src="https://img.shields.io/github/forks/techstar-cloud/techstar-ecommerce.svg?style=social&label=Fork"
+     <a href="https://github.com/opengineer/laravel-ecommerce/fork">
+        <img src="https://img.shields.io/github/forks/opengineer/laravel-ecommerce.svg?style=social&label=Fork"
             alt="Forks"></a>
     <a href="https://github.com/techstar-cloud/techstar-ecommerce/stargazers">
-        <img src="https://img.shields.io/github/stars/techstar-cloud/techstar-ecommerce.svg?style=social&label=Stars"
+        <img src="https://img.shields.io/github/stars/opengineer/laravel-ecommerce.svg?style=social&label=Stars"
             alt="Stars"></a>
     <a href="https://github.com/tortuvshin/">
         <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
             alt="Followers"></a>
-    <a href="https://raw.githubusercontent.com/techstar-cloud/techstar-ecommerce/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/opengineer/laravel-ecommerce/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg"
             alt="LICENSE"></a>
     <a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D">
-        <img src="https://img.shields.io/twitter/url/https/github.com/techstar-cloud/techstar-ecommerce.svg?style=social"
+        <img src="https://img.shields.io/twitter/url/https/github.com/topengineer/laravel-ecommerce.svg?style=social"
             alt="Tweet"></a>
-	  <a href="https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techstar-cloud/techstar-ecommerce&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c"/></a>
+	  <a href="https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=opengineer/laravel-ecommerce&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c"/></a>
 </p>
 
 
