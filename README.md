@@ -121,19 +121,13 @@ Generating a New Application Key
 php artisan key:generate
 ```
 
-## Authors
-
-[![Turtuvshin Byambaa](https://avatars2.githubusercontent.com/u/9257227?s=80)](https://github.com/tortuvshin) | [![Enkhbayar Doljinsuren](https://avatars1.githubusercontent.com/u/12738721?s=80)](https://github.com/doljko) 
----|---
-[Turtuvshin](https://github.com/tortuvshin) | [Doljinsuren](https://github.com/doljko) 
-
 ## Contributors
 
 You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
 or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
 <a href="https://github.com/techstar-cloud/techstar-ecommerce/graphs/contributors">Contributors</a>
 
-## License
+[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/0)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/0)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/1)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/1)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/2)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/2)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/3)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/3)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/4)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/4)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/5)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/5)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/6)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/6)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/7)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/7)
 
 ## License
 
@@ -147,6 +141,5 @@ or translating any document here to your language. [Find more information in CON
 [Requirements]:#requirements
 [Install]:#install
 [How to setting]:#how-to-setting
-[Authors]:#authors
 [Contributors]:#contributors
 [License]:#license
