@@ -135,7 +135,11 @@ or translating any document here to your language. [Find more information in CON
 
 ## License
 
-Techstar ecommerce is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## License
+
+> Copyright (C) 2019 Opengineer.  
+> In this project is open-sourced software licensed under the [MIT](https://opensource.org/licenses/MIT) license.  
+> (See the [LICENSE](https://github.com/opengineer/laravel-ecommerce/blob/master/LICENSE) file for the whole license text.)
 
 **[⬆ back to top](#laravel-ecommerce-platform)**
 
