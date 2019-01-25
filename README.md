@@ -5,6 +5,10 @@ Marketgeek app admin.
 | [Requirements][] | [Development][] | [Deploy][] | [Author][] | [Contributors][] | [License][] |
 |---|---|---|---|---|---|
 
+### Related projects
+
+* [Android app](https://github.com/opengineer/marketgeek)
+
 ### Requirements
 
 * [MongoDB](https://docs.mongodb.com/manual/installation/)
@@ -15,7 +19,7 @@ Marketgeek app admin.
 
 ### Development
 
-Clone repository `git clone https://github.com/opengineer/marketgeek-web.git && cd marketgeek-web`
+Clone repository `git clone https://github.com/opengineer/marketgeek-admin.git && cd marketgeek-admin`
 
 Install dependencies `npm install`
 
