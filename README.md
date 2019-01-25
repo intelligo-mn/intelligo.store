@@ -78,7 +78,7 @@ or translating any document here to your language. [Find more information in CON
 
 ### License
 
-Memorize is open-sourced software licensed under the [MIT](LICENSE).
+Marketgeek is open-sourced software licensed under the [MIT](LICENSE).
 
 **[⬆ back to top](#memorize)**
 
