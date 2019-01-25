@@ -1,0 +1,46 @@
+{
+  "name": "marketgeek",
+  "version": "0.5.5",
+  "description": "Marketgeek shopping app admin",
+  "author": "Tortuvshin Byambaa",
+  "copyright": "Copyright 2019 Opengineer, Inc.",
+  "license": "MIT",
+  "main": "app.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opengineer/marketgeek-web.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "bcrypt": "^3.0.3",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "^1.15.2",
+    "config": "^1.24.0",
+    "connect-flash": "^0.1.1",
+    "connect-multiparty": "^2.2.0",
+    "connect-timeout": "^1.9.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "ejs": "^2.5.1",
+    "express": "^4.15.5",
+    "express-session": "^1.14.2",
+    "express-validator": "^5.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.0",
+    "morgan": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "request": "^2.79.0",
+    "serve-static": "^1.13.2",
+    "slug": "^0.9.2"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
+}
