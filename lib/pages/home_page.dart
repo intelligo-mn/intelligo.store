@@ -11,9 +11,9 @@ import 'account_page.dart';
 
 const String _kGalleryAssetsPackage = 'flutter_gallery_assets';
 
-class Home_screen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new home();
+  State<StatefulWidget> createState() => new Home();
 // TODO: implement createState
 
 }
@@ -32,7 +32,7 @@ class Photo {
   final String caption;
 }
 
-class home extends State<Home_screen> {
+class Home extends State<HomePage> {
   List list = ['12', '11'];
 
   List<Photo> photos = <Photo>[
@@ -123,7 +123,7 @@ class home extends State<Home_screen> {
                           color: Colors.black,
                         ),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart_screen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CartPage()));
                         }),
                     list.length == 0
                         ? new Container()
@@ -164,7 +164,7 @@ class home extends State<Home_screen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Account_Screen()));
+                          builder: (context) => AccountPage()));
                 },
                 decoration: new BoxDecoration(
                   backgroundBlendMode: BlendMode.difference,
@@ -188,7 +188,7 @@ class home extends State<Home_screen> {
                       leading: Icon(Icons.favorite),
                       title: new Text(name),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: name,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: name,)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -197,7 +197,7 @@ class home extends State<Home_screen> {
 
 
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Oder_History(toolbarname: ' Order History',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderPage(toolbarname: ' Order History',)));
 
                       }),
                 ],
@@ -211,7 +211,7 @@ class home extends State<Home_screen> {
                       leading: Icon(Icons.settings),
                       title: new Text("Setting"),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting_Screen(toolbarname: 'Setting',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage(toolbarname: 'Setting',)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -219,7 +219,7 @@ class home extends State<Home_screen> {
                       title: new Text("Help"),
                       onTap: () {
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Help_Screen(toolbarname: 'Help',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HelpPage(toolbarname: 'Help',)));
 
                       }),
                 ],
@@ -235,7 +235,7 @@ class home extends State<Home_screen> {
                         new TextStyle(color: Colors.redAccent, fontSize: 17.0),
                   ),
                   onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => Login_Screen()));
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
                   }),
             )
           ],
@@ -251,7 +251,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Best value',
@@ -264,7 +264,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Top sellers',
@@ -280,7 +280,7 @@ class home extends State<Home_screen> {
                     children: <Widget>[
                       new GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                         },
                         child: new Text(
                           'All',
@@ -490,7 +490,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Categories',
@@ -503,7 +503,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Popular',
@@ -518,7 +518,7 @@ class home extends State<Home_screen> {
                       children: <Widget>[
                         new GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                           },
                           child: new Text(
                             'Whats New',
@@ -547,7 +547,7 @@ class home extends State<Home_screen> {
                     return new GestureDetector(
                       onTap: (){
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                       },
 
                         child: new Container(
@@ -579,7 +579,7 @@ class home extends State<Home_screen> {
                                             alignment: Alignment.bottomLeft,
                                             child: new GestureDetector(
                                               onTap: () {
-                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemListPage(toolbarname: 'Fruits & Vegetables',)));
                                               },
                                               child: new Text(
                                                 photos[index].title,

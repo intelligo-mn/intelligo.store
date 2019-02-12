@@ -1,7 +1,7 @@
 import 'package:marketgeek/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
-class Signup_Screen extends StatefulWidget {
+class SignupPage extends StatefulWidget {
 
 
   final Key fieldKey;
@@ -12,7 +12,7 @@ class Signup_Screen extends StatefulWidget {
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onFieldSubmitted;
 
-  const Signup_Screen({Key key, this.fieldKey, this.hintText, this.labelText, this.helperText, this.onSaved, this.validator, this.onFieldSubmitted}) : super(key: key);
+  const SignupPage({Key key, this.fieldKey, this.hintText, this.labelText, this.helperText, this.onSaved, this.validator, this.onFieldSubmitted}) : super(key: key);
 
   ThemeData buildTheme() {
     final ThemeData base = ThemeData();
@@ -27,10 +27,10 @@ class Signup_Screen extends StatefulWidget {
     );
   }
   @override
-  State<StatefulWidget> createState() => signup();
+  State<StatefulWidget> createState() => Signup();
 }
 
-class signup extends State<Signup_Screen> {
+class Signup extends State<SignupPage> {
 
   ShapeBorder shape;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -74,7 +74,7 @@ class signup extends State<Signup_Screen> {
                              Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Login_Screen()));
+                                builder: (context) => LoginPage()));
                           },
                           child: new Text(
                             'Login',
@@ -326,7 +326,7 @@ class signup extends State<Signup_Screen> {
     );
 
     scaffoldKey.currentState.showSnackBar(snackbar);*/
-   Navigator.push(context, MaterialPageRoute(builder: (context)=> Login_Screen()));
+   Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
   }
 
   _verticalD() => Container(

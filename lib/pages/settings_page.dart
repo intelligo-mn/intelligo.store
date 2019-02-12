@@ -3,16 +3,16 @@ import 'package:marketgeek/pages/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 
-class Setting_Screen extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   final String toolbarname;
 
-  Setting_Screen({Key key, this.toolbarname}) : super(key: key);
+  SettingsPage({Key key, this.toolbarname}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => Setting(toolbarname);
+  State<StatefulWidget> createState() => Settings(toolbarname);
 }
 
-class Setting extends State<Setting_Screen> {
+class Settings extends State<SettingsPage> {
   List list = ['12', '11'];
 
   bool switchValue = false;
@@ -21,7 +21,7 @@ class Setting extends State<Setting_Screen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String toolbarname;
 
-  Setting(this.toolbarname);
+  Settings(this.toolbarname);
 
   @override
   Widget build(BuildContext context) {

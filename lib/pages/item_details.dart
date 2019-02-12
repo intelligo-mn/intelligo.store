@@ -3,12 +3,12 @@ import 'package:marketgeek/pages/checkout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
-class Item_Details extends StatefulWidget {
+class ItemDetailsPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => item_details();
+  State<StatefulWidget> createState() => ItemDetails();
 }
 
-class item_details extends State<Item_Details> {
+class ItemDetails extends State<ItemDetailsPage> {
   String toolbarname = 'Fruiys & Vegetables';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List list = ['12', '11'];
@@ -95,7 +95,7 @@ class item_details extends State<Item_Details> {
                             color: Colors.black,
                           ),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>Checkout()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>CheckoutPage()));
                           }),
                       list.length == 0
                           ? new Container()
@@ -279,7 +279,7 @@ class item_details extends State<Item_Details> {
                                           child: const Text('Add'),
                                           textColor: Colors.amber.shade500,
                                           onPressed: () {
-                                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart_screen()));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage()));
                                           },
                                           shape: new OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(30.0),

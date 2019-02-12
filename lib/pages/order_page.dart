@@ -3,13 +3,13 @@ import 'package:marketgeek/pages/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 
-class Oder_History extends StatefulWidget {
+class OrderPage extends StatefulWidget {
   final String toolbarname;
 
-  Oder_History({Key key, this.toolbarname}) : super(key: key);
+  OrderPage({Key key, this.toolbarname}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => oder_history(toolbarname);
+  State<StatefulWidget> createState() => Order(toolbarname);
 }
 
 class Item {
@@ -31,7 +31,7 @@ class Item {
       this.cancelOder});
 }
 
-class oder_history extends State<Oder_History> {
+class Order extends State<OrderPage> {
   List list = ['12', '11'];
   bool checkboxValueA = true;
   bool checkboxValueB = false;
@@ -84,7 +84,7 @@ class oder_history extends State<Oder_History> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String toolbarname;
 
-  oder_history(this.toolbarname);
+  Order(this.toolbarname);
 
   @override
   Widget build(BuildContext context) {

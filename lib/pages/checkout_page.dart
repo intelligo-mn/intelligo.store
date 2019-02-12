@@ -1,9 +1,9 @@
 import 'package:marketgeek/pages/payment_page.dart';
 import 'package:flutter/material.dart';
 
-class Checkout extends StatefulWidget {
+class CheckoutPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => check_out();
+  State<StatefulWidget> createState() => Checkout();
 }
 
 class Item {
@@ -14,7 +14,7 @@ class Item {
   Item({this.itemName, this.itemQun, this.itemPrice});
 }
 
-class check_out extends State<Checkout> {
+class Checkout extends State<CheckoutPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool checkboxValueA = true;
   bool checkboxValueB = false;
@@ -550,7 +550,7 @@ class check_out extends State<Checkout> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Patment()));
+                                      builder: (context) => PaymentPage()));
                             },
                             shape: new OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),

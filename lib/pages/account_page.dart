@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:marketgeek/models/address_model.dart';
 import 'package:marketgeek/services/address_service.dart';
 
-class Account_Screen extends StatefulWidget {
+class AccountPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => account();
+  State<StatefulWidget> createState() => Account();
 }
 
-class account extends State<Account_Screen> {
+class Account extends State<AccountPage> {
   String username = 'Naomi A. Schultz';
   String mobilenumber = '410-422-9171';
   String eid = 'NaomiASchultz@armyspy.com';
