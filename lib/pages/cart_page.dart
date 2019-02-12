@@ -8,7 +8,7 @@ enum DialogDemoAction {
   disagree,
   agree,
 }
-class Cart_screen extends StatefulWidget {
+class CartPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => Cart();
 }
@@ -22,7 +22,7 @@ class Item {
   Item({this.itemImage, this.itemName, this.itemQun, this.itemPrice});
 }
 
-class Cart extends State<Cart_screen> {
+class Cart extends State<CartPage> {
   List<Item> itemList = <Item>[
     Item(
         itemImage: 'images/grapes.jpg',
@@ -143,21 +143,7 @@ class Cart extends State<Cart_screen> {
                   )
               );*/
                 },
-                child: Stack(
-                  children: <Widget>[
-                    new IconButton(
-                        icon: new Icon(
-                          Icons.home,
-                          color: Colors.amber,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Item_Screen()));
-                        }),
-                  ],
-                ),
+
               ),
             ),
           )
@@ -432,7 +418,7 @@ class Cart extends State<Cart_screen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Checkout()));
+                                      builder: (context) => CheckoutPage()));
                             },
                             shape: new OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),

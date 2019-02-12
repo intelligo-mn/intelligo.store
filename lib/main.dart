@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void navigationPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Home_screen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
 
   }
 

@@ -2,7 +2,7 @@ import 'package:marketgeek/pages/home_page.dart';
 import 'package:marketgeek/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
-class Login_Screen extends StatefulWidget {
+class LoginPage extends StatefulWidget {
 
   final Key fieldKey;
   final String hintText;
@@ -12,7 +12,7 @@ class Login_Screen extends StatefulWidget {
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onFieldSubmitted;
 
-  const Login_Screen({Key key, this.fieldKey, this.hintText, this.labelText, this.helperText, this.onSaved, this.validator, this.onFieldSubmitted}) : super(key: key);
+  const LoginPage({Key key, this.fieldKey, this.hintText, this.labelText, this.helperText, this.onSaved, this.validator, this.onFieldSubmitted}) : super(key: key);
 
   ThemeData buildTheme() {
     final ThemeData base = ThemeData();
@@ -27,10 +27,10 @@ class Login_Screen extends StatefulWidget {
     );
   }
   @override
-  State<StatefulWidget> createState() => login();
+  State<StatefulWidget> createState() => Login();
 }
 
-class login extends State<Login_Screen> {
+class Login extends State<LoginPage> {
 
   ShapeBorder shape;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -96,7 +96,7 @@ class login extends State<Login_Screen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Signup_Screen()));
+                                    builder: (context) => SignupPage()));
                           },
                           child: new Text(
                             'Signup',
@@ -262,7 +262,7 @@ class login extends State<Login_Screen> {
   }
   void _performLogin() {
     // This is just a demo, so no actual login here.
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> Home_screen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
   }
 
   _verticalD() => Container(

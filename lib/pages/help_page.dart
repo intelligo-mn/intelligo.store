@@ -3,16 +3,16 @@ import 'package:marketgeek/pages/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 
-class Help_Screen extends StatefulWidget {
+class HelpPage extends StatefulWidget {
   final String toolbarname;
 
-  Help_Screen({Key key, this.toolbarname}) : super(key: key);
+  HelpPage({Key key, this.toolbarname}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => Help(toolbarname);
 }
 
-class Help extends State<Help_Screen> {
+class Help extends State<HelpPage> {
   List list = ['12', '11'];
 
   bool switchValue = false;

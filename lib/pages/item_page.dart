@@ -3,13 +3,13 @@ import 'package:marketgeek/pages/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart';
 
-class Item_Screen extends StatefulWidget {
+class ItemListPage extends StatefulWidget {
   final String toolbarname;
 
-  Item_Screen({Key key, this.toolbarname}) : super(key: key);
+  ItemListPage({Key key, this.toolbarname}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => item(toolbarname);
+  State<StatefulWidget> createState() => ItemList(toolbarname);
 }
 
 class Item {
@@ -20,7 +20,7 @@ class Item {
   Item({this.itemname, this.imagename, this.itmprice});
 }
 
-class item extends State<Item_Screen> {
+class ItemList extends State<ItemListPage> {
   List list = ['12', '11'];
   bool checkboxValueA = true;
   bool checkboxValueB = false;
@@ -50,7 +50,7 @@ class item extends State<Item_Screen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String toolbarname;
 
-  item(this.toolbarname);
+  ItemList(this.toolbarname);
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class item extends State<Item_Screen> {
                           color: Colors.black,
                         ),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart_screen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage()));
                         }),
                     list.length == 0
                         ? new Container()
@@ -1261,7 +1261,7 @@ class TravelDestinationItem extends StatelessWidget {
           height: height,
           child: GestureDetector(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Details()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemDetailsPage()));
             },
 
           child: Card(
@@ -1335,7 +1335,7 @@ class TravelDestinationItem extends StatelessWidget {
                       child: const Text('Add'),
                       textColor: Colors.amber.shade500,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Details()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemDetailsPage()));
                       },
                       shape: new OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
