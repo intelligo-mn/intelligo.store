@@ -1,9 +1,0 @@
-<resources>
-    <declare-styleable name="TSProgressBar">
-        <attr name="anim_duration" format="integer" />
-        <attr name="outer_color" format="color" />
-        <attr name="inner_color" format="color" />
-        <attr name="thickness" format="dimension" />
-        <attr name="inner_padding" format="dimension" />
-    </declare-styleable>
-</resources>
