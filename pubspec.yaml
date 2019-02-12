@@ -18,16 +18,15 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  loader_search_bar: ^1.0.2
   cupertino_icons: ^0.1.2
+  flutter_range_slider: ^1.0.1
+  carousel_pro: ^0.0.13
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  loader_search_bar: ^1.0.2
-  cupertino_icons: ^0.1.2
-  flutter_range_slider: ^1.0.1
-  carousel_pro: ^0.0.13
 
 
 # For information on the generic Dart part of this file, see the
