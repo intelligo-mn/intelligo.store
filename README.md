@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/opengineer/laravel-ecommerce/issues">
-        <img src="https://img.shields.io/github/issues/opengineer/laravel-ecommerce.svg"
+    <a href="https://github.com/intelligo-systems/laravel-ecommerce/issues">
+        <img src="https://img.shields.io/github/issues/intelligo-systems/laravel-ecommerce.svg"
             alt="Issues"></a>
-     <a href="https://github.com/opengineer/laravel-ecommerce/fork">
-        <img src="https://img.shields.io/github/forks/opengineer/laravel-ecommerce.svg?style=social&label=Fork"
+     <a href="https://github.com/intelligo-systems/laravel-ecommerce/fork">
+        <img src="https://img.shields.io/github/forks/intelligo-systems/laravel-ecommerce.svg?style=social&label=Fork"
             alt="Forks"></a>
-    <a href="https://github.com/techstar-cloud/techstar-ecommerce/stargazers">
-        <img src="https://img.shields.io/github/stars/opengineer/laravel-ecommerce.svg?style=social&label=Stars"
+    <a href="https://github.com/intelligo-systems/laravel-ecommerce/stargazers">
+        <img src="https://img.shields.io/github/stars/intelligo-systems/laravel-ecommerce.svg?style=social&label=Stars"
             alt="Stars"></a>
     <a href="https://github.com/tortuvshin/">
         <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
@@ -21,7 +21,9 @@
     <a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D">
         <img src="https://img.shields.io/twitter/url/https/github.com/topengineer/laravel-ecommerce.svg?style=social"
             alt="Tweet"></a>
-	  <a href="https://www.codacy.com/app/tortuvshin/techstar-ecommerce?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=opengineer/laravel-ecommerce&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/ef245b14a33f4022b7ffd56b5f40483c"/></a>
+	  <a href="http://hits.dwyl.io/intelligo-system/intelligo">
+    <img alt="Hits" src="http://hits.dwyl.io/intelligo-system/intelligo.svg">
+ </a>
 </p>
 
 
@@ -125,15 +127,15 @@ php artisan key:generate
 
 You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
 or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
-<a href="https://github.com/techstar-cloud/techstar-ecommerce/graphs/contributors">Contributors</a>
+<a href="https://github.com/intelligo-systems/laravel-ecommerce/graphs/contributors">Contributors</a>
 
 [![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/0)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/0)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/1)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/1)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/2)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/2)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/3)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/3)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/4)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/4)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/5)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/5)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/6)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/6)[![](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/images/7)](https://sourcerer.io/fame/tortuvshin/opengineer/laravel-ecommerce/links/7)
 
 ## License
 
-> Copyright (C) 2019 Opengineer.  
+> Copyright (C) 2019 Intelligo Systems.  
 > In this project is open-sourced software licensed under the [MIT](https://opensource.org/licenses/MIT) license.  
-> (See the [LICENSE](https://github.com/opengineer/laravel-ecommerce/blob/master/LICENSE) file for the whole license text.)
+> (See the [LICENSE](https://github.com/intelligo-systems/laravel-ecommerce/blob/master/LICENSE) file for the whole license text.)
 
 **[⬆ back to top](#laravel-ecommerce-platform)**
 
