@@ -74,7 +74,7 @@ This is a e-commerce platform I made mostly using Laravel 5.4
 Clone repo
 
 ```
-git clone https://github.com/techstar-cloud/techstar-ecommerce.git
+git clone https://github.com/intelligo-systems/laravel-ecommerce.git
 ```
 
 Install Composer
