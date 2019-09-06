@@ -16,7 +16,7 @@
     "dev": "npm run clean && npm-run-all -r --parallel watch:eleventy watch:gulp start",
     "debug": "node --inspect-brk ./node_modules/.bin/eleventy",
     "stage": "npm run build && gcloud app deploy --project web-dev-staging --quiet",
-    "deploy": "ELEVENTY_ENV=prod npm run build && node lib/index.js"
+    "deploy": "ELEVENTY_ENV=prod npm run build && node ./server.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
