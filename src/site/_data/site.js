@@ -22,5 +22,5 @@ module.exports = {
   repo: 'https://github.com/intelligo-systems/dev.mn',
   subscribe: 'https://dev.mn/subscribe',
   isBannerEnabled: false,
-  // banner: `Mongolian translation of official documentation site for Vue.js. [Vue.js](https://vue.dev.mn/).`,
+  banner: `Mongolian translation of official documentation site for Vue.js. [Vue.js](https://vue.dev.mn/).`,
 };
