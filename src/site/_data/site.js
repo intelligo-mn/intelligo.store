@@ -16,17 +16,11 @@
 
 module.exports = {
   env: process.env.ELEVENTY_ENV || 'dev',
-  title: 'web.dev',
-  titleVariation: 'Home',
-  url: 'https://web.dev',
-  repo: 'https://github.com/GoogleChrome/web.dev',
-  subscribe: 'https://web.dev/subscribe',
+  title: 'dev.mn',
+  titleVariation: 'Нүүр хуудас',
+  url: 'https://dev.mn',
+  repo: 'https://github.com/intelligo-systems/dev.mn',
+  subscribe: 'https://dev.mn/subscribe',
   isBannerEnabled: true,
-  banner: `Register for this year's \`#ChromeDevSummit\` happening on Nov. 11-12
-  in San Francisco to learn about the latest features and tools coming to the
-  Web. [Request an invite here](https://developer.chrome.com/devsummit/).`,
-  // Note that the imageCdn value is only used when we do a production build
-  // of the site. Otherwise all image paths are local. This means you can
-  // develop locally without having to mess with the CDN at all.
-  imageCdn: 'https://webdev.imgix.net',
+  banner: `Mongolian translation of official documentation site for Vue.js. [Vue.js](https://vue.dev.mn/).`,
 };
