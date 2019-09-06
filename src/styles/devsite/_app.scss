@@ -6221,7 +6221,7 @@ devsite-footer-utility .devsite-footer-sites-logo-link {
 }
 devsite-footer-utility .devsite-footer-sites-logo {
   margin: -2px 0 0;
-  max-width: 216px;
+  max-width: 50px;
 }
 devsite-footer-utility .devsite-footer-utility-list {
   -webkit-box-align: center;
@@ -6587,7 +6587,7 @@ devsite-header .devsite-site-logo-link:focus {
   text-decoration: none;
 }
 devsite-header .devsite-site-logo {
-  height: 32px;
+  height: 50px;
 }
 devsite-header .devsite-google-wordmark {
   height: 24px;
@@ -8708,7 +8708,4 @@ body[theme="web-theme"]
   body[theme="web-theme"][layout="docs"] .devsite-article {
     border-radius: 0;
   }
-}
-devsite-header .devsite-site-logo {
-  width: 125px;
 }

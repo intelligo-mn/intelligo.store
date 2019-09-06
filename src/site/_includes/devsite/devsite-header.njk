@@ -27,11 +27,11 @@
               data-category="Site-Wide Custom Events"
               data-label="Site logo"
             >
-              {# <img
-                src="/images/lockup.svg"
+              <img
+                src="/images/logo.png"
                 class="devsite-site-logo"
-                alt="web.dev"
-              /> #}
+                alt="dev.mn"
+              />
             </a>
           </div>
           <div class="devsite-top-logo-row-middle">
@@ -48,7 +48,7 @@
                       Learn
                     </a>
                   </tab>
-                  <tab>
+                  {# <tab>
                     <a
                       href="/measure"
                       class="gc-analytics-event"
@@ -57,7 +57,7 @@
                     >
                       Measure
                     </a>
-                  </tab>
+                  </tab> #}
                   <tab>
                     <a
                       href="/blog"
@@ -103,11 +103,11 @@
               enable-reference-suggestions=""
               project-path=""
             >
-              <form
+              {# <form
                 class="devsite-search-form"
                 action="/s/results/"
                 method="GET"
-              >
+              > #}
                 <div class="devsite-search-container">
                   <div id="searchbox" class="devsite-searchbox">
                     <input
@@ -253,7 +253,7 @@
                     aria-haspopup="true"
                   ></div>
                 </div>
-              </form>
+              {# </form> #}
               <button
                 type="button"
                 search-close=""
@@ -267,7 +267,7 @@
             ></devsite-search-background>
           </div>
 
-          <devsite-user
+          {# <devsite-user
             ds-is="user"
             sign-in-url="https://web.dev/_d/signin?continue=https%3A%2F%2Fweb.dev%2Ffast%2Fuse-imagemin-to-compress-images"
             ><div class="ogb-wrapper ogb-si">
@@ -278,7 +278,7 @@
                 Sign in
               </a>
             </div></devsite-user
-          >
+          > #}
         </div>
       </div>
     </div>
