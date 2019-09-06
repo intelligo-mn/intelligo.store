@@ -16,19 +16,8 @@ module.exports = {
     wherever and however they access the internet.`,
     topics: [
       {
-        title: 'How to measure network reliability',
-        pathItems: [
-          'network-connections-unreliable',
-          'identify-resources-via-network-panel',
-        ],
-      },
-      {
         title: 'The options in your caching toolbox',
-        pathItems: ['http-cache', 'service-workers-cache-storage', 'workbox'],
-      },
-      {
-        title: 'How caching strategies work',
-        pathItems: ['precache-with-workbox', 'runtime-caching-with-workbox'],
+        pathItems: ['service-workers-cache-storage', 'workbox'],
       },
     ],
   },

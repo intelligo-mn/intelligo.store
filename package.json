@@ -13,9 +13,8 @@
     "watch:eleventy": "eleventy --watch --quiet",
     "start": "node ./server.js",
     "build": "npm run build:eleventy && npm run build:gulp",
-    "dev": "npm run clean && npm-run-all -r --parallel watch:eleventy watch:gulp start",
+    "dev": "npm-run-all -r --parallel watch:eleventy watch:gulp start",
     "debug": "node --inspect-brk ./node_modules/.bin/eleventy",
-    "stage": "npm run build && gcloud app deploy --project web-dev-staging --quiet",
     "deploy": "ELEVENTY_ENV=prod npm run build"
   },
   "license": "Apache-2.0",

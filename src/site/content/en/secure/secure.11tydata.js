@@ -14,18 +14,9 @@ module.exports = {
     users, your content and your business secure.`,
     topics: [
       {
-        title: 'Understand security',
-        pathItems: [
-          'security-not-scary',
-          'security-attacks',
-        ],
-      },
-      {
         title: 'How browsers mitigate against attacks',
         pathItems: [
           'browser-sandbox',
-          'same-origin-policy',
-          'cross-origin-resource-sharing',
         ],
       },
     ],
