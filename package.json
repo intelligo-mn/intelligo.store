@@ -15,7 +15,7 @@
     "build": "npm run build:eleventy && npm run build:gulp",
     "dev": "npm-run-all -r --parallel watch:eleventy watch:gulp start",
     "debug": "node --inspect-brk ./node_modules/.bin/eleventy",
-    "deploy": "ELEVENTY_ENV=prod npm run build"
+    "deploy": "ELEVENTY_ENV=prod npm run build && npm run start"
   },
   "license": "Apache-2.0",
   "dependencies": {
