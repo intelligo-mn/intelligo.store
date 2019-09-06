@@ -21,6 +21,6 @@ module.exports = {
   url: 'https://dev.mn',
   repo: 'https://github.com/intelligo-systems/dev.mn',
   subscribe: 'https://dev.mn/subscribe',
-  isBannerEnabled: true,
-  banner: `Mongolian translation of official documentation site for Vue.js. [Vue.js](https://vue.dev.mn/).`,
+  isBannerEnabled: false,
+  // banner: `Mongolian translation of official documentation site for Vue.js. [Vue.js](https://vue.dev.mn/).`,
 };

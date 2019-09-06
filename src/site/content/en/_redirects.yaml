@@ -1,8 +1,8 @@
 redirects:
 
 # Redirect all pre-v1 paths to the project root.
-# Before: web.dev/fast/remove-unused-code
-# After: web.dev/remove-unused-code
+# Before: dev.mn/fast/remove-unused-code
+# After: dev.mn/remove-unused-code
 
 - from: /accessible/...
   to: /...
