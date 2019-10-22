@@ -24,10 +24,12 @@
     "@nestjs/core": "^6.7.2",
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-express": "^6.7.2",
+    "@nestjs/swagger": "^3.1.0",
     "mongoose": "^5.7.6",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
