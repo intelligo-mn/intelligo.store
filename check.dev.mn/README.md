@@ -1,1 +1,0 @@
-check.dev.mn
