@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <title>Froala Pages</title>
+  <title>Codegen Web Builder</title>
 
-  <link rel="stylesheet" type="text/css" href="./css/froala_pages.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/codegen.min.css">
 
   <style>
     html,
@@ -18,11 +18,11 @@
 
 <body>
   <div id="selector-id"></div>
-  <script src="./js/froala_pages.min.js"></script>
-  <script src="./js/pages_design_blocks_pkgd.min.js"></script>
+  <script src="./js/codegen.js"></script>
+  <script src="./js/codegen-blocks.js"></script>
 
   <script>
-    window.pages = new FroalaPages('selector-id', {
+    window.pages = new Codegen('selector-id', {
       key: '' //Place your key after downloading from https://froala.com/pages
     });
 
