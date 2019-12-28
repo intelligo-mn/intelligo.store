@@ -1,0 +1,42 @@
+{
+  "name": "froala-pages",
+  "version": "1.0.0",
+  "description": "The next generation JavaScript Page Builder made by devs for devs. A plug and play web page design and editing JavaScript tool for your web application and loved by designers.",
+  "keywords": [
+    "froala",
+    "froala-pages",
+    "froala-wysiwyg",
+    "froala-editor",
+    "html",
+    "text",
+    "pages",
+    "wysiwyg",
+    "javascript-plugin",
+    "rte",
+    "javascript",
+    "vanillajs"
+  ],
+  "homepage": "https://www.froala.com/pages",
+  "license": "https://www.froala.com/pages/pricing",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/froala/pages.git"
+  },
+  "maintainers": [
+    {
+      "name": "Froala Labs"
+    }
+  ],
+  "filename": "js/froala_pages.min.js",
+  "main": "js/froala_pages.min.js",
+  "npmName": "froala-pages",
+  "npmFileMap": [
+    {
+      "basePath": "/",
+      "files": [
+        "js/*.min.js",
+        "css/*.min.css"
+      ]
+    }
+  ]
+}
