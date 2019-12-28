@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Froala Design Blocks - Forms</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link type="text/css" rel="stylesheet" href="css/froala_blocks.css">
+    <style>
+      .fdb-block {
+        border-bottom: 1px solid var(--light);
+      }
+    </style>
+  </head>
+  <body><style>
+  #navigator {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  #navigator .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 720px) {
+    #navigator {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  #navigator a {
+    font-size: 14px;
+  }
+
+  #navigator+section {
+    padding: 250px 0;
+  }
+
+</style>
+
+<section class="fdb-block p-2" id="navigator">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-md">
+      <button class="navbar-toggler mr-auto ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNav0">
+        <p class="m-auto">
+          <a class="btn btn-outline-primary m-1" href="call-to-action.html">Call to action</a>
+          <a class="btn btn-outline-primary m-1" href="contacts.html">Contacts</a>
+          <a class="btn btn-outline-primary m-1" href="contents.html">Contents</a>
+          <a class="btn btn-outline-primary m-1" href="features.html">Features</a>
+          <a class="btn btn-outline-primary m-1" href="footers.html">Footers</a>
+          <a class="btn btn-outline-primary m-1" href="forms.html">Forms</a>
+          <a class="btn btn-outline-primary m-1" href="headers.html">Headers</a>
+          <a class="btn btn-outline-primary m-1" href="pricings.html">Pricings</a>
+          <a class="btn btn-outline-primary m-1" href="teams.html">Teams</a>
+          <a class="btn btn-outline-primary m-1" href="testimonials.html">Testimonials</a>
+        </p>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<script>
+  var page = window.location.pathname.split('/')
+  page = page[page.length - 1]
+
+  var nav = document.querySelector('a[href="' + page + '"]')
+  if (nav) {
+    nav.classList.add('active')
+  }
+
+</script>
+
+    <!-- Forms 1 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6 text-center">
+            <h1>Subscribe</h1>
+            <div class="input-group mt-4 mb-4">
+              <input type="text" class="form-control" placeholder="Enter your email address">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Submit</button>
+              </div>
+            </div>
+    
+            <p class="h4">Find us on <a href="https://www.froala.com">Facebook</a> and <a href="https://www.froala.com">Twitter</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 2 -->
+    <section class="fdb-block" style="background-image: url(imgs/hero/blue.svg);">
+      <div class="container">
+        <div class="fdb-box">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-lg-6">
+              <h2>Join us!</h2>
+              <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+            </div>
+            <div class="col-12 col-lg-5 text-center">
+              <div class="input-group mt-4">
+                <input type="text" class="form-control" placeholder="Enter your email address">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 3 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 col-xl-8 text-center">
+            <div class="row">
+              <div class="col">
+                <h1>Register</h1>
+                <p class="lead">When she reached the first hills, she had a last view back on the skyline of her hometown.</p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-12 col-md-5 mt-4">
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+              <div class="col-12 col-md-5 mt-4">
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="col-12 col-md-2 mt-4">
+                <button class="btn btn-secondary" type="button">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 4 -->
+    <section class="fdb-block py-0">
+      <div class="container py-5 my-5" style="background-image: url(imgs/shapes/6.svg);">
+        <div class="row">
+          <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-left">
+            <div class="row">
+              <div class="col">
+                <h1>Sign Up</h1>
+                <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mt-4">
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <button class="btn btn-primary" type="button">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 5 -->
+    <section class="fdb-block py-0">
+      <div class="container py-5 my-5" style="background-image: url(imgs/shapes/4.svg);">
+        <div class=" row justify-content-end">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5 text-left">
+            <div class="fdb-box">
+              <div class="row">
+                <div class="col">
+                  <h1>Log In</h1>
+                  <p class="lead">Right at the coast of the Semantics, a large language ocean. A small river named Duden.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mt-4">
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <button class="btn btn-secondary" type="button">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 6 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+            <div class="row">
+              <div class="col text-center">
+                <h1>Register</h1>
+                <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <input type="text" class="form-control" placeholder="Company Name">
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <input type="email" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="col">
+                <input type="password" class="form-control" placeholder="Confirm Password">
+              </div>
+            </div>
+            <div class="row justify-content-start mt-4">
+              <div class="col">
+                <div class="form-check">
+                  <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input">
+                      I Read and Accept <a href="https://www.froala.com">Terms and Conditions</a>
+                    </label>
+                </div>
+    
+                <button class="btn btn-primary mt-4">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 7 -->
+    <section class="fdb-block" style="background-image: url(imgs/hero/red.svg);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+            <div class="fdb-box">
+              <div class="row">
+                <div class="col">
+                  <h1>Log In</h1>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <input type="password" class="form-control mb-1" placeholder="Password">
+                  <p class="text-right"><a href="https://www.froala.com">Recover Password</a></p>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <button class="btn btn-outline-secondary" type="button">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 8 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+            <div class="fdb-box fdb-touch">
+              <div class="row">
+                <div class="col">
+                  <h1>Register</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mt-4">
+                  <input type="text" class="form-control" placeholder="Name">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <input type="password" class="form-control mb-1" placeholder="Password">
+                  <p class="text-right"><a href="https://www.froala.com">Already have an account?</a></p>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col">
+                  <button class="btn btn-primary" type="button">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 9 -->
+    <section class="fdb-block bg-gray">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12  col-md-10 col-lg-8 col-xl-6 text-center">
+            <img alt="image" height="40" src="./imgs/icons/layers.svg">
+            <h1>Never miss an update</h1>
+            <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            <div class="input-group mt-4 mb-4">
+              <input type="text" class="form-control" placeholder="Enter your email address">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Submit</button>
+              </div>
+            </div>
+            <p class="h5"><em>*Your email address is safe with us. We never share your email address.</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 10 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 col-xl-6 text-center">
+            <h1>Company Name</h1>
+            <p class="lead">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown.</p>
+            <div class="input-group mt-5 mb-5">
+              <input type="text" class="form-control" placeholder="Enter your email address">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Submit</button>
+              </div>
+            </div>
+            <p class="h2">
+              <a href="https://www.froala.com" class="mx-2"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.froala.com" class="mx-2"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.froala.com" class="mx-2"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.froala.com" class="mx-2"><i class="fab fa-google"></i></a>
+              <a href="https://www.froala.com" class="mx-2"><i class="fab fa-pinterest"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 11 -->
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 m-md-auto ml-lg-0 col-lg-5">
+            <img alt="image" class="img-fluid" src="./imgs/draws/group-chat.svg">
+          </div>
+          <div class="col-12 col-md-10 col-lg-6 mt-4 mt-lg-0 ml-auto mr-auto ml-lg-auto text-left">
+            <div class="row">
+              <div class="col">
+                <h1>Subscribe</h1>
+                <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter your email address">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col">
+                <p class="h4">* Leave your email address to be notified first.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Forms 12 -->
+    <section class="fdb-block" style="background-image: url(imgs/shapes/1.svg);">
+      <div class="container">
+        <div class="row justify-content-end">
+          <div class="col-12 col-md-9 col-lg-8">
+            <div class="fdb-box fdb-touch">
+              <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                  <h1>Subscribe</h1>
+                  <p class="lead">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove.</p>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-4">
+                <div class="col-12 col-lg-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your email address">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </body>
+</html>

@@ -1,0 +1,239 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+@import "variables";
+@import "mixins";
+
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/forms";
+@import "node_modules/bootstrap/scss/buttons";
+@import "node_modules/bootstrap/scss/utilities/shadows";
+
+@import "brands";
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: $headings-margin-top;
+}
+
+p {
+  color: $paragraph-font-color;
+  font-weight: $paragraph-font-weight;
+}
+
+.rounded {
+  overflow: hidden;
+}
+
+.rounded-bottom-0 {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.fdb-block {
+  @include font-smoothing(true);
+  text-rendering: optimizelegibility;
+  padding: $block-padding 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-color: $white;
+
+  .container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &.bg-r {
+      background-position: right;
+    }
+  }
+
+  &.fdb-viewport {
+    min-height: calc(100% - 2 * #{$block-padding});
+
+    .container {
+      min-height: calc(100% - 2 * #{$block-padding});
+    }
+  }
+
+  &.fdb-image-bg {
+    color: mix($black, $white, 5%);
+  }
+
+  .fdb-box {
+    background: $white;
+    padding: 3.75rem 2.5rem;
+    overflow: hidden;
+    color: $font-color;
+    @include border-radius(0.25rem);
+    box-shadow: $box-shadow !important;
+  }
+
+  .fdb-touch {
+    border-top: solid 0.3125rem $primary-color;
+    z-index: 2;
+  }
+
+  img {
+    + p, + h3, + h4 {
+      margin-top: 1.25rem;
+    }
+
+    + h1, + h2 {
+      margin-top: 2.5rem;
+    }
+  }
+
+  .col-fill-left {
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+
+    + div {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .col-fill-right {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+
+    + div {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  img.fdb-icon {
+    width: auto;
+    width: 3.75rem;
+  }
+
+  img.fdb-icon-round {
+    width: auto;
+    width: 3.75rem;
+  }
+
+  .row-100 {
+    height: 6.25rem;
+    width: 100%;
+  }
+
+  .row-50 {
+    height: 3.125rem;
+    width: 100%;
+  }
+
+  .row-70 {
+    height: 4.375rem;
+    width: 100%;
+  }
+}
+
+footer {
+  padding: 1.875rem 0 !important;
+
+  &.footer-large {
+    padding: 6.25rem 0 !important
+  }
+
+  .flex-column {
+    .nav-link {
+      padding-left: 0;
+    }
+  }
+
+  &.bg-dark {
+    background: #2d313c;
+    color: mix($black, $white, 5%);
+
+    a {
+      color: mix($black, $white, 5%);
+    }
+  }
+
+  a {
+    color: $font-color;
+  }
+}
+
+header {
+  background-color: $white;
+
+  .navbar-nav {
+    a.nav-link {
+      color: #777;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    .active {
+      a.nav-link {
+        color: $font-color;
+      }
+    }
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  &.bg-dark {
+    .navbar-nav {
+      a.nav-link {
+        color: #dcdcdc;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+
+      .active {
+        a.nav-link {
+          color: $white;
+        }
+      }
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+header + header {
+  border-top: solid 0.0625rem #EEE;
+}
+
+.bg-dark {
+  background-color: #2d313c;
+  color: mix($black, $white, 5%);
+
+  p.lead {
+    color: white;
+  }
+}
+
+.bg-gray {
+  background-color: #f4f7fe;
+  color: $font-color;
+}

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Froala Design Blocks - Teams</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link type="text/css" rel="stylesheet" href="css/froala_blocks.css">
+    <style>
+      .fdb-block {
+        border-bottom: 1px solid var(--light);
+      }
+    </style>
+  </head>
+  <body><style>
+  #navigator {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  #navigator .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 720px) {
+    #navigator {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  #navigator a {
+    font-size: 14px;
+  }
+
+  #navigator+section {
+    padding: 250px 0;
+  }
+
+</style>
+
+<section class="fdb-block p-2" id="navigator">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-md">
+      <button class="navbar-toggler mr-auto ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNav0">
+        <p class="m-auto">
+          <a class="btn btn-outline-primary m-1" href="call-to-action.html">Call to action</a>
+          <a class="btn btn-outline-primary m-1" href="contacts.html">Contacts</a>
+          <a class="btn btn-outline-primary m-1" href="contents.html">Contents</a>
+          <a class="btn btn-outline-primary m-1" href="features.html">Features</a>
+          <a class="btn btn-outline-primary m-1" href="footers.html">Footers</a>
+          <a class="btn btn-outline-primary m-1" href="forms.html">Forms</a>
+          <a class="btn btn-outline-primary m-1" href="headers.html">Headers</a>
+          <a class="btn btn-outline-primary m-1" href="pricings.html">Pricings</a>
+          <a class="btn btn-outline-primary m-1" href="teams.html">Teams</a>
+          <a class="btn btn-outline-primary m-1" href="testimonials.html">Testimonials</a>
+        </p>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<script>
+  var page = window.location.pathname.split('/')
+  page = page[page.length - 1]
+
+  var nav = document.querySelector('a[href="' + page + '"]')
+  if (nav) {
+    nav.classList.add('active')
+  }
+
+</script>
+
+    <!-- Teams 1 -->
+    <section class="fdb-block team-1">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Our Team</h1>
+            <p class="lead">Far far away, behind the word mountains, far from the countries.</p>
+          </div>
+        </div>
+    
+        <div class="row-50"></div>
+    
+        <div class="row">
+          <div class="col-sm-3 text-left">
+            <div class="fdb-box p-0">
+              <img alt="image" class="img-fluid rounded-0" src="./imgs/people/1.jpg">
+    
+              <div class="content p-3">
+                <h3><strong>Sara Doe</strong></h3>
+                <p>Founder</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 text-left">
+            <div class="fdb-box p-0">
+              <img alt="image" class="img-fluid rounded-0" src="./imgs/people/2.jpg">
+    
+              <div class="content p-3">
+                <h3><strong>Sara Doe</strong></h3>
+                <p>Founder</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 text-left">
+            <div class="fdb-box p-0">
+              <img alt="image" class="img-fluid rounded-0" src="./imgs/people/3.jpg">
+    
+              <div class="content p-3">
+                <h3><strong>Sara Doe</strong></h3>
+                <p>Founder</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 text-left">
+            <div class="fdb-box p-0">
+              <img alt="image" class="img-fluid rounded-0" src="./imgs/people/6.jpg">
+    
+              <div class="content p-3">
+                <h3><strong>Sara Doe</strong></h3>
+                <p>Founder</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 2 -->
+    <section class="fdb-block team-2">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Meet Our Team</h1>
+          </div>
+        </div>
+    
+        <div class="row-50"></div>
+    
+        <div class="row text-center justify-content-center">
+          <div class="col-sm-3 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/4.jpg">
+    
+            <h2>Sara Doe</h2>
+            <p>Founder</p>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/5.jpg">
+    
+            <h2>Sara Doe</h2>
+            <p>Founder</p>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/7.jpg">
+    
+            <h2>Sara Doe</h2>
+    
+            <p>Founder</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 3 -->
+    <section class="fdb-block team-3">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Meet Our Team</h1>
+          </div>
+        </div>
+    
+        <div class="row-70"></div>
+    
+        <div class="row text-center justify-content-center mb-5">
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/1.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/6.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/7.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/8.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+        </div>
+    
+        <div class="row justify-content-center text-center">
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/2.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/3.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/5.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p><em>Founder</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 4 -->
+    <section class="fdb-block team-4">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Team</h1>
+          </div>
+        </div>
+    
+        <div class="row text-center mt-5">
+          <div class="col-3">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/5.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>A wonderful serenity has taken possession of my entire soul.</p>
+          </div>
+    
+          <div class="col-3">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/6.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>Pityful a rethoric question ran over her cheek.</p>
+          </div>
+    
+          <div class="col-3">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/3.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>And if she hasn’t been rewritten, then they are still using her.</p>
+          </div>
+    
+          <div class="col-3">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/2.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>Wild Question Marks, but the Little Blind Text didn’t listen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 5 -->
+    <section class="fdb-block team-5">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Meet Our Team</h1>
+          </div>
+        </div>
+    
+        <div class="row-70"></div>
+    
+        <div class="row text-center justify-content-center">
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/1.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/6.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/5.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/8.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+        </div>
+    
+        <div class="row justify-content-center text-center mt-5">
+          <div class="col-sm-2  m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/3.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/9.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/7.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+    
+          <div class="col-sm-2 m-sm-auto">
+            <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/2.jpg">
+    
+            <h3><strong>Sara Doe</strong></h3>
+            <p>"Wild Question Marks, but the Little Blind"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 6 -->
+    <section class="fdb-block team-6">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Team</h1>
+          </div>
+        </div>
+    
+        <div class="row text-center mt-5">
+          <div class="col-4">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/9.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          </div>
+    
+          <div class="col-4">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/1.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>One morning, when Gregor Samsa woke from troubled dreams.</p>
+          </div>
+    
+          <div class="col-4">
+            <img alt="image" class="img-fluid rounded" src="./imgs/people/3.jpg">
+            <h3><strong>John Smith</strong></h3>
+            <p>Position</p>
+            <p>A small river named Duden flows by their place and supplies it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 7 -->
+    <section class="fdb-block team-7">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Team</h1>
+          </div>
+        </div>
+    
+        <div class="row-70"></div>
+    
+        <div class="row justify-content-center">
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/2.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/8.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/6.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row-50"></div>
+    
+        <div class="row justify-content-center">
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/4.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/1.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/3.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row-50"></div>
+    
+        <div class="row justify-content-center">
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/5.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/9.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-3 m-sm-auto">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded-circle" src="./imgs/people/7.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3>Employee Name</h3>
+                <p>Position</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Teams 8 -->
+    <section class="fdb-block team-8">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-8">
+            <h1>Our Amazing Team</h1>
+            <p class="lead">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+          </div>
+        </div>
+    
+        <div class="row-100"></div>
+    
+        <div class="row justify-content-center text-left">
+          <div class="col-sm-6">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded" src="./imgs/people/8.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3><strong>Employee Name</strong></h3>
+                <p class="lead">Position</p>
+    
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-6">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded" src="./imgs/people/7.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3><strong>Employee Name</strong></h3>
+                <p class="lead">Position</p>
+    
+                <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row-70"></div>
+    
+        <div class="row justify-content-center text-left">
+          <div class="col-sm-6">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded" src="./imgs/people/9.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3><strong>Employee Name</strong></h3>
+                <p class="lead">Position</p>
+    
+                <p>One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-sm-6">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <img alt="image" class="img-fluid rounded" src="./imgs/people/4.jpg">
+              </div>
+    
+              <div class="col-8">
+                <h3><strong>Employee Name</strong></h3>
+                <p class="lead">Position</p>
+    
+                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </body>
+</html>
