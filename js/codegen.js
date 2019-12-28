@@ -1,14 +1,10 @@
-/*!
- * Froala Pages v1.0.0 (https://github.com/froala-labs/froala-pages#readme)
- * Copyright 2017-2019
- * Licensed under Froala Pages Terms (https://www.froala.com/pages/terms)
- */
+
 !(function(t, e) {
   "object" == typeof exports && "undefined" != typeof module
     ? (module.exports = e())
     : "function" == typeof define && define.amd
     ? define(e)
-    : (t.FroalaPages = e());
+    : (t.Codegen = e());
 })(this, function() {
   "use strict";
   var s = function(t, e) {
@@ -107,7 +103,7 @@
         }),
         (t.setDownloadCount = function(e, i) {
           e.pageToolbar.el
-            .querySelectorAll(".fp-download-btn")
+            .querySelectorAll(".codegen-download-btn")
             .forEach(function(t) {
               e.opts.showDownloadCounter &&
                 t &&
@@ -250,8 +246,8 @@
           (this.el = this.doc.createElement("BUTTON")),
             (this.el.innerHTML = this.props.icon.template),
             this.el.classList.add(
-              "fp-btn",
-              "fp-" + t + "-btn",
+              "codegen-btn",
+              "codegen-" + t + "-btn",
               "fr-btn-type-" + this.props.icon.type
             ),
             this.el.setAttribute("title", this.props.title);
@@ -276,7 +272,7 @@
         this.page.setView(p), this.page.designsPanel.show();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.activeView === p);
+        this.el.classList.toggle("codegen-active", this.page.activeView === p);
       }
     }),
     f.Register("moveUp", {
@@ -303,7 +299,7 @@
       refresh: function() {
         if (this.page.activeBlock) {
           this.el.classList.toggle(
-            "fp-hidden",
+            "codegen-hidden",
             0 <=
               [c.HEADER, c.FOOTER].indexOf(
                 this.page.activeBlock.designBlock.blockType
@@ -316,9 +312,9 @@
           )
             t = t.previousSibling;
           t
-            ? (this.el.classList.remove("fp-disabled"),
+            ? (this.el.classList.remove("codegen-disabled"),
               this.el.removeAttribute("disabled"))
-            : (this.el.classList.add("fp-disabled"),
+            : (this.el.classList.add("codegen-disabled"),
               this.el.setAttribute("disabled", "disabled"));
         }
       }
@@ -342,7 +338,7 @@
         }
       },
       afterBuild: function() {
-        this.el.classList.add("fp-remove-btn");
+        this.el.classList.add("codegen-remove-btn");
       }
     }),
     f.Register("edit", {
@@ -358,7 +354,7 @@
           this.page.editor.enable();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.activeView === r);
+        this.el.classList.toggle("codegen-active", this.page.activeView === r);
       }
     }),
     f.Register("download", {
@@ -404,11 +400,11 @@
       callback: function() {
         (this.page.screenSize = e),
           (this.page.iframe.style.width = null),
-          this.page.el.classList.remove("fp-view-small"),
+          this.page.el.classList.remove("codegen-view-small"),
           this.page.refreshIframeSize();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.screenSize === e);
+        this.el.classList.toggle("codegen-active", this.page.screenSize === e);
       },
       afterBuild: function() {
         this.page.screenSize = e;
@@ -424,11 +420,11 @@
       callback: function() {
         (this.page.screenSize = i),
           (this.page.iframe.style.width = i + "px"),
-          this.page.el.classList.add("fp-view-small"),
+          this.page.el.classList.add("codegen-view-small"),
           this.page.refreshIframeSize();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.screenSize === i);
+        this.el.classList.toggle("codegen-active", this.page.screenSize === i);
       }
     }),
     f.Register("tablet_portrait", {
@@ -441,11 +437,11 @@
       callback: function() {
         (this.page.screenSize = h),
           (this.page.iframe.style.width = h + "px"),
-          this.page.el.classList.add("fp-view-small"),
+          this.page.el.classList.add("codegen-view-small"),
           this.page.refreshIframeSize();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.screenSize === h);
+        this.el.classList.toggle("codegen-active", this.page.screenSize === h);
       }
     }),
     f.Register("phone", {
@@ -458,11 +454,11 @@
       callback: function() {
         (this.page.screenSize = d),
           (this.page.iframe.style.width = d + "px"),
-          this.page.el.classList.add("fp-view-small"),
+          this.page.el.classList.add("codegen-view-small"),
           this.page.refreshIframeSize();
       },
       refresh: function() {
-        this.el.classList.toggle("fp-active", this.page.screenSize === d);
+        this.el.classList.toggle("codegen-active", this.page.screenSize === d);
       }
     });
   var u = (function(t) {
@@ -473,7 +469,7 @@
         n(e, t),
         (e.prototype.init = function() {
           (this.el = this.doc.createElement("DIV")),
-            this.el.classList.add("fp-block-toolbar"),
+            this.el.classList.add("codegen-block-toolbar"),
             l.append(this.page.body, this.el),
             this._addButtons(),
             this._initEvents();
@@ -520,13 +516,13 @@
           clearTimeout(this.leaveTimeout);
           var e = l.offset(t.el);
           this.page.activeBlock = t;
-          var i = this.page.iframeBody.querySelector(".fp-active");
-          i && i.classList.remove("fp-active"),
-            t.el.classList.add("fp-active"),
+          var i = this.page.iframeBody.querySelector(".codegen-active");
+          i && i.classList.remove("codegen-active"),
+            t.el.classList.add("codegen-active"),
             this.show(e.left, e.top);
         }),
         (e.prototype.show = function(t, e) {
-          this.el.classList.add("fp-visible"),
+          this.el.classList.add("codegen-visible"),
             (this.el.style.left = t + l.offset(this.page.iframe).left + "px"),
             (this.el.style.top =
               Math.max(0, e) / (this.page.activeView === p ? 4 : 1) +
@@ -535,10 +531,10 @@
             this.events.emit("button.refresh");
         }),
         (e.prototype.hide = function() {
-          this.el.classList.remove("fp-visible");
+          this.el.classList.remove("codegen-visible");
         }),
         (e.prototype.isVisible = function() {
-          return this.el.classList.contains("fp-visible");
+          return this.el.classList.contains("codegen-visible");
         }),
         e
       );
@@ -623,7 +619,7 @@
         //   t.makeRequest(e, "GET");
         // }),
         // (e.prototype._remove = function() {
-        //   var t = document.getElementsByClassName("fp-connectin-error");
+        //   var t = document.getElementsByClassName("codegen-connectin-error");
         //   if (t.length) {
         //     for (var e = 0; e < t.length; e++) t[e].remove();
         //     var i = !this.page.iframeBody.querySelector("[data-block-type]");
@@ -635,7 +631,7 @@
             n = l.createElement(i);
           (e = e || ""),
             n &&
-              (n.setAttribute("class", "fp-license-error " + e),
+              (n.setAttribute("class", "codegen-license-error " + e),
               l.prepend(this.page.body, n),
               l.setDownloadBtnsStatus(this.page, 0, 0));
         }),
@@ -735,7 +731,7 @@
         e
       );
     })(t),
-    b = {
+    config = {
       designsThumbsDir:
         "https://cdn.jsdelivr.net/gh/froala/design-blocks@master/screenshots/",
       designsImagesDir:
@@ -756,7 +752,7 @@
         "https://use.fontawesome.com/releases/v5.5.0/js/all.js"
       ],
       appStyle:
-        '\nbody, html {\n  margin: 0;\n  height: 100%;\n}\n\nbody.no-block {\n  flex-flow: column;\n  overflow-x: hidden;\n  display: flex;\n}\n\nbody {\n  background: #DEDEDE;\n}\n\n.fp-no-block {\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n  flex-direction: column;\n  cursor: pointer;\n  color: #444;\n  display: none;\n  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;\n  text-align: center;\n  background: #FFF;\n  transition: margin 0.25s linear 0.25s;\n}\n\n.fp-no-block:hover {\n  background: #EFEFEF;\n}\n\n.fp-no-block.fp-visible {\n  display: flex;\n}\n\n.fp-no-sections {\n  flex: 2;\n}\n\n.fp-no-block p {\n  margin: 0;\n}\n\n.fp-no-sections p + p {\n  font-size: 16px;\n  margin-top: 5px;\n}\n\n.fdb-block {\n  box-shadow: 0;\n  margin-bottom: 0;\n  transition: margin 0.25s linear 0.25s;\n}\n\n.fp-active {\n  box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  -moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  -webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  z-index: 9999;\n}\n\nbody.fp-add-view [data-block-type],\nbody.fp-add-view .fp-no-block {\n  margin-bottom: 20px;\n}\n\nbody.fp-add-view [data-block-type] {\n  user-select: none;\n  position: relative;\n}\n\nbody.fp-add-view section[data-block-type] {\n  cursor: move;\n}\n\nbody.fp-add-view [data-block-type]:after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  display: block;\n  z-index: 10000;\n  content: "";\n}\n\n.fp-drop-placeholder {\n  height: 200px;\n  width: 100%;\n  border: solid 10px  #0098f7;\n  background: #FFF;\n  margin-bottom: 20px;\n}\n\n.fp-dragging {\n  display: none;\n}\n\n.fr-popup {\n  z-index: 10000 !important;\n}\n',
+        '\nbody, html {\n  margin: 0;\n  height: 100%;\n}\n\nbody.no-block {\n  flex-flow: column;\n  overflow-x: hidden;\n  display: flex;\n}\n\nbody {\n  background: #DEDEDE;\n}\n\n.codegen-no-block {\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n  flex-direction: column;\n  cursor: pointer;\n  color: #444;\n  display: none;\n  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;\n  text-align: center;\n  background: #FFF;\n  transition: margin 0.25s linear 0.25s;\n}\n\n.codegen-no-block:hover {\n  background: #EFEFEF;\n}\n\n.codegen-no-block.codegen-visible {\n  display: flex;\n}\n\n.codegen-no-sections {\n  flex: 2;\n}\n\n.codegen-no-block p {\n  margin: 0;\n}\n\n.codegen-no-sections p + p {\n  font-size: 16px;\n  margin-top: 5px;\n}\n\n.fdb-block {\n  box-shadow: 0;\n  margin-bottom: 0;\n  transition: margin 0.25s linear 0.25s;\n}\n\n.codegen-active {\n  box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  -moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  -webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.14), 0 0px 6px rgba(0,0,0,0.16);\n  z-index: 9999;\n}\n\nbody.codegen-add-view [data-block-type],\nbody.codegen-add-view .codegen-no-block {\n  margin-bottom: 20px;\n}\n\nbody.codegen-add-view [data-block-type] {\n  user-select: none;\n  position: relative;\n}\n\nbody.codegen-add-view section[data-block-type] {\n  cursor: move;\n}\n\nbody.codegen-add-view [data-block-type]:after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  display: block;\n  z-index: 10000;\n  content: "";\n}\n\n.codegen-drop-placeholder {\n  height: 200px;\n  width: 100%;\n  border: solid 10px  #0098f7;\n  background: #FFF;\n  margin-bottom: 20px;\n}\n\n.codegen-dragging {\n  display: none;\n}\n\n.fr-popup {\n  z-index: 10000 !important;\n}\n',
       blockButtons: ["moveUp", "remove"],
       key: "",
       showDownloadCounter: !0,
@@ -784,7 +780,7 @@
         (e.prototype._initFilters = function() {
           var i = this,
             n = document.createElement("DIV");
-          n.classList.add("fp-panel-filter"), l.append(this.head, n);
+          n.classList.add("codegen-panel-filter"), l.append(this.head, n);
           var t = function(t) {
             if (Object.prototype.hasOwnProperty.call(c.BLOCKS, t)) {
               var e = i.doc.createElement("A");
@@ -801,28 +797,28 @@
         }),
         (e.prototype._initPanel = function() {
           var t = document.createElement("DIV");
-          t.classList.add("fp-panel-panel"),
+          t.classList.add("codegen-panel-panel"),
             (this.panel = t),
             l.append(this.body, t);
         }),
         (e.prototype._refreshFilters = function(t) {
           var e = this.panel.querySelector(
-            ".fp-panel-blocks-wrapper.fp-visible"
+            ".codegen-panel-blocks-wrapper.codegen-visible"
           );
           e &&
-            (e.classList.remove("fp-visible"),
+            (e.classList.remove("codegen-visible"),
             this.filter
-              .querySelector("a.fp-active")
-              .classList.remove("fp-active")),
+              .querySelector("a.codegen-active")
+              .classList.remove("codegen-active")),
             this.filter
               .querySelector('a[data-block-type="' + l.underscores(t) + '"]')
-              .classList.add("fp-active");
+              .classList.add("codegen-active");
         }),
         (e.prototype._refreshDesigns = function(t) {
           var e = void 0;
           if (this.loadedDesigns[l.underscores(t)])
             e = this.panel.querySelector(
-              'div.fp-panel-blocks-wrapper[data-block-type="' +
+              'div.codegen-panel-blocks-wrapper[data-block-type="' +
                 l.underscores(t) +
                 '"]'
             );
@@ -831,7 +827,7 @@
               "data-block-type",
               l.underscores(t)
             ),
-              e.classList.add("fp-panel-blocks-wrapper"),
+              e.classList.add("codegen-panel-blocks-wrapper"),
               l.append(this.panel, e);
             for (var i = 1; i <= c.BLOCKS[t].length; i++) {
               var n = new c(this, t, c.BLOCKS[t][i - 1]);
@@ -839,7 +835,7 @@
             }
             this.loadedDesigns[l.underscores(t)] = !0;
           }
-          e.classList.add("fp-visible");
+          e.classList.add("codegen-visible");
         }),
         (e.prototype.setActiveBlock = function() {
           var t =
@@ -861,7 +857,7 @@
           n(e, t),
           (e.prototype.init = function(t, e) {
             (this.el = this.doc.createElement("DIV")),
-              this.el.setAttribute("class", "fp-panel"),
+              this.el.setAttribute("class", "codegen-panel"),
               this._addTitle(t),
               this._addContent(e),
               l.append(this.page.container, this.el),
@@ -869,27 +865,27 @@
           }),
           (e.prototype._addContent = function(t) {
             var e = this.doc.createElement("DIV");
-            e.setAttribute("class", "fp-panel-body"),
+            e.setAttribute("class", "codegen-panel-body"),
               t && (e.innerHTML = t),
               l.append(this.el, e),
               (this.body = e);
           }),
           (e.prototype._addTitle = function(t) {
             var e = this.doc.createElement("DIV");
-            if ((e.setAttribute("class", "fp-panel-head"), t)) {
+            if ((e.setAttribute("class", "codegen-panel-head"), t)) {
               var i = this.doc.createElement("H2");
               (i.innerHTML = t), l.append(e, i);
             }
             l.append(this.el, e), (this.head = e);
           }),
           (e.prototype.show = function() {
-            this.el.classList.add("fp-visible");
+            this.el.classList.add("codegen-visible");
           }),
           (e.prototype.hide = function() {
-            this.el.classList.remove("fp-visible");
+            this.el.classList.remove("codegen-visible");
           }),
           (e.prototype.isVisible = function() {
-            return this.el.classList.contains("fp-visible");
+            return this.el.classList.contains("codegen-visible");
           }),
           e
         );
@@ -1116,7 +1112,7 @@
           var e = this;
           (this.name = t.name), (this.template = t.template);
           var i = this.doc.createElement("DIV");
-          i.classList.add("fp-no-block", "fp-no-" + this.name.toLowerCase()),
+          i.classList.add("codegen-no-block", "codegen-no-" + this.name.toLowerCase()),
             i.setAttribute("data-fp", "true"),
             (i.innerHTML = this.template),
             (this.el = i),
@@ -1223,22 +1219,22 @@
         n(e, t),
         (e.prototype.init = function() {
           (this.el = this.doc.createElement("DIV")),
-            this.el.classList.add("fp-page-toolbar"),
+            this.el.classList.add("codegen-page-toolbar"),
             l.append(this.page.selector, this.el),
-            this._addButtons(this.opts.pageLeftButtons, "fp-lp-zone"),
-            this._addButtons(this.opts.pageCenterButtons, "fp-cp-zone"),
-            this._addButtons(this.opts.pageRightButtons, "fp-rp-zone"),
+            this._addButtons(this.opts.pageLeftButtons, "codegen-lp-zone"),
+            this._addButtons(this.opts.pageCenterButtons, "codegen-cp-zone"),
+            this._addButtons(this.opts.pageRightButtons, "codegen-rp-zone"),
             this.events.emit("button.refresh");
         }),
         (e.prototype._addButtons = function(t, e) {
           var n = this,
             o = this.doc.createElement("DIV");
-          o.classList.add("fp-btn-zone"),
+          o.classList.add("codegen-btn-zone"),
             e && o.setAttribute("id", e),
             t.forEach(function(t) {
               if (Array.isArray(t)) {
                 var i = n.doc.createElement("DIV");
-                i.classList.add("fp-btn-group"),
+                i.classList.add("codegen-btn-group"),
                   t.forEach(function(t) {
                     var e = new f(n.page, t);
                     l.append(i, e.el);
@@ -1254,15 +1250,15 @@
     D = (function() {
       function i(t, e) {
         s(this, i),
-          (this.opts = Object.assign({}, b, e)),
+          (this.opts = Object.assign({}, config, e)),
           (this.doc = document),
           (this.body = document.body),
           (this.container = this.doc.createElement("DIV")),
-          this.container.classList.add("fp-container"),
+          this.container.classList.add("codegen-container"),
           (this.selector = this.doc.getElementById(t) || this.body),
           l.append(this.selector, this.container),
           (this.el = this.doc.createElement("DIV")),
-          this.el.classList.add("fp-element"),
+          this.el.classList.add("codegen-element"),
           l.append(this.container, this.el),
           (this.events = new A()),
           (this.designsPanel = new k(this)),
@@ -1342,9 +1338,9 @@
         }),
         (i.prototype.refreshBlocks = function() {
           var t = !this.iframeBody.querySelector("[data-block-type]");
-          this.emptySection.el.classList.toggle("fp-visible", t),
+          this.emptySection.el.classList.toggle("codegen-visible", t),
             this.iframeBody.classList.toggle("no-block", t),
-            this.container.classList.toggle("fp-no-block", t),
+            this.container.classList.toggle("codegen-no-block", t),
             this.refreshIframeSize();
           var e = this.pageToolbar.ul ? this.pageToolbar.ul : t;
           l.setDownloadBtnsStatus(this, t, e);
@@ -1352,14 +1348,14 @@
         (i.prototype.setView = function(t) {
           var e = this;
           (this.activeView = t),
-            this.body.classList.toggle("fp-add-view", this.activeView === p),
-            this.body.classList.toggle("fp-full-view", this.activeView === r),
+            this.body.classList.toggle("codegen-add-view", this.activeView === p),
+            this.body.classList.toggle("codegen-full-view", this.activeView === r),
             this.iframeBody.classList.toggle(
-              "fp-add-view",
+              "codegen-add-view",
               this.activeView === p
             ),
             this.iframeBody.classList.toggle(
-              "fp-full-view",
+              "codegen-full-view",
               this.activeView === r
             ),
             this.designsPanel.setActiveBlock(),
@@ -1395,40 +1391,40 @@
           this.dropPlaceholder &&
             (l.remove(this.dropPlaceholder),
             (this.dropPlaceholder.isVisible = !1)),
-            this.body.classList.remove("fp-dragging");
+            this.body.classList.remove("codegen-dragging");
         }),
         (i.prototype._drop = function() {
           this.activeView === p &&
             (this.draggingBlock &&
               this.dropPlaceholder &&
               this.dropPlaceholder.isVisible &&
-              (this.draggingBlock.classList.remove("fp-dragging"),
+              (this.draggingBlock.classList.remove("codegen-dragging"),
               l.after(this.dropPlaceholder, this.draggingBlock),
               l.remove(this.dropPlaceholder),
               l.remove(this.dragImage)),
             this.draggingDesignBlock &&
               ((this.dropPlaceholder && this.dropPlaceholder.isVisible) ||
-                this.container.classList.contains("fp-no-block")) &&
+                this.container.classList.contains("codegen-no-block")) &&
               (this.insertBlock(this.draggingDesignBlock, this.dropPlaceholder),
               l.remove(this.dropPlaceholder),
               l.remove(this.dragImage)),
             (this.dropPlaceholder.isVisible = !1),
             (this.draggingDesignBlock = null),
             (this.draggingBlock = null)),
-            this.body.classList.remove("fp-dragging");
+            this.body.classList.remove("codegen-dragging");
         }),
         (i.prototype._initDropZone = function() {
           var e = this;
           (this.dropZone = this.doc.createElement("DIV")),
-            this.dropZone.classList.add("fp-drop-zone"),
+            this.dropZone.classList.add("codegen-drop-zone"),
             (this.dropZone.innerHTML =
-              '<p>Drag & Drop a Design Block</p>\n                                <p>(or click one)</p>\n                                <div id="fp-drop-visual">\n                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200.26 68.42">\n                                    <path d="M6.19,9.4Q4.9,7.87,3.62,6.3L5.18,5Q6.44,6.6,7.72,8.11Z"/>\n                                    <path d="M139.15,68.42q-2,0-4,0l0-2q4.09.08,8.16,0l0,2Q141.29,68.42,139.15,68.42ZM128,68.13c-2.75-.15-5.52-.35-8.22-.61l.19-2c2.68.25,5.42.45,8.14.6Zm22.65,0-.11-2c2.7-.14,5.44-.33,8.15-.58l.18,2C156.12,67.78,153.36,68,150.63,68.12ZM166,66.79l-.24-2c2.69-.32,5.41-.7,8.09-1.11l.31,2C171.48,66.09,168.73,66.47,166,66.79Zm-53.43-.08c-2.73-.36-5.47-.78-8.15-1.25l.35-2c2.64.47,5.36.88,8.06,1.24Zm68.69-2.25-.37-2c2.66-.49,5.35-1,8-1.62l.43,2C186.68,63.41,184,64,181.28,64.46Zm-83.92-.4c-2.68-.58-5.38-1.24-8-1.94l.52-1.93c2.6.69,5.27,1.34,7.93,1.92Zm-15-3.94c-2.63-.82-5.26-1.71-7.81-2.65l.69-1.88c2.53.93,5.12,1.81,7.72,2.62ZM67.87,54.84c-2.54-1.06-5.07-2.19-7.53-3.37l.86-1.8C63.63,50.83,66.13,52,68.64,53Zm-14-6.62c-2.41-1.29-4.82-2.66-7.17-4.07l1-1.71c2.32,1.4,4.71,2.75,7.08,4ZM40.62,40.27c-2.28-1.52-4.55-3.12-6.74-4.75l1.19-1.6c2.17,1.62,4.41,3.19,6.66,4.69ZM28.19,31.08c-2.11-1.73-4.22-3.54-6.25-5.38l1.34-1.48c2,1.82,4.09,3.61,6.18,5.31ZM16.69,20.75c-1.94-1.91-3.86-3.91-5.73-5.93l1.47-1.35c1.84,2,3.74,4,5.66,5.86Z"/>\n                                    <path d="M196.38,61.16l-.49-1.94q1.94-.49,3.85-1l.52,1.93Q198.33,60.67,196.38,61.16Z"/>\n                                    <polygon points="1.39 9.88 0 0 9.24 3.73 1.39 9.88"/>\n                                  </svg>\n                                </div>\n                                '),
+              '<p>Drag & Drop a Design Block</p>\n                                <p>(or click one)</p>\n                                <div id="codegen-drop-visual">\n                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200.26 68.42">\n                                    <path d="M6.19,9.4Q4.9,7.87,3.62,6.3L5.18,5Q6.44,6.6,7.72,8.11Z"/>\n                                    <path d="M139.15,68.42q-2,0-4,0l0-2q4.09.08,8.16,0l0,2Q141.29,68.42,139.15,68.42ZM128,68.13c-2.75-.15-5.52-.35-8.22-.61l.19-2c2.68.25,5.42.45,8.14.6Zm22.65,0-.11-2c2.7-.14,5.44-.33,8.15-.58l.18,2C156.12,67.78,153.36,68,150.63,68.12ZM166,66.79l-.24-2c2.69-.32,5.41-.7,8.09-1.11l.31,2C171.48,66.09,168.73,66.47,166,66.79Zm-53.43-.08c-2.73-.36-5.47-.78-8.15-1.25l.35-2c2.64.47,5.36.88,8.06,1.24Zm68.69-2.25-.37-2c2.66-.49,5.35-1,8-1.62l.43,2C186.68,63.41,184,64,181.28,64.46Zm-83.92-.4c-2.68-.58-5.38-1.24-8-1.94l.52-1.93c2.6.69,5.27,1.34,7.93,1.92Zm-15-3.94c-2.63-.82-5.26-1.71-7.81-2.65l.69-1.88c2.53.93,5.12,1.81,7.72,2.62ZM67.87,54.84c-2.54-1.06-5.07-2.19-7.53-3.37l.86-1.8C63.63,50.83,66.13,52,68.64,53Zm-14-6.62c-2.41-1.29-4.82-2.66-7.17-4.07l1-1.71c2.32,1.4,4.71,2.75,7.08,4ZM40.62,40.27c-2.28-1.52-4.55-3.12-6.74-4.75l1.19-1.6c2.17,1.62,4.41,3.19,6.66,4.69ZM28.19,31.08c-2.11-1.73-4.22-3.54-6.25-5.38l1.34-1.48c2,1.82,4.09,3.61,6.18,5.31ZM16.69,20.75c-1.94-1.91-3.86-3.91-5.73-5.93l1.47-1.35c1.84,2,3.74,4,5.66,5.86Z"/>\n                                    <path d="M196.38,61.16l-.49-1.94q1.94-.49,3.85-1l.52,1.93Q198.33,60.67,196.38,61.16Z"/>\n                                    <polygon points="1.39 9.88 0 0 9.24 3.73 1.39 9.88"/>\n                                  </svg>\n                                </div>\n                                '),
             l.append(this.container, this.dropZone),
             this.events.on(this.dropZone, "dragover dragenter", function(t) {
-              t.preventDefault(), e.dropZone.classList.add("fp-hover");
+              t.preventDefault(), e.dropZone.classList.add("codegen-hover");
             }),
             this.events.on(this.dropZone, "dragleave dragend", function() {
-              e.dropZone.classList.remove("fp-hover");
+              e.dropZone.classList.remove("codegen-hover");
             }),
             this.events.on(this.dropZone, "drop", function(t) {
               return e._drop(t);
@@ -1441,7 +1437,7 @@
             a = t.designBlock.blockType === c.FOOTER;
           this.dropPlaceholder ||
             ((this.dropPlaceholder = this.doc.createElement("DIV")),
-            this.dropPlaceholder.classList.add("fp-drop-placeholder"),
+            this.dropPlaceholder.classList.add("codegen-drop-placeholder"),
             this.events.on(this.iframeDoc, "drop", function(t) {
               return o._drop(t);
             }),
@@ -1480,7 +1476,7 @@
             this.events.on(s, "dragstart", function(t) {
               if (o.activeView === p) {
                 if (r || a) return t.preventDefault(), t.stopPropagation(), !1;
-                o.body.classList.add("fp-dragging"),
+                o.body.classList.add("codegen-dragging"),
                   (o.dragImage = o.doc.createElement("IMG")),
                   (o.dragImage.src =
                     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="),
@@ -1493,7 +1489,7 @@
                       (o.dropPlaceholder.style.height =
                         l.outerHeight(s, !0) + "px"),
                       (o.dropPlaceholder.isVisible = !0),
-                      s.classList.add("fp-dragging");
+                      s.classList.add("codegen-dragging");
                   }),
                   (o.draggingBlock = s);
               }
