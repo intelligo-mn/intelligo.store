@@ -1,0 +1,27 @@
+{
+  "name": "argon-design-system-pro",
+  "description": "Premium Design System for Bootstrap 4",
+  "version": "1.0.0",
+  "homepage": "https://creative-tim.com/product/argon-design-system-pro",
+  "author": "Creative Tim",
+  "license": "Creative Tim License <www.creative-tim.com/license>",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-install": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.3",
+    "gulp-open": "^2.1.0"
+  },
+  "dependencies": {
+    "bootstrap-switch": "3.3.4",
+    "nouislider": "14.0.2",
+    "@glidejs/glide": "3.3.0",
+    "eonasdan-bootstrap-datetimepicker": "4.17.47",
+    "choices.js": "7.0.0",
+    "jasny-bootstrap": "4.0.0",
+    "headroom.js": "0.10.3",
+    "perfect-scrollbar": "1.4.0"
+  }
+}
