@@ -1,0 +1,16 @@
+# Boxes include navigation
+
+- title: Getting Started
+  desc: Get started fast with installation and theme setup instructions
+  icon: cog
+  doc: installation
+
+- title: Theme Features
+  desc: Lean about all the theme options, features and how to use them
+  icon: settings
+  doc: hero
+
+- title: Customization
+  desc: Get help or tailor the theme to your specific requirements
+  icon: code
+  doc: customize

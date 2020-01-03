@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Translation | Story Dev.mn</title>
+<meta name="generator" content="Jekyll v3.4.1" />
+<meta property="og:title" content="Translation" />
+<meta name="author" content="evan" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Set your language code in _config.yml: lang: en Theme strings can be translated in _data/translation.yml, copy the current English translation and paste it bellow the Eglish translation, then replace en with you language code that you set in _config.yml and translate the strings." />
+<meta property="og:description" content="Set your language code in _config.yml: lang: en Theme strings can be translated in _data/translation.yml, copy the current English translation and paste it bellow the Eglish translation, then replace en with you language code that you set in _config.yml and translate the strings." />
+<link rel="canonical" href="http://localhost:4000/docs/translation/" />
+<meta property="og:url" content="http://localhost:4000/docs/translation/" />
+<meta property="og:site_name" content="Story Dev.mn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-04T01:26:05+08:00" />
+<script type="application/ld+json">
+{"headline":"Translation","dateModified":"2020-01-04T01:26:05+08:00","datePublished":"2020-01-04T01:26:05+08:00","url":"http://localhost:4000/docs/translation/","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/translation/"},"author":{"@type":"Person","name":"evan"},"description":"Set your language code in _config.yml: lang: en Theme strings can be translated in _data/translation.yml, copy the current English translation and paste it bellow the Eglish translation, then replace en with you language code that you set in _config.yml and translate the strings.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta property="og:image" content="http://localhost:4000/uploads/"/>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="shortcut icon" type="image/png" href="/uploads/favicon.png" >
+  <link rel="alternate" type="application/rss+xml" title="Story Dev.mn" href="/feed.xml">
+  <script src="/assets/js/main.js"></script>
+  
+    <script>
+function searchResults(form) {
+
+    var currentItem = null;
+    var search = document.getElementById(form);
+    var results = document.getElementById(form + "-results");
+    var toggle = document.getElementById(form + "-toggle");
+
+    function removeActive() {
+        for (i = 0; i < results.children.length; i++) {
+            results.children[i].classList.remove("uk-background-muted");
+        }
+    }
+
+    // Detect all clicks on the document
+    document.addEventListener("click", function(event) {
+
+        var isClickSearch = false;
+        var isClickResults = false;
+        var isClickSearchToggle = false;
+
+        if (search !== null) {
+            isClickSearch = search.contains(event.target);
+        }
+
+        if (results !== null) {
+            isClickResults = results.contains(event.target);
+        }
+
+        if (toggle !== null) {
+            isClickSearchToggle = toggle.contains(event.target);
+        }
+
+        if (isClickSearch || isClickSearchToggle) {
+            results.style.display = "block";
+        }        
+
+        if (!isClickResults && !isClickSearch && !isClickSearchToggle) {
+            results.style.display = "none";
+        }        
+        
+    });    
+
+    results.addEventListener("mouseover", function(event) {
+
+        removeActive();
+        event.target.parentElement.classList.add("uk-background-muted");
+        currentItem = null;
+
+    });
+
+    results.addEventListener("mouseout", function(event) {
+        event.target.parentElement.classList.remove("uk-background-muted");
+    });
+
+
+    search.addEventListener("keyup", function(event) {
+
+        var resultItems = results.children;
+        var resultCount = results.children.length;
+                                
+        if (event.keyCode === 40) {
+
+            if (currentItem < (resultCount - 1)) {
+                if (currentItem === null) {
+                    currentItem = 0;
+                } else {
+                    removeActive();
+                    currentItem++;
+                }
+                removeActive();
+                resultItems[currentItem].classList.add("uk-background-muted");
+            }
+            
+        } else if (event.keyCode === 38) {
+
+            if (currentItem > 0) {
+                if (currentItem === null) {
+                    currentItem = 0;
+                } else {
+                    removeActive();
+                    currentItem--;
+                }
+                removeActive();
+                resultItems[currentItem].classList.add("uk-background-muted");
+            }
+
+        } else if (event.keyCode === 13) {
+
+            resultItems[currentItem].children[0].click();
+
+        }
+
+    });
+
+}
+</script>
+  
+  
+  
+</head>
+
+    <body>
+
+    
+        <div data-uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent; top: 200">
+    <nav class="uk-navbar-container">
+        <div class="uk-container">
+            <div data-uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo uk-visible@m" href="/">Story Dev.mn</a>
+                    
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas-docs" data-uk-toggle><span data-uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Docs</span></a>
+                    
+
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="/" >Home</a></li>
+                                                                                                        
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="/docs/installation/" >Docs</a></li>
+                                                                                                        
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="/blog/" >Blog</a></li>
+                                                                                                        
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="#">Changelogs</a>
+                                        
+                                            <div class="uk-navbar-dropdown">
+                                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                    
+                                                    
+                                                        
+                                                        
+                                                        <li><a href="/changelog-timeline/">Timeline Style</a></li>
+                                                    
+                                                    
+                                                    
+                                                        
+                                                        
+                                                        <li><a href="/changelog-posts/">Post Style</a></li>
+                                                    
+                                                    
+                                                </ul>
+                                            </div>
+                                        
+                                        </li>
+                                                                                                        
+                                
+                            
+                        
+                    </ul>
+                </div>
+                <div class="uk-navbar-center uk-hidden@m">
+                    <a class="uk-navbar-item uk-logo" href="/">Story Dev.mn</a>
+                </div>
+                <div class="uk-navbar-right">
+                    
+                        
+                            <div>
+                                <a id="search-navbar-toggle" class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                                <div class="uk-drop uk-background-default uk-border-rounded" uk-drop="mode: click; pos: left-center; offset: 0">
+                                    <form class="uk-search uk-search-navbar uk-width-1-1" onsubmit="return false;">
+                                        <input id="search-navbar" class="uk-search-input" type="search" placeholder="Хайх" autofocus autocomplete="off">
+                                    </form>
+                                    <ul id="search-navbar-results" class="uk-position-absolute uk-width-1-1 uk-list"></ul>
+                                </div>
+                            </div>
+                            <script>
+                            SimpleJekyllSearch({
+                                searchInput: document.getElementById('search-navbar'),
+                                resultsContainer: document.getElementById('search-navbar-results'),
+                                noResultsText: '<li class="no-results">Өгөгдөл олдсонгүй</li>',
+                                searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+                                json: "/search.json"
+                            });
+                            searchResults("search-navbar");
+                            </script>
+                        
+                    
+
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        
+                            
+                            
+                            
+                                
+                                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-primary-outline" href="/changelog-timeline/" >Changelog</a></div></li>
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-success" href="/contact/" >Contact</a></div></li>
+                                
+                            
+                        
+                    </ul>
+
+                    
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle><span data-uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Цэс</span></a>
+                    
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+    
+
+    <div class="uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-large" data-uk-grid>
+
+            <div class="sidebar-fixed-width uk-visible@m">
+                <div class="sidebar-docs uk-position-fixed uk-margin-top">
+                    
+                    <h5>Getting Started</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/installation/">Theme installation</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/setup/">Basic theme setup</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/navigation/">Navigation bar</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/footer/">Footer options</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/posts/">Creating your first post in Jekyll</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/docs/">Creating docs posts</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/comments/">Enabling comments (via Disqus)</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/analytics/">Google Analytics</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Theme Features</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/hero/">Hero page header</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/boxes/">Category boxes section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/featured/">Fearured docs section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/videos/">Video lightbox boxes section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/faq/">Frequently asked questions section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/team/">Team members section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/cta/">Call to action section</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/changelog/">Creating a changelog</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/contact/">Contact form (via FormSpree)</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/media/">Adding media to post and doc content</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/toc/">Adding table of contents to docs</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/alerts/">Adding alerts to content</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Customization</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class="uk-active"><a href="/docs/translation/">Translation</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/customize/">Customization</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/development/">Development</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/sources/">Sources and credits</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Help</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/support/">Contacting support</a></li>
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <div class="uk-width-1-1 uk-width-expand@m">
+
+                <article class="uk-article">
+
+                    <h1 class="uk-article-title">Translation</h1>
+
+                    <p class="uk-text-lead uk-text-muted">Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis.</p>
+
+                    <div class="uk-article-meta uk-margin-top uk-margin-medium-bottom uk-flex uk-flex-middle">
+                        
+
+
+  
+  <img class="uk-border-circle avatar" src="http://localhost:4000/uploads/avatar-evan.png" alt="Evan Wells">
+
+
+<div>
+  
+    Written by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Evan Wells</span></span><br>
+  
+  <time datetime="2020-01-04T01:26:05+08:00" itemprop="datePublished">
+    
+    Jan 4, 2020
+  </time>
+</div>
+                    </div>
+
+                    <div class="article-content link-primary">
+                        <p>Set your language code in <code class="highlighter-rouge">_config.yml</code>:</p>
+<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">lang</span><span class="pi">:</span> <span class="s">en</span>
+</code></pre>
+</div>
+<p>Theme strings can be translated in <code class="highlighter-rouge">_data/translation.yml</code>, copy the current English translation and paste it bellow the Eglish translation, then replace <code class="highlighter-rouge">en</code> with you language code that you set in <code class="highlighter-rouge">_config.yml</code> and translate the strings.</p>
+
+<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
+  <span class="s">previous</span><span class="pi">:</span>                   <span class="s2">"</span><span class="s">Previous"</span>
+  <span class="s">next</span><span class="pi">:</span>                       <span class="s2">"</span><span class="s">Next"</span>
+  <span class="s">related_docs</span><span class="pi">:</span>               <span class="s2">"</span><span class="s">Related</span><span class="nv"> </span><span class="s">Docs"</span>
+  <span class="s">related_posts</span><span class="pi">:</span>              <span class="s2">"</span><span class="s">Related</span><span class="nv"> </span><span class="s">Posts"</span>
+  <span class="s">read_more</span><span class="pi">:</span>                  <span class="s2">"</span><span class="s">Read</span><span class="nv"> </span><span class="s">more"</span>
+  <span class="s">written_by</span><span class="pi">:</span>                 <span class="s2">"</span><span class="s">Written</span><span class="nv"> </span><span class="s">by"</span>
+  <span class="s">share_twitter</span><span class="pi">:</span>              <span class="s2">"</span><span class="s">Share</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Twitter"</span>
+  <span class="s">share_facebook</span><span class="pi">:</span>             <span class="s2">"</span><span class="s">Share</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Facebook"</span>
+  <span class="s">search_placeholder</span><span class="pi">:</span>         <span class="s2">"</span><span class="s">Search</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">answers"</span>
+  <span class="s">search_no_results</span><span class="pi">:</span>          <span class="s2">"</span><span class="s">No</span><span class="nv"> </span><span class="s">results</span><span class="nv"> </span><span class="s">found"</span>
+  <span class="s">mobile_nav_docs</span><span class="pi">:</span>            <span class="s2">"</span><span class="s">Docs"</span>
+  <span class="s">mobile_nav_site</span><span class="pi">:</span>            <span class="s2">"</span><span class="s">Menu"</span>
+  <span class="s">contact_name</span><span class="pi">:</span>               <span class="s2">"</span><span class="s">Name"</span>
+  <span class="s">contact_email</span><span class="pi">:</span>              <span class="s2">"</span><span class="s">Email"</span>
+  <span class="s">contact_subject</span><span class="pi">:</span>            <span class="s2">"</span><span class="s">Subject"</span>
+  <span class="s">contact_message</span><span class="pi">:</span>            <span class="s2">"</span><span class="s">Message"</span>
+  <span class="s">contact_send</span><span class="pi">:</span>               <span class="s2">"</span><span class="s">Send"</span>
+</code></pre>
+</div>
+
+                        
+                            <div class="share uk-text-center uk-margin-medium-top">
+    
+        <a class="uk-link-muted" href="https://twitter.com/intent/tweet?text=Translation&url=http://localhost:4000/docs/translation/&via=&related=" rel="nofollow" target="_blank" title="Share on Twitter" onclick="window.open(this.href, 'twitter', 'width=550,height=235');return false;"><span data-uk-icon="icon: twitter; ratio: 1.2"></span></a>
+    
+    
+        <a class="uk-link-muted uk-margin-small-left" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Ftranslation%2F" rel="nofollow" target="_blank" title="Share on Facebook" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><span data-uk-icon="icon: facebook; ratio: 1.2"></span></a>
+    
+</div>
+                        
+                    </div>
+
+                    
+
+                    <hr class="uk-margin-medium">
+
+                    
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="uk-margin-large-top paginate-post">
+        <div class="uk-child-width-expand@s uk-grid-large uk-pagi" data-uk-grid>
+            <div>
+                
+                  
+                  
+                  
+                    <h5>Adding alerts to content</h5>
+                    <div><a class="remove-underline hvr-back" href="/docs/alerts/">&larr; Өмнөх</a></div>
+                
+            </div>
+            <div>
+                
+                  
+                  
+                  
+                    <h5>Customization</h5>
+                    <div class="uk-text-right"><a class="remove-underline hvr-forward" href="/docs/customize/">Дараах &rarr;</a></div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+
+                    <div class="uk-margin-large-top">
+    <h3>Холбоотой бичиг баримт</h3>
+
+    
+    
+    
+
+    <ul class="uk-list link-secondary">
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/customize/">Customization</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/development/">Development</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/sources/">Sources and credits</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/support/">Contacting support</a></li>
+        
+        
+            
+    </ul>
+</div>
+
+
+                    
+                </article>
+
+                <script>
+                    // Table of contents scroll to
+                    UIkit.scroll('#markdown-toc a', {
+                        duration: 400,
+                        offset: 120
+                    });
+                </script>
+
+            </div>
+
+    </div>
+</div>
+
+
+    <div id="offcanvas-docs" data-uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        
+        <h5 class="uk-margin-top">Getting Started</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/installation/">Theme installation</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/setup/">Basic theme setup</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/navigation/">Navigation bar</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/footer/">Footer options</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/posts/">Creating your first post in Jekyll</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/docs/">Creating docs posts</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/comments/">Enabling comments (via Disqus)</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/analytics/">Google Analytics</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Theme Features</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/hero/">Hero page header</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/boxes/">Category boxes section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/featured/">Fearured docs section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/videos/">Video lightbox boxes section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/faq/">Frequently asked questions section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/team/">Team members section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/cta/">Call to action section</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/changelog/">Creating a changelog</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/contact/">Contact form (via FormSpree)</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/media/">Adding media to post and doc content</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/toc/">Adding table of contents to docs</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/alerts/">Adding alerts to content</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Customization</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class="uk-active"><a href="/docs/translation/">Translation</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/customize/">Customization</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/development/">Development</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/sources/">Sources and credits</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Help</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/support/">Contacting support</a></li>
+        
+        </ul>
+        
+
+    </div>
+</div>
+
+
+    <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <a class="uk-logo uk-margin-small-bottom" href="/">Story Dev.mn</a>
+     
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+      
+        <ul class="uk-nav uk-nav-primary uk-margin-top">
+            
+                
+
+                
+
+                
+                    <li><a href="/" >Home</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><a href="/docs/installation/" >Docs</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><a href="/blog/" >Blog</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><a href="/changelog-timeline/" >Changelog</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-success" href="/contact/" >Contact</a></div></li>
+                
+            
+        </ul>
+
+        <div class="uk-margin-top uk-text-center">
+            <div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
+                
+<div class="uk-first-column">
+    <a href="https://twitter.com/" data-uk-icon="icon: twitter" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+<div>
+    <a href="https://www.facebook.com/" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+
+<div>
+    <a href="https://www.instagram.com/" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+<div>
+    <a href="https://www.linkedin.com/in/turtuvshin" data-uk-icon="icon: linkedin" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+<div>
+    <a href="https://vimeo.com/" data-uk-icon="icon: vimeo" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+<div>
+    <a href="https://www.github.com/dev-mn" data-uk-icon="icon: github" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+<div>
+    <a href="https://www.dev.mn" data-uk-icon="icon: link" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    
+
+    
+        
+    
+
+    
+
+    </body>
+
+</html>

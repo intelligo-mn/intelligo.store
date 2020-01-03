@@ -1,0 +1,73 @@
+# Navbar left menu navigation links
+
+left:
+  - title: Home
+    url: /
+
+  - title: Docs
+    url: /docs/installation/
+
+  - title: Blog
+    url: /blog/
+
+  - title: Changelogs
+    dropdown:
+
+      - title: Timeline Style
+        url: /changelog-timeline/
+
+      - title: Post Style
+        url: /changelog-posts/
+
+
+# Navbar right menu navigation links
+
+right:
+
+  - title: Changelog
+    url: /changelog-timeline/
+    button: primary-outline
+
+  - title: Contact
+    url: /contact/
+    button: success
+
+  # - title: Changelog
+  #   url: /contact/
+  #   button: default
+
+  # - title: Contact
+  #   url: /contact/
+  #   button: primary
+
+  # - title: Changelog
+  #   url: /contact/
+  #   button: secondary
+
+  # - title: Contact
+  #   url: /contact/
+  #   button: danger
+
+  # - title: Changelog
+  #   url: /contact/
+  #   button: success
+
+  # - title: Contact
+  #   url: /contact/
+  #   button: warning
+
+  # - title: Changelog
+  #   url: /contact/
+  #   button: primary-outline
+
+  # - title: Contact
+  #   url: /contact/
+  #   button: danger-outline
+
+  # - title: Changelog
+  #   url: /contact/
+  #   button: success-outline
+
+  # - title: Contact
+  #   url: /contact/
+  #   button: warning-outline

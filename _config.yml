@@ -1,0 +1,142 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site title and description
+title:              Story Dev.mn
+description:        Documentation Jekyll theme.
+lang:               en
+
+# Site subpath, e.g. /blog
+baseurl:            ""
+
+# Permalink URLs structure, for permalink style options see: https://jekyllrb.com/docs/permalinks/
+permalink:          /:title/
+
+# Site base hostname & protocol, e.g. http://example.com
+url:                "https://story.dev.mn"
+
+# Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
+logo:               
+
+navbar:
+    sticky:         true
+    search:         true
+  
+# Default author settings
+author:
+    name:           Pete Seth
+    title:          Lead Developer  
+    avatar:         avatar-tom.png
+
+# Author settings, displayed on post and doc pages if front matter references author name e.g. author: peter
+authors:
+    john:
+      name:         John Brown
+      title:        Support     
+      avatar:       avatar-john.png
+    evan:
+      name:         Evan Wells
+      title:        Support    
+      avatar:       avatar-evan.png
+    sara:
+      name:         Sara Galen
+      title:        Lead Developer     
+      avatar:       avatar-sara.png
+    alex:
+      name:         Alex Koch
+      title:        Design Engineer     
+      avatar:       avatar-alex.png
+    daniel:
+      name:         Daniel Shultz
+      title:        Developer      
+      avatar:       avatar-daniel.png
+    tom:
+      name:         Tom Farrell
+      title:        Developer     
+      avatar:       avatar-tom.png
+
+# Social icons displayed in footer
+social:
+    email:
+    website:        https://www.dev.mn
+    facebook:       https://www.facebook.com/
+    flickr:
+    dribbble:
+    github:         https://www.github.com/dev-mn
+    googleplus:
+    instagram:      https://www.instagram.com/
+    linkedin:       https://www.linkedin.com/in/turtuvshin
+    pinterest:
+    twitter:        https://twitter.com/
+    vimeo:          https://vimeo.com/
+    youtube:
+
+# Share button
+share:
+    post:           true # Display share buttons on a post page
+    doc:            true # Display share buttons on a doc page
+    twitter:        username # Enable by adding Twitter handle 
+    facebook:       true # Enable by setting true (Facebook handle not required)
+
+# Default footer image settings
+footer:
+    copyright:      Made by a <a href="https://ivanchromjak.com/">human</a> somewhere on the planet earth.
+
+# Disqus comments shortname, requires Disqus account https://disqus.com/
+disqus:
+    shortname:      # 1234
+
+# Google analytics code, get your code here https://www.google.com/analytics/
+google_analytics:
+
+# Number of posts displayed on blog page
+paginate:           20
+
+# Blog path
+paginate_path:      "/blog/:num/"
+
+# Path to post content assets directory i.e post images, pdfs etc
+uploads:            /uploads/
+
+# Build settings
+markdown:           kramdown
+highlighter:        rouge
+
+gems:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-gist
+  - jekyll-avatar
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+
+sass:
+  style:            compressed
+
+collections:
+  docs:
+    output:         true
+  faqs:
+    output:         false
+  changelogs:
+    output:         false
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path:         ""
+      type:         posts
+    values:
+      layout:       post
+  # _docs
+  - scope:
+      path:         ""
+      type:         docs
+    values:
+      layout:       doc

@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<div class="uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-large" data-uk-grid>
+
+            <div class="sidebar-fixed-width uk-visible@m">
+                <div class="sidebar-docs uk-position-fixed uk-margin-top">
+                    {% for section in site.data.navigation_docs %}
+                    <h5>{{ section.title }}</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    {% for doc in section.docs %}
+                      {% assign doc_url = doc | prepend:"/docs/" | append:"/" %}
+                      {% assign p = site.docs | where:"url", doc_url | first %}
+                      <li class="{% if doc_url == page.url %}uk-active{% endif %}"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="uk-width-1-1 uk-width-expand@m">
+
+                <article class="uk-article">
+
+                    <h1 class="uk-article-title">{{ page.title | escape }}</h1>
+
+                    {% if page.subtitle %}<p class="uk-text-lead uk-text-muted">{{ page.subtitle }}</p>{% endif %}
+
+                    <div class="uk-article-meta uk-margin-top uk-margin-medium-bottom uk-flex uk-flex-middle">
+                        {% include post-meta.html %}
+                    </div>
+
+                    <div class="article-content link-primary">
+                        {{ content }}
+                        {% if site.share.doc %}
+                            {% include share.html %}
+                        {% endif %}
+                    </div>
+
+                    {% include hook-post-content-doc.html %}
+
+                    <hr class="uk-margin-medium">
+
+                    {% include paginate-doc.html %}
+
+                    {% include related-docs.html %}
+
+                    {% if site.disqus.shortname %}
+                        {% include disqus_comments.html %}
+                    {% endif %}
+                </article>
+
+                <script>
+                    // Table of contents scroll to
+                    UIkit.scroll('#markdown-toc a', {
+                        duration: 400,
+                        offset: 120
+                    });
+                </script>
+
+            </div>
+
+    </div>
+</div>

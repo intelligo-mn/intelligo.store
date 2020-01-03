@@ -1,0 +1,10 @@
+# Footer navigation links
+
+- title: Эхлэл
+  url: /
+
+- title: Блог
+  url: /blog/
+
+- title: Холбоо барих
+  url: /contact/

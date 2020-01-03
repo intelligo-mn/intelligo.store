@@ -1,0 +1,20 @@
+# English (default)
+
+en:
+  previous:                   "Өмнөх"
+  next:                       "Дараах"
+  related_docs:               "Холбоотой бичиг баримт"
+  related_posts:              "Холбоотой нийтлэл"
+  read_more:                  "Дэлгэрэнгүй"
+  written_by:                 "Written by"
+  share_twitter:              "Share on Twitter"
+  share_facebook:             "Share on Facebook"
+  search_placeholder:         "Хайх"
+  search_no_results:          "Өгөгдөл олдсонгүй"
+  mobile_nav_docs:            "Docs"
+  mobile_nav_site:            "Цэс"
+  contact_name:               "Нэр"
+  contact_email:              "Мэйл хаяг"
+  contact_subject:            "Гарчиг"
+  contact_message:            "Агуулга"
+  contact_send:               "Илгээх"
