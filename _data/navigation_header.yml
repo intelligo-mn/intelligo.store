@@ -1,31 +1,17 @@
 # Navbar left menu navigation links
 
 left:
-  - title: Home
+  - title: Эхлэл
     url: /
 
-  - title: Blog
+  - title: Блог
     url: /blog/
-
-  - title: Changelogs
-    dropdown:
-
-      - title: Timeline Style
-        url: /changelog-timeline/
-
-      - title: Post Style
-        url: /changelog-posts/
-
 
 # Navbar right menu navigation links
 
 right:
 
-  - title: Changelog
-    url: /changelog-timeline/
-    button: primary-outline
-
-  - title: Contact
+  - title: Холбоо барих
     url: /contact/
     button: success
 

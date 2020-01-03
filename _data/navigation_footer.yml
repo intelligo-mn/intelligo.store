@@ -6,5 +6,9 @@
 - title: Блог
   url: /blog/
 
+- title: Өнөөдөр юу сурав
+  url: /changelog-timeline/
+  button: primary-outline
+
 - title: Холбоо барих
   url: /contact/

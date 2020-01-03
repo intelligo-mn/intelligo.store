@@ -6,7 +6,7 @@
 
 # Site title and description
 title:              Story Dev.mn
-description:        Documentation Jekyll theme.
+description:        Шинэ технологитой холбоотой блог.
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -70,8 +70,8 @@ social:
     instagram:      https://www.instagram.com/
     linkedin:       https://www.linkedin.com/in/turtuvshin
     pinterest:
-    twitter:        https://twitter.com/
-    vimeo:          https://vimeo.com/
+    twitter:        
+    vimeo:          
     youtube:
 
 # Share button
