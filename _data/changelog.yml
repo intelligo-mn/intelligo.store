@@ -7,6 +7,7 @@
   - Added Slideshow component
   - Added style support for radio and minusbox in Firefox
   - Removed class from Section component
+
 - title: Version 1.0.0
   label: STABLE
   date: Oct 21, 2017
