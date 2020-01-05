@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dairy
 
 Today I learned. Programming, Engish, Japanese, etc ...
@@ -6,3 +7,6 @@ Today I learned. Programming, Engish, Japanese, etc ...
 
 - [Англи хэл](/100dayofx/english)
 - [Програмчлал](/100dayofx/code)
+=======
+# hackerrank
+>>>>>>> hackerrank/master
