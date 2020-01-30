@@ -6,3 +6,8 @@ Today I learned. Programming, Engish, Japanese, etc ...
 
 - [Англи хэл](/100dayofx/english)
 - [Програмчлал](/100dayofx/code)
+
+
+## Бусад 
+
+[Intelligo Stats](./stats.md)
