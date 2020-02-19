@@ -32,8 +32,8 @@ Packages           | Version | Bundle Size | Downloads | CI Status
 
 | Domains                                | Registration | Next Due       |
 | -------------------------------------- | ------------ | -------------- |
-| [dev.mn](dev.mn)                       | ITools       | **2020-04-23** |
-| [chatbots.mn](chatbots.mn)             | ITools       | **2020-09-04** |
+| [dev.mn](dev.mn)                       | ITools       | **2020-09-04** |
+| [chatbots.mn](chatbots.mn)             | ITools       | **2020-04-23** |
 | [intelligo.systems](intelligo.systems) | GoDaddy      | **2021-01-29** |
 | [intelligo.js.org](intelligo.js.org)   | js.org       | Forever Free   |
 | [uptime.js.org](intelligo.js.org)      | js.org       | Forever Free   |
