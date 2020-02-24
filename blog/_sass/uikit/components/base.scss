@@ -42,9 +42,11 @@ $base-heading-font-weight:                       normal !default;
 $base-heading-color:                             $global-emphasis-color !default;
 $base-heading-text-transform:                    none !default;
 $base-heading-margin-top:                        $global-medium-margin !default;
-$base-h1-font-size:                              $global-xxlarge-font-size !default;
+$base-h1-font-size-m:                            $global-xxlarge-font-size !default;
+$base-h1-font-size:                              $base-h1-font-size-m * 0.85 !default;
 $base-h1-line-height:                            1.2 !default;
-$base-h2-font-size:                              $global-xlarge-font-size !default;
+$base-h2-font-size-m:                            $global-xlarge-font-size !default;
+$base-h2-font-size:                              $base-h2-font-size-m * 0.85 !default;
 $base-h2-line-height:                            1.3 !default;
 $base-h3-font-size:                              $global-large-font-size !default;
 $base-h3-line-height:                            1.4 !default;
@@ -114,12 +116,6 @@ body { margin: 0; }
  ========================================================================== */
 
 /*
- * Remove gaps in links underline in iOS 8+ and Safari 8+.
- */
-
-a { -webkit-text-decoration-skip: objects; }
-
-/*
  * Remove the outline on focused links when they are also active or hovered
  */
 
@@ -139,7 +135,9 @@ a,
 }
 
 a:hover,
-.uk-link:hover {
+.uk-link:hover,
+.uk-link-toggle:hover .uk-link,
+.uk-link-toggle:focus .uk-link {
     color: $base-link-hover-color;
     text-decoration: $base-link-hover-text-decoration;
     @if(mixin-exists(hook-base-link-hover)) {@include hook-base-link-hover();}
@@ -150,18 +148,16 @@ a:hover,
  ========================================================================== */
 
 /*
- * 1. Remove the bottom border in Chrome 57-.
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ * 1. Add the correct text decoration in Edge.
+ * 2. The shorthand declaration `underline dotted` is not supported in Safari.
  */
 
 abbr[title] {
     /* 1 */
-    border-bottom: none;
-    /* 2 */
-    text-decoration: underline;
     text-decoration: underline dotted;
+    /* 2 */
+    -webkit-text-decoration-style: dotted;
 }
-
 
 /*
  * Add the correct font weight in Chrome, Edge, and Safari.
@@ -257,13 +253,12 @@ svg,
 video { vertical-align: middle; }
 
 /*
- * Responsiveness
- * 1. Set a maximum width
- * 2. Auto scale the height. Only needed if `height` attribute is present
- * 2. Corrects `max-width` behavior if padding and border are used
+ * 1. Add responsiveness.
+ * 2. Auto-scale the height. Only needed if `height` attribute is present.
+ * 3. Corrects responsive `max-width` behavior if padding and border are used.
+ * 4. Exclude SVGs for IE11 because they don't preserve their aspect ratio.
  */
 
-audio,
 canvas,
 img,
 video {
@@ -275,11 +270,42 @@ video {
     box-sizing: border-box;
 }
 
+/* 4 */
+@supports (display: block) {
+
+   svg {
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+}
+
 /*
  * Hide the overflow in IE.
  */
 
 svg:not(:root) { overflow: hidden; }
+
+/*
+ * 1. Fix lazy loading images if parent element is set to `display: inline` and has `overflow: hidden`.
+ * 2. Hide `alt` text for lazy loading images.
+ * Note: Selector for background while loading img[data-src*='.jpg'][src*='data:image'] { background: grey; }
+ */
+
+img:not([src]) {
+    /* 1 */
+    min-width: 1px;
+    /* 2 */
+    visibility: hidden;
+}
+
+/*
+ * Iframe
+ * Remove border in all browsers
+ */
+
+iframe { border: 0; }
 
 
 /* Block elements
@@ -317,7 +343,12 @@ h2, .uk-h2,
 h3, .uk-h3,
 h4, .uk-h4,
 h5, .uk-h5,
-h6, .uk-h6 {
+h6, .uk-h6,
+.uk-heading-small,
+.uk-heading-medium,
+.uk-heading-large,
+.uk-heading-xlarge,
+.uk-heading-2xlarge {
     margin: 0 0 $base-margin-vertical 0;
     font-family: $base-heading-font-family;
     font-weight: $base-heading-font-weight;
@@ -332,7 +363,12 @@ h6, .uk-h6 {
 * + h3, * + .uk-h3,
 * + h4, * + .uk-h4,
 * + h5, * + .uk-h5,
-* + h6, * + .uk-h6 { margin-top: $base-heading-margin-top; }
+* + h6, * + .uk-h6,
+* + .uk-heading-small,
+* + .uk-heading-medium,
+* + .uk-heading-large,
+* + .uk-heading-xlarge,
+* + .uk-heading-2xlarge { margin-top: $base-heading-margin-top; }
 
 /*
  * Sizes
@@ -374,6 +410,14 @@ h6, .uk-h6 {
     @if(mixin-exists(hook-base-h6)) {@include hook-base-h6();}
 }
 
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    h1, .uk-h1 { font-size: $base-h1-font-size-m; }
+    h2, .uk-h2 { font-size: $base-h2-font-size-m; }
+
+}
+
 
 /* Lists
  ========================================================================== */
@@ -402,21 +446,17 @@ dd { margin-left: 0; }
  ========================================================================== */
 
 /*
- * 1. Add the correct box sizing and height in Firefox.
- * 2. Show the overflow in Edge and IE.
- * 3. Add the correct text-align in Edge and IE.
- * 4. Style
+ * 1. Show the overflow in Chrome, Edge and IE.
+ * 2. Add the correct text-align in Edge and IE.
+ * 3. Style
  */
 
 hr, .uk-hr {
     /* 1 */
-    box-sizing: content-box;
-    height: 0;
-    /* 2 */
     overflow: visible;
-    /* 3 */
+    /* 2 */
     text-align: inherit;
-    /* 4 */
+    /* 3 */
     margin: 0 0 $base-hr-margin-vertical 0;
     border: 0;
     border-top: $base-hr-border-width solid $base-hr-border;
@@ -485,12 +525,6 @@ pre code { font-family: $base-pre-font-family; }
 /* Selection pseudo-element
  ========================================================================== */
 
-::-moz-selection {
-    background: $base-selection-background;
-    color: $base-selection-color;
-    text-shadow: none;
-}
-
 ::selection {
     background: $base-selection-background;
     color: $base-selection-color;
@@ -524,30 +558,6 @@ summary { display: list-item; }
 template { display: none; }
 
 
-/* Iframe
- ========================================================================== */
-
-iframe { border: 0; }
-
-
-/* Prevent the 300ms delay for touchscreen interactions
- ========================================================================== */
-
-/*
- * Most browsers prevent the 300ms delay automatically for sites that use the `width=device-width` property.
- * For Safari on iOS 9.3+, IE 11 and Edge on desktops and IE 11 on Windows Phone 8.1 it must be applied manually.
- */
-
-a,
-area,
-button,
-input,
-label,
-select,
-summary,
-textarea { touch-action: manipulation; }
-
-
 /* Pass media breakpoints to JS
  ========================================================================== */
 
@@ -555,11 +565,17 @@ textarea { touch-action: manipulation; }
  * Breakpoints
  */
 
-.var-media-s::before  { content: '#{$breakpoint-small}'; }
-.var-media-m::before  { content: '#{$breakpoint-medium}'; }
-.var-media-l::before  { content: '#{$breakpoint-large}'; }
-.var-media-xl::before { content: '#{$breakpoint-xlarge}'; }
+.uk-breakpoint-s::before  { content: '#{$breakpoint-small}'; }
+.uk-breakpoint-m::before  { content: '#{$breakpoint-medium}'; }
+.uk-breakpoint-l::before  { content: '#{$breakpoint-large}'; }
+.uk-breakpoint-xl::before { content: '#{$breakpoint-xlarge}'; }
 
+:root {
+    --uk-breakpoint-s: #{$breakpoint-small};
+    --uk-breakpoint-m: #{$breakpoint-medium};
+    --uk-breakpoint-l: #{$breakpoint-large};
+    --uk-breakpoint-xl: #{$breakpoint-xlarge};
+}
 
 // Hooks
 // ========================================================================

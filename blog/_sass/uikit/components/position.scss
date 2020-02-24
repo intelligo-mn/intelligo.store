@@ -43,11 +43,19 @@ $position-large-margin-l:                               50px !default;
 /* Directions
  ========================================================================== */
 
+/*
+ * 1. Prevent content overflow if `max-width: 100%` is used inside position container.
+ */
+
 [class*='uk-position-top'],
 [class*='uk-position-bottom'],
 [class*='uk-position-left'],
 [class*='uk-position-right'],
-[class*='uk-position-center'] { position: absolute !important; }
+[class*='uk-position-center'] {
+    position: absolute !important;
+    /* 1 */
+    max-width: 100%;
+}
 
 
 /* Edges
@@ -104,8 +112,7 @@ $position-large-margin-l:                               50px !default;
 
 /*
  * Center
- * 1. Fix text wrapping if content is larger than 50% of the container (Not working in Firefox)
- * 2. Fix text wrapping for Firefox
+ * 1. Fix text wrapping if content is larger than 50% of the container.
  */
 
 .uk-position-center {
@@ -113,9 +120,7 @@ $position-large-margin-l:                               50px !default;
     left: 50%;
     transform: translate(-50%,-50%);
     /* 1 */
-    display: table;
-    /* 2 */
-    width: -moz-max-content;
+    width: max-content;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -146,9 +151,7 @@ $position-large-margin-l:                               50px !default;
     left: 50%;
     transform: translateX(-50%);
     /* 1 */
-    display: table;
-    /* 2 */
-    width: -moz-max-content;
+    width: max-content;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -188,7 +191,10 @@ $position-large-margin-l:                               50px !default;
  * Small
  */
 
-.uk-position-small { margin: $position-small-margin; }
+.uk-position-small {
+    max-width: unquote('calc(100% - (#{$position-small-margin} * 2))');
+    margin: $position-small-margin;
+}
 
 .uk-position-small.uk-position-center { transform: translate(-50%, -50%) translate(-$position-small-margin, (-$position-small-margin)); }
 
@@ -202,7 +208,10 @@ $position-large-margin-l:                               50px !default;
  * Medium
  */
 
-.uk-position-medium { margin: $position-medium-margin; }
+.uk-position-medium {
+    max-width: unquote('calc(100% - (#{$position-medium-margin} * 2))');
+    margin: $position-medium-margin;
+}
 
 .uk-position-medium.uk-position-center { transform: translate(-50%, -50%) translate(-$position-medium-margin, (-$position-medium-margin)); }
 
@@ -216,7 +225,10 @@ $position-large-margin-l:                               50px !default;
  * Large
  */
 
-.uk-position-large { margin: $position-large-margin; }
+.uk-position-large {
+    max-width: unquote('calc(100% - (#{$position-large-margin} * 2))');
+    margin: $position-large-margin;
+}
 
 .uk-position-large.uk-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin, (-$position-large-margin)); }
 
@@ -229,7 +241,10 @@ $position-large-margin-l:                               50px !default;
 /* Desktop and bigger */
 @media (min-width: $breakpoint-large) {
 
-    .uk-position-large { margin: $position-large-margin-l; }
+    .uk-position-large {
+        max-width: unquote('calc(100% - (#{$position-large-margin-l} * 2))');
+        margin: $position-large-margin-l;
+    }
 
     .uk-position-large.uk-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin-l, (-$position-large-margin-l)); }
 

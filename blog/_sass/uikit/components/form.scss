@@ -71,7 +71,11 @@ $form-width-large:                               500px !default;
 
 $form-select-padding-right:                      20px !default;
 $form-select-icon-color:                         $global-color !default;
+$form-select-option-color:                       #444 !default;
 $form-select-disabled-icon-color:                $global-muted-color !default;
+
+$form-datalist-padding-right:                    20px !default;
+$form-datalist-icon-color:                       $global-color !default;
 
 $form-radio-size:                                16px !default;
 $form-radio-margin-top:                          -4px !default;
@@ -96,11 +100,11 @@ $form-horizontal-controls-margin-left:           215px !default;
 $form-horizontal-controls-text-padding-top:      7px !default;
 
 $form-icon-width:                                $form-height !default;
-$form-icon-font-size:                            $global-font-size !default;
 $form-icon-color:                                $global-muted-color !default;
 $form-icon-hover-color:                          $global-color !default;
 
 $internal-form-select-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%201%209%206%2015%206%22%20%2F%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%2013%209%208%2015%208%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
+$internal-form-datalist-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%2012%208%206%2016%206%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
 $internal-form-radio-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22#000%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
 $internal-form-checkbox-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2211%22%20viewBox%3D%220%200%2014%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22#000%22%20points%3D%2212%201%205%207.5%202%205%201%205.5%205%2010%2013%201.5%22%20%2F%3E%0A%3C%2Fsvg%3E%0A" !default;
 $internal-form-checkbox-indeterminate-image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22#000%22%20x%3D%223%22%20y%3D%228%22%20width%3D%2210%22%20height%3D%221%22%20%2F%3E%0A%3C%2Fsvg%3E" !default;
@@ -299,10 +303,10 @@ $internal-form-checkbox-indeterminate-image: "data:image/svg+xml;charset=UTF-8,%
  * Placeholder
  */
 
-.uk-input:-ms-input-placeholder { color: $form-placeholder-color !important; }
+.uk-input::-ms-input-placeholder { color: $form-placeholder-color !important; }
 .uk-input::placeholder { color: $form-placeholder-color; }
 
-.uk-textarea:-ms-input-placeholder { color: $form-placeholder-color !important; }
+.uk-textarea::-ms-input-placeholder { color: $form-placeholder-color !important; }
 .uk-textarea::placeholder { color: $form-placeholder-color; }
 
 
@@ -401,6 +405,7 @@ select.uk-form-width-xsmall { width: ($form-width-xsmall + 25px); }
  * 1. Remove default style. Also works in Firefox
  * 2. Style
  * 3. Remove default style in IE 10/11
+ * 4. Set `color` for options in the select dropdown, because the inherited `color` might be too light.
  */
 
 .uk-select:not([multiple]):not([size]) {
@@ -417,11 +422,34 @@ select.uk-form-width-xsmall { width: ($form-width-xsmall + 25px); }
 /* 3 */
 .uk-select:not([multiple]):not([size])::-ms-expand { display: none; }
 
+/* 4 */
+.uk-select:not([multiple]):not([size]) option { color: $form-select-option-color; }
+
 /*
  * Disabled
  */
 
 .uk-select:not([multiple]):not([size]):disabled { @include svg-fill($internal-form-select-image, "#000", $form-select-disabled-icon-color); }
+
+
+/* Datalist
+ ========================================================================== */
+
+/*
+ * 1. Remove default style in Chrome
+ */
+
+ .uk-input[list] {
+    padding-right: $form-datalist-padding-right;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+.uk-input[list]:hover,
+.uk-input[list]:focus { @include svg-fill($internal-form-datalist-image, "#000", $form-datalist-icon-color); }
+
+/* 1 */
+.uk-input[list]::-webkit-calendar-picker-indicator { display: none; }
 
 
 /* Radio and checkbox
@@ -687,7 +715,7 @@ select.uk-form-width-xsmall { width: ($form-width-xsmall + 25px); }
  * Input padding
  */
 
-.uk-form-icon:not(.uk-form-icon-flip) + .uk-input { padding-left: $form-icon-width !important; }
+.uk-form-icon:not(.uk-form-icon-flip) ~ .uk-input { padding-left: $form-icon-width !important; }
 
 /*
  * Position modifier
@@ -698,7 +726,7 @@ select.uk-form-width-xsmall { width: ($form-width-xsmall + 25px); }
     left: auto;
 }
 
-.uk-form-icon-flip + .uk-input { padding-right: $form-icon-width !important; }
+.uk-form-icon-flip ~ .uk-input { padding-right: $form-icon-width !important; }
 
 
 // Hooks
@@ -738,12 +766,17 @@ $inverse-form-placeholder-color:                $inverse-global-muted-color !def
 
 $inverse-form-select-icon-color:                $inverse-global-color !default;
 
+$inverse-form-datalist-icon-color:              $inverse-global-color !default;
+
 $inverse-form-radio-background:                 darken($inverse-global-muted-background, 5%) !default;
 
 $inverse-form-radio-checked-background:         $inverse-global-primary-background !default;
 $inverse-form-radio-checked-icon-color:         $inverse-global-inverse-color !default;
 
 $inverse-form-radio-checked-focus-background:   darken($inverse-global-primary-background, 10%) !default;
+
+$inverse-form-icon-color:                       $inverse-global-muted-color !default;
+$inverse-form-icon-hover-color:                 $inverse-global-color !default;
 
 
 
