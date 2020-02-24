@@ -11,3 +11,4 @@ Today I learned. Programming, Engish, Japanese, etc ...
 ## Бусад 
 
 [Intelligo Stats](./stats.md)
+d
