@@ -1,0 +1,28 @@
+# GitHub Actions docs
+# https://help.github.com/en/articles/about-github-actions
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+name: devmn
+
+on: [push]
+
+jobs:
+  build:
+    # Machine environment:
+    # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
+    # We specify the Node.js version manually below, and use versioned Chrome from Puppeteer.
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: intelligo-systems/intelligo-actions@v1
+        with:
+          packages: '["@devmn/stepper", "@devmn/event-manager", "@devmn/image-viewer", "@devmn/multi-select", "@devmn/charts"]'
+      
