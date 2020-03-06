@@ -5,7 +5,7 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              Story Dev.mn
+title:              Notes Dev.mn
 description:        Шинэ технологитой холбоотой блог.
 lang:               en
 
@@ -16,7 +16,7 @@ baseurl:            ""
 permalink:          /:title/
 
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://story.dev.mn"
+url:                "https://notes.dev.mn"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
 logo:               
