@@ -10,4 +10,4 @@ Today I learned. Programming, Engish, Japanese, etc ...
 
 ## Бусад 
 
-[Intelligo Stats](./stats.md)
+- [Intelligo Stats](./notes/stats.md)
