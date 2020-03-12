@@ -23,4 +23,4 @@ Today I learned. Programming, Engish, Japanese, etc ...
 | № | Огноо      | Тэмдэглэл                        | English | Programming | Learning | :alarm_clock: |
 |---|------------|----------------------------------|-------|-------------|----------|--------------|
 | 2 |            |                                  |       |             |          |              |
-| 1 | 2020/03/12 | Өдөр бүр хийх зүйлсийн тэмдэглэл | :heavy_check_mark: | :heavy_check_mark:| :heavy_check_mark:| **07:50**        |
+| 1 | 2020/03/12 | Тухайн өдрийн тэмдэглэл | :heavy_check_mark: | :heavy_check_mark:| :heavy_check_mark:| **07:50**        |
