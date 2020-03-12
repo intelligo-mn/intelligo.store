@@ -1,17 +1,3 @@
-# Dairy
-
-Today I learned. Programming, Engish, Japanese, etc ...
-
-## 100 өдөр шинэ зүйл сурах
-
-- [Англи хэл](/100dayofx/english)
-- [Програмчлал](/100dayofx/code)
-
-
-## Бусад 
-
-- [Intelligo Stats](./notes/stats.md)
-
 ## Та өнөөдөр юу сурав
 
 Би өдөр бүр өглөө эрт боссон, англи хэл болон шинэ зүйл сурсан эсэхээ тэмдэглэж явах болно.
