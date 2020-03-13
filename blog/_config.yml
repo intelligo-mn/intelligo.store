@@ -5,7 +5,7 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              Notes Dev.mn
+title:              Dev notes
 description:        Програмчлалын технологиудтай холбоотой блог.
 lang:               en
 
@@ -27,23 +27,23 @@ navbar:
   
 # Default author settings
 author:
-    name:           Pete Seth
-    title:          Lead Developer  
+    name:           Turtuvshin Byambaa
+    title:          Software Engineer Developer  
     avatar:         avatar-tom.png
 
 # Author settings, displayed on post and doc pages if front matter references author name e.g. author: peter
 authors:
-    john:
-      name:         John Brown
-      title:        Support     
+    turtuvshin:
+      name:         Turtuvshin Byambaa
+      title:        Software Engineer     
       avatar:       avatar-john.png
     evan:
       name:         Evan Wells
       title:        Support    
       avatar:       avatar-evan.png
-    sara:
-      name:         Sara Galen
-      title:        Lead Developer     
+    doljko:
+      name:         Doljinsuren Enkhbayar
+      title:        Software Engineer   
       avatar:       avatar-sara.png
     alex:
       name:         Alex Koch
