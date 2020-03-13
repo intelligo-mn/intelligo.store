@@ -1,21 +1,35 @@
-In the current version this is now available in @angular/router.
+---
+title: Angular route хооронд утга дамжуулах
+author: turtuvshin
+categories: [angular, router]
+---
 
-Angular 7.2 introduces route state to NavigationExtras, which takes an object literal similar to queryParams, etc.
+Angular route солигдоход жижиг хэмжээний датаг param зэргээд дамжуулж шийдэж байсан бөгөөд энэнээн өөр аятайхан шийдэл хайж яваад
+Angular 7.2 хувилбараас хойш route state ээр утга дамжуулах боломжтой болсон олж мэдэв.
 
-The state can be set imperatively:
-
+State ийг router navigate дээр дараах байдлаар бичиж болно:
+```
 this.router.navigate(['example'], { 
   state: { example: 'data' } 
 });
-or declaratively:
 
+```
+
+эсвэл html template дээр:
+
+```
 <a routerLink="/example" [state]="{ example: 'data' }">
   Hello World
 </a>
-And read in a top-level component using:
+```
 
+Дамжуулсан утгаа уншиж авахдаа:
+
+```
 this.router.getCurrentNavigation().extras.state;
-or within child components using:
+```
+эсвэл:
 
+```
 window.history.state
-Added a working example of it being used on
+```
