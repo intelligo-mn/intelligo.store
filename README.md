@@ -9,6 +9,6 @@
 | № | Огноо      | Тэмдэглэл                        | English | Programming | Learning | :alarm_clock: |
 |---|------------|----------------------------------|-------|-------------|----------|--------------|
 | 4 |            |                                  |       |             |          |              |
-| 3 | 2020/03/13 |  |  | :heavy_check_mark:| :heavy_check_mark:| **08:30** :poop:|
-| 2 | 2020/03/12 |  |  | :heavy_check_mark:| | **06:50** :poop: |
-| 1 | 2020/03/11 |  |  | :heavy_check_mark:| :heavy_check_mark:| **07:50** :poop:|
+| 3 | 2020/03/13 | Батбаяртай хамтарч ажиллах маргааш гэрээ хийх тухай ярьсан |  | :heavy_check_mark:| :heavy_check_mark:| **08:30** :poop:|
+| 2 | 2020/03/12 | Нараатай finance.dev.mn үргэлжлүүлж хөгжүүлэх тухай тохиролцож уулзсан |  | :heavy_check_mark:| | **07:50** :poop: |
+| 1 | 2020/03/11 | chatbots.mn backend суурь архитектур гаргасан |  | :heavy_check_mark:| :heavy_check_mark:| **07:50** :poop:|
