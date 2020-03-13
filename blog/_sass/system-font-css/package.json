@@ -1,27 +1,32 @@
 {
-  "_from": "system-font-css@^2.0.1",
+  "_args": [
+    [
+      "system-font-css@2.0.2",
+      "D:\\learning-projects\\dairy\\blog"
+    ]
+  ],
+  "_from": "system-font-css@2.0.2",
   "_id": "system-font-css@2.0.2",
   "_inBundle": false,
   "_integrity": "sha512-zK36lpja4NIi4Po99bXReeqeDcM1sW4hTKJt5Mby/IXX6kLSwjkQ4pZThFdgb/jDwfRsBvxxVG+VekP1sTdF0w==",
   "_location": "/system-font-css",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "system-font-css@^2.0.1",
+    "raw": "system-font-css@2.0.2",
     "name": "system-font-css",
     "escapedName": "system-font-css",
-    "rawSpec": "^2.0.1",
+    "rawSpec": "2.0.2",
     "saveSpec": null,
-    "fetchSpec": "^2.0.1"
+    "fetchSpec": "2.0.2"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/system-font-css/-/system-font-css-2.0.2.tgz",
-  "_shasum": "88c4ae30eda94bc60705cba7d66c8c822f3c47db",
-  "_spec": "system-font-css@^2.0.1",
-  "_where": "/Volumes/Local Disk/Projects/dairy/blog",
+  "_spec": "2.0.2",
+  "_where": "D:\\learning-projects\\dairy\\blog",
   "author": {
     "name": "Jonathan Neal",
     "email": "jonathantneal@hotmail.com",
@@ -30,7 +35,6 @@
   "bugs": {
     "url": "https://github.com/jonathantneal/system-font-css/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Zach Leatherman",
@@ -41,7 +45,6 @@
   "dependencies": {
     "cpr": "^2.2.0"
   },
-  "deprecated": false,
   "description": "Use the native system font of the OS running the browser",
   "devDependencies": {},
   "engines": {
