@@ -7,7 +7,6 @@
 - :man_technologist: Өдөрт 1 ээс багагүй цаг өөрийгөө хөгжүүлж код бичих :heavy_check_mark:
 - :open_book: Өдөрт 1 ээс багагүй цаг шинэ зүйл судлах :heavy_check_mark:
 - :hourglass: Өдөрт 6 аас багагүй цаг төвлөрсөн 
-
 > Дээрх зүйлсийн 3 болон түүнээс ихийг нь хийсэн бол :triangular_flag_on_post: 3 аас бага бол :poop:
 
 | №   | Огноо      | Тэмдэглэл                                                              | :earth_americas: | :man_technologist: | :open_book:        | :alarm_clock: | :hourglass: |        |
