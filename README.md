@@ -9,6 +9,6 @@
 | № | Огноо      | Тэмдэглэл                        | English | Programming | Learning | :alarm_clock: |
 |---|------------|----------------------------------|-------|-------------|----------|--------------|
 | 4 |            |                                  |       |             |          |              |
-| 3 | 2020/03/13 |  |  | :heavy_check_mark:| :heavy_check_mark:| **08:30** :triangular_flag_on_post:|
-| 2 | 2020/03/12 |  |  | :heavy_check_mark:| | **06:50** :triangular_flag_on_post:|
+| 3 | 2020/03/13 |  |  | :heavy_check_mark:| :heavy_check_mark:| **08:30** :poop:|
+| 2 | 2020/03/12 |  |  | :heavy_check_mark:| | **06:50** :poop: |
 | 1 | 2020/03/11 |  |  | :heavy_check_mark:| :heavy_check_mark:| **07:50** :poop:|
