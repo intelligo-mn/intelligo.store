@@ -5,7 +5,7 @@ categories: [angular, router]
 ---
 
 Angular route солигдоход жижиг хэмжээний датаг param зэргээд дамжуулж шийдэж байсан бөгөөд энэнээн өөр аятайхан шийдэл хайж яваад
-Angular 7.2 хувилбараас хойш route state ээр утга дамжуулах боломжтой болсон олж мэдэв.
+Angular 7.2 хувилбараас хойш [route state](https://angular.io/guide/router#router-state) ээр утга дамжуулах боломжтой болсон олж мэдэв.
 
 State ийг router navigate дээр дараах байдлаар бичиж болно:
 ```
@@ -33,3 +33,5 @@ this.router.getCurrentNavigation().extras.state;
 ```
 window.history.state
 ```
+
+
