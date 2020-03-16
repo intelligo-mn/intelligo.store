@@ -20,7 +20,7 @@
 | 6   | 2020/03/11 | [chatbots.mn architecture](#6-дахь-өдөр-2020-03-11)   |                  | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | ~05:39~ | :poop: |
 | 5   | 2020/03/10 | [N/A](#5-дахь-өдөр-2020-03-10)                        |                  | :heavy_check_mark: |                    | ~**07:50**~   | ~05:55~ | :poop: |
 | 4   | 2020/03/06 | [rxjs.dev.mn](#4-дахь-өдөр-2020-03-06)                |                  | :heavy_check_mark: |                    | ~**07:50**~   | ~01:09~ | :poop: |
-| 3   | 2020/03/05 | [@devmn/charts](#3-дахь-өдөр-2020-03-05)              |                  | :heavy_check_mark: |                    | N/A   | **09:55** | :poop: |
+| 3   | 2020/03/05 | [@devmn/charts](#3-дахь-өдөр-2020-03-05)              |                  | :heavy_check_mark: |                    | N/A   | <span style="color:green">**09:55**</span> | :poop: |
 
 # Тэмдэглэл
 
