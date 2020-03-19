@@ -12,7 +12,7 @@
 
 | №   | Огноо      | Focus                                                 | :earth_americas: | :man_technologist: | :open_book:        | :alarm_clock: | :hourglass: |        |
 | --- | ---------- | ----------------------------------------------------- | ---------------- | ------------------ | ------------------ | ------------- | ----------- | ------ |
-| 14  | 2020/03/19 | [finance.dev.mn](#14-дахь-өдөр-2020-03-19) |                  | :heavy_check_mark: |                    | ~**08:05**~   | ~03:42~ | :poop: |
+| 14  | 2020/03/19 | [finance.dev.mn](#14-дахь-өдөр-2020-03-19) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:| ~**08:05**~   | **07:08** | :triangular_flag_on_post: |
 | 13  | 2020/03/18 | [finance.dev.mn](#13-дахь-өдөр-2020-03-18) |                  | :heavy_check_mark: | :heavy_check_mark:| ~**07:50**~   | **07:01** | :triangular_flag_on_post: |
 | 12  | 2020/03/17 | [finance.dev.mn](#12-дахь-өдөр-2020-03-17) |                  | :heavy_check_mark: |                    | ~**08:05**~   | ~03:42~ | :poop: |
 | 11  | 2020/03/16 | [finance.dev.mn](#11-дахь-өдөр-2020-03-16) |                  | :heavy_check_mark: |                    | ~**08:05**~   | **11:08** | :poop: |
