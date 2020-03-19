@@ -39,7 +39,7 @@
 
 # Intelligo projects
 
-| Date          | chatbots.mn | jisho.dev.mn | finance.dev.mn | grocery.dev.mn | rxjs.dev.mn | intelligo.systems | Total |
+| Date          | chatbots.mn | jisho | finance | grocery | rxjs | intelligo | Total |
 | ------------- | ----------- | ------------ | -------------- | -------------- | ----------- | ----------------- | ----- |
 | **Life time** | **03:30**   | **00:09**    | **12:48**      |                | **01:51**   | **00:59**         |       |
 | 2020-03-20    |             |              |                |                |             |                   |       |
