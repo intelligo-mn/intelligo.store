@@ -27,7 +27,7 @@
 
 | Milestone    | Call Center | QMS   | Corporate | Нийт                    |
 | ------------ | ----------- | ----- | --------- | ----------------------- |
-| R12S1 /R7S1/ | 3-4         | 10-27 | 5-3       | 18 task - 24 estimate |
+| R12S1 /R7S1/ | 3-4         | 10-27 | 5-3       | 18 task - 34 estimate |
 | R12S2 /R7S2/ | 2-2         | 3-6   | 10-11.5   | 15 task - 19.5 estimate |
 | R12S3 /R7S3/ |             | 3-6   | 14-14     | 17 task - 20 estimate   |
 | R12S4 /R7S4/ |             |       |           |               |
