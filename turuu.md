@@ -126,4 +126,4 @@
 
 [11]: #11-дахь-өдөр-2020-03-16
 [chb]: https://img.shields.io/badge/backend-chatbots.mn-green?logo=typescript
-[chf]: https://img.shields.io/badge/frontend-chatbots.mn-success?logo=angular
+[chf]: https://img.shields.io/badge/chatbots.mn-%23dd0031?style=for-the-badge&logo=angular
