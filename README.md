@@ -1,2 +1,3 @@
-# intelligo-systems.github.io
+# cdn.dev.mn
+
 CDN for Intelligo Systems
