@@ -66,7 +66,7 @@
 ![][www-chatbot]
 
 [finance.dev.mn]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
-[codegen.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
+[notes.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
 [codegen.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
 [codegen.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
 
