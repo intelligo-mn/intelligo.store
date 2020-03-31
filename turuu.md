@@ -50,32 +50,21 @@
 **Холбоос:** [@devmn/charts](https://www.npmjs.com/package/@devmn/charts)
 
 [11]: #11-дахь-өдөр-2020-03-16
-[chb]: https://img.shields.io/badge/backend-chatbots.mn-green?logo=typescript
-[chf]: https://img.shields.io/badge/chatbots.mn-%23dd0031?style=flat-square&logo=angular
 
-![][finance.dev.mn]
+![][marketm-dev]
 
-![][codegen.dev.mn]
-
-![][api-chatbot]
-
-![][stu-chatbot]
-
-![][sim-chatbot]
-
-![][www-chatbot]
-
-[finance.dev.mn]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
-[notes.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
-[codegen.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
-[codegen.dev.mn]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
+[finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
+[finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=java
+[notes-dev]: https://img.shields.io/badge/notes-dev.mn-4285f4?style=flat-square&logo=angular
+[codegen-dev]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
+[marketf-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=angular
+[marketm-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=flutter
+[marketb-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=typescript
 
 [api-chatbot]: https://img.shields.io/badge/api-chatbots.mn-007acc?style=flat-square&logo=typescript
-[stu-chatbot]: https://img.shields.io/badge/stu-chatbots.mn-007acc?style=flat-square&logo=angular
-[sim-chatbot]: https://img.shields.io/badge/sim-chatbots.mn-007acc?style=flat-square&logo=angular
+[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
+[sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
 [www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular
 
-
-[fdevng]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
 
 
