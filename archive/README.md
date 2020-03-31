@@ -152,10 +152,10 @@
 [vue-dev]: https://img.shields.io/badge/vue-dev.mn-4285f4?style=flat-square&logo=vue.js
 [rxjs-dev]: https://img.shields.io/badge/rxjs-dev.mn-4285f4?style=flat-square&logo=typescript
 
-[api-chatbot]: https://img.shields.io/badge/backend-chatbots.mn-007acc?style=flat-square&logo=node.js&logoWidth=18
-[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=32
+[api-chatbot]: https://img.shields.io/badge/backend-chatbots.mn-007acc?style=flat-square&logo=node.js
+[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
 [sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
-[www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=37
+[www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular
 
 
 [@devmn/charts]: https://img.shields.io/badge/@devmn/charts-007acc?style=flat-square&logo=npm
