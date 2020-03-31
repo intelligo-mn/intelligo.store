@@ -51,11 +51,18 @@
 
 [11]: #11-дахь-өдөр-2020-03-16
 
+
+
 ## Badges 
 
-![][finf-dev] ![][finb-dev] ![][marketf-dev] ![][marketm-dev] ![][marketb-dev] ![][jishof-dev] ![][jishom-dev] ![][jishob-dev] 
-![][codegen-dev] ![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
+![][finf-dev] ![][finb-dev] 
+![][marketf-dev] ![][marketm-dev] ![][marketb-dev] 
+![][jishof-dev] ![][jishom-dev] ![][jishob-dev] 
+![][codegen-dev] 
+![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
+![][@devmn/charts] ![][@devmn/event-emitter] ![][@devmn/image-viewer] ![][@devmn/multi-select] ![][@devmn/stepper]
 
+[devmn]: https://img.shields.io/badge/www.dev.mn-4285f4?style=flat-square&logo=typescript
 [finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
 [finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=spring
 [notes-dev]: https://img.shields.io/badge/notes-dev.mn-4285f4?style=flat-square&logo=angular
@@ -66,11 +73,22 @@
 [jishof-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=angular
 [jishom-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=flutter
 [jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=node.js
+[vue-dev]: https://img.shields.io/badge/vue-dev.mn-4285f4?style=flat-square&logo=vue.js
+[rxjs-dev]: https://img.shields.io/badge/rxjs-dev.mn-4285f4?style=flat-square&logo=typescript
 
-[api-chatbot]: https://img.shields.io/badge/api-chatbots.mn-007acc?style=flat-square&logo=node.js
-[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
+[api-chatbot]: https://img.shields.io/badge/backend-chatbots.mn-007acc?style=flat-square&logo=node.js&logoWidth=18
+[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=32
 [sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
-[www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular
+[www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=37
 
+
+[@devmn/charts]: https://img.shields.io/badge/@devmn/charts-007acc?style=flat-square&logo=npm
+[@devmn/event-emitter]: https://img.shields.io/badge/@devmn/event--emitter-007acc?style=flat-square&logo=npm
+[@devmn/image-viewer]: https://img.shields.io/badge/@devmn/image--viewer-007acc?style=flat-square&logo=npm
+[@devmn/multi-select]: https://img.shields.io/badge/@devmn/multi--select-007acc?style=flat-square&logo=npm
+[@devmn/stepper]: https://img.shields.io/badge/@devmn/stepper-007acc?style=flat-square&logo=npm
+
+
+[heroku]: https://img.shields.io/badge/heroku-DEPLOYED-40a6bc?style=flat&logo=heroku&labelColor=0d1d25
 
 
