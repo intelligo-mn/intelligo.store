@@ -62,12 +62,12 @@
 [codegen-dev]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
 [marketf-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=angular
 [marketm-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=flutter
-[marketb-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=typescript
+[marketb-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=node.js
 [jishof-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=angular
 [jishom-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=flutter
-[jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=typescript
+[jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=node.js
 
-[api-chatbot]: https://img.shields.io/badge/api-chatbots.mn-007acc?style=flat-square&logo=typescript
+[api-chatbot]: https://img.shields.io/badge/api-chatbots.mn-007acc?style=flat-square&logo=node.js
 [stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
 [sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
 [www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular
