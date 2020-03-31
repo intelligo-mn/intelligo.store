@@ -51,7 +51,10 @@
 
 [11]: #11-дахь-өдөр-2020-03-16
 
-![][marketm-dev]
+## Badges 
+
+![][finf-dev] ![][finb-dev] ![][marketf-dev] ![][marketm-dev] ![][marketb-dev] ![][jishof-dev] ![][jishom-dev] ![][jishob-dev] 
+![][codegen-dev] ![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
 
 [finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
 [finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=java
@@ -60,6 +63,9 @@
 [marketf-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=angular
 [marketm-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=flutter
 [marketb-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=typescript
+[jishof-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=angular
+[jishom-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=flutter
+[jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=typescript
 
 [api-chatbot]: https://img.shields.io/badge/api-chatbots.mn-007acc?style=flat-square&logo=typescript
 [stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
