@@ -33,7 +33,7 @@
 | 7    | 2020/03/12 | ![][finf-dev]      |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~04:09~     | :poop:                    |
 | 6    | 2020/03/11 | ![][api-chatbot]                                       |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | ~05:39~     | :poop:                    |
 | 5    | 2020/03/10 |                                                |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~05:55~     | :poop:                    |
-| 4    | 2020/03/06 | ![][rxhs-dev]         |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~01:09~     | :poop:                    |
+| 4    | 2020/03/06 | ![][rxjs-dev]         |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~01:09~     | :poop:                    |
 | 3    | 2020/03/05 | ![][@devmn/charts]       |                    | :heavy_check_mark: |                    | N/A           | **09:55**   | :triangular_flag_on_post: |
 | 2    | 2020/03/12 | ![][jishob-dev]        |                    | :heavy_check_mark: |                    | N/A           | N/A         | N/A                       |
 | 1    | 2020/03/11 | [projects monorepo](1-дэх-өдөр-2020-02-26)     |                    | :heavy_check_mark: | :heavy_check_mark: | N/A           | N/A         | N/A                       |
