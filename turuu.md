@@ -57,7 +57,7 @@
 ![][codegen-dev] ![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
 
 [finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
-[finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=java
+[finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=spring
 [notes-dev]: https://img.shields.io/badge/notes-dev.mn-4285f4?style=flat-square&logo=angular
 [codegen-dev]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
 [marketf-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=angular
