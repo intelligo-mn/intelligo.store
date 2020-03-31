@@ -11,31 +11,31 @@
 
 | №    | Огноо      | Тэмдэглэл                                      | :earth_americas:   | :man_technologist: | :open_book:        | :alarm_clock: | :hourglass: |                           |
 | ---- | ---------- | ---------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------- | ----------- | ------------------------- |
-| 26   | 2020/03/31 | ![][fdev]                                      |                    | :heavy_check_mark: |                    | ~**07:50**~   | **00:53**   | :poop:                    |
-| 25   | 2020/03/30 | ![][fdev]                                      |                    | :heavy_check_mark: |                    | ~**06:50**~   | ~03:59~     | :poop:                    |
+| 26   | 2020/03/31 | ![][finf-dev]                                      |                    | :heavy_check_mark: |                    | ~**07:50**~   | **00:53**   | :poop:                    |
+| 25   | 2020/03/30 | ![][finf-dev]                                      |                    | :heavy_check_mark: |                    | ~**06:50**~   | ~03:59~     | :poop:                    |
 | 24   | 2020/03/29 |                                                |                    |                    |                    | ~**07:50**~   | ~00:00~     | :poop:                    |
 | 23   | 2020/03/28 |                                                |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~00:53~     | :poop:                    |
 | 22   | 2020/03/27 |                                                |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~05:46~     | :poop:                    |
 | 21   | 2020/03/26 |                                                |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~04:54~     | :poop:                    |
 | 20   | 2020/03/25 |                                                |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | **08:08**   | :triangular_flag_on_post: |
-| 19   | 2020/03/24 | ![][fdev]                                      |                    |                    | :heavy_check_mark: | ~**07:50**~   | ~05:53~     | :poop:                    |
-| 18   | 2020/03/23 | ![][chf]                                       |                    | :heavy_check_mark: | :heavy_check_mark: | ~**10:00**~   | **10:26**   | :triangular_flag_on_post: |
+| 19   | 2020/03/24 | ![][finf-dev]                                     |                    |                    | :heavy_check_mark: | ~**07:50**~   | ~05:53~     | :poop:                    |
+| 18   | 2020/03/23 | ![][stu-chatbot]                                       |                    | :heavy_check_mark: | :heavy_check_mark: | ~**10:00**~   | **10:26**   | :triangular_flag_on_post: |
 | 17   | 2020/03/22 |                                                |                    |                    | :heavy_check_mark: | ~**12:00**~   | ~02:10~     | :poop:                    |
 | 16   | 2020/03/21 | [route state](#16-дахь-өдөр-2020-03-21)        |                    |                    |                    | ~**12:00**~   | ~01:43~     | :poop:                    |
-| 15   | 2020/03/20 | [finance.dev.mn](#15-дахь-өдөр-2020-03-20)     |                    | :heavy_check_mark: |                    | ~**08:05**~   | **07:17**   | :poop:                    |
-| 14   | 2020/03/19 | [finance.dev.mn](#14-дахь-өдөр-2020-03-19)     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | ~**08:05**~   | **07:08**   | :triangular_flag_on_post: |
-| 13   | 2020/03/18 | [finance.dev.mn](#13-дахь-өдөр-2020-03-18)     |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | **07:01**   | :triangular_flag_on_post: |
-| 12   | 2020/03/17 | [finance.dev.mn](#12-дахь-өдөр-2020-03-17)     |                    | :heavy_check_mark: |                    | ~**08:05**~   | ~03:42~     | :poop:                    |
-| [11] | 2020/03/16 | [finance.dev.mn](#11-дахь-өдөр-2020-03-16)     |                    | :heavy_check_mark: |                    | ~**08:05**~   | **11:08**   | :poop:                    |
-| 10   | 2020/03/15 | [**finance.dev.mn**](#10-дахь-өдөр-2020-03-15) |                    | :heavy_check_mark: |                    | ~**11:30**~   | ~03:12~     | :poop:                    |
+| 15   | 2020/03/20 | ![][finf-dev]     |                    | :heavy_check_mark: |                    | ~**08:05**~   | **07:17**   | :poop:                    |
+| 14   | 2020/03/19 | ![][finf-dev]    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | ~**08:05**~   | **07:08**   | :triangular_flag_on_post: |
+| 13   | 2020/03/18 | ![][finf-dev]   |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | **07:01**   | :triangular_flag_on_post: |
+| 12   | 2020/03/17 | ![][finf-dev]     |                    | :heavy_check_mark: |                    | ~**08:05**~   | ~03:42~     | :poop:                    |
+| [11] | 2020/03/16 | ![][finf-dev]     |                    | :heavy_check_mark: |                    | ~**08:05**~   | **11:08**   | :poop:                    |
+| 10   | 2020/03/15 | ![][finf-dev] |                    | :heavy_check_mark: |                    | ~**11:30**~   | ~03:12~     | :poop:                    |
 | 9    | 2020/03/14 |                                                |                    |                    |                    | ~**11:30**~   | ~00:37~     | :poop:                    |
 | 8    | 2020/03/13 |                                                |                    | :heavy_check_mark: | :heavy_check_mark: | ~**08:30**~   | **06:32**   | :triangular_flag_on_post: |
-| 7    | 2020/03/12 | [finance.dev.mn](#7-дахь-өдөр-2020-03-12)      |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~04:09~     | :poop:                    |
-| 6    | 2020/03/11 | ![][chb]                                       |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | ~05:39~     | :poop:                    |
+| 7    | 2020/03/12 | ![][finf-dev]      |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~04:09~     | :poop:                    |
+| 6    | 2020/03/11 | ![][api-chatbot]                                       |                    | :heavy_check_mark: | :heavy_check_mark: | ~**07:50**~   | ~05:39~     | :poop:                    |
 | 5    | 2020/03/10 |                                                |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~05:55~     | :poop:                    |
-| 4    | 2020/03/06 | [rxjs.dev.mn](#4-дахь-өдөр-2020-03-06)         |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~01:09~     | :poop:                    |
-| 3    | 2020/03/05 | [@devmn/charts](#3-дахь-өдөр-2020-03-05)       |                    | :heavy_check_mark: |                    | N/A           | **09:55**   | :triangular_flag_on_post: |
-| 2    | 2020/03/12 | [jisho.mn base](2-дахь-өдөр-2020-02-27)        |                    | :heavy_check_mark: |                    | N/A           | N/A         | N/A                       |
+| 4    | 2020/03/06 | ![][rxhs-dev]         |                    | :heavy_check_mark: |                    | ~**07:50**~   | ~01:09~     | :poop:                    |
+| 3    | 2020/03/05 | ![][@devmn/charts]       |                    | :heavy_check_mark: |                    | N/A           | **09:55**   | :triangular_flag_on_post: |
+| 2    | 2020/03/12 | ![][jishob-dev]        |                    | :heavy_check_mark: |                    | N/A           | N/A         | N/A                       |
 | 1    | 2020/03/11 | [projects monorepo](1-дэх-өдөр-2020-02-26)     |                    | :heavy_check_mark: | :heavy_check_mark: | N/A           | N/A         | N/A                       |
 
 # Тэмдэглэл
@@ -126,7 +126,45 @@
 **Холбоос:** [finance.dev.mn](http://finance.dev.mn)
 
 [11]: #11-дахь-өдөр-2020-03-16
-[fdev]: finance.dev.mn
-[chb]: https://img.shields.io/badge/backend-chatbots.mn-green?logo=typescript
-[chf]: https://img.shields.io/badge/chatbots.mn-%23dd0031?style=for-the-badge&logo=angular
+
+
+
+## Badges 
+
+![][finf-dev] ![][finb-dev] 
+![][marketf-dev] ![][marketm-dev] ![][marketb-dev] 
+![][jishof-dev] ![][jishom-dev] ![][jishob-dev] 
+![][codegen-dev] 
+![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
+![][@devmn/charts] ![][@devmn/event-emitter] ![][@devmn/image-viewer] ![][@devmn/multi-select] ![][@devmn/stepper]
+
+[devmn]: https://img.shields.io/badge/www.dev.mn-4285f4?style=flat-square&logo=typescript
+[finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
+[finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=spring
+[notes-dev]: https://img.shields.io/badge/notes-dev.mn-4285f4?style=flat-square&logo=angular
+[codegen-dev]: https://img.shields.io/badge/codegen-dev.mn-4285f4?style=flat-square&logo=angular
+[marketf-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=angular
+[marketm-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=flutter
+[marketb-dev]: https://img.shields.io/badge/market-dev.mn-4285f4?style=flat-square&logo=node.js
+[jishof-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=angular
+[jishom-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=flutter
+[jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=node.js
+[vue-dev]: https://img.shields.io/badge/vue-dev.mn-4285f4?style=flat-square&logo=vue.js
+[rxjs-dev]: https://img.shields.io/badge/rxjs-dev.mn-4285f4?style=flat-square&logo=typescript
+
+[api-chatbot]: https://img.shields.io/badge/backend-chatbots.mn-007acc?style=flat-square&logo=node.js&logoWidth=18
+[stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=32
+[sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
+[www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular&logoWidth=37
+
+
+[@devmn/charts]: https://img.shields.io/badge/@devmn/charts-007acc?style=flat-square&logo=npm
+[@devmn/event-emitter]: https://img.shields.io/badge/@devmn/event--emitter-007acc?style=flat-square&logo=npm
+[@devmn/image-viewer]: https://img.shields.io/badge/@devmn/image--viewer-007acc?style=flat-square&logo=npm
+[@devmn/multi-select]: https://img.shields.io/badge/@devmn/multi--select-007acc?style=flat-square&logo=npm
+[@devmn/stepper]: https://img.shields.io/badge/@devmn/stepper-007acc?style=flat-square&logo=npm
+
+
+[heroku]: https://img.shields.io/badge/heroku-DEPLOYED-40a6bc?style=flat&logo=heroku&labelColor=0d1d25
+
 
