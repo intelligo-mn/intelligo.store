@@ -55,5 +55,5 @@
 
 ![][fdevng]
 
-[fdevng]: ttps://img.shields.io/badge/finance-dev.mn-%23dd0031?style=for-the-badge&logo=angular (dev.mn)
+[fdevng]: https://img.shields.io/badge/finance-dev.mn-%23dd0031?style=for-the-badge&logo=angular (dev.mn)
 
