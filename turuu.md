@@ -8,14 +8,17 @@
   - hackerrank дээр нэг бодлого бодох
   - https://interviewing.io/ нэг interview үзэх
   - ...
-- :open_book: Өдөрт 1 ээс багагүй цаг шинэ зүйл судлах :heavy_check_mark:
+- ## :open_book: Өдөрт 1 ээс багагүй цаг шинэ зүйл судлах :heavy_check_mark:
+  -
 - :hourglass: Өдөрт 6 аас багагүй цаг төвлөрч код бичсэн
 
 > Дээрх зүйлсийн 3 болон түүнээс ихийг нь хийсэн бол :triangular_flag_on_post: 3 аас бага бол :poop:
 
 | №   | Огноо      | Focus | :earth_americas: | :man_technologist: | :open_book: | :alarm_clock: | :hourglass: |        |
 | --- | ---------- | ----- | ---------------- | ------------------ | ----------- | ------------- | ----------- | ------ |
-| 27  | 2020/04/01 |       |                  |                    |             | ~**00:00**~   | **00:00**   | :poop: |
+| 29  | 2020/04/03 |       |                  |                    |             | ~07:30~       | **00:00**   | :poop: |
+| 28  | 2020/04/02 |       |                  |                    |             | **06:50**     | ~02:13~     | :poop: |
+| 27  | 2020/04/01 |       |                  |                    |             | **06:50**     | ~02:40~     | :poop: |
 
 # finance.dev.mn
 
@@ -42,27 +45,21 @@
 
 # Тэмдэглэл
 
-## 3-дахь өдөр 2020-03-05
+## 28-дахь өдөр 2020-04-02
 
-##### (ngx төслийн дэд модуль)
-
-**Өнөөдрийн үйл явц**: Angular ийн Chart framework ийн анхны хувилбар publish хийсэн
-
-**Тэмдэглэл:**
+**Тэмдэглэл:** Өгөгдлийн бүтэц болон алгоритмын мэдлэгээ сайжруулж асуудлыг шийдэх чадвараа сайжруулах нь их чухал болоод байна.
 
 **Холбоос:** [@devmn/charts](https://www.npmjs.com/package/@devmn/charts)
 
 [11]: #11-дахь-өдөр-2020-03-16
 
+## Badges
 
-
-## Badges 
-
-![][finf-dev] ![][finb-dev] 
-![][marketf-dev] ![][marketm-dev] ![][marketb-dev] 
-![][jishof-dev] ![][jishom-dev] ![][jishob-dev] 
-![][codegen-dev] 
-![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot] 
+![][finf-dev] ![][finb-dev]
+![][marketf-dev] ![][marketm-dev] ![][marketb-dev]
+![][jishof-dev] ![][jishom-dev] ![][jishob-dev]
+![][codegen-dev]
+![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot]
 ![][@devmn/charts] ![][@devmn/event-emitter] ![][@devmn/image-viewer] ![][@devmn/multi-select] ![][@devmn/stepper]
 
 [devmn]: https://img.shields.io/badge/www.dev.mn-4285f4?style=flat-square&logo=typescript
@@ -78,15 +75,12 @@
 [jishob-dev]: https://img.shields.io/badge/jisho-dev.mn-4285f4?style=flat-square&logo=node.js
 [vue-dev]: https://img.shields.io/badge/vue-dev.mn-4285f4?style=flat-square&logo=vue.js
 [rxjs-dev]: https://img.shields.io/badge/rxjs-dev.mn-4285f4?style=flat-square&logo=typescript
-
 [api-chatbot]: https://img.shields.io/badge/backend-chatbots.mn-007acc?style=flat-square&logo=node.js
 [stu-chatbot]: https://img.shields.io/badge/studio-chatbots.mn-007acc?style=flat-square&logo=angular
 [sim-chatbot]: https://img.shields.io/badge/simulator-chatbots.mn-007acc?style=flat-square&logo=angular
 [www-chatbot]: https://img.shields.io/badge/www-chatbots.mn-007acc?style=flat-square&logo=angular
-
 [@devmn/charts]: https://img.shields.io/badge/@devmn/charts-007acc?style=flat-square&logo=npm
 [@devmn/event-emitter]: https://img.shields.io/badge/@devmn/event--emitter-007acc?style=flat-square&logo=npm
 [@devmn/image-viewer]: https://img.shields.io/badge/@devmn/image--viewer-007acc?style=flat-square&logo=npm
 [@devmn/multi-select]: https://img.shields.io/badge/@devmn/multi--select-007acc?style=flat-square&logo=npm
 [@devmn/stepper]: https://img.shields.io/badge/@devmn/stepper-007acc?style=flat-square&logo=npm
-
