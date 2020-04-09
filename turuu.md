@@ -20,8 +20,8 @@
 | №   | Огноо      | Focus | :earth_americas: | :man_technologist: | :open_book: | :alarm_clock: | :hourglass: |        |
 | --- | ---------- | ----- | ---------------- | ------------------ | ----------- | ------------- | ----------- | ------ |
 | 35  | 2020/04/09 |       |                  |:heavy_check_mark:  |:heavy_check_mark:| **07:30**       | **00:00**   | :triangular_flag_on_post: |
-| 34  | 2020/04/08 |       |                  |:heavy_check_mark:  |                  | **07:00**       | ~03:00~   | :poop: |
-| 33  | 2020/04/07 |       |                  |:heavy_check_mark:  |              | **06:30**       | ~03:00~   | :poop: |
+| 34  | 2020/04/08 |       |                  ||                  | **07:00**       | ~03:00~   | :poop: |
+| 33  | 2020/04/07 |       |                  |  |:heavy_check_mark:| **06:30**       | ~03:00~   | :poop: |
 | 32  | 2020/04/06 |       |                  |:heavy_check_mark:  |:heavy_check_mark:| **05:10**       | **07:03**   | :triangular_flag_on_post: |
 | 31  | 2020/04/05 |       |                  |                    |             | ~09:00~       | ~00:00~   | :poop: |
 | 30  | 2020/04/04 |       |                  |                    |             | ~09:90~       | ~00:00~   | :poop: |
