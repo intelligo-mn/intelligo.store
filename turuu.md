@@ -19,7 +19,10 @@
 
 | №   | Огноо      | Focus | :earth_americas: | :man_technologist: | :open_book:        | :alarm_clock: | :hourglass: |                           |
 | --- | ---------- | ----- | ---------------- | ------------------ | ------------------ | ------------- | ----------- | ------------------------- |
-| 55  | 2020/04/18 |       |                  |                    |                    | **07:30**     | **00:00**   | :triangular_flag_on_post: |
+| 47  | 2020/04/21 |       |                  |                    |                    | **07:30**     | **00:00**   | :triangular_flag_on_post: |
+| 46  | 2020/04/20 | ![][intelligo]      |                  | :heavy_check_mark: |                    | **00:00**     | **00:00**   | :triangular_flag_on_post: |
+| 45  | 2020/04/19 |       |                  |                    |                    | **07:30**     | **00:00**   | :triangular_flag_on_post: |
+| 44  | 2020/04/18 |       |                  |                    |                    | **07:30**     | **00:00**   | :triangular_flag_on_post: |
 | 43  | 2020/04/17 |       |                  |                    |                    | **07:00**     | ~03:00~     | :poop:                    |
 | 42  | 2020/04/16 |       |                  |                    |                    | **07:00**     | ~03:00~     | :poop:                    |
 | 41  | 2020/04/15 |       |                  |                    |                    | **07:00**     | ~03:00~     | :poop:                    |
@@ -80,6 +83,7 @@
 ![][api-chatbot] ![][stu-chatbot] ![][sim-chatbot] ![][www-chatbot]
 ![][@devmn/charts] ![][@devmn/event-emitter] ![][@devmn/image-viewer] ![][@devmn/multi-select] ![][@devmn/stepper]
 
+[intelligo]: https://img.shields.io/badge/intelligo.systems-4285f4?style=flat-square&logo=typescript
 [devmn]: https://img.shields.io/badge/www.dev.mn-4285f4?style=flat-square&logo=typescript
 [finf-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=angular
 [finb-dev]: https://img.shields.io/badge/finance-dev.mn-4285f4?style=flat-square&logo=spring
