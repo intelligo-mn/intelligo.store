@@ -33,3 +33,4 @@
 
 [heroku]: https://img.shields.io/badge/heroku-DEPLOYED-40a6bc?style=flat&logo=heroku&labelColor=0d1d25
 
+2020-04-27 ![][devmn] estimated value *$1,090*
