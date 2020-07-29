@@ -1,9 +1,9 @@
 {
-  "name": "vendure-angular-storefront",
+  "name": "platform.sale",
   "version": "0.1.12",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201",
+    "start": "ng serve",
     "build": "ng build",
     "analyze-prod-bundle": "ng build --prod --statsJson=true && webpack-bundle-analyzer dist/browser/stats.json",
     "test": "ng test",
