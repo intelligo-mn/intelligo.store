@@ -2,13 +2,22 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//     production: false,
+//     apiHost: 'http://localhost',
+//     apiPort: 3000,
+//     shopApiPath: 'shop-api',
+//     baseHref: '/',
+// };
+
 export const environment = {
-    production: false,
-    apiHost: 'http://localhost',
-    apiPort: 3000,
+    production: true,
+    apiHost: 'https://demo.vendure.io',
+    apiPort: 443,
     shopApiPath: 'shop-api',
     baseHref: '/',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
