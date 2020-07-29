@@ -1,0 +1,10 @@
+@import "variables";
+
+:host {
+    display: block;
+    margin: 0 $spacer;
+}
+
+input {
+    border-radius: 4px;
+}

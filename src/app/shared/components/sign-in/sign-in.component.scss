@@ -1,0 +1,21 @@
+@import "variables";
+
+:host {
+    display: block;
+    margin-top: $spacer * 2;
+}
+
+.invalid-credentials {
+    margin-top: $spacer * 2;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.register-link {
+    margin-top: $spacer;
+}
+

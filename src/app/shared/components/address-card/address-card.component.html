@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-title" *ngIf="title">{{ title }}</h6>
+        <ul class="list-unstyled mb-0 address-lines">
+            <li>{{ address.fullName }}</li>
+            <li>{{ address.streetLine1 }}</li>
+            <li>{{ address.postalCode }}</li>
+            <li>{{ getCountryName() }}</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <ng-content></ng-content>
+    </div>
+</div>

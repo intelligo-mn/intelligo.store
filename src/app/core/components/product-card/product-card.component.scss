@@ -1,0 +1,56 @@
+@import "variables";
+
+:host {
+    display: block;
+    margin: $spacer $spacer / 2 $spacer * 2;
+    width: 200px;
+
+    &:hover {
+        .product-image {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
+}
+
+.image-wrapper {
+    display: block;
+    overflow: hidden;
+}
+
+.product-image {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.85;
+}
+
+.product-name {
+    text-align: center;
+    color: $gray-800;
+    display: block;
+
+    &:hover {
+        color: $gray-700;
+        text-decoration: underline;
+        text-decoration-color: $gray-400;
+    }
+}
+
+.price {
+    font-weight: normal;
+    text-align: center;
+    color: $gray-600;
+}
+
+.placeholder-image {
+    height: 200px;
+    width: 200px;
+}
+
+.placeholder-title {
+    height: $font-size-base;
+    margin-bottom: $spacer / 2;
+}
+
+.placeholder-body {
+    height: $font-size-base;
+}

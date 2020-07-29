@@ -1,0 +1,25 @@
+<ng-container *ngIf="form">
+    <form [formGroup]="form">
+        <div class="form-group row">
+            <label for="firstName" class="col-sm-3 col-form-label">First name</label>
+            <div class="col-sm-9">
+                <input class="form-control" formControlName="firstName" id="firstName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastName" class="col-sm-3 col-form-label">Last name</label>
+            <div class="col-sm-9">
+                <input class="form-control" formControlName="lastName" id="lastName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phoneNumber" class="col-sm-3 col-form-label">Phone number</label>
+            <div class="col-sm-9">
+                <input class="form-control" formControlName="phoneNumber" id="phoneNumber">
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-secondary mt-3"
+            [disabled]="form.invalid || form.pristine"
+            (click)="updateDetails()">Update Details</button>
+</ng-container>

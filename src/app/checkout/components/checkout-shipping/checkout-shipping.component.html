@@ -1,0 +1,91 @@
+<div class="accordion">
+    <div class="card" *ngIf="(signedIn$ | async) && (customerAddresses$ | async)?.length">
+        <div class="card-header">
+            <button class="btn btn-light" (click)="step = 'selectAddress'">Select Address</button>
+        </div>
+        <div class="card-body collapse" [class.show]="step === 'selectAddress'">
+            <div class="d-flex flex-wrap">
+                <div class="customer-address"
+                     *ngFor="let address of customerAddresses$ | async"
+                     (click)="setShippingAddress(address)">
+                    <div class="address-line" *ngFor="let line of getLines(address)">
+                        {{ line }}
+                    </div>
+                </div>
+                <div class="d-flex align-items-end ml-3 mb-3">
+                    <button class="btn btn-secondary" (click)="createAddress()">Add new address</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="!(signedIn$ | async)">
+        <div class="card-header">
+            <button class="btn btn-light" (click)="step = 'customerDetails'">Customer Details</button>
+        </div>
+        <div class="card-body collapse" [class.show]="step === 'customerDetails'">
+            <form #customerForm="ngForm">
+                <div class="d-lg-flex">
+                    <input class="form-control"
+                           placeholder="First Name"
+                           name="firstName"
+                           [(ngModel)]="firstName"
+                           required>
+                    <input class="form-control"
+                           placeholder="Last Name"
+                           name="lastName"
+                           [(ngModel)]="lastName"
+                           required>
+
+                    <input class="form-control"
+                           placeholder="Email Address"
+                           name="emailAddress"
+                           [(ngModel)]="emailAddress"
+                           required>
+                </div>
+            </form>
+
+            <button class="btn btn-secondary mt-3"
+                    [disabled]="customerForm.invalid"
+                    (click)="setCustomerDetails()">Next</button>
+        </div>
+
+    </div>
+    <div class="card" *ngIf="!(signedIn$ | async) || (customerAddresses$ | async)?.length === 0">
+        <div class="card-header">
+            <button class="btn btn-light"
+                    [disabled]="step === 'customerDetails'"
+                    (click)="step = 'editAddress'">Shipping Address</button>
+        </div>
+        <div class="card-body collapse" [class.show]="step === 'editAddress'">
+            <vsf-address-form #addressForm
+                              [address]="shippingAddress$ | async"
+                              [availableCountries]="availableCountries$ | async"></vsf-address-form>
+            <button class="btn btn-secondary mt-3"
+                    [disabled]="addressForm.addressForm.invalid"
+                    (click)="setShippingAddress(addressForm.addressForm.value)">Send to this address</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <button class="btn btn-light"
+                    [disabled]="step !== 'selectMethod' || (eligibleShippingMethods$ | async)?.length === 0"
+                    (click)="step = 'selectMethod'">Shipping Method</button>
+        </div>
+        <div class="card-body collapse" [class.show]="step === 'selectMethod'">
+            <div class="form-check" *ngFor="let method of eligibleShippingMethods$ | async">
+                <input class="form-check-input"
+                       type="radio"
+                       [(ngModel)]="shippingMethodId"
+                       [value]="method.id"
+                       [id]="method.id">
+                <label class="form-check-label shipping-method" [for]="method.id">
+                    <div class="description">{{ method.description }}</div>
+                    <div class="price">{{ method.price / 100 | currency }}</div>
+                </label>
+            </div>
+            <button class="btn btn-secondary mt-3"
+                    [disabled]="!shippingMethodId"
+                    (click)="proceedToPayment()">Proceed to payment</button>
+        </div>
+    </div>
+</div>

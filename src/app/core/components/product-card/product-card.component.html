@@ -1,0 +1,27 @@
+<div class="product-card">
+    <ng-template [ngIf]="product" [ngIfElse]="placeholder">
+        <a [routerLink]="['/product', product.slug]" class="image-wrapper">
+            <img class="product-image" [src]="product.productAsset | assetPreview:200:200">
+        </a>
+        <div class="">
+            <a [routerLink]="['/product', product.slug]" class="product-name">
+                {{ product.productName }}
+            </a>
+            <div class="price">
+                <ng-template [ngIf]="product.priceWithTax.min === product.priceWithTax.max" [ngIfElse]="range">
+                    {{ product.priceWithTax.min | formatPrice }}
+                </ng-template>
+                <ng-template #range>
+                    From {{ product.priceWithTax.min | formatPrice }}
+                </ng-template>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #placeholder>
+        <div class="placeholder-image loading-placeholder"></div>
+        <div class="card-body">
+            <div class="placeholder-title loading-placeholder"></div>
+            <div class="placeholder-body loading-placeholder"></div>
+        </div>
+    </ng-template>
+</div>

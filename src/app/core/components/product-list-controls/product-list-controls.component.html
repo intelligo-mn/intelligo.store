@@ -1,0 +1,25 @@
+<div class="ml-md-3 filters-title">
+    <div class="d-none d-md-block">
+        <fa-icon icon="filter" class="mr-2"></fa-icon>
+        Filters
+    </div>
+    <button class="filters-button d-md-none" (click)="manuallyExpanded = !manuallyExpanded">
+        <fa-icon icon="filter" class="mr-2"></fa-icon>
+        Filters
+    </button>
+</div>
+<div class="filters-wrapper"
+     [class.expanded]="filtersExpanded">
+<div *ngFor="let facet of facets; trackBy:trackById" class="ml-md-3 facet-group"
+     [class.enabled]="activeFacetValueIds.length">
+    <h6>{{ facet.name | titlecase }}</h6>
+    <ul class="list-unstyled">
+        <li *ngFor="let value of facet.values; trackBy:trackById" [class.active]="isActive(value.id)">
+            <label class="mb-0 mr-4 mr-md-2"><input type="checkbox" [checked]="isActive(value.id)"
+                                                    (change)="toggleFacetValueIdInRoute(value.id)"
+                                                    class="mr-1"> {{ value.name }}
+            </label>
+        </li>
+    </ul>
+</div>
+</div>

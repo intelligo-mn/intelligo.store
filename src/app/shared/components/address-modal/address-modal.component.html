@@ -1,0 +1,10 @@
+<ng-template vsfDialogTitle>{{ title }}</ng-template>
+<vsf-address-form #addressFormComponent
+                  [address]="address"
+                  [availableCountries]="availableCountries$ | async"></vsf-address-form>
+<ng-template vsfDialogButtons>
+    <button type="button"
+            class="btn btn-primary"
+            [disabled]="addressFormComponent.addressForm.invalid"
+            (click)="save(addressFormComponent.addressForm.value)">Okay</button>
+</ng-template>

@@ -1,0 +1,25 @@
+<form #verifyForm="ngForm"
+      class="mt-3"
+      (submit)="verify()">
+    <vsf-centered-card title="Almost done!"
+                       subTitle="Now just choose a password to complete the process">
+        <div class="input-group mb-3">
+            <input class="form-control"
+                   placeholder="Password"
+                   type="password"
+                   name="password"
+                   aria-describedby="button-verify"
+                   required
+                   [(ngModel)]="password">
+
+            <div class="input-group-append">
+                <button class="btn btn-primary"
+                        id="button-verify"
+                        [disabled]="verifyForm.invalid"
+                        type="submit">
+                    Create account
+                </button>
+            </div>
+        </div>
+    </vsf-centered-card>
+</form>

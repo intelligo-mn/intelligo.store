@@ -1,0 +1,19 @@
+<div class="stage" *ngIf="!signedIn" [class.active]="activeStage === 1">
+    <div class="number">1</div>
+    <div class="label">Account</div>
+</div>
+<div class="line" *ngIf="!signedIn"></div>
+<div class="stage" [class.active]="activeStage === 2">
+    <div class="number">{{ signedIn ? 1 : 2}}</div>
+    <div class="label">Shipping</div>
+</div>
+<div class="line"></div>
+<div class="stage" [class.active]="activeStage === 3">
+    <div class="number">{{ signedIn ? 2 : 3}}</div>
+    <div class="label">Payment</div>
+</div>
+<div class="line"></div>
+<div class="stage" [class.active]="activeStage === 4">
+    <div class="number">{{ signedIn ? 3 : 4}}</div>
+    <div class="label">Complete</div>
+</div>

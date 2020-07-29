@@ -1,0 +1,15 @@
+<h2>Already have an account?</h2>
+
+<div class="sign-in-row">
+    <vsf-sign-in [navigateToOnSuccess]="['/checkout', 'shipping']"
+                 [displayRegisterLink]="false"></vsf-sign-in>
+    <div class="or"><div>or</div></div>
+    <div class="card guest">
+        <div class="card-body d-flex align-items-center">
+            <div>
+                <a class="btn btn-primary"
+                   [routerLink]="['./shipping']">Continue as guest</a>
+            </div>
+        </div>
+    </div>
+</div>

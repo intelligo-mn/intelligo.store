@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Order code</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+        <th scope="col">Last updated</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders$ | async">
+        <th scope="row">
+            <a [routerLink]="['./', order.code]">
+                {{ order.code }}
+            </a>
+        </th>
+        <td>{{ order.state }}</td>
+        <td>{{ order.total | formatPrice }}</td>
+        <td>{{ order.updatedAt | date: 'short' }}</td>
+    </tr>
+    </tbody>
+</table>
