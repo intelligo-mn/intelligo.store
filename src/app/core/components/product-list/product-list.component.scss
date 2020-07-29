@@ -1,0 +1,77 @@
+@import "variables";
+
+:host {
+    display: block;
+    min-height: 80vh;
+}
+
+.masthead {
+    background-color: $light;
+    min-height: 40vh;
+    position: relative;
+
+    &.search-mode {
+        min-height: 20vh;
+    }
+}
+
+.masthead-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.15;
+    background-color: #d4eefc;
+    background-size: cover;
+    background-position: top;
+    background-blend-mode: luminosity;
+}
+
+.collection-name {
+    @include media-breakpoint-down(sm) {
+        font-size: 4.5rem;
+    }
+}
+
+.child-categories {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: $spacer;
+
+    vsf-collection-card {
+        flex: 1;
+    }
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    grid-row-gap: $spacer;
+    justify-content: space-around;
+    min-height: 50vh;
+}
+
+.no-results {
+    text-align: center;
+    margin: $spacer * 4 0;
+    font-size: $font-size-lg;
+    color: $gray-500;
+    width: 100%;
+}
+
+.load-more {
+    text-align: center;
+    width: 100%;
+}
+
+.loading-indicator {
+    width: 0;
+    margin-left: 0;
+    transition: width 0.2s, margin-left 0.2s;
+
+    &.show {
+        width: 1rem;
+        margin-left: $spacer / 2;
+    }
+}

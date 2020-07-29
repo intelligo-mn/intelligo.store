@@ -1,0 +1,35 @@
+<form class="payment-form mb-5" #paymentForm="ngForm" (submit)="completeOrder()">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+            <fa-icon icon="credit-card"></fa-icon>
+        </span>
+        </div>
+        <input type="text" class="form-control"
+               name="cardNumber"
+               [required]="true"
+               [(ngModel)]="cardNumber"
+               placeholder="Credit card #">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="month">Expiry</label>
+      </div>
+      <select class="custom-select" id="month" name="expMonth" [(ngModel)]="expMonth" [required]="true">
+          <option selected [ngValue]="undefined">Month</option>
+          <option *ngFor="let month of getMonths()" [ngValue]="month">
+              {{ month }}
+          </option>
+      </select>
+      <select class="custom-select" id="year" name="expYear" [(ngModel)]="expYear" [required]="true">
+          <option selected [ngValue]="undefined">Year</option>
+          <option *ngFor="let year of getYears()" [ngValue]="year">
+              {{ year }}
+          </option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary btn-lg"
+            [disabled]="paymentForm.pristine || paymentForm.invalid">Complete order</button>
+</form>

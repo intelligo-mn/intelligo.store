@@ -1,0 +1,21 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title"><ng-container *ngTemplateOutlet="(titleTemplateRef$ | async)"></ng-container></h5>
+        <button *ngIf="options?.closable" type="button"
+                (click)="closeModal()"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <vsf-dialog-component-outlet
+            [component]="childComponentType"
+            (create)="onCreate($event)"
+        ></vsf-dialog-component-outlet>
+    </div>
+    <div class="modal-footer">
+        <ng-container *ngTemplateOutlet="(buttonsTemplateRef$ | async)"></ng-container>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+@import "variables";
+
+:host {
+    display: block;
+    animation: fadeIn 0.3s ease-out forwards;
+    &.remove {
+        animation: fadeOut 0.2s ease-out forwards;
+    }
+}
+
+.toast-header {
+    &.error {
+        background-color: $danger;
+        color: $light;
+    }
+    &.success {
+        background-color: $success;
+        color: $light;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}

@@ -1,0 +1,2031 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+interface CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  name: String!
+  readonly: Boolean
+  type: String!
+}
+
+interface Node {
+  id: ID!
+}
+
+interface PaginatedList {
+  items: [Node!]!
+  totalItems: Int!
+}
+
+interface StockMovement {
+  createdAt: DateTime!
+  id: ID!
+  productVariant: ProductVariant!
+  quantity: Int!
+  type: StockMovementType!
+  updatedAt: DateTime!
+}
+
+union CustomFieldConfig = BooleanCustomFieldConfig | DateTimeCustomFieldConfig | FloatCustomFieldConfig | IntCustomFieldConfig | LocaleStringCustomFieldConfig | StringCustomFieldConfig
+
+"The price of a search result product, either as a range or as a single price"
+union SearchResultPrice = PriceRange | SinglePrice
+
+union StockMovementItem = Cancellation | Return | Sale | StockAdjustment
+
+type Address implements Node {
+  city: String
+  company: String
+  country: Country!
+  createdAt: DateTime!
+  customFields: JSON
+  defaultBillingAddress: Boolean
+  defaultShippingAddress: Boolean
+  fullName: String
+  id: ID!
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String!
+  streetLine2: String
+  updatedAt: DateTime!
+}
+
+type Adjustment {
+  adjustmentSource: String!
+  amount: Int!
+  description: String!
+  type: AdjustmentType!
+}
+
+type Administrator implements Node {
+  createdAt: DateTime!
+  emailAddress: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  updatedAt: DateTime!
+  user: User!
+}
+
+type AdministratorList implements PaginatedList {
+  items: [Administrator!]!
+  totalItems: Int!
+}
+
+type Asset implements Node {
+  createdAt: DateTime!
+  fileSize: Int!
+  focalPoint: Coordinate
+  height: Int!
+  id: ID!
+  mimeType: String!
+  name: String!
+  preview: String!
+  source: String!
+  type: AssetType!
+  updatedAt: DateTime!
+  width: Int!
+}
+
+type AssetList implements PaginatedList {
+  items: [Asset!]!
+  totalItems: Int!
+}
+
+type BooleanCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  name: String!
+  readonly: Boolean
+  type: String!
+}
+
+type Cancellation implements Node & StockMovement {
+  createdAt: DateTime!
+  id: ID!
+  orderLine: OrderLine!
+  productVariant: ProductVariant!
+  quantity: Int!
+  type: StockMovementType!
+  updatedAt: DateTime!
+}
+
+type Channel implements Node {
+  code: String!
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  defaultLanguageCode: LanguageCode!
+  defaultShippingZone: Zone
+  defaultTaxZone: Zone
+  id: ID!
+  pricesIncludeTax: Boolean!
+  token: String!
+  updatedAt: DateTime!
+}
+
+type Collection implements Node {
+  assets: [Asset!]!
+  breadcrumbs: [CollectionBreadcrumb!]!
+  children: [Collection!]
+  createdAt: DateTime!
+  customFields: JSON
+  description: String!
+  featuredAsset: Asset
+  filters: [ConfigurableOperation!]!
+  id: ID!
+  languageCode: LanguageCode
+  name: String!
+  parent: Collection
+  position: Int!
+  productVariants(options: ProductVariantListOptions): ProductVariantList!
+  slug: String!
+  translations: [CollectionTranslation!]!
+  updatedAt: DateTime!
+}
+
+type CollectionBreadcrumb {
+  id: ID!
+  name: String!
+  slug: String!
+}
+
+type CollectionList implements PaginatedList {
+  items: [Collection!]!
+  totalItems: Int!
+}
+
+type CollectionTranslation {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type ConfigArg {
+  name: String!
+  type: String!
+  value: String!
+}
+
+type ConfigArgDefinition {
+  config: JSON
+  description: String
+  label: String
+  name: String!
+  type: String!
+}
+
+type ConfigurableOperation {
+  args: [ConfigArg!]!
+  code: String!
+}
+
+type ConfigurableOperationDefinition {
+  args: [ConfigArgDefinition!]!
+  code: String!
+  description: String!
+}
+
+type Coordinate {
+  x: Float!
+  y: Float!
+}
+
+type Country implements Node {
+  code: String!
+  createdAt: DateTime!
+  enabled: Boolean!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  translations: [CountryTranslation!]!
+  updatedAt: DateTime!
+}
+
+type CountryList implements PaginatedList {
+  items: [Country!]!
+  totalItems: Int!
+}
+
+type CountryTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type CurrentUser {
+  channels: [CurrentUserChannel!]!
+  id: ID!
+  identifier: String!
+}
+
+type CurrentUserChannel {
+  code: String!
+  id: ID!
+  permissions: [Permission!]!
+  token: String!
+}
+
+type CustomFields {
+  Address: [CustomFieldConfig!]!
+  Collection: [CustomFieldConfig!]!
+  Customer: [CustomFieldConfig!]!
+  Facet: [CustomFieldConfig!]!
+  FacetValue: [CustomFieldConfig!]!
+  GlobalSettings: [CustomFieldConfig!]!
+  Order: [CustomFieldConfig!]!
+  OrderLine: [CustomFieldConfig!]!
+  Product: [CustomFieldConfig!]!
+  ProductOption: [CustomFieldConfig!]!
+  ProductOptionGroup: [CustomFieldConfig!]!
+  ProductVariant: [CustomFieldConfig!]!
+  User: [CustomFieldConfig!]!
+}
+
+type Customer implements Node {
+  addresses: [Address!]
+  createdAt: DateTime!
+  customFields: JSON
+  emailAddress: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  orders(options: OrderListOptions): OrderList!
+  phoneNumber: String
+  title: String
+  updatedAt: DateTime!
+  user: User
+}
+
+type CustomerGroup implements Node {
+  createdAt: DateTime!
+  customers(options: CustomerListOptions): CustomerList!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type CustomerList implements PaginatedList {
+  items: [Customer!]!
+  totalItems: Int!
+}
+
+"""
+
+Expects the same validation formats as the <input type="datetime-local"> HTML element.
+See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local#Additional_attributes
+"""
+type DateTimeCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  max: String
+  min: String
+  name: String!
+  readonly: Boolean
+  step: Int
+  type: String!
+}
+
+type DeletionResponse {
+  message: String
+  result: DeletionResult!
+}
+
+type Facet implements Node {
+  code: String!
+  createdAt: DateTime!
+  customFields: JSON
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  translations: [FacetTranslation!]!
+  updatedAt: DateTime!
+  values: [FacetValue!]!
+}
+
+type FacetList implements PaginatedList {
+  items: [Facet!]!
+  totalItems: Int!
+}
+
+type FacetTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type FacetValue implements Node {
+  code: String!
+  createdAt: DateTime!
+  customFields: JSON
+  facet: Facet!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  translations: [FacetValueTranslation!]!
+  updatedAt: DateTime!
+}
+
+"""
+
+Which FacetValues are present in the products returned
+by the search, and in what quantity.
+"""
+type FacetValueResult {
+  count: Int!
+  facetValue: FacetValue!
+}
+
+type FacetValueTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type FloatCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  max: Float
+  min: Float
+  name: String!
+  readonly: Boolean
+  step: Float
+  type: String!
+}
+
+type Fulfillment implements Node {
+  createdAt: DateTime!
+  id: ID!
+  method: String!
+  orderItems: [OrderItem!]!
+  trackingCode: String
+  updatedAt: DateTime!
+}
+
+type GlobalSettings {
+  availableLanguages: [LanguageCode!]!
+  createdAt: DateTime!
+  customFields: JSON
+  id: ID!
+  serverConfig: ServerConfig!
+  trackInventory: Boolean!
+  updatedAt: DateTime!
+}
+
+type HistoryEntry implements Node {
+  administrator: Administrator
+  createdAt: DateTime!
+  data: JSON!
+  id: ID!
+  isPublic: Boolean!
+  type: HistoryEntryType!
+  updatedAt: DateTime!
+}
+
+type HistoryEntryList implements PaginatedList {
+  items: [HistoryEntry!]!
+  totalItems: Int!
+}
+
+type ImportInfo {
+  errors: [String!]
+  imported: Int!
+  processed: Int!
+}
+
+type IntCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  max: Int
+  min: Int
+  name: String!
+  readonly: Boolean
+  step: Int
+  type: String!
+}
+
+type LocaleStringCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  name: String!
+  pattern: String
+  readonly: Boolean
+  type: String!
+}
+
+type LocalizedString {
+  languageCode: LanguageCode!
+  value: String!
+}
+
+type LoginResult {
+  user: CurrentUser!
+}
+
+type Mutation {
+  """
+
+  Adds an item to the order. If custom fields are defined on the OrderLine
+  entity, a third argument 'customFields' will be available.
+  """
+  addItemToOrder(productVariantId: ID!, quantity: Int!): Order
+  addPaymentToOrder(input: PaymentInput!): Order
+  """
+
+  Adjusts an OrderLine. If custom fields are defined on the OrderLine entity, a
+  third argument 'customFields' of type `OrderLineCustomFieldsInput` will be available.
+  """
+  adjustOrderLine(orderLineId: ID!, quantity: Int): Order
+  "Applies the given coupon code to the active Order"
+  applyCouponCode(couponCode: String!): Order
+  "Create a new Customer Address"
+  createCustomerAddress(input: CreateAddressInput!): Address!
+  "Delete an existing Address"
+  deleteCustomerAddress(id: ID!): Boolean!
+  login(password: String!, rememberMe: Boolean, username: String!): LoginResult!
+  logout: Boolean!
+  """
+
+  Regenerate and send a verification token for a new Customer registration. Only
+  applicable if `authOptions.requireVerification` is set to true.
+  """
+  refreshCustomerVerification(emailAddress: String!): Boolean!
+  "Register a Customer account with the given credentials"
+  registerCustomerAccount(input: RegisterCustomerInput!): Boolean!
+  "Removes the given coupon code from the active Order"
+  removeCouponCode(couponCode: String!): Order
+  removeOrderLine(orderLineId: ID!): Order
+  "Requests a password reset email to be sent"
+  requestPasswordReset(emailAddress: String!): Boolean
+  """
+
+  Request to update the emailAddress of the active Customer. If `authOptions.requireVerification` is enabled
+  (as is the default), then the `identifierChangeToken` will be assigned to the current User and
+  a IdentifierChangeRequestEvent will be raised. This can then be used e.g. by the EmailPlugin to email
+  that verification token to the Customer, which is then used to verify the change of email address.
+  """
+  requestUpdateCustomerEmailAddress(newEmailAddress: String!, password: String!): Boolean
+  "Resets a Customer's password based on the provided token"
+  resetPassword(password: String!, token: String!): LoginResult!
+  setCustomerForOrder(input: CreateCustomerInput!): Order
+  setOrderShippingAddress(input: CreateAddressInput!): Order
+  setOrderShippingMethod(shippingMethodId: ID!): Order
+  transitionOrderToState(state: String!): Order
+  "Update an existing Customer"
+  updateCustomer(input: UpdateCustomerInput!): Customer!
+  "Update an existing Address"
+  updateCustomerAddress(input: UpdateAddressInput!): Address!
+  """
+
+  Confirm the update of the emailAddress with the provided token, which has been generated by the
+  `requestUpdateCustomerEmailAddress` mutation.
+  """
+  updateCustomerEmailAddress(token: String!): Boolean
+  "Update the password of the active Customer"
+  updateCustomerPassword(currentPassword: String!, newPassword: String!): Boolean
+  """
+
+  Verify a Customer email address with the token sent to that address. Only
+  applicable if `authOptions.requireVerification` is set to true.
+  """
+  verifyCustomerAccount(password: String!, token: String!): LoginResult!
+}
+
+type Order implements Node {
+  "An order is active as long as the payment process has not been completed"
+  active: Boolean!
+  "Order-level adjustments to the order total, such as discounts from promotions"
+  adjustments: [Adjustment!]!
+  billingAddress: OrderAddress
+  "A unique code for the Order"
+  code: String!
+  couponCodes: [String!]!
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  customFields: JSON
+  customer: Customer
+  fulfillments: [Fulfillment!]
+  history(options: HistoryEntryListOptions): HistoryEntryList!
+  id: ID!
+  lines: [OrderLine!]!
+  payments: [Payment!]
+  "Promotions applied to the order. Only gets populated after the payment process has completed."
+  promotions: [Promotion!]!
+  shipping: Int!
+  shippingAddress: OrderAddress
+  shippingMethod: ShippingMethod
+  shippingWithTax: Int!
+  state: String!
+  "The subTotal is the total of the OrderLines, before order-level promotions and shipping has been applied."
+  subTotal: Int!
+  subTotalBeforeTax: Int!
+  total: Int!
+  totalBeforeTax: Int!
+  updatedAt: DateTime!
+}
+
+type OrderAddress {
+  city: String
+  company: String
+  country: String
+  countryCode: String
+  fullName: String
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String
+  streetLine2: String
+}
+
+type OrderItem implements Node {
+  adjustments: [Adjustment!]!
+  cancelled: Boolean!
+  createdAt: DateTime!
+  fulfillment: Fulfillment
+  id: ID!
+  refundId: ID
+  taxRate: Float!
+  unitPrice: Int!
+  unitPriceIncludesTax: Boolean!
+  unitPriceWithTax: Int!
+  updatedAt: DateTime!
+}
+
+type OrderLine implements Node {
+  adjustments: [Adjustment!]!
+  createdAt: DateTime!
+  customFields: JSON
+  featuredAsset: Asset
+  id: ID!
+  items: [OrderItem!]!
+  order: Order!
+  productVariant: ProductVariant!
+  quantity: Int!
+  totalPrice: Int!
+  unitPrice: Int!
+  unitPriceWithTax: Int!
+  updatedAt: DateTime!
+}
+
+type OrderList implements PaginatedList {
+  items: [Order!]!
+  totalItems: Int!
+}
+
+type Payment implements Node {
+  amount: Int!
+  createdAt: DateTime!
+  errorMessage: String
+  id: ID!
+  metadata: JSON
+  method: String!
+  refunds: [Refund!]!
+  state: String!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+type PaymentMethod implements Node {
+  code: String!
+  configArgs: [ConfigArg!]!
+  createdAt: DateTime!
+  enabled: Boolean!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+"The price range where the result has more than one price"
+type PriceRange {
+  max: Int!
+  min: Int!
+}
+
+type Product implements Node {
+  assets: [Asset!]!
+  collections: [Collection!]!
+  createdAt: DateTime!
+  customFields: JSON
+  description: String!
+  facetValues: [FacetValue!]!
+  featuredAsset: Asset
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  optionGroups: [ProductOptionGroup!]!
+  slug: String!
+  translations: [ProductTranslation!]!
+  updatedAt: DateTime!
+  variants: [ProductVariant!]!
+}
+
+type ProductList implements PaginatedList {
+  items: [Product!]!
+  totalItems: Int!
+}
+
+type ProductOption implements Node {
+  code: String!
+  createdAt: DateTime!
+  customFields: JSON
+  groupId: ID!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  translations: [ProductOptionTranslation!]!
+  updatedAt: DateTime!
+}
+
+type ProductOptionGroup implements Node {
+  code: String!
+  createdAt: DateTime!
+  customFields: JSON
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  options: [ProductOption!]!
+  translations: [ProductOptionGroupTranslation!]!
+  updatedAt: DateTime!
+}
+
+type ProductOptionGroupTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type ProductOptionTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type ProductTranslation {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type ProductVariant implements Node {
+  assets: [Asset!]!
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  customFields: JSON
+  facetValues: [FacetValue!]!
+  featuredAsset: Asset
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  options: [ProductOption!]!
+  price: Int!
+  priceIncludesTax: Boolean!
+  priceWithTax: Int!
+  productId: ID!
+  sku: String!
+  taxCategory: TaxCategory!
+  taxRateApplied: TaxRate!
+  translations: [ProductVariantTranslation!]!
+  updatedAt: DateTime!
+}
+
+type ProductVariantList implements PaginatedList {
+  items: [ProductVariant!]!
+  totalItems: Int!
+}
+
+type ProductVariantTranslation {
+  createdAt: DateTime!
+  id: ID!
+  languageCode: LanguageCode!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Promotion implements Node {
+  actions: [ConfigurableOperation!]!
+  conditions: [ConfigurableOperation!]!
+  couponCode: String
+  createdAt: DateTime!
+  enabled: Boolean!
+  endsAt: DateTime
+  id: ID!
+  name: String!
+  perCustomerUsageLimit: Int
+  startsAt: DateTime
+  updatedAt: DateTime!
+}
+
+type PromotionList implements PaginatedList {
+  items: [Promotion!]!
+  totalItems: Int!
+}
+
+type Query {
+  activeChannel: Channel!
+  activeCustomer: Customer
+  activeOrder: Order
+  availableCountries: [Country!]!
+  collection(id: ID, slug: String): Collection
+  collections(options: CollectionListOptions): CollectionList!
+  eligibleShippingMethods: [ShippingMethodQuote!]!
+  me: CurrentUser
+  nextOrderStates: [String!]!
+  order(id: ID!): Order
+  orderByCode(code: String!): Order
+  "Get a Product either by id or slug. If neither 'id' nor 'slug' is speicified, an error will result."
+  product(id: ID, slug: String): Product
+  products(options: ProductListOptions): ProductList!
+  search(input: SearchInput!): SearchResponse!
+}
+
+type Refund implements Node {
+  adjustment: Int!
+  createdAt: DateTime!
+  id: ID!
+  items: Int!
+  metadata: JSON
+  method: String
+  orderItems: [OrderItem!]!
+  paymentId: ID!
+  reason: String
+  shipping: Int!
+  state: String!
+  total: Int!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+type Return implements Node & StockMovement {
+  createdAt: DateTime!
+  id: ID!
+  orderItem: OrderItem!
+  productVariant: ProductVariant!
+  quantity: Int!
+  type: StockMovementType!
+  updatedAt: DateTime!
+}
+
+type Role implements Node {
+  channels: [Channel!]!
+  code: String!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  permissions: [Permission!]!
+  updatedAt: DateTime!
+}
+
+type RoleList implements PaginatedList {
+  items: [Role!]!
+  totalItems: Int!
+}
+
+type Sale implements Node & StockMovement {
+  createdAt: DateTime!
+  id: ID!
+  orderLine: OrderLine!
+  productVariant: ProductVariant!
+  quantity: Int!
+  type: StockMovementType!
+  updatedAt: DateTime!
+}
+
+type SearchReindexResponse {
+  success: Boolean!
+}
+
+type SearchResponse {
+  facetValues: [FacetValueResult!]!
+  items: [SearchResult!]!
+  totalItems: Int!
+}
+
+type SearchResult {
+  "An array of ids of the Collections in which this result appears"
+  collectionIds: [ID!]!
+  currencyCode: CurrencyCode!
+  description: String!
+  facetIds: [ID!]!
+  facetValueIds: [ID!]!
+  price: SearchResultPrice!
+  priceWithTax: SearchResultPrice!
+  productAsset: SearchResultAsset
+  productId: ID!
+  productName: String!
+  productPreview: String! @deprecated(reason : "Use `productAsset.preview` instead")
+  productVariantAsset: SearchResultAsset
+  productVariantId: ID!
+  productVariantName: String!
+  productVariantPreview: String! @deprecated(reason : "Use `productVariantAsset.preview` instead")
+  "A relevence score for the result. Differs between database implementations"
+  score: Float!
+  sku: String!
+  slug: String!
+}
+
+type SearchResultAsset {
+  focalPoint: Coordinate
+  id: ID!
+  preview: String!
+}
+
+type ServerConfig {
+  customFieldConfig: CustomFields!
+}
+
+type ShippingMethod implements Node {
+  calculator: ConfigurableOperation!
+  checker: ConfigurableOperation!
+  code: String!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+type ShippingMethodList implements PaginatedList {
+  items: [ShippingMethod!]!
+  totalItems: Int!
+}
+
+type ShippingMethodQuote {
+  description: String!
+  id: ID!
+  metadata: JSON
+  price: Int!
+  priceWithTax: Int!
+}
+
+"The price value where the result has a single price"
+type SinglePrice {
+  value: Int!
+}
+
+type StockAdjustment implements Node & StockMovement {
+  createdAt: DateTime!
+  id: ID!
+  productVariant: ProductVariant!
+  quantity: Int!
+  type: StockMovementType!
+  updatedAt: DateTime!
+}
+
+type StockMovementList {
+  items: [StockMovementItem!]!
+  totalItems: Int!
+}
+
+type StringCustomFieldConfig implements CustomField {
+  description: [LocalizedString!]
+  internal: Boolean
+  label: [LocalizedString!]
+  length: Int
+  name: String!
+  options: [StringFieldOption!]
+  pattern: String
+  readonly: Boolean
+  type: String!
+}
+
+type StringFieldOption {
+  label: [LocalizedString!]
+  value: String!
+}
+
+type TaxCategory implements Node {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type TaxRate implements Node {
+  category: TaxCategory!
+  createdAt: DateTime!
+  customerGroup: CustomerGroup
+  enabled: Boolean!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  value: Float!
+  zone: Zone!
+}
+
+type TaxRateList implements PaginatedList {
+  items: [TaxRate!]!
+  totalItems: Int!
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  customFields: JSON
+  id: ID!
+  identifier: String!
+  lastLogin: String
+  roles: [Role!]!
+  updatedAt: DateTime!
+  verified: Boolean!
+}
+
+type Zone implements Node {
+  createdAt: DateTime!
+  id: ID!
+  members: [Country!]!
+  name: String!
+  updatedAt: DateTime!
+}
+
+enum AdjustmentType {
+  PROMOTION
+  PROMOTION_REFUND
+  REFUND
+  SHIPPING
+  SHIPPING_REFUND
+  TAX
+  TAX_REFUND
+}
+
+enum AssetType {
+  BINARY
+  IMAGE
+  VIDEO
+}
+
+"""
+
+@description
+ISO 4217 currency code
+
+@docsCategory common
+"""
+enum CurrencyCode {
+  "United Arab Emirates dirham"
+  AED
+  "Afghan afghani"
+  AFN
+  "Albanian lek"
+  ALL
+  "Armenian dram"
+  AMD
+  "Netherlands Antillean guilder"
+  ANG
+  "Angolan kwanza"
+  AOA
+  "Argentine peso"
+  ARS
+  "Australian dollar"
+  AUD
+  "Aruban florin"
+  AWG
+  "Azerbaijani manat"
+  AZN
+  "Bosnia and Herzegovina convertible mark"
+  BAM
+  "Barbados dollar"
+  BBD
+  "Bangladeshi taka"
+  BDT
+  "Bulgarian lev"
+  BGN
+  "Bahraini dinar"
+  BHD
+  "Burundian franc"
+  BIF
+  "Bermudian dollar"
+  BMD
+  "Brunei dollar"
+  BND
+  "Boliviano"
+  BOB
+  "Brazilian real"
+  BRL
+  "Bahamian dollar"
+  BSD
+  "Bhutanese ngultrum"
+  BTN
+  "Botswana pula"
+  BWP
+  "Belarusian ruble"
+  BYN
+  "Belize dollar"
+  BZD
+  "Canadian dollar"
+  CAD
+  "Congolese franc"
+  CDF
+  "Swiss franc"
+  CHF
+  "Chilean peso"
+  CLP
+  "Renminbi (Chinese) yuan"
+  CNY
+  "Colombian peso"
+  COP
+  "Costa Rican colon"
+  CRC
+  "Cuban convertible peso"
+  CUC
+  "Cuban peso"
+  CUP
+  "Cape Verde escudo"
+  CVE
+  "Czech koruna"
+  CZK
+  "Djiboutian franc"
+  DJF
+  "Danish krone"
+  DKK
+  "Dominican peso"
+  DOP
+  "Algerian dinar"
+  DZD
+  "Egyptian pound"
+  EGP
+  "Eritrean nakfa"
+  ERN
+  "Ethiopian birr"
+  ETB
+  "Euro"
+  EUR
+  "Fiji dollar"
+  FJD
+  "Falkland Islands pound"
+  FKP
+  "Pound sterling"
+  GBP
+  "Georgian lari"
+  GEL
+  "Ghanaian cedi"
+  GHS
+  "Gibraltar pound"
+  GIP
+  "Gambian dalasi"
+  GMD
+  "Guinean franc"
+  GNF
+  "Guatemalan quetzal"
+  GTQ
+  "Guyanese dollar"
+  GYD
+  "Hong Kong dollar"
+  HKD
+  "Honduran lempira"
+  HNL
+  "Croatian kuna"
+  HRK
+  "Haitian gourde"
+  HTG
+  "Hungarian forint"
+  HUF
+  "Indonesian rupiah"
+  IDR
+  "Israeli new shekel"
+  ILS
+  "Indian rupee"
+  INR
+  "Iraqi dinar"
+  IQD
+  "Iranian rial"
+  IRR
+  "Icelandic króna"
+  ISK
+  "Jamaican dollar"
+  JMD
+  "Jordanian dinar"
+  JOD
+  "Japanese yen"
+  JPY
+  "Kenyan shilling"
+  KES
+  "Kyrgyzstani som"
+  KGS
+  "Cambodian riel"
+  KHR
+  "Comoro franc"
+  KMF
+  "North Korean won"
+  KPW
+  "South Korean won"
+  KRW
+  "Kuwaiti dinar"
+  KWD
+  "Cayman Islands dollar"
+  KYD
+  "Kazakhstani tenge"
+  KZT
+  "Lao kip"
+  LAK
+  "Lebanese pound"
+  LBP
+  "Sri Lankan rupee"
+  LKR
+  "Liberian dollar"
+  LRD
+  "Lesotho loti"
+  LSL
+  "Libyan dinar"
+  LYD
+  "Moroccan dirham"
+  MAD
+  "Moldovan leu"
+  MDL
+  "Malagasy ariary"
+  MGA
+  "Macedonian denar"
+  MKD
+  "Myanmar kyat"
+  MMK
+  "Mongolian tögrög"
+  MNT
+  "Macanese pataca"
+  MOP
+  "Mauritanian ouguiya"
+  MRU
+  "Mauritian rupee"
+  MUR
+  "Maldivian rufiyaa"
+  MVR
+  "Malawian kwacha"
+  MWK
+  "Mexican peso"
+  MXN
+  "Malaysian ringgit"
+  MYR
+  "Mozambican metical"
+  MZN
+  "Namibian dollar"
+  NAD
+  "Nigerian naira"
+  NGN
+  "Nicaraguan córdoba"
+  NIO
+  "Norwegian krone"
+  NOK
+  "Nepalese rupee"
+  NPR
+  "New Zealand dollar"
+  NZD
+  "Omani rial"
+  OMR
+  "Panamanian balboa"
+  PAB
+  "Peruvian sol"
+  PEN
+  "Papua New Guinean kina"
+  PGK
+  "Philippine peso"
+  PHP
+  "Pakistani rupee"
+  PKR
+  "Polish złoty"
+  PLN
+  "Paraguayan guaraní"
+  PYG
+  "Qatari riyal"
+  QAR
+  "Romanian leu"
+  RON
+  "Serbian dinar"
+  RSD
+  "Russian ruble"
+  RUB
+  "Rwandan franc"
+  RWF
+  "Saudi riyal"
+  SAR
+  "Solomon Islands dollar"
+  SBD
+  "Seychelles rupee"
+  SCR
+  "Sudanese pound"
+  SDG
+  "Swedish krona/kronor"
+  SEK
+  "Singapore dollar"
+  SGD
+  "Saint Helena pound"
+  SHP
+  "Sierra Leonean leone"
+  SLL
+  "Somali shilling"
+  SOS
+  "Surinamese dollar"
+  SRD
+  "South Sudanese pound"
+  SSP
+  "São Tomé and Príncipe dobra"
+  STN
+  "Salvadoran colón"
+  SVC
+  "Syrian pound"
+  SYP
+  "Swazi lilangeni"
+  SZL
+  "Thai baht"
+  THB
+  "Tajikistani somoni"
+  TJS
+  "Turkmenistan manat"
+  TMT
+  "Tunisian dinar"
+  TND
+  "Tongan paʻanga"
+  TOP
+  "Turkish lira"
+  TRY
+  "Trinidad and Tobago dollar"
+  TTD
+  "New Taiwan dollar"
+  TWD
+  "Tanzanian shilling"
+  TZS
+  "Ukrainian hryvnia"
+  UAH
+  "Ugandan shilling"
+  UGX
+  "United States dollar"
+  USD
+  "Uruguayan peso"
+  UYU
+  "Uzbekistan som"
+  UZS
+  "Venezuelan bolívar soberano"
+  VES
+  "Vietnamese đồng"
+  VND
+  "Vanuatu vatu"
+  VUV
+  "Samoan tala"
+  WST
+  "CFA franc BEAC"
+  XAF
+  "East Caribbean dollar"
+  XCD
+  "CFA franc BCEAO"
+  XOF
+  "CFP franc (franc Pacifique)"
+  XPF
+  "Yemeni rial"
+  YER
+  "South African rand"
+  ZAR
+  "Zambian kwacha"
+  ZMW
+  "Zimbabwean dollar"
+  ZWL
+}
+
+enum DeletionResult {
+  "The entity was successfully deleted"
+  DELETED
+  "Deletion did not take place, reason given in message"
+  NOT_DELETED
+}
+
+enum HistoryEntryType {
+  CUSTOMER_ADDED_TO_GROUP
+  CUSTOMER_ADDRESS_CREATED
+  CUSTOMER_ADDRESS_DELETED
+  CUSTOMER_ADDRESS_UPDATED
+  CUSTOMER_DETAIL_UPDATED
+  CUSTOMER_EMAIL_UPDATE_REQUESTED
+  CUSTOMER_EMAIL_UPDATE_VERIFIED
+  CUSTOMER_NOTE
+  CUSTOMER_PASSWORD_RESET_REQUESTED
+  CUSTOMER_PASSWORD_RESET_VERIFIED
+  CUSTOMER_PASSWORD_UPDATED
+  CUSTOMER_REGISTERED
+  CUSTOMER_REMOVED_FROM_GROUP
+  CUSTOMER_VERIFIED
+  ORDER_CANCELLATION
+  ORDER_COUPON_APPLIED
+  ORDER_COUPON_REMOVED
+  ORDER_FULLFILLMENT
+  ORDER_NOTE
+  ORDER_PAYMENT_TRANSITION
+  ORDER_REFUND_TRANSITION
+  ORDER_STATE_TRANSITION
+}
+
+"""
+
+@description
+Languages in the form of a ISO 639-1 language code with optional
+region or script modifier (e.g. de_AT). The selection available is based
+on the [Unicode CLDR summary list](https://unicode-org.github.io/cldr-staging/charts/37/summary/root.html)
+and includes the major spoken languages of the world and any widely-used variants.
+
+@docsCategory common
+"""
+enum LanguageCode {
+  "Afrikaans"
+  af
+  "Akan"
+  ak
+  "Amharic"
+  am
+  "Arabic"
+  ar
+  "Assamese"
+  as
+  "Azerbaijani"
+  az
+  "Belarusian"
+  be
+  "Bulgarian"
+  bg
+  "Bambara"
+  bm
+  "Bangla"
+  bn
+  "Tibetan"
+  bo
+  "Breton"
+  br
+  "Bosnian"
+  bs
+  "Catalan"
+  ca
+  "Chechen"
+  ce
+  "Corsican"
+  co
+  "Czech"
+  cs
+  "Church Slavic"
+  cu
+  "Welsh"
+  cy
+  "Danish"
+  da
+  "German"
+  de
+  "Austrian German"
+  de_AT
+  "Swiss High German"
+  de_CH
+  "Dzongkha"
+  dz
+  "Ewe"
+  ee
+  "Greek"
+  el
+  "English"
+  en
+  "Australian English"
+  en_AU
+  "Canadian English"
+  en_CA
+  "British English"
+  en_GB
+  "American English"
+  en_US
+  "Esperanto"
+  eo
+  "Spanish"
+  es
+  "European Spanish"
+  es_ES
+  "Mexican Spanish"
+  es_MX
+  "Estonian"
+  et
+  "Basque"
+  eu
+  "Persian"
+  fa
+  "Dari"
+  fa_AF
+  "Fulah"
+  ff
+  "Finnish"
+  fi
+  "Faroese"
+  fo
+  "French"
+  fr
+  "Canadian French"
+  fr_CA
+  "Swiss French"
+  fr_CH
+  "Western Frisian"
+  fy
+  "Irish"
+  ga
+  "Scottish Gaelic"
+  gd
+  "Galician"
+  gl
+  "Gujarati"
+  gu
+  "Manx"
+  gv
+  "Hausa"
+  ha
+  "Hebrew"
+  he
+  "Hindi"
+  hi
+  "Croatian"
+  hr
+  "Haitian Creole"
+  ht
+  "Hungarian"
+  hu
+  "Armenian"
+  hy
+  "Interlingua"
+  ia
+  "Indonesian"
+  id
+  "Igbo"
+  ig
+  "Sichuan Yi"
+  ii
+  "Icelandic"
+  is
+  "Italian"
+  it
+  "Japanese"
+  ja
+  "Javanese"
+  jv
+  "Georgian"
+  ka
+  "Kikuyu"
+  ki
+  "Kazakh"
+  kk
+  "Kalaallisut"
+  kl
+  "Khmer"
+  km
+  "Kannada"
+  kn
+  "Korean"
+  ko
+  "Kashmiri"
+  ks
+  "Kurdish"
+  ku
+  "Cornish"
+  kw
+  "Kyrgyz"
+  ky
+  "Latin"
+  la
+  "Luxembourgish"
+  lb
+  "Ganda"
+  lg
+  "Lingala"
+  ln
+  "Lao"
+  lo
+  "Lithuanian"
+  lt
+  "Luba-Katanga"
+  lu
+  "Latvian"
+  lv
+  "Malagasy"
+  mg
+  "Maori"
+  mi
+  "Macedonian"
+  mk
+  "Malayalam"
+  ml
+  "Mongolian"
+  mn
+  "Marathi"
+  mr
+  "Malay"
+  ms
+  "Maltese"
+  mt
+  "Burmese"
+  my
+  "Norwegian Bokmål"
+  nb
+  "North Ndebele"
+  nd
+  "Nepali"
+  ne
+  "Dutch"
+  nl
+  "Flemish"
+  nl_BE
+  "Norwegian Nynorsk"
+  nn
+  "Nyanja"
+  ny
+  "Oromo"
+  om
+  "Odia"
+  or
+  "Ossetic"
+  os
+  "Punjabi"
+  pa
+  "Polish"
+  pl
+  "Pashto"
+  ps
+  "Portuguese"
+  pt
+  "Brazilian Portuguese"
+  pt_BR
+  "European Portuguese"
+  pt_PT
+  "Quechua"
+  qu
+  "Romansh"
+  rm
+  "Rundi"
+  rn
+  "Romanian"
+  ro
+  "Moldavian"
+  ro_MD
+  "Russian"
+  ru
+  "Kinyarwanda"
+  rw
+  "Sanskrit"
+  sa
+  "Sindhi"
+  sd
+  "Northern Sami"
+  se
+  "Sango"
+  sg
+  "Sinhala"
+  si
+  "Slovak"
+  sk
+  "Slovenian"
+  sl
+  "Samoan"
+  sm
+  "Shona"
+  sn
+  "Somali"
+  so
+  "Albanian"
+  sq
+  "Serbian"
+  sr
+  "Southern Sotho"
+  st
+  "Sundanese"
+  su
+  "Swedish"
+  sv
+  "Swahili"
+  sw
+  "Congo Swahili"
+  sw_CD
+  "Tamil"
+  ta
+  "Telugu"
+  te
+  "Tajik"
+  tg
+  "Thai"
+  th
+  "Tigrinya"
+  ti
+  "Turkmen"
+  tk
+  "Tongan"
+  to
+  "Turkish"
+  tr
+  "Tatar"
+  tt
+  "Uyghur"
+  ug
+  "Ukrainian"
+  uk
+  "Urdu"
+  ur
+  "Uzbek"
+  uz
+  "Vietnamese"
+  vi
+  "Volapük"
+  vo
+  "Wolof"
+  wo
+  "Xhosa"
+  xh
+  "Yiddish"
+  yi
+  "Yoruba"
+  yo
+  "Chinese"
+  zh
+  "Simplified Chinese"
+  zh_Hans
+  "Traditional Chinese"
+  zh_Hant
+  "Zulu"
+  zu
+}
+
+enum LogicalOperator {
+  AND
+  OR
+}
+
+"""
+
+"
+@description
+Permissions for administrators and customers. Used to control access to
+GraphQL resolvers via the {@link Allow} decorator.
+
+@docsCategory common
+"""
+enum Permission {
+  " The Authenticated role means simply that the user is logged in "
+  Authenticated
+  CreateAdministrator
+  CreateCatalog
+  CreateCustomer
+  CreateOrder
+  CreatePromotion
+  CreateSettings
+  DeleteAdministrator
+  DeleteCatalog
+  DeleteCustomer
+  DeleteOrder
+  DeletePromotion
+  DeleteSettings
+  " Owner means the user owns this entity, e.g. a Customer's own Order"
+  Owner
+  " Public means any unauthenticated user may perform the operation "
+  Public
+  ReadAdministrator
+  ReadCatalog
+  ReadCustomer
+  ReadOrder
+  ReadPromotion
+  ReadSettings
+  " SuperAdmin can perform the most sensitive tasks"
+  SuperAdmin
+  UpdateAdministrator
+  UpdateCatalog
+  UpdateCustomer
+  UpdateOrder
+  UpdatePromotion
+  UpdateSettings
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum StockMovementType {
+  ADJUSTMENT
+  CANCELLATION
+  RETURN
+  SALE
+}
+
+input BooleanOperators {
+  eq: Boolean
+}
+
+input CollectionFilterParameter {
+  createdAt: DateOperators
+  description: StringOperators
+  languageCode: StringOperators
+  name: StringOperators
+  position: NumberOperators
+  slug: StringOperators
+  updatedAt: DateOperators
+}
+
+input CollectionListOptions {
+  filter: CollectionFilterParameter
+  skip: Int
+  sort: CollectionSortParameter
+  take: Int
+}
+
+input CollectionSortParameter {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  position: SortOrder
+  slug: SortOrder
+  updatedAt: SortOrder
+}
+
+input ConfigArgInput {
+  name: String!
+  type: String!
+  value: String!
+}
+
+input ConfigurableOperationInput {
+  arguments: [ConfigArgInput!]!
+  code: String!
+}
+
+input CreateAddressInput {
+  city: String
+  company: String
+  countryCode: String!
+  customFields: JSON
+  defaultBillingAddress: Boolean
+  defaultShippingAddress: Boolean
+  fullName: String
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String!
+  streetLine2: String
+}
+
+input CreateCustomerInput {
+  customFields: JSON
+  emailAddress: String!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String
+  title: String
+}
+
+input CustomerFilterParameter {
+  createdAt: DateOperators
+  emailAddress: StringOperators
+  firstName: StringOperators
+  lastName: StringOperators
+  phoneNumber: StringOperators
+  title: StringOperators
+  updatedAt: DateOperators
+}
+
+input CustomerListOptions {
+  filter: CustomerFilterParameter
+  skip: Int
+  sort: CustomerSortParameter
+  take: Int
+}
+
+input CustomerSortParameter {
+  createdAt: SortOrder
+  emailAddress: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  phoneNumber: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input DateOperators {
+  after: DateTime
+  before: DateTime
+  between: DateRange
+  eq: DateTime
+}
+
+input DateRange {
+  end: DateTime!
+  start: DateTime!
+}
+
+input HistoryEntryFilterParameter {
+  createdAt: DateOperators
+  isPublic: BooleanOperators
+  type: StringOperators
+  updatedAt: DateOperators
+}
+
+input HistoryEntryListOptions {
+  filter: HistoryEntryFilterParameter
+  skip: Int
+  sort: HistoryEntrySortParameter
+  take: Int
+}
+
+input HistoryEntrySortParameter {
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input NumberOperators {
+  between: NumberRange
+  eq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+}
+
+input NumberRange {
+  end: Float!
+  start: Float!
+}
+
+input OrderFilterParameter {
+  active: BooleanOperators
+  code: StringOperators
+  createdAt: DateOperators
+  currencyCode: StringOperators
+  shipping: NumberOperators
+  shippingWithTax: NumberOperators
+  state: StringOperators
+  subTotal: NumberOperators
+  subTotalBeforeTax: NumberOperators
+  total: NumberOperators
+  totalBeforeTax: NumberOperators
+  updatedAt: DateOperators
+}
+
+input OrderListOptions {
+  filter: OrderFilterParameter
+  skip: Int
+  sort: OrderSortParameter
+  take: Int
+}
+
+input OrderSortParameter {
+  code: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  shipping: SortOrder
+  shippingWithTax: SortOrder
+  state: SortOrder
+  subTotal: SortOrder
+  subTotalBeforeTax: SortOrder
+  total: SortOrder
+  totalBeforeTax: SortOrder
+  updatedAt: SortOrder
+}
+
+"Passed as input to the `addPaymentToOrder` mutation."
+input PaymentInput {
+  """
+
+  This field should contain arbitrary data passed to the specified PaymentMethodHandler's `createPayment()` method
+  as the "metadata" argument. For example, it could contain an ID for the payment and other
+  data generated by the payment provider.
+  """
+  metadata: JSON!
+  "This field should correspond to the `code` property of a PaymentMethodHandler."
+  method: String!
+}
+
+input ProductFilterParameter {
+  createdAt: DateOperators
+  description: StringOperators
+  languageCode: StringOperators
+  name: StringOperators
+  slug: StringOperators
+  updatedAt: DateOperators
+}
+
+input ProductListOptions {
+  filter: ProductFilterParameter
+  skip: Int
+  sort: ProductSortParameter
+  take: Int
+}
+
+input ProductSortParameter {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  slug: SortOrder
+  updatedAt: SortOrder
+}
+
+input ProductVariantFilterParameter {
+  createdAt: DateOperators
+  currencyCode: StringOperators
+  languageCode: StringOperators
+  name: StringOperators
+  price: NumberOperators
+  priceIncludesTax: BooleanOperators
+  priceWithTax: NumberOperators
+  sku: StringOperators
+  updatedAt: DateOperators
+}
+
+input ProductVariantListOptions {
+  filter: ProductVariantFilterParameter
+  skip: Int
+  sort: ProductVariantSortParameter
+  take: Int
+}
+
+input ProductVariantSortParameter {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  price: SortOrder
+  priceWithTax: SortOrder
+  productId: SortOrder
+  sku: SortOrder
+  updatedAt: SortOrder
+}
+
+input RegisterCustomerInput {
+  emailAddress: String!
+  firstName: String
+  lastName: String
+  password: String
+  title: String
+}
+
+input SearchInput {
+  collectionId: ID
+  facetValueIds: [ID!]
+  facetValueOperator: LogicalOperator
+  groupByProduct: Boolean
+  skip: Int
+  sort: SearchResultSortParameter
+  take: Int
+  term: String
+}
+
+input SearchResultSortParameter {
+  name: SortOrder
+  price: SortOrder
+}
+
+input StringOperators {
+  contains: String
+  eq: String
+}
+
+input UpdateAddressInput {
+  city: String
+  company: String
+  countryCode: String
+  customFields: JSON
+  defaultBillingAddress: Boolean
+  defaultShippingAddress: Boolean
+  fullName: String
+  id: ID!
+  phoneNumber: String
+  postalCode: String
+  province: String
+  streetLine1: String
+  streetLine2: String
+}
+
+input UpdateCustomerInput {
+  customFields: JSON
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  title: String
+}
+
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

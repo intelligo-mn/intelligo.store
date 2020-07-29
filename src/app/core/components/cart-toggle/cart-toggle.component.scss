@@ -1,0 +1,41 @@
+@import "variables";
+
+button.btn {
+    background-color: transparent;
+    border: none;
+    &:hover {
+        background-color: $light;
+    }
+}
+
+.badge.qty-indicator {
+    position: absolute;
+    right: -2px;
+
+    &.cart-changed {
+        background-color: $warning;
+        transition: background-color 0.1s;
+        animation: 0.5s cubic-bezier(.17, .67, .26, 1.54) pulse;
+    }
+
+    transition: background-color 3s;
+
+    &.empty {
+        background-color: $gray-500;
+    }
+
+    opacity: 0.8;
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

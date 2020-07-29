@@ -1,0 +1,8 @@
+<div class="input-group">
+    <input type="text"
+           [formControl]="searchTerm"
+           (keydown.enter)="doSearch(searchTerm.value)"
+           class="form-control"
+           placeholder="Search..."
+           aria-label="Search input">
+</div>

@@ -1,0 +1,38 @@
+<form #signInForm="ngForm"
+      (submit)="signIn()">
+    <vsf-centered-card>
+            <input class="form-control"
+                   placeholder="Email address"
+                   name="emailAddress"
+                   type="email"
+                   email
+                   required
+                   [(ngModel)]="emailAddress">
+            <input class="form-control mt-1"
+                   placeholder="Password"
+                   type="password"
+                   name="password"
+                   required
+                   [(ngModel)]="password">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe" [(ngModel)]="rememberMe">
+          <label class="form-check-label" for="rememberMe">
+            Remember me
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-block mt-3"
+                [disabled]="signInForm.invalid"
+                type="submit">
+            Sign In
+        </button>
+        <div class="alert alert-warning invalid-credentials" role="alert"  [class.visible]="invalidCredentials">
+            Invalid credentials. Please try again.<br>
+            <a [routerLink]="['/account/forgotten-password', { email: this.emailAddress }]">I've forgotten my password</a>
+        </div>
+
+        <div *ngIf="displayRegisterLink" class="register-link">
+            <a [routerLink]="['/account/register']">No account? Register here</a>
+        </div>
+    </vsf-centered-card>
+</form>

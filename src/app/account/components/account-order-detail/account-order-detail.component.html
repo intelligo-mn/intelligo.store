@@ -1,0 +1,11 @@
+<ng-container *ngIf="order$ | async as order">
+    <h2>Order {{ order.code }}</h2>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <vsf-cart-contents [cart]="order"></vsf-cart-contents>
+        </div>
+        <div class="col-12 col-md-4">
+            <vsf-address-card title="Shipping address" [address]="order.shippingAddress"></vsf-address-card>
+        </div>
+    </div>
+</ng-container>

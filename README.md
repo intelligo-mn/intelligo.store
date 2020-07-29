@@ -1,81 +1,25 @@
-# Grocery app
+# Vendure Angular Storefront
 
-Энэхүү төсөл нь codecanyon-д байршуулах зорилгоор хөгжүүлж буй жижиг худалдааны апп-ийн төсөл юм.
+This is an e-commerce storefront application which is designed to be used with the [Vendure ecommerce framework](https://github.com/vendure-ecommerce/vendure) as a back end.
 
-| [Шаардлага][] | [Төслийн бүтэц][] | [Backend][] | [Frontend][] |
-|---|---|---|---|
-     
-## Шаардлага
+It is a progressive web application (PWA) which also uses Angular Universal for server-side rendering.
 
-- [MongoDB](https://www.mongodb.com/download-center)
-- [Node.js 8.0+](http://nodejs.org)
-- [Git](https://git-scm.com/download/win)
+The app is built with the [Angular CLI](https://github.com/angular/angular-cli), with the data layer being handled by [Apollo Client](https://github.com/apollographql/apollo-client).
 
-### Төслийн бүтэц
+## Development
 
-| Нэр      |                                    Тайлбар |                                                                                                                                                               Github Actions |
-| -------- | :----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| backend  |                                Nodejs backend API |   [![Build Status](https://github.com/intelligo-systems/grocery-app/workflows/backend/badge.svg)](https://github.com/intelligo-systems/grocery-app/actions?workflow=backend) |
-| frontend |                   Angular удирдлагын хэсэг | [![Build Status](https://github.com/intelligo-systems/grocery-app/workflows/frontend/badge.svg)](https://github.com/intelligo-systems/grocery-app/actions?workflow=frontend) |
-| mobile   |                                Flutter Mobile app |     [![Build Status](https://github.com/intelligo-systems/grocery-app/workflows/mobile/badge.svg)](https://github.com/intelligo-systems/grocery-app/actions?workflow=mobile) |
-| landing  | Танилцуулга вэб хуудас болон documentation |   [![Build Status](https://github.com/intelligo-systems/grocery-app/workflows/landing/badge.svg)](https://github.com/intelligo-systems/grocery-app/actions?workflow=landing) |
+0. Clone this repo
+1. Run `npm install` or `yarn` in the root dir
+2. Run `npm start` or `yarn start` to build in development mode.
+3. Make sure you have a local Vendure instance running a `http://localhost:3000`.
+4. Open `http://localhost:4201` to see the storefront app running.
 
+## Deployment
 
-## Backend
+This project is used in the [Vendure Demo](https://github.com/vendure-ecommerce/vendure-demo). There is a [GitHub Actions workflow](./.github/workflows/build.yml) which is triggered whenever a new tag is added. The tag should be of the format `"vX.Y.Z"`. The workflow will run the `build:ssr` script and upload the compiled output to an Amazon S3 bucket, from which the vendure-demo project will pull the artifacts.
 
-### Dependencies суулгах
+## License
 
-```bash
-$ npm install
-```
-
-### Апп ажиллуулах
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-### Тэст 
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Frontend
-
-### Development server
-
-`ng serve` комманд ажиллуулж dev server ажиллуулна. Вэб хөтөч дээр `http://localhost:4200/` гэсэн холбоос дээр ажиллана. 
-
-### Build хийх
-
-`ng build` гэсэн коммандаар апп build хийнэ. Build хийсэн файл нь `dist/` хавтасанд байрлана. `--prod` flag ашиглан production build хийнэ.
-
-### Unit test ажиллуулах
-
-`ng test` [Karma](https://karma-runner.github.io).
-
-### End-to-end test хийх
-
-`ng e2e` [Protractor](http://www.protractortest.org/).
-
-[Шаардлага]:#шаардлага
-[Төслийн бүтэц]:#төслийн-бүтэц
-[backend]:#backend
-[frontend]:#frontend
+MIT
 
 

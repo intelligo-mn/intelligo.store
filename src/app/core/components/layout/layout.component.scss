@@ -1,0 +1,18 @@
+@import "variables";
+
+:host {
+    display: block;
+}
+
+.header {
+}
+
+.content {
+    min-height: 60vh;
+}
+
+.footer {
+    background-color: $gray-100;
+    margin-top: $spacer * 3;
+    padding: $spacer * 3 0;
+}

@@ -1,0 +1,57 @@
+<div *ngIf="cart;" class="cart-contents">
+    <div class="items">
+        <ng-container *ngFor="let line of cart.lines; trackBy: trackByFn">
+            <div class="item">
+                <div class="thumb">
+                    <img [src]="line.featuredAsset?.preview + '?preset=tiny'">
+                </div>
+                <div class="details">
+                    <div class="name">{{ line.productVariant?.name }}</div>
+                    <div class="figures">
+                        <div class="price">{{ line.unitPriceWithTax | formatPrice }}</div>
+                        <div class="qty-controls">
+                            <button class="btn btn-sm"
+                                    *ngIf="canAdjustQuantities"
+                                    (click)="decrement(line)">
+                                <fa-icon aria-label="Remove 1" icon="minus"></fa-icon>
+                            </button>
+                            <div class="qty">{{ line.quantity }}</div>
+                            <button class="btn btn-sm"
+                                    *ngIf="canAdjustQuantities"
+                                    (click)="increment(line)">
+                                <fa-icon aria-label="Add 1" icon="plus"></fa-icon>
+                            </button>
+                        </div>
+                        <div class="total">{{ line.totalPrice | formatPrice }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-adjustments">
+                <div class="adjustment" *ngFor="let adjustment of getLinePromotions(line.adjustments)">
+                    <div>{{ adjustment.description }}</div>
+                    <div>{{ adjustment.amount | formatPrice }}</div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="order-adjustments" *ngIf="cart.adjustments.length">
+        Order adjustments:
+        <div class="adjustment" *ngFor="let adjustment of cart.adjustments">
+            <div>{{ adjustment.description }}</div>
+            <div>{{ adjustment.amount | formatPrice }}</div>
+        </div>
+    </div>
+    <div class="shipping">
+        <div class="shipping-price">
+            <span>Shipping:</span>
+            <span>{{ cart.shipping | formatPrice }}</span>
+        </div>
+        <div class="shipping-method">
+            {{ cart.shippingMethod?.description }}
+        </div>
+    </div>
+    <div class="totals">
+        <span>Total:</span>
+        <span>{{ cart.total | formatPrice }}</span>
+    </div>
+</div>

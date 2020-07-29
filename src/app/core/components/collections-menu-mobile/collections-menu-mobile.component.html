@@ -1,0 +1,33 @@
+<button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+</button>
+<a [routerLink]="['/']" class="logo-link ml-3 mb-3" (click)="close()">
+    <img src="assets/cube-logo-line-icon-nostroke.png" class="logo" alt="Vendure Storefront">
+</a>
+<ul class="" *ngIf="collectionTree$ | async as tree">
+    <li class="level0" *ngFor="let collection of tree.children">
+        <a class=""
+           (click)="onL0Click($event, collection)">{{ collection.name }}</a>
+        <ul *ngIf="collection.children.length"
+            class="expandable"
+            [class.expanded]="selected0 === collection.id">
+            <li class="level1" *ngFor="let level1 of collection.children">
+                <a class=""
+                   (click)="onL1Click($event, level1)">{{ level1.name }}</a>
+                <ul *ngIf="level1.children.length"
+                    class="expandable"
+                    [class.expanded]="selected1 === level1.id">
+                    <li class="level2" *ngFor="let level2 of level1.children">
+                        <a class=""
+                           (click)="close()"
+                           [routerLink]="['/category', level2.slug ]">{{ level2.name }}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div class="flex-grow-1"></div>
+<div class="text-center">
+    <a href="http://www.vendure.io/">vendure.io</a>
+</div>

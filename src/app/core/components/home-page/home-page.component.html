@@ -1,0 +1,20 @@
+<div class="hero" [style.background-image]="heroImage">
+    <h1 class="display-1 title text-center">vendure storefront</h1>
+</div>
+
+<div class="container">
+    <div class="top-categories mt-5">
+        <vsf-collection-card *ngFor="let collection of collections$ | async"
+                             [collection]="collection">
+        </vsf-collection-card>
+    </div>
+    <h3 class="display-4 mt-5">Top Sellers</h3>
+    <div class="product-list">
+        <ng-container *ngIf="topSellersLoaded$ | async; else placeholders">
+            <vsf-product-card *ngFor="let product of topSellers$ | async" [product]="product"></vsf-product-card>
+        </ng-container>
+        <ng-template #placeholders>
+            <vsf-product-card *ngFor="let product of placeholderProducts" [product]="product"></vsf-product-card>
+        </ng-template>
+    </div>
+</div>

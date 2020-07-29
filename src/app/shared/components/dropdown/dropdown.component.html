@@ -1,0 +1,13 @@
+<div class="trigger"
+     (click)="onTriggerClick()"
+     (mouseenter)="onTriggerMouseEnter()">
+    <ng-content select="[vsfDropdownTrigger]"></ng-content>
+</div>
+
+<ng-template #contentTemplate>
+    <div class="dropdown-content"
+         #contentElement
+         (click)="stopEventPropagation($event)">
+        <ng-content select="[vsfDropdownContent]"></ng-content>
+    </div>
+</ng-template>
