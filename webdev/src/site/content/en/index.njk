@@ -1,0 +1,146 @@
+---
+layout: layout
+title: dev.mn
+description: |
+  Та dev.mn сайтаас орчин үеийн шилдэг програмчлалын технологиудтай холбоотой хичээл, зөвлөгөө
+  болон заавруудаас суралцаж өөрийгөө хөгжүүлэх боломжтой.
+---
+
+{# *-landing-page classes are a holdover from devsite. #}
+{# It would be great to remove them as part of the v1 migration. #}
+
+<div class="home-landing-page">
+  <header class="w-masthead-home">
+    <div class="w-masthead-home__container">
+      <div class="w-masthead-home__left">
+        <h1 class="w-headline--two w-font-weight--medium">
+          Орчин үеийн шилдэг програмчлалын технологиуд
+        </h1>
+        <p>
+          Та dev.mn сайтаас орчин үеийн шилдэг програмчлалын технологиудтай холбоотой хичээл, зөвлөгөө
+          болон заавруудаас суралцаж өөрийгөө хөгжүүлэх боломжтой..
+        </p>
+        <div class="w-masthead-home__buttons">
+          {# <a
+            class="w-button w-button--primary w-masthead-home__button--primary gc-analytics-event"
+            data-category="dev.mn"
+            data-label="home, test site"
+            data-action="click"
+            href="/measure"
+          >
+            Test my site
+          </a> #}
+          <a
+            class="w-button w-button--secondary gc-analytics-event"
+            data-category="dev.mn"
+            data-label="нүүр, програмчлал сурах"
+            data-action="click"
+            href="/learn"
+          >
+            Сэдвүүд үзэх
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="w-layout-container w-text--center">
+    <p class="w-headline--two-small">
+      Технологи хөгжихийн хэрээр монголын залуус илүү их шинэ технологи сурж мэдэх шаардлагатай болж байна. 
+      Бид dev.mn-ий тусламжтайгаар технологийн хөгжил шинэ боломжуудыг цаг алдалгүй суралцаж өөрсдийн хөгжүүлж 
+      буй програм хангамжууд дээр хамгийн шилдэг технологийн шийдлүүд ашиглах боломжтой болно.
+    </p>
+    <a
+      class="w-button gc-analytics-event"
+      data-category="dev.mn"
+      data-label="home, learn about"
+      data-action="click"
+      href="/about"
+    >
+      dev.mn гэж юу вэ?
+    </a>
+  </section>
+
+  <section>
+    <div class="w-layout-container w-pb--non">
+      <header class="w-text--center">
+        <h2 class="w-headline--two-faded">
+          Сүүлд нэмэгдсэн
+        </h2>
+        <p>
+          Хөгжүүлэгчдэд зориулсан сүүлийн үеийн технологийн шинэ мэдээлэл, шинэчлэлүүдийг харах боломжтой.
+        </p>
+      </header>
+    </div>
+    <div class="w-grid w-pb--std">
+      <div class="w-grid__columns w-grid__columns--gapless w-grid__columns--three" role="list">
+        {% for post in collections.recentPosts %}
+          {% PostCard {post: post} %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="w-layout-container w-pt--non w-pb--xl">
+      <div class="w-text--center">
+        <a class="w-button" href="/blog">
+         Бүх нийтлэлүүдийг үзэх
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="w-layout-container w-pb--non">
+      <header class="w-text--center">
+        <h2 class="w-headline--two-faded">
+          Програмчлалын сэдвүүд
+        </h2>
+        <p>
+          Програмчлалын олон сэдвүүдээс суралцаж, код бичих чадвараа хөгжүүлэх.
+        </p>
+      </header>
+    </div>
+    <div class="w-grid w-pb--std">
+      <div class="w-grid__columns w-grid__columns--gapless w-grid__columns--three" role="list">
+        {% for path in home.paths %}
+          {% PathCard path %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="w-layout-container w-pt--non w-pb--xl">
+      <div class="w-text--center">
+        <a
+          class="w-button gc-analytics-event"
+          data-category="dev.mn"
+          data-label="home, all paths"
+          data-action="click"
+          href="/learn"
+        >
+          Бүх сэдвүүд харах
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  {# <section class="w-layout-container w-text--center">
+    <h2 class="w-headline--two-faded">
+      Save your progress
+    </h2>
+    <p>
+      See how your website performs over time, and keep track as you learn on
+      your own schedule.
+    </p>
+    <div>
+      <a
+        class="w-button w-button--primary gc-analytics-event"
+        data-category="dev.mn"
+        data-label="home, create profile"
+        data-action="click"
+        href="/measure"
+      >
+        Test my site
+      </a>
+    </div>
+  </section>
+</div> #}
