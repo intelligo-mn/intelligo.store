@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Froala Design Blocks - Headers</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link type="text/css" rel="stylesheet" href="css/froala_blocks.css">
+    <style>
+      .fdb-block {
+        border-bottom: 1px solid var(--light);
+      }
+    </style>
+  </head>
+  <body><style>
+  #navigator {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  #navigator .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 720px) {
+    #navigator {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  #navigator a {
+    font-size: 14px;
+  }
+
+  #navigator+section {
+    padding: 250px 0;
+  }
+
+</style>
+
+<section class="fdb-block p-2" id="navigator">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-md">
+      <button class="navbar-toggler mr-auto ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNav0">
+        <p class="m-auto">
+          <a class="btn btn-outline-primary m-1" href="call-to-action.html">Call to action</a>
+          <a class="btn btn-outline-primary m-1" href="contacts.html">Contacts</a>
+          <a class="btn btn-outline-primary m-1" href="contents.html">Contents</a>
+          <a class="btn btn-outline-primary m-1" href="features.html">Features</a>
+          <a class="btn btn-outline-primary m-1" href="footers.html">Footers</a>
+          <a class="btn btn-outline-primary m-1" href="forms.html">Forms</a>
+          <a class="btn btn-outline-primary m-1" href="headers.html">Headers</a>
+          <a class="btn btn-outline-primary m-1" href="pricings.html">Pricings</a>
+          <a class="btn btn-outline-primary m-1" href="teams.html">Teams</a>
+          <a class="btn btn-outline-primary m-1" href="testimonials.html">Testimonials</a>
+        </p>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<script>
+  var page = window.location.pathname.split('/')
+  page = page[page.length - 1]
+
+  var nav = document.querySelector('a[href="' + page + '"]')
+  if (nav) {
+    nav.classList.add('active')
+  }
+
+</script>
+
+    <!-- Headers 1 -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 2 -->
+    <header>
+      <div class="container text-center">
+        <nav class="navbar">
+          <a class="ml-auto mr-auto" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 3 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav0">
+            <ul class="navbar-nav mr-auto ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 4 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+    
+            <ul class="navbar-nav justify-content-end d-none d-lg-flex ml-md-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-slack"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-outline-primary ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 5 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="col-4 col-md-2 text-right text-md-center order-lg-6">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <div class="collapse navbar-collapse col-12 col-md-5 order-lg-1" id="navbarNav2">
+            <ul class="navbar-nav col-5">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+    
+          <ul class="navbar-nav justify-content-end col-sm-5 order-lg-12 d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-slack"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 6 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav3" aria-controls="navbarNav3" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav3">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">About</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-outline-primary ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 7 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-2 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse justify-content-center col-md-8" id="navbarNav4">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+    
+          <ul class="navbar-nav col-2 justify-content-end d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-google"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 8 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav5">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+    
+            <ul class="navbar-nav justify-content-end ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Docs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-primary ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 9 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-2 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-1" aria-controls="navbarNav6" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse justify-content-center col-md-8 navbar-collapse-1">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+            </ul>
+          </div>
+    
+          <div class="collapse navbar-collapse justify-content-end col-md-2 navbar-collapse-1">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In <i class="fas fa-sign-in-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 10 -->
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-3 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-2" aria-controls="navbarNav7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse navbar-collapse-2 justify-content-center col-md-6" id="navbarNav7">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+            </ul>
+          </div>
+    
+          <div class="collapse navbar-collapse navbar-collapse-2">
+            <ul class="navbar-nav ml-auto justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-primary ml-md-3" href="https://www.froala.com">Register</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 11 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar">
+          <a href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 12 -->
+    <header class="bg-dark">
+      <div class="container text-center">
+        <nav class="navbar">
+          <a class="ml-auto mr-auto" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 13 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav8" aria-controls="navbarNav8" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav8">
+            <ul class="navbar-nav mr-auto ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 14 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav9" aria-controls="navbarNav9" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav9">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+    
+            <ul class="navbar-nav justify-content-end d-none d-lg-flex ml-md-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-slack"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-outline-light ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 15 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav10" aria-controls="navbarNav10" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="col-4 col-sm-2 text-center order-lg-6">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <div class="collapse navbar-collapse col-12 col-md-5 order-lg-1" id="navbarNav10">
+            <ul class="navbar-nav col-5">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+    
+          <ul class="navbar-nav justify-content-end col-sm-5 order-lg-12 d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-slack"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 16 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav11" aria-controls="navbarNav11" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav11">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">About</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-outline-light ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 17 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-2 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav12" aria-controls="navbarNav12" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse justify-content-center col-md-8" id="navbarNav12">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+          </div>
+    
+          <ul class="navbar-nav col-2 justify-content-end d-none d-md-flex">
+            <li class="nav-item active">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.froala.com"><i class="fab fa-google"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 18 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="https://www.froala.com">
+            <img src="./imgs/logo.png" height="30" alt="image">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav13" aria-controls="navbarNav13" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNav13">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+            </ul>
+    
+            <ul class="navbar-nav justify-content-end ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Docs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-light ml-md-3" href="https://www.froala.com">Button</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 19 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-2 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-3" aria-controls="navbarNav14" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse justify-content-center col-md-8 navbar-collapse-3" id="navbarNav14">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+            </ul>
+          </div>
+    
+          <div class="collapse navbar-collapse justify-content-end col-md-2 navbar-collapse-3">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In <i class="fas fa-sign-in-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Headers 20 -->
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-md no-gutters">
+          <div class="col-3 text-left">
+            <a href="https://www.froala.com">
+              <img src="./imgs/logo.png" height="30" alt="image">
+            </a>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-4" aria-controls="navbarNav15" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse navbar-collapse-4 justify-content-center col-md-6" id="navbarNav15">
+            <ul class="navbar-nav justify-content-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.froala.com">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Contact</a>
+              </li>
+            </ul>
+          </div>
+    
+          <div class="collapse navbar-collapse navbar-collapse-4">
+            <ul class="navbar-nav ml-auto justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.froala.com">Log In</a>
+              </li>
+            </ul>
+    
+            <a class="btn btn-primary ml-md-3" href="https://www.froala.com">Register</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+  </body>
+</html>

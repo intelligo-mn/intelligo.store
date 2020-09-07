@@ -1,0 +1,75 @@
+// Include Bootstrap vars.
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+// Colors.
+$primary-color: #329ef7;
+$accent-color: #fe6655;
+$white: #ffffff;
+$black: #000000;
+$font-color: #444444;
+
+$primary: #329ef7;
+$link-color: $primary;
+
+// Sizes.
+$heading-margin: 0.7em;
+
+// Block
+$block-padding: 7.5rem;
+
+$btn-shadow: 1;
+
+// Override Bootstrap.
+$font-size-base: 1em;
+$headings-line-height: 1.5;
+$headings-font-weight: 400;
+$font-family-base: Lato, Helvetica, Arial;
+
+$h1-font-size: 2.75rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.125rem;
+$h4-font-size: 1rem;
+$h5-font-size: 0.875rem;
+$h6-font-size: 0.813rem;
+$headings-margin-bottom: 0.5rem;
+$headings-margin-top: 0.3rem;
+$headings-font-weight: 600;
+
+$paragraph-font-color: #8892a0;
+$paragraph-font-weight: 400;
+
+$lead-font-size: 1.4rem;
+$lead-margin-top: 1.1rem;
+$lead-line-height: 1.61rem;
+$lead-font-weight: 400;
+
+$body-color: $font-color;
+
+// Update Bootstrap theme colors.
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    primary: $primary-color,
+    secondary: $accent-color
+  )
+);
+
+// Update buttons padding.
+$btn-padding-x: 1.625rem;
+$btn-padding-x-sm: 1.625rem;
+$btn-padding-x-lg: 1.625rem;
+
+// Button border radius.
+$btn-border-radius: 0.25rem;
+$btn-border-width: 0.125rem;
+$input-btn-font-size: 1rem;
+
+$input-height-border: 0.25rem;
+$input-height: calc(#{$input-height-inner} + #{$input-height-border});
+
+$input-height-sm: calc(#{$input-height-inner-sm} + #{$input-height-border});
+
+$input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border});
+
+$box-shadow: 0 0.3125rem 0.875rem 0 rgba(129, 129, 129, .20);
