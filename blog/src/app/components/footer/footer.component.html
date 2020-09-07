@@ -1,0 +1,84 @@
+<footer class="w-full max-w-screen-xl mx-auto text-white px-5">
+  <div class="md:grid md:grid-cols-2">
+    <div>
+      <p class="text-sm font-semibold text-color-shade">about</p>
+      <div>
+        <p class="my-4 text-color text-sm text-justify">
+          <strong>*notiz.dev</strong> is created by
+          <a
+            class="gradient text-cyan font-semibold"
+            href="https://notiz.dev/authors/gary-grossgarten"
+            >Gary Großgarten</a
+          >
+          and
+          <a
+            class="gradient text-cyan font-semibold"
+            href="https://notiz.dev/authors/marc-stammerjohann"
+            >Marc Stammerjohann</a
+          >. We love to share our experiences and findings working with Angular,
+          NestJS, Web Components and more. 👀 We are excited about the upcoming
+          years of web development and hope to make some friends along the way.
+        </p>
+        <p class="my-4">
+          <em class="text-color text-xs"
+            >* notiz [noˈtiːt͡s] - (german) short, brief, written record</em
+          >
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 p-4">
+      <div *ngFor="let footerSection of footerSections">
+        <p class="text-sm font-semibold text-color-shade text-center">
+          {{ footerSection.title }}
+        </p>
+        <div class="mt-4 space-y-2">
+          <ng-container *ngFor="let link of footerSection.links">
+            <a
+              [href]="link.url"
+              *ngIf="link.external"
+              (click)="analytics.ref(link.url)"
+              target="_blank"
+              rel="noreferrer"
+              class="text-color flex items-center justify-center text-justify rounded-full hover:text-blue hover:bg-blue-opacity-10 p-1 mx-1"
+            >
+              <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
+            </a>
+            <a
+              [routerLink]="link.url"
+              *ngIf="!link.external"
+              class="text-color flex items-center justify-center text-justify rounded-full hover:text-blue hover:bg-blue-opacity-10 p-1 mx-1"
+            >
+              <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
+            </a>
+
+            <ng-template #myTemplate>
+              <niz-inline-svg
+                class="h-4 w-4 mr-1"
+                [svgSource]="link.svg"
+              ></niz-inline-svg>
+              {{ link.title }}
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <div class="flex justify-center">
+      <p class="text-color text-base">Created with</p>
+      <div class="ml-1 flex items-center">
+        <niz-inline-svg
+          class="h-5 w-5"
+          *ngFor="let svg of createdWithSvgSources"
+          [svgSource]="svg"
+        ></niz-inline-svg>
+      </div>
+    </div>
+
+    <p class="text-sm text-color-light text-center">
+      © <a [routerLink]="copyrightUrl">notiz.dev</a>
+      {{ now | date: 'yyyy' }}
+    </p>
+  </div>
+</footer>

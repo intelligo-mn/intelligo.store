@@ -1,0 +1,22 @@
+<div class="min-h-80 my-4 flex flex-col items-center justify-center">
+  <ng-container *ngIf="!unsubscribed && !error">
+    <niz-inline-svg
+      class="h-6 w-6 spin"
+      svgSource="assets/img/spinner.svg"
+    ></niz-inline-svg>
+  </ng-container>
+  <ng-container *ngIf="!unsubscribed && error">
+    <img
+      class="w-64"
+      src="assets/img/cancel.svg"
+      alt="Error while unsubscribing"
+    />
+    <h2 class="text-2xl font-semibold mt-2">Oh no!</h2>
+    <p>Something went wrong, sorry! Please try again later.🙈</p>
+  </ng-container>
+  <ng-container *ngIf="unsubscribed">
+    <img class="w-64" src="assets/img/cancel.svg" alt="Unsubscribe confirmed" />
+    <h2 class="text-2xl font-semibold mt-2">Successfully unsubscribed 😔</h2>
+    <p>We are sorry to see you go. You can re-subscribe if you feel like it.</p>
+  </ng-container>
+</div>

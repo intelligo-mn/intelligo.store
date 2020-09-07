@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185.6 200">
+  <g data-name="Layer 2">
+    <g data-name="Layer 1">
+      <path fill="#448aff" d="M92.4 0L0 33.3l14 122.8L92.4 200l78.9-43.9 14.3-122.8L92.4 0z"/>
+      <path fill="#2979ff" d="M92.4 0v200l78.9-43.9 14.3-122.8L92.4 0z"/>
+      <path fill="#fff" d="M73.6 131.4L54.3 98l30-51.9H62.8L32.8 98l30 52h21.6l-10.8-18.6z"/>
+      <path fill="#a2c5ff" d="M152.8 98l-30-51.9H84.3L54.3 98l19.3-33.3h38.5L131.3 98l-19.2 33.4H73.6L84.4 150h38.4l30-52z"/>
+    </g>
+  </g>
+</svg>

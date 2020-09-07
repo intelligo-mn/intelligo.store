@@ -1,0 +1,21 @@
+:host {
+  &:hover {
+    .tooltip {
+      opacity: 0.96;
+      visibility: visible;
+    }
+  }
+}
+
+.active-tab {
+  color: var(--blue);
+}
+
+.tooltip {
+  position: fixed;
+  transform: scale(1) translateX(5rem);
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  left: 10px;
+  visibility: collapse;
+}

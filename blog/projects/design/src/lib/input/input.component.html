@@ -1,0 +1,17 @@
+<div class="flex items-center h-20 bg-background-light rounded-full border-2 border-background-light" [class.invalid]="invalid">
+  <div class="relative z-0 w-full ml-10 text-xl">
+    <input #input
+      class="block w-full appearance-none bg-transparent focus:outline-none"
+      [type]="type"
+      placeholder=" "
+      [attr.aria-label]="label"
+      (blur)="blur($event)"
+      (focus)="focus($event)"
+      [(ngModel)]="value"
+    />
+    <label class="absolute top-0 -z-1 duration-150 origin-0 text-light font-bold">{{
+      label
+    }}</label>
+  </div>
+</div>
+

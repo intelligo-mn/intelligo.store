@@ -1,0 +1,300 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "notiz": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
+            ],
+            "extraWebpackConfig": "webpack.config.js",
+            "outputPath": "dist/notiz",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.png",
+              "src/robots.txt",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "styles": ["src/styles.scss", "src/theme/variables.scss"],
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "dist/shortcodes/main-es5.js",
+              "dist/shortcodes/main-es2015.js",
+              "dist/shortcodes/polyfills-es5.js",
+              "dist/shortcodes/polyfills-es2015.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "extraWebpackConfig": "webpack.config.js",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "extraWebpackConfig": "webpack.config.js",
+            "browserTarget": "notiz:build"
+          },
+          "configurations": {
+            "production": {
+              "extraWebpackConfig": "webpack.config.js",
+              "browserTarget": "notiz:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "notiz:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "extraWebpackConfig": "webpack.config.js",
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.png",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "notiz:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "notiz:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "design": {
+      "projectType": "library",
+      "root": "projects/design",
+      "sourceRoot": "projects/design/src",
+      "prefix": "niz",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/design/tsconfig.lib.json",
+            "project": "projects/design/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/design/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/design/src/test.ts",
+            "tsConfig": "projects/design/tsconfig.spec.json",
+            "karmaConfig": "projects/design/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/design/tsconfig.lib.json",
+              "projects/design/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "shortcodes": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/shortcodes",
+      "sourceRoot": "projects/shortcodes/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "extraWebpackConfig": "webpack.config.js",
+            "outputPath": "dist/shortcodes",
+            "index": "projects/shortcodes/src/index.html",
+            "main": "projects/shortcodes/src/main.ts",
+            "polyfills": "projects/shortcodes/src/polyfills.ts",
+            "tsConfig": "projects/shortcodes/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/shortcodes/src/favicon.ico",
+              "projects/shortcodes/src/assets"
+            ],
+            "styles": ["src/styles.scss", "src/theme/variables.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/shortcodes/src/environments/environment.ts",
+                  "with": "projects/shortcodes/src/environments/environment.prod.ts"
+                }
+              ],
+              "extraWebpackConfig": "webpack.config.js",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "extraWebpackConfig": "webpack.config.js",
+            "browserTarget": "shortcodes:build"
+          },
+          "configurations": {
+            "production": {
+              "extraWebpackConfig": "webpack.config.js",
+              "browserTarget": "shortcodes:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shortcodes:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "extraWebpackConfig": "webpack.config.js",
+            "main": "projects/shortcodes/src/test.ts",
+            "polyfills": "projects/shortcodes/src/polyfills.ts",
+            "tsConfig": "projects/shortcodes/tsconfig.spec.json",
+            "karmaConfig": "projects/shortcodes/karma.conf.js",
+            "assets": [
+              "projects/shortcodes/src/favicon.ico",
+              "projects/shortcodes/src/assets"
+            ],
+            "styles": ["projects/shortcodes/src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shortcodes/tsconfig.app.json",
+              "projects/shortcodes/tsconfig.spec.json",
+              "projects/shortcodes/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/shortcodes/e2e/protractor.conf.js",
+            "devServerTarget": "shortcodes:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shortcodes:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "notiz"
+}

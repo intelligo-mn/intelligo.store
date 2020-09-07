@@ -1,0 +1,25 @@
+<ng-container *ngIf="tab.url; else withoutUrl">
+  <a class="h-full w-full flex flex-col items-center justify-center hover:text-blue" [class.hover:text-color]="tab.logo"
+    [routerLink]="tab.url" [routerLinkActive]="tab.routeActive ? 'active-tab' : ''">
+    <ng-container *ngTemplateOutlet="tabContent"></ng-container>
+  </a>
+  <ng-container *ngTemplateOutlet="tooltip"></ng-container>
+</ng-container>
+
+<ng-template #withoutUrl>
+  <a class="h-full w-full flex flex-col items-center justify-center hover:text-blue"
+    [class.hover:text-color]="tab.logo">
+    <ng-container *ngTemplateOutlet="tabContent"></ng-container>
+  </a>
+  <ng-container *ngTemplateOutlet="tooltip"></ng-container>
+</ng-template>
+
+<ng-template #tabContent>
+  <niz-inline-svg class="h-6 w-6" [svgSource]="tab.image"></niz-inline-svg>
+  <span *ngIf="tab.text && !tab.tooltip" class="mt-1 text-lg font-semibold tracking-tight">{{tab.text}}</span>
+</ng-template>
+
+<ng-template #tooltip>
+  <span *ngIf="tab.text && tab.tooltip"
+    class="tooltip text-color bg-tabs rounded-full py-1 px-4 hidden md:block">{{tab.text}}</span>
+</ng-template>

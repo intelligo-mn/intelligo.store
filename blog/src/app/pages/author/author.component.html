@@ -1,0 +1,47 @@
+<div class="responsive-container space-y-5 mt-10">
+  <app-breadcrumb></app-breadcrumb>
+  <h1 *ngIf="author$ | async as author" class="text-2xl text-semibold">
+    More about the author
+  </h1>
+
+  <app-author *ngIf="author$ | async as author" [author]="author"></app-author>
+</div>
+<div class="mx-auto flex">
+  
+  <app-card-stack
+    *ngIf="author$ | async as author"
+    title="Latest Articles"
+    [subtitle]="'Latest posts by ' + author.title"
+  >
+    <div
+      class="card"
+      *ngFor="let link of latestAuthorPosts$ | async | slice: 0:8"
+    >
+      <app-article class="stacked"  [route]="link"></app-article>
+    </div>
+    <div class="card" *ngIf="(latestAuthorPosts$ | async).length < 7">
+      <app-coming-soon></app-coming-soon>
+    </div>
+  </app-card-stack>
+</div>
+
+<div
+  class="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 mt-10 max-w-screen-xl mx-auto px-5"
+>
+  <div class="w-full md:w-9/12 xl:w-10/12 flex flex-col space-y-4">
+    <h2 class="text-2xl font-semibold">Recently Updated</h2>
+    <div class="flex flex-wrap">
+      <app-article
+        *ngFor="let blogPost of updatedAuthorPosts$ | async | slice: 1:10"
+        [route]="blogPost"
+      >
+      </app-article>
+    </div>
+  </div>
+  <div class="w-full md:w-3/12 xl:w-2/12 flex flex-col space-y-4 mt-5 md:mt-0">
+    <h2 class="text-2xl font-semibold">
+      <a routerLink="/tags">Tags</a>
+    </h2>
+    <app-tags-view limit="18" [tags]="authorTags$"></app-tags-view>
+  </div>
+</div>

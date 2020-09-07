@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Hello, AMPs</title>
+    <link
+      rel="canonical"
+      href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Muli"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1,initial-scale=1"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": ["logo.jpg"]
+      }
+    </script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <style amp-custom>
+      @media (prefers-color-scheme: dark) {
+        body {
+          --ion-color-primary: #55b9f3;
+          --ion-color-light: #fff;
+          --ion-color-dark: #222428;
+          --ion-background-color: #121212;
+          --ion-text-color: #ffffff;
+          --ion-item-background: #1a1b1e;
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        body {
+          --ion-color-primary: #55f3de;
+          --ion-color-light: #f4f5f8;
+          --ion-color-dark: #222428;
+          --ion-background-color: #fff;
+          --ion-text-color: #121212;
+          --ion-item-background: #1a1b1e;
+        }
+      }
+      body {
+        --ion-color-secondary: #55f3de;
+        --ion-color-tertiary: #556af3;
+        --ion-color-success: #2fdf75;
+        --ion-color-warning: #ffd534;
+        --ion-color-danger: #ff4961;
+        --gradient: linear-gradient(
+          145deg,
+          var(--ion-color-secondary),
+          var(--ion-color-primary),
+          var(--ion-color-tertiary)
+        );
+        background: var(--ion-background-color);
+        color: var(--ion-text-color);
+        font-family: Muli;
+        max-width: 960px;
+      }
+      .content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      a,
+      li:before {
+        color: var(--ion-color-secondary);
+      }
+
+      h2 {
+        color: var(--ion-color-primary-tint);
+      }
+
+      pre {
+        border-radius: 16px;
+        background: var(--ion-item-background);
+        box-shadow: inset 22px 22px 44px #16171a, inset -22px -22px 44px #1e1f23;
+      }
+
+      p code {
+        color: #ffe9cd;
+      }
+      header {
+        height: 84px;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+      }
+
+      footer {
+        height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .fixed-container {
+        position: relative;
+        width: 100%;
+        height: 200px;
+      }
+
+      .banner-container {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        margin-bottom: 40px;
+      }
+      amp-img.contain img {
+        object-fit: contain;
+      }
+      p code {
+        padding: 0px 6px;
+        border-radius: 0.2rem;
+      }
+
+      ul {
+        list-style: none; /* Remove default bullets */
+      }
+
+      ul li::before {
+        content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        font-weight: bold; /* If you want it to be bold */
+        display: inline-block; /* Needed to add space between the bullet and the text */
+        width: 1em; /* Also needed for space (tweak if needed) */
+        margin-left: -1em; /* Also needed for space (tweak if needed) */
+      }
+
+      ol {
+        list-style: none;
+        counter-reset: li;
+      }
+      ol li::before {
+        content: counter(li) '. ';
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+      ol li {
+        counter-increment: li;
+      }
+
+      p,
+      a {
+        font-size: 1.18rem;
+      }
+      p,
+      pre {
+        margin: 0 0 1.5rem;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 42px;
+      }
+
+      @media (min-width: 420px) {
+        .banner-container {
+          height: 340px;
+        }
+      }
+
+      @media (min-width: 670px) {
+        .banner-container {
+          height: 420px;
+        }
+      }
+      @media (min-width: 1000px) {
+        body {
+          padding-left: 40px;
+        }
+      }
+      @media (min-width: 1200px) {
+        body {
+          padding-left: 140px;
+        }
+      }
+      @media (min-width: 1400px) {
+        body {
+          padding-left: 240px;
+        }
+      }
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  </head>
+  <body>
+    <header class="headerbar">
+      <a name="go to full page" class="logo" href="homepage.html">
+        <amp-img
+          alt="notiz.dev logo"
+          class="home-button"
+          src="icons/home.png"
+          width="120"
+          height="44"
+        ></amp-img>
+      </a>
+    </header>
+    <div class="banner-container">
+      <amp-img
+        alt="article banner"
+        class="contain og-image"
+        src="icons/home.png"
+        layout="fill"
+      ></amp-img>
+    </div>
+    <div class="content"></div>
+    <footer>
+      <a class="more" href="homepage.html"></a>
+    </footer>
+    <amp-analytics type="googleanalytics">
+        <script  type="application/json">
+        {
+          "vars": {
+            "account": "UA-56561079-5"
+          },
+          "triggers": {
+            "default pageview": {
+              "on": "visible",
+              "request": "pageview"
+            }
+          }
+        }
+        </script>
+        </amp-analytics>
+  </body>
+</html>
+
+

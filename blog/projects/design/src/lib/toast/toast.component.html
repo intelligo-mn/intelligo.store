@@ -1,0 +1,10 @@
+<span class="flex-grow pl-8 text-lg text-color toast-text">{{
+  (toast$ | async)?.text
+}}</span>
+<button
+  (click)="hide()"
+  [attr.aria-label]="'Close toast'"
+  class="appearance-none w-20 focus:outline-none font-bold text-color-light toast-button"
+>
+  OK
+</button>

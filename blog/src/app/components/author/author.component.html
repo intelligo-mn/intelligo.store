@@ -1,0 +1,56 @@
+<div
+  class="max-w-sm bg-background-light rounded-lg overflow-hidden px-4 py-5 space-y-6 md:max-w-lg"
+>
+  <div class="flex items-center space-x-4">
+    <img
+      class="h-24 w-24 rounded-full"
+      [alt]="author.title"
+      [src]="author.img"
+    />
+    <div>
+      <a
+        class="mt-1 text-2xl font-bold line-clamp-2 min leading-8"
+        [routerLink]="author.route"
+      >
+        {{ author.title }}
+      </a>
+      <a [href]="author.website" target="_blank" rel="noreferrer">{{
+        author.website
+      }}</a>
+    </div>
+  </div>
+
+  <div class="about">
+    <markdown [src]="'assets/content/authors/' + author.sourceFile"></markdown>
+  </div>
+
+  <div class="space-x-2">
+    <niz-chip size="xl">
+      <a
+        class="flex items-center space-x-2"
+        href="https://twitter.com/{{ author.twitter }}"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <niz-inline-svg
+          class="h-4 w-4"
+          svgSource="assets/img/twitter-white.svg"
+        ></niz-inline-svg>
+        <span>@{{ author.twitter }}</span>
+      </a>
+    </niz-chip>
+    <niz-chip size="xl">
+      <a
+        class="flex items-center space-x-2"
+        href="https://github.com/{{ author.github }}"
+        target="_blank"
+        rel="noreferrer"
+        ><niz-inline-svg
+          class="h-4 w-4"
+          svgSource="assets/stack/github.svg"
+        ></niz-inline-svg>
+        <span>@{{ author.github }}</span>
+      </a>
+    </niz-chip>
+  </div>
+</div>

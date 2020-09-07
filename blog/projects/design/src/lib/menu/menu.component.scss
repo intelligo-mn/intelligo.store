@@ -1,0 +1,14 @@
+:host {
+    z-index: 4;
+  @apply flex transform translate-x-full transition-transform duration-150 w-full  flex-col bg-background-opac h-screen fixed right-0 top-0;
+}
+
+@screen md {
+  :host {
+    @apply hidden;
+  }
+}
+
+:host.open {
+  @apply translate-x-0;
+}

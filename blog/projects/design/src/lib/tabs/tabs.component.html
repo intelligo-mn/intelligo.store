@@ -1,0 +1,11 @@
+<nav
+  class="fixed flex bg-tabs z-10 xs:flex-row xs:bottom-0 xs:h-20 xs:w-screen md:flex-col md:top-0 md:h-screen md:w-20"
+>
+  <niz-tab *ngFor="let tab of tabs" [tab]="tab"></niz-tab>
+  <div class="flex flex-1 md:flex-grow flex-col-reverse">
+    <ng-content select="[bottom]"></ng-content>
+  </div>
+</nav>
+<div class="w-full min-h-screen xs:pb-20 md:pl-20">
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,59 @@
+:host {
+  @apply flex items-center  pl-10 py-4 mx-auto;
+  max-width: calc(100vw - 6px);
+}
+@screen xx {
+  .title-card {
+    width: 64px;
+    flex: 0 0 64px;
+    display: flex;
+
+    h2 {
+      transform: rotateZ(180deg);
+      writing-mode: tb-rl;
+    }
+  }
+}
+@screen md {
+  .title-card {
+    width: 240px;
+    flex: 0 0 240px;
+    h2 {
+      transform: rotateZ(0deg);
+      writing-mode: lr;
+    }
+  }
+}
+
+::ng-deep app-card-stack {
+  .card:not(.title-card) {
+    margin-left: -130px;
+    transition: transform 200ms ease;
+    box-shadow: -1rem 0 2.4rem var(--background);
+    position: relative;
+
+    app-article {
+      @apply h-full;
+
+      h2 {
+        @apply min-h-24;
+      }
+
+      .description {
+        @apply min-h-18;
+      }
+    }
+  }
+
+  .card:not(.title-card):hover {
+    transform: translateY(-12px);
+  }
+
+  .card:not(.title-card):hover ~ .card {
+    transform: translateX(130px);
+  }
+}
+
+.horizontal-cards {
+  padding-left: 174px;
+}

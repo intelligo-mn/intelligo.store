@@ -1,0 +1,48 @@
+<div
+  class="flex fixed items-start justify-center z-50 px-4 pt-40 inset-0"
+  [class.hidden]="!isOpen"
+>
+  <div
+    class="absolute inset-0 bg-background-shade opacity-50"
+    (click)="closeSearch()"
+  ></div>
+  <div
+    class="max-w-2xl w-full relative bg-background rounded-lg overflow-hidden shadow-xl"
+  >
+    <input
+      class="appearance-none w-full bg-transparent text-lg font-semibold px-6 py-4 placeholder-color-light focus:outline-none"
+      type="text"
+      #searchInput
+      placeholder="Type to Search"
+      [ngModel]="search"
+      (ngModelChange)="searchChange($event)"
+    />
+    <div [class.hidden]="searchResult.length === 0">
+      <ul class="max-h-384 overflow-y-auto space-y-2 py-4">
+        <li #searchItem *ngFor="let searchItem of searchResult; index as i">
+          <a
+            class="relative inline-block px-6 py-1 no-hover"
+            [class.activeItem]="i === activeIndex"
+            [routerLink]="[searchItem.url]"
+            (click)="closeSearch(searchItem.url)"
+          >
+            <span class="flex flex-col pr-10">
+              <span id="title" class="text-lg font-semibold">
+                {{ searchItem.title }}
+              </span>
+              <span class="text-color-light" *ngIf="searchItem.description">
+                {{ searchItem.description }}
+              </span>
+            </span>
+            <span class="flex items-center absolute inset-y-0 right-0 pr-2">
+              <niz-inline-svg
+                class="h-6 w-6"
+                [svgSource]="'assets/stack/' + searchItem.tag + '.svg' | dash"
+              ></niz-inline-svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>notiz</title>
+    <meta
+      description="personal site and blog of notiz - full stack developer"
+    />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-icon-192x192.png" />
+    <meta name="theme-color" content="#55b9f3" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-56561079-5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-56561079-5');
+    </script>
+  </head>
+
+  <body class="font-sans antialiased">
+    <script>
+      // prevent theme flicker
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const storedTheme =
+        window.localStorage && window.localStorage.getItem('theme');
+
+      const theme =
+        storedTheme === 'dark' || storedTheme === 'light'
+          ? storedTheme
+          : prefersDark
+          ? 'dark'
+          : 'light';
+      document.body.classList.toggle('dark', theme === 'dark');
+    </script>
+    <app-root></app-root>
+    <noscript>
+      Please enable JavaScript to continue using this application.
+    </noscript>
+
+    <script async defer src="https://sa.notiz.dev/latest.js"></script>
+    <noscript><img src="https://sa.notiz.dev/noscript.gif" alt="" /></noscript>
+  </body>
+</html>

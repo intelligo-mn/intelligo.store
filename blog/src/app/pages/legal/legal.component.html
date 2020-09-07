@@ -1,0 +1,4 @@
+<div class="post responsive-container  space-y-5 mt-10">
+  <h2 *ngIf="page$ | async as page">{{ page.title }}</h2>
+  <scully-content></scully-content>
+</div>

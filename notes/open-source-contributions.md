@@ -1,9 +1,0 @@
-
-| Project                                                                                                               | Issue and PR                                                                                                                                                                     | Notes |
-| --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| [angular/angular](https://github.com/angular/angular)                                                                 | [#34953](https://github.com/angular/angular/issues/34953)                                                                                                                        |       |
-| [creativetimofficial/vue-argon-design-system](https://github.com/creativetimofficial/vue-argon-design-system/pull/15) | [#15](https://github.com/creativetimofficial/vue-argon-design-system/pull/15)                                                                                                    |       |
-| [vuejs/vue-next](https://github.com/vuejs/vue-next)                                                                   | [#589](https://github.com/vuejs/vue-next/pull/589)                                                                                                                               |       |
-| [reactjs/mn.reactjs.org](https://github.com/reactjs/mn.reactjs.org/pull/124)                                          | [#122](https://github.com/reactjs/mn.reactjs.org/pull/122) [#123](https://github.com/reactjs/mn.reactjs.org/pull/123) [#124](https://github.com/reactjs/mn.reactjs.org/pull/124) |       |
-
-
