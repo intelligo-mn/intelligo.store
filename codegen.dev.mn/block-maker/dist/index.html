@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Froala Design Blocks</title>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link type="text/css" rel="stylesheet" href="./css/froala_blocks.css">
+
+  <style>
+    #navigator {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    #navigator .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    @media (max-width: 720px) {
+      #navigator {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+
+    #navigator a {
+      font-size: 14px;
+    }
+
+    #navigator+section {
+      padding: 250px 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="fdb-block py-0 my-5">
+    <div class="container bg-r py-5" style="background-image: url(./imgs/shapes/1.svg);">
+      <div class="row justify-content-start">
+        <div class="col-12 col-sm-10 col-md-8 text-center text-sm-left">
+          <h1>Froala Design Blocks</h1>
+          <p class="lead">Over 170 responsive design blocks ready to be used in your web or mobile apps. All blocks are based on the Bootstrap Library, and they are the building blocks for beautiful websites.</p>
+          <p class="mt-4">
+            <a class="btn btn-dark mr-3 mr-sm-0" href="https://github.com/froala/design-blocks"><i class="fab fa-github"></i> Github Docs</a>
+            <a class="btn btn-primary ml-sm-3 mr-3 mr-sm-0 mt-3 mt-sm-0" href="https://froala.com/design-blocks#playground">Official Website</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fdb-block p-2" id="navigator">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler mr-auto ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarNav0">
+          <p class="m-auto">
+            <a class="btn btn-outline-primary m-1" href="call-to-action.html">Call to action</a>
+            <a class="btn btn-outline-primary m-1" href="contacts.html">Contacts</a>
+            <a class="btn btn-outline-primary m-1" href="contents.html">Contents</a>
+            <a class="btn btn-outline-primary m-1" href="features.html">Features</a>
+            <a class="btn btn-outline-primary m-1" href="footers.html">Footers</a>
+            <a class="btn btn-outline-primary m-1" href="forms.html">Forms</a>
+            <a class="btn btn-outline-primary m-1" href="headers.html">Headers</a>
+            <a class="btn btn-outline-primary m-1" href="pricings.html">Pricings</a>
+            <a class="btn btn-outline-primary m-1" href="teams.html">Teams</a>
+            <a class="btn btn-outline-primary m-1" href="testimonials.html">Testimonials</a>
+          </p>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <div id="playground">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

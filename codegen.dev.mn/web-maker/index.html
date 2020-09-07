@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Codegen Web Builder</title>
+
+  <link rel="stylesheet" type="text/css" href="./css/codegen.min.css">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="selector-id"></div>
+  <script src="./js/codegen.js"></script>
+  <script src="./js/codegen-blocks.js"></script>
+
+  <script>
+    window.pages = new Codegen('selector-id', {
+      key: '' //Place your key after downloading from https://froala.com/pages
+    });
+
+  </script>
+</body>
+
+</html>
