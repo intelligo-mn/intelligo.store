@@ -1,0 +1,10 @@
+a:hover {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+niz-chip {
+  @apply bg-background;
+}

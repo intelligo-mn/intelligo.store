@@ -1,0 +1,32 @@
+<a class="article-card" [routerLink]="[route.route]">
+  <div class="flex flex-row items-center text-sm space-x-2">
+    <niz-inline-svg
+      *ngIf="type === 'LINK'"
+      class="h-4 w-4 text-cyan"
+      svgSource="assets/img/link.svg"
+    ></niz-inline-svg>
+    <span>{{ route.updatedAt | date: 'MMMM dd, yyyy' }}</span>
+  </div>
+
+  <h2 class="mt-1 text-2xl font-bold line-clamp-2 min leading-8">
+    {{ route.title }}
+  </h2>
+
+  <div class="text-base text-color-light description line-clamp-2 leading-6">
+    {{ route.description }}
+  </div>
+  <niz-chip
+    class="tags gradient"
+    *ngFor="let tag of route.tags | slice: 0:3"
+    size="xl"
+  >
+    <a [routerLink]="'/tags/' + tag | dash | lowercase">{{ tag }}</a>
+  </niz-chip>
+  <span class="absolute bottom-4 flex flow-row space-x-2 items-center h-6">
+    <span class="font-bold text-color-light">Read More</span>
+    <niz-inline-svg
+      class="icon h-4 w-4 text-blue"
+      svgSource="assets/img/arrow-right.svg"
+    ></niz-inline-svg>
+  </span>
+</a>

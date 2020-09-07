@@ -1,0 +1,29 @@
+<div class="min-h-80 my-4 flex flex-col items-center justify-center">
+  <ng-container *ngIf="!confirmed && !error">
+    <niz-inline-svg
+      class="h-6 w-6 spin"
+      svgSource="assets/img/spinner.svg"
+    ></niz-inline-svg>
+  </ng-container>
+  <ng-container *ngIf="!confirmed && error">
+    <img
+      class="w-64"
+      src="assets/img/cancel.svg"
+      alt="Error while confirming subscription"
+    />
+    <h2 class="text-2xl font-semibold mt-2">Oh no!</h2>
+    <p>Something went wrong, sorry! Please try again later.🙈</p>
+  </ng-container>
+  <ng-container *ngIf="confirmed">
+    <img
+      class="w-64"
+      src="assets/img/subscribed.svg"
+      alt="Subscription confirmed"
+    />
+    <h2 class="text-2xl font-semibold mt-2">Thanks for subscribing!</h2>
+    <p>
+      From now on we'll update you about new posts on notiz.dev. In the meantime
+      <a href="https://twitter.com/notiz_dev"> say hi on twitter.</a>
+    </p>
+  </ng-container>
+</div>

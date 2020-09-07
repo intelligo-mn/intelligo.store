@@ -1,0 +1,42 @@
+.theme {
+  transition: transform 180ms ease;
+}
+
+.router-link {
+  @apply relative;
+  @apply text-lg;
+  @apply font-semibold;
+  @apply h-6;
+  @apply select-none;
+}
+
+.router-link:focus {
+  @apply outline-none;
+}
+
+.router-link:hover {
+  @apply text-blue;
+}
+
+.router-link-active {
+  @apply text-color-shade;
+  position: relative;
+}
+
+.router-link::after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  transition: width 160ms;
+}
+
+.router-link-active::after {
+  content: " ";
+  position: absolute;
+  width: calc(100% - 4px);
+  height: 4px;
+  background-color: var(--blue);
+  left: 2px;
+  bottom: -8px;
+  border-radius: 999px;
+}

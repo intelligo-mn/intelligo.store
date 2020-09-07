@@ -1,0 +1,17 @@
+{
+  "title": "notiz.dev",
+  "description": "Weeklyish Articles about Web Development",
+  "id": "https://notiz.dev",
+  "link": "https://notiz.dev",
+  "language": "en",
+  "image": "https://notiz.dev/assets/img/featured.png",
+  "favicon": "https://notiz.dev/favicon.png",
+  "copyright": "2020 notiz.dev",
+  "generator": "Weeklyish Articles about Web Development",
+  "feedLinks": {
+    "json": "https://notiz.dev/feed.json",
+    "atom": "https://notiz.dev/feed.atom"
+  },
+  "outDir": "./dist/static",
+  "categories": ["Web Development", "Blog", "Angular", "node"]
+}

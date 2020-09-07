@@ -1,0 +1,53 @@
+:host {
+  @apply flex;
+  @apply flex-col;
+  @apply flex-wrap;
+  @apply w-full;
+  @apply h-64;
+}
+
+@screen lg {
+  :host:not(.stacked){
+    @apply w-1/2; 
+  }
+}
+
+
+
+.article-card {
+  @apply relative;
+  @apply mb-6;
+  @apply mr-6;
+  @apply h-full;
+  @apply bg-background-light;
+  @apply rounded-lg;
+  @apply py-5;
+  @apply px-4;
+  .tags{
+    @apply bg-background;
+  }
+  .icon {
+    @apply hidden;
+    svg {
+      @apply w-4;
+      @apply h-4;
+    }
+  }
+}
+.article-card:hover {
+  h2 {
+    @apply text-blue;
+  }
+
+  .icon {
+    @apply flex;
+    svg {
+      @apply text-blue;
+    }
+  }
+}
+
+:host.stacked .article-card{
+  @apply m-0;
+  @apply p-0;
+}

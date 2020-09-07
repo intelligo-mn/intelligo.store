@@ -1,0 +1,27 @@
+<div class="responsive-container space-y-5 mt-10">
+  <app-breadcrumb></app-breadcrumb>
+  <h1 class="text-2xl font-semibold">{{ (page$ | async)?.title }}</h1>
+
+  <scully-content></scully-content>
+
+  <app-featured
+    *ngFor="let route of tagPosts$ | async | slice: 0:1"
+    [route]="route"
+  ></app-featured>
+</div>
+<div
+  class="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 mt-10 max-w-screen-xl mx-auto px-5"
+>
+  <div class="w-full flex flex-col space-y-4">
+    <h2 class="text-2xl font-semibold">
+      Latest posts for {{ (page$ | async)?.title }}
+    </h2>
+    <div class="flex flex-wrap">
+      <app-article
+        *ngFor="let blogPost of tagPosts$ | async | slice: 0:10"
+        [route]="blogPost"
+      >
+      </app-article>
+    </div>
+  </div>
+</div>

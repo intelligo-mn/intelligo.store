@@ -1,0 +1,30 @@
+:host {
+  height: 112px;
+  position: sticky;
+  top: -48px;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  @apply bg-background;
+  z-index: 5;
+  transition: transform 260ms ease;
+
+
+  niz-inline-svg.gradient {
+    position: absolute;
+    width: 100%;
+    height: 88px;
+    top: 100%;
+    z-index: 6;
+  }
+
+  header,
+  ::ng-deep header niz-toolbar {
+    height: 64px;
+  }
+  
+}
+
+:host.out {
+  transform: translateY(-100%);
+}

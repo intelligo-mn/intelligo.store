@@ -1,0 +1,29 @@
+
+<div class="px-10 py-5 flex flex-col space-y-2 z-10 flex-grow">
+  <a class="flex items-center select-none space-x-2">
+    <img class="h-20 w-20" [src]="logo" />
+    <span class="text-2xl font-black text-blue">notiz.dev </span>
+  </a>
+  <span
+    class="title text-6xl font-bold text-color leading-normal w-4/5"
+    >{{ title }}</span
+  >
+</div>
+<div class="footer flex flex-row items-center space-x-4 px-10 pb-8">
+  <img
+    [src]="avatar"
+    class="avatar rounded-full w-20 h-20 border-blue border-solid border-2"
+  />
+  <div class="flex flex-col space-y-2">
+    <span class="author text-2xl font-sub font-bold text-color"
+      >{{ author }}</span
+    >
+    <span class="date text-base text-color-shade">{{
+      updatedAt | date: "MMMM dd, yyyy"
+    }}</span>
+  </div>
+
+  <div class="logos flex flex-row-reverse flex-auto space-x-4">
+    <img class="h-20 w-auto" *ngFor="let l of _logos.reverse()" [src]="l" />
+  </div>
+</div>

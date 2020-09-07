@@ -1,0 +1,48 @@
+:host {
+  @apply flex;
+  @apply flex-col;
+  @apply w-full;
+}
+
+// @screen md {
+//   :host {
+//     @apply w-9/12;
+//   }
+// }
+
+// @screen xl {
+//   :host {
+//     @apply w-10/12;
+//   }
+// }
+.featured:hover {
+  h2 span {
+    @apply text-blue;
+  }
+
+  .icon {
+    @apply inline-flex;
+  }
+}
+
+.post:hover {
+  cursor: pointer;
+}
+
+.post .backdrop {
+  @apply transition-opacity;
+  @apply duration-150;
+}
+
+.post:hover {
+  .backdrop {
+    @apply opacity-75;
+  }
+}
+.icon {
+  @apply h-8 w-8 hidden text-blue;
+}
+
+.gradient {
+  z-index: 3;
+}

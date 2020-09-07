@@ -1,0 +1,15 @@
+<niz-chip
+  class="mb-1 mr-1 gradient"
+  *ngFor="let tag of tags | async | slice: 0:limit"
+>
+  <a [routerLink]="'/tags/' + tag.slug">
+    {{ tag.title }}
+  </a>
+</niz-chip>
+
+<a
+  *ngIf="(tags | async)?.length > limit"
+  [routerLink]="'/tags/'"
+  class="text-sm font-bold uppercase text-color hover:text-blue mr-2"
+  >see all</a
+>

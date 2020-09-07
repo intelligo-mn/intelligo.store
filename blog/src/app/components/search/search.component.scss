@@ -1,0 +1,18 @@
+a {
+  width: calc(100% - 24px);
+  margin-left: 12px;
+}
+
+a:hover:not(.activeItem) {
+  @apply bg-background-light rounded-lg;
+
+  #title {
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.activeItem {
+  @apply bg-background-shade rounded-lg;
+}

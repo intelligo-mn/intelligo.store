@@ -1,0 +1,12 @@
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-5;
+}
+
+.invalid {
+  @apply border-danger;
+
+  div {
+    @apply text-danger;
+  }
+}

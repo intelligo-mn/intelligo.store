@@ -1,0 +1,54 @@
+:host {
+  display: block;
+}
+
+.signup {
+  --background: var(--gradient);
+}
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.newsletter {
+  width: 100%;
+  --inner-padding-start: 24px;
+  border: 2px solid var(--background);
+}
+
+.newsletter.dirty {
+  border: 2px solid var(--danger);
+}
+
+::ng-deep {
+  body.dark {
+    .newsletter {
+      border-radius: 50px;
+      --box-shadow: inset 9px 9px 17px #0b0b0b, inset -9px -9px 17px #191919;
+    }
+  }
+  body:not(.dark) {
+    .newsletter {
+      --padding-start: 24px;
+      border-radius: 50px;
+      --background: var(--dark-blue);
+      --box-shadow: inset 11px 11px 22px #e6e6e6, inset -11px -11px 22px #ffffff;
+    }
+  }
+
+  .form-error,
+  .form-success {
+    text-align: center;
+    position: fixed;
+  }
+
+  .form-error {
+    --background: var(--danger);
+    --color: var(--text-color);
+  }
+
+  .form-success {
+    --background: var(--tw-color-green-500);
+    --color: var(--text-color);
+  }
+}

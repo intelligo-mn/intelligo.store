@@ -1,0 +1,274 @@
+/* purgecss start ignore */
+@import 'tailwindcss/base';
+@import 'base-styles.scss';
+@import 'theme/line-clamp.utilities.scss';
+
+@import 'prismjs/themes/prism-tomorrow';
+@import 'prismjs/plugins/toolbar/prism-toolbar';
+@import 'prismjs/plugins/diff-highlight/prism-diff-highlight';
+
+@import 'tailwindcss/components';
+/* purgecss end ignore */
+
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+:root {
+  font-family: 'Muli', sans-serif;
+}
+
+body {
+  @apply bg-background;
+}
+
+.gradient:hover {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background-shade;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-background-light;
+  border-radius: 99px;
+}
+
+.theme.dark.rotate niz-inline-svg {
+  transform: rotateZ(180deg);
+}
+.theme niz-inline-svg {
+  transition: transform 150ms ease;
+}
+
+// markdown
+
+.token.boolean,
+.token.function,
+.token.number {
+  color: #f38e54;
+}
+
+.token.attr-value,
+.token.char,
+.token.regex,
+.token.string,
+.token.variable {
+  color: #62f296;
+}
+.token.class-name,
+.token.constant,
+.token.property,
+.token.symbol {
+  color: #f2df62;
+}
+
+.post {
+  a,
+  li:before {
+    @apply text-cyan;
+  }
+
+  a:hover {
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h2 {
+    @apply text-blue;
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-color;
+    @apply text-xl;
+  }
+
+  pre {
+    @apply bg-background-light;
+    border-radius: 16px;
+  }
+
+  p {
+    code {
+      @apply text-code;
+    }
+  }
+
+  hr {
+    @apply border-background-light;
+  }
+
+  hr {
+    border-top-width: 4px;
+    margin-top: 44px;
+    margin-bottom: 28px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    code {
+      padding: 0px 6px;
+      border-radius: 0.2rem;
+    }
+  }
+
+  ul {
+    list-style: none; /* Remove default bullets */
+  }
+
+  ul li::before {
+    content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: li;
+  }
+  ol li::before {
+    content: counter(li) '. ';
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  ol li {
+    counter-increment: li;
+  }
+
+  p,
+  a,
+  li {
+    @apply text-lg;
+  }
+  p,
+  pre {
+    margin: 0 0 1.5rem;
+  }
+
+  blockquote p {
+    margin: 0.5rem 0;
+  }
+
+  h2 {
+    @apply font-semibold text-2xl text-blue mt-4 mb-2;
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    @apply text-color;
+  }
+
+  p img {
+    @apply m-auto;
+  }
+}
+
+.medium-zoom-overlay {
+  background-color: var(--background) !important;
+  z-index: 2;
+}
+.medium-zoom-image--opened {
+  z-index: 3;
+}
+
+blockquote {
+  position: relative;
+}
+blockquote::before {
+  content: '';
+  @apply bg-blue;
+  width: 4px;
+  position: absolute;
+  height: 100%;
+  left: -18px;
+  border-radius: 2px;
+}
+
+@screen xl {
+  body {
+    @apply px-0;
+  }
+}
+
+.responsive-container {
+  @apply max-w-screen-xl mx-auto flex flex-col px-5;
+}
+
+.card {
+  @apply rounded-xl shadow-md bg-background-light p-4 overflow-y-hidden;
+  width: 280px;
+  height: 340px;
+}
+
+.bg-gradient {
+  background: var(--gradient);
+}
+
+.spin {
+  animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.about {
+  a {
+    @apply text-cyan;
+  }
+
+  a:hover {
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+body.dark {
+  niz-toast.error {
+    @apply bg-red-800;
+
+    .toast-text,
+    .toast-button {
+      @apply text-color-light;
+    }
+  }
+  niz-toast.success {
+    @apply bg-green-800;
+
+    .toast-text,
+    .toast-button {
+      @apply text-color-light;
+    }
+  }
+}
+
+body:not(.dark) {
+  niz-toast.error {
+    @apply bg-red-500;
+  }
+  niz-toast.success {
+    @apply bg-green-800;
+  }
+}

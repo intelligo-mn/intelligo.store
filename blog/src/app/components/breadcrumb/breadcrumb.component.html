@@ -1,0 +1,7 @@
+<div class="flex flex-row space-x-2 items-center" *ngIf="(breadcrumbs | async)?.length > 0">
+  <ng-container *ngFor="let breadcrumb of breadcrumbs | async; let last = last">
+    <a class="text-blue text-sm" *ngIf="!last" [routerLink]="[breadcrumb.url]">{{ breadcrumb.text }}</a>
+    <span *ngIf="!last" class="text-blue text-sm">/</span>
+    <span class="text-color-shade text-sm font-bold" *ngIf="last">{{ breadcrumb.text }}</span>
+  </ng-container>
+</div>

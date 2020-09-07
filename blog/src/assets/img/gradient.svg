@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" viewBox="0 0 10 30" width="100%" height="100%">
+  <defs>
+    <linearGradient id="eased-gradient-gradient-ouwa" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:1"/>
+      <stop offset="8.1%" style="stop-color:white;stop-opacity:.987"/>
+      <stop offset="15.5%" style="stop-color:white;stop-opacity:.951"/>
+      <stop offset="22.5%" style="stop-color:white;stop-opacity:.896"/>
+      <stop offset="29%" style="stop-color:white;stop-opacity:.825"/>
+      <stop offset="35.3%" style="stop-color:white;stop-opacity:.741"/>
+      <stop offset="47.1%" style="stop-color:white;stop-opacity:.55"/>
+      <stop offset="52.9%" style="stop-color:white;stop-opacity:.45"/>
+      <stop offset="58.8%" style="stop-color:white;stop-opacity:.352"/>
+      <stop offset="64.7%" style="stop-color:white;stop-opacity:.259"/>
+      <stop offset="71%" style="stop-color:white;stop-opacity:.175"/>
+      <stop offset="77.5%" style="stop-color:white;stop-opacity:.104"/>
+      <stop offset="84.5%" style="stop-color:white;stop-opacity:.05"/>
+      <stop offset="91.9%" style="stop-color:white;stop-opacity:.013"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <mask id="eased-gradient-mask-ouwa">
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#eased-gradient-gradient-ouwa)"/>
+  </mask>
+  <rect x="0" y="0" width="100%" height="100%" mask="url(#eased-gradient-mask-ouwa)" fill="var(--background)"/>
+</svg>

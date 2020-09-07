@@ -1,0 +1,11 @@
+<div class="card bg-gradient title-card xx:justify-center xx:items-center md:flex-col md:justify-start md:items-start">
+  <h2 class="md:mt-4 text-2xl font-semibold">{{ title }}</h2>
+  <h4 class="mt-2 text-lg xx:hidden md:block">{{ subtitle }}</h4>
+</div>
+
+<div class="flex flex-row overflow-x-scroll w-full md:ml-20">
+  <div class="flex flex-no-wrap pr-4 py-4 horizontal-cards">
+    
+    <ng-content></ng-content>
+  </div>
+</div>
