@@ -55,7 +55,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     const breadcrumbs = this.getBreadcrumbs(root, currentPage);
     breadcrumbs.unshift({
       url: '',
-      text: 'notiz',
+      text: 'dev.mn',
     });
     return breadcrumbs;
   }
