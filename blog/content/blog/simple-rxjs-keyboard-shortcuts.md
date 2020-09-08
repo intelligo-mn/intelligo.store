@@ -21,7 +21,7 @@ I recently tried to add some keyboard shortcuts to my Angular app. 🤯 **But do
 <img width="80%" max-width="640px" src="https://media.giphy.com/media/m2Q7FEc0bEr4I/source.gif" alt="Brent Rambo - Shortcut master">
 </p>
 
-In this [Quick Tip](https://notiz.dev/tags/quick-tip), I'll show you what I came up with, using [RxJS](https://rxjs-dev.firebaseapp.com/).
+In this [Quick Tip](https://blog.dev.mn/tags/quick-tip), I'll show you what I came up with, using [RxJS](https://rxjs-dev.firebaseapp.com/).
 This demonstration is done in an Angular Workspace scaffolded with the [Angular CLI](https://cli.angular.io/).
 
 

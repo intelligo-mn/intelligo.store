@@ -1,6 +1,6 @@
 # @notiz/ngx-design
 
-Design components for [notiz.dev](https://notiz.dev) for Angular 9.
+Design components for [blog.dev.mn](https://blog.dev.mn) for Angular 9.
 
 ## 📦 Installation
 

@@ -20,7 +20,7 @@ github: https://github.com/notiz-dev/nestjs-prisma-docker
 Requirements for this post are
 
 1. Docker [installed](https://docs.docker.com/engine/install/)
-2. [NestJS application with Prisma](https://notiz.dev/blog/how-to-connect-nestjs-with-prisma)
+2. [NestJS application with Prisma](https://blog.dev.mn/blog/how-to-connect-nestjs-with-prisma)
 
 You can find the [full source code](https://github.com/notiz-dev/nestjs-prisma-docker) on GitHub.
 

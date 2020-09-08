@@ -4,8 +4,8 @@ import '@notiz/scully-plugin-copy-static-content';
 import '@notiz/scully-plugin-fouc';
 import '@notiz/scully-plugin-rss';
 import '@notiz/scully-plugin-medium-zoom';
-import './projects/banner-generator';
-import './projects/amp';
+import './projects/banner-generator/src';
+import './projects/amp/src';
 import { getSitemapPlugin } from '@gammastream/scully-plugin-sitemap';
 
 const defaultPostRenderers = [
@@ -18,7 +18,7 @@ const defaultPostRenderers = [
 
 const SitemapPlugin = getSitemapPlugin();
 setPluginConfig(SitemapPlugin, {
-  urlPrefix: 'https://notiz.dev',
+  urlPrefix: 'http://localhost',
   sitemapFilename: 'sitemap.xml',
   changeFreq: 'weekly',
   priority: [
@@ -56,7 +56,7 @@ setPluginConfig(SitemapPlugin, {
 
 export const config: ScullyConfig = {
   projectRoot: './src',
-  projectName: 'notiz',
+  projectName: 'blog-dev',
   defaultPostRenderers,
   outDir: './dist/static',
   routes: {

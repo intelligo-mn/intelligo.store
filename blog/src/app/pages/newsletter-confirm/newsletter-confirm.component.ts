@@ -22,7 +22,7 @@ export class NewsletterConfirmComponent implements OnInit {
   ngOnInit(): void {
     this.seo.generateTags({
       title: 'Confirm newsletter',
-      description: 'Confirm your newsletter subscription for notiz.dev',
+      description: 'Confirm your newsletter subscription for blog.dev.mn',
     });
 
     const uuid = this.route.snapshot.queryParamMap.get('uuid');

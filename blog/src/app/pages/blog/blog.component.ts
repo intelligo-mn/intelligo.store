@@ -22,7 +22,7 @@ export class BlogComponent implements OnInit {
     this.seo.generateTags({
       title: 'Latest articles',
       description:
-        'Latest articles on notiz.dev featuring Angular, Nestjs, Web Components and more'
+        'Latest articles on blog.dev.mn featuring Angular, Nestjs, Web Components and more'
     });
 
     this.blogPosts$ = this.scullyContentService.posts();

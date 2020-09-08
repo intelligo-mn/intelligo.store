@@ -1,6 +1,6 @@
 {
-  "name": "notiz",
-  "short_name": "notiz",
+  "name": "blog-dev",
+  "short_name": "blog-dev",
   "theme_color": "#55b9f3",
   "background_color": "#121212",
   "display": "standalone",

@@ -7,7 +7,7 @@
 <div class="mx-auto flex mt-10">
   <app-card-stack
     title="Latest Articles"
-    subtitle="Check out latest posts and featured content from notiz.dev"
+    subtitle="Check out latest posts and featured content from blog.dev.mn"
   >
     <div class="card" *ngFor="let blogPost of blogPosts$ | async | slice: 1:8">
       <app-article class="stacked" [route]="blogPost"></app-article>

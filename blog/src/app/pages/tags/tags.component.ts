@@ -21,7 +21,7 @@ export class TagsComponent implements OnInit {
   ngOnInit(): void {
     this.seo.generateTags({
       title: 'Tags',
-      description: 'All tags on notiz.dev'
+      description: 'All tags on blog.dev.mn'
     });
 
     this.blogPosts$ = this.scullyContent.posts();

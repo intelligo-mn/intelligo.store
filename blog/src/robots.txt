@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: https://notiz.dev/sitemap.xml
-Sitemap: https://notiz.dev/sitemap-blog.xml
-Sitemap: https://notiz.dev/sitemap-links.xml
-Sitemap: https://notiz.dev/sitemap-tags.xml
+Sitemap: https://blog.dev.mn/sitemap.xml
+Sitemap: https://blog.dev.mn/sitemap-blog.xml
+Sitemap: https://blog.dev.mn/sitemap-links.xml
+Sitemap: https://blog.dev.mn/sitemap-tags.xml

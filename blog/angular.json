@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "notiz": {
+    "blog-dev": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,7 +21,7 @@
               "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
             ],
             "extraWebpackConfig": "webpack.config.js",
-            "outputPath": "dist/notiz",
+            "outputPath": "dist/blog-dev",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -33,7 +33,10 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/theme/variables.scss"
+            ],
             "scripts": [
               "node_modules/marked/lib/marked.js",
               "dist/shortcodes/main-es5.js",
@@ -108,7 +111,9 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -120,7 +125,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -170,7 +177,9 @@
               "projects/design/tsconfig.lib.json",
               "projects/design/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -200,7 +209,10 @@
               "projects/shortcodes/src/favicon.ico",
               "projects/shortcodes/src/assets"
             ],
-            "styles": ["src/styles.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/theme/variables.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -266,7 +278,9 @@
               "projects/shortcodes/src/favicon.ico",
               "projects/shortcodes/src/assets"
             ],
-            "styles": ["projects/shortcodes/src/styles.scss"],
+            "styles": [
+              "projects/shortcodes/src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -278,7 +292,9 @@
               "projects/shortcodes/tsconfig.spec.json",
               "projects/shortcodes/e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -296,5 +312,8 @@
       }
     }
   },
-  "defaultProject": "notiz"
+  "defaultProject": "blog-dev",
+  "cli": {
+    "analytics": "3961380a-ded7-47f0-994f-a5afcd902f58"
+  }
 }

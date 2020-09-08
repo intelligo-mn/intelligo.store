@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "scully plugin generate a RSS Feed XML",
   "main": "src/index.js",
-  "author": "notiz.dev",
+  "author": "blog.dev.mn",
   "contributors": [
     {
       "name": "Gary Großgarten",
-      "url": "https://notiz.dev/authors/gary-grossgarten"
+      "url": "https://blog.dev.mn/authors/gary-grossgarten"
     },
     {
       "name": "Marc Stammerjohann",
-      "url": "https://notiz.dev/authors/marc-stammerjohann"
+      "url": "https://blog.dev.mn/authors/marc-stammerjohann"
     }
   ],
   "repository": {

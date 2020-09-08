@@ -1,6 +1,6 @@
 ---
 title: Privacy Policy
-description: Privacy Policy of notiz.dev
+description: Privacy Policy of blog.dev.mn
 published: true
 publishedAt: 2020-03-25T18:08:00.000Z
 updatedAt: 2020-03-25T18:08:00.000Z
@@ -8,8 +8,8 @@ updatedAt: 2020-03-25T18:08:00.000Z
 
 ### Contact
 
-notiz.dev (Gary Großgarten, Marc Stammerjohann)
-Email: [hi@notiz.dev](mailto:hi@notiz.dev)
+blog.dev.mn (Gary Großgarten, Marc Stammerjohann)
+Email: [hi@blog.dev.mn](mailto:hi@blog.dev.mn)
 
 ### Privacy
 

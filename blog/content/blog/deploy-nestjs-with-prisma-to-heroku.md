@@ -17,7 +17,7 @@ github: 'https://github.com/notiz-dev/deploy-nestjs-prisma-heroku'
 
 You will learn how to deploy a NestJS application with Prisma 2.0 to [Heroku](https://www.heroku.com/) 🚀. Also we will create a [PostgreSQL database on Heroku](https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1) and connect it with Prisma.
 
-Check out my previous tutorial [How to query your database using Prisma with NestJS](https://notiz.dev/blog/how-to-connect-nestjs-with-prisma) to create a `PrismaService` for your Nest application.
+Check out my previous tutorial [How to query your database using Prisma with NestJS](https://blog.dev.mn/blog/how-to-connect-nestjs-with-prisma) to create a `PrismaService` for your Nest application.
 
 ## Preparing Nest application for Heroku
 
