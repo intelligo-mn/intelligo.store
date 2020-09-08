@@ -32,23 +32,23 @@ export class AppComponent implements OnInit {
 
   footerSections: FooterSection[] = [
     {
-      title: 'notiz.dev',
+      title: 'blog.dev.mn',
       links: [
         {
-          title: '@notiz_dev',
-          url: 'https://twitter.com/notiz_dev',
+          title: '@dev_mn',
+          url: 'https://twitter.com/dev_mn',
           svg: 'assets/img/twitter-white.svg',
           external: true,
         },
         {
-          title: ' @notiz-dev',
-          url: 'https://github.com/notiz-dev',
+          title: ' @dev-mn',
+          url: 'https://github.com/dev-mn',
           svg: 'assets/img/github-white.svg',
           external: true,
         },
         {
-          title: 'hi@notiz.dev',
-          url: 'mailto:hi@notiz.dev',
+          title: 'hello@dev.mn',
+          url: 'mailto:hello@dev.mn',
           svg: 'assets/img/mail.svg',
           external: true,
         },

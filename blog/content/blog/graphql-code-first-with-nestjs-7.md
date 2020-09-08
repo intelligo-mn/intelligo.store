@@ -19,7 +19,7 @@ Recently the release of [NestJS 7](https://trilon.io/blog/announcing-nestjs-7-wh
 
 We create a [GraphQL](https://graphql.org/) API using the `@nestjs/graphql`. You will learn how to write the API with TypeScript using the **code first** approach and the new [GraphQL plugin](https://docs.nestjs.com/graphql/resolvers#cli-plugin).
 
-In this guide we are using [Prisma](https://prisma.io) to easily access a database. You can follow this guide to setup a [Nest application with Prisma](https://notiz.dev/blog/how-to-connect-nestjs-with-prisma) as Prisma is out of scope for this guide.
+In this guide we are using [Prisma](https://prisma.io) to easily access a database. You can follow this guide to setup a [Nest application with Prisma](https://blog.dev.mn/blog/how-to-connect-nestjs-with-prisma) as Prisma is out of scope for this guide.
 
 ## Setup GraphQL
 

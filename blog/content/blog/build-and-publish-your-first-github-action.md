@@ -69,7 +69,7 @@ Second, see `action.yml` in the root of your project.
 ```yaml
 name: 'GitHub Action Template'
 description: 'simple typescript template for building GitHub Actions'
-author: 'notiz.dev'
+author: 'blog.dev.mn'
 inputs:
   my_input:
     description: 'input description here'

@@ -1,32 +1,28 @@
 {
-  "name": "notiz",
+  "name": "blog.dev.mn",
   "version": "0.2.0",
   "contributors": [
     {
-      "name": "Gary Großgarten",
-      "url": "https://notiz.dev/authors/gary-grossgarten"
-    },
-    {
-      "name": "Marc Stammerjohann",
-      "url": "https://notiz.dev/authors/marc-stammerjohann"
+      "name": "Turtuvshin Byambaa",
+      "url": "https://blog.dev.mn/authors/turtuvshin"
     }
   ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "NODE_ENV=production ng build --prod --output-hashing none",
+    "build:prod": "SET NODE_ENV=production && ng build --prod --output-hashing none",
     "test": "ng test",
     "dev": "npm run build && npm run scully && npm run scully:serve",
     "build:scully": "npm run build:prod && npm run scully",
     "build:design": "ng build --project design --prod",
-    "build:shortcodes": "NODE_ENV=production ng build --prod --project shortcodes --single-bundle --output-hashing none",
+    "build:shortcodes": "SET NODE_ENV=production && ng build --prod --project shortcodes --single-bundle --output-hashing none",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write \"src/**/*{.ts,.scss}\"",
     "scully": "scully",
     "serve:scully": "scully serve",
-    "scully:ci": "npm run scully -- --host='0.0.0.0' --scanRoutes --serverTimeout=60000 && sh 404.sh",
+    "scully:ci": "npm run scully -- --host='0.0.0.0' --scanRoutes --serverTimeout=6000 && sh 404.sh",
     "blick:serve": "blick open http://localhost:4200 & ng s",
     "optimize:images": "node optimize-images.js",
     "link:add": "node projects/link-generator && ng build && npm run scully",

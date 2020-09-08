@@ -67,8 +67,8 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
                 keywords: post.keywords
                   ? post.tags.concat(post.keywords)
                   : post.tags,
-                twitter_image: `https://notiz.dev/assets/banners${post.route}/twitter.png`,
-                og_image: `https://notiz.dev/assets/banners${post.route}/og.png`,
+                twitter_image: `https://blog.dev.mn/assets/banners${post.route}/twitter.png`,
+                og_image: `https://blog.dev.mn/assets/banners${post.route}/og.png`,
                 article: {
                   published_time: post.publishedAt,
                   modified_time: post.updatedAt,
@@ -76,7 +76,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
                   author: [
                     ...authors
                       .filter((a) => post.authors.some((a2) => a2 === a.title))
-                      .map((a) => `https://notiz.dev${a.route}`),
+                      .map((a) => `https://blog.dev.mn${a.route}`),
                   ],
                 },
               })

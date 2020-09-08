@@ -36,33 +36,33 @@ const ampPlugin = async (html, route) => {
     });
     const link = original.window.document.createElement('link');
     link.setAttribute('rel', 'amphtml');
-    link.setAttribute('href', `https://notiz.dev${route.route}/amp`);
+    link.setAttribute('href', `https://blog.dev.mn${route.route}/amp`);
     original.window.document.head.append(link);
     document.querySelector(
       'link[rel=canonical]'
-    ).href = `https://notiz.dev${route.route}`;
+    ).href = `https://blog.dev.mn${route.route}`;
     document.querySelector("script[type='application/ld+json']").innerHTML = `
     {
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "headline": "${route.data.title}",
       "datePublished": "${new Date(route.data.publishedAt).toISOString()}",
-      "image": ["https://notiz.dev/assets/banners${route.route}/og.png"]
+      "image": ["https://blog.dev.mn/assets/banners${route.route}/og.png"]
     }
     `;
 
-    document.querySelector('.logo').href = `https://notiz.dev${route.route}`;
-    document.querySelector('.more').href = `https://notiz.dev${route.route}`;
+    document.querySelector('.logo').href = `https://blog.dev.mn${route.route}`;
+    document.querySelector('.more').href = `https://blog.dev.mn${route.route}`;
     document
       .querySelector('.og-image')
       .setAttribute(
         'src',
-        `https://notiz.dev/assets/banners${route.route}/og.png`
+        `https://blog.dev.mn/assets/banners${route.route}/og.png`
       );
     document.querySelector('.more').innerHTML = `See related articles`;
     document
       .querySelector('.home-button')
-      .setAttribute('src', 'https://notiz.dev/assets/img/logo-text.svg');
+      .setAttribute('src', 'https://blog.dev.mn/assets/img/logo-text.svg');
 
     const imgs = content.window.document.querySelectorAll('img');
     imgs.forEach(i => {
@@ -72,7 +72,7 @@ const ampPlugin = async (html, route) => {
       amp.classList.add('contain');
       amp.setAttribute(
         'src',
-        i.src.indexOf('https://') === -1 ? `https://notiz.dev/${i.src}` : i.src
+        i.src.indexOf('https://') === -1 ? `https://blog.dev.mn/${i.src}` : i.src
       );
       amp.setAttribute('alt', i.alt);
       amp.setAttribute('layout', 'fill');

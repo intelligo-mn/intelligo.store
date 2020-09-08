@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  url: 'https://notiz.dev',
-  title: 'notiz',
+  url: 'https://blog.dev.mn',
+  title: 'dev.mn',
   description:
     'Weeklyish articles about Angular, Nestjs, Web Components, and more things related to web development.',
   featureImage: 'assets/img/featured.png',
   keywords: [
-    'notiz',
-    'notiz.dev',
+    'dev.mn',
+    'blog.dev.mn',
     'Angular',
     'Nestjs',
     'Web Components',

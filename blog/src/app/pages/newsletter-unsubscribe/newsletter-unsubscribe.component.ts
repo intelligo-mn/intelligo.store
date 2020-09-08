@@ -22,7 +22,7 @@ export class NewsletterUnsubscribeComponent implements OnInit {
   ngOnInit(): void {
     this.seo.generateTags({
       title: 'Unsubscribe newsletter',
-      description: 'Unsubscribe from notiz.dev newsletter',
+      description: 'Unsubscribe from blog.dev.mn newsletter',
     });
 
     const uuid = this.route.snapshot.queryParamMap.get('uuid');

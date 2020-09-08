@@ -9,7 +9,7 @@ export class NizBanner {
 
   @Input() title = 'image-template';
   @Input() updatedAt = new Date().toDateString();
-  @Input() logo = 'https://notiz.dev/assets/img/logo.svg';
+  @Input() logo = 'https://blog.dev.mn/assets/img/logo.svg';
   @Input() set logos(logos: string) {
     this._logos = logos.split(',');
   }

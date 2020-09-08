@@ -14,7 +14,7 @@ authors:
 github: https://github.com/marcjulian/nestjs-prisma
 ---
 
-Until now, adding [Prisma to a NestJS application](https://notiz.dev/blog/how-to-connect-nestjs-with-prisma) requires a few manual steps - installing [@prisma/cli](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-cli/command-reference) and [@prisma/client](https://github.com/prisma/prisma-client-js), creating a `PrismaService` and (eventually) adding a `Dockerfile`.
+Until now, adding [Prisma to a NestJS application](https://blog.dev.mn/blog/how-to-connect-nestjs-with-prisma) requires a few manual steps - installing [@prisma/cli](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-cli/command-reference) and [@prisma/client](https://github.com/prisma/prisma-client-js), creating a `PrismaService` and (eventually) adding a `Dockerfile`.
 
 I am excited to release [`nestjs-prisma`](https://github.com/marcjulian/nestjs-prisma) - a set of schematics to perform all steps necessary to add Prisma to your NestJS application **automatically**.
 
