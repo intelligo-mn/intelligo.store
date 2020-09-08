@@ -1,21 +1,21 @@
 /* purgecss start ignore */
-@import 'tailwindcss/base';
-@import 'base-styles.scss';
-@import 'theme/line-clamp.utilities.scss';
+@import "tailwindcss/base";
+@import "base-styles.scss";
+@import "theme/line-clamp.utilities.scss";
 
-@import 'prismjs/themes/prism-tomorrow';
-@import 'prismjs/plugins/toolbar/prism-toolbar';
-@import 'prismjs/plugins/diff-highlight/prism-diff-highlight';
+@import "prismjs/themes/prism-tomorrow";
+@import "prismjs/plugins/toolbar/prism-toolbar";
+@import "prismjs/plugins/diff-highlight/prism-diff-highlight";
 
-@import 'tailwindcss/components';
+@import "tailwindcss/components";
 /* purgecss end ignore */
 
-@import 'tailwindcss/utilities';
+@import "tailwindcss/utilities";
 
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
-  font-family: 'Muli', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -129,7 +129,7 @@ body {
   }
 
   ul li::before {
-    content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
     font-weight: bold; /* If you want it to be bold */
     display: inline-block; /* Needed to add space between the bullet and the text */
     width: 1em; /* Also needed for space (tweak if needed) */
@@ -141,7 +141,7 @@ body {
     counter-reset: li;
   }
   ol li::before {
-    content: counter(li) '. ';
+    content: counter(li) ". ";
     display: inline-block;
     width: 1em;
     margin-left: -1em;
@@ -168,8 +168,8 @@ body {
     @apply font-semibold text-2xl text-blue mt-4 mb-2;
   }
 
-  code[class*='language-'],
-  pre[class*='language-'] {
+  code[class*="language-"],
+  pre[class*="language-"] {
     @apply text-color;
   }
 
@@ -190,7 +190,7 @@ blockquote {
   position: relative;
 }
 blockquote::before {
-  content: '';
+  content: "";
   @apply bg-blue;
   width: 4px;
   position: absolute;
