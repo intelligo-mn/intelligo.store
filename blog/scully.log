@@ -50,3 +50,56 @@ Content file "[33m.\content\tags\scully.md[39m" has no content!Content file "
 
 
 
+
+----------------------------------
+Using stored unhandled routes!.
+   To discover new routes in the angular app use "[33mnpm run scully -- --scanRoutes[39m"
+----------------------------------
+Content file "[33m.\content\tags\angular.md[39m" has no content!Content file "[33m.\content\tags\css.md[39m" has no content!Content file "[33m.\content\tags\design.md[39m" has no content!Content file "[33m.\content\tags\devtool.md[39m" has no content!Content file "[33m.\content\tags\git.md[39m" has no content!Content file "[33m.\content\tags\github.md[39m" has no content!Content file "[33m.\content\tags\graphql.md[39m" has no content!Content file "[33m.\content\tags\heroku.md[39m" has no content!Content file "[33m.\content\tags\ionic.md[39m" has no content!Content file "[33m.\content\tags\java.md[39m" has no content!Content file "[33m.\content\tags\nestjs.md[39m" has no content!Content file "[33m.\content\tags\node.md[39m" has no content!Content file "[33m.\content\tags\prisma.md[39m" has no content!Content file "[33m.\content\tags\quick-tip.md[39m" has no content!Content file "[33m.\content\tags\rxjs.md[39m" has no content!Content file "[33m.\content\tags\scully.md[39m" has no content!Content file "[33m.\content\tags\tailwind-css.md[39m" has no content!Content file "[33m.\content\tags\typescript.md[39m" has no content!Content file "[33m.\content\tags\web-components.md[39m" has no content!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ----------------
+        Error, missing "[33m<scully-content>[39m" in route "[33m/authors/turtuvshin-byambaa[39m"
+        without <scully-content> we can not render this route.
+        Make sure it is in there, and not inside any conditionals (*ngIf)
+        You can check this by opening "[33mhttp://localhost:4200//authors/turtuvshin-byambaa[39m"
+        when you serve your app with [33mng serve[39m and then in the browsers console run:
+        [33mdocument.querySelector('scully-content')[39m
+        ----------------
+        
+Content file "[33m.\content\tags\css.md[39m" has no content!Content file "[33m.\content\tags\design.md[39m" has no content!Content file "[33m.\content\tags\angular.md[39m" has no content!
+
+
+Content file "[33m.\content\tags\git.md[39m" has no content!
+Content file "[33m.\content\tags\devtool.md[39m" has no content!Content file "[33m.\content\tags\heroku.md[39m" has no content!Content file "[33m.\content\tags\graphql.md[39m" has no content!Content file "[33m.\content\tags\github.md[39m" has no content!
+
+
+
+Content file "[33m.\content\tags\java.md[39m" has no content!
+Content file "[33m.\content\tags\ionic.md[39m" has no content!Content file "[33m.\content\tags\node.md[39m" has no content!Content file "[33m.\content\tags\nestjs.md[39m" has no content!
+
+
+Content file "[33m.\content\tags\prisma.md[39m" has no content!
+Content file "[33m.\content\tags\rxjs.md[39m" has no content!Content file "[33m.\content\tags\quick-tip.md[39m" has no content!
+
+Content file "[33m.\content\tags\tailwind-css.md[39m" has no content!Content file "[33m.\content\tags\scully.md[39m" has no content!
+
+Content file "[33m.\content\tags\typescript.md[39m" has no content!
+Content file "[33m.\content\tags\web-components.md[39m" has no content!
