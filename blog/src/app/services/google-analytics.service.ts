@@ -17,7 +17,7 @@ export class GoogleAnalyticsService implements OnDestroy {
         skipWhile(() => !environment.production || window.location.hostname === 'localhost'),
         filter((event) => event instanceof NavigationEnd),
         tap((event: NavigationEnd) =>
-          gtag("config", "UA-56561079-5", {
+          gtag("config", "UA-111622042-7", {
             page_path: event.urlAfterRedirects,
           })
         ),
