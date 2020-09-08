@@ -18,7 +18,7 @@ const defaultPostRenderers = [
 
 const SitemapPlugin = getSitemapPlugin();
 setPluginConfig(SitemapPlugin, {
-  urlPrefix: 'http://localhost',
+  urlPrefix: 'http://blog.dev.mn',
   sitemapFilename: 'sitemap.xml',
   changeFreq: 'weekly',
   priority: [
