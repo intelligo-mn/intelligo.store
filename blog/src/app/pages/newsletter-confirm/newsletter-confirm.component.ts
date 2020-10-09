@@ -31,7 +31,7 @@ export class NewsletterConfirmComponent implements OnInit {
 
   confirmSubscription(uuid: string) {
     this.http
-      .post('https://notiz-dev-api.herokuapp.com/confirm', { uuid })
+      .post('https://api.dev.mn/subscribe/confirm', { uuid })
       .pipe(first())
       .subscribe(
         () => {},
