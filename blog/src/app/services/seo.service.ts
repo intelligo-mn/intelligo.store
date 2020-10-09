@@ -122,7 +122,7 @@ export class SeoService {
       name: 'twitter:card',
       content: 'summary_large_image'
     });
-    this.meta.updateTag({ name: 'twitter:site', content: '@notiz_dev' });
+    this.meta.updateTag({ name: 'twitter:site', content: '@dev-mn' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
     this.meta.updateTag({
       name: 'twitter:description',
