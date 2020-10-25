@@ -1,0 +1,28 @@
+import { Module } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from '../../security/passport.jwt.strategy';
+import { UserJWTController } from '../user/user.jwt.controller';
+import { config } from '../../config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthorityRepository } from '../../core/authority.repository';
+import { AuthController } from './auth.controller';
+import { AccountController } from '../../core/account.controller';
+import { UserModule } from '../user/user.module';
+
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([AuthorityRepository]),
+    UserModule,
+    PassportModule,
+    JwtModule.register({
+      secret: config['intelligo.security.authentication.jwt.base64-secret'],
+      signOptions: { expiresIn: '300s' },
+    }),
+  ],
+  controllers: [UserJWTController, AuthController, AccountController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}
