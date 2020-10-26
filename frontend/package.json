@@ -1,10 +1,11 @@
 {
   "name": "childfood.ub.gov.mn",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "format": "prettier --write \"src/**/*.ts\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -17,6 +18,7 @@
     "@angular/compiler": "~10.1.2",
     "@angular/core": "~10.1.2",
     "@angular/forms": "~10.1.2",
+    "@angular/localize": "~10.1.2",
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
