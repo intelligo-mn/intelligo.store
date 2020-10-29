@@ -3,16 +3,16 @@ import { Request } from 'express';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { User } from '../../domain/user.entity';
-import { HeaderUtil } from '../../core/header-util';
-import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
-import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { HeaderUtil } from '../../client/header-util';
+import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
 @Controller('api/users')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('user-resource')
+@ApiUseTags('user-resource')
 export class UserController {
   logger = new Logger('UserController');
 
@@ -26,7 +26,7 @@ export class UserController {
     type: User,
   })
   async getAllUsers(@Req() req: Request): Promise<User[]> {
-    const pageRequest: PageRequest = new PageRequest(req.query.page as string, req.query.size as string, req.query.sort as string);
+    const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
     const [results, count] = await this.userService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,
@@ -38,7 +38,7 @@ export class UserController {
 
   @Post('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Create user' })
+  @ApiOperation({ title: 'Create user' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -53,7 +53,7 @@ export class UserController {
 
   @Put('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Update user' })
+  @ApiOperation({ title: 'Update user' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -75,7 +75,7 @@ export class UserController {
   }
 
   @Delete('/:login')
-  @ApiOperation({ summary: 'Delete login user' })
+  @ApiOperation({ title: 'Delete login user' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
