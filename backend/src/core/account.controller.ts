@@ -1,63 +1,53 @@
 import {
   Body,
-  Param,
-  Post,
-  Res,
-  UseGuards,
   Controller,
   Get,
   Logger,
+  Param,
+  Post,
   Req,
+  Res,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
-import { Response, Request } from "express";
-import { AuthGuard, RolesGuard } from "../security";
-import { User } from "../domain/user.entity";
-import { LoggingInterceptor } from "./interceptors/logging.interceptor";
 import {
   ApiBearerAuth,
-  ApiResponse,
   ApiOperation,
-  ApiTags,
+  ApiResponse,
+  ApiUseTags,
 } from "@nestjs/swagger";
-import { AuthService } from "../modules/auth/auth.service";
-import { UserService } from "./../modules/user/user.service";
-import { HeaderUtil } from "./header-util";
-import { Authority } from "src/domain/authority.entity";
+import { Request, Response } from "express";
+import { LoggingInterceptor } from "../../client/interceptors/logging.interceptor";
+import { User } from "../../domain/user.entity";
+import { AuthGuard, RolesGuard } from "../../security";
+import { AuthService } from "../../service/auth.service";
 
 @Controller("api")
 @UseInterceptors(LoggingInterceptor)
 @UseGuards(AuthGuard, RolesGuard)
 @ApiBearerAuth()
-@ApiTags("account-resource")
+@ApiUseTags("account-resource")
 export class AccountController {
   logger = new Logger("AccountController");
 
-  constructor(
-    private readonly authService: AuthService,
-    private readonly userService: UserService
-  ) {}
+  constructor(private readonly authService: AuthService) {}
   @Post("/register")
-  @ApiOperation({ summary: "Хэрэглэгч бүртгэх" })
+  @ApiOperation({ title: "Register user" })
   @ApiResponse({
     status: 201,
-    description: "Хэрэглэгч бүртэгдлээ",
+    description: "Registered user",
     type: User,
   })
-  async registerAccount(
+  registerAccount(
     @Req() req: Request,
-    @Body() user: User
-  ): Promise<User> {
-    const role: Authority = { name: "ROLE_USER" };
-    user.activated = true;
-    user.authorities = [role];
-    const created = await this.userService.save(user);
-    HeaderUtil.addEntityCreatedHeaders(req.res, "User", created.id);
-    return created;
+    @Body() user: User,
+    @Res() res: Response
+  ): any {
+    return res.sendStatus(201);
   }
 
   @Get("/activate")
-  @ApiOperation({ summary: "Activate an account" })
+  @ApiOperation({ title: "Activate an account" })
   @ApiResponse({
     status: 200,
     description: "activated",
@@ -67,7 +57,7 @@ export class AccountController {
   }
 
   @Get("/authenticate")
-  @ApiOperation({ summary: "Check if the user is authenticated" })
+  @ApiOperation({ title: "Check if the user is authenticated" })
   @ApiResponse({
     status: 200,
     description: "login authenticated",
@@ -78,7 +68,7 @@ export class AccountController {
   }
 
   @Get("/account")
-  @ApiOperation({ summary: "Get the current user." })
+  @ApiOperation({ title: "Get the current user." })
   @ApiResponse({
     status: 200,
     description: "user retrieved",
@@ -89,7 +79,7 @@ export class AccountController {
   }
 
   @Post("/account")
-  @ApiOperation({ summary: "Update the current user information" })
+  @ApiOperation({ title: "Update the current user information" })
   @ApiResponse({
     status: 201,
     description: "user info updated",
@@ -104,7 +94,7 @@ export class AccountController {
   }
 
   @Post("/account/change-password")
-  @ApiOperation({ summary: "Change current password" })
+  @ApiOperation({ title: "Change current password" })
   @ApiResponse({
     status: 201,
     description: "user password changed",
@@ -119,7 +109,7 @@ export class AccountController {
   }
 
   @Post("/account/reset-password/init")
-  @ApiOperation({ summary: "Send an email to reset the password of the user" })
+  @ApiOperation({ title: "Send an email to reset the password of the user" })
   @ApiResponse({
     status: 201,
     description: "mail to reset password sent",
@@ -134,7 +124,7 @@ export class AccountController {
   }
 
   @Post("/account/reset-password/finish")
-  @ApiOperation({ summary: "Finish to reset the password of the user" })
+  @ApiOperation({ title: "Finish to reset the password of the user" })
   @ApiResponse({
     status: 201,
     description: "password reset",
