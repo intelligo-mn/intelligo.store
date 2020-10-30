@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-
-import { createRequestOption, Pagination } from "app/shared/util/request-util";
-import { IUser } from "./user.model";
-import { environment } from "environments/environment";
+import { environment } from 'src/environments/environment';
+import { IUser } from './user.model';
 
 @Injectable({ providedIn: "root" })
 export class UserService {
