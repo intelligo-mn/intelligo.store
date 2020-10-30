@@ -1,18 +1,18 @@
-import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
-import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, Req, UseGuards, UseInterceptors } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
+import { HeaderUtil } from 'src/core/header-util';
+import { LoggingInterceptor } from 'src/core/interceptors/logging.interceptor';
+import { Page, PageRequest } from '../../domain/base/pagination.entity';
 import KinderGarden from '../../domain/kinder-garden.entity';
-import { KinderGardenService } from './kinder-garden.service';
-import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
-import { HeaderUtil } from '../../client/header-util';
-import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { KinderGardenService } from './kinder-garden.service';
 
 @Controller('api/kinder-gardens')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiUseTags('kinder-gardens')
+@ApiTags('kinder-gardens')
 export class KinderGardenController {
   logger = new Logger('KinderGardenController');
 
@@ -49,7 +49,7 @@ export class KinderGardenController {
 
   @PostMethod('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Create kinderGarden' })
+  @ApiOperation({ summary: 'Create kinderGarden' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -64,7 +64,7 @@ export class KinderGardenController {
 
   @Put('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Update kinderGarden' })
+  @ApiOperation({ summary: 'Update kinderGarden' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -77,7 +77,7 @@ export class KinderGardenController {
 
   @Delete('/:id')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Delete kinderGarden' })
+  @ApiOperation({ summary: 'Delete kinderGarden' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
