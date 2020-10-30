@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../domain/user.entity';
-import { UserRepository } from '../repository/user.repository';
-import { FindManyOptions, FindOneOptions } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "src/domain/user.entity";
+import { FindManyOptions, FindOneOptions } from "typeorm";
+import { UserRepository } from "./user.repository";
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
+  constructor(
+    @InjectRepository(UserRepository) private userRepository: UserRepository
+  ) {}
 
   async findById(id: string): Promise<User | undefined> {
     const result = await this.userRepository.findOne(id);
@@ -14,7 +16,7 @@ export class UserService {
   }
 
   async findByfields(options: FindOneOptions<User>): Promise<User | undefined> {
-    options.relations = ['authorities'];
+    options.relations = ["authorities"];
     const result = await this.userRepository.findOne(options);
     return this.flatAuthorities(result);
   }
@@ -24,12 +26,14 @@ export class UserService {
     return this.flatAuthorities(result);
   }
 
-  async findAndCount(options: FindManyOptions<User>): Promise<[User[], number]> {
-    options.relations = ['authorities'];
+  async findAndCount(
+    options: FindManyOptions<User>
+  ): Promise<[User[], number]> {
+    options.relations = ["authorities"];
     const resultList = await this.userRepository.findAndCount(options);
     const users: User[] = [];
     if (resultList && resultList[0]) {
-      resultList[0].forEach(user => users.push(this.flatAuthorities(user)));
+      resultList[0].forEach((user) => users.push(this.flatAuthorities(user)));
       resultList[0] = users;
     }
     return resultList;
@@ -52,7 +56,7 @@ export class UserService {
   private flatAuthorities(user: any): User {
     if (user && user.authorities) {
       const authorities: string[] = [];
-      user.authorities.forEach(authority => authorities.push(authority.name));
+      user.authorities.forEach((authority) => authorities.push(authority.name));
       user.authorities = authorities;
     }
     return user;
@@ -61,7 +65,9 @@ export class UserService {
   private convertInAuthorities(user: any): User {
     if (user && user.authorities) {
       const authorities: any[] = [];
-      user.authorities.forEach(authority => authorities.push({ name: authority }));
+      user.authorities.forEach((authority) =>
+        authorities.push({ name: authority })
+      );
       user.authorities = authorities;
     }
     return user;
