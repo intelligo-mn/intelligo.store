@@ -1,28 +1,35 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, FindOneOptions } from 'typeorm';
-import ProductType from '../domain/product-type.entity';
-import { ProductTypeRepository } from './product-type.repository';
+import { Injectable, Logger } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import ProductType from "src/domain/product-type.entity";
+import { FindManyOptions, FindOneOptions } from "typeorm";
+import { ProductTypeRepository } from "./product-type.repository";
 
 const relationshipNames = [];
-relationshipNames.push('product');
+relationshipNames.push("product");
 
 @Injectable()
 export class ProductTypeService {
-  logger = new Logger('ProductTypeService');
+  logger = new Logger("ProductTypeService");
 
-  constructor(@InjectRepository(ProductTypeRepository) private productTypeRepository: ProductTypeRepository) {}
+  constructor(
+    @InjectRepository(ProductTypeRepository)
+    private productTypeRepository: ProductTypeRepository
+  ) {}
 
   async findById(id: string): Promise<ProductType | undefined> {
     const options = { relations: relationshipNames };
     return await this.productTypeRepository.findOne(id, options);
   }
 
-  async findByfields(options: FindOneOptions<ProductType>): Promise<ProductType | undefined> {
+  async findByfields(
+    options: FindOneOptions<ProductType>
+  ): Promise<ProductType | undefined> {
     return await this.productTypeRepository.findOne(options);
   }
 
-  async findAndCount(options: FindManyOptions<ProductType>): Promise<[ProductType[], number]> {
+  async findAndCount(
+    options: FindManyOptions<ProductType>
+  ): Promise<[ProductType[], number]> {
     options.relations = relationshipNames;
     return await this.productTypeRepository.findAndCount(options);
   }
