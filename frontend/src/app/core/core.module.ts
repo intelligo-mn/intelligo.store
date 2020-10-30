@@ -2,41 +2,24 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { CookieModule } from 'ngx-cookie';
-import { NgxWebstorageModule } from 'ngx-webstorage';
-import { NgJhipsterModule } from 'ng-jhipster';
-import locale from '@angular/common/locales/en';
-
-import * as moment from 'moment';
 import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateMomentAdapter } from 'app/shared/util/datepicker-adapter';
-
-import { AuthInterceptor } from 'app/core/interceptor/auth.interceptor';
-import { AuthExpiredInterceptor } from 'app/core/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from 'app/core/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from 'app/core/interceptor/notification.interceptor';
-
+import * as moment from 'moment';
+import { locale } from 'moment';
 import { fontAwesomeIcons } from './icons/font-awesome-icons';
+import { AuthExpiredInterceptor } from './interceptor/auth-expired.interceptor';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ErrorHandlerInterceptor } from './interceptor/errorhandler.interceptor';
+import { NotificationInterceptor } from './interceptor/notification.interceptor';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-    CookieModule.forRoot(),
-    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
-    NgJhipsterModule.forRoot({
-      // set below to true to make alerts look like toast
-      alertAsToast: false,
-      alertTimeout: 5000,
-    }),
-  ],
+  imports: [HttpClientModule, CookieModule.forRoot()],
   providers: [
     Title,
     {
       provide: LOCALE_ID,
       useValue: 'en',
     },
-    { provide: NgbDateAdapter, useClass: NgbDateMomentAdapter },
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
@@ -61,9 +44,7 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
   ],
 })
 export class ForumCoreModule {
-  constructor(iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {
+  constructor() {
     registerLocaleData(locale);
-    iconLibrary.addIcons(...fontAwesomeIcons);
-    dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
   }
 }
