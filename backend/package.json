@@ -57,6 +57,7 @@
     "@types/js-yaml": "^3.12.5",
     "@types/node": "14.14.6",
     "@types/passport-jwt": "3.0.3",
+    "@types/shelljs": "^0.8.8",
     "@types/supertest": "2.0.10",
     "@typescript-eslint/eslint-plugin": "4.6.0",
     "@typescript-eslint/eslint-plugin-tslint": "4.6.0",
@@ -92,4 +93,3 @@
     "testEnvironment": "node"
   }
 }
-Ø
