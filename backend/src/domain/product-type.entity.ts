@@ -13,6 +13,4 @@ export default class ProductType extends BaseEntity {
 
   @ManyToOne((type) => Product)
   product: Product;
-
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

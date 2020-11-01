@@ -18,6 +18,4 @@ export default class KinderGarden extends BaseEntity {
 
   @Column({ type: "integer", name: "latitude" })
   latitude: number;
-
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

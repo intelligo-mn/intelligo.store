@@ -18,7 +18,7 @@ import { AccountController } from '../web/rest/account.controller';
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: config['jhipster.security.authentication.jwt.base64-secret'],
+      secret: config['intelligo.security.authentication.jwt.base64-secret'],
       signOptions: { expiresIn: '300s' },
     }),
   ],
