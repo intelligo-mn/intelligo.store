@@ -1,12 +1,13 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
-import { PageRequest, Page } from '../../domain/base/pagination.entity';
-import { User } from '../../domain/user.entity';
-import { HeaderUtil } from '../../client/header-util';
-import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { UserService } from '../../service/user.service';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard, Roles, RoleType } from 'src/core';
+import { HeaderUtil } from 'src/core/header-util';
+import { PageRequest, Page } from 'src/domain/base/pagination.entity';
+import { User } from 'src/domain/user.entity';
 
 @Controller('api/users')
 @UseGuards(AuthGuard, RolesGuard)
