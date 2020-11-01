@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UnitController } from '../../web/rest/unit.controller';
-import { UnitRepository } from '../../repository/unit.repository';
-import { UnitService } from '../../service/unit.service';
+import { UnitController } from './unit.controller';
+import { UnitRepository } from './unit.repository';
+import { UnitService } from './unit.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UnitRepository])],

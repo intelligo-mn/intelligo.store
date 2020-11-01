@@ -3,7 +3,7 @@ import { Response, Request } from 'express';
 import { User } from '../../domain/user.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/core';
 

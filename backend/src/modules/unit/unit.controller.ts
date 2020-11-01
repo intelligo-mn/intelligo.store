@@ -1,35 +1,34 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import Product from '../../domain/product.entity';
-import { ProductService } from '../../service/product.service';
+import Unit from '../../domain/unit.entity';
+import { UnitService } from './unit.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard, Roles, RoleType } from 'src/core';
 import { HeaderUtil } from 'src/core/header-util';
 
-@Controller('api/products')
+@Controller('api/units')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('products')
-export class ProductController {
-  logger = new Logger('ProductController');
+@ApiTags('units')
+export class UnitController {
+  logger = new Logger('UnitController');
 
-  constructor(private readonly productService: ProductService) {}
+  constructor(private readonly unitService: UnitService) {}
 
   @Get('/')
   @Roles(RoleType.USER)
   @ApiResponse({
     status: 200,
     description: 'List all records',
-    type: Product,
+    type: Unit,
   })
-  async getAll(@Req() req: Request): Promise<Product[]> {
-    req.query
+  async getAll(@Req() req: Request): Promise<Unit[]> {
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
-    const [results, count] = await this.productService.findAndCount({
+    const [results, count] = await this.unitService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,
       order: pageRequest.sort.asOrder(),
@@ -43,50 +42,50 @@ export class ProductController {
   @ApiResponse({
     status: 200,
     description: 'The found record',
-    type: Product,
+    type: Unit,
   })
-  async getOne(@Param('id') id: string): Promise<Product> {
-    return await this.productService.findById(id);
+  async getOne(@Param('id') id: string): Promise<Unit> {
+    return await this.unitService.findById(id);
   }
 
   @PostMethod('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ summary: 'Create product' })
+  @ApiOperation({ summary: 'Create unit' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: Product,
+    type: Unit,
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async post(@Req() req: Request, @Body() product: Product): Promise<Product> {
-    const created = await this.productService.save(product);
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Product', created.id);
+  async post(@Req() req: Request, @Body() unit: Unit): Promise<Unit> {
+    const created = await this.unitService.save(unit);
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Unit', created.id);
     return created;
   }
 
   @Put('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ summary: 'Update product' })
+  @ApiOperation({ summary: 'Update unit' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
-    type: Product,
+    type: Unit,
   })
-  async put(@Req() req: Request, @Body() product: Product): Promise<Product> {
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Product', product.id);
-    return await this.productService.update(product);
+  async put(@Req() req: Request, @Body() unit: Unit): Promise<Unit> {
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Unit', unit.id);
+    return await this.unitService.update(unit);
   }
 
   @Delete('/:id')
   @Roles(RoleType.USER)
-  @ApiOperation({ summary: 'Delete product' })
+  @ApiOperation({ summary: 'Delete unit' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
   })
-  async remove(@Req() req: Request, @Param('id') id: string): Promise<Product> {
-    HeaderUtil.addEntityDeletedHeaders(req.res, 'Product', id);
-    const toDelete = await this.productService.findById(id);
-    return await this.productService.delete(toDelete);
+  async remove(@Req() req: Request, @Param('id') id: string): Promise<Unit> {
+    HeaderUtil.addEntityDeletedHeaders(req.res, 'Unit', id);
+    const toDelete = await this.unitService.findById(id);
+    return await this.unitService.delete(toDelete);
   }
 }

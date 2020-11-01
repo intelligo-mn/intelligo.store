@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { UserJWTController } from '../../web/rest/user.jwt.controller';
 import { config } from '../../config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthorityRepository } from '../../repository/authority.repository';
+import { AuthorityRepository } from './authority.repository';
 
-import { AuthController } from '../../web/rest/auth.controller';
-import { AccountController } from '../../web/rest/account.controller';
+import { AuthController } from './auth.controller';
+import { AccountController } from './account.controller';
 import { JwtStrategy } from '../../core/passport.jwt.strategy';
+import { UserJWTController } from '../user/user.jwt.controller';
 
 @Module({
   imports: [
