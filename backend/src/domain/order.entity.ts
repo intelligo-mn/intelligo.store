@@ -28,6 +28,4 @@ export default class Order extends BaseEntity {
 
   @Column({ type: "enum", name: "status", enum: OrderStatus })
   status: OrderStatus;
-
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }
