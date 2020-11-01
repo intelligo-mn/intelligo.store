@@ -3,18 +3,18 @@ import { Response, Request } from 'express';
 import { UserLoginDTO } from '../../service/dto/user-login.dto';
 import { AuthService } from '../../service/auth.service';
 import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
-import { ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller('api')
 @UseInterceptors(LoggingInterceptor)
-@ApiUseTags('user-jwt-controller')
+@ApiTags('user-jwt-controller')
 export class UserJWTController {
   logger = new Logger('UserJWTController');
 
   constructor(private readonly authService: AuthService) {}
 
   @Post('/authenticate')
-  @ApiOperation({ title: 'Authorization api retrieving token' })
+  @ApiOperation({ summary: 'Authorization api retrieving token' })
   @ApiResponse({
     status: 201,
     description: 'Authorized',

@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
-import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import Product from '../../domain/product.entity';
 import { ProductService } from '../../service/product.service';
@@ -12,7 +12,7 @@ import { LoggingInterceptor } from '../../client/interceptors/logging.intercepto
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiUseTags('products')
+@ApiTags('products')
 export class ProductController {
   logger = new Logger('ProductController');
 
@@ -26,6 +26,7 @@ export class ProductController {
     type: Product,
   })
   async getAll(@Req() req: Request): Promise<Product[]> {
+    req.query
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
     const [results, count] = await this.productService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
@@ -49,7 +50,7 @@ export class ProductController {
 
   @PostMethod('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Create product' })
+  @ApiOperation({ summary: 'Create product' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -64,7 +65,7 @@ export class ProductController {
 
   @Put('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Update product' })
+  @ApiOperation({ summary: 'Update product' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -77,7 +78,7 @@ export class ProductController {
 
   @Delete('/:id')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Delete product' })
+  @ApiOperation({ summary: 'Delete product' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',

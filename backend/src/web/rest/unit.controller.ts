@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
-import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import Unit from '../../domain/unit.entity';
 import { UnitService } from '../../service/unit.service';
@@ -12,7 +12,7 @@ import { LoggingInterceptor } from '../../client/interceptors/logging.intercepto
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiUseTags('units')
+@ApiTags('units')
 export class UnitController {
   logger = new Logger('UnitController');
 
@@ -49,7 +49,7 @@ export class UnitController {
 
   @PostMethod('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Create unit' })
+  @ApiOperation({ summary: 'Create unit' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -64,7 +64,7 @@ export class UnitController {
 
   @Put('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Update unit' })
+  @ApiOperation({ summary: 'Update unit' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -77,7 +77,7 @@ export class UnitController {
 
   @Delete('/:id')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Delete unit' })
+  @ApiOperation({ summary: 'Delete unit' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
