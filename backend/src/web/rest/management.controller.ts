@@ -1,5 +1,5 @@
 import { Controller, Get, Logger, UseInterceptors } from '@nestjs/common';
-import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiTags, ApiResponse, ApiOperation, ApiExcludeEndpoint } from '@nestjs/swagger';
 
 @Controller('management')

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './module/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { ormconfig } from './orm.config';
-import { ProductTypeModule } from './module/product-type.module';
-import { UnitModule } from './module/unit.module';
-import { ProductModule } from './module/product.module';
-import { KinderGardenModule } from './module/kinder-garden.module';
-import { OrderModule } from './module/order.module';
+import { ProductTypeModule } from './modules/product-type/product-type.module';
+import { UnitModule } from './modules/unit/unit.module';
+import { ProductModule } from './modules/product/product.module';
+import { KinderGardenModule } from './modules/kinder-garden/kinder-garden.module';
+import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [

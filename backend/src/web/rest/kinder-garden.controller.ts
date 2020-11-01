@@ -4,9 +4,10 @@ import { Request } from 'express';
 import KinderGarden from '../../domain/kinder-garden.entity';
 import { KinderGardenService } from '../../service/kinder-garden.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
-import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
-import { HeaderUtil } from '../../client/header-util';
-import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard, Roles, RoleType } from 'src/core';
+import { HeaderUtil } from 'src/core/header-util';
 
 @Controller('api/kinder-gardens')
 @UseGuards(AuthGuard, RolesGuard)
