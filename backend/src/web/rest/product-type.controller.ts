@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
-import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import ProductType from '../../domain/product-type.entity';
 import { ProductTypeService } from '../../service/product-type.service';
@@ -12,7 +12,7 @@ import { LoggingInterceptor } from '../../client/interceptors/logging.intercepto
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiUseTags('product-types')
+@ApiTags('product-types')
 export class ProductTypeController {
   logger = new Logger('ProductTypeController');
 
@@ -49,7 +49,7 @@ export class ProductTypeController {
 
   @PostMethod('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Create productType' })
+  @ApiOperation({ summary: 'Create productType' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -64,7 +64,7 @@ export class ProductTypeController {
 
   @Put('/')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Update productType' })
+  @ApiOperation({ summary: 'Update productType' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -77,7 +77,7 @@ export class ProductTypeController {
 
   @Delete('/:id')
   @Roles(RoleType.USER)
-  @ApiOperation({ title: 'Delete productType' })
+  @ApiOperation({ summary: 'Delete productType' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',

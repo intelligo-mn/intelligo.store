@@ -5,14 +5,14 @@ import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { User } from '../../domain/user.entity';
 import { HeaderUtil } from '../../client/header-util';
 import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
-import { ApiBearerAuth, ApiUseTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { UserService } from '../../service/user.service';
 
 @Controller('api/users')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiUseTags('user-resource')
+@ApiTags('user-resource')
 export class UserController {
   logger = new Logger('UserController');
 
@@ -38,7 +38,7 @@ export class UserController {
 
   @Post('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ title: 'Create user' })
+  @ApiOperation({ summary: 'Create user' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -53,7 +53,7 @@ export class UserController {
 
   @Put('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ title: 'Update user' })
+  @ApiOperation({ summary: 'Update user' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -75,7 +75,7 @@ export class UserController {
   }
 
   @Delete('/:login')
-  @ApiOperation({ title: 'Delete login user' })
+  @ApiOperation({ summary: 'Delete login user' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
