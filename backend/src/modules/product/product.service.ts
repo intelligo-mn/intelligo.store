@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import Product from '../domain/product.entity';
-import { ProductRepository } from '../repository/product.repository';
+import Product from '../../domain/product.entity';
+import { ProductRepository } from './product.repository';
 
 const relationshipNames = [];
 

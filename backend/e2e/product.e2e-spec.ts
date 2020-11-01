@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
 import Product from '../src/domain/product.entity';
-import { ProductService } from '../src/service/product.service';
+import { ProductService } from '../src/modules/product/product.service';
 
 describe('Product Controller', () => {
   let app: INestApplication;

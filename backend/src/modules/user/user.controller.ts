@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Logger, Param, Post, Put, UseGuards, Req
 import { Request } from 'express';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
-import { UserService } from '../../service/user.service';
+import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard, Roles, RoleType } from 'src/core';
 import { HeaderUtil } from 'src/core/header-util';

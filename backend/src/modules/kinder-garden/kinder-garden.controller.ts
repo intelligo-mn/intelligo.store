@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, 
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import KinderGarden from '../../domain/kinder-garden.entity';
-import { KinderGardenService } from '../../service/kinder-garden.service';
+import { KinderGardenService } from './kinder-garden.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { AuthGuard } from '@nestjs/passport';

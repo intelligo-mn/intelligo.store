@@ -1,7 +1,7 @@
 import { Body, Controller, Logger, Post, Res, Req, UseInterceptors } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { UserLoginDTO } from '../../service/dto/user-login.dto';
-import { AuthService } from '../../service/auth.service';
+import { UserLoginDTO } from '../../domain/dto/user-login.dto';
+import { AuthService } from '../../modules/auth/auth.service';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
