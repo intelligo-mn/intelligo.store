@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
 import { User } from '../src/domain/user.entity';
-import { UserRepository } from '../src/repository/user.repository';
+import { UserRepository } from '../src/modules/user/user.repository';
 
 describe('User', () => {
   let app: INestApplication;

@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
 import KinderGarden from '../src/domain/kinder-garden.entity';
-import { KinderGardenService } from '../src/service/kinder-garden.service';
+import { KinderGardenService } from '../src/modules/kinder-garden/kinder-garden.service';
 
 describe('KinderGarden Controller', () => {
   let app: INestApplication;
