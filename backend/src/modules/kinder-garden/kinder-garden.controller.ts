@@ -1,12 +1,13 @@
-import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, Req, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import { HeaderUtil } from 'src/core/header-util';
-import { LoggingInterceptor } from 'src/core/interceptors/logging.interceptor';
-import { Page, PageRequest } from '../../domain/base/pagination.entity';
 import KinderGarden from '../../domain/kinder-garden.entity';
-import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
 import { KinderGardenService } from './kinder-garden.service';
+import { PageRequest, Page } from '../../domain/base/pagination.entity';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard, Roles, RoleType } from 'src/core';
+import { HeaderUtil } from 'src/core/header-util';
 
 @Controller('api/kinder-gardens')
 @UseGuards(AuthGuard, RolesGuard)
@@ -26,7 +27,7 @@ export class KinderGardenController {
     type: KinderGarden,
   })
   async getAll(@Req() req: Request): Promise<KinderGarden[]> {
-    const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+    const pageRequest: PageRequest = new PageRequest(req?.query?.page, req.query.size, req.query.sort);
     const [results, count] = await this.kinderGardenService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,

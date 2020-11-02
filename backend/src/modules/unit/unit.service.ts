@@ -1,19 +1,17 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import Unit from "src/domain/unit.entity";
-import { FindManyOptions, FindOneOptions } from "typeorm";
-import { UnitRepository } from "./unit.repository";
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindManyOptions, FindOneOptions } from 'typeorm';
+import Unit from '../../domain/unit.entity';
+import { UnitRepository } from './unit.repository';
 
 const relationshipNames = [];
-relationshipNames.push("product");
+relationshipNames.push('product');
 
 @Injectable()
 export class UnitService {
-  logger = new Logger("UnitService");
+  logger = new Logger('UnitService');
 
-  constructor(
-    @InjectRepository(UnitRepository) private unitRepository: UnitRepository
-  ) {}
+  constructor(@InjectRepository(UnitRepository) private unitRepository: UnitRepository) {}
 
   async findById(id: string): Promise<Unit | undefined> {
     const options = { relations: relationshipNames };
@@ -24,9 +22,7 @@ export class UnitService {
     return await this.unitRepository.findOne(options);
   }
 
-  async findAndCount(
-    options: FindManyOptions<Unit>
-  ): Promise<[Unit[], number]> {
+  async findAndCount(options: FindManyOptions<Unit>): Promise<[Unit[], number]> {
     options.relations = relationshipNames;
     return await this.unitRepository.findAndCount(options);
   }
