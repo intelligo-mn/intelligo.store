@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
 import Unit from '../src/domain/unit.entity';
-import { UnitService } from '../src/service/unit.service';
+import { UnitService } from '../src/modules/unit/unit.service';
 
 describe('Unit Controller', () => {
   let app: INestApplication;

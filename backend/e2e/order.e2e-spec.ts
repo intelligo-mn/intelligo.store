@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
 import Order from '../src/domain/order.entity';
-import { OrderService } from '../src/service/order.service';
+import { OrderService } from '../src/modules/order/order.service';
 
 describe('Order Controller', () => {
   let app: INestApplication;
