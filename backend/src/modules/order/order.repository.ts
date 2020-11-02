@@ -1,5 +1,5 @@
-import Order from "src/domain/order.entity";
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, Repository } from 'typeorm';
+import Order from '../../domain/order.entity';
 
 @EntityRepository(Order)
 export class OrderRepository extends Repository<Order> {}

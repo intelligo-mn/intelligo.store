@@ -1,39 +1,27 @@
-import {
-  Body,
-  Controller,
-  Logger,
-  Post,
-  Req,
-  Res,
-  UseInterceptors,
-} from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Request, Response } from "express";
-import { LoggingInterceptor } from "src/core/interceptors/logging.interceptor";
-import { UserLoginDTO } from "src/domain/dto/user-login.dto";
-import { AuthService } from "../auth/auth.service";
+import { Body, Controller, Logger, Post, Res, Req, UseInterceptors } from '@nestjs/common';
+import { Response, Request } from 'express';
+import { UserLoginDTO } from '../../domain/dto/user-login.dto';
+import { AuthService } from '../../modules/auth/auth.service';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
+import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
-@Controller("api")
+@Controller('api')
 @UseInterceptors(LoggingInterceptor)
-@ApiTags("user-jwt-controller")
+@ApiTags('user-jwt-controller')
 export class UserJWTController {
-  logger = new Logger("UserJWTController");
+  logger = new Logger('UserJWTController');
 
   constructor(private readonly authService: AuthService) {}
 
-  @Post("/authenticate")
-  @ApiOperation({ summary: "Authorization api retrieving token" })
+  @Post('/authenticate')
+  @ApiOperation({ summary: 'Authorization api retrieving token' })
   @ApiResponse({
     status: 201,
-    description: "Authorized",
+    description: 'Authorized',
   })
-  async authorize(
-    @Req() req: Request,
-    @Body() user: UserLoginDTO,
-    @Res() res: Response
-  ): Promise<any> {
+  async authorize(@Req() req: Request, @Body() user: UserLoginDTO, @Res() res: Response): Promise<any> {
     const jwt = await this.authService.login(user);
-    res.setHeader("Authorization", "Bearer " + jwt.id_token);
+    res.setHeader('Authorization', 'Bearer ' + jwt.id_token);
     return res.json(jwt);
   }
 }

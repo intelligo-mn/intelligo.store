@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import { OrderStatus } from "./enums/order-status";
+import { OrderStatus } from "./enum/order-status";
 
 /**
  * A Order.

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { JhiAlertService, JhiAlert } from 'ng-jhipster';
+import { JhiAlertService, JhiAlert } from 'ng-intelligo';
 
 @Component({
   selector: 'jhi-alert',
