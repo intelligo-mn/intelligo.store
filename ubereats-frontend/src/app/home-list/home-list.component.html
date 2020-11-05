@@ -1,12 +1,15 @@
 <div class="row home-list mt-5 mb-5">
   <div
-    class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4"
     *ngFor="let data of datas"
   >
     <div class="card shadow">
       <img src="{{ data.image }}" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">{{ data.name }}</h5>
+        <p class="card-text">
+          {{ data.desc }}
+        </p>
         <p class="card-text">
           {{ data.price }}
         </p>
