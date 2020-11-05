@@ -22,12 +22,36 @@
         z-index: -1;
         opacity: 0.3;
       }
+
+      form {
+        width: 70%;
+        label {
+          display: block;
+          font-size: 2rem;
+          font-weight: 600;
+        }
+
+        input {
+          border-radius: 10px;
+          padding: 15px;
+          border: 1px solid #e5e9ec;
+          height: auto;
+        }
+      }
     }
 
     .right {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      form {
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0px 10px 20px rgba(60, 120, 187, 0.15);
+        width: 50%;
+        background-color: #fff;
+      }
     }
   }
 }
