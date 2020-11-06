@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DetailComponent } from './detail/detail.component';
 
 @Component({
   selector: 'app-home-list',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeListComponent implements OnInit {
   datas: Object[];
 
-  constructor() {
+  constructor(private modalService: NgbModal) {
     this.datas = [
       {
         key: 1,
@@ -110,6 +112,11 @@ export class HomeListComponent implements OnInit {
         recipe: 'onions | iskender | pineapple',
       },
     ];
+  }
+
+  open(item: any) {
+    const modalRef = this.modalService.open(DetailComponent, { size: 'xl' });
+    modalRef.componentInstance.item = item;
   }
 
   ngOnInit(): void {}

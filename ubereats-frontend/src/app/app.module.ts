@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeListComponent } from './home-list/home-list.component';
+import { DetailComponent } from './home-list/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeListComponent } from './home-list/home-list.component';
     HeaderComponent,
     PageNotFoundComponent,
     HomeListComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
