@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ item ? item.name : "-" }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="modal-top">
+    <div class="image-container">
+      <img src="{{ item ? item.image : '-' }}" />
+    </div>
+    <div class="item-info">
+      <div class="detail">
+        <label class="title text-info">Description</label>
+        <p class="value">{{ item ? item.desc : "-" }}</p>
+      </div>
+      <div class="detail">
+        <label class="title text-info">Recipe</label>
+        <p class="value">{{ item ? item.recipe : "-" }}</p>
+      </div>
+      <div class="detail">
+        <label class="title text-info">Price</label>
+        <p class="value">{{ item ? item.price : "-" }}</p>
+      </div>
+      <button class="btn btn-primary btn-sm">Order</button>
+    </div>
+  </div>
+  <div class="map-container">Map will render here</div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>
