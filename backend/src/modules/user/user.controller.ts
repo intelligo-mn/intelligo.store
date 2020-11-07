@@ -12,7 +12,7 @@ import { User } from '../../domain/user.entity';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('user-resource')
+@ApiTags('User')
 export class UserController {
   logger = new Logger('UserController');
 

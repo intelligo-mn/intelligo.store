@@ -12,7 +12,7 @@ import { HeaderUtil } from '../../core/header-util';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('product-types')
+@ApiTags('Product Types')
 export class ProductTypeController {
   logger = new Logger('ProductTypeController');
 

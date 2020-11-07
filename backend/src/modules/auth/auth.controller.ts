@@ -9,7 +9,7 @@ import { RolesGuard, Roles, RoleType, AuthGuard } from '../../core';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('auth-controller')
+@ApiTags('Authorities')
 export class AuthController {
   logger = new Logger('AuthController');
 

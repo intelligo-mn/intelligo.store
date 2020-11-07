@@ -7,13 +7,13 @@ import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller('api')
 @UseInterceptors(LoggingInterceptor)
-@ApiTags('user-jwt-controller')
+@ApiTags('Authentication')
 export class UserJWTController {
   logger = new Logger('UserJWTController');
 
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/authenticate')
+  @Post('/auth')
   @ApiOperation({ summary: 'Authorization api retrieving token' })
   @ApiResponse({
     status: 201,

@@ -12,7 +12,7 @@ import { HeaderUtil } from '../../core/header-util';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('units')
+@ApiTags('Units')
 export class UnitController {
   logger = new Logger('UnitController');
 
