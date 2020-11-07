@@ -3,7 +3,7 @@ import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
 import { Authority } from "./authority.entity";
 import { BaseEntity } from "./base/base.entity";
 
-@Entity("jhi_user")
+@Entity("user")
 export class User extends BaseEntity {
   @ApiProperty({
     uniqueItems: true,

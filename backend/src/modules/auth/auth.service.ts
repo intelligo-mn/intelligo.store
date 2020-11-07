@@ -7,7 +7,7 @@ import { Authority } from '../../domain/authority.entity';
 import { User } from '../../domain/user.entity';
 import { AuthorityRepository } from './authority.repository';
 import { UserService } from '../user/user.service';
-import { Payload } from 'src/core/payload.interface';
+import { Payload } from '../../core/payload.interface';
 
 @Injectable()
 export class AuthService {
