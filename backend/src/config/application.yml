@@ -58,8 +58,8 @@ intelligo:
     from: childfood@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: childfood API
-    description: childfood API documentation
+    title: REST API for childfood.ub.gov.mn system
+    description: Childfood API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:
@@ -67,7 +67,7 @@ intelligo:
     contact-email:
     license:
     license-url:
-    path: /api/v2/api-docs
+    path: /api/v1/docs
 
 cloud:
   config:
