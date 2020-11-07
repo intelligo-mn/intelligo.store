@@ -5,9 +5,8 @@ import Product from '../../domain/product.entity';
 import { ProductService } from './product.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
-import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard, Roles, RoleType } from 'src/core';
-import { HeaderUtil } from 'src/core/header-util';
+import { RolesGuard, Roles, RoleType, AuthGuard } from '../../core';
+import { HeaderUtil } from '../../core/header-util';
 
 @Controller('api/products')
 @UseGuards(AuthGuard, RolesGuard)
