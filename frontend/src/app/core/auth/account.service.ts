@@ -1,27 +1,22 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
-import { Observable, ReplaySubject, of } from "rxjs";
-import { shareReplay, tap, catchError } from "rxjs/operators";
-import { StorageService } from "src/app/core/auth/storage.service";
-
-import { Account } from "src/app/core/user/account.model";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable, ReplaySubject, of } from 'rxjs';
+import { shareReplay, tap, catchError } from 'rxjs/operators';
+import { Account } from 'src/app/core/user/account.model';
 import { environment } from 'src/environments/environment';
+import { StorageService } from './storage.service';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class AccountService {
   private userIdentity: Account | null = null;
   private authenticationState = new ReplaySubject<Account | null>(1);
   private accountCache$?: Observable<Account | null>;
 
-  constructor(
-    private http: HttpClient,
-    private stateStorageService: StorageService,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private stateStorageService: StorageService, private router: Router) {}
 
   save(account: Account): Observable<{}> {
-    return this.http.post(environment.apiUrl + "api/account", account);
+    return this.http.post(environment.apiUrl + 'api/account', account);
   }
 
   authenticate(identity: Account | null): void {
@@ -36,9 +31,7 @@ export class AccountService {
     if (!Array.isArray(authorities)) {
       authorities = [authorities];
     }
-    return this.userIdentity.authorities.some((authority: string) =>
-      authorities.includes(authority)
-    );
+    return this.userIdentity.authorities.some((authority: string) => authorities.includes(authority));
   }
 
   identity(force?: boolean): Observable<Account | null> {
@@ -52,8 +45,6 @@ export class AccountService {
 
           if (account) {
             this.navigateToStoredUrl();
-          } else {
-            this.router.navigate(["/"]);
           }
         }),
         shareReplay()
@@ -71,11 +62,11 @@ export class AccountService {
   }
 
   getImageUrl(): string {
-    return this.userIdentity ? this.userIdentity.imageUrl : "";
+    return this.userIdentity ? this.userIdentity.imageUrl : '';
   }
 
   private fetch(): Observable<Account> {
-    return this.http.get<Account>(environment.apiUrl + "api/account");
+    return this.http.get<Account>(environment.apiUrl + 'api/account');
   }
 
   private navigateToStoredUrl(): void {
@@ -85,13 +76,6 @@ export class AccountService {
     if (previousUrl) {
       this.stateStorageService.clearUrl();
       this.router.navigateByUrl(previousUrl);
-    } else {
-      this.router.navigateByUrl("/");
     }
-    // else if (
-    //   this.userIdentity.authorities.find((auth) => auth == "ROLE_ADMIN")
-    // ) {
-    //   this.router.navigateByUrl("dashboard");
-    // }
   }
 }

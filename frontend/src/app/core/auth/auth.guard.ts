@@ -24,20 +24,20 @@ export class AuthGuard implements CanActivate {
   checkLogin(authorities: string[], url: string): Observable<boolean> {
     return this.accountService.identity().pipe(
       map(account => {
-        if (!authorities || authorities.length === 0) {
-          return true;
-        }
-
+        
         if (account) {
           const hasAnyAuthority = this.accountService.hasAnyAuthority(authorities);
           if (hasAnyAuthority) {
+            debugger;
             return true;
+
           }
           if (isDevMode()) {
             console.error('User has not any of required authorities: ', authorities);
           }
-          // this.router.navigate(['accessdenied']);
-          return true; // TODO false
+          
+          this.router.navigate(['accessdenied']);
+          return false;
         }
 
         this.stateStorageService.storeUrl(url);
