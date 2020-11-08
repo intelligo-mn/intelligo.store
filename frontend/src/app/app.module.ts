@@ -5,10 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { CoreModule } from './core/core.module';
+import { AuthGuard } from './core/auth/auth.guard';
+import { IntelligoCoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -16,6 +16,42 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 @NgModule({
   imports: [
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          redirectTo: 'dashboard',
+          pathMatch: 'full',
+        },
+        {
+          path: '',
+          component: AuthLayoutComponent,
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('./layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
+            },
+          ],
+        },
+        {
+          path: '',
+          component: AdminLayoutComponent,
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
+            },
+          ],
+          canActivate: [AuthGuard],
+        },
+        {
+          path: '**',
+          redirectTo: '/dashboard',
+          canActivate: [AuthGuard],
+        },
+      ],
+      { useHash: true }
+    ),
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -24,8 +60,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule,
-    CoreModule
+    IntelligoCoreModule,
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
