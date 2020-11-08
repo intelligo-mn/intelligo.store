@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -24,6 +25,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    CoreModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [

@@ -4,13 +4,14 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { locale } from 'moment';
 import { CookieModule } from 'ngx-cookie';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AuthExpiredInterceptor } from './interceptor/auth-expired.interceptor';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './interceptor/notification.interceptor';
 
 @NgModule({
-  imports: [HttpClientModule, CookieModule.forRoot()],
+  imports: [HttpClientModule, CookieModule.forRoot(), NgxWebstorageModule.forRoot({ prefix: 'intelligo', separator: '-' })],
   providers: [
     Title,
     {
@@ -40,7 +41,7 @@ import { NotificationInterceptor } from './interceptor/notification.interceptor'
     },
   ],
 })
-export class ForumCoreModule {
+export class CoreModule {
   constructor() {
     registerLocaleData(locale);
   }
