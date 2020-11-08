@@ -40,8 +40,8 @@ import { NotificationInterceptor } from './interceptor/notification.interceptor'
     },
   ],
 })
-export class CoreModule {
+export class IntelligoCoreModule {
   constructor() {
-    registerLocaleData(locale);
+    // registerLocaleData(locale);
   }
 }
