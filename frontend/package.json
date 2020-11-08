@@ -36,7 +36,6 @@
     "moment": "^2.24.0",
     "ngx-chips": "^2.1.0",
     "ngx-clipboard": "^12.2.1",
-    "ngx-cookie": "4.0.2",
     "ngx-infinite-scroll": "8.0.1",
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-toastr": "^10.1.0",
