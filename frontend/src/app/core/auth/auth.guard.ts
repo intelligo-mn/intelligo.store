@@ -2,16 +2,15 @@ import { Injectable, isDevMode } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { AccountService } from 'app/src/core/auth/account.service';
-import { StateStorageService } from './state-storage.service';
+import { AccountService } from './account.service';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
-export class UserRouteAccessService implements CanActivate {
+export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private accountService: AccountService,
-    private stateStorageService: StateStorageService
+    private stateStorageService: StorageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {

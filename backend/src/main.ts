@@ -10,7 +10,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 const logger: Logger = new Logger('Main');
 const port = process.env.NODE_SERVER_PORT || config.get('server.port');
-const useintelligoRegistry = config.get('eureka.client.enabled');
+const useIntelligoRegistry = config.get('eureka.client.enabled');
 
 async function bootstrap(): Promise<void> {
   loadCloudConfig();
@@ -39,7 +39,7 @@ async function bootstrap(): Promise<void> {
 }
 
 async function loadCloudConfig(): Promise<void> {
-  if (useintelligoRegistry) {
+  if (useIntelligoRegistry) {
     const endpoint = config.get('cloud.config.uri') || 'http://admin:admin@localhost:8761/config';
     logger.log(`Loading cloud config from ${endpoint}`);
 
@@ -58,7 +58,7 @@ async function loadCloudConfig(): Promise<void> {
 }
 
 function registerAsEurekaService(): void {
-  if (useintelligoRegistry) {
+  if (useIntelligoRegistry) {
     logger.log(`Registering with eureka ${config.get('cloud.config.uri')}`);
     const Eureka = require('eureka-js-client').Eureka;
     const eurekaUrl = require('url').parse(config.get('cloud.config.uri'));

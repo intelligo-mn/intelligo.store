@@ -5,11 +5,11 @@ import { flatMap } from 'rxjs/operators';
 import { Account } from '../user/account.model';
 import { Login } from './login.model';
 import { AccountService } from '../auth/account.service';
-import { AuthServerProvider } from '../auth/auth-jwt.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
-  constructor(private accountService: AccountService, private authServerProvider: AuthServerProvider) {}
+  constructor(private accountService: AccountService, private authServerProvider: AuthService) {}
 
   login(credentials: Login): Observable<Account | null> {
     return this.authServerProvider.login(credentials).pipe(flatMap(() => this.accountService.identity(true)));

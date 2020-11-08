@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Login } from '../login/login.model';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { environment } from 'src/environments/environment';
 
 type JwtToken = {
   id_token: string;
 };
 
 @Injectable({ providedIn: 'root' })
-export class AuthServerProvider {
+export class AuthService {
   constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService) {}
 
   getToken(): string {
@@ -18,7 +20,7 @@ export class AuthServerProvider {
 
   login(credentials: Login): Observable<void> {
     return this.http
-      .post<JwtToken>(SERVER_API_URL + 'api/authenticate', credentials)
+      .post<JwtToken>(environment.apiUrl + 'api/authenticate', credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 
