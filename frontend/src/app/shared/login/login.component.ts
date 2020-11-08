@@ -1,9 +1,8 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-
-import { LoginService } from 'app/core/login/login.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/app/core/login/login.service';
 
 @Component({
   selector: 'jhi-login-modal',

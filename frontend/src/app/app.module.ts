@@ -8,8 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { ErrorInterceptor } from './core/error.interceptor';
-import { JwtInterceptor } from './core/jwt.interceptor';
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
@@ -29,12 +29,12 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: ErrorHandlerInterceptor,
       multi: true,
     },
   ],
