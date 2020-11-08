@@ -9,15 +9,15 @@ import {
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { LoginService } from '../login/login.service';
+import { StorageService } from '../auth/storage.service';
 
-import { LoginService } from "app/core/login/login.service";
-import { StateStorageService } from "app/core/auth/state-storage.service";
 
 @Injectable()
 export class AuthExpiredInterceptor implements HttpInterceptor {
   constructor(
     private loginService: LoginService,
-    private stateStorageService: StateStorageService,
+    private stateStorageService: StorageService,
     private router: Router
   ) {}
 
