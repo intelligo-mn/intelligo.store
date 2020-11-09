@@ -9,25 +9,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background: url("../../assets/images/left-bg.jpg");
-        z-index: -1;
-        opacity: 0.3;
-      }
-
       form {
-        width: 70%;
+        width: 40%;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
         label {
           display: block;
-          font-size: 2rem;
+          font-size: 14px;
           font-weight: 600;
         }
 
