@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "ubereats"
+  "defaultProject": "ubereats",
+  "cli": {
+    "analytics": "1969159e-0840-4f14-8012-ae5b059f0031"
+  }
 }
