@@ -20,7 +20,7 @@ export class AuthService {
 
   login(credentials: Login): Observable<void> {
     return this.http
-      .post<JwtToken>(environment.apiUrl + 'api/authenticate', credentials)
+      .post<JwtToken>(environment.apiUrl + 'api/auth', credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 
