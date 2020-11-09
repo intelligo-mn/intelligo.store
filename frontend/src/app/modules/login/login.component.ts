@@ -15,7 +15,7 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('username', { static: false })
   username?: ElementRef;
 
-  authenticationError = false;
+  authError = null;
 
   loginForm = this.fb.group({
     username: [''],
@@ -40,7 +40,6 @@ export class LoginComponent implements AfterViewInit {
       })
       .subscribe(
         () => {
-          this.authenticationError = false;
           if (
             this.router.url === '/account/register' ||
             this.router.url.startsWith('/account/activate') ||
@@ -49,7 +48,9 @@ export class LoginComponent implements AfterViewInit {
             this.router.navigate(['']);
           }
         },
-        () => (this.authenticationError = true)
+        error => {
+          this.authError = error?.error?.message;
+        }
       );
   }
 }

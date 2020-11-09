@@ -28,7 +28,6 @@ export class AuthGuard implements CanActivate {
         if (account) {
           const hasAnyAuthority = this.accountService.hasAnyAuthority(authorities);
           if (hasAnyAuthority) {
-            debugger;
             return true;
 
           }
