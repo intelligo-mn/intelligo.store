@@ -22,7 +22,7 @@ export class AuthService {
     const loginUserName = userLogin.username;
     const loginPassword = userLogin.password;
 
-    const userFind = await this.userService.findByfields({ where: { username: loginUserName, password: loginPassword } });
+    const userFind = await this.userService.findByfields({ where: { login: loginUserName, password: loginPassword } });
     if (!userFind) {
       throw new HttpException('Invalid login name or password.', HttpStatus.BAD_REQUEST);
     }

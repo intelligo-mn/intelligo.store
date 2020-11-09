@@ -27,7 +27,7 @@
           <div class="text-center text-muted mb-4">
             <small *ngIf="authenticationError">{{ authenticationError }}</small>
           </div>
-          <div [formGroup]="loginForm" (ngSubmit)="login()">
+          <form role="form" [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
@@ -53,7 +53,7 @@
             <div class="text-center">
               <button type="submit" class="btn btn-primary my-4">Нэвтрэх</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div class="text-center mt-3">
