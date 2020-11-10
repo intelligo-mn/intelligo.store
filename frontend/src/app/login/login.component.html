@@ -1,0 +1,18 @@
+<div class="card p-4 login-container">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Sign In</a>
+      <ng-template ngbNavContent>
+        <app-sign-in></app-sign-in>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Sign Up</a>
+      <ng-template ngbNavContent>
+        <app-sign-up></app-sign-up>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
