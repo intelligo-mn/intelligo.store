@@ -13,6 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeListComponent } from './home-list/home-list.component';
 import { DetailComponent } from './home-list/detail/detail.component';
+import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './login/sign-in/sign-in.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { DetailComponent } from './home-list/detail/detail.component';
     PageNotFoundComponent,
     HomeListComponent,
     DetailComponent,
+    LoginComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
