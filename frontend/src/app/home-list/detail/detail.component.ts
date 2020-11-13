@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-detail',
@@ -9,7 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class DetailComponent implements OnInit {
   @Input() item: any;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

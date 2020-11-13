@@ -1,5 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { DetailComponent } from './detail/detail.component';
 export class HomeListComponent implements OnInit {
   datas: Object[];
 
-  constructor(private modalService: NgbModal) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.datas = [
       {
         key: 1,
@@ -114,9 +115,8 @@ export class HomeListComponent implements OnInit {
     ];
   }
 
-  open(item: any) {
-    const modalRef = this.modalService.open(DetailComponent, { size: 'xl' });
-    modalRef.componentInstance.item = item;
+  showDetail(item: any) {
+    this.router.navigate([`item/${item.key}`], { relativeTo: this.route });
   }
 
   ngOnInit(): void {}
