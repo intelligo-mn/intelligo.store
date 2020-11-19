@@ -149,7 +149,7 @@ class userHelper
 
             //categories suggestions
             case 'product_categories':
-                if (count($preferences['product_categories'] > 0)) {
+                if ($preferences['product_categories'] AND count($preferences['product_categories'] > 0)) {
                     foreach ($preferences['product_categories'] as $value) {
                         if (trim($value) != '') {
                             $needle['tags'][] = $value;
