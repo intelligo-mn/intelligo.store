@@ -6,8 +6,8 @@ import Product from "./product.entity";
 /**
  * A ProductType.
  */
-@Entity("product_type")
-export default class ProductType extends BaseEntity {
+@Entity("category")
+export default class Category extends BaseEntity {
   @Column({ name: "name", nullable: false })
   name: string;
 

@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import KinderGarden from '../../domain/kinder-garden.entity';
-import { KinderGardenService } from './kinder-garden.service';
+import Organization from '../../domain/organization';
+import { KinderGardenService } from './organization.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { RolesGuard, Roles, RoleType, AuthGuard } from '../../core';
@@ -12,8 +12,8 @@ import { HeaderUtil } from '../../core/header-util';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('Kinder Gardens')
-export class KinderGardenController {
+@ApiTags('Organization')
+export class OrganizationController {
   logger = new Logger('KinderGardenController');
 
   constructor(private readonly kinderGardenService: KinderGardenService) {}
@@ -23,9 +23,9 @@ export class KinderGardenController {
   @ApiResponse({
     status: 200,
     description: 'List all records',
-    type: KinderGarden,
+    type: Organization,
   })
-  async getAll(@Req() req: Request): Promise<KinderGarden[]> {
+  async getAll(@Req() req: Request): Promise<Organization[]> {
     const pageRequest: PageRequest = new PageRequest(req?.query?.page, req.query.size, req.query.sort);
     const [results, count] = await this.kinderGardenService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
@@ -41,9 +41,9 @@ export class KinderGardenController {
   @ApiResponse({
     status: 200,
     description: 'The found record',
-    type: KinderGarden,
+    type: Organization,
   })
-  async getOne(@Param('id') id: string): Promise<KinderGarden> {
+  async getOne(@Param('id') id: string): Promise<Organization> {
     return await this.kinderGardenService.findById(id);
   }
 
@@ -53,10 +53,10 @@ export class KinderGardenController {
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: KinderGarden,
+    type: Organization,
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async post(@Req() req: Request, @Body() kinderGarden: KinderGarden): Promise<KinderGarden> {
+  async post(@Req() req: Request, @Body() kinderGarden: Organization): Promise<Organization> {
     const created = await this.kinderGardenService.save(kinderGarden);
     HeaderUtil.addEntityCreatedHeaders(req.res, 'KinderGarden', created.id);
     return created;
@@ -68,9 +68,9 @@ export class KinderGardenController {
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
-    type: KinderGarden,
+    type: Organization,
   })
-  async put(@Req() req: Request, @Body() kinderGarden: KinderGarden): Promise<KinderGarden> {
+  async put(@Req() req: Request, @Body() kinderGarden: Organization): Promise<Organization> {
     HeaderUtil.addEntityCreatedHeaders(req.res, 'KinderGarden', kinderGarden.id);
     return await this.kinderGardenService.update(kinderGarden);
   }
@@ -82,7 +82,7 @@ export class KinderGardenController {
     status: 204,
     description: 'The record has been successfully deleted.',
   })
-  async remove(@Req() req: Request, @Param('id') id: string): Promise<KinderGarden> {
+  async remove(@Req() req: Request, @Param('id') id: string): Promise<Organization> {
     HeaderUtil.addEntityDeletedHeaders(req.res, 'KinderGarden', id);
     const toDelete = await this.kinderGardenService.findById(id);
     return await this.kinderGardenService.delete(toDelete);

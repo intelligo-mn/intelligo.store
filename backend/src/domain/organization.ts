@@ -5,8 +5,8 @@ import { BaseEntity } from "./base/base.entity";
 /**
  * A KinderGarden.
  */
-@Entity("kinder_garden")
-export default class KinderGarden extends BaseEntity {
+@Entity("organiztion")
+export default class Organization extends BaseEntity {
   @Column({ name: "name", nullable: false })
   name: string;
 
