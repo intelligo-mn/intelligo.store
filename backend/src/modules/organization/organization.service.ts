@@ -1,40 +1,47 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, FindOneOptions } from 'typeorm';
-import KinderGarden from '../../domain/kinder-garden.entity';
-import { KinderGardenRepository } from './kinder-garden.repository';
+import { Injectable, Logger } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { FindManyOptions, FindOneOptions } from "typeorm";
+import Organization from "../../domain/organization";
+import { OrganizationRepository } from "./organization.repository";
 
 const relationshipNames = [];
 
 @Injectable()
-export class KinderGardenService {
-  logger = new Logger('KinderGardenService');
+export class OrganizationService {
+  logger = new Logger("OrganizationService");
 
-  constructor(@InjectRepository(KinderGardenRepository) private kinderGardenRepository: KinderGardenRepository) {}
+  constructor(
+    @InjectRepository(OrganizationRepository)
+    private organizationRepository: OrganizationRepository
+  ) {}
 
-  async findById(id: string): Promise<KinderGarden | undefined> {
+  async findById(id: string): Promise<Organization | undefined> {
     const options = { relations: relationshipNames };
-    return await this.kinderGardenRepository.findOne(id, options);
+    return await this.organizationRepository.findOne(id, options);
   }
 
-  async findByfields(options: FindOneOptions<KinderGarden>): Promise<KinderGarden | undefined> {
-    return await this.kinderGardenRepository.findOne(options);
+  async findByfields(
+    options: FindOneOptions<Organization>
+  ): Promise<Organization | undefined> {
+    return await this.organizationRepository.findOne(options);
   }
 
-  async findAndCount(options: FindManyOptions<KinderGarden>): Promise<[KinderGarden[], number]> {
+  async findAndCount(
+    options: FindManyOptions<Organization>
+  ): Promise<[Organization[], number]> {
     options.relations = relationshipNames;
-    return await this.kinderGardenRepository.findAndCount(options);
+    return await this.organizationRepository.findAndCount(options);
   }
 
-  async save(kinderGarden: KinderGarden): Promise<KinderGarden | undefined> {
-    return await this.kinderGardenRepository.save(kinderGarden);
+  async save(Organization: Organization): Promise<Organization | undefined> {
+    return await this.organizationRepository.save(Organization);
   }
 
-  async update(kinderGarden: KinderGarden): Promise<KinderGarden | undefined> {
-    return await this.save(kinderGarden);
+  async update(Organization: Organization): Promise<Organization | undefined> {
+    return await this.save(Organization);
   }
 
-  async delete(kinderGarden: KinderGarden): Promise<KinderGarden | undefined> {
-    return await this.kinderGardenRepository.remove(kinderGarden);
+  async delete(Organization: Organization): Promise<Organization | undefined> {
+    return await this.organizationRepository.remove(Organization);
   }
 }

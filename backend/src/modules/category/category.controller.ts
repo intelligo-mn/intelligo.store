@@ -1,33 +1,33 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import ProductType from '../../domain/product-type.entity';
-import { ProductTypeService } from './product-type.service';
+import { CategoryService } from './category.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { RolesGuard, Roles, RoleType, AuthGuard } from '../../core';
 import { HeaderUtil } from '../../core/header-util';
+import Category from '../../domain/category';
 
 @Controller('api/product-types')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
 @ApiTags('Product Types')
-export class ProductTypeController {
-  logger = new Logger('ProductTypeController');
+export class CategoryController {
+  logger = new Logger('CategoryController');
 
-  constructor(private readonly productTypeService: ProductTypeService) {}
+  constructor(private readonly categortyService: CategoryService) {}
 
   @Get('/')
   @Roles(RoleType.USER)
   @ApiResponse({
     status: 200,
     description: 'List all records',
-    type: ProductType,
+    type: Category,
   })
-  async getAll(@Req() req: Request): Promise<ProductType[]> {
+  async getAll(@Req() req: Request): Promise<Category[]> {
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
-    const [results, count] = await this.productTypeService.findAndCount({
+    const [results, count] = await this.categortyService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,
       order: pageRequest.sort.asOrder(),
@@ -41,10 +41,10 @@ export class ProductTypeController {
   @ApiResponse({
     status: 200,
     description: 'The found record',
-    type: ProductType,
+    type: Category,
   })
-  async getOne(@Param('id') id: string): Promise<ProductType> {
-    return await this.productTypeService.findById(id);
+  async getOne(@Param('id') id: string): Promise<Category> {
+    return await this.categortyService.findById(id);
   }
 
   @PostMethod('/')
@@ -53,12 +53,12 @@ export class ProductTypeController {
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: ProductType,
+    type: Category,
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async post(@Req() req: Request, @Body() productType: ProductType): Promise<ProductType> {
-    const created = await this.productTypeService.save(productType);
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'ProductType', created.id);
+  async post(@Req() req: Request, @Body() productType: Category): Promise<Category> {
+    const created = await this.categortyService.save(productType);
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Category', created.id);
     return created;
   }
 
@@ -68,11 +68,11 @@ export class ProductTypeController {
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
-    type: ProductType,
+    type: Category,
   })
-  async put(@Req() req: Request, @Body() productType: ProductType): Promise<ProductType> {
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'ProductType', productType.id);
-    return await this.productTypeService.update(productType);
+  async put(@Req() req: Request, @Body() productType: Category): Promise<Category> {
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Category', productType.id);
+    return await this.categortyService.update(productType);
   }
 
   @Delete('/:id')
@@ -82,9 +82,9 @@ export class ProductTypeController {
     status: 204,
     description: 'The record has been successfully deleted.',
   })
-  async remove(@Req() req: Request, @Param('id') id: string): Promise<ProductType> {
-    HeaderUtil.addEntityDeletedHeaders(req.res, 'ProductType', id);
-    const toDelete = await this.productTypeService.findById(id);
-    return await this.productTypeService.delete(toDelete);
+  async remove(@Req() req: Request, @Param('id') id: string): Promise<Category> {
+    HeaderUtil.addEntityDeletedHeaders(req.res, 'Category', id);
+    const toDelete = await this.categortyService.findById(id);
+    return await this.categortyService.delete(toDelete);
   }
 }

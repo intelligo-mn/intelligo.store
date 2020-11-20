@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import ProductType from "./product-type.entity";
+import Category from "./category";
 import Unit from "./unit.entity";
 
 /**
@@ -18,8 +18,8 @@ export default class Product extends BaseEntity {
   @Column({ type: "decimal", name: "price", precision: 10, scale: 2 })
   price: number;
 
-  @OneToMany((type) => ProductType, (other) => other.product)
-  types: ProductType[];
+  @OneToMany((type) => Category, (other) => other.product)
+  categories: Category[];
 
   @OneToMany((type) => Unit, (other) => other.product)
   units: Unit[];
