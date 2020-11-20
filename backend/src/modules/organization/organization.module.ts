@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { KinderGardenController } from './kinder-garden.controller';
-import { KinderGardenRepository } from './kinder-garden.repository';
-import { KinderGardenService } from './kinder-garden.service';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { OrganizationController } from "./organization.controller";
+import { OrganizationRepository } from "./organization.repository";
+import { OrganizationService } from "./organization.service";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([KinderGardenRepository])],
-  controllers: [KinderGardenController],
-  providers: [KinderGardenService],
-  exports: [KinderGardenService],
+  imports: [TypeOrmModule.forFeature([OrganizationRepository])],
+  controllers: [OrganizationController],
+  providers: [OrganizationService],
+  exports: [OrganizationService],
 })
-export class KinderGardenModule {}
+export class OrganizationModule {}

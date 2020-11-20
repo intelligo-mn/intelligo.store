@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "dev") {
     name: "default",
     type: "mysql",
     database: "childfood",
-    url: "mysql://root@localhost/childfood",
+    url: "mysql://root:root@192.168.64.2/childfood",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
