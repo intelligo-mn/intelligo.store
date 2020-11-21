@@ -4,7 +4,7 @@
 
 ### Төслийн бүтэц
 
-| Apps            |                                                     Web |                                                                                                                                                       Github Actions |
+| Apps            |                                                     Web |                                                                                                                                                       CI |
 | --------------- | ------------------------------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | **Backend API** | **[localhost:8090/api/v1/docs](http://localhost:8090/api/v1/docs)** | [![Build Status](https://github.com/dev-mn/food-delivery/workflows/backend/badge.svg)](https://github.com/dev-mn/food-delivery/actions?workflow=backend) |
 | **Frontend**   |             [localhost:4200](http://localhost:4200) | [![Build Status](https://github.com/dev-mn/food-delivery/workflows/frontend/badge.svg)](https://github.com/dev-mn/food-delivery/actions?workflow=frontend) |
@@ -32,7 +32,7 @@ $ cd frontend && npm i
 
 ### Environment файл тохируулах
 
-1. .env.example файлын copy хийгээд .env гэсэн файл үүсгэнэ
+1. `.env.example` файлыг copy хийгээд `.env` гэсэн файл үүсгэнэ
 
 ### Өгөгдлийн сан тохируулах
 
@@ -68,4 +68,4 @@ $ npm run start:dev
 
 ## Алдаа мэдэгдэх
 
-Ямар нэг алдаа, ойлгомжгүй асуулт, санал хүсэлтээ [Issues](https://github.com/tortuvshin/food-delivery/issues) хэсэгт бичээрэй.
+Ямар нэг алдаа, ойлгомжгүй зүйл, асуулт, санал хүсэлтээ [Issues](https://github.com/tortuvshin/food-delivery/issues) хэсэгт бичээрэй.
