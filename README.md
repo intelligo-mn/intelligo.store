@@ -9,98 +9,59 @@ Food delivery system
 | **Backend API** | **[localhost:8090/api/v1/docs](http://localhost:8090/api/v1/docs)** | [![Build Status](https://github.com/dev-mn/food-delivery/workflows/backend/badge.svg)](https://github.com/dev-mn/food-delivery/actions?workflow=backend) |
 | **Frontend**   |             [localhost:4200](http://localhost:4200) | [![Build Status](https://github.com/dev-mn/food-delivery/workflows/frontend/badge.svg)](https://github.com/dev-mn/food-delivery/actions?workflow=frontend) |
 
-## Backend API
+## Шаардлагатай програмууд
 
-[NestJS Framework](https://github.com/nestjs/nest) backend project.
+Дараах програмуудыг суулгаж тохируулсан байх ёстой.
 
-### Installation
+- [Nodejs 12.7 оос дээш](https://nodejs.org/en/download/)
+- [XAMP](https://www.apachefriends.org/download.html)
+- [Git](https://git-scm.com/downloads)
+- [VSCode](https://code.visualstudio.com/) эсвэл өөр ямар нэг IDE, Editor/Typescript/
+
+## Төслөө локал компьютерлуугаа clone хийж авах
+
+`https://github.com/tortuvshin/food-delivery.git`
+
+## Dependencies суулгах
 
 ```bash
-$ npm install
+$ cd backend && npm i
+$ cd frontend && npm i 
 ```
+## Backend service-ууд ажиллуулах
 
-### TypeORM configuration
+### Environment файл тохируулах
 
-#### Define your prod database
+1. .env.example файлын copy хийгээд .env гэсэн файл үүсгэнэ
 
-For prod database configuration,
-in [src/orm.config.ts](src/orm.config.ts) change your **url** connection:
+### Өгөгдлийн сан тохируулах
+
+[src/orm.config.ts](src/orm.config.ts) гэсэн файлд дараах тохиргоог хийнэ
 
 ```ts
-if(process.env.NODE_ENV==='prod'){
+if(process.env.NODE_ENV==='dev'){
   ormconfig = {
-      ...
-      url: 'YOUR CONNECTION URL',
-      logging: false,
-      synchronize: commonConf.SYNCRONIZE,
-      entities: commonConf.ENTITIES,
-      migrations: commonConf.MIGRATIONS,
-      cli: commonConf.CLI,
-      migrationsRun: commonConf.MIGRATIONS_RUN,
+    name: "default",
+    type: "mysql",
+    database: "food-delivery", /Өгөгдлийн сангийн нэр/ 
+    url: "mysql://root:root@192.168.64.2/food-delivery", /Connection URL root:root гэсний оронд өгөгдлийн сангийн хэрэглэгчийн нэр нууц үгийг тохируулна/ 
+    logging: false,
+    synchronize: commonConf.SYNCRONIZE,
+    entities: commonConf.ENTITIES,
+    migrations: commonConf.MIGRATIONS,
+    cli: commonConf.CLI,
+    migrationsRun: commonConf.MIGRATIONS_RUN,
   };
 }
 
 ```
 
-#### Migration data and schema
-
-According [typeORM migration guide](https://github.com/typeorm/typeorm/blob/master/docs/migrations.md),
-there are under [src/migrations/](src/migrations/) the scripts to create the database schema and after to insert data seed.
-The scripts are automatically run in the first start up, and after anymore.
-
-### Running the app
+### Ажиллуулах
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
 $ npm run start:dev
-
-# build and run in production mode
-$ set NODE_ENV=prod&& npm run build && npm run start:prod
-
-# run production build with node
-$ set NODE_ENV=prod&& node dist/main.js
 ```
 
-> You can specify dev or prod NODE_ENV value (default is dev as indicated in [.env](.env))
+## Frontend ажиллуулах
 
-### Lint
-
-```bash
-# run lint
-$ npm run lint
-
-# fix lint issues
-$ npm run lint:fix
-
-```
-
-### Debug
-
-```bash
-# run this and after you can execute debug task in VSCode
-$ npm run start:debug
-
-```
-
-### Test
-
-```bash
-# unit tests
-$ npm run test
-
-# lint
-$ npm run lint
-
-# fix lint issues
-$ npm run lint:fix
-
-# test coverage of unit tests
-$ npm run test:cov
-
-# e2e tests with full app coverage report
-$ npm run test:e2e
-
-```
+`cd frontend && npm run start`
