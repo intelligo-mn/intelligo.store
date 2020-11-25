@@ -1,0 +1,16 @@
+{
+  "foodDelivery": {
+    "eatToday": "今日は何を食べますか？",
+    "systemName": "フードデリバリーシステム",
+    "signIn": "サインイン",
+    "signUp": "サインアップ",
+    "save": "セーブ",
+    "insertAddress": "住所を入力してください",
+    "placeHolderAdress": "住所を入力してください",
+    "phoneNumber": "電話番号: ",
+    "district": "地区: ",
+    "committee": "委員会: ",
+    "floor": "床: ",
+    "doorNumber": "ドア番号: "
+  }
+}

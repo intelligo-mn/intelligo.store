@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +9,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private translate: TranslateService
+  ) {}
 
   public isMenuCollapsed = true;
 

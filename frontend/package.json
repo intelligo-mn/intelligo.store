@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/router": "~9.1.4",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "^4.4.0",
     "bootstrap-icons": "^1.1.0",
     "rxjs": "~6.5.4",
