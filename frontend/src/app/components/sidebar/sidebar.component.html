@@ -94,10 +94,10 @@
       </ul>
       <hr class="my-3" />
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Мөнгөн хөрөнгө</h6>
+      <!-- <h6 class="navbar-heading text-muted">Бүтээгдэхүүн</h6> -->
       <!-- Navigation -->
       <ul class="navbar-nav">
-        <li *ngFor="let menuItem of cashMenuItems" class="{{ menuItem.class }} nav-item">
+        <li *ngFor="let menuItem of productMenuItems" class="{{ menuItem.class }} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{ menuItem.icon }}"></i>
             {{ menuItem.title }}
@@ -106,10 +106,10 @@
       </ul>
       <hr class="my-3" />
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Бараа материал</h6>
+      
       <!-- Navigation -->
       <ul class="navbar-nav">
-        <li *ngFor="let menuItem of inventoryMenuItems" class="{{ menuItem.class }} nav-item">
+        <li *ngFor="let menuItem of orderMenuItems" class="{{ menuItem.class }} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{ menuItem.icon }}"></i>
             {{ menuItem.title }}
@@ -118,10 +118,9 @@
       </ul>
       <hr class="my-3" />
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Үндсэн хөрөнгө</h6>
       <!-- Navigation -->
       <ul class="navbar-nav">
-        <li *ngFor="let menuItem of mainCapitalMenuItems" class="{{ menuItem.class }} nav-item">
+        <li *ngFor="let menuItem of otherMenuItems" class="{{ menuItem.class }} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{ menuItem.icon }}"></i>
             {{ menuItem.title }}
@@ -129,16 +128,7 @@
         </li>
       </ul>
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Цалин</h6>
-      <!-- Navigation -->
-      <ul class="navbar-nav">
-        <li *ngFor="let menuItem of salaryMenuItems" class="{{ menuItem.class }} nav-item">
-          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-            <i class="ni {{ menuItem.icon }}"></i>
-            {{ menuItem.title }}
-          </a>
-        </li>
-      </ul>
+      
     </div>
   </div>
 </nav>
