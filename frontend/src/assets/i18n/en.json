@@ -1,0 +1,16 @@
+{
+  "foodDelivery": {
+    "eatToday": "What will you eat today ?",
+    "systemName": "Food delivery system",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "save": "Save",
+    "insertAddress": "Enter address",
+    "placeHolderAdress": "Enter your address",
+    "phoneNumber": "Phone number: ",
+    "district": "District: ",
+    "committee": "Committee",
+    "floor": "Floor",
+    "doorNumber": "Door number"
+  }
+}

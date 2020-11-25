@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-gradient-light">
-  <a class="navbar-brand" [routerLink]="'.'">Food delivery system</a>
+  <a class="navbar-brand" [routerLink]="'.'">{{
+    "foodDelivery.systemName" | translate
+  }}</a>
 
   <button
     class="navbar-toggler"
@@ -12,16 +14,16 @@
   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="'.'" (click)="open(content)"
-          >Enter address</a
-        >
+        <a class="nav-link" [routerLink]="'.'" (click)="open(content)">{{
+          "foodDelivery.insertAddress" | translate
+        }}</a>
       </li>
       <li class="nav-item active">
         <a
           class="nav-link"
           routerLink="/login"
           (click)="isMenuCollapsed = false"
-          >Sign In</a
+          >{{ "foodDelivery.signIn" | translate }}</a
         >
       </li>
       <li class="nav-item active">
@@ -39,7 +41,9 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Enter address</h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ "foodDelivery.insertAddress" | translate }}
+    </h4>
     <button
       type="button"
       class="close"
@@ -52,7 +56,7 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label>Phone number:</label>
+        <label>{{ "foodDelivery.phoneNumber" | translate }}</label>
         <input
           type="text"
           placeholder="Enter your phone number"
@@ -60,7 +64,7 @@
         />
       </div>
       <div class="form-group">
-        <label>District</label>
+        <label>{{ "foodDelivery.district" | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -68,7 +72,7 @@
         />
       </div>
       <div class="form-group">
-        <label>Committee</label>
+        <label>{{ "foodDelivery.committee" | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -76,7 +80,7 @@
         />
       </div>
       <div class="form-group">
-        <label>Floor</label>
+        <label>{{ "foodDelivery.floor" | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -84,7 +88,7 @@
         />
       </div>
       <div class="form-group">
-        <label>Door number</label>
+        <label>{{ "foodDelivery.doorNumber" | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -99,7 +103,7 @@
       class="btn btn-outline-dark"
       (click)="modal.close('Save click')"
     >
-      Save
+      {{ "foodDelivery.save" | translate }}
     </button>
   </div>
 </ng-template>
