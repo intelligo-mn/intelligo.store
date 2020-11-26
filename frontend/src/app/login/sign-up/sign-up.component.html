@@ -1,42 +1,46 @@
 <div class="sign-up">
   <form>
     <div class="form-group">
-      <label>Email</label>
+      <label>{{ "foodDelivery.email" | translate }}</label>
       <input
         type="email"
         class="form-control"
-        placeholder="Enter your email address"
+        placeholder="{{ 'foodDelivery.placeHolderEmail' | translate }}"
         name="email"
       />
     </div>
     <div class="form-group">
-      <label>Address</label>
+      <label>{{ "foodDelivery.address" | translate }}</label>
       <textarea
         class="form-control"
-        placeholder="Enter your address"
+        placeholder="{{ 'foodDelivery.placeHolderAdress' | translate }}"
         name="address"
       ></textarea>
     </div>
     <div class="form-group">
-      <label>Password</label>
+      <label>{{ "foodDelivery.password" | translate }}</label>
       <input
         type="email"
         class="form-control"
-        placeholder="Enter your password"
+        placeholder="{{ 'foodDelivery.placeHolderPassword' | translate }}"
         name="password"
       />
     </div>
     <div class="form-group">
-      <label>Confirm password</label>
+      <label>{{ "foodDelivery.passwordConfirm" | translate }}</label>
       <input
         type="email"
         class="form-control"
-        placeholder="Confirm your password"
+        placeholder="{{
+          'foodDelivery.placeHolderConfirmPassword' | translate
+        }}"
         name="confirmPassword"
       />
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-block btn-primary">Register</button>
+      <button type="submit" class="btn btn-block btn-primary">
+        {{ "foodDelivery.register" | translate }}
+      </button>
     </div>
   </form>
 </div>

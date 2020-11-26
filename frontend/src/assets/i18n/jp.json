@@ -18,6 +18,14 @@
     "placeHolderFloor": "フロアに入る",
     "placeHolderDoornumber": "ドア番号を入力してください",
     "search": "探す",
-    "placeHolderSearch": "検索値を入力してください"
+    "placeHolderSearch": "検索値を入力してください",
+    "register": "登録",
+    "email": "メール",
+    "password": "パスワード",
+    "placeHolderEmail": "メールアドレスを入力してください",
+    "placeHolderPassword": "パスワードを入力してください",
+    "passwordConfirm": "パスワードを認証する",
+    "placeHolderConfirmPassword": "あなたのパスワードを確認",
+    "address": "住所"
   }
 }

@@ -18,6 +18,14 @@
     "placeHolderFloor": "Enter your floor",
     "placeHolderDoornumber": "Enter your door number",
     "search": "Search",
-    "placeHolderSearch": "Enter search value"
+    "placeHolderSearch": "Enter search value",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "placeHolderEmail": "Enter your email address",
+    "placeHolderPassword": "Enter your password",
+    "passwordConfirm": "Confirm password",
+    "placeHolderConfirmPassword": "Confirm your password",
+    "address": "Address"
   }
 }
