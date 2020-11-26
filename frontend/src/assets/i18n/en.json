@@ -11,6 +11,13 @@
     "district": "District: ",
     "committee": "Committee",
     "floor": "Floor",
-    "doorNumber": "Door number"
+    "doorNumber": "Door number",
+    "placeHolderPhone": "Enter your phone number",
+    "placeHolderDistrict": "Enter your district",
+    "placeHolderCommittee": "Enter your committee",
+    "placeHolderFloor": "Enter your floor",
+    "placeHolderDoornumber": "Enter your door number",
+    "search": "Search",
+    "placeHolderSearch": "Enter search value"
   }
 }

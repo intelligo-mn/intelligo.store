@@ -11,6 +11,13 @@
     "district": "地区: ",
     "committee": "委員会: ",
     "floor": "床: ",
-    "doorNumber": "ドア番号: "
+    "doorNumber": "ドア番号: ",
+    "placeHolderPhone": "電話番号を入力してください",
+    "placeHolderDistrict": "地区に入る",
+    "placeHolderCommittee": "あなたの委員会に入る",
+    "placeHolderFloor": "フロアに入る",
+    "placeHolderDoornumber": "ドア番号を入力してください",
+    "search": "探す",
+    "placeHolderSearch": "検索値を入力してください"
   }
 }
