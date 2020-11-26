@@ -1,7 +1,6 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailComponent } from './detail/detail.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-list',
@@ -11,7 +10,11 @@ import { DetailComponent } from './detail/detail.component';
 export class HomeListComponent implements OnInit {
   datas: Object[];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private translate: TranslateService
+  ) {
     this.datas = [
       {
         key: 1,
