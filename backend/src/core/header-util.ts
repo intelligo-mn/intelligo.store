@@ -1,5 +1,5 @@
-import { Response } from "express";
 import { config } from "../config";
+import { Response } from "express";
 import { Page } from "../domain/base/pagination.entity";
 
 const applicationName = config.get("jhipster.clientApp.name");
@@ -20,6 +20,7 @@ export class HeaderUtil {
   }
 
   static addEntityUpdatedHeaders(res: Response, entityName, param): any {
+    res.status(200);
     const message = enableTranslation
       ? applicationName + "." + entityName + ".updated"
       : "A " + entityName + " is updated with identifier " + param;

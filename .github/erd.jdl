@@ -1,0 +1,92 @@
+entity Category {
+    name String required
+    description String
+}
+entity Unit {
+    name String required
+    description String
+    value String
+}
+
+entity Product {
+    name String required
+    description String
+}
+
+entity Contact {
+    phone Integer
+    email String
+    address String
+    lat String
+    lon String
+}
+
+entity Organization {
+    name String required
+    status OrganizationStatus required
+    type OrganizationType required
+}
+
+enum OrganizationStatus {
+    ACTIVE, DEACTIVE
+}
+
+enum OrganizationType {
+    CUSTOMER, SUPPLIER
+}
+
+entity Order {
+	distributionDate Instant required
+    status OrderStatus required
+}   
+
+entity OrderPack {
+    name String required
+    startDate Instant required
+    endDate Instant required
+    status OrderPackStatus required
+}
+
+entity OrderItem {
+    quantity Integer
+}
+
+entity Customer {
+    name String 
+    phone String required
+    addressLine1 String required
+    addressLine2 String
+    city String required
+    country String required
+}
+
+enum OrderStatus {
+    COMPLETED, PENDING, CANCELLED
+}
+
+enum OrderPackStatus {
+    ACTIVE, INACTIVE
+}
+
+relationship OneToOne {
+    Organization{contact} to Contact
+}
+
+relationship ManyToOne {
+    Order{product(name) required} to Product
+    Product to OrderItem{products}
+    Product to OrderPack{products}
+}
+
+relationship OneToMany {
+    OrderItem to Order{products required},
+    Category to Product{category(name) required}
+    Unit to Product{unit(name) required}
+    Category to Organization{distributeType(name)}
+    Customer to Organization{manager(name)}
+    Customer to Order{manager(name)}
+}
+
+service * with serviceClass
+paginate * with pagination
+
