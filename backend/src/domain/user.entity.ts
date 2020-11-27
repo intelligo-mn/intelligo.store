@@ -4,7 +4,7 @@ import { config } from "../config";
 import { Authority } from "./authority.entity";
 import { BaseEntity } from "./base/base.entity";
 
-@Entity("nhi_user")
+@Entity("user")
 export class User extends BaseEntity {
   @Column({ unique: true })
   login: string;

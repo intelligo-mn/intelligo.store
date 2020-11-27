@@ -8,7 +8,7 @@ import { OrderItem } from "./order-item.entity";
 /**
  * A Order.
  */
-@Entity("jhi_order")
+@Entity("order")
 export class Order extends BaseEntity {
   @Column({ type: "timestamp", name: "distribution_date" })
   distributionDate: any;
