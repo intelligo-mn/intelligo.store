@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, OneToMany } from "typeorm";
-import { BaseEntity } from "./base/base.entity";
-import Category from "./category";
-import Unit from "./unit.entity";
+import { Entity, Column, JoinColumn, OneToOne, ManyToOne, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { BaseEntity } from './base/base.entity';
+
+import { Category } from './category.entity';
+import { Unit } from './unit.entity';
 
 /**
  * A Product.
  */
-@Entity("product")
-export default class Product extends BaseEntity {
-  @Column({ name: "name", nullable: false })
+@Entity('product')
+export class Product extends BaseEntity {
+  @Column({ name: 'name' })
   name: string;
 
-  @Column({ name: "description" })
+  @Column({ name: 'description', nullable: true })
   description: string;
 
-  @Column({ type: "decimal", name: "price", precision: 10, scale: 2 })
-  price: number;
+  @ManyToOne(type => Category)
+  category: Category;
 
-  @OneToMany((type) => Category, (other) => other.product)
-  categories: Category[];
+  @ManyToOne(type => Unit)
+  unit: Unit;
 
-  @OneToMany((type) => Unit, (other) => other.product)
-  units: Unit[];
+  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }
