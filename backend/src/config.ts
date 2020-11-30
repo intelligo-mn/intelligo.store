@@ -7,8 +7,7 @@ const logger = new Logger("Config");
 
 export class Config {
   debugLogging = "debug";
-
-  "server.port" = "8090";
+  "server.port" = "8081";
   "intelligo.clientApp.name" = "childfood";
   "intelligo.registry.password" = "admin";
   "intelligo.security.authentication.jwt.base64-secret" = "";
@@ -19,8 +18,8 @@ export class Config {
   "intelligo.swagger.default-include-pattern" = "/api/.*";
   "intelligo.swagger.title" = "childfood API";
   "intelligo.swagger.description" = "childfood API documentation";
-  "intelligo.swagger.version" = "0.0.1";
-  "intelligo.swagger.path" = "/api/v2/api-docs";
+  "intelligo.swagger.version" = "1.0.0";
+  "intelligo.swagger.path" = "/api/v1/docs";
   "eureka.client.enabled" = true;
   "eureka.client.healthcheck.enabled" = true;
   "eureka.client.fetch-registry" = true;
@@ -48,6 +47,9 @@ export class Config {
   "cloud.config.name" = "childfood";
   "cloud.config.profile" = "prod";
   "loud.config.label" = "master";
+  "crypto.key" =
+    "3772c1cdbd27c225735d116d1e4c5421a3aec26c919cc7ab457f21a4d16a1821";
+  "crypto.iv" = "54f3ad979d9262d3a2dd4489531daf34";
 
   constructor(properties) {
     this.addAll(properties);
@@ -57,6 +59,9 @@ export class Config {
     return this[key];
   }
 
+  public getClientPath(): string {
+    return path.join(__dirname, "../dist/classes/static");
+  }
   public addAll(properties): any {
     properties = objectToArray(properties);
     for (const property in properties) {
