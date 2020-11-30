@@ -36,5 +36,6 @@ module.exports = {
         '@nestjs/microservices': 'nestjs/microservices',
         'cache-manager': 'cache-manager',
         'fastify-swagger': 'fastify-swagger',
+        'aws-sdk': 'aws-sdk'
     },
 };
