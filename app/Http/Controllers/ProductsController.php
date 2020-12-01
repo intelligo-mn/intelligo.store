@@ -174,7 +174,7 @@ class ProductsController extends Controller
             }
         });
 
-        return view('products.index', compact('filters', 'products', 'panel', 'listActual', 'search', 'refine', 'suggestions'));
+        return view('products.index', compact('filters', 'products', 'panel', 'search', 'refine', 'suggestions'));
     }
 
     public function myProducts(Request $request)
@@ -963,7 +963,7 @@ class ProductsController extends Controller
 
         $suggest_listed = Session::get('suggest-listed');
 
-        if (count($suggest_listed)) {
+        if ($suggest_listed AND count($suggest_listed)) {
             $suggest_listed = array_unique($suggest_listed);
         } else {
             $suggest_listed = [];
