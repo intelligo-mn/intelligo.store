@@ -1,5 +1,5 @@
 /**
- * Захиалгын багц төлөв
+ * The OrganizationStatus enumeration.
  */
 export enum OrganizationStatus {
   ACTIVE = 'ACTIVE',
