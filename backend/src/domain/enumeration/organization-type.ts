@@ -1,5 +1,5 @@
 /**
- * Харилцагчийн төрөл
+ * The OrganizationType enumeration.
  */
 export enum OrganizationType {
   CUSTOMER = 'CUSTOMER',
