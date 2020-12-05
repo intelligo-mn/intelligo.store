@@ -1,26 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import ProductType from "./product-type.entity";
-import Unit from "./unit.entity";
+import { Category } from "./category.entity";
+import { Unit } from "./unit.entity";
 
 /**
  * A Product.
  */
 @Entity("product")
-export default class Product extends BaseEntity {
-  @Column({ name: "name", nullable: false })
+export class Product extends BaseEntity {
+  @Column({ name: "name" })
   name: string;
 
-  @Column({ name: "description" })
+  @Column({ name: "description", nullable: true })
   description: string;
 
-  @Column({ type: "decimal", name: "price", precision: 10, scale: 2 })
-  price: number;
+  @ManyToOne((type) => Category)
+  category: Category;
 
-  @OneToMany((type) => ProductType, (other) => other.product)
-  types: ProductType[];
-
-  @OneToMany((type) => Unit, (other) => other.product)
-  units: Unit[];
+  @ManyToOne((type) => Unit)
+  unit: Unit;
 }

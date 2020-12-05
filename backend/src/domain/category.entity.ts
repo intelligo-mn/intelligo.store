@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
+import { Organization } from "./organization.entity";
 import { Product } from "./product.entity";
 
 /**
- * A Unit.
+ * A Category.
  */
-@Entity("unit")
-export class Unit extends BaseEntity {
+@Entity("category")
+export class Category extends BaseEntity {
   @Column({ name: "name" })
   name: string;
 
   @Column({ name: "description", nullable: true })
   description: string;
 
-  @Column({ name: "value", nullable: true })
-  value: string;
-
-  @OneToMany((type) => Product, (other) => other.unit)
+  @OneToMany((type) => Product, (other) => other.category)
   products: Product[];
+
+  @OneToMany((type) => Organization, (other) => other.distributeType)
+  organizations: Organization[];
 }

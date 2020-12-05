@@ -1,9 +1,9 @@
-import { Entity, PrimaryColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from "@nestjs/swagger";
+import { Entity, PrimaryColumn } from "typeorm";
 
-@Entity('authority')
+@Entity("authority")
 export class Authority {
-  @ApiProperty({ example: 'ROLE_USER', description: 'User role' })
+  @ApiProperty({ example: "ROLE_USER", description: "User role" })
   @PrimaryColumn()
   name: string;
 }
