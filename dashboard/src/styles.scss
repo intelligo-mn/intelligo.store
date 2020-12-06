@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+.ngx-datatable .datatable-body {
+  min-height: 400px;
+}
+
+.list .card {
+  min-height: 500px;
+  margin-top: -215px;
+}
