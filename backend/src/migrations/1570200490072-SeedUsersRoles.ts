@@ -1,73 +1,82 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
-import { User } from '../domain/user.entity';
-import { Authority } from '../domain/authority.entity';
+import { getRepository, MigrationInterface, QueryRunner } from "typeorm";
+import { Authority } from "../domain/authority.entity";
+import { User } from "../domain/user.entity";
 
 export class SeedUsersRoles1570200490072 implements MigrationInterface {
-  role1: Authority = { name: 'ROLE_ADMIN' };
+  admin: Authority = { name: "ROLE_ADMIN" };
+  user: Authority = { name: "ROLE_USER" };
+  manager: Authority = { name: "ROLE_MANAGER" };
+  supplier: Authority = { name: "ROLE_SUPPLIER" };
 
-  role2: Authority = { name: 'ROLE_USER' };
-
-  user1: User = {
-    login: 'system',
-    password: 'system',
-    firstName: 'System',
-    lastName: 'System',
-    email: 'system@localhost.it',
-    imageUrl: '',
+  supplierUser: User = {
+    login: "supplier",
+    password: "supplier",
+    firstName: "supplier",
+    lastName: "supplier",
+    email: "supplier@localhost.it",
+    imageUrl: "",
     activated: true,
-    langKey: 'en',
-    createdBy: 'system',
-    lastModifiedBy: 'system',
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
   };
 
   user2: User = {
-    login: 'anonymoususer',
-    password: 'anonymoususer',
-    firstName: 'Anonymous',
-    lastName: 'User',
-    email: 'anonymoususer@localhost.it',
-    imageUrl: '',
+    login: "anonymoususer",
+    password: "anonymoususer",
+    firstName: "Anonymous",
+    lastName: "User",
+    email: "anonymoususer@localhost.it",
+    imageUrl: "",
     activated: true,
-    langKey: 'en',
-    createdBy: 'system',
-    lastModifiedBy: 'system',
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
   };
 
-  user3: User = {
-    login: 'admin',
-    password: 'admin',
-    firstName: 'Administrator',
-    lastName: 'Administrator',
-    email: 'admin@localhost.it',
-    imageUrl: '',
+  adminUser: User = {
+    login: "admin",
+    password: "admin",
+    firstName: "Administrator",
+    lastName: "Administrator",
+    email: "admin@localhost.it",
+    imageUrl: "",
     activated: true,
-    langKey: 'en',
-    createdBy: 'system',
-    lastModifiedBy: 'system',
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
   };
 
-  user4: User = {
-    login: 'user',
-    password: 'user',
-    firstName: 'User',
-    lastName: 'User',
-    email: 'user@localhost.it',
-    imageUrl: '',
+  managerUser: User = {
+    login: "manager",
+    password: "manager",
+    firstName: "Manager",
+    lastName: "Manager",
+    email: "manager@localhost.it",
+    imageUrl: "",
     activated: true,
-    langKey: 'en',
-    createdBy: 'system',
-    lastModifiedBy: 'system',
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
   };
 
+  // eslint-disable-next-line
   public async up(queryRunner: QueryRunner): Promise<any> {
-    const conn = queryRunner.connection;
-    await conn.createQueryBuilder().insert().into(Authority).values([this.role1, this.role2]).execute();
+    const authorityRepository = getRepository("authority");
 
-    await conn.createQueryBuilder().insert().into(User).values([this.user1, this.user2, this.user3, this.user4]).execute();
+    const adminRole = await authorityRepository.save(this.admin);
+    const userRole = await authorityRepository.save(this.user);
+    const managerRole = await authorityRepository.save(this.manager);
+    const supplierRole = await authorityRepository.save(this.supplier);
 
-    await conn.createQueryBuilder().relation(User, 'authorities').of([this.user1, this.user3]).add([this.role1, this.role2]);
+    const userRepository = getRepository("user");
 
-    await conn.createQueryBuilder().relation(User, 'authorities').of(this.user4).add([this.role2]);
+    this.supplierUser.authorities = [supplierRole];
+    this.adminUser.authorities = [adminRole];
+    this.managerUser.authorities = [managerRole];
+    this.user2.authorities = [userRole];
+
+    await userRepository.save([this.supplierUser, this.user2, this.adminUser, this.managerUser]);
   }
 
   // eslint-disable-next-line

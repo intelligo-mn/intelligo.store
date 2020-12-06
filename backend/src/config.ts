@@ -7,28 +7,27 @@ const logger = new Logger("Config");
 
 export class Config {
   debugLogging = "debug";
-
-  "server.port" = "8090";
-  "intelligo.clientApp.name" = "food-delivery";
+  "server.port" = "8081";
+  "intelligo.clientApp.name" = "childfood";
   "intelligo.registry.password" = "admin";
   "intelligo.security.authentication.jwt.base64-secret" = "";
   "intelligo.security.authentication.jwt.token-validity-in-seconds" = 86400;
   "intelligo.security.authentication.jwt.token-validity-in-seconds-for-remember-me" = 2592000;
   "intelligo.mail.base-url" = "http://127.0.0.1:${server.port}";
-  "intelligo.mail.from" = "food-delivery@localhost";
+  "intelligo.mail.from" = "childfood@localhost";
   "intelligo.swagger.default-include-pattern" = "/api/.*";
-  "intelligo.swagger.title" = "food-delivery API";
-  "intelligo.swagger.description" = "food-delivery API documentation";
-  "intelligo.swagger.version" = "0.0.1";
-  "intelligo.swagger.path" = "/api/v2/api-docs";
+  "intelligo.swagger.title" = "childfood API";
+  "intelligo.swagger.description" = "childfood API documentation";
+  "intelligo.swagger.version" = "1.0.0";
+  "intelligo.swagger.path" = "/api/v1/docs";
   "eureka.client.enabled" = true;
   "eureka.client.healthcheck.enabled" = true;
   "eureka.client.fetch-registry" = true;
   "eureka.client.register-with-eureka" = true;
   "eureka.client.instance-info-replication-interval-seconds" = 10;
   "eureka.client.registry-fetch-interval-seconds" = 10;
-  "eureka.instance.appname" = "food-delivery";
-  "eureka.instance.instanceId" = "food-delivery:${random.value}";
+  "eureka.instance.appname" = "childfood";
+  "eureka.instance.instanceId" = "childfood:${random.value}";
   "eureka.instance.lease-renewal-interval-in-seconds" = 5;
   "eureka.instance.lease-expiration-duration-in-seconds" = 10;
   "eureka.instance.status-page-url-path" =
@@ -45,9 +44,12 @@ export class Config {
     "http://admin:${intelligo.registry.password}@localhost:8761/eureka/";
   "cloud.config.uri" =
     "http://admin:${intelligo.registry.password}@localhost:8761/config";
-  "cloud.config.name" = "food-delivery";
+  "cloud.config.name" = "childfood";
   "cloud.config.profile" = "prod";
   "loud.config.label" = "master";
+  "crypto.key" =
+    "3772c1cdbd27c225735d116d1e4c5421a3aec26c919cc7ab457f21a4d16a1821";
+  "crypto.iv" = "54f3ad979d9262d3a2dd4489531daf34";
 
   constructor(properties) {
     this.addAll(properties);
@@ -57,6 +59,9 @@ export class Config {
     return this[key];
   }
 
+  public getClientPath(): string {
+    return path.join(__dirname, "../dist/classes/static");
+  }
   public addAll(properties): any {
     properties = objectToArray(properties);
     for (const property in properties) {
@@ -94,7 +99,7 @@ const yamlConfigPath = path.join(__dirname, "config", "application.yml");
 const envYamlConfigPath = path.join(
   __dirname,
   "config",
-  `application-${process.env.NODE_ENV}.yml`
+  `application-${process.env.NODE_ENV ? process.env.NODE_ENV : 'prod'}.yml`
 );
 
 const yamlConfig = safeLoad(fs.readFileSync(yamlConfigPath, "utf8"));
