@@ -7,12 +7,12 @@ const commonConf = {
   },
   MIGRATIONS_RUN: true,
 };
-
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "prod";
 let ormconfig: any = {
   name: "default",
   type: "mongodb",
-  database: "food-delivery-app",
-  url: "mongodb://admin:admin9@ds237475.mlab.com:37475/food-delivery-app",
+  database: "childfood-app",
+  url: "mongodb://admin:admin9@ds237475.mlab.com:37475/childfood-app",
   logging: false,
   synchronize: commonConf.SYNCRONIZE,
   entities: commonConf.ENTITIES,
@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === "dev") {
   ormconfig = {
     name: "default",
     type: "mysql",
-    database: "food-delivery",
-    url: "mysql://root:root@192.168.64.2/food-delivery",
+    database: "childfood",
+    url: "mysql://root:root@localhost/childfood",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV === "prod") {
   ormconfig = {
     name: "default",
     type: "mysql",
-    database: "food-delivery",
-    url: "mysql://root:root@192.168.64.2/food-delivery",
+    database: "childfood",
+    url: "mysql://root:ROOT@localhost/childfood",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
