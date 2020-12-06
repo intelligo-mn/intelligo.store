@@ -8,16 +8,16 @@ const logger = new Logger("Config");
 export class Config {
   debugLogging = "debug";
   "server.port" = "8081";
-  "intelligo.clientApp.name" = "childfood";
+  "intelligo.clientApp.name" = "food order";
   "intelligo.registry.password" = "admin";
   "intelligo.security.authentication.jwt.base64-secret" = "";
   "intelligo.security.authentication.jwt.token-validity-in-seconds" = 86400;
   "intelligo.security.authentication.jwt.token-validity-in-seconds-for-remember-me" = 2592000;
   "intelligo.mail.base-url" = "http://127.0.0.1:${server.port}";
-  "intelligo.mail.from" = "childfood@localhost";
+  "intelligo.mail.from" = "foodorder@localhost";
   "intelligo.swagger.default-include-pattern" = "/api/.*";
-  "intelligo.swagger.title" = "childfood API";
-  "intelligo.swagger.description" = "childfood API documentation";
+  "intelligo.swagger.title" = "foodorder API";
+  "intelligo.swagger.description" = "Food order system API documentation";
   "intelligo.swagger.version" = "1.0.0";
   "intelligo.swagger.path" = "/api/v1/docs";
   "eureka.client.enabled" = true;
@@ -26,8 +26,8 @@ export class Config {
   "eureka.client.register-with-eureka" = true;
   "eureka.client.instance-info-replication-interval-seconds" = 10;
   "eureka.client.registry-fetch-interval-seconds" = 10;
-  "eureka.instance.appname" = "childfood";
-  "eureka.instance.instanceId" = "childfood:${random.value}";
+  "eureka.instance.appname" = "foodorder";
+  "eureka.instance.instanceId" = "foodorder:${random.value}";
   "eureka.instance.lease-renewal-interval-in-seconds" = 5;
   "eureka.instance.lease-expiration-duration-in-seconds" = 10;
   "eureka.instance.status-page-url-path" =
@@ -44,7 +44,7 @@ export class Config {
     "http://admin:${intelligo.registry.password}@localhost:8761/eureka/";
   "cloud.config.uri" =
     "http://admin:${intelligo.registry.password}@localhost:8761/config";
-  "cloud.config.name" = "childfood";
+  "cloud.config.name" = "foodorder";
   "cloud.config.profile" = "prod";
   "loud.config.label" = "master";
   "crypto.key" =

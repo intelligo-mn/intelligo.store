@@ -35,7 +35,7 @@ server:
 
 intelligo:
   mail: # specific intelligo mail property, for standard properties see MailProperties
-    from: childfood@localhost
+    from: foodorder@localhost
     base-url: http://127.0.0.1:8082
 # ===================================================================
 # Application specific properties
