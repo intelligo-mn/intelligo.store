@@ -11,8 +11,8 @@ process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "prod";
 let ormconfig: any = {
   name: "default",
   type: "mongodb",
-  database: "childfood-app",
-  url: "mongodb://admin:admin9@ds237475.mlab.com:37475/childfood-app",
+  database: "foodorder-app",
+  url: "mongodb://admin:admin9@ds237475.mlab.com:37475/foodorder-app",
   logging: false,
   synchronize: commonConf.SYNCRONIZE,
   entities: commonConf.ENTITIES,
@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === "dev") {
   ormconfig = {
     name: "default",
     type: "mysql",
-    database: "childfood",
-    url: "mysql://root:root@localhost/childfood",
+    database: "foodorder",
+    url: "mysql://root:root@localhost/foodorder",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV === "prod") {
   ormconfig = {
     name: "default",
     type: "mysql",
-    database: "childfood",
-    url: "mysql://root:ROOT@localhost/childfood",
+    database: "foodorder",
+    url: "mysql://root:ROOT@localhost/foodorder",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
