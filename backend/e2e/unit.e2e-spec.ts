@@ -2,9 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { AuthGuard, RolesGuard } from '../src/core';
-import Unit from '../src/domain/unit.entity';
-import { UnitService } from '../src/modules/unit/unit.service';
+import { AuthGuard } from '../src/security/guards/auth.guard';
+import { RolesGuard } from '../src/security/guards/roles.guard';
+import { UnitDTO } from '../src/service/dto/unit.dto';
+import { UnitService } from '../src/service/unit.service';
 
 describe('Unit Controller', () => {
   let app: INestApplication;
@@ -12,7 +13,7 @@ describe('Unit Controller', () => {
   const authGuardMock = { canActivate: (): any => true };
   const rolesGuardMock = { canActivate: (): any => true };
   const entityMock: any = {
-    id: 'entityId',
+    id: 'entityId'
   };
 
   const serviceMock = {
@@ -20,12 +21,12 @@ describe('Unit Controller', () => {
     findAndCount: (): any => [entityMock, 0],
     save: (): any => entityMock,
     update: (): any => entityMock,
-    delete: (): any => entityMock,
+    deleteById: (): any => entityMock
   };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModule]
     })
       .overrideGuard(AuthGuard)
       .useValue(authGuardMock)
@@ -40,13 +41,17 @@ describe('Unit Controller', () => {
   });
 
   it('/GET all units ', async () => {
-    const getEntities: Unit[] = (await request(app.getHttpServer()).get('/api/units').expect(200)).body;
+    const getEntities: UnitDTO[] = (
+      await request(app.getHttpServer())
+        .get('/api/units')
+        .expect(200)
+    ).body;
 
     expect(getEntities).toEqual(entityMock);
   });
 
   it('/GET units by id', async () => {
-    const getEntity: Unit = (
+    const getEntity: UnitDTO = (
       await request(app.getHttpServer())
         .get('/api/units/' + entityMock.id)
         .expect(200)
@@ -56,19 +61,29 @@ describe('Unit Controller', () => {
   });
 
   it('/POST create units', async () => {
-    const createdEntity: Unit = (await request(app.getHttpServer()).post('/api/units').send(entityMock).expect(201)).body;
+    const createdEntity: UnitDTO = (
+      await request(app.getHttpServer())
+        .post('/api/units')
+        .send(entityMock)
+        .expect(201)
+    ).body;
 
     expect(createdEntity).toEqual(entityMock);
   });
 
   it('/PUT update units', async () => {
-    const updatedEntity: Unit = (await request(app.getHttpServer()).put('/api/units').send(entityMock).expect(201)).body;
+    const updatedEntity: UnitDTO = (
+      await request(app.getHttpServer())
+        .put('/api/units')
+        .send(entityMock)
+        .expect(201)
+    ).body;
 
     expect(updatedEntity).toEqual(entityMock);
   });
 
   it('/DELETE units', async () => {
-    const deletedEntity: Unit = (
+    const deletedEntity: UnitDTO = (
       await request(app.getHttpServer())
         .delete('/api/units/' + entityMock.id)
         .expect(204)

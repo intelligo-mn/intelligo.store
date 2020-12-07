@@ -4,10 +4,10 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/security/guards/auth.guard';
 import { RolesGuard } from '../src/security/guards/roles.guard';
-import { OrderDTO } from '../src/service/dto/order.dto';
-import { OrderService } from '../src/service/order.service';
+import { ContactDTO } from '../src/service/dto/contact.dto';
+import { ContactService } from '../src/service/contact.service';
 
-describe('Order Controller', () => {
+describe('Contact Controller', () => {
   let app: INestApplication;
 
   const authGuardMock = { canActivate: (): any => true };
@@ -32,7 +32,7 @@ describe('Order Controller', () => {
       .useValue(authGuardMock)
       .overrideGuard(RolesGuard)
       .useValue(rolesGuardMock)
-      .overrideProvider(OrderService)
+      .overrideProvider(ContactService)
       .useValue(serviceMock)
       .compile();
 
@@ -40,30 +40,30 @@ describe('Order Controller', () => {
     await app.init();
   });
 
-  it('/GET all orders ', async () => {
-    const getEntities: OrderDTO[] = (
+  it('/GET all contacts ', async () => {
+    const getEntities: ContactDTO[] = (
       await request(app.getHttpServer())
-        .get('/api/orders')
+        .get('/api/contacts')
         .expect(200)
     ).body;
 
     expect(getEntities).toEqual(entityMock);
   });
 
-  it('/GET orders by id', async () => {
-    const getEntity: OrderDTO = (
+  it('/GET contacts by id', async () => {
+    const getEntity: ContactDTO = (
       await request(app.getHttpServer())
-        .get('/api/orders/' + entityMock.id)
+        .get('/api/contacts/' + entityMock.id)
         .expect(200)
     ).body;
 
     expect(getEntity).toEqual(entityMock);
   });
 
-  it('/POST create orders', async () => {
-    const createdEntity: OrderDTO = (
+  it('/POST create contacts', async () => {
+    const createdEntity: ContactDTO = (
       await request(app.getHttpServer())
-        .post('/api/orders')
+        .post('/api/contacts')
         .send(entityMock)
         .expect(201)
     ).body;
@@ -71,10 +71,10 @@ describe('Order Controller', () => {
     expect(createdEntity).toEqual(entityMock);
   });
 
-  it('/PUT update orders', async () => {
-    const updatedEntity: OrderDTO = (
+  it('/PUT update contacts', async () => {
+    const updatedEntity: ContactDTO = (
       await request(app.getHttpServer())
-        .put('/api/orders')
+        .put('/api/contacts')
         .send(entityMock)
         .expect(201)
     ).body;
@@ -82,10 +82,10 @@ describe('Order Controller', () => {
     expect(updatedEntity).toEqual(entityMock);
   });
 
-  it('/DELETE orders', async () => {
-    const deletedEntity: OrderDTO = (
+  it('/DELETE contacts', async () => {
+    const deletedEntity: ContactDTO = (
       await request(app.getHttpServer())
-        .delete('/api/orders/' + entityMock.id)
+        .delete('/api/contacts/' + entityMock.id)
         .expect(204)
     ).body;
 
