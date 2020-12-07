@@ -1,26 +1,45 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './modules/auth/auth.module';
+import { AuthModule } from './module/auth.module';
 import { ormconfig } from './orm.config';
-import { CategoryModule } from './modules/category/category.module';
-import { UnitModule } from './modules/unit/unit.module';
-import { ProductModule } from './modules/product/product.module';
-import { OrderModule } from './modules/order/order.module';
-import { OrganizationModule } from './modules/organization/organization.module';
+import { config } from './config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { CategoryModule } from './module/category.module';
+import { UnitModule } from './module/unit.module';
+import { ProductModule } from './module/product.module';
+import { ContactModule } from './module/contact.module';
+import { OrganizationModule } from './module/organization.module';
+import { OrderModule } from './module/order.module';
+import { OrderPackModule } from './module/order-pack.module';
+import { OrderItemModule } from './module/order-item.module';
+import { CustomerModule } from './module/customer.module';
+// jhipster-needle-add-entity-module-to-main-import - JHipster will import entity modules here, do not remove
+// jhipster-needle-add-controller-module-to-main-import - JHipster will import controller modules here, do not remove
+// jhipster-needle-add-service-module-to-main-import - JHipster will import service modules here, do not remove
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormconfig),
+    ServeStaticModule.forRoot({
+      rootPath: config.getClientPath()
+    }),
     AuthModule,
     CategoryModule,
     UnitModule,
     ProductModule,
+    ContactModule,
     OrganizationModule,
     OrderModule,
+    OrderPackModule,
+    OrderItemModule,
+    CustomerModule
+    // jhipster-needle-add-entity-module-to-main - JHipster will add entity modules here, do not remove
   ],
   controllers: [
+    // jhipster-needle-add-controller-module-to-main - JHipster will add controller modules here, do not remove
   ],
   providers: [
-  ],
+    // jhipster-needle-add-service-module-to-main - JHipster will add service modules here, do not remove
+  ]
 })
 export class AppModule {}

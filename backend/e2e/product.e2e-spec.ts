@@ -2,9 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { AuthGuard, RolesGuard } from '../src/core';
-import Product from '../src/domain/product.entity';
-import { ProductService } from '../src/modules/product/product.service';
+import { AuthGuard } from '../src/security/guards/auth.guard';
+import { RolesGuard } from '../src/security/guards/roles.guard';
+import { ProductDTO } from '../src/service/dto/product.dto';
+import { ProductService } from '../src/service/product.service';
 
 describe('Product Controller', () => {
   let app: INestApplication;
@@ -12,7 +13,7 @@ describe('Product Controller', () => {
   const authGuardMock = { canActivate: (): any => true };
   const rolesGuardMock = { canActivate: (): any => true };
   const entityMock: any = {
-    id: 'entityId',
+    id: 'entityId'
   };
 
   const serviceMock = {
@@ -20,12 +21,12 @@ describe('Product Controller', () => {
     findAndCount: (): any => [entityMock, 0],
     save: (): any => entityMock,
     update: (): any => entityMock,
-    delete: (): any => entityMock,
+    deleteById: (): any => entityMock
   };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModule]
     })
       .overrideGuard(AuthGuard)
       .useValue(authGuardMock)
@@ -40,13 +41,17 @@ describe('Product Controller', () => {
   });
 
   it('/GET all products ', async () => {
-    const getEntities: Product[] = (await request(app.getHttpServer()).get('/api/products').expect(200)).body;
+    const getEntities: ProductDTO[] = (
+      await request(app.getHttpServer())
+        .get('/api/products')
+        .expect(200)
+    ).body;
 
     expect(getEntities).toEqual(entityMock);
   });
 
   it('/GET products by id', async () => {
-    const getEntity: Product = (
+    const getEntity: ProductDTO = (
       await request(app.getHttpServer())
         .get('/api/products/' + entityMock.id)
         .expect(200)
@@ -56,19 +61,29 @@ describe('Product Controller', () => {
   });
 
   it('/POST create products', async () => {
-    const createdEntity: Product = (await request(app.getHttpServer()).post('/api/products').send(entityMock).expect(201)).body;
+    const createdEntity: ProductDTO = (
+      await request(app.getHttpServer())
+        .post('/api/products')
+        .send(entityMock)
+        .expect(201)
+    ).body;
 
     expect(createdEntity).toEqual(entityMock);
   });
 
   it('/PUT update products', async () => {
-    const updatedEntity: Product = (await request(app.getHttpServer()).put('/api/products').send(entityMock).expect(201)).body;
+    const updatedEntity: ProductDTO = (
+      await request(app.getHttpServer())
+        .put('/api/products')
+        .send(entityMock)
+        .expect(201)
+    ).body;
 
     expect(updatedEntity).toEqual(entityMock);
   });
 
   it('/DELETE products', async () => {
-    const deletedEntity: Product = (
+    const deletedEntity: ProductDTO = (
       await request(app.getHttpServer())
         .delete('/api/products/' + entityMock.id)
         .expect(204)
