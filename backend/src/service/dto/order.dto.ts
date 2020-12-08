@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, MinLength, MaxLength, Length, Min, Max, Matches } from 'class-validator';
 import { BaseDTO } from './base.dto';
 
@@ -12,17 +12,17 @@ import { OrderStatus } from '../../domain/enumeration/order-status';
  */
 export class OrderDTO extends BaseDTO {
   @IsNotEmpty()
-  @ApiModelProperty({ description: 'distributionDate field' })
+  @ApiProperty({ description: 'distributionDate field' })
   distributionDate: any;
 
   @IsNotEmpty()
-  @ApiModelProperty({ enum: OrderStatus, description: 'status enum field' })
+  @ApiProperty({ enum: OrderStatus, description: 'status enum field' })
   status: OrderStatus;
 
-  @ApiModelProperty({ type: OrderItemDTO, description: 'products relationship' })
+  @ApiProperty({ type: OrderItemDTO, description: 'products relationship' })
   products: OrderItemDTO;
 
-  @ApiModelProperty({ type: CustomerDTO, description: 'manager relationship' })
+  @ApiProperty({ type: CustomerDTO, description: 'manager relationship' })
   manager: CustomerDTO;
 
   
