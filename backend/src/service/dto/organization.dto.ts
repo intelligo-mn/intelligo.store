@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, MinLength, MaxLength, Length, Min, Max, Matches } from 'class-validator';
 import { BaseDTO } from './base.dto';
 
@@ -14,24 +14,24 @@ import { OrganizationType } from '../../domain/enumeration/organization-type';
  */
 export class OrganizationDTO extends BaseDTO {
   @IsNotEmpty()
-  @ApiModelProperty({ description: 'name field' })
+  @ApiProperty({ description: 'name field' })
   name: string;
 
   @IsNotEmpty()
-  @ApiModelProperty({ enum: OrganizationStatus, description: 'status enum field' })
+  @ApiProperty({ enum: OrganizationStatus, description: 'status enum field' })
   status: OrganizationStatus;
 
   @IsNotEmpty()
-  @ApiModelProperty({ enum: OrganizationType, description: 'type enum field' })
+  @ApiProperty({ enum: OrganizationType, description: 'type enum field' })
   type: OrganizationType;
 
-  @ApiModelProperty({ type: ContactDTO, description: 'contact relationship' })
+  @ApiProperty({ type: ContactDTO, description: 'contact relationship' })
   contact: ContactDTO;
 
-  @ApiModelProperty({ type: CategoryDTO, description: 'distributeType relationship' })
+  @ApiProperty({ type: CategoryDTO, description: 'distributeType relationship' })
   distributeType: CategoryDTO;
 
-  @ApiModelProperty({ type: CustomerDTO, description: 'manager relationship' })
+  @ApiProperty({ type: CustomerDTO, description: 'manager relationship' })
   manager: CustomerDTO;
 
   
