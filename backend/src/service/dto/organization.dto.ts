@@ -28,7 +28,7 @@ export class OrganizationDTO extends BaseDTO {
   contact: ContactDTO;
 
   @ApiProperty({
-    type: CategoryDTO,
+    type: () => CategoryDTO,
     description: "distributeType relationship",
   })
   distributeType: CategoryDTO;
