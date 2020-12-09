@@ -1,44 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Entity, Column, JoinColumn, OneToOne, ManyToOne, OneToMany, ManyToMany, JoinTable } from 'typeorm';
-import { BaseEntity } from './base/base.entity';
-
-import { Organization } from './organization.entity';
-import { Order } from './order.entity';
+import { Column, Entity, OneToMany } from "typeorm";
+import { BaseEntity } from "./base/base.entity";
+import { Order } from "./order.entity";
+import { Organization } from "./organization.entity";
 
 /**
  * A Customer.
  */
-@Entity('customer')
+@Entity("customer")
 export class Customer extends BaseEntity {
-  @Column({ name: 'name', nullable: true })
+  @Column({ name: "name", nullable: true })
   name: string;
 
-  @Column({ name: 'phone' })
+  @Column({ name: "phone" })
   phone: string;
 
-  @Column({ name: 'address_line_1' })
+  @Column({ name: "address_line_1" })
   addressLine1: string;
 
-  @Column({ name: 'address_line_2', nullable: true })
+  @Column({ name: "address_line_2", nullable: true })
   addressLine2: string;
 
-  @Column({ name: 'city' })
+  @Column({ name: "city" })
   city: string;
 
-  @Column({ name: 'country' })
+  @Column({ name: "country" })
   country: string;
 
-  @OneToMany(
-    type => Organization,
-    other => other.manager
-  )
+  @OneToMany((type) => Organization, (other) => other.manager)
   organizations: Organization[];
 
-  @OneToMany(
-    type => Order,
-    other => other.manager
-  )
+  @OneToMany((type) => Order, (other) => other.manager)
   orders: Order[];
-
-  
 }
