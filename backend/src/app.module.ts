@@ -13,10 +13,6 @@ import { OrderModule } from './module/order.module';
 import { OrderPackModule } from './module/order-pack.module';
 import { OrderItemModule } from './module/order-item.module';
 import { CustomerModule } from './module/customer.module';
-// jhipster-needle-add-entity-module-to-main-import - JHipster will import entity modules here, do not remove
-// jhipster-needle-add-controller-module-to-main-import - JHipster will import controller modules here, do not remove
-// jhipster-needle-add-service-module-to-main-import - JHipster will import service modules here, do not remove
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormconfig),

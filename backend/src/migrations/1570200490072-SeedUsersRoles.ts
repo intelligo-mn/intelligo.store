@@ -61,7 +61,7 @@ export class SeedUsersRoles1570200490072 implements MigrationInterface {
 
     // eslint-disable-next-line
   public async up(queryRunner: QueryRunner): Promise<any> {
-        const authorityRepository = getRepository('nhi_authority');
+        const authorityRepository = getRepository('authority');
 
         const adminRole = await authorityRepository.save(this.role1);
         const userRole = await authorityRepository.save(this.role2);
