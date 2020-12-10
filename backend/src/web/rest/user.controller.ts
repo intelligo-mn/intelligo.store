@@ -12,7 +12,7 @@ import { UserService } from '../../service/user.service';
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('user-resource')
+@ApiTags('User')
 export class UserController {
     logger = new Logger('UserController');
 
