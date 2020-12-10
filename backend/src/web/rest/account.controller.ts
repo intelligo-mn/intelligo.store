@@ -9,7 +9,7 @@ import { AuthService } from '../../service/auth.service';
 
 @Controller('api')
 @UseInterceptors(LoggingInterceptor)
-@ApiTags('account-resource')
+@ApiTags('Account')
 export class AccountController {
     logger = new Logger('AccountController');
 

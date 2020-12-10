@@ -12,7 +12,7 @@ import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor'
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('categories')
+@ApiTags('Categories')
 export class CategoryController {
   logger = new Logger('CategoryController');
 
