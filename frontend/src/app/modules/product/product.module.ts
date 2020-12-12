@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ChildfoodSharedModule } from 'src/app/shared/shared.module';
+import { ProductDeleteDialogComponent } from './product-delete-dialog.component';
+import { ProductDetailComponent } from './product-detail.component';
+import { ProductUpdateComponent } from './product-update.component';
 import { ProductComponent } from './product.component';
-import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-
-
+import { productRoute } from './product.route';
 
 @NgModule({
-  declarations: [ProductComponent, ProductFormComponent, ProductDetailComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [ChildfoodSharedModule, RouterModule.forChild(productRoute)],
+  declarations: [ProductComponent, ProductDetailComponent, ProductUpdateComponent, ProductDeleteDialogComponent],
+  entryComponents: [ProductDeleteDialogComponent],
 })
-export class ProductModule { }
+export class ProductModule {}
