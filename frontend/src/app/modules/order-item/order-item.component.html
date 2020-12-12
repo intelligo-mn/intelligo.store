@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="childfoodApp.order.home.title">Orders</span>
+        <span jhiTranslate="childfoodApp.orderItem.home.title">Order Items</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order" [routerLink]="['/order/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-item" [routerLink]="['/order-item/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="childfoodApp.order.home.createLabel">
-            Create a new Order
+            <span  jhiTranslate="childfoodApp.orderItem.home.createLabel">
+            Create a new Order Item
             </span>
         </button>
     </h2>
@@ -14,54 +14,46 @@
 
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="orders?.length === 0">
-        <span jhiTranslate="childfoodApp.order.home.notFound">No orders found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="orderItems?.length === 0">
+        <span jhiTranslate="childfoodApp.orderItem.home.notFound">No orderItems found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="orders?.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="orderItems?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="distributionDate"><span jhiTranslate="childfoodApp.order.distributionDate">Distribution Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.order.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="products.id"><span jhiTranslate="childfoodApp.order.products">Products</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="manager.name"><span jhiTranslate="childfoodApp.order.manager">Manager</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="quantity"><span jhiTranslate="childfoodApp.orderItem.quantity">Quantity</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="products.id"><span jhiTranslate="childfoodApp.orderItem.products">Products</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders ;trackBy: trackId">
-                    <td><a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a></td>
-                    <td>{{ order.distributionDate | date:'medium' }}</td>
-                    <td jhiTranslate="{{ 'childfoodApp.OrderStatus.' + order.status }}">{{ order.status }}</td>
+                <tr *ngFor="let orderItem of orderItems ;trackBy: trackId">
+                    <td><a [routerLink]="['/order-item', orderItem.id, 'view']">{{ orderItem.id }}</a></td>
+                    <td>{{ orderItem.quantity }}</td>
                     <td>
-                        <div *ngIf="order.products">
-                            <a [routerLink]="['/order-item', order.products?.id, 'view']" >{{ order.products?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="order.manager">
-                            <a [routerLink]="['/customer', order.manager?.id, 'view']" >{{ order.manager?.name }}</a>
+                        <div *ngIf="orderItem.products">
+                            <a [routerLink]="['/product', orderItem.products?.id, 'view']" >{{ orderItem.products?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/order', order.id, 'view']"
+                                    [routerLink]="['/order-item', orderItem.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/order', order.id, 'edit']"
+                                    [routerLink]="['/order-item', orderItem.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(order)"
+                            <button type="submit" (click)="delete(orderItem)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
@@ -73,7 +65,7 @@
         </table>
     </div>
 
-    <div *ngIf="orders?.length > 0">
+    <div *ngIf="orderItems?.length > 0">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { ChildfoodSharedModule } from 'src/app/shared/shared.module';
 import { OrderComponent } from './order.component';
-import { OrderFormComponent } from './order-form/order-form.component';
-
-
+import { OrderDetailComponent } from './order-detail.component';
+import { OrderUpdateComponent } from './order-update.component';
+import { OrderDeleteDialogComponent } from './order-delete-dialog.component';
+import { orderRoute } from './order.route';
 
 @NgModule({
-  declarations: [OrderComponent, OrderFormComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [ChildfoodSharedModule, RouterModule.forChild(orderRoute)],
+  declarations: [OrderComponent, OrderDetailComponent, OrderUpdateComponent, OrderDeleteDialogComponent],
+  entryComponents: [OrderDeleteDialogComponent]
 })
-export class OrderModule { }
+export class ChildfoodOrderModule {}

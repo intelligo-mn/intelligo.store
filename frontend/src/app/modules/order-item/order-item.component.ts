@@ -5,18 +5,18 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IOrder } from 'src/app/shared/model/order.model';
+import { IOrderItem } from 'src/app/shared/model/order-item.model';
 
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
-import { OrderService } from './order.service';
-import { OrderDeleteDialogComponent } from './order-delete-dialog.component';
+import { OrderItemService } from './order-item.service';
+import { OrderItemDeleteDialogComponent } from './order-item-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-order',
-  templateUrl: './order.component.html'
+  selector: 'jhi-order-item',
+  templateUrl: './order-item.component.html'
 })
-export class OrderComponent implements OnInit, OnDestroy {
-  orders?: IOrder[];
+export class OrderItemComponent implements OnInit, OnDestroy {
+  orderItems?: IOrderItem[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
 
   constructor(
-    protected orderService: OrderService,
+    protected orderItemService: OrderItemService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
@@ -36,14 +36,14 @@ export class OrderComponent implements OnInit, OnDestroy {
   loadPage(page?: number): void {
     const pageToLoad: number = page || this.page;
 
-    this.orderService
+    this.orderItemService
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort()
       })
       .subscribe(
-        (res: HttpResponse<IOrder[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
+        (res: HttpResponse<IOrderItem[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
         () => this.onError()
       );
   }
@@ -56,7 +56,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.ngbPaginationPage = data.pagingParams.page;
       this.loadPage();
     });
-    this.registerChangeInOrders();
+    this.registerChangeInOrderItems();
   }
 
   ngOnDestroy(): void {
@@ -65,18 +65,18 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackId(index: number, item: IOrder): number {
+  trackId(index: number, item: IOrderItem): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
   }
 
-  registerChangeInOrders(): void {
-    this.eventSubscriber = this.eventManager.subscribe('orderListModification', () => this.loadPage());
+  registerChangeInOrderItems(): void {
+    this.eventSubscriber = this.eventManager.subscribe('orderItemListModification', () => this.loadPage());
   }
 
-  delete(order: IOrder): void {
-    const modalRef = this.modalService.open(OrderDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.order = order;
+  delete(orderItem: IOrderItem): void {
+    const modalRef = this.modalService.open(OrderItemDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.orderItem = orderItem;
   }
 
   sort(): string[] {
@@ -87,17 +87,17 @@ export class OrderComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected onSuccess(data: IOrder[] | null, headers: HttpHeaders, page: number): void {
+  protected onSuccess(data: IOrderItem[] | null, headers: HttpHeaders, page: number): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
-    this.router.navigate(['/order'], {
+    this.router.navigate(['/order-item'], {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
         sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
       }
     });
-    this.orders = data || [];
+    this.orderItems = data || [];
   }
 
   protected onError(): void {
