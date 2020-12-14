@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">Бүтээгдэхүүний төрөл</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form class="modal-body" name="categoryForm" role="form" class="modal-body" novalidate (ngSubmit)="save()" [formGroup]="categoryForm">
+  <div>
+    <div class="form-group" [hidden]="!categoryForm.get('id')!.value">
+      <label for="id">ID</label>
+      <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Нэр</label>
+      <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
+      <div *ngIf="categoryForm.get('name')!.invalid && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)">
+        <small class="form-text text-danger" *ngIf="categoryForm.get('name')?.errors?.required">
+          This field is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Тайлбар</label>
+      <input type="text" class="form-control" name="description" id="field_description" formControlName="description" />
+    </div>
+  </div>
+
+  <div>
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.close()">
+      <span>Цуцлах</span>
+    </button>
+
+    <button type="submit" id="save-entity" [disabled]="categoryForm.invalid || isSaving" class="btn btn-primary">
+      <span>Хадгалах</span>
+    </button>
+  </div>
+</form>
