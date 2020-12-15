@@ -12,7 +12,7 @@ import { ProductService } from './product.service';
 import { ProductDeleteDialogComponent } from './product-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-product',
+  selector: 'product',
   templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit, OnDestroy {

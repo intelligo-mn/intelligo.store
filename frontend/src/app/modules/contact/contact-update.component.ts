@@ -9,7 +9,7 @@ import { IContact, Contact } from 'src/app/shared/model/contact.model';
 import { ContactService } from './contact.service';
 
 @Component({
-  selector: 'jhi-contact-update',
+  selector: 'contact-update',
   templateUrl: './contact-update.component.html'
 })
 export class ContactUpdateComponent implements OnInit {

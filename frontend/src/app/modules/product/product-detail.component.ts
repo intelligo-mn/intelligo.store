@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/model/product.model';
 
 @Component({
-  selector: 'jhi-product-detail',
+  selector: 'product-detail',
   templateUrl: './product-detail.component.html'
 })
 export class ProductDetailComponent implements OnInit {

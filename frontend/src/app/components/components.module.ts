@@ -6,10 +6,10 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './alert/alert.component';
-
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component'
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, AlertComponent],
-  exports: [FooterComponent, NavbarComponent, SidebarComponent, AlertComponent],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent, AlertComponent, DeleteDialogComponent],
+  exports: [FooterComponent, NavbarComponent, SidebarComponent, AlertComponent, DeleteDialogComponent],
 })
 export class ComponentsModule {}

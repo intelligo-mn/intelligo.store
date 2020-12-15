@@ -11,7 +11,7 @@ import { IProduct } from 'src/app/shared/model/product.model';
 import { ProductService } from 'src/app/entities/product/product.service';
 
 @Component({
-  selector: 'jhi-order-item-update',
+  selector: 'order-item-update',
   templateUrl: './order-item-update.component.html'
 })
 export class OrderItemUpdateComponent implements OnInit {

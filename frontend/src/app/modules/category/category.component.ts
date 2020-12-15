@@ -12,7 +12,7 @@ import { CategoryService } from './category.service';
 import { CategoryDeleteDialogComponent } from './category-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-category',
+  selector: 'category',
   templateUrl: './category.component.html'
 })
 export class CategoryComponent implements OnInit, OnDestroy {

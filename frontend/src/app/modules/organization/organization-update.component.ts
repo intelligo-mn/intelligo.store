@@ -18,7 +18,7 @@ import { CustomerService } from 'src/app/entities/customer/customer.service';
 type SelectableEntity = IContact | ICategory | ICustomer;
 
 @Component({
-  selector: 'jhi-organization-update',
+  selector: 'organization-update',
   templateUrl: './organization-update.component.html'
 })
 export class OrganizationUpdateComponent implements OnInit {

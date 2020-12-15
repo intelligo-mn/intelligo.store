@@ -9,7 +9,7 @@ import { ICategory, Category } from 'src/app/shared/model/category.model';
 import { CategoryService } from './category.service';
 
 @Component({
-  selector: 'jhi-category-update',
+  selector: 'category-update',
   templateUrl: './category-update.component.html'
 })
 export class CategoryUpdateComponent implements OnInit {

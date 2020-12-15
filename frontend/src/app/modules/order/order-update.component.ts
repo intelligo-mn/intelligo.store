@@ -17,7 +17,7 @@ import { OrderItemService } from '../order-item/order-item.service';
 type SelectableEntity = IOrderItem | ICustomer;
 
 @Component({
-  selector: 'jhi-order-update',
+  selector: 'order-update',
   templateUrl: './order-update.component.html'
 })
 export class OrderUpdateComponent implements OnInit {

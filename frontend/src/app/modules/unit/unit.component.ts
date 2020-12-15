@@ -12,7 +12,7 @@ import { UnitService } from './unit.service';
 import { UnitDeleteDialogComponent } from './unit-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-unit',
+  selector: 'unit',
   templateUrl: './unit.component.html'
 })
 export class UnitComponent implements OnInit, OnDestroy {
