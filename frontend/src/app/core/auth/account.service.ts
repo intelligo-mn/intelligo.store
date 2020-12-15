@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { JhiLanguageService } from 'ng-jhipster';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
+import { StateStorageService } from 'src/app/core/auth/state-storage.service';
+
+import { SERVER_API_URL } from 'src/app/app.constants';
 import { Account } from 'src/app/core/user/account.model';
-import { environment } from 'src/environments/environment';
-import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -13,10 +16,16 @@ export class AccountService {
   private authenticationState = new ReplaySubject<Account | null>(1);
   private accountCache$?: Observable<Account | null>;
 
-  constructor(private http: HttpClient, private stateStorageService: StorageService, private router: Router) {}
+  constructor(
+    private languageService: JhiLanguageService,
+    private sessionStorage: SessionStorageService,
+    private http: HttpClient,
+    private stateStorageService: StateStorageService,
+    private router: Router
+  ) {}
 
   save(account: Account): Observable<{}> {
-    return this.http.post(environment.apiUrl + 'api/account', account);
+    return this.http.post(SERVER_API_URL + 'api/account', account);
   }
 
   authenticate(identity: Account | null): void {
@@ -43,6 +52,13 @@ export class AccountService {
         tap((account: Account | null) => {
           this.authenticate(account);
 
+          // After retrieve the account info, the language will be changed to
+          // the user's preferred language configured in the account setting
+          if (account && account.langKey) {
+            const langKey = this.sessionStorage.retrieve('locale') || account.langKey;
+            this.languageService.changeLanguage(langKey);
+          }
+
           if (account) {
             this.navigateToStoredUrl();
           }
@@ -66,7 +82,7 @@ export class AccountService {
   }
 
   private fetch(): Observable<Account> {
-    return this.http.get<Account>(environment.apiUrl + 'api/account');
+    return this.http.get<Account>(SERVER_API_URL + 'api/account');
   }
 
   private navigateToStoredUrl(): void {
