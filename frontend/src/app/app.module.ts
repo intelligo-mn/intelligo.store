@@ -8,11 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AuthGuard } from './core/auth/auth.guard';
-import { IntelligoCoreModule } from './core/core.module';
+import { ChildfoodCoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -58,9 +59,10 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
+    SharedModule,
     NgbModule,
     RouterModule,
-    IntelligoCoreModule,
+    ChildfoodCoreModule,
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [

@@ -1,13 +1,14 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { SERVER_API_URL } from 'src/app/app.constants';
 import { createRequestOption, Pagination } from 'src/app/shared/util/request-util';
-import { environment } from 'src/environments/environment';
 import { IUser } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public resourceUrl = environment.apiUrl + 'api/users';
+  public resourceUrl = SERVER_API_URL + 'api/users';
 
   constructor(private http: HttpClient) {}
 
@@ -25,10 +26,7 @@ export class UserService {
 
   query(req?: Pagination): Observable<HttpResponse<IUser[]>> {
     const options = createRequestOption(req);
-    return this.http.get<IUser[]>(this.resourceUrl, {
-      params: options,
-      observe: 'response',
-    });
+    return this.http.get<IUser[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(login: string): Observable<{}> {
@@ -36,6 +34,6 @@ export class UserService {
   }
 
   authorities(): Observable<string[]> {
-    return this.http.get<string[]>(environment.apiUrl + 'api/users/authorities');
+    return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
   }
 }

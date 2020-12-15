@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { AccountService } from 'app/core/auth/account.service';
+import { AccountService } from 'src/app/core/auth/account.service';
 
 /**
  * @whatItDoes Conditionally includes an HTML element if current user has any
@@ -15,7 +15,7 @@ import { AccountService } from 'app/core/auth/account.service';
  * ```
  */
 @Directive({
-  selector: '[jhiHasAnyAuthority]',
+  selector: '[jhiHasAnyAuthority]'
 })
 export class HasAnyAuthorityDirective implements OnDestroy {
   private authorities: string[] = [];
