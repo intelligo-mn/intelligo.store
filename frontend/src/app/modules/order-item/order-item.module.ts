@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ChildfoodSharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { OrderItemComponent } from './order-item.component';
 import { OrderItemDetailComponent } from './order-item-detail.component';
 import { OrderItemUpdateComponent } from './order-item-update.component';
@@ -9,7 +9,7 @@ import { OrderItemDeleteDialogComponent } from './order-item-delete-dialog.compo
 import { orderItemRoute } from './order-item.route';
 
 @NgModule({
-  imports: [ChildfoodSharedModule, RouterModule.forChild(orderItemRoute)],
+  imports: [SharedModule, RouterModule.forChild(orderItemRoute)],
   declarations: [OrderItemComponent, OrderItemDetailComponent, OrderItemUpdateComponent, OrderItemDeleteDialogComponent],
   entryComponents: [OrderItemDeleteDialogComponent]
 })

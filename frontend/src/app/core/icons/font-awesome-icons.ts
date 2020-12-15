@@ -32,8 +32,8 @@ import {
   faTrashAlt,
   faAsterisk,
   faTasks,
-  faHome,
-  // intelligo-needle-add-icon-import
+  faHome
+  // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
@@ -70,6 +70,6 @@ export const fontAwesomeIcons = [
   faCalendarAlt,
   faSearch,
   faTrashAlt,
-  faAsterisk,
-  // intelligo-needle-add-icon-import
+  faAsterisk
+  // jhipster-needle-add-icon-import
 ];
