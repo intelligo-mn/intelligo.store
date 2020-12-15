@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IContact } from 'src/app/shared/model/contact.model';
 
 @Component({
-  selector: 'jhi-contact-detail',
+  selector: 'contact-detail',
   templateUrl: './contact-detail.component.html'
 })
 export class ContactDetailComponent implements OnInit {

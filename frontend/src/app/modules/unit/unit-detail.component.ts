@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IUnit } from 'src/app/shared/model/unit.model';
 
 @Component({
-  selector: 'jhi-unit-detail',
+  selector: 'unit-detail',
   templateUrl: './unit-detail.component.html'
 })
 export class UnitDetailComponent implements OnInit {

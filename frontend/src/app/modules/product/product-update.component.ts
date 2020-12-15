@@ -15,7 +15,7 @@ import { UnitService } from 'src/app/entities/unit/unit.service';
 type SelectableEntity = ICategory | IUnit;
 
 @Component({
-  selector: 'jhi-product-update',
+  selector: 'product-update',
   templateUrl: './product-update.component.html'
 })
 export class ProductUpdateComponent implements OnInit {

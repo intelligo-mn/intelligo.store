@@ -13,7 +13,7 @@ import { IProduct } from 'src/app/shared/model/product.model';
 import { ProductService } from 'src/app/entities/product/product.service';
 
 @Component({
-  selector: 'jhi-order-pack-update',
+  selector: 'order-pack-update',
   templateUrl: './order-pack-update.component.html'
 })
 export class OrderPackUpdateComponent implements OnInit {

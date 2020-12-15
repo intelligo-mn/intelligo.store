@@ -12,7 +12,7 @@ import { OrderPackService } from './order-pack.service';
 import { OrderPackDeleteDialogComponent } from './order-pack-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-order-pack',
+  selector: 'order-pack',
   templateUrl: './order-pack.component.html'
 })
 export class OrderPackComponent implements OnInit, OnDestroy {

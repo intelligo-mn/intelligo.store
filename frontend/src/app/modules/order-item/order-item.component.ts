@@ -12,7 +12,7 @@ import { OrderItemService } from './order-item.service';
 import { OrderItemDeleteDialogComponent } from './order-item-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-order-item',
+  selector: 'order-item',
   templateUrl: './order-item.component.html'
 })
 export class OrderItemComponent implements OnInit, OnDestroy {

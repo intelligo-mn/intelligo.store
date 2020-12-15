@@ -9,7 +9,7 @@ import { IUnit, Unit } from 'src/app/shared/model/unit.model';
 import { UnitService } from './unit.service';
 
 @Component({
-  selector: 'jhi-unit-update',
+  selector: 'unit-update',
   templateUrl: './unit-update.component.html'
 })
 export class UnitUpdateComponent implements OnInit {

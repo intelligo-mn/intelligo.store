@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IOrganization } from 'src/app/shared/model/organization.model';
 
 @Component({
-  selector: 'jhi-organization-detail',
+  selector: 'organization-detail',
   templateUrl: './organization-detail.component.html'
 })
 export class OrganizationDetailComponent implements OnInit {

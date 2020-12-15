@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IOrder } from 'src/app/shared/model/order.model';
 
 @Component({
-  selector: 'jhi-order-detail',
+  selector: 'order-detail',
   templateUrl: './order-detail.component.html'
 })
 export class OrderDetailComponent implements OnInit {

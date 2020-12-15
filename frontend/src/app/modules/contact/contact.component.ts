@@ -12,7 +12,7 @@ import { ContactService } from './contact.service';
 import { ContactDeleteDialogComponent } from './contact-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-contact',
+  selector: 'contact',
   templateUrl: './contact.component.html'
 })
 export class ContactComponent implements OnInit, OnDestroy {

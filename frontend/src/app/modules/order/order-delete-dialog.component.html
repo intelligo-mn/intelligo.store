@@ -7,9 +7,9 @@
     </div>
 
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <alert-error></alert-error>
 
-        <p id="jhi-delete-order-heading" jhiTranslate="childfoodApp.order.delete.question" [translateValues]="{ id: order.id }">Are you sure you want to delete this Order?</p>
+        <p id="delete-order-heading" jhiTranslate="childfoodApp.order.delete.question" [translateValues]="{ id: order.id }">Are you sure you want to delete this Order?</p>
     </div>
 
     <div class="modal-footer">
@@ -17,7 +17,7 @@
             <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
 
-        <button id="jhi-confirm-delete-order" type="submit" class="btn btn-danger">
+        <button id="confirm-delete-order" type="submit" class="btn btn-danger">
             <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
         </button>
     </div>

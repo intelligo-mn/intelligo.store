@@ -10,9 +10,9 @@
         </button>
     </h2>
 
-    <jhi-alert-error></jhi-alert-error>
+    <alert-error></alert-error>
 
-    <jhi-alert></jhi-alert>
+    <alert></alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="orderItems?.length === 0">
         <span jhiTranslate="childfoodApp.orderItem.home.notFound">No orderItems found</span>
@@ -67,7 +67,7 @@
 
     <div *ngIf="orderItems?.length > 0">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></item-count>
         </div>
 
         <div class="row justify-content-center">

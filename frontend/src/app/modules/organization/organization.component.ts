@@ -12,7 +12,7 @@ import { OrganizationService } from './organization.service';
 import { OrganizationDeleteDialogComponent } from './organization-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-organization',
+  selector: 'organization',
   templateUrl: './organization.component.html'
 })
 export class OrganizationComponent implements OnInit, OnDestroy {
