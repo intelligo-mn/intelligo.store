@@ -4,7 +4,7 @@
             <h2 id="category-heading" jhiTranslate="childfoodApp.category.home.createOrEditLabel">Create or edit a Category</h2>
 
             <div>
-                <alert-error></alert-error>
+                
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
@@ -32,7 +32,7 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
