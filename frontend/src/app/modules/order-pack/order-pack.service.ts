@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 
@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<IOrderPack[]>;
 
 @Injectable({ providedIn: 'root' })
 export class OrderPackService {
-  public resourceUrl = SERVER_API_URL + 'api/order-packs';
+  public resourceUrl = environment.apiUrl + 'api/order-packs';
 
   constructor(protected http: HttpClient) {}
 

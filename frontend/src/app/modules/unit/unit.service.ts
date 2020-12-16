@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IUnit } from 'src/app/shared/model/unit.model';
+import { environment } from 'src/environments/environment';
 
 type EntityResponseType = HttpResponse<IUnit>;
 type EntityArrayResponseType = HttpResponse<IUnit[]>;
 
 @Injectable({ providedIn: 'root' })
 export class UnitService {
-  public resourceUrl = SERVER_API_URL + 'api/units';
+  public resourceUrl = environment.apiUrl + 'api/units';
 
   constructor(protected http: HttpClient) {}
 

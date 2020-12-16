@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IContact } from 'src/app/shared/model/contact.model';
 
@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IContact[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
-  public resourceUrl = SERVER_API_URL + 'api/contacts';
+  public resourceUrl = environment.apiUrl + 'api/contacts';
 
   constructor(protected http: HttpClient) {}
 
