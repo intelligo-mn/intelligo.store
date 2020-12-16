@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.product.home.title">Products</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.product.home.createLabel">
             Create a new Product
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
         <span jhiTranslate="childfoodApp.product.home.notFound">No products found</span>
@@ -22,11 +22,11 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.product.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.product.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="category.name"><span jhiTranslate="childfoodApp.product.category">Category</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="unit.name"><span jhiTranslate="childfoodApp.product.unit">Unit</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.product.name">Name</span> </th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.product.description">Description</span> </th>
+                    <th scope="col"  jhiSortBy="category.name"><span jhiTranslate="childfoodApp.product.category">Category</span> </th>
+                    <th scope="col"  jhiSortBy="unit.name"><span jhiTranslate="childfoodApp.product.unit">Unit</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>

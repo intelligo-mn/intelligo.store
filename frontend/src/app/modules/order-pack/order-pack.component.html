@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.orderPack.home.title">Order Packs</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-pack" [routerLink]="['/order-pack/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.orderPack.home.createLabel">
             Create a new Order Pack
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="orderPacks?.length === 0">
         <span jhiTranslate="childfoodApp.orderPack.home.notFound">No orderPacks found</span>
@@ -22,12 +22,12 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.orderPack.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="startDate"><span jhiTranslate="childfoodApp.orderPack.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="endDate"><span jhiTranslate="childfoodApp.orderPack.endDate">End Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.orderPack.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="products.id"><span jhiTranslate="childfoodApp.orderPack.products">Products</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.orderPack.name">Name</span> </th>
+                    <th scope="col"  jhiSortBy="startDate"><span jhiTranslate="childfoodApp.orderPack.startDate">Start Date</span> </th>
+                    <th scope="col"  jhiSortBy="endDate"><span jhiTranslate="childfoodApp.orderPack.endDate">End Date</span> </th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.orderPack.status">Status</span> </th>
+                    <th scope="col"  jhiSortBy="products.id"><span jhiTranslate="childfoodApp.orderPack.products">Products</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
