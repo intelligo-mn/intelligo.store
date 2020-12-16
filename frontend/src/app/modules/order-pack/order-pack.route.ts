@@ -40,49 +40,49 @@ export const orderPackRoute: Routes = [
     path: '',
     component: OrderPackComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams
+      pagingParams: JhiResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'childfoodApp.orderPack.home.title'
+      pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: OrderPackDetailComponent,
     resolve: {
-      orderPack: OrderPackResolve
+      orderPack: OrderPackResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.orderPack.home.title'
+      pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: OrderPackUpdateComponent,
     resolve: {
-      orderPack: OrderPackResolve
+      orderPack: OrderPackResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.orderPack.home.title'
+      pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: OrderPackUpdateComponent,
     resolve: {
-      orderPack: OrderPackResolve
+      orderPack: OrderPackResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.orderPack.home.title'
+      pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

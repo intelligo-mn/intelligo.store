@@ -13,7 +13,7 @@ import { ProductDeleteDialogComponent } from './product-delete-dialog.component'
 
 @Component({
   selector: 'product',
-  templateUrl: './product.component.html'
+  templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit, OnDestroy {
   products?: IProduct[];
@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IProduct[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.products = data || [];
   }

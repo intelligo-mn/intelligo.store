@@ -6,7 +6,7 @@ import { IOrganization } from 'src/app/shared/model/organization.model';
 import { OrganizationService } from './organization.service';
 
 @Component({
-  templateUrl: './organization-delete-dialog.component.html'
+  templateUrl: './organization-delete-dialog.component.html',
 })
 export class OrganizationDeleteDialogComponent {
   organization?: IOrganization;

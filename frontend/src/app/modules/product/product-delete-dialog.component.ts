@@ -6,7 +6,7 @@ import { IProduct } from 'src/app/shared/model/product.model';
 import { ProductService } from './product.service';
 
 @Component({
-  templateUrl: './product-delete-dialog.component.html'
+  templateUrl: './product-delete-dialog.component.html',
 })
 export class ProductDeleteDialogComponent {
   product?: IProduct;

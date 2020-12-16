@@ -5,7 +5,7 @@ import { IProduct } from 'src/app/shared/model/product.model';
 
 @Component({
   selector: 'product-detail',
-  templateUrl: './product-detail.component.html'
+  templateUrl: './product-detail.component.html',
 })
 export class ProductDetailComponent implements OnInit {
   product: IProduct | null = null;

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IProduct } from 'src/app/shared/model/product.model';
 import { environment } from 'src/environments/environment';

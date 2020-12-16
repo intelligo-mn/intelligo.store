@@ -13,7 +13,7 @@ import { CategoryDeleteDialogComponent } from './category-delete-dialog.componen
 
 @Component({
   selector: 'category',
-  templateUrl: './category.component.html'
+  templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit, OnDestroy {
   categories?: ICategory[];
@@ -40,7 +40,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<ICategory[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.categories = data || [];
   }

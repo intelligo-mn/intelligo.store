@@ -6,7 +6,7 @@ import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 import { OrderPackService } from './order-pack.service';
 
 @Component({
-  templateUrl: './order-pack-delete-dialog.component.html'
+  templateUrl: './order-pack-delete-dialog.component.html',
 })
 export class OrderPackDeleteDialogComponent {
   orderPack?: IOrderPack;

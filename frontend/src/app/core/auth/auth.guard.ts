@@ -7,11 +7,7 @@ import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private accountService: AccountService,
-    private stateStorageService: StorageService
-  ) {}
+  constructor(private router: Router, private accountService: AccountService, private stateStorageService: StorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const authorities = route.data['authorities'];
@@ -24,17 +20,15 @@ export class AuthGuard implements CanActivate {
   checkLogin(authorities: string[], url: string): Observable<boolean> {
     return this.accountService.identity().pipe(
       map(account => {
-        
         if (account) {
           const hasAnyAuthority = this.accountService.hasAnyAuthority(authorities);
           if (hasAnyAuthority) {
             return true;
-
           }
           if (isDevMode()) {
             console.error('User has not any of required authorities: ', authorities);
           }
-          
+
           this.router.navigate(['accessdenied']);
           return false;
         }

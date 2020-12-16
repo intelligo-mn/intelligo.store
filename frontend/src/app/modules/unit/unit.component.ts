@@ -13,7 +13,7 @@ import { UnitDeleteDialogComponent } from './unit-delete-dialog.component';
 
 @Component({
   selector: 'unit',
-  templateUrl: './unit.component.html'
+  templateUrl: './unit.component.html',
 })
 export class UnitComponent implements OnInit, OnDestroy {
   units?: IUnit[];
@@ -40,7 +40,7 @@ export class UnitComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IUnit[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class UnitComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.units = data || [];
   }

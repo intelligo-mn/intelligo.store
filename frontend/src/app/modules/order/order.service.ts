@@ -50,7 +50,7 @@ export class OrderService {
 
   protected convertDateFromClient(order: IOrder): IOrder {
     const copy: IOrder = Object.assign({}, order, {
-      distributionDate: order.distributionDate && order.distributionDate.isValid() ? order.distributionDate.toJSON() : undefined
+      distributionDate: order.distributionDate && order.distributionDate.isValid() ? order.distributionDate.toJSON() : undefined,
     });
     return copy;
   }

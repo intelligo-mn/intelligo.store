@@ -13,7 +13,7 @@ import { OrganizationDeleteDialogComponent } from './organization-delete-dialog.
 
 @Component({
   selector: 'organization',
-  templateUrl: './organization.component.html'
+  templateUrl: './organization.component.html',
 })
 export class OrganizationComponent implements OnInit, OnDestroy {
   organizations?: IOrganization[];
@@ -40,7 +40,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IOrganization[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class OrganizationComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.organizations = data || [];
   }

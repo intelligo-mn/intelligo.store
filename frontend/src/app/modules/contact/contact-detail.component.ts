@@ -5,7 +5,7 @@ import { IContact } from 'src/app/shared/model/contact.model';
 
 @Component({
   selector: 'contact-detail',
-  templateUrl: './contact-detail.component.html'
+  templateUrl: './contact-detail.component.html',
 })
 export class ContactDetailComponent implements OnInit {
   contact: IContact | null = null;

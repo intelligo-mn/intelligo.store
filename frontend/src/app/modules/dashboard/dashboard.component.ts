@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.datasets = [[0, 20, 10, 30, 15, 40, 20, 60, 60], [0, 20, 5, 25, 10, 30, 15, 40, 40]];
+    this.datasets = [
+      [0, 20, 10, 30, 15, 40, 20, 60, 60],
+      [0, 20, 5, 25, 10, 30, 15, 40, 40],
+    ];
     this.data = this.datasets[0];
 
     const chartOrders = document.getElementById('chart-orders');

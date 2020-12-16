@@ -40,49 +40,49 @@ export const categoryRoute: Routes = [
     path: '',
     component: CategoryComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams
+      pagingParams: JhiResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'childfoodApp.category.home.title'
+      pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: CategoryDetailComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.category.home.title'
+      pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: CategoryUpdateComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.category.home.title'
+      pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: CategoryUpdateComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.category.home.title'
+      pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

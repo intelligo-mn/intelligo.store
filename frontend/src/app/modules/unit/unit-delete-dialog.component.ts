@@ -6,7 +6,7 @@ import { IUnit } from 'src/app/shared/model/unit.model';
 import { UnitService } from './unit.service';
 
 @Component({
-  templateUrl: './unit-delete-dialog.component.html'
+  templateUrl: './unit-delete-dialog.component.html',
 })
 export class UnitDeleteDialogComponent {
   unit?: IUnit;

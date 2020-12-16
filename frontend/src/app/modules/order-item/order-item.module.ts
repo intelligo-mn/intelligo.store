@@ -11,6 +11,6 @@ import { orderItemRoute } from './order-item.route';
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(orderItemRoute)],
   declarations: [OrderItemComponent, OrderItemDetailComponent, OrderItemUpdateComponent, OrderItemDeleteDialogComponent],
-  entryComponents: [OrderItemDeleteDialogComponent]
+  entryComponents: [OrderItemDeleteDialogComponent],
 })
 export class ChildfoodOrderItemModule {}

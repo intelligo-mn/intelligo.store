@@ -7,14 +7,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  exports: [
-    FormsModule,
-    CommonModule,
-    NgbModule,
-    NgJhipsterModule,
-    InfiniteScrollModule,
-    ReactiveFormsModule,
-    TranslateModule
-  ]
+  exports: [FormsModule, CommonModule, NgbModule, NgJhipsterModule, InfiniteScrollModule, ReactiveFormsModule, TranslateModule],
 })
 export class SharedLibsModule {}

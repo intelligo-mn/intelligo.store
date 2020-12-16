@@ -5,7 +5,7 @@ import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 
 @Component({
   selector: 'order-pack-detail',
-  templateUrl: './order-pack-detail.component.html'
+  templateUrl: './order-pack-detail.component.html',
 })
 export class OrderPackDetailComponent implements OnInit {
   orderPack: IOrderPack | null = null;

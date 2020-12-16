@@ -5,7 +5,7 @@ import { IOrderItem } from 'src/app/shared/model/order-item.model';
 
 @Component({
   selector: 'order-item-detail',
-  templateUrl: './order-item-detail.component.html'
+  templateUrl: './order-item-detail.component.html',
 })
 export class OrderItemDetailComponent implements OnInit {
   orderItem: IOrderItem | null = null;

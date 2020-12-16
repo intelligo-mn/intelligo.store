@@ -6,7 +6,7 @@ import { IContact } from 'src/app/shared/model/contact.model';
 import { ContactService } from './contact.service';
 
 @Component({
-  templateUrl: './contact-delete-dialog.component.html'
+  templateUrl: './contact-delete-dialog.component.html',
 })
 export class ContactDeleteDialogComponent {
   contact?: IContact;
