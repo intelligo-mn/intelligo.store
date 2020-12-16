@@ -13,7 +13,7 @@ import { ContactDeleteDialogComponent } from './contact-delete-dialog.component'
 
 @Component({
   selector: 'contact',
-  templateUrl: './contact.component.html'
+  templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit, OnDestroy {
   contacts?: IContact[];
@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IContact[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class ContactComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.contacts = data || [];
   }

@@ -10,7 +10,7 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'category-update',
-  templateUrl: './category-update.component.html'
+  templateUrl: './category-update.component.html',
 })
 export class CategoryUpdateComponent implements OnInit {
   isSaving = false;
@@ -18,7 +18,7 @@ export class CategoryUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    description: []
+    description: [],
   });
 
   constructor(protected categoryService: CategoryService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -33,7 +33,7 @@ export class CategoryUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: category.id,
       name: category.name,
-      description: category.description
+      description: category.description,
     });
   }
 
@@ -56,7 +56,7 @@ export class CategoryUpdateComponent implements OnInit {
       ...new Category(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      description: this.editForm.get(['description'])!.value
+      description: this.editForm.get(['description'])!.value,
     };
   }
 

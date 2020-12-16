@@ -5,7 +5,7 @@ import { IUnit } from 'src/app/shared/model/unit.model';
 
 @Component({
   selector: 'unit-detail',
-  templateUrl: './unit-detail.component.html'
+  templateUrl: './unit-detail.component.html',
 })
 export class UnitDetailComponent implements OnInit {
   unit: IUnit | null = null;

@@ -13,7 +13,7 @@ import { OrderPackDeleteDialogComponent } from './order-pack-delete-dialog.compo
 
 @Component({
   selector: 'order-pack',
-  templateUrl: './order-pack.component.html'
+  templateUrl: './order-pack.component.html',
 })
 export class OrderPackComponent implements OnInit, OnDestroy {
   orderPacks?: IOrderPack[];
@@ -40,7 +40,7 @@ export class OrderPackComponent implements OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IOrderPack[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
@@ -94,8 +94,8 @@ export class OrderPackComponent implements OnInit, OnDestroy {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
-      }
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
+      },
     });
     this.orderPacks = data || [];
   }

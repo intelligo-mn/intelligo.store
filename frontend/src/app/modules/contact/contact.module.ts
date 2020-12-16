@@ -11,6 +11,6 @@ import { contactRoute } from './contact.route';
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(contactRoute)],
   declarations: [ContactComponent, ContactDetailComponent, ContactUpdateComponent, ContactDeleteDialogComponent],
-  entryComponents: [ContactDeleteDialogComponent]
+  entryComponents: [ContactDeleteDialogComponent],
 })
 export class ContactModule {}

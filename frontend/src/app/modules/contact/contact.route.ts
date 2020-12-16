@@ -40,49 +40,49 @@ export const contactRoute: Routes = [
     path: '',
     component: ContactComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams
+      pagingParams: JhiResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'childfoodApp.contact.home.title'
+      pageTitle: 'childfoodApp.contact.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: ContactDetailComponent,
     resolve: {
-      contact: ContactResolve
+      contact: ContactResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.contact.home.title'
+      pageTitle: 'childfoodApp.contact.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: ContactUpdateComponent,
     resolve: {
-      contact: ContactResolve
+      contact: ContactResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.contact.home.title'
+      pageTitle: 'childfoodApp.contact.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: ContactUpdateComponent,
     resolve: {
-      contact: ContactResolve
+      contact: ContactResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.contact.home.title'
+      pageTitle: 'childfoodApp.contact.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

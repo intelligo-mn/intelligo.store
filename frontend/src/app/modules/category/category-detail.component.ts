@@ -5,7 +5,7 @@ import { ICategory } from 'src/app/shared/model/category.model';
 
 @Component({
   selector: 'category-detail',
-  templateUrl: './category-detail.component.html'
+  templateUrl: './category-detail.component.html',
 })
 export class CategoryDetailComponent implements OnInit {
   category: ICategory | null = null;

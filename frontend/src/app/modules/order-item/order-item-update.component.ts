@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/modules/product/product.service';
 
 @Component({
   selector: 'order-item-update',
-  templateUrl: './order-item-update.component.html'
+  templateUrl: './order-item-update.component.html',
 })
 export class OrderItemUpdateComponent implements OnInit {
   isSaving = false;
@@ -21,7 +21,7 @@ export class OrderItemUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     quantity: [],
-    products: []
+    products: [],
   });
 
   constructor(
@@ -43,7 +43,7 @@ export class OrderItemUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: orderItem.id,
       quantity: orderItem.quantity,
-      products: orderItem.products
+      products: orderItem.products,
     });
   }
 
@@ -66,7 +66,7 @@ export class OrderItemUpdateComponent implements OnInit {
       ...new OrderItem(),
       id: this.editForm.get(['id'])!.value,
       quantity: this.editForm.get(['quantity'])!.value,
-      products: this.editForm.get(['products'])!.value
+      products: this.editForm.get(['products'])!.value,
     };
   }
 

@@ -18,7 +18,7 @@ type SelectableEntity = IOrderItem | ICustomer;
 
 @Component({
   selector: 'order-update',
-  templateUrl: './order-update.component.html'
+  templateUrl: './order-update.component.html',
 })
 export class OrderUpdateComponent implements OnInit {
   isSaving = false;
@@ -30,7 +30,7 @@ export class OrderUpdateComponent implements OnInit {
     distributionDate: [null, [Validators.required]],
     status: [null, [Validators.required]],
     products: [null, Validators.required],
-    manager: []
+    manager: [],
   });
 
   constructor(
@@ -62,7 +62,7 @@ export class OrderUpdateComponent implements OnInit {
       distributionDate: order.distributionDate ? order.distributionDate.format(DATE_TIME_FORMAT) : null,
       status: order.status,
       products: order.products,
-      manager: order.manager
+      manager: order.manager,
     });
   }
 
@@ -89,7 +89,7 @@ export class OrderUpdateComponent implements OnInit {
         : undefined,
       status: this.editForm.get(['status'])!.value,
       products: this.editForm.get(['products'])!.value,
-      manager: this.editForm.get(['manager'])!.value
+      manager: this.editForm.get(['manager'])!.value,
     };
   }
 

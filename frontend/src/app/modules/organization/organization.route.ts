@@ -40,49 +40,49 @@ export const organizationRoute: Routes = [
     path: '',
     component: OrganizationComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams
+      pagingParams: JhiResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'childfoodApp.organization.home.title'
+      pageTitle: 'childfoodApp.organization.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: OrganizationDetailComponent,
     resolve: {
-      organization: OrganizationResolve
+      organization: OrganizationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.organization.home.title'
+      pageTitle: 'childfoodApp.organization.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: OrganizationUpdateComponent,
     resolve: {
-      organization: OrganizationResolve
+      organization: OrganizationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.organization.home.title'
+      pageTitle: 'childfoodApp.organization.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: OrganizationUpdateComponent,
     resolve: {
-      organization: OrganizationResolve
+      organization: OrganizationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.organization.home.title'
+      pageTitle: 'childfoodApp.organization.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

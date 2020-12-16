@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/modules/product/product.service';
 
 @Component({
   selector: 'order-pack-update',
-  templateUrl: './order-pack-update.component.html'
+  templateUrl: './order-pack-update.component.html',
 })
 export class OrderPackUpdateComponent implements OnInit {
   isSaving = false;
@@ -26,7 +26,7 @@ export class OrderPackUpdateComponent implements OnInit {
     startDate: [null, [Validators.required]],
     endDate: [null, [Validators.required]],
     status: [null, [Validators.required]],
-    products: []
+    products: [],
   });
 
   constructor(
@@ -57,7 +57,7 @@ export class OrderPackUpdateComponent implements OnInit {
       startDate: orderPack.startDate ? orderPack.startDate.format(DATE_TIME_FORMAT) : null,
       endDate: orderPack.endDate ? orderPack.endDate.format(DATE_TIME_FORMAT) : null,
       status: orderPack.status,
-      products: orderPack.products
+      products: orderPack.products,
     });
   }
 
@@ -83,7 +83,7 @@ export class OrderPackUpdateComponent implements OnInit {
       startDate: this.editForm.get(['startDate'])!.value ? moment(this.editForm.get(['startDate'])!.value, DATE_TIME_FORMAT) : undefined,
       endDate: this.editForm.get(['endDate'])!.value ? moment(this.editForm.get(['endDate'])!.value, DATE_TIME_FORMAT) : undefined,
       status: this.editForm.get(['status'])!.value,
-      products: this.editForm.get(['products'])!.value
+      products: this.editForm.get(['products'])!.value,
     };
   }
 

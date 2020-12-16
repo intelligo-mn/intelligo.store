@@ -40,49 +40,49 @@ export const orderRoute: Routes = [
     path: '',
     component: OrderComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams
+      pagingParams: JhiResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'childfoodApp.order.home.title'
+      pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: OrderDetailComponent,
     resolve: {
-      order: OrderResolve
+      order: OrderResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.order.home.title'
+      pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: OrderUpdateComponent,
     resolve: {
-      order: OrderResolve
+      order: OrderResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.order.home.title'
+      pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: OrderUpdateComponent,
     resolve: {
-      order: OrderResolve
+      order: OrderResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.order.home.title'
+      pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

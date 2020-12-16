@@ -18,7 +18,7 @@ type SelectableEntity = IContact | ICategory | ICustomer;
 
 @Component({
   selector: 'organization-update',
-  templateUrl: './organization-update.component.html'
+  templateUrl: './organization-update.component.html',
 })
 export class OrganizationUpdateComponent implements OnInit {
   isSaving = false;
@@ -33,7 +33,7 @@ export class OrganizationUpdateComponent implements OnInit {
     type: [null, [Validators.required]],
     contact: [],
     distributeType: [],
-    manager: []
+    manager: [],
   });
 
   constructor(
@@ -85,7 +85,7 @@ export class OrganizationUpdateComponent implements OnInit {
       type: organization.type,
       contact: organization.contact,
       distributeType: organization.distributeType,
-      manager: organization.manager
+      manager: organization.manager,
     });
   }
 
@@ -112,7 +112,7 @@ export class OrganizationUpdateComponent implements OnInit {
       type: this.editForm.get(['type'])!.value,
       contact: this.editForm.get(['contact'])!.value,
       distributeType: this.editForm.get(['distributeType'])!.value,
-      manager: this.editForm.get(['manager'])!.value
+      manager: this.editForm.get(['manager'])!.value,
     };
   }
 

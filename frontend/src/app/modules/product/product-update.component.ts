@@ -16,7 +16,7 @@ type SelectableEntity = ICategory | IUnit;
 
 @Component({
   selector: 'product-update',
-  templateUrl: './product-update.component.html'
+  templateUrl: './product-update.component.html',
 })
 export class ProductUpdateComponent implements OnInit {
   isSaving = false;
@@ -28,7 +28,7 @@ export class ProductUpdateComponent implements OnInit {
     name: [null, [Validators.required]],
     description: [],
     category: [null, Validators.required],
-    unit: [null, Validators.required]
+    unit: [null, Validators.required],
   });
 
   constructor(
@@ -55,7 +55,7 @@ export class ProductUpdateComponent implements OnInit {
       name: product.name,
       description: product.description,
       category: product.category,
-      unit: product.unit
+      unit: product.unit,
     });
   }
 
@@ -80,7 +80,7 @@ export class ProductUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       description: this.editForm.get(['description'])!.value,
       category: this.editForm.get(['category'])!.value,
-      unit: this.editForm.get(['unit'])!.value
+      unit: this.editForm.get(['unit'])!.value,
     };
   }
 

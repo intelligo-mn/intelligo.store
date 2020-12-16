@@ -10,7 +10,11 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private localStorage: LocalStorageService, private sessionStorage: SessionStorageService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request || !request.url || (request.url.startsWith('http') && !(environment.apiUrl && request.url.startsWith(environment.apiUrl)))) {
+    if (
+      !request ||
+      !request.url ||
+      (request.url.startsWith('http') && !(environment.apiUrl && request.url.startsWith(environment.apiUrl)))
+    ) {
       return next.handle(request);
     }
 
@@ -18,8 +22,8 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + token
-        }
+          Authorization: 'Bearer ' + token,
+        },
       });
     }
     return next.handle(request);

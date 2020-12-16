@@ -10,7 +10,7 @@ import { UnitService } from './unit.service';
 
 @Component({
   selector: 'unit-update',
-  templateUrl: './unit-update.component.html'
+  templateUrl: './unit-update.component.html',
 })
 export class UnitUpdateComponent implements OnInit {
   isSaving = false;
@@ -19,7 +19,7 @@ export class UnitUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     description: [],
-    value: []
+    value: [],
   });
 
   constructor(protected unitService: UnitService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -35,7 +35,7 @@ export class UnitUpdateComponent implements OnInit {
       id: unit.id,
       name: unit.name,
       description: unit.description,
-      value: unit.value
+      value: unit.value,
     });
   }
 
@@ -59,7 +59,7 @@ export class UnitUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       description: this.editForm.get(['description'])!.value,
-      value: this.editForm.get(['value'])!.value
+      value: this.editForm.get(['value'])!.value,
     };
   }
 

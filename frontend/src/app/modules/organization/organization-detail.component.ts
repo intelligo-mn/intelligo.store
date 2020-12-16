@@ -5,7 +5,7 @@ import { IOrganization } from 'src/app/shared/model/organization.model';
 
 @Component({
   selector: 'organization-detail',
-  templateUrl: './organization-detail.component.html'
+  templateUrl: './organization-detail.component.html',
 })
 export class OrganizationDetailComponent implements OnInit {
   organization: IOrganization | null = null;

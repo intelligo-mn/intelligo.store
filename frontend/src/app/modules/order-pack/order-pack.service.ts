@@ -51,7 +51,7 @@ export class OrderPackService {
   protected convertDateFromClient(orderPack: IOrderPack): IOrderPack {
     const copy: IOrderPack = Object.assign({}, orderPack, {
       startDate: orderPack.startDate && orderPack.startDate.isValid() ? orderPack.startDate.toJSON() : undefined,
-      endDate: orderPack.endDate && orderPack.endDate.isValid() ? orderPack.endDate.toJSON() : undefined
+      endDate: orderPack.endDate && orderPack.endDate.isValid() ? orderPack.endDate.toJSON() : undefined,
     });
     return copy;
   }

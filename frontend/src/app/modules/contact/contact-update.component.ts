@@ -10,7 +10,7 @@ import { ContactService } from './contact.service';
 
 @Component({
   selector: 'contact-update',
-  templateUrl: './contact-update.component.html'
+  templateUrl: './contact-update.component.html',
 })
 export class ContactUpdateComponent implements OnInit {
   isSaving = false;
@@ -21,7 +21,7 @@ export class ContactUpdateComponent implements OnInit {
     email: [],
     address: [],
     lat: [],
-    lon: []
+    lon: [],
   });
 
   constructor(protected contactService: ContactService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -39,7 +39,7 @@ export class ContactUpdateComponent implements OnInit {
       email: contact.email,
       address: contact.address,
       lat: contact.lat,
-      lon: contact.lon
+      lon: contact.lon,
     });
   }
 
@@ -65,7 +65,7 @@ export class ContactUpdateComponent implements OnInit {
       email: this.editForm.get(['email'])!.value,
       address: this.editForm.get(['address'])!.value,
       lat: this.editForm.get(['lat'])!.value,
-      lon: this.editForm.get(['lon'])!.value
+      lon: this.editForm.get(['lon'])!.value,
     };
   }
 
