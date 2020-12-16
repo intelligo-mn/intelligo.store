@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.organization.home.title">Organizations</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-organization" [routerLink]="['/organization/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.organization.home.createLabel">
             Create a new Organization
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="organizations?.length === 0">
         <span jhiTranslate="childfoodApp.organization.home.notFound">No organizations found</span>
@@ -22,13 +22,13 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.organization.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.organization.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="type"><span jhiTranslate="childfoodApp.organization.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="contact.id"><span jhiTranslate="childfoodApp.organization.contact">Contact</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="distributeType.name"><span jhiTranslate="childfoodApp.organization.distributeType">Distribute Type</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="manager.name"><span jhiTranslate="childfoodApp.organization.manager">Manager</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.organization.name">Name</span> </th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.organization.status">Status</span> </th>
+                    <th scope="col"  jhiSortBy="type"><span jhiTranslate="childfoodApp.organization.type">Type</span> </th>
+                    <th scope="col"  jhiSortBy="contact.id"><span jhiTranslate="childfoodApp.organization.contact">Contact</span> </th>
+                    <th scope="col"  jhiSortBy="distributeType.name"><span jhiTranslate="childfoodApp.organization.distributeType">Distribute Type</span> </th>
+                    <th scope="col"  jhiSortBy="manager.name"><span jhiTranslate="childfoodApp.organization.manager">Manager</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>

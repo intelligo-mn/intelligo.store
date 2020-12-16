@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.unit.home.title">Units</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-unit" [routerLink]="['/unit/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.unit.home.createLabel">
             Create a new Unit
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="units?.length === 0">
         <span jhiTranslate="childfoodApp.unit.home.notFound">No units found</span>
@@ -22,10 +22,10 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.unit.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.unit.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="value"><span jhiTranslate="childfoodApp.unit.value">Value</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.unit.name">Name</span> </th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.unit.description">Description</span> </th>
+                    <th scope="col"  jhiSortBy="value"><span jhiTranslate="childfoodApp.unit.value">Value</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>

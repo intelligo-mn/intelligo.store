@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.contact.home.title">Contacts</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contact" [routerLink]="['/contact/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.contact.home.createLabel">
             Create a new Contact
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="contacts?.length === 0">
         <span jhiTranslate="childfoodApp.contact.home.notFound">No contacts found</span>
@@ -22,12 +22,12 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="childfoodApp.contact.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="childfoodApp.contact.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="address"><span jhiTranslate="childfoodApp.contact.address">Address</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="lat"><span jhiTranslate="childfoodApp.contact.lat">Lat</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="lon"><span jhiTranslate="childfoodApp.contact.lon">Lon</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="childfoodApp.contact.phone">Phone</span> </th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="childfoodApp.contact.email">Email</span> </th>
+                    <th scope="col"  jhiSortBy="address"><span jhiTranslate="childfoodApp.contact.address">Address</span> </th>
+                    <th scope="col"  jhiSortBy="lat"><span jhiTranslate="childfoodApp.contact.lat">Lat</span> </th>
+                    <th scope="col"  jhiSortBy="lon"><span jhiTranslate="childfoodApp.contact.lon">Lon</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>

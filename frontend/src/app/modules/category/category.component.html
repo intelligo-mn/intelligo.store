@@ -3,7 +3,7 @@
         <span jhiTranslate="childfoodApp.category.home.title">Categories</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
-            <fa-icon icon="plus"></fa-icon>
+            
             <span  jhiTranslate="childfoodApp.category.home.createLabel">
             Create a new Category
             </span>
@@ -12,7 +12,7 @@
 
     
 
-    <alert></alert>
+    
 
     <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
         <span jhiTranslate="childfoodApp.category.home.notFound">No categories found</span>
@@ -22,9 +22,9 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.category.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.category.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.category.name">Name</span> </th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.category.description">Description</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
