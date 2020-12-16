@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 import { IProduct, Product } from 'src/app/shared/model/product.model';
 import { ProductService } from './product.service';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { CategoryService } from 'src/app/entities/category/category.service';
+import { CategoryService } from 'src/app/modules/category/category.service';
 import { IUnit } from 'src/app/shared/model/unit.model';
-import { UnitService } from 'src/app/entities/unit/unit.service';
+import { UnitService } from 'src/app/modules/unit/unit.service';
 
 type SelectableEntity = ICategory | IUnit;
 

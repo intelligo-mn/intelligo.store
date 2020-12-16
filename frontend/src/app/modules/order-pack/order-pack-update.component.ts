@@ -10,7 +10,7 @@ import { DATE_TIME_FORMAT } from 'src/app/shared/constants/input.constants';
 import { IOrderPack, OrderPack } from 'src/app/shared/model/order-pack.model';
 import { OrderPackService } from './order-pack.service';
 import { IProduct } from 'src/app/shared/model/product.model';
-import { ProductService } from 'src/app/entities/product/product.service';
+import { ProductService } from 'src/app/modules/product/product.service';
 
 @Component({
   selector: 'order-pack-update',

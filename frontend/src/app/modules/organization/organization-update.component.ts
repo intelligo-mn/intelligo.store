@@ -9,11 +9,10 @@ import { map } from 'rxjs/operators';
 import { IOrganization, Organization } from 'src/app/shared/model/organization.model';
 import { OrganizationService } from './organization.service';
 import { IContact } from 'src/app/shared/model/contact.model';
-import { ContactService } from 'src/app/entities/contact/contact.service';
+import { ContactService } from 'src/app/modules/contact/contact.service';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { CategoryService } from 'src/app/entities/category/category.service';
+import { CategoryService } from 'src/app/modules/category/category.service';
 import { ICustomer } from 'src/app/shared/model/customer.model';
-import { CustomerService } from 'src/app/entities/customer/customer.service';
 
 type SelectableEntity = IContact | ICategory | ICustomer;
 
