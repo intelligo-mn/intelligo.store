@@ -1,56 +1,50 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="organization">
-            <h2><span jhiTranslate="childfoodApp.organization.detail.title">Organization</span> {{ organization.id }}</h2>
+  <div class="col-8">
+    <div *ngIf="organization">
+      <h2><span jhiTranslate="childfoodApp.organization.detail.title">Organization</span> {{ organization.id }}</h2>
 
-            <hr>
+      <hr />
 
-            
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="childfoodApp.organization.name">Name</span></dt>
+        <dd>
+          <span>{{ organization.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="childfoodApp.organization.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'childfoodApp.OrganizationStatus.' + organization.status }}">{{ organization.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="childfoodApp.organization.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'childfoodApp.OrganizationType.' + organization.type }}">{{ organization.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="childfoodApp.organization.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="organization.contact">
+            <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="childfoodApp.organization.distributeType">Distribute Type</span></dt>
+        <dd>
+          <div *ngIf="organization.distributeType">
+            <a [routerLink]="['/category', organization.distributeType?.id, 'view']">{{ organization.distributeType?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="childfoodApp.organization.manager">Manager</span></dt>
+        <dd>
+          <div *ngIf="organization.manager">
+            <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
+          </div>
+        </dd>
+      </dl>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="childfoodApp.organization.name">Name</span></dt>
-                <dd>
-                    <span>{{ organization.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="childfoodApp.organization.status">Status</span></dt>
-                <dd>
-                    <span jhiTranslate="{{ 'childfoodApp.OrganizationStatus.' + organization.status }}">{{ organization.status }}</span>
-                </dd>
-                <dt><span jhiTranslate="childfoodApp.organization.type">Type</span></dt>
-                <dd>
-                    <span jhiTranslate="{{ 'childfoodApp.OrganizationType.' + organization.type }}">{{ organization.type }}</span>
-                </dd>
-                <dt><span jhiTranslate="childfoodApp.organization.contact">Contact</span></dt>
-                <dd>
-                    <div *ngIf="organization.contact">
-                        <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="childfoodApp.organization.distributeType">Distribute Type</span></dt>
-                <dd>
-                    <div *ngIf="organization.distributeType">
-                        <a [routerLink]="['/category', organization.distributeType?.id, 'view']">{{ organization.distributeType?.name }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="childfoodApp.organization.manager">Manager</span></dt>
-                <dd>
-                    <div *ngIf="organization.manager">
-                        <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
-                    </div>
-                </dd>
-            </dl>
+      <button type="submit" (click)="previousState()" class="btn btn-info">
+        <span jhiTranslate="entity.action.back">Back</span>
+      </button>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/organization', organization.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
-        </div>
+      <button type="button" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary">
+        <span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
     </div>
+  </div>
 </div>
