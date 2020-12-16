@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { createRequestOption, Pagination } from 'src/app/shared/util/request-util';
 import { IUser } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public resourceUrl = SERVER_API_URL + 'api/users';
+  public resourceUrl = environment.apiUrl + 'api/users';
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +34,6 @@ export class UserService {
   }
 
   authorities(): Observable<string[]> {
-    return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
+    return this.http.get<string[]>(environment.apiUrl + 'api/users/authorities');
   }
 }

@@ -7,7 +7,7 @@ import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
 import { StateStorageService } from 'src/app/core/auth/state-storage.service';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/core/user/account.model';
 
 @Injectable({ providedIn: 'root' })
@@ -25,7 +25,7 @@ export class AccountService {
   ) {}
 
   save(account: Account): Observable<{}> {
-    return this.http.post(SERVER_API_URL + 'api/account', account);
+    return this.http.post(environment.apiUrl + 'api/account', account);
   }
 
   authenticate(identity: Account | null): void {
@@ -82,7 +82,7 @@ export class AccountService {
   }
 
   private fetch(): Observable<Account> {
-    return this.http.get<Account>(SERVER_API_URL + 'api/account');
+    return this.http.get<Account>(environment.apiUrl + 'api/account');
   }
 
   private navigateToStoredUrl(): void {

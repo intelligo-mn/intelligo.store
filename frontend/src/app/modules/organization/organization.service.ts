@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { SERVER_API_URL } from 'src/app/app.constants';
-import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IOrganization } from 'src/app/shared/model/organization.model';
+import { createRequestOption } from 'src/app/shared/util/request-util';
+import { environment } from 'src/environments/environment';
 
 type EntityResponseType = HttpResponse<IOrganization>;
 type EntityArrayResponseType = HttpResponse<IOrganization[]>;
 
 @Injectable({ providedIn: 'root' })
 export class OrganizationService {
-  public resourceUrl = SERVER_API_URL + 'api/organizations';
+  public resourceUrl = environment.apiUrl + 'api/organizations';
 
   constructor(protected http: HttpClient) {}
 

@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IProduct } from 'src/app/shared/model/product.model';
+import { environment } from 'src/environments/environment';
 
 type EntityResponseType = HttpResponse<IProduct>;
 type EntityArrayResponseType = HttpResponse<IProduct[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  public resourceUrl = SERVER_API_URL + 'api/products';
+  public resourceUrl = environment.apiUrl + 'api/products';
 
   constructor(protected http: HttpClient) {}
 

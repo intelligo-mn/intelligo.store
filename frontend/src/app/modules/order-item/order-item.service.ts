@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IOrderItem } from 'src/app/shared/model/order-item.model';
 
@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IOrderItem[]>;
 
 @Injectable({ providedIn: 'root' })
 export class OrderItemService {
-  public resourceUrl = SERVER_API_URL + 'api/order-items';
+  public resourceUrl = environment.apiUrl + 'api/order-items';
 
   constructor(protected http: HttpClient) {}
 

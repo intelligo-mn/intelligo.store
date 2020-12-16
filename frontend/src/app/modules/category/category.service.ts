@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'src/app/app.constants';
+import { environment } from 'src/environments/environment';
 import { createRequestOption } from 'src/app/shared/util/request-util';
 import { ICategory } from 'src/app/shared/model/category.model';
 
@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<ICategory[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  public resourceUrl = SERVER_API_URL + 'api/categories';
+  public resourceUrl = environment.apiUrl + 'api/categories';
 
   constructor(protected http: HttpClient) {}
 
