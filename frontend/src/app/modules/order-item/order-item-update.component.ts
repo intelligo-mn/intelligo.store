@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { IOrderItem, OrderItem } from 'src/app/shared/model/order-item.model';
 import { OrderItemService } from './order-item.service';
 import { IProduct } from 'src/app/shared/model/product.model';
-import { ProductService } from 'src/app/entities/product/product.service';
+import { ProductService } from 'src/app/modules/product/product.service';
 
 @Component({
   selector: 'order-item-update',
