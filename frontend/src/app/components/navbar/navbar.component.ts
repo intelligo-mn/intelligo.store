@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { MAIN_ROUTES } from '../sidebar/sidebar.component';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-
+import { LoginService } from 'src/app/core/login/login.service';
+import { MAIN_ROUTES } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,7 +12,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location, private element: ElementRef, private router: Router, private authService: AuthenticationService) {
+  constructor(location: Location, private element: ElementRef, private router: Router, private authService: LoginService) {
     this.location = location;
   }
 

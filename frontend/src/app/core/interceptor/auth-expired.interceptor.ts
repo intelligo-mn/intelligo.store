@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/core/login/login.service';
 import { LoginModalService } from 'src/app/core/login/login-modal.service';
-import { StateStorageService } from 'src/app/core/auth/state-storage.service';
+import { StateStorageService } from 'src/app/core/auth/storage.service';
 
 @Injectable()
 export class AuthExpiredInterceptor implements HttpInterceptor {

@@ -5,7 +5,7 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
-import { StateStorageService } from 'src/app/core/auth/state-storage.service';
+import { StateStorageService } from 'src/app/core/auth/storage.service';
 
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/core/user/account.model';
@@ -86,7 +86,7 @@ export class AccountService {
   }
 
   private navigateToStoredUrl(): void {
-    // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
+    // previousState can be set in the authExpiredInterceptor and in the AuthGuard
     // if login is successful, go to stored previousState and clear previousState
     const previousUrl = this.stateStorageService.getUrl();
     if (previousUrl) {

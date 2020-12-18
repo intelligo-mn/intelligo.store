@@ -6,12 +6,12 @@ import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'src/app/shared/constants/authority.constants';
-import { UserRouteAccessService } from 'src/app/core/auth/user-route-access-service';
 import { IOrderPack, OrderPack } from 'src/app/shared/model/order-pack.model';
 import { OrderPackService } from './order-pack.service';
 import { OrderPackComponent } from './order-pack.component';
 import { OrderPackDetailComponent } from './order-pack-detail.component';
 import { OrderPackUpdateComponent } from './order-pack-update.component';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 
 @Injectable({ providedIn: 'root' })
 export class OrderPackResolve implements Resolve<IOrderPack> {
@@ -47,7 +47,7 @@ export const orderPackRoute: Routes = [
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/view',
@@ -59,7 +59,7 @@ export const orderPackRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: 'new',
@@ -71,7 +71,7 @@ export const orderPackRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/edit',
@@ -83,6 +83,6 @@ export const orderPackRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
 ];

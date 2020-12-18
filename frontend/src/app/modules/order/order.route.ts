@@ -6,12 +6,12 @@ import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'src/app/shared/constants/authority.constants';
-import { UserRouteAccessService } from 'src/app/core/auth/user-route-access-service';
 import { IOrder, Order } from 'src/app/shared/model/order.model';
 import { OrderService } from './order.service';
 import { OrderComponent } from './order.component';
 import { OrderDetailComponent } from './order-detail.component';
 import { OrderUpdateComponent } from './order-update.component';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 
 @Injectable({ providedIn: 'root' })
 export class OrderResolve implements Resolve<IOrder> {
@@ -47,7 +47,7 @@ export const orderRoute: Routes = [
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/view',
@@ -59,7 +59,7 @@ export const orderRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: 'new',
@@ -71,7 +71,7 @@ export const orderRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/edit',
@@ -83,6 +83,6 @@ export const orderRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.order.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
 ];

@@ -6,7 +6,7 @@ import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'src/app/shared/constants/authority.constants';
-import { UserRouteAccessService } from 'src/app/core/auth/user-route-access-service';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { ICategory, Category } from 'src/app/shared/model/category.model';
 import { CategoryService } from './category.service';
 import { CategoryComponent } from './category.component';
@@ -47,7 +47,7 @@ export const categoryRoute: Routes = [
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/view',
@@ -59,7 +59,7 @@ export const categoryRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: 'new',
@@ -71,7 +71,7 @@ export const categoryRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/edit',
@@ -83,6 +83,6 @@ export const categoryRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
 ];
