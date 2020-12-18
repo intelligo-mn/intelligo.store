@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 
 import { IOrganization } from 'src/app/shared/model/organization.model';
 import { OrganizationService } from './organization.service';
@@ -14,7 +14,7 @@ export class OrganizationDeleteDialogComponent {
   constructor(
     protected organizationService: OrganizationService,
     public activeModal: NgbActiveModal,
-    protected eventManager: JhiEventManager
+    protected eventManager: EventManager
   ) {}
 
   cancel(): void {

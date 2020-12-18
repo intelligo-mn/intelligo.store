@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 
 import { IContact } from 'src/app/shared/model/contact.model';
 import { ContactService } from './contact.service';
@@ -11,7 +11,7 @@ import { ContactService } from './contact.service';
 export class ContactDeleteDialogComponent {
   contact?: IContact;
 
-  constructor(protected contactService: ContactService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
+  constructor(protected contactService: ContactService, public activeModal: NgbActiveModal, protected eventManager: EventManager) {}
 
   cancel(): void {
     this.activeModal.dismiss();

@@ -1,73 +1,70 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="childfoodApp.category.home.title">Categories</span>
+  <h2 id="page-heading">
+    <span jhiTranslate="childfoodApp.category.home.title">Categories</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
-            
-            <span  jhiTranslate="childfoodApp.category.home.createLabel">
-            Create a new Category
-            </span>
-        </button>
-    </h2>
+    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
+      <span jhiTranslate="childfoodApp.category.home.createLabel">
+        Create a new Category
+      </span>
+    </button>
+  </h2>
 
-    
+  <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
+    <span jhiTranslate="childfoodApp.category.home.notFound">No categories found</span>
+  </div>
 
-    
+  <div class="table-responsive" id="entities" *ngIf="categories?.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="childfoodApp.category.name">Name</span></th>
+          <th scope="col" jhiSortBy="description"><span jhiTranslate="childfoodApp.category.description">Description</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories; trackBy: trackId">
+          <td>
+            <a [routerLink]="['/category', category.id, 'view']">{{ category.id }}</a>
+          </td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm">
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
-        <span jhiTranslate="childfoodApp.category.home.notFound">No categories found</span>
+              <button type="submit" [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm">
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="categories?.length > 0">
+    <div class="row justify-content-center">
+      <item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></item-count>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="categories?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.category.name">Name</span> </th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.category.description">Description</span> </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let category of categories ;trackBy: trackId">
-                    <td><a [routerLink]="['/category', category.id, 'view']">{{ category.id }}</a></td>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.description }}</td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/category', category.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/category', category.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-
-                            <button type="submit" (click)="delete(category)"
-                                    class="btn btn-danger btn-sm">
-                                
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
     </div>
-
-    <div *ngIf="categories?.length > 0">
-        <div class="row justify-content-center">
-            <item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></item-count>
-        </div>
-
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-        </div>
-    </div>
+  </div>
 </div>

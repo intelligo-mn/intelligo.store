@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 
 import { IUnit } from 'src/app/shared/model/unit.model';
 import { UnitService } from './unit.service';
@@ -11,7 +11,7 @@ import { UnitService } from './unit.service';
 export class UnitDeleteDialogComponent {
   unit?: IUnit;
 
-  constructor(protected unitService: UnitService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
+  constructor(protected unitService: UnitService, public activeModal: NgbActiveModal, protected eventManager: EventManager) {}
 
   cancel(): void {
     this.activeModal.dismiss();

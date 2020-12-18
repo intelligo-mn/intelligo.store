@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IUnit } from 'src/app/shared/model/unit.model';
@@ -29,7 +29,7 @@ export class UnitComponent implements OnInit, OnDestroy {
     protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected eventManager: JhiEventManager,
+    protected eventManager: EventManager,
     protected modalService: NgbModal
   ) {}
 
