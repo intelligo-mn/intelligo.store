@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 
 import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 import { OrderPackService } from './order-pack.service';
@@ -11,7 +11,7 @@ import { OrderPackService } from './order-pack.service';
 export class OrderPackDeleteDialogComponent {
   orderPack?: IOrderPack;
 
-  constructor(protected orderPackService: OrderPackService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
+  constructor(protected orderPackService: OrderPackService, public activeModal: NgbActiveModal, protected eventManager: EventManager) {}
 
   cancel(): void {
     this.activeModal.dismiss();

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 import { DeleteService } from 'src/app/shared/services/delete.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class DeleteDialogComponent {
 
   isQueryParams: boolean = false;
 
-  constructor(protected deleteService: DeleteService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
+  constructor(protected deleteService: DeleteService, public activeModal: NgbActiveModal, protected eventManager: EventManager) {}
 
   clear() {
     this.activeModal.dismiss('cancel');

@@ -13,6 +13,8 @@ import { ContactService } from 'src/app/modules/contact/contact.service';
 import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { ICustomer } from 'src/app/shared/model/customer.model';
+import { UserService } from 'src/app/core/user/user.service';
+import { IUser } from 'src/app/core/user/user.model';
 
 type SelectableEntity = IContact | ICategory | ICustomer;
 
@@ -40,7 +42,7 @@ export class OrganizationUpdateComponent implements OnInit {
     protected organizationService: OrganizationService,
     protected contactService: ContactService,
     protected categoryService: CategoryService,
-    protected customerService: CustomerService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -73,7 +75,7 @@ export class OrganizationUpdateComponent implements OnInit {
 
       this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-      this.customerService.query().subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body || []));
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.customers = res.body || []));
     });
   }
 

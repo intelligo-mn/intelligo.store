@@ -2,14 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import { EventManager } from '@devmn/event-manager';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICategory } from 'src/app/shared/model/category.model';
 
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { CategoryService } from './category.service';
-import { CategoryDeleteDialogComponent } from './category-delete-dialog.component';
+import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'category',
@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     protected categoryService: CategoryService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected eventManager: JhiEventManager,
+    protected eventManager: EventManager,
     protected modalService: NgbModal
   ) {}
 
@@ -75,7 +75,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   delete(category: ICategory): void {
-    const modalRef = this.modalService.open(CategoryDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(DeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.category = category;
   }
 
