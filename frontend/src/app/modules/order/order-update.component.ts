@@ -11,8 +11,6 @@ import { IOrder, Order } from 'src/app/shared/model/order.model';
 import { OrderService } from './order.service';
 import { IOrderItem } from 'src/app/shared/model/order-item.model';
 import { ICustomer } from 'src/app/shared/model/customer.model';
-import { CustomerService } from '../customer/customer.service';
-import { OrderItemService } from '../order-item/order-item.service';
 
 type SelectableEntity = IOrderItem | ICustomer;
 
@@ -35,8 +33,6 @@ export class OrderUpdateComponent implements OnInit {
 
   constructor(
     protected orderService: OrderService,
-    protected orderItemService: OrderItemService,
-    protected customerService: CustomerService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -49,10 +45,6 @@ export class OrderUpdateComponent implements OnInit {
       }
 
       this.updateForm(order);
-
-      this.orderItemService.query().subscribe((res: HttpResponse<IOrderItem[]>) => (this.orderitems = res.body || []));
-
-      this.customerService.query().subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body || []));
     });
   }
 

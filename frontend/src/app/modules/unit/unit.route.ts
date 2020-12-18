@@ -6,7 +6,7 @@ import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'src/app/shared/constants/authority.constants';
-import { UserRouteAccessService } from 'src/app/core/auth/user-route-access-service';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { IUnit, Unit } from 'src/app/shared/model/unit.model';
 import { UnitService } from './unit.service';
 import { UnitComponent } from './unit.component';
@@ -47,7 +47,7 @@ export const unitRoute: Routes = [
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.unit.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/view',
@@ -59,7 +59,7 @@ export const unitRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.unit.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: 'new',
@@ -71,7 +71,7 @@ export const unitRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.unit.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
   {
     path: ':id/edit',
@@ -83,6 +83,6 @@ export const unitRoute: Routes = [
       authorities: [Authority.USER],
       pageTitle: 'childfoodApp.unit.home.title',
     },
-    canActivate: [UserRouteAccessService],
+    canActivate: [AuthGuard],
   },
 ];

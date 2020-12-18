@@ -31,11 +31,7 @@ import { RouterModule } from '@angular/router';
       {
         path: 'order-pack',
         loadChildren: () => import('./order-pack/order-pack.module').then(m => m.OrderPackModule),
-      },
-      {
-        path: 'order-item',
-        loadChildren: () => import('./order-item/order-item.module').then(m => m.ChildfoodOrderItemModule),
-      },
+      }
     ]),
   ],
 })
