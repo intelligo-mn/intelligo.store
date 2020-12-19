@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="childfoodApp.product.home.title">Products</span>
+        <span>Products</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
             
-            <span  jhiTranslate="childfoodApp.product.home.createLabel">
+            <span >
             Create a new Product
             </span>
         </button>
@@ -15,18 +15,18 @@
     
 
     <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
-        <span jhiTranslate="childfoodApp.product.home.notFound">No products found</span>
+        <span>No products found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="products?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.product.name">Name</span> </th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.product.description">Description</span> </th>
-                    <th scope="col"  jhiSortBy="category.name"><span jhiTranslate="childfoodApp.product.category">Category</span> </th>
-                    <th scope="col"  jhiSortBy="unit.name"><span jhiTranslate="childfoodApp.product.unit">Unit</span> </th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> </th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> </th>
+                    <th scope="col"  jhiSortBy="category.name"><span>Category</span> </th>
+                    <th scope="col"  jhiSortBy="unit.name"><span>Unit</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -51,20 +51,20 @@
                                     [routerLink]="['/product', product.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/product', product.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(product)"
                                     class="btn btn-danger btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
                     </td>

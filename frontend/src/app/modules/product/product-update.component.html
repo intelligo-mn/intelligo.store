@@ -1,36 +1,36 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="product-heading" jhiTranslate="childfoodApp.product.home.createOrEditLabel">Create or edit a Product</h2>
+            <h2 id="product-heading">Create or edit a Product</h2>
 
             <div>
                 
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.product.name" for="field_name">Name</label>
+                    <label class="form-control-label">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
                     <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('name')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.product.description" for="field_description">Description</label>
+                    <label class="form-control-label">Description</label>
                     <input type="text" class="form-control" name="description" id="field_description"
                            formControlName="description"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.product.category" for="field_category">Category</label>
+                    <label class="form-control-label">Category</label>
                     <select class="form-control" id="field_category" name="category" formControlName="category">
                         <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.name }}</option>
@@ -38,13 +38,13 @@
                 </div>
                 <div *ngIf="editForm.get('category')!.invalid && (editForm.get('category')!.dirty || editForm.get('category')!.touched)">
                     <small class="form-text text-danger"
-                           *ngIf="editForm.get('category')?.errors?.required" jhiTranslate="entity.validation.required">
+                           *ngIf="editForm.get('category')?.errors?.required">
                         This field is required.
                     </small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.product.unit" for="field_unit">Unit</label>
+                    <label class="form-control-label">Unit</label>
                     <select class="form-control" id="field_unit" name="unit" formControlName="unit">
                         <option *ngIf="!editForm.get('unit')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="unitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : unitOption" *ngFor="let unitOption of units; trackBy: trackById">{{ unitOption.name }}</option>
@@ -52,7 +52,7 @@
                 </div>
                 <div *ngIf="editForm.get('unit')!.invalid && (editForm.get('unit')!.dirty || editForm.get('unit')!.touched)">
                     <small class="form-text text-danger"
-                           *ngIf="editForm.get('unit')?.errors?.required" jhiTranslate="entity.validation.required">
+                           *ngIf="editForm.get('unit')?.errors?.required">
                         This field is required.
                     </small>
                 </div>
@@ -60,11 +60,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span jhiTranslate="entity.action.save">Save</span>
+                    <span>Save</span>
                 </button>
             </div>
         </form>

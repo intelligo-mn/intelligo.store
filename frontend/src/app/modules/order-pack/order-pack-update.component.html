@@ -1,78 +1,78 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="order-pack-heading" jhiTranslate="childfoodApp.orderPack.home.createOrEditLabel">Create or edit a Order Pack</h2>
+            <h2 id="order-pack-heading">Create or edit a Order Pack</h2>
 
             <div>
                 
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.orderPack.name" for="field_name">Name</label>
+                    <label class="form-control-label">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
                     <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('name')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.orderPack.startDate" for="field_startDate">Start Date</label>
+                    <label class="form-control-label">Start Date</label>
                     <div class="d-flex">
                         <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                     <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('startDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('startDate')?.errors?.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.orderPack.endDate" for="field_endDate">End Date</label>
+                    <label class="form-control-label">End Date</label>
                     <div class="d-flex">
                         <input id="field_endDate" type="datetime-local" class="form-control" name="endDate" formControlName="endDate" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                     <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('endDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('endDate')?.errors?.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.orderPack.status" for="field_status">Status</label>
+                    <label class="form-control-label">Status</label>
                     <select class="form-control" name="status" formControlName="status" id="field_status">
                         <option value="ACTIVE">{{ 'childfoodApp.OrderPackStatus.ACTIVE' | translate }}</option>
                         <option value="INACTIVE">{{ 'childfoodApp.OrderPackStatus.INACTIVE' | translate }}</option>
                     </select>
                     <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('status')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.orderPack.products" for="field_products">Products</label>
+                    <label class="form-control-label">Products</label>
                     <select class="form-control" id="field_products" name="products" formControlName="products">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="productOption.id === editForm.get('products')!.value?.id ? editForm.get('products')!.value : productOption" *ngFor="let productOption of products; trackBy: trackById">{{ productOption.id }}</option>
@@ -82,11 +82,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span jhiTranslate="entity.action.save">Save</span>
+                    <span>Save</span>
                 </button>
             </div>
         </form>

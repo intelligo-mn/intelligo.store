@@ -1,25 +1,25 @@
 <div>
   <h2 id="page-heading">
-    <span jhiTranslate="childfoodApp.category.home.title">Categories</span>
+    <span>Categories</span>
 
     <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
-      <span jhiTranslate="childfoodApp.category.home.createLabel">
+      <span>
         Create a new Category
       </span>
     </button>
   </h2>
 
   <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
-    <span jhiTranslate="childfoodApp.category.home.notFound">No categories found</span>
+    <span>No categories found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="categories?.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col" jhiSortBy="name"><span jhiTranslate="childfoodApp.category.name">Name</span></th>
-          <th scope="col" jhiSortBy="description"><span jhiTranslate="childfoodApp.category.description">Description</span></th>
+          <th scope="col" jhiSortBy="id"><span>ID</span></th>
+          <th scope="col" jhiSortBy="name"><span>Name</span></th>
+          <th scope="col" jhiSortBy="description"><span>Description</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -33,15 +33,15 @@
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                <span class="d-none d-md-inline">View</span>
               </button>
 
               <button type="submit" [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                <span class="d-none d-md-inline">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>
           </td>
