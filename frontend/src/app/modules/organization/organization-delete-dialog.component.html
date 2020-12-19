@@ -1,6 +1,6 @@
 <form *ngIf="organization" name="deleteForm" (ngSubmit)="confirmDelete(organization?.id!)">
     <div class="modal-header">
-        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+        <h4 class="modal-title">Confirm delete operation</h4>
 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="cancel()">&times;</button>
@@ -9,16 +9,16 @@
     <div class="modal-body">
         
 
-        <p id="delete-organization-heading" jhiTranslate="childfoodApp.organization.delete.question" [translateValues]="{ id: organization.id }">Are you sure you want to delete this Organization?</p>
+        <p id="delete-organization-heading">Are you sure you want to delete this Organization?</p>
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
-            <span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span>Cancel</span>
         </button>
 
         <button id="confirm-delete-organization" type="submit" class="btn btn-danger">
-            <span jhiTranslate="entity.action.delete">Delete</span>
+            <span>Delete</span>
         </button>
     </div>
 </form>

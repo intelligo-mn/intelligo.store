@@ -1,35 +1,35 @@
 <div>
   <h2 id="page-heading">
-    <span jhiTranslate="childfoodApp.organization.home.title">Organizations</span>
+    <span>Organizations</span>
 
     <button
       id="jh-create-entity"
       class="btn btn-primary float-right jh-create-entity create-organization"
       [routerLink]="['/organization/new']"
     >
-      <span jhiTranslate="childfoodApp.organization.home.createLabel">
+      <span>
         Create a new Organization
       </span>
     </button>
   </h2>
 
   <div class="alert alert-warning" id="no-result" *ngIf="organizations?.length === 0">
-    <span jhiTranslate="childfoodApp.organization.home.notFound">No organizations found</span>
+    <span>No organizations found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="organizations?.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col" jhiSortBy="name"><span jhiTranslate="childfoodApp.organization.name">Name</span></th>
-          <th scope="col" jhiSortBy="status"><span jhiTranslate="childfoodApp.organization.status">Status</span></th>
-          <th scope="col" jhiSortBy="type"><span jhiTranslate="childfoodApp.organization.type">Type</span></th>
-          <th scope="col" jhiSortBy="contact.id"><span jhiTranslate="childfoodApp.organization.contact">Contact</span></th>
+          <th scope="col" jhiSortBy="id"><span>ID</span></th>
+          <th scope="col" jhiSortBy="name"><span>Name</span></th>
+          <th scope="col" jhiSortBy="status"><span>Status</span></th>
+          <th scope="col" jhiSortBy="type"><span>Type</span></th>
+          <th scope="col" jhiSortBy="contact.id"><span>Contact</span></th>
           <th scope="col" jhiSortBy="distributeType.name">
-            <span jhiTranslate="childfoodApp.organization.distributeType">Distribute Type</span>
+            <span>Distribute Type</span>
           </th>
-          <th scope="col" jhiSortBy="manager.name"><span jhiTranslate="childfoodApp.organization.manager">Manager</span></th>
+          <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -39,8 +39,8 @@
             <a [routerLink]="['/organization', organization.id, 'view']">{{ organization.id }}</a>
           </td>
           <td>{{ organization.name }}</td>
-          <td jhiTranslate="{{ 'childfoodApp.OrganizationStatus.' + organization.status }}">{{ organization.status }}</td>
-          <td jhiTranslate="{{ 'childfoodApp.OrganizationType.' + organization.type }}">{{ organization.type }}</td>
+          <td>{{ organization.status }}</td>
+          <td>{{ organization.type }}</td>
           <td>
             <div *ngIf="organization.contact">
               <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
@@ -60,17 +60,17 @@
             <div class="btn-group">
               <button type="submit" [routerLink]="['/organization', organization.id, 'view']" class="btn btn-info btn-sm">
                 
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                <span class="d-none d-md-inline">View</span>
               </button>
 
               <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
                 
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                <span class="d-none d-md-inline">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(organization)" class="btn btn-danger btn-sm">
                 
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>
           </td>

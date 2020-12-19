@@ -1,22 +1,22 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="unit">
-            <h2><span jhiTranslate="childfoodApp.unit.detail.title">Unit</span> {{ unit.id }}</h2>
+            <h2><span>Unit</span> {{ unit.id }}</h2>
 
             <hr>
 
             
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="childfoodApp.unit.name">Name</span></dt>
+                <dt><span>Name</span></dt>
                 <dd>
                     <span>{{ unit.name }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.unit.description">Description</span></dt>
+                <dt><span>Description</span></dt>
                 <dd>
                     <span>{{ unit.description }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.unit.value">Value</span></dt>
+                <dt><span>Value</span></dt>
                 <dd>
                     <span>{{ unit.value }}</span>
                 </dd>
@@ -25,13 +25,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <span jhiTranslate="entity.action.back">Back</span>
+                <span>Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/unit', unit.id, 'edit']"
                     class="btn btn-primary">
-                <span jhiTranslate="entity.action.edit">Edit</span>
+                <span>Edit</span>
             </button>
         </div>
     </div>

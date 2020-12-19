@@ -1,30 +1,30 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="contact">
-            <h2><span jhiTranslate="childfoodApp.contact.detail.title">Contact</span> {{ contact.id }}</h2>
+            <h2><span>Contact</span> {{ contact.id }}</h2>
 
             <hr>
 
             
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="childfoodApp.contact.phone">Phone</span></dt>
+                <dt><span>Phone</span></dt>
                 <dd>
                     <span>{{ contact.phone }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.contact.email">Email</span></dt>
+                <dt><span>Email</span></dt>
                 <dd>
                     <span>{{ contact.email }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.contact.address">Address</span></dt>
+                <dt><span>Address</span></dt>
                 <dd>
                     <span>{{ contact.address }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.contact.lat">Lat</span></dt>
+                <dt><span>Lat</span></dt>
                 <dd>
                     <span>{{ contact.lat }}</span>
                 </dd>
-                <dt><span jhiTranslate="childfoodApp.contact.lon">Lon</span></dt>
+                <dt><span>Lon</span></dt>
                 <dd>
                     <span>{{ contact.lon }}</span>
                 </dd>
@@ -33,13 +33,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <span jhiTranslate="entity.action.back">Back</span>
+                <span>Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/contact', contact.id, 'edit']"
                     class="btn btn-primary">
-                <span jhiTranslate="entity.action.edit">Edit</span>
+                <span>Edit</span>
             </button>
         </div>
     </div>

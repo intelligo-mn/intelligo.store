@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="childfoodApp.unit.home.title">Units</span>
+        <span>Units</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-unit" [routerLink]="['/unit/new']">
             
-            <span  jhiTranslate="childfoodApp.unit.home.createLabel">
+            <span >
             Create a new Unit
             </span>
         </button>
@@ -15,17 +15,17 @@
     
 
     <div class="alert alert-warning" id="no-result" *ngIf="units?.length === 0">
-        <span jhiTranslate="childfoodApp.unit.home.notFound">No units found</span>
+        <span>No units found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="units?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="childfoodApp.unit.name">Name</span> </th>
-                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="childfoodApp.unit.description">Description</span> </th>
-                    <th scope="col"  jhiSortBy="value"><span jhiTranslate="childfoodApp.unit.value">Value</span> </th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> </th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> </th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> </th>
+                    <th scope="col"  jhiSortBy="value"><span>Value</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -41,20 +41,20 @@
                                     [routerLink]="['/unit', unit.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/unit', unit.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(unit)"
                                     class="btn btn-danger btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
                     </td>

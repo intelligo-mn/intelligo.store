@@ -1,58 +1,58 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="organization-heading" jhiTranslate="childfoodApp.organization.home.createOrEditLabel">Create or edit a Organization</h2>
+            <h2 id="organization-heading">Create or edit a Organization</h2>
 
             <div>
                 
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.name" for="field_name">Name</label>
+                    <label class="form-control-label">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
                     <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('name')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.status" for="field_status">Status</label>
+                    <label class="form-control-label">Status</label>
                     <select class="form-control" name="status" formControlName="status" id="field_status">
                         <option value="ACTIVE">{{ 'childfoodApp.OrganizationStatus.ACTIVE' | translate }}</option>
                         <option value="DEACTIVE">{{ 'childfoodApp.OrganizationStatus.DEACTIVE' | translate }}</option>
                     </select>
                     <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('status')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.type" for="field_type">Type</label>
+                    <label class="form-control-label">Type</label>
                     <select class="form-control" name="type" formControlName="type" id="field_type">
                         <option value="CUSTOMER">{{ 'childfoodApp.OrganizationType.CUSTOMER' | translate }}</option>
                         <option value="SUPPLIER">{{ 'childfoodApp.OrganizationType.SUPPLIER' | translate }}</option>
                     </select>
                     <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('type')?.errors?.required">
                         This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.contact" for="field_contact">Contact</label>
+                    <label class="form-control-label">Contact</label>
                     <select class="form-control" id="field_contact" name="contact" formControlName="contact">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption" *ngFor="let contactOption of contacts; trackBy: trackById">{{ contactOption.id }}</option>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.distributeType" for="field_distributeType">Distribute Type</label>
+                    <label class="form-control-label">Distribute Type</label>
                     <select class="form-control" id="field_distributeType" name="distributeType" formControlName="distributeType">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="categoryOption.id === editForm.get('distributeType')!.value?.id ? editForm.get('distributeType')!.value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.name }}</option>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="childfoodApp.organization.manager" for="field_manager">Manager</label>
+                    <label class="form-control-label">Manager</label>
                     <select class="form-control" id="field_manager" name="manager" formControlName="manager">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="customerOption.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : customerOption" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.name }}</option>
@@ -78,11 +78,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span jhiTranslate="entity.action.cancel">Cancel</span>
+                    <span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span jhiTranslate="entity.action.save">Save</span>
+                    <span>Save</span>
                 </button>
             </div>
         </form>

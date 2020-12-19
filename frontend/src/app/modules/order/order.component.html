@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="childfoodApp.order.home.title">Orders</span>
+        <span>Orders</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order" [routerLink]="['/order/new']">
             
-            <span  jhiTranslate="childfoodApp.order.home.createLabel">
+            <span >
             Create a new Order
             </span>
         </button>
@@ -15,18 +15,18 @@
     
 
     <div class="alert alert-warning" id="no-result" *ngIf="orders?.length === 0">
-        <span jhiTranslate="childfoodApp.order.home.notFound">No orders found</span>
+        <span>No orders found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="orders?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th>
-                    <th scope="col"  jhiSortBy="distributionDate"><span jhiTranslate="childfoodApp.order.distributionDate">Distribution Date</span> </th>
-                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="childfoodApp.order.status">Status</span> </th>
-                    <th scope="col"  jhiSortBy="products.id"><span jhiTranslate="childfoodApp.order.products">Products</span> </th>
-                    <th scope="col"  jhiSortBy="manager.name"><span jhiTranslate="childfoodApp.order.manager">Manager</span> </th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> </th>
+                    <th scope="col"  jhiSortBy="distributionDate"><span>Distribution Date</span> </th>
+                    <th scope="col"  jhiSortBy="status"><span>Status</span> </th>
+                    <th scope="col"  jhiSortBy="products.id"><span>Products</span> </th>
+                    <th scope="col"  jhiSortBy="manager.name"><span>Manager</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -34,7 +34,7 @@
                 <tr *ngFor="let order of orders ;trackBy: trackId">
                     <td><a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a></td>
                     <td>{{ order.distributionDate | date:'medium' }}</td>
-                    <td jhiTranslate="{{ 'childfoodApp.OrderStatus.' + order.status }}">{{ order.status }}</td>
+                    <td>{{ order.status }}</td>
                     <td>
                         <div *ngIf="order.products">
                             <a [routerLink]="['/order-item', order.products?.id, 'view']" >{{ order.products?.id }}</a>
@@ -51,20 +51,20 @@
                                     [routerLink]="['/order', order.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/order', order.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(order)"
                                     class="btn btn-danger btn-sm">
                                 
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
                     </td>
