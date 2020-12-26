@@ -34,7 +34,6 @@
     "clipboard": "2.0.4",
     "core-js": "^3.2.1",
     "moment": "^2.24.0",
-    "ng-jhipster": "^0.16.0",
     "ngx-chips": "^2.1.0",
     "ngx-clipboard": "^12.2.1",
     "ngx-cookie": "^5.0.0",

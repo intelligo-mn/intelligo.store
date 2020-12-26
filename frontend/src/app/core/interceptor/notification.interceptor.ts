@@ -1,12 +1,12 @@
-import { JhiAlertService } from 'ng-jhipster';
 import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/components/alert/alert.service';
 
 @Injectable()
 export class NotificationInterceptor implements HttpInterceptor {
-  constructor(private alertService: JhiAlertService) {}
+  constructor(private alertService: AlertService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -24,7 +24,7 @@ export class NotificationInterceptor implements HttpInterceptor {
           });
 
           if (alert) {
-            this.alertService.success(alert, { param: alertParams });
+            this.alertService.success(alert);
           }
         }
       })
