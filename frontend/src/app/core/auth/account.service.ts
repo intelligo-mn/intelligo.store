@@ -1,14 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
-import { Observable, ReplaySubject, of } from 'rxjs';
-import { shareReplay, tap, catchError } from 'rxjs/operators';
-import { StateStorageService } from 'src/app/core/auth/storage.service';
-
-import { environment } from 'src/environments/environment';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { Account } from 'src/app/core/user/account.model';
+import { environment } from 'src/environments/environment';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -17,10 +15,9 @@ export class AccountService {
   private accountCache$?: Observable<Account | null>;
 
   constructor(
-    private languageService: JhiLanguageService,
     private sessionStorage: SessionStorageService,
     private http: HttpClient,
-    private stateStorageService: StateStorageService,
+    private storageService: StorageService,
     private router: Router
   ) {}
 
@@ -51,14 +48,6 @@ export class AccountService {
         }),
         tap((account: Account | null) => {
           this.authenticate(account);
-
-          // After retrieve the account info, the language will be changed to
-          // the user's preferred language configured in the account setting
-          if (account && account.langKey) {
-            const langKey = this.sessionStorage.retrieve('locale') || account.langKey;
-            this.languageService.changeLanguage(langKey);
-          }
-
           if (account) {
             this.navigateToStoredUrl();
           }
@@ -88,9 +77,9 @@ export class AccountService {
   private navigateToStoredUrl(): void {
     // previousState can be set in the authExpiredInterceptor and in the AuthGuard
     // if login is successful, go to stored previousState and clear previousState
-    const previousUrl = this.stateStorageService.getUrl();
+    const previousUrl = this.storageService.getUrl();
     if (previousUrl) {
-      this.stateStorageService.clearUrl();
+      this.storageService.clearUrl();
       this.router.navigateByUrl(previousUrl);
     }
   }
