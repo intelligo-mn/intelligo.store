@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
@@ -12,6 +11,7 @@ import { OrderPackComponent } from './order-pack.component';
 import { OrderPackDetailComponent } from './order-pack-detail.component';
 import { OrderPackUpdateComponent } from './order-pack-update.component';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderPackResolve implements Resolve<IOrderPack> {
@@ -40,7 +40,7 @@ export const orderPackRoute: Routes = [
     path: '',
     component: OrderPackComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: ResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
