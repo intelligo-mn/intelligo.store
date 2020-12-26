@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
@@ -12,6 +11,7 @@ import { UnitService } from './unit.service';
 import { UnitComponent } from './unit.component';
 import { UnitDetailComponent } from './unit-detail.component';
 import { UnitUpdateComponent } from './unit-update.component';
+import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
 
 @Injectable({ providedIn: 'root' })
 export class UnitResolve implements Resolve<IUnit> {
@@ -40,7 +40,7 @@ export const unitRoute: Routes = [
     path: '',
     component: UnitComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: ResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],

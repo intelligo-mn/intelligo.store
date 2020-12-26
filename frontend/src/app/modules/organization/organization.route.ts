@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
-import { Observable, of, EMPTY } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
+import { EMPTY, Observable, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-
-import { Authority } from 'src/app/shared/constants/authority.constants';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IOrganization, Organization } from 'src/app/shared/model/organization.model';
-import { OrganizationService } from './organization.service';
-import { OrganizationComponent } from './organization.component';
+import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
 import { OrganizationDetailComponent } from './organization-detail.component';
 import { OrganizationUpdateComponent } from './organization-update.component';
+import { OrganizationComponent } from './organization.component';
+import { OrganizationService } from './organization.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrganizationResolve implements Resolve<IOrganization> {
@@ -40,7 +39,7 @@ export const organizationRoute: Routes = [
     path: '',
     component: OrganizationComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: ResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],

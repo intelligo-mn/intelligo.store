@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
@@ -12,6 +11,7 @@ import { ContactService } from './contact.service';
 import { ContactComponent } from './contact.component';
 import { ContactDetailComponent } from './contact-detail.component';
 import { ContactUpdateComponent } from './contact-update.component';
+import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
 
 @Injectable({ providedIn: 'root' })
 export class ContactResolve implements Resolve<IContact> {
@@ -40,7 +40,7 @@ export const contactRoute: Routes = [
     path: '',
     component: ContactComponent,
     resolve: {
-      pagingParams: JhiResolvePagingParams,
+      pagingParams: ResolvePagingParams,
     },
     data: {
       authorities: [Authority.USER],
