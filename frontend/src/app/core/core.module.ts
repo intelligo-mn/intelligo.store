@@ -45,7 +45,7 @@ import { NotificationInterceptor } from './interceptor/notification.interceptor'
     },
   ],
 })
-export class ChildfoodCoreModule {
+export class CoreModule {
   constructor(dpConfig: NgbDatepickerConfig) {
     registerLocaleData(locale);
     dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };

@@ -8,11 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AuthGuard } from './core/auth/auth.guard';
-import { ChildfoodCoreModule } from './core/core.module';
+import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { Authority } from './shared/constants/authority.constants';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -21,28 +22,24 @@ import { SharedModule } from './shared/shared.module';
       [
         {
           path: '',
-          redirectTo: 'dashboard',
+          redirectTo: 'admin/dashboard',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
           pathMatch: 'full',
         },
         {
           path: '',
           component: AuthLayoutComponent,
-          children: [
-            {
-              path: '',
-              loadChildren: () => import('./layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
-            },
-          ],
+          loadChildren: () => import('./layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
         },
         {
           path: '',
           component: AdminLayoutComponent,
-          children: [
-            {
-              path: '',
-              loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
-            },
-          ],
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
           canActivate: [AuthGuard],
         },
         {
@@ -51,7 +48,7 @@ import { SharedModule } from './shared/shared.module';
           canActivate: [AuthGuard],
         },
       ],
-      { useHash: true }
+      { useHash: true, enableTracing: true }
     ),
     BrowserAnimationsModule,
     BrowserModule,
@@ -62,7 +59,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     NgbModule,
     RouterModule,
-    ChildfoodCoreModule,
+    CoreModule,
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
