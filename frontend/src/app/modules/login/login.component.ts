@@ -20,12 +20,16 @@ export class LoginComponent implements AfterViewInit {
     rememberMe: [false],
   });
 
-  constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) {}
+  constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) {
+    
+    debugger;
+  }
 
   ngAfterViewInit(): void {
     if (this.username) {
       this.username.nativeElement.focus();
     }
+    debugger;
   }
 
   login(): void {

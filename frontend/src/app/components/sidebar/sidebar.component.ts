@@ -17,7 +17,7 @@ export const PRODUCT_ROUTES: RouteInfo[] = [
 ];
 
 export const ORDER_ROUTES: RouteInfo[] = [
-  { path: '/order', title: 'Захиалга', icon: 'ni-tv-2 text-primary', class: '' },
+  { path: '/order', title: 'Захиалга', icon: 'delivery-fast text-primary', class: '' },
   { path: '/order/create', title: 'Захиалга хийх', icon: 'ni-credit-card text-blue', class: '' },
   { path: '/package', title: 'Захиалгын багц', icon: 'ni-credit-card text-blue', class: '' },
   { path: '/package/select', title: 'Захиалгын багц үүсгэх', icon: 'ni-credit-card text-blue', class: '' },
