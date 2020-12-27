@@ -1,85 +1,64 @@
 <div>
-    <h2 id="page-heading">
-        <span>Products</span>
+  <h2 id="page-heading">
+    <span>Products</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
-            
-            <span >
-            Create a new Product
-            </span>
-        </button>
-    </h2>
+    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
+      <span>
+        Create a new Product
+      </span>
+    </button>
+  </h2>
 
-    
+  <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
+    <span>No products found</span>
+  </div>
 
-    
+  <div class="table-responsive" id="entities" *ngIf="products?.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col" jhiSortBy="id"><span>ID</span></th>
+          <th scope="col" jhiSortBy="name"><span>Name</span></th>
+          <th scope="col" jhiSortBy="description"><span>Description</span></th>
+          <th scope="col" jhiSortBy="category.name"><span>Category</span></th>
+          <th scope="col" jhiSortBy="unit.name"><span>Unit</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; trackBy: trackId">
+          <td>
+            <a [routerLink]="['/product', product.id, 'view']">{{ product.id }}</a>
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>
+            <div *ngIf="product.category">
+              <a [routerLink]="['/category', product.category?.id, 'view']">{{ product.category?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.unit">
+              <a [routerLink]="['/unit', product.unit?.id, 'view']">{{ product.unit?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/product', product.id, 'view']" class="btn btn-info btn-sm">
+                <span class="d-none d-md-inline">View</span>
+              </button>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
-        <span>No products found</span>
-    </div>
+              <button type="submit" [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary btn-sm">
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
 
-    <div class="table-responsive" id="entities" *ngIf="products?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> </th>
-                    <th scope="col"  jhiSortBy="name"><span>Name</span> </th>
-                    <th scope="col"  jhiSortBy="description"><span>Description</span> </th>
-                    <th scope="col"  jhiSortBy="category.name"><span>Category</span> </th>
-                    <th scope="col"  jhiSortBy="unit.name"><span>Unit</span> </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of products ;trackBy: trackId">
-                    <td><a [routerLink]="['/product', product.id, 'view']">{{ product.id }}</a></td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>
-                        <div *ngIf="product.category">
-                            <a [routerLink]="['/category', product.category?.id, 'view']" >{{ product.category?.name }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="product.unit">
-                            <a [routerLink]="['/unit', product.unit?.id, 'view']" >{{ product.unit?.name }}</a>
-                        </div>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/product', product.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                
-                                <span class="d-none d-md-inline">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/product', product.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                
-                                <span class="d-none d-md-inline">Edit</span>
-                            </button>
-
-                            <button type="submit" (click)="delete(product)"
-                                    class="btn btn-danger btn-sm">
-                                
-                                <span class="d-none d-md-inline">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div *ngIf="products?.length > 0">
-        <div class="row justify-content-center">
-            <item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></item-count>
-        </div>
-
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-        </div>
-    </div>
+              <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm">
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
