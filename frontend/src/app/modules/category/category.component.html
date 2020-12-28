@@ -1,52 +1,60 @@
-<div>
-  <h2 id="page-heading">
-    <span>Categories</span>
-
-    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
-      <span>
-        Create a new Category
-      </span>
-    </button>
-  </h2>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
-    <span>No categories found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="categories?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col" jhiSortBy="id"><span>ID</span></th>
-          <th scope="col" jhiSortBy="name"><span>Name</span></th>
-          <th scope="col" jhiSortBy="description"><span>Description</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let category of categories; trackBy: trackId">
-          <td>
-            <a [routerLink]="['/category', category.id, 'view']">{{ category.id }}</a>
-          </td>
-          <td>{{ category.name }}</td>
-          <td>{{ category.description }}</td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline">Delete</span>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Бүтээгдэхүүний төрөл</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-primary" [routerLink]="['/category/new']">
+                <span>
+                  Нэмэх
+                </span>
               </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
+            <span>No categories found</span>
+          </div>
+
+          <div class="table-responsive" *ngIf="categories?.length > 0">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="description"><span>Тайлбар</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories; trackBy: trackId">
+                  <td>{{ category.name }}</td>
+                  <td>{{ category.description }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">View</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Edit</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
