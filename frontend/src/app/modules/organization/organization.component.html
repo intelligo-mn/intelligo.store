@@ -1,78 +1,86 @@
-<div>
-  <h2 id="page-heading">
-    <span>Organizations</span>
-
-    <button
-      id="jh-create-entity"
-      class="btn btn-primary float-right jh-create-entity create-organization"
-      [routerLink]="['/organization/new']"
-    >
-      <span>
-        Create a new Organization
-      </span>
-    </button>
-  </h2>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="organizations?.length === 0">
-    <span>No organizations found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="organizations?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col" jhiSortBy="id"><span>ID</span></th>
-          <th scope="col" jhiSortBy="name"><span>Name</span></th>
-          <th scope="col" jhiSortBy="status"><span>Status</span></th>
-          <th scope="col" jhiSortBy="type"><span>Type</span></th>
-          <th scope="col" jhiSortBy="contact.id"><span>Contact</span></th>
-          <th scope="col" jhiSortBy="distributeType.name">
-            <span>Distribute Type</span>
-          </th>
-          <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let organization of organizations; trackBy: trackId">
-          <td>
-            <a [routerLink]="['/organization', organization.id, 'view']">{{ organization.id }}</a>
-          </td>
-          <td>{{ organization.name }}</td>
-          <td>{{ organization.status }}</td>
-          <td>{{ organization.type }}</td>
-          <td>
-            <div *ngIf="organization.contact">
-              <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Байгууллагууд</h3>
             </div>
-          </td>
-          <td>
-            <div *ngIf="organization.distributeType">
-              <a [routerLink]="['/category', organization.distributeType?.id, 'view']">{{ organization.distributeType?.name }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="organization.manager">
-              <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
-            </div>
-          </td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/organization', organization.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(organization)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline">Delete</span>
+            <div class="col text-right">
+              <button class="btn btn-primary" [routerLink]="['/organization/new']">
+                <span>
+                  Нэмэх
+                </span>
               </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="organizations?.length === 0">
+            <span>Байгууллага хоосон байна</span>
+          </div>
+
+          <div class="table-responsive" id="entities" *ngIf="organizations?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+              <thead>
+                <tr>
+                  <th scope="col" jhiSortBy="id"><span>ID</span></th>
+                  <th scope="col" jhiSortBy="name"><span>Name</span></th>
+                  <th scope="col" jhiSortBy="status"><span>Status</span></th>
+                  <th scope="col" jhiSortBy="type"><span>Type</span></th>
+                  <th scope="col" jhiSortBy="contact.id"><span>Contact</span></th>
+                  <th scope="col" jhiSortBy="distributeType.name">
+                    <span>Distribute Type</span>
+                  </th>
+                  <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let organization of organizations; trackBy: trackId">
+                  <td>
+                    <a [routerLink]="['/organization', organization.id, 'view']">{{ organization.id }}</a>
+                  </td>
+                  <td>{{ organization.name }}</td>
+                  <td>{{ organization.status }}</td>
+                  <td>{{ organization.type }}</td>
+                  <td>
+                    <div *ngIf="organization.contact">
+                      <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="organization.distributeType">
+                      <a [routerLink]="['/category', organization.distributeType?.id, 'view']">{{ organization.distributeType?.name }}</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="organization.manager">
+                      <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/organization', organization.id, 'view']" class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">View</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Edit</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(organization)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
