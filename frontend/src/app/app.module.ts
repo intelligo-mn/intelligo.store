@@ -22,7 +22,7 @@ import { SharedModule } from './shared/shared.module';
       [
         {
           path: '',
-          redirectTo: 'admin/dashboard',
+          redirectTo: 'dashboard',
           data: {
             authorities: [Authority.ADMIN],
           },
