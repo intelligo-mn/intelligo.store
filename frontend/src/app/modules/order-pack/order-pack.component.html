@@ -1,62 +1,64 @@
-<div>
-  <h2 id="page-heading">
-    <span>Order Packs</span>
-
-    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-pack" [routerLink]="['/order-pack/new']">
-      <span>
-        Create a new Order Pack
-      </span>
-    </button>
-  </h2>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="orderPacks?.length === 0">
-    <span>No orderPacks found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="orderPacks?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col" jhiSortBy="id"><span>ID</span></th>
-          <th scope="col" jhiSortBy="name"><span>Name</span></th>
-          <th scope="col" jhiSortBy="startDate"><span>Start Date</span></th>
-          <th scope="col" jhiSortBy="endDate"><span>End Date</span></th>
-          <th scope="col" jhiSortBy="status"><span>Status</span></th>
-          <th scope="col" jhiSortBy="products.id"><span>Products</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let orderPack of orderPacks; trackBy: trackId">
-          <td>
-            <a [routerLink]="['/order-pack', orderPack.id, 'view']">{{ orderPack.id }}</a>
-          </td>
-          <td>{{ orderPack.name }}</td>
-          <td>{{ orderPack.startDate | date: 'medium' }}</td>
-          <td>{{ orderPack.endDate | date: 'medium' }}</td>
-          <td>{{ orderPack.status }}</td>
-          <td>
-            <div *ngIf="orderPack.products">
-              <a [routerLink]="['/product', orderPack.products?.id, 'view']">{{ orderPack.products?.id }}</a>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Захиалгын багц</h3>
             </div>
-          </td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(orderPack)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline">Delete</span>
+            <div class="col text-right">
+              <button class="btn btn-primary" [routerLink]="['/order-pack/new']">
+                <span>
+                  Нэмэх
+                </span>
               </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="orderPacks?.length === 0">
+            <span>Захиалгын багц хоосон байна</span>
+          </div>
+
+          <div class="table-responsive" id="entities" *ngIf="orderPacks?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+              <thead>
+                <tr>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="startDate"><span>Эхлэх огноо</span></th>
+                  <th scope="col" jhiSortBy="endDate"><span>Дуусах огноо</span></th>
+                  <th scope="col" jhiSortBy="status"><span>Төлөв</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let orderPack of orderPacks; trackBy: trackId">
+                  <td>{{ orderPack.name }}</td>
+                  <td>{{ orderPack.startDate | date: 'medium' }}</td>
+                  <td>{{ orderPack.endDate | date: 'medium' }}</td>
+                  <td>{{ orderPack.status }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'view']" class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">View</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'edit']" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Edit</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(orderPack)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

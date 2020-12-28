@@ -1,54 +1,62 @@
-<div>
-  <h2 id="page-heading">
-    <span>Units</span>
-
-    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-unit" [routerLink]="['/unit/new']">
-      <span>
-        Create a new Unit
-      </span>
-    </button>
-  </h2>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="units?.length === 0">
-    <span>No units found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="units?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col" jhiSortBy="id"><span>ID</span></th>
-          <th scope="col" jhiSortBy="name"><span>Name</span></th>
-          <th scope="col" jhiSortBy="description"><span>Description</span></th>
-          <th scope="col" jhiSortBy="value"><span>Value</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let unit of units; trackBy: trackId">
-          <td>
-            <a [routerLink]="['/unit', unit.id, 'view']">{{ unit.id }}</a>
-          </td>
-          <td>{{ unit.name }}</td>
-          <td>{{ unit.description }}</td>
-          <td>{{ unit.value }}</td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/unit', unit.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/unit', unit.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(unit)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline">Delete</span>
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Хэмжих нэгж</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-primary" [routerLink]="['/unit/new']">
+                <span>
+                  Нэмэх
+                </span>
               </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="units?.length === 0">
+            <span>Хэмжих нэгж хоосон байна</span>
+          </div>
+
+          <div class="table-responsive" *ngIf="units?.length > 0">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="description"><span>Тайлбар</span></th>
+                  <th scope="col" jhiSortBy="value"><span>Утга</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let unit of units; trackBy: trackId">
+                  <td>{{ unit.name }}</td>
+                  <td>{{ unit.description }}</td>
+                  <td>{{ unit.value }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/unit', unit.id, 'view']" class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">View</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/unit', unit.id, 'edit']" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Edit</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(unit)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

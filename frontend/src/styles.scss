@@ -2,12 +2,13 @@
 @import '~@ng-select/ng-select/themes/default.theme.css';
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
-
-.mjo-select {
-  min-width: 150px !important;
-}
 
 .ngx-datatable .datatable-body {
   min-height: 400px;
+}
+
+.list .card {
+  min-height: 500px;
 }

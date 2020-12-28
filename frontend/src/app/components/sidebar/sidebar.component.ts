@@ -11,20 +11,18 @@ declare interface RouteInfo {
 export const MAIN_ROUTES: RouteInfo[] = [{ path: '/dashboard', title: 'Удирдлагын хэсэг', icon: 'ni-tv-2 text-primary', class: '' }];
 
 export const PRODUCT_ROUTES: RouteInfo[] = [
-  { path: '/product', title: 'Бүтээгдэхүүн', icon: 'ni-tv-2 text-primary', class: '' },
+  { path: '/product', title: 'Бүтээгдэхүүн', icon: 'ni-bag-17 text-primary', class: '' },
   { path: '/category', title: 'Бүтээгдэхүүний төрөл', icon: 'ni-button-pause text-yellow', class: '' },
   { path: '/unit', title: 'Хэмжих нэгж', icon: 'ni-bullet-list-67 text-red', class: '' },
 ];
 
 export const ORDER_ROUTES: RouteInfo[] = [
-  { path: '/order', title: 'Захиалга', icon: 'delivery-fast text-primary', class: '' },
-  { path: '/order/create', title: 'Захиалга хийх', icon: 'ni-credit-card text-blue', class: '' },
-  { path: '/package', title: 'Захиалгын багц', icon: 'ni-credit-card text-blue', class: '' },
-  { path: '/package/select', title: 'Захиалгын багц үүсгэх', icon: 'ni-credit-card text-blue', class: '' },
+  { path: '/order', title: 'Захиалга', icon: 'ni-delivery-fast text-primary', class: '' },
+  { path: '/order-pack', title: 'Захиалгын багц', icon: 'ni-basket text-blue', class: '' },
 ];
 export const OTHER_ROUTES: RouteInfo[] = [
-  { path: '/organization', title: 'Харилцагч', icon: 'ni-bullet-list-67 text-red', class: '' },
-  { path: '/report', title: 'Тайлан', icon: 'ni-bullet-list-67 text-red', class: '' },
+  { path: '/organization', title: 'Харилцагч', icon: 'ni-building text-red', class: '' },
+  { path: '/report', title: 'Тайлан', icon: 'ni-chart-pie-35 text-red', class: '' },
 ];
 @Component({
   selector: 'app-sidebar',
