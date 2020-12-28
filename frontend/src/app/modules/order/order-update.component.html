@@ -31,9 +31,9 @@
                 <div class="form-group">
                     <label class="form-control-label">Status</label>
                     <select class="form-control" name="status" formControlName="status" id="field_status">
-                        <option value="COMPLETED">{{ 'childfoodApp.OrderStatus.COMPLETED' | translate }}</option>
-                        <option value="PENDING">{{ 'childfoodApp.OrderStatus.PENDING' | translate }}</option>
-                        <option value="CANCELLED">{{ 'childfoodApp.OrderStatus.CANCELLED' | translate }}</option>
+                        <option value="COMPLETED">COMPLETED</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="CANCELLED">CANCELLED</option>
                     </select>
                     <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
                         <small class="form-text text-danger"

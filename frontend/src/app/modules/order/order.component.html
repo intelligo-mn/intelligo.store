@@ -1,64 +1,76 @@
-<div>
-  <h2 id="page-heading">
-    <span>Orders</span>
-
-    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order" [routerLink]="['/order/new']">
-      <span>
-        Create a new Order
-      </span>
-    </button>
-  </h2>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="orders?.length === 0">
-    <span>No orders found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="orders?.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col" jhiSortBy="id"><span>ID</span></th>
-          <th scope="col" jhiSortBy="distributionDate"><span>Distribution Date</span></th>
-          <th scope="col" jhiSortBy="status"><span>Status</span></th>
-          <th scope="col" jhiSortBy="products.id"><span>Products</span></th>
-          <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders; trackBy: trackId">
-          <td>
-            <a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a>
-          </td>
-          <td>{{ order.distributionDate | date: 'medium' }}</td>
-          <td>{{ order.status }}</td>
-          <td>
-            <div *ngIf="order.products">
-              <a [routerLink]="['/order-item', order.products?.id, 'view']">{{ order.products?.id }}</a>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Захиалга</h3>
             </div>
-          </td>
-          <td>
-            <div *ngIf="order.manager">
-              <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.name }}</a>
-            </div>
-          </td>
-          <td class="text-right">
-            <div class="btn-group">
-              <button type="submit" [routerLink]="['/order', order.id, 'view']" class="btn btn-info btn-sm">
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button type="submit" [routerLink]="['/order', order.id, 'edit']" class="btn btn-primary btn-sm">
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(order)" class="btn btn-danger btn-sm">
-                <span class="d-none d-md-inline">Delete</span>
+            <div class="col text-right">
+              <button class="btn btn-primary" [routerLink]="['/order/new']">
+                <span>
+                  Нэмэх
+                </span>
               </button>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="orders?.length === 0">
+            <span>Захиалга хоосон байна</span>
+          </div>
+
+          <div class="table-responsive" id="entities" *ngIf="orders?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+              <thead>
+                <tr>
+                  <th scope="col" jhiSortBy="id"><span>ID</span></th>
+                  <th scope="col" jhiSortBy="distributionDate"><span>Distribution Date</span></th>
+                  <th scope="col" jhiSortBy="status"><span>Status</span></th>
+                  <th scope="col" jhiSortBy="products.id"><span>Products</span></th>
+                  <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders; trackBy: trackId">
+                  <td>
+                    <a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a>
+                  </td>
+                  <td>{{ order.distributionDate | date: 'medium' }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>
+                    <div *ngIf="order.products">
+                      <a [routerLink]="['/order-item', order.products?.id, 'view']">{{ order.products?.id }}</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="order.manager">
+                      <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.name }}</a>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/order', order.id, 'view']" class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">View</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/order', order.id, 'edit']" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Edit</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(order)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
