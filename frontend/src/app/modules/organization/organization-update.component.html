@@ -26,8 +26,8 @@
                 <div class="form-group">
                     <label class="form-control-label">Status</label>
                     <select class="form-control" name="status" formControlName="status" id="field_status">
-                        <option value="ACTIVE">{{ 'childfoodApp.OrganizationStatus.ACTIVE' | translate }}</option>
-                        <option value="DEACTIVE">{{ 'childfoodApp.OrganizationStatus.DEACTIVE' | translate }}</option>
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="DEACTIVE">DEACTIVE</option>
                     </select>
                     <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
                         <small class="form-text text-danger"
@@ -40,8 +40,8 @@
                 <div class="form-group">
                     <label class="form-control-label">Type</label>
                     <select class="form-control" name="type" formControlName="type" id="field_type">
-                        <option value="CUSTOMER">{{ 'childfoodApp.OrganizationType.CUSTOMER' | translate }}</option>
-                        <option value="SUPPLIER">{{ 'childfoodApp.OrganizationType.SUPPLIER' | translate }}</option>
+                        <option value="CUSTOMER">CUSTOMER</option>
+                        <option value="SUPPLIER">SUPPLIER</option>
                     </select>
                     <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
                         <small class="form-text text-danger"
