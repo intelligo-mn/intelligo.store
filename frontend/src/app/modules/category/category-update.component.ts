@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import { ICategory, Category } from 'src/app/shared/model/category.model';
 import { CategoryService } from './category.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'category-update',
@@ -21,7 +22,12 @@ export class CategoryUpdateComponent implements OnInit {
     description: [],
   });
 
-  constructor(protected categoryService: CategoryService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected categoryService: CategoryService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ category }) => {
