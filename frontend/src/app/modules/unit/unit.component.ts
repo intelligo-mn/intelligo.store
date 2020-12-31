@@ -10,6 +10,7 @@ import { IUnit } from 'src/app/shared/model/unit.model';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { UnitService } from './unit.service';
 import { UnitDeleteDialogComponent } from './unit-delete-dialog.component';
+import { UnitUpdateComponent } from './unit-update.component';
 
 @Component({
   selector: 'unit',
@@ -68,6 +69,10 @@ export class UnitComponent implements OnInit, OnDestroy {
   trackId(index: number, item: IUnit): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
+  }
+
+  add() {
+    this.modalService.open(UnitUpdateComponent, { size: 'lg' });
   }
 
   registerChangeInUnits(): void {

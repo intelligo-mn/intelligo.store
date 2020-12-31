@@ -1,50 +1,44 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="unit-heading">Create or edit a Unit</h2>
-
-            <div>
-                
-
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
-                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Value</label>
-                    <input type="text" class="form-control" name="value" id="field_value"
-                           formControlName="value"/>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span>Cancel</span>
-                </button>
-
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span>Save</span>
-                </button>
-            </div>
-        </form>
-    </div>
+<div class="modal-header">
+  <h4 class="modal-title">Хэмжих нэгж</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
+<form class="modal-body" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <div>
+    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+      <label for="id">ID</label>
+      <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Нэр</label>
+      <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
+      <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+        <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+          This field is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Тайлбар</label>
+      <input type="text" class="form-control" name="description" id="field_description" formControlName="description" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Утга</label>
+      <input type="text" class="form-control" name="value" id="field_value" formControlName="value" />
+    </div>
+  </div>
+
+  <div>
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">
+      <span>Цуцлах</span>
+    </button>
+
+    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+      <span>Хадгалах</span>
+    </button>
+  </div>
+</form>
