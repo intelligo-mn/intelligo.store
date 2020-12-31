@@ -10,6 +10,7 @@ import { IOrganization } from 'src/app/shared/model/organization.model';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { OrganizationService } from './organization.service';
 import { OrganizationDeleteDialogComponent } from './organization-delete-dialog.component';
+import { OrganizationUpdateComponent } from './organization-update.component';
 
 @Component({
   selector: 'organization',
@@ -77,6 +78,11 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   delete(organization: IOrganization): void {
     const modalRef = this.modalService.open(OrganizationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.organization = organization;
+  }
+
+  
+  add() {
+    this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
   }
 
   sort(): string[] {

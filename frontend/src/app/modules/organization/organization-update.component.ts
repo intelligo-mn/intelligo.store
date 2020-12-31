@@ -15,6 +15,7 @@ import { CategoryService } from 'src/app/modules/category/category.service';
 import { ICustomer } from 'src/app/shared/model/customer.model';
 import { UserService } from 'src/app/core/user/user.service';
 import { IUser } from 'src/app/core/user/user.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 type SelectableEntity = IContact | ICategory | ICustomer;
 
@@ -44,7 +45,8 @@ export class OrganizationUpdateComponent implements OnInit {
     protected categoryService: CategoryService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
