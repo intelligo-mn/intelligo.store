@@ -10,6 +10,7 @@ import { ICategory } from 'src/app/shared/model/category.model';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { CategoryService } from './category.service';
 import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
+import { CategoryUpdateComponent } from './category-update.component';
 
 @Component({
   selector: 'category',
@@ -77,6 +78,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
   delete(category: ICategory): void {
     const modalRef = this.modalService.open(DeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.category = category;
+  }
+
+  add() {
+    this.modalService.open(CategoryUpdateComponent, { size: 'lg' });
   }
 
   sort(): string[] {
