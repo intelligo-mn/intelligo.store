@@ -11,6 +11,7 @@ import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { IUnit } from 'src/app/shared/model/unit.model';
 import { UnitService } from 'src/app/modules/unit/unit.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 type SelectableEntity = ICategory | IUnit;
 
@@ -36,7 +37,8 @@ export class ProductUpdateComponent implements OnInit {
     protected categoryService: CategoryService,
     protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {

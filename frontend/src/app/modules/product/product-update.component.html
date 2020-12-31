@@ -1,72 +1,73 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="product-heading">Create or edit a Product</h2>
-
-            <div>
-                
-
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
-                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Category</label>
-                    <select class="form-control" id="field_category" name="category" formControlName="category">
-                        <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.name }}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('category')!.invalid && (editForm.get('category')!.dirty || editForm.get('category')!.touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('category')?.errors?.required">
-                        This field is required.
-                    </small>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Unit</label>
-                    <select class="form-control" id="field_unit" name="unit" formControlName="unit">
-                        <option *ngIf="!editForm.get('unit')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="unitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : unitOption" *ngFor="let unitOption of units; trackBy: trackById">{{ unitOption.name }}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('unit')!.invalid && (editForm.get('unit')!.dirty || editForm.get('unit')!.touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('unit')?.errors?.required">
-                        This field is required.
-                    </small>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span>Cancel</span>
-                </button>
-
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span>Save</span>
-                </button>
-            </div>
-        </form>
-    </div>
+<div class="modal-header">
+  <h4 class="modal-title">Бүтээгдэхүүн</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
+<form class="modal-body" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <div>
+    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+      <label for="id">ID</label>
+      <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Нэр</label>
+      <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
+      <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+        <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+          This field is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Тайлбар</label>
+      <input type="text" class="form-control" name="description" id="field_description" formControlName="description" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Төрөл</label>
+      <select class="form-control" id="field_category" name="category" formControlName="category">
+        <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
+        <option
+          [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+          *ngFor="let categoryOption of categories; trackBy: trackById"
+          >{{ categoryOption.name }}</option
+        >
+      </select>
+    </div>
+    <div *ngIf="editForm.get('category')!.invalid && (editForm.get('category')!.dirty || editForm.get('category')!.touched)">
+      <small class="form-text text-danger" *ngIf="editForm.get('category')?.errors?.required">
+        This field is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Хэмжих нэгж</label>
+      <select class="form-control" id="field_unit" name="unit" formControlName="unit">
+        <option *ngIf="!editForm.get('unit')!.value" [ngValue]="null" selected></option>
+        <option
+          [ngValue]="unitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : unitOption"
+          *ngFor="let unitOption of units; trackBy: trackById"
+          >{{ unitOption.name }}</option
+        >
+      </select>
+    </div>
+    <div *ngIf="editForm.get('unit')!.invalid && (editForm.get('unit')!.dirty || editForm.get('unit')!.touched)">
+      <small class="form-text text-danger" *ngIf="editForm.get('unit')?.errors?.required">
+        This field is required.
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+      <span>Цуцлах</span>
+    </button>
+
+    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+      <span>Хадгалах</span>
+    </button>
+  </div>
+</form>
