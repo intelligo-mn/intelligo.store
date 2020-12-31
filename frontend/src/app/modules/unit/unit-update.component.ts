@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import { IUnit, Unit } from 'src/app/shared/model/unit.model';
 import { UnitService } from './unit.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'unit-update',
@@ -22,7 +23,12 @@ export class UnitUpdateComponent implements OnInit {
     value: [],
   });
 
-  constructor(protected unitService: UnitService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected unitService: UnitService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ unit }) => {
