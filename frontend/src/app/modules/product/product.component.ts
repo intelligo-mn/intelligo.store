@@ -10,6 +10,7 @@ import { IProduct } from 'src/app/shared/model/product.model';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { ProductService } from './product.service';
 import { ProductDeleteDialogComponent } from './product-delete-dialog.component';
+import { ProductUpdateComponent } from './product-update.component';
 
 @Component({
   selector: 'product',
@@ -70,6 +71,9 @@ export class ProductComponent implements OnInit, OnDestroy {
     return item.id!;
   }
 
+  add() {
+    this.modalService.open(ProductUpdateComponent, { size: 'lg' });
+  }
   registerChangeInProducts(): void {
     this.eventSubscriber = this.eventManager.subscribe('productListModification', () => this.loadPage());
   }
