@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
@@ -20,6 +20,7 @@ type SelectableEntity = ICategory | IUnit;
   templateUrl: './product-update.component.html',
 })
 export class ProductUpdateComponent implements OnInit {
+  @Input() product: IProduct;
   isSaving = false;
   categories: ICategory[] = [];
   units: IUnit[] = [];
@@ -42,13 +43,13 @@ export class ProductUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ product }) => {
-      this.updateForm(product);
+    if(this.product) {
+      this.updateForm(this.product);
+    };
 
-      this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
+    this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-      this.unitService.query().subscribe((res: HttpResponse<IUnit[]>) => (this.units = res.body || []));
-    });
+    this.unitService.query().subscribe((res: HttpResponse<IUnit[]>) => (this.units = res.body || []));
   }
 
   updateForm(product: IProduct): void {

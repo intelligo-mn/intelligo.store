@@ -74,12 +74,19 @@ export class ProductComponent implements OnInit, OnDestroy {
   add() {
     this.modalService.open(ProductUpdateComponent, { size: 'lg' });
   }
+  
+
+  edit(product) {
+    const instance = this.modalService.open(ProductUpdateComponent, { size: 'lg' });
+    instance.componentInstance.product = product;
+  }
+
   registerChangeInProducts(): void {
     this.eventSubscriber = this.eventManager.subscribe('productListModification', () => this.loadPage());
   }
 
   delete(product: IProduct): void {
-    const modalRef = this.modalService.open(ProductDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(ProductDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.product = product;
   }
 
