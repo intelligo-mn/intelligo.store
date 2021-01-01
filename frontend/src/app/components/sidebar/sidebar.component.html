@@ -94,7 +94,7 @@
       </ul>
       <hr class="my-3" />
       <!-- Heading -->
-      <!-- <h6 class="navbar-heading text-muted">Бүтээгдэхүүн</h6> -->
+      <h6 class="navbar-heading text-muted">Бүтээгдэхүүн</h6>
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li *ngFor="let menuItem of productMenuItems" class="{{ menuItem.class }} nav-item">
@@ -107,6 +107,7 @@
       <hr class="my-3" />
       <!-- Heading -->
       
+      <h6 class="navbar-heading text-muted">Захиалга</h6>
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li *ngFor="let menuItem of orderMenuItems" class="{{ menuItem.class }} nav-item">
@@ -119,6 +120,16 @@
       <hr class="my-3" />
       <!-- Heading -->
       <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of userMenuItems" class="{{ menuItem.class }} nav-item">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+            <i class="ni {{ menuItem.icon }}"></i>
+            {{ menuItem.title }}
+          </a>
+        </li>
+      </ul>
+
+      <hr class="my-3" />
       <ul class="navbar-nav">
         <li *ngFor="let menuItem of otherMenuItems" class="{{ menuItem.class }} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
