@@ -11,18 +11,25 @@ declare interface RouteInfo {
 export const MAIN_ROUTES: RouteInfo[] = [{ path: '/dashboard', title: 'Удирдлагын хэсэг', icon: 'ni-tv-2 text-primary', class: '' }];
 
 export const PRODUCT_ROUTES: RouteInfo[] = [
-  { path: '/product', title: 'Бүтээгдэхүүн', icon: 'ni-bag-17 text-primary', class: '' },
-  { path: '/category', title: 'Бүтээгдэхүүний төрөл', icon: 'ni-button-pause text-yellow', class: '' },
-  { path: '/unit', title: 'Хэмжих нэгж', icon: 'ni-bullet-list-67 text-red', class: '' },
+  { path: '/product', title: 'Жагсаалт', icon: 'ni-bag-17 text-primary', class: '' },
+  { path: '/category', title: 'Төрөл', icon: 'ni-button-pause text-blue', class: '' },
+  { path: '/unit', title: 'Хэмжих нэгж', icon: 'ni-bullet-list-67 text-orange', class: '' },
 ];
 
 export const ORDER_ROUTES: RouteInfo[] = [
-  { path: '/order', title: 'Захиалга', icon: 'ni-delivery-fast text-primary', class: '' },
-  { path: '/order-pack', title: 'Захиалгын багц', icon: 'ni-basket text-blue', class: '' },
+  { path: '/order', title: 'Захиалга', icon: 'ni-delivery-fast text-red', class: '' },
+  { path: '/order-pack', title: 'Захиалгын багц', icon: 'ni-basket text-info', class: '' },
 ];
-export const OTHER_ROUTES: RouteInfo[] = [
-  { path: '/organization', title: 'Харилцагч', icon: 'ni-building text-red', class: '' },
+
+export const USER_ROUTES: RouteInfo[] = [
+  { path: '/organization', title: 'Байгууллага', icon: 'ni-building text-pink', class: '' },
+  { path: '/user', title: 'Хэрэглэгч', icon: 'ni-single-02 text-yellow', class: '' },
   { path: '/report', title: 'Тайлан', icon: 'ni-chart-pie-35 text-red', class: '' },
+];
+
+export const OTHER_ROUTES: RouteInfo[] = [
+  { path: '/settings', title: 'Тохиргоо', icon: 'ni-settings-gear-65 text-primary', class: '' },
+  { path: '/api/v1/docs', title: 'API Documentation', icon: 'ni ni-spaceship text-primary', class: '' },
 ];
 @Component({
   selector: 'app-sidebar',
@@ -33,6 +40,7 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public productMenuItems: any[];
   public orderMenuItems: any[];
+  public userMenuItems: any[];
   public otherMenuItems: any[];
 
   public isCollapsed = true;
@@ -43,6 +51,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = MAIN_ROUTES.filter(menuItem => menuItem);
     this.productMenuItems = PRODUCT_ROUTES.filter(menuItem => menuItem);
     this.orderMenuItems = ORDER_ROUTES.filter(menuItem => menuItem);
+    this.userMenuItems = USER_ROUTES.filter(menuItem => menuItem);
     this.otherMenuItems = OTHER_ROUTES.filter(menuItem => menuItem);
 
     this.router.events.subscribe(event => {
