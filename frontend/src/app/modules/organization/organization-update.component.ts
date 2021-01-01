@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
@@ -24,6 +24,7 @@ type SelectableEntity = IContact | ICategory | ICustomer;
   templateUrl: './organization-update.component.html',
 })
 export class OrganizationUpdateComponent implements OnInit {
+  @Input() organization: IOrganization;
   isSaving = false;
   contacts: IContact[] = [];
   categories: ICategory[] = [];
@@ -100,7 +101,7 @@ export class OrganizationUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const organization = this.createFromForm();
-    if (organization.id !== undefined) {
+    if (!organization.id) {
       this.subscribeToSaveResponse(this.organizationService.update(organization));
     } else {
       this.subscribeToSaveResponse(this.organizationService.create(organization));

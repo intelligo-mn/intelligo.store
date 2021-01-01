@@ -13,6 +13,7 @@ export class LoginComponent implements AfterViewInit {
   username?: ElementRef;
 
   authError = null;
+  year: number = new Date().getFullYear();
 
   loginForm = this.fb.group({
     username: [''],
@@ -21,15 +22,12 @@ export class LoginComponent implements AfterViewInit {
   });
 
   constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) {
-    
-    debugger;
   }
 
   ngAfterViewInit(): void {
     if (this.username) {
       this.username.nativeElement.focus();
     }
-    debugger;
   }
 
   login(): void {

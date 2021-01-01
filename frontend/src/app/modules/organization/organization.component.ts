@@ -80,9 +80,19 @@ export class OrganizationComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.organization = organization;
   }
 
-  
   add() {
-    this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
+    const inst = this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
+    inst.result.then(res=>{
+      this.registerChangeInOrganizations()
+    })
+  }
+
+  edit(organization) {
+    const instance = this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
+    instance.componentInstance.organization = organization;
+    instance.result.then(res=>{
+      this.registerChangeInOrganizations()
+    })
   }
 
   sort(): string[] {
