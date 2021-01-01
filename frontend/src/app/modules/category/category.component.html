@@ -40,7 +40,7 @@
                         <span class="d-none d-md-inline">View</span>
                       </button>
 
-                      <button type="submit" [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm">
+                      <button type="submit" (click)="edit(category)" class="btn btn-primary btn-sm">
                         <span class="d-none d-md-inline">Edit</span>
                       </button>
 

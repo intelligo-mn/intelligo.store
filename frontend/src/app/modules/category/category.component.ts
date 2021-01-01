@@ -84,6 +84,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.modalService.open(CategoryUpdateComponent, { size: 'lg' });
   }
 
+  edit(category) {
+    const inst = this.modalService.open(CategoryUpdateComponent, { size: 'lg' });
+    inst.componentInstance.category = category;
+  }
+
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {

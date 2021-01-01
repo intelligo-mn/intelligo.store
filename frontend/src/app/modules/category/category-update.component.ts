@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
@@ -14,9 +14,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './category-update.component.html',
 })
 export class CategoryUpdateComponent implements OnInit {
+  @Input() category: ICategory;
+
   isSaving = false;
 
-  editForm = this.fb.group({
+  categoryForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
     description: [],
@@ -30,40 +32,19 @@ export class CategoryUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ category }) => {
-      this.updateForm(category);
-    });
-  }
-
-  updateForm(category: ICategory): void {
-    this.editForm.patchValue({
-      id: category.id,
-      name: category.name,
-      description: category.description,
-    });
-  }
-
-  previousState(): void {
-    window.history.back();
+    if(this.category){
+      this.categoryForm.patchValue(this.category);
+    };
   }
 
   save(): void {
     this.isSaving = true;
-    const category = this.createFromForm();
+    const category = this.categoryForm.value;
     if (category.id !== undefined) {
       this.subscribeToSaveResponse(this.categoryService.update(category));
     } else {
       this.subscribeToSaveResponse(this.categoryService.create(category));
     }
-  }
-
-  private createFromForm(): ICategory {
-    return {
-      ...new Category(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      description: this.editForm.get(['description'])!.value,
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICategory>>): void {
@@ -75,7 +56,7 @@ export class CategoryUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
+    this.activeModal.close();
   }
 
   protected onSaveError(): void {

@@ -4,9 +4,9 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form class="modal-body" name="editForm" role="form" class="modal-body" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+<form class="modal-body" name="categoryForm" role="form" class="modal-body" novalidate (ngSubmit)="save()" [formGroup]="categoryForm">
   <div>
-    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+    <div class="form-group" [hidden]="!categoryForm.get('id')!.value">
       <label for="id">ID</label>
       <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
     </div>
@@ -14,8 +14,8 @@
     <div class="form-group">
       <label class="form-control-label">Нэр</label>
       <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
-      <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-        <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+      <div *ngIf="categoryForm.get('name')!.invalid && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)">
+        <small class="form-text text-danger" *ngIf="categoryForm.get('name')?.errors?.required">
           This field is required.
         </small>
       </div>
@@ -32,7 +32,7 @@
       <span>Цуцлах</span>
     </button>
 
-    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+    <button type="submit" id="save-entity" [disabled]="categoryForm.invalid || isSaving" class="btn btn-primary">
       <span>Хадгалах</span>
     </button>
   </div>
