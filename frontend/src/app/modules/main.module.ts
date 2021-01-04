@@ -17,10 +17,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
       },
       {
-        path: 'contact',
-        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
-      },
-      {
         path: 'organization',
         loadChildren: () => import('./organization/organization.module').then(m => m.OrganizationModule),
       },
@@ -31,6 +27,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'order-pack',
         loadChildren: () => import('./order-pack/order-pack.module').then(m => m.OrderPackModule),
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule),
       }
     ]),
   ],
