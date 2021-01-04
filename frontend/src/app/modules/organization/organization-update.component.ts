@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { IOrganization, Organization } from 'src/app/shared/model/organization.model';
 import { OrganizationService } from './organization.service';
 import { IContact } from 'src/app/shared/model/contact.model';
-import { ContactService } from 'src/app/modules/contact/contact.service';
+import { ContactService } from 'src/app/modules/organization/contact.service';
 import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { ICustomer } from 'src/app/shared/model/customer.model';
@@ -55,9 +55,9 @@ export class OrganizationUpdateComponent implements OnInit {
       this.updateForm(organization);
 
       this.contactService
-        .query({ filter: 'organization-is-null' })
+        .find(organization.id)
         .pipe(
-          map((res: HttpResponse<IContact[]>) => {
+          map((res: HttpResponse<IContact>) => {
             return res.body || [];
           })
         )
