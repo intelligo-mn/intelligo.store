@@ -75,7 +75,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   delete(order: IOrder): void {
-    const modalRef = this.modalService.open(OrderDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(OrderDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.order = order;
   }
 

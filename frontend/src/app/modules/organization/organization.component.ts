@@ -76,7 +76,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   delete(organization: IOrganization): void {
-    const modalRef = this.modalService.open(OrganizationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(OrganizationDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.organization = organization;
   }
 

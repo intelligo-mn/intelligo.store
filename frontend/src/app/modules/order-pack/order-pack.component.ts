@@ -75,7 +75,7 @@ export class OrderPackComponent implements OnInit, OnDestroy {
   }
 
   delete(orderPack: IOrderPack): void {
-    const modalRef = this.modalService.open(OrderPackDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(OrderPackDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.orderPack = orderPack;
   }
 
