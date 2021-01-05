@@ -11,6 +11,7 @@ import { User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { UserDeleteDialogComponent } from './user-delete-dialog.component';
+import { UserUpdateComponent } from './user-update.component';
 
 @Component({
   selector: 'user-mgmt',
@@ -87,8 +88,12 @@ export class UserComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
+  addUser(){
+    this.modalService.open(UserUpdateComponent, { size: 'lg', backdrop: 'static' });
+  }
+
   deleteUser(user: User): void {
-    const modalRef = this.modalService.open(UserDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(UserDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.user = user;
   }
 
