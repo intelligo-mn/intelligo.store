@@ -76,7 +76,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   delete(category: ICategory): void {
-    const modalRef = this.modalService.open(DeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(DeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.category = category;
   }
 

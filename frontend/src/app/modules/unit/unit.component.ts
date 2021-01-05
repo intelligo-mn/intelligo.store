@@ -80,7 +80,7 @@ export class UnitComponent implements OnInit, OnDestroy {
   }
 
   delete(unit: IUnit): void {
-    const modalRef = this.modalService.open(UnitDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(UnitDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.unit = unit;
   }
 
