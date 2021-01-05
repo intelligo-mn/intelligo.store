@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LANGUAGES } from 'src/app/core/language/language.constants';
 import { User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/core/user/user.service';
 })
 export class UserUpdateComponent implements OnInit {
   user!: User;
+  @Input() defaultUser!: User;
   authorities: string[] = [];
   isSaving = false;
 
@@ -25,13 +27,13 @@ export class UserUpdateComponent implements OnInit {
     authorities: []
   });
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(({ user }) => {
       if (user) {
         this.user = user;
-        if (this.user.id === undefined) {
+        if (!this.user?.id) {
           this.user.activated = true;
         }
         this.updateForm(user);
@@ -40,10 +42,6 @@ export class UserUpdateComponent implements OnInit {
     this.userService.authorities().subscribe(authorities => {
       this.authorities = authorities;
     });
-  }
-
-  previousState(): void {
-    window.history.back();
   }
 
   save(): void {
@@ -87,7 +85,7 @@ export class UserUpdateComponent implements OnInit {
 
   private onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
+    this.activeModal.close();
   }
 
   private onSaveError(): void {
