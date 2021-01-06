@@ -26,7 +26,6 @@ type SelectableEntity = IContact | ICategory | ICustomer;
 export class OrganizationUpdateComponent implements OnInit {
   @Input() organization: IOrganization;
   isSaving = false;
-  contacts: IContact[] = [];
   categories: ICategory[] = [];
   customers: ICustomer[] = [];
 
@@ -35,7 +34,13 @@ export class OrganizationUpdateComponent implements OnInit {
     name: [null, [Validators.required]],
     status: [null, [Validators.required]],
     type: [null, [Validators.required]],
-    contact: [],
+    contact: this.fb.group({
+      phone: [],
+      email: [],
+      address: [],
+      lat: [],
+      lon: [],
+    }),
     distributeType: [],
     manager: [],
   });
@@ -51,47 +56,25 @@ export class OrganizationUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ organization }) => {
-      this.updateForm(organization);
-
+    if (this.organization) {
       this.contactService
-        .find(organization.id)
+        .find(this.organization?.id)
         .pipe(
           map((res: HttpResponse<IContact>) => {
             return res.body || [];
           })
         )
-        .subscribe((resBody: IContact[]) => {
-          if (!organization.contact || !organization.contact.id) {
-            this.contacts = resBody;
-          } else {
-            this.contactService
-              .find(organization.contact.id)
-              .pipe(
-                map((subRes: HttpResponse<IContact>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IContact[]) => (this.contacts = concatRes));
+        .subscribe((resBody: IContact) => {
+          if (!this.organization?.contact || !this.organization?.contact?.id) {
+            this.organization.contact = resBody;
+            this.editForm.patchValue(this.organization);
           }
         });
+    }
 
-      this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
+    this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.customers = res.body || []));
-    });
-  }
-
-  updateForm(organization: IOrganization): void {
-    this.editForm.patchValue({
-      id: organization.id,
-      name: organization.name,
-      status: organization.status,
-      type: organization.type,
-      contact: organization.contact,
-      distributeType: organization.distributeType,
-      manager: organization.manager,
-    });
+    this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.customers = res.body || []));
   }
 
   previousState(): void {
@@ -100,25 +83,16 @@ export class OrganizationUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const organization = this.createFromForm();
-    if (!organization.id) {
+    const organization = this.editForm.value();
+    debugger;
+    if (organization?.id !== undefined || organization?.id !== null) {
+      organization.id = undefined;
+      debugger;
       this.subscribeToSaveResponse(this.organizationService.update(organization));
     } else {
+      debugger;
       this.subscribeToSaveResponse(this.organizationService.create(organization));
     }
-  }
-
-  private createFromForm(): IOrganization {
-    return {
-      ...new Organization(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      status: this.editForm.get(['status'])!.value,
-      type: this.editForm.get(['type'])!.value,
-      contact: this.editForm.get(['contact'])!.value,
-      distributeType: this.editForm.get(['distributeType'])!.value,
-      manager: this.editForm.get(['manager'])!.value,
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrganization>>): void {
