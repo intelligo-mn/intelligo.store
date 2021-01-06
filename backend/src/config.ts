@@ -99,7 +99,7 @@ const yamlConfigPath = path.join(__dirname, "config", "application.yml");
 const envYamlConfigPath = path.join(
   __dirname,
   "config",
-  `application-${process.env.NODE_ENV}.yml`
+  `application-${process.env.NODE_ENV ? process.env.NODE_ENV : 'prod'}.yml`
 );
 
 const yamlConfig = safeLoad(fs.readFileSync(yamlConfigPath, "utf8"));
