@@ -14,25 +14,8 @@ export class ContactService {
   constructor(@InjectRepository(ContactRepository) private contactRepository: ContactRepository) {}
 
   async findById(id: string): Promise<ContactDTO | undefined> {
-    const options = { relations: relationshipNames };
-    const result = await this.contactRepository.findOne(id, options);
+    const result = await this.contactRepository.findOne({ where: { organizationId: id } })
     return ContactMapper.fromEntityToDTO(result);
-  }
-
-  async findByfields(options: FindOneOptions<ContactDTO>): Promise<ContactDTO | undefined> {
-    const result = await this.contactRepository.findOne(options);
-    return ContactMapper.fromEntityToDTO(result);
-  }
-
-  async findAndCount(options: FindManyOptions<ContactDTO>): Promise<[ContactDTO[], number]> {
-    options.relations = relationshipNames;
-    const resultList = await this.contactRepository.findAndCount(options);
-    const contactDTO: ContactDTO[] = [];
-    if (resultList && resultList[0]) {
-      resultList[0].forEach(contact => contactDTO.push(ContactMapper.fromEntityToDTO(contact)));
-      resultList[0] = contactDTO;
-    }
-    return resultList;
   }
 
   async save(contactDTO: ContactDTO): Promise<ContactDTO | undefined> {

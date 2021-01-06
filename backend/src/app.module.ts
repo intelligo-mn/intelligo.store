@@ -7,7 +7,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { CategoryModule } from './module/category.module';
 import { UnitModule } from './module/unit.module';
 import { ProductModule } from './module/product.module';
-import { ContactModule } from './module/contact.module';
 import { OrganizationModule } from './module/organization.module';
 import { OrderModule } from './module/order.module';
 import { OrderPackModule } from './module/order-pack.module';
@@ -23,7 +22,6 @@ import { CustomerModule } from './module/customer.module';
     CategoryModule,
     UnitModule,
     ProductModule,
-    ContactModule,
     OrganizationModule,
     OrderModule,
     OrderPackModule,

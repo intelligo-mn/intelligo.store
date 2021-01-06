@@ -7,6 +7,10 @@ import { BaseEntity } from "./base/base.entity";
  */
 @Entity("contact")
 export class Contact extends BaseEntity {
+  
+  @Column({ name: "organizationId", nullable: true })
+  organizationId: string;
+
   @Column({ type: "integer", name: "phone", nullable: true })
   phone: number;
 
