@@ -24,7 +24,7 @@ async function bootstrap(): Promise<void> {
     })
   );
 
-  const staticClientPath = path.join(__dirname, '../dist/classes/static');
+  const staticClientPath = path.join(__dirname, '../../frontend/dist');
   if (fs.existsSync(staticClientPath)) {
     app.use(express.static(staticClientPath));
     logger.log(`Serving static client resources on ${staticClientPath}`);
