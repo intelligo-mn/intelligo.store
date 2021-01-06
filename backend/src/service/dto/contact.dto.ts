@@ -6,6 +6,10 @@ import { BaseDTO } from './base.dto';
  * A Contact DTO object.
  */
 export class ContactDTO extends BaseDTO {
+  
+  @ApiProperty({ description: 'organization id', required: false })
+  organizationId: string;
+
   @ApiProperty({ description: 'phone field', required: false })
   phone: number;
 
