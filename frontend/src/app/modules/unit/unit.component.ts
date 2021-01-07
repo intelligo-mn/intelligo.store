@@ -75,6 +75,11 @@ export class UnitComponent implements OnInit, OnDestroy {
     this.modalService.open(UnitUpdateComponent, { size: 'lg' });
   }
 
+  edit(unit: IUnit) {
+    const modalRef = this.modalService.open(UnitUpdateComponent, { size: 'lg' });
+    modalRef.componentInstance.unit = unit;
+  }
+
   registerChangeInUnits(): void {
     this.eventSubscriber = this.eventManager.subscribe('unitListModification', () => this.loadPage());
   }
