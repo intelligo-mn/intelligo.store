@@ -7,7 +7,6 @@ import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IProduct, Product } from 'src/app/shared/model/product.model';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
-import { ProductDetailComponent } from './product-detail.component';
 import { ProductUpdateComponent } from './product-update.component';
 import { ProductComponent } from './product.component';
 import { ProductService } from './product.service';
@@ -49,31 +48,7 @@ export const productRoute: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/view',
-    component: ProductDetailComponent,
-    resolve: {
-      product: ProductResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.product.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'new',
-    component: ProductUpdateComponent,
-    resolve: {
-      product: ProductResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.product.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
-    path: ':id/edit',
     component: ProductUpdateComponent,
     resolve: {
       product: ProductResolve,

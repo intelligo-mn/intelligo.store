@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { Observable, of, EMPTY } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
+import { EMPTY, Observable, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-
-import { Authority } from 'src/app/shared/constants/authority.constants';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IUnit, Unit } from 'src/app/shared/model/unit.model';
-import { UnitService } from './unit.service';
-import { UnitComponent } from './unit.component';
-import { UnitDetailComponent } from './unit-detail.component';
-import { UnitUpdateComponent } from './unit-update.component';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
+import { UnitUpdateComponent } from './unit-update.component';
+import { UnitComponent } from './unit.component';
+import { UnitService } from './unit.service';
 
 @Injectable({ providedIn: 'root' })
 export class UnitResolve implements Resolve<IUnit> {
@@ -50,31 +48,7 @@ export const unitRoute: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/view',
-    component: UnitDetailComponent,
-    resolve: {
-      unit: UnitResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.unit.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'new',
-    component: UnitUpdateComponent,
-    resolve: {
-      unit: UnitResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.unit.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
-    path: ':id/edit',
     component: UnitUpdateComponent,
     resolve: {
       unit: UnitResolve,
