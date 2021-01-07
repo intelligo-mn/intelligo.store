@@ -12,6 +12,7 @@ import { CategoryService } from 'src/app/modules/category/category.service';
 import { IUnit } from 'src/app/shared/model/unit.model';
 import { UnitService } from 'src/app/modules/unit/unit.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EventManager } from '@devmn/event-manager';
 
 type SelectableEntity = ICategory | IUnit;
 
@@ -39,13 +40,14 @@ export class ProductUpdateComponent implements OnInit {
     protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private eventManager: EventManager
   ) {}
 
   ngOnInit(): void {
-    if(this.product) {
+    if (this.product) {
       this.updateForm(this.product);
-    };
+    }
 
     this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
@@ -62,29 +64,15 @@ export class ProductUpdateComponent implements OnInit {
     });
   }
 
-  previousState(): void {
-    window.history.back();
-  }
-
   save(): void {
     this.isSaving = true;
-    const product = this.createFromForm();
-    if (product.id !== undefined) {
+    const product = this.editForm.value;
+    if (product.id) {
       this.subscribeToSaveResponse(this.productService.update(product));
     } else {
+      product.id = undefined;
       this.subscribeToSaveResponse(this.productService.create(product));
     }
-  }
-
-  private createFromForm(): IProduct {
-    return {
-      ...new Product(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      description: this.editForm.get(['description'])!.value,
-      category: this.editForm.get(['category'])!.value,
-      unit: this.editForm.get(['unit'])!.value,
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IProduct>>): void {
@@ -96,7 +84,8 @@ export class ProductUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
+    this.activeModal.close();
+    this.eventManager.broadcast('productListModification');
   }
 
   protected onSaveError(): void {
