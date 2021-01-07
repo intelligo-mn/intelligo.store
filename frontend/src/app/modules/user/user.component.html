@@ -44,7 +44,7 @@
                       *ngIf="!user.activated"
                       jhiTranslate="userManagement.deactivated"
                     >
-                      Deactivated
+                      Идэвхигүй
                     </button>
                     <button
                       class="btn btn-success btn-sm"
@@ -53,7 +53,7 @@
                       [disabled]="!currentAccount || currentAccount.login === user.login"
                       jhiTranslate="userManagement.activated"
                     >
-                      Activated
+                      Идэвхитэй
                     </button>
                   </td>
                   <td>
@@ -66,17 +66,8 @@
                   <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
                   <td class="text-right">
                     <div class="btn-group">
-                      <button type="submit" [routerLink]="['./', user.login, 'view']" class="btn btn-info btn-sm">
-                        <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                      </button>
-
-                      <button
-                        type="submit"
-                        [routerLink]="['./', user.login, 'edit']"
-                        queryParamsHandling="merge"
-                        class="btn btn-primary btn-sm"
-                      >
-                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                      <button type="submit" (click)="editUser(user)" queryParamsHandling="merge" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button
@@ -85,7 +76,7 @@
                         class="btn btn-danger btn-sm"
                         [disabled]="!currentAccount || currentAccount.login === user.login"
                       >
-                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>

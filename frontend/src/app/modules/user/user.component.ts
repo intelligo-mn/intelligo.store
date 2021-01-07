@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { AccountService } from 'src/app/core/auth/account.service';
 import { Account } from 'src/app/core/user/account.model';
-import { User } from 'src/app/core/user/user.model';
+import { IUser, User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { UserDeleteDialogComponent } from './user-delete-dialog.component';
@@ -90,6 +90,11 @@ export class UserComponent implements OnInit, OnDestroy {
 
   addUser(){
     this.modalService.open(UserUpdateComponent, { size: 'lg', backdrop: 'static' });
+  }
+
+  editUser(user: IUser){
+    const modalRef = this.modalService.open(UserUpdateComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.defaultUser =  user;
   }
 
   deleteUser(user: User): void {
