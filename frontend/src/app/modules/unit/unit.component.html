@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row mt-5">
+  <div class="row mt-5 list">
     <div class="col-xl-12 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header border-0">
@@ -38,16 +38,12 @@
                   <td>{{ unit.value }}</td>
                   <td class="text-right">
                     <div class="btn-group">
-                      <button type="submit" [routerLink]="['/unit', unit.id, 'view']" class="btn btn-info btn-sm">
-                        <span class="d-none d-md-inline">View</span>
-                      </button>
-
-                      <button type="submit" [routerLink]="['/unit', unit.id, 'edit']" class="btn btn-primary btn-sm">
-                        <span class="d-none d-md-inline">Edit</span>
+                      <button type="submit" (click)="edit(unit)" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button type="submit" (click)="delete(unit)" class="btn btn-danger btn-sm">
-                        <span class="d-none d-md-inline">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>

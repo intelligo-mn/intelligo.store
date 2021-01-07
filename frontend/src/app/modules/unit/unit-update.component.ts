@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { IUnit, Unit } from 'src/app/shared/model/unit.model';
-import { UnitService } from './unit.service';
+import { EventManager } from '@devmn/event-manager';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { IUnit } from 'src/app/shared/model/unit.model';
+import { UnitService } from './unit.service';
 
 @Component({
   selector: 'unit-update',
   templateUrl: './unit-update.component.html',
 })
 export class UnitUpdateComponent implements OnInit {
+  @Input() unit: IUnit;
   isSaving = false;
 
   editForm = this.fb.group({
@@ -27,46 +28,25 @@ export class UnitUpdateComponent implements OnInit {
     protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private eventManager: EventManager
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ unit }) => {
-      this.updateForm(unit);
-    });
-  }
-
-  updateForm(unit: IUnit): void {
-    this.editForm.patchValue({
-      id: unit.id,
-      name: unit.name,
-      description: unit.description,
-      value: unit.value,
-    });
-  }
-
-  previousState(): void {
-    window.history.back();
+    if (this.unit) {
+      this.editForm.patchValue(this.unit);
+    }
   }
 
   save(): void {
     this.isSaving = true;
-    const unit = this.createFromForm();
-    if (unit.id !== undefined) {
+    const unit = this.editForm.value;
+    if (unit.id) {
       this.subscribeToSaveResponse(this.unitService.update(unit));
     } else {
+      unit.id = undefined;
       this.subscribeToSaveResponse(this.unitService.create(unit));
     }
-  }
-
-  private createFromForm(): IUnit {
-    return {
-      ...new Unit(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      description: this.editForm.get(['description'])!.value,
-      value: this.editForm.get(['value'])!.value,
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IUnit>>): void {
@@ -78,7 +58,8 @@ export class UnitUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
+    this.activeModal.close();
+    this.eventManager.broadcast('unitListModification');
   }
 
   protected onSaveError(): void {

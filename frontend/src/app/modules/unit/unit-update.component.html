@@ -6,7 +6,7 @@
 </div>
 <form class="modal-body" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
   <div>
-    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+    <div class="form-group" [hidden]="true">
       <label for="id">ID</label>
       <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
     </div>
