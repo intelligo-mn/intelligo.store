@@ -7,7 +7,6 @@ import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { Category, ICategory } from 'src/app/shared/model/category.model';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
-import { CategoryDetailComponent } from './category-detail.component';
 import { CategoryUpdateComponent } from './category-update.component';
 import { CategoryComponent } from './category.component';
 import { CategoryService } from './category.service';
@@ -49,18 +48,6 @@ export const categoryRoute: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/view',
-    component: CategoryDetailComponent,
-    resolve: {
-      category: CategoryResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.category.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'new',
     component: CategoryUpdateComponent,
     resolve: {
@@ -71,17 +58,5 @@ export const categoryRoute: Routes = [
       pageTitle: 'childfoodApp.category.home.title',
     },
     canActivate: [AuthGuard],
-  },
-  {
-    path: ':id/edit',
-    component: CategoryUpdateComponent,
-    resolve: {
-      category: CategoryResolve,
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'childfoodApp.category.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
+  }
 ];
