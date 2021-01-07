@@ -235,6 +235,22 @@ $love-color: $red !default;
 $body-bg: #f8f9fe !default;
 $body-color: $gray-700 !default;
 
+// Breadcrumb
+
+$breadcrumb-padding-y: 0.5rem !default;
+$breadcrumb-padding-x: 1rem !default;
+$breadcrumb-item-padding: 0.5rem !default;
+$breadcrumb-margin-bottom: 1rem !default;
+$breadcrumb-bg: $gray-100 !default;
+$breadcrumb-divider-color: $gray-600 !default;
+$breadcrumb-active-color: $gray-600 !default;
+$breadcrumb-divider: quote("-") !default;
+
+$breadcrumb-dark-bg: $default !default;
+$breadcrumb-dark-color: $gray-100 !default;
+$breadcrumb-dark-hover-color: $white !default;
+$breadcrumb-dark-active-color: $gray-300 !default;
+$breadcrumb-dark-divider-color: $gray-500 !default;
 
 
 // Sections

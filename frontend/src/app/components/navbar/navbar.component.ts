@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/login/login.service';
-import { MAIN_ROUTES } from '../sidebar/sidebar.component';
+import { ALL_ROUTES, MAIN_ROUTES } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = MAIN_ROUTES.filter(listTitle => listTitle);
+    this.listTitles = ALL_ROUTES.filter(listTitle => listTitle);
   }
   getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
     }
 
     for (let item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === titlee) {
+      if (titlee.includes(this.listTitles[item].path)) {
         return this.listTitles[item].title;
       }
     }

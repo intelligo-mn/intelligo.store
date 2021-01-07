@@ -11,7 +11,7 @@ declare interface RouteInfo {
 export const MAIN_ROUTES: RouteInfo[] = [{ path: '/dashboard', title: 'Удирдлагын хэсэг', icon: 'ni-tv-2 text-primary', class: '' }];
 
 export const PRODUCT_ROUTES: RouteInfo[] = [
-  { path: '/product', title: 'Жагсаалт', icon: 'ni-bag-17 text-primary', class: '' },
+  { path: '/product', title: 'Бүтээгдэхүүн', icon: 'ni-bag-17 text-primary', class: '' },
   { path: '/category', title: 'Төрөл', icon: 'ni-button-pause text-blue', class: '' },
   { path: '/unit', title: 'Хэмжих нэгж', icon: 'ni-bullet-list-67 text-orange', class: '' },
 ];
@@ -31,6 +31,8 @@ export const OTHER_ROUTES: RouteInfo[] = [
   { path: '/settings', title: 'Тохиргоо', icon: 'ni-settings-gear-65 text-primary', class: '' },
   { path: '/api/v1/docs', title: 'API Documentation', icon: 'ni ni-spaceship text-primary', class: '' },
 ];
+
+export const ALL_ROUTES: RouteInfo[] = [...MAIN_ROUTES, ...PRODUCT_ROUTES, ...ORDER_ROUTES, ...USER_ROUTES, ...OTHER_ROUTES];
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
