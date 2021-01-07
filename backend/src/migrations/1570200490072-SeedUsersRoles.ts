@@ -1,80 +1,84 @@
-import { MigrationInterface, QueryRunner, getRepository } from 'typeorm';
-import { User } from '../domain/user.entity';
-import { Authority } from '../domain/authority.entity';
+import { getRepository, MigrationInterface, QueryRunner } from "typeorm";
+import { Authority } from "../domain/authority.entity";
+import { User } from "../domain/user.entity";
 
 export class SeedUsersRoles1570200490072 implements MigrationInterface {
-    role1: Authority = { name: 'ROLE_ADMIN' };
+  admin: Authority = { name: "ROLE_ADMIN" };
+  user: Authority = { name: "ROLE_USER" };
+  manager: Authority = { name: "ROLE_MANAGER" };
+  supplier: Authority = { name: "ROLE_SUPPLIER" };
 
-    role2: Authority = { name: 'ROLE_USER' };
+  supplierUser: User = {
+    login: "supplier",
+    password: "supplier",
+    firstName: "supplier",
+    lastName: "supplier",
+    email: "supplier@localhost.it",
+    imageUrl: "",
+    activated: true,
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
+  };
 
-    user1: User = {
-        login: 'system',
-        password: 'system',
-        firstName: 'System',
-        lastName: 'System',
-        email: 'system@localhost.it',
-        imageUrl: '',
-        activated: true,
-        langKey: 'en',
-        createdBy: 'system',
-        lastModifiedBy: 'system',
-    };
+  user2: User = {
+    login: "anonymoususer",
+    password: "anonymoususer",
+    firstName: "Anonymous",
+    lastName: "User",
+    email: "anonymoususer@localhost.it",
+    imageUrl: "",
+    activated: true,
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
+  };
 
-    user2: User = {
-        login: 'anonymoususer',
-        password: 'anonymoususer',
-        firstName: 'Anonymous',
-        lastName: 'User',
-        email: 'anonymoususer@localhost.it',
-        imageUrl: '',
-        activated: true,
-        langKey: 'en',
-        createdBy: 'system',
-        lastModifiedBy: 'system',
-    };
+  adminUser: User = {
+    login: "admin",
+    password: "admin",
+    firstName: "Administrator",
+    lastName: "Administrator",
+    email: "admin@localhost.it",
+    imageUrl: "",
+    activated: true,
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
+  };
 
-    user3: User = {
-        login: 'admin',
-        password: 'admin',
-        firstName: 'Administrator',
-        lastName: 'Administrator',
-        email: 'admin@localhost.it',
-        imageUrl: '',
-        activated: true,
-        langKey: 'en',
-        createdBy: 'system',
-        lastModifiedBy: 'system',
-    };
+  managerUser: User = {
+    login: "manager",
+    password: "manager",
+    firstName: "Manager",
+    lastName: "Manager",
+    email: "manager@localhost.it",
+    imageUrl: "",
+    activated: true,
+    langKey: "en",
+    createdBy: "system",
+    lastModifiedBy: "system",
+  };
 
-    user4: User = {
-        login: 'user',
-        password: 'user',
-        firstName: 'User',
-        lastName: 'User',
-        email: 'user@localhost.it',
-        imageUrl: '',
-        activated: true,
-        langKey: 'en',
-        createdBy: 'system',
-        lastModifiedBy: 'system',
-    };
-
-    // eslint-disable-next-line
+  // eslint-disable-next-line
   public async up(queryRunner: QueryRunner): Promise<any> {
-        const authorityRepository = getRepository('authority');
+    const authorityRepository = getRepository("authority");
 
-        const adminRole = await authorityRepository.save(this.role1);
-        const userRole = await authorityRepository.save(this.role2);
+    const adminRole = await authorityRepository.save(this.admin);
+    const userRole = await authorityRepository.save(this.user);
+    const managerRole = await authorityRepository.save(this.manager);
+    const supplierRole = await authorityRepository.save(this.supplier);
 
-        const userRepository = getRepository('user');
+    const userRepository = getRepository("user");
 
-        this.user1.authorities = [adminRole, userRole];
-        this.user3.authorities = [adminRole, userRole];
-        this.user4.authorities = [userRole];
+    this.supplierUser.authorities = [supplierRole];
+    this.adminUser.authorities = [adminRole];
+    this.managerUser.authorities = [managerRole];
+    this.user2.authorities = [userRole];
 
-        await userRepository.save([this.user1, this.user2, this.user3, this.user4]);
-    }
+    await userRepository.save([this.supplierUser, this.user2, this.adminUser, this.managerUser]);
+  }
 
-    // eslint-disable-next-line
+  // eslint-disable-next-line
   public async down(queryRunner: QueryRunner): Promise<any> {}
 }
