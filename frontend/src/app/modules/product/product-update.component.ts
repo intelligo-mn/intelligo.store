@@ -40,8 +40,8 @@ export class ProductUpdateComponent implements OnInit {
     protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal,
-    private eventManager: EventManager
+    private eventManager: EventManager,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
