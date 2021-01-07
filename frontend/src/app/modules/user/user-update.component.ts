@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { EventManager } from '@devmn/event-manager';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { LANGUAGES } from 'src/app/core/language/language.constants';
 import { User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   selector: 'user-mgmt-update',
-  templateUrl: './user-update.component.html'
+  templateUrl: './user-update.component.html',
 })
 export class UserUpdateComponent implements OnInit {
   user!: User;
@@ -24,21 +24,26 @@ export class UserUpdateComponent implements OnInit {
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     activated: [],
     langKey: ['MN'],
-    authorities: []
+    authorities: [],
   });
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, public activeModal: NgbActiveModal) {}
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal,
+    private eventManager: EventManager
+  ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ user }) => {
-      if (user) {
-        this.user = user;
-        if (!this.user?.id) {
-          this.user.activated = true;
-        }
-        this.updateForm(user);
+    if (this.defaultUser) {
+      this.user = this.defaultUser;
+      if (!this.user?.id) {
+        this.user.activated = true;
       }
-    });
+      this.updateForm(this.user);
+    }
+
     this.userService.authorities().subscribe(authorities => {
       this.authorities = authorities;
     });
@@ -46,13 +51,14 @@ export class UserUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    this.updateUser(this.user);
-    if (this.user.id !== undefined) {
+    this.user = this.editForm.value;
+    if (this.user.id) {
       this.userService.update(this.user).subscribe(
         () => this.onSaveSuccess(),
         () => this.onSaveError()
       );
     } else {
+      this.user.id = undefined;
       this.userService.create(this.user).subscribe(
         () => this.onSaveSuccess(),
         () => this.onSaveError()
@@ -69,23 +75,14 @@ export class UserUpdateComponent implements OnInit {
       email: user.email,
       activated: user.activated,
       langKey: user.langKey,
-      authorities: user.authorities
+      authorities: user.authorities,
     });
-  }
-
-  private updateUser(user: User): void {
-    user.login = this.editForm.get(['login'])!.value;
-    user.firstName = this.editForm.get(['firstName'])!.value;
-    user.lastName = this.editForm.get(['lastName'])!.value;
-    user.email = this.editForm.get(['email'])!.value;
-    user.activated = this.editForm.get(['activated'])!.value;
-    user.langKey = this.editForm.get(['langKey'])!.value;
-    user.authorities = this.editForm.get(['authorities'])!.value;
   }
 
   private onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
+    this.eventManager.broadcast('userListModification');
   }
 
   private onSaveError(): void {
