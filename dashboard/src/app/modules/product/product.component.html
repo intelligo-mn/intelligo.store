@@ -1,0 +1,71 @@
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8"></div>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Бүтээгдэхүүн</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-primary" (click)="add()">
+                <span>
+                  Нэмэх
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="products?.length === 0">
+            <span>Бүтээгдэхүүн хоосон байна</span>
+          </div>
+
+          <div class="table-responsive" id="entities" *ngIf="products?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+              <thead>
+                <tr>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="category.name"><span>Төрөл</span></th>
+                  <th scope="col" jhiSortBy="unit.name"><span>Хэмжих нэгж</span></th>
+                  <th scope="col" jhiSortBy="description"><span>Тайлбар</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products; trackBy: trackId">
+                  <td>{{ product.name }}</td>
+                  <td>
+                    <div *ngIf="product.category">
+                      {{ product.category?.name }}
+                      <!-- <a [routerLink]="['/category', product.category?.id, 'view']">{{ product.category?.name }}</a> -->
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="product.unit">
+                      {{ product.unit?.name }}
+                      <!-- <a [routerLink]="['/unit', product.unit?.id, 'view']">{{ product.unit?.name }}</a> -->
+                    </div>
+                  </td>
+                  <td>{{ product.description }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" (click)="edit(product)" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Засах</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Устгах</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
