@@ -1,16 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { EventManager } from '@devmn/event-manager';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { ICategory } from 'src/app/shared/model/category.model';
-
-import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
-import { CategoryService } from './category.service';
+import { Subscription } from 'rxjs';
 import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
+import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
+import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryUpdateComponent } from './category-update.component';
+import { CategoryService } from './category.service';
 
 @Component({
   selector: 'category',
@@ -84,7 +82,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.modalService.open(CategoryUpdateComponent, { size: 'lg' });
   }
 
-  edit(category) {
+  edit(category: ICategory) {
     const inst = this.modalService.open(CategoryUpdateComponent, { size: 'lg' });
     inst.componentInstance.category = category;
   }
