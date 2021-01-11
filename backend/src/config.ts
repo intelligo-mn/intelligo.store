@@ -145,7 +145,7 @@ function ipAddress(): any {
       for (const alias of iface) {
         if (
           alias.family === "IPv4" &&
-          alias.address !== "127.0.0.1" &&
+          alias.address !== "0.0.0.0" &&
           !alias.internal
         ) {
           return alias.address;

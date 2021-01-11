@@ -66,13 +66,13 @@ function registerAsEurekaService(): void {
       instance: {
         app: config.get('eureka.instance.appname'),
         instanceId: config.get('eureka.instance.instanceId'),
-        hostName: config.get('ipAddress') || 'localhost',
-        ipAddr: config.get('ipAddress') || '127.0.0.1',
+        hostName: config.get('ipAddress') || '0.0.0.0',
+        ipAddr: config.get('ipAddress') || '0.0.0.0',
         port: {
           $: port,
           '@enabled': 'true',
         },
-        vipAddress: config.get('ipAddress') || 'localhost',
+        vipAddress: config.get('ipAddress') || '0.0.0.0',
         statusPageUrl: `http://${config.get('ipAddress')}:${port}/`,
         dataCenterInfo: {
           '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
@@ -81,7 +81,7 @@ function registerAsEurekaService(): void {
       },
       eureka: {
         // eureka server host / port
-        host: eurekaUrl.hostname || '127.0.0.1',
+        host: eurekaUrl.hostname || '0.0.0.0',
         port: eurekaUrl.port || 8761,
         servicePath: '/eureka/apps',
       },
