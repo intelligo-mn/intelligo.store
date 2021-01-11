@@ -36,16 +36,13 @@
                   <td>{{ category.description }}</td>
                   <td class="text-right">
                     <div class="btn-group">
-                      <button type="submit" [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm">
-                        <span class="d-none d-md-inline">View</span>
-                      </button>
 
                       <button type="submit" (click)="edit(category)" class="btn btn-primary btn-sm">
-                        <span class="d-none d-md-inline">Edit</span>
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
-                        <span class="d-none d-md-inline">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>
