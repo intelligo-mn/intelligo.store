@@ -7,7 +7,7 @@ const commonConf = {
   },
   MIGRATIONS_RUN: true,
 };
-
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "prod";
 let ormconfig: any = {
   name: "default",
   type: "mongodb",
