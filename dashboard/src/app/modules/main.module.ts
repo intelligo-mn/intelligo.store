@@ -25,10 +25,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./order/order.module').then(m => m.foodorderOrderModule),
       },
       {
-        path: 'order-pack',
-        loadChildren: () => import('./order-pack/order-pack.module').then(m => m.OrderPackModule),
-      },
-      {
         path: 'user',
         loadChildren: () => import('./user/user.module').then(m => m.UserModule),
       }
