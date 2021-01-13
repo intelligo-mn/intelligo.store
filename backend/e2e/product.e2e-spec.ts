@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { AuthGuard } from '../src/security/guards/auth.guard';
-import { RolesGuard } from '../src/security/guards/roles.guard';
+import { AuthGuard } from '../src/core/guards/auth.guard';
+import { RolesGuard } from '../src/core/guards/roles.guard';
 import { ProductDTO } from '../src/service/dto/product.dto';
 import { ProductService } from '../src/service/product.service';
 

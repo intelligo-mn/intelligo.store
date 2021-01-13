@@ -21,7 +21,7 @@ import { Request } from "express";
 import { ProductDTO } from "../../service/dto/product.dto";
 import { ProductService } from "../../service/product.service";
 import { PageRequest, Page } from "../../domain/base/pagination.entity";
-import { AuthGuard, Roles, RolesGuard, RoleType } from "../../security";
+import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
 import { HeaderUtil } from "../../core/header-util";
 import { LoggingInterceptor } from "../../core/interceptors/logging.interceptor";
 
