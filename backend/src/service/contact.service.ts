@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
 import { ContactDTO } from '../service/dto/contact.dto';
 import { ContactMapper } from '../service/mapper/contact.mapper';
-import { ContactRepository } from '../repository/contact.repository';
+import { ContactRepository } from '../modules/organization/contact.repository';
 
 const relationshipNames = [];
 

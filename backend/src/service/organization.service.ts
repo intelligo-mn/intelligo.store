@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
 import { OrganizationDTO } from '../service/dto/organization.dto';
 import { OrganizationMapper } from '../service/mapper/organization.mapper';
-import { OrganizationRepository } from '../repository/organization.repository';
+import { OrganizationRepository } from '../modules/organization/organization.repository';
 
 const relationshipNames = [];
 relationshipNames.push('distributeType');

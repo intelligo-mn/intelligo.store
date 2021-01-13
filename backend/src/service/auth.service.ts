@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { UserLoginDTO } from '../service/dto/user-login.dto';
 import { Payload } from '../security/payload.interface';
-import { AuthorityRepository } from '../repository/authority.repository';
+import { AuthorityRepository } from '../modules/user/authority.repository';
 import { UserService } from '../service/user.service';
 import { UserDTO } from './dto/user.dto';
 

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
 import { OrderDTO } from '../service/dto/order.dto';
 import { OrderMapper } from '../service/mapper/order.mapper';
-import { OrderRepository } from '../repository/order.repository';
+import { OrderRepository } from '../modules/order/order.repository';
 
 const relationshipNames = [];
 relationshipNames.push('products');
