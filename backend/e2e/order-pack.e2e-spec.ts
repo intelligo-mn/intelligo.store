@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
 import { OrderPackDTO } from '../src/domain/dto/order-pack.dto';
-import { OrderPackService } from '../src/service/order-pack.service';
+import { OrderPackService } from '../src/modules/order-pack/order-pack.service';
 
 describe('OrderPack Controller', () => {
   let app: INestApplication;

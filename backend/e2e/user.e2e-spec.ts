@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
 import { UserDTO } from '../src/domain/dto/user.dto';
-import { UserService } from '../src/service/user.service';
+import { UserService } from '../src/modules/user/user.service';
 
 describe('User', () => {
     let app: INestApplication;

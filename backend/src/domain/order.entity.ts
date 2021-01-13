@@ -2,7 +2,7 @@
 import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { Customer } from "./customer.entity";
-import { OrderStatus } from "./enumeration/order-status";
+import { OrderStatus } from "./enum/order-status";
 import { OrderItem } from "./order-item.entity";
 
 /**

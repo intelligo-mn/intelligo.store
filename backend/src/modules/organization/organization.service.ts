@@ -1,9 +1,9 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { OrganizationDTO } from '../domain/dto/organization.dto';
-import { OrganizationMapper } from '../service/mapper/organization.mapper';
-import { OrganizationRepository } from '../modules/organization/organization.repository';
+import { OrganizationDTO } from '../../domain/dto/organization.dto';
+import { OrganizationMapper } from './organization.mapper';
+import { OrganizationRepository } from './organization.repository';
 
 const relationshipNames = [];
 relationshipNames.push('distributeType');

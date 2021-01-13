@@ -4,7 +4,7 @@ import { IsNotEmpty, MinLength, MaxLength, Length, Min, Max, Matches } from 'cla
 import { BaseDTO } from './base.dto';
 
 import { ProductDTO } from './product.dto';
-import { OrderPackStatus } from '../enumeration/order-pack-status';
+import { OrderPackStatus } from '../enum/order-pack-status';
 
 /**
  * A OrderPack DTO object.

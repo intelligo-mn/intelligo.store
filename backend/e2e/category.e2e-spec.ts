@@ -5,7 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
 import { CategoryDTO } from '../src/domain/dto/category.dto';
-import { CategoryService } from '../src/service/category.service';
+import { CategoryService } from '../src/modules/category/category.service';
 
 describe('Category Controller', () => {
   let app: INestApplication;

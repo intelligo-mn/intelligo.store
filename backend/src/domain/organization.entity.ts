@@ -4,8 +4,8 @@ import { BaseEntity } from "./base/base.entity";
 import { Category } from "./category.entity";
 import { Contact } from "./contact.entity";
 import { Customer } from "./customer.entity";
-import { OrganizationStatus } from "./enumeration/organization-status";
-import { OrganizationType } from "./enumeration/organization-type";
+import { OrganizationStatus } from "./enum/organization-status";
+import { OrganizationType } from "./enum/organization-type";
 
 /**
  * A Organization.
