@@ -1,15 +1,15 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AuthModule } from "./module/auth.module";
+import { AuthModule } from "./modules/identity/auth.module";
 import { ormconfig } from "./orm.config";
 import { config } from "./config";
 import { ServeStaticModule } from "@nestjs/serve-static";
-import { CategoryModule } from "./module/category.module";
-import { UnitModule } from "./module/unit.module";
-import { ProductModule } from "./module/product.module";
-import { OrganizationModule } from "./module/organization.module";
-import { OrderModule } from "./module/order.module";
-import { OrderPackModule } from "./module/order-pack.module";
+import { CategoryModule } from "./modules/category/category.module";
+import { UnitModule } from "./modules/unit/unit.module";
+import { ProductModule } from "./modules/product/product.module";
+import { OrganizationModule } from "./modules/organization/organization.module";
+import { OrderModule } from "./modules/order/order.module";
+import { OrderPackModule } from "./modules/order-pack/order-pack.module";
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormconfig),
