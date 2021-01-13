@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { CategoryDTO } from '../src/service/dto/category.dto';
+import { CategoryDTO } from '../src/domain/dto/category.dto';
 import { CategoryService } from '../src/service/category.service';
 
 describe('Category Controller', () => {

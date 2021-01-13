@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { ContactDTO } from '../service/dto/contact.dto';
+import { ContactDTO } from '../domain/dto/contact.dto';
 import { ContactMapper } from '../service/mapper/contact.mapper';
 import { ContactRepository } from '../modules/organization/contact.repository';
 

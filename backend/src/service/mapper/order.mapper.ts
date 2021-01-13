@@ -1,5 +1,5 @@
 import { Order } from '../../domain/order.entity';
-import { OrderDTO } from '../dto/order.dto';
+import { OrderDTO } from '../../domain/dto/order.dto';
 
 /**
  * A Order mapper object.

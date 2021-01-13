@@ -1,5 +1,5 @@
 import { Unit } from '../../domain/unit.entity';
-import { UnitDTO } from '../dto/unit.dto';
+import { UnitDTO } from '../../domain/dto/unit.dto';
 
 /**
  * A Unit mapper object.

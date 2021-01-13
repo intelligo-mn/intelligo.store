@@ -1,5 +1,5 @@
 import { Product } from '../../domain/product.entity';
-import { ProductDTO } from '../dto/product.dto';
+import { ProductDTO } from '../../domain/dto/product.dto';
 
 /**
  * A Product mapper object.

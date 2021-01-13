@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { UnitDTO } from '../service/dto/unit.dto';
+import { UnitDTO } from '../domain/dto/unit.dto';
 import { UnitMapper } from '../service/mapper/unit.mapper';
 import { UnitRepository } from '../modules/unit/unit.repository';
 

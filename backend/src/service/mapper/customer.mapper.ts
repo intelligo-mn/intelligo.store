@@ -1,5 +1,5 @@
 import { Customer } from '../../domain/customer.entity';
-import { CustomerDTO } from '../dto/customer.dto';
+import { CustomerDTO } from '../../domain/dto/customer.dto';
 
 /**
  * A Customer mapper object.

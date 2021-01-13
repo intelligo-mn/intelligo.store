@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { ContactDTO } from '../src/service/dto/contact.dto';
+import { ContactDTO } from '../src/domain/dto/contact.dto';
 import { ContactService } from '../src/service/contact.service';
 
 describe('Contact Controller', () => {

@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { CategoryDTO } from '../service/dto/category.dto';
+import { CategoryDTO } from '../domain/dto/category.dto';
 import { CategoryMapper } from '../service/mapper/category.mapper';
 import { CategoryRepository } from '../modules/category/category.repository';
 
