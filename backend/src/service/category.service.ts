@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
 import { CategoryDTO } from '../service/dto/category.dto';
 import { CategoryMapper } from '../service/mapper/category.mapper';
-import { CategoryRepository } from '../repository/category.repository';
+import { CategoryRepository } from '../modules/category/category.repository';
 
 const relationshipNames = [];
 
