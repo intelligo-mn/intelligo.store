@@ -17,18 +17,15 @@ export const PRODUCT_ROUTES: RouteInfo[] = [
 ];
 
 export const ORDER_ROUTES: RouteInfo[] = [
-  { path: '/order', title: 'Захиалга', icon: 'ni-delivery-fast text-red', class: '' },
-  { path: '/order-pack', title: 'Захиалгын багц', icon: 'ni-basket text-info', class: '' },
+  { path: '/order', title: 'Захиалга', icon: 'ni-delivery-fast text-red', class: '' }
 ];
 
 export const USER_ROUTES: RouteInfo[] = [
   { path: '/organization', title: 'Байгууллага', icon: 'ni-building text-pink', class: '' },
   { path: '/user', title: 'Хэрэглэгч', icon: 'ni-single-02 text-yellow', class: '' },
-  { path: '/report', title: 'Тайлан', icon: 'ni-chart-pie-35 text-red', class: '' },
 ];
 
 export const OTHER_ROUTES: RouteInfo[] = [
-  { path: '/settings', title: 'Тохиргоо', icon: 'ni-settings-gear-65 text-primary', class: '' },
   { path: '/api/v1/docs', title: 'API Documentation', icon: 'ni ni-spaceship text-primary', class: '' },
 ];
 
