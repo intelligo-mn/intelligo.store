@@ -4,7 +4,7 @@ import { Request } from 'express';
 import { UnitDTO } from '../../service/dto/unit.dto';
 import { UnitService } from '../../service/unit.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
-import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
+import { AuthGuard, Roles, RolesGuard, RoleType } from '../../core';
 import { HeaderUtil } from '../../core/header-util';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 
