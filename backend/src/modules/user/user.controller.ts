@@ -6,7 +6,7 @@ import { UserDTO } from '../../domain/dto/user.dto';
 import { HeaderUtil } from '../../core/header-util';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
-import { UserService } from '../../service/user.service';
+import { UserService } from './user.service';
 
 @Controller('api/users')
 @UseGuards(AuthGuard, RolesGuard)

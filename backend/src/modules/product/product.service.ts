@@ -1,9 +1,9 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { ProductDTO } from '../domain/dto/product.dto';
-import { ProductMapper } from '../service/mapper/product.mapper';
-import { ProductRepository } from '../modules/product/product.repository';
+import { ProductDTO } from '../../domain/dto/product.dto';
+import { ProductMapper } from './product.mapper';
+import { ProductRepository } from './product.repository';
 
 const relationshipNames = [];
 relationshipNames.push('category');

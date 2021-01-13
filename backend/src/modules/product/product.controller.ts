@@ -19,7 +19,7 @@ import {
 } from "@nestjs/swagger";
 import { Request } from "express";
 import { ProductDTO } from "../../domain/dto/product.dto";
-import { ProductService } from "../../service/product.service";
+import { ProductService } from "./product.service";
 import { PageRequest, Page } from "../../domain/base/pagination.entity";
 import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
 import { HeaderUtil } from "../../core/header-util";

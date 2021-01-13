@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
-import { OrganizationStatus } from "../enumeration/organization-status";
-import { OrganizationType } from "../enumeration/organization-type";
+import { OrganizationStatus } from "../enum/organization-status";
+import { OrganizationType } from "../enum/organization-type";
 import { BaseDTO } from "./base.dto";
 import { CategoryDTO } from "./category.dto";
 import { ContactDTO } from "./contact.dto";

@@ -1,9 +1,9 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { OrderPackDTO } from '../domain/dto/order-pack.dto';
-import { OrderPackMapper } from '../service/mapper/order-pack.mapper';
-import { OrderPackRepository } from '../modules/order-pack/order-pack.repository';
+import { OrderPackDTO } from '../../domain/dto/order-pack.dto';
+import { OrderPackMapper } from './order-pack.mapper';
+import { OrderPackRepository } from './order-pack.repository';
 
 const relationshipNames = [];
 relationshipNames.push('products');

@@ -5,7 +5,7 @@ import { ExecutionContext, INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
 import { UserDTO } from '../src/domain/dto/user.dto';
-import { UserService } from '../src/service/user.service';
+import { UserService } from '../src/modules/user/user.service';
 import { PasswordChangeDTO } from '../src/domain/dto/password-change.dto';
 
 describe('Account', () => {

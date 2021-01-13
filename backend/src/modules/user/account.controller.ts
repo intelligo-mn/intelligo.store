@@ -5,7 +5,7 @@ import { PasswordChangeDTO } from '../../domain/dto/password-change.dto';
 import { UserDTO } from '../../domain/dto/user.dto';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../identity/auth.service';
 
 @Controller('api')
 @UseInterceptors(LoggingInterceptor)

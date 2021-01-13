@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, 
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UnitDTO } from '../../domain/dto/unit.dto';
-import { UnitService } from '../../service/unit.service';
+import { UnitService } from './unit.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../core';
 import { HeaderUtil } from '../../core/header-util';

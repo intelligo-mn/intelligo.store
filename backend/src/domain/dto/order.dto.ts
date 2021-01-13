@@ -13,7 +13,7 @@ import { BaseDTO } from "./base.dto";
 
 import { OrderItemDTO } from "./order-item.dto";
 import { CustomerDTO } from "./customer.dto";
-import { OrderStatus } from "../enumeration/order-status";
+import { OrderStatus } from "../enum/order-status";
 
 /**
  * A Order DTO object.
