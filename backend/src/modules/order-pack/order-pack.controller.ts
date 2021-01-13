@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import { OrderPackDTO } from '../../service/dto/order-pack.dto';
+import { OrderPackDTO } from '../../domain/dto/order-pack.dto';
 import { OrderPackService } from '../../service/order-pack.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../core';

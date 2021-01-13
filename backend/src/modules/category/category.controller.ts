@@ -1,33 +1,33 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import { OrderDTO } from '../../service/dto/order.dto';
-import { OrderService } from '../../service/order.service';
+import { CategoryDTO } from '../../domain/dto/category.dto';
+import { CategoryService } from '../../service/category.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../core';
 import { HeaderUtil } from '../../core/header-util';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 
-@Controller('api/orders')
+@Controller('api/categories')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('orders')
-export class OrderController {
-  logger = new Logger('OrderController');
+@ApiTags('Categories')
+export class CategoryController {
+  logger = new Logger('CategoryController');
 
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly categoryService: CategoryService) {}
 
   @Get('/')
   @Roles(RoleType.USER)
   @ApiResponse({
     status: 200,
     description: 'List all records',
-    type: OrderDTO
+    type: CategoryDTO
   })
-  async getAll(@Req() req: Request): Promise<OrderDTO[]> {
+  async getAll(@Req() req: Request): Promise<CategoryDTO[]> {
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
-    const [results, count] = await this.orderService.findAndCount({
+    const [results, count] = await this.categoryService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,
       order: pageRequest.sort.asOrder()
@@ -41,49 +41,49 @@ export class OrderController {
   @ApiResponse({
     status: 200,
     description: 'The found record',
-    type: OrderDTO
+    type: CategoryDTO
   })
-  async getOne(@Param('id') id: string): Promise<OrderDTO> {
-    return await this.orderService.findById(id);
+  async getOne(@Param('id') id: string): Promise<CategoryDTO> {
+    return await this.categoryService.findById(id);
   }
 
   @PostMethod('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Create order' })
+  @ApiOperation({ summary: 'Create category' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: OrderDTO
+    type: CategoryDTO
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async post(@Req() req: Request, @Body() orderDTO: OrderDTO): Promise<OrderDTO> {
-    const created = await this.orderService.save(orderDTO);
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Order', created.id);
+  async post(@Req() req: Request, @Body() categoryDTO: CategoryDTO): Promise<CategoryDTO> {
+    const created = await this.categoryService.save(categoryDTO);
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Category', created.id);
     return created;
   }
 
   @Put('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Update order' })
+  @ApiOperation({ summary: 'Update category' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
-    type: OrderDTO
+    type: CategoryDTO
   })
-  async put(@Req() req: Request, @Body() orderDTO: OrderDTO): Promise<OrderDTO> {
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Order', orderDTO.id);
-    return await this.orderService.update(orderDTO);
+  async put(@Req() req: Request, @Body() categoryDTO: CategoryDTO): Promise<CategoryDTO> {
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Category', categoryDTO.id);
+    return await this.categoryService.update(categoryDTO);
   }
 
   @Delete('/:id')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Delete order' })
+  @ApiOperation({ summary: 'Delete category' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.'
   })
   async deleteById(@Req() req: Request, @Param('id') id: string): Promise<void> {
-    HeaderUtil.addEntityDeletedHeaders(req.res, 'Order', id);
-    return await this.orderService.deleteById(id);
+    HeaderUtil.addEntityDeletedHeaders(req.res, 'Category', id);
+    return await this.categoryService.deleteById(id);
   }
 }

@@ -1,33 +1,33 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import { UnitDTO } from '../../service/dto/unit.dto';
-import { UnitService } from '../../service/unit.service';
+import { OrderDTO } from '../../domain/dto/order.dto';
+import { OrderService } from '../../service/order.service';
 import { PageRequest, Page } from '../../domain/base/pagination.entity';
 import { AuthGuard, Roles, RolesGuard, RoleType } from '../../core';
 import { HeaderUtil } from '../../core/header-util';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 
-@Controller('api/units')
+@Controller('api/orders')
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor)
 @ApiBearerAuth()
-@ApiTags('units')
-export class UnitController {
-  logger = new Logger('UnitController');
+@ApiTags('orders')
+export class OrderController {
+  logger = new Logger('OrderController');
 
-  constructor(private readonly unitService: UnitService) {}
+  constructor(private readonly orderService: OrderService) {}
 
   @Get('/')
   @Roles(RoleType.USER)
   @ApiResponse({
     status: 200,
     description: 'List all records',
-    type: UnitDTO
+    type: OrderDTO
   })
-  async getAll(@Req() req: Request): Promise<UnitDTO[]> {
+  async getAll(@Req() req: Request): Promise<OrderDTO[]> {
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
-    const [results, count] = await this.unitService.findAndCount({
+    const [results, count] = await this.orderService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
       take: +pageRequest.size,
       order: pageRequest.sort.asOrder()
@@ -41,49 +41,49 @@ export class UnitController {
   @ApiResponse({
     status: 200,
     description: 'The found record',
-    type: UnitDTO
+    type: OrderDTO
   })
-  async getOne(@Param('id') id: string): Promise<UnitDTO> {
-    return await this.unitService.findById(id);
+  async getOne(@Param('id') id: string): Promise<OrderDTO> {
+    return await this.orderService.findById(id);
   }
 
   @PostMethod('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Create unit' })
+  @ApiOperation({ summary: 'Create order' })
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: UnitDTO
+    type: OrderDTO
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async post(@Req() req: Request, @Body() unitDTO: UnitDTO): Promise<UnitDTO> {
-    const created = await this.unitService.save(unitDTO);
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Unit', created.id);
+  async post(@Req() req: Request, @Body() orderDTO: OrderDTO): Promise<OrderDTO> {
+    const created = await this.orderService.save(orderDTO);
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Order', created.id);
     return created;
   }
 
   @Put('/')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Update unit' })
+  @ApiOperation({ summary: 'Update order' })
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
-    type: UnitDTO
+    type: OrderDTO
   })
-  async put(@Req() req: Request, @Body() unitDTO: UnitDTO): Promise<UnitDTO> {
-    HeaderUtil.addEntityCreatedHeaders(req.res, 'Unit', unitDTO.id);
-    return await this.unitService.update(unitDTO);
+  async put(@Req() req: Request, @Body() orderDTO: OrderDTO): Promise<OrderDTO> {
+    HeaderUtil.addEntityCreatedHeaders(req.res, 'Order', orderDTO.id);
+    return await this.orderService.update(orderDTO);
   }
 
   @Delete('/:id')
   @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: 'Delete unit' })
+  @ApiOperation({ summary: 'Delete order' })
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.'
   })
   async deleteById(@Req() req: Request, @Param('id') id: string): Promise<void> {
-    HeaderUtil.addEntityDeletedHeaders(req.res, 'Unit', id);
-    return await this.unitService.deleteById(id);
+    HeaderUtil.addEntityDeletedHeaders(req.res, 'Order', id);
+    return await this.orderService.deleteById(id);
   }
 }
