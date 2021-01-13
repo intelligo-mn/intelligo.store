@@ -6,7 +6,11 @@
   },
   "scripts": {
     "backend": "cd backend && npm run start:dev",
-    "frontend": "cd frontend && npm run start"
+    "frontend": "cd frontend && npm run start",
+    "dashboard": "cd frontend && npm run start",
+    "backend:build": "cd backend && npm run build",
+    "frontend:build": "cd frontend && npm run build",
+    "dashboard:build": "cd frontend && npm run build"
   },
   "dependencies": {
     "node": "^15.0.1"
