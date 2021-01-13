@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { UnitDTO } from '../src/service/dto/unit.dto';
+import { UnitDTO } from '../src/domain/dto/unit.dto';
 import { UnitService } from '../src/service/unit.service';
 
 describe('Unit Controller', () => {

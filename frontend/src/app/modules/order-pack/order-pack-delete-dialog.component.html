@@ -1,6 +1,6 @@
 <form *ngIf="orderPack" name="deleteForm" (ngSubmit)="confirmDelete(orderPack?.id!)">
     <div class="modal-header">
-        <h4 class="modal-title">Confirm delete operation</h4>
+        <h4 class="modal-title">Устгах уу?</h4>
 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="cancel()">&times;</button>
@@ -9,7 +9,7 @@
     <div class="modal-body">
         
 
-        <p id="delete-orderPack-heading">Are you sure you want to delete this Order Pack?</p>
+        <p id="delete-orderPack-heading">Энэхүү мэдээллийг утсгахдаа итгэлтэй байна уу?</p>
     </div>
 
     <div class="modal-footer">

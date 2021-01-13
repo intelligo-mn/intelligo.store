@@ -1,5 +1,5 @@
 import { Organization } from '../../domain/organization.entity';
-import { OrganizationDTO } from '../dto/organization.dto';
+import { OrganizationDTO } from '../../domain/dto/organization.dto';
 
 /**
  * A Organization mapper object.

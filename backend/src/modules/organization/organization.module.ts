@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OrganizationController } from '../../web/rest/organization.controller';
+import { OrganizationController } from './organization.controller';
 import { OrganizationRepository } from './organization.repository';
 import { OrganizationService } from '../../service/organization.service';
 import { ContactService } from '../../service/contact.service';

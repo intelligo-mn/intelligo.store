@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { ProductDTO } from '../service/dto/product.dto';
+import { ProductDTO } from '../domain/dto/product.dto';
 import { ProductMapper } from '../service/mapper/product.mapper';
 import { ProductRepository } from '../modules/product/product.repository';
 

@@ -4,13 +4,13 @@ import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '../../core/passport.jwt.strategy';
-import { UserJWTController } from '../../web/rest/user.jwt.controller';
+import { UserJWTController } from './user.jwt.controller';
 import { config } from '../../config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthorityRepository } from '../user/authority.repository';
 
-import { AuthController } from '../../web/rest/auth.controller';
-import { AccountController } from '../../web/rest/account.controller';
+import { AuthController } from './auth.controller';
+import { AccountController } from '../user/account.controller';
 
 @Module({
     imports: [

@@ -1,5 +1,5 @@
 import { User } from '../../domain/user.entity';
-import { UserDTO } from '../dto/user.dto';
+import { UserDTO } from '../../domain/dto/user.dto';
 
 /**
  * An User mapper object.

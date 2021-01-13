@@ -1,5 +1,5 @@
 import { OrderPack } from '../../domain/order-pack.entity';
-import { OrderPackDTO } from '../dto/order-pack.dto';
+import { OrderPackDTO } from '../../domain/dto/order-pack.dto';
 
 /**
  * A OrderPack mapper object.

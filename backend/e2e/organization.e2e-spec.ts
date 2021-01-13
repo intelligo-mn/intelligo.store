@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { OrganizationDTO } from '../src/service/dto/organization.dto';
+import { OrganizationDTO } from '../src/domain/dto/organization.dto';
 import { OrganizationService } from '../src/service/organization.service';
 
 describe('Organization Controller', () => {

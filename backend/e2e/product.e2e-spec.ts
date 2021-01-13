@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { ProductDTO } from '../src/service/dto/product.dto';
+import { ProductDTO } from '../src/domain/dto/product.dto';
 import { ProductService } from '../src/service/product.service';
 
 describe('Product Controller', () => {

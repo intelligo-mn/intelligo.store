@@ -1,5 +1,5 @@
 import { Category } from '../../domain/category.entity';
-import { CategoryDTO } from '../dto/category.dto';
+import { CategoryDTO } from '../../domain/dto/category.dto';
 
 /**
  * A Category mapper object.

@@ -4,9 +4,9 @@ import { AppModule } from '../src/app.module';
 import { ExecutionContext, INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { UserDTO } from '../src/service/dto/user.dto';
+import { UserDTO } from '../src/domain/dto/user.dto';
 import { UserService } from '../src/service/user.service';
-import { PasswordChangeDTO } from '../src/service/dto/password-change.dto';
+import { PasswordChangeDTO } from '../src/domain/dto/password-change.dto';
 
 describe('Account', () => {
     let app: INestApplication;

@@ -4,7 +4,7 @@ import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '../src/core/guards/auth.guard';
 import { RolesGuard } from '../src/core/guards/roles.guard';
-import { OrderDTO } from '../src/service/dto/order.dto';
+import { OrderDTO } from '../src/domain/dto/order.dto';
 import { OrderService } from '../src/service/order.service';
 
 describe('Order Controller', () => {

@@ -1,5 +1,5 @@
 import { Contact } from '../../domain/contact.entity';
-import { ContactDTO } from '../dto/contact.dto';
+import { ContactDTO } from '../../domain/dto/contact.dto';
 
 /**
  * A Contact mapper object.
