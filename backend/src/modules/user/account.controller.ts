@@ -1,8 +1,8 @@
 import { Body, Param, Post, Res, UseGuards, Controller, Get, Logger, Req, UseInterceptors } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { AuthGuard, Roles, RoleType, RolesGuard } from '../../core';
-import { PasswordChangeDTO } from '../../service/dto/password-change.dto';
-import { UserDTO } from '../../service/dto/user.dto';
+import { PasswordChangeDTO } from '../../domain/dto/password-change.dto';
+import { UserDTO } from '../../domain/dto/user.dto';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { AuthService } from '../../service/auth.service';

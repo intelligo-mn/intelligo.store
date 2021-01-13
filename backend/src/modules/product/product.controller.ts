@@ -18,7 +18,7 @@ import {
   ApiOperation,
 } from "@nestjs/swagger";
 import { Request } from "express";
-import { ProductDTO } from "../../service/dto/product.dto";
+import { ProductDTO } from "../../domain/dto/product.dto";
 import { ProductService } from "../../service/product.service";
 import { PageRequest, Page } from "../../domain/base/pagination.entity";
 import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
