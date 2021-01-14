@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -11,15 +11,19 @@ import { IOrderPack, OrderPack } from 'src/app/shared/model/order-pack.model';
 import { OrderPackService } from './order-pack.service';
 import { IProduct } from 'src/app/shared/model/product.model';
 import { ProductService } from 'src/app/modules/product/product.service';
+import { CategoryService } from '../category/category.service';
+import { ICategory } from 'src/app/shared/model/category.model';
 
 @Component({
   selector: 'order-pack-update',
   templateUrl: './order-pack-update.component.html',
+  styleUrls: ['./order-pack.component.scss']
 })
 export class OrderPackUpdateComponent implements OnInit {
   isSaving = false;
   products: IProduct[] = [];
-
+  categories: ICategory[] = [];
+  active: any;
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
@@ -32,6 +36,7 @@ export class OrderPackUpdateComponent implements OnInit {
   constructor(
     protected orderPackService: OrderPackService,
     protected productService: ProductService,
+    protected categoryService: CategoryService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -46,6 +51,7 @@ export class OrderPackUpdateComponent implements OnInit {
 
       this.updateForm(orderPack);
 
+      this.categoryService.query().subscribe((res: HttpResponse<IProduct[]>) => (this.categories = res.body || []));
       this.productService.query().subscribe((res: HttpResponse<IProduct[]>) => (this.products = res.body || []));
     });
   }
@@ -57,12 +63,41 @@ export class OrderPackUpdateComponent implements OnInit {
       startDate: orderPack.startDate ? orderPack.startDate.format(DATE_TIME_FORMAT) : null,
       endDate: orderPack.endDate ? orderPack.endDate.format(DATE_TIME_FORMAT) : null,
       status: orderPack.status,
-      products: orderPack.products,
+      products: this.fb.array([this.initItemRows()]),
     });
   }
 
+  initItemRows(): FormGroup {
+    return this.fb.group({
+      id: [null],
+      name: [null, [Validators.required]],
+      active: [false, [Validators.required]],
+      comment: [null, [Validators.required]],
+    });
+  }
+
+  get formArray(): FormArray {
+    return this.editForm.get('products') as FormArray;
+  }
+
+
   previousState(): void {
     window.history.back();
+  }
+
+  getProduct(categoryId: number) {
+    this.productService
+      .query({
+        category: categoryId,
+      })
+      .subscribe((res: HttpResponse<IProduct[]>) => {
+        this.categories.forEach(item=>{
+          if(item.id == categoryId){
+            item.products = res.body  || [];
+            
+          }
+        })
+      });
   }
 
   save(): void {

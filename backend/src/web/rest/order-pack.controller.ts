@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, Post as PostMethod, Put, UseGuards, Req, UseInterceptors, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
 import { OrderPackDTO } from '../../service/dto/order-pack.dto';
@@ -26,6 +26,25 @@ export class OrderPackController {
     type: OrderPackDTO
   })
   async getAll(@Req() req: Request): Promise<OrderPackDTO[]> {
+    const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+    const [results, count] = await this.orderPackService.findAndCount({
+      skip: +pageRequest.page * pageRequest.size,
+      take: +pageRequest.size,
+      order: pageRequest.sort.asOrder()
+    });
+    HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+    return results;
+  }
+
+  
+  @Get('/category/:id')
+  @Roles(RoleType.USER)
+  @ApiResponse({
+    status: 200,
+    description: 'List records by category',
+    type: OrderPackDTO
+  })
+  async getQuery(@Req() req: Request): Promise<OrderPackDTO[]> {
     const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
     const [results, count] = await this.orderPackService.findAndCount({
       skip: +pageRequest.page * pageRequest.size,
