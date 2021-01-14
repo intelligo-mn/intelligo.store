@@ -74,6 +74,7 @@ import { SharedModule } from './shared/shared.module';
       multi: true,
     },
   ],
+  exports: [SharedModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

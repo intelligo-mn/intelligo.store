@@ -28,6 +28,7 @@ export class ProductService {
 
   async findAndCount(options: FindManyOptions<ProductDTO>): Promise<[ProductDTO[], number]> {
     options.relations = relationshipNames;
+    this.logger.debug(options)
     const resultList = await this.productRepository.findAndCount(options);
     const productDTO: ProductDTO[] = [];
     if (resultList && resultList[0]) {
