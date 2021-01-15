@@ -25,8 +25,8 @@
 ## Dependencies суулгах
 
 ```bash
-$ cd backend && npm i
-$ cd frontend && npm i 
+$ npm i
+$ lerna bootsrap 
 ```
 ## Backend service-ууд ажиллуулах
 
@@ -59,12 +59,12 @@ if(process.env.NODE_ENV==='dev'){
 ### Ажиллуулах
 
 ```bash
-$ npm run start:dev
+$ npm run backend
 ```
 
 ## Frontend ажиллуулах
 
-`cd frontend && npm run start`
+`npm run frontend`
 
 ## Алдаа мэдэгдэх
 
