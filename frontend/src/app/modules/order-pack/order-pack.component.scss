@@ -1,6 +1,11 @@
+.nav-tabs {
+  background-color: #f7f7f7c2;
+}
+
 .nav-item {
   width: 100%;
   .active {
+    background-color: white;
     border-right: none;
     border-radius: 0;
   }
@@ -8,8 +13,6 @@
 
 .nav-link {
   padding: 10px 20px;
-  border: 1px solid #dee2e6;
-  border-bottom: none;
 }
 
 .dynamic-table div tr {
