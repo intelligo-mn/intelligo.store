@@ -3,13 +3,15 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventManager } from '@devmn/event-manager';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { IOrder } from 'src/app/shared/model/order.model';
 
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { OrderService } from './order.service';
 import { OrderDeleteDialogComponent } from './order-delete-dialog.component';
+import { OrderPackSelectComponent } from './order-pack-select.component';
+import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 
 @Component({
   selector: 'order',
@@ -77,6 +79,13 @@ export class OrderComponent implements OnInit, OnDestroy {
   delete(order: IOrder): void {
     const modalRef = this.modalService.open(OrderDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.order = order;
+  }
+  add(): void {
+    const modalRef: NgbModalRef = this.modalService.open(OrderPackSelectComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.result.then((res:IOrderPack)=>{
+      debugger;
+      this.router.navigate(['/order/create/', res.id])
+    })
   }
 
   sort(): string[] {

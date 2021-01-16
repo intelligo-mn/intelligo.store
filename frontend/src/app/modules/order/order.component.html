@@ -10,7 +10,7 @@
             </div>
             <div class="col text-right">
               <!-- <button class="btn btn-primary" [routerLink]="['/order/new']"> -->
-              <button class="btn btn-primary" [routerLink]="['/order']">
+              <button class="btn btn-primary" (click)='add()'>
                 <span>
                   Нэмэх
                 </span>
@@ -49,7 +49,7 @@
                   </td>
                   <td>
                     <div *ngIf="order.manager">
-                      <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.name }}</a>
+                      <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.login }}</a>
                     </div>
                   </td>
                   <td class="text-right">
