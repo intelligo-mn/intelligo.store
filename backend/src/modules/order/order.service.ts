@@ -57,4 +57,8 @@ export class OrderService {
     }
     return;
   }
+
+  async getCount(): Promise<number> {
+    return await this.orderRepository.count();
+  }
 }

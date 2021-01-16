@@ -1,29 +1,17 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
   Logger,
-  Param,
-  Post as PostMethod,
-  Put,
-  UseGuards,
   Req,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
-import {
-  ApiBearerAuth,
-  ApiTags,
-  ApiResponse,
-  ApiOperation,
-} from "@nestjs/swagger";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Request } from "express";
-import { StatisticDTO } from "../../domain/dto/Dashboard.dto";
-import { DashboardService } from "./dashboard.service";
-import { PageRequest, Page } from "../../domain/base/pagination.entity";
 import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
-import { HeaderUtil } from "../../core/header-util";
 import { LoggingInterceptor } from "../../core/interceptors/logging.interceptor";
+import { StatisticDTO } from "../../domain/dto/dashboard.dto";
+import { DashboardService } from "./dashboard.service";
 
 @Controller("api/dashboard")
 @UseGuards(AuthGuard, RolesGuard)
