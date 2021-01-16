@@ -34,13 +34,9 @@ export class OrganizationUpdateComponent implements OnInit {
     name: [null, [Validators.required]],
     status: [null, [Validators.required]],
     type: [null, [Validators.required]],
-    contact: this.fb.group({
-      phone: [],
-      email: [],
-      address: [],
-      lat: [],
-      lon: [],
-    }),
+    phone: [],
+    email: [],
+    address: [],
     distributeType: [],
     manager: [],
   });
@@ -83,14 +79,11 @@ export class OrganizationUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const organization = this.editForm.value();
-    debugger;
-    if (organization?.id !== undefined || organization?.id !== null) {
-      organization.id = undefined;
-      debugger;
+    const organization = this.editForm?.value;
+    if (organization?.id) {
       this.subscribeToSaveResponse(this.organizationService.update(organization));
     } else {
-      debugger;
+      organization.id = undefined;
       this.subscribeToSaveResponse(this.organizationService.create(organization));
     }
   }
