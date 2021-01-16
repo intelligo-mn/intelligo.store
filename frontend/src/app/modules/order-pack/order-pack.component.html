@@ -27,31 +27,33 @@
             <table class="table table-striped" aria-describedby="page-heading">
               <thead>
                 <tr>
-                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
-                  <th scope="col" jhiSortBy="startDate"><span>Эхлэх огноо</span></th>
-                  <th scope="col" jhiSortBy="endDate"><span>Дуусах огноо</span></th>
-                  <th scope="col" jhiSortBy="status"><span>Төлөв</span></th>
+                  <th scope="col"><span>Нэр</span></th>
+                  <th scope="col"><span>Эхлэх огноо</span></th>
+                  <th scope="col"><span>Дуусах огноо</span></th>
+                  <th scope="col"><span>Үүсгэгч</span></th>
+                  <th scope="col"><span>Төлөв</span></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let orderPack of orderPacks; trackBy: trackId">
                   <td>{{ orderPack.name }}</td>
-                  <td>{{ orderPack.startDate | date: 'medium' }}</td>
-                  <td>{{ orderPack.endDate | date: 'medium' }}</td>
+                  <td>{{ orderPack.startDate }}</td>
+                  <td>{{ orderPack.endDate }}</td>
+                  <td>{{ orderPack.createdBy }}</td>
                   <td>{{ orderPack.status }}</td>
                   <td class="text-right">
                     <div class="btn-group">
                       <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'view']" class="btn btn-info btn-sm">
-                        <span class="d-none d-md-inline">View</span>
+                        <span class="d-none d-md-inline">Харах</span>
                       </button>
 
                       <button type="submit" [routerLink]="['/order-pack', orderPack.id, 'edit']" class="btn btn-primary btn-sm">
-                        <span class="d-none d-md-inline">Edit</span>
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button type="submit" (click)="delete(orderPack)" class="btn btn-danger btn-sm">
-                        <span class="d-none d-md-inline">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>

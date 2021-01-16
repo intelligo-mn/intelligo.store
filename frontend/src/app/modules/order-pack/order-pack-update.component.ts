@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'src/app/shared/constants/input.constants';
-
-import { IOrderPack, IOrderPackItem, OrderPack } from 'src/app/shared/model/order-pack.model';
-import { OrderPackService } from './order-pack.service';
-import { IProduct } from 'src/app/shared/model/product.model';
+import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/modules/product/product.service';
-import { CategoryService } from '../category/category.service';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'src/app/shared/constants/input.constants';
 import { Category, ICategory } from 'src/app/shared/model/category.model';
+import { IOrderPack } from 'src/app/shared/model/order-pack.model';
+import { IProduct } from 'src/app/shared/model/product.model';
+import { CategoryService } from '../category/category.service';
+import { OrderPackService } from './order-pack.service';
 
 @Component({
   selector: 'order-pack-update',
@@ -43,6 +42,7 @@ export class OrderPackUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ orderPack }) => {
+      
       if (!orderPack.id) {
         const today = moment().startOf('day');
         orderPack.startDate = today;
@@ -54,6 +54,9 @@ export class OrderPackUpdateComponent implements OnInit {
         this.productService.query().subscribe(
           (res: HttpResponse<IProduct[]>) => {
             this.products = res.body || [];
+            if (orderPack.id) {
+              this.patchValues(orderPack);
+            }
             this.categories.unshift({
               ...new Category(),
               id: 0,
@@ -71,15 +74,15 @@ export class OrderPackUpdateComponent implements OnInit {
                   const pItem = this.fb.group({
                     id: [prod.id],
                     name: [prod.name],
-                    active: [false, [Validators.required]],
-                    comment: [null, [Validators.required]],
+                    active: [prod.active],
+                    comment: [prod.comment],
                   });
                   prodControls.push(pItem);
                 });
                 this.formArray.push(
                   this.fb.group({
                     id: [item.id],
-                    name: [item.name, [Validators.required]],
+                    name: [item.name],
                     products: new FormArray(prodControls),
                   })
                 );
@@ -91,14 +94,21 @@ export class OrderPackUpdateComponent implements OnInit {
     });
   }
 
-  updateForm(orderPack: IOrderPack): void {
+  patchValues(orderPack: IOrderPack): void {
     this.editForm.patchValue({
       id: orderPack.id,
       name: orderPack.name,
-      startDate: orderPack.startDate ? orderPack.startDate.format(DATE_TIME_FORMAT) : null,
-      endDate: orderPack.endDate ? orderPack.endDate.format(DATE_TIME_FORMAT) : null,
+      startDate: orderPack.startDate ? orderPack.startDate.format(DATE_FORMAT) : null,
+      endDate: orderPack.endDate ? orderPack.endDate.format(DATE_FORMAT) : null,
       status: orderPack.status,
-      categories: this.fb.array([]),
+    });
+    // TODO improve performance
+    orderPack.products.forEach(product => {
+      this.products.forEach(item => {
+        if (String(item.id) == product.id) {
+          item.active = true;
+        }
+      });
     });
   }
 
@@ -145,7 +155,7 @@ export class OrderPackUpdateComponent implements OnInit {
     orderPack.products = orderPack.products.filter(
       (thing, index, self) => index === self.findIndex(t => t.id === thing.id && t.active === true)
     );
-    
+
     if (orderPack.id) {
       orderPack.categories = undefined;
       this.subscribeToSaveResponse(this.orderPackService.update(orderPack));
@@ -155,18 +165,6 @@ export class OrderPackUpdateComponent implements OnInit {
       this.subscribeToSaveResponse(this.orderPackService.create(orderPack));
     }
   }
-
-  // private createFromForm(): IOrderPack {
-  //   return {
-  //     ...new OrderPack(),
-  //     id: this.editForm.get(['id'])!.value,
-  //     name: this.editForm.get(['name'])!.value,
-  //     startDate: this.editForm.get(['startDate'])!.value ? moment(this.editForm.get(['startDate'])!.value, DATE_TIME_FORMAT) : undefined,
-  //     endDate: this.editForm.get(['endDate'])!.value ? moment(this.editForm.get(['endDate'])!.value, DATE_TIME_FORMAT) : undefined,
-  //     status: this.editForm.get(['status'])!.value,
-  //     products: null,
-  //   };
-  // }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrderPack>>): void {
     result.subscribe(

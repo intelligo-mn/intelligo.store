@@ -41,7 +41,7 @@ export class OrderPackService {
     const options = createRequestOption(req);
     return this.http
       .get<IOrderPack[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
