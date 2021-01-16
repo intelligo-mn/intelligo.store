@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import { Customer } from "./customer.entity";
 import { OrderStatus } from "./enum/order-status";
 import { OrderItem } from "./order-item.entity";
+import { User } from "./user.entity";
 
 /**
  * A Order.
@@ -19,6 +19,6 @@ export class Order extends BaseEntity {
   @ManyToOne((type) => OrderItem)
   products: OrderItem;
 
-  @ManyToOne((type) => Customer)
-  manager: Customer;
+  @ManyToOne((type) => User)
+  manager: User;
 }
