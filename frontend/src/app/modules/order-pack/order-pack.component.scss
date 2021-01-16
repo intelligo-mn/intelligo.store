@@ -1,9 +1,37 @@
 .nav-item {
-    width: 100%;
+  width: 100%;
+  .active {
+    border-right: none;
+    border-radius: 0;
+  }
 }
 
 .nav-link {
-    padding: 10px 20px;
-    border: 1px solid #dee2e6;
-    border-bottom: none;
+  padding: 10px 20px;
+  border: 1px solid #dee2e6;
+  border-bottom: none;
+}
+
+.dynamic-table div tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.tab-content {
+  border: 1px solid #e9ecef;
+  margin-top: 0 !important;
+  border-left: none;
+}
+
+.empty-body {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+}
+
+.last-row {
+  width: 428px;
+  padding: 0;
+  padding-top: 12px;
 }
