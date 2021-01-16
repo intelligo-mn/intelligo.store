@@ -1,5 +1,5 @@
 <div class="header bg-gradient-default pb-8 pt-5 pt-md-8"></div>
-<div class="container-fluid">
+<div class="container-fluid list">
   <div class="row mt-5">
     <div class="col-xl-12 mb-5 mb-xl-0">
       <div class="card shadow">
@@ -23,22 +23,20 @@
                   <label class="form-control-label">Багцын нэр</label>
                   <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
                   <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
-                      This field is required.
-                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
                   </div>
                 </div>
 
-                <div class="form-group  col-2">
+                <div class="form-group col-2">
                   <label class="form-control-label">Эхлэх огноо</label>
                   <div class="d-flex">
                     <input
                       id="field_startDate"
-                      type="datetime-local"
+                      type="date"
                       class="form-control"
                       name="startDate"
                       formControlName="startDate"
-                      placeholder="YYYY-MM-DD HH:mm"
+                      placeholder="YYYY-MM-DD"
                     />
                   </div>
                   <div
@@ -53,22 +51,20 @@
                   </div>
                 </div>
 
-                <div class="form-group  col-2">
+                <div class="form-group col-2">
                   <label class="form-control-label">Дуусах огноо</label>
                   <div class="d-flex">
                     <input
                       id="field_endDate"
-                      type="datetime-local"
+                      type="date"
                       class="form-control"
                       name="endDate"
                       formControlName="endDate"
-                      placeholder="YYYY-MM-DD HH:mm"
+                      placeholder="YYYY-MM-DD"
                     />
                   </div>
                   <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('endDate')?.errors?.required">
-                      This field is required.
-                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('endDate')?.errors?.required"> This field is required. </small>
                     <small class="form-text text-danger" [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal">
                       This field should be a date and time.
                     </small>
@@ -82,53 +78,72 @@
                     <option value="INACTIVE">INACTIVE</option>
                   </select>
                   <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required">
-                      This field is required.
-                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label class="form-control-label">Ангилал сонгоно уу</label>
-                  
+
                   <div class="d-flex">
-                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs col-3"  orientation="vertical">
-                      <li *ngFor="let category of categories" [ngbNavItem]="category.id" (click)="getProduct(category.id)">
+                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical" formArrayName="categories">
+                      <li *ngFor="let category of formArray?.controls; let i = index" [ngbNavItem]="category.id">
                         <a ngbNavLink>
-                          {{ category.name }}
+                          {{ category?.value?.name }}
                         </a>
-                        <ng-template ngbNavContent>
+                        <ng-template ngbNavContent [formGroupName]="i">
                           <div class="table-responsive" id="entities">
-                            <table class="table table-striped" aria-describedby="page-heading" formArrayName="products">
+                            <table class="table dynamic-table" aria-describedby="page-heading">
                               <thead>
                                 <tr>
                                   <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
                                   <th scope="col" jhiSortBy="endDate"><span>Боломжтой эсэх</span></th>
                                   <th scope="col" jhiSortBy="status"><span>Тайлбар</span></th>
-                                  <th scope="col"></th>
                                 </tr>
                               </thead>
-                              <tbody>
-                                <tr *ngFor="let orderPack of category.products">
+                              <tbody
+                                *ngFor="let product of formArray?.controls[i]?.get('products').controls; let i = index"
+                                formArrayName="products"
+                              >
+                                <tr [formGroupName]="i">
                                   <td>
-                                    <input hidden formControlName="id"  [value]="orderPack.id" type="text">
-                                    <input hidden formControlName="name" [value]="orderPack.name"  type="text">
-                                    {{ orderPack.name }}</td>
-                                  <td><label class=" custom-toggle mr-1"><input checked="checked" type="checkbox"><span class=" custom-toggle-slider rounded-circle" data-label-off="Үгүй" data-label-on="Тийм"></span></label></td>
-                                  <td> <input
-                                    id="field_endDate"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder=""
-                                  /></td>
+                                    <input hidden formControlName="id" [value]="product.value.name" type="text" />
+                                    <input hidden formControlName="name" [value]="product.value.name" type="text" />
+                                    {{ product.value.name }}
+                                  </td>
+                                  <td>
+                                    <label class="custom-toggle mr-1"
+                                      ><input
+                                        checked="checked"
+                                        type="checkbox"
+                                        formControlName="active"
+                                        [value]="product.value.active" /><span
+                                        class="custom-toggle-slider rounded-circle"
+                                        data-label-off="Үгүй"
+                                        data-label-on="Тийм"
+                                      ></span
+                                    ></label>
+                                  </td>
+                                  <td class="last-row">
+                                    <input *ngIf="!product.value.active"
+                                      id="field_endDate"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder=""
+                                      [value]="product.value.comment"
+                                    />
+                                  </td>
                                 </tr>
+                              </tbody>
+                              <tbody class="empty-body" *ngIf="formArray?.controls[i]?.get('products')?.controls?.length == 0">
+                                Бүтээгдэхүүн байхгүй байна
                               </tbody>
                             </table>
                           </div>
                         </ng-template>
                       </li>
                     </ul>
-                    
+
                     <div [ngbNavOutlet]="nav" class="mt-2 col-9"></div>
                   </div>
                 </div>
@@ -139,7 +154,7 @@
                   <span>Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
                   <span>Save</span>
                 </button>
               </div>

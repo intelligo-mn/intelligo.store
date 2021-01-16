@@ -12,7 +12,8 @@
                 <dd>
                     <span>{{ orderPack.name }}</span>
                 </dd>
-                <dt><span>Start Date</span></dt>
+                <dt><span>Start Date</span>
+                </dt>
                 <dd>
                     <span>{{ orderPack.startDate }}</span>
                 </dd>
@@ -26,9 +27,6 @@
                 </dd>
                 <dt><span>Products</span></dt>
                 <dd>
-                    <div *ngIf="orderPack.products">
-                        <a [routerLink]="['/product', orderPack.products?.id, 'view']">{{ orderPack.products?.id }}</a>
-                    </div>
                 </dd>
             </dl>
 
