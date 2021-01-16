@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title">Захиалгын багц сонгоно уу</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="m-3">
+  <div class="alert alert-warning" id="no-result" *ngIf="orderPacks?.length === 0">
+    <span>Захиалга хоосон байна</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="orderPacks?.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>Багцын нэр</span></th>
+          <th scope="col"><span>Эхлэх огноо</span></th>
+          <th scope="col"><span>Дуусах огноо</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orderPacks; trackBy: trackId" (click)="activeModal.close(order)">
+          <td>
+            {{ order.name }}
+          </td>
+          <td>{{ order.startDate }}</td>
+          <td>{{ order.endDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.close()">
+      <span>Цуцлах</span>
+    </button>
+  </div>
+</div>
+
