@@ -145,11 +145,13 @@ export class OrderPackUpdateComponent implements OnInit {
     orderPack.products = orderPack.products.filter(
       (thing, index, self) => index === self.findIndex(t => t.id === thing.id && t.active === true)
     );
-    debugger;
+    
     if (orderPack.id) {
+      orderPack.categories = undefined;
       this.subscribeToSaveResponse(this.orderPackService.update(orderPack));
     } else {
       orderPack.id = undefined;
+      orderPack.categories = undefined;
       this.subscribeToSaveResponse(this.orderPackService.create(orderPack));
     }
   }
