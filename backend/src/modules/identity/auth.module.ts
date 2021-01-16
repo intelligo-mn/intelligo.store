@@ -7,7 +7,7 @@ import { JwtStrategy } from '../../core/passport.jwt.strategy';
 import { UserJWTController } from './user.jwt.controller';
 import { config } from '../../config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthorityRepository } from '../user/authority.repository';
+import { AuthorityRepository } from './authority.repository';
 
 import { AuthController } from './auth.controller';
 import { AccountController } from '../user/account.controller';

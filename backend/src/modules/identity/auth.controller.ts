@@ -24,7 +24,7 @@ export class AuthController {
     })
     @Roles(RoleType.ADMIN)
     getAuthorities(@Req() req: any): any {
-        const user: any = req.user;
-        return user.authorities;
+        const authorities = this.authService.getAuthorities()
+        return authorities;
     }
 }
