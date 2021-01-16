@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { Category } from "./category.entity";
-import { Customer } from "./customer.entity";
 import { OrganizationStatus } from "./enum/organization-status";
 import { OrganizationType } from "./enum/organization-type";
+import { User } from "./user.entity";
 
 /**
  * A Organization.
@@ -32,6 +32,6 @@ export class Organization extends BaseEntity {
   @Column({ name: "address", nullable: true })
   address: string;
 
-  @ManyToOne((type) => Customer)
-  manager: Customer;
+  @ManyToOne((type) => User)
+  manager: User;
 }

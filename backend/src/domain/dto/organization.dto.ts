@@ -5,7 +5,7 @@ import { OrganizationStatus } from "../enum/organization-status";
 import { OrganizationType } from "../enum/organization-type";
 import { BaseDTO } from "./base.dto";
 import { CategoryDTO } from "./category.dto";
-import { CustomerDTO } from "./customer.dto";
+import { UserDTO } from "./user.dto";
 
 /**
  * A Organization DTO object.
@@ -28,16 +28,16 @@ export class OrganizationDTO extends BaseDTO {
     description: "distributeType relationship",
   })
   distributeType: CategoryDTO;
-  
-  @ApiProperty({ description: 'phone field', required: false })
+
+  @ApiProperty({ description: "phone field", required: false })
   phone: number;
 
-  @ApiProperty({ description: 'email field', required: false })
+  @ApiProperty({ description: "email field", required: false })
   email: string;
 
-  @ApiProperty({ description: 'address field', required: false })
+  @ApiProperty({ description: "address field", required: false })
   address: string;
 
-  @ApiProperty({ type: CustomerDTO, description: "manager relationship" })
-  manager: CustomerDTO;
+  @ApiProperty({ type: UserDTO, description: "manager relationship" })
+  manager: UserDTO;
 }
