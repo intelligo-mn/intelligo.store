@@ -10,9 +10,9 @@ import { DATE_TIME_FORMAT } from 'src/app/shared/constants/input.constants';
 import { IOrder, Order } from 'src/app/shared/model/order.model';
 import { OrderService } from './order.service';
 import { IOrderItem } from 'src/app/shared/model/order-item.model';
-import { ICustomer } from 'src/app/shared/model/customer.model';
+import { IUser } from 'src/app/shared/model/user.model';
 
-type SelectableEntity = IOrderItem | ICustomer;
+type SelectableEntity = IOrderItem | IUser;
 
 @Component({
   selector: 'order-update',
@@ -21,7 +21,7 @@ type SelectableEntity = IOrderItem | ICustomer;
 export class OrderUpdateComponent implements OnInit {
   isSaving = false;
   orderitems: IOrderItem[] = [];
-  customers: ICustomer[] = [];
+  customers: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],

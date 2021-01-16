@@ -24,7 +24,7 @@ export class DashboardController {
   constructor(private readonly service: DashboardService) {}
 
   @Get("/statistic")
-  @Roles(RoleType.USER)
+  @Roles(RoleType.USER, RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: "List all statistic counts",

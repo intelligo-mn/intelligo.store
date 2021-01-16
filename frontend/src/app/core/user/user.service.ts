@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { createRequestOption, Pagination } from 'src/app/shared/util/request-util';
 import { IUser } from './user.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -34,6 +35,6 @@ export class UserService {
   }
 
   authorities(): Observable<string[]> {
-    return this.http.get<string[]>(environment.apiUrl + 'api/users/authorities');
+    return this.http.get<string[]>(environment.apiUrl + 'api/users/authorities').pipe(map((res: any) => res[0]));
   }
 }

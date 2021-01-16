@@ -1,6 +1,6 @@
 import { IContact } from 'src/app/shared/model/contact.model';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { ICustomer } from 'src/app/shared/model/customer.model';
+import { IUser } from 'src/app/shared/model/user.model';
 import { OrganizationStatus } from 'src/app/shared/model/enums/organization-status.model';
 import { OrganizationType } from 'src/app/shared/model/enums/organization-type.model';
 
@@ -9,9 +9,11 @@ export interface IOrganization {
   name?: string;
   status?: OrganizationStatus;
   type?: OrganizationType;
-  contact?: IContact;
+  phone?: number;
+  email?: string;
+  address?: string;
   distributeType?: ICategory;
-  manager?: ICustomer;
+  manager?: IUser;
 }
 
 export class Organization implements IOrganization {
@@ -20,8 +22,10 @@ export class Organization implements IOrganization {
     public name?: string,
     public status?: OrganizationStatus,
     public type?: OrganizationType,
-    public contact?: IContact,
+    public phone?: number,
+    public email?: string,
+    public address?: string,
     public distributeType?: ICategory,
-    public manager?: ICustomer
+    public manager?: IUser
   ) {}
 }
