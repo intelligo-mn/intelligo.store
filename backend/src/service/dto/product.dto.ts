@@ -15,13 +15,19 @@ export class ProductDTO extends BaseDTO {
 
   @ApiProperty({ description: "description field", required: false })
   description: string;
-
+  
   @ApiProperty({
     type: () => CategoryDTO,
     description: "category relationship",
   })
   category: CategoryDTO;
-
+  
   @ApiProperty({ type: UnitDTO, description: "unit relationship" })
   unit: UnitDTO;
+  
+  @ApiProperty({ description: "active field", required: false })
+  active: boolean;
+  
+  @ApiProperty({ description: "comment field", required: false })
+  comment: string;
 }

@@ -125,7 +125,8 @@
                                     ></label>
                                   </td>
                                   <td class="last-row">
-                                    <input *ngIf="!product.value.active"
+                                    <input
+                                      *ngIf="!product.value.active"
                                       id="field_endDate"
                                       type="text"
                                       class="form-control"
@@ -151,11 +152,11 @@
 
               <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                  <span>Cancel</span>
+                  <span>Цуцлах</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
-                  <span>Save</span>
+                  <span>Хадгалах</span>
                 </button>
               </div>
             </form>

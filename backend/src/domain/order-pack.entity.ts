@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { OrderPackStatus } from "./enumeration/order-pack-status";
 import { Product } from "./product.entity";
@@ -29,6 +29,7 @@ export class OrderPack extends BaseEntity {
   @Column({ type: "simple-enum", name: "status", enum: OrderPackStatus })
   status: OrderPackStatus;
 
-  @ManyToOne((type) => Product)
-  products: Product;
+  @ManyToMany((type) => Product)
+  @JoinTable()
+  products: Product[];
 }

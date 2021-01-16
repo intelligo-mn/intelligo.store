@@ -26,8 +26,6 @@ export class OrderPackDTO extends BaseDTO {
   @ApiProperty({ enum: OrderPackStatus, description: 'status enum field' })
   status: OrderPackStatus;
 
-  @ApiProperty({ type: ProductDTO, description: 'products relationship' })
-  products: ProductDTO;
-
-  
+  @ApiProperty({ description: 'products relationship' })
+  products: any;
 }
