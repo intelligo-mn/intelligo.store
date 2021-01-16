@@ -23,11 +23,7 @@
                     </div>
                 </dd>
                 <dt><span>Manager</span></dt>
-                <dd>
-                    <div *ngIf="order.manager">
-                        <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.name }}</a>
-                    </div>
-                </dd>
+                
             </dl>
 
             <button type="submit"

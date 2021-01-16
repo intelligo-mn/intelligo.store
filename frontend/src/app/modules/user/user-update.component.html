@@ -69,9 +69,7 @@
           This field is required to be at least 5 characters.
         </small>
 
-        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email">
-          Your email is invalid.
-        </small>
+        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Your email is invalid. </small>
       </div>
     </div>
 
@@ -92,14 +90,14 @@
     <div class="form-group">
       <label jhiTranslate="userManagement.profiles">Role</label>
       <select class="form-control" multiple name="authority" formControlName="authorities">
-        <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
+        <option *ngFor="let authority of authorities" [value]="authority.name">{{ authority.name }}</option>
       </select>
     </div>
   </div>
 
   <div>
     <button type="button" class="btn btn-secondary" (click)="activeModal.close()">
-      <span >Цуцлах</span>
+      <span>Цуцлах</span>
     </button>
 
     <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">

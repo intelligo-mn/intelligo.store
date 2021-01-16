@@ -8,7 +8,7 @@ import { IOrganization } from 'src/app/shared/model/organization.model';
 })
 export class OrganizationListComponent implements OnInit {
   @Input() organizations: IOrganization[];
-  @Input() type: OrganizationType;
+  @Input() type: OrganizationType | string;
   @Output() onDelete: EventEmitter<IOrganization>;
   constructor() {
     this.onDelete = new EventEmitter();

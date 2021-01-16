@@ -1,6 +1,6 @@
 export interface IStatistic {
   kinderGardenCount: number;
   supplierCount: number;
-  customerCount: number;
+  orderCount: number;
   productCount: number;
 }
