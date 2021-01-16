@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { OrganizationDTO } from 'src/domain/dto/organization.dto';
 import { FindManyOptions, FindOneOptions } from 'typeorm';
-import { OrganizationDTO } from '../../domain/dto/organization.dto';
 import { OrganizationMapper } from './organization.mapper';
 import { OrganizationRepository } from './organization.repository';
 
@@ -57,4 +57,9 @@ export class OrganizationService {
     }
     return;
   }
+
+  async getCount(): Promise<number>{
+    return await this.organizationRepository.count()
+  }
+
 }
