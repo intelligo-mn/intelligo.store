@@ -23,8 +23,6 @@ import { PageRequest, Page } from "../../domain/base/pagination.entity";
 import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
 import { HeaderUtil } from "../../core/header-util";
 import { LoggingInterceptor } from "../../core/interceptors/logging.interceptor";
-import { ContactService } from "./contact.service";
-import { ContactDTO } from "../../domain/dto/contact.dto";
 import { OrganizationService } from "./organization.service";
 
 @Controller("api/organizations")
@@ -36,8 +34,7 @@ export class OrganizationController {
   logger = new Logger("OrganizationController");
 
   constructor(
-    private readonly organizationService: OrganizationService,
-    private readonly contactService: ContactService
+    private readonly organizationService: OrganizationService
   ) {}
 
   @Get("/")
@@ -127,65 +124,5 @@ export class OrganizationController {
   ): Promise<void> {
     HeaderUtil.addEntityDeletedHeaders(req.res, "Organization", id);
     return await this.organizationService.deleteById(id);
-  }
-
-  @Get("/:id/contacts")
-  @Roles(RoleType.USER)
-  @ApiResponse({
-    status: 200,
-    description: "The found record",
-    type: ContactDTO,
-  })
-  async getContact(@Param("id") id: string): Promise<ContactDTO> {
-    return await this.contactService.findById(id);
-  }
-
-  @PostMethod("/:id/contacts")
-  @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: "Create contact" })
-  @ApiResponse({
-    status: 201,
-    description: "The record has been successfully created.",
-    type: ContactDTO,
-  })
-  @ApiResponse({ status: 403, description: "Forbidden." })
-  async postContact(
-    @Req() req: Request,
-    @Body() contactDTO: ContactDTO
-  ): Promise<ContactDTO> {
-    const created = await this.contactService.save(contactDTO);
-    HeaderUtil.addEntityCreatedHeaders(req.res, "Contact", created.id);
-    return created;
-  }
-
-  @Put("/:id/contacts")
-  @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: "Update contact" })
-  @ApiResponse({
-    status: 200,
-    description: "The record has been successfully updated.",
-    type: ContactDTO,
-  })
-  async putContact(
-    @Req() req: Request,
-    @Body() contactDTO: ContactDTO
-  ): Promise<ContactDTO> {
-    HeaderUtil.addEntityCreatedHeaders(req.res, "Contact", contactDTO.id);
-    return await this.contactService.update(contactDTO);
-  }
-
-  @Delete("/:id/contacts")
-  @Roles(RoleType.ADMIN)
-  @ApiOperation({ summary: "Delete contact" })
-  @ApiResponse({
-    status: 204,
-    description: "The record has been successfully deleted.",
-  })
-  async deleteContactById(
-    @Req() req: Request,
-    @Param("organizationId") organizationId: string
-  ): Promise<void> {
-    HeaderUtil.addEntityDeletedHeaders(req.res, "Contact", organizationId);
-    return await this.contactService.deleteById(organizationId);
   }
 }
