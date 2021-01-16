@@ -9,15 +9,14 @@ import { map } from 'rxjs/operators';
 import { IOrganization, Organization } from 'src/app/shared/model/organization.model';
 import { OrganizationService } from './organization.service';
 import { IContact } from 'src/app/shared/model/contact.model';
-import { ContactService } from 'src/app/modules/organization/contact.service';
 import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryService } from 'src/app/modules/category/category.service';
-import { ICustomer } from 'src/app/shared/model/customer.model';
+import { IUser } from 'src/app/shared/model/user.model';
 import { UserService } from 'src/app/core/user/user.service';
-import { IUser } from 'src/app/core/user/user.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EventManager } from '@devmn/event-manager';
 
-type SelectableEntity = IContact | ICategory | ICustomer;
+type SelectableEntity = IContact | ICategory | IUser;
 
 @Component({
   selector: 'organization-update',
@@ -27,7 +26,7 @@ export class OrganizationUpdateComponent implements OnInit {
   @Input() organization: IOrganization;
   isSaving = false;
   categories: ICategory[] = [];
-  customers: ICustomer[] = [];
+  users: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -43,34 +42,22 @@ export class OrganizationUpdateComponent implements OnInit {
 
   constructor(
     protected organizationService: OrganizationService,
-    protected contactService: ContactService,
     protected categoryService: CategoryService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private eventManager: EventManager
   ) {}
 
   ngOnInit(): void {
     if (this.organization) {
-      this.contactService
-        .find(this.organization?.id)
-        .pipe(
-          map((res: HttpResponse<IContact>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IContact) => {
-          if (!this.organization?.contact || !this.organization?.contact?.id) {
-            this.organization.contact = resBody;
-            this.editForm.patchValue(this.organization);
-          }
-        });
+      this.editForm.patchValue(this.organization);
     }
 
     this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-    this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.customers = res.body || []));
+    this.userService.query().subscribe((res: HttpResponse<any>) => (this.users = res.body || []));
   }
 
   previousState(): void {
@@ -97,6 +84,8 @@ export class OrganizationUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
+    this.activeModal.close();
+    this.eventManager.broadcast('organizationListModification');
     this.previousState();
   }
 

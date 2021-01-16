@@ -11,15 +11,20 @@ import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { OrganizationService } from './organization.service';
 import { OrganizationDeleteDialogComponent } from './organization-delete-dialog.component';
 import { OrganizationUpdateComponent } from './organization-update.component';
+import { OrganizationType } from 'src/app/shared/model/enums/organization-type.model';
 
 @Component({
   selector: 'organization',
   templateUrl: './organization.component.html',
+  styleUrls: ['./organization.component.scss'],
 })
 export class OrganizationComponent implements OnInit, OnDestroy {
   organizations?: IOrganization[];
+  supplier?: IOrganization[];
+  customer?: IOrganization[];
   eventSubscriber?: Subscription;
   totalItems = 0;
+  active = 1;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
   predicate!: string;
@@ -34,6 +39,17 @@ export class OrganizationComponent implements OnInit, OnDestroy {
     protected modalService: NgbModal
   ) {}
 
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(data => {
+      this.page = data.pagingParams.page;
+      this.ascending = data.pagingParams.ascending;
+      this.predicate = data.pagingParams.predicate;
+      this.ngbPaginationPage = data.pagingParams.page;
+      this.loadPage();
+    });
+    this.registerChangeInOrganizations();
+  }
+
   loadPage(page?: number): void {
     const pageToLoad: number = page || this.page;
 
@@ -47,17 +63,6 @@ export class OrganizationComponent implements OnInit, OnDestroy {
         (res: HttpResponse<IOrganization[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
         () => this.onError()
       );
-  }
-
-  ngOnInit(): void {
-    this.activatedRoute.data.subscribe(data => {
-      this.page = data.pagingParams.page;
-      this.ascending = data.pagingParams.ascending;
-      this.predicate = data.pagingParams.predicate;
-      this.ngbPaginationPage = data.pagingParams.page;
-      this.loadPage();
-    });
-    this.registerChangeInOrganizations();
   }
 
   ngOnDestroy(): void {
@@ -82,17 +87,17 @@ export class OrganizationComponent implements OnInit, OnDestroy {
 
   add() {
     const inst = this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
-    inst.result.then(res=>{
-      this.registerChangeInOrganizations()
-    })
+    inst.result.then(res => {
+      this.registerChangeInOrganizations();
+    });
   }
 
   edit(organization) {
     const instance = this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
     instance.componentInstance.organization = organization;
-    instance.result.then(res=>{
-      this.registerChangeInOrganizations()
-    })
+    instance.result.then(res => {
+      this.registerChangeInOrganizations();
+    });
   }
 
   sort(): string[] {
@@ -114,6 +119,8 @@ export class OrganizationComponent implements OnInit, OnDestroy {
       },
     });
     this.organizations = data || [];
+    this.supplier = this.organizations.filter(item => item.type == OrganizationType.SUPPLIER);
+    this.customer = this.organizations.filter(item => item.type == OrganizationType.CUSTOMER);
   }
 
   protected onError(): void {
