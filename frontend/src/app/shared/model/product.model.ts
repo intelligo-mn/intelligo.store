@@ -7,8 +7,18 @@ export interface IProduct {
   description?: string;
   category?: ICategory;
   unit?: IUnit;
+  active?: boolean;
+  comment?: string;
 }
 
 export class Product implements IProduct {
-  constructor(public id?: number, public name?: string, public description?: string, public category?: ICategory, public unit?: IUnit) {}
+  constructor(
+    public id?: number,
+    public name?: string,
+    public description?: string,
+    public category?: ICategory,
+    public unit?: IUnit,
+    public active?: boolean,
+    public comment?: string
+  ) {}
 }
