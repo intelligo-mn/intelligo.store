@@ -43,7 +43,7 @@ export const orderPackRoute: Routes = [
       pagingParams: ResolvePagingParams,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
@@ -56,7 +56,7 @@ export const orderPackRoute: Routes = [
       orderPack: OrderPackResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
     canActivate: [AuthGuard],
@@ -68,7 +68,7 @@ export const orderPackRoute: Routes = [
       orderPack: OrderPackResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
     canActivate: [AuthGuard],
@@ -80,7 +80,7 @@ export const orderPackRoute: Routes = [
       orderPack: OrderPackResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.orderPack.home.title',
     },
     canActivate: [AuthGuard],

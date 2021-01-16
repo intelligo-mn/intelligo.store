@@ -41,7 +41,7 @@ export const unitRoute: Routes = [
       pagingParams: ResolvePagingParams,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.unit.home.title',
     },
@@ -54,7 +54,7 @@ export const unitRoute: Routes = [
       unit: UnitResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.unit.home.title',
     },
     canActivate: [AuthGuard],
