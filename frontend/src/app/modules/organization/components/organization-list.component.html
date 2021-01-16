@@ -1,0 +1,39 @@
+<table class="table table-striped" aria-describedby="page-heading" style="border-top: none;">
+  <thead>
+    <tr>
+      <th scope="col"><span>Нэр</span></th>
+      <th scope="col"><span>Хариуцах ажилтан</span></th>
+      <th scope="col" *ngIf="type == 'ALL'"><span>Байгууллагын төрөл</span></th>
+      <th scope="col" *ngIf="type == 'SUPPLIER'"><span>Нийлүүлэх барааны төрөл</span></th>
+      <th scope="col">
+        <span>Утас</span>
+      </th>
+      <th scope="col"><span>Мэйл</span></th>
+      <th scope="col"><span>Хаяг</span></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let organization of organizations">
+      <td>{{ organization.name }}</td>
+      <td>{{ organization.manager.login }}</td>
+      <td *ngIf="type == 'ALL'">{{ organization.type }}</td>
+      <td *ngIf="type == 'SUPPLIER'">{{ organization.distributeType.name }}</td>
+      <td>{{ organization.phone }}</td>
+      <td>{{ organization.email }}</td>
+      <td>{{ organization.address }}</td>
+
+      <td class="text-right">
+        <div class="btn-group">
+          <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
+            <span class="d-none d-md-inline">Засах</span>
+          </button>
+
+          <button type="submit" (click)="delete(organization)" class="btn btn-danger btn-sm">
+            <span class="d-none d-md-inline">Устгах</span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

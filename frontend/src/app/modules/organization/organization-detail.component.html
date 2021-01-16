@@ -19,7 +19,7 @@
           <span>{{ organization.type }}</span>
         </dd>
         <dt><span>Contact</span></dt>
-        <dd>
+        <!-- <dd>
           <div *ngIf="organization.contact">
             <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
           </div>
@@ -35,7 +35,7 @@
           <div *ngIf="organization.manager">
             <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
           </div>
-        </dd>
+        </dd> -->
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info">

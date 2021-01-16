@@ -81,10 +81,10 @@
       <select class="form-control" id="field_manager" name="manager" formControlName="manager">
         <option [ngValue]="null"></option>
         <option
-          [ngValue]="customerOption.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : customerOption"
-          *ngFor="let customerOption of customers; trackBy: trackById"
+          [ngValue]="user.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : user"
+          *ngFor="let user of users; trackBy: trackById"
         >
-          {{ customerOption.name }}
+          {{ user.login }}
         </option>
       </select>
     </div>

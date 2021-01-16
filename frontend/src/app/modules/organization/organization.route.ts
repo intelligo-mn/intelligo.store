@@ -42,7 +42,7 @@ export const organizationRoute: Routes = [
       pagingParams: ResolvePagingParams,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       defaultSort: 'id,asc',
       pageTitle: 'childfoodApp.organization.home.title',
     },
@@ -55,7 +55,7 @@ export const organizationRoute: Routes = [
       organization: OrganizationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.organization.home.title',
     },
     canActivate: [AuthGuard],
@@ -67,7 +67,7 @@ export const organizationRoute: Routes = [
       organization: OrganizationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.organization.home.title',
     },
     canActivate: [AuthGuard],
@@ -79,7 +79,7 @@ export const organizationRoute: Routes = [
       organization: OrganizationResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.organization.home.title',
     },
     canActivate: [AuthGuard],
