@@ -19,13 +19,13 @@ import {
 } from "@nestjs/swagger";
 import { Request } from "express";
 import { OrganizationDTO } from "../../domain/dto/organization.dto";
-import { OrganizationService } from "./organization.service";
 import { PageRequest, Page } from "../../domain/base/pagination.entity";
 import { AuthGuard, Roles, RolesGuard, RoleType } from "../../core";
 import { HeaderUtil } from "../../core/header-util";
 import { LoggingInterceptor } from "../../core/interceptors/logging.interceptor";
 import { ContactService } from "./contact.service";
 import { ContactDTO } from "../../domain/dto/contact.dto";
+import { OrganizationService } from "./organization.service";
 
 @Controller("api/organizations")
 @UseGuards(AuthGuard, RolesGuard)

@@ -25,6 +25,10 @@ export class ProductService {
     const result = await this.productRepository.findOne(options);
     return ProductMapper.fromEntityToDTO(result);
   }
+  
+  async getCount(): Promise<number>{
+    return await this.productRepository.count()
+  }
 
   async findAndCount(options: FindManyOptions<ProductDTO>): Promise<[ProductDTO[], number]> {
     options.relations = relationshipNames;
