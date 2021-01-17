@@ -6,7 +6,10 @@
   },
   "scripts": {
     "backend": "cd backend && npm run start:dev",
-    "frontend": "cd frontend && npm run start"
+    "frontend": "cd frontend && npm run start",
+    "frontend-build": "cd frontend && npm run start",
+    "backend-build": "cd backend && npm run start:dev",
+    "build": "npm run backend-build && frontend-build"
   },
   "dependencies": {
     "node": "^15.0.1"
