@@ -13,7 +13,7 @@ export class Order extends BaseEntity {
   @Column({
     type: "date",
     name: "distribution_date",
-    default: () => new Date(),
+    default: () => null,
   })
   distributionDate: any;
 

@@ -15,14 +15,14 @@ export class OrderPack extends BaseEntity {
   @Column({
     type: "date",
     name: "start_date",
-    default: () => new Date(),
+    default: () => null,
   })
   startDate: any;
 
   @Column({
     type: "date",
     name: "end_date",
-    default: () => new Date(),
+    default: () => null,
   })
   endDate: any;
 
