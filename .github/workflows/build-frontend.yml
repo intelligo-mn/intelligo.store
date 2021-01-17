@@ -1,0 +1,22 @@
+name: build-frontend
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ~/childfood.ub.gov.mn/
+            git pull https://${{ secrets.PRIVATE_REPO_TOKEN }}:x-oauth-basic@github.com/intelligo-io/childfood.ub.gov.mn.git master
+            cd frontend
+            npm i
+            npm run build 
