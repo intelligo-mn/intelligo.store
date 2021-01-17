@@ -17,7 +17,7 @@ export class Order extends BaseEntity {
   status: OrderStatus;
 
   @ManyToOne((type) => OrderItem)
-  products: OrderItem;
+  products: OrderItem[];
 
   @ManyToOne((type) => User)
   manager: User;

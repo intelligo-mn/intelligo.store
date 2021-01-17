@@ -71,11 +71,11 @@
                   </div>
                 </div>
 
-                <div class="form-group col-2">
+                <div class="form-group col-2" [hidden]="!editForm.get('id')?.value">
                   <label class="form-control-label">Төлөв</label>
                   <select class="form-control" name="status" formControlName="status" id="field_status">
-                    <option value="ACTIVE">ACTIVE</option>
-                    <option value="INACTIVE">INACTIVE</option>
+                    <option value="ACTIVE" [selected]>Идэвхитэй</option>
+                    <option value="INACTIVE">Идэвхигүй</option>
                   </select>
                   <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
                     <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
@@ -87,7 +87,7 @@
 
                   <div class="d-flex">
                     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical" formArrayName="categories">
-                      <li *ngFor="let category of formArray?.controls; let i = index" [ngbNavItem]="category.id">
+                      <li *ngFor="let category of formArray?.controls; let i = index" [ngbNavItem]="i">
                         <a ngbNavLink>
                           {{ category?.value?.name }}
                         </a>
@@ -102,13 +102,15 @@
                                 </tr>
                               </thead>
                               <tbody
-                                *ngFor="let product of formArray?.controls[i]?.get('products').controls; let i = index"
+                                *ngFor="let product of formArrayChild(i)?.controls; let i = index"
                                 formArrayName="products"
                               >
                                 <tr [formGroupName]="i">
                                   <td>
                                     <input hidden formControlName="id" [value]="product.value.name" type="text" />
                                     <input hidden formControlName="name" [value]="product.value.name" type="text" />
+                                    <input hidden formControlName="category" [value]="product.value.category" type="text" />
+                                    <input hidden formControlName="unit" [value]="product.value.unit" type="text" />
                                     {{ product.value.name }}
                                   </td>
                                   <td>
@@ -129,7 +131,7 @@
                                   </td>
                                 </tr>
                               </tbody>
-                              <tbody class="empty-body" *ngIf="formArray?.controls[i]?.get('products')?.controls?.length == 0">
+                              <tbody class="empty-body" *ngIf="formArrayChild(i)?.controls?.length == 0">
                                 Бүтээгдэхүүн байхгүй байна
                               </tbody>
                             </table>
