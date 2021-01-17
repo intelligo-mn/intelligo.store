@@ -16,6 +16,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/childfood.ub.gov.mn/
-            git pull https://${{ secrets.PRIVATE_REPO_TOKEN }}:x-oauth-basic@github.com/intelligo-io/childfood.ub.org.mn.git master
+            git pull https://${{ secrets.PRIVATE_REPO_TOKEN }}:x-oauth-basic@github.com/intelligo-io/childfood.ub.gov.mn.git master
             npm run build 
-            pm2 start ~backend/dist/main.js 
+            pm2 start backend/dist/main.js 
