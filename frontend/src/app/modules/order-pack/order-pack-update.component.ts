@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/modules/product/product.service';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from 'src/app/shared/constants/input.constants';
 import { Category, ICategory } from 'src/app/shared/model/category.model';
+import { OrderPackStatus } from 'src/app/shared/model/enums/order-pack-status.model';
 import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 import { IProduct } from 'src/app/shared/model/product.model';
 import { CategoryService } from '../category/category.service';
@@ -22,7 +23,7 @@ export class OrderPackUpdateComponent implements OnInit {
   isSaving = false;
   products: IProduct[] = [];
   categories: ICategory[] = [];
-  active: any = 'ngb-nav-0';
+  active: any = 0;
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
@@ -42,7 +43,6 @@ export class OrderPackUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ orderPack }) => {
-      
       if (!orderPack.id) {
         const today = moment().startOf('day');
         orderPack.startDate = today;
@@ -74,6 +74,8 @@ export class OrderPackUpdateComponent implements OnInit {
                   const pItem = this.fb.group({
                     id: [prod.id],
                     name: [prod.name],
+                    category: [prod.category],
+                    unit: [prod.unit],
                     active: [prod.active],
                     comment: [prod.comment],
                   });
@@ -105,7 +107,7 @@ export class OrderPackUpdateComponent implements OnInit {
     // TODO improve performance
     orderPack.products.forEach(product => {
       this.products.forEach(item => {
-        if (String(item.id) == product.id) {
+        if (item.id == product.id) {
           item.active = true;
         }
       });
@@ -129,6 +131,10 @@ export class OrderPackUpdateComponent implements OnInit {
 
   get formArray(): FormArray {
     return this.editForm.get('categories') as FormArray;
+  }
+
+  formArrayChild(index: number): FormArray {
+    return this.formArray?.controls[index]?.get('products') as FormArray;
   }
 
   previousState(): void {
@@ -162,6 +168,7 @@ export class OrderPackUpdateComponent implements OnInit {
     } else {
       orderPack.id = undefined;
       orderPack.categories = undefined;
+      orderPack.status = OrderPackStatus.ACTIVE;
       this.subscribeToSaveResponse(this.orderPackService.create(orderPack));
     }
   }

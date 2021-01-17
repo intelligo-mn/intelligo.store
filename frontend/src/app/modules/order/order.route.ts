@@ -8,7 +8,7 @@ import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IOrder, Order } from 'src/app/shared/model/order.model';
 import { OrderService } from './order.service';
 import { OrderComponent } from './order.component';
-import { OrderDetailComponent } from './order-detail.component';
+import { OrderPackSelectComponent } from './order-pack-select.component';
 import { OrderUpdateComponent } from './order-update.component';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
@@ -51,7 +51,7 @@ export const orderRoute: Routes = [
   },
   {
     path: ':id/view',
-    component: OrderDetailComponent,
+    component: OrderPackSelectComponent,
     resolve: {
       order: OrderResolve,
     },
@@ -62,11 +62,8 @@ export const orderRoute: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'new',
+    path: 'create/:id',
     component: OrderUpdateComponent,
-    resolve: {
-      order: OrderResolve,
-    },
     data: {
       authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.order.home.title',

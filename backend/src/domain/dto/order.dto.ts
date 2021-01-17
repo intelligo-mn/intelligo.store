@@ -22,7 +22,7 @@ export class OrderDTO extends BaseDTO {
   status: OrderStatus;
 
   @ApiProperty({ type: OrderItemDTO, description: "products relationship" })
-  products: OrderItemDTO;
+  products: OrderItemDTO[];
 
   @ApiProperty({ type: () => UserDTO, description: "manager relationship" })
   manager: UserDTO;

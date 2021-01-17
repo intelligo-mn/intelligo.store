@@ -12,11 +12,6 @@ export class OrderItemDTO extends BaseDTO {
   @ApiProperty({ description: 'quantity field', required: false })
   quantity: number;
 
-  @ApiProperty({ type: OrderDTO, isArray: true, description: 'orders relationship' })
-  orders: OrderDTO[];
-
   @ApiProperty({ type: ProductDTO, description: 'products relationship' })
-  products: ProductDTO;
-
-  
+  product: ProductDTO;
 }

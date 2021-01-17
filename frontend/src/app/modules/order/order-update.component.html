@@ -1,80 +1,133 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="order-heading">Create or edit a Order</h2>
-
-            <div>
-                
-
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8"></div>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">Захиалга өгөх</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+              <div class="row">
+                <div class="form-group" [hidden]="true">
+                  <label for="id">ID</label>
+                  <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label">Distribution Date</label>
-                    <div class="d-flex">
-                        <input id="field_distributionDate" type="datetime-local" class="form-control" name="distributionDate" formControlName="distributionDate" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                    <div *ngIf="editForm.get('distributionDate')!.invalid && (editForm.get('distributionDate')!.dirty || editForm.get('distributionDate')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('distributionDate')?.errors?.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('distributionDate')?.errors?.ZonedDateTimelocal">
-                            This field should be a date and time.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Status</label>
-                    <select class="form-control" name="status" formControlName="status" id="field_status">
-                        <option value="COMPLETED">COMPLETED</option>
-                        <option value="PENDING">PENDING</option>
-                        <option value="CANCELLED">CANCELLED</option>
-                    </select>
-                    <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('status')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label">Products</label>
-                    <select class="form-control" id="field_products" name="products" formControlName="products">
-                        <option *ngIf="!editForm.get('products')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="orderItemOption.id === editForm.get('products')!.value?.id ? editForm.get('products')!.value : orderItemOption" *ngFor="let orderItemOption of orderitems; trackBy: trackById">{{ orderItemOption.id }}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('products')!.invalid && (editForm.get('products')!.dirty || editForm.get('products')!.touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('products')?.errors?.required">
-                        This field is required.
+                <div class="form-group col-2">
+                  <label class="form-control-label">Захиалга хийж дуусах өдөр</label>
+                  <div class="d-flex">
+                    <input
+                      id="field_distributionDate"
+                      type="date"
+                      class="form-control"
+                      name="distributionDate"
+                      formControlName="distributionDate"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </div>
+                  <div
+                    *ngIf="editForm.get('distributionDate')!.invalid && (editForm.get('distributionDate')!.dirty || editForm.get('distributionDate')!.touched)"
+                  >
+                    <small class="form-text text-danger" *ngIf="editForm.get('distributionDate')?.errors?.required">
+                      This field is required.
                     </small>
+                    <small class="form-text text-danger" [hidden]="!editForm.get('distributionDate')?.errors?.ZonedDateTimelocal">
+                      This field should be a date and time.
+                    </small>
+                  </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label">Manager</label>
-                    <select class="form-control" id="field_manager" name="manager" formControlName="manager">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="customerOption.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : customerOption" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.name }}</option>
-                    </select>
+                <div class="form-group col-2" [hidden]="!editForm.get('id')?.value">
+                  <label class="form-control-label">Төлөв</label>
+                  <select class="form-control" name="status" formControlName="status" id="field_status">
+                    <option value="ACTIVE" [selected]>Идэвхитэй</option>
+                    <option value="INACTIVE">Идэвхигүй</option>
+                  </select>
+                  <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
+                  </div>
                 </div>
-            </div>
 
-            <div>
+                <div class="form-group col-12">
+                  <label class="form-control-label">Ангилал сонгоно уу</label>
+
+                  <div class="d-flex">
+                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical" formArrayName="categories">
+                      <li *ngFor="let category of formArray?.controls; let i = index" [ngbNavItem]="i">
+                        <a ngbNavLink>
+                          {{ category?.value?.name }}
+                        </a>
+                        <ng-template ngbNavContent [formGroupName]="i">
+                          <div class="table-responsive" id="entities">
+                            <table class="table dynamic-table" aria-describedby="page-heading">
+                              <thead>
+                                <tr>
+                                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                                  <th scope="col" jhiSortBy="endDate"><span>Захиалах тоо</span></th>
+                                  <th scope="col" jhiSortBy="status"><span>Хэмжих нэгж</span></th>
+                                </tr>
+                              </thead>
+                              <tbody
+                                *ngFor="let product of formArrayChild(i)?.controls; let i = index"
+                                formArrayName="products"
+                              >
+                                <tr [formGroupName]="i">
+                                  <td>
+                                    <input hidden formControlName="id" [value]="product.value.name" type="text" />
+                                    <input hidden formControlName="name" [value]="product.value.name" type="text" />
+                                    <input hidden formControlName="category" [value]="product.value.category" type="text" />
+                                    <input hidden formControlName="unit" [value]="product.value.unit" type="text" />
+                                    {{ product.value.name }}
+                                  </td>
+                                  
+                                  <td class="last-row">
+                                    <input
+                                      id="field_quantity"
+                                      type="text"
+                                      class="form-control"
+                                      formControlName='quantity'
+                                      placeholder=""
+                                      [value]="product.value.quantity"
+                                    />
+                                  </td>
+                                  <td>
+                                    {{ product.value?.unit?.name }}
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tbody class="empty-body" *ngIf="formArrayChild(i)?.controls?.length == 0">
+                                Бүтээгдэхүүн байхгүй байна
+                              </tbody>
+                            </table>
+                          </div>
+                        </ng-template>
+                      </li>
+                    </ul>
+
+                    <div [ngbNavOutlet]="nav" class="mt-2 col-9"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <span>Cancel</span>
+                  <span>Цуцлах</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <span>Save</span>
+                <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
+                  <span>Хадгалах</span>
                 </button>
-            </div>
-        </form>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

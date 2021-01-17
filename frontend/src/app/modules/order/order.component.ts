@@ -83,7 +83,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   add(): void {
     const modalRef: NgbModalRef = this.modalService.open(OrderPackSelectComponent, { size: 'lg', backdrop: 'static' });
     modalRef.result.then((res:IOrderPack)=>{
-      debugger;
       this.router.navigate(['/order/create/', res.id])
     })
   }

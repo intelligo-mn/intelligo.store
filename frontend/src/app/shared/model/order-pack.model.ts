@@ -1,12 +1,6 @@
 import { Moment } from 'moment';
 import { IProduct } from 'src/app/shared/model/product.model';
 import { OrderPackStatus } from 'src/app/shared/model/enums/order-pack-status.model';
-export interface IOrderPackItem {
-  id: string;
-  name: string;
-  active: boolean;
-  comment: string;
-}
 
 export interface IOrderPack {
   id?: number;
@@ -15,7 +9,7 @@ export interface IOrderPack {
   endDate?: Moment;
   status?: OrderPackStatus;
   categories?: any;
-  products?: Set<IOrderPackItem>;
+  products?: Set<IProduct>;
 }
 
 export class OrderPack implements IOrderPack {
@@ -26,6 +20,6 @@ export class OrderPack implements IOrderPack {
     public endDate?: Moment,
     public status?: OrderPackStatus,
     public categories?: any,
-    public products?: Set<IOrderPackItem>
+    public products?: Set<IProduct>
   ) {}
 }
