@@ -18,4 +18,6 @@ jobs:
             cd ~/childfood.ub.gov.mn/
             git pull https://${{ secrets.PRIVATE_REPO_TOKEN }}:x-oauth-basic@github.com/intelligo-io/childfood.ub.gov.mn.git master
             npm run build 
-            pm2 start -f backend/dist/main.js 
+            pm2 delete main
+            pm2 start -f backend/dist/main.js -- --port 8081
+            pm2 save
