@@ -3,7 +3,11 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 name: frontend
 
-on: [push]
+on: 
+  push:
+    branches: [ release ]
+  pull_request:
+    branches: [ release ]
 
 jobs:
   build:
