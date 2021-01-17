@@ -10,7 +10,11 @@ import { User } from "./user.entity";
  */
 @Entity("order")
 export class Order extends BaseEntity {
-  @Column({ type: "timestamp", name: "distribution_date" })
+  @Column({
+    type: "date",
+    name: "distribution_date",
+    default: () => new Date(),
+  })
   distributionDate: any;
 
   @Column({ type: "simple-enum", name: "status", enum: OrderStatus })
