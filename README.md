@@ -8,6 +8,8 @@
 | --------------- | ------------------------------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | **Backend API** | **[api.childfood.ub.gov.mn](https://api.childfood.ub.gov.mn)** | [![Build Status](https://github.com/intelligo-io/childfood.ub.gov.mn/workflows/backend/badge.svg)](https://github.com/intelligo-io/childfood.ub.gov.mn/actions?workflow=backend) |
 | **Dashboard**   |             [childfood.ub.gov.mn](https://childfood.ub.gov.mn) | [![Build Status](https://github.com/intelligo-io/childfood.ub.gov.mn/workflows/frontend/badge.svg)](https://github.com/intelligo-io/childfood.ub.gov.mn/actions?workflow=frontend) |
+| **Deploy**   |             [childfood.ub.gov.mn](https://childfood.ub.gov.mn) | [![Build Status](https://github.com/intelligo-io/childfood.ub.gov.mn/workflows/deploy/badge.svg)](https://github.com/intelligo-io/childfood.ub.gov.mn/actions?workflow=deploy) |
+
 
 ## Backend API
 
