@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === "dev") {
   ormconfig = {
     name: "default",
     type: "mysql",
-    database: "foodorder",
-    url: "mysql://root:root@localhost/foodorder",
+    database: "food-order",
+    url: "mysql://root:root@localhost/food-order",
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
