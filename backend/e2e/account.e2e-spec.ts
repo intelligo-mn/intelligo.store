@@ -2,11 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { ExecutionContext, INestApplication } from '@nestjs/common';
-import { AuthGuard } from '../src/security/guards/auth.guard';
-import { RolesGuard } from '../src/security/guards/roles.guard';
-import { UserDTO } from '../src/service/dto/user.dto';
-import { UserService } from '../src/service/user.service';
-import { PasswordChangeDTO } from '../src/service/dto/password-change.dto';
+import { AuthGuard } from '../src/core/guards/auth.guard';
+import { RolesGuard } from '../src/core/guards/roles.guard';
+import { UserDTO } from '../src/domain/dto/user.dto';
+import { UserService } from '../src/modules/user/user.service';
+import { PasswordChangeDTO } from '../src/domain/dto/password-change.dto';
 
 describe('Account', () => {
     let app: INestApplication;
