@@ -1,24 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import { Customer } from "./customer.entity";
-import { OrderStatus } from "./enumeration/order-status";
+import { OrderStatus } from "./enum/order-status";
 import { OrderItem } from "./order-item.entity";
+import { User } from "./user.entity";
 
 /**
  * A Order.
  */
 @Entity("order")
 export class Order extends BaseEntity {
-  @Column({ type: "timestamp", name: "distribution_date" })
+  @Column({
+    type: "date",
+    name: "distribution_date",
+    default: () => null,
+  })
   distributionDate: any;
 
   @Column({ type: "simple-enum", name: "status", enum: OrderStatus })
   status: OrderStatus;
 
   @ManyToOne((type) => OrderItem)
-  products: OrderItem;
+  products: OrderItem[];
 
-  @ManyToOne((type) => Customer)
-  manager: Customer;
+  @ManyToOne((type) => User)
+  manager: User;
 }

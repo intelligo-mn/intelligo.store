@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { AuthGuard } from '../src/security/guards/auth.guard';
-import { RolesGuard } from '../src/security/guards/roles.guard';
-import { ContactDTO } from '../src/service/dto/contact.dto';
-import { ContactService } from '../src/service/contact.service';
+import { AuthGuard } from '../src/core/guards/auth.guard';
+import { RolesGuard } from '../src/core/guards/roles.guard';
+import { ContactDTO } from '../src/domain/dto/contact.dto';
+import { ContactService } from '../src/modules/organization/contact.service';
 
 describe('Contact Controller', () => {
   let app: INestApplication;

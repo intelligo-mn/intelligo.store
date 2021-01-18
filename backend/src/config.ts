@@ -8,7 +8,7 @@ const logger = new Logger("Config");
 export class Config {
   debugLogging = "debug";
   "server.port" = "8081";
-  "intelligo.clientApp.name" = "food order";
+  "intelligo.clientApp.name" = "foodorder";
   "intelligo.registry.password" = "admin";
   "intelligo.security.authentication.jwt.base64-secret" = "";
   "intelligo.security.authentication.jwt.token-validity-in-seconds" = 86400;
@@ -17,7 +17,7 @@ export class Config {
   "intelligo.mail.from" = "foodorder@localhost";
   "intelligo.swagger.default-include-pattern" = "/api/.*";
   "intelligo.swagger.title" = "foodorder API";
-  "intelligo.swagger.description" = "Food order system API documentation";
+  "intelligo.swagger.description" = "foodorder API documentation";
   "intelligo.swagger.version" = "1.0.0";
   "intelligo.swagger.path" = "/api/v1/docs";
   "eureka.client.enabled" = true;

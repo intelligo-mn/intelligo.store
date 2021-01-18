@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { AuthGuard } from '../src/security/guards/auth.guard';
-import { RolesGuard } from '../src/security/guards/roles.guard';
-import { OrderPackDTO } from '../src/service/dto/order-pack.dto';
-import { OrderPackService } from '../src/service/order-pack.service';
+import { AuthGuard } from '../src/core/guards/auth.guard';
+import { RolesGuard } from '../src/core/guards/roles.guard';
+import { OrderPackDTO } from '../src/domain/dto/order-pack.dto';
+import { OrderPackService } from '../src/modules/order-pack/order-pack.service';
 
 describe('OrderPack Controller', () => {
   let app: INestApplication;

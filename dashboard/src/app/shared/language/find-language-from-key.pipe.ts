@@ -5,8 +5,7 @@ export class FindLanguageFromKeyPipe implements PipeTransform {
   private languages: { [key: string]: { name: string; rtl?: boolean } } = {
     en: { name: 'English' },
     ja: { name: '日本語' },
-    ru: { name: 'Русский' },
-    // jhipster-needle-i18n-language-key-pipe - JHipster will add/remove languages in this object
+    ru: { name: 'Русский' }
   };
 
   transform(lang: string): string {

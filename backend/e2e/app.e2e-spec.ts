@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import request = require('supertest');
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
-import { UserLoginDTO } from '../src/service/dto/user-login.dto';
+import { UserLoginDTO } from '../src/domain/dto/user-login.dto';
 
 describe('App', () => {
     let app: INestApplication;
