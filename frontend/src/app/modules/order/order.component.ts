@@ -16,6 +16,7 @@ import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 @Component({
   selector: 'order',
   templateUrl: './order.component.html',
+  styleUrls: ["./order.component.scss"]
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orders?: IOrder[];
@@ -26,6 +27,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  active = 1
 
   constructor(
     protected orderService: OrderService,
@@ -80,6 +82,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(OrderDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.order = order;
   }
+
   add(): void {
     const modalRef: NgbModalRef = this.modalService.open(OrderPackSelectComponent, { size: 'lg', backdrop: 'static' });
     modalRef.result.then((res:IOrderPack)=>{
