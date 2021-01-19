@@ -19,8 +19,8 @@ export class UserUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     login: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*')]],
-    firstName: ['', [Validators.maxLength(50)]],
-    lastName: ['', [Validators.maxLength(50)]],
+    firstName: ['', []],
+    lastName: ['', []],
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     activated: [],
     langKey: ['MN'],

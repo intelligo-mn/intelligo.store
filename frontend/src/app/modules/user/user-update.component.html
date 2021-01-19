@@ -6,7 +6,7 @@
 </div>
 <form class="modal-body" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
   <div>
-    <div class="form-group" [hidden]="!user?.id">
+    <div class="form-group" [hidden]="true">
       <label jhiTranslate="global.field.id">ID</label>
       <input type="text" class="form-control" name="id" formControlName="id" readonly />
     </div>
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [hidden]="!user?.id">
       <label class="form-control-label" jhiTranslate="userManagement.firstName">Нэр</label>
       <input type="text" class="form-control" name="firstName" formControlName="firstName" />
 
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [hidden]="!user?.id"> 
       <label jhiTranslate="userManagement.lastName">Овог</label>
       <input type="text" class="form-control" name="lastName" formControlName="lastName" />
 

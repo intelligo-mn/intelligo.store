@@ -21,27 +21,27 @@ export class OrderService {
     const copy = this.convertDateFromClient(order);
     return this.http
       .post<IOrder>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => res));
   }
 
   update(order: IOrder): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(order);
     return this.http
       .put<IOrder>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => res));
   }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IOrder>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => res));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
       .get<IOrder[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -53,21 +53,5 @@ export class OrderService {
       distributionDate: order.distributionDate ? order.distributionDate : undefined,
     });
     return copy;
-  }
-
-  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
-    if (res.body) {
-      res.body.distributionDate = res.body.distributionDate ? moment(res.body.distributionDate) : undefined;
-    }
-    return res;
-  }
-
-  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
-    if (res.body) {
-      res.body.forEach((order: IOrder) => {
-        order.distributionDate = order.distributionDate ? moment(order.distributionDate) : undefined;
-      });
-    }
-    return res;
   }
 }

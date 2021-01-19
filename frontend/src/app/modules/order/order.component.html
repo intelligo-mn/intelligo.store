@@ -10,10 +10,8 @@
             </div>
             <div class="col text-right">
               <!-- <button class="btn btn-primary" [routerLink]="['/order/new']"> -->
-              <button class="btn btn-primary" (click)='add()'>
-                <span>
-                  Нэмэх
-                </span>
+              <button class="btn btn-primary" (click)="add()">
+                <span> Нэмэх </span>
               </button>
             </div>
           </div>
@@ -27,43 +25,40 @@
             <table class="table table-striped" aria-describedby="page-heading">
               <thead>
                 <tr>
-                  <th scope="col" jhiSortBy="id"><span>ID</span></th>
-                  <th scope="col" jhiSortBy="distributionDate"><span>Distribution Date</span></th>
-                  <th scope="col" jhiSortBy="status"><span>Status</span></th>
-                  <th scope="col" jhiSortBy="products.id"><span>Products</span></th>
-                  <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
+                  <th scope="col" jhiSortBy="manager.name"><span>Хариуцсан ажилтан</span></th>
+                  <th scope="col" jhiSortBy="distributionDate"><span>Захиалга хийж дуусах өдөр</span></th>
+                  <th scope="col" jhiSortBy="status"><span>Төлөв</span></th>
+                  <th scope="col" jhiSortBy="products.id"><span>Бүтээгдэхүүн</span></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let order of orders; trackBy: trackId">
                   <td>
-                    <a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a>
+                    <div *ngIf="order.manager">
+                      <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.login }}</a>
+                    </div>
                   </td>
-                  <td>{{ order.distributionDate | date: 'medium' }}</td>
+                  <td>{{ order.distributionDate }}</td>
                   <td>{{ order.status }}</td>
                   <td>
                     <div *ngIf="order.products">
                       <a [routerLink]="['/order-item', order.products?.id, 'view']">{{ order.products?.id }}</a>
                     </div>
                   </td>
-                  <td>
-                    <div *ngIf="order.manager">
-                      <a [routerLink]="['/customer', order.manager?.id, 'view']">{{ order.manager?.login }}</a>
-                    </div>
-                  </td>
+
                   <td class="text-right">
                     <div class="btn-group">
-                      <button type="submit" [routerLink]="['/order', order.id, 'view']" class="btn btn-info btn-sm">
+                      <button type="submit" [routerLink]="['/Харах', order.id, 'edit']" class="btn btn-info btn-sm">
                         <span class="d-none d-md-inline">View</span>
                       </button>
 
                       <button type="submit" [routerLink]="['/order', order.id, 'edit']" class="btn btn-primary btn-sm">
-                        <span class="d-none d-md-inline">Edit</span>
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button type="submit" (click)="delete(order)" class="btn btn-danger btn-sm">
-                        <span class="d-none d-md-inline">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>
