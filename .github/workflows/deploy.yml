@@ -21,5 +21,4 @@ jobs:
             npm install
             npm run build 
             pm2 delete main
-            pm2 start -f dist/main.js -- --port 8081
-            pm2 save
+            pm2 start -f dist/main.js -- --port 8090
