@@ -19,7 +19,7 @@ export class UnitController {
   constructor(private readonly unitService: UnitService) {}
 
   @Get('/')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'List all records',
@@ -37,7 +37,7 @@ export class UnitController {
   }
 
   @Get('/:id')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'The found record',
@@ -63,7 +63,7 @@ export class UnitController {
   }
 
   @Put('/')
-  @Roles(RoleType.ADMIN)
+  @Roles(RoleType.ADMIN, RoleType.USER)
   @ApiOperation({ summary: 'Update unit' })
   @ApiResponse({
     status: 200,

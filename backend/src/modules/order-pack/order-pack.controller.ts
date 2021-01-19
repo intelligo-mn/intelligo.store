@@ -19,7 +19,7 @@ export class OrderPackController {
   constructor(private readonly orderPackService: OrderPackService) {}
 
   @Get('/')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'List all records',
@@ -38,7 +38,7 @@ export class OrderPackController {
 
   
   @Get('/category/:id')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'List records by category',
@@ -56,7 +56,7 @@ export class OrderPackController {
   }
 
   @Get('/:id')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'The found record',

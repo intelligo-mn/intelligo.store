@@ -36,7 +36,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get("/")
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: "List all records",
@@ -65,7 +65,7 @@ export class ProductController {
   }
 
   @Get("/:id")
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: "The found record",

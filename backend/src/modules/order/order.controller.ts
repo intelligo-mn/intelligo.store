@@ -19,7 +19,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get('/')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'List all records',
@@ -37,7 +37,7 @@ export class OrderController {
   }
 
   @Get('/:id')
-  @Roles(RoleType.USER)
+  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: 'The found record',
