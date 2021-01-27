@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
-import { Category } from "./category.entity";
-import { OrganizationStatus } from "./enum/organization-status";
-import { OrganizationType } from "./enum/organization-type";
-import { User } from "./user.entity";
 
 /**
  * A Organization.
