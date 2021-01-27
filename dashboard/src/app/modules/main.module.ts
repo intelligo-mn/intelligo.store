@@ -9,10 +9,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
       },
       {
-        path: 'unit',
-        loadChildren: () => import('./unit/unit.module').then(m => m.UnitModule),
-      },
-      {
         path: 'product',
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
       },

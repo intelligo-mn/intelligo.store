@@ -13,7 +13,6 @@ export const MAIN_ROUTES: RouteInfo[] = [{ path: '/dashboard', title: 'Удир�
 export const PRODUCT_ROUTES: RouteInfo[] = [
   { path: '/product', title: 'Бүтээгдэхүүн', icon: 'ni-bag-17 text-primary', class: '' },
   { path: '/category', title: 'Төрөл', icon: 'ni-button-pause text-blue', class: '' },
-  { path: '/unit', title: 'Хэмжих нэгж', icon: 'ni-bullet-list-67 text-orange', class: '' },
 ];
 
 export const ORDER_ROUTES: RouteInfo[] = [

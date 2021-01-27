@@ -22,87 +22,23 @@
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Төлөв</label>
-      <select class="form-control" name="status" formControlName="status" id="field_status">
-        <option value="ACTIVE">ACTIVE</option>
-        <option value="DEACTIVE">DEACTIVE</option>
-      </select>
-      <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-        <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required">
-          This field is required.
-        </small>
-      </div>
+      <label class="form-control-label">Phone</label>
+      <input type="number" class="form-control" name="phone" id="field_phone" formControlName="phone" />
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Төрөл</label>
-      <select class="form-control" name="type" formControlName="type" id="field_type">
-        <option value="CUSTOMER">Захиалагч</option>
-        <option value="SUPPLIER">Нийлүүлэгч</option>
-      </select>
-      <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
-        <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required">
-          This field is required.
-        </small>
-      </div>
+      <label class="form-control-label">Email</label>
+      <input type="text" class="form-control" name="email" id="field_email" formControlName="email" />
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Холбоо барих мэдээлэл</label>
-      <div formGroupName="contact">
-        <div class="row">
-          <div class="col-6 form-group">
-            <label class="form-control-label">Phone</label>
-            <input type="number" class="form-control" name="phone" id="field_phone" formControlName="phone" />
-          </div>
-  
-          <div class="col-6 form-group">
-            <label class="form-control-label">Email</label>
-            <input type="text" class="form-control" name="email" id="field_email" formControlName="email" />
-          </div>
-  
-          <div class="col-12 form-group">
-            <label class="form-control-label">Address</label>
-            <input type="text" class="form-control" name="address" id="field_address" formControlName="address" />
-          </div>
-  
-          <div class="col-6 form-group">
-            <label class="form-control-label">Lat</label>
-            <input type="text" class="form-control" name="lat" id="field_lat" formControlName="lat" />
-          </div>
-  
-          <div class="col-6 form-group">
-            <label class="form-control-label">Lon</label>
-            <input type="text" class="form-control" name="lon" id="field_lon" formControlName="lon" />
-          </div>
-        </div>
-      </div>
+      <label class="form-control-label">Lat</label>
+      <input type="text" class="form-control" name="lat" id="field_lat" formControlName="lat" />
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Хүргэлтийн төрөл</label>
-      <select class="form-control" id="field_distributeType" name="distributeType" formControlName="distributeType">
-        <option [ngValue]="null"></option>
-        <option
-          [ngValue]="
-            categoryOption.id === editForm.get('distributeType')!.value?.id ? editForm.get('distributeType')!.value : categoryOption
-          "
-          *ngFor="let categoryOption of categories; trackBy: trackById"
-          >{{ categoryOption.name }}</option
-        >
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label class="form-control-label">Хариуцах ажилтан</label>
-      <select class="form-control" id="field_manager" name="manager" formControlName="manager">
-        <option [ngValue]="null"></option>
-        <option
-          [ngValue]="customerOption.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : customerOption"
-          *ngFor="let customerOption of customers; trackBy: trackById"
-          >{{ customerOption.name }}</option
-        >
-      </select>
+      <label class="form-control-label">Lon</label>
+      <input type="text" class="form-control" name="lon" id="field_lon" formControlName="lon" />
     </div>
   </div>
 
