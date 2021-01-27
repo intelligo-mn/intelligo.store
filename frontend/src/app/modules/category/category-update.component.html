@@ -16,7 +16,7 @@
       <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
       <div *ngIf="categoryForm.get('name')!.invalid && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)">
         <small class="form-text text-danger" *ngIf="categoryForm.get('name')?.errors?.required">
-          This field is required.
+          Энэхүү талбарыг заавал оруулна уу.
         </small>
       </div>
     </div>
