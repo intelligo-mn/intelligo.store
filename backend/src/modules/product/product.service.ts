@@ -7,7 +7,6 @@ import { ProductRepository } from './product.repository';
 
 const relationshipNames = [];
 relationshipNames.push('category');
-relationshipNames.push('unit');
 
 @Injectable()
 export class ProductService {
