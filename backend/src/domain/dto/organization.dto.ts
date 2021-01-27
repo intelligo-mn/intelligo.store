@@ -15,29 +15,15 @@ export class OrganizationDTO extends BaseDTO {
   @ApiProperty({ description: "name field" })
   name: string;
 
-  @IsNotEmpty()
-  @ApiProperty({ enum: OrganizationStatus, description: "status enum field" })
-  status: OrganizationStatus;
-
-  @IsNotEmpty()
-  @ApiProperty({ enum: OrganizationType, description: "type enum field" })
-  type: OrganizationType;
-
-  @ApiProperty({
-    type: () => CategoryDTO,
-    description: "distributeType relationship",
-  })
-  distributeType: CategoryDTO;
-
   @ApiProperty({ description: "phone field", required: false })
   phone: number;
 
   @ApiProperty({ description: "email field", required: false })
   email: string;
 
-  @ApiProperty({ description: "address field", required: false })
-  address: string;
+  @ApiProperty({ description: "lat field", required: false })
+  lat: string;
 
-  @ApiProperty({ type: UserDTO, description: "manager relationship" })
-  manager: UserDTO;
+  @ApiProperty({ description: "lon field", required: false })
+  lon: string;
 }
