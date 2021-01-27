@@ -17,7 +17,7 @@
 
       <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
         <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required" jhiTranslate="entity.validation.required">
-          This field is required.
+          Энэхүү талбарыг заавал оруулна уу.
         </small>
 
         <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.maxlength">
@@ -58,7 +58,7 @@
 
       <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
         <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
-          This field is required.
+          Энэхүү талбарыг заавал оруулна уу.
         </small>
 
         <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength">
@@ -66,7 +66,7 @@
         </small>
 
         <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.minlength">
-          This field is required to be at least 5 characters.
+          Энэхүү талбарыг заавал оруулна уу to be at least 5 characters.
         </small>
 
         <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Your email is invalid. </small>

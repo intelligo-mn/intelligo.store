@@ -23,7 +23,7 @@
                   <label class="form-control-label">Багцын нэр</label>
                   <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
                   <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
                   </div>
                 </div>
 
@@ -43,7 +43,7 @@
                     *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)"
                   >
                     <small class="form-text text-danger" *ngIf="editForm.get('startDate')?.errors?.required">
-                      This field is required.
+                      Энэхүү талбарыг заавал оруулна уу.
                     </small>
                     <small class="form-text text-danger" [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal">
                       This field should be a date and time.
@@ -64,7 +64,7 @@
                     />
                   </div>
                   <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('endDate')?.errors?.required"> This field is required. </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('endDate')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
                     <small class="form-text text-danger" [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal">
                       This field should be a date and time.
                     </small>
@@ -78,7 +78,7 @@
                     <option value="INACTIVE">Идэвхигүй</option>
                   </select>
                   <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
                   </div>
                 </div>
 

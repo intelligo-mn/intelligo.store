@@ -16,7 +16,7 @@
       <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
       <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
         <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
-          This field is required.
+          Энэхүү талбарыг заавал оруулна уу.
         </small>
       </div>
     </div>
@@ -39,7 +39,7 @@
     </div>
     <div *ngIf="editForm.get('category')!.invalid && (editForm.get('category')!.dirty || editForm.get('category')!.touched)">
       <small class="form-text text-danger" *ngIf="editForm.get('category')?.errors?.required">
-        This field is required.
+        Энэхүү талбарыг заавал оруулна уу.
       </small>
     </div>
 
@@ -56,7 +56,7 @@
     </div>
     <div *ngIf="editForm.get('unit')!.invalid && (editForm.get('unit')!.dirty || editForm.get('unit')!.touched)">
       <small class="form-text text-danger" *ngIf="editForm.get('unit')?.errors?.required">
-        This field is required.
+        Энэхүү талбарыг заавал оруулна уу.
       </small>
     </div>
   </div>

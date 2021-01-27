@@ -35,7 +35,7 @@
                     *ngIf="editForm.get('distributionDate')!.invalid && (editForm.get('distributionDate')!.dirty || editForm.get('distributionDate')!.touched)"
                   >
                     <small class="form-text text-danger" *ngIf="editForm.get('distributionDate')?.errors?.required">
-                      This field is required.
+                      Энэхүү талбарыг заавал оруулна уу.
                     </small>
                     <small class="form-text text-danger" [hidden]="!editForm.get('distributionDate')?.errors?.ZonedDateTimelocal">
                       This field should be a date and time.
@@ -50,7 +50,7 @@
                     <option value="INACTIVE">Идэвхигүй</option>
                   </select>
                   <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
                   </div>
                 </div>
 
