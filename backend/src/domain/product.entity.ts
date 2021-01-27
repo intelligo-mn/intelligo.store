@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { Category } from "./category.entity";
-import { OrderPack } from "./order-pack.entity";
 import { Unit } from "./unit.entity";
 
 /**
