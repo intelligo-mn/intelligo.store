@@ -22,11 +22,4 @@ export class CategoryDTO extends BaseDTO {
     description: "products relationship",
   })
   products: ProductDTO[];
-
-  @ApiProperty({
-    type: OrganizationDTO,
-    isArray: true,
-    description: "organizations relationship",
-  })
-  organizations: OrganizationDTO[];
 }

@@ -17,7 +17,4 @@ export class Category extends BaseEntity {
 
   @OneToMany((type) => Product, (other) => other.category)
   products: Product[];
-
-  @OneToMany((type) => Organization, (other) => other.distributeType)
-  organizations: Organization[];
 }

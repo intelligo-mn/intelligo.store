@@ -14,24 +14,15 @@ export class Organization extends BaseEntity {
   @Column({ name: "name" })
   name: string;
 
-  @Column({ type: "simple-enum", name: "status", enum: OrganizationStatus })
-  status: OrganizationStatus;
-
-  @Column({ type: "simple-enum", name: "type", enum: OrganizationType })
-  type: OrganizationType;
-
-  @ManyToOne((type) => Category)
-  distributeType: Category;
-
   @Column({ type: "integer", name: "phone", nullable: true })
   phone: number;
 
   @Column({ name: "email", nullable: true })
   email: string;
 
-  @Column({ name: "address", nullable: true })
-  address: string;
+  @Column({ name: "lat", nullable: true })
+  lat: string;
 
-  @ManyToOne((type) => User)
-  manager: User;
+  @Column({ name: "lon", nullable: true })
+  lon: string;
 }
