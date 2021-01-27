@@ -1,4 +1,4 @@
-<table class="table table-striped" aria-describedby="page-heading" style="border-top: none;">
+<table class="table table-striped" aria-describedby="page-heading" style="border-top: none">
   <thead>
     <tr>
       <th scope="col"><span>Нэр</span></th>
@@ -16,8 +16,8 @@
   <tbody>
     <tr *ngFor="let organization of organizations">
       <td>{{ organization.name }}</td>
-      <td>{{ organization.manager.login }}</td>
-      <td *ngIf="type == 'ALL'">{{ organization.type }}</td>
+      <td>{{ organization.manager.lastName }} {{ organization.manager.firstName }}</td>
+      <td *ngIf="type == 'ALL'">{{ organization.type == 'CUSTOMER' ? 'Цэцэрлэг' : 'Нийлүүлэгч' }}</td>
       <td *ngIf="type == 'SUPPLIER'">{{ organization.distributeType.name }}</td>
       <td>{{ organization.phone }}</td>
       <td>{{ organization.email }}</td>
