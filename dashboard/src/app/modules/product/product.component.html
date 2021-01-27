@@ -28,7 +28,7 @@
                 <tr>
                   <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
                   <th scope="col" jhiSortBy="category.name"><span>Төрөл</span></th>
-                  <th scope="col" jhiSortBy="unit.name"><span>Хэмжих нэгж</span></th>
+                  <th scope="col" jhiSortBy="unit.name"><span>Үнэ</span></th>
                   <th scope="col" jhiSortBy="description"><span>Тайлбар</span></th>
                   <th scope="col"></th>
                 </tr>
@@ -39,13 +39,11 @@
                   <td>
                     <div *ngIf="product.category">
                       {{ product.category?.name }}
-                      <!-- <a [routerLink]="['/category', product.category?.id, 'view']">{{ product.category?.name }}</a> -->
                     </div>
                   </td>
                   <td>
-                    <div *ngIf="product.unit">
-                      {{ product.unit?.name }}
-                      <!-- <a [routerLink]="['/unit', product.unit?.id, 'view']">{{ product.unit?.name }}</a> -->
+                    <div *ngIf="product.price">
+                      {{ product.price }}
                     </div>
                   </td>
                   <td>{{ product.description }}</td>

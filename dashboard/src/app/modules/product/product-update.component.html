@@ -44,20 +44,8 @@
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Хэмжих нэгж</label>
-      <select class="form-control" id="field_unit" name="unit" formControlName="unit">
-        <option *ngIf="!editForm.get('unit')!.value" [ngValue]="null" selected></option>
-        <option
-          [ngValue]="unitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : unitOption"
-          *ngFor="let unitOption of units; trackBy: trackById"
-          >{{ unitOption.name }}</option
-        >
-      </select>
-    </div>
-    <div *ngIf="editForm.get('unit')!.invalid && (editForm.get('unit')!.dirty || editForm.get('unit')!.touched)">
-      <small class="form-text text-danger" *ngIf="editForm.get('unit')?.errors?.required">
-        This field is required.
-      </small>
+      <label class="form-control-label">Үнэ</label>
+      <input type="text" class="form-control" name="price" id="field_description" formControlName="price" />
     </div>
   </div>
 

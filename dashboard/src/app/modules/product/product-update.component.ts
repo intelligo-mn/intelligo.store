@@ -1,19 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { IProduct, Product } from 'src/app/shared/model/product.model';
-import { ProductService } from './product.service';
-import { ICategory } from 'src/app/shared/model/category.model';
-import { CategoryService } from 'src/app/modules/category/category.service';
-import { IUnit } from 'src/app/shared/model/unit.model';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from '@devmn/event-manager';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { CategoryService } from 'src/app/modules/category/category.service';
+import { ICategory } from 'src/app/shared/model/category.model';
+import { IProduct } from 'src/app/shared/model/product.model';
+import { ProductService } from './product.service';
 
-type SelectableEntity = ICategory | IUnit;
+
+type SelectableEntity = ICategory;
 
 @Component({
   selector: 'product-update',
@@ -23,14 +22,13 @@ export class ProductUpdateComponent implements OnInit {
   @Input() product: IProduct;
   isSaving = false;
   categories: ICategory[] = [];
-  units: IUnit[] = [];
-
+  
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
     description: [],
     category: [null, Validators.required],
-    unit: [null, Validators.required],
+    price: [null, Validators.required],
   });
 
   constructor(
