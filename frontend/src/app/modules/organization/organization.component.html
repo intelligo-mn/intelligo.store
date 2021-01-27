@@ -30,6 +30,19 @@
                     [organizations]="organizations"
                     (onDelete)="delete($event)"
                   ></app-organization-list>
+                  <div class="m-3" *ngIf="organizations?.length > 0">
+                    <div class="d-flex justify-content-end">
+                      <ngb-pagination
+                        [collectionSize]="totalItems"
+                        [(page)]="ngbPaginationPage"
+                        [pageSize]="itemsPerPage"
+                        [maxSize]="5"
+                        [rotate]="true"
+                        [boundaryLinks]="true"
+                        (pageChange)="loadPage($event)"
+                      ></ngb-pagination>
+                    </div>
+                  </div>
                 </ng-template>
               </li>
               <li [ngbNavItem]="2">
@@ -40,6 +53,19 @@
                     [organizations]="customer"
                     (onDelete)="delete($event)"
                   ></app-organization-list>
+                  <div class="m-3" *ngIf="customer?.length > 0">
+                    <div class="d-flex justify-content-end">
+                      <ngb-pagination
+                        [collectionSize]="totalItems"
+                        [(page)]="ngbPaginationPage"
+                        [pageSize]="itemsPerPage"
+                        [maxSize]="5"
+                        [rotate]="true"
+                        [boundaryLinks]="true"
+                        (pageChange)="loadPage($event)"
+                      ></ngb-pagination>
+                    </div>
+                  </div>
                 </ng-template>
               </li>
               <li [ngbNavItem]="3">
@@ -50,6 +76,19 @@
                     [organizations]="supplier"
                     (onDelete)="delete($event)"
                   ></app-organization-list>
+                  <div class="m-3" *ngIf="supplier?.length > 0">
+                    <div class="d-flex justify-content-end">
+                      <ngb-pagination
+                        [collectionSize]="totalItems"
+                        [(page)]="ngbPaginationPage"
+                        [pageSize]="itemsPerPage"
+                        [maxSize]="5"
+                        [rotate]="true"
+                        [boundaryLinks]="true"
+                        (pageChange)="loadPage($event)"
+                      ></ngb-pagination>
+                    </div>
+                  </div>
                 </ng-template>
               </li>
             </ul>

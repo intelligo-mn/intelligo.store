@@ -6,7 +6,7 @@ import { OrganizationService } from './organization.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([OrganizationRepository])],
-  controllers: [OrganizationController],
+  controllers: [OrganizationController], 
   providers: [OrganizationService],
   exports: [OrganizationService]
 })
