@@ -38,7 +38,6 @@ export class OrganizationController {
   ) {}
 
   @Get("/")
-  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: "List all records",
@@ -63,7 +62,6 @@ export class OrganizationController {
   }
 
   @Get("/:id")
-  @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
     description: "The found record",
