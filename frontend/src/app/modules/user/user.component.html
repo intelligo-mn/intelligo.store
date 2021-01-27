@@ -85,6 +85,19 @@
               </tbody>
             </table>
           </div>
+          <div class="m-3" *ngIf="users?.length > 0">
+            <div class="d-flex justify-content-end">
+              <ngb-pagination
+                [collectionSize]="totalItems"
+                [(page)]="page"
+                [pageSize]="itemsPerPage"
+                [maxSize]="5"
+                [rotate]="true"
+                [boundaryLinks]="true"
+                (pageChange)="loadPage($event)"
+              ></ngb-pagination>
+            </div>
+          </div>
         </div>
       </div>
     </div>

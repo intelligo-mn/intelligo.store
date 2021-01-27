@@ -11,9 +11,7 @@
             <div class="col text-right">
               <!-- <button class="btn btn-primary" [routerLink]="['/order-pack/new']"> -->
               <button class="btn btn-primary" [routerLink]="['/order-pack/new']">
-                <span>
-                  Нэмэх
-                </span>
+                <span> Нэмэх </span>
               </button>
             </div>
           </div>
@@ -60,6 +58,19 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div class="m-3" *ngIf="orderPacks?.length > 0">
+            <div class="d-flex justify-content-end">
+              <ngb-pagination
+                [collectionSize]="totalItems"
+                [(page)]="ngbPaginationPage"
+                [pageSize]="itemsPerPage"
+                [maxSize]="5"
+                [rotate]="true"
+                [boundaryLinks]="true"
+                (pageChange)="loadPage($event)"
+              ></ngb-pagination>
+            </div>
           </div>
         </div>
       </div>
