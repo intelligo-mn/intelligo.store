@@ -7,21 +7,19 @@ import { OrganizationType } from 'src/app/shared/model/enums/organization-type.m
 export interface IOrganization {
   id?: number;
   name?: string;
-  status?: OrganizationStatus;
-  type?: OrganizationType;
-  contact?: IContact;
-  distributeType?: ICategory;
-  manager?: ICustomer;
+  phone?: number;
+  email?: string;
+  lat?: string;
+  lon?: string;
 }
 
 export class Organization implements IOrganization {
   constructor(
     public id?: number,
     public name?: string,
-    public status?: OrganizationStatus,
-    public type?: OrganizationType,
-    public contact?: IContact,
-    public distributeType?: ICategory,
-    public manager?: ICustomer
+    public phone?: number,
+    public email?: string,
+    public lat?: string,
+    public lon?: string,
   ) {}
 }

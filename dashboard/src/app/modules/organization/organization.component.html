@@ -26,53 +26,33 @@
             <table class="table table-striped" aria-describedby="page-heading">
               <thead>
                 <tr>
-                  <th scope="col" jhiSortBy="id"><span>ID</span></th>
-                  <th scope="col" jhiSortBy="name"><span>Name</span></th>
-                  <th scope="col" jhiSortBy="status"><span>Status</span></th>
-                  <th scope="col" jhiSortBy="type"><span>Type</span></th>
-                  <th scope="col" jhiSortBy="contact.id"><span>Contact</span></th>
-                  <th scope="col" jhiSortBy="distributeType.name">
-                    <span>Distribute Type</span>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="status"><span>Утас</span></th>
+                  <th scope="col" jhiSortBy="type"><span>Мэйл</span></th>
+                  <th scope="col" jhiSortBy="contact"><span>Уртраг</span></th>
+                  <th scope="col" jhiSortBy="distributeType">
+                    <span>Өргөрөг</span>
                   </th>
-                  <th scope="col" jhiSortBy="manager.name"><span>Manager</span></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let organization of organizations; trackBy: trackId">
-                  <td>
-                    <a [routerLink]="['/organization', organization.id, 'view']">{{ organization.id }}</a>
-                  </td>
                   <td>{{ organization.name }}</td>
-                  <td>{{ organization.status }}</td>
-                  <td>{{ organization.type }}</td>
-                  <td>
-                    <div *ngIf="organization.contact">
-                      <a [routerLink]="['/contact', organization.contact?.id, 'view']">{{ organization.contact?.id }}</a>
-                    </div>
-                  </td>
-                  <td>
-                    <div *ngIf="organization.distributeType">
-                      <a [routerLink]="['/category', organization.distributeType?.id, 'view']">{{ organization.distributeType?.name }}</a>
-                    </div>
-                  </td>
-                  <td>
-                    <div *ngIf="organization.manager">
-                      <a [routerLink]="['/customer', organization.manager?.id, 'view']">{{ organization.manager?.name }}</a>
-                    </div>
-                  </td>
+                  <td>{{ organization.phone }}</td>
+                  <td>{{ organization.email }}</td>
+                  <td>{{ organization.lat }}</td>
+                  <td>{{ organization.lon }}</td>
+                  
                   <td class="text-right">
                     <div class="btn-group">
-                      <button type="submit" [routerLink]="['/organization', organization.id, 'view']" class="btn btn-info btn-sm">
-                        <span class="d-none d-md-inline">View</span>
-                      </button>
-
+                  
                       <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
-                        <span class="d-none d-md-inline">Edit</span>
+                        <span class="d-none d-md-inline">Засах</span>
                       </button>
 
                       <button type="submit" (click)="delete(organization)" class="btn btn-danger btn-sm">
-                        <span class="d-none d-md-inline">Delete</span>
+                        <span class="d-none d-md-inline">Устгах</span>
                       </button>
                     </div>
                   </td>
