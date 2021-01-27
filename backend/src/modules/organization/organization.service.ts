@@ -5,10 +5,6 @@ import { FindManyOptions, FindOneOptions } from "typeorm";
 import { OrganizationMapper } from "./organization.mapper";
 import { OrganizationRepository } from "./organization.repository";
 
-const relationshipNames = [];
-relationshipNames.push("distributeType");
-relationshipNames.push("manager");
-
 @Injectable()
 export class OrganizationService {
   logger = new Logger("OrganizationService");
@@ -19,8 +15,7 @@ export class OrganizationService {
   ) {}
 
   async findById(id: string): Promise<OrganizationDTO | undefined> {
-    const options = { relations: relationshipNames };
-    const result = await this.organizationRepository.findOne(id, options);
+    const result = await this.organizationRepository.findOne(id);
     return OrganizationMapper.fromEntityToDTO(result);
   }
 
@@ -34,7 +29,6 @@ export class OrganizationService {
   async findAndCount(
     options: FindManyOptions<OrganizationDTO>
   ): Promise<[OrganizationDTO[], number]> {
-    options.relations = relationshipNames;
     const resultList = await this.organizationRepository.findAndCount(options);
     const organizationDTO: OrganizationDTO[] = [];
     if (resultList && resultList[0]) {
