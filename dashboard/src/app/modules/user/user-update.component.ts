@@ -44,8 +44,8 @@ export class UserUpdateComponent implements OnInit {
       this.updateForm(this.user);
     }
 
-    this.userService.authorities().subscribe(authorities => {
-      this.authorities = authorities;
+    this.userService.authorities().subscribe((authorities: any) => {
+      this.authorities = authorities[0];
     });
   }
 
