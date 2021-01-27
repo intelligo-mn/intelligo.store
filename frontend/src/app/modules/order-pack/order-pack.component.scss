@@ -13,12 +13,31 @@
 
 .nav-link {
   padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
-.dynamic-table div tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
+.dynamic-table {
+  tbody:nth-child(odd) {
+    background: #f2f2f2 !important;
+    border: solid 1px #ddd;
+  }
+  tbody:nth-child(even) {
+    background: #ffff !important;
+    border: solid 1px #ddd;
+  }
+}
+.dynamic-table {
+  div tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+  }
+  td {
+    font-weight: 600;
+    font-size: 15px;
+  }
 }
 
 .tab-content {
