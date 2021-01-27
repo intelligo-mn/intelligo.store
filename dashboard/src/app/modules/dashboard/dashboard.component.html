@@ -1,5 +1,4 @@
-
-  <app-navbar></app-navbar>
+<app-navbar></app-navbar>
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
@@ -10,28 +9,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Цэцэрлэгийн тоо</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Нийт цэцэрлэгийн тоо</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Нийлүүлэгч</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Байгууллага</h5>
                   <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
@@ -105,14 +83,31 @@
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                <li
+                  class="nav-item mr-2 mr-md-0"
+                  data-toggle="chart"
+                  data-target="#chart-sales"
+                  (click)="data = datasets[0]; updateOptions()"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    class="nav-link py-2 px-3"
+                    [ngClass]="{ active: clicked === true }"
+                    data-toggle="tab"
+                    (click)="clicked = true; clicked1 = false"
+                  >
                     <span class="d-none d-md-block">Сараар</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
-                <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                <li class="nav-item" data-toggle="chart" data-target="#chart-sales" (click)="data = datasets[1]; updateOptions()">
+                  <a
+                    href="javascript:void(0)"
+                    class="nav-link py-2 px-3"
+                    [ngClass]="{ active: clicked1 === true }"
+                    data-toggle="tab"
+                    (click)="clicked = false; clicked1 = true"
+                  >
                     <span class="d-none d-md-block">7 хоногоор</span>
                     <span class="d-md-none">W</span>
                   </a>

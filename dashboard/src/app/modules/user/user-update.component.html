@@ -92,7 +92,7 @@
     <div class="form-group">
       <label jhiTranslate="userManagement.profiles">Role</label>
       <select class="form-control" multiple name="authority" formControlName="authorities">
-        <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
+        <option *ngFor="let authority of authorities" [value]="authority?.name">{{ authority?.name }}</option>
       </select>
     </div>
   </div>

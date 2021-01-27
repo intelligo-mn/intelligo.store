@@ -11,7 +11,7 @@ process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "prod";
 let ormconfig: any = {
   name: "default",
   type: "mongodb",
-  database: "foodorder-app",
+  database: "food-order",
   url: "mongodb://admin:admin9@ds237475.mlab.com:37475/foodorder-app",
   logging: false,
   synchronize: commonConf.SYNCRONIZE,
