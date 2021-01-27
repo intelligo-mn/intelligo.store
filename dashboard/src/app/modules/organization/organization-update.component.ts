@@ -31,17 +31,10 @@ export class OrganizationUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    status: [null, [Validators.required]],
-    type: [null, [Validators.required]],
-    contact: this.fb.group({
-      phone: [],
-      email: [],
-      address: [],
-      lat: [],
-      lon: [],
-    }),
-    distributeType: [],
-    manager: [],
+    phone: [],
+    email: [],
+    lat: [],
+    lon: [],
   });
 
   constructor(
@@ -53,11 +46,7 @@ export class OrganizationUpdateComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {}
 
-  ngOnInit(): void {
-    this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
-
-    this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.customers = res.body || []));
-  }
+  ngOnInit(): void {}
 
   previousState(): void {
     window.history.back();
@@ -65,14 +54,13 @@ export class OrganizationUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const organization = this.editForm.value();
-    debugger;
+    const organization = this.editForm.value;
+
     if (organization?.id !== undefined || organization?.id !== null) {
       organization.id = undefined;
-      debugger;
+
       this.subscribeToSaveResponse(this.organizationService.update(organization));
     } else {
-      debugger;
       this.subscribeToSaveResponse(this.organizationService.create(organization));
     }
   }

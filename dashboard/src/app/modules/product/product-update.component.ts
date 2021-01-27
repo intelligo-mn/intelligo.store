@@ -10,7 +10,6 @@ import { ProductService } from './product.service';
 import { ICategory } from 'src/app/shared/model/category.model';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { IUnit } from 'src/app/shared/model/unit.model';
-import { UnitService } from 'src/app/modules/unit/unit.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from '@devmn/event-manager';
 
@@ -37,7 +36,6 @@ export class ProductUpdateComponent implements OnInit {
   constructor(
     protected productService: ProductService,
     protected categoryService: CategoryService,
-    protected unitService: UnitService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private eventManager: EventManager,
@@ -51,7 +49,6 @@ export class ProductUpdateComponent implements OnInit {
 
     this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-    this.unitService.query().subscribe((res: HttpResponse<IUnit[]>) => (this.units = res.body || []));
   }
 
   updateForm(product: IProduct): void {
@@ -60,7 +57,7 @@ export class ProductUpdateComponent implements OnInit {
       name: product.name,
       description: product.description,
       category: product.category,
-      unit: product.unit,
+      price: product.price,
     });
   }
 

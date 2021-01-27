@@ -8,7 +8,6 @@ import { AuthModule } from "./modules/identity/auth.module";
 import { OrderModule } from "./modules/order/order.module";
 import { OrganizationModule } from "./modules/organization/organization.module";
 import { ProductModule } from "./modules/product/product.module";
-import { UnitModule } from "./modules/unit/unit.module";
 import { ormconfig } from "./orm.config";
 @Module({
   imports: [
@@ -22,7 +21,6 @@ import { ormconfig } from "./orm.config";
     OrganizationModule,
     OrderModule,
     CategoryModule,
-    UnitModule,
   ],
   controllers: [],
   providers: [],

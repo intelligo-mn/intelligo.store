@@ -2,7 +2,6 @@
 import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { Category } from "./category.entity";
-import { Unit } from "./unit.entity";
 
 /**
  * A Product.
@@ -18,8 +17,8 @@ export class Product extends BaseEntity {
   @ManyToOne((type) => Category)
   category: Category;
 
-  @ManyToOne((type) => Unit)
-  unit: Unit;
+  @Column({ name: "price", nullable: true })
+  price: string;
 
   @Column({ name: "active", nullable: true })
   active: boolean;
