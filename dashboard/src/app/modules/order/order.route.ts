@@ -43,7 +43,7 @@ export const orderRoute: Routes = [
       pagingParams: ResolvePagingParams,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       defaultSort: 'id,asc',
       pageTitle: 'foodorderApp.order.home.title',
     },
@@ -56,7 +56,7 @@ export const orderRoute: Routes = [
       order: OrderResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'foodorderApp.order.home.title',
     },
     canActivate: [AuthGuard],
@@ -68,7 +68,7 @@ export const orderRoute: Routes = [
       order: OrderResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'foodorderApp.order.home.title',
     },
     canActivate: [AuthGuard],
@@ -80,7 +80,7 @@ export const orderRoute: Routes = [
       order: OrderResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'foodorderApp.order.home.title',
     },
     canActivate: [AuthGuard],
