@@ -7,7 +7,6 @@ import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IOrganization, Organization } from 'src/app/shared/model/organization.model';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
-import { OrganizationDetailComponent } from './organization-detail.component';
 import { OrganizationUpdateComponent } from './organization-update.component';
 import { OrganizationComponent } from './organization.component';
 import { OrganizationService } from './organization.service';
@@ -44,18 +43,6 @@ export const organizationRoute: Routes = [
     data: {
       authorities: [Authority.ADMIN],
       defaultSort: 'id,asc',
-      pageTitle: 'foodorderApp.organization.home.title',
-    },
-    canActivate: [AuthGuard],
-  },
-  {
-    path: ':id/view',
-    component: OrganizationDetailComponent,
-    resolve: {
-      organization: OrganizationResolve,
-    },
-    data: {
-      authorities: [Authority.ADMIN],
       pageTitle: 'foodorderApp.organization.home.title',
     },
     canActivate: [AuthGuard],
