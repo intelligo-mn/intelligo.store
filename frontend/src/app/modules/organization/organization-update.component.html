@@ -1,19 +1,19 @@
 <div class="modal-header">
   <h4 class="modal-title">Байгууллага</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <form class="modal-body" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
   <div class="row">
-    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+    <div class="form-group" [hidden]="true">
       <label for="id">ID</label>
       <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
     </div>
 
     <div class="form-group col-12">
       <label class="form-control-label">Нэр</label>
-      <input type="text" class="form-control" name="name" id="field_name" formControlName="name" placeholder="Байгууллагын нэр"/>
+      <input type="text" class="form-control" name="name" id="field_name" formControlName="name" placeholder="Байгууллагын нэр" />
       <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
         <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
       </div>
@@ -73,7 +73,23 @@
     </div>
 
     <div class="form-group col-12">
-      <label class="form-control-label">Хариуцах ажилтан</label>
+      <label class="form-control-label">Системд нэвтрэх хэрэглэгч</label>
+      <ng-select class="mjo-select" [items]="users" bindLabel="login" placeholder="Хэрэглэгч сонгох" formControlName="user">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-value="item" let-search="searchTerm">
+          <div >
+            <div class="">
+              <h5 class="" [ngOptionHighlight]="search">{{ item.login }}</h5>
+              <h6 class="mb-2 text-muted">{{ item.firstName }} {{ item.lastName }}</h6>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ng-footer-tmp>
+          <a class="btn btn-sm btn-secondary" (click)="createUser()">Хэрэглэгч нэмэх</a>
+        </ng-template>
+      </ng-select>
+    </div>
+    <div class="form-group col-12">
+      <label class="form-control-label">Хариуцах менежир</label>
       <select class="form-control" id="field_manager" name="manager" formControlName="manager">
         <option [ngValue]="null" disabled selected>Хариуцах ажилтан</option>
         <option
@@ -87,11 +103,11 @@
   </div>
 
   <div>
-    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.close()">
       <span>Цуцлах</span>
     </button>
 
-    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+    <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
       <span>Хадгалах</span>
     </button>
   </div>

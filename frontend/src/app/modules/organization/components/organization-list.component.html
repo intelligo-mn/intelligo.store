@@ -25,7 +25,7 @@
 
       <td class="text-right">
         <div class="btn-group">
-          <button type="submit" [routerLink]="['/organization', organization.id, 'edit']" class="btn btn-primary btn-sm">
+          <button type="submit" (click)="edit(organization)" class="btn btn-primary btn-sm">
             <span class="d-none d-md-inline">Засах</span>
           </button>
 
