@@ -13,7 +13,7 @@ import { UserService } from 'src/app/core/user/user.service';
 export class UserUpdateComponent implements OnInit {
   user!: User;
   @Input() defaultUser!: User;
-  authorities: string[] = [];
+  authorities: any[] = [];
   isSaving = false;
 
   editForm = this.fb.group({
