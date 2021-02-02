@@ -8,6 +8,7 @@ import { OrganizationRepository } from "./organization.repository";
 const relationshipNames = [];
 relationshipNames.push("distributeType");
 relationshipNames.push("manager");
+relationshipNames.push("user");
 
 @Injectable()
 export class OrganizationService {

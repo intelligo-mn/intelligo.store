@@ -14,6 +14,7 @@ export interface IOrganization {
   address?: string;
   distributeType?: ICategory;
   manager?: IUser;
+  user?: IUser;
 }
 
 export class Organization implements IOrganization {
@@ -26,6 +27,7 @@ export class Organization implements IOrganization {
     public email?: string,
     public address?: string,
     public distributeType?: ICategory,
-    public manager?: IUser
+    public manager?: IUser,
+    public user?: IUser
   ) {}
 }

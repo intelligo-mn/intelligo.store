@@ -40,4 +40,7 @@ export class OrganizationDTO extends BaseDTO {
 
   @ApiProperty({ type: UserDTO, description: "manager relationship" })
   manager: UserDTO;
+
+  @ApiProperty({ type: UserDTO, description: "user relationship" })
+  user: UserDTO;
 }

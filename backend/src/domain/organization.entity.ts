@@ -14,13 +14,18 @@ export class Organization extends BaseEntity {
   @Column({ name: "name" })
   name: string;
 
-  @Column({ type: "simple-enum", name: "status", enum: OrganizationStatus })
+  @Column({
+    type: "simple-enum",
+    name: "status",
+    enum: OrganizationStatus,
+    default: OrganizationStatus.ACTIVE,
+  })
   status: OrganizationStatus;
 
   @Column({ type: "simple-enum", name: "type", enum: OrganizationType })
   type: OrganizationType;
 
-  @ManyToOne((type) => Category)
+  @ManyToOne((type) => Category, { nullable: true })
   distributeType: Category;
 
   @Column({ type: "integer", name: "phone", nullable: true })
@@ -34,4 +39,7 @@ export class Organization extends BaseEntity {
 
   @ManyToOne((type) => User)
   manager: User;
+
+  @ManyToOne((type) => User)
+  user: User;
 }
