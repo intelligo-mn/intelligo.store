@@ -45,7 +45,6 @@ import { SharedModule } from './shared/shared.module';
         {
           path: '**',
           redirectTo: '/dashboard',
-          canActivate: [AuthGuard],
         },
       ],
       { useHash: true, enableTracing: true }
