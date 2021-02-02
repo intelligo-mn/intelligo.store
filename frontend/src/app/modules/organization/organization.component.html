@@ -29,6 +29,7 @@
                     [type]="'ALL'"
                     [organizations]="organizations"
                     (onDelete)="delete($event)"
+                    (onEdit)="edit($event)"
                   ></app-organization-list>
                   <div class="m-3" *ngIf="organizations?.length > 0">
                     <div class="d-flex justify-content-end">
@@ -52,6 +53,7 @@
                     [type]="'CUSTOMER'"
                     [organizations]="customer"
                     (onDelete)="delete($event)"
+                    (onEdit)="edit($event)"
                   ></app-organization-list>
                   <div class="m-3" *ngIf="customer?.length > 0">
                     <div class="d-flex justify-content-end">
@@ -75,6 +77,7 @@
                     [type]="'SUPPLIER'"
                     [organizations]="supplier"
                     (onDelete)="delete($event)"
+                    (onEdit)="edit($event)"
                   ></app-organization-list>
                   <div class="m-3" *ngIf="supplier?.length > 0">
                     <div class="d-flex justify-content-end">

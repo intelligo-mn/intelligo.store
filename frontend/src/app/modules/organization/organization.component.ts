@@ -93,6 +93,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   edit(organization) {
+    
     const instance = this.modalService.open(OrganizationUpdateComponent, { size: 'lg' });
     instance.componentInstance.organization = organization;
     instance.result.then(res => {

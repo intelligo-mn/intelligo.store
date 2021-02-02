@@ -10,13 +10,19 @@ export class OrganizationListComponent implements OnInit {
   @Input() organizations: IOrganization[];
   @Input() type: OrganizationType | string;
   @Output() onDelete: EventEmitter<IOrganization>;
+  @Output() onEdit: EventEmitter<IOrganization>;
   constructor() {
     this.onDelete = new EventEmitter();
+    this.onEdit = new EventEmitter();
   }
 
   ngOnInit() {}
 
   delete(organization: IOrganization) {
     this.onDelete.emit(organization);
+  }
+
+  edit(organization: IOrganization) {
+    this.onEdit.emit(organization);
   }
 }
