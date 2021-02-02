@@ -22,7 +22,7 @@ export class UserManagementResolve implements Resolve<IUser> {
 
 export const userManagementRoute: Routes = [
   {
-    path: '',
+    path: 'u',
     component: UserComponent,
     resolve: {
       pagingParams: ResolvePagingParams

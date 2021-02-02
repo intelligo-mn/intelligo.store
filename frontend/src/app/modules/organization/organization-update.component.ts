@@ -4,8 +4,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EventManager } from '@devmn/event-manager';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from 'src/app/core/user/user.service';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { ICategory } from 'src/app/shared/model/category.model';
@@ -13,6 +13,7 @@ import { IContact } from 'src/app/shared/model/contact.model';
 import { OrganizationStatus } from 'src/app/shared/model/enums/organization-status.model';
 import { IOrganization } from 'src/app/shared/model/organization.model';
 import { IUser } from 'src/app/shared/model/user.model';
+import { UserUpdateComponent } from '../user/user-update.component';
 import { OrganizationService } from './organization.service';
 
 type SelectableEntity = IContact | ICategory | IUser;
@@ -27,6 +28,7 @@ export class OrganizationUpdateComponent implements OnInit {
   categories: ICategory[] = [];
   users: IUser[] = [];
   managers: IUser[] = [];
+  userEventSubscriber?: Subscription;
 
   editForm = this.fb.group({
     id: [],
@@ -48,7 +50,8 @@ export class OrganizationUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     public activeModal: NgbActiveModal,
-    private eventManager: EventManager
+    private eventManager: EventManager,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +64,7 @@ export class OrganizationUpdateComponent implements OnInit {
     this.userService.query().subscribe((res: HttpResponse<IUser[] | any>) => {
       this.users = res.body || [];
     });
+    this.subscribeUserChanged()
   }
 
   previousState(): void {
@@ -80,8 +84,20 @@ export class OrganizationUpdateComponent implements OnInit {
     }
   }
 
-  createUser() {}
+  subscribeUserChanged(): void {
+    this.userEventSubscriber = this.eventManager.subscribe('userListChanged', () => {
+      this.userService.query().subscribe((res: HttpResponse<IUser[] | any>) => {
+        this.users = res.body || [];
+      });
+    });
+  }
 
+  createUser() {
+    const inst = this.modalService.open(UserUpdateComponent, { size: 'lg' });
+    inst.result.then(res => {
+      this.activeModal.dismiss('Cross click');
+    });
+  }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrganization>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),

@@ -37,6 +37,10 @@ export class OrganizationResolve implements Resolve<IOrganization> {
 export const organizationRoute: Routes = [
   {
     path: '',
+    redirectTo: 'list',
+  },
+  {
+    path: 'list',
     component: OrganizationComponent,
     resolve: {
       pagingParams: ResolvePagingParams,

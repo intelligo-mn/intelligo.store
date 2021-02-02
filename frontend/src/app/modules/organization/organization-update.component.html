@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">Байгууллага</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -103,7 +103,7 @@
   </div>
 
   <div>
-    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.close()">
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">
       <span>Цуцлах</span>
     </button>
 

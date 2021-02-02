@@ -22,8 +22,8 @@ export const ORDER_ROUTES: RouteInfo[] = [
 ];
 
 export const USER_ROUTES: RouteInfo[] = [
-  { path: '/organization', title: 'Байгууллага', icon: 'ni-building text-pink', class: '' },
-  { path: '/user', title: 'Хэрэглэгч', icon: 'ni-single-02 text-yellow', class: '' },
+  { path: '/organization/list', title: 'Байгууллага', icon: 'ni-building text-pink', class: '' },
+  { path: '/user/u', title: 'Хэрэглэгч', icon: 'ni-single-02 text-yellow', class: '' },
   { path: '/report', title: 'Тайлан', icon: 'ni-chart-pie-35 text-red', class: '' },
 ];
 
