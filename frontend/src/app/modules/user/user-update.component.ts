@@ -81,8 +81,9 @@ export class UserUpdateComponent implements OnInit {
 
   private onSaveSuccess(): void {
     this.isSaving = false;
-    this.activeModal.close();
+    this.activeModal.dismiss('Cross click')
     this.eventManager.broadcast('userListModification');
+    this.eventManager.broadcast('userListChanged');
   }
 
   private onSaveError(): void {

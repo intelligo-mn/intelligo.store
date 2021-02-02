@@ -22,7 +22,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   organizations?: IOrganization[];
   supplier?: IOrganization[];
   customer?: IOrganization[];
-  eventSubscriber?: Subscription;
+  orgEventSubscriber?: Subscription;
   totalItems = 0;
   active = 1;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -66,8 +66,8 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.eventSubscriber) {
-      this.eventManager.destroy(this.eventSubscriber);
+    if (this.orgEventSubscriber) {
+      this.eventManager.destroy(this.orgEventSubscriber);
     }
   }
 
@@ -77,7 +77,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInOrganizations(): void {
-    this.eventSubscriber = this.eventManager.subscribe('organizationListModification', () => this.loadPage());
+    this.orgEventSubscriber = this.eventManager.subscribe('organizationListModification', () => this.loadPage());
   }
 
   delete(organization: IOrganization): void {
