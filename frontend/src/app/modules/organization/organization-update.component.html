@@ -76,11 +76,9 @@
       <label class="form-control-label">Системд нэвтрэх хэрэглэгч</label>
       <ng-select class="mjo-select" [items]="users" bindLabel="login" placeholder="Хэрэглэгч сонгох" formControlName="user">
         <ng-template ng-option-tmp let-item="item" let-index="index" let-value="item" let-search="searchTerm">
-          <div >
-            <div class="">
-              <h5 class="" [ngOptionHighlight]="search">{{ item.login }}</h5>
-              <h6 class="mb-2 text-muted">{{ item.firstName }} {{ item.lastName }}</h6>
-            </div>
+          <div class="">
+            <h5 class="" [ngOptionHighlight]="search">{{ item.login }}</h5>
+            <h6 class="mb-2 text-muted">{{ item.firstName }} {{ item.lastName }}</h6>
           </div>
         </ng-template>
         <ng-template ng-footer-tmp>
@@ -90,15 +88,14 @@
     </div>
     <div class="form-group col-12">
       <label class="form-control-label">Хариуцах менежир</label>
-      <select class="form-control" id="field_manager" name="manager" formControlName="manager">
-        <option [ngValue]="null" disabled selected>Хариуцах ажилтан</option>
-        <option
-          [ngValue]="user.id === editForm.get('manager')!.value?.id ? editForm.get('manager')!.value : user"
-          *ngFor="let user of users; trackBy: trackById"
-        >
-          {{ user.login }}
-        </option>
-      </select>
+      <ng-select class="mjo-select" [items]="users" bindLabel="login" placeholder="Хариуцах менежир сонгох" formControlName="user">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-value="item" let-search="searchTerm">
+          <div class="">
+            <h5 class="" [ngOptionHighlight]="search">{{ item.login }}</h5>
+            <h6 class="mb-2 text-muted">{{ item.firstName }} {{ item.lastName }}</h6>
+          </div>
+        </ng-template>
+      </ng-select>
     </div>
   </div>
 
