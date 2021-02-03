@@ -24,7 +24,7 @@ export class UnitService {
     return UnitMapper.fromEntityToDTO(result);
   }
 
-  async findAndCount(options: FindManyOptions<UnitDTO>): Promise<[UnitDTO[], number]> {
+  async findAndCount(options: FindManyOptions<UnitDTO>): Promise<[UnitDTO[], number]> {    
     options.relations = relationshipNames;
     const resultList = await this.unitRepository.findAndCount(options);
     const unitDTO: UnitDTO[] = [];
