@@ -67,6 +67,7 @@ export class ProductUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const product = this.editForm.value;
+    debugger;
     if (product.id) {
       this.subscribeToSaveResponse(this.productService.update(product));
     } else {
