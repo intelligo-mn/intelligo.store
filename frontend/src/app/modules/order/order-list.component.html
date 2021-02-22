@@ -25,7 +25,7 @@
               <li [ngbNavItem]="1">
                 <a ngbNavLink>Бүх захиалга</a>
                 <ng-template ngbNavContent>
-                  <app-order-list [orders]="orders" (onDelete)="delete($event.target.value)"></app-order-list>
+                  <app-order-list-all [orders]="orders" (onDelete)="delete($event.target.value)"></app-order-list-all>
                 </ng-template>
               </li>
               <li [ngbNavItem]="2">

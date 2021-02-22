@@ -22,11 +22,11 @@ import { OrderStatus } from 'src/app/shared/model/enums/order-status.model';
 type SelectableEntity = IOrderItem | IUser;
 
 @Component({
-  selector: 'order-update',
-  templateUrl: './order-update.component.html',
-  styleUrls: ['./../order-pack/order-pack.component.scss', './order-update.component.scss'],
+  selector: 'order-form',
+  templateUrl: './order-form.component.html',
+  styleUrls: ['./../order-pack/order-pack.component.scss', './order-form.component.scss'],
 })
-export class OrderUpdateComponent implements OnInit {
+export class OrderFormComponent implements OnInit {
   isSaving = false;
   active = 0;
   orderitems: IOrderItem[] = [];

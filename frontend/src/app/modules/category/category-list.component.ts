@@ -7,14 +7,14 @@ import { Subscription } from 'rxjs';
 import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { CategoryUpdateComponent } from './category-update.component';
+import { CategoryUpdateComponent } from './category-form.component';
 import { CategoryService } from './category.service';
 
 @Component({
-  selector: 'category',
-  templateUrl: './category.component.html',
+  selector: 'category-list',
+  templateUrl: './category-list.component.html',
 })
-export class CategoryComponent implements OnInit, OnDestroy {
+export class CategoryListComponent implements OnInit, OnDestroy {
   categories?: ICategory[];
   eventSubscriber?: Subscription;
   totalItems = 0;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
 import { BaseEntity } from "./base/base.entity";
 import { OrderPackStatus } from "./enum/order-pack-status";
 import { Product } from "./product.entity";

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { UserComponent } from './user.component';
-import { UserUpdateComponent } from './user-update.component';
+import { UserComponent } from './user-list.component';
+import { UserUpdateComponent } from './user-form.component';
 import { IUser, User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { OrderComponent } from './order.component';
+import { OrderListComponent } from './order-list.component';
 import { OrderPackSelectComponent } from './order-pack-select.component';
-import { OrderUpdateComponent } from './order-update.component';
+import { OrderFormComponent } from './order-form.component';
 import { OrderDeleteDialogComponent } from './order-delete-dialog.component';
 import { orderRoute } from './order.route';
-import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderListAllComponent } from './components/order-list-all/order-list-all.component';
 import { OrderListDateComponent } from './components/order-list-date/order-list-date.component';
 import { OrderListManagerComponent } from './components/order-list-manager/order-list-manager.component';
 import { OrderListProductComponent } from './components/order-list-product/order-list-product.component';
@@ -15,11 +15,12 @@ import { OrderListProductComponent } from './components/order-list-product/order
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(orderRoute)],
   declarations: [
-    OrderComponent,
+    OrderListComponent,
     OrderPackSelectComponent,
-    OrderUpdateComponent,
+    OrderFormComponent,
     OrderDeleteDialogComponent,
     OrderListComponent,
+    OrderListAllComponent,
     OrderListDateComponent,
     OrderListManagerComponent,
     OrderListProductComponent,

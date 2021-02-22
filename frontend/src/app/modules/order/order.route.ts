@@ -7,9 +7,9 @@ import { flatMap } from 'rxjs/operators';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IOrder, Order } from 'src/app/shared/model/order.model';
 import { OrderService } from './order.service';
-import { OrderComponent } from './order.component';
+import { OrderListComponent } from './order-list.component';
 import { OrderPackSelectComponent } from './order-pack-select.component';
-import { OrderUpdateComponent } from './order-update.component';
+import { OrderFormComponent } from './order-form.component';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
 
@@ -38,7 +38,7 @@ export class OrderResolve implements Resolve<IOrder> {
 export const orderRoute: Routes = [
   {
     path: '',
-    component: OrderComponent,
+    component: OrderListComponent,
     resolve: {
       pagingParams: ResolvePagingParams,
     },
@@ -63,7 +63,7 @@ export const orderRoute: Routes = [
   },
   {
     path: 'create/:id',
-    component: OrderUpdateComponent,
+    component: OrderFormComponent,
     data: {
       authorities: [Authority.ADMIN, Authority.USER],
       pageTitle: 'childfoodApp.order.home.title',
@@ -72,7 +72,7 @@ export const orderRoute: Routes = [
   },
   {
     path: ':id/edit',
-    component: OrderUpdateComponent,
+    component: OrderFormComponent,
     resolve: {
       order: OrderResolve,
     },

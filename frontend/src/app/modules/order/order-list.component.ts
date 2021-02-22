@@ -14,11 +14,11 @@ import { OrderPackSelectComponent } from './order-pack-select.component';
 import { IOrderPack } from 'src/app/shared/model/order-pack.model';
 
 @Component({
-  selector: 'order',
-  templateUrl: './order.component.html',
-  styleUrls: ["./order.component.scss"]
+  selector: 'order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ["./order-list.component.scss"]
 })
-export class OrderComponent implements OnInit, OnDestroy {
+export class OrderListComponent implements OnInit, OnDestroy {
   orders?: IOrder[];
   eventSubscriber?: Subscription;
   totalItems = 0;

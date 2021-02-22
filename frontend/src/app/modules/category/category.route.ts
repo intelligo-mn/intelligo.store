@@ -7,8 +7,8 @@ import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { Category, ICategory } from 'src/app/shared/model/category.model';
 import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
-import { CategoryUpdateComponent } from './category-update.component';
-import { CategoryComponent } from './category.component';
+import { CategoryUpdateComponent } from './category-form.component';
+import { CategoryListComponent } from './category-list.component';
 import { CategoryService } from './category.service';
 
 @Injectable({ providedIn: 'root' })
@@ -36,7 +36,7 @@ export class CategoryResolve implements Resolve<ICategory> {
 export const categoryRoute: Routes = [
   {
     path: '',
-    component: CategoryComponent,
+    component: CategoryListComponent,
     resolve: {
       pagingParams: ResolvePagingParams,
     },
