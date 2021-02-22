@@ -13,7 +13,7 @@ import { IContact } from 'src/app/shared/model/contact.model';
 import { OrganizationStatus } from 'src/app/shared/model/enums/organization-status.model';
 import { IOrganization } from 'src/app/shared/model/organization.model';
 import { IUser } from 'src/app/shared/model/user.model';
-import { UserUpdateComponent } from '../user/user-update.component';
+import { UserUpdateComponent } from '../user/user-form.component';
 import { OrganizationService } from './organization.service';
 
 type SelectableEntity = IContact | ICategory | IUser;

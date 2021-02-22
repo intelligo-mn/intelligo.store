@@ -11,8 +11,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager } from '@devmn/event-manager';
 
 @Component({
-  selector: 'category-update',
-  templateUrl: './category-update.component.html',
+  selector: 'category-form',
+  templateUrl: './category-form.component.html',
 })
 export class CategoryUpdateComponent implements OnInit {
   @Input() category: ICategory;

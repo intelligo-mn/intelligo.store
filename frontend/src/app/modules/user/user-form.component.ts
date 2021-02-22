@@ -8,7 +8,7 @@ import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   selector: 'user-mgmt-update',
-  templateUrl: './user-update.component.html',
+  templateUrl: './user-form.component.html',
 })
 export class UserUpdateComponent implements OnInit {
   user!: User;

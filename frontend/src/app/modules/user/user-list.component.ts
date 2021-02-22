@@ -11,11 +11,11 @@ import { IUser, User } from 'src/app/core/user/user.model';
 import { UserService } from 'src/app/core/user/user.service';
 import { ITEMS_PER_PAGE } from 'src/app/shared/constants/pagination.constants';
 import { UserDeleteDialogComponent } from './user-delete-dialog.component';
-import { UserUpdateComponent } from './user-update.component';
+import { UserUpdateComponent } from './user-form.component';
 
 @Component({
   selector: 'user-mgmt',
-  templateUrl: './user.component.html',
+  templateUrl: './user-list.component.html',
 })
 export class UserComponent implements OnInit, OnDestroy {
   currentAccount: Account | null = null;
