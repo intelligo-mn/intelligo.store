@@ -1,0 +1,11 @@
+# See: https://dependabot.com/docs/config-file/
+# See: https://dependabot.com/docs/config-file/validator/
+
+version: 1
+update_configs:
+  # Keep package.json (& lockfiles) up to date as soon as new versions are published to the npm registry
+  - package_manager: 'javascript'
+    directory: '/' # location of package.json
+    update_schedule: 'weekly' # or "live", "daily", "monthly"
+    default_reviewers:
+      - 'tortuvshin'

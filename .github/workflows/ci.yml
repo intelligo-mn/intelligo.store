@@ -1,0 +1,27 @@
+name: CI
+on: [push]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Type-check TS/JS files
+        run: npm run type-check
+      - name: Lint TS/JS files
+        run: npm run lint
+      - name: Format all files
+        run: npm run format
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test

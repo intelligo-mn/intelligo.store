@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+http://gatsbytutorials.netlify.com/* http://www.gatsbytutorials.com/:splat 301!
