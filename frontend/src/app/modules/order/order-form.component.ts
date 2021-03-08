@@ -35,7 +35,7 @@ export class OrderFormComponent implements OnInit {
   products: IProduct[] = [];
   categories: ICategory[] = [];
 
-  editForm = this.fb.group({
+  orderForm = this.fb.group({
     id: [],
     distributionDate: [null, [Validators.required]],
     status: [null, [Validators.required]],
@@ -123,7 +123,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   get formArray(): FormArray {
-    return this.editForm.get('categories') as FormArray;
+    return this.orderForm.get('categories') as FormArray;
   }
 
   formArrayChild(index: number): FormArray {
@@ -132,7 +132,7 @@ export class OrderFormComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const order: IOrder = this.editForm.value;
+    const order: IOrder = this.orderForm.value;
     if (order.id) {
       this.subscribeToSaveResponse(this.orderService.update(order));
     } else {

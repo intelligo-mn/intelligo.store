@@ -37,7 +37,7 @@ export class CategoryUpdateComponent implements OnInit {
     if (this.category) {
       this.categoryForm.patchValue(this.category);
     }
-  }
+  } 
 
   save(): void {
     this.isSaving = true;
