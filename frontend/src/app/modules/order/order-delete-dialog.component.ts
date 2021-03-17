@@ -11,7 +11,7 @@ import { OrderService } from './order.service';
 export class OrderDeleteDialogComponent {
   order?: IOrder;
 
-  constructor(protected orderService: OrderService, public activeModal: NgbActiveModal, protected eventManager: EventManager) {}
+  constructor(protected orderService: OrderService, public activeModal: NgbActiveModal, protected eventManager: EventManager) { }
 
   cancel(): void {
     this.activeModal.dismiss();

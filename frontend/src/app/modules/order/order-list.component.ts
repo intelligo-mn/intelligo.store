@@ -35,7 +35,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: EventManager,
     protected modalService: NgbModal
-  ) {}
+  ) { }
 
   loadPage(page?: number): void {
     const pageToLoad: number = page || this.page;
@@ -85,7 +85,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   add(): void {
     const modalRef: NgbModalRef = this.modalService.open(OrderPackSelectComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.result.then((res:IOrderPack)=>{
+    modalRef.result.then((res: IOrderPack) => {
       this.router.navigate(['/order/create/', res.id])
     })
   }

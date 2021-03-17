@@ -21,12 +21,12 @@ export class OrderPackSelectComponent implements OnInit {
     protected router: Router,
     protected eventManager: EventManager,
     public activeModal: NgbActiveModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.orderPackService.query().subscribe(
       (res: HttpResponse<IOrderPack[]>) => (this.orderPacks = res.body),
-      () => {}
+      () => { }
     );
   }
 

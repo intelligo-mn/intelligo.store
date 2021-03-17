@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { Observable, of, EMPTY } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
+import { EMPTY, Observable, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { Authority } from 'src/app/shared/constants/authority.constants';
 import { IOrder, Order } from 'src/app/shared/model/order.model';
-import { OrderService } from './order.service';
+import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
+import { OrderFormComponent } from './order-form.component';
 import { OrderListComponent } from './order-list.component';
 import { OrderPackSelectComponent } from './order-pack-select.component';
-import { OrderFormComponent } from './order-form.component';
-import { AuthGuard } from 'src/app/core/auth/auth.guard';
-import { ResolvePagingParams } from 'src/app/shared/services/resolve-paging-param.service';
+import { OrderService } from './order.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderResolve implements Resolve<IOrder> {
-  constructor(private service: OrderService, private router: Router) {}
+  constructor(private service: OrderService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IOrder> | Observable<never> {
     const id = route.params['id'];
