@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as moment from 'moment';
-
-import { environment } from 'src/environments/environment';
-import { createRequestOption } from 'src/app/shared/util/request-util';
 import { IOrder } from 'src/app/shared/model/order.model';
+import { createRequestOption } from 'src/app/shared/util/request-util';
+import { environment } from 'src/environments/environment';
+
 
 type EntityResponseType = HttpResponse<IOrder>;
 type EntityArrayResponseType = HttpResponse<IOrder[]>;
@@ -15,7 +14,7 @@ type EntityArrayResponseType = HttpResponse<IOrder[]>;
 export class OrderService {
   public resourceUrl = environment.apiUrl + 'api/orders';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(order: IOrder): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(order);
