@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="card-body">
-            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="orderForm">
+            <form name="orderForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="orderForm">
               <div class="row">
                 <div class="form-group" [hidden]="true">
                   <label for="id">ID</label>
@@ -22,35 +22,31 @@
                 <div class="form-group col-2">
                   <label class="form-control-label">Захиалга хийж дуусах өдөр</label>
                   <div class="d-flex">
-                    <input
-                      id="field_distributionDate"
-                      type="date"
-                      class="form-control"
-                      name="distributionDate"
-                      formControlName="distributionDate"
-                      placeholder="YYYY-MM-DD"
-                    />
+                    <input id="field_distributionDate" type="date" class="form-control" name="distributionDate"
+                      formControlName="distributionDate" placeholder="YYYY-MM-DD" />
                   </div>
                   <div
-                    *ngIf="editForm.get('distributionDate')!.invalid && (editForm.get('distributionDate')!.dirty || editForm.get('distributionDate')!.touched)"
-                  >
-                    <small class="form-text text-danger" *ngIf="editForm.get('distributionDate')?.errors?.required">
+                    *ngIf="orderForm.get('distributionDate')!.invalid && (orderForm.get('distributionDate')!.dirty || orderForm.get('distributionDate')!.touched)">
+                    <small class="form-text text-danger" *ngIf="orderForm.get('distributionDate')?.errors?.required">
                       Энэхүү талбарыг заавал оруулна уу.
                     </small>
-                    <small class="form-text text-danger" [hidden]="!editForm.get('distributionDate')?.errors?.ZonedDateTimelocal">
+                    <small class="form-text text-danger"
+                      [hidden]="!orderForm.get('distributionDate')?.errors?.ZonedDateTimelocal">
                       This field should be a date and time.
                     </small>
                   </div>
                 </div>
 
-                <div class="form-group col-2" [hidden]="!editForm.get('id')?.value">
+                <div class="form-group col-2" [hidden]="!orderForm.get('id')?.value">
                   <label class="form-control-label">Төлөв</label>
                   <select class="form-control" name="status" formControlName="status" id="field_status">
                     <option value="ACTIVE" [selected]>Идэвхитэй</option>
                     <option value="INACTIVE">Идэвхигүй</option>
                   </select>
-                  <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-                    <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> Энэхүү талбарыг заавал оруулна уу. </small>
+                  <div
+                    *ngIf="orderForm.get('status')!.invalid && (orderForm.get('status')!.dirty || orderForm.get('status')!.touched)">
+                    <small class="form-text text-danger" *ngIf="orderForm.get('status')?.errors?.required"> Энэхүү
+                      талбарыг заавал оруулна уу. </small>
                   </div>
                 </div>
 
@@ -58,7 +54,8 @@
                   <label class="form-control-label">Ангилал сонгоно уу</label>
 
                   <div class="d-flex">
-                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical" formArrayName="categories">
+                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" orientation="vertical"
+                      formArrayName="categories">
                       <li *ngFor="let category of formArray?.controls; let i = index" [ngbNavItem]="i">
                         <a ngbNavLink>
                           {{ category?.value?.name }}
@@ -73,28 +70,21 @@
                                   <th scope="col" jhiSortBy="status"><span>Хэмжих нэгж</span></th>
                                 </tr>
                               </thead>
-                              <tbody
-                                *ngFor="let product of formArrayChild(i)?.controls; let i = index"
-                                formArrayName="products"
-                              >
+                              <tbody *ngFor="let product of formArrayChild(i)?.controls; let i = index"
+                                formArrayName="products">
                                 <tr [formGroupName]="i">
                                   <td>
                                     <input hidden formControlName="id" [value]="product.value.name" type="text" />
                                     <input hidden formControlName="name" [value]="product.value.name" type="text" />
-                                    <input hidden formControlName="category" [value]="product.value.category" type="text" />
+                                    <input hidden formControlName="category" [value]="product.value.category"
+                                      type="text" />
                                     <input hidden formControlName="unit" [value]="product.value.unit" type="text" />
                                     {{ product.value.name }}
                                   </td>
-                                  
+
                                   <td class="last-row">
-                                    <input
-                                      id="field_quantity"
-                                      type="text"
-                                      class="form-control"
-                                      formControlName='quantity'
-                                      placeholder=""
-                                      [value]="product.value.quantity"
-                                    />
+                                    <input id="field_quantity" type="text" class="form-control"
+                                      formControlName='quantity' placeholder="" [value]="product.value.quantity" />
                                   </td>
                                   <td>
                                     {{ product.value?.unit?.name }}
