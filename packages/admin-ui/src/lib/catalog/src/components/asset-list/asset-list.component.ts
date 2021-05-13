@@ -8,12 +8,14 @@ import {
     DataService,
     DeletionResult,
     GetAssetList,
+    LogicalOperator,
     ModalService,
     NotificationService,
+    SortOrder,
+    TagFragment,
 } from '@vendure/admin-ui/core';
-import { SortOrder } from '@vendure/common/lib/generated-shop-types';
 import { PaginationInstance } from 'ngx-pagination';
-import { combineLatest, EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, EMPTY, Observable } from 'rxjs';
 import { debounceTime, finalize, map, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -21,10 +23,13 @@ import { debounceTime, finalize, map, switchMap, takeUntil } from 'rxjs/operator
     templateUrl: './asset-list.component.html',
     styleUrls: ['./asset-list.component.scss'],
 })
-export class AssetListComponent extends BaseListComponent<GetAssetList.Query, GetAssetList.Items>
+export class AssetListComponent
+    extends BaseListComponent<GetAssetList.Query, GetAssetList.Items, GetAssetList.Variables>
     implements OnInit {
-    searchTerm = new FormControl('');
+    searchTerm$ = new BehaviorSubject<string | undefined>(undefined);
+    filterByTags$ = new BehaviorSubject<TagFragment[] | undefined>(undefined);
     uploading = false;
+    allTags$: Observable<TagFragment[]>;
     paginationConfig$: Observable<PaginationInstance>;
 
     constructor(
@@ -37,21 +42,30 @@ export class AssetListComponent extends BaseListComponent<GetAssetList.Query, Ge
         super(router, route);
         super.setQueryFn(
             (...args: any[]) => this.dataService.product.getAssetList(...args),
-            (data) => data.assets,
-            (skip, take) => ({
-                options: {
-                    skip,
-                    take,
-                    filter: {
-                        name: {
-                            contains: this.searchTerm.value,
+            data => data.assets,
+            (skip, take) => {
+                const searchTerm = this.searchTerm$.value;
+                const tags = this.filterByTags$.value?.map(t => t.value);
+                return {
+                    options: {
+                        skip,
+                        take,
+                        ...(searchTerm
+                            ? {
+                                  filter: {
+                                      name: { contains: searchTerm },
+                                  },
+                              }
+                            : {}),
+                        sort: {
+                            createdAt: SortOrder.DESC,
                         },
+                        tags,
+                        tagsOperator: LogicalOperator.AND,
                     },
-                    sort: {
-                        createdAt: SortOrder.DESC,
-                    },
-                },
-            }),
+                };
+            },
+            { take: 25, skip: 0 },
         );
     }
 
@@ -60,9 +74,10 @@ export class AssetListComponent extends BaseListComponent<GetAssetList.Query, Ge
         this.paginationConfig$ = combineLatest(this.itemsPerPage$, this.currentPage$, this.totalItems$).pipe(
             map(([itemsPerPage, currentPage, totalItems]) => ({ itemsPerPage, currentPage, totalItems })),
         );
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(250), takeUntil(this.destroy$))
-            .subscribe(() => this.refresh());
+        this.searchTerm$.pipe(debounceTime(250), takeUntil(this.destroy$)).subscribe(() => this.refresh());
+
+        this.filterByTags$.pipe(takeUntil(this.destroy$)).subscribe(() => this.refresh());
+        this.allTags$ = this.dataService.product.getTagList().mapStream(data => data.tags.items);
     }
 
     filesSelected(files: File[]) {
@@ -71,26 +86,39 @@ export class AssetListComponent extends BaseListComponent<GetAssetList.Query, Ge
             this.dataService.product
                 .createAssets(files)
                 .pipe(finalize(() => (this.uploading = false)))
-                .subscribe((res) => {
-                    super.refresh();
-                    this.notificationService.success(_('asset.notify-create-assets-success'), {
-                        count: files.length,
-                    });
+                .subscribe(({ createAssets }) => {
+                    let successCount = 0;
+                    for (const result of createAssets) {
+                        switch (result.__typename) {
+                            case 'Asset':
+                                successCount++;
+                                break;
+                            case 'MimeTypeError':
+                                this.notificationService.error(result.message);
+                                break;
+                        }
+                    }
+                    if (0 < successCount) {
+                        super.refresh();
+                        this.notificationService.success(_('asset.notify-create-assets-success'), {
+                            count: successCount,
+                        });
+                    }
                 });
         }
     }
 
     deleteAssets(assets: Asset[]) {
-        this.showModalAndDelete(assets.map((a) => a.id))
+        this.showModalAndDelete(assets.map(a => a.id))
             .pipe(
-                switchMap((response) => {
+                switchMap(response => {
                     if (response.result === DeletionResult.DELETED) {
                         return [true];
                     } else {
                         return this.showModalAndDelete(
-                            assets.map((a) => a.id),
+                            assets.map(a => a.id),
                             response.message || '',
-                        ).pipe(map((r) => r.result === DeletionResult.DELETED));
+                        ).pipe(map(r => r.result === DeletionResult.DELETED));
                     }
                 }),
             )
@@ -101,7 +129,7 @@ export class AssetListComponent extends BaseListComponent<GetAssetList.Query, Ge
                     });
                     this.refresh();
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('common.notify-delete-error'), {
                         entity: 'Assets',
                     });
@@ -123,10 +151,8 @@ export class AssetListComponent extends BaseListComponent<GetAssetList.Query, Ge
                 ],
             })
             .pipe(
-                switchMap((res) =>
-                    res ? this.dataService.product.deleteAssets(assetIds, !!message) : EMPTY,
-                ),
-                map((res) => res.deleteAssets),
+                switchMap(res => (res ? this.dataService.product.deleteAssets(assetIds, !!message) : EMPTY)),
+                map(res => res.deleteAssets),
             );
     }
 }

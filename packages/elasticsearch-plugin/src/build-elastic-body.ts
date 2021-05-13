@@ -1,5 +1,5 @@
-import { LogicalOperator, PriceRange, SortOrder } from '@vendure/common/lib/generated-types';
-import { DeepRequired, ID } from '@vendure/core';
+import { LanguageCode, LogicalOperator, PriceRange, SortOrder } from '@vendure/common/lib/generated-types';
+import { DeepRequired, ID, UserInputError } from '@vendure/core';
 
 import { SearchConfig } from './options';
 import { ElasticSearchInput, SearchRequestBody } from './types';
@@ -11,6 +11,7 @@ export function buildElasticBody(
     input: ElasticSearchInput,
     searchConfig: DeepRequired<SearchConfig>,
     channelId: ID,
+    languageCode: LanguageCode,
     enabledOnly: boolean = false,
 ): SearchRequestBody {
     const {
@@ -18,18 +19,21 @@ export function buildElasticBody(
         facetValueIds,
         facetValueOperator,
         collectionId,
+        collectionSlug,
         groupByProduct,
         skip,
         take,
         sort,
         priceRangeWithTax,
         priceRange,
+        facetValueFilters,
     } = input;
     const query: any = {
         bool: {},
     };
     ensureBoolFilterExists(query);
     query.bool.filter.push({ term: { channelId } });
+    query.bool.filter.push({ term: { languageCode } });
 
     if (term) {
         query.bool.must = [
@@ -56,9 +60,31 @@ export function buildElasticBody(
             },
         ]);
     }
+    if (facetValueFilters && facetValueFilters.length) {
+        ensureBoolFilterExists(query);
+        facetValueFilters.forEach(facetValueFilter => {
+            if (facetValueFilter.and && facetValueFilter.or && facetValueFilter.or.length) {
+                throw new UserInputError('error.facetfilterinput-invalid-input');
+            }
+
+            if (facetValueFilter.and) {
+                query.bool.filter.push({ term: { facetValueIds: facetValueFilter.and } });
+            }
+
+            if (facetValueFilter.or && facetValueFilter.or.length) {
+                query.bool.filter.push({
+                    bool: { ['should']: facetValueFilter.or.map(id => ({ term: { facetValueIds: id } })) },
+                });
+            }
+        });
+    }
     if (collectionId) {
         ensureBoolFilterExists(query);
         query.bool.filter.push({ term: { collectionIds: collectionId } });
+    }
+    if (collectionSlug) {
+        ensureBoolFilterExists(query);
+        query.bool.filter.push({ term: { collectionSlugs: collectionSlug } });
     }
     if (enabledOnly) {
         ensureBoolFilterExists(query);

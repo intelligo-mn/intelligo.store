@@ -1,3 +1,940 @@
+## 1.0.0-rc.0 (2021-05-05)
+
+
+#### Fixes
+
+* **core** Fix transition to PaymentSettled with multiple payments ([c60fad7](https://github.com/vendure-ecommerce/vendure/commit/c60fad7)), closes [#847](https://github.com/vendure-ecommerce/vendure/issues/847)
+* **core** Handle different input types in validateRequiredFields() (#861) ([2ca6bfd](https://github.com/vendure-ecommerce/vendure/commit/2ca6bfd)), closes [#861](https://github.com/vendure-ecommerce/vendure/issues/861) [#855](https://github.com/vendure-ecommerce/vendure/issues/855)
+
+## 1.0.0-beta.11 (2021-04-28)
+
+
+#### Fixes
+
+* **core** Allow plugins to define global Nestjs providers ([97edcb9](https://github.com/vendure-ecommerce/vendure/commit/97edcb9)), closes [#837](https://github.com/vendure-ecommerce/vendure/issues/837)
+* **core** Display informative message when saving a translatable fails ([ce6293d](https://github.com/vendure-ecommerce/vendure/commit/ce6293d))
+* **core** Fix error on concurrent calls to new channel ([fad9006](https://github.com/vendure-ecommerce/vendure/commit/fad9006)), closes [#834](https://github.com/vendure-ecommerce/vendure/issues/834)
+* **core** Fix missing customField input for Assets ([772bd8d](https://github.com/vendure-ecommerce/vendure/commit/772bd8d)), closes [#844](https://github.com/vendure-ecommerce/vendure/issues/844)
+
+#### Features
+
+* **admin-ui** Support new permissions ([57566b0](https://github.com/vendure-ecommerce/vendure/commit/57566b0)), closes [#617](https://github.com/vendure-ecommerce/vendure/issues/617)
+* **core** Allow default Roles to be defined in InitialData ([d866325](https://github.com/vendure-ecommerce/vendure/commit/d866325))
+* **core** Improved translations ([a8ca019](https://github.com/vendure-ecommerce/vendure/commit/a8ca019)), closes [#839](https://github.com/vendure-ecommerce/vendure/issues/839)
+* **core** More granular (entity-based) permissions ([4ed2ed5](https://github.com/vendure-ecommerce/vendure/commit/4ed2ed5)), closes [#617](https://github.com/vendure-ecommerce/vendure/issues/617)
+
+#### Perf
+
+* **elasticsearch-plugin** Improve indexing memory usage [#833](https://github.com/vendure-ecommerce/vendure/pull/833)
+
+## 1.0.0-beta.10 (2021-04-22)
+
+
+#### Fixes
+
+* **admin-ui** Fix error when updating roles ([432c89c](https://github.com/vendure-ecommerce/vendure/commit/432c89c)), closes [#828](https://github.com/vendure-ecommerce/vendure/issues/828)
+* **admin-ui** Make dropdowns scrollable ([e887a2b](https://github.com/vendure-ecommerce/vendure/commit/e887a2b)), closes [#824](https://github.com/vendure-ecommerce/vendure/issues/824)
+* **core** Backoff strategy does not block next jobs ([709cdff](https://github.com/vendure-ecommerce/vendure/commit/709cdff)), closes [#832](https://github.com/vendure-ecommerce/vendure/issues/832)
+* **core** Fix crash on updating Facet code ([755ebc4](https://github.com/vendure-ecommerce/vendure/commit/755ebc4)), closes [#831](https://github.com/vendure-ecommerce/vendure/issues/831)
+* **core** Fix error when assigning deleted ProductVariant to channel ([b5d0e43](https://github.com/vendure-ecommerce/vendure/commit/b5d0e43))
+* **elasticsearch-plugin** Fix bad import ([9c76767](https://github.com/vendure-ecommerce/vendure/commit/9c76767))
+
+#### Features
+
+* **admin-ui** Add Russian translations (#829) ([650f38e](https://github.com/vendure-ecommerce/vendure/commit/650f38e)), closes [#829](https://github.com/vendure-ecommerce/vendure/issues/829)
+* **core** Added i18n messages for DE (#830) ([d62628b](https://github.com/vendure-ecommerce/vendure/commit/d62628b)), closes [#830](https://github.com/vendure-ecommerce/vendure/issues/830)
+* **core** JobQueueStrategy pollInterval accepts function ([c2701b9](https://github.com/vendure-ecommerce/vendure/commit/c2701b9))
+
+### 1.0.0-beta.9 (2021-04-13)
+
+
+#### Fixes
+
+* **admin-ui** Display guest orders in OrderList ([c1dcb19](https://github.com/vendure-ecommerce/vendure/commit/c1dcb19))
+* **admin-ui-plugin** Bump version to make fix available
+
+## 1.0.0-beta.8 (2021-04-13)
+
+
+#### Fixes
+
+* **admin-ui** Better display Fulfillment customFields in Order detail ([0e9f528](https://github.com/vendure-ecommerce/vendure/commit/0e9f528)), closes [#816](https://github.com/vendure-ecommerce/vendure/issues/816)
+* **core** Handle relation customFields when creating Fulfillments ([9559e34](https://github.com/vendure-ecommerce/vendure/commit/9559e34)), closes [#816](https://github.com/vendure-ecommerce/vendure/issues/816)
+* **core** Join eager relations on OrderService.findOne method ([5e181ea](https://github.com/vendure-ecommerce/vendure/commit/5e181ea))
+* **core** Return all assets when querying product by slug ([acb3fb0](https://github.com/vendure-ecommerce/vendure/commit/acb3fb0)), closes [#820](https://github.com/vendure-ecommerce/vendure/issues/820)
+* **email-plugin** Added filename filter for json files (#821) ([317a63c](https://github.com/vendure-ecommerce/vendure/commit/317a63c)), closes [#821](https://github.com/vendure-ecommerce/vendure/issues/821)
+* **email-plugin** make @types/nodemailer a dependency to resolve #817 ([1c2b353](https://github.com/vendure-ecommerce/vendure/commit/1c2b353)), closes [#817](https://github.com/vendure-ecommerce/vendure/issues/817) [#817](https://github.com/vendure-ecommerce/vendure/issues/817)
+
+#### Features
+
+* **admin-ui** Display payment errors in OrderDetail view ([cf31cbf](https://github.com/vendure-ecommerce/vendure/commit/cf31cbf))
+* **admin-ui** Filter Customer list by customer last name ([6df325b](https://github.com/vendure-ecommerce/vendure/commit/6df325b)), closes [#572](https://github.com/vendure-ecommerce/vendure/issues/572)
+* **admin-ui** Filter Order list by customer last name ([690dfa7](https://github.com/vendure-ecommerce/vendure/commit/690dfa7)), closes [#572](https://github.com/vendure-ecommerce/vendure/issues/572)
+* **admin-ui** Improve display of OrderLine customFields ([fde3ffc](https://github.com/vendure-ecommerce/vendure/commit/fde3ffc))
+* **admin-ui** UI for deletion of PaymentMethods ([fa67076](https://github.com/vendure-ecommerce/vendure/commit/fa67076))
+* **core** Add server translations via plugin application bootstrap ([13a4b68](https://github.com/vendure-ecommerce/vendure/commit/13a4b68)), closes [#810](https://github.com/vendure-ecommerce/vendure/issues/810)
+* **core** Allow ListQuery sort/filter inputs to be manually extended ([834ea2d](https://github.com/vendure-ecommerce/vendure/commit/834ea2d)), closes [#572](https://github.com/vendure-ecommerce/vendure/issues/572)
+* **core** Allow setting PaymentState on failure to settle Payment ([0241ade](https://github.com/vendure-ecommerce/vendure/commit/0241ade)), closes [#809](https://github.com/vendure-ecommerce/vendure/issues/809)
+* **core** Configurable backoff strategy for DefaultJobQueuePlugin ([be0a27d](https://github.com/vendure-ecommerce/vendure/commit/be0a27d)), closes [#813](https://github.com/vendure-ecommerce/vendure/issues/813)
+* **core** Implement deletion of PaymentMethods ([f97cd4f](https://github.com/vendure-ecommerce/vendure/commit/f97cd4f))
+* **core** Implement sort/filter OrderList by customerLastName ([c29e6f2](https://github.com/vendure-ecommerce/vendure/commit/c29e6f2)), closes [#572](https://github.com/vendure-ecommerce/vendure/issues/572)
+* **elasticsearch-plugin** Add facetFilters input for search query ([23cc655](https://github.com/vendure-ecommerce/vendure/commit/23cc655)), closes [#726](https://github.com/vendure-ecommerce/vendure/issues/726)
+
+#### Perf
+
+* **core** Reduce memory usage of apply-collection-filters job ([76361d5](https://github.com/vendure-ecommerce/vendure/commit/76361d5))
+
+## 1.0.0-beta.7 (2021-04-05)
+
+
+#### Features
+
+* **admin-ui** AssetPickerDialog can take initial tags ([03c6706](https://github.com/vendure-ecommerce/vendure/commit/03c6706))
+* **asset-server-plugin** Support Apple M1 (update Sharp to 0.28) ([1335080](https://github.com/vendure-ecommerce/vendure/commit/1335080)), closes [#803](https://github.com/vendure-ecommerce/vendure/issues/803)
+* **core** Add ability to get variants for a specific product in productVariants query ([1da0592](https://github.com/vendure-ecommerce/vendure/commit/1da0592)), closes [#786](https://github.com/vendure-ecommerce/vendure/issues/786)
+* **core** Add name and description fields to eligiblePaymentMethods query ([fd28208](https://github.com/vendure-ecommerce/vendure/commit/fd28208)), closes [#738](https://github.com/vendure-ecommerce/vendure/issues/738)
+
+#### Fixes
+
+* **admin-ui** Fix asset search component ([d65277e](https://github.com/vendure-ecommerce/vendure/commit/d65277e))
+* **admin-ui** Fix errors caused by lists greater than 1000 items ([5844715](https://github.com/vendure-ecommerce/vendure/commit/5844715)), closes [#807](https://github.com/vendure-ecommerce/vendure/issues/807)
+* **admin-ui** Fix facet display in product search bar ([a05044d](https://github.com/vendure-ecommerce/vendure/commit/a05044d))
+* **core** Fix product query by slug ([2ace0eb](https://github.com/vendure-ecommerce/vendure/commit/2ace0eb)), closes [#800](https://github.com/vendure-ecommerce/vendure/issues/800)
+
+## 1.0.0-beta.6 (2021-04-01)
+
+
+#### Fixes
+
+* **core** Correct ordering of Collection breadcrumbs ([92952fb](https://github.com/vendure-ecommerce/vendure/commit/92952fb))
+* **core** Correctly defer incomplete jobs on shutdown ([d3fa83a](https://github.com/vendure-ecommerce/vendure/commit/d3fa83a))
+* **core** Correctly handle multiple external auth methods ([b397ba2](https://github.com/vendure-ecommerce/vendure/commit/b397ba2)), closes [#695](https://github.com/vendure-ecommerce/vendure/issues/695)
+* **core** Fix edge case in auth guard resolver detection ([b190300](https://github.com/vendure-ecommerce/vendure/commit/b190300))
+* **core** Fix memory leak in default JobQueueStrategies ([e9e3c18](https://github.com/vendure-ecommerce/vendure/commit/e9e3c18))
+* **core** Fix some issues with sorting/filtering calculated properties ([2d89554](https://github.com/vendure-ecommerce/vendure/commit/2d89554))
+* **core** Fix sorting of Order calculated properties in Postgres ([e9b18fe](https://github.com/vendure-ecommerce/vendure/commit/e9b18fe))
+* **core** Fix TypeScript TS2502 error in Translation<T> type ([a4243c4](https://github.com/vendure-ecommerce/vendure/commit/a4243c4)), closes [#787](https://github.com/vendure-ecommerce/vendure/issues/787)
+* **core** Prevent customer data leak via Shop API ([8ea544b](https://github.com/vendure-ecommerce/vendure/commit/8ea544b)), closes [#730](https://github.com/vendure-ecommerce/vendure/issues/730)
+* **core** Resolver permission changes work with REST routes ([b61b47d](https://github.com/vendure-ecommerce/vendure/commit/b61b47d))
+
+#### Features
+
+* **core** AssetService can create assets from Readable streams ([9d80145](https://github.com/vendure-ecommerce/vendure/commit/9d80145))
+* **core** Enable the use of Permissions of GraphQL field resolvers ([5c837b8](https://github.com/vendure-ecommerce/vendure/commit/5c837b8)), closes [#730](https://github.com/vendure-ecommerce/vendure/issues/730)
+* **core** Implement size limits for paginated list results ([92be4e0](https://github.com/vendure-ecommerce/vendure/commit/92be4e0)), closes [#751](https://github.com/vendure-ecommerce/vendure/issues/751)
+
+## 1.0.0-beta.5 (2021-03-24)
+
+
+#### Fixes
+
+* **admin-ui** Fix buggy price input in ProductVariant list & table ([f2b53ca](https://github.com/vendure-ecommerce/vendure/commit/f2b53ca)), closes [#770](https://github.com/vendure-ecommerce/vendure/issues/770)
+* **admin-ui** Fix display of string results in JobQueue list ([10899f3](https://github.com/vendure-ecommerce/vendure/commit/10899f3))
+* **admin-ui** Make assetPreview pipe handle null inputs ([2c19759](https://github.com/vendure-ecommerce/vendure/commit/2c19759))
+* **core** Correctly compare falsy customField values in OrderLines ([265781c](https://github.com/vendure-ecommerce/vendure/commit/265781c))
+* **core** Fix gql error when OrderLine has only private customFields ([4440fea](https://github.com/vendure-ecommerce/vendure/commit/4440fea))
+* **core** Fix race condition in updating JobRecords ([b446c8f](https://github.com/vendure-ecommerce/vendure/commit/b446c8f))
+* **core** Improve reliability of Job cancellation ([410b4c2](https://github.com/vendure-ecommerce/vendure/commit/410b4c2))
+* **core** Make addPaymentToOrder channel aware ([6338212](https://github.com/vendure-ecommerce/vendure/commit/6338212)), closes [#773](https://github.com/vendure-ecommerce/vendure/issues/773)
+* **core** Save relation custom fields in addItemToOrder mutation ([10d43e8](https://github.com/vendure-ecommerce/vendure/commit/10d43e8)), closes [#760](https://github.com/vendure-ecommerce/vendure/issues/760)
+* **email-plugin** Fix broken images in order-confirmation mock emails ([82eefde](https://github.com/vendure-ecommerce/vendure/commit/82eefde))
+
+#### Features
+
+* **admin-ui** Display Order discounts with & without tax ([ea5a9f2](https://github.com/vendure-ecommerce/vendure/commit/ea5a9f2)), closes [#749](https://github.com/vendure-ecommerce/vendure/issues/749)
+* **admin-ui** Improve German translations ([3497e81](https://github.com/vendure-ecommerce/vendure/commit/3497e81))
+* **core** Add `code` field to ShippingMethodQuote ([847b4e2](https://github.com/vendure-ecommerce/vendure/commit/847b4e2)), closes [#780](https://github.com/vendure-ecommerce/vendure/issues/780)
+* **core** Add CustomerEvent and CustomerAddressEvent ([480de31](https://github.com/vendure-ecommerce/vendure/commit/480de31))
+* **core** Enable population of relational custom fields from CSV ([38611fb](https://github.com/vendure-ecommerce/vendure/commit/38611fb))
+* **core** Include with/without tax amounts on discounts ([2de6bf5](https://github.com/vendure-ecommerce/vendure/commit/2de6bf5)), closes [#749](https://github.com/vendure-ecommerce/vendure/issues/749)
+* **core** Make DefaultJobQueuePlugin configurable ([6373d9f](https://github.com/vendure-ecommerce/vendure/commit/6373d9f))
+* **core** Make JobQueue jobs subscribable ([baba268](https://github.com/vendure-ecommerce/vendure/commit/baba268)), closes [#775](https://github.com/vendure-ecommerce/vendure/issues/775)
+* **core** Reinstate ProcessContext provider ([9e30505](https://github.com/vendure-ecommerce/vendure/commit/9e30505)), closes [#772](https://github.com/vendure-ecommerce/vendure/issues/772)
+* **email-plugin** Fix broken mock events ([9ae47f1](https://github.com/vendure-ecommerce/vendure/commit/9ae47f1)), closes [#771](https://github.com/vendure-ecommerce/vendure/issues/771)
+
+
+### BREAKING CHANGE
+
+* A minor breaking change has been made to the GraphQL API: The `Order.discounts` and
+`OrderLine.discounts` fields now return `amount` and `amountWithTax`. Previously they only had
+`amount`, which was actually the tax-inclusive value. So if you want to show discount amounts with
+tax, use `amountWithTax` and otherwise use `amount`.
+## 1.0.0-beta.4 (2021-03-18)
+
+
+#### Fixes
+
+* **asset-server-plugin** Make S3 credentials optional ([56bcbff](https://github.com/vendure-ecommerce/vendure/commit/56bcbff)), closes [#733](https://github.com/vendure-ecommerce/vendure/issues/733)
+* **core** Correctly handle refunds on Orders with multiple Payments ([f4ed0e7](https://github.com/vendure-ecommerce/vendure/commit/f4ed0e7))
+* **core** Filter Promotions on Channel before applying to Order ([0cb29e5](https://github.com/vendure-ecommerce/vendure/commit/0cb29e5))
+* **core** Hide private OrderLine customFields in addItemToOrder ([c2c7f1d](https://github.com/vendure-ecommerce/vendure/commit/c2c7f1d))
+* **core** Payment amount accounts for existing Payments on Order ([e92d2ce](https://github.com/vendure-ecommerce/vendure/commit/e92d2ce))
+* **core** Really correctly handle multiple payment refunds ([ba8d411](https://github.com/vendure-ecommerce/vendure/commit/ba8d411))
+* **core** Resolve all LocaleString fields in GraphQL API ([3ddadc0](https://github.com/vendure-ecommerce/vendure/commit/3ddadc0)), closes [#763](https://github.com/vendure-ecommerce/vendure/issues/763)
+* **core** Resolve all ProductVariant price fields in GraphQL API ([2bd289a](https://github.com/vendure-ecommerce/vendure/commit/2bd289a)), closes [#763](https://github.com/vendure-ecommerce/vendure/issues/763)
+* **ui-devkit** Fix Angular compiler compatibility issue ([05b2b12](https://github.com/vendure-ecommerce/vendure/commit/05b2b12)), closes [#758](https://github.com/vendure-ecommerce/vendure/issues/758)
+
+#### Features
+
+* **asset-server-plugin** Allow assetUrlPrefix to be a function ([10eb014](https://github.com/vendure-ecommerce/vendure/commit/10eb014)), closes [#766](https://github.com/vendure-ecommerce/vendure/issues/766)
+* **core** Add Promotion Channel mutations to Admin API ([ff051ae](https://github.com/vendure-ecommerce/vendure/commit/ff051ae))
+* **core** add promotion state and promotion action-condition dependency ([dd66138](https://github.com/vendure-ecommerce/vendure/commit/dd66138))
+* **core** Allow to pass validationRules to shop and admin GraphQL API ([02a37ec](https://github.com/vendure-ecommerce/vendure/commit/02a37ec))
+
+## 1.0.0-beta.3 (2021-03-11)
+
+
+#### Fixes
+
+* **admin-ui-plugin** Fix proxy port when in dev mode ([28b096c](https://github.com/vendure-ecommerce/vendure/commit/28b096c))
+* **core** Fix featuredAsset error when adding item to Order ([e635f25](https://github.com/vendure-ecommerce/vendure/commit/e635f25)), closes [#756](https://github.com/vendure-ecommerce/vendure/issues/756)
+* **core** Fix foreign key error on merging orders ([5e385df](https://github.com/vendure-ecommerce/vendure/commit/5e385df)), closes [#754](https://github.com/vendure-ecommerce/vendure/issues/754)
+* **core** Fix indexing of long descriptions in postgres ([9efd7db](https://github.com/vendure-ecommerce/vendure/commit/9efd7db)), closes [#745](https://github.com/vendure-ecommerce/vendure/issues/745)
+* **core** Prevent max integer error in job duration ([305727e](https://github.com/vendure-ecommerce/vendure/commit/305727e)), closes [#755](https://github.com/vendure-ecommerce/vendure/issues/755)
+
+## 1.0.0-beta.2 (2021-03-09)
+
+
+#### Fixes
+
+* **core** Fix error in SqlJobQueueStrategy when using SQLite ([c775822](https://github.com/vendure-ecommerce/vendure/commit/c775822))
+
+## 1.0.0-beta.1 (2021-03-09)
+
+
+#### Fixes
+
+* **admin-ui** Improved control over Order payments ([475b72a](https://github.com/vendure-ecommerce/vendure/commit/475b72a)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688) [#507](https://github.com/vendure-ecommerce/vendure/issues/507)
+* **admin-ui** Make order modification note not required ([432a51a](https://github.com/vendure-ecommerce/vendure/commit/432a51a)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688)
+* **core** Allow loading of Order with deleted ShippingMethod ([7ba27f2](https://github.com/vendure-ecommerce/vendure/commit/7ba27f2)), closes [#716](https://github.com/vendure-ecommerce/vendure/issues/716)
+* **core** Allow unsetting PaymentMethod checkers ([48c0e96](https://github.com/vendure-ecommerce/vendure/commit/48c0e96)), closes [#469](https://github.com/vendure-ecommerce/vendure/issues/469)
+* **core** Apply Promotions when calculating modified order total ([c678a21](https://github.com/vendure-ecommerce/vendure/commit/c678a21)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688)
+* **core** Correctly handle negative "skip"/"take" in list query options ([04a4c39](https://github.com/vendure-ecommerce/vendure/commit/04a4c39))
+* **core** Do not return assets not in current channel ([5de1141](https://github.com/vendure-ecommerce/vendure/commit/5de1141)), closes [#717](https://github.com/vendure-ecommerce/vendure/issues/717)
+* **core** Fix "float" customField types ([b4dc912](https://github.com/vendure-ecommerce/vendure/commit/b4dc912))
+* **core** Fix Asset uploads on Node v13+ ([049c75c](https://github.com/vendure-ecommerce/vendure/commit/049c75c)), closes [#396](https://github.com/vendure-ecommerce/vendure/issues/396)
+* **core** Fix broken Collection population ([29ff1f9](https://github.com/vendure-ecommerce/vendure/commit/29ff1f9))
+* **core** Fix OrderMergeStrategy implementation ([3193080](https://github.com/vendure-ecommerce/vendure/commit/3193080)), closes [#669](https://github.com/vendure-ecommerce/vendure/issues/669)
+* **core** Fix transaction errors in job queue for better-sqlite3 ([0043ace](https://github.com/vendure-ecommerce/vendure/commit/0043ace))
+* **core** Improve error message for missing price data ([634e14b](https://github.com/vendure-ecommerce/vendure/commit/634e14b))
+* **core** Include shipping tax in Order.taxSummary ([cf5aa31](https://github.com/vendure-ecommerce/vendure/commit/cf5aa31)), closes [#729](https://github.com/vendure-ecommerce/vendure/issues/729)
+* **core** Invoke SessionCacheStrategy lifecycle hooks ([c3c5888](https://github.com/vendure-ecommerce/vendure/commit/c3c5888))
+* **core** Make CustomFulfillmentProcess injectable ([8bce2b4](https://github.com/vendure-ecommerce/vendure/commit/8bce2b4))
+* **core** Make CustomPaymentProcess injectable ([a0a9352](https://github.com/vendure-ecommerce/vendure/commit/a0a9352))
+* **core** Make SqlJobQueueStrategy concurrency-safe ([5e5e55a](https://github.com/vendure-ecommerce/vendure/commit/5e5e55a))
+* **core** Prevent plugin providers multiple instantiation ([98e463e](https://github.com/vendure-ecommerce/vendure/commit/98e463e))
+* **core** Relax some restrictions on adding new payments to Order ([26c1b7a](https://github.com/vendure-ecommerce/vendure/commit/26c1b7a)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688)
+* **core** RememberMe args not passed correctly for NativeAuthenticationStrategy ([532ea21](https://github.com/vendure-ecommerce/vendure/commit/532ea21))
+* **core** Remove inapplicable order-level discounts ([2396cc3](https://github.com/vendure-ecommerce/vendure/commit/2396cc3)), closes [#710](https://github.com/vendure-ecommerce/vendure/issues/710)
+* **create** Fix broken bootstrap when populating data ([5dcf6e5](https://github.com/vendure-ecommerce/vendure/commit/5dcf6e5))
+* **elasticsearch-plugin** Delete product/variant indexes for all channels ([80fabb0](https://github.com/vendure-ecommerce/vendure/commit/80fabb0))
+* **email-plugin** Correctly initialize email processor ([819e480](https://github.com/vendure-ecommerce/vendure/commit/819e480))
+
+#### Features
+
+* **admin-ui** Add support for "relation" custom field type ([63e97c7](https://github.com/vendure-ecommerce/vendure/commit/63e97c7)), closes [#308](https://github.com/vendure-ecommerce/vendure/issues/308) [#464](https://github.com/vendure-ecommerce/vendure/issues/464)
+* **admin-ui** Filter Asset list by tags ([c244c0a](https://github.com/vendure-ecommerce/vendure/commit/c244c0a)), closes [#316](https://github.com/vendure-ecommerce/vendure/issues/316)
+* **admin-ui** Implement creation of new PaymentMethods ([09a1a97](https://github.com/vendure-ecommerce/vendure/commit/09a1a97)), closes [#671](https://github.com/vendure-ecommerce/vendure/issues/671)
+* **admin-ui** Implement default TaxCategory support ([90ed7c4](https://github.com/vendure-ecommerce/vendure/commit/90ed7c4)), closes [#566](https://github.com/vendure-ecommerce/vendure/issues/566)
+* **admin-ui** Implement PaymentMethod checker/handler UI ([15fc707](https://github.com/vendure-ecommerce/vendure/commit/15fc707)), closes [#469](https://github.com/vendure-ecommerce/vendure/issues/469)
+* **admin-ui** Manage tags interface ([205391d](https://github.com/vendure-ecommerce/vendure/commit/205391d)), closes [#316](https://github.com/vendure-ecommerce/vendure/issues/316)
+* **admin-ui** Open Asset selection when clicking placeholder ([c39fa55](https://github.com/vendure-ecommerce/vendure/commit/c39fa55))
+* **admin-ui** PaymentMethod & promotions list update on channel change ([c02518c](https://github.com/vendure-ecommerce/vendure/commit/c02518c)), closes [#587](https://github.com/vendure-ecommerce/vendure/issues/587)
+* **admin-ui** Support channel-aware Facets & FacetValues ([4ccc65e](https://github.com/vendure-ecommerce/vendure/commit/4ccc65e)), closes [#612](https://github.com/vendure-ecommerce/vendure/issues/612)
+* **admin-ui** Support custom fields on Administrator & Channel ([ecd1b17](https://github.com/vendure-ecommerce/vendure/commit/ecd1b17)), closes [#598](https://github.com/vendure-ecommerce/vendure/issues/598)
+* **admin-ui** Support for editing Asset custom fields ([f109436](https://github.com/vendure-ecommerce/vendure/commit/f109436)), closes [#684](https://github.com/vendure-ecommerce/vendure/issues/684)
+* **admin-ui** Tags can be assigned to Assets in detail view ([995d1b4](https://github.com/vendure-ecommerce/vendure/commit/995d1b4)), closes [#316](https://github.com/vendure-ecommerce/vendure/issues/316)
+* **asset-server-plugin** Add S3 upload options in configuration ([fa4d1c0](https://github.com/vendure-ecommerce/vendure/commit/fa4d1c0))
+* **core** Add eligiblePaymentMethods query to Shop API ([e528c09](https://github.com/vendure-ecommerce/vendure/commit/e528c09)), closes [#469](https://github.com/vendure-ecommerce/vendure/issues/469)
+* **core** Add order line limit to Vendure configuration ([6755329](https://github.com/vendure-ecommerce/vendure/commit/6755329))
+* **core** Add support for Asset tags ([71cf3b9](https://github.com/vendure-ecommerce/vendure/commit/71cf3b9)), closes [#316](https://github.com/vendure-ecommerce/vendure/issues/316)
+* **core** Add support for relation custom fields on Channel entity ([7b96b9f](https://github.com/vendure-ecommerce/vendure/commit/7b96b9f)), closes [#598](https://github.com/vendure-ecommerce/vendure/issues/598)
+* **core** Allow custom field validate fn to be async & injectable ([5e04a14](https://github.com/vendure-ecommerce/vendure/commit/5e04a14))
+* **core** Allow NestJS middleware to be passed in apiOptions ([44d0b45](https://github.com/vendure-ecommerce/vendure/commit/44d0b45))
+* **core** Base custom payment process ([83af699](https://github.com/vendure-ecommerce/vendure/commit/83af699))
+* **core** Channel aware assets ([4ea74e2](https://github.com/vendure-ecommerce/vendure/commit/4ea74e2)), closes [#677](https://github.com/vendure-ecommerce/vendure/issues/677)
+* **core** Create APIs & resolver for Tag operations ([6630063](https://github.com/vendure-ecommerce/vendure/commit/6630063)), closes [#316](https://github.com/vendure-ecommerce/vendure/issues/316)
+* **core** De-couple PaymentMethod from PaymentMethodHandler ([ee9ba23](https://github.com/vendure-ecommerce/vendure/commit/ee9ba23)), closes [#671](https://github.com/vendure-ecommerce/vendure/issues/671)
+* **core** Export startJobQueue helper from boostrapWorker() ([d6e4af5](https://github.com/vendure-ecommerce/vendure/commit/d6e4af5))
+* **core** Facet:value pairs can be used in InitialData collection def ([2dc7f15](https://github.com/vendure-ecommerce/vendure/commit/2dc7f15))
+* **core** Implement "relation" custom field type ([3e1a900](https://github.com/vendure-ecommerce/vendure/commit/3e1a900)), closes [#308](https://github.com/vendure-ecommerce/vendure/issues/308) [#464](https://github.com/vendure-ecommerce/vendure/issues/464)
+* **core** Implement ChangedPriceHandlingStrategy ([3aae4fb](https://github.com/vendure-ecommerce/vendure/commit/3aae4fb)), closes [#664](https://github.com/vendure-ecommerce/vendure/issues/664)
+* **core** Implement eligibility checking for PaymentMethods ([690514a](https://github.com/vendure-ecommerce/vendure/commit/690514a)), closes [#469](https://github.com/vendure-ecommerce/vendure/issues/469)
+* **core** Implement isDefault on TaxCategory ([7eb21d1](https://github.com/vendure-ecommerce/vendure/commit/7eb21d1)), closes [#566](https://github.com/vendure-ecommerce/vendure/issues/566)
+* **core** Implement StockDisplayStrategy to display stockLevel in API ([2709922](https://github.com/vendure-ecommerce/vendure/commit/2709922)), closes [#442](https://github.com/vendure-ecommerce/vendure/issues/442)
+* **core** Import ServiceModule into AppModule to expose services ([117a0a7](https://github.com/vendure-ecommerce/vendure/commit/117a0a7))
+* **core** Introduce OrderPlacedStrategy for better control of process ([b9b7767](https://github.com/vendure-ecommerce/vendure/commit/b9b7767))
+* **core** Make Facets/FacetValues Channel-aware ([e8fcb99](https://github.com/vendure-ecommerce/vendure/commit/e8fcb99)), closes [#612](https://github.com/vendure-ecommerce/vendure/issues/612)
+* **core** Make PaymentMethod channel-aware ([1a3b04f](https://github.com/vendure-ecommerce/vendure/commit/1a3b04f)), closes [#587](https://github.com/vendure-ecommerce/vendure/issues/587)
+* **core** Make ProductOptionGroup / ProductOption soft-deletable ([0c997bf](https://github.com/vendure-ecommerce/vendure/commit/0c997bf)), closes [#291](https://github.com/vendure-ecommerce/vendure/issues/291)
+* **core** Support custom fields on Administrator entity ([260ccfc](https://github.com/vendure-ecommerce/vendure/commit/260ccfc)), closes [#598](https://github.com/vendure-ecommerce/vendure/issues/598)
+* **core** Support custom fields on Channel entity ([489faf5](https://github.com/vendure-ecommerce/vendure/commit/489faf5)), closes [#598](https://github.com/vendure-ecommerce/vendure/issues/598)
+* **core** Support custom Payment process ([d3b0f60](https://github.com/vendure-ecommerce/vendure/commit/d3b0f60)), closes [#359](https://github.com/vendure-ecommerce/vendure/issues/359) [#507](https://github.com/vendure-ecommerce/vendure/issues/507)
+* **core** Support for custom fields on Asset entity ([60b6171](https://github.com/vendure-ecommerce/vendure/commit/60b6171)), closes [#684](https://github.com/vendure-ecommerce/vendure/issues/684)
+
+#### Perf
+
+* **core** Correctly optimized OrderItem persistence ([5c879e7](https://github.com/vendure-ecommerce/vendure/commit/5c879e7))
+* **core** Improve order quantity update performance ([3c20837](https://github.com/vendure-ecommerce/vendure/commit/3c20837))
+* **core** Run job queues in the worker process ([f05210a](https://github.com/vendure-ecommerce/vendure/commit/f05210a))
+
+
+### BREAKING CHANGE
+
+* `Order.taxSummary` now includes shipping taxes
+* A database migration is required for the new Asset tags support.
+* New DB relation Asset to Channel, requiring a migration. The Admin API mutations `deleteAsset` and `deleteAssets` have changed their argument signature.
+* The Facet and FacetValue entities are now channel-aware. This change to the
+schema will require a DB migration.
+* The OrderItem entity has a new field, `initialListPrice`, used to better
+handle price changes to items in an active Order. This schema change will require a DB migration.
+* The PaymentMethod entity and type has changed. Previously, a PaymentMethod was
+coupled to the configured PaymentMethodHandlers 1-to-1. Now the PaymentMethodHandler is just
+a configurable _property_ of the PaymentMethod, much in the same way that a ShippingCalculator
+relates to a ShippingMethod. Any existing PaymentMethod entities will need to be migrated to the
+new structure.
+* The PaymentMethod entity is now channel-aware which will require a DB migration
+to migrate existing PaymentMethods
+* The ProductOptionGroup & ProductOption entities have a new `deletedAt` column
+which will require a DB migration.
+* The signature of the `OrderMergeStrategy.merge()` method has changed. If you have
+implemented a custom OrderMergeStrategy, you'll need to update it to return the expected type.
+* The TaxCategory entity now has an `isDefault` property, requiring a DB migration.
+## <small>0.18.5 (2021-03-01)</small>
+
+
+#### Fixes
+
+* **admin-ui** Typing error on pt-Br i18n (#725) ([50aafb3](https://github.com/vendure-ecommerce/vendure/commit/50aafb3)), closes [#725](https://github.com/vendure-ecommerce/vendure/issues/725)
+* **core** Allow asset uploads with same major mime type ([070c5f2](https://github.com/vendure-ecommerce/vendure/commit/070c5f2)), closes [#727](https://github.com/vendure-ecommerce/vendure/issues/727)
+* **core** Fix list query sorting by non-default language with filters ([1e31828](https://github.com/vendure-ecommerce/vendure/commit/1e31828))
+* **core** Prevent Facet code conflicts ([bce3b59](https://github.com/vendure-ecommerce/vendure/commit/bce3b59)), closes [#715](https://github.com/vendure-ecommerce/vendure/issues/715)
+
+#### Features
+
+* **email-plugin** Support custom EmailGenerators and EmailSenders ([3e20624](https://github.com/vendure-ecommerce/vendure/commit/3e20624))
+
+## <small>0.18.4 (2021-02-10)</small>
+
+
+#### Features
+
+* **core** Implement productVariants list query in Admin API ([6d830a0](https://github.com/vendure-ecommerce/vendure/commit/6d830a0))
+* **core** Language fallback when querying Product/Collection by slug ([5967c8a](https://github.com/vendure-ecommerce/vendure/commit/5967c8a)), closes [#538](https://github.com/vendure-ecommerce/vendure/issues/538)
+
+#### Fixes
+
+* **admin-ui** Fix modification of order addresses ([cd9a812](https://github.com/vendure-ecommerce/vendure/commit/cd9a812)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688)
+* **common** Correctly normalize strings with single quotes ([d12f369](https://github.com/vendure-ecommerce/vendure/commit/d12f369)), closes [#679](https://github.com/vendure-ecommerce/vendure/issues/679)
+* **core** Clean up Sessions when deleting a Channel ([7e7d4b8](https://github.com/vendure-ecommerce/vendure/commit/7e7d4b8)), closes [#686](https://github.com/vendure-ecommerce/vendure/issues/686)
+* **core** Correctly constrain inventory on addItemToOrder mutation ([8975247](https://github.com/vendure-ecommerce/vendure/commit/8975247)), closes [#691](https://github.com/vendure-ecommerce/vendure/issues/691)
+* **core** Do not modify billing address when shipping address changed ([7e9a709](https://github.com/vendure-ecommerce/vendure/commit/7e9a709)), closes [#688](https://github.com/vendure-ecommerce/vendure/issues/688)
+* **core** Fix bad column reference in querybuilder string ([61e9f83](https://github.com/vendure-ecommerce/vendure/commit/61e9f83)), closes [#687](https://github.com/vendure-ecommerce/vendure/issues/687)
+* **core** Fix sorting by price on productVariants list ([0102232](https://github.com/vendure-ecommerce/vendure/commit/0102232)), closes [#690](https://github.com/vendure-ecommerce/vendure/issues/690)
+* **core** Fix sorting by translatable fields in list queries ([d00bafb](https://github.com/vendure-ecommerce/vendure/commit/d00bafb)), closes [#689](https://github.com/vendure-ecommerce/vendure/issues/689)
+* **core** Loosen restriction on transitioning to PaymentAuthorized ([59d39d6](https://github.com/vendure-ecommerce/vendure/commit/59d39d6))
+* **core** Products without variants are indexed by DefaultSearchPlugin ([2dab174](https://github.com/vendure-ecommerce/vendure/commit/2dab174)), closes [#609](https://github.com/vendure-ecommerce/vendure/issues/609)
+* **core** Reduce chance of index err in assigning variants to channels ([58e3f7b](https://github.com/vendure-ecommerce/vendure/commit/58e3f7b))
+* **elasticsearch-plugin** Products without variants are indexed ([21b6aa3](https://github.com/vendure-ecommerce/vendure/commit/21b6aa3)), closes [#609](https://github.com/vendure-ecommerce/vendure/issues/609)
+
+## <small>0.18.3 (2021-01-29)</small>
+
+
+#### Fixes
+
+* **admin-ui** Fix filtering products by term in Channel ([d880f8e](https://github.com/vendure-ecommerce/vendure/commit/d880f8e))
+* **admin-ui** Fix role editor Channel value display  ([c258975](https://github.com/vendure-ecommerce/vendure/commit/c258975))
+* **admin-ui** Fix various issues with product variant management view ([d34f935](https://github.com/vendure-ecommerce/vendure/commit/d34f935)), closes [#602](https://github.com/vendure-ecommerce/vendure/issues/602)
+* **admin-ui** Translate missing Brazilian (PT-br) i18n json ([808d1fe](https://github.com/vendure-ecommerce/vendure/commit/808d1fe))
+* **core** Do not allow updating products not in active channel ([4b2fac7](https://github.com/vendure-ecommerce/vendure/commit/4b2fac7))
+* **core** Prevent multiple ProductVariantPrice creation ([c853033](https://github.com/vendure-ecommerce/vendure/commit/c853033)), closes [#652](https://github.com/vendure-ecommerce/vendure/issues/652)
+* **core** Re-calculate OrderItem price on all OrderLine changes ([0d8c485](https://github.com/vendure-ecommerce/vendure/commit/0d8c485)), closes [#660](https://github.com/vendure-ecommerce/vendure/issues/660)
+* **core** Update search index for all channels on updates ([85de520](https://github.com/vendure-ecommerce/vendure/commit/85de520)), closes [#629](https://github.com/vendure-ecommerce/vendure/issues/629)
+* **elasticsearch-plugin** Update search index for all channels on updates ([2be29c2](https://github.com/vendure-ecommerce/vendure/commit/2be29c2)), closes [#629](https://github.com/vendure-ecommerce/vendure/issues/629)
+
+#### Features
+
+* **admin-ui** Nav menu requirePermissions accepts predicate fn ([c74765d](https://github.com/vendure-ecommerce/vendure/commit/c74765d)), closes [#651](https://github.com/vendure-ecommerce/vendure/issues/651)
+* **admin-ui** Support "required" & "defaultValue" in ConfigArgs ([6e5e482](https://github.com/vendure-ecommerce/vendure/commit/6e5e482)), closes [#643](https://github.com/vendure-ecommerce/vendure/issues/643)
+* **core** Support "defaultValue" field in ConfigArgs ([92ae819](https://github.com/vendure-ecommerce/vendure/commit/92ae819)), closes [#643](https://github.com/vendure-ecommerce/vendure/issues/643)
+* **core** Support "required" field in ConfigArgs ([9940385](https://github.com/vendure-ecommerce/vendure/commit/9940385)), closes [#643](https://github.com/vendure-ecommerce/vendure/issues/643)
+* **elasticsearch-plugin** LanguageCode support in CustomMappings ([b114428](https://github.com/vendure-ecommerce/vendure/commit/b114428))
+
+## <small>0.18.2 (2021-01-15)</small>
+
+
+#### Fixes
+
+* **admin-ui** Fix translation of facet values ([a6f3083](https://github.com/vendure-ecommerce/vendure/commit/a6f3083)), closes [#636](https://github.com/vendure-ecommerce/vendure/issues/636)
+* **admin-ui** Order widget i18n fix ([68b8adb](https://github.com/vendure-ecommerce/vendure/commit/68b8adb))
+* **admin-ui** Preserve asset changes between product list/table view ([c83e511](https://github.com/vendure-ecommerce/vendure/commit/c83e511)), closes [#632](https://github.com/vendure-ecommerce/vendure/issues/632)
+* **admin-ui** Preserve changes between product/variant tabs ([242787a](https://github.com/vendure-ecommerce/vendure/commit/242787a)), closes [#632](https://github.com/vendure-ecommerce/vendure/issues/632)
+* **admin-ui** Preserve variant price changes between list/table views ([43bd770](https://github.com/vendure-ecommerce/vendure/commit/43bd770)), closes [#632](https://github.com/vendure-ecommerce/vendure/issues/632)
+* **admin-ui** Update CS translations ([d18dab0](https://github.com/vendure-ecommerce/vendure/commit/d18dab0))
+* **asset-server-plugin** Fix corrupt SVG previews ([3a16d87](https://github.com/vendure-ecommerce/vendure/commit/3a16d87)), closes [#456](https://github.com/vendure-ecommerce/vendure/issues/456)
+* **core** Add ReadOrder perm to fulfillment-related shipping queries ([72ed50c](https://github.com/vendure-ecommerce/vendure/commit/72ed50c)), closes [#644](https://github.com/vendure-ecommerce/vendure/issues/644)
+* **core** Allow list queries to filter/sort on calculated columns ([5325387](https://github.com/vendure-ecommerce/vendure/commit/5325387)), closes [#642](https://github.com/vendure-ecommerce/vendure/issues/642)
+* **core** Clear order discounts after removing coupon code ([e1cce8f](https://github.com/vendure-ecommerce/vendure/commit/e1cce8f)), closes [#649](https://github.com/vendure-ecommerce/vendure/issues/649)
+* **core** Correctly prorate order discounts over differing tax rates ([b128425](https://github.com/vendure-ecommerce/vendure/commit/b128425)), closes [#653](https://github.com/vendure-ecommerce/vendure/issues/653)
+* **core** Correctly return order quantities from list query ([a2e34ec](https://github.com/vendure-ecommerce/vendure/commit/a2e34ec)), closes [#603](https://github.com/vendure-ecommerce/vendure/issues/603)
+* **core** Do not error when querying fulfillment on empty order ([b0c0457](https://github.com/vendure-ecommerce/vendure/commit/b0c0457)), closes [#639](https://github.com/vendure-ecommerce/vendure/issues/639)
+* **core** Fix NaN error when prorating discount over zero-tax line ([51af5a0](https://github.com/vendure-ecommerce/vendure/commit/51af5a0))
+* **core** Gracefully handle errors in JobQueue ([6d1b8c6](https://github.com/vendure-ecommerce/vendure/commit/6d1b8c6)), closes [#635](https://github.com/vendure-ecommerce/vendure/issues/635)
+
+#### Features
+
+* **admin-ui** Auto update ProductVariant name with Product name ([69cd0d0](https://github.com/vendure-ecommerce/vendure/commit/69cd0d0)), closes [#600](https://github.com/vendure-ecommerce/vendure/issues/600)
+* **admin-ui** Auto update ProductVariant name with ProductOption name ([0e98cb5](https://github.com/vendure-ecommerce/vendure/commit/0e98cb5)), closes [#600](https://github.com/vendure-ecommerce/vendure/issues/600)
+* **admin-ui** Currencies respect UI language setting ([5530782](https://github.com/vendure-ecommerce/vendure/commit/5530782)), closes [#568](https://github.com/vendure-ecommerce/vendure/issues/568)
+* **admin-ui** Dates respect UI language setting ([dd0e73a](https://github.com/vendure-ecommerce/vendure/commit/dd0e73a)), closes [#568](https://github.com/vendure-ecommerce/vendure/issues/568)
+* **admin-ui** Display channel filter when more than 10 Channels ([b1b363d](https://github.com/vendure-ecommerce/vendure/commit/b1b363d)), closes [#594](https://github.com/vendure-ecommerce/vendure/issues/594)
+* **email-plugin** Allow attachments to be set on emails ([0082067](https://github.com/vendure-ecommerce/vendure/commit/0082067)), closes [#481](https://github.com/vendure-ecommerce/vendure/issues/481)
+* **email-plugin** Do not re-send order confirmation after modifying ([ddb71df](https://github.com/vendure-ecommerce/vendure/commit/ddb71df)), closes [#650](https://github.com/vendure-ecommerce/vendure/issues/650)
+
+## <small>0.18.1 (2021-01-08)</small>
+
+
+#### Fixes
+
+* **admin-ui** Refresh ShippingMethodList on channel change ([6811ca8](https://github.com/vendure-ecommerce/vendure/commit/6811ca8)), closes [#595](https://github.com/vendure-ecommerce/vendure/issues/595)
+* **admin-ui** Shipping method validators fix ([bbdd5be](https://github.com/vendure-ecommerce/vendure/commit/bbdd5be))
+* **admin-ui** Translate to Spanish all languages available ([b56e45d](https://github.com/vendure-ecommerce/vendure/commit/b56e45d))
+* **core** Always include customFields on OrderAddress type ([c5e3c6d](https://github.com/vendure-ecommerce/vendure/commit/c5e3c6d)), closes [#616](https://github.com/vendure-ecommerce/vendure/issues/616)
+* **core** Fix error when creating Product in sub-channel ([96c5103](https://github.com/vendure-ecommerce/vendure/commit/96c5103)), closes [#556](https://github.com/vendure-ecommerce/vendure/issues/556) [#613](https://github.com/vendure-ecommerce/vendure/issues/613)
+
+#### Features
+
+* **admin-ui** Add dark mode theme & switcher component ([76f80f6](https://github.com/vendure-ecommerce/vendure/commit/76f80f6)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391)
+* **admin-ui** Add default branding values to vendure-ui-config ([50aeb2b](https://github.com/vendure-ecommerce/vendure/commit/50aeb2b)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391)
+* **admin-ui** Add support for job cancellation ([c6004c1](https://github.com/vendure-ecommerce/vendure/commit/c6004c1)), closes [#614](https://github.com/vendure-ecommerce/vendure/issues/614)
+* **admin-ui** Allow "enabled" state to be set when creating products ([3e006ce](https://github.com/vendure-ecommerce/vendure/commit/3e006ce)), closes [#608](https://github.com/vendure-ecommerce/vendure/issues/608)
+* **admin-ui** Enable theming by use of css custom properties ([68107d2](https://github.com/vendure-ecommerce/vendure/commit/68107d2)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391)
+* **core** Add `cancelJob` mutation ([2d099cf](https://github.com/vendure-ecommerce/vendure/commit/2d099cf)), closes [#614](https://github.com/vendure-ecommerce/vendure/issues/614)
+* **core** Allow "enabled" state to be set when creating products ([02eb9f7](https://github.com/vendure-ecommerce/vendure/commit/02eb9f7)), closes [#608](https://github.com/vendure-ecommerce/vendure/issues/608)
+* **ui-devkit** Allow custom global styles to be specified ([2081a15](https://github.com/vendure-ecommerce/vendure/commit/2081a15)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391)
+* **ui-devkit** Allow extensions consisting of only static assets ([5ea3422](https://github.com/vendure-ecommerce/vendure/commit/5ea3422)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391) [#309](https://github.com/vendure-ecommerce/vendure/issues/309)
+* **ui-devkit** Export helper function to set brand images ([6cde0d8](https://github.com/vendure-ecommerce/vendure/commit/6cde0d8)), closes [#391](https://github.com/vendure-ecommerce/vendure/issues/391)
+
+## 0.18.0 (2020-12-31)
+
+
+#### Fixes
+
+* **admin-ui** Correctly handle order modification with no custom fields ([c0b699b](https://github.com/vendure-ecommerce/vendure/commit/c0b699b))
+* **admin-ui** Correctly handle widget permissions ([e3d7855](https://github.com/vendure-ecommerce/vendure/commit/e3d7855))
+* **admin-ui** Fix error when creating new Channel ([58db345](https://github.com/vendure-ecommerce/vendure/commit/58db345))
+* **admin-ui** Fix memory leak with refetchOnChannelChange usage ([1bad22a](https://github.com/vendure-ecommerce/vendure/commit/1bad22a))
+* **admin-ui** Fix variant price display issues ([f62f569](https://github.com/vendure-ecommerce/vendure/commit/f62f569))
+* **core** Correct handling of discounts & taxes when prices include tax ([c04b1c7](https://github.com/vendure-ecommerce/vendure/commit/c04b1c7)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **core** Correctly handle addItemToOrder when 0 stock available ([187cf3d](https://github.com/vendure-ecommerce/vendure/commit/187cf3d))
+* **core** Fix ChannelAware ProductVariant performance issues ([275cd62](https://github.com/vendure-ecommerce/vendure/commit/275cd62))
+* **core** Fix default PromotionActions when Channel prices include tax ([efe640c](https://github.com/vendure-ecommerce/vendure/commit/efe640c)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **core** Fix error on updateCustomer mutation ([bb1878f](https://github.com/vendure-ecommerce/vendure/commit/bb1878f)), closes [#590](https://github.com/vendure-ecommerce/vendure/issues/590)
+* **core** Fix failing e2e tests ([36b6dab](https://github.com/vendure-ecommerce/vendure/commit/36b6dab))
+* **core** Fix Postgres search with multiple terms ([5ece0d5](https://github.com/vendure-ecommerce/vendure/commit/5ece0d5))
+* **core** Handle undefined reference in customerGroup condition ([0eaffc1](https://github.com/vendure-ecommerce/vendure/commit/0eaffc1))
+* **core** Ignore deleted products when checking slug uniqueness ([844a12d](https://github.com/vendure-ecommerce/vendure/commit/844a12d)), closes [#558](https://github.com/vendure-ecommerce/vendure/issues/558)
+* **core** Return all ProductVariant.channels from default Channel ([799f306](https://github.com/vendure-ecommerce/vendure/commit/799f306))
+
+#### Features
+
+* **admin-ui** Add support for dashboard widgets ([aa835e8](https://github.com/vendure-ecommerce/vendure/commit/aa835e8)), closes [#334](https://github.com/vendure-ecommerce/vendure/issues/334)
+* **admin-ui** Allow cancellation of OrderItems without refunding ([df55d2d](https://github.com/vendure-ecommerce/vendure/commit/df55d2d)), closes [#569](https://github.com/vendure-ecommerce/vendure/issues/569)
+* **admin-ui** Allow default dashboard widget widths to be set ([3e33bbc](https://github.com/vendure-ecommerce/vendure/commit/3e33bbc)), closes [#334](https://github.com/vendure-ecommerce/vendure/issues/334)
+* **admin-ui** Allow OrderLine customFields to be modified ([e89845e](https://github.com/vendure-ecommerce/vendure/commit/e89845e)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **admin-ui** Allow OrderLine customFields to be modified ([5a4811f](https://github.com/vendure-ecommerce/vendure/commit/5a4811f)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **admin-ui** Allow overriding built-in nav menu items ([9d862c6](https://github.com/vendure-ecommerce/vendure/commit/9d862c6)), closes [#562](https://github.com/vendure-ecommerce/vendure/issues/562)
+* **admin-ui** Allow setting FulfillmentHandler in ShippingDetail page ([8207c84](https://github.com/vendure-ecommerce/vendure/commit/8207c84)), closes [#529](https://github.com/vendure-ecommerce/vendure/issues/529)
+* **admin-ui** Correctly display cancelled Fulfillments ([7efe800](https://github.com/vendure-ecommerce/vendure/commit/7efe800)), closes [#565](https://github.com/vendure-ecommerce/vendure/issues/565)
+* **admin-ui** Display order tax summary, update to latest Order API ([9b8e7d4](https://github.com/vendure-ecommerce/vendure/commit/9b8e7d4)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **admin-ui** Display surcharges in OrderDetail ([bbcc6d8](https://github.com/vendure-ecommerce/vendure/commit/bbcc6d8)), closes [#583](https://github.com/vendure-ecommerce/vendure/issues/583)
+* **admin-ui** Display tax description in OrderDetail tax summary ([843bec2](https://github.com/vendure-ecommerce/vendure/commit/843bec2))
+* **admin-ui** Enable manual order state transitions ([0868b4c](https://github.com/vendure-ecommerce/vendure/commit/0868b4c))
+* **admin-ui** Fulfillment dialog accepts handler-defined arguments ([c787241](https://github.com/vendure-ecommerce/vendure/commit/c787241)), closes [#529](https://github.com/vendure-ecommerce/vendure/issues/529)
+* **admin-ui** Implement order modification flow ([d3e3a88](https://github.com/vendure-ecommerce/vendure/commit/d3e3a88)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **admin-ui** Implement reordering, resize, add, remove of widgets ([9a52bdf](https://github.com/vendure-ecommerce/vendure/commit/9a52bdf)), closes [#334](https://github.com/vendure-ecommerce/vendure/issues/334)
+* **admin-ui** Implement variant channel assignment controls ([83a33b5](https://github.com/vendure-ecommerce/vendure/commit/83a33b5)), closes [#519](https://github.com/vendure-ecommerce/vendure/issues/519)
+* **admin-ui** Persist dashboard layout to localStorage ([ace115d](https://github.com/vendure-ecommerce/vendure/commit/ace115d))
+* **admin-ui** Persist dashboard layout to localStorage ([15cae77](https://github.com/vendure-ecommerce/vendure/commit/15cae77)), closes [#334](https://github.com/vendure-ecommerce/vendure/issues/334)
+* **core** Add Order history entry for modifications ([894f95b](https://github.com/vendure-ecommerce/vendure/commit/894f95b)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **core** Allow multiple Fulfillments per OrderItem ([3245e00](https://github.com/vendure-ecommerce/vendure/commit/3245e00)), closes [#565](https://github.com/vendure-ecommerce/vendure/issues/565)
+* **core** Allow Order/OrderLine customFields to be modified ([ce656c4](https://github.com/vendure-ecommerce/vendure/commit/ce656c4)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **core** ChannelAware ProductVariants ([4c1a2be](https://github.com/vendure-ecommerce/vendure/commit/4c1a2be))
+* **core** Extend OrderLine type with more discount & tax info ([aa5513f](https://github.com/vendure-ecommerce/vendure/commit/aa5513f)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **core** Implement add/remove Surcharge methods in OrderService ([6cf6984](https://github.com/vendure-ecommerce/vendure/commit/6cf6984)), closes [#583](https://github.com/vendure-ecommerce/vendure/issues/583)
+* **core** Implement FulfillmentHandlers ([4e53d08](https://github.com/vendure-ecommerce/vendure/commit/4e53d08)), closes [#529](https://github.com/vendure-ecommerce/vendure/issues/529)
+* **core** Implement order modification ([9cd3e24](https://github.com/vendure-ecommerce/vendure/commit/9cd3e24)), closes [#314](https://github.com/vendure-ecommerce/vendure/issues/314)
+* **core** Implement Order surcharges ([b608e14](https://github.com/vendure-ecommerce/vendure/commit/b608e14)), closes [#583](https://github.com/vendure-ecommerce/vendure/issues/583)
+* **core** Implement Shipping promotion actions ([69b12e3](https://github.com/vendure-ecommerce/vendure/commit/69b12e3)), closes [#580](https://github.com/vendure-ecommerce/vendure/issues/580)
+* **core** Implement TaxLineCalculationStrategy ([95663b4](https://github.com/vendure-ecommerce/vendure/commit/95663b4)), closes [#307](https://github.com/vendure-ecommerce/vendure/issues/307)
+* **core** Improve naming of price calculation strategies ([ccbebc9](https://github.com/vendure-ecommerce/vendure/commit/ccbebc9)), closes [#307](https://github.com/vendure-ecommerce/vendure/issues/307)
+* **core** Improved handling of ShopAPI activeOrder mutations ([958af1a](https://github.com/vendure-ecommerce/vendure/commit/958af1a)), closes [#557](https://github.com/vendure-ecommerce/vendure/issues/557)
+* **core** Log unhandled errors ([4dbb974](https://github.com/vendure-ecommerce/vendure/commit/4dbb974))
+* **core** Modify ShippingCalculator API to enable correct tax handling ([1ab1c81](https://github.com/vendure-ecommerce/vendure/commit/1ab1c81)), closes [#580](https://github.com/vendure-ecommerce/vendure/issues/580) [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **core** Pass `amount` argument into createPayment method ([0c85c76](https://github.com/vendure-ecommerce/vendure/commit/0c85c76))
+* **core** Re-work handling of taxes, order-level discounts ([9e39af3](https://github.com/vendure-ecommerce/vendure/commit/9e39af3)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573) [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **core** Rework Order shipping to support multiple shipping lines ([a711780](https://github.com/vendure-ecommerce/vendure/commit/a711780)), closes [#580](https://github.com/vendure-ecommerce/vendure/issues/580)
+* **core** Simplify TaxCalculationStrategy API ([9544dd4](https://github.com/vendure-ecommerce/vendure/commit/9544dd4)), closes [#307](https://github.com/vendure-ecommerce/vendure/issues/307)
+* **core** Split taxes from adjustments ([2c71a82](https://github.com/vendure-ecommerce/vendure/commit/2c71a82)), closes [#573](https://github.com/vendure-ecommerce/vendure/issues/573)
+* **ui-devkit** Make baseUrl configurable ([54700d2](https://github.com/vendure-ecommerce/vendure/commit/54700d2)), closes [#552](https://github.com/vendure-ecommerce/vendure/issues/552)
+
+
+### BREAKING CHANGE
+
+* A change to the relation between OrderItems and Fulfillments means a database
+migration will be required to preserve fulfillment data of existing Orders.
+See the release blog post for details.
+* In order to support order modification, a couple of new default order states
+have been created - `Modifying` and `ArrangingAdditionalPayment`. Also a new DB entity,
+`OrderModification` has been created.
+* The `OrderLine.pendingAdjustments` field has been renamed to `adjustments`, tax
+adjustments are now stored in a new field, `taxLines`. This will require a DB migration to
+preserve data from existing Orders (see guide in release blog post)
+* The `PaymentMethodHandler.createPayment()` method now takes a new `amount`
+argument. Update any custom PaymentMethodHandlers to use account for this new parameter and use
+it instead of `order.total` when creating a new payment.
+
+    ```ts
+    // before
+    createPayment: async (ctx, order, args, metadata) {
+      const transactionAmount = order.total;
+      // ...
+    }
+
+    // after
+    createPayment: async (ctx, order, amount, args, metadata) {
+      const transactionAmount = amount;
+      // ...
+    }
+    ```
+* The `TaxCalculationStrategy` has been renamed to
+`ProductVariantPriceCalculationStrategy` and moved in the VendureConfig from `taxOptions` to
+`catalogOptions` and its API has been simplified.
+The `PriceCalculationStrategy` has been renamed to `OrderItemPriceCalculationStrategy`.
+* The Fulfillment and ShippingMethod entities have new fields relating to
+FulfillmentHandlers. This will require a DB migration, though no custom data migration will be
+needed for this particular change. 
+* The `addFulfillmentToOrder` mutation input has changed: the `method` & `trackingCode` fields
+have been replaced by a `handler` field which accepts a FulfillmentHandler code, and any
+expected arguments defined by that handler.
+* The ProductTranslation entity has had a constraint removed, requiring a schema
+migration.
+* The return object of the ShippingCalculator class has changed:
+    ```ts
+    // before
+    return {
+      price: 500,
+      priceWithTax: 600,
+    };
+
+    // after
+    return {
+      price: 500,
+      taxRate: 20,
+      priceIncludesTax: false,
+    };
+    ```
+    This change will require you to update any custom ShippingCalculator implementations, and also
+    to update any ShippingMethods by removing and re-selecting the ShippingCalculator.
+* The Shop API mutations `setOrderShippingAddress`, `setOrderBillingAddress`
+`setOrderCustomFields` now return a union type which includes a new `NoActiveOrderError`.
+Code which refers to these mutations will need to be updated to account for the union
+with the fragment spread syntax `...on Order {...}`.
+* The TaxCalculationStrategy return value has been simplified - it now only need
+return the `price` and `priceIncludesTax` properties. The `ProductVariant` entity has also been
+refactored to bring it into line with the corrected tax handling of the OrderItem entity. This
+will require a DB migration. See release blog post for details.
+* The way shipping charges on Orders are represented has been changed - an Order
+now contains multiple ShippingLine entities, each of which has a reference to a ShippingMethod.
+This will require a database migration with manual queries to preserve existing order data. See
+release blog post for details.
+* There have been some major changes to the way that Order taxes and discounts are handled. For a full discussion of the issues behind these changes see #573. These changes will
+require a DB migration as well as possible custom scripts to port existing Orders to the new
+format. See the release blog post for details.
+* The following GraphQL `Order` type properties have changed:
+    * `subTotalBeforeTax` has been removed, `subTotal` now excludes tax, and
+`subTotalWithTax` has been added.
+    * `totalBeforeTax` has been removed, `total` now excludes tax, and
+`totalWithTax` has been added.
+## <small>0.17.3 (2020-12-14)</small>
+
+This release fixes an error in publishing the last release. No changes have been made.
+
+## <small>0.17.2 (2020-12-11)</small>
+
+
+#### Features
+
+* **admin-ui** Add French translations ([891be89](https://github.com/vendure-ecommerce/vendure/commit/891be89))
+* **core** Implement negated string filter operators ([75b5b7a](https://github.com/vendure-ecommerce/vendure/commit/75b5b7a)), closes [#571](https://github.com/vendure-ecommerce/vendure/issues/571)
+* **core** Include express request object in RequestContext ([c4352b2](https://github.com/vendure-ecommerce/vendure/commit/c4352b2)), closes [#581](https://github.com/vendure-ecommerce/vendure/issues/581)
+* **core** Log unhandled errors ([c9a0bcc](https://github.com/vendure-ecommerce/vendure/commit/c9a0bcc))
+* **email-plugin** Improve error logging ([70cb932](https://github.com/vendure-ecommerce/vendure/commit/70cb932)), closes [#574](https://github.com/vendure-ecommerce/vendure/issues/574)
+* **testing** Create TestingLogger ([c4bed2d](https://github.com/vendure-ecommerce/vendure/commit/c4bed2d))
+
+#### Fixes
+
+* **admin-ui** Fix error when creating new Channel ([b38e35d](https://github.com/vendure-ecommerce/vendure/commit/b38e35d))
+
+## <small>0.17.1 (2020-11-20)</small>
+
+
+#### Features
+
+* **admin-ui** Add "allocated" and "saleable" values to Variant form ([0df7c71](https://github.com/vendure-ecommerce/vendure/commit/0df7c71)), closes [#554](https://github.com/vendure-ecommerce/vendure/issues/554)
+* **admin-ui** Add profile page to edit current admin details ([e183041](https://github.com/vendure-ecommerce/vendure/commit/e183041))
+* **admin-ui** Allow fulfillment when in PartiallyDelivered state ([b36ce38](https://github.com/vendure-ecommerce/vendure/commit/b36ce38)), closes [#565](https://github.com/vendure-ecommerce/vendure/issues/565)
+* **admin-ui** Improved login error message ([2b952aa](https://github.com/vendure-ecommerce/vendure/commit/2b952aa))
+* **admin-ui** Persist custom order filter params in url ([8eb6246](https://github.com/vendure-ecommerce/vendure/commit/8eb6246)), closes [#561](https://github.com/vendure-ecommerce/vendure/issues/561)
+* **admin-ui** Store last used order list filters in localStorage ([7a9ba23](https://github.com/vendure-ecommerce/vendure/commit/7a9ba23)), closes [#561](https://github.com/vendure-ecommerce/vendure/issues/561)
+* **core** Add `activeAdministrator` query to Admin API ([70e14f2](https://github.com/vendure-ecommerce/vendure/commit/70e14f2))
+* **core** Add `updateActiveAdministrator` mutation ([73ab736](https://github.com/vendure-ecommerce/vendure/commit/73ab736))
+
+#### Fixes
+
+* **admin-ui** Add missing Czech translations for new translation tokens ([f2b541f](https://github.com/vendure-ecommerce/vendure/commit/f2b541f))
+* **admin-ui** Refetch customer list on channel change ([078de40](https://github.com/vendure-ecommerce/vendure/commit/078de40))
+
+## 0.17.0 (2020-11-13)
+
+
+#### Fixes
+
+* **admin-ui** Add missing "authorized" state translation ([788ba87](https://github.com/vendure-ecommerce/vendure/commit/788ba87))
+* **admin-ui** Add missing "state.error" token ([b40843a](https://github.com/vendure-ecommerce/vendure/commit/b40843a))
+* **admin-ui** Fix payment states ([df32ba1](https://github.com/vendure-ecommerce/vendure/commit/df32ba1))
+* **admin-ui** Fix permission handling in nav menu ([70037e5](https://github.com/vendure-ecommerce/vendure/commit/70037e5))
+* **admin-ui** Use select control for string custom field with options ([5c59b67](https://github.com/vendure-ecommerce/vendure/commit/5c59b67)), closes [#546](https://github.com/vendure-ecommerce/vendure/issues/546)
+* **admin-ui** Use the ShippingMethod name in fulfillment dialog ([ca2ed58](https://github.com/vendure-ecommerce/vendure/commit/ca2ed58))
+* **admin-ui** Use translated state labels in custom filter select ([5f6f9ff](https://github.com/vendure-ecommerce/vendure/commit/5f6f9ff))
+* **core** Allow configurable stock allocation logic ([782c0f4](https://github.com/vendure-ecommerce/vendure/commit/782c0f4)), closes [#550](https://github.com/vendure-ecommerce/vendure/issues/550)
+* **core** Correctly cascade deletions in HistoryEntries ([6054b71](https://github.com/vendure-ecommerce/vendure/commit/6054b71))
+* **core** Correctly encode IDs in nested fragments ([d2333fc](https://github.com/vendure-ecommerce/vendure/commit/d2333fc))
+* **core** Correctly update cache in customerGroup promo condition ([8df4fec](https://github.com/vendure-ecommerce/vendure/commit/8df4fec))
+* **core** Fix double-allocation of stock on 2-stage payments ([c43a343](https://github.com/vendure-ecommerce/vendure/commit/c43a343)), closes [#550](https://github.com/vendure-ecommerce/vendure/issues/550)
+* **core** Mitigate QueryRunnerAlreadyReleasedError in EventBus handlers ([739e56c](https://github.com/vendure-ecommerce/vendure/commit/739e56c)), closes [#520](https://github.com/vendure-ecommerce/vendure/issues/520)
+* **core** Validate all Role permissions on bootstrap ([60c8a0e](https://github.com/vendure-ecommerce/vendure/commit/60c8a0e)), closes [#450](https://github.com/vendure-ecommerce/vendure/issues/450)
+
+#### Features
+
+* **admin-ui** Account for stockOnHand when creating Fulfillments ([540d2c6](https://github.com/vendure-ecommerce/vendure/commit/540d2c6)), closes [#319](https://github.com/vendure-ecommerce/vendure/issues/319)
+* **admin-ui** Add filter presets to the OrderDetail view ([4f5a440](https://github.com/vendure-ecommerce/vendure/commit/4f5a440)), closes [#477](https://github.com/vendure-ecommerce/vendure/issues/477)
+* **admin-ui** Allow the setting of custom Permissions ([d525a32](https://github.com/vendure-ecommerce/vendure/commit/d525a32)), closes [#450](https://github.com/vendure-ecommerce/vendure/issues/450)
+* **admin-ui** Display Fulfillment custom fields ([838943e](https://github.com/vendure-ecommerce/vendure/commit/838943e)), closes [#525](https://github.com/vendure-ecommerce/vendure/issues/525)
+* **admin-ui** Implement UI controls for setting outOfStockThreshold ([335c345](https://github.com/vendure-ecommerce/vendure/commit/335c345)), closes [#319](https://github.com/vendure-ecommerce/vendure/issues/319)
+* **admin-ui** Support for ShippingMethod translations & custom fields ([e189bd4](https://github.com/vendure-ecommerce/vendure/commit/e189bd4)), closes [#530](https://github.com/vendure-ecommerce/vendure/issues/530)
+* **admin-ui** Support new API for ProductVariant.trackInventory ([b825df1](https://github.com/vendure-ecommerce/vendure/commit/b825df1))
+* **core** Add `shouldRunCheck` function to ShippingEligibilityChecker ([3b7e7db](https://github.com/vendure-ecommerce/vendure/commit/3b7e7db)), closes [#536](https://github.com/vendure-ecommerce/vendure/issues/536)
+* **core** Add tax summary data to Order type ([a666fab](https://github.com/vendure-ecommerce/vendure/commit/a666fab)), closes [#467](https://github.com/vendure-ecommerce/vendure/issues/467)
+* **core** Allow custom Permissions to be defined ([1baeedf](https://github.com/vendure-ecommerce/vendure/commit/1baeedf)), closes [#450](https://github.com/vendure-ecommerce/vendure/issues/450)
+* **core** Emit event when assigning/removing Customer to/from group ([6676335](https://github.com/vendure-ecommerce/vendure/commit/6676335))
+* **core** Enable inventory tracking by default in GlobalSettings ([31bb06a](https://github.com/vendure-ecommerce/vendure/commit/31bb06a))
+* **core** Export custom entity field types ([21706b3](https://github.com/vendure-ecommerce/vendure/commit/21706b3))
+* **core** Export HistoryService ([8688c35](https://github.com/vendure-ecommerce/vendure/commit/8688c35))
+* **core** Export StockMovementService ([fe98c79](https://github.com/vendure-ecommerce/vendure/commit/fe98c79)), closes [#550](https://github.com/vendure-ecommerce/vendure/issues/550)
+* **core** Expose additional price & tax data on OrderLine ([c870684](https://github.com/vendure-ecommerce/vendure/commit/c870684)), closes [#467](https://github.com/vendure-ecommerce/vendure/issues/467)
+* **core** Expose assignable Permissions via ServerConfig type ([ab2f62c](https://github.com/vendure-ecommerce/vendure/commit/ab2f62c)), closes [#450](https://github.com/vendure-ecommerce/vendure/issues/450)
+* **core** Implement `in` string filter for PaginatedList queries ([7c7dcf2](https://github.com/vendure-ecommerce/vendure/commit/7c7dcf2)), closes [#543](https://github.com/vendure-ecommerce/vendure/issues/543)
+* **core** Implement `regex` string filter for PaginatedList queries ([0a33441](https://github.com/vendure-ecommerce/vendure/commit/0a33441)), closes [#543](https://github.com/vendure-ecommerce/vendure/issues/543)
+* **core** Implement constraints on adding & fulfilling OrderItems ([87d07f8](https://github.com/vendure-ecommerce/vendure/commit/87d07f8)), closes [#319](https://github.com/vendure-ecommerce/vendure/issues/319)
+* **core** Implement inheritance for ProductVariant.trackInventory ([f27f985](https://github.com/vendure-ecommerce/vendure/commit/f27f985))
+* **core** Improve feedback & error handling in migration functions ([7a1773c](https://github.com/vendure-ecommerce/vendure/commit/7a1773c))
+* **core** Make ShippingMethod translatable ([c7418d1](https://github.com/vendure-ecommerce/vendure/commit/c7418d1)), closes [#530](https://github.com/vendure-ecommerce/vendure/issues/530)
+* **core** New "Created" initial state for Fulfillments ([a53f27e](https://github.com/vendure-ecommerce/vendure/commit/a53f27e)), closes [#510](https://github.com/vendure-ecommerce/vendure/issues/510)
+* **core** New "Created" initial state for Orders ([7a774e3](https://github.com/vendure-ecommerce/vendure/commit/7a774e3)), closes [#510](https://github.com/vendure-ecommerce/vendure/issues/510)
+* **core** OrderItem.unitPrice now _always_ excludes tax ([6e2d490](https://github.com/vendure-ecommerce/vendure/commit/6e2d490)), closes [#467](https://github.com/vendure-ecommerce/vendure/issues/467)
+* **core** Pass RequestContext to AssetNamingStrategy functions ([48ae372](https://github.com/vendure-ecommerce/vendure/commit/48ae372))
+* **core** Pass RequestContext to AssetPreviewStrategy functions ([05e6f9e](https://github.com/vendure-ecommerce/vendure/commit/05e6f9e))
+* **core** Pass RequestContext to AuthenticationStrategy.onLogOut() ([a46ea5d](https://github.com/vendure-ecommerce/vendure/commit/a46ea5d))
+* **core** Pass RequestContext to OrderMergeStrategy functions ([eae71f0](https://github.com/vendure-ecommerce/vendure/commit/eae71f0))
+* **core** Pass RequestContext to PaymentMethodHandler functions ([9c2257d](https://github.com/vendure-ecommerce/vendure/commit/9c2257d)), closes [#488](https://github.com/vendure-ecommerce/vendure/issues/488)
+* **core** Pass RequestContext to PriceCalculationStrategy ([8a58325](https://github.com/vendure-ecommerce/vendure/commit/8a58325)), closes [#487](https://github.com/vendure-ecommerce/vendure/issues/487)
+* **core** Pass RequestContext to PromotionAction functions ([0a35a12](https://github.com/vendure-ecommerce/vendure/commit/0a35a12))
+* **core** Pass RequestContext to ShippingCalculator functions ([6eee894](https://github.com/vendure-ecommerce/vendure/commit/6eee894))
+* **core** Pass RequestContext to ShippingEligibilityChecker functions ([a5db022](https://github.com/vendure-ecommerce/vendure/commit/a5db022))
+* **core** Pass RequestContext to TaxZoneStrategy functions ([a4d4311](https://github.com/vendure-ecommerce/vendure/commit/a4d4311))
+* **core** Return ErrorResult when setting ineligible ShippingMethod ([0e09d51](https://github.com/vendure-ecommerce/vendure/commit/0e09d51))
+* **core** Support custom fields on Fulfillment entity ([380f68e](https://github.com/vendure-ecommerce/vendure/commit/380f68e)), closes [#525](https://github.com/vendure-ecommerce/vendure/issues/525)
+* **core** Track stock allocations ([75e3f9c](https://github.com/vendure-ecommerce/vendure/commit/75e3f9c)), closes [#319](https://github.com/vendure-ecommerce/vendure/issues/319)
+
+#### Perf
+
+* **core** Optimize invocation of ShippingEligibilityCheckers ([11415e6](https://github.com/vendure-ecommerce/vendure/commit/11415e6)), closes [#536](https://github.com/vendure-ecommerce/vendure/issues/536)
+
+
+### BREAKING CHANGE
+
+* Deletions of Orders or Customers now cascade to any associated HistoryEntries,
+thus preserving referential integrity. This involves a DB schema change which will necessitate
+a migration.
+* Fulfillments now start in the new "Created" state, and then _immediately_
+transition to the "Pending" state. This allows e.g. event listeners to pick up newly-created
+Fulfillments.
+* Orders now start in the new "Created" state, and then _immediately_ transition
+to the "AddingItems" state. This allows e.g. event listeners to pick up newly-created Orders.
+* The `AuthenticationStrategy.onLogOut()` function
+signature has changed: the first argument is now the RequestContext of the current request.
+* The `OrderItem.unitPrice` is now _always_ given as the net (without tax) price
+of the related ProductVariant. Formerly, it was either the net or gross price, depending on
+the `pricesIncludeTax` setting of the Channel. If you have existing Orders where
+`unitPriceIncludesTax = true`, you will need to manually update the `unitPrice` value *before*
+running any other migrations for this release. The query will look like:
+
+    `UPDATE order_item SET unitPrice = ROUND(unitPrice / ((taxRate + 100) / 100)) WHERE unitPriceIncludesTax = 1`
+* The `OrderLine.totalPrice` field has been deprecated and will be removed in a
+future release. Use the new `OrderLine.linePriceWithTax` field instead.
+* The `PaymentMethodHandler` function signatures have changed:
+`createPayment()`, `settlePayment()` & `createRefund()` now all get passed the
+RequestContext object as the first argument.
+* The `PriceCalculationStrategy.calculateUnitPrice()` function
+signature has changed: the first argument is now the RequestContext of the current request.
+* The `ProductVariant.trackInventory` field is now an Enum rather than a boolean, allowing explicit inheritance of the value set in GlobalSettings. This will require a DB migration with a custom query to transform the previous boolean values to the new enum (string) values of "TRUE", "FALSE" or "INHERIT". Check the release blog post for more details.
+* The `ShippingMethod` entity is now translatable. This change will require a DB
+migration to be performed, including custom queries to migrate any existing ShippingMethods
+to the new table structure (see release blog post for details).
+* The AssetNamingStrategy `generateSourceFileName()` & `generatePreviewFileName()`
+function signatures have changed: the first argument is now the
+RequestContext of the current request.
+* The AssetPreviewStrategy `generatePreviewImage()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+* The internal handling of stock movements has been refined,
+which required changes to the DB schema. This will require a migration.
+* The OrderMergeStrategy `merge()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+* The PromotionAction `execute()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+* The ShippingCalculator `calculate()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+* The ShippingEligibilityChecker `check()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+* The TaxZoneStrategy `determineTaxZone()`
+function signature has changed: the first argument is now the
+RequestContext of the current request.
+## <small>0.16.3 (2020-11-05)</small>
+
+
+#### Fixes
+
+* **admin-ui** Add missing I18n state tokens ([215a637](https://github.com/vendure-ecommerce/vendure/commit/215a637))
+* **admin-ui** Fix Apollo cache warning for GlobalSettings.serverConfig ([8b135ad](https://github.com/vendure-ecommerce/vendure/commit/8b135ad))
+* **admin-ui** Fix CustomerGroupList layout in Firefox ([c432a14](https://github.com/vendure-ecommerce/vendure/commit/c432a14)), closes [#531](https://github.com/vendure-ecommerce/vendure/issues/531)
+* **admin-ui** Fix overflow that made ui unusable on mobile ([f129e0c](https://github.com/vendure-ecommerce/vendure/commit/f129e0c))
+* **admin-ui** Fix saving countries in other languages ([11a1004](https://github.com/vendure-ecommerce/vendure/commit/11a1004)), closes [#528](https://github.com/vendure-ecommerce/vendure/issues/528)
+* **core** Add retry logic in case of transaction deadlocks ([3b60bcb](https://github.com/vendure-ecommerce/vendure/commit/3b60bcb)), closes [#527](https://github.com/vendure-ecommerce/vendure/issues/527)
+
+#### Features
+
+* **core** Export FacetValueChecker promotion utility ([fc3890e](https://github.com/vendure-ecommerce/vendure/commit/fc3890e))
+
+## <small>0.16.2 (2020-10-22)</small>
+
+
+#### Fixes
+
+* **admin-ui** Auto-fill Product & Collection slugs in other languages ([9393d04](https://github.com/vendure-ecommerce/vendure/commit/9393d04)), closes [#522](https://github.com/vendure-ecommerce/vendure/issues/522)
+* **admin-ui** Correct display of args input in PaymentMethodDetail ([3f7627e](https://github.com/vendure-ecommerce/vendure/commit/3f7627e)), closes [#489](https://github.com/vendure-ecommerce/vendure/issues/489)
+* **admin-ui** Fix collection list "expand all" behaviour when toggling ([c77af2b](https://github.com/vendure-ecommerce/vendure/commit/c77af2b)), closes [#513](https://github.com/vendure-ecommerce/vendure/issues/513)
+* **admin-ui** Fix display of existing variants in ProductVariantEditor ([ca538b8](https://github.com/vendure-ecommerce/vendure/commit/ca538b8)), closes [#521](https://github.com/vendure-ecommerce/vendure/issues/521)
+* **admin-ui** Preserve expanded state on moving collections ([8d028cf](https://github.com/vendure-ecommerce/vendure/commit/8d028cf)), closes [#515](https://github.com/vendure-ecommerce/vendure/issues/515)
+* **core** Add missing events to export (fulfillment, logout) ([04a49bf](https://github.com/vendure-ecommerce/vendure/commit/04a49bf))
+* **core** Correctly de-duplicate OrderLines with empty custom fields ([ef99c22](https://github.com/vendure-ecommerce/vendure/commit/ef99c22)), closes [#512](https://github.com/vendure-ecommerce/vendure/issues/512)
+* **email-plugin** Only call `loadData()` function after filters run ([e22db7e](https://github.com/vendure-ecommerce/vendure/commit/e22db7e)), closes [#518](https://github.com/vendure-ecommerce/vendure/issues/518)
+
+#### Features
+
+* **admin-ui** Add Czech translations ([89ee826](https://github.com/vendure-ecommerce/vendure/commit/89ee826))
+* **admin-ui** Enable filtering by custom Order states in list view ([76d2d56](https://github.com/vendure-ecommerce/vendure/commit/76d2d56))
+* **core** Add custom error result on AuthenticationStrategy ([d3ddb96](https://github.com/vendure-ecommerce/vendure/commit/d3ddb96)), closes [#499](https://github.com/vendure-ecommerce/vendure/issues/499)
+* **core** Add NotVerifiedError to AuthenticationResult ([ee39263](https://github.com/vendure-ecommerce/vendure/commit/ee39263)), closes [#500](https://github.com/vendure-ecommerce/vendure/issues/500)
+* **core** Add support for better-sqlite3 driver to DefaultSearchPlugin ([7a71fbe](https://github.com/vendure-ecommerce/vendure/commit/7a71fbe)), closes [#505](https://github.com/vendure-ecommerce/vendure/issues/505)
+* **create** Use better-sqlite3 driver for improved sqlite perf ([dfd4f36](https://github.com/vendure-ecommerce/vendure/commit/dfd4f36)), closes [#505](https://github.com/vendure-ecommerce/vendure/issues/505)
+
+## <small>0.16.1 (2020-10-15)</small>
+
+
+#### Fixes
+
+* **admin-ui** Allow SortPipe to work with frozen arrays ([00e0af9](https://github.com/vendure-ecommerce/vendure/commit/00e0af9))
+* **admin-ui** Correctly handle missing error codes ([aa80092](https://github.com/vendure-ecommerce/vendure/commit/aa80092))
+* **admin-ui** Fix Apollo cache errors when switching Channels ([ca2c1b6](https://github.com/vendure-ecommerce/vendure/commit/ca2c1b6)), closes [#496](https://github.com/vendure-ecommerce/vendure/issues/496)
+* **admin-ui** Fix build-time Angular CLI warnings ([c52a258](https://github.com/vendure-ecommerce/vendure/commit/c52a258))
+* **admin-ui** Fix DateFormInputComponent error ([5575778](https://github.com/vendure-ecommerce/vendure/commit/5575778))
+* **admin-ui** Fix widths of product variant inputs ([feca114](https://github.com/vendure-ecommerce/vendure/commit/feca114)), closes [#503](https://github.com/vendure-ecommerce/vendure/issues/503)
+* **core** DefaultSearchPlugin correctly indexes language variants ([909479b](https://github.com/vendure-ecommerce/vendure/commit/909479b)), closes [#493](https://github.com/vendure-ecommerce/vendure/issues/493)
+* **core** Restore export of ZoneService ([9b8d278](https://github.com/vendure-ecommerce/vendure/commit/9b8d278))
+* **core** Use correct permission for `updateAdministrator` mutation ([4b55288](https://github.com/vendure-ecommerce/vendure/commit/4b55288))
+* **elasticsearch-plugin** Compatible with UUID primary keys strategy ([cdf3a39](https://github.com/vendure-ecommerce/vendure/commit/cdf3a39)), closes [#494](https://github.com/vendure-ecommerce/vendure/issues/494)
+* **elasticsearch-plugin** Correctly index language variants ([e37e5c9](https://github.com/vendure-ecommerce/vendure/commit/e37e5c9)), closes [#493](https://github.com/vendure-ecommerce/vendure/issues/493)
+
+## 0.16.0 (2020-10-09)
+
+
+#### Fixes
+
+* **admin-ui-plugin** Fix default languages list ([be3bf29](https://github.com/vendure-ecommerce/vendure/commit/be3bf29))
+* **admin-ui** Allow Fulfillments to be created based on state machine ([5b99f59](https://github.com/vendure-ecommerce/vendure/commit/5b99f59)), closes [#471](https://github.com/vendure-ecommerce/vendure/issues/471)
+* **admin-ui** Correctly handle missing shipping checker/calculator defs ([460963a](https://github.com/vendure-ecommerce/vendure/commit/460963a))
+* **core** Add check on order PaymentSettled transition ([141d650](https://github.com/vendure-ecommerce/vendure/commit/141d650))
+* **core** Correctly transition Order on Fulfillment transitions ([9b2c088](https://github.com/vendure-ecommerce/vendure/commit/9b2c088))
+* **core** Fix error when using channelId with getEntityOrThrow method ([65c50d4](https://github.com/vendure-ecommerce/vendure/commit/65c50d4))
+* **core** Fix NativeAuthenticationStrategy user lookup ([b275c20](https://github.com/vendure-ecommerce/vendure/commit/b275c20)), closes [#486](https://github.com/vendure-ecommerce/vendure/issues/486)
+
+#### Features
+
+* **admin-ui** Display error messages on failed Asset uploads ([5aebcd6](https://github.com/vendure-ecommerce/vendure/commit/5aebcd6))
+* **admin-ui** Handle Fulfillments state from Order detail view ([7883a7a](https://github.com/vendure-ecommerce/vendure/commit/7883a7a)), closes [#426](https://github.com/vendure-ecommerce/vendure/issues/426)
+* **admin-ui** Make order history collapsible ([db37707](https://github.com/vendure-ecommerce/vendure/commit/db37707))
+* **admin-ui** Update Apollo Client to v3 ([4e628a6](https://github.com/vendure-ecommerce/vendure/commit/4e628a6))
+* **admin-ui** Update to Angular v10 & Clarity v4 ([57c4106](https://github.com/vendure-ecommerce/vendure/commit/57c4106))
+* **core** Allow public & private Payment metadata ([3f72311](https://github.com/vendure-ecommerce/vendure/commit/3f72311)), closes [#476](https://github.com/vendure-ecommerce/vendure/issues/476)
+* **core** Create improved error-handling infrastructure ([0c0a7b2](https://github.com/vendure-ecommerce/vendure/commit/0c0a7b2)), closes [#437](https://github.com/vendure-ecommerce/vendure/issues/437)
+* **core** Create OrderCodeStrategy for more control over order codes ([30dc639](https://github.com/vendure-ecommerce/vendure/commit/30dc639)), closes [#452](https://github.com/vendure-ecommerce/vendure/issues/452)
+* **core** Create Transaction decorator ([4040089](https://github.com/vendure-ecommerce/vendure/commit/4040089))
+* **core** Create unit-of-work infrastructure for transactions ([82b54e6](https://github.com/vendure-ecommerce/vendure/commit/82b54e6)), closes [#242](https://github.com/vendure-ecommerce/vendure/issues/242)
+* **core** Implement a state machine for Fulfillments ([70a7665](https://github.com/vendure-ecommerce/vendure/commit/70a7665))
+* **core** Improved error handling for Admin API mutations ([af49054](https://github.com/vendure-ecommerce/vendure/commit/af49054)), closes [#437](https://github.com/vendure-ecommerce/vendure/issues/437)
+* **core** Improved error handling for ShopAPI order resolvers ([156c9e2](https://github.com/vendure-ecommerce/vendure/commit/156c9e2)), closes [#437](https://github.com/vendure-ecommerce/vendure/issues/437)
+* **core** Make Customers ChannelAware ([0f73473](https://github.com/vendure-ecommerce/vendure/commit/0f73473))
+* **core** Run all mutations within transactions ([b40209e](https://github.com/vendure-ecommerce/vendure/commit/b40209e)), closes [#242](https://github.com/vendure-ecommerce/vendure/issues/242)
+* **core** Update GraphQL to v15 ([177a14f](https://github.com/vendure-ecommerce/vendure/commit/177a14f))
+* **core** Update to TypeScript v4.0.3 ([e1ce807](https://github.com/vendure-ecommerce/vendure/commit/e1ce807))
+* **core** Update TypeORM to 0.2.28 ([d280466](https://github.com/vendure-ecommerce/vendure/commit/d280466))
+* **core** Use transaction to update Fulfillment state ([8232ddc](https://github.com/vendure-ecommerce/vendure/commit/8232ddc))
+* **email-plugin** Provide an Injector instance to .loadData function ([e2665a7](https://github.com/vendure-ecommerce/vendure/commit/e2665a7))
+* **testing** Create helpers for testing of ErrorResult union types ([6ef6045](https://github.com/vendure-ecommerce/vendure/commit/6ef6045)), closes [#437](https://github.com/vendure-ecommerce/vendure/issues/437)
+
+
+### BREAKING CHANGE
+
+* All Vendure packages are now built on TypeScript v4.0.3. With new TypeScript versions come the possibility that its improved type-checking abilities will uncover new errors that it had not detected previously.
+* If you are using the `.loadData()` method of an EmailEventHandler, the callback signature has changed to provide an instance of the Injector class, rather than an `inject()` function.
+* The `orderOptions.generateOrderCode` config option has been replaced with `orderOptions.orderCodeStrategy`. This change allows order code generation to take advantage of the `InjectableStrategy` interface, i.e. to be able to inject Vendure services and other providers (e.g. the database connection). See the `OrderCodeStrategy` documentation for guidance on how to use the new API.
+* The `Payment.metadata` field is not private by default, meaning that it can only be read via the Admin API. Data required in the Shop API can be accessed by putting it in a field named `public`. Example: `Payment.metadata.public.redirectUrl`
+* The TypeORM `Connection` should no longer be directly used. Instead, inject the new `TransactionalConnection` class, which wraps the TypeORM connection and enables database transactions to be used in conjunction with the new `@Transaction` decorator.
+
+   The `getEntityOrThrow()` and `findOneInChannel()` helper functions have been deprecated and replaced by methods with the same name (but slightly different signature) on the TransactionalConnection class.
+* The upgrade of the Admin UI to Angular v10 means that if you are using the `@vendure/ui-devkit` package to compile an extended version of the Admin UI, you need to have at least TypeScript v3.9.2 installed.
+## <small>0.15.2 (2020-09-30)</small>
+
+
+#### Fixes
+
+* **admin-ui** Allow cancellation from custom Order states ([117264f](https://github.com/vendure-ecommerce/vendure/commit/117264f)), closes [#472](https://github.com/vendure-ecommerce/vendure/issues/472)
+* **admin-ui** Fix address dialog issues ([0d61f47](https://github.com/vendure-ecommerce/vendure/commit/0d61f47)), closes [#463](https://github.com/vendure-ecommerce/vendure/issues/463)
+* **admin-ui** Fix asset drag/drop support in safari ([55304c5](https://github.com/vendure-ecommerce/vendure/commit/55304c5))
+* **core** Fix handling of JobRecord ids when using UUID strategy ([30e6e70](https://github.com/vendure-ecommerce/vendure/commit/30e6e70)), closes [#478](https://github.com/vendure-ecommerce/vendure/issues/478)
+* **email-plugin** Include shipping method in order receipt handler ([ea907a4](https://github.com/vendure-ecommerce/vendure/commit/ea907a4)), closes [#473](https://github.com/vendure-ecommerce/vendure/issues/473)
+
+#### Features
+
+* **core** Add `totalQuantity` field to Order type ([829ac96](https://github.com/vendure-ecommerce/vendure/commit/829ac96)), closes [#465](https://github.com/vendure-ecommerce/vendure/issues/465)
+* **elasticsearch-plugin** Allow full client options to be passed ([c686509](https://github.com/vendure-ecommerce/vendure/commit/c686509)), closes [#474](https://github.com/vendure-ecommerce/vendure/issues/474)
+
+## <small>0.15.1 (2020-09-09)</small>
+
+
+#### Features
+
+* **admin-ui** Customer address editor opens in modal ([0a4d460](https://github.com/vendure-ecommerce/vendure/commit/0a4d460))
+* **create** Make distinction between MySQL & MariaDB ([a31bbf8](https://github.com/vendure-ecommerce/vendure/commit/a31bbf8))
+
+#### Fixes
+
+* **admin-ui** Allow removing last item from ProductSelectorFromInput ([21db8cf](https://github.com/vendure-ecommerce/vendure/commit/21db8cf))
+* **admin-ui** Correctly update product list after deletion ([5587144](https://github.com/vendure-ecommerce/vendure/commit/5587144)), closes [#453](https://github.com/vendure-ecommerce/vendure/issues/453)
+* **admin-ui** Display custom fields in Address form ([f074f65](https://github.com/vendure-ecommerce/vendure/commit/f074f65)), closes [#455](https://github.com/vendure-ecommerce/vendure/issues/455)
+* **core** Add resolver for Product.facetValues ([163a32f](https://github.com/vendure-ecommerce/vendure/commit/163a32f)), closes [#449](https://github.com/vendure-ecommerce/vendure/issues/449)
+* **core** Add warning for list defaults in mysql ([d47becc](https://github.com/vendure-ecommerce/vendure/commit/d47becc))
+* **core** Correctly parse fragments defined before operations ([44a9ab9](https://github.com/vendure-ecommerce/vendure/commit/44a9ab9)), closes [#459](https://github.com/vendure-ecommerce/vendure/issues/459)
+* **core** Fix only_full_group_by issues in MySQL search ([188cfaa](https://github.com/vendure-ecommerce/vendure/commit/188cfaa))
+
+## 0.15.0 (2020-08-27)
+
+
+#### Fixes
+
+* **admin-ui** Dynamically set yearRange of DatetimePickerComponent ([c66b10b](https://github.com/vendure-ecommerce/vendure/commit/c66b10b)), closes [#425](https://github.com/vendure-ecommerce/vendure/issues/425)
+* **admin-ui** Fix channel header when using bearer auth ([fa29805](https://github.com/vendure-ecommerce/vendure/commit/fa29805))
+* **admin-ui** Fix filtering of product variant table ([121b6fc](https://github.com/vendure-ecommerce/vendure/commit/121b6fc))
+* **admin-ui** Prevent clipping of product selector overlay ([7f9b6d7](https://github.com/vendure-ecommerce/vendure/commit/7f9b6d7))
+* **admin-ui** Refetch orders list on channel change ([ffa5615](https://github.com/vendure-ecommerce/vendure/commit/ffa5615))
+* **asset-server-plugin** Make nativeS3Configuration optional ([650977d](https://github.com/vendure-ecommerce/vendure/commit/650977d))
+* **core** Correct shipping calculator typing ([9052845](https://github.com/vendure-ecommerce/vendure/commit/9052845))
+* **core** Correct shipping calculator typing ([4a8e9ed](https://github.com/vendure-ecommerce/vendure/commit/4a8e9ed))
+* **core** Correct typing of GraphQL ID type in generated code ([dc7b303](https://github.com/vendure-ecommerce/vendure/commit/dc7b303)), closes [#410](https://github.com/vendure-ecommerce/vendure/issues/410)
+* **core** Correctly calculate item price discount actions ([06bb780](https://github.com/vendure-ecommerce/vendure/commit/06bb780))
+* **core** Correctly handle adjustOrderLine with quantity 0 ([7381d3d](https://github.com/vendure-ecommerce/vendure/commit/7381d3d)), closes [#435](https://github.com/vendure-ecommerce/vendure/issues/435)
+* **core** Ignore deleted variants when validating options ([9c242f8](https://github.com/vendure-ecommerce/vendure/commit/9c242f8)), closes [#412](https://github.com/vendure-ecommerce/vendure/issues/412)
+* **core** Make AssetOptions fields optional ([698011e](https://github.com/vendure-ecommerce/vendure/commit/698011e))
+
+#### Features
+
+* **admin-ui** Add Brazilian Portuguese translations ([7673353](https://github.com/vendure-ecommerce/vendure/commit/7673353))
+* **admin-ui** Add password form input ([6c909b3](https://github.com/vendure-ecommerce/vendure/commit/6c909b3)), closes [#445](https://github.com/vendure-ecommerce/vendure/issues/445)
+* **admin-ui** Add pt_BR to default translations ([5da5b4e](https://github.com/vendure-ecommerce/vendure/commit/5da5b4e))
+* **admin-ui** Implement list types for ConfigurableOperationDef args ([4c7467b](https://github.com/vendure-ecommerce/vendure/commit/4c7467b)), closes [#414](https://github.com/vendure-ecommerce/vendure/issues/414)
+* **admin-ui** Implement list types for custom fields ([e72f0b3](https://github.com/vendure-ecommerce/vendure/commit/e72f0b3)), closes [#416](https://github.com/vendure-ecommerce/vendure/issues/416)
+* **admin-ui** Implement pagination & filtering of product variants ([e2b445b](https://github.com/vendure-ecommerce/vendure/commit/e2b445b)), closes [#411](https://github.com/vendure-ecommerce/vendure/issues/411)
+* **admin-ui** Implement product selector custom form input ([f687f49](https://github.com/vendure-ecommerce/vendure/commit/f687f49)), closes [#400](https://github.com/vendure-ecommerce/vendure/issues/400)
+* **admin-ui** Unify CustomFieldControl type with FormInputComponent ([9e22347](https://github.com/vendure-ecommerce/vendure/commit/9e22347)), closes [#415](https://github.com/vendure-ecommerce/vendure/issues/415)
+* **core** Add `productVariant` query to Admin API ([72b6ccd](https://github.com/vendure-ecommerce/vendure/commit/72b6ccd))
+* **core** Add removeAllOrderLines mutation in Shop API  ([841e352](https://github.com/vendure-ecommerce/vendure/commit/841e352)), closes [#430](https://github.com/vendure-ecommerce/vendure/issues/430)
+* **core** Add support for list types in ConfigurableOperationDefs ([6698195](https://github.com/vendure-ecommerce/vendure/commit/6698195)), closes [#414](https://github.com/vendure-ecommerce/vendure/issues/414)
+* **core** Implement "containsProducts" PromotionCondition ([688d304](https://github.com/vendure-ecommerce/vendure/commit/688d304)), closes [#400](https://github.com/vendure-ecommerce/vendure/issues/400)
+* **core** Implement customer group form input ([177866e](https://github.com/vendure-ecommerce/vendure/commit/177866e)), closes [#400](https://github.com/vendure-ecommerce/vendure/issues/400)
+* **core** Implement customer group promotion condition ([fd70448](https://github.com/vendure-ecommerce/vendure/commit/fd70448)), closes [#400](https://github.com/vendure-ecommerce/vendure/issues/400)
+* **core** Implement product discount promotion action ([7da0d46](https://github.com/vendure-ecommerce/vendure/commit/7da0d46)), closes [#400](https://github.com/vendure-ecommerce/vendure/issues/400)
+* **core** Implement search by collection slug ([a4cbdbb](https://github.com/vendure-ecommerce/vendure/commit/a4cbdbb)), closes [#405](https://github.com/vendure-ecommerce/vendure/issues/405)
+* **core** Improve type-safety of custom ui input config ([d0cc096](https://github.com/vendure-ecommerce/vendure/commit/d0cc096)), closes [#414](https://github.com/vendure-ecommerce/vendure/issues/414)
+* **core** Make Orders ChannelAware ([9bb5750](https://github.com/vendure-ecommerce/vendure/commit/9bb5750)), closes [#440](https://github.com/vendure-ecommerce/vendure/issues/440)
+* **core** Support list types for custom fields ([1fa3cf1](https://github.com/vendure-ecommerce/vendure/commit/1fa3cf1)), closes [#416](https://github.com/vendure-ecommerce/vendure/issues/416)
+* **elasticsearch-plugin** Implement search by collection slug ([cbfd499](https://github.com/vendure-ecommerce/vendure/commit/cbfd499)), closes [#405](https://github.com/vendure-ecommerce/vendure/issues/405)
+
+
+### BREAKING CHANGE
+
+* If you use custom field controls in the Admin UI, you'll need to slightly modify the component class: the `customFieldConfig` property has been renamed to `config` and a required `readonly: boolean;` field should be added. This is part of an effort to unify the way custom input components work across different parts of the Admin UI.
+* Orders are now channel-aware which requires a non-destructive DB migration to apply the schema changes required for this relation. In addition, this migration is required to relate existing Orders to the default Channel:
+  ```TypeScript
+  // Assuming the ID of the default Channel is 1. If you are using a UUID strategy,
+  // replace 1 with the ID of the default channel.
+  await queryRunner.query(
+    'INSERT INTO `order_channels_channel` (orderId, channelId) SELECT id, 1 FROM `order`',
+    undefined,
+  );
+  ```
+* The `'facetValueIds'` type has been removed from the `ConfigArgType` type, and replaced by `'ID'` and the `list` option. This change only affects you if you have created custom CollectionFilters of PromotionActions/Conditions using the `'facetValueIds'` type for an argument.
+* The `ID` type in `@vendure/common/lib/generated-types` & `@vendure/common/lib/generated-shop-types` is now correctly typed as `string | number`, whereas previously it was `string`. If you are using any generated types in your plugin code, this may lead to TypeScript compiler errors which will need to be corrected.
+## <small>0.14.1 (2020-08-18)</small>
+
+
+#### Fixes
+
+* **admin-ui** Fix notification for customer verification email ([6c76ebe](https://github.com/vendure-ecommerce/vendure/commit/6c76ebe)), closes [#438](https://github.com/vendure-ecommerce/vendure/issues/438)
+* **admin-ui** Make emailAddress required in CustomerDetail form ([2a9ee2e](https://github.com/vendure-ecommerce/vendure/commit/2a9ee2e)), closes [#438](https://github.com/vendure-ecommerce/vendure/issues/438)
+* **admin-ui** Update facets cache after deletion ([f4eec6a](https://github.com/vendure-ecommerce/vendure/commit/f4eec6a)), closes [#424](https://github.com/vendure-ecommerce/vendure/issues/424)
+* **core** Correct shipping calculator typing ([18f5bcd](https://github.com/vendure-ecommerce/vendure/commit/18f5bcd))
+* **core** Correctly handle aliases when transforming Asset urls ([18bbeee](https://github.com/vendure-ecommerce/vendure/commit/18bbeee)), closes [#417](https://github.com/vendure-ecommerce/vendure/issues/417)
+* **email-plugin** Add filter of emailVerificationHandler ([a68b18e](https://github.com/vendure-ecommerce/vendure/commit/a68b18e)), closes [#438](https://github.com/vendure-ecommerce/vendure/issues/438)
+
+#### Features
+
+* **admin-ui** Add Address custom fields to order detail ([c4ca2d0](https://github.com/vendure-ecommerce/vendure/commit/c4ca2d0)), closes [#409](https://github.com/vendure-ecommerce/vendure/issues/409)
+* **admin-ui** Restrict Asset input based on permitted file types ([dc668d9](https://github.com/vendure-ecommerce/vendure/commit/dc668d9)), closes [#421](https://github.com/vendure-ecommerce/vendure/issues/421)
+* **asset-server-plugin** Extended S3Config to accept aws-sdk configuration properties ([ce903ad](https://github.com/vendure-ecommerce/vendure/commit/ce903ad))
+* **core** Add Address custom fields to OrderAddress ([6f35493](https://github.com/vendure-ecommerce/vendure/commit/6f35493)), closes [#409](https://github.com/vendure-ecommerce/vendure/issues/409)
+* **core** Custom field length configuration for localeString ([9fab7e8](https://github.com/vendure-ecommerce/vendure/commit/9fab7e8))
+* **core** Expose all cookie options in VendureConfig ([ad089ea](https://github.com/vendure-ecommerce/vendure/commit/ad089ea)), closes [#436](https://github.com/vendure-ecommerce/vendure/issues/436)
+* **core** Expose permitted Asset types in ServerConfig type ([66abc7f](https://github.com/vendure-ecommerce/vendure/commit/66abc7f)), closes [#421](https://github.com/vendure-ecommerce/vendure/issues/421)
+* **core** Implement permitted mime types for Assets ([272b2db](https://github.com/vendure-ecommerce/vendure/commit/272b2db)), closes [#421](https://github.com/vendure-ecommerce/vendure/issues/421)
+* **core** Validate DB table structure on worker bootstrap ([c1ccaa1](https://github.com/vendure-ecommerce/vendure/commit/c1ccaa1))
+* **core** Verbose query error logging (#433) ([8cf7483](https://github.com/vendure-ecommerce/vendure/commit/8cf7483)), closes [#433](https://github.com/vendure-ecommerce/vendure/issues/433)
+
 ## 0.14.0 (2020-07-20)
 
 

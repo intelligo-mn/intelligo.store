@@ -1,16 +1,18 @@
+import { RequestContext } from '../../api/common/request-context';
 import { Order } from '../../entity/order/order.entity';
-import { createOrderFromLines, parseLines } from '../../testing/order-test-utils';
+import { createOrderFromLines } from '../../testing/order-test-utils';
 
 import { UseGuestIfExistingEmptyStrategy } from './use-guest-if-existing-empty-strategy';
 
 describe('UseGuestIfExistingEmptyStrategy', () => {
     const strategy = new UseGuestIfExistingEmptyStrategy();
+    const ctx = RequestContext.empty();
 
     it('both orders empty', () => {
         const guestOrder = new Order({ lines: [] });
         const existingOrder = new Order({ lines: [] });
 
-        const result = strategy.merge(guestOrder, existingOrder);
+        const result = strategy.merge(ctx, guestOrder, existingOrder);
 
         expect(result).toEqual([]);
     });
@@ -20,9 +22,9 @@ describe('UseGuestIfExistingEmptyStrategy', () => {
         const guestOrder = createOrderFromLines(guestLines);
         const existingOrder = new Order({ lines: [] });
 
-        const result = strategy.merge(guestOrder, existingOrder);
+        const result = strategy.merge(ctx, guestOrder, existingOrder);
 
-        expect(parseLines(result)).toEqual(guestLines);
+        expect(result).toEqual([{ orderLineId: 1, quantity: 2 }]);
     });
 
     it('guestOrder empty', () => {
@@ -30,9 +32,9 @@ describe('UseGuestIfExistingEmptyStrategy', () => {
         const guestOrder = new Order({ lines: [] });
         const existingOrder = createOrderFromLines(existingLines);
 
-        const result = strategy.merge(guestOrder, existingOrder);
+        const result = strategy.merge(ctx, guestOrder, existingOrder);
 
-        expect(parseLines(result)).toEqual(existingLines);
+        expect(result).toEqual([{ orderLineId: 1, quantity: 2 }]);
     });
 
     it('both orders have non-conflicting lines', () => {
@@ -48,12 +50,16 @@ describe('UseGuestIfExistingEmptyStrategy', () => {
         const guestOrder = createOrderFromLines(guestLines);
         const existingOrder = createOrderFromLines(existingLines);
 
-        const result = strategy.merge(guestOrder, existingOrder);
+        const result = strategy.merge(ctx, guestOrder, existingOrder);
 
-        expect(parseLines(result)).toEqual(existingLines);
+        expect(result).toEqual([
+            { orderLineId: 1, quantity: 1 },
+            { orderLineId: 2, quantity: 1 },
+            { orderLineId: 3, quantity: 1 },
+        ]);
     });
 
-    it('both orders have conflicting lines, some of which conflict', () => {
+    it('both orders have lines, some of which conflict', () => {
         const guestLines = [
             { lineId: 21, quantity: 2, productVariantId: 102 },
             { lineId: 22, quantity: 1, productVariantId: 202 },
@@ -66,20 +72,12 @@ describe('UseGuestIfExistingEmptyStrategy', () => {
         const guestOrder = createOrderFromLines(guestLines);
         const existingOrder = createOrderFromLines(existingLines);
 
-        const result = strategy.merge(guestOrder, existingOrder);
+        const result = strategy.merge(ctx, guestOrder, existingOrder);
 
-        expect(parseLines(result)).toEqual(existingLines);
-    });
-
-    it('returns a new array', () => {
-        const guestLines = [{ lineId: 21, quantity: 2, productVariantId: 102 }];
-        const existingLines = [{ lineId: 1, quantity: 1, productVariantId: 101 }];
-        const guestOrder = createOrderFromLines(guestLines);
-        const existingOrder = createOrderFromLines(existingLines);
-
-        const result = strategy.merge(guestOrder, existingOrder);
-
-        expect(result).not.toBe(guestOrder.lines);
-        expect(result).not.toBe(existingOrder.lines);
+        expect(result).toEqual([
+            { orderLineId: 1, quantity: 1 },
+            { orderLineId: 2, quantity: 1 },
+            { orderLineId: 3, quantity: 1 },
+        ]);
     });
 });

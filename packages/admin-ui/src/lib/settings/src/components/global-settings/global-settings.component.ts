@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 import { BaseDetailComponent } from '@vendure/admin-ui/core';
@@ -7,7 +7,7 @@ import { CustomFieldConfig, GlobalSettings, LanguageCode, Permission } from '@ve
 import { NotificationService } from '@vendure/admin-ui/core';
 import { DataService } from '@vendure/admin-ui/core';
 import { ServerConfigService } from '@vendure/admin-ui/core';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'vdr-global-settings',
@@ -19,6 +19,7 @@ export class GlobalSettingsComponent extends BaseDetailComponent<GlobalSettings>
     detailForm: FormGroup;
     customFields: CustomFieldConfig[];
     languageCodes = Object.values(LanguageCode);
+    readonly updatePermission = [Permission.UpdateSettings, Permission.UpdateGlobalSettings];
 
     constructor(
         router: Router,
@@ -34,6 +35,7 @@ export class GlobalSettingsComponent extends BaseDetailComponent<GlobalSettings>
         this.detailForm = this.formBuilder.group({
             availableLanguages: [''],
             trackInventory: false,
+            outOfStockThreshold: [0, Validators.required],
             customFields: this.formBuilder.group(
                 this.customFields.reduce((hash, field) => ({ ...hash, [field.name]: '' }), {}),
             ),
@@ -63,27 +65,30 @@ export class GlobalSettingsComponent extends BaseDetailComponent<GlobalSettings>
 
         this.dataService.settings
             .updateGlobalSettings(this.detailForm.value)
-            .pipe(switchMap(() => this.serverConfigService.refreshGlobalSettings()))
-            .subscribe(
-                () => {
-                    this.detailForm.markAsPristine();
-                    this.changeDetector.markForCheck();
-                    this.notificationService.success(_('common.notify-update-success'), {
-                        entity: 'Settings',
-                    });
-                },
-                (err) => {
-                    this.notificationService.error(_('common.notify-update-error'), {
-                        entity: 'Settings',
-                    });
-                },
-            );
+            .pipe(
+                tap(({ updateGlobalSettings }) => {
+                    switch (updateGlobalSettings.__typename) {
+                        case 'GlobalSettings':
+                            this.detailForm.markAsPristine();
+                            this.changeDetector.markForCheck();
+                            this.notificationService.success(_('common.notify-update-success'), {
+                                entity: 'Settings',
+                            });
+                            break;
+                        case 'ChannelDefaultLanguageError':
+                            this.notificationService.error(updateGlobalSettings.message);
+                    }
+                }),
+                switchMap(() => this.serverConfigService.refreshGlobalSettings()),
+            )
+            .subscribe();
     }
 
     protected setFormValues(entity: GlobalSettings, languageCode: LanguageCode): void {
         this.detailForm.patchValue({
             availableLanguages: entity.availableLanguages,
             trackInventory: entity.trackInventory,
+            outOfStockThreshold: entity.outOfStockThreshold,
         });
         if (this.customFields.length) {
             const customFieldsGroup = this.detailForm.get('customFields') as FormGroup;

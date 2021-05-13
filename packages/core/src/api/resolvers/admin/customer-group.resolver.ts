@@ -17,31 +17,33 @@ import { CustomerGroupService } from '../../../service/services/customer-group.s
 import { RequestContext } from '../../common/request-context';
 import { Allow } from '../../decorators/allow.decorator';
 import { Ctx } from '../../decorators/request-context.decorator';
+import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver('CustomerGroup')
 export class CustomerGroupResolver {
     constructor(private customerGroupService: CustomerGroupService) {}
 
     @Query()
-    @Allow(Permission.ReadCustomer)
+    @Allow(Permission.ReadCustomer, Permission.ReadCustomerGroup)
     customerGroups(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryCustomerGroupsArgs,
     ): Promise<PaginatedList<CustomerGroup>> {
-        return this.customerGroupService.findAll(args.options || undefined);
+        return this.customerGroupService.findAll(ctx, args.options || undefined);
     }
 
     @Query()
-    @Allow(Permission.ReadCustomer)
+    @Allow(Permission.ReadCustomer, Permission.ReadCustomerGroup)
     async customerGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryCustomerGroupArgs,
     ): Promise<CustomerGroup | undefined> {
-        return this.customerGroupService.findOne(args.id);
+        return this.customerGroupService.findOne(ctx, args.id);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.CreateCustomer)
+    @Allow(Permission.CreateCustomerGroup)
     async createCustomerGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationCreateCustomerGroupArgs,
@@ -49,20 +51,29 @@ export class CustomerGroupResolver {
         return this.customerGroupService.create(ctx, args.input);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCustomer)
-    async updateCustomerGroup(@Args() args: MutationUpdateCustomerGroupArgs): Promise<CustomerGroup> {
-        return this.customerGroupService.update(args.input);
+    @Allow(Permission.UpdateCustomerGroup)
+    async updateCustomerGroup(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationUpdateCustomerGroupArgs,
+    ): Promise<CustomerGroup> {
+        return this.customerGroupService.update(ctx, args.input);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.DeleteCustomer)
-    async deleteCustomerGroup(@Args() args: MutationDeleteCustomerGroupArgs): Promise<DeletionResponse> {
-        return this.customerGroupService.delete(args.id);
+    @Allow(Permission.DeleteCustomerGroup)
+    async deleteCustomerGroup(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationDeleteCustomerGroupArgs,
+    ): Promise<DeletionResponse> {
+        return this.customerGroupService.delete(ctx, args.id);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCustomer)
+    @Allow(Permission.UpdateCustomerGroup)
     async addCustomersToGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationAddCustomersToGroupArgs,
@@ -70,8 +81,9 @@ export class CustomerGroupResolver {
         return this.customerGroupService.addCustomersToGroup(ctx, args);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCustomer)
+    @Allow(Permission.UpdateCustomerGroup)
     async removeCustomersFromGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationRemoveCustomersFromGroupArgs,

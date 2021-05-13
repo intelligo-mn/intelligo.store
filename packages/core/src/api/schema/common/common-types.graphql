@@ -3,14 +3,18 @@ scalar JSON
 scalar DateTime
 scalar Upload
 
-enum AdjustmentType {
-    TAX
-    PROMOTION
-    SHIPPING
-    REFUND
-    TAX_REFUND
-    PROMOTION_REFUND
-    SHIPPING_REFUND
+interface PaginatedList {
+    items: [Node!]!
+    totalItems: Int!
+}
+
+interface Node {
+    id: ID!
+}
+
+interface ErrorResult {
+    errorCode: ErrorCode!
+    message: String!
 }
 
 type Adjustment {
@@ -20,18 +24,25 @@ type Adjustment {
     amount: Int!
 }
 
+type TaxLine {
+    description: String!
+    taxRate: Float!
+}
+
 type ConfigArg {
     name: String!
-    type: String!
     value: String!
 }
 
 type ConfigArgDefinition {
     name: String!
     type: String!
+    list: Boolean!
+    required: Boolean!
+    defaultValue: JSON
     label: String
     description: String
-    config: JSON
+    ui: JSON
 }
 
 type ConfigurableOperation {
@@ -45,12 +56,6 @@ type ConfigurableOperationDefinition {
     description: String!
 }
 
-enum DeletionResult {
-    "The entity was successfully deleted"
-    DELETED
-    "Deletion did not take place, reason given in message"
-    NOT_DELETED
-}
 
 type DeletionResponse {
     result: DeletionResult!
@@ -59,7 +64,7 @@ type DeletionResponse {
 
 input ConfigArgInput {
     name: String!
-    type: String!
+    "A JSON stringified representation of the actual value"
     value: String!
 }
 
@@ -68,23 +73,14 @@ input ConfigurableOperationInput {
     arguments: [ConfigArgInput!]!
 }
 
-interface PaginatedList {
-    items: [Node!]!
-    totalItems: Int!
-}
-
-interface Node {
-    id: ID!
-}
-
-enum SortOrder {
-    ASC
-    DESC
-}
-
 input StringOperators {
     eq: String
+    notEq: String
     contains: String
+    notContains: String
+    in: [String!]
+    notIn: [String!]
+    regex: String
 }
 
 input BooleanOperators {
@@ -117,16 +113,26 @@ input DateOperators {
     between: DateRange
 }
 
-enum LogicalOperator {
-    AND
-    OR
+"""
+Used to construct boolean expressions for filtering search results
+by FacetValue ID. Examples:
+
+* ID=1 OR ID=2: `{ facetValueFilters: [{ or: [1,2] }] }`
+* ID=1 AND ID=2: `{ facetValueFilters: [{ and: 1 }, { and: 2 }] }`
+* ID=1 AND (ID=2 OR ID=3): `{ facetValueFilters: [{ and: 1 }, { or: [2,3] }] }`
+"""
+input FacetValueFilterInput {
+    and: ID
+    or: [ID!]
 }
 
 input SearchInput {
     term: String
-    facetValueIds: [ID!]
-    facetValueOperator: LogicalOperator
+    facetValueIds: [ID!] @deprecated(reason: "Use `facetValueFilters` instead")
+    facetValueOperator: LogicalOperator @deprecated(reason: "Use `facetValueFilters` instead")
+    facetValueFilters: [FacetValueFilterInput!]
     collectionId: ID
+    collectionSlug: String
     groupByProduct: Boolean
     take: Int
     skip: Int
@@ -173,4 +179,31 @@ input UpdateAddressInput {
     phoneNumber: String
     defaultShippingAddress: Boolean
     defaultBillingAddress: Boolean
+}
+
+"""
+Indicates that an operation succeeded, where we do not want to return any more specific information.
+"""
+type Success {
+    success: Boolean!
+}
+
+type ShippingMethodQuote {
+    id: ID!
+    price: Int!
+    priceWithTax: Int!
+    code: String!
+    name: String!
+    description: String!
+    "Any optional metadata returned by the ShippingCalculator in the ShippingCalculationResult"
+    metadata: JSON
+}
+
+type PaymentMethodQuote {
+    id: ID!
+    code: String!
+    name: String!
+    description: String!
+    isEligible: Boolean!
+    eligibilityMessage: String
 }

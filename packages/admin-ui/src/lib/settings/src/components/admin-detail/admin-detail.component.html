@@ -17,7 +17,7 @@
                 class="btn btn-primary"
                 (click)="save()"
                 *vdrIfPermissions="'UpdateAdministrator'"
-                [disabled]="(detailForm.invalid || detailForm.pristine)"
+                [disabled]="detailForm.invalid || detailForm.pristine"
             >
                 {{ 'common.update' | translate }}
             </button>
@@ -61,6 +61,17 @@
     >
         <input id="password" type="password" formControlName="password" />
     </vdr-form-field>
+    <section formGroupName="customFields" *ngIf="customFields.length">
+        <label>{{ 'common.custom-fields' | translate }}</label>
+        <ng-container *ngFor="let customField of customFields">
+            <vdr-custom-field-control
+                *ngIf="customFieldIsSet(customField.name)"
+                entityName="Administrator"
+                [customFieldsFormGroup]="detailForm.get('customFields')"
+                [customField]="customField"
+            ></vdr-custom-field-control>
+        </ng-container>
+    </section>
     <label class="clr-control-label">{{ 'settings.roles' | translate }}</label>
     <ng-select
         [items]="allRoles$ | async"
@@ -86,7 +97,8 @@
         </li>
     </ul>
     <vdr-permission-grid
-        [permissions]="getPermissionsForSelectedChannel()"
+        [activePermissions]="getPermissionsForSelectedChannel()"
+        [permissionDefinitions]="permissionDefinitions"
         [readonly]="true"
     ></vdr-permission-grid>
 </form>

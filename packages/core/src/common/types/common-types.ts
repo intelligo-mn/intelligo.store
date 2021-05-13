@@ -1,5 +1,6 @@
 import { VendureEntity } from '../../entity/base/base.entity';
 import { Channel } from '../../entity/channel/channel.entity';
+import { Tag } from '../../entity/tag/tag.entity';
 
 import { LocaleString } from './locale-types';
 
@@ -22,6 +23,13 @@ export interface SoftDeletable {
  */
 export interface Orderable {
     position: number;
+}
+
+/**
+ * Entities which can have Tags applied to them.
+ */
+export interface Taggable {
+    tags: Tag[];
 }
 
 /**
@@ -51,7 +59,7 @@ export interface ListQueryOptions<T extends VendureEntity> {
  * nullable fields have the type `field?: <type> | null`.
  */
 export type NullOptionals<T> = {
-    [K in keyof T]: undefined extends T[K] ? NullOptionals<T[K]> | null : NullOptionals<T[K]>
+    [K in keyof T]: undefined extends T[K] ? NullOptionals<T[K]> | null : NullOptionals<T[K]>;
 };
 
 export type SortOrder = 'ASC' | 'DESC';
@@ -81,7 +89,12 @@ export type FilterParameter<T extends VendureEntity> = {
 
 export interface StringOperators {
     eq?: string;
+    notEq?: string;
     contains?: string;
+    notContains?: string;
+    in?: string[];
+    notIn?: string[];
+    regex?: string;
 }
 
 export interface BooleanOperators {
@@ -113,3 +126,21 @@ export interface DateOperators {
     after?: Date;
     between?: DateRange;
 }
+
+export type PaymentMetadata = {
+    [prop: string]: any;
+} & {
+    public?: any;
+};
+
+/**
+ * @description
+ * The result of the price calculation from the {@link ProductVariantPriceCalculationStrategy} or the
+ * {@link OrderItemPriceCalculationStrategy}.
+ *
+ * @docsCategory Common
+ */
+export type PriceCalculationResult = {
+    price: number;
+    priceIncludesTax: boolean;
+};

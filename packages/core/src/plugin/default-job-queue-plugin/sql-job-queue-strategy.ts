@@ -1,11 +1,12 @@
 import { JobListOptions, JobState } from '@vendure/common/lib/generated-types';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
-import { Brackets, Connection, FindConditions, In, LessThan } from 'typeorm';
+import { Brackets, Connection, EntityManager, FindConditions, In, LessThan } from 'typeorm';
 
 import { Injector } from '../../common/injector';
-import { JobQueueStrategy } from '../../config/job-queue/job-queue-strategy';
-import { Job } from '../../job-queue/job';
-import { ProcessContext } from '../../process-context/process-context';
+import { InspectableJobQueueStrategy, JobQueueStrategy } from '../../config';
+import { Job, JobData } from '../../job-queue';
+import { PollingJobQueueStrategy } from '../../job-queue/polling-job-queue-strategy';
+import { TransactionalConnection } from '../../service';
 import { ListQueryBuilder } from '../../service/helpers/list-query-builder/list-query-builder';
 
 import { JobRecord } from './job-record.entity';
@@ -17,21 +18,24 @@ import { JobRecord } from './job-record.entity';
  *
  * @docsCategory JobQueue
  */
-export class SqlJobQueueStrategy implements JobQueueStrategy {
+export class SqlJobQueueStrategy extends PollingJobQueueStrategy implements InspectableJobQueueStrategy {
     private connection: Connection | undefined;
     private listQueryBuilder: ListQueryBuilder;
 
     init(injector: Injector) {
-        const processContext = injector.get(ProcessContext);
-        if (processContext.isServer) {
-            this.connection = injector.getConnection();
-            this.listQueryBuilder = injector.get(ListQueryBuilder);
-        }
+        this.connection = injector.get(TransactionalConnection).rawConnection;
+        this.listQueryBuilder = injector.get(ListQueryBuilder);
+        super.init(injector);
     }
 
-    async add(job: Job): Promise<Job> {
+    destroy() {
+        this.connection = undefined;
+        super.destroy();
+    }
+
+    async add<Data extends JobData<Data> = {}>(job: Job<Data>): Promise<Job<Data>> {
         if (!this.connectionAvailable(this.connection)) {
-            return job;
+            throw new Error('Connection not available');
         }
         const newRecord = this.toRecord(job);
         const record = await this.connection.getRepository(JobRecord).save(newRecord);
@@ -40,41 +44,96 @@ export class SqlJobQueueStrategy implements JobQueueStrategy {
 
     async next(queueName: string): Promise<Job | undefined> {
         if (!this.connectionAvailable(this.connection)) {
-            return;
+            throw new Error('Connection not available');
         }
-        const record = await this.connection
+        const connection = this.connection;
+        const connectionType = this.connection.options.type;
+        const isSQLite =
+            connectionType === 'sqlite' || connectionType === 'sqljs' || connectionType === 'better-sqlite3';
+
+        return new Promise(async (resolve, reject) => {
+            if (isSQLite) {
+                // SQLite driver does not support concurrent transactions. See https://github.com/typeorm/typeorm/issues/1884
+                const result = await this.getNextAndSetAsRunning(connection.manager, queueName, false);
+                resolve(result);
+            } else {
+                // Selecting the next job is wrapped in a transaction so that we can
+                // set a lock on that row and immediately update the status to "RUNNING".
+                // This prevents multiple worker processes from taking the same job when
+                // running concurrent workers.
+                connection.transaction(async transactionManager => {
+                    const result = await this.getNextAndSetAsRunning(transactionManager, queueName, true);
+                    resolve(result);
+                });
+            }
+        });
+    }
+
+    private async getNextAndSetAsRunning(
+        manager: EntityManager,
+        queueName: string,
+        setLock: boolean,
+        waitingJobIds: ID[] = [],
+    ): Promise<Job | undefined> {
+        const qb = manager
             .getRepository(JobRecord)
             .createQueryBuilder('record')
             .where('record.queueName = :queueName', { queueName })
             .andWhere(
-                new Brackets(qb => {
-                    qb.where('record.state = :pending', {
+                new Brackets(qb1 => {
+                    qb1.where('record.state = :pending', {
                         pending: JobState.PENDING,
                     }).orWhere('record.state = :retrying', { retrying: JobState.RETRYING });
                 }),
             )
-            .orderBy('record.createdAt', 'ASC')
-            .getOne();
+            .orderBy('record.createdAt', 'ASC');
+
+        if (waitingJobIds.length) {
+            qb.andWhere('record.id NOT IN (:...waitingJobIds)', { waitingJobIds });
+        }
+
+        if (setLock) {
+            qb.setLock('pessimistic_write');
+        }
+        const record = await qb.getOne();
         if (record) {
             const job = this.fromRecord(record);
+            if (record.state === JobState.RETRYING && typeof this.backOffStrategy === 'function') {
+                const msSinceLastFailure = Date.now() - +record.updatedAt;
+                const backOffDelayMs = this.backOffStrategy(queueName, record.attempts, job);
+                if (msSinceLastFailure < backOffDelayMs) {
+                    return await this.getNextAndSetAsRunning(manager, queueName, setLock, [
+                        ...waitingJobIds,
+                        record.id,
+                    ]);
+                }
+            }
             job.start();
+            record.state = JobState.RUNNING;
+            await manager.getRepository(JobRecord).save(record, { reload: false });
             return job;
+        } else {
+            return;
         }
     }
 
     async update(job: Job<any>): Promise<void> {
         if (!this.connectionAvailable(this.connection)) {
-            return;
+            throw new Error('Connection not available');
         }
-        await this.connection.getRepository(JobRecord).save(this.toRecord(job));
+        await this.connection
+            .getRepository(JobRecord)
+            .createQueryBuilder('job')
+            .update()
+            .set(this.toRecord(job))
+            .where('id = :id', { id: job.id })
+            .andWhere('settledAt IS NULL')
+            .execute();
     }
 
     async findMany(options?: JobListOptions): Promise<PaginatedList<Job>> {
         if (!this.connectionAvailable(this.connection)) {
-            return {
-                items: [],
-                totalItems: 0,
-            };
+            throw new Error('Connection not available');
         }
         return this.listQueryBuilder
             .build(JobRecord, options)
@@ -87,7 +146,7 @@ export class SqlJobQueueStrategy implements JobQueueStrategy {
 
     async findOne(id: ID): Promise<Job | undefined> {
         if (!this.connectionAvailable(this.connection)) {
-            return;
+            throw new Error('Connection not available');
         }
         const record = await this.connection.getRepository(JobRecord).findOne(id);
         if (record) {
@@ -97,7 +156,7 @@ export class SqlJobQueueStrategy implements JobQueueStrategy {
 
     async findManyById(ids: ID[]): Promise<Job[]> {
         if (!this.connectionAvailable(this.connection)) {
-            return [];
+            throw new Error('Connection not available');
         }
         return this.connection
             .getRepository(JobRecord)
@@ -107,7 +166,7 @@ export class SqlJobQueueStrategy implements JobQueueStrategy {
 
     async removeSettledJobs(queueNames: string[] = [], olderThan?: Date) {
         if (!this.connectionAvailable(this.connection)) {
-            return 0;
+            throw new Error('Connection not available');
         }
         const findOptions: FindConditions<JobRecord> = {
             ...(0 < queueNames.length ? { queueName: In(queueNames) } : {}),
@@ -126,7 +185,7 @@ export class SqlJobQueueStrategy implements JobQueueStrategy {
 
     private toRecord(job: Job<any>): JobRecord {
         return new JobRecord({
-            id: job.id,
+            id: job.id || undefined,
             queueName: job.queueName,
             data: job.data,
             state: job.state,

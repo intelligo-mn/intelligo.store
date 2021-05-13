@@ -1,4 +1,4 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { InMemoryCache } from '@apollo/client/core';
 
 import {
     GetNetworkStatus,
@@ -8,10 +8,11 @@ import {
     SetActiveChannel,
     SetAsLoggedIn,
     SetUiLanguage,
+    SetUiTheme,
     UpdateUserChannels,
     UserStatus,
 } from '../../common/generated-types';
-import { GET_NEWTORK_STATUS, GET_USER_STATUS } from '../definitions/client-definitions';
+import { GET_NEWTORK_STATUS, GET_UI_STATE, GET_USER_STATUS } from '../definitions/client-definitions';
 
 export type ResolverContext = {
     cache: InMemoryCache;
@@ -50,7 +51,7 @@ export const clientResolvers: ResolverDefinition = {
                     activeChannelId,
                 },
             };
-            cache.writeData({ data });
+            cache.writeQuery({ query: GET_USER_STATUS, data });
             return data.userStatus;
         },
         setAsLoggedOut: (_, args, { cache }): GetUserStatus.UserStatus => {
@@ -65,18 +66,34 @@ export const clientResolvers: ResolverDefinition = {
                     activeChannelId: null,
                 },
             };
-            cache.writeData({ data });
+            cache.writeQuery({ query: GET_USER_STATUS, data });
             return data.userStatus;
         },
         setUiLanguage: (_, args: SetUiLanguage.Variables, { cache }): LanguageCode => {
+            // tslint:disable-next-line:no-non-null-assertion
+            const previous = cache.readQuery<GetUiState.Query>({ query: GET_UI_STATE })!;
             const data: GetUiState.Query = {
                 uiState: {
                     __typename: 'UiState',
                     language: args.languageCode,
+                    theme: previous.uiState.theme,
                 },
             };
-            cache.writeData({ data });
+            cache.writeQuery({ query: GET_UI_STATE, data });
             return args.languageCode;
+        },
+        setUiTheme: (_, args: SetUiTheme.Variables, { cache }): string => {
+            // tslint:disable-next-line:no-non-null-assertion
+            const previous = cache.readQuery<GetUiState.Query>({ query: GET_UI_STATE })!;
+            const data: GetUiState.Query = {
+                uiState: {
+                    __typename: 'UiState',
+                    language: previous.uiState.language,
+                    theme: args.theme,
+                },
+            };
+            cache.writeQuery({ query: GET_UI_STATE, data });
+            return args.theme;
         },
         setActiveChannel: (_, args: SetActiveChannel.Variables, { cache }): UserStatus => {
             // tslint:disable-next-line:no-non-null-assertion
@@ -86,27 +103,27 @@ export const clientResolvers: ResolverDefinition = {
                 throw new Error('setActiveChannel: Could not find Channel with ID ' + args.channelId);
             }
             const permissions = activeChannel.permissions;
-            const data: { userStatus: Partial<UserStatus> } = {
+            const data: { userStatus: UserStatus } = {
                 userStatus: {
-                    __typename: 'UserStatus',
+                    ...previous.userStatus,
                     permissions,
                     activeChannelId: activeChannel.id,
                 },
             };
-            cache.writeData({ data });
-            return { ...previous.userStatus, ...data.userStatus };
+            cache.writeQuery({ query: GET_USER_STATUS, data });
+            return data.userStatus;
         },
         updateUserChannels: (_, args: UpdateUserChannels.Variables, { cache }): UserStatus => {
             // tslint:disable-next-line:no-non-null-assertion
             const previous = cache.readQuery<GetUserStatus.Query>({ query: GET_USER_STATUS })!;
             const data = {
                 userStatus: {
-                    __typename: 'UserStatus' as const,
-                    channels: args.channels,
+                    ...previous.userStatus,
+                    channels: Array.isArray(args.channels) ? args.channels : [args.channels],
                 },
             };
-            cache.writeData({ data });
-            return { ...previous.userStatus, ...data.userStatus };
+            cache.writeQuery({ query: GET_USER_STATUS, data });
+            return data.userStatus;
         },
     },
 };
@@ -120,6 +137,6 @@ function updateRequestsInFlight(cache: InMemoryCache, increment: 1 | -1): number
             inFlightRequests,
         },
     };
-    cache.writeData({ data });
+    cache.writeQuery({ query: GET_NEWTORK_STATUS, data });
     return inFlightRequests;
 }

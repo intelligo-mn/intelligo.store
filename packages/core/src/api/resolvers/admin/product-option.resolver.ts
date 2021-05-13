@@ -17,6 +17,7 @@ import { ProductOptionService } from '../../../service/services/product-option.s
 import { RequestContext } from '../../common/request-context';
 import { Allow } from '../../decorators/allow.decorator';
 import { Ctx } from '../../decorators/request-context.decorator';
+import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver()
 export class ProductOptionResolver {
@@ -26,7 +27,7 @@ export class ProductOptionResolver {
     ) {}
 
     @Query()
-    @Allow(Permission.ReadCatalog)
+    @Allow(Permission.ReadCatalog, Permission.ReadProduct)
     productOptionGroups(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryProductOptionGroupsArgs,
@@ -35,7 +36,7 @@ export class ProductOptionResolver {
     }
 
     @Query()
-    @Allow(Permission.ReadCatalog)
+    @Allow(Permission.ReadCatalog, Permission.ReadProduct)
     productOptionGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryProductOptionGroupArgs,
@@ -43,8 +44,9 @@ export class ProductOptionResolver {
         return this.productOptionGroupService.findOne(ctx, args.id);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.CreateCatalog)
+    @Allow(Permission.CreateCatalog, Permission.CreateProduct)
     async createProductOptionGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationCreateProductOptionGroupArgs,
@@ -61,8 +63,9 @@ export class ProductOptionResolver {
         return group;
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCatalog)
+    @Allow(Permission.UpdateCatalog, Permission.UpdateProduct)
     async updateProductOptionGroup(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationUpdateProductOptionGroupArgs,
@@ -71,8 +74,9 @@ export class ProductOptionResolver {
         return this.productOptionGroupService.update(ctx, input);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.CreateCatalog)
+    @Allow(Permission.CreateCatalog, Permission.CreateProduct)
     async createProductOption(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationCreateProductOptionArgs,
@@ -81,8 +85,9 @@ export class ProductOptionResolver {
         return this.productOptionService.create(ctx, input.productOptionGroupId, input);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCatalog)
+    @Allow(Permission.UpdateCatalog, Permission.UpdateProduct)
     async updateProductOption(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationUpdateProductOptionArgs,

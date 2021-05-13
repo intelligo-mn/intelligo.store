@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const REQUEST_STARTED = gql`
     mutation RequestStarted {
@@ -52,6 +52,12 @@ export const SET_UI_LANGUAGE = gql`
     }
 `;
 
+export const SET_UI_THEME = gql`
+    mutation SetUiTheme($theme: String!) {
+        setUiTheme(theme: $theme) @client
+    }
+`;
+
 export const GET_NEWTORK_STATUS = gql`
     query GetNetworkStatus {
         networkStatus @client {
@@ -73,8 +79,25 @@ export const GET_UI_STATE = gql`
     query GetUiState {
         uiState @client {
             language
+            theme
         }
     }
+`;
+
+export const GET_CLIENT_STATE = gql`
+    query GetClientState {
+        networkStatus @client {
+            inFlightRequests
+        }
+        userStatus @client {
+            ...UserStatus
+        }
+        uiState @client {
+            language
+            theme
+        }
+    }
+    ${USER_STATUS_FRAGMENT}
 `;
 
 export const SET_ACTIVE_CHANNEL = gql`

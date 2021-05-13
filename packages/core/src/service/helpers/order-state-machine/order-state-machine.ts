@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection } from '@nestjs/typeorm';
 import { HistoryEntryType } from '@vendure/common/lib/generated-types';
-import { Connection } from 'typeorm';
+import { ID } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { IllegalOperationError } from '../../../common/error/errors';
@@ -11,16 +10,21 @@ import { StateMachineConfig, Transitions } from '../../../common/finite-state-ma
 import { validateTransitionDefinition } from '../../../common/finite-state-machine/validate-transition-definition';
 import { awaitPromiseOrObservable } from '../../../common/utils';
 import { ConfigService } from '../../../config/config.service';
+import { OrderModification } from '../../../entity/order-modification/order-modification.entity';
 import { Order } from '../../../entity/order/order.entity';
+import { Payment } from '../../../entity/payment/payment.entity';
 import { HistoryService } from '../../services/history.service';
 import { PromotionService } from '../../services/promotion.service';
 import { StockMovementService } from '../../services/stock-movement.service';
-import { getEntityOrThrow } from '../utils/get-entity-or-throw';
+import { TransactionalConnection } from '../../transaction/transactional-connection';
 import {
     orderItemsAreAllCancelled,
-    orderItemsAreFulfilled,
-    orderItemsArePartiallyFulfilled,
+    orderItemsAreDelivered,
+    orderItemsArePartiallyDelivered,
+    orderItemsArePartiallyShipped,
+    orderItemsAreShipped,
     orderTotalIsCovered,
+    totalCoveredByPayments,
 } from '../utils/order-utils';
 
 import { OrderState, orderStateTransitions, OrderTransitionData } from './order-state';
@@ -28,10 +32,10 @@ import { OrderState, orderStateTransitions, OrderTransitionData } from './order-
 @Injectable()
 export class OrderStateMachine {
     readonly config: StateMachineConfig<OrderState, OrderTransitionData>;
-    private readonly initialState: OrderState = 'AddingItems';
+    private readonly initialState: OrderState = 'Created';
 
     constructor(
-        @InjectConnection() private connection: Connection,
+        private connection: TransactionalConnection,
         private configService: ConfigService,
         private stockMovementService: StockMovementService,
         private historyService: HistoryService,
@@ -59,43 +63,87 @@ export class OrderStateMachine {
         order.state = fsm.currentState;
     }
 
+    private async findOrderWithFulfillments(ctx: RequestContext, id: ID): Promise<Order> {
+        return await this.connection.getEntityOrThrow(ctx, Order, id, {
+            relations: ['lines', 'lines.items', 'lines.items.fulfillments'],
+        });
+    }
+
     /**
      * Specific business logic to be executed on Order state transitions.
      */
     private async onTransitionStart(fromState: OrderState, toState: OrderState, data: OrderTransitionData) {
+        if (fromState === 'Modifying') {
+            const modifications = await this.connection
+                .getRepository(data.ctx, OrderModification)
+                .find({ where: { order: data.order }, relations: ['refund', 'payment'] });
+            if (toState === 'ArrangingAdditionalPayment') {
+                if (0 < modifications.length && modifications.every(modification => modification.isSettled)) {
+                    return `message.cannot-transition-no-additional-payments-needed`;
+                }
+            } else {
+                if (modifications.some(modification => !modification.isSettled)) {
+                    return `message.cannot-transition-without-modification-payment`;
+                }
+            }
+        }
+        if (fromState === 'ArrangingAdditionalPayment') {
+            const existingPayments = await this.connection.getRepository(data.ctx, Payment).find({
+                relations: ['refunds'],
+                where: {
+                    order: { id: data.order.id },
+                },
+            });
+            data.order.payments = existingPayments;
+            const deficit = data.order.totalWithTax - totalCoveredByPayments(data.order);
+            if (0 < deficit) {
+                return `message.cannot-transition-from-arranging-additional-payment`;
+            }
+        }
         if (toState === 'ArrangingPayment') {
             if (data.order.lines.length === 0) {
-                return `error.cannot-transition-to-payment-when-order-is-empty`;
+                return `message.cannot-transition-to-payment-when-order-is-empty`;
             }
             if (!data.order.customer) {
-                return `error.cannot-transition-to-payment-without-customer`;
+                return `message.cannot-transition-to-payment-without-customer`;
             }
         }
-        if (toState === 'PaymentAuthorized' && !orderTotalIsCovered(data.order, 'Authorized')) {
-            return `error.cannot-transition-without-authorized-payments`;
+        if (toState === 'PaymentAuthorized') {
+            const hasAnAuthorizedPayment = !!data.order.payments.find(p => p.state === 'Authorized');
+            if (!orderTotalIsCovered(data.order, ['Authorized', 'Settled']) || !hasAnAuthorizedPayment) {
+                return `message.cannot-transition-without-authorized-payments`;
+            }
         }
         if (toState === 'PaymentSettled' && !orderTotalIsCovered(data.order, 'Settled')) {
-            return `error.cannot-transition-without-settled-payments`;
+            return `message.cannot-transition-without-settled-payments`;
         }
         if (toState === 'Cancelled' && fromState !== 'AddingItems' && fromState !== 'ArrangingPayment') {
             if (!orderItemsAreAllCancelled(data.order)) {
-                return `error.cannot-transition-unless-all-cancelled`;
+                return `message.cannot-transition-unless-all-cancelled`;
             }
         }
-        if (toState === 'PartiallyFulfilled') {
-            const orderWithFulfillments = await getEntityOrThrow(this.connection, Order, data.order.id, {
-                relations: ['lines', 'lines.items', 'lines.items.fulfillment'],
-            });
-            if (!orderItemsArePartiallyFulfilled(orderWithFulfillments)) {
-                return `error.cannot-transition-unless-some-order-items-fulfilled`;
+        if (toState === 'PartiallyShipped') {
+            const orderWithFulfillments = await this.findOrderWithFulfillments(data.ctx, data.order.id);
+            if (!orderItemsArePartiallyShipped(orderWithFulfillments)) {
+                return `message.cannot-transition-unless-some-order-items-shipped`;
             }
         }
-        if (toState === 'Fulfilled') {
-            const orderWithFulfillments = await getEntityOrThrow(this.connection, Order, data.order.id, {
-                relations: ['lines', 'lines.items', 'lines.items.fulfillment'],
-            });
-            if (!orderItemsAreFulfilled(orderWithFulfillments)) {
-                return `error.cannot-transition-unless-all-order-items-fulfilled`;
+        if (toState === 'Shipped') {
+            const orderWithFulfillments = await this.findOrderWithFulfillments(data.ctx, data.order.id);
+            if (!orderItemsAreShipped(orderWithFulfillments)) {
+                return `message.cannot-transition-unless-all-order-items-shipped`;
+            }
+        }
+        if (toState === 'PartiallyDelivered') {
+            const orderWithFulfillments = await this.findOrderWithFulfillments(data.ctx, data.order.id);
+            if (!orderItemsArePartiallyDelivered(orderWithFulfillments)) {
+                return `message.cannot-transition-unless-some-order-items-delivered`;
+            }
+        }
+        if (toState === 'Delivered') {
+            const orderWithFulfillments = await this.findOrderWithFulfillments(data.ctx, data.order.id);
+            if (!orderItemsAreDelivered(orderWithFulfillments)) {
+                return `message.cannot-transition-unless-all-order-items-delivered`;
             }
         }
     }
@@ -104,19 +152,32 @@ export class OrderStateMachine {
      * Specific business logic to be executed after Order state transition completes.
      */
     private async onTransitionEnd(fromState: OrderState, toState: OrderState, data: OrderTransitionData) {
-        if (toState === 'PaymentAuthorized' || toState === 'PaymentSettled') {
-            data.order.active = false;
-            data.order.orderPlacedAt = new Date();
-            await this.stockMovementService.createSalesForOrder(data.order);
-            await this.promotionService.addPromotionsToOrder(data.order);
+        const { ctx, order } = data;
+        const { stockAllocationStrategy, orderPlacedStrategy } = this.configService.orderOptions;
+        if (order.active) {
+            const shouldSetAsPlaced = orderPlacedStrategy.shouldSetAsPlaced(ctx, fromState, toState, order);
+            if (shouldSetAsPlaced) {
+                order.active = false;
+                order.orderPlacedAt = new Date();
+                await this.promotionService.addPromotionsToOrder(ctx, order);
+            }
+        }
+        const shouldAllocateStock = await stockAllocationStrategy.shouldAllocateStock(
+            ctx,
+            fromState,
+            toState,
+            order,
+        );
+        if (shouldAllocateStock) {
+            await this.stockMovementService.createAllocationsForOrder(ctx, order);
         }
         if (toState === 'Cancelled') {
-            data.order.active = false;
+            order.active = false;
         }
         await this.historyService.createHistoryEntryForOrder({
-            orderId: data.order.id,
+            orderId: order.id,
             type: HistoryEntryType.ORDER_STATE_TRANSITION,
-            ctx: data.ctx,
+            ctx,
             data: {
                 from: fromState,
                 to: toState,
@@ -166,7 +227,7 @@ export class OrderStateMachine {
                         );
                     }
                 }
-                throw new IllegalOperationError(message || 'error.cannot-transition-order-from-to', {
+                throw new IllegalOperationError(message || 'message.cannot-transition-order-from-to', {
                     fromState,
                     toState,
                 });

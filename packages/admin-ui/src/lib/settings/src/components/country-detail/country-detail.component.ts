@@ -2,12 +2,19 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { BaseDetailComponent } from '@vendure/admin-ui/core';
-import { Country, CreateCountryInput, LanguageCode, UpdateCountryInput } from '@vendure/admin-ui/core';
-import { createUpdatedTranslatable } from '@vendure/admin-ui/core';
-import { NotificationService } from '@vendure/admin-ui/core';
-import { DataService } from '@vendure/admin-ui/core';
-import { ServerConfigService } from '@vendure/admin-ui/core';
+import {
+    BaseDetailComponent,
+    Country,
+    CreateCountryInput,
+    createUpdatedTranslatable,
+    DataService,
+    findTranslation,
+    LanguageCode,
+    NotificationService,
+    Permission,
+    ServerConfigService,
+    UpdateCountryInput,
+} from '@vendure/admin-ui/core';
 import { combineLatest, Observable } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';
 
@@ -16,10 +23,12 @@ import { mergeMap, take } from 'rxjs/operators';
     templateUrl: './country-detail.component.html',
     styleUrls: ['./country-detail.component.scss'],
 })
-export class CountryDetailComponent extends BaseDetailComponent<Country.Fragment>
+export class CountryDetailComponent
+    extends BaseDetailComponent<Country.Fragment>
     implements OnInit, OnDestroy {
     country$: Observable<Country.Fragment>;
     detailForm: FormGroup;
+    readonly updatePermission = [Permission.UpdateSettings, Permission.UpdateCountry];
 
     constructor(
         router: Router,
@@ -69,7 +78,7 @@ export class CountryDetailComponent extends BaseDetailComponent<Country.Fragment
                 }),
             )
             .subscribe(
-                (data) => {
+                data => {
                     this.notificationService.success(_('common.notify-create-success'), {
                         entity: 'Country',
                     });
@@ -77,7 +86,7 @@ export class CountryDetailComponent extends BaseDetailComponent<Country.Fragment
                     this.changeDetector.markForCheck();
                     this.router.navigate(['../', data.createCountry.id], { relativeTo: this.route });
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('common.notify-create-error'), {
                         entity: 'Country',
                     });
@@ -95,19 +104,23 @@ export class CountryDetailComponent extends BaseDetailComponent<Country.Fragment
                         translatable: country,
                         updatedFields: formValue,
                         languageCode,
+                        defaultTranslation: {
+                            name: formValue.name,
+                            languageCode,
+                        },
                     });
                     return this.dataService.settings.updateCountry(input);
                 }),
             )
             .subscribe(
-                (data) => {
+                data => {
                     this.notificationService.success(_('common.notify-update-success'), {
                         entity: 'Country',
                     });
                     this.detailForm.markAsPristine();
                     this.changeDetector.markForCheck();
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('common.notify-update-error'), {
                         entity: 'Country',
                     });
@@ -116,7 +129,7 @@ export class CountryDetailComponent extends BaseDetailComponent<Country.Fragment
     }
 
     protected setFormValues(country: Country, languageCode: LanguageCode): void {
-        const currentTranslation = country.translations.find((t) => t.languageCode === languageCode);
+        const currentTranslation = findTranslation(country, languageCode);
 
         this.detailForm.patchValue({
             code: country.code,

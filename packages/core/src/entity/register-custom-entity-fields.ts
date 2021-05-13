@@ -1,14 +1,28 @@
-import { CustomFieldType } from '@vendure/common/lib/shared-types';
+import { CustomFieldType, Type } from '@vendure/common/lib/shared-types';
 import { assertNever } from '@vendure/common/lib/shared-utils';
-import { Column, ColumnOptions, ColumnType, ConnectionOptions } from 'typeorm';
+import {
+    Column,
+    ColumnOptions,
+    ColumnType,
+    ConnectionOptions,
+    JoinColumn,
+    JoinTable,
+    ManyToMany,
+    ManyToOne,
+    OneToMany,
+    OneToOne,
+} from 'typeorm';
 import { DateUtils } from 'typeorm/util/DateUtils';
 
-import { CustomFields } from '../config/custom-field/custom-field-types';
+import { CustomFieldConfig, CustomFields } from '../config/custom-field/custom-field-types';
 import { Logger } from '../config/logger/vendure-logger';
 import { VendureConfig } from '../config/vendure-config';
 
 import {
     CustomAddressFields,
+    CustomAdministratorFields,
+    CustomAssetFields,
+    CustomChannelFields,
     CustomCollectionFields,
     CustomCollectionFieldsTranslation,
     CustomCustomerFields,
@@ -16,6 +30,7 @@ import {
     CustomFacetFieldsTranslation,
     CustomFacetValueFields,
     CustomFacetValueFieldsTranslation,
+    CustomFulfillmentFields,
     CustomGlobalSettingsFields,
     CustomOrderFields,
     CustomOrderLineFields,
@@ -28,6 +43,7 @@ import {
     CustomProductVariantFields,
     CustomProductVariantFieldsTranslation,
     CustomShippingMethodFields,
+    CustomShippingMethodFieldsTranslation,
     CustomUserFields,
 } from './custom-entity-fields';
 
@@ -50,45 +66,72 @@ function registerCustomFieldsForEntity(
     const dbEngine = config.dbConnectionOptions.type;
     if (customFields) {
         for (const customField of customFields) {
-            const { name, type, defaultValue, nullable } = customField;
+            const { name, list, defaultValue, nullable } = customField;
+            const instance = new ctor();
             const registerColumn = () => {
-                const options: ColumnOptions = {
-                    type: getColumnType(dbEngine, type),
-                    default:
-                        type === 'datetime' ? formatDefaultDatetime(dbEngine, defaultValue) : defaultValue,
-                    name,
-                    nullable: nullable === false ? false : true,
-                };
-                if (customField.type === 'string') {
-                    const length = customField.length || 255;
-                    if (MAX_STRING_LENGTH < length) {
-                        throw new Error(
-                            `ERROR: The "length" property of the custom field "${customField.name}" is greater than the maximum allowed value of ${MAX_STRING_LENGTH}`,
-                        );
+                if (customField.type === 'relation') {
+                    if (customField.list) {
+                        ManyToMany(type => customField.entity, { eager: customField.eager })(instance, name);
+                        JoinTable()(instance, name);
+                    } else {
+                        ManyToOne(type => customField.entity, { eager: customField.eager })(instance, name);
+                        JoinColumn()(instance, name);
                     }
-                    options.length = length;
+                } else {
+                    const options: ColumnOptions = {
+                        type: list ? 'simple-json' : getColumnType(dbEngine, customField.type),
+                        default: getDefault(customField, dbEngine),
+                        name,
+                        nullable: nullable === false ? false : true,
+                    };
+                    if ((customField.type === 'string' || customField.type === 'localeString') && !list) {
+                        const length = customField.length || 255;
+                        if (MAX_STRING_LENGTH < length) {
+                            throw new Error(
+                                `ERROR: The "length" property of the custom field "${customField.name}" is greater than the maximum allowed value of ${MAX_STRING_LENGTH}`,
+                            );
+                        }
+                        options.length = length;
+                    }
+                    if (customField.type === 'float') {
+                        options.scale = 2;
+                    }
+                    if (
+                        customField.type === 'datetime' &&
+                        options.precision == null &&
+                        // Setting precision on an sqlite datetime will cause
+                        // spurious migration commands. See https://github.com/typeorm/typeorm/issues/2333
+                        dbEngine !== 'sqljs' &&
+                        dbEngine !== 'sqlite' &&
+                        !list
+                    ) {
+                        options.precision = 6;
+                    }
+                    Column(options)(instance, name);
                 }
-                if (
-                    customField.type === 'datetime' &&
-                    options.precision == null &&
-                    // Setting precision on an sqlite datetime will cause
-                    // spurious migration commands. See https://github.com/typeorm/typeorm/issues/2333
-                    dbEngine !== 'sqljs' &&
-                    dbEngine !== 'sqlite'
-                ) {
-                    options.precision = 6;
-                }
-                Column(options)(new ctor(), name);
             };
 
             if (translation) {
-                if (type === 'localeString') {
+                if (customField.type === 'localeString') {
                     registerColumn();
                 }
             } else {
-                if (type !== 'localeString') {
+                if (customField.type !== 'localeString') {
                     registerColumn();
                 }
+            }
+
+            if (customFields.filter(f => f.type === 'relation').length === customFields.length) {
+                // If there are _only_ relational customFields defined for an Entity, then TypeORM
+                // errors when attempting to load that entity ("Cannot set property <fieldName> of undefined").
+                // Therefore as a work-around we will add a "fake" column to the customFields embedded type
+                // to prevent this error from occurring.
+                Column({
+                    type: 'boolean',
+                    nullable: true,
+                    comment:
+                        'A work-around needed when only relational custom fields are defined on an entity',
+                })(instance, '__fix_relational_custom_fields__');
             }
         }
     }
@@ -110,7 +153,10 @@ function formatDefaultDatetime(dbEngine: ConnectionOptions['type'], datetime: an
     }
 }
 
-function getColumnType(dbEngine: ConnectionOptions['type'], type: CustomFieldType): ColumnType {
+function getColumnType(
+    dbEngine: ConnectionOptions['type'],
+    type: Exclude<CustomFieldType, 'relation'>,
+): ColumnType {
     switch (type) {
         case 'string':
         case 'localeString':
@@ -146,19 +192,39 @@ function getColumnType(dbEngine: ConnectionOptions['type'], type: CustomFieldTyp
     return 'varchar';
 }
 
+function getDefault(customField: CustomFieldConfig, dbEngine: ConnectionOptions['type']) {
+    const { name, type, list, defaultValue, nullable } = customField;
+    if (list && defaultValue) {
+        if (dbEngine === 'mysql') {
+            // MySQL does not support defaults on TEXT fields, which is what "simple-json" uses
+            // internally. See https://stackoverflow.com/q/3466872/772859
+            Logger.warn(
+                `MySQL does not support default values on list fields (${name}). No default will be set.`,
+            );
+            return undefined;
+        }
+        return JSON.stringify(defaultValue);
+    }
+    return type === 'datetime' ? formatDefaultDatetime(dbEngine, defaultValue) : defaultValue;
+}
+
 /**
  * Dynamically registers any custom fields with TypeORM. This function should be run at the bootstrap
  * stage of the app lifecycle, before the AppModule is initialized.
  */
 export function registerCustomEntityFields(config: VendureConfig) {
     registerCustomFieldsForEntity(config, 'Address', CustomAddressFields);
+    registerCustomFieldsForEntity(config, 'Administrator', CustomAdministratorFields);
+    registerCustomFieldsForEntity(config, 'Asset', CustomAssetFields);
     registerCustomFieldsForEntity(config, 'Collection', CustomCollectionFields);
     registerCustomFieldsForEntity(config, 'Collection', CustomCollectionFieldsTranslation, true);
     registerCustomFieldsForEntity(config, 'Customer', CustomCustomerFields);
+    registerCustomFieldsForEntity(config, 'Channel', CustomChannelFields);
     registerCustomFieldsForEntity(config, 'Facet', CustomFacetFields);
     registerCustomFieldsForEntity(config, 'Facet', CustomFacetFieldsTranslation, true);
     registerCustomFieldsForEntity(config, 'FacetValue', CustomFacetValueFields);
     registerCustomFieldsForEntity(config, 'FacetValue', CustomFacetValueFieldsTranslation, true);
+    registerCustomFieldsForEntity(config, 'Fulfillment', CustomFulfillmentFields);
     registerCustomFieldsForEntity(config, 'Order', CustomOrderFields);
     registerCustomFieldsForEntity(config, 'OrderLine', CustomOrderLineFields);
     registerCustomFieldsForEntity(config, 'Product', CustomProductFields);
@@ -177,4 +243,5 @@ export function registerCustomEntityFields(config: VendureConfig) {
     registerCustomFieldsForEntity(config, 'User', CustomUserFields);
     registerCustomFieldsForEntity(config, 'GlobalSettings', CustomGlobalSettingsFields);
     registerCustomFieldsForEntity(config, 'ShippingMethod', CustomShippingMethodFields);
+    registerCustomFieldsForEntity(config, 'ShippingMethod', CustomShippingMethodFieldsTranslation, true);
 }

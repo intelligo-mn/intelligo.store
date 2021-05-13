@@ -14,24 +14,26 @@ import { PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { UserInputError } from '../../../common/error/errors';
 import { Translated } from '../../../common/types/locale-types';
+import { CollectionFilter } from '../../../config/catalog/collection-filter';
 import { Collection } from '../../../entity/collection/collection.entity';
 import { CollectionService } from '../../../service/services/collection.service';
 import { FacetValueService } from '../../../service/services/facet-value.service';
-import { IdCodecService } from '../../common/id-codec.service';
+import { ConfigurableOperationCodec } from '../../common/configurable-operation-codec';
 import { RequestContext } from '../../common/request-context';
 import { Allow } from '../../decorators/allow.decorator';
 import { Ctx } from '../../decorators/request-context.decorator';
+import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver()
 export class CollectionResolver {
     constructor(
         private collectionService: CollectionService,
         private facetValueService: FacetValueService,
-        private idCodecService: IdCodecService,
+        private configurableOperationCodec: ConfigurableOperationCodec,
     ) {}
 
     @Query()
-    @Allow(Permission.ReadCatalog)
+    @Allow(Permission.ReadCatalog, Permission.ReadCollection)
     async collectionFilters(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryCollectionsArgs,
@@ -40,7 +42,7 @@ export class CollectionResolver {
     }
 
     @Query()
-    @Allow(Permission.ReadCatalog)
+    @Allow(Permission.ReadCatalog, Permission.ReadCollection)
     async collections(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryCollectionsArgs,
@@ -52,7 +54,7 @@ export class CollectionResolver {
     }
 
     @Query()
-    @Allow(Permission.ReadCatalog)
+    @Allow(Permission.ReadCatalog, Permission.ReadCollection)
     async collection(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryCollectionArgs,
@@ -72,30 +74,33 @@ export class CollectionResolver {
         return this.encodeFilters(collection);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.CreateCatalog)
+    @Allow(Permission.CreateCatalog, Permission.CreateCollection)
     async createCollection(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationCreateCollectionArgs,
     ): Promise<Translated<Collection>> {
         const { input } = args;
-        this.idCodecService.decodeConfigurableOperation(input.filters);
+        this.configurableOperationCodec.decodeConfigurableOperationIds(CollectionFilter, input.filters);
         return this.collectionService.create(ctx, input).then(this.encodeFilters);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCatalog)
+    @Allow(Permission.UpdateCatalog, Permission.UpdateCollection)
     async updateCollection(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationUpdateCollectionArgs,
     ): Promise<Translated<Collection>> {
         const { input } = args;
-        this.idCodecService.decodeConfigurableOperation(input.filters || []);
+        this.configurableOperationCodec.decodeConfigurableOperationIds(CollectionFilter, input.filters || []);
         return this.collectionService.update(ctx, input).then(this.encodeFilters);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.UpdateCatalog)
+    @Allow(Permission.UpdateCatalog, Permission.UpdateCollection)
     async moveCollection(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationMoveCollectionArgs,
@@ -104,8 +109,9 @@ export class CollectionResolver {
         return this.collectionService.move(ctx, input).then(this.encodeFilters);
     }
 
+    @Transaction()
     @Mutation()
-    @Allow(Permission.DeleteCatalog)
+    @Allow(Permission.DeleteCatalog, Permission.DeleteCollection)
     async deleteCollection(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationDeleteCollectionArgs,
@@ -118,7 +124,10 @@ export class CollectionResolver {
      */
     private encodeFilters = <T extends Collection | undefined>(collection: T): T => {
         if (collection) {
-            this.idCodecService.encodeConfigurableOperation(collection.filters);
+            this.configurableOperationCodec.encodeConfigurableOperationIds(
+                CollectionFilter,
+                collection.filters,
+            );
         }
         return collection;
     };

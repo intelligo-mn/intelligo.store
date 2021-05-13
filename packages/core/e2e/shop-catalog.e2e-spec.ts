@@ -1,5 +1,5 @@
 /* tslint:disable:no-non-null-assertion */
-import { facetValueCollectionFilter } from '@vendure/core';
+import { facetValueCollectionFilter, JobQueueService } from '@vendure/core';
 import { createTestEnvironment } from '@vendure/testing';
 import gql from 'graphql-tag';
 import path from 'path';
@@ -96,7 +96,7 @@ describe('Shop catalog', () => {
                 }
             `);
 
-            expect(result.products.items.map(item => item.id)).toEqual(['T_2', 'T_3', 'T_4']);
+            expect(result.products.items.map(item => item.id).sort()).toEqual(['T_2', 'T_3', 'T_4']);
         });
 
         it('by id', async () => {
@@ -248,12 +248,10 @@ describe('Shop catalog', () => {
                                 {
                                     name: 'facetValueIds',
                                     value: `["${sportsEquipment.id}"]`,
-                                    type: 'facetValueIds',
                                 },
                                 {
                                     name: 'containsAny',
                                     value: `false`,
-                                    type: 'boolean',
                                 },
                             ],
                         },

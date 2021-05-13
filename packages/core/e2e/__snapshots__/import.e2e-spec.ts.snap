@@ -17,6 +17,9 @@ Object {
     },
   ],
   "customFields": Object {
+    "owner": Object {
+      "id": "T_1",
+    },
     "pageType": "default",
   },
   "description": "A great device for stretching paper.",
@@ -55,7 +58,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [],
@@ -75,7 +78,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [],
@@ -101,7 +104,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
   ],
 }
@@ -111,6 +114,9 @@ exports[`Import resolver imports products 2`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "owner": Object {
+      "id": "T_1",
+    },
     "pageType": "expanded",
   },
   "description": "Mabef description",
@@ -144,7 +150,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
   ],
 }
@@ -154,6 +160,9 @@ exports[`Import resolver imports products 3`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "owner": Object {
+      "id": "T_1",
+    },
     "pageType": "default",
   },
   "description": "Really mega pencils",
@@ -199,7 +208,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [
@@ -231,7 +240,7 @@ Object {
         "id": "T_1",
         "name": "Standard Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
   ],
 }
@@ -241,6 +250,9 @@ exports[`Import resolver imports products 4`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "owner": Object {
+      "id": "T_1",
+    },
     "pageType": "default",
   },
   "description": "Keeps the paint off the clothes",
@@ -279,7 +291,7 @@ Object {
         "id": "T_2",
         "name": "Reduced Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [],
@@ -299,7 +311,7 @@ Object {
         "id": "T_2",
         "name": "Reduced Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [],
@@ -319,7 +331,7 @@ Object {
         "id": "T_2",
         "name": "Reduced Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
     Object {
       "assets": Array [],
@@ -339,7 +351,7 @@ Object {
         "id": "T_2",
         "name": "Reduced Tax",
       },
-      "trackInventory": false,
+      "trackInventory": "FALSE",
     },
   ],
 }

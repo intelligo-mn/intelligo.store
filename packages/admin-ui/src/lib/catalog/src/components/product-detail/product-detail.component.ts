@@ -1,18 +1,24 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 import {
+    Asset,
     BaseDetailComponent,
     CreateProductInput,
     createUpdatedTranslatable,
     CustomFieldConfig,
+    DataService,
     FacetWithValues,
+    findTranslation,
     flattenFacetValues,
-    IGNORE_CAN_DEACTIVATE_GUARD,
+    GlobalFlag,
     LanguageCode,
+    ModalService,
+    NotificationService,
     ProductWithVariants,
+    ServerConfigService,
     TaxCategory,
     UpdateProductInput,
     UpdateProductMutation,
@@ -20,23 +26,25 @@ import {
     UpdateProductVariantInput,
     UpdateProductVariantsMutation,
 } from '@vendure/admin-ui/core';
-import { DataService, ModalService, NotificationService, ServerConfigService } from '@vendure/admin-ui/core';
 import { normalizeString } from '@vendure/common/lib/normalize-string';
 import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
 import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
 import { unique } from '@vendure/common/lib/unique';
 import { combineLatest, EMPTY, merge, Observable } from 'rxjs';
 import {
+    debounceTime,
     distinctUntilChanged,
     map,
     mergeMap,
+    shareReplay,
+    startWith,
     switchMap,
     take,
     takeUntil,
     withLatestFrom,
 } from 'rxjs/operators';
 
-import { ProductDetailService } from '../../providers/product-detail.service';
+import { ProductDetailService } from '../../providers/product-detail/product-detail.service';
 import { ApplyFacetDialogComponent } from '../apply-facet-dialog/apply-facet-dialog.component';
 import { AssignProductsToChannelDialogComponent } from '../assign-products-to-channel-dialog/assign-products-to-channel-dialog.component';
 import { CreateProductVariantsConfig } from '../generate-product-variants/generate-product-variants.component';
@@ -44,22 +52,24 @@ import { VariantAssetChange } from '../product-variants-list/product-variants-li
 
 export type TabName = 'details' | 'variants';
 export interface VariantFormValue {
+    id: string;
     enabled: boolean;
     sku: string;
     name: string;
     price: number;
-    priceIncludesTax: boolean;
     priceWithTax: number;
     taxCategoryId: string;
     stockOnHand: number;
-    trackInventory: boolean;
+    useGlobalOutOfStockThreshold: boolean;
+    outOfStockThreshold: number;
+    trackInventory: GlobalFlag;
     facetValueIds: string[];
     customFields?: any;
 }
 
 export interface SelectedAssets {
-    assetIds?: string[];
-    featuredAssetId?: string;
+    assets?: Asset[];
+    featuredAsset?: Asset;
 }
 
 @Component({
@@ -68,7 +78,8 @@ export interface SelectedAssets {
     styleUrls: ['./product-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetailComponent extends BaseDetailComponent<ProductWithVariants.Fragment>
+export class ProductDetailComponent
+    extends BaseDetailComponent<ProductWithVariants.Fragment>
     implements OnInit, OnDestroy {
     activeTab$: Observable<TabName>;
     product$: Observable<ProductWithVariants.Fragment>;
@@ -79,6 +90,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     customOptionGroupFields: CustomFieldConfig[];
     customOptionFields: CustomFieldConfig[];
     detailForm: FormGroup;
+    filterInput = new FormControl('');
     assetChanges: SelectedAssets = {};
     variantAssetChanges: { [variantId: string]: SelectedAssets } = {};
     productChannels$: Observable<ProductWithVariants.Channels[]>;
@@ -87,6 +99,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     selectedVariantIds: string[] = [];
     variantDisplayMode: 'card' | 'table' = 'card';
     createVariantsConfig: CreateProductVariantsConfig = { groups: [], variants: [] };
+    channelPriceIncludesTax$: Observable<boolean>;
 
     constructor(
         route: ActivatedRoute,
@@ -109,6 +122,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
             product: this.formBuilder.group({
                 enabled: true,
                 name: ['', Validators.required],
+                autoUpdateVariantNames: true,
                 slug: '',
                 description: '',
                 facetValueIds: [[]],
@@ -123,21 +137,39 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     ngOnInit() {
         this.init();
         this.product$ = this.entity$;
-        this.variants$ = this.product$.pipe(map((product) => product.variants));
+        const variants$ = this.product$.pipe(map(product => product.variants));
+        const filterTerm$ = this.filterInput.valueChanges.pipe(
+            startWith(''),
+            debounceTime(50),
+            shareReplay(),
+        );
+        this.variants$ = combineLatest(variants$, filterTerm$).pipe(
+            map(([variants, term]) => {
+                return term
+                    ? variants.filter(v => {
+                          const lcTerm = term.toLocaleLowerCase();
+                          return (
+                              v.name.toLocaleLowerCase().includes(term) ||
+                              v.sku.toLocaleLowerCase().includes(term)
+                          );
+                      })
+                    : variants;
+            }),
+        );
         this.taxCategories$ = this.productDetailService.getTaxCategories().pipe(takeUntil(this.destroy$));
-        this.activeTab$ = this.route.paramMap.pipe(map((qpm) => qpm.get('tab') as any));
+        this.activeTab$ = this.route.paramMap.pipe(map(qpm => qpm.get('tab') as any));
 
         // FacetValues are provided initially by the nested array of the
         // Product entity, but once a fetch to get all Facets is made (as when
         // opening the FacetValue selector modal), then these additional values
         // are concatenated onto the initial array.
         this.facets$ = this.productDetailService.getFacets();
-        const productFacetValues$ = this.product$.pipe(map((product) => product.facetValues));
+        const productFacetValues$ = this.product$.pipe(map(product => product.facetValues));
         const allFacetValues$ = this.facets$.pipe(map(flattenFacetValues));
         const productGroup = this.getProductFormGroup();
 
         const formFacetValueIdChanges$ = productGroup.valueChanges.pipe(
-            map((val) => val.facetValueIds as string[]),
+            map(val => val.facetValueIds as string[]),
             distinctUntilChanged(),
         );
         const formChangeFacetValues$ = combineLatest(
@@ -147,12 +179,17 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
         ).pipe(
             map(([ids, productFacetValues, allFacetValues]) => {
                 const combined = [...productFacetValues, ...allFacetValues];
-                return ids.map((id) => combined.find((fv) => fv.id === id)).filter(notNullOrUndefined);
+                return ids.map(id => combined.find(fv => fv.id === id)).filter(notNullOrUndefined);
             }),
         );
 
         this.facetValues$ = merge(productFacetValues$, formChangeFacetValues$);
-        this.productChannels$ = this.product$.pipe(map((p) => p.channels));
+        this.productChannels$ = this.product$.pipe(map(p => p.channels));
+        this.channelPriceIncludesTax$ = this.dataService.settings
+            .getActiveChannel('cache-first')
+            .refetchOnChannelChange()
+            .mapStream(data => data.activeChannel.pricesIncludeTax)
+            .pipe(shareReplay(1));
     }
 
     ngOnDestroy() {
@@ -160,13 +197,14 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     }
 
     navigateToTab(tabName: TabName) {
-        this.router.navigate(['./', { ...this.route.snapshot.params, tab: tabName }], {
-            queryParamsHandling: 'merge',
-            relativeTo: this.route,
-            state: {
-                [IGNORE_CAN_DEACTIVATE_GUARD]: true,
-            },
-        });
+        this.location.replaceState(
+            this.router
+                .createUrlTree(['./', { ...this.route.snapshot.params, tab: tabName }], {
+                    queryParamsHandling: 'merge',
+                    relativeTo: this.route,
+                })
+                .toString(),
+        );
     }
 
     isDefaultChannel(channelCode: string): boolean {
@@ -174,13 +212,19 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     }
 
     assignToChannel() {
-        this.modalService
-            .fromComponent(AssignProductsToChannelDialogComponent, {
-                size: 'lg',
-                locals: {
-                    productIds: [this.id],
-                },
-            })
+        this.productChannels$
+            .pipe(
+                take(1),
+                switchMap(channels => {
+                    return this.modalService.fromComponent(AssignProductsToChannelDialogComponent, {
+                        size: 'lg',
+                        locals: {
+                            productIds: [this.id],
+                            currentChannelIds: channels.map(c => c.id),
+                        },
+                    });
+                }),
+            )
             .subscribe();
     }
 
@@ -194,7 +238,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                 ],
             })
             .pipe(
-                switchMap((response) =>
+                switchMap(response =>
                     response
                         ? this.dataService.product.removeProductsFromChannel({
                               channelId,
@@ -207,8 +251,56 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                 () => {
                     this.notificationService.success(_('catalog.notify-remove-product-from-channel-success'));
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('catalog.notify-remove-product-from-channel-error'));
+                },
+            );
+    }
+
+    assignVariantToChannel(variant: ProductWithVariants.Variants) {
+        return this.modalService
+            .fromComponent(AssignProductsToChannelDialogComponent, {
+                size: 'lg',
+                locals: {
+                    productIds: [this.id],
+                    productVariantIds: [variant.id],
+                    currentChannelIds: variant.channels.map(c => c.id),
+                },
+            })
+            .subscribe();
+    }
+
+    removeVariantFromChannel({
+        channelId,
+        variant,
+    }: {
+        channelId: string;
+        variant: ProductWithVariants.Variants;
+    }) {
+        this.modalService
+            .dialog({
+                title: _('catalog.remove-product-variant-from-channel'),
+                buttons: [
+                    { type: 'secondary', label: _('common.cancel') },
+                    { type: 'danger', label: _('catalog.remove-from-channel'), returnValue: true },
+                ],
+            })
+            .pipe(
+                switchMap(response =>
+                    response
+                        ? this.dataService.product.removeVariantsFromChannel({
+                              channelId,
+                              productVariantIds: [variant.id],
+                          })
+                        : EMPTY,
+                ),
+            )
+            .subscribe(
+                () => {
+                    this.notificationService.success(_('catalog.notify-remove-variant-from-channel-success'));
+                },
+                err => {
+                    this.notificationService.error(_('catalog.notify-remove-variant-from-channel-error'));
                 },
             );
     }
@@ -233,18 +325,20 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
      * If creating a new product, automatically generate the slug based on the product name.
      */
     updateSlug(nameValue: string) {
-        this.isNew$.pipe(take(1)).subscribe((isNew) => {
-            if (isNew) {
+        combineLatest(this.entity$, this.languageCode$)
+            .pipe(take(1))
+            .subscribe(([entity, languageCode]) => {
                 const slugControl = this.detailForm.get(['product', 'slug']);
-                if (slugControl && slugControl.pristine) {
+                const currentTranslation = findTranslation(entity, languageCode);
+                const currentSlugIsEmpty = !currentTranslation || !currentTranslation.slug;
+                if (slugControl && slugControl.pristine && currentSlugIsEmpty) {
                     slugControl.setValue(normalizeString(`${nameValue}`, '-'));
                 }
-            }
-        });
+            });
     }
 
     selectProductFacetValue() {
-        this.displayFacetValueModal().subscribe((facetValueIds) => {
+        this.displayFacetValueModal().subscribe(facetValueIds => {
             if (facetValueIds) {
                 const productGroup = this.getProductFormGroup();
                 const currentFacetValueIds = productGroup.value.facetValueIds;
@@ -256,26 +350,33 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
         });
     }
 
-    updateProductOption(input: UpdateProductOptionInput) {
-        this.productDetailService.updateProductOption(input).subscribe(
-            () => {
-                this.notificationService.success(_('common.notify-update-success'), {
-                    entity: 'ProductOption',
-                });
-            },
-            (err) => {
-                this.notificationService.error(_('common.notify-update-error'), {
-                    entity: 'ProductOption',
-                });
-            },
-        );
+    updateProductOption(input: UpdateProductOptionInput & { autoUpdate: boolean }) {
+        combineLatest(this.product$, this.languageCode$)
+            .pipe(
+                take(1),
+                mergeMap(([product, languageCode]) =>
+                    this.productDetailService.updateProductOption(input, product, languageCode),
+                ),
+            )
+            .subscribe(
+                () => {
+                    this.notificationService.success(_('common.notify-update-success'), {
+                        entity: 'ProductOption',
+                    });
+                },
+                err => {
+                    this.notificationService.error(_('common.notify-update-error'), {
+                        entity: 'ProductOption',
+                    });
+                },
+            );
     }
 
     removeProductFacetValue(facetValueId: string) {
         const productGroup = this.getProductFormGroup();
         const currentFacetValueIds = productGroup.value.facetValueIds;
         productGroup.patchValue({
-            facetValueIds: currentFacetValueIds.filter((id) => id !== facetValueId),
+            facetValueIds: currentFacetValueIds.filter(id => id !== facetValueId),
         });
         productGroup.markAsDirty();
     }
@@ -289,9 +390,9 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
             .subscribe(([facetValueIds, variants]) => {
                 if (facetValueIds) {
                     for (const variantId of selectedVariantIds) {
-                        const index = variants.findIndex((v) => v.id === variantId);
+                        const index = variants.findIndex(v => v.id === variantId);
                         const variant = variants[index];
-                        const existingFacetValueIds = variant ? variant.facetValues.map((fv) => fv.id) : [];
+                        const existingFacetValueIds = variant ? variant.facetValues.map(fv => fv.id) : [];
                         const variantFormGroup = this.detailForm.get(['variants', index]);
                         if (variantFormGroup) {
                             variantFormGroup.patchValue({
@@ -308,7 +409,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     variantsToCreateAreValid(): boolean {
         return (
             0 < this.createVariantsConfig.variants.length &&
-            this.createVariantsConfig.variants.every((v) => {
+            this.createVariantsConfig.variants.every(v => {
                 return v.sku !== '';
             })
         );
@@ -316,14 +417,14 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
 
     private displayFacetValueModal(): Observable<string[] | undefined> {
         return this.productDetailService.getFacets().pipe(
-            mergeMap((facets) =>
+            mergeMap(facets =>
                 this.modalService.fromComponent(ApplyFacetDialogComponent, {
                     size: 'md',
                     closable: true,
                     locals: { facets },
                 }),
             ),
-            map((facetValues) => facetValues && facetValues.map((v) => v.id)),
+            map(facetValues => facetValues && facetValues.map(v => v.id)),
         );
     }
 
@@ -358,7 +459,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                     this.detailForm.markAsPristine();
                     this.router.navigate(['../', productId], { relativeTo: this.route });
                 },
-                (err) => {
+                err => {
                     // tslint:disable-next-line:no-console
                     console.error(err);
                     this.notificationService.error(_('common.notify-create-error'), {
@@ -369,10 +470,10 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     }
 
     save() {
-        combineLatest(this.product$, this.languageCode$)
+        combineLatest(this.product$, this.languageCode$, this.channelPriceIncludesTax$)
             .pipe(
                 take(1),
-                mergeMap(([product, languageCode]) => {
+                mergeMap(([product, languageCode, priceIncludesTax]) => {
                     const productGroup = this.getProductFormGroup();
                     let productInput: UpdateProductInput | undefined;
                     let variantsInput: UpdateProductVariantInput[] | undefined;
@@ -390,14 +491,22 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                             product,
                             variantsArray as FormArray,
                             languageCode,
+                            priceIncludesTax,
                         );
                     }
 
-                    return this.productDetailService.updateProduct(productInput, variantsInput);
+                    return this.productDetailService.updateProduct({
+                        product,
+                        languageCode,
+                        autoUpdate:
+                            this.detailForm.get(['product', 'autoUpdateVariantNames'])?.value ?? false,
+                        productInput,
+                        variantsInput,
+                    });
                 }),
             )
             .subscribe(
-                (result) => {
+                result => {
                     this.updateSlugAfterSave(result);
                     this.detailForm.markAsPristine();
                     this.assetChanges = {};
@@ -407,7 +516,7 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                     });
                     this.changeDetector.markForCheck();
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('common.notify-update-error'), {
                         entity: 'Product',
                     });
@@ -416,21 +525,21 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
     }
 
     canDeactivate(): boolean {
-        return super.canDeactivate() && !this.assetChanges.assetIds && !this.assetChanges.featuredAssetId;
+        return super.canDeactivate() && !this.assetChanges.assets && !this.assetChanges.featuredAsset;
     }
 
     /**
      * Sets the values of the form on changes to the product or current language.
      */
     protected setFormValues(product: ProductWithVariants.Fragment, languageCode: LanguageCode) {
-        const currentTranslation = product.translations.find((t) => t.languageCode === languageCode);
+        const currentTranslation = findTranslation(product, languageCode);
         this.detailForm.patchValue({
             product: {
                 enabled: product.enabled,
                 name: currentTranslation ? currentTranslation.name : '',
                 slug: currentTranslation ? currentTranslation.slug : '',
                 description: currentTranslation ? currentTranslation.description : '',
-                facetValueIds: product.facetValues.map((fv) => fv.id),
+                facetValueIds: product.facetValues.map(fv => fv.id),
             },
         });
 
@@ -452,17 +561,19 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
 
         const variantsFormArray = this.detailForm.get('variants') as FormArray;
         product.variants.forEach((variant, i) => {
-            const variantTranslation = variant.translations.find((t) => t.languageCode === languageCode);
-            const facetValueIds = variant.facetValues.map((fv) => fv.id);
+            const variantTranslation = findTranslation(variant, languageCode);
+            const facetValueIds = variant.facetValues.map(fv => fv.id);
             const group: VariantFormValue = {
+                id: variant.id,
                 enabled: variant.enabled,
                 sku: variant.sku,
                 name: variantTranslation ? variantTranslation.name : '',
                 price: variant.price,
-                priceIncludesTax: variant.priceIncludesTax,
                 priceWithTax: variant.priceWithTax,
                 taxCategoryId: variant.taxCategory.id,
                 stockOnHand: variant.stockOnHand,
+                useGlobalOutOfStockThreshold: variant.useGlobalOutOfStockThreshold,
+                outOfStockThreshold: variant.outOfStockThreshold,
                 trackInventory: variant.trackInventory,
                 facetValueIds,
             };
@@ -525,7 +636,8 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
         });
         return {
             ...updatedProduct,
-            ...this.assetChanges,
+            assetIds: this.assetChanges.assets?.map(a => a.id),
+            featuredAssetId: this.assetChanges.featuredAsset?.id,
             facetValueIds: productFormGroup.value.facetValueIds,
         } as UpdateProductInput | CreateProductInput;
     }
@@ -538,12 +650,13 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
         product: ProductWithVariants.Fragment,
         variantsFormArray: FormArray,
         languageCode: LanguageCode,
+        priceIncludesTax: boolean,
     ): UpdateProductVariantInput[] {
         const dirtyVariants = product.variants.filter((v, i) => {
             const formRow = variantsFormArray.get(i.toString());
             return formRow && formRow.dirty;
         });
-        const dirtyVariantValues = variantsFormArray.controls.filter((c) => c.dirty).map((c) => c.value);
+        const dirtyVariantValues = variantsFormArray.controls.filter(c => c.dirty).map(c => c.value);
 
         if (dirtyVariants.length !== dirtyVariantValues.length) {
             throw new Error(_(`error.product-variant-form-values-do-not-match`));
@@ -563,10 +676,11 @@ export class ProductDetailComponent extends BaseDetailComponent<ProductWithVaria
                 });
                 result.taxCategoryId = formValue.taxCategoryId;
                 result.facetValueIds = formValue.facetValueIds;
+                result.price = priceIncludesTax ? formValue.priceWithTax : formValue.price;
                 const assetChanges = this.variantAssetChanges[variant.id];
                 if (assetChanges) {
-                    result.featuredAssetId = assetChanges.featuredAssetId;
-                    result.assetIds = assetChanges.assetIds;
+                    result.featuredAssetId = assetChanges.featuredAsset?.id;
+                    result.assetIds = assetChanges.assets?.map(a => a.id);
                 }
                 return result;
             })

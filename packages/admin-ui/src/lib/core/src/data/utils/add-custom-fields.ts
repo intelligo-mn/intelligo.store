@@ -7,7 +7,7 @@ import {
     SelectionNode,
 } from 'graphql';
 
-import { CustomFields } from '../../common/generated-types';
+import { CustomFields, RelationCustomField, RelationCustomFieldFragment } from '../../common/generated-types';
 
 /**
  * Given a GraphQL AST (DocumentNode), this function looks for fragment definitions and adds and configured
@@ -17,10 +17,17 @@ export function addCustomFields(documentNode: DocumentNode, customFields: Custom
     const fragmentDefs = documentNode.definitions.filter(isFragmentDefinition);
 
     for (const fragmentDef of fragmentDefs) {
-        const entityType = fragmentDef.typeCondition.name.value as keyof Pick<
+        let entityType = fragmentDef.typeCondition.name.value as keyof Pick<
             CustomFields,
             Exclude<keyof CustomFields, '__typename'>
         >;
+
+        if (entityType === ('OrderAddress' as any)) {
+            // OrderAddress is a special case of the Address entity, and shares its custom fields
+            // so we treat it as an alias
+            entityType = 'Address';
+        }
+
         const customFieldsForType = customFields[entityType];
         if (customFieldsForType && customFieldsForType.length) {
             (fragmentDef.selectionSet.selections as SelectionNode[]).push({
@@ -38,6 +45,21 @@ export function addCustomFields(documentNode: DocumentNode, customFields: Custom
                                 kind: Kind.NAME,
                                 value: customField.name,
                             },
+                            // For "relation" custom fields, we need to also select
+                            // all the scalar fields of the related type
+                            ...(customField.type === 'relation'
+                                ? {
+                                      selectionSet: {
+                                          kind: Kind.SELECTION_SET,
+                                          selections: (customField as RelationCustomFieldFragment).scalarFields.map(
+                                              f => ({
+                                                  kind: Kind.FIELD,
+                                                  name: { kind: Kind.NAME, value: f },
+                                              }),
+                                          ),
+                                      },
+                                  }
+                                : {}),
                         } as FieldNode;
                     }),
                 },

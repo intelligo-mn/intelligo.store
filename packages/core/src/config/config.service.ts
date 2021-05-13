@@ -1,8 +1,5 @@
 import { DynamicModule, Injectable, Type } from '@nestjs/common';
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { PluginDefinition } from 'apollo-server-core';
-import { RequestHandler } from 'express';
 import { ConnectionOptions } from 'typeorm';
 
 import { getConfig } from './config-helpers';
@@ -21,10 +18,8 @@ import {
     PromotionOptions,
     RuntimeVendureConfig,
     ShippingOptions,
-    SuperadminCredentials,
     TaxOptions,
     VendureConfig,
-    WorkerOptions,
 } from './vendure-config';
 
 @Injectable()
@@ -59,11 +54,11 @@ export class ConfigService implements VendureConfig {
         return this.activeConfig.defaultLanguageCode;
     }
 
-    get entityIdStrategy(): EntityIdStrategy {
+    get entityIdStrategy(): EntityIdStrategy<any> {
         return this.activeConfig.entityIdStrategy;
     }
 
-    get assetOptions(): AssetOptions {
+    get assetOptions(): Required<AssetOptions> {
         return this.activeConfig.assetOptions;
     }
 
@@ -71,11 +66,11 @@ export class ConfigService implements VendureConfig {
         return this.activeConfig.dbConnectionOptions;
     }
 
-    get promotionOptions(): PromotionOptions {
+    get promotionOptions(): Required<PromotionOptions> {
         return this.activeConfig.promotionOptions;
     }
 
-    get shippingOptions(): ShippingOptions {
+    get shippingOptions(): Required<ShippingOptions> {
         return this.activeConfig.shippingOptions;
     }
 
@@ -83,11 +78,11 @@ export class ConfigService implements VendureConfig {
         return this.activeConfig.orderOptions as Required<OrderOptions>;
     }
 
-    get paymentOptions(): PaymentOptions {
-        return this.activeConfig.paymentOptions;
+    get paymentOptions(): Required<PaymentOptions> {
+        return this.activeConfig.paymentOptions as Required<PaymentOptions>;
     }
 
-    get taxOptions(): TaxOptions {
+    get taxOptions(): Required<TaxOptions> {
         return this.activeConfig.taxOptions;
     }
 
@@ -105,10 +100,6 @@ export class ConfigService implements VendureConfig {
 
     get logger(): VendureLogger {
         return this.activeConfig.logger;
-    }
-
-    get workerOptions(): WorkerOptions {
-        return this.activeConfig.workerOptions;
     }
 
     get jobQueueOptions(): Required<JobQueueOptions> {

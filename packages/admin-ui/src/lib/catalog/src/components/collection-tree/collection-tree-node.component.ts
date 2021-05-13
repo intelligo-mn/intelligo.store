@@ -1,10 +1,17 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    Optional,
+    SimpleChanges,
+    SkipSelf,
+} from '@angular/core';
+import { DataService, Permission } from '@vendure/admin-ui/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-
-import { Permission } from '@vendure/admin-ui/core';
-import { DataService } from '@vendure/admin-ui/core';
 
 import { RootNode, TreeNode } from './array-to-tree';
 import { CollectionPartial, CollectionTreeComponent } from './collection-tree.component';
@@ -15,7 +22,7 @@ import { CollectionPartial, CollectionTreeComponent } from './collection-tree.co
     styleUrls: ['./collection-tree-node.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CollectionTreeNodeComponent implements OnInit {
+export class CollectionTreeNodeComponent implements OnInit, OnChanges {
     depth = 0;
     parentName: string;
     @Input() collectionTree: TreeNode<CollectionPartial>;
@@ -40,8 +47,27 @@ export class CollectionTreeNodeComponent implements OnInit {
             .userStatus()
             .mapStream(data => data.userStatus.permissions)
             .pipe(shareReplay(1));
-        this.hasUpdatePermission$ = permissions$.pipe(map(perms => perms.includes(Permission.UpdateCatalog)));
-        this.hasDeletePermission$ = permissions$.pipe(map(perms => perms.includes(Permission.DeleteCatalog)));
+        this.hasUpdatePermission$ = permissions$.pipe(
+            map(
+                perms =>
+                    perms.includes(Permission.UpdateCatalog) || perms.includes(Permission.UpdateCollection),
+            ),
+        );
+        this.hasDeletePermission$ = permissions$.pipe(
+            map(
+                perms =>
+                    perms.includes(Permission.DeleteCatalog) || perms.includes(Permission.DeleteCollection),
+            ),
+        );
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        const expandAllChange = changes['expandAll'];
+        if (expandAllChange) {
+            if (expandAllChange.previousValue === true && expandAllChange.currentValue === false) {
+                this.collectionTree.children.forEach(c => (c.expanded = false));
+            }
+        }
     }
 
     trackByFn(index: number, item: CollectionPartial) {

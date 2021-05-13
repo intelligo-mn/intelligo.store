@@ -1,3 +1,4 @@
+import { AdjustmentType } from '@vendure/common/lib/generated-shop-types';
 import {
     AccountRegistrationEvent,
     Customer,
@@ -11,6 +12,7 @@ import {
     ProductVariant,
     User,
 } from '@vendure/core';
+import { ShippingLine } from '@vendure/core/dist/entity/shipping-line/shipping-line.entity';
 
 export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
     'ArrangingPayment',
@@ -18,8 +20,9 @@ export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
     {} as any,
     new Order({
         id: '6',
-        createdAt: '2018-10-31T15:18:29.261Z',
+        createdAt: '2018-10-31T11:18:29.261Z',
         updatedAt: '2018-10-31T15:24:17.000Z',
+        orderPlacedAt: '2018-10-31T13:54:17.000Z',
         code: 'T3EPGJKTVZPBD6Z9',
         state: 'ArrangingPayment',
         active: true,
@@ -33,7 +36,7 @@ export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
             new OrderLine({
                 id: '5',
                 featuredAsset: {
-                    preview: 'http://localhost:3000/assets/alexandru-acea-686569-unsplash__preview.jpg',
+                    preview: '/mailbox/placeholder-image',
                 },
                 productVariant: new ProductVariant({
                     id: '2',
@@ -43,17 +46,24 @@ export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
                 items: [
                     new OrderItem({
                         id: '6',
-                        unitPrice: 14374,
-                        unitPriceIncludesTax: true,
-                        taxRate: 20,
-                        pendingAdjustments: [],
+                        listPrice: 14374,
+                        listPriceIncludesTax: true,
+                        adjustments: [
+                            {
+                                adjustmentSource: 'Promotion:1',
+                                type: AdjustmentType.PROMOTION,
+                                amount: -1000,
+                                description: '$10 off computer equipment',
+                            },
+                        ],
+                        taxLines: [],
                     }),
                 ],
             }),
             new OrderLine({
                 id: '6',
                 featuredAsset: {
-                    preview: 'http://localhost:3000/assets/vincent-botta-736919-unsplash__preview.jpg',
+                    preview: '/mailbox/placeholder-image',
                 },
                 productVariant: new ProductVariant({
                     id: '4',
@@ -63,22 +73,31 @@ export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
                 items: [
                     new OrderItem({
                         id: '7',
-                        unitPrice: 3799,
-                        unitPriceIncludesTax: true,
-                        taxRate: 20,
-                        pendingAdjustments: [],
+                        listPrice: 3799,
+                        listPriceIncludesTax: true,
+                        adjustments: [],
+                        taxLines: [],
                     }),
                 ],
             }),
         ],
-        subTotal: 18173,
-        subTotalBeforeTax: 15144,
+        subTotal: 15144,
+        subTotalWithTax: 18173,
         shipping: 1000,
-        shippingMethod: {
-            code: 'express-flat-rate',
-            description: 'Express Shipping',
-            id: '2',
-        },
+        shippingLines: [
+            new ShippingLine({
+                listPrice: 1000,
+                listPriceIncludesTax: true,
+                taxLines: [{ taxRate: 20, description: 'shipping tax' }],
+                shippingMethod: {
+                    code: 'express-flat-rate',
+                    name: 'Express Shipping',
+                    description: 'Express Shipping',
+                    id: '2',
+                },
+            }),
+        ],
+        surcharges: [],
         shippingAddress: {
             fullName: 'Test Customer',
             company: '',
@@ -91,7 +110,6 @@ export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
             phoneNumber: '',
         },
         payments: [],
-        pendingAdjustments: [],
     }),
 );
 
@@ -101,6 +119,7 @@ export const mockAccountRegistrationEvent = new AccountRegistrationEvent(
         verified: false,
         authenticationMethods: [
             new NativeAuthenticationMethod({
+                identifier: 'test@test.com',
                 verificationToken: 'MjAxOC0xMS0xM1QxNToxNToxNC42ODda_US2U6UK1WZC7NDAX',
             }),
         ],

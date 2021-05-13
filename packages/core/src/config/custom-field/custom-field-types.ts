@@ -6,9 +6,13 @@ import {
     IntCustomFieldConfig as GraphQLIntCustomFieldConfig,
     LocaleStringCustomFieldConfig as GraphQLLocaleStringCustomFieldConfig,
     LocalizedString,
+    RelationCustomFieldConfig as GraphQLRelationCustomFieldConfig,
     StringCustomFieldConfig as GraphQLStringCustomFieldConfig,
 } from '@vendure/common/lib/generated-types';
-import { CustomFieldsObject, CustomFieldType } from '@vendure/common/lib/shared-types';
+import { CustomFieldsObject, CustomFieldType, Type } from '@vendure/common/lib/shared-types';
+
+import { Injector } from '../../common/injector';
+import { VendureEntity } from '../../entity/base/base.entity';
 
 // prettier-ignore
 export type DefaultValueType<T extends CustomFieldType> =
@@ -17,26 +21,53 @@ export type DefaultValueType<T extends CustomFieldType> =
             T extends 'boolean' ? boolean :
                 T extends 'datetime' ? Date : never;
 
+export type BaseTypedCustomFieldConfig<T extends CustomFieldType, C extends CustomField> = Omit<
+    C,
+    '__typename' | 'list'
+> & {
+    type: T;
+    /**
+     * @description
+     * Whether or not the custom field is available via the Shop API.
+     * @default true
+     */
+    public?: boolean;
+    nullable?: boolean;
+};
+
 /**
  * @description
  * Configures a custom field on an entity in the {@link CustomFields} config object.
  *
  * @docsCategory custom-fields
  */
-export type TypedCustomFieldConfig<T extends CustomFieldType, C extends CustomField> = Omit<
-    C,
-    '__typename'
-> & {
-    type: T;
-    /**
-     * Whether or not the custom field is available via the Shop API.
-     * @default true
-     */
-    public?: boolean;
+export type TypedCustomSingleFieldConfig<
+    T extends CustomFieldType,
+    C extends CustomField
+> = BaseTypedCustomFieldConfig<T, C> & {
+    list?: false;
     defaultValue?: DefaultValueType<T>;
-    nullable?: boolean;
-    validate?: (value: DefaultValueType<T>) => string | LocalizedString[] | void;
+    validate?: (
+        value: DefaultValueType<T>,
+        injector: Injector,
+    ) => string | LocalizedString[] | void | Promise<string | LocalizedString[] | void>;
 };
+
+export type TypedCustomListFieldConfig<
+    T extends CustomFieldType,
+    C extends CustomField
+> = BaseTypedCustomFieldConfig<T, C> & {
+    list?: true;
+    defaultValue?: Array<DefaultValueType<T>>;
+    validate?: (value: Array<DefaultValueType<T>>) => string | LocalizedString[] | void;
+};
+
+export type TypedCustomFieldConfig<
+    T extends CustomFieldType,
+    C extends CustomField
+> = BaseTypedCustomFieldConfig<T, C> &
+    (TypedCustomSingleFieldConfig<T, C> | TypedCustomListFieldConfig<T, C>);
+
 export type StringCustomFieldConfig = TypedCustomFieldConfig<'string', GraphQLStringCustomFieldConfig>;
 export type LocaleStringCustomFieldConfig = TypedCustomFieldConfig<
     'localeString',
@@ -46,6 +77,10 @@ export type IntCustomFieldConfig = TypedCustomFieldConfig<'int', GraphQLIntCusto
 export type FloatCustomFieldConfig = TypedCustomFieldConfig<'float', GraphQLFloatCustomFieldConfig>;
 export type BooleanCustomFieldConfig = TypedCustomFieldConfig<'boolean', GraphQLBooleanCustomFieldConfig>;
 export type DateTimeCustomFieldConfig = TypedCustomFieldConfig<'datetime', GraphQLDateTimeCustomFieldConfig>;
+export type RelationCustomFieldConfig = TypedCustomFieldConfig<
+    'relation',
+    Omit<GraphQLRelationCustomFieldConfig, 'entity' | 'scalarFields'>
+> & { entity: Type<VendureEntity>; graphQLType?: string; eager?: boolean };
 
 /**
  * @description
@@ -59,7 +94,8 @@ export type CustomFieldConfig =
     | IntCustomFieldConfig
     | FloatCustomFieldConfig
     | BooleanCustomFieldConfig
-    | DateTimeCustomFieldConfig;
+    | DateTimeCustomFieldConfig
+    | RelationCustomFieldConfig;
 
 /**
  * @description
@@ -72,6 +108,7 @@ export type CustomFieldConfig =
  *
  * * `name: string`: The name of the field
  * * `type: string`: A string of type {@link CustomFieldType}
+ * * `list: boolean`: If set to `true`, then the field will be an array of the specified type
  * * `label?: LocalizedString[]`: An array of localized labels for the field.
  * * `description?: LocalizedString[]`: An array of localized descriptions for the field.
  * * `public?: boolean`: Whether or not the custom field is available via the Shop API. Defaults to `true`
@@ -79,7 +116,8 @@ export type CustomFieldConfig =
  * * `internal?: boolean`: Whether or not the custom field is exposed at all via the GraphQL APIs. Defaults to `false`
  * * `defaultValue?: any`: The default value when an Entity is created with this field.
  * * `nullable?: boolean`: Whether the field is nullable in the database. If set to `false`, then a `defaultValue` should be provided.
- * * `validate?: (value: any) => string | LocalizedString[] | void`: A custom validation function.
+ * * `validate?: (value: any) => string | LocalizedString[] | void`: A custom validation function. If the value is valid, then
+ *     the function should not return a value. If a string or LocalizedString array is returned, this is interpreted as an error message.
  *
  * The `LocalizedString` type looks like this:
  *
@@ -101,6 +139,7 @@ export type CustomFieldConfig =
  * #### `localeString` type
  *
  * * `pattern?: string`: A regex pattern which the field value must match
+ * * `length?: number`: The max length of the varchar created in the database. Defaults to 255. Maximum is 65,535.
  *
  * #### `int` & `float` type
  *
@@ -116,6 +155,13 @@ export type CustomFieldConfig =
  * * `min?: string`: The earliest permitted date
  * * `max?: string`: The latest permitted date
  * * `step?: string`: The step value
+ *
+ * #### `relation` type
+ *
+ * * `entity: VendureEntity`: The entity which this custom field is referencing
+ * * `eager?: boolean`: Whether to [eagerly load](https://typeorm.io/#/eager-and-lazy-relations) the relation. Defaults to false.
+ * * `graphQLType?: string`: The name of the GraphQL type that corresponds to the entity.
+ *     Can be omitted if it is the same, which is usually the case.
  *
  * @example
  * ```TypeScript
@@ -138,10 +184,14 @@ export type CustomFieldConfig =
  */
 export interface CustomFields {
     Address?: CustomFieldConfig[];
+    Administrator?: CustomFieldConfig[];
+    Asset?: CustomFieldConfig[];
+    Channel?: CustomFieldConfig[];
     Collection?: CustomFieldConfig[];
     Customer?: CustomFieldConfig[];
     Facet?: CustomFieldConfig[];
     FacetValue?: CustomFieldConfig[];
+    Fulfillment?: CustomFieldConfig[];
     GlobalSettings?: CustomFieldConfig[];
     Order?: CustomFieldConfig[];
     OrderLine?: CustomFieldConfig[];

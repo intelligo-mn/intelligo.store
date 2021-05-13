@@ -3,10 +3,10 @@ import { Type } from '@vendure/common/lib/shared-types';
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { VendureEvent } from './vendure-event';
+import { RequestContext } from '../api/common/request-context';
+import { TRANSACTION_MANAGER_KEY } from '../common/constants';
 
-export type EventHandler<T extends VendureEvent> = (event: T) => void;
-export type UnsubscribeFn = () => void;
+import { VendureEvent } from './vendure-event';
 
 /**
  * @description
@@ -16,7 +16,6 @@ export type UnsubscribeFn = () => void;
  * */
 @Injectable()
 export class EventBus implements OnModuleDestroy {
-    private subscriberMap = new Map<Type<VendureEvent>, Array<EventHandler<any>>>();
     private eventStream = new Subject<VendureEvent>();
     private destroy$ = new Subject();
 
@@ -25,15 +24,7 @@ export class EventBus implements OnModuleDestroy {
      * Publish an event which any subscribers can react to.
      */
     publish<T extends VendureEvent>(event: T): void {
-        const eventType = (event as any).constructor;
-        const handlers = this.subscriberMap.get(eventType);
-        if (handlers) {
-            const length = handlers.length;
-            for (let i = 0; i < length; i++) {
-                handlers[i](event);
-            }
-        }
-        this.eventStream.next(event);
+        this.eventStream.next(this.prepareRequestContext(event));
     }
 
     /**
@@ -47,26 +38,32 @@ export class EventBus implements OnModuleDestroy {
         ) as Observable<T>;
     }
 
-    /**
-     * @description
-     * Deprecated: use `ofType()` instead.
-     *
-     * Subscribe to the given event type. Returns an unsubscribe function which can be used
-     * to unsubscribe the handler from the event.
-     *
-     * @deprecated
-     */
-    subscribe<T extends VendureEvent>(type: Type<T>, handler: EventHandler<T>): UnsubscribeFn {
-        const handlers = this.subscriberMap.get(type) || [];
-        if (!handlers.includes(handler)) {
-            handlers.push(handler);
-        }
-        this.subscriberMap.set(type, handlers);
-        return () => this.subscriberMap.set(type, handlers.filter(h => h !== handler));
-    }
-
     /** @internal */
     onModuleDestroy(): any {
         this.destroy$.next();
+    }
+
+    /**
+     * If the Event includes a RequestContext property, we need to:
+     *
+     * 1) Set it as a copy of the original
+     * 2) Remove the TRANSACTION_MANAGER_KEY from that copy
+     *
+     * The TRANSACTION_MANAGER_KEY is used to track transactions across calls
+     * (this is why we always pass the `ctx` object to get TransactionalConnection.getRepository() method).
+     * However, allowing a transaction to continue in an async event subscriber function _will_ cause
+     * very confusing issues (see https://github.com/vendure-ecommerce/vendure/issues/520), which is why
+     * we simply remove the reference to the transaction manager from the context object altogether.
+     */
+    private prepareRequestContext<T extends VendureEvent>(event: T): T {
+        for (const propertyName of Object.getOwnPropertyNames(event)) {
+            const property = event[propertyName as keyof T];
+            if (property instanceof RequestContext) {
+                const ctxCopy = property.copy();
+                delete (ctxCopy as any)[TRANSACTION_MANAGER_KEY];
+                (event[propertyName as keyof T] as any) = ctxCopy;
+            }
+        }
+        return event;
     }
 }

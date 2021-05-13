@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection } from '@nestjs/typeorm';
 import {
     CreateRoleInput,
     DeletionResponse,
@@ -15,9 +14,9 @@ import {
 } from '@vendure/common/lib/shared-constants';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 import { unique } from '@vendure/common/lib/unique';
-import { Connection } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
+import { getAllPermissionsMetadata } from '../../common/constants';
 import {
     EntityNotFoundError,
     ForbiddenError,
@@ -26,32 +25,35 @@ import {
 } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
+import { ConfigService } from '../../config/config.service';
 import { Channel } from '../../entity/channel/channel.entity';
 import { Role } from '../../entity/role/role.entity';
 import { User } from '../../entity/user/user.entity';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
-import { getEntityOrThrow } from '../helpers/utils/get-entity-or-throw';
 import { getUserChannelsPermissions } from '../helpers/utils/get-user-channels-permissions';
 import { patchEntity } from '../helpers/utils/patch-entity';
+import { TransactionalConnection } from '../transaction/transactional-connection';
 
 import { ChannelService } from './channel.service';
 
 @Injectable()
 export class RoleService {
     constructor(
-        @InjectConnection() private connection: Connection,
+        private connection: TransactionalConnection,
         private channelService: ChannelService,
         private listQueryBuilder: ListQueryBuilder,
+        private configService: ConfigService,
     ) {}
 
     async initRoles() {
         await this.ensureSuperAdminRoleExists();
         await this.ensureCustomerRoleExists();
+        await this.ensureRolesHaveValidPermissions();
     }
 
-    findAll(options?: ListQueryOptions<Role>): Promise<PaginatedList<Role>> {
+    findAll(ctx: RequestContext, options?: ListQueryOptions<Role>): Promise<PaginatedList<Role>> {
         return this.listQueryBuilder
-            .build(Role, options, { relations: ['channels'] })
+            .build(Role, options, { relations: ['channels'], ctx })
             .getManyAndCount()
             .then(([items, totalItems]) => ({
                 items,
@@ -59,14 +61,14 @@ export class RoleService {
             }));
     }
 
-    findOne(roleId: ID): Promise<Role | undefined> {
-        return this.connection.manager.findOne(Role, roleId, {
+    findOne(ctx: RequestContext, roleId: ID): Promise<Role | undefined> {
+        return this.connection.getRepository(ctx, Role).findOne(roleId, {
             relations: ['channels'],
         });
     }
 
-    getChannelsForRole(roleId: ID): Promise<Channel[]> {
-        return this.findOne(roleId).then(role => (role ? role.channels : []));
+    getChannelsForRole(ctx: RequestContext, roleId: ID): Promise<Channel[]> {
+        return this.findOne(ctx, roleId).then(role => (role ? role.channels : []));
     }
 
     getSuperAdminRole(): Promise<Role> {
@@ -98,14 +100,14 @@ export class RoleService {
      * Returns true if the User has the specified permission on that Channel
      */
     async userHasPermissionOnChannel(
-        userId: ID | null | undefined,
+        ctx: RequestContext,
         channelId: ID,
         permission: Permission,
     ): Promise<boolean> {
-        if (userId == null) {
+        if (ctx.activeUserId == null) {
             return false;
         }
-        const user = await getEntityOrThrow(this.connection, User, userId, {
+        const user = await this.connection.getEntityOrThrow(ctx, User, ctx.activeUserId, {
             relations: ['roles', 'roles.channels'],
         });
         const userChannels = getUserChannelsPermissions(user);
@@ -117,23 +119,20 @@ export class RoleService {
     }
 
     async create(ctx: RequestContext, input: CreateRoleInput): Promise<Role> {
-        if (!ctx.activeUserId) {
-            throw new ForbiddenError();
-        }
         this.checkPermissionsAreValid(input.permissions);
 
         let targetChannels: Channel[] = [];
         if (input.channelIds) {
-            targetChannels = await this.getPermittedChannels(input.channelIds, ctx.activeUserId);
+            targetChannels = await this.getPermittedChannels(ctx, input.channelIds);
         } else {
             targetChannels = [ctx.channel];
         }
-        return this.createRoleForChannels(input, targetChannels);
+        return this.createRoleForChannels(ctx, input, targetChannels);
     }
 
     async update(ctx: RequestContext, input: UpdateRoleInput): Promise<Role> {
         this.checkPermissionsAreValid(input.permissions);
-        const role = await this.findOne(input.id);
+        const role = await this.findOne(ctx, input.id);
         if (!role) {
             throw new EntityNotFoundError('Role', input.id);
         }
@@ -148,36 +147,36 @@ export class RoleService {
                 : undefined,
         });
         if (input.channelIds && ctx.activeUserId) {
-            updatedRole.channels = await this.getPermittedChannels(input.channelIds, ctx.activeUserId);
+            updatedRole.channels = await this.getPermittedChannels(ctx, input.channelIds);
         }
-        await this.connection.manager.save(updatedRole, { reload: false });
-        return assertFound(this.findOne(role.id));
+        await this.connection.getRepository(ctx, Role).save(updatedRole, { reload: false });
+        return assertFound(this.findOne(ctx, role.id));
     }
 
     async delete(ctx: RequestContext, id: ID): Promise<DeletionResponse> {
-        const role = await this.findOne(id);
+        const role = await this.findOne(ctx, id);
         if (!role) {
             throw new EntityNotFoundError('Role', id);
         }
         if (role.code === SUPER_ADMIN_ROLE_CODE || role.code === CUSTOMER_ROLE_CODE) {
             throw new InternalServerError(`error.cannot-delete-role`, { roleCode: role.code });
         }
-        await this.connection.getRepository(Role).remove(role);
+        await this.connection.getRepository(ctx, Role).remove(role);
         return {
             result: DeletionResult.DELETED,
         };
     }
 
-    async assignRoleToChannel(roleId: ID, channelId: ID) {
-        await this.channelService.assignToChannels(Role, roleId, [channelId]);
+    async assignRoleToChannel(ctx: RequestContext, roleId: ID, channelId: ID) {
+        await this.channelService.assignToChannels(ctx, Role, roleId, [channelId]);
     }
 
-    private async getPermittedChannels(channelIds: ID[], activeUserId: ID): Promise<Channel[]> {
+    private async getPermittedChannels(ctx: RequestContext, channelIds: ID[]): Promise<Channel[]> {
         let permittedChannels: Channel[] = [];
         for (const channelId of channelIds) {
-            const channel = await getEntityOrThrow(this.connection, Channel, channelId);
+            const channel = await this.connection.getEntityOrThrow(ctx, Channel, channelId);
             const hasPermission = await this.userHasPermissionOnChannel(
-                activeUserId,
+                ctx,
                 channelId,
                 Permission.CreateAdministrator,
             );
@@ -189,13 +188,13 @@ export class RoleService {
         return permittedChannels;
     }
 
-    private checkPermissionsAreValid(permissions?: string[] | null) {
+    private checkPermissionsAreValid(permissions?: Permission[] | null) {
         if (!permissions) {
             return;
         }
-        const allPermissions = this.getAllPermissions();
+        const allAssignablePermissions = this.getAllAssignablePermissions();
         for (const permission of permissions) {
-            if (!allPermissions.includes(permission)) {
+            if (!allAssignablePermissions.includes(permission) || permission === Permission.SuperAdmin) {
                 throw new UserInputError('error.permission-invalid', { permission });
             }
         }
@@ -211,33 +210,33 @@ export class RoleService {
      * Ensure that the SuperAdmin role exists and that it has all possible Permissions.
      */
     private async ensureSuperAdminRoleExists() {
-        const allPermissions = Object.values(Permission).filter(p => p !== Permission.Owner);
+        const assignablePermissions = this.getAllAssignablePermissions();
         try {
             const superAdminRole = await this.getSuperAdminRole();
-            const hasAllPermissions = allPermissions.every(permission =>
-                superAdminRole.permissions.includes(permission),
-            );
-            if (!hasAllPermissions) {
-                superAdminRole.permissions = allPermissions;
-                await this.connection.getRepository(Role).save(superAdminRole, { reload: false });
-            }
+            superAdminRole.permissions = assignablePermissions;
+            await this.connection.getRepository(Role).save(superAdminRole, { reload: false });
         } catch (err) {
             await this.createRoleForChannels(
+                RequestContext.empty(),
                 {
                     code: SUPER_ADMIN_ROLE_CODE,
                     description: SUPER_ADMIN_ROLE_DESCRIPTION,
-                    permissions: allPermissions,
+                    permissions: assignablePermissions,
                 },
                 [this.channelService.getDefaultChannel()],
             );
         }
     }
 
+    /**
+     * The Customer Role is a special case which must always exist.
+     */
     private async ensureCustomerRoleExists() {
         try {
             await this.getCustomerRole();
         } catch (err) {
             await this.createRoleForChannels(
+                RequestContext.empty(),
                 {
                     code: CUSTOMER_ROLE_CODE,
                     description: CUSTOMER_ROLE_DESCRIPTION,
@@ -248,13 +247,37 @@ export class RoleService {
         }
     }
 
-    private createRoleForChannels(input: CreateRoleInput, channels: Channel[]) {
+    /**
+     * Since custom permissions can be added and removed by config, there may exist one or more Roles with
+     * invalid permissions (i.e. permissions that were set previously to a custom permission, which has been
+     * subsequently removed from config). This method should run on startup to ensure that any such invalid
+     * permissions are removed from those Roles.
+     */
+    private async ensureRolesHaveValidPermissions() {
+        const roles = await this.connection.getRepository(Role).find();
+        const assignablePermissions = this.getAllAssignablePermissions();
+        for (const role of roles) {
+            const invalidPermissions = role.permissions.filter(p => !assignablePermissions.includes(p));
+            if (invalidPermissions.length) {
+                role.permissions = role.permissions.filter(p => assignablePermissions.includes(p));
+                await this.connection.getRepository(Role).save(role);
+            }
+        }
+    }
+
+    private createRoleForChannels(ctx: RequestContext, input: CreateRoleInput, channels: Channel[]) {
         const role = new Role({
             code: input.code,
             description: input.description,
             permissions: unique([Permission.Authenticated, ...input.permissions]),
         });
         role.channels = channels;
-        return this.connection.manager.save(role);
+        return this.connection.getRepository(ctx, Role).save(role);
+    }
+
+    private getAllAssignablePermissions(): Permission[] {
+        return getAllPermissionsMetadata(this.configService.authOptions.customPermissions)
+            .filter(p => p.assignable)
+            .map(p => p.name as Permission);
     }
 }

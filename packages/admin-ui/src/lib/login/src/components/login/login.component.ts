@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ADMIN_UI_VERSION, AUTH_REDIRECT_PARAM, AuthService } from '@vendure/admin-ui/core';
+import { ADMIN_UI_VERSION, AuthService, AUTH_REDIRECT_PARAM, getAppConfig } from '@vendure/admin-ui/core';
 
 @Component({
     selector: 'vdr-login',
@@ -12,23 +12,31 @@ export class LoginComponent {
     password = '';
     rememberMe = false;
     version = ADMIN_UI_VERSION;
+    errorMessage: string | undefined;
+    brand = getAppConfig().brand;
+    hideVendureBranding = getAppConfig().hideVendureBranding;
+    hideVersion = getAppConfig().hideVersion;
 
     constructor(private authService: AuthService, private router: Router) {}
 
     logIn(): void {
-        this.authService.logIn(this.username, this.password, this.rememberMe).subscribe(
-            () => {
-                const redirect = this.getRedirectRoute();
-                this.router.navigateByUrl(redirect ? redirect : '/');
-            },
-            err => {
-                /* error handled by http interceptor */
-            },
-        );
+        this.errorMessage = undefined;
+        this.authService.logIn(this.username, this.password, this.rememberMe).subscribe(result => {
+            switch (result.__typename) {
+                case 'CurrentUser':
+                    const redirect = this.getRedirectRoute();
+                    this.router.navigateByUrl(redirect ? redirect : '/');
+                    break;
+                case 'InvalidCredentialsError':
+                case 'NativeAuthStrategyError':
+                    this.errorMessage = result.message;
+                    break;
+            }
+        });
     }
 
     /**
-     * Attemps to read a redirect param from the current url and parse it into a
+     * Attempts to read a redirect param from the current url and parse it into a
      * route from which the user was redirected after a 401 error.
      */
     private getRedirectRoute(): string | undefined {

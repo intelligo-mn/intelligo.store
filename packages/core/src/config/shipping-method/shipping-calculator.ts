@@ -1,8 +1,7 @@
 import { ConfigArg } from '@vendure/common/lib/generated-types';
-import { ConfigArgSubset } from '@vendure/common/lib/shared-types';
 
+import { RequestContext } from '../../api/common/request-context';
 import {
-    argsArrayToHash,
     ConfigArgs,
     ConfigArgValues,
     ConfigurableOperationDef,
@@ -10,11 +9,7 @@ import {
 } from '../../common/configurable-operation';
 import { Order } from '../../entity/order/order.entity';
 
-export type ShippingCalculatorArgType = ConfigArgSubset<'int' | 'float' | 'string' | 'boolean'>;
-export type ShippingCalculatorArgs = ConfigArgs<ShippingCalculatorArgType>;
-
-export interface ShippingCalculatorConfig<T extends ShippingCalculatorArgs>
-    extends ConfigurableOperationDefOptions<T> {
+export interface ShippingCalculatorConfig<T extends ConfigArgs> extends ConfigurableOperationDefOptions<T> {
     calculate: CalculateShippingFn<T>;
 }
 
@@ -25,24 +20,32 @@ export interface ShippingCalculatorConfig<T extends ShippingCalculatorArgs>
  * @example
  * ```ts
  * const flatRateCalculator = new ShippingCalculator({
- *     code: 'flat-rate-calculator',
- *     description: [{ languageCode: LanguageCode.en, value: 'Default Flat-Rate Shipping Calculator' }],
- *     args: {
- *         rate: { type: 'int', config: { inputType: 'money' } },
+ *   code: 'flat-rate-calculator',
+ *   description: [{ languageCode: LanguageCode.en, value: 'Default Flat-Rate Shipping Calculator' }],
+ *   args: {
+ *     rate: {
+ *       type: 'int',
+ *       ui: { component: 'currency-form-input' },
  *     },
- *     calculate: (order, args) => {
- *         return {
- *             price: args.rate,
- *             priceWithTax: args.rate * ((100 + args.taxRate) / 100),
- *         };
- *     },
+ *     taxRate: {
+         type: 'int',
+         ui: { component: 'number-form-input', suffix: '%' },
+       },
+ *   },
+ *   calculate: (order, args) => {
+ *     return {
+ *       price: args.rate,
+ *       taxRate: args.taxRate,
+ *       priceIncludesTax: ctx.channel.pricesIncludeTax,
+ *     };
+ *   },
  * });
  * ```
  *
  * @docsCategory shipping
  * @docsPage ShippingCalculator
  */
-export class ShippingCalculator<T extends ShippingCalculatorArgs = {}> extends ConfigurableOperationDef<T> {
+export class ShippingCalculator<T extends ConfigArgs = ConfigArgs> extends ConfigurableOperationDef<T> {
     private readonly calculateFn: CalculateShippingFn<T>;
 
     constructor(config: ShippingCalculatorConfig<T>) {
@@ -56,11 +59,8 @@ export class ShippingCalculator<T extends ShippingCalculatorArgs = {}> extends C
      *
      * @internal
      */
-    calculate(
-        order: Order,
-        args: ConfigArg[],
-    ): ShippingCalculationResult | Promise<ShippingCalculationResult> | undefined {
-        return this.calculateFn(order, argsArrayToHash(args));
+    calculate(ctx: RequestContext, order: Order, args: ConfigArg[]): CalculateShippingFnResult {
+        return this.calculateFn(ctx, order, this.argsArrayToHash(args));
     }
 }
 
@@ -73,14 +73,20 @@ export class ShippingCalculator<T extends ShippingCalculatorArgs = {}> extends C
  */
 export interface ShippingCalculationResult {
     /**
+     * @description
      * The shipping price without any taxes.
      */
     price: number;
     /**
      * @description
-     * The shipping price including taxes.
+     * Whether or not the given price already includes taxes.
      */
-    priceWithTax: number;
+    priceIncludesTax: boolean;
+    /**
+     * @description
+     * The tax rate applied to the shipping price.
+     */
+    taxRate: number;
     /**
      * @description
      * Arbitrary metadata may be returned from the calculation function. This can be used
@@ -89,6 +95,11 @@ export interface ShippingCalculationResult {
      */
     metadata?: Record<string, any>;
 }
+
+export type CalculateShippingFnResult =
+    | ShippingCalculationResult
+    | Promise<ShippingCalculationResult | undefined>
+    | undefined;
 
 /**
  * @description
@@ -100,7 +111,8 @@ export interface ShippingCalculationResult {
  * @docsCategory shipping
  * @docsPage ShippingCalculator
  */
-export type CalculateShippingFn<T extends ShippingCalculatorArgs> = (
+export type CalculateShippingFn<T extends ConfigArgs> = (
+    ctx: RequestContext,
     order: Order,
     args: ConfigArgValues<T>,
-) => ShippingCalculationResult | Promise<ShippingCalculationResult> | undefined;
+) => CalculateShippingFnResult;

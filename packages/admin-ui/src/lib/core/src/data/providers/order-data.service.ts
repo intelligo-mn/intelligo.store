@@ -1,4 +1,5 @@
 import {
+    AddManualPayment,
     AddNoteToOrder,
     AddNoteToOrderInput,
     CancelOrder,
@@ -9,30 +10,42 @@ import {
     GetOrder,
     GetOrderHistory,
     GetOrderList,
+    GetOrderSummary,
     HistoryEntryListOptions,
+    ManualPaymentInput,
+    ModifyOrder,
+    ModifyOrderInput,
+    OrderListOptions,
     RefundOrder,
     RefundOrderInput,
     SettlePayment,
     SettleRefund,
     SettleRefundInput,
+    TransitionFulfillmentToState,
     TransitionOrderToState,
+    TransitionPaymentToState,
     UpdateOrderCustomFields,
     UpdateOrderInput,
     UpdateOrderNote,
     UpdateOrderNoteInput,
 } from '../../common/generated-types';
 import {
+    ADD_MANUAL_PAYMENT_TO_ORDER,
     ADD_NOTE_TO_ORDER,
     CANCEL_ORDER,
     CREATE_FULFILLMENT,
     DELETE_ORDER_NOTE,
     GET_ORDER,
-    GET_ORDER_HISTORY,
     GET_ORDERS_LIST,
+    GET_ORDER_HISTORY,
+    GET_ORDER_SUMMARY,
+    MODIFY_ORDER,
     REFUND_ORDER,
     SETTLE_PAYMENT,
     SETTLE_REFUND,
+    TRANSITION_FULFILLMENT_TO_STATE,
     TRANSITION_ORDER_TO_STATE,
+    TRANSITION_PAYMENT_TO_STATE,
     UPDATE_ORDER_CUSTOM_FIELDS,
     UPDATE_ORDER_NOTE,
 } from '../definitions/order-definitions';
@@ -42,12 +55,9 @@ import { BaseDataService } from './base-data.service';
 export class OrderDataService {
     constructor(private baseDataService: BaseDataService) {}
 
-    getOrders(take: number = 10, skip: number = 0) {
+    getOrders(options: OrderListOptions = { take: 10 }) {
         return this.baseDataService.query<GetOrderList.Query, GetOrderList.Variables>(GET_ORDERS_LIST, {
-            options: {
-                take,
-                skip,
-            },
+            options,
         });
     }
 
@@ -71,13 +81,33 @@ export class OrderDataService {
         });
     }
 
-    createFullfillment(input: FulfillOrderInput) {
+    transitionPaymentToState(id: string, state: string) {
+        return this.baseDataService.mutate<
+            TransitionPaymentToState.Mutation,
+            TransitionPaymentToState.Variables
+        >(TRANSITION_PAYMENT_TO_STATE, {
+            id,
+            state,
+        });
+    }
+
+    createFulfillment(input: FulfillOrderInput) {
         return this.baseDataService.mutate<CreateFulfillment.Mutation, CreateFulfillment.Variables>(
             CREATE_FULFILLMENT,
             {
                 input,
             },
         );
+    }
+
+    transitionFulfillmentToState(id: string, state: string) {
+        return this.baseDataService.mutate<
+            TransitionFulfillmentToState.Mutation,
+            TransitionFulfillmentToState.Variables
+        >(TRANSITION_FULFILLMENT_TO_STATE, {
+            id,
+            state,
+        });
     }
 
     cancelOrder(input: CancelOrderInput) {
@@ -142,5 +172,28 @@ export class OrderDataService {
         >(UPDATE_ORDER_CUSTOM_FIELDS, {
             input,
         });
+    }
+
+    getOrderSummary(start: Date, end: Date) {
+        return this.baseDataService.query<GetOrderSummary.Query, GetOrderSummary.Variables>(
+            GET_ORDER_SUMMARY,
+            {
+                start: start.toISOString(),
+                end: end.toISOString(),
+            },
+        );
+    }
+
+    modifyOrder(input: ModifyOrderInput) {
+        return this.baseDataService.mutate<ModifyOrder.Mutation, ModifyOrder.Variables>(MODIFY_ORDER, {
+            input,
+        });
+    }
+
+    addManualPaymentToOrder(input: ManualPaymentInput) {
+        return this.baseDataService.mutate<AddManualPayment.Mutation, AddManualPayment.Variables>(
+            ADD_MANUAL_PAYMENT_TO_ORDER,
+            { input },
+        );
     }
 }

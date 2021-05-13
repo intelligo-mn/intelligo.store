@@ -1,5 +1,4 @@
 import { JobState } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
 import { isClassInstance, isObject } from '@vendure/common/lib/shared-utils';
 
 import { JobConfig, JobData } from './types';
@@ -11,7 +10,7 @@ import { JobConfig, JobData } from './types';
  * @docsCategory JobQueue
  * @docsPage Job
  */
-export type JobEventType = 'start' | 'progress' | 'complete' | 'fail';
+export type JobEventType = 'progress';
 
 /**
  * @description
@@ -31,9 +30,10 @@ export type JobEventListener<T extends JobData<T>> = (job: Job<T>) => void;
  *
  * @docsCategory JobQueue
  * @docsPage Job
+ * @docsWeight 0
  */
 export class Job<T extends JobData<T> = any> {
-    readonly id: ID | null;
+    readonly id: number | string | null;
     readonly queueName: string;
     readonly retries: number;
     readonly createdAt: Date;
@@ -46,10 +46,7 @@ export class Job<T extends JobData<T> = any> {
     private _startedAt?: Date;
     private _settledAt?: Date;
     private readonly eventListeners: { [type in JobEventType]: Array<JobEventListener<T>> } = {
-        start: [],
         progress: [],
-        complete: [],
-        fail: [],
     };
 
     get name(): string {
@@ -77,7 +74,12 @@ export class Job<T extends JobData<T> = any> {
     }
 
     get isSettled(): boolean {
-        return !!this._settledAt;
+        return (
+            !!this._settledAt &&
+            (this._state === JobState.COMPLETED ||
+                this._state === JobState.FAILED ||
+                this._state === JobState.CANCELLED)
+        );
     }
 
     get startedAt(): Date | undefined {
@@ -122,7 +124,6 @@ export class Job<T extends JobData<T> = any> {
             this._state = JobState.RUNNING;
             this._startedAt = new Date();
             this._attempts++;
-            this.fireEvent('start');
         }
     }
 
@@ -131,7 +132,7 @@ export class Job<T extends JobData<T> = any> {
      * Sets the progress (0 - 100) of the job.
      */
     setProgress(percent: number) {
-        this._progress = Math.min(percent, 100);
+        this._progress = Math.min(percent || 0, 100);
         this.fireEvent('progress');
     }
 
@@ -145,7 +146,6 @@ export class Job<T extends JobData<T> = any> {
         this._progress = 100;
         this._state = JobState.COMPLETED;
         this._settledAt = new Date();
-        this.fireEvent('complete');
     }
 
     /**
@@ -158,10 +158,16 @@ export class Job<T extends JobData<T> = any> {
         if (this.retries >= this._attempts) {
             this._state = JobState.RETRYING;
         } else {
-            this._state = JobState.FAILED;
+            if (this._state !== JobState.CANCELLED) {
+                this._state = JobState.FAILED;
+            }
             this._settledAt = new Date();
         }
-        this.fireEvent('fail');
+    }
+
+    cancel() {
+        this._settledAt = new Date();
+        this._state = JobState.CANCELLED;
     }
 
     /**
@@ -182,6 +188,13 @@ export class Job<T extends JobData<T> = any> {
      */
     on(eventType: JobEventType, listener: JobEventListener<T>) {
         this.eventListeners[eventType].push(listener);
+    }
+
+    off(eventType: JobEventType, listener: JobEventListener<T>) {
+        const idx = this.eventListeners[eventType].indexOf(listener);
+        if (idx !== -1) {
+            this.eventListeners[eventType].splice(idx, 1);
+        }
     }
 
     private fireEvent(eventType: JobEventType) {

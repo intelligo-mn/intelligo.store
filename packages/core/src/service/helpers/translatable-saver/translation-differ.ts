@@ -1,13 +1,14 @@
 import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { EntityManager } from 'typeorm';
 
-import { EntityNotFoundError } from '../../../common/error/errors';
+import { RequestContext } from '../../../api/common/request-context';
+import { InternalServerError } from '../../../common/error/errors';
 import { Translatable, Translation, TranslationInput } from '../../../common/types/locale-types';
 import { foundIn, not } from '../../../common/utils';
+import { TransactionalConnection } from '../../transaction/transactional-connection';
 
-export interface TranslationContructor<T> {
-    new (input?: DeepPartial<TranslationInput<T>> | DeepPartial<Translation<T>>): Translation<T>;
-}
+export type TranslationContructor<T> = new (
+    input?: DeepPartial<TranslationInput<T>> | DeepPartial<Translation<T>>,
+) => Translation<T>;
 
 export interface TranslationDiff<T> {
     toUpdate: Array<Translation<T>>;
@@ -18,7 +19,10 @@ export interface TranslationDiff<T> {
  * This class is to be used when performing an update on a Translatable entity.
  */
 export class TranslationDiffer<Entity extends Translatable> {
-    constructor(private translationCtor: TranslationContructor<Entity>, private manager: EntityManager) {}
+    constructor(
+        private translationCtor: TranslationContructor<Entity>,
+        private connection: TransactionalConnection,
+    ) {}
 
     /**
      * Compares the existing translations with the updated translations and produces a diff of
@@ -42,12 +46,16 @@ export class TranslationDiffer<Entity extends Translatable> {
         }
     }
 
-    async applyDiff(entity: Entity, { toUpdate, toAdd }: TranslationDiff<Entity>): Promise<Entity> {
+    async applyDiff(
+        ctx: RequestContext,
+        entity: Entity,
+        { toUpdate, toAdd }: TranslationDiff<Entity>,
+    ): Promise<Entity> {
         if (toUpdate.length) {
             for (const translation of toUpdate) {
                 // any cast below is required due to TS issue: https://github.com/Microsoft/TypeScript/issues/21592
-                const updated = await this.manager
-                    .getRepository(this.translationCtor)
+                const updated = await this.connection
+                    .getRepository(ctx, this.translationCtor)
                     .save(translation as any);
                 const index = entity.translations.findIndex(t => t.languageCode === updated.languageCode);
                 entity.translations.splice(index, 1, updated);
@@ -59,13 +67,11 @@ export class TranslationDiffer<Entity extends Translatable> {
                 translation.base = entity;
                 let newTranslation: any;
                 try {
-                    newTranslation = await this.manager
-                        .getRepository(this.translationCtor)
+                    newTranslation = await this.connection
+                        .getRepository(ctx, this.translationCtor)
                         .save(translation as any);
                 } catch (err) {
-                    const entityName = entity.constructor.name;
-                    const id = (entity as any).id || 'undefined';
-                    throw new EntityNotFoundError(entityName as any, id);
+                    throw new InternalServerError(err.message);
                 }
                 entity.translations.push(newTranslation);
             }

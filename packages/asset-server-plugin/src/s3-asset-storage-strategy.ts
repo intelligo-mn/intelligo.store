@@ -1,7 +1,9 @@
-import { AssetStorageStrategy, Injector, Logger } from '@vendure/core';
+import { AssetStorageStrategy, Logger } from '@vendure/core';
 import { Request } from 'express';
+import * as path from 'path';
 import { Readable, Stream } from 'stream';
 
+import { getAssetUrlPrefixFn } from './common';
 import { loggerCtx } from './constants';
 import { AssetServerOptions } from './types';
 
@@ -27,9 +29,9 @@ export interface S3Config {
      * The credentials used to access your s3 account. You can supply either the access key ID & secret,
      * or you can make use of a
      * [shared credentials file](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-shared.html)
-     * and supply the profile name (e.g. `'default'`)
+     * and supply the profile name (e.g. `'default'`).
      */
-    credentials: S3Credentials | S3CredentialsProfile;
+    credentials?: S3Credentials | S3CredentialsProfile;
     /**
      * @description
      * The S3 bucket in which to store the assets. If it does not exist, it will be created on startup.
@@ -37,9 +39,18 @@ export interface S3Config {
     bucket: string;
     /**
      * @description
-     * The AWS region in which to host the assets.
+     * Configuration object passed directly to the AWS SDK.
+     * S3.Types.ClientConfiguration can be used after importing aws-sdk.
+     * Using type `any` in order to avoid the need to include `aws-sdk` dependency in general.
      */
-    region?: string;
+    nativeS3Configuration?: any;
+    /**
+     * @description
+     * Configuration object passed directly to the AWS SDK.
+     * ManagedUpload.ManagedUploadOptions can be used after importing aws-sdk.
+     * Using type `any` in order to avoid the need to include `aws-sdk` dependency in general.
+     */
+    nativeS3UploadConfiguration?: any;
 }
 
 /**
@@ -77,11 +88,12 @@ export interface S3Config {
 export function configureS3AssetStorage(s3Config: S3Config) {
     return (options: AssetServerOptions) => {
         const { assetUrlPrefix, route } = options;
+        const prefixFn = getAssetUrlPrefixFn(options);
         const toAbsoluteUrlFn = (request: Request, identifier: string): string => {
             if (!identifier) {
                 return '';
             }
-            const prefix = assetUrlPrefix || `${request.protocol}://${request.get('host')}/${route}/`;
+            const prefix = prefixFn(request, identifier);
             return identifier.startsWith(prefix) ? identifier : `${prefix}${identifier}`;
         };
         return new S3AssetStorageStrategy(s3Config, toAbsoluteUrlFn);
@@ -104,13 +116,14 @@ export function configureS3AssetStorage(s3Config: S3Config) {
  *
  * @docsCategory asset-server-plugin
  * @docsPage S3AssetStorageStrategy
+ * @docsWeight 0
  */
 export class S3AssetStorageStrategy implements AssetStorageStrategy {
     private AWS: typeof import('aws-sdk');
     private s3: import('aws-sdk').S3;
     constructor(
         private s3Config: S3Config,
-        public readonly toAbsoluteUrl: (reqest: Request, identifier: string) => string,
+        public readonly toAbsoluteUrl: (request: Request, identifier: string) => string,
     ) {}
 
     async init() {
@@ -124,11 +137,11 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
             );
         }
 
-        this.setCredentials();
-        if (this.s3Config.region) {
-            this.AWS.config.update({ region: this.s3Config.region });
-        }
-        this.s3 = new this.AWS.S3();
+        const config = {
+            credentials: this.getS3Credentials(),
+            ...this.s3Config.nativeS3Configuration,
+        };
+        this.s3 = new this.AWS.S3(config);
         await this.ensureBucket(this.s3Config.bucket);
     }
 
@@ -136,29 +149,57 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
 
     async writeFileFromBuffer(fileName: string, data: Buffer): Promise<string> {
         const result = await this.s3
-            .upload({
-                Bucket: this.s3Config.bucket,
-                Key: fileName,
-                Body: data,
-            })
+            .upload(
+                {
+                    Bucket: this.s3Config.bucket,
+                    Key: fileName,
+                    Body: data,
+                },
+                this.s3Config.nativeS3UploadConfiguration,
+            )
             .promise();
         return result.Key;
     }
 
     async writeFileFromStream(fileName: string, data: Stream): Promise<string> {
         const result = await this.s3
-            .upload({
-                Bucket: this.s3Config.bucket,
-                Key: fileName,
-                Body: data,
-            })
+            .upload(
+                {
+                    Bucket: this.s3Config.bucket,
+                    Key: fileName,
+                    Body: data,
+                },
+                this.s3Config.nativeS3UploadConfiguration,
+            )
             .promise();
         return result.Key;
     }
 
     async readFileToBuffer(identifier: string): Promise<Buffer> {
         const result = await this.s3.getObject(this.getObjectParams(identifier)).promise();
-        return Buffer.from(result.Body as Stream);
+        const body = result.Body;
+        if (!body) {
+            Logger.error(`Got undefined Body for ${identifier}`, loggerCtx);
+            return Buffer.from('');
+        }
+        if (body instanceof Buffer) {
+            return body;
+        }
+        if (body instanceof Uint8Array || typeof body === 'string') {
+            return Buffer.from(body);
+        }
+        if (body instanceof Readable) {
+            return new Promise((resolve, reject) => {
+                const buf: any[] = [];
+                body.on('data', data => buf.push(data));
+                body.on('error', err => reject(err));
+                body.on('end', () => {
+                    const intArray = Uint8Array.from(buf);
+                    resolve(Buffer.concat([intArray]));
+                });
+            });
+        }
+        return Buffer.from(body as any);
     }
 
     async readFileToStream(identifier: string): Promise<Stream> {
@@ -192,17 +233,18 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
     private getObjectParams(identifier: string) {
         return {
             Bucket: this.s3Config.bucket,
-            Key: identifier.replace(/^\//, '').replace(/\//g, '\\'),
+            Key: path.join(identifier.replace(/^\//, '')),
         };
     }
 
-    private setCredentials() {
+    private getS3Credentials() {
         const { credentials } = this.s3Config;
-        if (this.isCredentialsProfile(credentials)) {
-            this.AWS.config.credentials = new this.AWS.SharedIniFileCredentials(credentials);
-        } else {
-            this.AWS.config.credentials = new this.AWS.Credentials(credentials);
+        if (credentials == null) {
+            return null;
+        } else if (this.isCredentialsProfile(credentials)) {
+            return new this.AWS.SharedIniFileCredentials(credentials);
         }
+        return new this.AWS.Credentials(credentials);
     }
 
     private async ensureBucket(bucket: string) {

@@ -42,7 +42,9 @@ export type DropdownPosition = 'top-left' | 'top-right' | 'bottom-left' | 'botto
         <ng-template #menu>
             <div class="dropdown open">
                 <div class="dropdown-menu">
-                    <ng-content></ng-content>
+                    <div class="dropdown-content-wrapper">
+                        <ng-content></ng-content>
+                    </div>
                 </div>
             </div>
         </ng-template>
@@ -78,6 +80,7 @@ export class DropdownMenuComponent implements AfterViewInit, OnInit, OnDestroy {
             hasBackdrop: true,
             backdropClass: 'clear-backdrop',
             positionStrategy: this.getPositionStrategy(),
+            maxHeight: '70vh',
         });
         this.menuPortal = new TemplatePortal(this.menuTemplate, this.viewContainerRef);
         this.backdropClickSub = this.overlayRef.backdropClick().subscribe(() => {
@@ -86,7 +89,9 @@ export class DropdownMenuComponent implements AfterViewInit, OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.overlayRef.dispose();
+        if (this.overlayRef) {
+            this.overlayRef.dispose();
+        }
         if (this.backdropClickSub) {
             this.backdropClickSub.unsubscribe();
         }

@@ -12,13 +12,14 @@ export interface InjectableStrategy {
      * @description
      * Defines setup logic to be run during application bootstrap. Receives
      * the {@link Injector} as an argument, which allows application providers
-     * to be used as part of the setup.
+     * to be used as part of the setup. This hook will be called on both the
+     * main server and the worker processes.
      *
      * @example
      * ```TypeScript
      * async init(injector: Injector) {
-     *     const myService = injector.get(MyService);
-     *     await myService.doSomething();
+     *   const myService = injector.get(MyService);
+     *   await myService.doSomething();
      * }
      * ```
      */
