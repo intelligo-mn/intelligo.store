@@ -6,7 +6,6 @@ on:
       - 'vendure-io'
   pull_request:
     branches:
-      - master
       - next
 env:
   CI: true
