@@ -1,4 +1,4 @@
-
+name: Auto Pull Changes
 on:
   schedule:
   - cron:  "0 18 * * *"
