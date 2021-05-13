@@ -17,4 +17,4 @@ jobs:
         source_repo: "vendure-ecommerce/vendure"
         source_branch: "master"
         destination_branch: "update"
-        github_token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        github_token: ${{ secrets.GH_PAT }}
