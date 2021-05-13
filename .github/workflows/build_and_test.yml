@@ -3,11 +3,9 @@ name: Build & Test
 on:
   push:
     branches:
-    - master
     - next
   pull_request:
     branches:
-    - master
     - next
 env:
   CI: true
