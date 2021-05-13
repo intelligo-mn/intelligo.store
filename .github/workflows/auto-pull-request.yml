@@ -1,7 +1,8 @@
+name: Auto Pull request
 on:
   push:
     branches:
-    - "update"  # Support wildcard matching
+    - update
 
 jobs:
   pull-request:
