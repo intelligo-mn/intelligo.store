@@ -2,10 +2,10 @@ name: Publish & Install
 on:
   push:
     branches:
-    - master
+    - next
   pull_request:
     branches:
-    - master
+    - next
 defaults:
   run:
     shell: bash
