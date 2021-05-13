@@ -4,6 +4,7 @@ import {
     MutationAssignRoleToAdministratorArgs,
     MutationCreateAdministratorArgs,
     MutationDeleteAdministratorArgs,
+    MutationUpdateActiveAdministratorArgs,
     MutationUpdateAdministratorArgs,
     Permission,
     QueryAdministratorArgs,
@@ -13,7 +14,10 @@ import { PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { Administrator } from '../../../entity/administrator/administrator.entity';
 import { AdministratorService } from '../../../service/services/administrator.service';
+import { RequestContext } from '../../common/request-context';
 import { Allow } from '../../decorators/allow.decorator';
+import { Ctx } from '../../decorators/request-context.decorator';
+import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver('Administrator')
 export class AdministratorResolver {
@@ -21,40 +25,86 @@ export class AdministratorResolver {
 
     @Query()
     @Allow(Permission.ReadAdministrator)
-    administrators(@Args() args: QueryAdministratorsArgs): Promise<PaginatedList<Administrator>> {
-        return this.administratorService.findAll(args.options || undefined);
+    administrators(
+        @Ctx() ctx: RequestContext,
+        @Args() args: QueryAdministratorsArgs,
+    ): Promise<PaginatedList<Administrator>> {
+        return this.administratorService.findAll(ctx, args.options || undefined);
     }
 
     @Query()
     @Allow(Permission.ReadAdministrator)
-    administrator(@Args() args: QueryAdministratorArgs): Promise<Administrator | undefined> {
-        return this.administratorService.findOne(args.id);
+    administrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: QueryAdministratorArgs,
+    ): Promise<Administrator | undefined> {
+        return this.administratorService.findOne(ctx, args.id);
     }
 
+    @Query()
+    @Allow(Permission.Owner)
+    async activeAdministrator(@Ctx() ctx: RequestContext): Promise<Administrator | undefined> {
+        if (ctx.activeUserId) {
+            return this.administratorService.findOneByUserId(ctx, ctx.activeUserId);
+        }
+    }
+
+    @Transaction()
     @Mutation()
     @Allow(Permission.CreateAdministrator)
-    createAdministrator(@Args() args: MutationCreateAdministratorArgs): Promise<Administrator> {
+    createAdministrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationCreateAdministratorArgs,
+    ): Promise<Administrator> {
         const { input } = args;
-        return this.administratorService.create(input);
+        return this.administratorService.create(ctx, input);
     }
 
-    @Mutation()
-    @Allow(Permission.CreateAdministrator)
-    updateAdministrator(@Args() args: MutationUpdateAdministratorArgs): Promise<Administrator> {
-        const { input } = args;
-        return this.administratorService.update(input);
-    }
-
+    @Transaction()
     @Mutation()
     @Allow(Permission.UpdateAdministrator)
-    assignRoleToAdministrator(@Args() args: MutationAssignRoleToAdministratorArgs): Promise<Administrator> {
-        return this.administratorService.assignRole(args.administratorId, args.roleId);
+    updateAdministrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationUpdateAdministratorArgs,
+    ): Promise<Administrator> {
+        const { input } = args;
+        return this.administratorService.update(ctx, input);
     }
 
+    @Transaction()
+    @Mutation()
+    @Allow(Permission.Owner)
+    async updateActiveAdministrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationUpdateActiveAdministratorArgs,
+    ): Promise<Administrator | undefined> {
+        if (ctx.activeUserId) {
+            const { input } = args;
+            const administrator = await this.administratorService.findOneByUserId(ctx, ctx.activeUserId);
+            if (administrator) {
+                return this.administratorService.update(ctx, { ...input, id: administrator.id });
+            }
+        }
+    }
+
+    @Transaction()
+    @Mutation()
+    @Allow(Permission.UpdateAdministrator)
+    assignRoleToAdministrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationAssignRoleToAdministratorArgs,
+    ): Promise<Administrator> {
+        return this.administratorService.assignRole(ctx, args.administratorId, args.roleId);
+    }
+
+    @Transaction()
     @Mutation()
     @Allow(Permission.DeleteAdministrator)
-    deleteAdministrator(@Args() args: MutationDeleteAdministratorArgs): Promise<DeletionResponse> {
+    deleteAdministrator(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationDeleteAdministratorArgs,
+    ): Promise<DeletionResponse> {
         const { id } = args;
-        return this.administratorService.softDelete(id);
+        return this.administratorService.softDelete(ctx, id);
     }
 }

@@ -1,5 +1,4 @@
-import { OnModuleInit } from '@nestjs/common';
-import { InjectConnection } from '@nestjs/typeorm';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import {
     ConfigurableOperation,
     ConfigurableOperationDefinition,
@@ -14,15 +13,12 @@ import { ROOT_COLLECTION_NAME } from '@vendure/common/lib/shared-constants';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 import { merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Connection } from 'typeorm';
 
 import { RequestContext, SerializedRequestContext } from '../../api/common/request-context';
-import { configurableDefToOperation } from '../../common/configurable-operation';
-import { IllegalOperationError, UserInputError } from '../../common/error/errors';
+import { IllegalOperationError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { Translated } from '../../common/types/locale-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
-import { CollectionFilter } from '../../config/collection/collection-filter';
 import { ConfigService } from '../../config/config.service';
 import { Logger } from '../../config/logger/vendure-logger';
 import { CollectionTranslation } from '../../entity/collection/collection-translation.entity';
@@ -32,63 +28,78 @@ import { EventBus } from '../../event-bus/event-bus';
 import { CollectionModificationEvent } from '../../event-bus/events/collection-modification-event';
 import { ProductEvent } from '../../event-bus/events/product-event';
 import { ProductVariantEvent } from '../../event-bus/events/product-variant-event';
-import { Job } from '../../job-queue/job';
 import { JobQueue } from '../../job-queue/job-queue';
 import { JobQueueService } from '../../job-queue/job-queue.service';
-import { WorkerService } from '../../worker/worker.service';
+import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
+import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { SlugValidator } from '../helpers/slug-validator/slug-validator';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
-import { findOneInChannel } from '../helpers/utils/channel-aware-orm-utils';
-import { getEntityOrThrow } from '../helpers/utils/get-entity-or-throw';
 import { moveToIndex } from '../helpers/utils/move-to-index';
 import { translateDeep } from '../helpers/utils/translate-entity';
-import { ApplyCollectionFiltersJobData, ApplyCollectionFiltersMessage } from '../types/collection-messages';
+import { TransactionalConnection } from '../transaction/transactional-connection';
 
 import { AssetService } from './asset.service';
 import { ChannelService } from './channel.service';
 import { FacetValueService } from './facet-value.service';
 
+type ApplyCollectionFiltersJobData = { ctx: SerializedRequestContext; collectionIds: ID[] };
+
+@Injectable()
 export class CollectionService implements OnModuleInit {
     private rootCollection: Collection | undefined;
     private applyFiltersQueue: JobQueue<ApplyCollectionFiltersJobData>;
 
     constructor(
-        @InjectConnection() private connection: Connection,
+        private connection: TransactionalConnection,
         private channelService: ChannelService,
         private assetService: AssetService,
         private facetValueService: FacetValueService,
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
         private eventBus: EventBus,
-        private workerService: WorkerService,
         private jobQueueService: JobQueueService,
         private configService: ConfigService,
         private slugValidator: SlugValidator,
+        private configArgService: ConfigArgService,
+        private customFieldRelationService: CustomFieldRelationService,
     ) {}
 
-    onModuleInit() {
+    async onModuleInit() {
         const productEvents$ = this.eventBus.ofType(ProductEvent);
         const variantEvents$ = this.eventBus.ofType(ProductVariantEvent);
 
         merge(productEvents$, variantEvents$)
             .pipe(debounceTime(50))
-            .subscribe(async (event) => {
+            .subscribe(async event => {
                 const collections = await this.connection.getRepository(Collection).find();
-                this.applyFiltersQueue.add({
+                await this.applyFiltersQueue.add({
                     ctx: event.ctx.serialize(),
-                    collectionIds: collections.map((c) => c.id),
+                    collectionIds: collections.map(c => c.id),
                 });
             });
 
-        this.applyFiltersQueue = this.jobQueueService.createQueue({
+        this.applyFiltersQueue = await this.jobQueueService.createQueue({
             name: 'apply-collection-filters',
-            concurrency: 1,
-            process: async (job) => {
-                const collections = await this.connection
-                    .getRepository(Collection)
-                    .findByIds(job.data.collectionIds);
-                this.applyCollectionFilters(job.data.ctx, collections, job);
+            process: async job => {
+                const ctx = RequestContext.deserialize(job.data.ctx);
+
+                Logger.verbose(`Processing ${job.data.collectionIds.length} Collections`);
+                let completed = 0;
+                for (const collectionId of job.data.collectionIds) {
+                    const collection = await this.connection.getRepository(Collection).findOne(collectionId, {
+                        relations: ['productVariants'],
+                    });
+                    if (!collection) {
+                        Logger.warn(`Could not find Collection with id ${collectionId}, skipping`);
+                        continue;
+                    }
+                    const affectedVariantIds = await this.applyCollectionFiltersInternal(collection);
+                    job.setProgress(Math.ceil((++completed / job.data.collectionIds.length) * 100));
+                    this.eventBus.publish(
+                        new CollectionModificationEvent(ctx, collection, affectedVariantIds),
+                    );
+                }
             },
         });
     }
@@ -105,10 +116,11 @@ export class CollectionService implements OnModuleInit {
                 channelId: ctx.channelId,
                 where: { isRoot: false },
                 orderBy: { position: 'ASC' },
+                ctx,
             })
             .getManyAndCount()
             .then(async ([collections, totalItems]) => {
-                const items = collections.map((collection) =>
+                const items = collections.map(collection =>
                     translateDeep(collection, ctx.languageCode, ['parent']),
                 );
                 return {
@@ -120,9 +132,16 @@ export class CollectionService implements OnModuleInit {
 
     async findOne(ctx: RequestContext, collectionId: ID): Promise<Translated<Collection> | undefined> {
         const relations = ['featuredAsset', 'assets', 'channels', 'parent'];
-        const collection = await findOneInChannel(this.connection, Collection, collectionId, ctx.channelId, {
-            relations,
-        });
+        const collection = await this.connection.findOneInChannel(
+            ctx,
+            Collection,
+            collectionId,
+            ctx.channelId,
+            {
+                relations,
+                loadEagerRelations: true,
+            },
+        );
         if (!collection) {
             return;
         }
@@ -130,35 +149,36 @@ export class CollectionService implements OnModuleInit {
     }
 
     async findOneBySlug(ctx: RequestContext, slug: string): Promise<Translated<Collection> | undefined> {
-        const translation = await this.connection.getRepository(CollectionTranslation).findOne({
+        const translations = await this.connection.getRepository(ctx, CollectionTranslation).find({
             relations: ['base'],
-            where: {
-                languageCode: ctx.languageCode,
-                slug,
-            },
+            where: { slug },
         });
 
-        if (!translation) {
+        if (!translations?.length) {
             return;
         }
-        return this.findOne(ctx, translation.base.id);
+        const bestMatch =
+            translations.find(t => t.languageCode === ctx.languageCode) ??
+            translations.find(t => t.languageCode === ctx.channel.defaultLanguageCode) ??
+            translations[0];
+        return this.findOne(ctx, bestMatch.base.id);
     }
 
     getAvailableFilters(ctx: RequestContext): ConfigurableOperationDefinition[] {
-        return this.configService.catalogOptions.collectionFilters.map((x) =>
-            configurableDefToOperation(ctx, x),
-        );
+        return this.configService.catalogOptions.collectionFilters.map(f => f.toGraphQlType(ctx));
     }
 
     async getParent(ctx: RequestContext, collectionId: ID): Promise<Collection | undefined> {
         const parentIdSelect =
-            this.connection.options.type === 'postgres' ? '"child"."parentId"' : 'child.parentId';
+            this.connection.rawConnection.options.type === 'postgres'
+                ? '"child"."parentId"'
+                : 'child.parentId';
         const parent = await this.connection
-            .getRepository(Collection)
+            .getRepository(ctx, Collection)
             .createQueryBuilder('collection')
             .leftJoinAndSelect('collection.translations', 'translation')
             .where(
-                (qb) =>
+                qb =>
                     `collection.id = ${qb
                         .subQuery()
                         .select(parentIdSelect)
@@ -185,7 +205,7 @@ export class CollectionService implements OnModuleInit {
         }
         const pickProps = pick(['id', 'name', 'slug']);
         const ancestors = await this.getAncestors(collection.id, ctx);
-        return [pickProps(rootCollection), ...ancestors.map(pickProps), pickProps(collection)];
+        return [pickProps(rootCollection), ...ancestors.map(pickProps).reverse(), pickProps(collection)];
     }
 
     async getCollectionsByProductId(
@@ -194,7 +214,7 @@ export class CollectionService implements OnModuleInit {
         publicOnly: boolean,
     ): Promise<Array<Translated<Collection>>> {
         const qb = this.connection
-            .getRepository(Collection)
+            .getRepository(ctx, Collection)
             .createQueryBuilder('collection')
             .leftJoinAndSelect('collection.translations', 'translation')
             .leftJoin('collection.productVariants', 'variant')
@@ -207,7 +227,7 @@ export class CollectionService implements OnModuleInit {
         }
         const result = await qb.getMany();
 
-        return result.map((collection) => translateDeep(collection, ctx.languageCode));
+        return result.map(collection => translateDeep(collection, ctx.languageCode));
     }
 
     /**
@@ -221,7 +241,7 @@ export class CollectionService implements OnModuleInit {
     ): Promise<Array<Translated<Collection>>> {
         const getChildren = async (id: ID, _descendants: Collection[] = [], depth = 1) => {
             const children = await this.connection
-                .getRepository(Collection)
+                .getRepository(ctx, Collection)
                 .find({ where: { parent: { id } } });
             for (const child of children) {
                 _descendants.push(child);
@@ -233,7 +253,7 @@ export class CollectionService implements OnModuleInit {
         };
 
         const descendants = await getChildren(rootId);
-        return descendants.map((c) => translateDeep(c, ctx.languageCode));
+        return descendants.map(c => translateDeep(c, ctx.languageCode));
     }
 
     /**
@@ -248,7 +268,7 @@ export class CollectionService implements OnModuleInit {
     ): Promise<Array<Translated<Collection> | Collection>> {
         const getParent = async (id: ID, _ancestors: Collection[] = []): Promise<Collection[]> => {
             const parent = await this.connection
-                .getRepository(Collection)
+                .getRepository(ctx, Collection)
                 .createQueryBuilder()
                 .relation(Collection, 'parent')
                 .of(id)
@@ -265,19 +285,27 @@ export class CollectionService implements OnModuleInit {
 
         return this.connection
             .getRepository(Collection)
-            .findByIds(ancestors.map((c) => c.id))
-            .then((categories) => {
-                return ctx ? categories.map((c) => translateDeep(c, ctx.languageCode)) : categories;
+            .findByIds(ancestors.map(c => c.id))
+            .then(categories => {
+                const resultCategories: Array<Collection | Translated<Collection>> = [];
+                ancestors.forEach(a => {
+                    const category = categories.find(c => c.id === a.id);
+                    if (category) {
+                        resultCategories.push(ctx ? translateDeep(category, ctx.languageCode) : category);
+                    }
+                });
+                return resultCategories;
             });
     }
 
     async create(ctx: RequestContext, input: CreateCollectionInput): Promise<Translated<Collection>> {
-        await this.slugValidator.validateSlugs(input, CollectionTranslation);
+        await this.slugValidator.validateSlugs(ctx, input, CollectionTranslation);
         const collection = await this.translatableSaver.create({
+            ctx,
             input,
             entityType: Collection,
             translationType: CollectionTranslation,
-            beforeSave: async (coll) => {
+            beforeSave: async coll => {
                 await this.channelService.assignToCurrentChannel(coll, ctx);
                 const parent = await this.getParentCollection(ctx, input.parentId);
                 if (parent) {
@@ -285,11 +313,12 @@ export class CollectionService implements OnModuleInit {
                 }
                 coll.position = await this.getNextPositionInParent(ctx, input.parentId || undefined);
                 coll.filters = this.getCollectionFiltersFromInput(input);
-                await this.assetService.updateFeaturedAsset(coll, input);
+                await this.assetService.updateFeaturedAsset(ctx, coll, input);
             },
         });
-        await this.assetService.updateEntityAssets(collection, input);
-        this.applyFiltersQueue.add({
+        await this.assetService.updateEntityAssets(ctx, collection, input);
+        await this.customFieldRelationService.updateRelations(ctx, Collection, input, collection);
+        await this.applyFiltersQueue.add({
             ctx: ctx.serialize(),
             collectionIds: [collection.id],
         });
@@ -297,21 +326,23 @@ export class CollectionService implements OnModuleInit {
     }
 
     async update(ctx: RequestContext, input: UpdateCollectionInput): Promise<Translated<Collection>> {
-        await this.slugValidator.validateSlugs(input, CollectionTranslation);
+        await this.slugValidator.validateSlugs(ctx, input, CollectionTranslation);
         const collection = await this.translatableSaver.update({
+            ctx,
             input,
             entityType: Collection,
             translationType: CollectionTranslation,
-            beforeSave: async (coll) => {
+            beforeSave: async coll => {
                 if (input.filters) {
                     coll.filters = this.getCollectionFiltersFromInput(input);
                 }
-                await this.assetService.updateFeaturedAsset(coll, input);
-                await this.assetService.updateEntityAssets(coll, input);
+                await this.assetService.updateFeaturedAsset(ctx, coll, input);
+                await this.assetService.updateEntityAssets(ctx, coll, input);
             },
         });
+        await this.customFieldRelationService.updateRelations(ctx, Collection, input, collection);
         if (input.filters) {
-            this.applyFiltersQueue.add({
+            await this.applyFiltersQueue.add({
                 ctx: ctx.serialize(),
                 collectionIds: [collection.id],
             });
@@ -320,11 +351,13 @@ export class CollectionService implements OnModuleInit {
     }
 
     async delete(ctx: RequestContext, id: ID): Promise<DeletionResponse> {
-        const collection = await getEntityOrThrow(this.connection, Collection, id, ctx.channelId);
+        const collection = await this.connection.getEntityOrThrow(ctx, Collection, id, {
+            channelId: ctx.channelId,
+        });
         const descendants = await this.getDescendants(ctx, collection.id);
         for (const coll of [...descendants.reverse(), collection]) {
             const affectedVariantIds = await this.getCollectionProductVariantIds(coll);
-            await this.connection.getRepository(Collection).remove(coll);
+            await this.connection.getRepository(ctx, Collection).remove(coll);
             this.eventBus.publish(new CollectionModificationEvent(ctx, coll, affectedVariantIds));
         }
         return {
@@ -333,26 +366,21 @@ export class CollectionService implements OnModuleInit {
     }
 
     async move(ctx: RequestContext, input: MoveCollectionInput): Promise<Translated<Collection>> {
-        const target = await getEntityOrThrow(
-            this.connection,
-            Collection,
-            input.collectionId,
-            ctx.channelId,
-            {
-                relations: ['parent'],
-            },
-        );
+        const target = await this.connection.getEntityOrThrow(ctx, Collection, input.collectionId, {
+            channelId: ctx.channelId,
+            relations: ['parent'],
+        });
         const descendants = await this.getDescendants(ctx, input.collectionId);
 
         if (
             idsAreEqual(input.parentId, target.id) ||
-            descendants.some((cat) => idsAreEqual(input.parentId, cat.id))
+            descendants.some(cat => idsAreEqual(input.parentId, cat.id))
         ) {
             throw new IllegalOperationError(`error.cannot-move-collection-into-self`);
         }
 
         let siblings = await this.connection
-            .getRepository(Collection)
+            .getRepository(ctx, Collection)
             .createQueryBuilder('collection')
             .leftJoin('collection.parent', 'parent')
             .where('parent.id = :id', { id: input.parentId })
@@ -363,8 +391,8 @@ export class CollectionService implements OnModuleInit {
         }
         siblings = moveToIndex(input.index, target, siblings);
 
-        await this.connection.getRepository(Collection).save(siblings);
-        this.applyFiltersQueue.add({
+        await this.connection.getRepository(ctx, Collection).save(siblings);
+        await this.applyFiltersQueue.add({
             ctx: ctx.serialize(),
             collectionIds: [target.id],
         });
@@ -377,69 +405,86 @@ export class CollectionService implements OnModuleInit {
         const filters: ConfigurableOperation[] = [];
         if (input.filters) {
             for (const filter of input.filters) {
-                const match = this.getFilterByCode(filter.code);
-                const output = {
-                    code: filter.code,
-                    description: match.description,
-                    args: filter.arguments.map((inputArg, i) => {
-                        return {
-                            name: inputArg.name,
-                            type: match.args[inputArg.name].type,
-                            value: inputArg.value,
-                        };
-                    }),
-                };
-                filters.push(output);
+                filters.push(this.configArgService.parseInput('CollectionFilter', filter));
             }
         }
         return filters;
     }
 
     /**
-     * Applies the CollectionFilters and returns an array of all affected ProductVariant ids.
+     * Applies the CollectionFilters
      */
-    private async applyCollectionFilters(
-        ctx: SerializedRequestContext,
-        collections: Collection[],
-        job: Job<ApplyCollectionFiltersJobData>,
-    ): Promise<void> {
-        const collectionIds = collections.map((c) => c.id);
-        const requestContext = RequestContext.deserialize(ctx);
+    private async applyCollectionFiltersInternal(collection: Collection): Promise<ID[]> {
+        const ancestorFilters = await this.getAncestors(collection.id).then(ancestors =>
+            ancestors.reduce(
+                (filters, c) => [...filters, ...(c.filters || [])],
+                [] as ConfigurableOperation[],
+            ),
+        );
+        const preIds = await this.getCollectionProductVariantIds(collection);
+        collection.productVariants = await this.getFilteredProductVariants([
+            ...ancestorFilters,
+            ...(collection.filters || []),
+        ]);
+        const postIds = collection.productVariants.map(v => v.id);
+        try {
+            await this.connection
+                .getRepository(Collection)
+                // Only update the exact changed properties, to avoid VERY hard-to-debug
+                // non-deterministic race conditions e.g. when the "position" is changed
+                // by moving a Collection and then this save operation clobbers it back
+                // to the old value.
+                .save(pick(collection, ['id', 'productVariants']), {
+                    chunk: Math.ceil(collection.productVariants.length / 500),
+                    reload: false,
+                });
+        } catch (e) {
+            Logger.error(e);
+        }
+        const preIdsSet = new Set(preIds);
+        const postIdsSet = new Set(postIds);
+        const difference = [
+            ...preIds.filter(id => !postIdsSet.has(id)),
+            ...postIds.filter(id => !preIdsSet.has(id)),
+        ];
+        return difference;
+    }
 
-        this.workerService.send(new ApplyCollectionFiltersMessage({ collectionIds })).subscribe({
-            next: ({ total, completed, duration, collectionId, affectedVariantIds }) => {
-                const progress = Math.ceil((completed / total) * 100);
-                const collection = collections.find((c) => idsAreEqual(c.id, collectionId));
-                if (collection) {
-                    this.eventBus.publish(
-                        new CollectionModificationEvent(requestContext, collection, affectedVariantIds),
-                    );
+    /**
+     * Applies the CollectionFilters and returns an array of ProductVariant entities which match.
+     */
+    private async getFilteredProductVariants(filters: ConfigurableOperation[]): Promise<ProductVariant[]> {
+        if (filters.length === 0) {
+            return [];
+        }
+        const { collectionFilters } = this.configService.catalogOptions;
+        let qb = this.connection.getRepository(ProductVariant).createQueryBuilder('productVariant');
+
+        for (const filterType of collectionFilters) {
+            const filtersOfType = filters.filter(f => f.code === filterType.code);
+            if (filtersOfType.length) {
+                for (const filter of filtersOfType) {
+                    qb = filterType.apply(qb, filter.args);
                 }
-                job.setProgress(progress);
-            },
-            complete: () => {
-                job.complete();
-            },
-            error: (err) => {
-                Logger.error(err);
-                job.fail(err);
-            },
-        });
+            }
+        }
+
+        return qb.getMany();
     }
 
     /**
      * Returns the IDs of the Collection's ProductVariants.
      */
-    async getCollectionProductVariantIds(collection: Collection): Promise<ID[]> {
+    async getCollectionProductVariantIds(collection: Collection, ctx?: RequestContext): Promise<ID[]> {
         if (collection.productVariants) {
-            return collection.productVariants.map((v) => v.id);
+            return collection.productVariants.map(v => v.id);
         } else {
             const productVariants = await this.connection
-                .getRepository(ProductVariant)
+                .getRepository(ctx, ProductVariant)
                 .createQueryBuilder('variant')
                 .innerJoin('variant.collections', 'collection', 'collection.id = :id', { id: collection.id })
                 .getMany();
-            return productVariants.map((v) => v.id);
+            return productVariants.map(v => v.id);
         }
     }
 
@@ -449,7 +494,7 @@ export class CollectionService implements OnModuleInit {
     private async getNextPositionInParent(ctx: RequestContext, maybeParentId?: ID): Promise<number> {
         const parentId = maybeParentId || (await this.getRootCollection(ctx)).id;
         const result = await this.connection
-            .getRepository(Collection)
+            .getRepository(ctx, Collection)
             .createQueryBuilder('collection')
             .leftJoin('collection.parent', 'parent')
             .select('MAX(collection.position)', 'index')
@@ -464,7 +509,7 @@ export class CollectionService implements OnModuleInit {
     ): Promise<Collection | undefined> {
         if (parentId) {
             return this.connection
-                .getRepository(Collection)
+                .getRepository(ctx, Collection)
                 .createQueryBuilder('collection')
                 .leftJoin('collection.channels', 'channel')
                 .where('collection.id = :id', { id: parentId })
@@ -483,7 +528,7 @@ export class CollectionService implements OnModuleInit {
         }
 
         const existingRoot = await this.connection
-            .getRepository(Collection)
+            .getRepository(ctx, Collection)
             .createQueryBuilder('collection')
             .leftJoin('collection.channels', 'channel')
             .leftJoinAndSelect('collection.translations', 'translation')
@@ -496,7 +541,7 @@ export class CollectionService implements OnModuleInit {
             return this.rootCollection;
         }
 
-        const rootTranslation = await this.connection.getRepository(CollectionTranslation).save(
+        const rootTranslation = await this.connection.getRepository(ctx, CollectionTranslation).save(
             new CollectionTranslation({
                 languageCode: this.configService.defaultLanguageCode,
                 name: ROOT_COLLECTION_NAME,
@@ -513,16 +558,8 @@ export class CollectionService implements OnModuleInit {
             filters: [],
         });
 
-        await this.connection.getRepository(Collection).save(newRoot);
+        await this.connection.getRepository(ctx, Collection).save(newRoot);
         this.rootCollection = newRoot;
         return newRoot;
-    }
-
-    private getFilterByCode(code: string): CollectionFilter<any> {
-        const match = this.configService.catalogOptions.collectionFilters.find((a) => a.code === code);
-        if (!match) {
-            throw new UserInputError(`error.adjustment-operation-with-code-not-found`, { code });
-        }
-        return match;
     }
 }

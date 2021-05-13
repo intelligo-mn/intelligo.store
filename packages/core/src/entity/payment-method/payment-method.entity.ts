@@ -1,12 +1,10 @@
-import { ConfigArg } from '@vendure/common/lib/generated-types';
+import { ConfigArg, ConfigurableOperation } from '@vendure/common/lib/generated-types';
 import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
-import { UserInputError } from '../../common/error/errors';
-import { getConfig } from '../../config/config-helpers';
+import { ChannelAware } from '../../common/types/common-types';
 import { VendureEntity } from '../base/base.entity';
-import { Order } from '../order/order.entity';
-import { Payment, PaymentMetadata } from '../payment/payment.entity';
+import { Channel } from '../channel/channel.entity';
 
 /**
  * @description
@@ -16,14 +14,24 @@ import { Payment, PaymentMetadata } from '../payment/payment.entity';
  * @docsCategory entities
  */
 @Entity()
-export class PaymentMethod extends VendureEntity {
+export class PaymentMethod extends VendureEntity implements ChannelAware {
     constructor(input?: DeepPartial<PaymentMethod>) {
         super(input);
     }
 
-    @Column() code: string;
+    @Column({ default: '' }) name: string;
+
+    @Column({ default: '' }) code: string;
+
+    @Column({ default: '' }) description: string;
 
     @Column() enabled: boolean;
 
-    @Column('simple-json') configArgs: ConfigArg[];
+    @Column('simple-json', { nullable: true }) checker: ConfigurableOperation | null;
+
+    @Column('simple-json') handler: ConfigurableOperation;
+
+    @ManyToMany(type => Channel)
+    @JoinTable()
+    channels: Channel[];
 }

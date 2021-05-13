@@ -1,3 +1,5 @@
+import { CustomFieldConfig } from './generated-types';
+
 /**
  * Predicate with type guard, used to filter out null or undefined values
  * in a filter operation.
@@ -10,7 +12,7 @@ export function notNullOrUndefined<T>(val: T | undefined | null): val is T {
  * Used in exhaustiveness checks to assert a codepath should never be reached.
  */
 export function assertNever(value: never): never {
-    throw new Error(`Expected never, got ${typeof value}`);
+    throw new Error(`Expected never, got ${typeof value} (${JSON.stringify(value)})`);
 }
 
 /**
@@ -23,6 +25,24 @@ export function isObject(item: any): item is object {
 
 export function isClassInstance(item: any): boolean {
     return isObject(item) && item.constructor.name !== 'Object';
+}
+
+type NumericPropsOf<T> = {
+    [K in keyof T]: T[K] extends number ? K : never;
+}[keyof T];
+
+type OnlyNumerics<T> = {
+    [K in NumericPropsOf<T>]: T[K];
+};
+
+/**
+ * Adds up all the values of a given numeric property of a list of objects.
+ */
+export function summate<T extends OnlyNumerics<T>>(
+    items: T[] | undefined | null,
+    prop: keyof OnlyNumerics<T>,
+): number {
+    return (items || []).reduce((sum, i) => sum + i[prop], 0);
 }
 
 /**
@@ -59,5 +79,17 @@ export function generateAllCombinations<T>(
         }
         // tslint:enable:prefer-for-of
         return output;
+    }
+}
+
+/**
+ * @description
+ * Returns the input field name of a relation custom field.
+ */
+export function getGraphQlInputName(config: { name: string; type: string; list?: boolean }): string {
+    if (config.type === 'relation') {
+        return config.list === true ? `${config.name}Ids` : `${config.name}Id`;
+    } else {
+        return config.name;
     }
 }

@@ -10,15 +10,23 @@ import { Order } from '../../../entity/order/order.entity';
  * @docsCategory orders
  */
 export type OrderState =
+    | 'Created'
     | 'AddingItems'
     | 'ArrangingPayment'
     | 'PaymentAuthorized'
     | 'PaymentSettled'
-    | 'PartiallyFulfilled'
-    | 'Fulfilled'
+    | 'PartiallyShipped'
+    | 'Shipped'
+    | 'PartiallyDelivered'
+    | 'Delivered'
+    | 'Modifying'
+    | 'ArrangingAdditionalPayment'
     | 'Cancelled';
 
 export const orderStateTransitions: Transitions<OrderState> = {
+    Created: {
+        to: ['AddingItems'],
+    },
     AddingItems: {
         to: ['ArrangingPayment', 'Cancelled'],
     },
@@ -26,16 +34,50 @@ export const orderStateTransitions: Transitions<OrderState> = {
         to: ['PaymentAuthorized', 'PaymentSettled', 'AddingItems', 'Cancelled'],
     },
     PaymentAuthorized: {
-        to: ['PaymentSettled', 'Cancelled'],
+        to: ['PaymentSettled', 'Cancelled', 'Modifying', 'ArrangingAdditionalPayment'],
     },
     PaymentSettled: {
-        to: ['PartiallyFulfilled', 'Fulfilled', 'Cancelled'],
+        to: [
+            'PartiallyDelivered',
+            'Delivered',
+            'PartiallyShipped',
+            'Shipped',
+            'Cancelled',
+            'Modifying',
+            'ArrangingAdditionalPayment',
+        ],
     },
-    PartiallyFulfilled: {
-        to: ['Fulfilled', 'PartiallyFulfilled', 'Cancelled'],
+    PartiallyShipped: {
+        to: ['Shipped', 'PartiallyDelivered', 'Cancelled', 'Modifying'],
     },
-    Fulfilled: {
+    Shipped: {
+        to: ['PartiallyDelivered', 'Delivered', 'Cancelled', 'Modifying'],
+    },
+    PartiallyDelivered: {
+        to: ['Delivered', 'Cancelled', 'Modifying'],
+    },
+    Delivered: {
         to: ['Cancelled'],
+    },
+    Modifying: {
+        to: [
+            'PaymentAuthorized',
+            'PaymentSettled',
+            'PartiallyShipped',
+            'Shipped',
+            'PartiallyDelivered',
+            'ArrangingAdditionalPayment',
+        ],
+    },
+    ArrangingAdditionalPayment: {
+        to: [
+            'PaymentAuthorized',
+            'PaymentSettled',
+            'PartiallyShipped',
+            'Shipped',
+            'PartiallyDelivered',
+            'Cancelled',
+        ],
     },
     Cancelled: {
         to: [],

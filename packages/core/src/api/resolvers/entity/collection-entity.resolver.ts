@@ -5,6 +5,7 @@ import { PaginatedList } from '@vendure/common/lib/shared-types';
 import { ListQueryOptions } from '../../../common/types/common-types';
 import { Translated } from '../../../common/types/locale-types';
 import { Asset, Collection, Product, ProductVariant } from '../../../entity';
+import { LocaleStringHydrator } from '../../../service/helpers/locale-string-hydrator/locale-string-hydrator';
 import { AssetService } from '../../../service/services/asset.service';
 import { CollectionService } from '../../../service/services/collection.service';
 import { ProductVariantService } from '../../../service/services/product-variant.service';
@@ -19,7 +20,23 @@ export class CollectionEntityResolver {
         private productVariantService: ProductVariantService,
         private collectionService: CollectionService,
         private assetService: AssetService,
+        private localeStringHydrator: LocaleStringHydrator,
     ) {}
+
+    @ResolveField()
+    name(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<string> {
+        return this.localeStringHydrator.hydrateLocaleStringField(ctx, collection, 'name');
+    }
+
+    @ResolveField()
+    slug(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<string> {
+        return this.localeStringHydrator.hydrateLocaleStringField(ctx, collection, 'slug');
+    }
+
+    @ResolveField()
+    description(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<string> {
+        return this.localeStringHydrator.hydrateLocaleStringField(ctx, collection, 'description');
+    }
 
     @ResolveField()
     async productVariants(
@@ -73,11 +90,11 @@ export class CollectionEntityResolver {
         if (collection.featuredAsset) {
             return collection.featuredAsset;
         }
-        return this.assetService.getFeaturedAsset(collection);
+        return this.assetService.getFeaturedAsset(ctx, collection);
     }
 
     @ResolveField()
     async assets(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<Asset[] | undefined> {
-        return this.assetService.getEntityAssets(collection);
+        return this.assetService.getEntityAssets(ctx, collection);
     }
 }

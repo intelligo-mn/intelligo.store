@@ -2,14 +2,14 @@
     <vdr-ab-left> </vdr-ab-left>
     <vdr-ab-right>
         <vdr-action-bar-items locationId="customer-group-list"></vdr-action-bar-items>
-        <button class="btn btn-primary" *vdrIfPermissions="'CreateCustomer'" (click)="create()">
+        <button class="btn btn-primary" *vdrIfPermissions="'CreateCustomerGroup'" (click)="create()">
             <clr-icon shape="plus"></clr-icon>
             {{ 'customer.create-new-customer-group' | translate }}
         </button>
     </vdr-ab-right>
 </vdr-action-bar>
 <div class="group-wrapper">
-    <table class="table group-list" *ngIf="!(listIsEmpty$ | async); else emptyPlaceholder">
+    <table class="table group-list" [class.expanded]="activeGroup$ | async" *ngIf="!(listIsEmpty$ | async); else emptyPlaceholder">
         <tbody>
             <tr *ngFor="let group of groups$ | async" [class.active]="group.id === (activeGroup$ | async)?.id">
                 <td class="left align-middle"><vdr-entity-info [entity]="group"></vdr-entity-info></td>
@@ -41,7 +41,7 @@
                                 class="button"
                                 vdrDropdownItem
                                 (click)="delete(group.id)"
-                                [disabled]="!('DeleteSettings' | hasPermission)"
+                                [disabled]="!('DeleteCustomerGroup' | hasPermission)"
                             >
                                 <clr-icon shape="trash" class="is-danger"></clr-icon>
                                 {{ 'common.delete' | translate }}
@@ -83,7 +83,7 @@
                             class="delete-button"
                             (click)="removeFromGroup(activeGroup, selectedCustomerIds)"
                             vdrDropdownItem
-                            [disabled]="!('DeleteSettings' | hasPermission)"
+                            [disabled]="!('UpdateCustomerGroup' | hasPermission)"
                         >
                             <clr-icon shape="trash" class="is-danger"></clr-icon>
                             {{ 'customer.remove-from-group' | translate }}

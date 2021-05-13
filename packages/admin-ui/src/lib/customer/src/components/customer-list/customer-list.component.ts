@@ -10,17 +10,19 @@ import {
     NotificationService,
 } from '@vendure/admin-ui/core';
 import { SortOrder } from '@vendure/common/lib/generated-shop-types';
-import { EMPTY } from 'rxjs';
-import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
+import { EMPTY, merge } from 'rxjs';
+import { debounceTime, filter, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'vdr-customer-list',
     templateUrl: './customer-list.component.html',
     styleUrls: ['./customer-list.component.scss'],
 })
-export class CustomerListComponent extends BaseListComponent<GetCustomerList.Query, GetCustomerList.Items>
+export class CustomerListComponent
+    extends BaseListComponent<GetCustomerList.Query, GetCustomerList.Items>
     implements OnInit {
-    searchTerm = new FormControl('');
+    emailSearchTerm = new FormControl('');
+    lastNameSearchTerm = new FormControl('');
     constructor(
         private dataService: DataService,
         router: Router,
@@ -30,15 +32,18 @@ export class CustomerListComponent extends BaseListComponent<GetCustomerList.Que
     ) {
         super(router, route);
         super.setQueryFn(
-            (...args: any[]) => this.dataService.customer.getCustomerList(...args),
-            (data) => data.customers,
+            (...args: any[]) => this.dataService.customer.getCustomerList(...args).refetchOnChannelChange(),
+            data => data.customers,
             (skip, take) => ({
                 options: {
                     skip,
                     take,
                     filter: {
                         emailAddress: {
-                            contains: this.searchTerm.value,
+                            contains: this.emailSearchTerm.value,
+                        },
+                        lastName: {
+                            contains: this.lastNameSearchTerm.value,
                         },
                     },
                     sort: {
@@ -51,8 +56,12 @@ export class CustomerListComponent extends BaseListComponent<GetCustomerList.Que
 
     ngOnInit() {
         super.ngOnInit();
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(250), takeUntil(this.destroy$))
+        merge(this.emailSearchTerm.valueChanges, this.lastNameSearchTerm.valueChanges)
+            .pipe(
+                filter(value => 2 < value.length || value.length === 0),
+                debounceTime(250),
+                takeUntil(this.destroy$),
+            )
             .subscribe(() => this.refresh());
     }
 
@@ -66,7 +75,7 @@ export class CustomerListComponent extends BaseListComponent<GetCustomerList.Que
                     { type: 'danger', label: _('common.delete'), returnValue: true },
                 ],
             })
-            .pipe(switchMap((res) => (res ? this.dataService.customer.deleteCustomer(customer.id) : EMPTY)))
+            .pipe(switchMap(res => (res ? this.dataService.customer.deleteCustomer(customer.id) : EMPTY)))
             .subscribe(
                 () => {
                     this.notificationService.success(_('common.notify-delete-success'), {
@@ -74,7 +83,7 @@ export class CustomerListComponent extends BaseListComponent<GetCustomerList.Que
                     });
                     this.refresh();
                 },
-                (err) => {
+                err => {
                     this.notificationService.error(_('common.notify-delete-error'), {
                         entity: 'Customer',
                     });

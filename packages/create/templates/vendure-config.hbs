@@ -1,5 +1,5 @@
 {{#if isTs }}import{{ else }}const{{/if}} {
-    examplePaymentHandler,
+    dummyPaymentHandler,
     DefaultJobQueuePlugin,
     DefaultSearchPlugin,{{#if isTs}}
     VendureConfig,{{/if}}
@@ -36,7 +36,7 @@ const path = require('path');
         },// turn this off for production
         adminApiDebug: true, // turn this off for production
         shopApiPath: 'shop-api',
-        shopApiPlayground: { 
+        shopApiPlayground: {
             settings: {
                 'request.credentials': 'include',
             }{{#if isTs}} as any{{/if}},
@@ -44,7 +44,6 @@ const path = require('path');
         shopApiDebug: true,// turn this off for production
     },
     authOptions: {
-        sessionSecret: '{{ sessionSecret }}',
         superadminCredentials: {
             identifier: '{{ superadminIdentifier }}',
             password: '{{ superadminPassword }}',
@@ -72,21 +71,20 @@ const path = require('path');
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
     paymentOptions: {
-        paymentMethodHandlers: [examplePaymentHandler],
+        paymentMethodHandlers: [dummyPaymentHandler],
     },
     customFields: {},
     plugins: [
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
-            port: 3001,
         }),
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
         EmailPlugin.init({
             devMode: true,
             outputPath: path.join(__dirname, '../static/email/test-emails'),
-            mailboxPort: 3003,
+            route: 'mailbox',
             handlers: defaultEmailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
@@ -97,7 +95,10 @@ const path = require('path');
                 changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
             },
         }),
-        AdminUiPlugin.init({ port: 3002 }),
+        AdminUiPlugin.init({
+            route: 'admin',
+            port: 3002,
+        }),
     ],
 };
 {{#if isTs}}

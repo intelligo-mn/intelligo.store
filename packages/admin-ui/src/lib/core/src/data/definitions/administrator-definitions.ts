@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const ROLE_FRAGMENT = gql`
     fragment Role on Role {
@@ -48,6 +48,15 @@ export const GET_ADMINISTRATORS = gql`
     ${ADMINISTRATOR_FRAGMENT}
 `;
 
+export const GET_ACTIVE_ADMINISTRATOR = gql`
+    query GetActiveAdministrator {
+        activeAdministrator {
+            ...Administrator
+        }
+    }
+    ${ADMINISTRATOR_FRAGMENT}
+`;
+
 export const GET_ADMINISTRATOR = gql`
     query GetAdministrator($id: ID!) {
         administrator(id: $id) {
@@ -69,6 +78,15 @@ export const CREATE_ADMINISTRATOR = gql`
 export const UPDATE_ADMINISTRATOR = gql`
     mutation UpdateAdministrator($input: UpdateAdministratorInput!) {
         updateAdministrator(input: $input) {
+            ...Administrator
+        }
+    }
+    ${ADMINISTRATOR_FRAGMENT}
+`;
+
+export const UPDATE_ACTIVE_ADMINISTRATOR = gql`
+    mutation UpdateActiveAdministrator($input: UpdateActiveAdministratorInput!) {
+        updateActiveAdministrator(input: $input) {
             ...Administrator
         }
     }

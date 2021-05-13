@@ -8,15 +8,24 @@ import {
     EventEmitter,
     HostBinding,
     Input,
+    Optional,
     Output,
     ViewChild,
 } from '@angular/core';
-import { Asset, AssetPickerDialogComponent, AssetPreviewDialogComponent, ModalService } from '@vendure/admin-ui/core';
+import {
+    Asset,
+    AssetPickerDialogComponent,
+    AssetPreviewDialogComponent,
+    ModalService,
+    Permission,
+} from '@vendure/admin-ui/core';
 import { unique } from '@vendure/common/lib/unique';
 
+import { CollectionDetailComponent } from '../collection-detail/collection-detail.component';
+
 export interface AssetChange {
-    assetIds: string[];
-    featuredAssetId: string | undefined;
+    assets: Asset[];
+    featuredAsset: Asset | undefined;
 }
 
 /**
@@ -33,7 +42,10 @@ export interface AssetChange {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductAssetsComponent implements AfterViewInit {
-    @Input() assets: Asset[] = [];
+    @Input('assets') set assetsSetter(val: Asset[]) {
+        // create a new non-readonly array of assets
+        this.assets = val.slice();
+    }
     @Input() featuredAsset: Asset | undefined;
     @HostBinding('class.compact')
     @Input()
@@ -48,11 +60,24 @@ export class ProductAssetsComponent implements AfterViewInit {
     public sourceIndex: number;
     public dragIndex: number;
     public activeContainer;
+    public assets: Asset[] = [];
+
+    private readonly updateCollectionPermissions = [Permission.UpdateCatalog, Permission.UpdateCollection];
+    private readonly updateProductPermissions = [Permission.UpdateCatalog, Permission.UpdateProduct];
+
+    get updatePermissions(): Permission[] {
+        if (this.collectionDetailComponent) {
+            return this.updateCollectionPermissions;
+        } else {
+            return this.updateProductPermissions;
+        }
+    }
 
     constructor(
         private modalService: ModalService,
         private changeDetector: ChangeDetectorRef,
         private viewportRuler: ViewportRuler,
+        @Optional() private collectionDetailComponent?: CollectionDetailComponent,
     ) {}
 
     ngAfterViewInit() {
@@ -110,8 +135,8 @@ export class ProductAssetsComponent implements AfterViewInit {
 
     private emitChangeEvent(assets: Asset[], featuredAsset: Asset | undefined) {
         this.change.emit({
-            assetIds: assets.map(a => a.id),
-            featuredAssetId: featuredAsset && featuredAsset.id,
+            assets,
+            featuredAsset,
         });
     }
 
@@ -189,13 +214,13 @@ export class ProductAssetsComponent implements AfterViewInit {
             );
         }
 
-        this.placeholder.enter(
-            drag,
+        this.placeholder._dropListRef.enter(
+            drag._dragRef,
             drag.element.nativeElement.offsetLeft,
             drag.element.nativeElement.offsetTop,
         );
         return false;
-    }
+    };
 
     /** Determines the point of the page that was touched by the user. */
     getPointerPositionOnPage(event: MouseEvent | TouchEvent) {

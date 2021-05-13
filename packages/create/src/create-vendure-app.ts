@@ -38,12 +38,12 @@ program
     .version(packageJson.version)
     .arguments('<project-directory>')
     .usage(`${chalk.green('<project-directory>')} [options]`)
-    .action((name) => {
+    .action(name => {
         projectName = name;
     })
     .option(
         '--log-level <logLevel>',
-        "Log level, either 'silent', 'info', or 'verbose'",
+        `Log level, either 'silent', 'info', or 'verbose'`,
         /^(silent|info|verbose)$/i,
         'silent',
     )
@@ -51,7 +51,8 @@ program
     .option('--ci', 'Runs without prompts for use in CI scenarios')
     .parse(process.argv);
 
-createApp(projectName, program.useNpm, program.logLevel || 'silent', program.ci);
+const options = program.opts();
+createApp(projectName, options.useNpm, options.logLevel || 'silent', options.ci);
 
 async function createApp(
     name: string | undefined,
@@ -124,7 +125,7 @@ async function createApp(
         {
             title: 'Installing dependencies',
             task: (() => {
-                return new Observable((subscriber) => {
+                return new Observable(subscriber => {
                     subscriber.next('Creating package.json');
                     fs.writeFileSync(
                         path.join(root, 'package.json'),
@@ -145,14 +146,14 @@ async function createApp(
                             }
                         })
                         .then(() => subscriber.complete())
-                        .catch((err) => subscriber.error(err));
+                        .catch(err => subscriber.error(err));
                 });
             }) as any,
         },
         {
             title: 'Generating app scaffold',
-            task: (ctx) => {
-                return new Observable((subscriber) => {
+            task: ctx => {
+                return new Observable(subscriber => {
                     fs.ensureDirSync(path.join(root, 'src'));
                     const assetPath = (fileName: string) => path.join(__dirname, '../assets', fileName);
                     const srcPathScript = (fileName: string): string =>
@@ -187,13 +188,13 @@ async function createApp(
                             subscriber.next(`Copied email templates`);
                             subscriber.complete();
                         })
-                        .catch((err) => subscriber.error(err));
+                        .catch(err => subscriber.error(err));
                 });
             },
         },
         {
             title: 'Initializing server',
-            task: async (ctx) => {
+            task: async ctx => {
                 try {
                     if (usingTs) {
                         // register ts-node so that the config file can be loaded
@@ -202,7 +203,7 @@ async function createApp(
                     const { populate } = await import(
                         path.join(root, 'node_modules/@vendure/core/cli/populate')
                     );
-                    const { bootstrap, DefaultLogger, LogLevel } = await import(
+                    const { bootstrap, DefaultLogger, LogLevel, JobQueueService } = await import(
                         path.join(root, 'node_modules/@vendure/core/dist/index')
                     );
                     const { config } = await import(ctx.configFile);
@@ -216,9 +217,10 @@ async function createApp(
                             : logLevel === 'verbose'
                             ? LogLevel.Verbose
                             : LogLevel.Info;
+
                     const bootstrapFn = async () => {
                         await checkDbConnection(config.dbConnectionOptions, root);
-                        return bootstrap({
+                        const _app = await bootstrap({
                             ...config,
                             apiOptions: {
                                 ...(config.apiOptions ?? {}),
@@ -230,27 +232,30 @@ async function createApp(
                                 synchronize: true,
                             },
                             logger: new DefaultLogger({ level: vendureLogLevel }),
-                            workerOptions: {
-                                runInMainProcess: true,
-                            },
                             importExportOptions: {
                                 importAssetsDir: path.join(assetsDir, 'images'),
                             },
                         });
+                        await _app.get(JobQueueService).start();
+                        return _app;
                     };
-                    let app: any;
-                    if (populateProducts) {
-                        app = await populate(
-                            bootstrapFn,
-                            initialDataPath,
-                            path.join(assetsDir, 'products.csv'),
-                        );
-                    } else {
-                        app = await populate(bootstrapFn, initialDataPath);
-                    }
+
+                    const app = await populate(
+                        bootstrapFn,
+                        initialDataPath,
+                        populateProducts ? path.join(assetsDir, 'products.csv') : undefined,
+                    );
+
                     // Pause to ensure the worker jobs have time to complete.
-                    await new Promise((resolve) => setTimeout(resolve, isCi ? 20000 : 2000));
+                    if (isCi) {
+                        console.log('[CI] Pausing before close...');
+                    }
+                    await new Promise(resolve => setTimeout(resolve, isCi ? 30000 : 2000));
                     await app.close();
+                    if (isCi) {
+                        console.log('[CI] Pausing after close...');
+                        await new Promise(resolve => setTimeout(resolve, 10000));
+                    }
                 } catch (e) {
                     console.log(e);
                     throw e;

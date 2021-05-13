@@ -1,13 +1,14 @@
 import { omit } from '@vendure/common/lib/omit';
 import { pick } from '@vendure/common/lib/pick';
 import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
-import { createTestEnvironment } from '@vendure/testing';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
 import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
 
+import { PRODUCT_WITH_OPTIONS_FRAGMENT } from './graphql/fragments';
 import {
     AddOptionGroupToProduct,
     CreateProduct,
@@ -15,12 +16,17 @@ import {
     DeleteProduct,
     DeleteProductVariant,
     DeletionResult,
+    ErrorCode,
     GetAssetList,
     GetOptionGroup,
     GetProductList,
     GetProductSimple,
+    GetProductVariant,
+    GetProductVariantList,
     GetProductWithVariants,
     LanguageCode,
+    ProductVariantFragment,
+    ProductWithOptionsFragment,
     ProductWithVariants,
     RemoveOptionGroupFromProduct,
     SortOrder,
@@ -28,6 +34,7 @@ import {
     UpdateProductVariants,
 } from './graphql/generated-e2e-admin-types';
 import {
+    ADD_OPTION_GROUP_TO_PRODUCT,
     CREATE_PRODUCT,
     CREATE_PRODUCT_VARIANTS,
     DELETE_PRODUCT,
@@ -40,12 +47,15 @@ import {
     UPDATE_PRODUCT_VARIANTS,
 } from './graphql/shared-definitions';
 import { assertThrowsWithMessage } from './utils/assert-throws-with-message';
-import { sortById } from './utils/test-order-utils';
 
 // tslint:disable:no-non-null-assertion
 
 describe('Product resolver', () => {
     const { server, adminClient, shopClient } = createTestEnvironment(testConfig);
+
+    const removeOptionGuard: ErrorResultGuard<ProductWithOptionsFragment> = createErrorResultGuard(
+        input => !!input.optionGroups,
+    );
 
     beforeAll(async () => {
         await server.init({
@@ -242,6 +252,48 @@ describe('Product resolver', () => {
             expect(product.slug).toBe('curvy-monitor');
         });
 
+        // https://github.com/vendure-ecommerce/vendure/issues/820
+        it('by slug with multiple assets', async () => {
+            const { product: product1 } = await adminClient.query<
+                GetProductSimple.Query,
+                GetProductSimple.Variables
+            >(GET_PRODUCT_SIMPLE, { id: 'T_1' });
+            const result = await adminClient.query<UpdateProduct.Mutation, UpdateProduct.Variables>(
+                UPDATE_PRODUCT,
+                {
+                    input: {
+                        id: product1!.id,
+                        assetIds: ['T_1', 'T_2', 'T_3'],
+                    },
+                },
+            );
+            const { product } = await adminClient.query<
+                GetProductWithVariants.Query,
+                GetProductWithVariants.Variables
+            >(GET_PRODUCT_WITH_VARIANTS, { slug: product1!.slug });
+
+            if (!product) {
+                fail('Product not found');
+                return;
+            }
+            expect(product.assets.map(a => a.id)).toEqual(['T_1', 'T_2', 'T_3']);
+        });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/538
+        it('falls back to default language slug', async () => {
+            const { product } = await adminClient.query<GetProductSimple.Query, GetProductSimple.Variables>(
+                GET_PRODUCT_SIMPLE,
+                { slug: 'curvy-monitor' },
+                { languageCode: LanguageCode.de },
+            );
+
+            if (!product) {
+                fail('Product not found');
+                return;
+            }
+            expect(product.slug).toBe('curvy-monitor');
+        });
+
         it(
             'throws if neither id nor slug provided',
             assertThrowsWithMessage(async () => {
@@ -310,9 +362,388 @@ describe('Product resolver', () => {
 
             expect(result.product).toBeNull();
         });
+
+        it('returns null when slug not found', async () => {
+            const result = await adminClient.query<
+                GetProductWithVariants.Query,
+                GetProductWithVariants.Variables
+            >(GET_PRODUCT_WITH_VARIANTS, {
+                slug: 'bad_slug',
+            });
+
+            expect(result.product).toBeNull();
+        });
+
+        describe('product query with translations', () => {
+            let translatedProduct: ProductWithVariants.Fragment;
+            let en_translation: ProductWithVariants.Translations;
+            let de_translation: ProductWithVariants.Translations;
+
+            beforeAll(async () => {
+                const result = await adminClient.query<CreateProduct.Mutation, CreateProduct.Variables>(
+                    CREATE_PRODUCT,
+                    {
+                        input: {
+                            translations: [
+                                {
+                                    languageCode: LanguageCode.en,
+                                    name: 'en Pineapple',
+                                    slug: 'en-pineapple',
+                                    description: 'A delicious pineapple',
+                                },
+                                {
+                                    languageCode: LanguageCode.de,
+                                    name: 'de Ananas',
+                                    slug: 'de-ananas',
+                                    description: 'Eine köstliche Ananas',
+                                },
+                            ],
+                        },
+                    },
+                );
+                translatedProduct = result.createProduct;
+                en_translation = translatedProduct.translations.find(
+                    t => t.languageCode === LanguageCode.en,
+                )!;
+                de_translation = translatedProduct.translations.find(
+                    t => t.languageCode === LanguageCode.de,
+                )!;
+            });
+
+            it('en slug without translation arg', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: en_translation.slug });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(en_translation.slug);
+            });
+
+            it('de slug without translation arg', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: de_translation.slug });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(en_translation.slug);
+            });
+
+            it('en slug with translation en', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: en_translation.slug }, { languageCode: LanguageCode.en });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(en_translation.slug);
+            });
+
+            it('de slug with translation en', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: de_translation.slug }, { languageCode: LanguageCode.en });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(en_translation.slug);
+            });
+
+            it('en slug with translation de', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: en_translation.slug }, { languageCode: LanguageCode.de });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(de_translation.slug);
+            });
+
+            it('de slug with translation de', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: de_translation.slug }, { languageCode: LanguageCode.de });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(de_translation.slug);
+            });
+
+            it('de slug with translation ru', async () => {
+                const { product } = await adminClient.query<
+                    GetProductSimple.Query,
+                    GetProductSimple.Variables
+                >(GET_PRODUCT_SIMPLE, { slug: de_translation.slug }, { languageCode: LanguageCode.ru });
+
+                if (!product) {
+                    fail('Product not found');
+                    return;
+                }
+                expect(product.slug).toBe(en_translation.slug);
+            });
+        });
+    });
+
+    describe('productVariants list query', () => {
+        it('returns list', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    sort: {
+                        name: SortOrder.ASC,
+                    },
+                },
+            });
+
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_34',
+                    name: 'Bonsai Tree',
+                    price: 1999,
+                    priceWithTax: 2399,
+                    sku: 'B01MXFLUSV',
+                },
+                {
+                    id: 'T_24',
+                    name: 'Boxing Gloves',
+                    price: 3304,
+                    priceWithTax: 3965,
+                    sku: 'B000ZYLPPU',
+                },
+                {
+                    id: 'T_19',
+                    name: 'Camera Lens',
+                    price: 10400,
+                    priceWithTax: 12480,
+                    sku: 'B0012UUP02',
+                },
+            ]);
+        });
+
+        it('sort by price', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    sort: {
+                        price: SortOrder.ASC,
+                    },
+                },
+            });
+
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_23',
+                    name: 'Skipping Rope',
+                    price: 799,
+                    priceWithTax: 959,
+                    sku: 'B07CNGXVXT',
+                },
+                {
+                    id: 'T_20',
+                    name: 'Tripod',
+                    price: 1498,
+                    priceWithTax: 1798,
+                    sku: 'B00XI87KV8',
+                },
+                {
+                    id: 'T_32',
+                    name: 'Spiky Cactus',
+                    price: 1550,
+                    priceWithTax: 1860,
+                    sku: 'SC011001',
+                },
+            ]);
+        });
+
+        it('sort by priceWithTax', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    sort: {
+                        priceWithTax: SortOrder.ASC,
+                    },
+                },
+            });
+
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_23',
+                    name: 'Skipping Rope',
+                    price: 799,
+                    priceWithTax: 959,
+                    sku: 'B07CNGXVXT',
+                },
+                {
+                    id: 'T_20',
+                    name: 'Tripod',
+                    price: 1498,
+                    priceWithTax: 1798,
+                    sku: 'B00XI87KV8',
+                },
+                {
+                    id: 'T_32',
+                    name: 'Spiky Cactus',
+                    price: 1550,
+                    priceWithTax: 1860,
+                    sku: 'SC011001',
+                },
+            ]);
+        });
+
+        it('filter by price', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    filter: {
+                        price: {
+                            between: {
+                                start: 1400,
+                                end: 1500,
+                            },
+                        },
+                    },
+                },
+            });
+
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_20',
+                    name: 'Tripod',
+                    price: 1498,
+                    priceWithTax: 1798,
+                    sku: 'B00XI87KV8',
+                },
+            ]);
+        });
+
+        it('filter by priceWithTax', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    filter: {
+                        priceWithTax: {
+                            between: {
+                                start: 1400,
+                                end: 1500,
+                            },
+                        },
+                    },
+                },
+            });
+
+            // Note the results are incorrect. This is a design trade-off. See the
+            // commend on the ProductVariant.priceWithTax annotation for explanation.
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_20',
+                    name: 'Tripod',
+                    price: 1498,
+                    priceWithTax: 1798,
+                    sku: 'B00XI87KV8',
+                },
+            ]);
+        });
+
+        it('returns variants for particular product by id', async () => {
+            const { productVariants } = await adminClient.query<
+                GetProductVariantList.Query,
+                GetProductVariantList.Variables
+            >(GET_PRODUCT_VARIANT_LIST, {
+                options: {
+                    take: 3,
+                    sort: {
+                        price: SortOrder.ASC,
+                    },
+                },
+                productId: 'T_1',
+            });
+
+            expect(productVariants.items).toEqual([
+                {
+                    id: 'T_1',
+                    name: 'Laptop 13 inch 8GB',
+                    price: 129900,
+                    priceWithTax: 155880,
+                    sku: 'L2201308',
+                },
+                {
+                    id: 'T_2',
+                    name: 'Laptop 15 inch 8GB',
+                    price: 139900,
+                    priceWithTax: 167880,
+                    sku: 'L2201508',
+                },
+                {
+                    id: 'T_3',
+                    name: 'Laptop 13 inch 16GB',
+                    priceWithTax: 263880,
+                    price: 219900,
+                    sku: 'L2201316',
+                },
+            ]);
+        });
+    });
+
+    describe('productVariant query', () => {
+        it('by id', async () => {
+            const { productVariant } = await adminClient.query<
+                GetProductVariant.Query,
+                GetProductVariant.Variables
+            >(GET_PRODUCT_VARIANT, {
+                id: 'T_1',
+            });
+
+            expect(productVariant?.id).toBe('T_1');
+            expect(productVariant?.name).toBe('Laptop 13 inch 8GB');
+        });
+        it('returns null when id not found', async () => {
+            const { productVariant } = await adminClient.query<
+                GetProductVariant.Query,
+                GetProductVariant.Variables
+            >(GET_PRODUCT_VARIANT, {
+                id: 'T_999',
+            });
+
+            expect(productVariant).toBeNull();
+        });
     });
 
     describe('product mutation', () => {
+        let newTranslatedProduct: ProductWithVariants.Fragment;
         let newProduct: ProductWithVariants.Fragment;
         let newProductWithAssets: ProductWithVariants.Fragment;
 
@@ -343,7 +774,7 @@ describe('Product resolver', () => {
                 'A baked potato',
                 'Eine baked Erdapfel',
             ]);
-            newProduct = result.createProduct;
+            newTranslatedProduct = result.createProduct;
         });
 
         it('createProduct creates a new Product with assets', async () => {
@@ -373,6 +804,27 @@ describe('Product resolver', () => {
             expect(result.createProduct.assets.map(a => a.id)).toEqual(assetIds);
             expect(result.createProduct.featuredAsset!.id).toBe(featuredAssetId);
             newProductWithAssets = result.createProduct;
+        });
+
+        it('createProduct creates a disabled Product', async () => {
+            const result = await adminClient.query<CreateProduct.Mutation, CreateProduct.Variables>(
+                CREATE_PRODUCT,
+                {
+                    input: {
+                        enabled: false,
+                        translations: [
+                            {
+                                languageCode: LanguageCode.en,
+                                name: 'en Small apple',
+                                slug: 'en-small-apple',
+                                description: 'A small apple',
+                            },
+                        ],
+                    },
+                },
+            );
+            expect(result.createProduct.enabled).toBe(false);
+            newProduct = result.createProduct;
         });
 
         it('updateProduct updates a Product', async () => {
@@ -656,31 +1108,36 @@ describe('Product resolver', () => {
             });
             expect(addOptionGroupToProduct.optionGroups.length).toBe(1);
 
-            const result = await adminClient.query<
+            const { removeOptionGroupFromProduct } = await adminClient.query<
                 RemoveOptionGroupFromProduct.Mutation,
                 RemoveOptionGroupFromProduct.Variables
             >(REMOVE_OPTION_GROUP_FROM_PRODUCT, {
                 optionGroupId: 'T_1',
                 productId: newProductWithAssets.id,
             });
-            expect(result.removeOptionGroupFromProduct.id).toBe(newProductWithAssets.id);
-            expect(result.removeOptionGroupFromProduct.optionGroups.length).toBe(0);
+            removeOptionGuard.assertSuccess(removeOptionGroupFromProduct);
+
+            expect(removeOptionGroupFromProduct.id).toBe(newProductWithAssets.id);
+            expect(removeOptionGroupFromProduct.optionGroups.length).toBe(0);
         });
 
-        it(
-            'removeOptionGroupFromProduct errors if the optionGroup is being used by variants',
-            assertThrowsWithMessage(
-                () =>
-                    adminClient.query<
-                        RemoveOptionGroupFromProduct.Mutation,
-                        RemoveOptionGroupFromProduct.Variables
-                    >(REMOVE_OPTION_GROUP_FROM_PRODUCT, {
-                        optionGroupId: 'T_3',
-                        productId: 'T_2',
-                    }),
+        it('removeOptionGroupFromProduct return error result if the optionGroup is being used by variants', async () => {
+            const { removeOptionGroupFromProduct } = await adminClient.query<
+                RemoveOptionGroupFromProduct.Mutation,
+                RemoveOptionGroupFromProduct.Variables
+            >(REMOVE_OPTION_GROUP_FROM_PRODUCT, {
+                optionGroupId: 'T_3',
+                productId: 'T_2',
+            });
+            removeOptionGuard.assertErrorResult(removeOptionGroupFromProduct);
+
+            expect(removeOptionGroupFromProduct.message).toBe(
                 `Cannot remove ProductOptionGroup "curvy-monitor-monitor-size" as it is used by 2 ProductVariants`,
-            ),
-        );
+            );
+            expect(removeOptionGroupFromProduct.errorCode).toBe(ErrorCode.PRODUCT_OPTION_IN_USE_ERROR);
+            expect(removeOptionGroupFromProduct.optionGroupCode).toBe('curvy-monitor-monitor-size');
+            expect(removeOptionGroupFromProduct.productVariantCount).toBe(2);
+        });
 
         it(
             'removeOptionGroupFromProduct errors with an invalid productId',
@@ -844,7 +1301,7 @@ describe('Product resolver', () => {
                             ],
                         },
                     );
-                }, 'A ProductVariant already exists with the options:'),
+                }, 'A ProductVariant with the selected options already exists: Variant 1'),
             );
 
             it('updateProductVariants updates variants', async () => {
@@ -917,7 +1374,7 @@ describe('Product resolver', () => {
                 expect(updatedVariant.featuredAsset!.id).toBe('T_4');
             });
 
-            it('updateProductVariants updates taxCategory and priceBeforeTax', async () => {
+            it('updateProductVariants updates taxCategory and price', async () => {
                 const firstVariant = variants[0];
                 const result = await adminClient.query<
                     UpdateProductVariants.Mutation,
@@ -983,6 +1440,8 @@ describe('Product resolver', () => {
                 ),
             );
 
+            let deletedVariant: ProductVariantFragment;
+
             it('deleteProductVariant', async () => {
                 const result1 = await adminClient.query<
                     GetProductWithVariants.Query,
@@ -1009,6 +1468,30 @@ describe('Product resolver', () => {
                     id: newProduct.id,
                 });
                 expect(result2.product!.variants.map(v => v.id).sort()).toEqual(['T_36', 'T_37']);
+
+                deletedVariant = result1.product?.variants.find(v => v.id === 'T_35')!;
+            });
+
+            /** Testing https://github.com/vendure-ecommerce/vendure/issues/412 **/
+            it('createProductVariants ignores deleted variants when checking for existing combinations', async () => {
+                const { createProductVariants } = await adminClient.query<
+                    CreateProductVariants.Mutation,
+                    CreateProductVariants.Variables
+                >(CREATE_PRODUCT_VARIANTS, {
+                    input: [
+                        {
+                            productId: newProduct.id,
+                            sku: 'RE1',
+                            optionIds: [deletedVariant.options[0].id, deletedVariant.options[1].id],
+                            translations: [{ languageCode: LanguageCode.en, name: 'Re-created Variant' }],
+                        },
+                    ],
+                });
+
+                expect(createProductVariants.length).toBe(1);
+                expect(createProductVariants[0]!.options.map(o => o.code).sort()).toEqual(
+                    deletedVariant.options.map(o => o.code).sort(),
+                );
             });
         });
     });
@@ -1102,39 +1585,56 @@ describe('Product resolver', () => {
                 `No Product with the id '1' could be found`,
             ),
         );
+
+        // https://github.com/vendure-ecommerce/vendure/issues/558
+        it('slug of a deleted product can be re-used', async () => {
+            const result = await adminClient.query<CreateProduct.Mutation, CreateProduct.Variables>(
+                CREATE_PRODUCT,
+                {
+                    input: {
+                        translations: [
+                            {
+                                languageCode: LanguageCode.en,
+                                name: 'Product reusing deleted slug',
+                                slug: productToDelete.slug,
+                                description: 'stuff',
+                            },
+                        ],
+                    },
+                },
+            );
+            expect(result.createProduct.slug).toBe(productToDelete.slug);
+        });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/800
+        it('product can be fetched by slug of a deleted product', async () => {
+            const { product } = await adminClient.query<GetProductSimple.Query, GetProductSimple.Variables>(
+                GET_PRODUCT_SIMPLE,
+                { slug: productToDelete.slug },
+            );
+
+            if (!product) {
+                fail('Product not found');
+                return;
+            }
+            expect(product.slug).toBe(productToDelete.slug);
+        });
     });
 });
-
-export const ADD_OPTION_GROUP_TO_PRODUCT = gql`
-    mutation AddOptionGroupToProduct($productId: ID!, $optionGroupId: ID!) {
-        addOptionGroupToProduct(productId: $productId, optionGroupId: $optionGroupId) {
-            id
-            optionGroups {
-                id
-                code
-                options {
-                    id
-                    code
-                }
-            }
-        }
-    }
-`;
 
 export const REMOVE_OPTION_GROUP_FROM_PRODUCT = gql`
     mutation RemoveOptionGroupFromProduct($productId: ID!, $optionGroupId: ID!) {
         removeOptionGroupFromProduct(productId: $productId, optionGroupId: $optionGroupId) {
-            id
-            optionGroups {
-                id
-                code
-                options {
-                    id
-                    code
-                }
+            ...ProductWithOptions
+            ... on ProductOptionInUseError {
+                errorCode
+                message
+                optionGroupCode
+                productVariantCount
             }
         }
     }
+    ${PRODUCT_WITH_OPTIONS_FRAGMENT}
 `;
 
 export const GET_OPTION_GROUP = gql`
@@ -1146,6 +1646,30 @@ export const GET_OPTION_GROUP = gql`
                 id
                 code
             }
+        }
+    }
+`;
+
+export const GET_PRODUCT_VARIANT = gql`
+    query GetProductVariant($id: ID!) {
+        productVariant(id: $id) {
+            id
+            name
+        }
+    }
+`;
+
+export const GET_PRODUCT_VARIANT_LIST = gql`
+    query GetProductVariantLIST($options: ProductVariantListOptions, $productId: ID) {
+        productVariants(options: $options, productId: $productId) {
+            items {
+                id
+                name
+                sku
+                price
+                priceWithTax
+            }
+            totalItems
         }
     }
 `;

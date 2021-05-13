@@ -2,6 +2,7 @@ import { Adjustment, AdjustmentType, ConfigurableOperation } from '@vendure/comm
 import { DeepPartial } from '@vendure/common/lib/shared-types';
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
+import { RequestContext } from '../../api/common/request-context';
 import { AdjustmentSource } from '../../common/types/adjustment-source';
 import { ChannelAware, SoftDeletable } from '../../common/types/common-types';
 import { getConfig } from '../../config/config-helpers';
@@ -9,24 +10,34 @@ import {
     PromotionAction,
     PromotionItemAction,
     PromotionOrderAction,
+    PromotionShippingAction,
 } from '../../config/promotion/promotion-action';
-import { PromotionCondition } from '../../config/promotion/promotion-condition';
-import { PromotionUtils } from '../../config/promotion/promotion-condition';
+import { PromotionCondition, PromotionConditionState } from '../../config/promotion/promotion-condition';
 import { Channel } from '../channel/channel.entity';
 import { OrderItem } from '../order-item/order-item.entity';
 import { OrderLine } from '../order-line/order-line.entity';
 import { Order } from '../order/order.entity';
+import { ShippingLine } from '../shipping-line/shipping-line.entity';
 
 export interface ApplyOrderItemActionArgs {
     orderItem: OrderItem;
     orderLine: OrderLine;
-    utils: PromotionUtils;
 }
 
 export interface ApplyOrderActionArgs {
     order: Order;
-    utils: PromotionUtils;
 }
+
+export interface ApplyShippingActionArgs {
+    shippingLine: ShippingLine;
+    order: Order;
+}
+
+export interface PromotionState {
+    [code: string]: PromotionConditionState;
+}
+
+export type PromotionTestResult = boolean | PromotionState;
 
 /**
  * @description
@@ -42,7 +53,9 @@ export interface ApplyOrderActionArgs {
 export class Promotion extends AdjustmentSource implements ChannelAware, SoftDeletable {
     type = AdjustmentType.PROMOTION;
     private readonly allConditions: { [code: string]: PromotionCondition } = {};
-    private readonly allActions: { [code: string]: PromotionItemAction | PromotionOrderAction } = {};
+    private readonly allActions: {
+        [code: string]: PromotionItemAction | PromotionOrderAction | PromotionShippingAction;
+    } = {};
 
     constructor(
         input?: DeepPartial<Promotion> & {
@@ -96,28 +109,41 @@ export class Promotion extends AdjustmentSource implements ChannelAware, SoftDel
      *
      * An example illustrating the need for a priority is this:
      *
+     *
      * Consider 2 Promotions, 1) buy 1 get one free and 2) 10% off when order total is over $50.
      * If Promotion 2 is evaluated prior to Promotion 1, then it can trigger the 10% discount even
      * if the subsequent application of Promotion 1 brings the order total down to way below $50.
      */
     @Column() priorityScore: number;
 
-    async apply(args: ApplyOrderActionArgs | ApplyOrderItemActionArgs): Promise<Adjustment | undefined> {
+    async apply(
+        ctx: RequestContext,
+        args: ApplyOrderActionArgs | ApplyOrderItemActionArgs | ApplyShippingActionArgs,
+        state?: PromotionState,
+    ): Promise<Adjustment | undefined> {
         let amount = 0;
+        state = state || {};
 
         for (const action of this.actions) {
             const promotionAction = this.allActions[action.code];
-            if (this.isItemAction(promotionAction)) {
+            if (promotionAction instanceof PromotionItemAction) {
                 if (this.isOrderItemArg(args)) {
-                    const { orderItem, orderLine, utils } = args;
+                    const { orderItem, orderLine } = args;
                     amount += Math.round(
-                        await promotionAction.execute(orderItem, orderLine, action.args, utils),
+                        await promotionAction.execute(ctx, orderItem, orderLine, action.args, state),
                     );
                 }
-            } else {
-                if (!this.isOrderItemArg(args)) {
-                    const { order, utils } = args;
-                    amount += Math.round(await promotionAction.execute(order, action.args, utils));
+            } else if (promotionAction instanceof PromotionOrderAction) {
+                if (this.isOrderArg(args)) {
+                    const { order } = args;
+                    amount += Math.round(await promotionAction.execute(ctx, order, action.args, state));
+                }
+            } else if (promotionAction instanceof PromotionShippingAction) {
+                if (this.isShippingArg(args)) {
+                    const { shippingLine, order } = args;
+                    amount += Math.round(
+                        await promotionAction.execute(ctx, shippingLine, order, action.args, state),
+                    );
                 }
             }
         }
@@ -131,7 +157,7 @@ export class Promotion extends AdjustmentSource implements ChannelAware, SoftDel
         }
     }
 
-    async test(order: Order, utils: PromotionUtils): Promise<boolean> {
+    async test(ctx: RequestContext, order: Order): Promise<PromotionTestResult> {
         if (this.endsAt && this.endsAt < new Date()) {
             return false;
         }
@@ -141,22 +167,43 @@ export class Promotion extends AdjustmentSource implements ChannelAware, SoftDel
         if (this.couponCode && !order.couponCodes.includes(this.couponCode)) {
             return false;
         }
+        const promotionState: PromotionState = {};
         for (const condition of this.conditions) {
             const promotionCondition = this.allConditions[condition.code];
-            if (!promotionCondition || !(await promotionCondition.check(order, condition.args, utils))) {
+            if (!promotionCondition) {
                 return false;
             }
+            const applicableOrConditionState = await promotionCondition.check(ctx, order, condition.args);
+            if (!applicableOrConditionState) {
+                return false;
+            }
+            if (typeof applicableOrConditionState === 'object') {
+                promotionState[condition.code] = applicableOrConditionState;
+            }
         }
-        return true;
+        return promotionState;
+    }
+    private isShippingAction(
+        value: PromotionItemAction | PromotionOrderAction | PromotionShippingAction,
+    ): value is PromotionItemAction {
+        return value instanceof PromotionShippingAction;
     }
 
-    private isItemAction(value: PromotionItemAction | PromotionOrderAction): value is PromotionItemAction {
-        return value instanceof PromotionItemAction;
+    private isOrderArg(
+        value: ApplyOrderItemActionArgs | ApplyOrderActionArgs | ApplyShippingActionArgs,
+    ): value is ApplyOrderActionArgs {
+        return !this.isOrderItemArg(value) && !this.isShippingArg(value);
     }
 
     private isOrderItemArg(
-        value: ApplyOrderItemActionArgs | ApplyOrderActionArgs,
+        value: ApplyOrderItemActionArgs | ApplyOrderActionArgs | ApplyShippingActionArgs,
     ): value is ApplyOrderItemActionArgs {
         return value.hasOwnProperty('orderItem');
+    }
+
+    private isShippingArg(
+        value: ApplyOrderItemActionArgs | ApplyOrderActionArgs | PromotionShippingAction,
+    ): value is ApplyShippingActionArgs {
+        return value.hasOwnProperty('shippingLine');
     }
 }

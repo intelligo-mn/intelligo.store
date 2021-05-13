@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 import { CONFIGURABLE_OPERATION_DEF_FRAGMENT, CONFIGURABLE_OPERATION_FRAGMENT } from './shared-definitions';
 
@@ -8,12 +8,20 @@ export const SHIPPING_METHOD_FRAGMENT = gql`
         createdAt
         updatedAt
         code
+        name
         description
+        fulfillmentHandlerCode
         checker {
             ...ConfigurableOperation
         }
         calculator {
             ...ConfigurableOperation
+        }
+        translations {
+            id
+            languageCode
+            name
+            description
         }
     }
     ${CONFIGURABLE_OPERATION_FRAGMENT}
@@ -46,6 +54,9 @@ export const GET_SHIPPING_METHOD_OPERATIONS = gql`
             ...ConfigurableOperationDef
         }
         shippingCalculators {
+            ...ConfigurableOperationDef
+        }
+        fulfillmentHandlers {
             ...ConfigurableOperationDef
         }
     }
@@ -96,6 +107,8 @@ export const TEST_ELIGIBLE_SHIPPING_METHODS = gql`
     query TestEligibleShippingMethods($input: TestEligibleShippingMethodsInput!) {
         testEligibleShippingMethods(input: $input) {
             id
+            name
+            code
             description
             price
             priceWithTax

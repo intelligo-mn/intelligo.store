@@ -1,6 +1,7 @@
+import { OnApplicationBootstrap } from '@nestjs/common';
 import { SearchReindexResponse } from '@vendure/common/lib/generated-types';
 import { ID } from '@vendure/common/lib/shared-types';
-import { buffer, debounceTime, filter, map } from 'rxjs/operators';
+import { buffer, debounceTime, delay, filter, map } from 'rxjs/operators';
 
 import { idsAreEqual } from '../../common/utils';
 import { EventBus } from '../../event-bus/event-bus';
@@ -8,10 +9,11 @@ import { AssetEvent } from '../../event-bus/events/asset-event';
 import { CollectionModificationEvent } from '../../event-bus/events/collection-modification-event';
 import { ProductChannelEvent } from '../../event-bus/events/product-channel-event';
 import { ProductEvent } from '../../event-bus/events/product-event';
+import { ProductVariantChannelEvent } from '../../event-bus/events/product-variant-channel-event';
 import { ProductVariantEvent } from '../../event-bus/events/product-variant-event';
 import { TaxRateModificationEvent } from '../../event-bus/events/tax-rate-modification-event';
 import { PluginCommonModule } from '../plugin-common.module';
-import { OnVendureBootstrap, VendurePlugin } from '../vendure-plugin';
+import { VendurePlugin } from '../vendure-plugin';
 
 import { AdminFulltextSearchResolver, ShopFulltextSearchResolver } from './fulltext-search.resolver';
 import { FulltextSearchService } from './fulltext-search.service';
@@ -55,20 +57,17 @@ export interface DefaultSearchReindexResponse extends SearchReindexResponse {
  */
 @VendurePlugin({
     imports: [PluginCommonModule],
-    providers: [FulltextSearchService, SearchIndexService],
+    providers: [FulltextSearchService, SearchIndexService, IndexerController],
     adminApiExtensions: { resolvers: [AdminFulltextSearchResolver] },
     shopApiExtensions: { resolvers: [ShopFulltextSearchResolver] },
     entities: [SearchIndexItem],
-    workers: [IndexerController],
 })
-export class DefaultSearchPlugin implements OnVendureBootstrap {
+export class DefaultSearchPlugin implements OnApplicationBootstrap {
     /** @internal */
     constructor(private eventBus: EventBus, private searchIndexService: SearchIndexService) {}
 
     /** @internal */
-    async onVendureBootstrap() {
-        this.searchIndexService.initJobQueue();
-
+    async onApplicationBootstrap() {
         this.eventBus.ofType(ProductEvent).subscribe(event => {
             if (event.type === 'deleted') {
                 return this.searchIndexService.deleteProduct(event.ctx, event.product);
@@ -106,6 +105,21 @@ export class DefaultSearchPlugin implements OnVendureBootstrap {
                 );
             }
         });
+        this.eventBus.ofType(ProductVariantChannelEvent).subscribe(event => {
+            if (event.type === 'assigned') {
+                return this.searchIndexService.assignVariantToChannel(
+                    event.ctx,
+                    event.productVariant.id,
+                    event.channelId,
+                );
+            } else {
+                return this.searchIndexService.removeVariantFromChannel(
+                    event.ctx,
+                    event.productVariant.id,
+                    event.channelId,
+                );
+            }
+        });
 
         const collectionModification$ = this.eventBus.ofType(CollectionModificationEvent);
         const closingNotifier$ = collectionModification$.pipe(debounceTime(50));
@@ -123,11 +137,17 @@ export class DefaultSearchPlugin implements OnVendureBootstrap {
                 return this.searchIndexService.updateVariantsById(events.ctx, events.ids);
             });
 
-        this.eventBus.ofType(TaxRateModificationEvent).subscribe(event => {
-            const defaultTaxZone = event.ctx.channel.defaultTaxZone;
-            if (defaultTaxZone && idsAreEqual(defaultTaxZone.id, event.taxRate.zone.id)) {
-                return this.searchIndexService.reindex(event.ctx);
-            }
-        });
+        this.eventBus
+            .ofType(TaxRateModificationEvent)
+            // The delay prevents a "TransactionNotStartedError" (in SQLite/sqljs) by allowing any existing
+            // transactions to complete before a new job is added to the queue (assuming the SQL-based
+            // JobQueueStrategy).
+            .pipe(delay(1))
+            .subscribe(event => {
+                const defaultTaxZone = event.ctx.channel.defaultTaxZone;
+                if (defaultTaxZone && idsAreEqual(defaultTaxZone.id, event.taxRate.zone.id)) {
+                    return this.searchIndexService.reindex(event.ctx);
+                }
+            });
     }
 }

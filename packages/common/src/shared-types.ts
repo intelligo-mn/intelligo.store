@@ -1,6 +1,6 @@
 // tslint:disable:no-shadowed-variable
 // prettier-ignore
-import { LanguageCode } from './generated-types';
+import { LanguageCode, LocalizedString } from './generated-types';
 
 /**
  * A recursive implementation of the Partial<T> type.
@@ -86,13 +86,21 @@ export type ID = string | number;
  * float        | double precision                      | Float
  * boolean      | tinyint (m), bool (p), boolean (s)    | Boolean
  * datetime     | datetime (m,s), timestamp (p)         | DateTime
+ * relation     | many-to-one / many-to-many relation   | As specified in config
  *
  * Additionally, the CustomFieldType also dictates which [configuration options](/docs/typescript-api/custom-fields/#configuration-options)
  * are available for that custom field.
  *
  * @docsCategory custom-fields
  */
-export type CustomFieldType = 'string' | 'localeString' | 'int' | 'float' | 'boolean' | 'datetime';
+export type CustomFieldType =
+    | 'string'
+    | 'localeString'
+    | 'int'
+    | 'float'
+    | 'boolean'
+    | 'datetime'
+    | 'relation';
 
 /**
  * @description
@@ -104,12 +112,53 @@ export type CustomFieldType = 'string' | 'localeString' | 'int' | 'float' | 'boo
  * 1. How the argument form field is rendered in the admin-ui
  * 2. The JavaScript type into which the value is coerced before being passed to the business logic.
  *
- * @docsCategory common
- * @docsPage Configurable Operations
+ * @docsCategory ConfigurableOperationDef
  */
-export type ConfigArgType = 'string' | 'int' | 'float' | 'boolean' | 'datetime' | 'facetValueIds';
+export type ConfigArgType = 'string' | 'int' | 'float' | 'boolean' | 'datetime' | 'ID';
 
-export type ConfigArgSubset<T extends ConfigArgType> = T;
+/**
+ * @description
+ * The ids of the default form input components that ship with the
+ * Admin UI.
+ *
+ * @docsCategory ConfigurableOperationDef
+ */
+export type DefaultFormComponentId =
+    | 'boolean-form-input'
+    | 'currency-form-input'
+    | 'date-form-input'
+    | 'facet-value-form-input'
+    | 'number-form-input'
+    | 'select-form-input'
+    | 'product-selector-form-input'
+    | 'customer-group-form-input'
+    | 'text-form-input'
+    | 'password-form-input'
+    | 'relation-form-input';
+
+/**
+ * @description
+ * Used to defined the expected arguments for a given default form input component.
+ *
+ * @docsCategory ConfigurableOperationDef
+ */
+type DefaultFormConfigHash = {
+    'date-form-input': { min?: string; max?: string; yearRange?: number };
+    'number-form-input': { min?: number; max?: number; step?: number; prefix?: string; suffix?: string };
+    'select-form-input': {
+        options?: Array<{ value: string; label?: Array<Omit<LocalizedString, '__typename'>> }>;
+    };
+    'boolean-form-input': {};
+    'currency-form-input': {};
+    'facet-value-form-input': {};
+    'product-selector-form-input': {};
+    'customer-group-form-input': {};
+    'text-form-input': {};
+    'password-form-input': {};
+    'relation-form-input': {};
+};
+
+export type DefaultFormComponentConfig<T extends DefaultFormComponentId> = DefaultFormConfigHash[T];
 
 export type CustomFieldsObject = { [key: string]: any };
 
@@ -188,6 +237,25 @@ export interface AdminUiConfig {
      * screen.
      */
     loginUrl?: string;
+    /**
+     * @description
+     * The custom brand name.
+     */
+    brand?: string;
+    /**
+     * @description
+     * Option to hide vendure branding.
+     *
+     * @default false
+     */
+    hideVendureBranding?: boolean;
+    /**
+     * @description
+     * Option to hide version.
+     *
+     * @default false
+     */
+    hideVersion?: boolean;
 }
 
 /**
@@ -204,6 +272,13 @@ export interface AdminUiAppConfig {
      * index.html, the compiled js bundles etc.
      */
     path: string;
+    /**
+     * @description
+     * Specifies the url route to the Admin UI app.
+     *
+     * @default 'admin'
+     */
+    route?: string;
     /**
      * @description
      * The function which will be invoked to start the app compilation process.
@@ -228,6 +303,13 @@ export interface AdminUiAppDevModeConfig {
      * The port on which the dev server is listening. Overrides the value set by `AdminUiOptions.port`.
      */
     port: number;
+    /**
+     * @description
+     * Specifies the url route to the Admin UI app.
+     *
+     * @default 'admin'
+     */
+    route?: string;
     /**
      * @description
      * The function which will be invoked to start the app compilation process.

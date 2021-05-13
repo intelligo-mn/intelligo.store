@@ -1,11 +1,11 @@
 import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { CustomFields, mergeConfig } from '@vendure/core';
+import { CustomFields, mergeConfig, TransactionalConnection } from '@vendure/core';
 import { createTestEnvironment } from '@vendure/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
-import { TEST_SETUP_TIMEOUT_MS, testConfig } from '../../../e2e-common/test-config';
+import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
 
 import { assertThrowsWithMessage } from './utils/assert-throws-with-message';
 import { fixPostgresTimezone } from './utils/fix-pg-timezone';
@@ -13,6 +13,8 @@ import { fixPostgresTimezone } from './utils/fix-pg-timezone';
 fixPostgresTimezone();
 
 // tslint:disable:no-non-null-assertion
+
+const validateInjectorSpy = jest.fn();
 
 const customConfig = mergeConfig(testConfig, {
     dbConnectionOptions: {
@@ -66,6 +68,22 @@ const customConfig = mergeConfig(testConfig, {
                 },
             },
             {
+                name: 'validateFn3',
+                type: 'string',
+                validate: (value, injector) => {
+                    const connection = injector.get(TransactionalConnection);
+                    validateInjectorSpy(connection);
+                },
+            },
+            {
+                name: 'validateFn4',
+                type: 'string',
+                validate: async (value, injector) => {
+                    await new Promise(resolve => setTimeout(resolve, 1));
+                    return `async error`;
+                },
+            },
+            {
                 name: 'stringWithOptions',
                 type: 'string',
                 options: [{ value: 'small' }, { value: 'medium' }, { value: 'large' }],
@@ -88,6 +106,11 @@ const customConfig = mergeConfig(testConfig, {
                 length: 10000,
             },
             {
+                name: 'longLocaleString',
+                type: 'localeString',
+                length: 10000,
+            },
+            {
                 name: 'readonlyString',
                 type: 'string',
                 readonly: true,
@@ -96,6 +119,32 @@ const customConfig = mergeConfig(testConfig, {
                 name: 'internalString',
                 type: 'string',
                 internal: true,
+            },
+            {
+                name: 'stringList',
+                type: 'string',
+                list: true,
+            },
+            {
+                name: 'localeStringList',
+                type: 'localeString',
+                list: true,
+            },
+            {
+                name: 'stringListWithDefault',
+                type: 'string',
+                list: true,
+                defaultValue: ['cat'],
+            },
+            {
+                name: 'intListWithValidation',
+                type: 'int',
+                list: true,
+                validate: value => {
+                    if (!value.includes(42)) {
+                        return `Must include the number 42!`;
+                    }
+                },
             },
         ],
         Facet: [
@@ -140,6 +189,7 @@ describe('Custom fields', () => {
                                 ... on CustomField {
                                     name
                                     type
+                                    list
                                 }
                             }
                         }
@@ -150,26 +200,33 @@ describe('Custom fields', () => {
 
         expect(globalSettings.serverConfig.customFieldConfig).toEqual({
             Product: [
-                { name: 'nullable', type: 'string' },
-                { name: 'notNullable', type: 'string' },
-                { name: 'stringWithDefault', type: 'string' },
-                { name: 'localeStringWithDefault', type: 'localeString' },
-                { name: 'intWithDefault', type: 'int' },
-                { name: 'floatWithDefault', type: 'float' },
-                { name: 'booleanWithDefault', type: 'boolean' },
-                { name: 'dateTimeWithDefault', type: 'datetime' },
-                { name: 'validateString', type: 'string' },
-                { name: 'validateLocaleString', type: 'localeString' },
-                { name: 'validateInt', type: 'int' },
-                { name: 'validateFloat', type: 'float' },
-                { name: 'validateDateTime', type: 'datetime' },
-                { name: 'validateFn1', type: 'string' },
-                { name: 'validateFn2', type: 'string' },
-                { name: 'stringWithOptions', type: 'string' },
-                { name: 'nonPublic', type: 'string' },
-                { name: 'public', type: 'string' },
-                { name: 'longString', type: 'string' },
-                { name: 'readonlyString', type: 'string' },
+                { name: 'nullable', type: 'string', list: false },
+                { name: 'notNullable', type: 'string', list: false },
+                { name: 'stringWithDefault', type: 'string', list: false },
+                { name: 'localeStringWithDefault', type: 'localeString', list: false },
+                { name: 'intWithDefault', type: 'int', list: false },
+                { name: 'floatWithDefault', type: 'float', list: false },
+                { name: 'booleanWithDefault', type: 'boolean', list: false },
+                { name: 'dateTimeWithDefault', type: 'datetime', list: false },
+                { name: 'validateString', type: 'string', list: false },
+                { name: 'validateLocaleString', type: 'localeString', list: false },
+                { name: 'validateInt', type: 'int', list: false },
+                { name: 'validateFloat', type: 'float', list: false },
+                { name: 'validateDateTime', type: 'datetime', list: false },
+                { name: 'validateFn1', type: 'string', list: false },
+                { name: 'validateFn2', type: 'string', list: false },
+                { name: 'validateFn3', type: 'string', list: false },
+                { name: 'validateFn4', type: 'string', list: false },
+                { name: 'stringWithOptions', type: 'string', list: false },
+                { name: 'nonPublic', type: 'string', list: false },
+                { name: 'public', type: 'string', list: false },
+                { name: 'longString', type: 'string', list: false },
+                { name: 'longLocaleString', type: 'localeString', list: false },
+                { name: 'readonlyString', type: 'string', list: false },
+                { name: 'stringList', type: 'string', list: true },
+                { name: 'localeStringList', type: 'localeString', list: true },
+                { name: 'stringListWithDefault', type: 'string', list: true },
+                { name: 'intListWithValidation', type: 'int', list: true },
                 // The internal type should not be exposed at all
                 // { name: 'internalString', type: 'string' },
             ],
@@ -233,22 +290,28 @@ describe('Custom fields', () => {
                         floatWithDefault
                         booleanWithDefault
                         dateTimeWithDefault
+                        stringListWithDefault
                     }
                 }
             }
         `);
 
+        const customFields = {
+            stringWithDefault: 'hello',
+            localeStringWithDefault: 'hola',
+            intWithDefault: 5,
+            floatWithDefault: 5.5,
+            booleanWithDefault: true,
+            dateTimeWithDefault: '2019-04-30T12:59:16.415Z',
+            // MySQL does not support defaults on TEXT fields, which is what "simple-json" uses
+            // internally. See https://stackoverflow.com/q/3466872/772859
+            stringListWithDefault: testConfig.dbConnectionOptions.type === 'mysql' ? null : ['cat'],
+        };
+
         expect(product).toEqual({
             id: 'T_1',
             name: 'Laptop',
-            customFields: {
-                stringWithDefault: 'hello',
-                localeStringWithDefault: 'hola',
-                intWithDefault: 5,
-                floatWithDefault: 5.5,
-                booleanWithDefault: true,
-                dateTimeWithDefault: '2019-04-30T12:59:16.415Z',
-            },
+            customFields,
         });
     });
 
@@ -266,7 +329,7 @@ describe('Custom fields', () => {
     );
 
     it(
-        'thows on attempt to update readonly field',
+        'throws on attempt to update readonly field',
         assertThrowsWithMessage(async () => {
             await adminClient.query(gql`
                 mutation {
@@ -275,16 +338,18 @@ describe('Custom fields', () => {
                     }
                 }
             `);
-        }, `Field "readonlyString" is not defined by type UpdateProductCustomFieldsInput`),
+        }, `Field "readonlyString" is not defined by type "UpdateProductCustomFieldsInput"`),
     );
 
     it(
-        'thows on attempt to update readonly field when no other custom fields defined',
+        'throws on attempt to update readonly field when no other custom fields defined',
         assertThrowsWithMessage(async () => {
             await adminClient.query(gql`
                 mutation {
                     updateCustomer(input: { id: "T_1", customFields: { score: 5 } }) {
-                        id
+                        ... on Customer {
+                            id
+                        }
                     }
                 }
             `);
@@ -292,7 +357,7 @@ describe('Custom fields', () => {
     );
 
     it(
-        'thows on attempt to create readonly field',
+        'throws on attempt to create readonly field',
         assertThrowsWithMessage(async () => {
             await adminClient.query(gql`
                 mutation {
@@ -306,7 +371,7 @@ describe('Custom fields', () => {
                     }
                 }
             `);
-        }, `Field "readonlyString" is not defined by type CreateProductCustomFieldsInput`),
+        }, `Field "readonlyString" is not defined by type "CreateProductCustomFieldsInput"`),
     );
 
     it('string length allows long strings', async () => {
@@ -326,6 +391,32 @@ describe('Custom fields', () => {
         );
 
         expect(result.updateProduct.customFields.longString).toBe(longString);
+    });
+
+    it('string length allows long localeStrings', async () => {
+        const longString = Array.from({ length: 500 }, v => 'hello there!').join(' ');
+        const result = await adminClient.query(
+            gql`
+                mutation($stringValue: String!) {
+                    updateProduct(
+                        input: {
+                            id: "T_1"
+                            translations: [
+                                { languageCode: en, customFields: { longLocaleString: $stringValue } }
+                            ]
+                        }
+                    ) {
+                        id
+                        customFields {
+                            longLocaleString
+                        }
+                    }
+                }
+            `,
+            { stringValue: longString },
+        );
+
+        expect(result.updateProduct.customFields.longLocaleString).toBe(longString);
     });
 
     describe('validation', () => {
@@ -462,6 +553,67 @@ describe('Custom fields', () => {
                 `);
             }, `The value ['invalid'] is not valid`),
         );
+
+        it(
+            'invalid list field',
+            assertThrowsWithMessage(async () => {
+                await adminClient.query(gql`
+                    mutation {
+                        updateProduct(
+                            input: { id: "T_1", customFields: { intListWithValidation: [1, 2, 3] } }
+                        ) {
+                            id
+                        }
+                    }
+                `);
+            }, `Must include the number 42!`),
+        );
+
+        it('valid list field', async () => {
+            const { updateProduct } = await adminClient.query(gql`
+                mutation {
+                    updateProduct(input: { id: "T_1", customFields: { intListWithValidation: [1, 42, 3] } }) {
+                        id
+                        customFields {
+                            intListWithValidation
+                        }
+                    }
+                }
+            `);
+            expect(updateProduct.customFields.intListWithValidation).toEqual([1, 42, 3]);
+        });
+
+        it('can inject providers into validation fn', async () => {
+            const { updateProduct } = await adminClient.query(gql`
+                mutation {
+                    updateProduct(input: { id: "T_1", customFields: { validateFn3: "some value" } }) {
+                        id
+                        customFields {
+                            validateFn3
+                        }
+                    }
+                }
+            `);
+            expect(updateProduct.customFields.validateFn3).toBe('some value');
+            expect(validateInjectorSpy).toHaveBeenCalledTimes(1);
+            expect(validateInjectorSpy.mock.calls[0][0] instanceof TransactionalConnection).toBe(true);
+        });
+
+        it(
+            'supports async validation fn',
+            assertThrowsWithMessage(async () => {
+                await adminClient.query(gql`
+                    mutation {
+                        updateProduct(input: { id: "T_1", customFields: { validateFn4: "some value" } }) {
+                            id
+                            customFields {
+                                validateFn4
+                            }
+                        }
+                    }
+                `);
+            }, `async error`),
+        );
     });
 
     describe('public access', () => {
@@ -564,7 +716,7 @@ describe('Custom fields', () => {
                         }
                     }
                 `);
-            }, `Field "internalString" is not defined by type ProductFilterParameter`),
+            }, `Field "internalString" is not defined by type "ProductFilterParameter"`),
         );
 
         it(
@@ -577,7 +729,7 @@ describe('Custom fields', () => {
                         }
                     }
                 `);
-            }, `Field "internalString" is not defined by type ProductFilterParameter`),
+            }, `Field "internalString" is not defined by type "ProductFilterParameter"`),
         );
     });
 });

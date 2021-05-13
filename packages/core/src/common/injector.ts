@@ -26,14 +26,6 @@ export class Injector {
 
     /**
      * @description
-     * Retrieve the TypeORM `Connection` instance.
-     */
-    getConnection(): Connection {
-        return this.moduleRef.get(getConnectionToken() as any, { strict: false });
-    }
-
-    /**
-     * @description
      * Retrieve an instance of the given scoped provider (transient or request-scoped) from the
      * app's dependency injection container.
      * Wraps the Nestjs `ModuleRef.resolve()` method.

@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import gql from 'graphql-tag';
 
 import {
     CustomFieldConfig,
@@ -7,6 +6,7 @@ import {
     GetGlobalSettings,
     GetServerConfig,
     OrderProcessState,
+    PermissionDefinition,
     ServerConfig,
 } from '../common/generated-types';
 
@@ -47,10 +47,10 @@ export class ServerConfigService {
             .query<GetServerConfig.Query>(GET_SERVER_CONFIG)
             .single$.toPromise()
             .then(
-                (result) => {
+                result => {
                     this._serverConfig = result.globalSettings.serverConfig;
                 },
-                (err) => {
+                err => {
                     // Let the error fall through to be caught by the http interceptor.
                 },
             );
@@ -59,11 +59,11 @@ export class ServerConfigService {
     getAvailableLanguages() {
         return this.baseDataService
             .query<GetGlobalSettings.Query>(GET_GLOBAL_SETTINGS, {}, 'cache-first')
-            .mapSingle((res) => res.globalSettings.availableLanguages);
+            .mapSingle(res => res.globalSettings.availableLanguages);
     }
 
     /**
-     * When any of the GLobalSettings are modified, this method should be called to update the Apollo cache.
+     * When any of the GlobalSettings are modified, this method should be called to update the Apollo cache.
      */
     refreshGlobalSettings() {
         return this.baseDataService.query<GetGlobalSettings.Query>(GET_GLOBAL_SETTINGS, {}, 'network-only')
@@ -79,6 +79,14 @@ export class ServerConfigService {
 
     getOrderProcessStates(): OrderProcessState[] {
         return this.serverConfig.orderProcess;
+    }
+
+    getPermittedAssetTypes(): string[] {
+        return this.serverConfig.permittedAssetTypes;
+    }
+
+    getPermissionDefinitions(): PermissionDefinition[] {
+        return this.serverConfig.permissions;
     }
 
     get serverConfig(): ServerConfig {

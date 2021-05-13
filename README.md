@@ -1,4 +1,4 @@
-# Vendure
+# platform.sale
 
 A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
@@ -73,14 +73,18 @@ Vendure uses [TypeORM](http://typeorm.io), and officially supports **MySQL**, **
 ### 5. Run the dev server
 
 ```
+cd packages/dev-server
+DB=<mysql|postgres|sqlite> yarn start
+```
+Or if you are in the root package 
+```
 DB=<mysql|postgres|sqlite> yarn dev-server:start
 ```
-
 If you do not specify the `DB` argument, it will default to "mysql".
 
 ### 6. Launch the admin ui
 
-1. `cd admin-ui`
+1. `cd packages/admin-ui`
 2. `yarn start`
 3. Go to http://localhost:4200 and log in with "superadmin", "superadmin"
 

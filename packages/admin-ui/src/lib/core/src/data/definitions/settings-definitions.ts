@@ -1,4 +1,10 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
+
+import {
+    CONFIGURABLE_OPERATION_DEF_FRAGMENT,
+    CONFIGURABLE_OPERATION_FRAGMENT,
+    ERROR_RESULT_FRAGMENT,
+} from './shared-definitions';
 
 export const COUNTRY_FRAGMENT = gql`
     fragment Country on Country {
@@ -169,6 +175,7 @@ export const TAX_CATEGORY_FRAGMENT = gql`
         createdAt
         updatedAt
         name
+        isDefault
     }
 `;
 
@@ -340,18 +347,22 @@ export const CREATE_CHANNEL = gql`
     mutation CreateChannel($input: CreateChannelInput!) {
         createChannel(input: $input) {
             ...Channel
+            ...ErrorResult
         }
     }
     ${CHANNEL_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const UPDATE_CHANNEL = gql`
     mutation UpdateChannel($input: UpdateChannelInput!) {
         updateChannel(input: $input) {
             ...Channel
+            ...ErrorResult
         }
     }
     ${CHANNEL_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const DELETE_CHANNEL = gql`
@@ -368,14 +379,18 @@ export const PAYMENT_METHOD_FRAGMENT = gql`
         id
         createdAt
         updatedAt
+        name
         code
+        description
         enabled
-        configArgs {
-            name
-            type
-            value
+        checker {
+            ...ConfigurableOperation
+        }
+        handler {
+            ...ConfigurableOperation
         }
     }
+    ${CONFIGURABLE_OPERATION_FRAGMENT}
 `;
 
 export const GET_PAYMENT_METHOD_LIST = gql`
@@ -390,9 +405,30 @@ export const GET_PAYMENT_METHOD_LIST = gql`
     ${PAYMENT_METHOD_FRAGMENT}
 `;
 
+export const GET_PAYMENT_METHOD_OPERATIONS = gql`
+    query GetPaymentMethodOperations {
+        paymentMethodEligibilityCheckers {
+            ...ConfigurableOperationDef
+        }
+        paymentMethodHandlers {
+            ...ConfigurableOperationDef
+        }
+    }
+    ${CONFIGURABLE_OPERATION_DEF_FRAGMENT}
+`;
+
 export const GET_PAYMENT_METHOD = gql`
     query GetPaymentMethod($id: ID!) {
         paymentMethod(id: $id) {
+            ...PaymentMethod
+        }
+    }
+    ${PAYMENT_METHOD_FRAGMENT}
+`;
+
+export const CREATE_PAYMENT_METHOD = gql`
+    mutation CreatePaymentMethod($input: CreatePaymentMethodInput!) {
+        createPaymentMethod(input: $input) {
             ...PaymentMethod
         }
     }
@@ -408,10 +444,31 @@ export const UPDATE_PAYMENT_METHOD = gql`
     ${PAYMENT_METHOD_FRAGMENT}
 `;
 
+export const DELETE_PAYMENT_METHOD = gql`
+    mutation DeletePaymentMethod($id: ID!, $force: Boolean) {
+        deletePaymentMethod(id: $id, force: $force) {
+            result
+            message
+        }
+    }
+`;
+
 export const GLOBAL_SETTINGS_FRAGMENT = gql`
     fragment GlobalSettings on GlobalSettings {
+        id
         availableLanguages
         trackInventory
+        outOfStockThreshold
+        serverConfig {
+            permissions {
+                name
+                description
+                assignable
+            }
+            orderProcess {
+                name
+            }
+        }
     }
 `;
 
@@ -428,15 +485,18 @@ export const UPDATE_GLOBAL_SETTINGS = gql`
     mutation UpdateGlobalSettings($input: UpdateGlobalSettingsInput!) {
         updateGlobalSettings(input: $input) {
             ...GlobalSettings
+            ...ErrorResult
         }
     }
     ${GLOBAL_SETTINGS_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const CUSTOM_FIELD_CONFIG_FRAGMENT = gql`
     fragment CustomFieldConfig on CustomField {
         name
         type
+        list
         description {
             languageCode
             value
@@ -503,6 +563,14 @@ export const DATE_TIME_CUSTOM_FIELD_FRAGMENT = gql`
     }
     ${CUSTOM_FIELD_CONFIG_FRAGMENT}
 `;
+export const RELATION_CUSTOM_FIELD_FRAGMENT = gql`
+    fragment RelationCustomField on RelationCustomFieldConfig {
+        ...CustomFieldConfig
+        entity
+        scalarFields
+    }
+    ${CUSTOM_FIELD_CONFIG_FRAGMENT}
+`;
 
 export const ALL_CUSTOM_FIELDS_FRAGMENT = gql`
     fragment CustomFields on CustomField {
@@ -524,6 +592,9 @@ export const ALL_CUSTOM_FIELDS_FRAGMENT = gql`
         ... on DateTimeCustomFieldConfig {
             ...DateTimeCustomField
         }
+        ... on RelationCustomFieldConfig {
+            ...RelationCustomField
+        }
     }
     ${STRING_CUSTOM_FIELD_FRAGMENT}
     ${LOCALE_STRING_CUSTOM_FIELD_FRAGMENT}
@@ -531,18 +602,35 @@ export const ALL_CUSTOM_FIELDS_FRAGMENT = gql`
     ${INT_CUSTOM_FIELD_FRAGMENT}
     ${FLOAT_CUSTOM_FIELD_FRAGMENT}
     ${DATE_TIME_CUSTOM_FIELD_FRAGMENT}
+    ${RELATION_CUSTOM_FIELD_FRAGMENT}
 `;
 
 export const GET_SERVER_CONFIG = gql`
     query GetServerConfig {
         globalSettings {
+            id
             serverConfig {
                 orderProcess {
                     name
                     to
                 }
+                permittedAssetTypes
+                permissions {
+                    name
+                    description
+                    assignable
+                }
                 customFieldConfig {
                     Address {
+                        ...CustomFields
+                    }
+                    Administrator {
+                        ...CustomFields
+                    }
+                    Asset {
+                        ...CustomFields
+                    }
+                    Channel {
                         ...CustomFields
                     }
                     Collection {
@@ -555,6 +643,9 @@ export const GET_SERVER_CONFIG = gql`
                         ...CustomFields
                     }
                     FacetValue {
+                        ...CustomFields
+                    }
+                    Fulfillment {
                         ...CustomFields
                     }
                     GlobalSettings {
@@ -647,6 +738,15 @@ export const GET_JOB_QUEUE_LIST = gql`
     }
 `;
 
+export const CANCEL_JOB = gql`
+    mutation CancelJob($id: ID!) {
+        cancelJob(jobId: $id) {
+            ...JobInfo
+        }
+    }
+    ${JOB_INFO_FRAGMENT}
+`;
+
 export const REINDEX = gql`
     mutation Reindex {
         reindex {
@@ -654,27 +754,4 @@ export const REINDEX = gql`
         }
     }
     ${JOB_INFO_FRAGMENT}
-`;
-
-export const SEARCH_FOR_TEST_ORDER = gql`
-    query SearchForTestOrder($term: String!, $take: Int!) {
-        search(input: { groupByProduct: false, term: $term, take: $take }) {
-            items {
-                productVariantId
-                productVariantName
-                productPreview
-                price {
-                    ... on SinglePrice {
-                        value
-                    }
-                }
-                priceWithTax {
-                    ... on SinglePrice {
-                        value
-                    }
-                }
-                sku
-            }
-        }
-    }
 `;

@@ -203,6 +203,24 @@ describe('addGraphQLCustomFields()', () => {
         const result = addGraphQLCustomFields(input, customFieldConfig, true);
         expect(printSchema(result)).toMatchSnapshot();
     });
+
+    it('extends OrderAddress if Address custom fields defined', () => {
+        const input = `
+             type Address {
+                 id: ID
+                 streetLine1: String
+             }
+
+             type OrderAddress {
+                 streetLine1: String
+             }
+        `;
+        const customFieldConfig: CustomFields = {
+            Address: [{ name: 'instructions', type: 'string' }],
+        };
+        const result = addGraphQLCustomFields(input, customFieldConfig, true);
+        expect(printSchema(result)).toMatchSnapshot();
+    });
 });
 
 describe('addOrderLineCustomFieldsInput()', () => {
@@ -211,20 +229,6 @@ describe('addOrderLineCustomFieldsInput()', () => {
             type Mutation {
                 addItemToOrder(id: ID!, quantity: Int!): Boolean
                 adjustOrderLine(id: ID!, quantity: Int): Boolean
-            }
-        `;
-        const customFieldConfig: CustomFieldConfig[] = [
-            { name: 'giftWrap', type: 'boolean' },
-            { name: 'message', type: 'string' },
-        ];
-        const result = addOrderLineCustomFieldsInput(input, customFieldConfig);
-        expect(printSchema(result)).toMatchSnapshot();
-    });
-
-    it('Does not modify schema when the addItemToOrder mutation not present', () => {
-        const input = `
-            type Mutation {
-                createCustomer(id: ID!): Boolean
             }
         `;
         const customFieldConfig: CustomFieldConfig[] = [

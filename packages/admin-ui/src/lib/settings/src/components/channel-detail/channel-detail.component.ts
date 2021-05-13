@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { BaseDetailComponent } from '@vendure/admin-ui/core';
+import { BaseDetailComponent, CustomFieldConfig, Permission } from '@vendure/admin-ui/core';
 import {
     Channel,
     CreateChannelInput,
@@ -24,12 +24,15 @@ import { map, mergeMap, take } from 'rxjs/operators';
     styleUrls: ['./channel-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment>
+export class ChannelDetailComponent
+    extends BaseDetailComponent<Channel.Fragment>
     implements OnInit, OnDestroy {
+    customFields: CustomFieldConfig[];
     zones$: Observable<GetZones.Zones[]>;
     detailForm: FormGroup;
     currencyCodes = Object.values(CurrencyCode);
     availableLanguageCodes$: Observable<LanguageCode[]>;
+    readonly updatePermission = [Permission.SuperAdmin, Permission.UpdateChannel, Permission.CreateChannel];
 
     constructor(
         router: Router,
@@ -41,6 +44,7 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
         private notificationService: NotificationService,
     ) {
         super(route, router, serverConfigService, dataService);
+        this.customFields = this.getCustomFieldConfig('Channel');
         this.detailForm = this.formBuilder.group({
             code: ['', Validators.required],
             token: ['', Validators.required],
@@ -49,17 +53,24 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
             defaultShippingZoneId: ['', Validators.required],
             defaultLanguageCode: [],
             defaultTaxZoneId: ['', Validators.required],
+            customFields: this.formBuilder.group(
+                this.customFields.reduce((hash, field) => ({ ...hash, [field.name]: '' }), {}),
+            ),
         });
     }
 
     ngOnInit() {
         this.init();
-        this.zones$ = this.dataService.settings.getZones().mapSingle((data) => data.zones);
+        this.zones$ = this.dataService.settings.getZones().mapSingle(data => data.zones);
         this.availableLanguageCodes$ = this.serverConfigService.getAvailableLanguages();
     }
 
     ngOnDestroy() {
         this.destroy();
+    }
+
+    customFieldIsSet(name: string): boolean {
+        return !!this.detailForm.get(['customFields', name]);
     }
 
     saveButtonEnabled(): boolean {
@@ -79,6 +90,7 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
             currencyCode: formValue.currencyCode,
             defaultShippingZoneId: formValue.defaultShippingZoneId,
             defaultTaxZoneId: formValue.defaultTaxZoneId,
+            customFields: formValue.customFields,
         };
         this.dataService.settings
             .createChannel(input)
@@ -96,21 +108,21 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
                     this.dataService.client.updateUserChannels(me!.channels).pipe(map(() => createChannel)),
                 ),
             )
-            .subscribe(
-                (data) => {
-                    this.notificationService.success(_('common.notify-create-success'), {
-                        entity: 'Channel',
-                    });
-                    this.detailForm.markAsPristine();
-                    this.changeDetector.markForCheck();
-                    this.router.navigate(['../', data.id], { relativeTo: this.route });
-                },
-                (err) => {
-                    this.notificationService.error(_('common.notify-create-error'), {
-                        entity: 'Channel',
-                    });
-                },
-            );
+            .subscribe(data => {
+                switch (data.__typename) {
+                    case 'Channel':
+                        this.notificationService.success(_('common.notify-create-success'), {
+                            entity: 'Channel',
+                        });
+                        this.detailForm.markAsPristine();
+                        this.changeDetector.markForCheck();
+                        this.router.navigate(['../', data.id], { relativeTo: this.route });
+                        break;
+                    case 'LanguageNotAvailableError':
+                        this.notificationService.error(data.message);
+                        break;
+                }
+            });
     }
 
     save() {
@@ -121,7 +133,7 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
         this.entity$
             .pipe(
                 take(1),
-                mergeMap((channel) => {
+                mergeMap(channel => {
                     const input = {
                         id: channel.id,
                         code: formValue.code,
@@ -130,24 +142,24 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
                         defaultShippingZoneId: formValue.defaultShippingZoneId,
                         defaultLanguageCode: formValue.defaultLanguageCode,
                         defaultTaxZoneId: formValue.defaultTaxZoneId,
+                        customFields: formValue.customFields,
                     } as UpdateChannelInput;
                     return this.dataService.settings.updateChannel(input);
                 }),
             )
-            .subscribe(
-                () => {
-                    this.notificationService.success(_('common.notify-update-success'), {
-                        entity: 'Channel',
-                    });
-                    this.detailForm.markAsPristine();
-                    this.changeDetector.markForCheck();
-                },
-                (err) => {
-                    this.notificationService.error(_('common.notify-update-error'), {
-                        entity: 'Channel',
-                    });
-                },
-            );
+            .subscribe(({ updateChannel }) => {
+                switch (updateChannel.__typename) {
+                    case 'Channel':
+                        this.notificationService.success(_('common.notify-update-success'), {
+                            entity: 'Channel',
+                        });
+                        this.detailForm.markAsPristine();
+                        this.changeDetector.markForCheck();
+                        break;
+                    case 'LanguageNotAvailableError':
+                        this.notificationService.error(updateChannel.message);
+                }
+            });
     }
 
     /**
@@ -163,6 +175,18 @@ export class ChannelDetailComponent extends BaseDetailComponent<Channel.Fragment
             defaultLanguageCode: entity.defaultLanguageCode,
             defaultTaxZoneId: entity.defaultTaxZone ? entity.defaultTaxZone.id : '',
         });
+        if (this.customFields.length) {
+            const customFieldsGroup = this.detailForm.get('customFields') as FormGroup;
+
+            for (const fieldDef of this.customFields) {
+                const key = fieldDef.name;
+                const value = (entity as any).customFields[key];
+                const control = customFieldsGroup.get(key);
+                if (control) {
+                    control.patchValue(value);
+                }
+            }
+        }
         if (entity.code === DEFAULT_CHANNEL_CODE) {
             const codeControl = this.detailForm.get('code');
             if (codeControl) {

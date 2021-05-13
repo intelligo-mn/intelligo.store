@@ -17,30 +17,45 @@ describe('FSM validateTransitionDefinition()', () => {
 
     it('valid complex definition', () => {
         const orderStateTransitions: Transitions<OrderState> = {
+            Created: {
+                to: ['AddingItems'],
+            },
             AddingItems: {
                 to: ['ArrangingPayment', 'Cancelled'],
             },
             ArrangingPayment: {
-                to: ['PaymentAuthorized', 'PaymentSettled', 'AddingItems', 'Cancelled'],
+                to: ['PaymentAuthorized', 'PaymentSettled', 'AddingItems', 'Cancelled', 'Modifying'],
             },
             PaymentAuthorized: {
                 to: ['PaymentSettled', 'Cancelled'],
             },
             PaymentSettled: {
-                to: ['PartiallyFulfilled', 'Fulfilled', 'Cancelled'],
+                to: ['PartiallyDelivered', 'Delivered', 'PartiallyShipped', 'Shipped', 'Cancelled'],
             },
-            PartiallyFulfilled: {
-                to: ['Fulfilled', 'PartiallyFulfilled', 'Cancelled'],
+            PartiallyShipped: {
+                to: ['Shipped', 'PartiallyDelivered', 'Cancelled'],
             },
-            Fulfilled: {
+            Shipped: {
+                to: ['PartiallyDelivered', 'Delivered', 'Cancelled'],
+            },
+            PartiallyDelivered: {
+                to: ['Delivered', 'Cancelled'],
+            },
+            Delivered: {
                 to: ['Cancelled'],
+            },
+            ArrangingAdditionalPayment: {
+                to: ['ArrangingPayment'],
+            },
+            Modifying: {
+                to: ['ArrangingAdditionalPayment'],
             },
             Cancelled: {
                 to: [],
             },
         };
 
-        const result = validateTransitionDefinition(orderStateTransitions, 'AddingItems');
+        const result = validateTransitionDefinition(orderStateTransitions, 'Created');
 
         expect(result.valid).toBe(true);
     });

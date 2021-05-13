@@ -6,7 +6,11 @@ import { routes } from './app.routes';
 
 @NgModule({
     declarations: [],
-    imports: [AppComponentModule, RouterModule.forRoot(routes, { useHash: false })],
+    imports: [
+        AppComponentModule,
+        RouterModule.forRoot(routes, { useHash: false, relativeLinkResolution: 'legacy' }),
+    ],
+    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

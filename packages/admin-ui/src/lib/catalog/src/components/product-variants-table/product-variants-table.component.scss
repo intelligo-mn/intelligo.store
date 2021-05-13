@@ -1,11 +1,6 @@
-@import "variables";
 
 .placeholder {
-    color: $color-grey-300;
-}
-
-input {
-    width: 100%;
+    color: var(--color-grey-300);
 }
 
 .stock, .price {
@@ -17,6 +12,6 @@ input {
 td {
     transition: background-color 0.2s;
     &.disabled {
-        background-color: $color-grey-200;
+        background-color: var(--color-component-bg-200);
     }
 }

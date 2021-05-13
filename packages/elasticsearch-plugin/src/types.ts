@@ -1,13 +1,14 @@
 import {
     Coordinate,
     CurrencyCode,
+    LanguageCode,
     PriceRange,
     SearchInput,
     SearchResponse,
     SearchResult,
 } from '@vendure/common/lib/generated-types';
 import { ID, JsonCompatible } from '@vendure/common/lib/shared-types';
-import { Asset, SerializedRequestContext, WorkerMessage } from '@vendure/core';
+import { Asset, SerializedRequestContext } from '@vendure/core';
 
 export type ElasticSearchInput = SearchInput & {
     priceRange?: PriceRange;
@@ -31,12 +32,12 @@ export type PriceRangeBucket = {
 };
 
 export type IndexItemAssets = {
-    productAssetId: ID | null;
+    productAssetId: ID | undefined;
     productPreview: string;
-    productPreviewFocalPoint: Coordinate | null;
-    productVariantAssetId: ID | null;
+    productPreviewFocalPoint: Coordinate | undefined;
+    productVariantAssetId: ID | undefined;
     productVariantPreview: string;
-    productVariantPreviewFocalPoint: Coordinate | null;
+    productVariantPreviewFocalPoint: Coordinate | undefined;
 };
 
 export type VariantIndexItem = Omit<
@@ -45,8 +46,10 @@ export type VariantIndexItem = Omit<
 > &
     IndexItemAssets & {
         channelId: ID;
+        languageCode: LanguageCode;
         price: number;
         priceWithTax: number;
+        collectionSlugs: string[];
         [customMapping: string]: any;
     };
 
@@ -55,6 +58,7 @@ export type ProductIndexItem = IndexItemAssets & {
     slug: string;
     productId: ID;
     channelId: ID;
+    languageCode: LanguageCode;
     productName: string;
     productVariantId: ID;
     productVariantName: string;
@@ -63,6 +67,7 @@ export type ProductIndexItem = IndexItemAssets & {
     facetIds: ID[];
     facetValueIds: ID[];
     collectionIds: ID[];
+    collectionSlugs: string[];
     channelIds: ID[];
     enabled: boolean;
     priceMin: number;
@@ -173,46 +178,19 @@ export interface ProductChannelMessageData {
     productId: ID;
     channelId: ID;
 }
+
+export type VariantChannelMessageData = {
+    ctx: SerializedRequestContext;
+    productVariantId: ID;
+    channelId: ID;
+};
+
 export interface UpdateAssetMessageData {
     ctx: SerializedRequestContext;
     asset: JsonCompatible<Required<Asset>>;
 }
 
-export class ReindexMessage extends WorkerMessage<ReindexMessageData, ReindexMessageResponse> {
-    static readonly pattern = 'Reindex';
-}
-export class UpdateVariantMessage extends WorkerMessage<UpdateVariantMessageData, boolean> {
-    static readonly pattern = 'UpdateProduct';
-}
-export class UpdateProductMessage extends WorkerMessage<UpdateProductMessageData, boolean> {
-    static readonly pattern = 'UpdateVariant';
-}
-export class DeleteVariantMessage extends WorkerMessage<UpdateVariantMessageData, boolean> {
-    static readonly pattern = 'DeleteProduct';
-}
-export class DeleteProductMessage extends WorkerMessage<UpdateProductMessageData, boolean> {
-    static readonly pattern = 'DeleteVariant';
-}
-export class UpdateVariantsByIdMessage extends WorkerMessage<
-    UpdateVariantsByIdMessageData,
-    ReindexMessageResponse
-> {
-    static readonly pattern = 'UpdateVariantsById';
-}
-export class AssignProductToChannelMessage extends WorkerMessage<ProductChannelMessageData, boolean> {
-    static readonly pattern = 'AssignProductToChannel';
-}
-export class RemoveProductFromChannelMessage extends WorkerMessage<ProductChannelMessageData, boolean> {
-    static readonly pattern = 'RemoveProductFromChannel';
-}
-export class UpdateAssetMessage extends WorkerMessage<UpdateAssetMessageData, boolean> {
-    static readonly pattern = 'UpdateAsset';
-}
-export class DeleteAssetMessage extends WorkerMessage<UpdateAssetMessageData, boolean> {
-    static readonly pattern = 'DeleteAsset';
-}
-
-type Maybe<T> = T | null | undefined;
+type Maybe<T> = T | undefined;
 type CustomMappingDefinition<Args extends any[], T extends string, R> = {
     graphQlType: T;
     valueFn: (...args: Args) => R;
@@ -230,6 +208,8 @@ type UpdateAssetJobData = NamedJobData<'update-asset', UpdateAssetMessageData>;
 type DeleteAssetJobData = NamedJobData<'delete-asset', UpdateAssetMessageData>;
 type AssignProductToChannelJobData = NamedJobData<'assign-product-to-channel', ProductChannelMessageData>;
 type RemoveProductFromChannelJobData = NamedJobData<'remove-product-from-channel', ProductChannelMessageData>;
+type AssignVariantToChannelJobData = NamedJobData<'assign-variant-to-channel', VariantChannelMessageData>;
+type RemoveVariantFromChannelJobData = NamedJobData<'remove-variant-from-channel', VariantChannelMessageData>;
 export type UpdateIndexQueueJobData =
     | ReindexJobData
     | UpdateProductJobData
@@ -240,7 +220,9 @@ export type UpdateIndexQueueJobData =
     | UpdateAssetJobData
     | DeleteAssetJobData
     | AssignProductToChannelJobData
-    | RemoveProductFromChannelJobData;
+    | RemoveProductFromChannelJobData
+    | AssignVariantToChannelJobData
+    | RemoveVariantFromChannelJobData;
 
 type CustomStringMapping<Args extends any[]> = CustomMappingDefinition<Args, 'String!', string>;
 type CustomStringMappingNullable<Args extends any[]> = CustomMappingDefinition<Args, 'String', Maybe<string>>;

@@ -5,6 +5,8 @@ import {
     AddOptionToGroup,
     AssignProductsToChannel,
     AssignProductsToChannelInput,
+    AssignProductVariantsToChannelInput,
+    AssignVariantsToChannel,
     CreateAssets,
     CreateProduct,
     CreateProductInput,
@@ -13,22 +15,36 @@ import {
     CreateProductOptionInput,
     CreateProductVariantInput,
     CreateProductVariants,
+    CreateTag,
+    CreateTagInput,
     DeleteAssets,
     DeleteProduct,
     DeleteProductVariant,
+    DeleteTag,
     GetAsset,
     GetAssetList,
     GetProductList,
     GetProductOptionGroup,
     GetProductOptionGroups,
+    GetProductSimple,
+    GetProductVariant,
+    GetProductVariantList,
     GetProductVariantOptions,
     GetProductWithVariants,
+    GetTag,
+    GetTagList,
+    ProductListOptions,
+    ProductSelectorSearch,
+    ProductVariantListOptions,
     Reindex,
     RemoveOptionGroupFromProduct,
     RemoveProductsFromChannel,
     RemoveProductsFromChannelInput,
+    RemoveProductVariantsFromChannelInput,
+    RemoveVariantsFromChannel,
     SearchProducts,
     SortOrder,
+    TagListOptions,
     UpdateAsset,
     UpdateAssetInput,
     UpdateProduct,
@@ -37,32 +53,45 @@ import {
     UpdateProductOptionInput,
     UpdateProductVariantInput,
     UpdateProductVariants,
+    UpdateTag,
+    UpdateTagInput,
 } from '../../common/generated-types';
 import {
     ADD_OPTION_GROUP_TO_PRODUCT,
     ADD_OPTION_TO_GROUP,
     ASSIGN_PRODUCTS_TO_CHANNEL,
+    ASSIGN_VARIANTS_TO_CHANNEL,
     CREATE_ASSETS,
     CREATE_PRODUCT,
     CREATE_PRODUCT_OPTION_GROUP,
     CREATE_PRODUCT_VARIANTS,
+    CREATE_TAG,
     DELETE_ASSETS,
     DELETE_PRODUCT,
     DELETE_PRODUCT_VARIANT,
+    DELETE_TAG,
     GET_ASSET,
     GET_ASSET_LIST,
     GET_PRODUCT_LIST,
     GET_PRODUCT_OPTION_GROUP,
     GET_PRODUCT_OPTION_GROUPS,
+    GET_PRODUCT_SIMPLE,
+    GET_PRODUCT_VARIANT,
+    GET_PRODUCT_VARIANT_LIST,
     GET_PRODUCT_VARIANT_OPTIONS,
     GET_PRODUCT_WITH_VARIANTS,
+    GET_TAG,
+    GET_TAG_LIST,
+    PRODUCT_SELECTOR_SEARCH,
     REMOVE_OPTION_GROUP_FROM_PRODUCT,
     REMOVE_PRODUCTS_FROM_CHANNEL,
+    REMOVE_VARIANTS_FROM_CHANNEL,
     SEARCH_PRODUCTS,
     UPDATE_ASSET,
     UPDATE_PRODUCT,
     UPDATE_PRODUCT_OPTION,
     UPDATE_PRODUCT_VARIANTS,
+    UPDATE_TAG,
 } from '../definitions/product-definitions';
 import { REINDEX } from '../definitions/settings-definitions';
 
@@ -82,16 +111,23 @@ export class ProductDataService {
         });
     }
 
+    productSelectorSearch(term: string, take: number) {
+        return this.baseDataService.query<ProductSelectorSearch.Query, ProductSelectorSearch.Variables>(
+            PRODUCT_SELECTOR_SEARCH,
+            {
+                take,
+                term,
+            },
+        );
+    }
+
     reindex() {
         return this.baseDataService.mutate<Reindex.Mutation>(REINDEX);
     }
 
-    getProducts(take: number = 10, skip: number = 0) {
+    getProducts(options: ProductListOptions) {
         return this.baseDataService.query<GetProductList.Query, GetProductList.Variables>(GET_PRODUCT_LIST, {
-            options: {
-                take,
-                skip,
-            },
+            options,
         });
     }
 
@@ -101,6 +137,29 @@ export class ProductDataService {
             {
                 id,
             },
+        );
+    }
+
+    getProductSimple(id: string) {
+        return this.baseDataService.query<GetProductSimple.Query, GetProductSimple.Variables>(
+            GET_PRODUCT_SIMPLE,
+            {
+                id,
+            },
+        );
+    }
+
+    getProductVariants(options: ProductVariantListOptions) {
+        return this.baseDataService.query<GetProductVariantList.Query, GetProductVariantList.Variables>(
+            GET_PRODUCT_VARIANT_LIST,
+            { options },
+        );
+    }
+
+    getProductVariant(id: string) {
+        return this.baseDataService.query<GetProductVariant.Query, GetProductVariant.Variables>(
+            GET_PRODUCT_VARIANT,
+            { id },
         );
     }
 
@@ -125,6 +184,7 @@ export class ProductDataService {
     createProduct(product: CreateProductInput) {
         const input: CreateProduct.Variables = {
             input: pick(product, [
+                'enabled',
                 'translations',
                 'customFields',
                 'assetIds',
@@ -185,6 +245,8 @@ export class ProductDataService {
                     'featuredAssetId',
                     'assetIds',
                     'trackInventory',
+                    'outOfStockThreshold',
+                    'useGlobalOutOfStockThreshold',
                     'stockOnHand',
                     'customFields',
                 ]),
@@ -274,7 +336,7 @@ export class ProductDataService {
 
     createAssets(files: File[]) {
         return this.baseDataService.mutate<CreateAssets.Mutation, CreateAssets.Variables>(CREATE_ASSETS, {
-            input: files.map((file) => ({ file })),
+            input: files.map(file => ({ file })),
         });
     }
 
@@ -286,8 +348,10 @@ export class ProductDataService {
 
     deleteAssets(ids: string[], force: boolean) {
         return this.baseDataService.mutate<DeleteAssets.Mutation, DeleteAssets.Variables>(DELETE_ASSETS, {
-            ids,
-            force,
+            input: {
+                assetIds: ids,
+                force,
+            },
         });
     }
 
@@ -307,5 +371,43 @@ export class ProductDataService {
         >(REMOVE_PRODUCTS_FROM_CHANNEL, {
             input,
         });
+    }
+
+    assignVariantsToChannel(input: AssignProductVariantsToChannelInput) {
+        return this.baseDataService.mutate<
+            AssignVariantsToChannel.Mutation,
+            AssignVariantsToChannel.Variables
+        >(ASSIGN_VARIANTS_TO_CHANNEL, {
+            input,
+        });
+    }
+
+    removeVariantsFromChannel(input: RemoveProductVariantsFromChannelInput) {
+        return this.baseDataService.mutate<
+            RemoveVariantsFromChannel.Mutation,
+            RemoveVariantsFromChannel.Variables
+        >(REMOVE_VARIANTS_FROM_CHANNEL, {
+            input,
+        });
+    }
+
+    getTag(id: string) {
+        return this.baseDataService.query<GetTag.Query, GetTag.Variables>(GET_TAG, { id });
+    }
+
+    getTagList(options?: TagListOptions) {
+        return this.baseDataService.query<GetTagList.Query, GetTagList.Variables>(GET_TAG_LIST, { options });
+    }
+
+    createTag(input: CreateTagInput) {
+        return this.baseDataService.mutate<CreateTag.Mutation, CreateTag.Variables>(CREATE_TAG, { input });
+    }
+
+    updateTag(input: UpdateTagInput) {
+        return this.baseDataService.mutate<UpdateTag.Mutation, UpdateTag.Variables>(UPDATE_TAG, { input });
+    }
+
+    deleteTag(id: string) {
+        return this.baseDataService.mutate<DeleteTag.Mutation, DeleteTag.Variables>(DELETE_TAG, { id });
     }
 }

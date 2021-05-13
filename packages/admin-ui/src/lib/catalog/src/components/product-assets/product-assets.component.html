@@ -6,14 +6,14 @@
                 [src]="featuredAsset | assetPreview:'small'"
                 (click)="previewAsset(featuredAsset)"
             />
-            <div class="placeholder" *ngIf="!featuredAsset">
+            <div class="placeholder" *ngIf="!featuredAsset" (click)="selectAssets()">
                 <clr-icon shape="image" size="128"></clr-icon>
                 <div>{{ 'catalog.no-featured-asset' | translate }}</div>
             </div>
         </div>
     </div>
     <div class="card-block"><ng-container *ngTemplateOutlet="assetList"></ng-container></div>
-    <div class="card-footer" *vdrIfPermissions="'UpdateCatalog'">
+    <div class="card-footer" *vdrIfPermissions="updatePermissions">
         <button class="btn" (click)="selectAssets()">
             <clr-icon shape="attachment"></clr-icon>
             {{ 'asset.add-asset' | translate }}
@@ -29,11 +29,11 @@
             (click)="previewAsset(featuredAsset)"
         />
 
-        <div class="placeholder" *ngIf="!featuredAsset"><clr-icon shape="image" size="150"></clr-icon></div>
+        <div class="placeholder" *ngIf="!featuredAsset" (click)="selectAssets()"><clr-icon shape="image" size="150"></clr-icon></div>
     </div>
     <ng-container *ngTemplateOutlet="assetList"></ng-container>
     <button
-        *vdrIfPermissions="'UpdateCatalog'"
+        *vdrIfPermissions="updatePermissions"
         class="compact-select btn btn-icon btn-sm btn-block"
         [title]="'asset.add-asset' | translate"
         (click)="selectAssets()"
@@ -48,14 +48,14 @@
         <div
             cdkDropList
             #dl
-            [cdkDropListDisabled]="!('UpdateCatalog' | hasPermission)"
+            [cdkDropListDisabled]="!(updatePermissions | hasPermission)"
             [cdkDropListEnterPredicate]="dropListEnterPredicate"
             (cdkDropListDropped)="dropListDropped()"
         ></div>
         <div
             *ngFor="let asset of assets"
             cdkDropList
-            [cdkDropListDisabled]="!('UpdateCatalog' | hasPermission)"
+            [cdkDropListDisabled]="!(updatePermissions | hasPermission)"
             [cdkDropListEnterPredicate]="dropListEnterPredicate"
             (cdkDropListDropped)="dropListDropped()"
         >
@@ -75,7 +75,7 @@
                     </button>
                     <button
                         type="button"
-                        [disabled]="isFeatured(asset) || !('UpdateCatalog' | hasPermission)"
+                        [disabled]="isFeatured(asset) || !(updatePermissions | hasPermission)"
                         vdrDropdownItem
                         (click)="setAsFeatured(asset)"
                     >
@@ -86,7 +86,7 @@
                         type="button"
                         class="remove-asset"
                         vdrDropdownItem
-                        [disabled]="!('UpdateCatalog' | hasPermission)"
+                        [disabled]="!(updatePermissions | hasPermission)"
                         (click)="removeAsset(asset)"
                     >
                         {{ 'asset.remove-asset' | translate }}

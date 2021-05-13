@@ -1,4 +1,6 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
+
+import { ERROR_RESULT_FRAGMENT } from './shared-definitions';
 
 export const ASSET_FRAGMENT = gql`
     fragment Asset on Asset {
@@ -17,6 +19,13 @@ export const ASSET_FRAGMENT = gql`
             x
             y
         }
+    }
+`;
+
+export const TAG_FRAGMENT = gql`
+    fragment Tag on Tag {
+        id
+        value
     }
 `;
 
@@ -59,10 +68,12 @@ export const PRODUCT_VARIANT_FRAGMENT = gql`
         name
         price
         currencyCode
-        priceIncludesTax
         priceWithTax
         stockOnHand
+        stockAllocated
         trackInventory
+        outOfStockThreshold
+        useGlobalOutOfStockThreshold
         taxRateApplied {
             id
             name
@@ -95,6 +106,10 @@ export const PRODUCT_VARIANT_FRAGMENT = gql`
             id
             languageCode
             name
+        }
+        channels {
+            id
+            code
         }
     }
     ${PRODUCT_OPTION_FRAGMENT}
@@ -274,23 +289,27 @@ export const ADD_OPTION_GROUP_TO_PRODUCT = gql`
 export const REMOVE_OPTION_GROUP_FROM_PRODUCT = gql`
     mutation RemoveOptionGroupFromProduct($productId: ID!, $optionGroupId: ID!) {
         removeOptionGroupFromProduct(productId: $productId, optionGroupId: $optionGroupId) {
-            id
-            createdAt
-            updatedAt
-            optionGroups {
+            ... on Product {
                 id
                 createdAt
                 updatedAt
-                code
-                options {
+                optionGroups {
                     id
                     createdAt
                     updatedAt
                     code
+                    options {
+                        id
+                        createdAt
+                        updatedAt
+                        code
+                    }
                 }
             }
+            ...ErrorResult
         }
     }
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const GET_PRODUCT_WITH_VARIANTS = gql`
@@ -300,6 +319,19 @@ export const GET_PRODUCT_WITH_VARIANTS = gql`
         }
     }
     ${PRODUCT_WITH_VARIANTS_FRAGMENT}
+`;
+
+export const GET_PRODUCT_SIMPLE = gql`
+    query GetProductSimple($id: ID!) {
+        product(id: $id) {
+            id
+            name
+            featuredAsset {
+                ...Asset
+            }
+        }
+    }
+    ${ASSET_FRAGMENT}
 `;
 
 export const GET_PRODUCT_LIST = gql`
@@ -351,43 +383,64 @@ export const GET_ASSET_LIST = gql`
         assets(options: $options) {
             items {
                 ...Asset
+                tags {
+                    ...Tag
+                }
             }
             totalItems
         }
     }
     ${ASSET_FRAGMENT}
+    ${TAG_FRAGMENT}
 `;
 
 export const GET_ASSET = gql`
     query GetAsset($id: ID!) {
         asset(id: $id) {
             ...Asset
+            tags {
+                ...Tag
+            }
         }
     }
     ${ASSET_FRAGMENT}
+    ${TAG_FRAGMENT}
 `;
 
 export const CREATE_ASSETS = gql`
     mutation CreateAssets($input: [CreateAssetInput!]!) {
         createAssets(input: $input) {
             ...Asset
+            ... on Asset {
+                tags {
+                    ...Tag
+                }
+            }
+            ... on ErrorResult {
+                message
+            }
         }
     }
     ${ASSET_FRAGMENT}
+    ${TAG_FRAGMENT}
 `;
 
 export const UPDATE_ASSET = gql`
     mutation UpdateAsset($input: UpdateAssetInput!) {
         updateAsset(input: $input) {
             ...Asset
+            tags {
+                ...Tag
+            }
         }
     }
     ${ASSET_FRAGMENT}
+    ${TAG_FRAGMENT}
 `;
 
 export const DELETE_ASSETS = gql`
-    mutation DeleteAssets($ids: [ID!]!, $force: Boolean) {
-        deleteAssets(ids: $ids, force: $force) {
+    mutation DeleteAssets($input: DeleteAssetsInput!) {
+        deleteAssets(input: $input) {
             result
             message
         }
@@ -437,6 +490,36 @@ export const SEARCH_PRODUCTS = gql`
                         name
                     }
                 }
+            }
+        }
+    }
+`;
+
+export const PRODUCT_SELECTOR_SEARCH = gql`
+    query ProductSelectorSearch($term: String!, $take: Int!) {
+        search(input: { groupByProduct: false, term: $term, take: $take }) {
+            items {
+                productVariantId
+                productVariantName
+                productAsset {
+                    id
+                    preview
+                    focalPoint {
+                        x
+                        y
+                    }
+                }
+                price {
+                    ... on SinglePrice {
+                        value
+                    }
+                }
+                priceWithTax {
+                    ... on SinglePrice {
+                        value
+                    }
+                }
+                sku
             }
         }
     }
@@ -511,6 +594,18 @@ export const ASSIGN_PRODUCTS_TO_CHANNEL = gql`
     }
 `;
 
+export const ASSIGN_VARIANTS_TO_CHANNEL = gql`
+    mutation AssignVariantsToChannel($input: AssignProductVariantsToChannelInput!) {
+        assignProductVariantsToChannel(input: $input) {
+            id
+            channels {
+                id
+                code
+            }
+        }
+    }
+`;
+
 export const REMOVE_PRODUCTS_FROM_CHANNEL = gql`
     mutation RemoveProductsFromChannel($input: RemoveProductsFromChannelInput!) {
         removeProductsFromChannel(input: $input) {
@@ -519,6 +614,127 @@ export const REMOVE_PRODUCTS_FROM_CHANNEL = gql`
                 id
                 code
             }
+        }
+    }
+`;
+
+export const REMOVE_VARIANTS_FROM_CHANNEL = gql`
+    mutation RemoveVariantsFromChannel($input: RemoveProductVariantsFromChannelInput!) {
+        removeProductVariantsFromChannel(input: $input) {
+            id
+            channels {
+                id
+                code
+            }
+        }
+    }
+`;
+
+export const GET_PRODUCT_VARIANT = gql`
+    query GetProductVariant($id: ID!) {
+        productVariant(id: $id) {
+            id
+            name
+            sku
+            featuredAsset {
+                id
+                preview
+                focalPoint {
+                    x
+                    y
+                }
+            }
+            product {
+                id
+                featuredAsset {
+                    id
+                    preview
+                    focalPoint {
+                        x
+                        y
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const GET_PRODUCT_VARIANT_LIST = gql`
+    query GetProductVariantList($options: ProductVariantListOptions!) {
+        productVariants(options: $options) {
+            items {
+                id
+                name
+                sku
+                featuredAsset {
+                    id
+                    preview
+                    focalPoint {
+                        x
+                        y
+                    }
+                }
+                product {
+                    id
+                    featuredAsset {
+                        id
+                        preview
+                        focalPoint {
+                            x
+                            y
+                        }
+                    }
+                }
+            }
+            totalItems
+        }
+    }
+`;
+
+export const GET_TAG_LIST = gql`
+    query GetTagList($options: TagListOptions) {
+        tags(options: $options) {
+            items {
+                ...Tag
+            }
+            totalItems
+        }
+    }
+    ${TAG_FRAGMENT}
+`;
+
+export const GET_TAG = gql`
+    query GetTag($id: ID!) {
+        tag(id: $id) {
+            ...Tag
+        }
+    }
+    ${TAG_FRAGMENT}
+`;
+
+export const CREATE_TAG = gql`
+    mutation CreateTag($input: CreateTagInput!) {
+        createTag(input: $input) {
+            ...Tag
+        }
+    }
+    ${TAG_FRAGMENT}
+`;
+
+export const UPDATE_TAG = gql`
+    mutation UpdateTag($input: UpdateTagInput!) {
+        updateTag(input: $input) {
+            ...Tag
+        }
+    }
+    ${TAG_FRAGMENT}
+`;
+
+export const DELETE_TAG = gql`
+    mutation DeleteTag($id: ID!) {
+        deleteTag(id: $id) {
+            message
+            result
         }
     }
 `;

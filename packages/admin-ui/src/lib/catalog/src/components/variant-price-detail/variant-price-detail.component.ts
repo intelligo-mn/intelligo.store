@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { DataService } from '@vendure/admin-ui/core';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { DataService } from '@vendure/admin-ui/core';
 
 @Component({
     selector: 'vdr-variant-price-detail',
@@ -26,10 +25,11 @@ export class VariantPriceDetailComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         const taxRates$ = this.dataService.settings
-            .getTaxRates(99999, 0, 'cache-first')
+            .getTaxRates(999, 0, 'cache-first')
             .mapStream(data => data.taxRates.items);
         const activeChannel$ = this.dataService.settings
             .getActiveChannel('cache-first')
+            .refetchOnChannelChange()
             .mapStream(data => data.activeChannel);
 
         this.taxRate$ = combineLatest(activeChannel$, taxRates$, this.taxCategoryIdChange$).pipe(
@@ -51,7 +51,7 @@ export class VariantPriceDetailComponent implements OnInit, OnChanges {
 
         this.grossPrice$ = combineLatest(this.taxRate$, this.priceChange$).pipe(
             map(([taxRate, price]) => {
-                return Math.round(price * ((100 + taxRate) / 100)) / 100;
+                return Math.round(price * ((100 + taxRate) / 100));
             }),
         );
     }

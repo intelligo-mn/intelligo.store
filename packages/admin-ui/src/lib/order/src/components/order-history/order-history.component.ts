@@ -22,19 +22,25 @@ export class OrderHistoryComponent {
     @Output() deleteNote = new EventEmitter<HistoryEntry>();
     note = '';
     noteIsPrivate = true;
+    expanded = false;
     readonly type = HistoryEntryType;
 
     getDisplayType(entry: GetOrderHistory.Items): TimelineDisplayType {
         if (entry.type === HistoryEntryType.ORDER_STATE_TRANSITION) {
-            if (entry.data.to === 'Fulfilled') {
+            if (entry.data.to === 'Delivered') {
                 return 'success';
             }
             if (entry.data.to === 'Cancelled') {
                 return 'error';
             }
         }
+        if (entry.type === HistoryEntryType.ORDER_FULFILLMENT_TRANSITION) {
+            if (entry.data.to === 'Delivered') {
+                return 'success';
+            }
+        }
         if (entry.type === HistoryEntryType.ORDER_PAYMENT_TRANSITION) {
-            if (entry.data.to === 'Declined') {
+            if (entry.data.to === 'Declined' || entry.data.to === 'Cancelled') {
                 return 'error';
             }
         }
@@ -49,21 +55,31 @@ export class OrderHistoryComponent {
 
     getTimelineIcon(entry: GetOrderHistory.Items) {
         if (entry.type === HistoryEntryType.ORDER_STATE_TRANSITION) {
-            if (entry.data.to === 'Fulfilled') {
+            if (entry.data.to === 'Delivered') {
                 return ['success-standard', 'is-solid'];
             }
             if (entry.data.to === 'Cancelled') {
                 return 'ban';
             }
         }
-        if (entry.type === HistoryEntryType.ORDER_PAYMENT_TRANSITION && entry.data.to === 'Settled') {
-            return 'credit-card';
+        if (entry.type === HistoryEntryType.ORDER_PAYMENT_TRANSITION) {
+            if (entry.data.to === 'Settled') {
+                return 'credit-card';
+            }
         }
         if (entry.type === HistoryEntryType.ORDER_NOTE) {
             return 'note';
         }
-        if (entry.type === HistoryEntryType.ORDER_FULLFILLMENT) {
-            return 'truck';
+        if (entry.type === HistoryEntryType.ORDER_MODIFIED) {
+            return 'pencil';
+        }
+        if (entry.type === HistoryEntryType.ORDER_FULFILLMENT_TRANSITION) {
+            if (entry.data.to === 'Shipped') {
+                return 'truck';
+            }
+            if (entry.data.to === 'Delivered') {
+                return 'truck';
+            }
         }
     }
 
@@ -71,30 +87,36 @@ export class OrderHistoryComponent {
         switch (entry.type) {
             case HistoryEntryType.ORDER_STATE_TRANSITION: {
                 return (
-                    entry.data.to === 'Fulfilled' ||
+                    entry.data.to === 'Delivered' ||
                     entry.data.to === 'Cancelled' ||
                     entry.data.to === 'Settled'
                 );
             }
             case HistoryEntryType.ORDER_PAYMENT_TRANSITION:
-                return entry.data.to === 'Settled';
-            case HistoryEntryType.ORDER_FULLFILLMENT:
+                return entry.data.to === 'Settled' || entry.data.to === 'Cancelled';
+            case HistoryEntryType.ORDER_FULFILLMENT_TRANSITION:
+                return entry.data.to === 'Delivered' || entry.data.to === 'Shipped';
             case HistoryEntryType.ORDER_NOTE:
+            case HistoryEntryType.ORDER_MODIFIED:
                 return true;
             default:
                 return false;
         }
     }
 
-    getFullfillment(entry: GetOrderHistory.Items): OrderDetail.Fulfillments | undefined {
-        if (entry.type === HistoryEntryType.ORDER_FULLFILLMENT && this.order.fulfillments) {
-            return this.order.fulfillments.find((f) => f.id === entry.data.fulfillmentId);
+    getFulfillment(entry: GetOrderHistory.Items): OrderDetail.Fulfillments | undefined {
+        if (
+            (entry.type === HistoryEntryType.ORDER_FULFILLMENT ||
+                entry.type === HistoryEntryType.ORDER_FULFILLMENT_TRANSITION) &&
+            this.order.fulfillments
+        ) {
+            return this.order.fulfillments.find(f => f.id === entry.data.fulfillmentId);
         }
     }
 
     getPayment(entry: GetOrderHistory.Items): OrderDetail.Payments | undefined {
         if (entry.type === HistoryEntryType.ORDER_PAYMENT_TRANSITION && this.order.payments) {
-            return this.order.payments.find((p) => p.id === entry.data.paymentId);
+            return this.order.payments.find(p => p.id === entry.data.paymentId);
         }
     }
 
@@ -114,6 +136,10 @@ export class OrderHistoryComponent {
             }
         }
         return Array.from(itemMap.entries()).map(([name, quantity]) => ({ name, quantity }));
+    }
+
+    getModification(id: string) {
+        return this.order.modifications.find(m => m.id === id);
     }
 
     getName(entry: GetOrderHistory.Items): string {

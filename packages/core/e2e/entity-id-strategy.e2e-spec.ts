@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
-import { TEST_SETUP_TIMEOUT_MS, testConfig } from '../../../e2e-common/test-config';
+import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
 
 import {
     IdTest1,
@@ -17,6 +17,7 @@ import {
     IdTest8,
     LanguageCode,
 } from './graphql/generated-e2e-admin-types';
+import { sortById } from './utils/test-order-utils';
 
 describe('EntityIdStrategy', () => {
     const { server, adminClient, shopClient } = createTestEnvironment(testConfig);
@@ -44,9 +45,13 @@ describe('EntityIdStrategy', () => {
                 }
             }
         `);
-        expect(products).toEqual({
-            items: [{ id: 'T_1' }, { id: 'T_2' }, { id: 'T_3' }, { id: 'T_4' }, { id: 'T_5' }],
-        });
+        expect(products.items.sort(sortById)).toEqual([
+            { id: 'T_1' },
+            { id: 'T_2' },
+            { id: 'T_3' },
+            { id: 'T_4' },
+            { id: 'T_5' },
+        ]);
     });
 
     it('Does not doubly-encode ids from resolved properties', async () => {
@@ -197,6 +202,73 @@ describe('EntityIdStrategy', () => {
                 }
             }
             fragment ProdFragment on Product {
+                id
+                featuredAsset {
+                    id
+                }
+            }
+        `);
+
+        expect(products).toEqual({
+            items: [
+                {
+                    id: 'T_1',
+                    featuredAsset: {
+                        id: 'T_2',
+                    },
+                },
+            ],
+        });
+    });
+
+    it('encodes ids in doubly-nested fragment', async () => {
+        const { products } = await shopClient.query<IdTest1.Query>(gql`
+            query IdTest10 {
+                products(options: { take: 1 }) {
+                    items {
+                        ...ProdFragment1
+                    }
+                }
+            }
+            fragment ProdFragment1 on Product {
+                ...ProdFragment2
+            }
+            fragment ProdFragment2 on Product {
+                id
+                featuredAsset {
+                    id
+                }
+            }
+        `);
+
+        expect(products).toEqual({
+            items: [
+                {
+                    id: 'T_1',
+                    featuredAsset: {
+                        id: 'T_2',
+                    },
+                },
+            ],
+        });
+    });
+
+    it('encodes ids in triply-nested fragment', async () => {
+        const { products } = await shopClient.query<IdTest1.Query>(gql`
+            query IdTest11 {
+                products(options: { take: 1 }) {
+                    items {
+                        ...ProdFragment1_1
+                    }
+                }
+            }
+            fragment ProdFragment1_1 on Product {
+                ...ProdFragment2_1
+            }
+            fragment ProdFragment2_1 on Product {
+                ...ProdFragment3_1
+            }
+            fragment ProdFragment3_1 on Product {
                 id
                 featuredAsset {
                     id

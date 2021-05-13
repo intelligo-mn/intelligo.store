@@ -22,15 +22,15 @@ export function mapToSearchResult(raw: any, currencyCode: CurrencyCode): SearchR
             ? ({ min: raw.minPriceWithTax, max: raw.maxPriceWithTax } as PriceRange)
             : ({ value: raw.si_priceWithTax } as SinglePrice);
 
-    const productAsset: SearchResultAsset | null = !raw.si_productAssetId
-        ? null
+    const productAsset: SearchResultAsset | undefined = !raw.si_productAssetId
+        ? undefined
         : {
               id: raw.si_productAssetId,
               preview: raw.si_productPreview,
               focalPoint: parseFocalPoint(raw.si_productPreviewFocalPoint),
           };
-    const productVariantAsset: SearchResultAsset | null = !raw.si_productVariantAssetId
-        ? null
+    const productVariantAsset: SearchResultAsset | undefined = !raw.si_productVariantAssetId
+        ? undefined
         : {
               id: raw.si_productVariantAssetId,
               preview: raw.si_productVariantPreview,
@@ -55,9 +55,7 @@ export function mapToSearchResult(raw: any, currencyCode: CurrencyCode): SearchR
         collectionIds: raw.si_collectionIds.split(',').map((x: string) => x.trim()),
         channelIds: raw.si_channelIds.split(',').map((x: string) => x.trim()),
         productAsset,
-        productPreview: raw.si_productPreview,
         productVariantAsset,
-        productVariantPreview: raw.si_productVariantPreview,
         score: raw.score || 0,
     };
 }
@@ -79,7 +77,7 @@ export function createFacetIdCountMap(facetValuesResult: Array<{ facetValues: st
     return result;
 }
 
-function parseFocalPoint(focalPoint: any): Coordinate | null {
+function parseFocalPoint(focalPoint: any): Coordinate | undefined {
     if (focalPoint && typeof focalPoint === 'string') {
         try {
             return JSON.parse(focalPoint);
@@ -87,5 +85,5 @@ function parseFocalPoint(focalPoint: any): Coordinate | null {
             // fall though
         }
     }
-    return null;
+    return;
 }

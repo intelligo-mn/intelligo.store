@@ -148,6 +148,8 @@ function generateMockData(productCount: number, writeFn: (row: string[]) => void
         'taxCategory',
         'variantAssets',
         'variantFacets',
+        'stockOnHand',
+        'trackInventory',
     ];
 
     writeFn(headers);
@@ -168,6 +170,8 @@ function generateMockData(productCount: number, writeFn: (row: string[]) => void
             taxCategory: 'standard',
             variantAssets: '',
             variantFacets: '',
+            stockOnHand: '1000',
+            trackInventory: 'false',
         };
         writeFn(Object.values(outputRow) as string[]);
     }
@@ -247,9 +251,7 @@ const parts = [
 ];
 function generateProductDescription(): string {
     const take = Math.ceil(Math.random() * 4);
-    return shuffle(parts)
-        .slice(0, take)
-        .join('. ');
+    return shuffle(parts).slice(0, take).join('. ');
 }
 
 /**

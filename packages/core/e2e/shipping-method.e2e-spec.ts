@@ -9,8 +9,10 @@ import gql from 'graphql-tag';
 import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
-import { TEST_SETUP_TIMEOUT_MS, testConfig } from '../../../e2e-common/test-config';
+import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
+import { manualFulfillmentHandler } from '../src/config/fulfillment/manual-fulfillment-handler';
 
+import { SHIPPING_METHOD_FRAGMENT } from './graphql/fragments';
 import {
     CreateShippingMethod,
     DeleteShippingMethod,
@@ -24,6 +26,11 @@ import {
     TestShippingMethod,
     UpdateShippingMethod,
 } from './graphql/generated-e2e-admin-types';
+import {
+    CREATE_SHIPPING_METHOD,
+    DELETE_SHIPPING_METHOD,
+    UPDATE_SHIPPING_METHOD,
+} from './graphql/shared-definitions';
 
 const TEST_METADATA = {
     foo: 'bar',
@@ -34,10 +41,11 @@ const calculatorWithMetadata = new ShippingCalculator({
     code: 'calculator-with-metadata',
     description: [{ languageCode: LanguageCode.en, value: 'Has metadata' }],
     args: {},
-    calculate: order => {
+    calculate: () => {
         return {
             price: 100,
-            priceWithTax: 100,
+            priceIncludesTax: true,
+            taxRate: 0,
             metadata: TEST_METADATA,
         };
     },
@@ -74,13 +82,13 @@ describe('ShippingMethod resolver', () => {
             {
                 args: [
                     {
-                        config: {
-                            inputType: 'money',
-                        },
                         description: 'Order is eligible only if its total is greater or equal to this value',
                         label: 'Minimum order value',
                         name: 'orderMinimum',
                         type: 'int',
+                        ui: {
+                            component: 'currency-form-input',
+                        },
                     },
                 ],
                 code: 'default-shipping-eligibility-checker',
@@ -96,8 +104,8 @@ describe('ShippingMethod resolver', () => {
             {
                 args: [
                     {
-                        config: {
-                            inputType: 'money',
+                        ui: {
+                            component: 'currency-form-input',
                         },
                         description: null,
                         label: 'Shipping price',
@@ -105,8 +113,34 @@ describe('ShippingMethod resolver', () => {
                         type: 'int',
                     },
                     {
-                        config: {
-                            inputType: 'percentage',
+                        label: 'Price includes tax',
+                        name: 'includesTax',
+                        type: 'string',
+                        description: null,
+                        ui: {
+                            component: 'select-form-input',
+                            options: [
+                                {
+                                    label: [{ languageCode: LanguageCode.en, value: 'Includes tax' }],
+                                    value: 'include',
+                                },
+                                {
+                                    label: [{ languageCode: LanguageCode.en, value: 'Excludes tax' }],
+                                    value: 'exclude',
+                                },
+                                {
+                                    label: [
+                                        { languageCode: LanguageCode.en, value: 'Auto (based on Channel)' },
+                                    ],
+                                    value: 'auto',
+                                },
+                            ],
+                        },
+                    },
+                    {
+                        ui: {
+                            component: 'number-form-input',
+                            suffix: '%',
                         },
                         description: null,
                         label: 'Tax rate',
@@ -151,13 +185,12 @@ describe('ShippingMethod resolver', () => {
         >(CREATE_SHIPPING_METHOD, {
             input: {
                 code: 'new-method',
-                description: 'new method',
+                fulfillmentHandler: manualFulfillmentHandler.code,
                 checker: {
                     code: defaultShippingEligibilityChecker.code,
                     arguments: [
                         {
                             name: 'orderMinimum',
-                            type: 'int',
                             value: '0',
                         },
                     ],
@@ -166,18 +199,27 @@ describe('ShippingMethod resolver', () => {
                     code: calculatorWithMetadata.code,
                     arguments: [],
                 },
+                translations: [{ languageCode: LanguageCode.en, name: 'new method', description: '' }],
             },
         });
 
         expect(createShippingMethod).toEqual({
             id: 'T_3',
             code: 'new-method',
-            description: 'new method',
+            name: 'new method',
+            description: '',
             calculator: {
                 code: 'calculator-with-metadata',
+                args: [],
             },
             checker: {
                 code: 'default-shipping-eligibility-checker',
+                args: [
+                    {
+                        name: 'orderMinimum',
+                        value: '0',
+                    },
+                ],
             },
         });
     });
@@ -197,7 +239,6 @@ describe('ShippingMethod resolver', () => {
                     arguments: [
                         {
                             name: 'orderMinimum',
-                            type: 'int',
                             value: '0',
                         },
                     ],
@@ -237,7 +278,8 @@ describe('ShippingMethod resolver', () => {
         expect(testEligibleShippingMethods).toEqual([
             {
                 id: 'T_3',
-                description: 'new method',
+                name: 'new method',
+                description: '',
                 price: 100,
                 priceWithTax: 100,
                 metadata: TEST_METADATA,
@@ -245,14 +287,16 @@ describe('ShippingMethod resolver', () => {
 
             {
                 id: 'T_1',
-                description: 'Standard Shipping',
+                name: 'Standard Shipping',
+                description: '',
                 price: 500,
                 priceWithTax: 500,
                 metadata: null,
             },
             {
                 id: 'T_2',
-                description: 'Express Shipping',
+                name: 'Express Shipping',
+                description: '',
                 price: 1000,
                 priceWithTax: 1000,
                 metadata: null,
@@ -267,11 +311,11 @@ describe('ShippingMethod resolver', () => {
         >(UPDATE_SHIPPING_METHOD, {
             input: {
                 id: 'T_3',
-                description: 'changed method',
+                translations: [{ languageCode: LanguageCode.en, name: 'changed method', description: '' }],
             },
         });
 
-        expect(updateShippingMethod.description).toBe('changed method');
+        expect(updateShippingMethod.name).toBe('changed method');
     });
 
     it('deleteShippingMethod', async () => {
@@ -295,20 +339,6 @@ describe('ShippingMethod resolver', () => {
     });
 });
 
-const SHIPPING_METHOD_FRAGMENT = gql`
-    fragment ShippingMethod on ShippingMethod {
-        id
-        code
-        description
-        calculator {
-            code
-        }
-        checker {
-            code
-        }
-    }
-`;
-
 const GET_SHIPPING_METHOD_LIST = gql`
     query GetShippingMethodList {
         shippingMethods {
@@ -330,33 +360,6 @@ const GET_SHIPPING_METHOD = gql`
     ${SHIPPING_METHOD_FRAGMENT}
 `;
 
-const CREATE_SHIPPING_METHOD = gql`
-    mutation CreateShippingMethod($input: CreateShippingMethodInput!) {
-        createShippingMethod(input: $input) {
-            ...ShippingMethod
-        }
-    }
-    ${SHIPPING_METHOD_FRAGMENT}
-`;
-
-const UPDATE_SHIPPING_METHOD = gql`
-    mutation UpdateShippingMethod($input: UpdateShippingMethodInput!) {
-        updateShippingMethod(input: $input) {
-            ...ShippingMethod
-        }
-    }
-    ${SHIPPING_METHOD_FRAGMENT}
-`;
-
-const DELETE_SHIPPING_METHOD = gql`
-    mutation DeleteShippingMethod($id: ID!) {
-        deleteShippingMethod(id: $id) {
-            result
-            message
-        }
-    }
-`;
-
 const GET_ELIGIBILITY_CHECKERS = gql`
     query GetEligibilityCheckers {
         shippingEligibilityCheckers {
@@ -367,7 +370,7 @@ const GET_ELIGIBILITY_CHECKERS = gql`
                 type
                 description
                 label
-                config
+                ui
             }
         }
     }
@@ -383,7 +386,7 @@ const GET_CALCULATORS = gql`
                 type
                 description
                 label
-                config
+                ui
             }
         }
     }
@@ -406,6 +409,7 @@ export const TEST_ELIGIBLE_SHIPPING_METHODS = gql`
     query TestEligibleMethods($input: TestEligibleShippingMethodsInput!) {
         testEligibleShippingMethods(input: $input) {
             id
+            name
             description
             price
             priceWithTax

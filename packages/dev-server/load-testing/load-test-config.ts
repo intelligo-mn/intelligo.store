@@ -4,11 +4,10 @@ import {
     defaultConfig,
     DefaultLogger,
     DefaultSearchPlugin,
-    examplePaymentHandler,
+    dummyPaymentHandler,
     InMemorySessionCacheStrategy,
     LogLevel,
     mergeConfig,
-    NoopSessionCacheStrategy,
     VendureConfig,
 } from '@vendure/core';
 import path from 'path';
@@ -21,6 +20,19 @@ export function getMysqlConnectionOptions(count: number) {
         username: 'root',
         password: '',
         database: `vendure-load-testing-${count}`,
+        extra: {
+            // connectionLimit: 150,
+        },
+    };
+}
+export function getPostgresConnectionOptions(count: number) {
+    return {
+        type: 'postgres' as const,
+        host: '127.0.0.1',
+        port: 5432,
+        username: 'admin',
+        password: 'secret',
+        database: `vendure-load-testing-${count}`,
     };
 }
 
@@ -28,7 +40,7 @@ export function getLoadTestConfig(tokenMethod: 'cookie' | 'bearer'): Required<Ve
     const count = getProductCount();
     return mergeConfig(defaultConfig, {
         paymentOptions: {
-            paymentMethodHandlers: [examplePaymentHandler],
+            paymentMethodHandlers: [dummyPaymentHandler],
         },
         orderOptions: {
             orderItemsLimit: 99999,
@@ -43,15 +55,11 @@ export function getLoadTestConfig(tokenMethod: 'cookie' | 'bearer'): Required<Ve
         importExportOptions: {
             importAssetsDir: path.join(__dirname, './data-sources'),
         },
-        workerOptions: {
-            runInMainProcess: true,
-        },
         customFields: {},
         plugins: [
             AssetServerPlugin.init({
                 assetUploadDir: path.join(__dirname, 'static/assets'),
                 route: 'assets',
-                port: 5002,
             }),
             DefaultSearchPlugin,
         ],

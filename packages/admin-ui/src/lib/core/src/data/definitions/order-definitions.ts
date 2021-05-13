@@ -1,9 +1,12 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
-export const ADJUSTMENT_FRAGMENT = gql`
-    fragment Adjustment on Adjustment {
+import { ERROR_RESULT_FRAGMENT } from './shared-definitions';
+
+export const DISCOUNT_FRAGMENT = gql`
+    fragment Discount on Discount {
         adjustmentSource
         amount
+        amountWithTax
         description
         type
     }
@@ -31,6 +34,7 @@ export const ORDER_ADDRESS_FRAGMENT = gql`
         province
         postalCode
         country
+        countryCode
         phoneNumber
     }
 `;
@@ -40,6 +44,7 @@ export const ORDER_FRAGMENT = gql`
         id
         createdAt
         updatedAt
+        orderPlacedAt
         code
         state
         nextStates
@@ -50,15 +55,25 @@ export const ORDER_FRAGMENT = gql`
             firstName
             lastName
         }
+        shippingLines {
+            shippingMethod {
+                name
+            }
+        }
     }
 `;
 
 export const FULFILLMENT_FRAGMENT = gql`
     fragment Fulfillment on Fulfillment {
         id
+        state
+        nextStates
         createdAt
         updatedAt
         method
+        orderItems {
+            id
+        }
         trackingCode
     }
 `;
@@ -73,17 +88,20 @@ export const ORDER_LINE_FRAGMENT = gql`
             id
             name
             sku
+            trackInventory
+            stockOnHand
         }
-        adjustments {
-            ...Adjustment
+        discounts {
+            ...Discount
         }
         unitPrice
         unitPriceWithTax
+        proratedUnitPrice
+        proratedUnitPriceWithTax
         quantity
         items {
             id
             unitPrice
-            unitPriceIncludesTax
             unitPriceWithTax
             taxRate
             refundId
@@ -92,7 +110,11 @@ export const ORDER_LINE_FRAGMENT = gql`
                 ...Fulfillment
             }
         }
-        totalPrice
+        linePrice
+        lineTax
+        linePriceWithTax
+        discountedLinePrice
+        discountedLinePriceWithTax
     }
 `;
 
@@ -113,23 +135,42 @@ export const ORDER_DETAIL_FRAGMENT = gql`
         lines {
             ...OrderLine
         }
-        adjustments {
-            ...Adjustment
+        surcharges {
+            id
+            sku
+            description
+            price
+            priceWithTax
+            taxRate
+        }
+        discounts {
+            ...Discount
         }
         promotions {
             id
             couponCode
         }
         subTotal
-        subTotalBeforeTax
-        totalBeforeTax
+        subTotalWithTax
+        total
+        totalWithTax
         currencyCode
         shipping
         shippingWithTax
-        shippingMethod {
-            id
-            code
+        shippingLines {
+            shippingMethod {
+                id
+                code
+                name
+                fulfillmentHandlerCode
+                description
+            }
+        }
+        taxSummary {
             description
+            taxBase
+            taxRate
+            taxTotal
         }
         shippingAddress {
             ...OrderAddress
@@ -144,6 +185,8 @@ export const ORDER_DETAIL_FRAGMENT = gql`
             amount
             method
             state
+            nextStates
+            errorMessage
             metadata
             refunds {
                 id
@@ -165,9 +208,30 @@ export const ORDER_DETAIL_FRAGMENT = gql`
         fulfillments {
             ...Fulfillment
         }
-        total
+        modifications {
+            id
+            createdAt
+            isSettled
+            priceChange
+            note
+            payment {
+                id
+                amount
+            }
+            orderItems {
+                id
+            }
+            refund {
+                id
+                paymentId
+                total
+            }
+            surcharges {
+                id
+            }
+        }
     }
-    ${ADJUSTMENT_FRAGMENT}
+    ${DISCOUNT_FRAGMENT}
     ${ORDER_ADDRESS_FRAGMENT}
     ${FULFILLMENT_FRAGMENT}
     ${ORDER_LINE_FRAGMENT}
@@ -197,50 +261,91 @@ export const GET_ORDER = gql`
 export const SETTLE_PAYMENT = gql`
     mutation SettlePayment($id: ID!) {
         settlePayment(id: $id) {
-            id
-            transactionId
-            amount
-            method
-            state
-            metadata
+            ... on Payment {
+                id
+                transactionId
+                amount
+                method
+                state
+                metadata
+            }
+            ...ErrorResult
+            ... on SettlePaymentError {
+                paymentErrorMessage
+            }
+            ... on PaymentStateTransitionError {
+                transitionError
+            }
+            ... on OrderStateTransitionError {
+                transitionError
+            }
         }
     }
+    ${ERROR_RESULT_FRAGMENT}
+`;
+
+export const TRANSITION_PAYMENT_TO_STATE = gql`
+    mutation TransitionPaymentToState($id: ID!, $state: String!) {
+        transitionPaymentToState(id: $id, state: $state) {
+            ... on Payment {
+                id
+                transactionId
+                amount
+                method
+                state
+                metadata
+            }
+            ...ErrorResult
+            ... on PaymentStateTransitionError {
+                transitionError
+            }
+        }
+    }
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const CREATE_FULFILLMENT = gql`
     mutation CreateFulfillment($input: FulfillOrderInput!) {
-        fulfillOrder(input: $input) {
+        addFulfillmentToOrder(input: $input) {
             ...Fulfillment
+            ...ErrorResult
         }
     }
     ${FULFILLMENT_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const CANCEL_ORDER = gql`
     mutation CancelOrder($input: CancelOrderInput!) {
         cancelOrder(input: $input) {
             ...OrderDetail
+            ...ErrorResult
         }
     }
     ${ORDER_DETAIL_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const REFUND_ORDER = gql`
     mutation RefundOrder($input: RefundOrderInput!) {
         refundOrder(input: $input) {
             ...Refund
+            ...ErrorResult
         }
     }
     ${REFUND_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const SETTLE_REFUND = gql`
     mutation SettleRefund($input: SettleRefundInput!) {
         settleRefund(input: $input) {
             ...Refund
+            ...ErrorResult
         }
     }
     ${REFUND_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const GET_ORDER_HISTORY = gql`
@@ -297,9 +402,14 @@ export const TRANSITION_ORDER_TO_STATE = gql`
     mutation TransitionOrderToState($id: ID!, $state: String!) {
         transitionOrderToState(id: $id, state: $state) {
             ...Order
+            ...ErrorResult
+            ... on OrderStateTransitionError {
+                transitionError
+            }
         }
     }
     ${ORDER_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
 export const UPDATE_ORDER_CUSTOM_FIELDS = gql`
@@ -309,4 +419,53 @@ export const UPDATE_ORDER_CUSTOM_FIELDS = gql`
         }
     }
     ${ORDER_FRAGMENT}
+`;
+
+export const TRANSITION_FULFILLMENT_TO_STATE = gql`
+    mutation TransitionFulfillmentToState($id: ID!, $state: String!) {
+        transitionFulfillmentToState(id: $id, state: $state) {
+            ...Fulfillment
+            ...ErrorResult
+            ... on FulfillmentStateTransitionError {
+                transitionError
+            }
+        }
+    }
+    ${FULFILLMENT_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
+`;
+
+export const GET_ORDER_SUMMARY = gql`
+    query GetOrderSummary($start: DateTime!, $end: DateTime!) {
+        orders(options: { filter: { orderPlacedAt: { between: { start: $start, end: $end } } } }) {
+            totalItems
+            items {
+                id
+                total
+                currencyCode
+            }
+        }
+    }
+`;
+
+export const MODIFY_ORDER = gql`
+    mutation ModifyOrder($input: ModifyOrderInput!) {
+        modifyOrder(input: $input) {
+            ...OrderDetail
+            ...ErrorResult
+        }
+    }
+    ${ORDER_DETAIL_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
+`;
+
+export const ADD_MANUAL_PAYMENT_TO_ORDER = gql`
+    mutation AddManualPayment($input: ManualPaymentInput!) {
+        addManualPaymentToOrder(input: $input) {
+            ...OrderDetail
+            ...ErrorResult
+        }
+    }
+    ${ORDER_DETAIL_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
 `;
