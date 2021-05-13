@@ -18,8 +18,6 @@ jobs:
         pr_body: ":crown: *An automated PR*"              # Full markdown support, requires pr_title to be set
         pr_reviewer: "tortuvshin"                         # Comma-separated list (no spaces)
         pr_assignee: "tortuvshin"                         # Comma-separated list (no spaces)
-        pr_label: "auto-pr"                               # Comma-separated list (no spaces)
-        pr_milestone: "Milestone 1"                       # Milestone name
         pr_draft: true                                    # Creates pull request as draft
         pr_allow_empty: true                              # Creates pull request even if there are no changes
         github_token: ${{ secrets.GH_PAT }}
