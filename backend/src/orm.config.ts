@@ -24,10 +24,13 @@ let ormconfig: any = {
 
 if (process.env.NODE_ENV === "dev") {
   ormconfig = {
-    name: "default",
-    type: "mysql",
-    database: "childfood",
-    url: "mysql://root:root@localhost/childfood",
+    name: 'default',
+    type: 'mysql',
+    database: 'childfood',
+    host: 'localhost',
+    port: 3307,
+    username: 'root',
+    password: 'Battstsg@1',
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
@@ -39,10 +42,13 @@ if (process.env.NODE_ENV === "dev") {
 
 if (process.env.NODE_ENV === "prod") {
   ormconfig = {
-    name: "default",
-    type: "mysql",
-    database: "childfood",
-    url: "mysql://root:Battstsg01@localhost/childfood",
+    name: 'default',
+    type: 'mysql',
+    database: 'childfood',
+    host: 'localhost',
+    port: 3307,
+    username: 'root',
+    password: 'Battstsg@1',
     logging: false,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
