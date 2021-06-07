@@ -47,7 +47,7 @@
     "shelljs": "0.8.4",
     "sqlite3": "5.0.2",
     "swagger-ui-express": "4.1.6",
-    "typeorm": "0.2.29",
+    "typeorm": "0.2.34",
     "typeorm-encrypted": "0.5.6"
   },
   "devDependencies": {
