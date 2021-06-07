@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.22.0"
+    "lerna": "3.22.1"
   },
   "scripts": {
     "backend": "cd backend && npm run start:dev",
@@ -12,6 +12,6 @@
     "build": "npm run backend-build && cd frontend && npm run build"
   },
   "dependencies": {
-    "node": "^15.0.1"
+    "node": "15.0.1"
   }
 }
