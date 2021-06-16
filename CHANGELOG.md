@@ -1,3 +1,67 @@
+## <small>1.0.2 (2021-06-10)</small>
+
+
+#### Fixes
+
+* **admin-ui** Allow Channel tokens to be updated from ChannelDetail ([cafa04e](https://github.com/vendure-ecommerce/vendure/commit/cafa04e))
+* **core** Do not error when removing deleted variant from channel ([e3e8828](https://github.com/vendure-ecommerce/vendure/commit/e3e8828))
+* **core** Fix worker error when using custom Logger ([cbe764a](https://github.com/vendure-ecommerce/vendure/commit/cbe764a)), closes [#912](https://github.com/vendure-ecommerce/vendure/issues/912)
+* **core** Update search index when removing translated variants ([fced1dc](https://github.com/vendure-ecommerce/vendure/commit/fced1dc)), closes [#896](https://github.com/vendure-ecommerce/vendure/issues/896)
+* **create** Remove tslib resolution from package.json ([863ffcb](https://github.com/vendure-ecommerce/vendure/commit/863ffcb)), closes [#925](https://github.com/vendure-ecommerce/vendure/issues/925)
+
+#### Perf
+
+* **core** Improve performance of apply-collection-filters job (#915) ([1e8c137](https://github.com/vendure-ecommerce/vendure/commit/1e8c137)), closes [#915](https://github.com/vendure-ecommerce/vendure/issues/915)
+
+## <small>1.0.1 (2021-05-27)</small>
+
+
+#### Fixes
+
+* **admin-ui** Account for refunds when calculating outstanding payment ([fce00c4](https://github.com/vendure-ecommerce/vendure/commit/fce00c4))
+* **admin-ui** Fixed unsupported plural for Simple Chinese translation (#888) ([d43602f](https://github.com/vendure-ecommerce/vendure/commit/d43602f)), closes [#888](https://github.com/vendure-ecommerce/vendure/issues/888)
+* **core** Correctly calculate refund amount when modifying order ([56d058d](https://github.com/vendure-ecommerce/vendure/commit/56d058d)), closes [#890](https://github.com/vendure-ecommerce/vendure/issues/890)
+* **core** Prevent FK error when migrating with better-sqlite3 driver ([8bfa03d](https://github.com/vendure-ecommerce/vendure/commit/8bfa03d)), closes [#880](https://github.com/vendure-ecommerce/vendure/issues/880)
+* **core** Publish PaymentStateTransitionEvent when settlePayment fails ([c01106c](https://github.com/vendure-ecommerce/vendure/commit/c01106c)), closes [#886](https://github.com/vendure-ecommerce/vendure/issues/886)
+* **core** Update NestJS & graphql-related deps to fix version conflict. This fix enables compatibility with npm v7.x ([8891c43](https://github.com/vendure-ecommerce/vendure/commit/8891c43)), closes [#532](https://github.com/vendure-ecommerce/vendure/issues/532) [blob/9267a79b974e397e87ad9ee408b65c46751e4565/CHANGELOG.md#v2230](https://github.com/blob/9267a79b974e397e87ad9ee408b65c46751e4565/CHANGELOG.md/issues/v2230)
+* **create** Remove redundant synchronize warning ([73841e4](https://github.com/vendure-ecommerce/vendure/commit/73841e4))
+
+## 1.0.0 (2021-05-19)
+
+Vendure v1.0 is here! 🎉
+
+**Note** with this release, all deprecated APIs have been removed. If you were still using any, you'll have a very small amount of work to do in switching over to their replacements. Removed deprecated APIs:
+
+* TypeScript: `EventBus.sucscribe()`, use `EventBus.ofType()` instead.
+* TypeScript: `getEntityOrThrow()` helper. Use `TransactionalConnection.getEntityOrThrow()` instead.
+* TypeScript: `Injector.getConnection()`. Use `Injector.get(TransactionalConnection)` instead.  
+* TypeScript: `PriceCalculationStrategy`. Use `OrderItemPriceCalculationStrategy` instead.
+* TypeScript: `TaxCalculationStrategy`. Use `ProductVariantPriceCalculationStrategy` instead.
+* TypeScript: `VendureConfig.authOptions.sessionSecret`. Use `VendureConfig.authOptions.cookieOptions.secret` instead.
+* TypeScript - AssetServerPlugin: The `region` option of the S3AssetStorageStrategy should be moved into the `nativeS3Configuration` object.
+* GraphQL: `SearchResult` type - `productPreview` & `productVariantPreview` fields. Use `productAsset.preview`, `productVariantAsset.preview` instead. 
+* GraphQL: `Order.adjustments`. Use `Order.discounts` instead.
+* GraphQL: `OrderItem.unitPriceIncludesTax`. This is removed as redundant - `unitPrice` is always without tax.
+* GraphQL: `OrderLine.totalPrice`. Use `OrderLine.linePriceWithTax` instead.
+* GraphQL: `OrderLine.adjustments`. Use `OrderLine.discounts` instead.
+* GraphQL: `Product.priceIncludesTax`. This is removed as redundant - `price` is always without tax.
+
+
+
+#### Fixes
+
+* **admin-ui** Improve FR translations (#884) ([ad5bc2b](https://github.com/vendure-ecommerce/vendure/commit/ad5bc2b)), closes [#884](https://github.com/vendure-ecommerce/vendure/issues/884)
+* **admin-ui** Display refund metadata (#875) ([7bc7372](https://github.com/vendure-ecommerce/vendure/commit/7bc7372)), closes [#875](https://github.com/vendure-ecommerce/vendure/issues/875)
+* **admin-ui** Enable retrying of failed refunds ([4fc749d](https://github.com/vendure-ecommerce/vendure/commit/4fc749d)), closes [#873](https://github.com/vendure-ecommerce/vendure/issues/873)
+* **admin-ui** Fix configurable arg forms becoming unresponsive ([6039f0c](https://github.com/vendure-ecommerce/vendure/commit/6039f0c))
+* **admin-ui** Update Chinese translations (#878) ([084dc31](https://github.com/vendure-ecommerce/vendure/commit/084dc31)), closes [#878](https://github.com/vendure-ecommerce/vendure/issues/878)
+* **core** Correct order totals in order modification preview ([1795f48](https://github.com/vendure-ecommerce/vendure/commit/1795f48)), closes [#872](https://github.com/vendure-ecommerce/vendure/issues/872)
+* **core** Fix bug in applying OrderItem promotions with postgres ([aaa8393](https://github.com/vendure-ecommerce/vendure/commit/aaa8393))
+* **core** Fix multiple refunds on the same OrderLine ([7316d31](https://github.com/vendure-ecommerce/vendure/commit/7316d31)), closes [#868](https://github.com/vendure-ecommerce/vendure/issues/868)
+* **core** Fix refunds after failures & with multiple payments ([ed30874](https://github.com/vendure-ecommerce/vendure/commit/ed30874)), closes [#873](https://github.com/vendure-ecommerce/vendure/issues/873)
+* **core** Handle array circular refs when serializing RequestContext ([4abb912](https://github.com/vendure-ecommerce/vendure/commit/4abb912)), closes [#864](https://github.com/vendure-ecommerce/vendure/issues/864)
+* **core** Include tax setting when populating default shipping methods ([26ce6ff](https://github.com/vendure-ecommerce/vendure/commit/26ce6ff))
+
 ## 1.0.0-rc.0 (2021-05-05)
 
 
