@@ -1,4 +1,4 @@
-# Vendure
+# platform.sale
 
 A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
