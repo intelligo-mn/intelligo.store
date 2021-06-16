@@ -19,7 +19,7 @@
     "flag-icon-css": "2.9.0",
     "font-awesome": "4.7.0",
     "mdi": "2.2.43",
-    "axios": "^0.18.0",
+    "axios": "^0.21.0",
     "vue": "^2.5.2",
     "vue-md-date-picker": "1.0.15",
     "vue-router": "^3.0.1"
