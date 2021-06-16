@@ -2,12 +2,12 @@ name: Publish & Install
 on:
   push:
     branches:
-      - master
+      - release
       - major
       - minor
   pull_request:
     branches:
-      - master
+      - release
       - major
       - minor
 defaults:
