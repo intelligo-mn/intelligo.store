@@ -42,12 +42,12 @@
     "sql.js": "1.3.2"
   },
   "devDependencies": {
-    "@types/mysql": "^2.15.15",
-    "@types/pg": "^7.14.5",
+    "@types/mysql": "2.15.18",
+    "@types/pg": "7.14.10",
     "@vendure/core": "^1.0.2",
-    "mysql": "^2.18.1",
-    "pg": "^8.4.0",
-    "rimraf": "^3.0.0",
+    "mysql": "2.18.1",
+    "pg": "8.5.1",
+    "rimraf": "3.0.2",
     "typescript": "4.1.5"
   }
 }
