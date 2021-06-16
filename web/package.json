@@ -23,7 +23,7 @@
     "connect-flash": "^0.1.1",
     "connect-multiparty": "^2.2.0",
     "connect-timeout": "^1.9.0",
-    "cookie-parser": "^1.4.3",
+    "cookie-parser": "1.4.5",
     "cors": "^2.8.5",
     "ejs": "^2.5.1",
     "express": "^4.15.5",
