@@ -28,7 +28,7 @@
     "ejs": "^2.5.1",
     "express": "^4.15.5",
     "express-session": "^1.14.2",
-    "express-validator": "^5.3.0",
+    "express-validator": "5.3.1",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.13.0",
