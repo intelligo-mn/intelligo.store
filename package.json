@@ -10,7 +10,7 @@
   "dependencies": {
     "@hot-loader/react-dom": "16.11.0",
     "@svgr/webpack": "4.3.3",
-    "autoprefixer": "9.7.2",
+    "autoprefixer": "10.2.6",
     "babel-plugin-styled-components": "1.10.6",
     "body-scroll-lock": "3.1.5",
     "gatsby": "2.17.17",
