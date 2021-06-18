@@ -28,7 +28,7 @@
     "core-js": "2.6.4",
     "ngx-clipboard": "11.1.9",
     "ngx-toastr": "9.1.2",
-    "nouislider": "13.1.1",
+    "nouislider": "13.1.5",
     "rxjs": "6.4.0",
     "zone.js": "0.11.4"
   },
