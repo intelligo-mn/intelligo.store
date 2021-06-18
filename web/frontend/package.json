@@ -21,7 +21,7 @@
     "mdi": "2.2.43",
     "axios": "^0.21.0",
     "vue": "^2.5.2",
-    "vue-md-date-picker": "1.0.15",
+    "vue-md-date-picker": "1.0.16",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
