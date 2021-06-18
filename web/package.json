@@ -38,7 +38,7 @@
     "path": "^0.12.7",
     "request": "2.88.2",
     "serve-static": "^1.13.2",
-    "slug": "^0.9.2"
+    "slug": "0.9.4"
   },
   "cacheDirectories": [
     "node_modules"
