@@ -24,7 +24,7 @@
     "@angular/router": "~10.1.2",
     "@devmn/event-manager": "^1.0.1",
     "@ng-bootstrap/ng-bootstrap": "5.1.0",
-    "@ng-select/ng-option-highlight": "0.0.4",
+    "@ng-select/ng-option-highlight": "0.0.6",
     "@ng-select/ng-select": "3.7.3",
     "@ngx-translate/core": "11.0.1",
     "@ngx-translate/http-loader": "4.0.0",
