@@ -38,7 +38,7 @@
     "apollo-cache-inmemory": "1.6.5",
     "apollo-client": "2.6.8",
     "apollo-link": "1.2.13",
-    "bootstrap": "4.4.1",
+    "bootstrap": "4.6.0",
     "compression": "1.7.4",
     "core-js": "3.15.0",
     "express": "4.17.1",
