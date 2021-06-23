@@ -30,7 +30,7 @@ services:
     ports:
       - '3306:3306'
   mysql5:
-    image: bitnami/mysql:5.7
+    image: bitnami/mysql:8.0
     container_name: mysql-5.7
     environment:
       ALLOW_EMPTY_PASSWORD: 'yes'
