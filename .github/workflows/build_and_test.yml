@@ -33,7 +33,7 @@ jobs:
     name: unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ env.node }}
         uses: actions/setup-node@v2
         with:
@@ -92,7 +92,7 @@ jobs:
       matrix:
         db: [sqljs, mariadb, mysql, postgres]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ env.node }}
         uses: actions/setup-node@v2
         with:
