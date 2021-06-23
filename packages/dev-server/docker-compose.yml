@@ -59,7 +59,7 @@ services:
     volumes:
       - /sessions
   postgres:
-    image: postgres:12.3
+    image: postgres:12.7
     container_name: postgres
     environment:
       POSTGRES_DB: postgres
