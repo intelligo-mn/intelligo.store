@@ -10582,10 +10582,10 @@ i18next-icu@^1.4.2:
   dependencies:
     intl-messageformat "2.2.0"
 
-i18next@^19.8.1:
-  version "19.9.1"
-  resolved "https://registry.npmjs.org/i18next/-/i18next-19.9.1.tgz#7a072b75daf677aa51fd4ce55214f21702af3ffd"
-  integrity sha512-9Azzyb3DvMJUMd7sPhwVEs6PQcogvdHmLQTjMQ+P+h3XwW4O66/8lgZTmYShgkjPOCqTw4Fwl5LOp/VhZgPo5A==
+i18next@^20.0.0:
+  version "20.3.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-20.3.2.tgz#5195e76b9e0848a1c198001bf6c7fc72995a55f1"
+  integrity sha512-e8CML2R9Ng2sSQOM80wb/PrM2j8mDm84o/T4Amzn9ArVyNX5/ENWxxAXkRpZdTQNDaxKImF93Wep4mAoozFrKw==
   dependencies:
     "@babel/runtime" "^7.12.0"
 
