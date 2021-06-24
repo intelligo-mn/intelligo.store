@@ -57,7 +57,7 @@
     "typescript": "4.1.5"
   },
   "resolutions": {
-    "npm-packlist": "1.4.8"
+    "npm-packlist": "2.2.2"
   },
   "workspaces": {
     "packages": [
