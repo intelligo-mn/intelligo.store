@@ -72,7 +72,7 @@ services:
       - "5432:5432"
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:4.30
+    image: dpage/pgadmin4:5.4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@localhost.dev
       PGADMIN_DEFAULT_PASSWORD: secret
