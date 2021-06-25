@@ -63,7 +63,7 @@
     "@types/jasminewd2": "2.0.8",
     "@types/node": "12.20.15",
     "@types/photoswipe": "4.1.0",
-    "codelyzer": "5.2.1",
+    "codelyzer": "6.0.2",
     "graphql-code-generator": "0.18.0",
     "graphql-codegen-add": "0.18.0",
     "graphql-codegen-typescript-client": "0.18.0",
