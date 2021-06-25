@@ -74,7 +74,7 @@
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-jasmine": "1.1.2",
-    "karma-jasmine-html-reporter": "0.2.2",
+    "karma-jasmine-html-reporter": "1.6.0",
     "ng-packagr": "9.1.5",
     "ts-loader": "5.4.5",
     "ts-node": "7.0.1",
