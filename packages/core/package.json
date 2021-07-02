@@ -72,7 +72,7 @@
     "nanoid": "^3.0.0",
     "progress": "^2.0.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.6.3",
+    "rxjs": "^7.0.0",
     "typeorm": "0.2.34"
   },
   "devDependencies": {
