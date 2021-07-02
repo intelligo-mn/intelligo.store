@@ -85,7 +85,7 @@
     "karma-jasmine": "4.0.1",
     "karma-jasmine-html-reporter": "1.6.0",
     "karma-mocha-reporter": "2.2.5",
-    "ng-packagr": "11.2.4",
+    "ng-packagr": "12.1.0",
     "protractor": "7.0.0",
     "puppeteer": "8.0.0",
     "rimraf": "3.0.2",
