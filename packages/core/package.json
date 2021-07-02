@@ -96,6 +96,6 @@
     "rimraf": "3.0.2",
     "sql.js": "1.5.0",
     "sqlite3": "5.0.2",
-    "typescript": "4.1.5"
+    "typescript": "4.3.5"
   }
 }
