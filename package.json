@@ -33,7 +33,7 @@
     "@fortawesome/free-brands-svg-icons": "5.15.3",
     "@fortawesome/free-solid-svg-icons": "5.15.3",
     "@nguniversal/express-engine": "9.1.1",
-    "apollo-angular": "1.8.0",
+    "apollo-angular": "2.6.0",
     "apollo-angular-link-http": "1.11.0",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-client": "2.6.10",
