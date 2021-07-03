@@ -69,7 +69,7 @@
     "nodemon": "2.0.6",
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
-    "sonarqube-scanner": "2.8.0",
+    "sonarqube-scanner": "2.8.1",
     "supertest": "6.0.1",
     "ts-jest": "26.4.4",
     "ts-node": "9.1.1",
