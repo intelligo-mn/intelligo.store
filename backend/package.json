@@ -43,7 +43,7 @@
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "reflect-metadata": "0.1.13",
-    "rxjs": "6.6.3",
+    "rxjs": "6.6.7",
     "shelljs": "0.8.4",
     "sqlite3": "5.0.2",
     "swagger-ui-express": "4.1.6",
