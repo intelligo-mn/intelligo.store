@@ -13,6 +13,6 @@
     "dashboard:build": "cd dashboard && npm run build"
   },
   "dependencies": {
-    "node": "^15.0.1"
+    "node": "15.14.0"
   }
 }
