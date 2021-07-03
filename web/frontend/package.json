@@ -70,7 +70,7 @@
     "mocha": "3.5.3",
     "nightwatch": "0.9.21",
     "node-notifier": "8.0.2",
-    "node-sass": "4.11.0",
+    "node-sass": "4.13.1",
     "optimize-css-assets-webpack-plugin": "3.2.1",
     "ora": "1.4.0",
     "phantomjs-prebuilt": "2.1.16",
