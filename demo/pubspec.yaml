@@ -21,7 +21,7 @@ dependencies:
   loader_search_bar: ^1.0.2
   cupertino_icons: ^0.1.2
   flutter_range_slider: ^1.0.1
-  carousel_pro: ^0.0.13
+  carousel_pro: ^1.0.0
 
 dev_dependencies:
   flutter_test:
