@@ -41,7 +41,7 @@
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-toastr": "^10.1.0",
     "ngx-webstorage": "^6.0.0",
-    "nouislider": "^14.0.2",
+    "nouislider": "14.7.0",
     "quill": "^1.3.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
