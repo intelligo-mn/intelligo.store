@@ -37,7 +37,7 @@
     "ngx-chips": "^2.1.0",
     "ngx-clipboard": "^12.2.1",
     "ngx-cookie": "^5.0.0",
-    "ngx-infinite-scroll": "8.0.1",
+    "ngx-infinite-scroll": "8.0.2",
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-toastr": "^10.1.0",
     "ngx-webstorage": "^6.0.0",
