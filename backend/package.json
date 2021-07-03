@@ -36,7 +36,7 @@
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
     "cloud-config-client": "1.5.2",
-    "dotenv": "8.2.0",
+    "dotenv": "8.6.0",
     "eureka-js-client": "4.5.0",
     "js-yaml": "3.14.1",
     "mysql2": "2.2.5",
