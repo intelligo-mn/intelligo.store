@@ -1,0 +1,92 @@
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8"></div>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Хэрэглэгчийн жагсаалт</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-primary" (click)="addUser()">
+                <span>
+                  Нэмэх
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="table-responsive" *ngIf="users">
+            <table class="table table-striped" aria-describedby="user-management-page-heading">
+              <thead>
+                <tr>
+                  <th scope="col" jhiSortBy="login"><span jhiTranslate="userManagement.login">Нэвтрэх нэр</span></th>
+                  <th scope="col" jhiSortBy="email"><span jhiTranslate="userManagement.email">Мэйл хаяг</span></th>
+                  <th scope="col"></th>
+                  <th scope="col"><span jhiTranslate="userManagement.profiles">Role</span></th>
+                  <th scope="col" jhiSortBy="createdDate"><span jhiTranslate="userManagement.createdDate">Бүртгэсэн огноо</span></th>
+                  <th scope="col" jhiSortBy="lastModifiedBy"><span jhiTranslate="userManagement.lastModifiedBy">Сүүлд шинэчилсэн</span></th>
+                  <th scope="col" jhiSortBy="lastModifiedDate">
+                    <span jhiTranslate="userManagement.lastModifiedDate">Сүүлд шинэчилсэн огноо</span>
+                  </th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody *ngIf="users">
+                <tr *ngFor="let user of users; trackBy: trackIdentity">
+                  <td>{{ user.login }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>
+                    <button
+                      class="btn btn-danger btn-sm"
+                      (click)="setActive(user, true)"
+                      *ngIf="!user.activated"
+                      jhiTranslate="userManagement.deactivated"
+                    >
+                      Идэвхигүй
+                    </button>
+                    <button
+                      class="btn btn-success btn-sm"
+                      (click)="setActive(user, false)"
+                      *ngIf="user.activated"
+                      [disabled]="!currentAccount || currentAccount.login === user.login"
+                      jhiTranslate="userManagement.activated"
+                    >
+                      Идэвхитэй
+                    </button>
+                  </td>
+                  <td>
+                    <div *ngFor="let authority of user.authorities">
+                      <span class="badge badge-info">{{ authority }}</span>
+                    </div>
+                  </td>
+                  <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
+                  <td>{{ user.lastModifiedBy }}</td>
+                  <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" (click)="editUser(user)" queryParamsHandling="merge" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Засах</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        (click)="deleteUser(user)"
+                        class="btn btn-danger btn-sm"
+                        [disabled]="!currentAccount || currentAccount.login === user.login"
+                      >
+                        <span class="d-none d-md-inline">Устгах</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

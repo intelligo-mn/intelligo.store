@@ -1,0 +1,31 @@
+{
+  "foodDelivery": {
+    "eatToday": "What will you eat today ?",
+    "systemName": "Food delivery system",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "save": "Save",
+    "insertAddress": "Enter address",
+    "placeHolderAdress": "Enter your address",
+    "phoneNumber": "Phone number: ",
+    "district": "District: ",
+    "committee": "Committee",
+    "floor": "Floor",
+    "doorNumber": "Door number",
+    "placeHolderPhone": "Enter your phone number",
+    "placeHolderDistrict": "Enter your district",
+    "placeHolderCommittee": "Enter your committee",
+    "placeHolderFloor": "Enter your floor",
+    "placeHolderDoornumber": "Enter your door number",
+    "search": "Search",
+    "placeHolderSearch": "Enter search value",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "placeHolderEmail": "Enter your email address",
+    "placeHolderPassword": "Enter your password",
+    "passwordConfirm": "Confirm password",
+    "placeHolderConfirmPassword": "Confirm your password",
+    "address": "Address"
+  }
+}
