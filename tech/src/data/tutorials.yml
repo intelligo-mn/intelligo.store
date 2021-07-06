@@ -1,0 +1,3371 @@
+- title: 'Building a Website With Gatsby and a Headless CMS'
+  link: https://fmontes.com/blog/building-a-website-with-gatsby-and-a-headless-cms-part-1/
+  formats:
+    - text
+  language: en
+  date: 2019-01-19
+  authors:
+    - Freddy Montes
+  source: 'fmontes.com'
+  topics:
+    - headless
+    - dotcms
+    - graphql
+- title: 'Dealing with dynamic images in Gatsby'
+  link: https://fmontes.com/blog/dynamic-gatsby-images-an-anternative/
+  formats:
+    - text
+  language: en
+  date: 2020-05-04
+  authors:
+    - Freddy Montes
+  source: 'fmontes.com'
+  topics:
+    - images
+    - cloudinary
+    - graphql
+- title: 'How to create a Gatsby.js transformer plugin'
+  link: https://maximzubarev.com/how-to-create-a-gatsby-js-transformer-plugin
+  formats:
+    - text
+  language: en
+  date: 2020-02-17
+  authors:
+    - Maxim Zubarev
+  source: 'maximzubarev.com'
+  topics:
+    - plugins
+    - remark
+    - markdown
+    - gatsby-transformer-remark
+- title: 'How to Build a GatsbyJS Guitar-Chords-MDX Theme From Scratch'
+  link: https://owlypixel.com/building-gatsbyjs-theme-from-scratch/
+  formats:
+    - text
+  language: en
+  date: 2019-11-22
+  authors:
+    - Owlypixel
+  source: 'owlypixel.com'
+  topics:
+    - themes
+    - mdx
+    - guitar
+- title: 'How GatsbyJS can help your business to overtake competition?'
+  link: https://blog.pagepro.co/2019/10/09/how-gatsbyjs-can-help-your-business-to-overtake-competition/
+  formats:
+    - text
+  language: en
+  date: 2019-10-09
+  authors:
+    - Chris Lojniewski
+  source: Pagepro Blog
+  topics:
+    - business
+    - education
+- title: 'How to convert existing markdown Gatsby blog to mdx'
+  link: https://gatsbytemplates.io/blog/mdx-convert/
+  formats:
+    - text
+  language: en
+  date: 2019-09-29
+  authors:
+    - Vsevolod Andruschenko
+  source: 'gatsbytemplates.io'
+  topics:
+    - blog
+    - markdown
+    - mdx
+    - gatsby-plugin-mdx
+
+- title: Custom Gatsby Source Plugin Tutorial
+  link: https://codebushi.com/custom-gatsby-source-plugin/
+  formats:
+    - text
+  language: en
+  date: 2019-08-24
+  length: ''
+  authors:
+    - Hunter Chang
+  source: 'codebushi.com'
+  topics:
+    - graphql
+    - gatsby-node
+    - sourceNodes
+
+- title: Gatsby and Snipcart E-commerce Tutorial
+  link: https://www.frontendstumbles.com/gatsby-and-snipcart-ecommerce-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2019-07-10
+  length: ''
+  authors:
+    - Issy Dennis
+  source: 'frontendstumbles.com'
+  topics:
+    - ecommerce
+    - snipcart
+    - e-commerce
+    - markdown
+    - styled-components
+    - starters
+
+- title: Using Gatsby Image with Netlify CMS
+  link: https://www.frontendstumbles.com/using-gatsby-image-with-netlify-cms/
+  formats:
+    - text
+  language: en
+  date: 2019-05-24
+  length: ''
+  authors:
+    - Issy Dennis
+  source: 'frontendstumbles.com'
+  topics:
+    - netlify-cms
+    - cms
+    - graphql
+    - markdown
+    - gatsby-image
+    - gatsby-remark-images
+    - gatsby-remark-relative-images
+
+- title: How to make a Gatsby site with Netlify CMS
+  link: https://www.frontendstumbles.com/gatsby-and-netlify-cms-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2019-05-21
+  length: ''
+  authors:
+    - Issy Dennis
+  source: 'frontendstumbles.com'
+  topics:
+    - netlify-cms
+    - cms
+    - graphql
+    - markdown
+
+- title: How to build a Related Posts Component with Gatsby.js
+  link: https://khalilstemmler.com/articles/gatsby-related-posts-component/
+  formats:
+    - text
+  language: en
+  date: 2019-04-16
+  length: '7:00'
+  authors:
+    - Khalil Stemmler
+  source: ''
+  topics:
+    - components
+    - blog
+    - graphql
+
+- title: 'Gatsby 101 (14 written tutorials)'
+  link: https://gatsbyguides.com/
+  formats:
+    - text
+  language: en
+  date: 2019-02-13
+  length: ''
+  authors:
+    - Osio Labs
+  source: 'GatsbyGuides.com'
+  topics:
+    - introduction
+    - starters
+    - drupal
+    - cms
+
+- title: 'Gatsby and Contentful (6 videos)'
+  link: https://www.youtube.com/watch?v=fY3mBJSDA44&list=PL2dKqfImstaRbjzzirbBfv9W2kycaKjvs
+  formats:
+    - video
+  language: en
+  date: 2019-02-08
+  length: ''
+  authors:
+    - Sebastian Eschweiler
+  source: 'CodingTheSmartWay.com'
+  topics:
+    - introduction
+    - starters
+    - blog
+    - contentful
+
+- title: 'Up & Running with Gatsby (10 videos)'
+  link: https://www.youtube.com/watch?v=jAa1wh5ATm0&list=PLHBEcHVSROXQQhXpNhmiVKKcw72Cc0V-U
+  formats:
+    - video
+  language: en
+  date: 2019-08-03
+  length: ''
+  authors:
+    - Michael Uloth
+  source: ''
+  topics:
+    - introduction
+    - starters
+    - plugins
+    - jsx
+    - layout
+    - gatsby-plugin-sass
+    - gatsby-plugin-postcss
+    - css modules
+    - gatsby-plugin-styled-components
+    - graphql
+
+- title: Gatsby Themes Roadmap
+  link: https://www.gatsbyjs.org/blog/2019-03-11-gatsby-themes-roadmap/
+  formats:
+    - text
+  language: en
+  date: 2019-03-11
+  length: '6:00'
+  authors:
+    - Chris Biscardi
+  source: Gatsby
+  topics:
+    - themes
+
+- title: How to Talk About Gatsby to Clients and Your Team
+  link: https://www.gatsbyjs.org/blog/2019-03-07-sell-gatsby-to-clients/
+  formats:
+    - text
+  language: en
+  date: 2019-03-07
+  length: '9:00'
+  authors:
+    - Linda Watkins
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: New Schema Customization API in Gatsby
+  link: https://www.gatsbyjs.org/blog/2019-03-04-new-schema-customization/
+  formats:
+    - text
+  language: en
+  date: 2019-03-04
+  length: '10:00'
+  authors:
+    - Mikhail Novikov
+  source: Gatsby
+  topics:
+    - schema customization
+    - createTypes api
+    - createResolvers api
+
+- title: A Method for Localization with Gatsby and Sanity.io
+  link: https://www.gatsbyjs.org/blog/2019-03-01-localization-with-gatsby-and-sanity/
+  formats:
+    - text
+  language: en
+  date: 2019-03-01
+  length: '6:00'
+  authors:
+    - Travis Stanley
+  source: Gatsby
+  topics:
+    - localization
+    - sanity
+
+- title: Getting Started with Gatsby Themes and MDX
+  link: https://www.gatsbyjs.org/blog/2019-02-26-getting-started-with-gatsby-themes/
+  formats:
+    - text
+  language: en
+  date: 2019-02-26
+  length: '6:00'
+  authors:
+    - Katie Fujihara
+  source: Gatsby
+  topics:
+    - themes
+    - yarn workspaces
+    - gatsby-mdx
+    - gatsby-plugin-page-creator
+
+- title: Introducing useStaticQuery
+  link: https://www.gatsbyjs.org/blog/2019-02-20-introducing-use-static-query/
+  formats:
+    - text
+  language: en
+  date: 2019-02-20
+  length: '4:00'
+  authors:
+    - Sidhartha Chatterjee
+  source: Gatsby
+  topics:
+    - react hooks
+    - graphql
+    - useStaticQuery
+
+- title: 'Behind the Scenes Q & A: What Makes Gatsby Great Webinar'
+  link: https://www.gatsbyjs.org/blog/2019-02-14-behind-the-scenes-q-and-a/
+  formats:
+    - text
+  language: en
+  date: 2019-02-14
+  length: '20:00'
+  authors:
+    - Linda Watkins
+  source: Gatsby
+  topics:
+    - gatsby-source-graphql
+    - environment variables
+    - gatsby-plugin-typescript
+    - source plugins
+    - lighthouse
+    - graphql
+    - cms
+    - gatsby preview
+    - seo
+    - app
+    - authentication
+
+- title: 'Gatsby Themes: Watch Us Build a Theme Live'
+  link: https://www.gatsbyjs.org/blog/2019-02-11-gatsby-themes-livestream-and-example/
+  formats:
+    - text
+  language: en
+  date: 2019-02-11
+  length: '2:00'
+  authors:
+    - Jason Lengstorf
+  source: Gatsby
+  topics:
+    - themes
+    - gatsby-plugin-page-creator
+    - gatsby-mdx
+    - gatsby-source-filesystem
+
+- title: How We're Migrating a Government Open Data Site to Gatsby
+  link: https://www.gatsbyjs.org/blog/2019-02-08-government-open-data-site-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2019-02-08
+  length: '12:00'
+  authors:
+    - Ryan Johnson
+  source: Gatsby
+  topics:
+    - graphql
+    - gatsby-transformer-excel
+    - onPostBuild api
+    - onClientEntry api
+    - federalist
+
+- title: Using React Context API with Gatsby
+  link: https://www.gatsbyjs.org/blog/2019-01-31-using-react-context-api-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2019-01-31
+  length: '6:00'
+  authors:
+    - Muhammad Muhsin
+  source: Gatsby
+  topics:
+    - wrapRootElement api
+    - dark mode
+    - react context
+
+- title: Why Themes?
+  link: https://www.gatsbyjs.org/blog/2019-01-31-why-themes/
+  formats:
+    - text
+  language: en
+  date: 2019-01-31
+  length: '6:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - themes
+
+- title: 'Themes Update: Child Theming and Component Shadowing'
+  link: https://www.gatsbyjs.org/blog/2019-01-29-themes-update-child-theming-and-component-shadowing/
+  formats:
+    - text
+  language: en
+  date: 2019-01-29
+  length: '4:00'
+  authors:
+    - Chris Biscardi
+  source: Gatsby
+  topics:
+    - themes
+
+- title: Blazing Fast Development with Gatsby and Sanity.io
+  link: https://www.gatsbyjs.org/blog/2019-01-25-blazing-fast-development-with-gatsby-and-sanity-io/
+  formats:
+    - text
+  language: en
+  date: 2019-01-25
+  length: '6:00'
+  authors:
+    - Knut Melvær
+  source: Gatsby
+  topics:
+    - cms
+    - sanity
+    - gatsby-source-sanity
+
+- title: Modern Publications with Gatsby & Ghost
+  link: https://www.gatsbyjs.org/blog/2019-01-14-modern-publications-with-gatsby-ghost/
+  formats:
+    - text
+  language: en
+  date: 2019-01-14
+  length: '3:00'
+  authors:
+    - John O’Nolan
+  source: Gatsby
+  topics:
+    - cms
+    - ghost
+    - gatsby-source-ghost
+    - gatsby-starter-ghost
+
+- title: Kentico Cloud & Gatsby Take You Beyond Static Websites
+  link: https://www.gatsbyjs.org/blog/2018-12-19-kentico-cloud-and-gatsby-take-you-beyond-static-websites/
+  formats:
+    - text
+  language: en
+  date: 2019-01-07
+  length: '7:00'
+  authors:
+    - Ondrej Polesny
+  source: Gatsby
+  topics:
+    - introduction
+    - kentico cloud
+    - gatsby-source-kentico-cloud
+    - createPages api
+
+- title: How Gatsby Scales with your Expertise & Scope
+  link: https://www.gatsbyjs.org/blog/2018-12-19-gatsby-scales-with-expertise-and-scope/
+  formats:
+    - text
+  language: en
+  date: 2019-01-03
+  length: '4:00'
+  authors:
+    - LekoArts
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Publish Multiple Gatsby Sites in a Monorepo, Using Lerna, Travis & Now
+  link: https://www.gatsbyjs.org/blog/2019-01-01-publish-multiple-gatsby-sites/
+  formats:
+    - text
+  language: en
+  date: 2019-01-01
+  length: '26:00'
+  authors:
+    - Andrico Karoulla
+  source: Gatsby
+  topics:
+    - monorepo
+    - lerna
+    - environment variables
+    - dotenv
+    - continuous integration
+    - travis
+    - testing
+    - enzyme
+    - jest
+    - now
+
+- title: Per-Link Gatsby Page Transitions with TransitionLink
+  link: https://www.gatsbyjs.org/blog/2018-12-04-per-link-gatsby-page-transitions-with-transitionlink/
+  formats:
+    - text
+  language: en
+  date: 2018-12-27
+  length: '6:00'
+  authors:
+    - Tyler Barnes
+  source: Gatsby
+  topics:
+    - page transitions
+    - gatsby-plugin-transition-link
+
+- title: 'Turning the Static Dynamic: Gatsby + Netlify Functions + Netlify Identity'
+  link: https://www.gatsbyjs.org/blog/2018-12-17-turning-the-static-dynamic/
+  formats:
+    - text
+  language: en
+  date: 2018-12-26
+  length: '11:00'
+  authors:
+    - swyx
+  source: Gatsby
+  topics:
+    - netlify functions
+    - http-proxy-middleware
+    - netlify-lambda
+    - netlify.toml
+    - netlify identity
+    - netlify-identity-widget
+    - gatsby-plugin-create-client-paths
+
+- title: Building a Custom, Accessible Image Lightbox
+  link: https://www.gatsbyjs.org/blog/2018-11-03-building-an-accessible-lightbox/
+  formats:
+    - text
+  language: en
+  date: 2018-12-20
+  length: '7:00'
+  authors:
+    - Sergiy Dybskiy
+  source: Gatsby
+  topics:
+    - gatsby-image
+    - styled-components
+    - '@reach/dialog'
+
+- title: How to Export a Drupal Site to Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-10-26-export-a-drupal-site-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-12-18
+  length: '7:00'
+  authors:
+    - Joaquín Bravo Contreras
+  source: Gatsby
+  topics:
+    - drupal
+    - mysqldump
+    - better-sqlite3
+
+- title: 5 Analogies That Explain What Gatsby Can Do For You
+  link: https://www.gatsbyjs.org/blog/2018-12-04-gatsby-analogy/
+  formats:
+    - text
+  language: en
+  date: 2018-12-04
+  length: '5:00'
+  authors:
+    - Amberley Romo
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: 'Deploy a Static React Blog using GatsbyJS and Github'
+  link: https://hashnode.com/post/deploy-a-static-react-blog-using-gatsbyjs-and-github-cjg2vzpe0003h0ls1rdaztnrr
+  formats:
+    - text
+  language: en
+  date: 2018-04-16
+  length: ''
+  authors:
+    - Ryosuke
+  source: ''
+  topics:
+    - blog
+    - gatsby-transformer-remark
+    - createPages api
+    - github pages
+
+- title: 'Generate Documentation for any React Project Using GatsbyJS'
+  link: https://hashnode.com/post/generate-documentation-for-any-react-project-using-gatsbyjs-cjmcjqhfv00d6ges1m6ljzpud
+  formats:
+    - text
+  language: en
+  date: 2018-09-21
+  length: ''
+  authors:
+    - Ryosuke
+  source: ''
+  topics:
+    - gatsby-mdx
+    - gatsby-transformer-react-docgen
+    - gatsby-transformer-remark
+    - documentation
+
+- title: 'Gatsby ImageSharp from a URL'
+  link: https://blog.alexluong.com/gatsby-image-sharp-from-url
+  formats:
+    - text
+  language: en
+  date: 2018-07-28
+  length: ''
+  authors:
+    - Alex Luong
+  source: ''
+  topics:
+    - onCreateNode
+    - createRemoteFileNode
+    - gatsby-plugin-sharp
+    - gatsby-tranformer-sharp
+
+- title: 'Animating Page Transitions in Gatsby'
+  link: https://divdev.io/animating-gatsby-pt/
+  formats:
+    - text
+  language: en
+  date: 2018-12-01
+  length: '5:00'
+  authors:
+    - Dimitri Ivashchuk
+  source: ''
+  topics:
+    - animation
+    - page transitions
+    - react-transition-group
+    - gatsby-plugin-layout
+
+- title: 'Using Excerpts'
+  link: https://using-remark.gatsbyjs.org/excerpts/
+  formats:
+    - text
+  language: en
+  date: 2017-11-14
+  length: '1:00'
+  authors:
+    - Jay Gatsby
+  source: ''
+  topics:
+    - gatsby-transformer-remark
+
+- title: 'How To Optimize Your Gatsby Blog For SEO'
+  link: https://khalilstemmler.com/blog/how-to-optimize-your-gatsby-blog-for-seo/
+  formats:
+    - text
+  language: en
+  date: 2018-12-01
+  length: ''
+  authors:
+    - Khalil Stemmler
+  source: ''
+  topics:
+    - gatsby-plugin-react-helmet
+    - seo
+
+- title: 'An Introduction To Using Gatsby Image & Gatsby.js V2'
+  link: https://codebushi.com/using-gatsby-image/
+  formats:
+    - text
+  language: en
+  date: 2018-09-20
+  length: ''
+  authors:
+    - Hunter Chang
+  source: CODE Bushi
+  topics:
+    - gatsby-image
+    - graphql
+
+- title: 'Image Optimization Made Easy with Gatsby.js'
+  link: https://medium.com/@kyle.robert.gill/ridiculously-easy-image-optimization-with-gatsby-js-59d48e15db6e
+  formats:
+    - text
+  language: en
+  date: 2018-01-10
+  length: '6:00'
+  authors:
+    - Kyle Gill
+  source: ''
+  topics:
+    - gatsby-image
+    - graphql
+
+- title: 'Cool image loading with Gatsby.js v2 and Netlify CMS v2'
+  link: https://blog.rousek.name/2018/08/10/cool-image-loading-with-gatsbyjs-v2-and-netlify-cms-v2/
+  formats:
+    - text
+  language: en
+  date: 2018-08-10
+  length: ''
+  authors:
+    - Zápisník Josefa Rouska
+  source: ''
+  topics:
+    - netlify-cms
+    - gatsby-remark-images
+    - gatsby-plugin-netlify-cms-paths
+
+- title: 'Pump up the JAM with Gatsby'
+  link: https://www.youtube.com/watch?v=fwTxNylQhn8
+  formats:
+    - video
+  language: en
+  date: 2018-10-20
+  length: '45:34'
+  authors:
+    - Stefan Adolf
+  source: 'React Day Berlin'
+  topics:
+    - introduction
+    - jamstack
+    - contentful
+    - netlify
+
+- title: 'The Complete Guide to Build a Full Blown Multilanguage Website with Gatsby.js'
+  link: https://www.storyblok.com/tp/gatsby-multilanguage-website-tutorial
+  formats:
+    - text
+  language: en
+  date: 2018-11-14
+  length: ''
+  authors:
+    - Alexander Feiglstorfer
+  source: 'Storyblok'
+  topics:
+    - gatsby-source-storyblok
+    - storyblok-react
+    - createPages api
+    - i18n
+
+- title: 'How I Made My Portfolio Website Blazing Fast with Gatsby'
+  link: https://medium.freecodecamp.org/how-i-made-my-portfolio-website-blazing-fast-with-gatsby-82ccddc2f671
+  formats:
+    - text
+  language: en
+  date: 2018-08-12
+  length: '7:00'
+  authors:
+    - Maribel Duran
+  source: 'freeCodeCamp'
+  topics:
+    - performance
+    - gatsby-image
+    - netlify
+
+- title: 'Easy Gatsby Image Components'
+  link: https://noahgilmore.com/blog/easy-gatsby-image-components/
+  formats:
+    - text
+  language: en
+  date: 2018-11-01
+  length: ''
+  authors:
+    - Noah Gilmore
+  source: ''
+  topics:
+    - gatsby-image
+    - StaticQuery
+
+- title: 'How To Build A Gatsby Site From The Ground Up: Comprehensive Step-By-Step Tutorial'
+  link: https://justinformentin.com/guide-to-building-a-gatsby-site
+  formats:
+    - text
+  language: en
+  date: 2018-10-30
+  length: '41:00'
+  authors:
+    - Justin Formentin
+  source: ''
+  topics:
+    - Blog
+    - SEO
+    - Prettier
+    - Netlify
+    - JSON-LD
+    - CircleCI
+    - Codeclimate
+    - Google Analytics
+    - Syntax Highlighting
+    - gatsby-image
+    - gatsby-plugin-emotion
+    - gatsby-plugin-typography
+    - gatsby-plugin-offline
+    - gatsby-plugin-sitemap
+    - gatsby-plugin-manifest
+    - V2
+    - introduction
+    - graphql
+    - staticquery
+    - markdown
+    - filtering
+    - sorting
+    - dates
+    - createPages api
+    - tags
+    - pagination
+    - seo
+
+- title: 'All You Need to Know About i18n with Gatsby'
+  link: https://phraseapp.com/blog/posts/i18n-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-12-14
+  length: ''
+  authors:
+    - Theo Despoudis
+  source: phraseapp.com
+  topics:
+    - i18n
+    - introduction
+    - i18next
+    - PhraseApp
+    - react-i18next-phraseapp
+
+- title: 'Creating Your First Gatsby Theme'
+  link: https://blog.alexluong.com/creating-your-first-gatsby-theme
+  formats:
+    - text
+  language: en
+  date: 2018-11-29
+  length: ''
+  authors:
+    - Alex Luong
+  source: ''
+  topics:
+    - theme
+    - blog
+    - introduction
+
+- title: 'How To Build A Blog From Scratch With React, Markdown, GraphQL and GatsbyJS'
+  link: https://medium.com/crowdbotics/how-to-build-your-own-blog-from-scratch-with-gatsbyjs-graphql-react-and-markdown-78352c367bd1
+  formats:
+    - text
+  language: en
+  date: 2018-11-21
+  length: '10:00'
+  authors:
+    - Aman Mittal
+  source: Crowdbotics
+  topics:
+    - graphql
+    - markdown
+    - blog
+    - createPages api
+    - v2
+- title: 'Implement i18n to a Gatsby Site'
+  link: https://www.obytes.com/blog/2018/implement-i18n-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-10-07
+  length: '15:00'
+  authors:
+    - Ismail Ghallou
+  source: Obytes
+  topics:
+    - i18n
+    - styled-components
+    - Context api
+    - Recompose
+    - react-intl
+- title: 'Build a Blog Using Gatsby.js & React'
+  link: https://codeburst.io/build-a-blog-using-gatsby-js-react-8561bfe8fc91
+  formats:
+    - text
+  language: en
+  date: 2018-09-27
+  length: '14:00'
+  authors:
+    - Sai Gowtham
+  source: Codeburst
+  topics:
+    - introduction
+    - blog
+    - graphql
+    - onCreateNode api
+    - createPages api
+    - templates
+    - gatsby-image
+    - gatsby-remark-prismjs
+    - seo
+    - netlify
+    - v2
+
+- title: 'GatsbyJS: How to Create the Fastest Sites in the World'
+  link: https://www.youtube.com/watch?v=Gtd-Ht-D0sg
+  formats:
+    - video
+  language: en
+  date: 2017-10-01
+  length: '24:52'
+  authors:
+    - Kyle Mathews
+  source: ReactNext 2017
+  topics:
+    - introduction
+    - performance
+
+- title: Moving My Personal Site To GatsbyJS
+  link: https://www.youtube.com/watch?v=xqaThBnesfY
+  formats:
+    - video
+  language: en
+  date: 2017-07-10
+  length: '54:05'
+  authors:
+    - Scott Tolinski
+  source: Level Up Tutorials
+  topics:
+    - migration
+    - v1
+
+- title: Build Blazingly Fast Websites with Gatsby
+  link: https://devmode.fm/episodes/build-blazingly-fast-websites-with-gatsby
+  formats:
+    - audio
+  language: en
+  date: 2018-10-15
+  length: '1:06:52'
+  authors:
+    - Jason Lengstorf
+  source: devMode.fm
+  topics:
+    - introduction
+    - graphql
+    - performance
+    - v2
+
+- title: Add a Chat Widget to Your Gatsby Blog
+  link: https://pusher.com/tutorials/chat-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-05-31
+  length: ''
+  authors:
+    - Wern Ancheta
+  source: Pusher
+  topics:
+    - authentication
+    - chat
+
+- title: Improving Gatsby Blog Deploy UX
+  link: https://benmccormick.org/2017/11/07/blog-deploy-ux/
+  formats:
+    - text
+  language: en
+  date: 2017-11-07
+  length: ''
+  authors:
+    - Ben McCormick
+  source: ''
+  topics:
+    - travis CI
+
+- title: Adding RSS, Atom, and JSON Feed to Gatsby
+  link: https://benmccormick.org/2017/06/03/rss-atom-json-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-06-03
+  length: ''
+  authors:
+    - Ben McCormick
+  source: ''
+  topics:
+    - rss
+
+- title: Getting Started with GatsbyJS
+  link: https://www.youtube.com/watch?v=nufLF1kcn_4
+  formats:
+    - video
+  language: en
+  date: 2017-11-09
+  length: '1:24:35'
+  authors:
+    - Jesse R. Weigel
+  source: freeCodeCamp
+  topics:
+    - introduction
+    - v1
+
+- title: React-Based Content Management with Netlify CMS & Gatsby
+  link: https://www.youtube.com/watch?v=YyRwMy59d4M
+  formats:
+    - video
+  language: en
+  date: 2018-03-30
+  length: '27:34'
+  authors:
+    - Matt Biilmann
+  source: Real World React
+  topics:
+    - netlify cms
+
+- title: Learn Gatsby.js
+  link: https://kalinchernev.github.io/learn-gatsbyjs/
+  formats:
+    - text
+  language: en
+  date: 2017-10-03
+  length: '15:00'
+  authors:
+    - Kalin Chernev
+  source: ''
+  topics:
+    - introduction
+    - v1
+
+- title: Building a Photo Site With GatsbyJS and the WordPress.com API
+  link: https://jeremey.blog/gatsby-photo/
+  formats:
+    - text
+  language: en
+  date: 2017-12-11
+  length: '18:00'
+  authors:
+    - Jeremey DuVall
+  source: ''
+  topics:
+    - gatsby-source-wordpress
+    - gatsby-image
+    - graphql
+    - templates
+    - v1
+
+- title: Experimenting With GatsbyJS and the WordPress.com API
+  link: https://jeremey.blog/gatsbyjs-and-wp-com-api/
+  formats:
+    - text
+  language: en
+  date: 2017-12-07
+  length: '4:00'
+  authors:
+    - Jeremey DuVall
+  source: ''
+  topics:
+    - introduction
+    - gatsby-source-wordpress
+    - v1
+
+- title: 'A Step-by-Step Guide: Gatsby on Netlify'
+  link: https://www.netlify.com/blog/2016/02/24/a-step-by-step-guide-gatsby-on-netlify/
+  formats:
+    - text
+  language: en
+  date: 2018-06-23
+  length: ''
+  authors:
+    - Aaron Autrand
+  source: Netlify
+  topics:
+    - netlify
+
+- title: Build a Blog with React and Markdown using Gatsby (13 videos)
+  link: https://egghead.io/courses/build-a-blog-with-react-and-markdown-using-gatsby
+  formats:
+    - video
+  language: en
+  date: null
+  length: '31:00'
+  authors:
+    - Taylor Bell
+  source: Egghead
+  topics:
+    - blog
+    - v2
+
+- title: 'Gatsby, Static Site Generator For React: Introduction'
+  link: https://www.youtube.com/watch?v=rBlH1UvluiU
+  formats:
+    - video
+  language: en
+  date: 2017-12-02
+  length: '31:44'
+  authors:
+    - Sebastian Eschweiler
+  source: CodingTheSmartWay.com
+  topics:
+    - introduction
+    - v1
+
+- title: A First Look at Gatsby, a Static Site Generator for React
+  link: https://www.youtube.com/watch?v=CSemYFzHAtU
+  formats:
+    - video
+  language: en
+  date: 2017-07-07
+  length: '19:30'
+  authors:
+    - Scott Tolinski
+  source: Level Up Tutorials
+  topics:
+    - introduction
+    - v1
+
+- title: 'Gatsby, Static Site Generator: Tutorial (13 videos)'
+  link: https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpMXuwazIt4mWtTuqOHdjRlk
+  formats:
+    - video
+  language: en
+  date: 2017-09-19
+  length: '75:31'
+  authors:
+    - Mike Dane
+  source: ''
+  topics:
+    - introduction
+    - v1
+
+- title: GatsbyJS Tutorials (9 videos)
+  link: https://www.youtube.com/playlist?list=PLLnpHn493BHHfoINKLELxDch3uJlSapxg
+  formats:
+    - video
+  language: en
+  date: 2017-10-04
+  length: '107:38'
+  authors:
+    - Scott Tolinski
+  source: Level Up Tutorials
+  topics:
+    - introduction
+    - blog
+    - v1
+
+- title: 'Open Source Lightning Talk: Gatsby'
+  link: https://www.youtube.com/watch?v=y588qNiCZZo
+  formats:
+    - video
+  language: en
+  date: 2016-11-03
+  length: '8:12'
+  authors:
+    - Kyle Mathews
+  source: GraphQL Summit 2016
+  topics:
+    - introduction
+    - graphql
+
+- title: Static site generation with Gatsby.js
+  link: https://www.youtube.com/watch?v=y588qNiCZZo
+  formats:
+    - video
+  language: en
+  date: 2016-03-30
+  length: '25:29'
+  authors:
+    - Scott Nonnenberg
+  source: ''
+  topics:
+    - introduction
+    - blog
+    - v0
+
+- title: 'Lightning Talks: Kyle Matthews'
+  link: https://www.youtube.com/watch?v=RFkNRKL6ZoE
+  formats:
+    - video
+  language: en
+  date: 2016-02-25
+  length: '6:13'
+  authors:
+    - Kyle Mathews
+  source: React.js Conf 2016
+  topics:
+    - introduction
+    - blog
+
+- title: How We Got Here and The Future of the Web
+  link: https://www.youtube.com/watch?v=1tjvFldRg6A
+  formats:
+    - video
+  language: en
+  date: 2018-12-07
+  length: '34:11'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: The Journey to the Content Mesh
+  link: https://www.youtube.com/watch?v=1JqNymVi_pc
+  formats:
+    - video
+  language: en
+  date: 2018-12-07
+  length: '33:49'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - introduction
+    - performance
+    - cms
+
+- title: Introducing Gatsby Themes
+  link: https://www.youtube.com/watch?v=wX84vXBpMR8
+  formats:
+    - video
+  language: en
+  date: 2018-12-07
+  length: '33:47'
+  authors:
+    - Chris Biscardi
+  source: Gatsby
+  topics:
+    - themes
+
+- title: 'Gatsby Product Announcement: The Future is in the Cloud'
+  link: https://www.youtube.com/watch?v=TXxUAJkBrjE
+  formats:
+    - video
+  language: en
+  date: 2018-12-07
+  length: '15:42'
+  authors:
+    - Andrew Rhyne
+  source: Gatsby
+  topics:
+    - gatsby preview
+
+- title: Introducing Gatsby Themes
+  link: https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/
+  formats:
+    - text
+  language: en
+  date: 2018-11-10
+  length: '5:00'
+  authors:
+    - Chris Biscardi
+  source: Gatsby
+  topics:
+    - themes
+
+- title: Gatsby for Apps
+  link: https://www.gatsbyjs.org/blog/2018-11-07-gatsby-for-apps/
+  formats:
+    - text
+  language: en
+  date: 2018-11-07
+  length: '11:00'
+  authors:
+    - Dustin Schau
+  source: Gatsby
+  topics:
+    - app
+
+- title: Deploying a Gatsby Blog to Azure
+  link: https://www.gatsbyjs.org/blog/2018-11-05-deploying-gatsby-to-azure/
+  formats:
+    - text
+  language: en
+  date: 2018-11-05
+  length: '5:00'
+  authors:
+    - Doug McDonald
+  source: Gatsby
+  topics:
+    - azure
+    - blog
+
+- title: Using Unstructured Data in Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-10-25-unstructured-data/
+  formats:
+    - text
+  language: en
+  date: 2018-10-25
+  length: '9:00'
+  authors:
+    - Amberley Romo
+  source: Gatsby
+  topics:
+    - createPages API
+    - data
+
+- title: Using VS Code for Supercharged Gatsby.js Development
+  link: https://www.gatsbyjs.org/blog/2018-10-18-vscode-gatsby-development/
+  formats:
+    - text
+  language: en
+  date: 2018-10-22
+  length: '5:00'
+  authors:
+    - Michael Holtzman
+  source: Gatsby
+  topics:
+    - vs code
+
+- title: 'Delivering Modern Website Experiences: The Journey to a Content Mesh'
+  link: https://www.gatsbyjs.org/blog/2018-10-04-journey-to-the-content-mesh
+  formats:
+    - text
+  language: en
+  date: 2018-10-04
+  length: '4:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - cms
+    - jamstack
+
+- title: 'Journey to the Content Mesh, Part 2: Unbundling of the CMS'
+  link: https://www.gatsbyjs.org/blog/2018-10-10-unbundling-of-the-cms
+  formats:
+    - text
+  language: en
+  date: 2018-10-10
+  length: '3:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - cms
+    - jamstack
+
+- title: 'Journey to the Content Mesh, Part 3: The Rise of Modern Web Development'
+  link: https://www.gatsbyjs.org/blog/2018-10-11-rise-of-modern-web-development
+  formats:
+    - text
+  language: en
+  date: 2018-10-11
+  length: '4:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - jamstack
+
+- title: 'Journey to the Content Mesh, Part 4: Why Mobile Performance Is Crucial'
+  link: https://www.gatsbyjs.org/blog/2018-10-16-why-mobile-performance-is-crucial
+  formats:
+    - text
+  language: en
+  date: 2018-10-16
+  length: '7:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - performance
+
+- title: 'Journey to the Content Mesh Conclusion: Creating Compelling Content Experiences'
+  link: https://www.gatsbyjs.org/blog/2018-10-18-creating-compelling-content-experiences/
+  formats:
+    - text
+  language: en
+  date: 2018-10-18
+  length: '7:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - cms
+    - jamstack
+
+- title: 'Beyond Static: Building Dynamic Apps with Gatsby'
+  link: https://www.youtube.com/watch?v=BrBK4yxodXA
+  formats:
+    - video
+  language: en
+  date: 2018-10-23
+  length: '59:19'
+  authors:
+    - Dustin Schau
+    - Linda Watkins
+  source: Gatsby
+  topics:
+    - app
+
+- title: SendGrid Knowledge Center cuts page load times in half with Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-09-27-sendgrid-knowledge-center-cuts-page-load-times-in-half-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-10-23
+  length: '4:00'
+  authors:
+    - Linda Watkins
+  source: Gatsby
+  topics:
+    - performance
+
+- title: 'Web Performance 102: Keeping Gatsby Sites Blazing Fast'
+  link: https://www.gatsbyjs.org/blog/2018-10-03-gatsby-perf/
+  formats:
+    - text
+  language: en
+  date: 2018-10-03
+  length: '8:00'
+  authors:
+    - Dustin Schau
+  source: Gatsby
+  topics:
+    - performance
+    - v2
+
+- title: How We Improved Gatsby's Accessibility in v2 by Switching to @reach/router
+  link: https://www.gatsbyjs.org/blog/2018-09-27-reach-router/
+  formats:
+    - text
+  language: en
+  date: 2018-09-27
+  length: '4:00'
+  authors:
+    - Amberley Romo
+  source: Gatsby
+  topics:
+    - a11y
+    - v2
+
+- title: Announcing Support for Natively Querying 3rd-Party GraphQL APIs with Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-09-25-announcing-graphql-stitching-support/
+  formats:
+    - text
+  language: en
+  date: 2018-09-25
+  length: '5:00'
+  authors:
+    - Mikhail Novikov
+  source: Gatsby
+  topics:
+    - gatsby-source-graphql
+    - v2
+
+- title: GatsbyJS with Creator Kyle Mathews
+  link: https://www.lullabot.com/podcasts/drupalizeme-podcast/gatsbyjs-with-creator-kyle-mathews
+  formats:
+    - audio
+  language: en
+  date: 2018-08-16
+  length: '58:48'
+  authors:
+    - Kyle Mathews
+  source: Lullabot
+  topics:
+    - introduction
+    - v2
+
+- title: Announcing Gatsby 2.0.0 🎉🎉🎉
+  link: https://www.gatsbyjs.org/blog/2018-09-17-gatsby-v2/
+  formats:
+    - text
+  language: en
+  date: 2018-09-17
+  length: '9:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - v2
+
+- title: What Kind of Company Will We Be? A Look at Gatsby’s Mission and Values.
+  link: https://www.gatsbyjs.org/blog/2018-09-07-gatsby-values/
+  formats:
+    - text
+  language: en
+  date: 2018-09-07
+  length: '9:00'
+  authors:
+    - Jason Lengstorf
+  source: Gatsby
+  topics:
+    - gatsby inc.
+
+- title: Publishing Your Next Gatsby Site to AWS With AWS Amplify
+  link: https://www.gatsbyjs.org/blog/2018-08-24-gatsby-aws-hosting/
+  formats:
+    - text
+  language: en
+  date: 2018-09-04
+  length: '3:00'
+  authors:
+    - Nader Dabit
+  source: Gatsby
+  topics:
+    - aws amplify
+
+- title: Using Decoupled Drupal with Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-08-13-using-decoupled-drupal-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-08-13
+  length: '3:00'
+  authors:
+    - Shannon Soper
+  source: Gatsby
+  topics:
+    - gatsby-source-drupal
+
+- title: My Experience Doing Pair Programming with the Gatsby Team and Why You Should Do It
+  link: https://www.gatsbyjs.org/blog/2018-08-11-gatsby-pair-programming/
+  formats:
+    - text
+  language: en
+  date: 2018-08-11
+  length: '3:00'
+  authors:
+    - Horacio Herrera
+  source: Gatsby
+  topics:
+    - pair programming
+
+- title: Free Swag for Gatsby Contributors
+  link: https://www.gatsbyjs.org/blog/2018-08-09-swag-store/
+  formats:
+    - text
+  language: en
+  date: 2018-08-09
+  length: '5:00'
+  authors:
+    - Jason Lengstorf
+  source: Gatsby
+  topics:
+    - e-commerce
+    - open source
+
+- title: Learning How to Code with Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-07-07-graphic-design-class/
+  formats:
+    - text
+  language: en
+  date: 2018-07-07
+  length: '6:00'
+  authors:
+    - Shannon Soper
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Automatically Create Pages from Components in any Directory
+  link: https://www.gatsbyjs.org/blog/2018-07-07-the-gatsby-plugin-page-creator/
+  formats:
+    - text
+  language: en
+  date: 2018-07-07
+  length: '4:00'
+  authors:
+    - Steven Natera
+  source: Gatsby
+  topics:
+    - gatsby-plugin-page-creator
+
+- title: 'Escalade Sports: From $5000 to $5/month in Hosting With Gatsby'
+  link: https://www.gatsbyjs.org/blog/2018-06-14-escalade-sports-from-5000-to-5-in-hosting/
+  formats:
+    - text
+  language: en
+  date: 2018-06-21
+  length: '3:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - migration
+    - netlify
+
+- title: Life After Layouts
+  link: https://www.gatsbyjs.org/blog/2018-06-08-life-after-layouts/
+  formats:
+    - text
+  language: en
+  date: 2018-06-19
+  length: '6:00'
+  authors:
+    - Jason Lengstorf
+  source: Gatsby
+  topics:
+    - layout
+    - v2
+
+- title: Moving from create-react-app to Gatsby.js
+  link: https://www.gatsbyjs.org/blog/2018-06-18-moving-from-create-react-app-to-gatsby-js/
+  formats:
+    - text
+  language: en
+  date: 2018-06-18
+  length: '6:00'
+  authors:
+    - Khaled Garbaya
+  source: Gatsby
+  topics:
+    - migration
+    - introduction
+
+- title: Why Narative Loves Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-06-18-why-narative-loves-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-06-18
+  length: '5:00'
+  authors:
+    - Dennis Brotzky
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Gatsby for Marketers, Managers, Agencies and Teams
+  link: https://www.gatsbyjs.org/blog/2018-06-08-gatsby-marketers-managers-agencies-teams/
+  formats:
+    - text
+  language: en
+  date: 2018-06-08
+  length: '2:00'
+  authors:
+    - Linda Watkins
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Introduction to Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-05-31-introduction-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-05-31
+  length: '3:00'
+  authors:
+    - Michelle Barker
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Gatsby JS Crash Course
+  link: https://www.youtube.com/watch?v=6YhqQ2ZW1sc
+  formats:
+    - video
+  language: en
+  date: 2018-04-12
+  length: '1:04:33'
+  authors:
+    - Brad Traversy
+  source: Traversy Media
+  topics:
+    - introduction
+    - v1
+
+- title: Build a Gatsby Blog Using the Cosmic JS Source Plugin
+  link: https://www.gatsbyjs.org/blog/2018-06-07-build-a-gatsby-blog-using-the-cosmic-js-source-plugin/
+  formats:
+    - text
+  language: en
+  date: 2018-06-07
+  length: '8:00'
+  authors:
+    - Tony Spiro
+  source: Gatsby
+  topics:
+    - blog
+    - gatsby-blog-cosmicjs
+    - gatsby-source-cosmicjs
+
+- title: Build a Blazing Fast Website with GatsbyJS and Contentful
+  link: https://www.youtube.com/watch?v=wlIdop5Yv_Y
+  formats:
+    - video
+  language: en
+  date: 2018-06-25
+  length: '1:08:41'
+  authors:
+    - Khaled Garbaya
+  source: freeCodeCamp
+  topics:
+    - blog
+    - gatsby-source-contentful
+    - v1
+
+- title: How to Use GatsbyJS for Static Site Rendering
+  link: https://www.youtube.com/watch?v=3jeznGJHenI
+  formats:
+    - video
+  language: en
+  date: 2017-09-22
+  length: '1:08:41'
+  authors:
+    - Sarah Denaci
+  source: Fullstack Academy
+  topics:
+    - introduction
+
+- title: Using GraphQL in a Static Site Generator
+  link: https://www.youtube.com/watch?v=7S8RNnTGdzI
+  formats:
+    - video
+  language: en
+  date: 2017-08-27
+  length: '28:17'
+  authors:
+    - Kyle Mathews
+  source: GraphQL NYC
+  topics:
+    - introduction
+    - graphql
+
+- title: 'Gatsby: Full Tutorial for Beginners'
+  link: https://www.youtube.com/watch?v=mHFAM0CXviE
+  formats:
+    - video
+  language: en
+  date: 2018-10-23
+  length: '1:11:15'
+  authors:
+    - Mike Dane
+  source: freeCodeCamp
+  topics:
+    - introduction
+    - v1
+
+- title: Build a Gatsby.js and Deploy with Netlify
+  link: https://www.youtube.com/watch?v=THkkdFSffiw
+  formats:
+    - video
+  language: en
+  date: 2018-03-14
+  length: '5:42'
+  authors:
+    - Billy Le
+  source: Techramento
+  topics:
+    - introduction
+    - v1
+
+- title: 'GatsbyJS: Dynamic Apps, Static Files, Unreal Performance'
+  link: https://www.youtube.com/watch?v=OU56cuFKh94
+  formats:
+    - video
+  language: en
+  date: 2018-10-07
+  length: '57:40'
+  authors:
+    - Jason Lengstorf
+  source: ReactJS Portland
+  topics:
+    - performance
+
+- title: Static Site Generation With Gatsby.js
+  link: https://www.heavybit.com/library/podcasts/jamstack-radio/ep-22-static-site-generation-with-gatsbyjs/
+  formats:
+    - audio
+  language: en
+  date: 2017-11-02
+  length: '34:10'
+  authors:
+    - Kyle Mathews
+  source: JAMstack Radio
+  topics:
+    - introduction
+
+- title: Gotchas of Gatsby.js
+  link: https://www.youtube.com/watch?v=oDEFkUJ1h_c
+  formats:
+    - video
+  language: en
+  date: 2018-07-18
+  length: '35:34'
+  authors:
+    - Jan Hrubý
+  source: React Vienna
+  topics:
+    - introduction
+
+- title: 'Review: GatsbyJS - Static site generator for ReactJS'
+  link: https://www.youtube.com/watch?v=HHRTL8NMFVo
+  formats:
+    - video
+  language: en
+  date: 2017-07-09
+  length: '14:52'
+  authors:
+    - Jamie Barton
+  source: ''
+  topics:
+    - introduction
+
+- title: Gatsby v2 Updates
+  link: https://www.youtube.com/watch?v=jhLiFF4Q6vM
+  formats:
+    - video
+  language: en
+  date: 2018-05-29
+  length: '18:09'
+  authors:
+    - Kyle Mathews
+  source: ''
+  topics:
+    - introduction
+    - v2
+
+- title: How to Upgrade Gatsby from v1 to v2
+  link: https://www.youtube.com/watch?v=Le_olZW_Vro
+  formats:
+    - video
+  language: en
+  date: 2018-08-06
+  length: '14:31'
+  authors:
+    - Harry Wolff
+  source: ''
+  topics:
+    - introduction
+    - v2
+
+- title: 'GatsbyJS: A Powerful FE Tool for Decoupled Devs'
+  link: https://www.youtube.com/watch?v=UgWBJnbZ9jU
+  formats:
+    - video
+  language: en
+  date: 2018-07-15
+  length: '53:03'
+  authors:
+    - Grayson Hicks
+  source: Drupal Asheville
+  topics:
+    - introduction
+
+- title: 'Gatsby Inkstreaming: Refactoring lengstorf.com'
+  link: https://www.youtube.com/playlist?list=PLz8Iz-Fnk_eQ1VgnbqODjaO8SiWYGGPQb
+  formats:
+    - video
+  language: en
+  date: 2018-10-07
+  length: '9:06:10'
+  authors:
+    - Jason Lengstorf
+  source: ''
+  topics:
+    - v2
+    - gatsby-plugin-emotion
+
+- title: Creating Nodes in GatsbyJS with Two Data Sources Using the sourceNode API
+  link: https://www.youtube.com/watch?v=a916SAaHXPQ
+  formats:
+    - video
+  language: en
+  date: 2018-09-14
+  length: '1:34:20'
+  authors:
+    - Jason Lengstorf
+  source: ''
+  topics:
+    - sourceNode api
+    - v2
+
+- title: Build a Podcast Mashup App Using OneGraph and Gatsby
+  link: https://www.youtube.com/watch?v=10jeoEWy-8g
+  formats:
+    - video
+  language: en
+  date: 2018-10-10
+  length: '1:04:30'
+  authors:
+    - Jason Lengstorf
+    - Sean Grove
+  source: ''
+  topics:
+    - graphql
+    - app
+    - OneGraph
+
+- title: Katie Builds Her First Gatsby Website
+  link: https://www.youtube.com/watch?v=oH6qy9Wjj9A
+  formats:
+    - video
+  language: en
+  date: 2018-10-12
+  length: '1:30:15'
+  authors:
+    - Jason Lengstorf
+    - Katie Fujihara
+  source: ''
+  topics:
+    - introduction
+    - v2
+
+- title: Deploy a Site With the AWS Amplify CLI
+  link: https://www.youtube.com/watch?v=nujYbwyz-_A
+  formats:
+    - video
+  language: en
+  date: 2018-09-20
+  length: '33:24'
+  authors:
+    - Jason Lengstorf
+    - Nader Dabit
+  source: ''
+  topics:
+    - aws amplify
+
+- title: Pro Gatsby Preview
+  link: https://www.youtube.com/playlist?list=PLLnpHn493BHFkuP4cVybiMWO67Hqq6vJI
+  formats:
+    - video
+  language: en
+  date: 2018-03-05
+  length: '43:30'
+  authors:
+    - Scott Tolinski
+  source: Level Up Tutorials
+  topics:
+    - introduction
+    - v1
+
+- title: How Gatsby and Next.js Really Work (and What it Means for Speed and SEO)
+  link: https://www.youtube.com/watch?v=IFHj3hIVYng
+  formats:
+    - video
+  language: en
+  date: 2018-07-11
+  length: '12:47'
+  authors:
+    - Gabe Rogan
+    - Sadek Drobi
+  source: Prismic
+  topics:
+    - introduction
+
+- title: Gatsby.js + WordPress
+  link: https://www.youtube.com/playlist?list=PLUBR53Dw-Ef8fe-8xJXtMpd1-uhgd2Qa6
+  formats:
+    - video
+  language: en
+  date: 2018-04-14
+  length: '2:17:16'
+  authors:
+    - Ivan Dorić
+  source: Watch + Learn
+  topics:
+    - introduction
+    - blog
+    - gatsby-source-wordpress
+
+- title: Gatsby v2 Deep Dive with Kyle Mathews
+  link: https://www.youtube.com/watch?v=QQZDr_RiiTg
+  formats:
+    - video
+  language: en
+  date: 2018-08-27
+  length: '31:24'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - v2
+
+- title: GatsbyJS Meetup
+  link: https://www.youtube.com/watch?v=7M-7GlQGeGc
+  formats:
+    - video
+  language: en
+  date: 2018-08-23
+  length: '31:24'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - v2
+
+- title: Making Open Source More Open
+  link: https://www.youtube.com/watch?v=extv915_vYI
+  formats:
+    - video
+  language: en
+  date: 2018-08-27
+  length: '9:10'
+  authors:
+    - Marisa Morby
+  source: Gatsby
+  topics:
+    - open source
+
+- title: Work-in-Progress Gatsby Store Live Demo
+  link: https://www.youtube.com/watch?v=MMF0zUqBjPQ
+  formats:
+    - video
+  language: en
+  date: 2018-06-27
+  length: '24:36'
+  authors:
+    - Marisa Morby
+    - Jason Lengstorf
+  source: Gatsby
+  topics:
+    - open source
+    - e-commerce
+
+- title: Data in Gatsby v2
+  link: https://www.youtube.com/watch?v=nlqF3p2l894
+  formats:
+    - video
+  language: en
+  date: 2018-08-27
+  length: '20:10'
+  authors:
+    - Andrew Rhyne
+  source: Gatsby
+  topics:
+    - data
+    - gatsby-source-graphql
+    - v2
+
+- title: Build a Gatsby v2 Site
+  link: https://www.youtube.com/watch?v=gSRK9CZRIxk
+  formats:
+    - video
+  language: en
+  date: 2018-08-27
+  length: '10:48'
+  authors:
+    - Kyle Galbraith
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - v2
+    - aws s3
+    - aws cloudfront
+
+- title: 5 Questions about Gatsby.js
+  link: https://www.youtube.com/watch?v=SN1i8-kJYg0
+  formats:
+    - video
+  language: en
+  date: 2018-06-22
+  length: '5:46'
+  authors:
+    - Grayson Hicks
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: 'Gatsby v2: Faster build times, Guess.js, and more!'
+  link: https://www.youtube.com/watch?v=cX3CldSwWmc
+  formats:
+    - video
+  language: en
+  date: 2018-09-27
+  length: '59:43'
+  authors:
+    - Linda Watkins
+    - Kyle Mathews
+    - Dustin Schau
+  source: Gatsby
+  topics:
+    - introduction
+    - v2
+
+- title: 'Headless Drupal: Building Blazing-Fast Websites with React/GatsbyJS + Drupal'
+  link: https://www.youtube.com/watch?v=TuVeWTieJGI
+  formats:
+    - video
+  language: en
+  date: 2017-10-23
+  length: '50:33'
+  authors:
+    - Kyle Mathews
+  source: Bay Area Drupal Camp
+  topics:
+    - introduction
+    - gatsby-source-drupal
+
+- title: Build a Gatsby Website in Less than 5 Mins!
+  link: https://www.youtube.com/watch?v=iLRB3yIF9DY
+  formats:
+    - video
+  language: en
+  date: 2018-08-26
+  length: '4:25'
+  authors:
+    - JavaScript Joe
+  source: ''
+  topics:
+    - introduction
+    - netlify
+    - v2
+
+- title: Building Blazing Fast Websites with React, Gatsby, and Contentful
+  link: https://www.youtube.com/watch?v=3bRsd175KNI
+  formats:
+    - video
+  language: en
+  date: 2017-10-23
+  length: '11:26'
+  authors:
+    - Kyle Mathews
+  source: Heavybit
+  topics:
+    - introduction
+    - performance
+
+- title: 'GatsbyJS: Pros and Cons and In-Between'
+  link: https://www.youtube.com/watch?v=3Rx1IIjJJ6w
+  formats:
+    - video
+  language: en
+  date: 2018-02-20
+  length: '1:11:34'
+  authors:
+    - Gabriel Konkle
+  source: React Denver
+  topics:
+    - introduction
+    - performance
+
+- title: How to Create a Recommended Articles Section in GatsbyJS
+  link: https://www.youtube.com/watch?v=bz-ZzmNkoO8
+  formats:
+    - video
+  language: en
+  date: 2018-06-28
+  length: '25:54'
+  authors:
+    - Adrian Oprea
+  source: ''
+  topics:
+    - blog
+
+- title: How to Make a Contact Form in Gatsby with Netlify
+  link: https://www.youtube.com/watch?v=hF7xJhzrr9s
+  formats:
+    - video
+  language: en
+  date: 2018-03-09
+  length: '13:24'
+  authors:
+    - Scott Tolinski
+  source: Level Up Tutorials
+  topics:
+    - netlify
+    - form
+
+- title: 'GatsbyJS: Make Blazingly Fast Static Websites with React'
+  link: https://www.youtube.com/watch?v=4InJKj1g_-c
+  formats:
+    - video
+  language: en
+  date: 2018-08-08
+  length: '23:03'
+  authors:
+    - Pavithra Kodmad
+  source: ANZ Coders
+  topics:
+    - introduction
+
+- title: Bring React to Your Static Websites with Gatsby.js
+  link: https://www.youtube.com/watch?v=aeyOKv-N500
+  formats:
+    - video
+  language: en
+  date: 2018-06-06
+  length: '23:33'
+  authors:
+    - Sten Pittet
+  source: Tech Talks YLD
+  topics:
+    - introduction
+
+- title: Discovering GatsbyJS
+  link: https://www.youtube.com/watch?v=9969CImxtBQ
+  formats:
+    - video
+  language: en
+  date: 2017-07-11
+  length: '1:10:26'
+  authors:
+    - Jérôme Poskin
+  source: ''
+  topics:
+    - introduction
+    - v1
+
+- title: Intro to Gatsby.js
+  link: https://www.youtube.com/watch?v=TJ09SYDuvfo
+  formats:
+    - video
+  language: en
+  date: 2017-08-28
+  length: '27:05'
+  authors:
+    - Ben McCormick
+  source: ''
+  topics:
+    - introduction
+    - v1
+
+- title: Gatsby UX Research
+  link: https://www.youtube.com/watch?v=dTl817c6G_E
+  formats:
+    - video
+  language: en
+  date: 2018-05-29
+  length: '17:27'
+  authors:
+    - Shannon Soper
+  source: Contentful
+  topics:
+    - documentation
+
+- title: Building Websites with Gatsby
+  link: https://www.youtube.com/watch?v=AQGzRqYJa8k
+  formats:
+    - video
+  language: en
+  date: 2018-02-21
+  length: '37:45'
+  authors:
+    - Kyle Mathews
+  source: Contentful
+  topics:
+    - introduction
+
+- title: Create a Gatsby Source Plugin
+  link: https://www.youtube.com/watch?v=5HHa-R-Jq3s
+  formats:
+    - video
+  language: en
+  date: 2018-05-23
+  length: '8:52'
+  authors:
+    - Mike Allanson
+  source: Contentful
+  topics:
+    - plugins
+    - data
+    - gatsby-source-pixabay
+
+- title: 'GatsbyJS: Static Site Generator for React'
+  link: https://www.youtube.com/watch?v=PAnYxgoMc6c
+  formats:
+    - video
+  language: en
+  date: 2017-09-22
+  length: '6:30'
+  authors: []
+  source: TopTech
+  topics:
+    - introduction
+    - v1
+
+- title: Kyle Mathews, Gatsby, Wordpress, GraphQL and Web Performance by Default
+  link: https://www.youtube.com/watch?v=kY-dxi_6stQ
+  formats:
+    - video
+  language: en
+  date: 2018-03-23
+  length: '33:26'
+  authors:
+    - Kyle Mathews
+    - Ryan Florence
+  source: Workshop.me
+  topics:
+    - introduction
+    - performance
+
+- title: Static Sites with Gatsby
+  link: https://www.youtube.com/watch?v=UobFjlQOCOQ
+  formats:
+    - video
+  language: en
+  date: 2018-10-30
+  length: '47:39'
+  authors:
+    - Geoffrey Hunt
+  source: bbd.tv
+  topics:
+    - introduction
+    - v2
+
+- title: Gatsby v2
+  link: https://www.youtube.com/watch?v=wVfgN-oXdVA
+  formats:
+    - video
+  language: en
+  date: 2018-10-18
+  length: '28:30'
+  authors:
+    - Callum Macdonald
+  source: Gatsby Central
+  topics:
+    - v2
+
+- title: 'Gatsby: A React.js Static Site Generator'
+  link: https://www.youtube.com/watch?v=G4LVKJOOj7o
+  formats:
+    - video
+  language: en
+  date: 2016-04-18
+  length: '49:48'
+  authors:
+    - Kyle Mathews
+  source: StaticWebTech
+  topics:
+    - introduction
+    - v0
+
+- title: 'Episode 39: Gatsby'
+  link: https://www.orbit.fm/weboftomorrow/39
+  formats:
+    - audio
+  language: en
+  date: 2017-08-07
+  length: '48:15'
+  authors:
+    - Kyle Mathews
+  source: Web of Tomorrow
+  topics:
+    - introduction
+    - performance
+
+- title: Dealing with the Limitations of Gatsby Source Drupal
+  link: https://www.youtube.com/watch?v=qhrA6ftyFpM
+  formats:
+    - video
+  language: en
+  date: 2018-08-27
+  length: '26:06'
+  authors:
+    - Brian Perry
+  source: Decoupled Days
+  topics:
+    - gatsby-source-drupal
+
+- title: Refactoring My Gatsby Starter to v2
+  link: https://www.youtube.com/watch?v=Htk7dduynDY
+  formats:
+    - video
+  language: en
+  date: 2018-10-08
+  length: '2:06:00'
+  authors:
+    - Georgi Yanev
+  source: ''
+  topics:
+    - v2
+
+- title: 'Episode 13: Gatsby'
+  link: https://www.youtube.com/watch?v=aqv4_iewECM
+  formats:
+    - video
+  language: en
+  date: 2017-07-17
+  length: '5:08'
+  authors: []
+  source: 5 minutes of React podcast
+  topics:
+    - introduction
+    - blog
+
+- title: Build a Portfolio Website with Netlify and NetlifyCMS (3 videos)
+  link: https://www.youtube.com/watch?v=wmLDUWNs63w&t=0s&list=PLuJHeJTDddjlO8JCSfITdCy1mZsZnZcKS&index=2
+  formats:
+    - video
+  language: en
+  date: 2018-06-21
+  length: '37:53'
+  authors:
+    - Denver COder
+  source: ''
+  topics:
+    - netlify
+    - netlify cms
+
+- title: Deploying Your First Gatsby Site to Netlify
+  link: https://www.youtube.com/watch?v=TbQ4kWX29lQ
+  formats:
+    - video
+  language: en
+  date: 2018-10-23
+  length: '13:16'
+  authors:
+    - James Q. Quick
+  source: ''
+  topics:
+    - introduction
+    - netlify
+    - v2
+
+- title: Decoupled Drupal + Gatsby
+  link: https://www.youtube.com/watch?v=fx2Qo3D47tI
+  formats:
+    - video
+  language: en
+  date: 2018-08-25
+  length: '1:00:32'
+  authors:
+    - Kyle Mathews
+  source: Decoupled Days
+  topics:
+    - introduction
+    - performance
+    - v2
+
+- title: How to Write a Gatsby Source Plugin (featuring Cat Facts)
+  link: https://medium.com/@cwlsn/how-to-write-a-gatsby-source-plugin-featuring-cat-facts-f0c769a10bfd
+  formats:
+    - text
+  language: en
+  date: 2018-11-13
+  length: '6:00'
+  authors:
+    - Connor Wilson
+  source: ''
+  topics:
+    - introduction
+    - plugins
+    - data
+    - graphql
+    - v2
+
+- title: 'JAMstack Basics: How to Create a Gatsby Starter with Contentful and Deploy to
+    Netlify'
+  link: https://itnext.io/jamstack-basics-how-to-create-a-gatsby-starter-with-contentful-and-deploy-to-netlify-846354cc74bc
+  formats:
+    - text
+  language: en
+  date: 2018-10-10
+  length: '9:00'
+  authors:
+    - Connor Wilson
+  source: ''
+  topics:
+    - introduction
+    - starters
+    - graphql
+    - jamstack
+    - contentful
+    - netlify
+    - v2
+
+- title: Official Gatsby.js Tutorial
+  link: https://www.gatsbyjs.org/tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-09-08
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - templates
+    - v2
+
+- title: WordPress Source Plugin Tutorial
+  link: https://www.gatsbyjs.org/docs/wordpress-source-plugin-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-10-16
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - gatsby-source-wordpress
+    - blog
+    - v2
+
+- title: Adding Images to a WordPress Site
+  link: https://www.gatsbyjs.org/docs/image-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-10-16
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - gatsby-source-wordpress
+    - gatsby-image
+
+- title: Source Plugin Tutorial
+  link: https://www.gatsbyjs.org/docs/source-plugin-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-11-06
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - data
+    - plugins
+    - gatsby-node
+    - createNode api
+    - node-fetch
+    - query-string
+
+- title: Gatsby E-Commerce Tutorial
+  link: https://www.gatsbyjs.org/docs/ecommerce-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-10-26
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - e-commerce
+    - stripe
+    - gatsby-plugin-stripe-checkout
+    - aws lambda
+    - serverless
+
+- title: Making a Site with User Authentication
+  link: https://www.gatsbyjs.org/docs/authentication-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-11-06
+  length: ''
+  authors: []
+  source: Gatsby
+  topics:
+    - app
+    - authentication
+    - gatsby-node
+    - gatsby-plugin-create-client-paths
+
+- title: 'JAMstack PWA : Let’s Build a Polling App with Gatsby.js, Firebase and
+    Styled-Components, Part 1'
+  link: https://medium.com/@UnicornAgency/jamstack-pwa-lets-build-a-polling-app-with-gatsby-js-firebase-and-styled-components-pt-1-78a03a633092
+  formats:
+    - text
+  language: en
+  date: 2018-02-20
+  length: '13:00'
+  authors:
+    - John Korzhuk
+  source: Unicorn Agency
+  topics:
+    - app
+    - jamstack
+    - styled-components
+    - v1
+
+- title: 'JAMstack PWA : Let’s Build a Polling App with Gatsby.js, Firebase and
+    Styled-Components, Part 2'
+  link: https://medium.com/@UnicornAgency/jamstack-pwa-lets-build-a-polling-app-with-gatsby-js-firebase-and-styled-components-pt-2-9044534ea6bc
+  formats:
+    - text
+  language: en
+  date: 2018-04-17
+  length: '11:00'
+  authors:
+    - John Korzhuk
+  source: Unicorn Agency
+  topics:
+    - app
+    - jamstack
+    - firebase
+    - authentication
+    - gatsby-browser
+    - styled-components
+    - netlify
+    - v1
+
+- title: 'JAMstack PWA : Let’s Build a Polling App with Gatsby.js, Firebase and
+    Styled-Components, Part 3'
+  link: https://medium.com/@UnicornAgency/jamstack-pwa-lets-build-a-polling-app-with-gatsby-js-firebase-and-styled-components-pt-3-89fa499534fd
+  formats:
+    - text
+  language: en
+  date: 2018-05-08
+  length: '5:00'
+  authors:
+    - John Korzhuk
+  source: Unicorn Agency
+  topics:
+    - pwa
+    - service worker
+    - gatsby-plugin-manifest
+    - gatsby-plugin-offline
+    - v1
+
+- title: Building a Blog with Gatsby, React and Webtask.io!
+  link: https://medium.com/@UnicornAgency/jamstack-pwa-lets-build-a-polling-app-with-gatsby-js-firebase-and-styled-components-pt-3-89fa499534fd
+  formats:
+    - text
+  language: en
+  date: 2018-03-01
+  length: ''
+  authors:
+    - Luke Oliff
+  source: Auth0
+  topics:
+    - introduction
+    - blog
+    - pagination
+    - gatsby-node
+    - templates
+    - authentication
+    - auth0
+    - webtask.io
+    - axios
+    - v1
+
+- title: 'A PWA Example: Build an E-Commerce Progressive Web App with Gatsby'
+  link: https://snipcart.com/blog/pwa-example-ecommerce-gatsby
+  formats:
+    - text
+  language: en
+  date: 2018-07-03
+  length: ''
+  authors:
+    - Jean-Sebastien Tremblay
+  source: Snipcart
+  topics:
+    - introduction
+    - pwa
+    - gatsby-plugin-manifest
+    - gatsby-plugin-offline
+    - e-commerce
+    - snipcart
+    - v1
+
+- title: Creating a Static E-Commerce Website with Snipcart, GatsbyJS and DatoCMS
+  link: https://snipcart.com/blog/static-ecommerce-gatsby-datocms
+  formats:
+    - text
+  language: en
+  date: 2018-06-18
+  length: ''
+  authors:
+    - Stefano Verna
+  source: Snipcart
+  topics:
+    - introduction
+    - datoCMS
+    - cms
+    - e-commerce
+    - snipcart
+    - v1
+
+- title: Handling Static Forms, Auth & Serverless Functions with Gatsby on Netlify
+  link: https://snipcart.com/blog/static-forms-serverless-gatsby-netlify
+  formats:
+    - text
+  language: en
+  date: 2018-04-25
+  length: ''
+  authors:
+    - Maxime Laboissonniere
+  source: Snipcart
+  topics:
+    - aws lambda
+    - form
+    - authentication
+    - netlify
+    - netlify identity
+    - netlify forms
+    - v1
+
+- title: ReactJS E-Commerce with No Backend Using Snipcart & Gatsby
+  link: https://snipcart.com/blog/snipcart-reactjs-static-ecommerce-gatsby
+  formats:
+    - text
+  language: en
+  date: 2016-01-28
+  length: ''
+  authors:
+    - Gabriel Robert
+  source: Snipcart
+  topics:
+    - introduction
+    - e-commerce
+    - snipcart
+    - v0
+
+- title: Announcing New Gatsby Company
+  link: https://www.gatsbyjs.org/blog/2018-05-24-launching-new-gatsby-company/
+  formats:
+    - text
+  language: en
+  date: 2018-05-24
+  length: '10:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Six Reasons I Chose Gatsby
+  link: https://www.gatsbyjs.org/blog/2018-05-11-six-reasons-i-chose-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-05-11
+  length: '4:00'
+  authors:
+    - Ray Gesualdo
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Building Eviction Free NYC with GatsbyJS + Contentful
+  link: https://www.gatsbyjs.org/blog/2018-04-27-building-eviction-free-nyc-with-gatsbyjs-and-contentful/
+  formats:
+    - text
+  language: en
+  date: 2018-04-27
+  length: '8:00'
+  authors:
+    - Dan Kass
+  source: Gatsby
+  topics:
+    - introduction
+    - cms
+    - contentful
+    - gatsby-source-contentful
+    - gatsby-node
+    - createPages api
+    - netlify
+
+- title: How Gatsby Changes Teams' Website Development Workflow
+  link: https://www.gatsbyjs.org/blog/2018-04-25-how-gatsby-changes-teams-website-development-workflow/
+  formats:
+    - text
+  language: en
+  date: 2018-04-25
+  length: '4:00'
+  authors:
+    - Sam Bhagwat
+  source: Gatsby
+  topics:
+    - cms
+    - jamstack
+    - workflow
+
+- title: Trying Out Gatsby at Work & Co
+  link: https://www.gatsbyjs.org/blog/2018-04-11-trying-out-gatsby-at-work-and-co/
+  formats:
+    - text
+  language: en
+  date: 2018-04-11
+  length: '15:00'
+  authors:
+    - Sarah Mogin
+  source: Gatsby
+  topics:
+    - contentful
+    - cms
+    - gatsby-source-contentful
+    - introduction
+    - graphql
+    - netlify
+    - workflow
+    - createPages api
+    - onCreatePage hook
+
+- title: Gatsby + Contentful Starter to Get a Website Up and Running in 5 Minutes
+  link: https://www.gatsbyjs.org/blog/2018-04-04-gatsby-contentful-starter-tutorial/
+  formats:
+    - text
+  language: en
+  date: 2018-04-04
+  length: '5:00'
+  authors:
+    - Robert Svensson
+  source: Gatsby
+  topics:
+    - cms
+    - contentful
+    - gatsby-contentful-starter
+
+- title: Migration to GatsbyJS and JAM stack from WordPress
+  link: https://www.gatsbyjs.org/blog/2018-03-29-migration-from-wordpress-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2018-03-29
+  length: '11:00'
+  authors:
+    - Vojtech Ruzicka
+  source: Gatsby
+  topics:
+    - jamstack
+    - introduction
+    - performance
+
+- title: 'Case Study: Mike Johnston for Colorado'
+  link: https://www.gatsbyjs.org/blog/2018-3-03-case-study-mike-johnston/
+  formats:
+    - text
+  language: en
+  date: 2018-03-03
+  length: '8:00'
+  authors:
+    - Brandon Konkle
+  source: Gatsby
+  topics:
+    - cms
+    - wordpress
+
+- title: Why I Upgraded My Website to GatsbyJS from Jekyll
+  link: https://www.gatsbyjs.org/blog/2018-2-27-why-i-upgraded-my-website-to-gatsbyjs-from-jekyll/
+  formats:
+    - text
+  language: en
+  date: 2018-02-27
+  length: '9:00'
+  authors:
+    - Jia Hao Goh
+  source: Gatsby
+  topics:
+    - introduction
+    - templates
+
+- title: 'Gatsby and the JAMstack: A Bright Future for the Web'
+  link: https://www.gatsbyjs.org/blog/2018-02-16-bright-future-for-the-web/
+  formats:
+    - text
+  language: en
+  date: 2018-02-16
+  length: '4:00'
+  authors:
+    - Ryan Wiemer
+  source: Gatsby
+  topics:
+    - jamstack
+    - introduction
+    - cms
+    - contentful
+    - gatsby-source-contentful
+    - netlify
+
+- title: How to Build a Website with React
+  link: https://www.gatsbyjs.org/blog/2018-2-16-how-to-build-a-website-with-react/
+  formats:
+    - text
+  language: en
+  date: 2018-02-16
+  length: '3:00'
+  authors:
+    - Shannon Soper
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Announcing Gatsby Manor, themes for Gatsby 🎉🎊
+  link: https://www.gatsbyjs.org/blog/2018-02-09-announcing-gatsby-manor-themes-for-gatsbyjs/
+  formats:
+    - text
+  language: en
+  date: 2018-02-09
+  length: '3:00'
+  authors:
+    - Steven Natera
+  source: Gatsby
+  topics:
+    - themes
+
+- title: Picking a Back-End for GatsbyJS
+  link: https://www.gatsbyjs.org/blog/2018-2-6-choosing-a-back-end/
+  formats:
+    - text
+  language: en
+  date: 2018-02-06
+  length: '12:00'
+  authors:
+    - Ross Whitehouse
+  source: Gatsby
+  topics:
+    - introduction
+    - cms
+    - contentful
+    - wordpress
+    - netlify cms
+    - prismic
+    - cockpit
+
+- title: Building Sites with Headless CMSs
+  link: https://www.gatsbyjs.org/blog/2018-2-3-sites-with-headless-cms/
+  formats:
+    - text
+  language: en
+  date: 2018-02-03
+  length: '7:00'
+  authors:
+    - Shannon Soper
+  source: Gatsby
+  topics:
+    - introduction
+    - cms
+    - graphcms
+    - buttercms
+    - contentful
+    - cloudcms
+
+- title: Building a Site with React and Contentful
+  link: https://www.gatsbyjs.org/blog/2018-1-25-building-a-site-with-react-and-contentful/
+  formats:
+    - text
+  language: en
+  date: 2018-01-25
+  length: '8:00'
+  authors:
+    - Shannon Soper
+  source: Gatsby
+  topics:
+    - cms
+    - contentful
+    - gatsby-source-contentful
+
+- title: Getting Started with Gatsby and WordPress
+  link: https://www.gatsbyjs.org/blog/2018-01-22-getting-started-gatsby-and-wordpress/
+  formats:
+    - text
+  language: en
+  date: 2018-01-22
+  length: '7:00'
+  authors:
+    - Amberley Romo
+  source: Gatsby
+  topics:
+    - cms
+    - wordpress
+    - gatsby-source-wordpress
+    - createPages api
+    - templates
+
+- title: 'Building a Static Blog using Gatsby and Strapi (Written tutorial with 8 videos)'
+  link: https://blog.strapi.io/building-a-static-website-using-gatsby-and-strapi/
+  formats:
+    - text
+    - video
+  language: en
+  date: 2019-02-27
+  length: ''
+  authors:
+    - Pierre Burgy
+    - David Kartuzinski
+  source: Strapi.io
+  topics:
+    - blog
+    - introduction
+    - cms
+    - strapi
+    - gatsby-source-strapi
+    - templates
+    - createPages api
+    - MIT
+    - gatsby-images
+
+- title: 'Gatsby.js: How to set up and use the React Static Site Generator'
+  link: https://medium.freecodecamp.org/setting-up-and-getting-used-to-gatsby-1fc27985ae8a
+  formats:
+    - text
+  language: en
+  date: 2018-01-05
+  length: '06:00'
+  authors:
+    - Aman Mittal
+  source: freeCodeCamp
+  topics:
+    - introduction
+    - navigation
+    - gatsby-link
+    - deployment
+    - github pages
+
+- title: Gatsby + Contentful + Netlify (and Algolia)
+  link: https://www.gatsbyjs.org/blog/2017-12-06-gatsby-plus-contentful-plus-netlify/
+  formats:
+    - text
+  language: en
+  date: 2017-12-06
+  length: '11:00'
+  authors:
+    - Josh Weaver
+  source: Gatsby
+  topics:
+    - introduction
+    - jamstack
+    - cms
+    - contentful
+    - gatsby-source-contentful
+    - algolia
+    - algolia docsearch
+    - netlify
+
+- title: Taking Gatsby for a Spin
+  link: https://www.gatsbyjs.org/blog/2017-12-07-taking-gatsby-for-a-spin/
+  formats:
+    - text
+  language: en
+  date: 2017-12-06
+  length: '8:00'
+  authors:
+    - Arden de Raaij
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Why I Created My Blog with Gatsby and Contentful
+  link: https://www.gatsbyjs.org/blog/2017-11-09-why-i-created-my-blog-with-gatsby-and-contentful/
+  formats:
+    - text
+  language: en
+  date: 2017-11-09
+  length: '13:00'
+  authors:
+    - Fernando Poumian
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - cms
+    - contentful
+    - gatsby-source-contentful
+    - netlify
+
+- title: Migrate from Jekyll to Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-11-08-migrate-from-jekyll-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-11-08
+  length: '4:00'
+  authors:
+    - Nahuel Scotti
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - onCreateNode api
+    - v1
+
+- title: Migrate from Hugo to Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-11-06-migrate-hugo-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-11-06
+  length: '11:00'
+  authors:
+    - Kalin Chernev
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - createPages api
+    - gatsby-plugin-typography
+    - pagination
+    - tags
+    - cms
+    - netlify cms
+    - v1
+
+- title: From WordPress to Developing in React — Starting to See It
+  link: https://www.gatsbyjs.org/blog/2017-10-20-from-wordpress-to-developing-in-react-starting-to-see-it/
+  formats:
+    - text
+  language: en
+  date: 2017-10-20
+  length: '5:00'
+  authors:
+    - Benjamin Read
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Building i18n with Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-10-17-building-i18n-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-10-17
+  length: '7:00'
+  authors:
+    - Samuel Goudie
+  source: Gatsby
+  topics:
+    - i18n
+    - react-18next
+    - gatsby-ssr
+
+- title: Making Website Building Fun
+  link: https://www.gatsbyjs.org/blog/2017-10-16-making-website-building-fun/
+  formats:
+    - text
+  language: en
+  date: 2017-10-16
+  length: '9:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - react-headroom
+    - gatsby-image
+
+- title: Rebuilding my Portfolio Website with the Great GatsbyJS and WordPress
+  link: https://www.gatsbyjs.org/blog/2017-10-05-portfolio-site-gatsby-wordpress/
+  formats:
+    - text
+  language: en
+  date: 2017-10-05
+  length: '4:00'
+  authors:
+    - David James
+  source: Gatsby
+  topics:
+    - introduction
+    - gatsby-source-wordpress
+
+- title: Migrating My Blog from Hexo to Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-10-01-migrating-my-blog-from-hexo-to-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-10-01
+  length: '17:00'
+  authors:
+    - Ian Sinnott
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - graphql
+    - createPages api
+    - templates
+    - v1
+
+- title: Modern Static Site Generation with Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-09-18-gatsby-modern-static-generation/
+  formats:
+    - text
+  language: en
+  date: 2017-09-18
+  length: '7:00'
+  authors:
+    - Kostas Bariotis
+  source: Gatsby
+  topics:
+    - introduction
+
+- title: Web Performance 101—also, why is Gatsby so fast?
+  link: https://www.gatsbyjs.org/blog/2017-09-13-why-is-gatsby-so-fast/
+  formats:
+    - text
+  language: en
+  date: 2017-09-13
+  length: '12:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - performance
+
+- title: Creating a Blog with Gatsby
+  link: https://www.gatsbyjs.org/blog/2017-07-19-creating-a-blog-with-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2017-07-19
+  length: '18:00'
+  authors:
+    - Dustin Schau
+  source: Gatsby
+  topics:
+    - introduction
+    - blog
+    - templates
+    - createPages api
+    - graphql
+    - v1
+
+- title: Announcing Gatsby 1.0.0 🎉🎉🎉
+  link: https://www.gatsbyjs.org/blog/gatsby-v1/
+  formats:
+    - text
+  language: en
+  date: 2017-07-06
+  length: '9:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - graphql
+    - v1
+
+- title: Gatsbygram Case Study
+  link: https://www.gatsbyjs.org/blog/gatsbygram-case-study/
+  formats:
+    - text
+  language: en
+  date: 2017-03-09
+  length: '13:00'
+  authors:
+    - Kyle Mathews
+  source: Gatsby
+  topics:
+    - introduction
+    - createPages api
+    - templates
+    - v1
+
+- title: 'Gatsby on AWS, the right way'
+  link: https://blog.joshwalsh.me/aws-gatsby/
+  formats:
+    - text
+  language: en
+  date: 2019-01-10
+  authors:
+    - Joshua Walsh
+  topics:
+    - performance
+    - aws
+    - continuous-integration
+    - cloud
+    - hosting
+
+- title: 'Create a Localized Website using Gatsby and Cosmic JS'
+  link: https://cosmicjs.com/articles/create-a-localized-website-using-gatsby-and-cosmic-js
+  formats:
+    - text
+  language: en
+  date: 2019-05-03
+  length: '10:00'
+  authors:
+    - Flynn Buckingham
+  source: cosmicjs
+  topics:
+    - localization
+    - cosmicjs
+    - cms
+
+- title: 'How to build an Ecommerce Website using Gatsby and Cosmic JS'
+  link: https://cosmicjs.com/articles/how-to-build-an-ecommerce-website-using-gatsby-and-cosmic-js-jv1b1y52
+  formats:
+    - text
+  language: en
+  date: 2019-05-01
+  length: '12:00'
+  authors:
+    - Ankit Kumar
+  source: cosmicjs
+  topics:
+    - ecommerce
+    - cosmicjs
+    - cms
+
+- title: 'How to Build a Documentation App With Gatsby and Cosmic JS'
+  link: https://cosmicjs.com/articles/how-to-build-a-documentation-app-with-gatsby-and-cosmic-js-jrb4den5
+  formats:
+    - text
+  language: en
+  date: 2019-02-11
+  length: '10:00'
+  authors:
+    - Jacob Knaack
+  source: cosmicjs
+  topics:
+    - documentation
+    - markdown
+    - graphql
+    - cosmicjs
+    - cms
+
+- title: 'Video: Build a Cosmic JS-powered blog using Gatsby'
+  link: https://cosmicjs.com/articles/video-build-a-cosmic-js-powered-blog-using-gatsby-jpsrqozy
+  formats:
+    - video
+  language: en
+  date: 2018-12-17
+  length: '60:00'
+  authors:
+    - Carson Gibbons
+    - Tony Spiro
+    - Jason Lengstorf
+  source: cosmicjs
+  topics:
+    - video
+    - blog
+    - cosmicjs
+
+- title: 'Webinar Video: Localization with Gatsby and Cosmic JS'
+  link: https://cosmicjs.com/articles/webinar-video-localization-with-gatsby-and-cosmic-js-jnyqtjoa
+  formats:
+    - video
+  language: en
+  date: 2018-11-01
+  length: '45:00'
+  authors:
+    - Tony Spiro
+    - Jason Lengstorf
+  source: cosmicjs
+  topics:
+    - webinar
+    - localization
+    - cosmicjs
+    - cms
+
+- title: 'Building and Designing a Portfolio Site Using Gatsby JS and Cosmic JS'
+  link: https://cosmicjs.com/articles/building-and-designing-a-portfolio-site-using-gatsby-js-and-cosmic-js
+  formats:
+    - text
+  language: en
+  date: 2019-05-13
+  length: '12:00'
+  authors:
+    - Jacob Knaack
+  source: cosmicjs
+  topics:
+    - portfolio
+    - graphql
+    - cosmicjs
+    - cms
+
+- title: 'Creating an Agency Site in GatsbyJS'
+  link: https://nabendu.blog/posts/creating-an-agency-site-in-gatsbyjs-1-1mdd/
+  formats:
+    - text
+  language: en
+  date: 2019-09-28
+  length: '12:00'
+  authors:
+    - Nabendu Biswas
+  topics:
+    - css
+    - graphql
+    - gatsby
+    - introduction
+
+- title: 'Creating Blog site using Stackbit, GatsbyJS and DEV'
+  link: https://nabendu.blog/posts/creating-blog-site-using-slackbit-gatsbyjs-and-dev-1-55f0/
+  formats:
+    - text
+  language: en
+  date: 2019-11-14
+  length: '14:00'
+  authors:
+    - Nabendu Biswas
+  topics:
+    - css
+    - graphql
+    - gatsby
+    - stackbit
+
+- title: 'Learn GatsbyJS by creating a tourism site'
+  link: https://nabendu.blog/posts/learn-gatsbyjs-by-creating-a-tourism-site-1-mnm/
+  formats:
+    - text
+  language: en
+  date: 2019-11-27
+  length: '31:00'
+  authors:
+    - Nabendu Biswas
+  topics:
+    - css
+    - graphql
+    - gatsby
+    - contentful
+
+- title: 'Build a coding blog from scratch with Gatsby and MDX'
+  link: https://scottspence.com/2019/10/31/build-an-mdx-blog/
+  formats:
+    - text
+    - video
+  language: en
+  date: 2019-10-31
+  length: '36:00'
+  authors:
+    - Scott Spence
+  topics:
+    - mdx
+    - graphql
+    - gatsby
+    - styled-components
