@@ -3181,10 +3181,10 @@
   dependencies:
     uuid "8.3.1"
 
-"@ng-select/ng-select@7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-7.1.0.tgz#faf9b042e8e9e7a8df0b10b1abe61b5d28539438"
-  integrity sha512-eqxLJ81b1u3s2hx2iuURWHpLV2noM/RoQyu1V6V6yA3mKbAGEyXq6LqMYEceIggo2PE67HbyBHYzDaNwts37BA==
+"@ng-select/ng-select@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-7.1.1.tgz#987f45e8e53ad61e266284a341c04a9c794e56ca"
+  integrity sha512-5+ZO81Vpa1DXyxdw6a1N252QhzKyUZfSJbQDskb8ITHE5k546eF4dANUfyzG7DCzkO0ocLNQkLiDn8pOCmrdKA==
   dependencies:
     tslib "^2.0.0"
 
@@ -4287,10 +4287,10 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
-"@types/sharp@0.28.3":
-  version "0.28.3"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.3.tgz#0e57ede34d3e334632ab7a68a6af070aa0f51ceb"
-  integrity sha512-y3mxUj3jukIWgdu9CrSTSCo5HruTzDxdjn5SqdIEALdTszkcot9r8HX/7q9FMx3YjuXifTD0OI+d4wA6Pogqmw==
+"@types/sharp@0.28.4":
+  version "0.28.4"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.4.tgz#7afdcf979069ddc68a915603fdaa412ada93f833"
+  integrity sha512-vfz+RlJU5FgXyyf9w8wc+JwwT8MFI98NZr0272umQegrggAQhTwwb8pKZn0PTtd+j0crXkZDWw5ABG/i6Lu/Lw==
   dependencies:
     "@types/node" "*"
 
@@ -7774,10 +7774,10 @@ dateformat@^4.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-4.5.1.tgz#c20e7a9ca77d147906b6dc2261a8be0a5bd2173c"
   integrity sha512-OD0TZ+B7yP7ZgpJf5K2DIbj3FZvFvxgFUuaqA/V5zTjAtAAXZ1E8bktHxmAGs4x5b7PflqA9LeQ84Og7wYtF7Q==
 
-dayjs@1.10.5:
-  version "1.10.5"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.5.tgz#5600df4548fc2453b3f163ebb2abbe965ccfb986"
-  integrity sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g==
+dayjs@1.10.6:
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
+  integrity sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==
 
 debounce@^1.2.0:
   version "1.2.0"
@@ -16062,10 +16062,10 @@ prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-prosemirror-commands@1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.1.9.tgz#97db3ec7e2ac042f809b1367352d4c4b1f3e0737"
-  integrity sha512-zedlbQ+8QK0tIeibb6vbnAX5FO/S5x67xHgF57Fned+3G6RZY3JAGma9kC1jSCmLF/XC7MCZ90oekb0qo2b+Pw==
+prosemirror-commands@1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.1.10.tgz#406a6589966e6cd80809cea2d801fb998639b37d"
+  integrity sha512-IWyBBXNAd44RM6NnBPljwq+/CM2oYCQJkF+YhKEAZNwzW0uFdGf4qComhjbKZzqFdu6Iub2ZhNsXgwPibA0lCQ==
   dependencies:
     prosemirror-model "^1.0.0"
     prosemirror-state "^1.0.0"
