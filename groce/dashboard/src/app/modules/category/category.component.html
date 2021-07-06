@@ -1,0 +1,57 @@
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8"></div>
+<div class="container-fluid list">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Бүтээгдэхүүний төрөл</h3>
+            </div>
+            <div class="col text-right">
+              <button class="btn btn-primary" (click)="add()">
+                <span>
+                  Нэмэх
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
+            <span>No categories found</span>
+          </div>
+
+          <div class="table-responsive" *ngIf="categories?.length > 0">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" jhiSortBy="name"><span>Нэр</span></th>
+                  <th scope="col" jhiSortBy="description"><span>Тайлбар</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories; trackBy: trackId">
+                  <td>{{ category.name }}</td>
+                  <td>{{ category.description }}</td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button type="submit" (click)="edit(category)" class="btn btn-primary btn-sm">
+                        <span class="d-none d-md-inline">Засах</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm">
+                        <span class="d-none d-md-inline">Устгах</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
