@@ -42,7 +42,7 @@
     "apollo-angular": "2.6.0",
     "apollo-upload-client": "16.0.0",
     "core-js": "3.15.2",
-    "dayjs": "1.10.5",
+    "dayjs": "1.10.6",
     "graphql": "15.5.0",
     "messageformat": "2.3.0",
     "ngx-pagination": "5.1.1",
