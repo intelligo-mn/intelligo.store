@@ -1,0 +1,21 @@
+parser: '@typescript-eslint/parser'
+
+extends:
+  - 'react-app'
+  - 'prettier'
+
+globals:
+  __dirname: false
+  graphql: false
+  process: false
+
+plugins:
+  - react-hooks
+  - '@typescript-eslint'
+
+rules:
+  '@typescript-eslint/no-use-before-define': off
+  import/first: off
+  no-use-before-define: off
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn

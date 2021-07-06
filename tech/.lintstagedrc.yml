@@ -1,0 +1,11 @@
+# Runs validation scripts on staged files only
+
+# Run eslint on staged JS files:
+'**/*.{js,jsx,ts,tsx}':
+  - eslint --fix
+  - git add
+
+# Run prettier on all staged files:
+'**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|html|md|mdx|graphql)':
+  - prettier --write
+  - git add
