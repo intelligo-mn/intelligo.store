@@ -42,7 +42,7 @@
     "sql.js": "1.5.0"
   },
   "devDependencies": {
-    "@types/mysql": "2.15.18",
+    "@types/mysql": "2.15.19",
     "@types/pg": "8.6.0",
     "@vendure/core": "^1.0.2",
     "mysql": "2.18.1",
