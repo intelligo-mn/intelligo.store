@@ -35,17 +35,17 @@
     "url": "https://github.com/vendure-ecommerce/vendure/issues"
   },
   "dependencies": {
-    "@angular-devkit/build-angular": "0.1102.4",
-    "@angular/cli": "11.2.4",
+    "@angular-devkit/build-angular": "0.1102.14",
+    "@angular/cli": "11.2.14",
     "@angular/compiler": "11.2.5",
     "@angular/compiler-cli": "11.2.5",
     "@vendure/admin-ui": "^1.1.1",
     "@vendure/common": "^1.1.1",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
-    "rxjs": "^6.6.6"
+    "rxjs": "^7.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^11.2.0",
