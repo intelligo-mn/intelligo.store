@@ -23,10 +23,11 @@
     "@ngrx/component-store": "^12.2.0",
     "@rx-angular/cdk": "^1.0.0-alpha.8",
     "@rx-angular/template": "^1.0.0-beta.25",
+    "firebase": "^7.0 || ^8.0",
     "rxjs": "~6.6.0",
+    "ts-morph": "^11.0.3",
     "tslib": "^2.2.0",
-    "zone.js": "~0.11.4",
-    "firebase": "^7.0 || ^8.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.0",
