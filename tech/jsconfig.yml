@@ -1,9 +1,0 @@
-# https://code.visualstudio.com/docs/languages/jsconfig
-
-compilerOptions:
-  baseUrl: 'src'
-  target: 'es6'
-
-# VS Code IntelliSense will only search these directories:
-include:
-  - 'src/**/*'
