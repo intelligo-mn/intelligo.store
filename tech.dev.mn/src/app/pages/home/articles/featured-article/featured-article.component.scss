@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(8, 9, 10, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 0 0.75rem;
+  overflow: hidden;
+  &:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b49df;
+  }
+}
+
+app-article-card {
+  box-shadow: none;
+  margin: 0 0 0;
+  &:focus-within {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.featured-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding-bottom: 42%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.featured-title{
+    font-size: 1.875rem;
+}
