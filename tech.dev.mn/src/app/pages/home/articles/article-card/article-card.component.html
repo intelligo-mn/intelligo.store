@@ -1,0 +1,51 @@
+<article>
+    <div class="flex article-header">
+        <a class="lh-0" routerLink="/{{article.user.username}}">
+            <img class="article-avatar-image" [src]="article.user.profile_image_90"
+                alt="{{article.user.username}} profile" loading="lazy">
+        </a>
+        <div class="article-meta">
+            <p class="m-0"><a>{{article.user.name}}</a></p>
+            <a class="article-time lh-0"><time>{{article.published_timestamp|date:'MMM d'}}
+                    {{article.published_timestamp|dateago}}</time></a>
+        </div>
+    </div>
+    <div class="article-body">
+        <!-- Todo check spacing is 36px but should be 30px -->
+        <span #ref>
+            <ng-content></ng-content>
+        </span>
+        <ng-container *ngIf="!ref.hasChildNodes()">
+            <h3 class="article-title m-0">{{article.title}}</h3>
+        </ng-container>
+        <div class="flex article-tags">
+            <a class="article-tag" *ngFor="let tag of article.tag_list">
+                #{{tag}}
+            </a>
+        </div>
+        <div class="article-bottom flex justify-between align-center">
+            <div class="flex article-bottom-button">
+                <a *ngIf="article.public_reactions_count" class="article-stats">
+                    <svg class="article-button-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.884 12.595l.01.011L12 19.5l-6.894-6.894.01-.01A4.875 4.875 0 0112 5.73a4.875 4.875 0 016.884 6.865zM6.431 7.037a3.375 3.375 0 000 4.773L12 17.38l5.569-5.569a3.375 3.375 0 10-4.773-4.773L9.613 10.22l-1.06-1.062 2.371-2.372a3.375 3.375 0 00-4.492.25v.001z">
+                        </path>
+                    </svg>{{article.public_reactions_count}} reactions</a>
+                <a class="article-stats">
+                    <svg class="article-button-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.5 5h3a6 6 0 110 12v2.625c-3.75-1.5-9-3.75-9-8.625a6 6 0 016-6zM12 15.5h1.5a4.501 4.501 0 001.722-8.657A4.5 4.5 0 0013.5 6.5h-3A4.5 4.5 0 006 11c0 2.707 1.846 4.475 6 6.36V15.5z">
+                        </path>
+                    </svg>
+                    <ng-container *ngIf="article.comments_count; else addTemp">{{article.comments_count}}</ng-container>
+                    comments
+                </a>
+            </div>
+            <div class="flex align-center"><small>{{article.reading_time_minutes}} min read</small>
+                <button type="button" class="article-save-btn">Save</button>
+            </div>
+
+        </div>
+    </div>
+</article>
+<ng-template #addTemp>Add</ng-template>

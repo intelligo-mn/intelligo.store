@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dev-toclone": {
+      "hosting": {
+        "devto": [
+          "dev-toclone"
+        ]
+      }
+    }
+  }
+}
