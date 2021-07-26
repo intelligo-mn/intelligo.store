@@ -45,7 +45,7 @@
     "@angular/service-worker": "10.0.3",
     "@scullyio/init": "0.0.29",
     "@scullyio/ng-lib": "0.0.27",
-    "@scullyio/scully": "0.0.102",
+    "@scullyio/scully": "1.0.9",
     "document-register-element": "1.14.3",
     "ngx-markdown": "10.0.0",
     "prismjs": "1.24.0",
