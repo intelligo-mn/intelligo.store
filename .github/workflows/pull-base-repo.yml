@@ -1,0 +1,20 @@
+name: Auto Pull Changes
+on:
+  schedule:
+  - cron:  "0 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "vendure-ecommerce/vendure"
+        source_branch: "master"
+        destination_branch: "update"
+        github_token: ${{ secrets.GH_PAT }}
