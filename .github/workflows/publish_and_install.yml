@@ -2,14 +2,10 @@ name: Publish & Install
 on:
   push:
     branches:
-      - release
-      - major
-      - minor
+      - main
   pull_request:
     branches:
-      - release
-      - major
-      - minor
+      - main
 defaults:
   run:
     shell: bash
