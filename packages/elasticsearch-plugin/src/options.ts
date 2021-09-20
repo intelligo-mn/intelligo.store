@@ -58,6 +58,68 @@ export interface ElasticsearchOptions {
     indexPrefix?: string;
     /**
      * @description
+     * [These options](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index-modules.html#index-modules-settings)
+     * are directly passed to index settings. To apply some settings indices will be recreated.
+     *
+     * @example
+     * ```TypeScript
+     * // Configuring an English stemmer
+     * indexSettings: {
+     *   analysis: {
+     *     analyzer: {
+     *       custom_analyzer: {
+     *         tokenizer: 'standard',
+     *         filter: [
+     *           'lowercase',
+     *           'english_stemmer'
+     *         ]
+     *       }
+     *     },
+     *     filter : {
+     *       english_stemmer : {
+     *         type : 'stemmer',
+     *         name : 'english'
+     *       }
+     *     }
+     *   }
+     * },
+     * ```
+     *
+     * @since 1.2.0
+     * @default
+     * {}
+     */
+    indexSettings?: object;
+    /**
+     * @description
+     * This option allow to redefine or define new properties in mapping. More about elastic
+     * [mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html)
+     * After changing this option indices will be recreated.
+     *
+     * @example
+     * ```TypeScript
+     * // Configuring custom analyzer for the `productName` field.
+     * indexMappingProperties: {
+     *   productName: {
+     *     type: 'text',
+     *     analyzer:'custom_analyzer',
+     *     fields: {
+     *       keyword: {
+     *         type: 'keyword',
+     *         ignore_above: 256,
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @since 1.2.0
+     * @default
+     * {}
+     */
+    indexMappingProperties?: object;
+    /**
+     * @description
      * Batch size for bulk operations (e.g. when rebuilding the indices).
      *
      * @default
@@ -168,10 +230,25 @@ export interface SearchConfig {
      * The maximum number of Collections to return from the search query. Internally, this
      * value sets the "size" property of an Elasticsearch aggregation.
      *
+     * @since 1.1.0
      * @default
      * 50
      */
     collectionMaxSize?: number;
+
+    /**
+     * @description
+     * The maximum number of totalItems to return from the search query. Internally, this
+     * value sets the "track_total_hits" property of an Elasticsearch query.
+     * If this parameter is set to "True", accurate count of totalItems will be returned.
+     * If this parameter is set to "False", totalItems will be returned as 0.
+     * If this parameter is set to integer, accurate count of totalItems will be returned not bigger than integer.
+     *
+     * @since 1.2.0
+     * @default
+     * 10000
+     */
+    totalItemsMaxSize?: number | boolean;
 
     // prettier-ignore
     /**
@@ -322,10 +399,13 @@ export const defaultOptions: ElasticsearchRuntimeOptions = {
     connectionAttempts: 10,
     connectionAttemptInterval: 5000,
     indexPrefix: 'vendure-',
+    indexSettings: {},
+    indexMappingProperties: {},
     batchSize: 2000,
     searchConfig: {
         facetValueMaxSize: 50,
         collectionMaxSize: 50,
+        totalItemsMaxSize: 10000,
         multiMatchType: 'best_fields',
         boostFields: {
             productName: 1,
