@@ -78,4 +78,9 @@ $ npm run test:cov
 [backend]:#backend
 [frontend]:#frontend
 
+## License
+
+> Copyright (C) 2019-2021 Intelligo LLC.  
+> Chatbots.mn licensed under the [INTELLIGO](./LICENSE) license.  
+> (See the [LICENSE](./LICENSE) file for the whole license text.)
 
