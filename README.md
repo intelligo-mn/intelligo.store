@@ -32,3 +32,9 @@
 [rxjs-dev]: https://img.shields.io/badge/rxjs-dev.mn-4285f4?style=flat-square&logo=typescript
 
 [heroku]: https://img.shields.io/badge/heroku-DEPLOYED-40a6bc?style=flat&logo=heroku&labelColor=0d1d25
+
+## License
+
+> Copyright (C) 2019-2020 Intelligo LLC.  
+> Chatbots.mn licensed under the [INTELLIGO](./LICENSE) license.  
+> (See the [LICENSE](./LICENSE) file for the whole license text.)
