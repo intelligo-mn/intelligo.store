@@ -6,6 +6,7 @@ import { RequestHandler } from 'express';
 import { ValidationContext } from 'graphql';
 import { ConnectionOptions } from 'typeorm';
 
+import { Middleware } from '../common';
 import { PermissionDefinition } from '../common/permission-definition';
 
 import { AssetNamingStrategy } from './asset-naming-strategy/asset-naming-strategy';
@@ -23,6 +24,7 @@ import { JobQueueStrategy } from './job-queue/job-queue-strategy';
 import { VendureLogger } from './logger/vendure-logger';
 import { ChangedPriceHandlingStrategy } from './order/changed-price-handling-strategy';
 import { CustomOrderProcess } from './order/custom-order-process';
+import { OrderByCodeAccessStrategy } from './order/order-by-code-access-strategy';
 import { OrderCodeStrategy } from './order/order-code-strategy';
 import { OrderItemPriceCalculationStrategy } from './order/order-item-price-calculation-strategy';
 import { OrderMergeStrategy } from './order/order-merge-strategy';
@@ -70,7 +72,7 @@ export interface ApiOptions {
     adminApiPath?: string;
     /**
      * @description
-     * The path to the admin GraphQL API.
+     * The path to the shop GraphQL API.
      *
      * @default 'shop-api'
      */
@@ -101,7 +103,7 @@ export interface ApiOptions {
     adminApiDebug?: boolean;
     /**
      * @description
-     * The debug config to the admin GraphQL API
+     * The debug config to the shop GraphQL API
      * [ApolloServer playground](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#constructoroptions-apolloserver).
      *
      * @default false
@@ -161,8 +163,7 @@ export interface ApiOptions {
      *
      * @default []
      */
-    // tslint:disable-next-line:ban-types
-    middleware?: Array<{ handler: Type<any> | Function; route: string }>;
+    middleware?: Middleware[];
     /**
      * @description
      * Custom [ApolloServerPlugins](https://www.apollographql.com/docs/apollo-server/integrations/plugins/) which
@@ -295,9 +296,11 @@ export interface AuthOptions {
      * `authTokenHeaderKey` in the server's CORS configuration (adding `Access-Control-Expose-Headers: vendure-auth-token`
      * by default).
      *
+     * From v1.2.0 is is possible to specify both methods as a tuple: `['cookie', 'bearer']`.
+     *
      * @default 'cookie'
      */
-    tokenMethod?: 'cookie' | 'bearer';
+    tokenMethod?: 'cookie' | 'bearer' | ReadonlyArray<'cookie' | 'bearer'>;
     /**
      * @description
      * Options related to the handling of cookies when using the 'cookie' tokenMethod.
@@ -347,7 +350,7 @@ export interface AuthOptions {
      * `password` property - doing so will result in an error. Instead, the password is set at a later stage
      * (once the email with the verification token has been opened) via the `verifyCustomerAccount` mutation.
      *
-     * @defaut true
+     * @default true
      */
     requireVerification?: boolean;
     /**
@@ -473,6 +476,17 @@ export interface OrderOptions {
     orderCodeStrategy?: OrderCodeStrategy;
     /**
      * @description
+     * Defines the strategy used to check if and how an Order may be retrieved via the orderByCode query.
+     *
+     * The default strategy permits permanent access to the Customer owning the Order and anyone
+     * within 2 hours after placing the Order.
+     *
+     * @since 1.1.0
+     * @default DefaultOrderByCodeAccessStrategy
+     */
+    orderByCodeAccessStrategy?: OrderByCodeAccessStrategy;
+    /**
+     * @description
      * Defines how we handle the situation where an OrderItem exists in an Order, and
      * then later on another is added but in the mean time the price of the ProductVariant has changed.
      *
@@ -553,7 +567,7 @@ export interface CatalogOptions {
      *
      * @default defaultCollectionFilters
      */
-    collectionFilters: Array<CollectionFilter<any>>;
+    collectionFilters?: Array<CollectionFilter<any>>;
     /**
      * @description
      * Defines the strategy used for calculating the price of ProductVariants based
@@ -561,7 +575,7 @@ export interface CatalogOptions {
      *
      * @default DefaultTaxCalculationStrategy
      */
-    productVariantPriceCalculationStrategy: ProductVariantPriceCalculationStrategy;
+    productVariantPriceCalculationStrategy?: ProductVariantPriceCalculationStrategy;
     /**
      * @description
      * Defines how the `ProductVariant.stockLevel` value is obtained. It is usually not desirable
@@ -573,7 +587,7 @@ export interface CatalogOptions {
      *
      * @default DefaultStockDisplayStrategy
      */
-    stockDisplayStrategy: StockDisplayStrategy;
+    stockDisplayStrategy?: StockDisplayStrategy;
 }
 
 /**
@@ -863,6 +877,7 @@ export interface RuntimeVendureConfig extends Required<VendureConfig> {
     apiOptions: Required<ApiOptions>;
     assetOptions: Required<AssetOptions>;
     authOptions: Required<AuthOptions>;
+    catalogOptions: Required<CatalogOptions>;
     customFields: Required<CustomFields>;
     importExportOptions: Required<ImportExportOptions>;
     jobQueueOptions: Required<JobQueueOptions>;

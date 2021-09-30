@@ -51,7 +51,7 @@
             [vdrDisabled]="!(updatePermission | hasPermission)"
         >
             <option *ngFor="let languageCode of availableLanguageCodes$ | async" [value]="languageCode">
-                {{ 'lang.' + languageCode | translate }} ({{ languageCode | uppercase }})
+                {{ languageCode | localeLanguageName }} ({{ languageCode | uppercase }})
             </option>
         </select>
     </vdr-form-field>
@@ -73,6 +73,7 @@
             formControlName="defaultTaxZoneId"
             [vdrDisabled]="!(updatePermission | hasPermission)"
         >
+            <option selected value style="display: none"></option>
             <option *ngFor="let zone of zones$ | async" [value]="zone.id">{{ zone.name }}</option>
         </select>
     </vdr-form-field>
@@ -95,6 +96,7 @@
             formControlName="defaultShippingZoneId"
             [vdrDisabled]="!(updatePermission | hasPermission)"
         >
+            <option selected value style="display: none"></option>            
             <option *ngFor="let zone of zones$ | async" [value]="zone.id">{{ zone.name }}</option>
         </select>
     </vdr-form-field>

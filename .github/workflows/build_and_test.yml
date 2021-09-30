@@ -3,14 +3,10 @@ name: Build & Test
 on:
   push:
     branches:
-      - release
-      - major
-      - minor
+      - next
   pull_request:
     branches:
-      - release
-      - major
-      - minor
+      - next
 env:
   CI: true
   node: 14.x

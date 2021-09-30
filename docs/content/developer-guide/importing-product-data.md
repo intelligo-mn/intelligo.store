@@ -58,6 +58,24 @@ If you have [CustomFields]({{< relref "customizing-models" >}}) defined on your 
   For a real example, see the [products.csv file used to populate the Vendure demo data](https://github.com/vendure-ecommerce/vendure/blob/master/packages/core/mock-data/data-sources/products.csv)
 {{< /alert >}}
 
+#### Importing `relation` custom fields
+
+To import custom fields with the type `relation`, the value in the CSV must be a stringified object with an `id` property:
+
+```csv
+... ,product:featuredReview
+... ,"{ ""id"": 123 }"
+```
+
+#### Importing `list` custom fields
+
+To import custom fields with `list` set to `true`, the data should be separated with a pipe (`|`) character:
+
+```csv
+... ,product:keywords
+... ,tablet|pad|android
+```
+
 ## Initial Data
 
 As well as product data, other initialization data can be populated using the [`InitialData` object]({{< relref "initial-data" >}}). **This format is intentionally limited**; more advanced requirements (e.g. setting up ShippingMethods that use custom checkers & calculators) should be carried out via scripts which interact with the [Admin GraphQL API]({{< relref "/docs/graphql-api/admin" >}}).
@@ -110,13 +128,22 @@ The `@vendure/core` package exposes a [`populate()` function]({{< relref "popula
 
 ```TypeScript
 // populate-server.ts
-import { bootstrap } from '@vendure/core';
+import { bootstrap, DefaultJobQueuePlugin } from '@vendure/core';
 import { populate } from '@vendure/core/cli';
 
 import { config } from './vendure-config.ts';
 import { initialData } from './my-initial-data.ts';
 
 const productsCsvFile = path.join(__dirname, 'path/to/products.csv')
+
+const populateConfig = {
+  ...config,
+  plugins: (config.plugins || []).filter(
+    // Remove your JobQueuePlugin during populating to avoid
+    // generating lots of unnecessary jobs as the Collections get created.
+    plugin => plugin !== DefaultJobQueuePlugin,
+  ),
+}
 
 populate(
   () => bootstrap(config),

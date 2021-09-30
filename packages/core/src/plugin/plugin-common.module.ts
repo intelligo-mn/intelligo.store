@@ -4,7 +4,9 @@ import { CacheModule } from '../cache/cache.module';
 import { ConfigModule } from '../config/config.module';
 import { EventBusModule } from '../event-bus/event-bus.module';
 import { HealthCheckModule } from '../health-check/health-check.module';
+import { I18nModule } from '../i18n/i18n.module';
 import { JobQueueModule } from '../job-queue/job-queue.module';
+import { ProcessContextModule } from '../process-context/process-context.module';
 import { ServiceModule } from '../service/service.module';
 
 /**
@@ -31,6 +33,8 @@ import { ServiceModule } from '../service/service.module';
         JobQueueModule,
         HealthCheckModule,
         CacheModule,
+        I18nModule,
+        ProcessContextModule,
     ],
     exports: [
         EventBusModule,
@@ -39,6 +43,8 @@ import { ServiceModule } from '../service/service.module';
         JobQueueModule,
         HealthCheckModule,
         CacheModule,
+        I18nModule,
+        ProcessContextModule,
     ],
 })
 export class PluginCommonModule {}

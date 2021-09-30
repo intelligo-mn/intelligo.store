@@ -88,7 +88,7 @@ export const config: VendureConfig = {
     AdminUiPlugin.init({
       port: 5001,
       app: compileUiExtensions({
-        outputPath: path.join(__dirname, '__admin-ui'),
+        outputPath: path.join(__dirname, 'admin-ui'),
         extensions: [{
           extensionPath: path.join(__dirname, 'ui-extensions'),
           ngModules: [{
@@ -106,7 +106,7 @@ export const config: VendureConfig = {
 
 ## 5. Start the server to compile
 
-The `compileUiExtensions()` function returns a `compile()` function which will be invoked by the AdminUiPlugin upon server bootstrap. During this compilation process, a new directory will be generated at `/__admin-ui` (as specified by the `outputPath` option) which will contains the uncompiled sources of your new Admin UI app.
+The `compileUiExtensions()` function returns a `compile()` function which will be invoked by the AdminUiPlugin upon server bootstrap. During this compilation process, a new directory will be generated at `/admin-ui` (as specified by the `outputPath` option) which will contains the un-compiled sources of your new Admin UI app.
 
 Next, these source files will be run through the Angular compiler, the output of which will be visible in the console.
 
@@ -117,6 +117,18 @@ Next, these source files will be run through the Angular compiler, the output of
 Now go to the Admin UI app in your browser and log in. You should now be able to manually enter the URL `http://localhost:3000/admin/extensions/greet` and you should see the component with the "Hello!" header:
 
 {{< figure src="./ui-extensions-greeter.jpg" >}}
+
+{{< alert warning >}}
+**Note:** the TypeScript source files of your UI extensions **must not** be compiled by your regular TypeScript build task. This is because they will instead be compiled by the Angular compiler when you run `compileUiExtensions()`. You can exclude them in your main `tsconfig.json` by adding a line to the "exclude" array:
+```json
+{
+  "exclude": [
+    "src/plugins/**/ui/*"
+  ]
+}
+```
+{{< /alert >}}
+
 
 ## Next Steps
 
