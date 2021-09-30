@@ -23,7 +23,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { ELASTIC_SEARCH_OPTIONS, loggerCtx, PRODUCT_INDEX_NAME, VARIANT_INDEX_NAME } from './constants';
-import { createIndices, deleteIndices } from './indexing-utils';
+import { createIndices, getClient, getIndexNameByAlias } from './indexing-utils';
 import { ElasticsearchOptions } from './options';
 import {
     BulkOperation,
@@ -87,10 +87,7 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
     ) {}
 
     onModuleInit(): any {
-        const { host, port } = this.options;
-        this.client = new Client({
-            node: `${host}:${port}`,
-        });
+        this.client = getClient(this.options);
     }
 
     onModuleDestroy(): any {
@@ -207,19 +204,180 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
         });
     }
 
-    reindex({ ctx: rawContext, dropIndices }: ReindexMessageData): Observable<ReindexMessageResponse> {
+    reindex({ ctx: rawContext }: ReindexMessageData): Observable<ReindexMessageResponse> {
         return asyncObservable(async observer => {
             return this.asyncQueue.push(async () => {
                 const timeStart = Date.now();
                 const operations: Array<BulkProductOperation | BulkVariantOperation> = [];
 
-                if (dropIndices) {
-                    await deleteIndices(this.client, this.options.indexPrefix);
+                const reindexTempName = new Date().getTime();
+                const productIndexName = this.options.indexPrefix + PRODUCT_INDEX_NAME;
+                const variantIndexName = this.options.indexPrefix + VARIANT_INDEX_NAME;
+                const reindexProductAliasName = productIndexName + `-reindex-${reindexTempName}`;
+                const reindexVariantAliasName = variantIndexName + `-reindex-${reindexTempName}`;
+                try {
                     await createIndices(
                         this.client,
                         this.options.indexPrefix,
+                        this.options.indexSettings,
+                        this.options.indexMappingProperties,
                         this.configService.entityIdStrategy.primaryKeyType,
+                        true,
+                        `-reindex-${reindexTempName}`,
                     );
+
+                    const reindexProductIndexName = await getIndexNameByAlias(
+                        this.client,
+                        reindexProductAliasName,
+                    );
+                    const reindexVariantIndexName = await getIndexNameByAlias(
+                        this.client,
+                        reindexVariantAliasName,
+                    );
+
+                    const originalProductAliasExist = await this.client.indices.existsAlias({
+                        name: productIndexName,
+                    });
+                    const originalVariantAliasExist = await this.client.indices.existsAlias({
+                        name: variantIndexName,
+                    });
+                    const originalProductIndexExist = await this.client.indices.exists({
+                        index: productIndexName,
+                    });
+                    const originalVariantIndexExist = await this.client.indices.exists({
+                        index: variantIndexName,
+                    });
+
+                    const originalProductIndexName = await getIndexNameByAlias(this.client, productIndexName);
+                    const originalVariantIndexName = await getIndexNameByAlias(this.client, variantIndexName);
+
+                    if (originalVariantAliasExist.body || originalVariantIndexExist.body) {
+                        await this.client.reindex({
+                            refresh: true,
+                            body: {
+                                source: {
+                                    index: variantIndexName,
+                                },
+                                dest: {
+                                    index: reindexVariantAliasName,
+                                },
+                            },
+                        });
+                    }
+                    if (originalProductAliasExist.body || originalProductIndexExist.body) {
+                        await this.client.reindex({
+                            refresh: true,
+                            body: {
+                                source: {
+                                    index: productIndexName,
+                                },
+                                dest: {
+                                    index: reindexProductAliasName,
+                                },
+                            },
+                        });
+                    }
+
+                    const actions = [
+                        {
+                            remove: {
+                                index: reindexVariantIndexName,
+                                alias: reindexVariantAliasName,
+                            },
+                        },
+                        {
+                            remove: {
+                                index: reindexProductIndexName,
+                                alias: reindexProductAliasName,
+                            },
+                        },
+                        {
+                            add: {
+                                index: reindexVariantIndexName,
+                                alias: variantIndexName,
+                            },
+                        },
+                        {
+                            add: {
+                                index: reindexProductIndexName,
+                                alias: productIndexName,
+                            },
+                        },
+                    ];
+
+                    if (originalProductAliasExist.body) {
+                        actions.push({
+                            remove: {
+                                index: originalProductIndexName,
+                                alias: productIndexName,
+                            },
+                        });
+                    } else if (originalProductIndexExist.body) {
+                        await this.client.indices.delete({
+                            index: [productIndexName],
+                        });
+                    }
+
+                    if (originalVariantAliasExist.body) {
+                        actions.push({
+                            remove: {
+                                index: originalVariantIndexName,
+                                alias: variantIndexName,
+                            },
+                        });
+                    } else if (originalVariantIndexExist.body) {
+                        await this.client.indices.delete({
+                            index: [variantIndexName],
+                        });
+                    }
+
+                    await this.client.indices.updateAliases({
+                        body: {
+                            actions,
+                        },
+                    });
+
+                    if (originalProductAliasExist.body) {
+                        await this.client.indices.delete({
+                            index: [originalProductIndexName],
+                        });
+                    }
+                    if (originalVariantAliasExist.body) {
+                        await this.client.indices.delete({
+                            index: [originalVariantIndexName],
+                        });
+                    }
+                } catch (e) {
+                    Logger.warn(
+                        `Could not recreate indices. Reindexing continue with existing indices.`,
+                        loggerCtx,
+                    );
+                    Logger.warn(JSON.stringify(e), loggerCtx);
+                } finally {
+                    const reindexVariantAliasExist = await this.client.indices.existsAlias({
+                        name: reindexVariantAliasName,
+                    });
+                    if (reindexVariantAliasExist.body) {
+                        const reindexVariantAliasResult = await this.client.indices.getAlias({
+                            name: reindexVariantAliasName,
+                        });
+                        const reindexVariantIndexName = Object.keys(reindexVariantAliasResult.body)[0];
+                        await this.client.indices.delete({
+                            index: [reindexVariantIndexName],
+                        });
+                    }
+                    const reindexProductAliasExist = await this.client.indices.existsAlias({
+                        name: reindexProductAliasName,
+                    });
+                    if (reindexProductAliasExist.body) {
+                        const reindexProductAliasResult = await this.client.indices.getAlias({
+                            name: reindexProductAliasName,
+                        });
+                        const reindexProductIndexName = Object.keys(reindexProductAliasResult.body)[0];
+                        await this.client.indices.delete({
+                            index: [reindexProductIndexName],
+                        });
+                    }
                 }
 
                 const deletedProductIds = await this.connection
@@ -384,7 +542,7 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
                     },
                 );
                 updatedProductVariants.forEach(variant => (variant.product = product));
-                if (product.enabled === false) {
+                if (!product.enabled) {
                     updatedProductVariants.forEach(v => (v.enabled = false));
                 }
                 Logger.verbose(`Updating Product (${productId})`, loggerCtx);
@@ -758,9 +916,9 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
         translatable: T,
         languageCode: LanguageCode,
     ): Translation<T> {
-        return ((translatable.translations.find(t => t.languageCode === languageCode) ||
+        return (translatable.translations.find(t => t.languageCode === languageCode) ||
             translatable.translations.find(t => t.languageCode === this.configService.defaultLanguageCode) ||
-            translatable.translations[0]) as unknown) as Translation<T>;
+            translatable.translations[0]) as unknown as Translation<T>;
     }
 
     private getFacetIds(variants: ProductVariant[]): string[] {

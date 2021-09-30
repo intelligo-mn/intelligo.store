@@ -15,10 +15,10 @@ import { coreEntitiesMap } from './entity/entities';
 import { registerCustomEntityFields } from './entity/register-custom-entity-fields';
 import { setEntityIdStrategy } from './entity/set-entity-id-strategy';
 import { validateCustomFieldsConfig } from './entity/validate-custom-fields-config';
-import { JobQueueService } from './job-queue/job-queue.service';
 import { getConfigurationFunction, getEntitiesFromPlugins } from './plugin/plugin-metadata';
 import { getPluginStartupMessages } from './plugin/plugin-utils';
 import { setProcessContext } from './process-context/process-context';
+import { VendureWorker } from './worker/vendure-worker';
 
 export type VendureBootstrapFunction = (config: VendureConfig) => Promise<INestApplication>;
 
@@ -55,7 +55,10 @@ export async function bootstrap(userConfig: Partial<VendureConfig>): Promise<INe
     });
     DefaultLogger.restoreOriginalLogLevel();
     app.useLogger(new Logger());
-    if (config.authOptions.tokenMethod === 'cookie') {
+    const { tokenMethod } = config.authOptions;
+    const usingCookie =
+        tokenMethod === 'cookie' || (Array.isArray(tokenMethod) && tokenMethod.includes('cookie'));
+    if (usingCookie) {
         const { cookieOptions } = config.authOptions;
         app.use(cookieSession(cookieOptions));
     }
@@ -71,9 +74,9 @@ export async function bootstrap(userConfig: Partial<VendureConfig>): Promise<INe
 
 /**
  * @description
- * Bootstraps the Vendure worker. Resolves to an object containing a reference to the underlying
- * NestJs [standalone application](https://docs.nestjs.com/standalone-applications) as well as
- * a function used to start listening for and processing jobs in the job queue.
+ * Bootstraps a Vendure worker. Resolves to a {@link VendureWorker} object containing a reference to the underlying
+ * NestJs [standalone application](https://docs.nestjs.com/standalone-applications) as well as convenience
+ * methods for starting the job queue and health check server.
  *
  * Read more about the [Vendure Worker]({{< relref "vendure-worker" >}}).
  *
@@ -84,15 +87,14 @@ export async function bootstrap(userConfig: Partial<VendureConfig>): Promise<INe
  *
  * bootstrapWorker(config)
  *   .then(worker => worker.startJobQueue())
+ *   .then(worker => worker.startHealthCheckServer({ port: 3020 }))
  *   .catch(err => {
  *     console.log(err);
  *   });
  * ```
  * @docsCategory worker
  * */
-export async function bootstrapWorker(
-    userConfig: Partial<VendureConfig>,
-): Promise<{ app: INestApplicationContext; startJobQueue: () => Promise<void> }> {
+export async function bootstrapWorker(userConfig: Partial<VendureConfig>): Promise<VendureWorker> {
     const vendureConfig = await preBootstrapConfig(userConfig);
     const config = disableSynchronize(vendureConfig);
     if (config.logger instanceof DefaultLogger) {
@@ -101,18 +103,19 @@ export async function bootstrapWorker(
     Logger.useLogger(config.logger);
     Logger.info(`Bootstrapping Vendure Worker (pid: ${process.pid})...`);
 
-    const appModule = await import('./app.module');
     setProcessContext('worker');
     DefaultLogger.hideNestBoostrapLogs();
-    const workerApp = await NestFactory.createApplicationContext(appModule.AppModule, {
+
+    const WorkerModule = await import('./worker/worker.module').then(m => m.WorkerModule);
+    const workerApp = await NestFactory.createApplicationContext(WorkerModule, {
         logger: new Logger(),
     });
     DefaultLogger.restoreOriginalLogLevel();
     workerApp.useLogger(new Logger());
     workerApp.enableShutdownHooks();
     await validateDbTablesForWorker(workerApp);
-    const startJobQueue = () => workerApp.get(JobQueueService).start();
-    return { app: workerApp, startJobQueue };
+    Logger.info('Vendure Worker is ready');
+    return new VendureWorker(workerApp);
 }
 
 /**
@@ -186,7 +189,10 @@ export async function getAllEntities(userConfig: Partial<VendureConfig>): Promis
  * in the CORS options, making sure to preserve any user-configured exposedHeaders.
  */
 function setExposedHeaders(config: Readonly<RuntimeVendureConfig>) {
-    if (config.authOptions.tokenMethod === 'bearer') {
+    const { tokenMethod } = config.authOptions;
+    const isUsingBearerToken =
+        tokenMethod === 'bearer' || (Array.isArray(tokenMethod) && tokenMethod.includes('bearer'));
+    if (isUsingBearerToken) {
         const authTokenHeaderKey = config.authOptions.authTokenHeaderKey;
         const corsOptions = config.apiOptions.cors;
         if (typeof corsOptions !== 'boolean') {
