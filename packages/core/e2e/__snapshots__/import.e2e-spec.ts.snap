@@ -17,6 +17,12 @@ Object {
     },
   ],
   "customFields": Object {
+    "keywords": Array [
+      "paper",
+      "stretching",
+      "watercolor",
+    ],
+    "localName": "localPPS",
     "owner": Object {
       "id": "T_1",
     },
@@ -114,6 +120,8 @@ exports[`Import resolver imports products 2`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "keywords": Array [],
+    "localName": "localMabef",
     "owner": Object {
       "id": "T_1",
     },
@@ -160,6 +168,8 @@ exports[`Import resolver imports products 3`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "keywords": Array [],
+    "localName": "localGiotto",
     "owner": Object {
       "id": "T_1",
     },
@@ -250,6 +260,11 @@ exports[`Import resolver imports products 4`] = `
 Object {
   "assets": Array [],
   "customFields": Object {
+    "keywords": Array [
+      "apron",
+      "clothing",
+    ],
+    "localName": "localSmock",
     "owner": Object {
       "id": "T_1",
     },

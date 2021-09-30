@@ -213,7 +213,7 @@ export class OrderService {
         if (order) {
             for (const line of order.lines) {
                 line.productVariant = translateDeep(
-                    await this.productVariantService.applyChannelPriceAndTax(line.productVariant, ctx),
+                    await this.productVariantService.applyChannelPriceAndTax(line.productVariant, ctx, order),
                     ctx.languageCode,
                 );
             }
@@ -384,7 +384,16 @@ export class OrderService {
         if (validationError) {
             return validationError;
         }
-        const variant = await this.connection.getEntityOrThrow(ctx, ProductVariant, productVariantId);
+        const variant = await this.connection.getEntityOrThrow(ctx, ProductVariant, productVariantId, {
+            relations: ['product'],
+            where: {
+                enabled: true,
+                deletedAt: null,
+            },
+        });
+        if (variant.product.enabled === false) {
+            throw new EntityNotFoundError('ProductVariant', productVariantId);
+        }
         const correctedQuantity = await this.orderModifier.constrainQuantityToSaleable(
             ctx,
             variant,
@@ -400,7 +409,12 @@ export class OrderService {
             productVariantId,
             customFields,
         );
-        await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, correctedQuantity, order);
+        if (correctedQuantity < quantity) {
+            const newQuantity = (existingOrderLine ? existingOrderLine?.quantity : 0) + correctedQuantity;
+            await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, newQuantity, order);
+        } else {
+            await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, correctedQuantity, order);
+        }
         const quantityWasAdjustedDown = correctedQuantity < quantity;
         const updatedOrder = await this.applyPriceAdjustments(ctx, order, orderLine);
         if (quantityWasAdjustedDown) {
@@ -448,7 +462,7 @@ export class OrderService {
             order.lines = order.lines.filter(l => !idsAreEqual(l.id, orderLine.id));
             await this.connection.getRepository(ctx, OrderLine).remove(orderLine);
         } else {
-            await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, quantity, order);
+            await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, correctedQuantity, order);
         }
         const quantityWasAdjustedDown = correctedQuantity < quantity;
         const updatedOrder = await this.applyPriceAdjustments(ctx, order, orderLine);
@@ -1334,10 +1348,8 @@ export class OrderService {
         updatedOrderLine?: OrderLine,
     ): Promise<Order> {
         if (updatedOrderLine) {
-            const {
-                orderItemPriceCalculationStrategy,
-                changedPriceHandlingStrategy,
-            } = this.configService.orderOptions;
+            const { orderItemPriceCalculationStrategy, changedPriceHandlingStrategy } =
+                this.configService.orderOptions;
             let priceResult = await orderItemPriceCalculationStrategy.calculateUnitPrice(
                 ctx,
                 updatedOrderLine.productVariant,

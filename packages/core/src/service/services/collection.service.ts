@@ -21,6 +21,7 @@ import { Translated } from '../../common/types/locale-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
 import { ConfigService } from '../../config/config.service';
 import { Logger } from '../../config/logger/vendure-logger';
+import { FacetValue } from '../../entity';
 import { CollectionTranslation } from '../../entity/collection/collection-translation.entity';
 import { Collection } from '../../entity/collection/collection.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
@@ -43,11 +44,11 @@ import { AssetService } from './asset.service';
 import { ChannelService } from './channel.service';
 import { FacetValueService } from './facet-value.service';
 
-type ApplyCollectionFiltersJobData = { ctx: SerializedRequestContext; collectionIds: ID[] };
+type ApplyCollectionFiltersJobData = { ctx: SerializedRequestContext; collectionIds: ID[]; applyToChangedVariantsOnly?: boolean; };
 
 @Injectable()
 export class CollectionService implements OnModuleInit {
-    private rootCollection: Collection | undefined;
+    private rootCollection: Translated<Collection> | undefined;
     private applyFiltersQueue: JobQueue<ApplyCollectionFiltersJobData>;
 
     constructor(
@@ -63,7 +64,8 @@ export class CollectionService implements OnModuleInit {
         private slugValidator: SlugValidator,
         private configArgService: ConfigArgService,
         private customFieldRelationService: CustomFieldRelationService,
-    ) {}
+    ) {
+    }
 
     async onModuleInit() {
         const productEvents$ = this.eventBus.ofType(ProductEvent);
@@ -87,16 +89,23 @@ export class CollectionService implements OnModuleInit {
                 Logger.verbose(`Processing ${job.data.collectionIds.length} Collections`);
                 let completed = 0;
                 for (const collectionId of job.data.collectionIds) {
-                    const collection = await this.connection.getRepository(Collection).findOne(collectionId);
-                    if (!collection) {
+                    let collection: Collection | undefined;
+                    try {
+                        collection = await this.connection.getEntityOrThrow(ctx, Collection, collectionId, {
+                            retries: 5,
+                            retryDelay: 50,
+                        });
+                    } catch (err) {
                         Logger.warn(`Could not find Collection with id ${collectionId}, skipping`);
-                        continue;
                     }
-                    const affectedVariantIds = await this.applyCollectionFiltersInternal(collection);
-                    job.setProgress(Math.ceil((++completed / job.data.collectionIds.length) * 100));
-                    this.eventBus.publish(
-                        new CollectionModificationEvent(ctx, collection, affectedVariantIds),
-                    );
+                    completed++;
+                    if (collection) {
+                        const affectedVariantIds = await this.applyCollectionFiltersInternal(collection, job.data.applyToChangedVariantsOnly);
+                        job.setProgress(Math.ceil((completed / job.data.collectionIds.length) * 100));
+                        this.eventBus.publish(
+                            new CollectionModificationEvent(ctx, collection, affectedVariantIds),
+                        );
+                    }
                 }
             },
         });
@@ -144,6 +153,17 @@ export class CollectionService implements OnModuleInit {
             return;
         }
         return translateDeep(collection, ctx.languageCode, ['parent']);
+    }
+
+    async findByIds(ctx: RequestContext, ids: ID[]): Promise<Array<Translated<Collection>>> {
+        const relations = ['featuredAsset', 'assets', 'channels', 'parent'];
+        const collections = this.connection.findByIdsInChannel(ctx, Collection, ids, ctx.channelId, {
+            relations,
+            loadEagerRelations: true,
+        });
+        return collections.then(values =>
+            values.map(collection => translateDeep(collection, ctx.languageCode, ['parent'])),
+        );
     }
 
     async findOneBySlug(ctx: RequestContext, slug: string): Promise<Translated<Collection> | undefined> {
@@ -343,7 +363,11 @@ export class CollectionService implements OnModuleInit {
             await this.applyFiltersQueue.add({
                 ctx: ctx.serialize(),
                 collectionIds: [collection.id],
+                applyToChangedVariantsOnly: false,
             });
+        } else {
+            const affectedVariantIds = await this.getCollectionProductVariantIds(collection);
+            this.eventBus.publish(new CollectionModificationEvent(ctx, collection, affectedVariantIds));
         }
         return assertFound(this.findOne(ctx, collection.id));
     }
@@ -411,8 +435,13 @@ export class CollectionService implements OnModuleInit {
 
     /**
      * Applies the CollectionFilters
+     *
+     * If applyToChangedVariantsOnly (default: true) is true, than apply collection job will process only changed variants
+     * If applyToChangedVariantsOnly (default: true) is false, than apply collection job will process all variants
+     * This param is used when we update collection and collection filters are changed to update all
+     * variants (because other attributes of collection can be changed https://github.com/vendure-ecommerce/vendure/issues/1015)
      */
-    private async applyCollectionFiltersInternal(collection: Collection): Promise<ID[]> {
+    private async applyCollectionFiltersInternal(collection: Collection, applyToChangedVariantsOnly = true): Promise<ID[]> {
         const ancestorFilters = await this.getAncestors(collection.id).then(ancestors =>
             ancestors.reduce(
                 (filters, c) => [...filters, ...(c.filters || [])],
@@ -441,11 +470,19 @@ export class CollectionService implements OnModuleInit {
         }
         const preIdsSet = new Set(preIds);
         const postIdsSet = new Set(postIds);
-        const difference = [
-            ...preIds.filter(id => !postIdsSet.has(id)),
-            ...postIds.filter(id => !preIdsSet.has(id)),
-        ];
-        return difference;
+
+        if (applyToChangedVariantsOnly) {
+            return [
+                ...preIds.filter(id => !postIdsSet.has(id)),
+                ...postIds.filter(id => !preIdsSet.has(id)),
+            ];
+        } else {
+            return [
+                ...preIds.filter(id => !postIdsSet.has(id)),
+                ...postIds,
+            ];
+        }
+
     }
 
     /**
@@ -550,16 +587,16 @@ export class CollectionService implements OnModuleInit {
             }),
         );
 
-        const newRoot = new Collection({
-            isRoot: true,
-            position: 0,
-            translations: [rootTranslation],
-            channels: [ctx.channel],
-            filters: [],
-        });
-
-        await this.connection.getRepository(ctx, Collection).save(newRoot);
-        this.rootCollection = newRoot;
-        return newRoot;
+        const newRoot = await this.connection.getRepository(ctx, Collection).save(
+            new Collection({
+                isRoot: true,
+                position: 0,
+                translations: [rootTranslation],
+                channels: [ctx.channel],
+                filters: [],
+            }),
+        );
+        this.rootCollection = translateDeep(newRoot, ctx.languageCode);
+        return this.rootCollection;
     }
 }

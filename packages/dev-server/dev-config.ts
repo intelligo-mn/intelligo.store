@@ -2,10 +2,20 @@
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@vendure/common/lib/shared-constants';
-import { DefaultJobQueuePlugin, DefaultLogger, DefaultSearchPlugin, dummyPaymentHandler, LogLevel, VendureConfig, } from '@vendure/core';
+import {
+    DefaultJobQueuePlugin,
+    DefaultLogger,
+    DefaultSearchPlugin,
+    dummyPaymentHandler,
+    LogLevel,
+    VendureConfig,
+} from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
+import { BullMQJobQueuePlugin } from '@vendure/job-queue-plugin/package/bullmq';
 import path from 'path';
 import { ConnectionOptions } from 'typeorm';
+
+import { JobQueueTestPlugin } from './test-plugins/job-queue-test/job-queue-test-plugin';
 
 /**
  * Config settings used during development
@@ -30,9 +40,12 @@ export const devConfig: VendureConfig = {
     },
     authOptions: {
         disableAuth: false,
-        tokenMethod: 'cookie',
+        tokenMethod: ['bearer', 'cookie'] as const,
         requireVerification: true,
         customPermissions: [],
+        cookieOptions: {
+            secret: 'abc',
+        },
     },
     dbConnectionOptions: {
         synchronize: false,
@@ -44,7 +57,7 @@ export const devConfig: VendureConfig = {
         paymentMethodHandlers: [dummyPaymentHandler],
     },
     customFields: {},
-    logger: new DefaultLogger({level: LogLevel.Info}),
+    logger: new DefaultLogger({ level: LogLevel.Info }),
     importExportOptions: {
         importAssetsDir: path.join(__dirname, 'import-assets'),
     },
@@ -54,7 +67,9 @@ export const devConfig: VendureConfig = {
             assetUploadDir: path.join(__dirname, 'assets'),
         }),
         DefaultSearchPlugin,
-        DefaultJobQueuePlugin,
+        BullMQJobQueuePlugin.init({}),
+        // DefaultJobQueuePlugin,
+        // JobQueueTestPlugin.init({ queueCount: 10 }),
         // ElasticsearchPlugin.init({
         //     host: 'http://localhost',
         //     port: 9200,
