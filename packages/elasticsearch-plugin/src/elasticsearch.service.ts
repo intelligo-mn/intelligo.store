@@ -14,11 +14,12 @@ import {
     RequestContext,
     SearchService,
 } from '@vendure/core';
+import equal from 'fast-deep-equal/es6';
 
 import { buildElasticBody } from './build-elastic-body';
 import { ELASTIC_SEARCH_OPTIONS, loggerCtx, PRODUCT_INDEX_NAME, VARIANT_INDEX_NAME } from './constants';
 import { ElasticsearchIndexService } from './elasticsearch-index.service';
-import { createIndices } from './indexing-utils';
+import { createIndices, getClient } from './indexing-utils';
 import { ElasticsearchOptions } from './options';
 import {
     CustomMapping,
@@ -47,14 +48,7 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
     }
 
     onModuleInit(): any {
-        const { host, port } = this.options;
-        const node = this.options.clientOptions?.node ?? `${host}:${port}`;
-        this.client = new Client({
-            node,
-            // `any` cast is there due to a strange error "Property '[Symbol.iterator]' is missing in type... URLSearchParams"
-            // which looks like possibly a TS/definitions bug.
-            ...(this.options.clientOptions as any),
-        });
+        this.client = getClient(this.options);
     }
 
     onModuleDestroy(): any {
@@ -94,15 +88,78 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
             const index = indexPrefix + indexName;
             const result = await this.client.indices.exists({ index });
 
-            if (result.body === false) {
+            if (!result.body) {
                 Logger.verbose(`Index "${index}" does not exist. Creating...`, loggerCtx);
                 await createIndices(
                     this.client,
                     indexPrefix,
+                    this.options.indexSettings,
+                    this.options.indexMappingProperties,
                     this.configService.entityIdStrategy.primaryKeyType,
                 );
             } else {
                 Logger.verbose(`Index "${index}" exists`, loggerCtx);
+
+                const existingIndexSettingsResult = await this.client.indices.getSettings({ index });
+                const existingIndexSettings =
+                    existingIndexSettingsResult.body[Object.keys(existingIndexSettingsResult.body)[0]]
+                        .settings.index;
+
+                const tempName = new Date().getTime();
+                const nameSalt = Math.random().toString(36).substring(7);
+                const tempPrefix = `temp-` + `${tempName}-${nameSalt}-`;
+                const tempIndex = tempPrefix + indexName;
+
+                await createIndices(
+                    this.client,
+                    tempPrefix,
+                    this.options.indexSettings,
+                    this.options.indexMappingProperties,
+                    this.configService.entityIdStrategy.primaryKeyType,
+                    false,
+                );
+                const tempIndexSettingsResult = await this.client.indices.getSettings({ index: tempIndex });
+                const tempIndexSettings = tempIndexSettingsResult.body[tempIndex].settings.index;
+
+                const indexParamsToExclude = [
+                    `routing`,
+                    `number_of_shards`,
+                    `provided_name`,
+                    `creation_date`,
+                    `number_of_replicas`,
+                    `uuid`,
+                    `version`,
+                ];
+                for (const param of indexParamsToExclude) {
+                    delete tempIndexSettings[param];
+                    delete existingIndexSettings[param];
+                }
+                if (!equal(tempIndexSettings, existingIndexSettings))
+                    Logger.warn(
+                        `Index "${index}" settings differs from index setting in vendure config! Consider re-indexing the data.`,
+                        loggerCtx,
+                    );
+                else {
+                    const existingIndexMappingsResult = await this.client.indices.getMapping({ index });
+                    const existingIndexMappings =
+                        existingIndexMappingsResult.body[Object.keys(existingIndexMappingsResult.body)[0]]
+                            .mappings;
+
+                    const tempIndexMappingsResult = await this.client.indices.getMapping({
+                        index: tempIndex,
+                    });
+                    const tempIndexMappings = tempIndexMappingsResult.body[tempIndex].mappings;
+                    if (!equal(tempIndexMappings, existingIndexMappings))
+                        // tslint:disable-next-line:max-line-length
+                        Logger.warn(
+                            `Index "${index}" mapping differs from index mapping in vendure config! Consider re-indexing the data.`,
+                            loggerCtx,
+                        );
+                }
+
+                await this.client.indices.delete({
+                    index: [tempPrefix + `products`, tempPrefix + `variants`],
+                });
             }
         };
 
@@ -135,7 +192,7 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
                 });
                 return {
                     items: body.hits.hits.map(hit => this.mapProductToSearchResult(hit)),
-                    totalItems: body.hits.total.value,
+                    totalItems: body.hits.total ? body.hits.total.value : 0,
                 };
             } catch (e) {
                 Logger.error(e.message, loggerCtx, e.stack);
@@ -149,7 +206,7 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
                 });
                 return {
                     items: body.hits.hits.map(hit => this.mapVariantToSearchResult(hit)),
-                    totalItems: body.hits.total.value,
+                    totalItems: body.hits.total ? body.hits.total.value : 0,
                 };
             } catch (e) {
                 Logger.error(e.message, loggerCtx, e.stack);
@@ -343,18 +400,9 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
     /**
      * Rebuilds the full search index.
      */
-    async reindex(ctx: RequestContext, dropIndices = true): Promise<Job> {
+    async reindex(ctx: RequestContext): Promise<Job> {
         const { indexPrefix } = this.options;
-        const job = await this.elasticsearchIndexService.reindex(ctx, dropIndices);
-        // tslint:disable-next-line:no-non-null-assertion
-        return job!;
-    }
-
-    /**
-     * Reindexes all in current Channel without dropping indices.
-     */
-    async updateAll(ctx: RequestContext): Promise<Job> {
-        const job = await this.elasticsearchIndexService.reindex(ctx, false);
+        const job = await this.elasticsearchIndexService.reindex(ctx);
         // tslint:disable-next-line:no-non-null-assertion
         return job!;
     }
@@ -410,9 +458,10 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
         return result;
     }
 
-    private getSearchResultAssets(
-        source: ProductIndexItem | VariantIndexItem,
-    ): { productAsset: SearchResultAsset | undefined; productVariantAsset: SearchResultAsset | undefined } {
+    private getSearchResultAssets(source: ProductIndexItem | VariantIndexItem): {
+        productAsset: SearchResultAsset | undefined;
+        productVariantAsset: SearchResultAsset | undefined;
+    } {
         const productAsset: SearchResultAsset | undefined = source.productAssetId
             ? {
                   id: source.productAssetId.toString(),

@@ -246,25 +246,44 @@ export class CustomerService {
         const hasEmailAddress = (i: any): i is UpdateCustomerInput & { emailAddress: string } =>
             Object.hasOwnProperty.call(i, 'emailAddress');
 
-        if (hasEmailAddress(input)) {
-            const existingCustomerInChannel = await this.connection
-                .getRepository(ctx, Customer)
-                .createQueryBuilder('customer')
-                .leftJoin('customer.channels', 'channel')
-                .where('channel.id = :channelId', { channelId: ctx.channelId })
-                .andWhere('customer.emailAddress = :emailAddress', { emailAddress: input.emailAddress })
-                .andWhere('customer.id != :customerId', { customerId: input.id })
-                .andWhere('customer.deletedAt is null')
-                .getOne();
-
-            if (existingCustomerInChannel) {
-                return new EmailAddressConflictAdminError();
-            }
-        }
-
         const customer = await this.connection.getEntityOrThrow(ctx, Customer, input.id, {
             channelId: ctx.channelId,
         });
+
+        if (hasEmailAddress(input)) {
+            if (input.emailAddress !== customer.emailAddress) {
+                const existingCustomerInChannel = await this.connection
+                    .getRepository(ctx, Customer)
+                    .createQueryBuilder('customer')
+                    .leftJoin('customer.channels', 'channel')
+                    .where('channel.id = :channelId', { channelId: ctx.channelId })
+                    .andWhere('customer.emailAddress = :emailAddress', { emailAddress: input.emailAddress })
+                    .andWhere('customer.id != :customerId', { customerId: input.id })
+                    .andWhere('customer.deletedAt is null')
+                    .getOne();
+
+                if (existingCustomerInChannel) {
+                    return new EmailAddressConflictAdminError();
+                }
+
+                if (customer.user) {
+                    const existingUserWithEmailAddress = await this.userService.getUserByEmailAddress(
+                        ctx,
+                        input.emailAddress,
+                    );
+
+                    if (
+                        existingUserWithEmailAddress &&
+                        !idsAreEqual(customer.user.id, existingUserWithEmailAddress.id)
+                    ) {
+                        return new EmailAddressConflictAdminError();
+                    }
+
+                    await this.userService.changeNativeIdentifier(ctx, customer.user.id, input.emailAddress);
+                }
+            }
+        }
+
         const updatedCustomer = patchEntity(customer, input);
         await this.connection.getRepository(ctx, Customer).save(updatedCustomer, { reload: false });
         await this.customFieldRelationService.updateRelations(ctx, Customer, input, updatedCustomer);
@@ -544,7 +563,7 @@ export class CustomerService {
             customer = patchEntity(existing, input);
             customer.channels.push(await this.connection.getEntityOrThrow(ctx, Channel, ctx.channelId));
         } else {
-            customer = new Customer(input);
+            customer = await this.connection.getRepository(ctx, Customer).save(new Customer(input));
             this.channelService.assignToCurrentChannel(customer, ctx);
             this.eventBus.publish(new CustomerEvent(ctx, customer, 'created'));
         }
