@@ -30,7 +30,7 @@ services:
     ports:
       - '3306:3306'
   mysql5:
-    image: bitnami/mysql:8.0
+    image: bitnami/mysql:5.7
     container_name: mysql-5.7
     environment:
       ALLOW_EMPTY_PASSWORD: 'yes'
@@ -59,7 +59,7 @@ services:
     volumes:
       - /sessions
   postgres:
-    image: postgres:13.3
+    image: postgres:12.3
     container_name: postgres
     environment:
       POSTGRES_DB: postgres
@@ -72,7 +72,7 @@ services:
       - "5432:5432"
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:5.4
+    image: dpage/pgadmin4:4.18
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@localhost.dev
       PGADMIN_DEFAULT_PASSWORD: secret
