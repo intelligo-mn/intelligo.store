@@ -17,7 +17,7 @@ A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js
 This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna). Several npm packages are published from this repo, which can be found in the `packages/` directory.
 
 ```
-vendure/
+platform/
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
 ├── packages/       # Source for the Vendure server, admin-ui & plugin packages
