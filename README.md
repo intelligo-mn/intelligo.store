@@ -6,7 +6,7 @@ A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js
 ![Publish & Install](https://github.com/vendure-ecommerce/vendure/workflows/Publish%20&%20Install/badge.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-### [www.vendure.io](https://www.vendure.io/)
+### [www.platform.sale](https://www.platform.sale/)
 
 * [Getting Started](https://www.vendure.io/docs/getting-started/): Get Vendure up and running locally in a matter of minutes with a single command
 * [Live Demo](https://demo.vendure.io/)
