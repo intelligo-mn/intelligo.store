@@ -1,9 +1,8 @@
 name: Auto Pull request
 on:
-  push:
-    branches:
-    - update
-
+  schedule:
+    - cron:  "0 10 * * *"
+  workflow_dispatch:
 jobs:
   pull-request:
     runs-on: ubuntu-latest
