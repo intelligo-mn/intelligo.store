@@ -12,7 +12,7 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         source_branch: ""                                 # If blank, default: triggered branch
-        destination_branch: "master"                      # If blank, default: master
+        destination_branch: "dev"                         # If blank, default: master
         pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
         pr_body: ":crown: *An automated PR*"              # Full markdown support, requires pr_title to be set
         pr_reviewer: "tortuvshin"                         # Comma-separated list (no spaces)
