@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 import { ADDRESS_FRAGMENT, ASSET_FRAGMENT, COUNTRY_FRAGMENT } from './fragments.graphql';
 

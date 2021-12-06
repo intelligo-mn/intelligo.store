@@ -4,4 +4,5 @@ export const environment = {
     apiPort: 443,
     shopApiPath: 'shop-api',
     baseHref: '/storefront/',
+    tokenMethod: 'cookie',
 };

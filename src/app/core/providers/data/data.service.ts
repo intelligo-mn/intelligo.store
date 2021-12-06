@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { NetworkStatus, WatchQueryFetchPolicy } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
-import { FetchPolicy, NetworkStatus } from 'apollo-client';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -16,7 +16,7 @@ export class DataService {
 
     constructor(private apollo: Apollo) { }
 
-    query<T = any, V = any>(query: DocumentNode, variables?: V, fetchPolicy?: FetchPolicy): Observable<T> {
+    query<T = any, V = any>(query: DocumentNode, variables?: V, fetchPolicy?: WatchQueryFetchPolicy): Observable<T> {
         return this.apollo.watchQuery<T, V>({
             query,
             variables,

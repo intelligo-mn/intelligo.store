@@ -15,7 +15,7 @@ import { GET_ORDER_LIST } from './account-order-list.graphql';
 })
 export class AccountOrderListComponent implements OnInit {
 
-    orders$: Observable<GetOrderList.Items[] | null>;
+    orders$: Observable<GetOrderList.Items[] | undefined>;
     constructor(private dataService: DataService) { }
 
     ngOnInit() {

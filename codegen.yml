@@ -4,9 +4,20 @@ documents: "./src/app/**/*.graphql.ts"
 generates:
   ./src/app/common/generated-types.ts:
     plugins:
-      - add: "// tslint:disable"
-      - "typescript-common"
-      - "typescript-client"
+      - add:
+            content: "// tslint:disable"
+      - "typescript"
+      - "typescript-compatibility"
+      - "typescript-operations"
     config:
       namingConvention:
           enumValues: 'keep'
+      maybeValue: 'T'
+      strict: true
+  ./src/app/common/introspection-results.ts:
+    plugins:
+      - add:
+            content: "// tslint:disable"
+      - "fragment-matcher"
+    config:
+        apolloClientVersion: 3

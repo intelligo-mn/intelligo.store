@@ -33,7 +33,7 @@ styleUrls: ['./product-list.component.scss'],
 export class ProductListComponent implements OnInit {
     products$: Observable<SearchProducts.Items[]>;
     totalResults$: Observable<number>;
-    collection$: Observable<GetCollection.Collection | null>;
+    collection$: Observable<GetCollection.Collection | undefined>;
     facetValues: SearchProducts.FacetValues[] | undefined;
     unfilteredTotalItems = 0;
     activeFacetValueIds$: Observable<string[]>;
@@ -85,7 +85,7 @@ export class ProductListComponent implements OnInit {
                         map(data => data.collection),
                     );
                 } else {
-                    return of(null);
+                    return of(undefined);
                 }
             }),
             shareReplay(1),
@@ -156,7 +156,7 @@ export class ProductListComponent implements OnInit {
                         } else if (!this.facetValues) {
                             getInitialFacetValueIds();
                         } else {
-                            this.facetValues = this.facetValues.map(fv => fv)
+                            this.facetValues = this.facetValues.map(fv => fv);
                         }
                     }),
                 );

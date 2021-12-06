@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 import { ASSET_FRAGMENT } from '../../../common/graphql/fragments.graphql';
 

@@ -16,7 +16,7 @@ import { GET_ACTIVE_CUSTOMER } from '../../../common/graphql/documents.graphql';
 })
 export class AccountLinkComponent implements OnInit {
 
-    activeCustomer$: Observable<GetActiveCustomer.ActiveCustomer | null | undefined>;
+    activeCustomer$: Observable<GetActiveCustomer.ActiveCustomer | undefined>;
     constructor(private dataService: DataService,
                 private stateService: StateService) {}
 
@@ -35,7 +35,7 @@ export class AccountLinkComponent implements OnInit {
         );
     }
 
-    userName(customer: GetActiveCustomer.ActiveCustomer): string {
+    userName(customer: NonNullable<GetActiveCustomer.ActiveCustomer>): string {
         const { firstName, lastName, emailAddress } = customer;
         if (firstName && lastName) {
             return `${firstName} ${lastName}`;

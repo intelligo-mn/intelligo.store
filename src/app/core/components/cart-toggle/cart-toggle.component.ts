@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { from, interval, merge, Observable, timer, zip } from 'rxjs';
-import { delay, distinctUntilChanged, map, share, switchMap } from 'rxjs/operators';
+import { delay, distinctUntilChanged, map, refCount, share, shareReplay, switchMap } from 'rxjs/operators';
 
 import { GetCartTotals } from '../../../common/generated-types';
 import { DataService } from '../../providers/data/data.service';
@@ -29,11 +29,11 @@ export class CartToggleComponent implements OnInit {
             switchMap(() => this.dataService.query<GetCartTotals.Query>(GET_CART_TOTALS, {}, 'network-only')),
             map(({ activeOrder }) => {
                 return {
-                    total: activeOrder ? activeOrder.total : 0,
-                    quantity: activeOrder ? activeOrder.lines.reduce((qty, line) => qty + line.quantity, 0) : 0,
+                    total: activeOrder ? activeOrder.totalWithTax : 0,
+                    quantity: activeOrder ? activeOrder.totalQuantity : 0,
                 };
             }),
-            share(),
+            shareReplay(1),
         );
         this.cartChangeIndication$ = this.cart$.pipe(
             map(cart => cart.quantity),

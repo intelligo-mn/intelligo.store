@@ -17,7 +17,7 @@ import { GET_ORDER } from './account-order-detail.graphql';
 })
 export class AccountOrderDetailComponent implements OnInit {
 
-    order$: Observable<GetOrder.OrderByCode | null>;
+    order$: Observable<GetOrder.OrderByCode | undefined>;
     constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
     ngOnInit() {

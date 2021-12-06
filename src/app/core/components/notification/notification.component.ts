@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
-import { NOTIFICATION_OPTIONS, NotificationOptions } from '../../providers/notification/notification-types';
+import { NotificationOptions, NOTIFICATION_OPTIONS } from '../../providers/notification/notification-types';
 
 @Component({
     selector: 'vsf-notification',
@@ -9,6 +10,6 @@ import { NOTIFICATION_OPTIONS, NotificationOptions } from '../../providers/notif
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationComponent {
-    @Output() close = new EventEmitter<void>();
+    close = new Subject();
     constructor(@Inject(NOTIFICATION_OPTIONS) public options: NotificationOptions) { }
 }
