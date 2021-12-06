@@ -1,49 +1,71 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule, makeStateKey, TransferState } from '@angular/platform-browser';
-import { NavigationEnd, Router, RouterModule, UrlSerializer } from '@angular/router';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { filter } from 'rxjs/operators';
+import { DOCUMENT } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { Inject, NgModule } from "@angular/core";
+import {
+    BrowserModule,
+    BrowserTransferStateModule,
+    makeStateKey,
+    TransferState
+} from "@angular/platform-browser";
+import {
+    NavigationEnd,
+    Router,
+    RouterModule,
+    UrlSerializer
+} from "@angular/router";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { filter } from "rxjs/operators";
+import { environment } from "../environments/environment";
+import { AppComponent } from "./app.component";
+import { routes } from "./app.routes";
+import { HomePageComponent } from "./core/components/home-page/home-page.component";
+import { CoreModule } from "./core/core.module";
+import { SharedModule } from "./shared/shared.module";
 
-import { environment } from '../environments/environment';
+const STATE_KEY = makeStateKey<any>("apollo.state");
 
-import { AppComponent } from './app.component';
-import { routes } from './app.routes';
-import { HomePageComponent } from './core/components/home-page/home-page.component';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-
-const STATE_KEY = makeStateKey<any>('apollo.state');
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomePageComponent,
-    ],
+    declarations: [AppComponent, HomePageComponent],
     imports: [
-        BrowserModule.withServerTransition({appId: 'serverApp'}),
+        BrowserModule.withServerTransition({ appId: "serverApp" }),
         BrowserTransferStateModule,
-        RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled', initialNavigation: 'enabled', relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot(routes, {
+            scrollPositionRestoration: "disabled",
+            initialNavigation: "enabled",
+            relativeLinkResolution: "legacy",
+        }),
         CoreModule,
         SharedModule,
+        TranslateModule.forRoot({
+            defaultLanguage: "mn",
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
         ServiceWorkerModule.register(`${environment.baseHref}ngsw-worker.js`, {
             enabled: environment.production,
-            registrationStrategy: 'registerWithDelay:5000',
+            registrationStrategy: "registerWithDelay:5000",
         }),
     ],
     bootstrap: [AppComponent],
 })
 export class AppModule {
-
     constructor(
         private coreModule: CoreModule,
         private readonly transferState: TransferState,
         private router: Router,
         private urlSerializer: UrlSerializer,
-        @Inject(DOCUMENT) private document?: Document,
+        @Inject(DOCUMENT) private document?: Document
     ) {
         const isBrowser = this.transferState.hasKey<any>(STATE_KEY);
-
         if (isBrowser) {
             this.onBrowser();
             this.handleScrollOnNavigations();
@@ -73,21 +95,24 @@ export class AppModule {
      * routes change.
      */
     private handleScrollOnNavigations() {
-        this.router.events.pipe(
-            filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        ).subscribe(event => {
-            if (this.document?.defaultView) {
-                const parsed = this.urlSerializer.parse(event.urlAfterRedirects);
-                const primaryRoot = parsed.root.children.primary;
-                const isFacetFilterNavigation = (primaryRoot?.segments[0]?.path === 'category' &&
-                    primaryRoot?.segments[1]?.parameterMap.has('facets'));
+        this.router.events
+            .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+            .subscribe((event) => {
+                if (this.document?.defaultView) {
+                    const parsed = this.urlSerializer.parse(
+                        event.urlAfterRedirects
+                    );
+                    const primaryRoot = parsed.root.children.primary;
+                    const isFacetFilterNavigation =
+                        primaryRoot?.segments[0]?.path === "category" &&
+                        primaryRoot?.segments[1]?.parameterMap.has("facets");
 
-                if (!isFacetFilterNavigation) {
-                    this.document.defaultView.scrollTo({
-                        top: 0,
-                    });
+                    if (!isFacetFilterNavigation) {
+                        this.document.defaultView.scrollTo({
+                            top: 0,
+                        });
+                    }
                 }
-            }
-        });
+            });
     }
 }
