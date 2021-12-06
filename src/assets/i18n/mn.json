@@ -1,0 +1,9 @@
+{
+    "global": {
+        "orders" : "Orders",
+        "shipping": "Shipping",
+        "track-my-order": "Track my order",
+        "terms-and-condition": "Terms & Conditions",
+        "returns-policy": "Returns Policy"
+    }
+}
