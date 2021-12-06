@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Cart, GetActiveOrder } from '../../../common/generated-types';
+import { Cart, CartFragment, GetActiveOrder } from '../../../common/generated-types';
 
 @Component({
     selector: 'vsf-cart-contents',
@@ -25,10 +25,18 @@ export class CartContentsComponent {
         return line.id;
     }
 
+    trackByDiscount(index: number, discount: Cart.Discounts) {
+        return discount.adjustmentSource;
+    }
+
+    isDiscounted(line: CartFragment['lines'][number]): boolean {
+        return line.discountedLinePriceWithTax < line.linePriceWithTax;
+    }
+
     /**
      * Filters out the Promotion adjustments for an OrderLine and aggregates the discount.
      */
-    getLinePromotions(adjustments: Cart.Adjustments[]) {
+    getLinePromotions(adjustments: Cart.Discounts[]) {
         const groupedPromotions = adjustments.filter(a => a.type === 'PROMOTION')
             .reduce((groups, promotion) => {
                 if (!groups[promotion.description]) {
