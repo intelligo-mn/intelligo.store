@@ -33,20 +33,28 @@ export class SignInComponent {
             password: this.password,
             rememberMe: this.rememberMe,
         }).subscribe({
-            next: data => {
-                this.stateService.setState('signedIn', true);
-                const commands = this.navigateToOnSuccess || ['/'];
-                this.router.navigate(commands);
-            },
-            error: err => {
-                if (err.graphQLErrors && err.graphQLErrors[0]) {
-                    const code = err.graphQLErrors[0].extensions.code;
-                    if (code === 'UNAUTHORIZED') {
-                        this.invalidCredentials = true;
-                        this.changeDetector.markForCheck();
-                    }
+            next: ({login}) => {
+                switch (login.__typename) {
+                    case 'CurrentUser':
+                        this.stateService.setState('signedIn', true);
+                        const commands = this.navigateToOnSuccess || ['/'];
+                        this.router.navigate(commands);
+                        break;
+                    case 'NativeAuthStrategyError':
+                    case 'InvalidCredentialsError':
+                        this.displayCredentialsError();
+                        break;
                 }
             },
         });
+    }
+
+    private displayCredentialsError() {
+        this.invalidCredentials = false;
+        this.changeDetector.markForCheck();
+        setTimeout(() => {
+            this.invalidCredentials = true;
+            this.changeDetector.markForCheck();
+        }, 50);
     }
 }
