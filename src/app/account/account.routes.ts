@@ -71,7 +71,6 @@ export const routes: Routes = [
             },
             {
                 path: 'verify',
-                canActivate: [SignInGuard],
                 component: VerifyComponent,
             },
             {
