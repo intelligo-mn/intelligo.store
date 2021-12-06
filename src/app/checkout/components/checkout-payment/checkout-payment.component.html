@@ -1,35 +1,48 @@
-<form class="payment-form mb-5" #paymentForm="ngForm" (submit)="completeOrder()">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
+<div class="alert alert-danger" role="alert" *ngIf="paymentErrorMessage">
+    {{ paymentErrorMessage }}
+</div>
+<ng-container *ngFor="let paymentMethod of paymentMethods$ | async">
+    <div class="row">
+        <div class="col col-lg-6 offset-lg-3">
+            <h4>Pay with method "{{ paymentMethod.code }}"</h4>
+            <div class="alert alert-info my-4" role="alert">
+                This is an example payment form. Do not use real card details!
+            </div>
+        </div>
+    </div>
+    <form class="payment-form mb-5" #paymentForm="ngForm" (submit)="completeOrder(paymentMethod.code)">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
         <span class="input-group-text">
             <fa-icon icon="credit-card"></fa-icon>
         </span>
+            </div>
+            <input type="text" class="form-control"
+                   name="cardNumber"
+                   [required]="true"
+                   [(ngModel)]="cardNumber"
+                   placeholder="Credit card #">
         </div>
-        <input type="text" class="form-control"
-               name="cardNumber"
-               [required]="true"
-               [(ngModel)]="cardNumber"
-               placeholder="Credit card #">
-    </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="month">Expiry</label>
+            </div>
+            <select class="custom-select" id="month" name="expMonth" [(ngModel)]="expMonth" [required]="true">
+                <option selected [ngValue]="undefined">Month</option>
+                <option *ngFor="let month of getMonths()" [ngValue]="month">
+                    {{ month }}
+                </option>
+            </select>
+            <select class="custom-select" id="year" name="expYear" [(ngModel)]="expYear" [required]="true">
+                <option selected [ngValue]="undefined">Year</option>
+                <option *ngFor="let year of getYears()" [ngValue]="year">
+                    {{ year }}
+                </option>
+            </select>
+        </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="month">Expiry</label>
-      </div>
-      <select class="custom-select" id="month" name="expMonth" [(ngModel)]="expMonth" [required]="true">
-          <option selected [ngValue]="undefined">Month</option>
-          <option *ngFor="let month of getMonths()" [ngValue]="month">
-              {{ month }}
-          </option>
-      </select>
-      <select class="custom-select" id="year" name="expYear" [(ngModel)]="expYear" [required]="true">
-          <option selected [ngValue]="undefined">Year</option>
-          <option *ngFor="let year of getYears()" [ngValue]="year">
-              {{ year }}
-          </option>
-      </select>
-    </div>
-
-    <button class="btn btn-primary btn-lg"
-            [disabled]="paymentForm.pristine || paymentForm.invalid">Complete order</button>
-</form>
+        <button class="btn btn-primary btn-lg"
+                [disabled]="paymentForm.pristine || paymentForm.invalid">Complete order
+        </button>
+    </form>
+</ng-container>

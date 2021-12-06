@@ -50,7 +50,7 @@ export class CheckoutConfirmationComponent implements OnInit {
         this.order$.pipe(
             take(1),
             mergeMap(order => {
-                const { customer } = order;
+                const customer = order?.customer;
                 if (customer) {
                     return this.dataService.mutate<Register.Mutation, Register.Variables>(REGISTER, {
                         input: {
