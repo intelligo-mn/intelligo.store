@@ -7,30 +7,30 @@
                    [routerLink]="['./']"
                    [routerLinkActiveOptions]="{ exact: true }"
                    routerLinkActive="active">
-                    Dashboard
+                   {{ "global.dashboard" | translate }}
                 </a>
                 <a class="list-group-item list-group-item-action"
                    [routerLink]="['./', 'orders']"
                    routerLinkActive="active">
-                    Orders
+                   {{ "global.orders" | translate }}
                 </a>
                 <a class="list-group-item list-group-item-action"
                    [routerLink]="['./', 'address-book']"
                    routerLinkActive="active">
-                    Address book
+                   {{ "account.address-book" | translate }}
                 </a>
                 <a class="list-group-item list-group-item-action"
                    [routerLink]="['./', 'details']"
                    routerLinkActive="active">
-                    Personal details
+                   {{ "account.personal-details" | translate }}
                 </a>
                 <a class="list-group-item list-group-item-action"
                    [routerLink]="['./', 'change-credentials']"
                    routerLinkActive="active">
-                    Change credentials
+                   {{ "account.change-credentials" | translate }}
                 </a>
                 <a class="list-group-item">
-                    <button class="btn btn-warning btn-sm btn-block" (click)="signOut()">Sign out</button>
+                    <button class="btn btn-warning btn-sm btn-block" (click)="signOut()">{{ "account.sign-out" | translate }}</button>
                 </a>
             </div>
         </div>
