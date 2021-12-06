@@ -1,7 +1,7 @@
 <div *ngIf="cart;" class="cart-contents">
     <div class="items">
         <ng-container *ngFor="let line of cart.lines; trackBy: trackByFn">
-            <div class="item">
+            <div class="item" [class.has-discount]="isDiscounted(line)">
                 <div class="thumb">
                     <img [src]="line.featuredAsset?.preview + '?preset=tiny'">
                 </div>
@@ -22,36 +22,36 @@
                                 <fa-icon aria-label="Add 1" icon="plus"></fa-icon>
                             </button>
                         </div>
-                        <div class="total">{{ line.totalPrice | formatPrice }}</div>
+                        <div class="total">
+                            <div class="list-price">{{ line.linePriceWithTax | formatPrice }}</div>
+                            <div class="discounted">
+                                {{ line.discountedLinePriceWithTax | formatPrice }}
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </div>
-            <div class="line-adjustments">
-                <div class="adjustment" *ngFor="let adjustment of getLinePromotions(line.adjustments)">
-                    <div>{{ adjustment.description }}</div>
-                    <div>{{ adjustment.amount | formatPrice }}</div>
                 </div>
             </div>
         </ng-container>
     </div>
-    <div class="order-adjustments" *ngIf="cart.adjustments.length">
+    <div class="order-adjustments" *ngIf="cart.discounts.length">
         Order adjustments:
-        <div class="adjustment" *ngFor="let adjustment of cart.adjustments">
-            <div>{{ adjustment.description }}</div>
-            <div>{{ adjustment.amount | formatPrice }}</div>
+        <div class="adjustment" *ngFor="let discount of cart.discounts">
+            <div>{{ discount.description }}</div>
+            <div>{{ discount.amountWithTax | formatPrice }}</div>
         </div>
     </div>
     <div class="shipping">
         <div class="shipping-price">
             <span>Shipping:</span>
-            <span>{{ cart.shipping | formatPrice }}</span>
+            <span>{{ cart.shippingWithTax | formatPrice }}</span>
         </div>
-        <div class="shipping-method">
-            {{ cart.shippingMethod?.description }}
+        <div class="shipping-method" *ngFor="let shippingLine of cart.shippingLines">
+            {{ shippingLine.shippingMethod.name }}
         </div>
     </div>
     <div class="totals">
         <span>Total:</span>
-        <span>{{ cart.total | formatPrice }}</span>
+        <span>{{ cart.totalWithTax | formatPrice }}</span>
     </div>
 </div>

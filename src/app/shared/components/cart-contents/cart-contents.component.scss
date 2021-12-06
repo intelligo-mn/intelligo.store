@@ -49,15 +49,27 @@
             color: $gray-600;
         }
     }
+
+    .discounted {
+        display: none;
+    }
+
+    &.has-discount {
+        .list-price {
+            text-decoration: line-through;
+            color: $gray-600;
+        }
+        .discounted {
+            display: block;
+        }
+    }
 }
 
 .adjustment {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    margin-bottom: $spacer;
-    color: #555;
-    padding-right: $spacer;
+    color: $gray-700;
 }
 
 .order-tax, .totals, .order-adjustments, .shipping {
