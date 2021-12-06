@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 import { CART_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from '../../common/graphql/fragments.graphql';
 

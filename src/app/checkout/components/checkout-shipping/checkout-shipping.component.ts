@@ -1,13 +1,25 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable, of } from 'rxjs';
-import { map, mergeMap, switchMap, take } from 'rxjs/operators';
+import { map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
 
-import { Address, CreateAddressInput, GetAvailableCountries, GetCustomerAddresses, GetEligibleShippingMethods, GetShippingAddress, SetCustomerForOrder, SetShippingAddress, SetShippingMethod, TransitionToArrangingPayment } from '../../../common/generated-types';
+import {
+    Address,
+    CreateAddressInput,
+    GetAvailableCountries,
+    GetCustomerAddresses,
+    GetEligibleShippingMethods,
+    GetShippingAddress,
+    SetCustomerForOrder,
+    SetShippingAddress,
+    SetShippingMethod,
+    TransitionToArrangingPayment
+} from '../../../common/generated-types';
 import { GET_AVAILABLE_COUNTRIES, GET_CUSTOMER_ADDRESSES } from '../../../common/graphql/documents.graphql';
 import { notNullOrUndefined } from '../../../common/utils/not-null-or-undefined';
 import { DataService } from '../../../core/providers/data/data.service';
 import { ModalService } from '../../../core/providers/modal/modal.service';
+import { NotificationService } from '../../../core/providers/notification/notification.service';
 import { StateService } from '../../../core/providers/state/state.service';
 import { AddressFormComponent } from '../../../shared/components/address-form/address-form.component';
 import { AddressModalComponent } from '../../../shared/components/address-modal/address-modal.component';
@@ -47,6 +59,7 @@ export class CheckoutShippingComponent implements OnInit {
                 private stateService: StateService,
                 private changeDetector: ChangeDetectorRef,
                 private modalService: ModalService,
+                private notificationService: NotificationService,
                 private route: ActivatedRoute,
                 private router: Router) { }
 
@@ -143,7 +156,13 @@ export class CheckoutShippingComponent implements OnInit {
                     firstName: this.firstName,
                     lastName: this.lastName,
                 },
-            });
+            }).pipe(
+                tap(({ setCustomerForOrder }) => {
+                    if (setCustomerForOrder && setCustomerForOrder.__typename !== 'Order') {
+                        this.notificationService.error((setCustomerForOrder as any).message);
+                    }
+                })
+            )
         }
     }
 

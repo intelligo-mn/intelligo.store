@@ -79,8 +79,8 @@
                        [value]="method.id"
                        [id]="method.id">
                 <label class="form-check-label shipping-method" [for]="method.id">
-                    <div class="description">{{ method.description }}</div>
-                    <div class="price">{{ method.price / 100 | currency }}</div>
+                    <div class="description">{{ method.name }}</div>
+                    <div class="price">{{ method.priceWithTax | formatPrice }}</div>
                 </label>
             </div>
             <button class="btn btn-secondary mt-3"
