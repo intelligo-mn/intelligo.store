@@ -36,15 +36,15 @@ export class FormatPricePipe implements PipeTransform {
     }
 
     private formatCurrency(value: number) {
-            this.getActiveChannel()
-                .then(channel => {
-                        const formatter = Intl.NumberFormat(channel.defaultLanguageCode, {
-                            style: 'currency',
-                            currency: channel.currencyCode,
-                        });
-                        this.latestReturnedValue = formatter.format(value / 100);
-                        this.changeDetector.markForCheck();
-                    });
+        this.getActiveChannel()
+            .then(channel => {
+                const formatter = Intl.NumberFormat(channel.defaultLanguageCode, {
+                    style: 'currency',
+                    currency: channel.currencyCode,
+                });
+                this.latestReturnedValue = formatter.format(value / 100);
+                this.changeDetector.markForCheck();
+            });
     }
 
     private getActiveChannel(): Promise<GetActiveChannel.ActiveChannel> {

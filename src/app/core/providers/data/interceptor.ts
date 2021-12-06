@@ -1,9 +1,11 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { environment } from '../../../../environments/environment';
 import { NotificationService } from '../notification/notification.service';
 
 import { DataService } from './data.service';
@@ -17,6 +19,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         private dataService: DataService,
         private injector: Injector,
         private router: Router,
+        @Inject(PLATFORM_ID) private platformId: any,
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -24,6 +27,7 @@ export class DefaultInterceptor implements HttpInterceptor {
             tap(
                 event => {
                     if (event instanceof HttpResponse) {
+                        this.checkForAuthToken(event);
                         this.notifyOnError(event);
                     }
                 },
@@ -72,5 +76,18 @@ export class DefaultInterceptor implements HttpInterceptor {
     private displayErrorNotification(message: string): void {
         const notificationService = this.injector.get<NotificationService>(NotificationService);
         notificationService.error(message).subscribe();
+    }
+
+    /**
+     * If the server is configured to use the "bearer" tokenMethod, each response should be checked
+     * for the existence of an auth token.
+     */
+    private checkForAuthToken(response: HttpResponse<any>) {
+        if (environment.tokenMethod === 'bearer' && isPlatformBrowser(this.platformId)) {
+            const authToken = response.headers.get('vendure-auth-token');
+            if (authToken) {
+                localStorage.setItem('authToken', authToken);
+            }
+        }
     }
 }

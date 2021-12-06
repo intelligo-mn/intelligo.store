@@ -14,7 +14,7 @@ import { DataService } from '../../../core/providers/data/data.service';
 })
 export class AccountAddressBookComponent implements OnInit {
 
-    addresses$: Observable<GetCustomerAddresses.Addresses[] | null>;
+    addresses$: Observable<GetCustomerAddresses.Addresses[] | undefined>;
     constructor(private dataService: DataService) { }
 
     ngOnInit() {

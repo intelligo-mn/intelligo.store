@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
 import { merge, Observable } from 'rxjs';
 import { map, shareReplay, switchMap, take } from 'rxjs/operators';
 
+import { AdjustItemQuantity, GetActiveOrder, RemoveItemFromCart } from '../../../common/generated-types';
 import { DataService } from '../../providers/data/data.service';
+import { NotificationService } from '../../providers/notification/notification.service';
 import { StateService } from '../../providers/state/state.service';
 
 import { ADJUST_ITEM_QUANTITY, GET_ACTIVE_ORDER, REMOVE_ITEM_FROM_CART } from './cart-drawer.graphql';
-import { GetActiveOrder, AdjustItemQuantity, RemoveItemFromCart } from '../../../common/generated-types';
 
 @Component({
     selector: 'vsf-cart-drawer',
@@ -23,7 +24,8 @@ export class CartDrawerComponent implements OnInit {
     isEmpty$: Observable<boolean>;
 
     constructor(private dataService: DataService,
-                private stateService: StateService) {}
+                private stateService: StateService,
+                private notificationService: NotificationService) {}
 
     ngOnInit() {
         this.cart$ = merge(
@@ -53,7 +55,18 @@ export class CartDrawerComponent implements OnInit {
             qty,
         }).pipe(
             take(1),
-        ).subscribe();
+        ).subscribe(({ adjustOrderLine }) => {
+            switch (adjustOrderLine.__typename) {
+                case 'Order':
+                    break;
+                case 'InsufficientStockError':
+                case 'NegativeQuantityError':
+                case 'OrderLimitError':
+                case 'OrderModificationError':
+                    this.notificationService.error(adjustOrderLine.message).subscribe();
+                    break;
+            }
+        });
     }
 
     private removeItem(id: string) {

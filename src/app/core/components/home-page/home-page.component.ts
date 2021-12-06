@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 

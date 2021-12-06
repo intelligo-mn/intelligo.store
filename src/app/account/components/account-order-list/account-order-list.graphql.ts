@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 export const GET_ORDER_LIST = gql`
     query GetOrderList($options: OrderListOptions) {
