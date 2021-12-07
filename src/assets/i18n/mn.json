@@ -18,6 +18,16 @@
         "address-book": "Address book",
         "personal-details": "Personal details",
         "change-credentials": "Change crendentials",
-        "sign-out": "Sign out"
+        "sign-out": "Sign out",
+        "update-address": "Update address",
+        "change-password": "Change password",
+        "current-password": "Current password",
+        "new-password": "New password",
+        "set-password": "Set password",
+        "change-email": "Change email address",
+        "password": "Password",
+        "new-email-address": "New email address",
+        "verify-new-email-address": "Verify new email address",
+        
     }
 }
