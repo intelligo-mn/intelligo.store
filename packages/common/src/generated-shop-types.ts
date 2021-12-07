@@ -126,6 +126,7 @@ export type BooleanCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
 };
 
 export type BooleanOperators = {
@@ -196,10 +197,16 @@ export type CollectionList = PaginatedList & {
 };
 
 export type CollectionListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<CollectionSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<CollectionFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 /**
@@ -703,6 +710,7 @@ export type CustomField = {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
 };
 
 export type CustomFieldConfig =
@@ -765,10 +773,16 @@ export type CustomerList = PaginatedList & {
 };
 
 export type CustomerListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<CustomerSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<CustomerFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 export type CustomerSortParameter = {
@@ -807,6 +821,7 @@ export type DateTimeCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     min?: Maybe<Scalars['String']>;
     max?: Maybe<Scalars['String']>;
     step?: Maybe<Scalars['Int']>;
@@ -905,10 +920,16 @@ export type FacetList = PaginatedList & {
 };
 
 export type FacetListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<FacetSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<FacetFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 export type FacetSortParameter = {
@@ -982,6 +1003,7 @@ export type FloatCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     min?: Maybe<Scalars['Float']>;
     max?: Maybe<Scalars['Float']>;
     step?: Maybe<Scalars['Float']>;
@@ -1027,10 +1049,16 @@ export type HistoryEntryList = PaginatedList & {
 };
 
 export type HistoryEntryListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<HistoryEntrySortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<HistoryEntryFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 export type HistoryEntrySortParameter = {
@@ -1119,6 +1147,7 @@ export type IntCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     min?: Maybe<Scalars['Int']>;
     max?: Maybe<Scalars['Int']>;
     step?: Maybe<Scalars['Int']>;
@@ -1468,6 +1497,7 @@ export type LocaleStringCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     pattern?: Maybe<Scalars['String']>;
 };
 
@@ -1868,7 +1898,7 @@ export type OrderItem = Node & {
     /** The price of a single unit including discounts and tax */
     discountedUnitPriceWithTax: Scalars['Int'];
     /**
-     * The actual unit price, taking into account both item discounts _and_ prorated (proportially-distributed)
+     * The actual unit price, taking into account both item discounts _and_ prorated (proportionally-distributed)
      * Order-level discounts. This value is the true economic value of the OrderItem, and is used in tax
      * and refund calculations.
      */
@@ -1918,7 +1948,7 @@ export type OrderLine = Node & {
     /** The price of a single unit including discounts and tax */
     discountedUnitPriceWithTax: Scalars['Int'];
     /**
-     * The actual unit price, taking into account both item discounts _and_ prorated (proportially-distributed)
+     * The actual unit price, taking into account both item discounts _and_ prorated (proportionally-distributed)
      * Order-level discounts. This value is the true economic value of the OrderItem, and is used in tax
      * and refund calculations.
      */
@@ -1930,14 +1960,14 @@ export type OrderLine = Node & {
     taxRate: Scalars['Float'];
     /** The total price of the line excluding tax and discounts. */
     linePrice: Scalars['Int'];
-    /** The total price of the line including tax bit excluding discounts. */
+    /** The total price of the line including tax but excluding discounts. */
     linePriceWithTax: Scalars['Int'];
     /** The price of the line including discounts, excluding tax */
     discountedLinePrice: Scalars['Int'];
     /** The price of the line including discounts and tax */
     discountedLinePriceWithTax: Scalars['Int'];
     /**
-     * The actual line price, taking into account both item discounts _and_ prorated (proportially-distributed)
+     * The actual line price, taking into account both item discounts _and_ prorated (proportionally-distributed)
      * Order-level discounts. This value is the true economic value of the OrderLine, and is used in tax
      * and refund calculations.
      */
@@ -1959,10 +1989,16 @@ export type OrderList = PaginatedList & {
 };
 
 export type OrderListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<OrderSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<OrderFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 /** Returned when attempting to modify the contents of an Order that is not in the `AddingItems` state. */
@@ -2303,12 +2339,19 @@ export type Product = Node & {
     description: Scalars['String'];
     featuredAsset?: Maybe<Asset>;
     assets: Array<Asset>;
+    /** Returns all ProductVariants */
     variants: Array<ProductVariant>;
+    /** Returns a paginated, sortable, filterable list of ProductVariants */
+    variantList: ProductVariantList;
     optionGroups: Array<ProductOptionGroup>;
     facetValues: Array<FacetValue>;
     translations: Array<ProductTranslation>;
     collections: Array<Collection>;
     customFields?: Maybe<Scalars['JSON']>;
+};
+
+export type ProductVariantListArgs = {
+    options?: Maybe<ProductVariantListOptions>;
 };
 
 export type ProductFilterParameter = {
@@ -2327,10 +2370,16 @@ export type ProductList = PaginatedList & {
 };
 
 export type ProductListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<ProductSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<ProductFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 export type ProductOption = Node & {
@@ -2441,10 +2490,16 @@ export type ProductVariantList = PaginatedList & {
 };
 
 export type ProductVariantListOptions = {
+    /** Skips the first n results, for use in pagination */
     skip?: Maybe<Scalars['Int']>;
+    /** Takes n results, for use in pagination */
     take?: Maybe<Scalars['Int']>;
+    /** Specifies which properties to sort the results by */
     sort?: Maybe<ProductVariantSortParameter>;
+    /** Allows the results to be filtered */
     filter?: Maybe<ProductVariantFilterParameter>;
+    /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
+    filterOperator?: Maybe<LogicalOperator>;
 };
 
 export type ProductVariantSortParameter = {
@@ -2617,6 +2672,7 @@ export type RelationCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     entity: Scalars['String'];
     scalarFields: Array<Scalars['String']>;
 };
@@ -2803,6 +2859,7 @@ export type StringCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
     pattern?: Maybe<Scalars['String']>;
     options?: Maybe<Array<StringFieldOption>>;
 };
@@ -2899,6 +2956,7 @@ export type TextCustomFieldConfig = CustomField & {
     description?: Maybe<Array<LocalizedString>>;
     readonly?: Maybe<Scalars['Boolean']>;
     internal?: Maybe<Scalars['Boolean']>;
+    nullable?: Maybe<Scalars['Boolean']>;
 };
 
 export type TransitionOrderToStateResult = Order | OrderStateTransitionError;

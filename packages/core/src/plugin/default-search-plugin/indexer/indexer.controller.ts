@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { LanguageCode } from '@vendure/common/lib/generated-types';
 import { ID } from '@vendure/common/lib/shared-types';
 import { unique } from '@vendure/common/lib/unique';
@@ -6,19 +6,22 @@ import { Observable } from 'rxjs';
 import { FindOptionsUtils } from 'typeorm/find-options/FindOptionsUtils';
 
 import { RequestContext } from '../../../api/common/request-context';
+import { RequestContextCacheService } from '../../../cache/request-context-cache.service';
 import { AsyncQueue } from '../../../common/async-queue';
 import { Translatable, Translation } from '../../../common/types/locale-types';
 import { asyncObservable, idsAreEqual } from '../../../common/utils';
 import { ConfigService } from '../../../config/config.service';
 import { Logger } from '../../../config/logger/vendure-logger';
+import { TransactionalConnection } from '../../../connection/transactional-connection';
 import { FacetValue } from '../../../entity/facet-value/facet-value.entity';
-import { ProductVariantTranslation } from '../../../entity/product-variant/product-variant-translation.entity';
 import { ProductVariant } from '../../../entity/product-variant/product-variant.entity';
 import { Product } from '../../../entity/product/product.entity';
+import { ProductPriceApplicator } from '../../../service/helpers/product-price-applicator/product-price-applicator';
 import { ProductVariantService } from '../../../service/services/product-variant.service';
-import { TransactionalConnection } from '../../../service/transaction/transactional-connection';
-import { SearchIndexItem } from '../search-index-item.entity';
+import { PLUGIN_INIT_OPTIONS } from '../constants';
+import { SearchIndexItem } from '../entities/search-index-item.entity';
 import {
+    DefaultSearchPluginInitOptions,
     ProductChannelMessageData,
     ReindexMessageData,
     ReindexMessageResponse,
@@ -28,6 +31,8 @@ import {
     UpdateVariantsByIdMessageData,
     VariantChannelMessageData,
 } from '../types';
+
+import { MutableRequestContext } from './mutable-request-context';
 
 export const BATCH_SIZE = 1000;
 export const variantRelations = [
@@ -53,12 +58,15 @@ export class IndexerController {
 
     constructor(
         private connection: TransactionalConnection,
-        private productVariantService: ProductVariantService,
+        private productPriceApplicator: ProductPriceApplicator,
         private configService: ConfigService,
+        private requestContextCache: RequestContextCacheService,
+        private productVariantService: ProductVariantService,
+        @Inject(PLUGIN_INIT_OPTIONS) private options: DefaultSearchPluginInitOptions,
     ) {}
 
     reindex({ ctx: rawContext }: ReindexMessageData): Observable<ReindexMessageResponse> {
-        const ctx = RequestContext.deserialize(rawContext);
+        const ctx = MutableRequestContext.deserialize(rawContext);
         return asyncObservable(async observer => {
             const timeStart = Date.now();
             const qb = this.getSearchIndexQueryBuilder(ctx.channelId);
@@ -79,7 +87,7 @@ export class IndexerController {
                     .take(BATCH_SIZE)
                     .skip(i * BATCH_SIZE)
                     .getMany();
-                await this.saveVariants(variants);
+                await this.saveVariants(ctx, variants);
                 observer.next({
                     total: count,
                     completed: Math.min((i + 1) * BATCH_SIZE, count),
@@ -99,7 +107,7 @@ export class IndexerController {
         ctx: rawContext,
         ids,
     }: UpdateVariantsByIdMessageData): Observable<ReindexMessageResponse> {
-        const ctx = RequestContext.deserialize(rawContext);
+        const ctx = MutableRequestContext.deserialize(rawContext);
 
         return asyncObservable(async observer => {
             const timeStart = Date.now();
@@ -116,7 +124,7 @@ export class IndexerController {
                         relations: variantRelations,
                         where: { deletedAt: null },
                     });
-                    await this.saveVariants(batch);
+                    await this.saveVariants(ctx, batch);
                     observer.next({
                         total: ids.length,
                         completed: Math.min((i + 1) * BATCH_SIZE, ids.length),
@@ -134,22 +142,22 @@ export class IndexerController {
     }
 
     async updateProduct(data: UpdateProductMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.updateProductInChannel(ctx, data.productId, ctx.channelId);
     }
 
     async updateVariants(data: UpdateVariantMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.updateVariantsInChannel(ctx, data.variantIds, ctx.channelId);
     }
 
     async deleteProduct(data: UpdateProductMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.deleteProductInChannel(ctx, data.productId, ctx.channelId);
     }
 
     async deleteVariant(data: UpdateVariantMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         const variants = await this.connection.getRepository(ProductVariant).findByIds(data.variantIds);
         if (variants.length) {
             const languageVariants = unique([
@@ -167,22 +175,22 @@ export class IndexerController {
     }
 
     async assignProductToChannel(data: ProductChannelMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.updateProductInChannel(ctx, data.productId, data.channelId);
     }
 
     async removeProductFromChannel(data: ProductChannelMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.deleteProductInChannel(ctx, data.productId, data.channelId);
     }
 
     async assignVariantToChannel(data: VariantChannelMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         return this.updateVariantsInChannel(ctx, [data.productVariantId], data.channelId);
     }
 
     async removeVariantFromChannel(data: VariantChannelMessageData): Promise<boolean> {
-        const ctx = RequestContext.deserialize(data.ctx);
+        const ctx = MutableRequestContext.deserialize(data.ctx);
         const variant = await this.connection.getRepository(ProductVariant).findOne(data.productVariantId);
         const languageVariants = variant?.translations.map(t => t.languageCode) ?? [];
         await this.removeSearchIndexItems(data.channelId, [data.productVariantId], languageVariants);
@@ -218,7 +226,7 @@ export class IndexerController {
     }
 
     private async updateProductInChannel(
-        ctx: RequestContext,
+        ctx: MutableRequestContext,
         productId: ID,
         channelId: ID,
     ): Promise<boolean> {
@@ -244,7 +252,7 @@ export class IndexerController {
                 );
                 Logger.verbose(`Updating ${variantsInCurrentChannel.length} variants`, workerLoggerCtx);
                 if (variantsInCurrentChannel.length) {
-                    await this.saveVariants(variantsInCurrentChannel);
+                    await this.saveVariants(ctx, variantsInCurrentChannel);
                 }
             }
         }
@@ -252,7 +260,7 @@ export class IndexerController {
     }
 
     private async updateVariantsInChannel(
-        ctx: RequestContext,
+        ctx: MutableRequestContext,
         variantIds: ID[],
         channelId: ID,
     ): Promise<boolean> {
@@ -262,7 +270,7 @@ export class IndexerController {
         });
         if (variants) {
             Logger.verbose(`Updating ${variants.length} variants`, workerLoggerCtx);
-            await this.saveVariants(variants);
+            await this.saveVariants(ctx, variants);
         }
         return true;
     }
@@ -309,7 +317,7 @@ export class IndexerController {
         return qb;
     }
 
-    private async saveVariants(variants: ProductVariant[]) {
+    private async saveVariants(ctx: MutableRequestContext, variants: ProductVariant[]) {
         const items: SearchIndexItem[] = [];
 
         await this.removeSyntheticVariants(variants);
@@ -327,54 +335,73 @@ export class IndexerController {
                 );
 
                 for (const channel of variant.channels) {
-                    const ctx = new RequestContext({
-                        channel,
-                        apiType: 'admin',
-                        authorizedAsOwnerOnly: false,
-                        isAuthorized: true,
-                        session: {} as any,
+                    ctx.setChannel(channel);
+                    await this.productPriceApplicator.applyChannelPriceAndTax(variant, ctx);
+                    const item = new SearchIndexItem({
+                        channelId: channel.id,
+                        languageCode,
+                        productVariantId: variant.id,
+                        price: variant.price,
+                        priceWithTax: variant.priceWithTax,
+                        sku: variant.sku,
+                        enabled: variant.product.enabled === false ? false : variant.enabled,
+                        slug: productTranslation.slug,
+                        productId: variant.product.id,
+                        productName: productTranslation.name,
+                        description: this.constrainDescription(productTranslation.description),
+                        productVariantName: variantTranslation.name,
+                        productAssetId: variant.product.featuredAsset
+                            ? variant.product.featuredAsset.id
+                            : null,
+                        productPreviewFocalPoint: variant.product.featuredAsset
+                            ? variant.product.featuredAsset.focalPoint
+                            : null,
+                        productVariantPreviewFocalPoint: variant.featuredAsset
+                            ? variant.featuredAsset.focalPoint
+                            : null,
+                        productVariantAssetId: variant.featuredAsset ? variant.featuredAsset.id : null,
+                        productPreview: variant.product.featuredAsset
+                            ? variant.product.featuredAsset.preview
+                            : '',
+                        productVariantPreview: variant.featuredAsset ? variant.featuredAsset.preview : '',
+                        channelIds: variant.channels.map(c => c.id as string),
+                        facetIds: this.getFacetIds(variant),
+                        facetValueIds: this.getFacetValueIds(variant),
+                        collectionIds: variant.collections.map(c => c.id.toString()),
+                        collectionSlugs: collectionTranslations.map(c => c.slug),
                     });
-                    await this.productVariantService.applyChannelPriceAndTax(variant, ctx);
-                    items.push(
-                        new SearchIndexItem({
-                            channelId: channel.id,
-                            languageCode,
-                            productVariantId: variant.id,
-                            price: variant.price,
-                            priceWithTax: variant.priceWithTax,
-                            sku: variant.sku,
-                            enabled: variant.product.enabled === false ? false : variant.enabled,
-                            slug: productTranslation.slug,
-                            productId: variant.product.id,
-                            productName: productTranslation.name,
-                            description: this.constrainDescription(productTranslation.description),
-                            productVariantName: variantTranslation.name,
-                            productAssetId: variant.product.featuredAsset
-                                ? variant.product.featuredAsset.id
-                                : null,
-                            productPreviewFocalPoint: variant.product.featuredAsset
-                                ? variant.product.featuredAsset.focalPoint
-                                : null,
-                            productVariantPreviewFocalPoint: variant.featuredAsset
-                                ? variant.featuredAsset.focalPoint
-                                : null,
-                            productVariantAssetId: variant.featuredAsset ? variant.featuredAsset.id : null,
-                            productPreview: variant.product.featuredAsset
-                                ? variant.product.featuredAsset.preview
-                                : '',
-                            productVariantPreview: variant.featuredAsset ? variant.featuredAsset.preview : '',
-                            channelIds: variant.channels.map(c => c.id as string),
-                            facetIds: this.getFacetIds(variant),
-                            facetValueIds: this.getFacetValueIds(variant),
-                            collectionIds: variant.collections.map(c => c.id.toString()),
-                            collectionSlugs: collectionTranslations.map(c => c.slug),
-                        }),
-                    );
+                    if (this.options.indexStockStatus) {
+                        item.inStock =
+                            0 < (await this.productVariantService.getSaleableStockLevel(ctx, variant));
+                        const productInStock = await this.requestContextCache.get(
+                            ctx,
+                            `productVariantsStock-${variant.productId}`,
+                            () =>
+                                this.connection
+                                    .getRepository(ctx, ProductVariant)
+                                    .find({
+                                        loadEagerRelations: false,
+                                        where: {
+                                            productId: variant.productId,
+                                        },
+                                    })
+                                    .then(_variants =>
+                                        Promise.all(
+                                            _variants.map(v =>
+                                                this.productVariantService.getSaleableStockLevel(ctx, v),
+                                            ),
+                                        ),
+                                    )
+                                    .then(stockLevels => stockLevels.some(stockLevel => 0 < stockLevel)),
+                        );
+                        item.productInStock = productInStock;
+                    }
+                    items.push(item);
                 }
             }
         }
 
-        await this.queue.push(() => this.connection.getRepository(SearchIndexItem).save(items));
+        await this.queue.push(() => this.connection.getRepository(SearchIndexItem).save(items, { chunk: 2500 }));
     }
 
     /**
@@ -431,9 +458,9 @@ export class IndexerController {
         translatable: T,
         languageCode: LanguageCode,
     ): Translation<T> {
-        return ((translatable.translations.find(t => t.languageCode === languageCode) ||
+        return (translatable.translations.find(t => t.languageCode === languageCode) ||
             translatable.translations.find(t => t.languageCode === this.configService.defaultLanguageCode) ||
-            translatable.translations[0]) as unknown) as Translation<T>;
+            translatable.translations[0]) as unknown as Translation<T>;
     }
 
     private getFacetIds(variant: ProductVariant): string[] {

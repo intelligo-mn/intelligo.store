@@ -44,7 +44,7 @@ export class OrderCalculator {
         options?: { recalculateShipping?: boolean },
     ): Promise<OrderItem[]> {
         const { taxZoneStrategy } = this.configService.taxOptions;
-        const zones = this.zoneService.findAll(ctx);
+        const zones = await this.zoneService.findAll(ctx);
         const activeTaxZone = await this.requestContextCache.get(ctx, 'activeTaxZone', () =>
             taxZoneStrategy.determineTaxZone(ctx, zones, ctx.channel, order),
         );
@@ -349,7 +349,7 @@ export class OrderCalculator {
             p.test(ctx, order).then(Boolean),
         );
         if (applicableOrderPromotions.length) {
-            order.shippingLines.forEach(line => (line.adjustments = []));
+            order.shippingLines.forEach(line => line.clearAdjustments());
             for (const promotion of applicableOrderPromotions) {
                 // re-test the promotion on each iteration, since the order total
                 // may be modified by a previously-applied promotion
@@ -363,6 +363,12 @@ export class OrderCalculator {
                         }
                     }
                 }
+            }
+        } else {
+            // If there is no applicable promotion for shipping,
+            // we should remove already assigned adjustment from shipping lines.
+            for (const shippingLine of order.shippingLines) {
+                shippingLine.clearAdjustments();
             }
         }
     }
@@ -398,6 +404,7 @@ export class OrderCalculator {
             shippingLine.listPrice = cheapest.result.price;
             shippingLine.listPriceIncludesTax = cheapest.result.priceIncludesTax;
             shippingLine.shippingMethod = cheapest.method;
+            shippingLine.shippingMethodId = cheapest.method.id;
             shippingLine.taxLines = [
                 {
                     description: 'shipping tax',

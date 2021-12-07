@@ -5,6 +5,7 @@ import { Middleware, MiddlewareHandler } from './common';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { Logger } from './config/logger/vendure-logger';
+import { ConnectionModule } from './connection/connection.module';
 import { HealthCheckModule } from './health-check/health-check.module';
 import { I18nModule } from './i18n/i18n.module';
 import { I18nService } from './i18n/i18n.service';
@@ -20,7 +21,8 @@ import { ServiceModule } from './service/service.module';
         ApiModule,
         PluginModule.forRoot(),
         HealthCheckModule,
-        ServiceModule.forRoot(),
+        ServiceModule,
+        ConnectionModule,
     ],
 })
 export class AppModule implements NestModule, OnApplicationShutdown {

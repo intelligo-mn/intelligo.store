@@ -1,3 +1,131 @@
+## <small>1.3.4 (2021-11-23)</small>
+
+
+#### Fixes
+
+* **core** Correctly deep-merge hydrated entities ([32d19e3](https://github.com/vendure-ecommerce/vendure/commit/32d19e3)), closes [#1229](https://github.com/vendure-ecommerce/vendure/issues/1229)
+* **core** Correctly set OrderItem prices on tax zone change ([731f8d9](https://github.com/vendure-ecommerce/vendure/commit/731f8d9)), closes [#1216](https://github.com/vendure-ecommerce/vendure/issues/1216)
+* **core** Do not list deleted ProductVariants in Collections ([5cd8e1a](https://github.com/vendure-ecommerce/vendure/commit/5cd8e1a)), closes [#1213](https://github.com/vendure-ecommerce/vendure/issues/1213)
+* **core** Fix argsArrayToHash, case where arg not present in this.args (#1224) ([454fdf5](https://github.com/vendure-ecommerce/vendure/commit/454fdf5)), closes [#1224](https://github.com/vendure-ecommerce/vendure/issues/1224)
+* **core** Fix edge case FK error when creating new Collections ([160f457](https://github.com/vendure-ecommerce/vendure/commit/160f457)), closes [#1215](https://github.com/vendure-ecommerce/vendure/issues/1215)
+* **core** Fix ONLY_FULL_GROUP_BY error when searching with MySQL ([94fa4db](https://github.com/vendure-ecommerce/vendure/commit/94fa4db)), closes [#1236](https://github.com/vendure-ecommerce/vendure/issues/1236)
+* **core** Fix ProductService.assignProductsToChannel to properly assign assets to channel (#1235) ([a3066b0](https://github.com/vendure-ecommerce/vendure/commit/a3066b0)), closes [#1235](https://github.com/vendure-ecommerce/vendure/issues/1235)
+* **testing** Fix "fail is not defined" error ([c474d93](https://github.com/vendure-ecommerce/vendure/commit/c474d93))
+
+## <small>1.3.3 (2021-11-09)</small>
+
+
+#### Fixes
+
+* **admin-ui** Correctly display primitive value job queue results ([d8c2195](https://github.com/vendure-ecommerce/vendure/commit/d8c2195)), closes [#881](https://github.com/vendure-ecommerce/vendure/issues/881)
+* **admin-ui** Fix display of channels in Role detail ([dee331a](https://github.com/vendure-ecommerce/vendure/commit/dee331a)), closes [#1211](https://github.com/vendure-ecommerce/vendure/issues/1211)
+* **core** Correctly cancel sales when cancelling Fulfillment ([00ac70d](https://github.com/vendure-ecommerce/vendure/commit/00ac70d)), closes [#1198](https://github.com/vendure-ecommerce/vendure/issues/1198)
+* **core** Export missing tax config types ([08951b3](https://github.com/vendure-ecommerce/vendure/commit/08951b3))
+* **core** Fix error thrown when shipping address company is null ([303a216](https://github.com/vendure-ecommerce/vendure/commit/303a216)), closes [#744](https://github.com/vendure-ecommerce/vendure/issues/744)
+* **core** Make populator.populateCollections more robust to bad input ([15762e0](https://github.com/vendure-ecommerce/vendure/commit/15762e0))
+
+## <small>1.3.2 (2021-10-28)</small>
+
+
+#### Perf
+
+* **admin-ui** Improve performance of Collection list view ([4bf6dff](https://github.com/vendure-ecommerce/vendure/commit/4bf6dff)), closes [#1123](https://github.com/vendure-ecommerce/vendure/issues/1123)
+
+#### Fixes
+
+* **admin-ui-plugin** Correctly handle base href for custom routes ([752cc13](https://github.com/vendure-ecommerce/vendure/commit/752cc13)), closes [#1152](https://github.com/vendure-ecommerce/vendure/issues/1152)
+* **admin-ui** Add pt_PT translation to ui config ([c7a7bbd](https://github.com/vendure-ecommerce/vendure/commit/c7a7bbd))
+* **admin-ui** Currency input handles currencies without minor units ([fd643b3](https://github.com/vendure-ecommerce/vendure/commit/fd643b3)), closes [#1146](https://github.com/vendure-ecommerce/vendure/issues/1146)
+* **core** Allow an Order in ArrangingAdditionalPayment to be cancelled ([3e1a3cf](https://github.com/vendure-ecommerce/vendure/commit/3e1a3cf)), closes [#1177](https://github.com/vendure-ecommerce/vendure/issues/1177)
+* **core** Export ShippingLine entity ([98927dd](https://github.com/vendure-ecommerce/vendure/commit/98927dd))
+* **core** Fix error in validating custom fields with introspection fields in query ([f856491](https://github.com/vendure-ecommerce/vendure/commit/f856491)), closes [#1091](https://github.com/vendure-ecommerce/vendure/issues/1091)
+* **core** Fix order modification with refund on shipping ([95bff8f](https://github.com/vendure-ecommerce/vendure/commit/95bff8f)), closes [#1197](https://github.com/vendure-ecommerce/vendure/issues/1197)
+* **core** Fix polynomial regex vulnerability ([6675757](https://github.com/vendure-ecommerce/vendure/commit/6675757))
+* **create** Update TypeScript to match current supported version ([3be6b88](https://github.com/vendure-ecommerce/vendure/commit/3be6b88)), closes [#1188](https://github.com/vendure-ecommerce/vendure/issues/1188)
+
+## <small>1.3.1 (2021-10-19)</small>
+
+
+#### Fixes
+
+* **core** Allow middleware to inject TransactionalConnection ([28f713c](https://github.com/vendure-ecommerce/vendure/commit/28f713c)), closes [#1160](https://github.com/vendure-ecommerce/vendure/issues/1160)
+* **core** Fix EntityHydrator missing nested relations ([fbda3dd](https://github.com/vendure-ecommerce/vendure/commit/fbda3dd)), closes [#1161](https://github.com/vendure-ecommerce/vendure/issues/1161)
+* **core** Fix EntityHydrator when hydrating empty array relation ([70e0314](https://github.com/vendure-ecommerce/vendure/commit/70e0314)), closes [#1153](https://github.com/vendure-ecommerce/vendure/issues/1153)
+* **core** Fix EntityHydrator with entity getters ([7d0e894](https://github.com/vendure-ecommerce/vendure/commit/7d0e894)), closes [#1172](https://github.com/vendure-ecommerce/vendure/issues/1172)
+* **core** Fix shipping price when the promotion is not applicable anymore (#1150) ([eb1dcc4](https://github.com/vendure-ecommerce/vendure/commit/eb1dcc4)), closes [#1150](https://github.com/vendure-ecommerce/vendure/issues/1150)
+* **core** Improved error message when Order.lines not joined ([0a33e5c](https://github.com/vendure-ecommerce/vendure/commit/0a33e5c))
+
+#### Perf
+
+* **core** Improve perf of DefaultSearchPlugin reindex job ([bfc72f2](https://github.com/vendure-ecommerce/vendure/commit/bfc72f2))
+* **elasticsearch-plugin** Optimize indexing using RequestContextCache ([75da3b3](https://github.com/vendure-ecommerce/vendure/commit/75da3b3))
+
+## 1.3.0 (2021-10-13)
+
+
+#### Features
+
+* **admin-ui** Add admin-ui Portuguese (Portugal) translation (#1069) ([81d9836](https://github.com/vendure-ecommerce/vendure/commit/81d9836)), closes [#1069](https://github.com/vendure-ecommerce/vendure/issues/1069)
+* **admin-ui** Add empty option for nullable custom field selects ([894ca4a](https://github.com/vendure-ecommerce/vendure/commit/894ca4a)), closes [#1083](https://github.com/vendure-ecommerce/vendure/issues/1083)
+* **admin-ui** Display pending search index updates in product list ([6f4a89f](https://github.com/vendure-ecommerce/vendure/commit/6f4a89f)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **admin-ui** Display retry data in job list ([9c544bf](https://github.com/vendure-ecommerce/vendure/commit/9c544bf))
+* **admin-ui** Improve facet filtering for product search input ([43f0adb](https://github.com/vendure-ecommerce/vendure/commit/43f0adb)), closes [#1078](https://github.com/vendure-ecommerce/vendure/issues/1078)
+* **admin-ui** Use server pagination of product variants ([552eafe](https://github.com/vendure-ecommerce/vendure/commit/552eafe)), closes [#1110](https://github.com/vendure-ecommerce/vendure/issues/1110)
+* **core** Add config for enabling/disabling worker health check ([f620566](https://github.com/vendure-ecommerce/vendure/commit/f620566)), closes [#1112](https://github.com/vendure-ecommerce/vendure/issues/1112)
+* **core** Add DB-based buffer storage support to DefaultJobQueuePlugin ([f26ad4b](https://github.com/vendure-ecommerce/vendure/commit/f26ad4b)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **core** Add Product.variantList field ([438ac46](https://github.com/vendure-ecommerce/vendure/commit/438ac46)), closes [#1110](https://github.com/vendure-ecommerce/vendure/issues/1110)
+* **core** Add support for stock status in DefaultSearchPlugin ([65add05](https://github.com/vendure-ecommerce/vendure/commit/65add05)), closes [#870](https://github.com/vendure-ecommerce/vendure/issues/870)
+* **core** Allow DefaultJobQueue retries to be configured per queue ([5017622](https://github.com/vendure-ecommerce/vendure/commit/5017622)), closes [#1111](https://github.com/vendure-ecommerce/vendure/issues/1111)
+* **core** Allow PaginatedList filters to use logical OR operator ([e371aa5](https://github.com/vendure-ecommerce/vendure/commit/e371aa5)), closes [#1149](https://github.com/vendure-ecommerce/vendure/issues/1149)
+* **core** Correctly index stock status based on saleable stock level ([4db9a37](https://github.com/vendure-ecommerce/vendure/commit/4db9a37)), closes [#870](https://github.com/vendure-ecommerce/vendure/issues/870)
+* **core** Create buffering logic for DefaultSearchPlugin ([6a47dcf](https://github.com/vendure-ecommerce/vendure/commit/6a47dcf)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **core** Create JobBuffer infrastructure ([d6aa20f](https://github.com/vendure-ecommerce/vendure/commit/d6aa20f)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **core** Export RequestContextCacheService from core ([92aa83f](https://github.com/vendure-ecommerce/vendure/commit/92aa83f))
+* **core** Expose `nullable` property of CustomFieldConfig ([9ec6b90](https://github.com/vendure-ecommerce/vendure/commit/9ec6b90)), closes [#1083](https://github.com/vendure-ecommerce/vendure/issues/1083)
+* **core** Expose `withTransaction` method on TransactionalConnection ([861ef29](https://github.com/vendure-ecommerce/vendure/commit/861ef29)), closes [#1129](https://github.com/vendure-ecommerce/vendure/issues/1129)
+* **core** Expose pending search index updates operations in Admin API ([53a1943](https://github.com/vendure-ecommerce/vendure/commit/53a1943)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **core** Expose retry data on Job type in Admin API ([4b15ef4](https://github.com/vendure-ecommerce/vendure/commit/4b15ef4))
+* **core** Implement EntityHydrator to simplify working with entities ([28e6a3a](https://github.com/vendure-ecommerce/vendure/commit/28e6a3a)), closes [#1103](https://github.com/vendure-ecommerce/vendure/issues/1103)
+* **core** Make entity cache ttl values configurable ([a05e7ab](https://github.com/vendure-ecommerce/vendure/commit/a05e7ab)), closes [#988](https://github.com/vendure-ecommerce/vendure/issues/988)
+* **core** Make event bus subscriptions transaction-safe ([f0fd662](https://github.com/vendure-ecommerce/vendure/commit/f0fd662)), closes [#1107](https://github.com/vendure-ecommerce/vendure/issues/1107) [#520](https://github.com/vendure-ecommerce/vendure/issues/520)
+* **core** Make extractSessionToken function available in core package ([f364e68](https://github.com/vendure-ecommerce/vendure/commit/f364e68))
+* **core** Make password hashing strategy configurable ([e5abab0](https://github.com/vendure-ecommerce/vendure/commit/e5abab0)), closes [#1063](https://github.com/vendure-ecommerce/vendure/issues/1063)
+* **core** Remove all long-lived in-memory state, use short-TTL caching ([d428ffc](https://github.com/vendure-ecommerce/vendure/commit/d428ffc))
+* **create** Improve config defaults ([e2f799c](https://github.com/vendure-ecommerce/vendure/commit/e2f799c)), closes [#1147](https://github.com/vendure-ecommerce/vendure/issues/1147)
+* **elasticsearch-plugin** Add inStock attribute and filter (#1130) ([53cfb8e](https://github.com/vendure-ecommerce/vendure/commit/53cfb8e)), closes [#1130](https://github.com/vendure-ecommerce/vendure/issues/1130) [#870](https://github.com/vendure-ecommerce/vendure/issues/870)
+* **elasticsearch-plugin** Allow custom mappings with type `ID` ([45c5b2d](https://github.com/vendure-ecommerce/vendure/commit/45c5b2d))
+* **elasticsearch-plugin** Allow the SearchInput to be extended ([5981619](https://github.com/vendure-ecommerce/vendure/commit/5981619))
+* **elasticsearch-plugin** Custom mappings can return lists & allow additional Product/variant relation hydration ([ee47095](https://github.com/vendure-ecommerce/vendure/commit/ee47095)), closes [#1054](https://github.com/vendure-ecommerce/vendure/issues/1054) [#1141](https://github.com/vendure-ecommerce/vendure/issues/1141)
+* **elasticsearch-plugin** Extend config with customScriptFields ([d300f8b](https://github.com/vendure-ecommerce/vendure/commit/d300f8b)), closes [#1143](https://github.com/vendure-ecommerce/vendure/issues/1143)
+* **elasticsearch-plugin** Index custom product mappings for products without variants ([a0b4534](https://github.com/vendure-ecommerce/vendure/commit/a0b4534))
+* **elasticsearch-plugin** Index stock status based on saleable stock ([4efe258](https://github.com/vendure-ecommerce/vendure/commit/4efe258)), closes [#870](https://github.com/vendure-ecommerce/vendure/issues/870)
+* **elasticsearch-plugin** Support search index job batching ([f3fb298](https://github.com/vendure-ecommerce/vendure/commit/f3fb298)), closes [#1137](https://github.com/vendure-ecommerce/vendure/issues/1137)
+* **job-queue-plugin** Allow config of retries/backoff for BullMQ ([9fda858](https://github.com/vendure-ecommerce/vendure/commit/9fda858)), closes [#1111](https://github.com/vendure-ecommerce/vendure/issues/1111)
+* **job-queue-plugin** Implement Redis-based job buffering ([c7b91c3](https://github.com/vendure-ecommerce/vendure/commit/c7b91c3))
+
+#### Fixes
+
+* **admin-ui** Improved Spanish translation of "facets" (#1122) ([b20d497](https://github.com/vendure-ecommerce/vendure/commit/b20d497)), closes [#1122](https://github.com/vendure-ecommerce/vendure/issues/1122)
+* **core** Correct cancellation logic with custom Order process ([b8448c1](https://github.com/vendure-ecommerce/vendure/commit/b8448c1)), closes [#1104](https://github.com/vendure-ecommerce/vendure/issues/1104)
+* **core** Correctly calculate job duration for pending/retrying jobs ([73fa278](https://github.com/vendure-ecommerce/vendure/commit/73fa278))
+* **core** Fix error when resolving deleted Product from Order ([511f04d](https://github.com/vendure-ecommerce/vendure/commit/511f04d)), closes [#1125](https://github.com/vendure-ecommerce/vendure/issues/1125)
+* **core** Fix transaction-related issues with in-memory caching ([d35306f](https://github.com/vendure-ecommerce/vendure/commit/d35306f))
+* **create** Correct escaping of quotes in templates ([9537245](https://github.com/vendure-ecommerce/vendure/commit/9537245))
+* **job-queue-plugin** Close redis connection on destroy ([64ebdd1](https://github.com/vendure-ecommerce/vendure/commit/64ebdd1))
+* **job-queue-plugin** Correctly filter BullMQ jobs by isSettled ([2f24a33](https://github.com/vendure-ecommerce/vendure/commit/2f24a33))
+* **job-queue-plugin** More accurate determination of BullMQ job state ([3b3bb3b](https://github.com/vendure-ecommerce/vendure/commit/3b3bb3b))
+
+#### Perf
+
+* **core** Simplify hot DB query for active order ([fa563f2](https://github.com/vendure-ecommerce/vendure/commit/fa563f2))
+* **core** Use memoization when caching zone members ([54dfbf4](https://github.com/vendure-ecommerce/vendure/commit/54dfbf4)), closes [#988](https://github.com/vendure-ecommerce/vendure/issues/988)
+* **core** Use per-request caching for hot ProductVariant paths ([214b86b](https://github.com/vendure-ecommerce/vendure/commit/214b86b)), closes [#988](https://github.com/vendure-ecommerce/vendure/issues/988)
+* **core** Use request cache for hot-path tax rate calculation ([9e22e8b](https://github.com/vendure-ecommerce/vendure/commit/9e22e8b))
+
+## <small>1.2.3 (2021-09-29)</small>
+
+This release fixes an error in the publishing of the TypeScript definitions from v1.2.2.
+
 ## <small>1.2.2 (2021-09-28)</small>
 
 
