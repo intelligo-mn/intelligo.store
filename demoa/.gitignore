@@ -1,0 +1,10 @@
+/vendor/*
+/node_modules/*
+/storage/files/*
+.env
+composer.lock
+.idea/
+public/css/app.css
+public/css/app.css.map
+public/js/app.js
+public/js/app.js.map
