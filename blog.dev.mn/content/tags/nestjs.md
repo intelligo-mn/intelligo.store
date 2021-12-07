@@ -1,4 +1,0 @@
----
-title: NestJS
-slug: nestjs
----

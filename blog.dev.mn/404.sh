@@ -1,1 +1,0 @@
-cp dist/static/404/index.html dist/static/404.html
