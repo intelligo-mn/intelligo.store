@@ -102,7 +102,7 @@
     "move-to": "Зөөх",
     "move-up": "Дээш зөөх",
     "no-channel-selected": "Суваг сонгоогүй байна",
-    "no-featured-asset": "No featured asset",
+    "no-featured-asset": "Featured asset байхгүй байна",
     "no-selection": "Сонголт хийгээгүй байна",
     "notify-remove-product-from-channel-error": "Could not remove product from channel",
     "notify-remove-product-from-channel-success": "Successfully removed product from channel",
@@ -124,7 +124,7 @@
     "product-name": "Бүтээгдэхүүн нэр",
     "product-variants": "Product variants",
     "public": "Нээлттэй",
-    "rebuild-search-index": "Rebuild search index",
+    "rebuild-search-index": "Хайлтын index дахин ажиллуулах",
     "reindex-error": "An error occurred while rebuilding search index",
     "reindex-successful": "Indexed {count, plural, one {product variant} other {{count} product variants}} in {time}ms",
     "reindexing": "Rebuilding search index",
@@ -160,7 +160,7 @@
     "use-global-value": "Use global value",
     "values": "Values",
     "variant": "Variant",
-    "view-contents": "View contents",
+    "view-contents": "Content-ууд харах",
     "visibility": "Харагдац"
   },
   "common": {
@@ -615,7 +615,7 @@
     "test-shipping-method": "Test shipping method",
     "test-shipping-methods": "Test shipping methods",
     "track-inventory-default": "Track inventory by default",
-    "update-zone": "Update zone",
+    "update-zone": "Бүс шинэчлэх",
     "view-zone-members": "Гишүүд харах",
     "zone": "Бүс"
   },
