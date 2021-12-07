@@ -16,7 +16,7 @@ fixPostgresTimezone();
 
 const validateInjectorSpy = jest.fn();
 
-const customConfig = mergeConfig(testConfig, {
+const customConfig = mergeConfig(testConfig(), {
     dbConnectionOptions: {
         timezone: 'Z',
     },
@@ -322,7 +322,7 @@ describe('Custom fields', () => {
             dateTimeWithDefault: '2019-04-30T12:59:16.415Z',
             // MySQL does not support defaults on TEXT fields, which is what "simple-json" uses
             // internally. See https://stackoverflow.com/q/3466872/772859
-            stringListWithDefault: testConfig.dbConnectionOptions.type === 'mysql' ? null : ['cat'],
+            stringListWithDefault: customConfig.dbConnectionOptions.type === 'mysql' ? null : ['cat'],
         };
 
         expect(product).toEqual({
@@ -662,6 +662,24 @@ describe('Custom fields', () => {
                 `);
             }, `relation error`),
         );
+
+        // https://github.com/vendure-ecommerce/vendure/issues/1091
+        it('handles well graphql internal fields', async () => {
+            // throws "Cannot read property 'args' of undefined" if broken
+            await adminClient.query(gql`
+                mutation {
+                    __typename
+                    updateProduct(input: { id: "T_1", customFields: { nullable: "some value" } }) {
+                        __typename
+                        id
+                        customFields {
+                            __typename
+                            nullable
+                        }
+                    }
+                }
+            `);
+        });
     });
 
     describe('public access', () => {
