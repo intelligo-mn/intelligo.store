@@ -1,4 +1,0 @@
----
-title: GraphQL
-slug: graphql
----

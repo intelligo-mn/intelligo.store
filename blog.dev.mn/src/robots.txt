@@ -1,5 +1,0 @@
-User-agent: *
-Sitemap: https://blog.dev.mn/sitemap.xml
-Sitemap: https://blog.dev.mn/sitemap-blog.xml
-Sitemap: https://blog.dev.mn/sitemap-links.xml
-Sitemap: https://blog.dev.mn/sitemap-tags.xml
