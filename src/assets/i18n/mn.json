@@ -4,6 +4,20 @@
         "shipping": "Shipping",
         "track-my-order": "Track my order",
         "terms-and-condition": "Terms & Conditions",
-        "returns-policy": "Returns Policy"
+        "returns-policy": "Returns Policy",
+        "about": "About",
+        "about-title": "About us",
+        "contact": "Contact us",
+        "privacy-notice": "Privacy notice",
+        "subscribe": "Subscribe",
+        "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!"
+    },
+    "common": {
+        "signin": "Sign in"
+    },
+    "home": {
+        "hero-title": "platform.sale storefront",
+        "top-sellers": "Top Sellers"
+
     }
 }
