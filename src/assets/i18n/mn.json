@@ -12,13 +12,20 @@
         "contact": "Contact us",
         "privacy-notice": "Privacy notice",
         "subscribe": "Subscribe",
-        "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!"
+        "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!",
+        "signin": "Sign in"
     },
-    "account" : {
-        "address-book": "Address book",
+    "home": {
+        "hero-title": "platform.sale storefront",
+        "top-sellers": "Top Sellers"
+    },
+    "account": {
+        "orders": "Orders",
+        "dashboard": "Dashboard",
+        "address-book" : "Address book",
         "personal-details": "Personal details",
-        "change-credentials": "Change crendentials",
-        "sign-out": "Sign out",
+        "change-credentials" : "Change credentials",
+        "sign-out": "Sign-out",
         "update-address": "Update address",
         "change-password": "Change password",
         "current-password": "Current password",
@@ -28,6 +35,5 @@
         "password": "Password",
         "new-email-address": "New email address",
         "verify-new-email-address": "Verify new email address",
-        
     }
 }
