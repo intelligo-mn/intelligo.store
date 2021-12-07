@@ -10,14 +10,19 @@
         "contact": "Contact us",
         "privacy-notice": "Privacy notice",
         "subscribe": "Subscribe",
-        "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!"
-    },
-    "common": {
+        "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!",
         "signin": "Sign in"
     },
     "home": {
         "hero-title": "platform.sale storefront",
         "top-sellers": "Top Sellers"
-
+    },
+    "account": {
+        "orders": "Orders",
+        "dashboard": "Dashboard",
+        "address-book" : "Address book",
+        "personal-details": "Personal details",
+        "change-credentials" : "Change credentials",
+        "sign-out": "Sign-out"
     }
 }
