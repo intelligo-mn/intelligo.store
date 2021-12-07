@@ -146,7 +146,7 @@
     "stock-allocated": "Хуваарилагдсан",
     "stock-allocated-tooltip": "Бүртгэгдсэн боловч хараахан биелэгдээгүй байгаа Захиалгад хуваарилагдсан нэгжийн тоо",
     "stock-on-hand": "Stock",
-    "stock-on-hand-tooltip": "Stock on hand - the number of physical units available in stock",
+    "stock-on-hand-tooltip": "Гар дээр байгаа нөөц - нөөцөд байгаа физик нэгжийн тоо",
     "stock-saleable": "Борлуулах боломжтой",
     "stock-saleable-tooltip": "Худалдан авах боломжтой нэгжийн тоо, гарт байгаа нөөцийг бүрдүүлсэн - нөөцгүй болох босго хэмжээг харгалзан хуваарилсан.",
     "tax-category": "Татварын төрөл",
