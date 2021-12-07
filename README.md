@@ -6,18 +6,18 @@ A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js
 ![Publish & Install](https://github.com/vendure-ecommerce/vendure/workflows/Publish%20&%20Install/badge.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-### [www.vendure.io](https://www.vendure.io/)
+### [www.platform.sale](https://www.platform.sale/)
 
 * [Getting Started](https://www.vendure.io/docs/getting-started/): Get Vendure up and running locally in a matter of minutes with a single command
 * [Live Demo](https://demo.vendure.io/)
-* [Vendure Slack](https://join.slack.com/t/vendure-ecommerce/shared_invite/enQtNzA1NTcyMDY3NTg0LTMzZGQzNDczOWJiMTU2YjAyNWJlMzdmZGE3ZDY5Y2RjMGYxZWNlYTI4NmU4Y2Q1MDNlYzE4MzQ5ODcyYTdmMGU) Join us on Slack for support and answers to your questions
+* [Slack](https://join.slack.com/t/vendure-ecommerce/shared_invite/enQtNzA1NTcyMDY3NTg0LTMzZGQzNDczOWJiMTU2YjAyNWJlMzdmZGE3ZDY5Y2RjMGYxZWNlYTI4NmU4Y2Q1MDNlYzE4MzQ5ODcyYTdmMGU) Join us on Slack for support and answers to your questions
 
 ## Structure
 
 This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna). Several npm packages are published from this repo, which can be found in the `packages/` directory.
 
 ```
-vendure/
+platform/
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
 ├── packages/       # Source for the Vendure server, admin-ui & plugin packages

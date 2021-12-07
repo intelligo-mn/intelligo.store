@@ -11,6 +11,7 @@ import { StateMachineConfig, Transitions } from '../../../common/finite-state-ma
 import { validateTransitionDefinition } from '../../../common/finite-state-machine/validate-transition-definition';
 import { awaitPromiseOrObservable } from '../../../common/utils';
 import { ConfigService } from '../../../config/config.service';
+import { TransactionalConnection } from '../../../connection/transactional-connection';
 import { OrderModification } from '../../../entity/order-modification/order-modification.entity';
 import { Order } from '../../../entity/order/order.entity';
 import { Payment } from '../../../entity/payment/payment.entity';
@@ -18,7 +19,6 @@ import { ProductVariant } from '../../../entity/product-variant/product-variant.
 import { HistoryService } from '../../services/history.service';
 import { PromotionService } from '../../services/promotion.service';
 import { StockMovementService } from '../../services/stock-movement.service';
-import { TransactionalConnection } from '../../transaction/transactional-connection';
 import {
     orderItemsAreAllCancelled,
     orderItemsAreDelivered,
@@ -90,6 +90,9 @@ export class OrderStateMachine {
             }
         }
         if (fromState === 'ArrangingAdditionalPayment') {
+            if (toState === 'Cancelled') {
+                return;
+            }
             const existingPayments = await this.connection.getRepository(data.ctx, Payment).find({
                 relations: ['refunds'],
                 where: {

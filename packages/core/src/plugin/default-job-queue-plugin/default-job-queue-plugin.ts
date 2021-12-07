@@ -1,10 +1,13 @@
 import { Type } from '@vendure/common/lib/shared-types';
 
+import { Job } from '../../job-queue/job';
 import { BackoffStrategy } from '../../job-queue/polling-job-queue-strategy';
 import { PluginCommonModule } from '../plugin-common.module';
 import { VendurePlugin } from '../vendure-plugin';
 
+import { JobRecordBuffer } from './job-record-buffer.entity';
 import { JobRecord } from './job-record.entity';
+import { SqlJobBufferStorageStrategy } from './sql-job-buffer-storage-strategy';
 import { SqlJobQueueStrategy } from './sql-job-queue-strategy';
 
 /**
@@ -16,9 +19,63 @@ import { SqlJobQueueStrategy } from './sql-job-queue-strategy';
  * @docsPage DefaultJobQueuePlugin
  */
 export interface DefaultJobQueueOptions {
+    /**
+     * @description
+     * The interval in ms between polling the database for new jobs. If many job queues
+     * are active, the polling may cause undue load on the database, in which case this value
+     * should be increased to e.g. 1000.
+     *
+     * @description 200
+     */
     pollInterval?: number | ((queueName: string) => number);
+    /**
+     * @description
+     * How many jobs from a given queue to process concurrently.
+     *
+     * @default 1
+     */
     concurrency?: number;
+    /**
+     * @description
+     * The strategy used to decide how long to wait before retrying a failed job.
+     *
+     * @default () => 1000
+     */
     backoffStrategy?: BackoffStrategy;
+    /**
+     * @description
+     * When a job is added to the JobQueue using `JobQueue.add()`, the calling
+     * code may specify the number of retries in case of failure. This option allows
+     * you to override that number and specify your own number of retries based on
+     * the job being added.
+     *
+     * @example
+     * ```TypeScript
+     * setRetries: (queueName, job) => {
+     *   if (queueName === 'send-email') {
+     *     // Override the default number of retries
+     *     // for the 'send-email' job because we have
+     *     // a very unreliable email service.
+     *     return 10;
+     *   }
+     *   return job.retries;
+     * }
+     *  ```
+     * @param queueName
+     * @param job
+     */
+    setRetries?: (queueName: string, job: Job) => number;
+    /**
+     * @description
+     * If set to `true`, the database will be used to store buffered jobs. This is
+     * recommended for production.
+     *
+     * When enabled, a new `JobRecordBuffer` database entity will be defined which will
+     * require a migration when first enabling this option.
+     *
+     * @since 1.3.0
+     */
+    useDatabaseForBuffer?: boolean;
 }
 
 /**
@@ -74,7 +131,7 @@ export interface DefaultJobQueueOptions {
  * Defines the backoff strategy used when retrying failed jobs. In other words, if a job fails
  * and is configured to be re-tried, how long should we wait before the next attempt?
  *
- * By default a job will be retried as soon as possible, but in some cases this is not desirable. For example,
+ * By default, a job will be retried as soon as possible, but in some cases this is not desirable. For example,
  * a job may interact with an unreliable 3rd-party API which is sensitive to too many requests. In this case, an
  * exponential backoff may be used which progressively increases the delay between each subsequent retry.
  *
@@ -94,6 +151,15 @@ export interface DefaultJobQueueOptions {
  *         // A default delay for all other queues
  *         return 1000;
  *       },
+ *       setRetries: (queueName, job) => {
+ *         if (queueName === 'send-email') {
+ *           // Override the default number of retries
+ *           // for the 'send-email' job because we have
+ *           // a very unreliable email service.
+ *           return 10;
+ *         }
+ *         return job.retries;
+ *       }
  *     }),
  *   ],
  * };
@@ -104,20 +170,28 @@ export interface DefaultJobQueueOptions {
  */
 @VendurePlugin({
     imports: [PluginCommonModule],
-    entities: [JobRecord],
+    entities: () =>
+        DefaultJobQueuePlugin.options.useDatabaseForBuffer === true
+            ? [JobRecord, JobRecordBuffer]
+            : [JobRecord],
     configuration: config => {
-        const { pollInterval, concurrency, backoffStrategy } = DefaultJobQueuePlugin.options ?? {};
+        const { pollInterval, concurrency, backoffStrategy, setRetries } =
+            DefaultJobQueuePlugin.options ?? {};
         config.jobQueueOptions.jobQueueStrategy = new SqlJobQueueStrategy({
             concurrency,
             pollInterval,
             backoffStrategy,
+            setRetries,
         });
+        if (DefaultJobQueuePlugin.options.useDatabaseForBuffer === true) {
+            config.jobQueueOptions.jobBufferStorageStrategy = new SqlJobBufferStorageStrategy();
+        }
         return config;
     },
 })
 export class DefaultJobQueuePlugin {
     /** @internal */
-    static options: DefaultJobQueueOptions;
+    static options: DefaultJobQueueOptions = {};
 
     static init(options: DefaultJobQueueOptions): Type<DefaultJobQueuePlugin> {
         DefaultJobQueuePlugin.options = options;

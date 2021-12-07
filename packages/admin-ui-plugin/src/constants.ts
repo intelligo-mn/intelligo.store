@@ -8,11 +8,13 @@ export const defaultLanguage = LanguageCode.en;
 export const defaultAvailableLanguages = [
     LanguageCode.de,
     LanguageCode.en,
+    LanguageCode.mn,
     LanguageCode.es,
     LanguageCode.pl,
     LanguageCode.zh_Hans,
     LanguageCode.zh_Hant,
     LanguageCode.pt_BR,
+    LanguageCode.pt_PT,
     LanguageCode.cs,
     LanguageCode.fr,
     LanguageCode.ru,

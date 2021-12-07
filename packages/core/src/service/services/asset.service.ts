@@ -16,6 +16,7 @@ import { ID, PaginatedList, Type } from '@vendure/common/lib/shared-types';
 import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
 import { unique } from '@vendure/common/lib/unique';
 import { ReadStream } from 'fs-extra';
+import { ReadStream as FSReadStream } from 'fs';
 import mime from 'mime-types';
 import path from 'path';
 import { Readable, Stream } from 'stream';
@@ -29,6 +30,7 @@ import { ChannelAware } from '../../common/types/common-types';
 import { getAssetType, idsAreEqual } from '../../common/utils';
 import { ConfigService } from '../../config/config.service';
 import { Logger } from '../../config/logger/vendure-logger';
+import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Asset } from '../../entity/asset/asset.entity';
 import { OrderableAsset } from '../../entity/asset/orderable-asset.entity';
 import { VendureEntity } from '../../entity/base/base.entity';
@@ -41,7 +43,6 @@ import { AssetEvent } from '../../event-bus/events/asset-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { patchEntity } from '../helpers/utils/patch-entity';
-import { TransactionalConnection } from '../transaction/transactional-connection';
 
 import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
@@ -60,6 +61,12 @@ export interface EntityAssetInput {
     featuredAssetId?: ID | null;
 }
 
+/**
+ * @description
+ * Contains methods relating to {@link Asset} entities.
+ *
+ * @docsCategory services
+ */
 @Injectable()
 export class AssetService {
     private permittedMimeTypes: Array<{ type: string; subtype: string }> = [];
@@ -387,7 +394,7 @@ export class AssetService {
         stream: ReadStream | Readable,
         maybeFilePath?: string,
     ): Promise<CreateAssetResult> {
-        const filePath = stream instanceof ReadStream ? stream.path : maybeFilePath;
+        const filePath = stream instanceof ReadStream || stream instanceof FSReadStream ? stream.path : maybeFilePath;
         if (typeof filePath === 'string') {
             const filename = path.basename(filePath);
             const mimetype = mime.lookup(filename) || 'application/octet-stream';
@@ -475,7 +482,7 @@ export class AssetService {
             focalPoint: null,
             customFields,
         });
-        this.channelService.assignToCurrentChannel(asset, ctx);
+        await this.channelService.assignToCurrentChannel(asset, ctx);
         return this.connection.getRepository(ctx, Asset).save(asset);
     }
 
