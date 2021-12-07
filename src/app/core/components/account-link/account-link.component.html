@@ -7,5 +7,8 @@
 <ng-template #notLoggedIn>
     <a class="btn btn-light" [routerLink]="['account/sign-in']">
         <fa-icon icon="user-circle"></fa-icon>
-        <span class="d-none d-sm-inline ml-1">Sign In</span></a>
+        <span class="d-none d-sm-inline ml-1">{{
+            "global.signin" | translate
+        }}</span></a
+    >
 </ng-template>
