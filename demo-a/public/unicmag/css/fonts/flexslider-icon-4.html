@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">              
+    <head>
+        <meta charset="UTF-8" />  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PunicaTheme - Wordpress Themes</title>
+        <link rel="stylesheet" href="http://punicatheme.com/demo/wp-content/themes/demobar/style.css" media="all"/>
+        <link rel="pingback" href="http://punicatheme.com/demo/xmlrpc.php" />
+        <script type="text/javascript" src="http://punicatheme.com/demo/wp-content/themes/demobar/js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="http://punicatheme.com/demo/wp-content/themes/demobar/js/jquery.framerate.js"></script>
+        <script type="text/javascript" src="http://punicatheme.com/demo/wp-content/themes/demobar/js/imagepreview.js"></script>
+        <script type="text/javascript">
+        
+            var theme_list_open = false;
+        
+            $(document).ready(function () {
+                $().framerate({framerate: 18})
+                $('#res-test a').click(function() {
+                    //console.log($(this));
+                    $('body').css('background', '#111111');
+                    if($(this).hasClass('active')) {
+                        //do noting
+                    } else {
+                        //remove active class and add active to this element
+                        $('#res-test > a.active').removeClass('active');
+                        $(this).addClass('active');
+                    }
+
+                    if($(this).hasClass('desktop')) {
+                        $('#iframe').css({'width' : '100%', 'left' : '0', 'margin-left' : '0' });
+                    } else if ($(this).hasClass('tabletL')) {
+                        $('#iframe').animate({
+                            left: '50%',
+                            top: '50%',
+                            width: '1044px',
+                            height: '768px',
+                            'margin-left' : '-522px',
+                            'margin-top' : '-384px'
+                        }, 500, function() {
+						
+                        });
+                    } else if ($(this).hasClass('tabletP')) {
+                        $('#iframe').animate({
+                            left: '50%',
+                            top: '50%',
+                            width: '788px',
+                            height: '1024px',
+                            'margin-left' : '-399px',
+                            'margin-top' : '-512px'
+                        }, 500, function() {
+						
+                        });
+                    } else if ($(this).hasClass('phoneL')) {
+                        $('#iframe').animate({
+                            left: '50%',
+                            top: '50%',
+                            width: '500px',
+                            height: '320px',
+                            'margin-left' : '-250px',
+                            'margin-top' : '-160px'
+                        }, 500, function() {
+						
+                        });
+                    } else if ($(this).hasClass('phoneP')) {
+                        $('#iframe').animate({
+                            left: '50%',
+                            top: '50%',
+                            width: '340px',
+                            height: '480px',
+                            'margin-left' : '-170px',
+                            'margin-top' : '-240px'
+                        }, 500, function() {
+						
+                        });
+                    }
+                });
+        
+                function fixHeight () {        	
+                    var headerHeight = $("#switcher").height();        	        	
+                    $("#iframe").attr("height", (($(window).height()) - headerHeight) + 'px');        	
+                }
+        	
+                $(window).resize(function () {
+                    var wsize =  $(window).width();
+                    var size ="Window size is:" + $(window).width();                    
+                    fixHeight();        	
+                }).resize();
+        	
+                $("#theme_select").click( function () {
+                    if (theme_list_open == true) {        	
+                        $(".center ul li ul").hide();        		
+                        theme_list_open = false;        		
+                    } else {        		
+                        $(".center ul li ul").show();         		        		
+                        theme_list_open = true;        		
+                    }        		
+                    return false;        	
+                });
+            });
+        
+        </script>
+        <script type="text/javascript">
+//<![CDATA[
+
+if (top != self) {
+window.top.location.href=location;
+}
+        //]]>
+        </script>
+        <link rel='dns-prefetch' href='//s.w.org' />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/punicatheme.com\/demo\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.4"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://punicatheme.com/demo/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://punicatheme.com/demo/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://punicatheme.com/demo/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.8.4" />
+    </head>
+
+    <body>        
+        
+
+        <div id="switcher">
+            <div class="center">
+                <ul>
+                    <li id="logo"><a href="#" target="_blank"></a></li>
+                    <li id="res-test">
+                        <a href="#" class="desktop active" title="Desktop">Desktop</a>
+                        <a href="#" class="tabletL" title="Tablet Landscape">Tablet Landscape</a> 
+                        <a href="#" class="tabletP" title="Tablet Portrait">Tablet Portrait</a> 
+                        <a href="#" class="phoneL" title="Smartphone Landscape">Smartphone Landscape</a> 
+                        <a href="#" class="phoneP" title="Smartphone Portrait">Smartphone Portrait</a> </li>
+                    <li id="theme_list"> <a id="theme_select" href="#">Alana</a>
+
+                        <ul class="themedropdown">
+                                                            <li>
+                                    <a href="http://punicatheme.com/demo/2017/08/12/alana/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2017/08/preview.jpg" rel="http://punicatheme.com/demo/2017/08/12/alana/" class="screenshot"><span class="themetitle"><span class="html">Wordpress</span>Alana</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2017/01/19/avex/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2017/01/priviews.jpg" rel="http://punicatheme.com/demo/2017/01/19/avex/" class="screenshot"><span class="themetitle"><span class="html">Wordpress</span>Avex</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2015/06/16/unicmag-2/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2015/06/590x300.jpg" rel="http://punicatheme.com/demo/2015/06/16/unicmag-2/" class="screenshot"><span class="themetitle"><span class="html">Wordpress</span>UnicMag</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2015/03/21/lookmag-2/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2015/03/590x330.jpg" rel="http://punicatheme.com/demo/2015/03/21/lookmag-2/" class="screenshot"><span class="themetitle"><span class="html">Wordpress</span>LookMag</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2015/02/22/unicmag/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2015/02/Preview-002.jpg" rel="http://punicatheme.com/demo/2015/02/22/unicmag/" class="screenshot"><span class="themetitle"><span class="html">HTML5</span>UnicMag</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2014/11/21/lookmag/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2014/11/590x3001.jpg" rel="http://punicatheme.com/demo/2014/11/21/lookmag/" class="screenshot"><span class="themetitle"><span class="html">HTML5</span>LookMag</span></a>
+                                </li>
+                                                                <li>
+                                    <a href="http://punicatheme.com/demo/2014/05/01/punicpress/" data-rel="http://punicatheme.com/demo/wp-content/uploads/2013/04/590x3002.png" rel="http://punicatheme.com/demo/2014/05/01/punicpress/" class="screenshot"><span class="themetitle"><span class="html">HTML5</span>PunicPress</span></a>
+                                </li>
+                                                            
+                        </ul>
+
+                    </li>
+                    <li class="remove_frame" rel="http://punicatheme.com/demo/alana/"><a href="http://punicatheme.com/demo/alana/"></a></li>
+                    <li class="purchase" rel="https://themeforest.net/item/alana-a-responsive-wordpress-blog-magazine-theme/20242535?s_rank=1"><a target="_blank" href="https://themeforest.net/item/alana-a-responsive-wordpress-blog-magazine-theme/20242535?s_rank=1"></a></li>
+            </div>
+        </ul>
+    </div>
+    <iframe id="iframe" src="http://punicatheme.com/demo/alana/" frameborder="0" height="100%"></iframe>
+</body>
+</html>
