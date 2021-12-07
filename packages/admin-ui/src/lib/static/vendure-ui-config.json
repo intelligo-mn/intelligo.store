@@ -7,6 +7,6 @@
   "defaultLanguage": "mn",
   "availableLanguages": ["en", "es", "mn", "zh_Hant", "zh_Hans", "pl", "de", "pt_BR", "pt_PT", "cs", "fr", "ru", "uk", "it"],
   "brand": "",
-  "hideVendureBranding": false,
+  "hideVendureBranding": true,
   "hideVersion": false
 }
