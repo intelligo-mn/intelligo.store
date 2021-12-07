@@ -89,7 +89,7 @@ export class CoreModule {
     }
 
     private initUiTitle() {
-        const title = getAppConfig().brand || 'Intelligo e-commerce platform';
+        const title = getAppConfig().brand || 'Intelligo E-Commerce Platform';
 
         this.titleService.setTitle(title);
     }
