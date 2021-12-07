@@ -1,0 +1,92 @@
+#theme-option {
+    position:fixed;
+    top:50px;
+    left:-275px;
+    z-index:99999;
+}
+#theme-option .theme-opt-wrapper {
+    width:275px;
+    background:#FFF;
+    border:1px solid #e1e1e1;
+    padding:10px 20px 20px 20px;
+    float:left;
+}
+.theme-opt-wrapper p {
+    display:block;
+    width:100%;
+    background:none;
+}
+.theme-opt-wrapper .reset {
+    display:inline-block;
+    padding: 5px 15px;
+    background-color: #000;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-size: 11px;
+}	
+.theme-opt-wrapper ul {
+    margin: 0 0 15px 0;
+    padding:0;
+    float:left;
+}
+.theme-opt-wrapper ul li {
+    list-style:none;
+    float:left;
+    margin:0 1px 1px 0;
+}
+.theme-opt-wrapper ul li a {
+    display:block;
+    width:32px;
+    height:32px;    
+    background-size:0 0;
+    background-image: url('../images/background/switch-color-active.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #CCC;
+    float:left;
+    opacity:1;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.theme-opt-wrapper ul.choose-color a:hover,
+.theme-opt-wrapper ul.choose-color a.active { background-size:10px 10px;}
+
+.color.blue 		{ background-color: #3b5998 !important; }
+.color.cyan 		{ background-color: #38d199 !important; }
+.color.pink 		{ background-color: #ff0094 !important; }
+.color.green 		{ background-color: #89b424 !important; }
+.color.red	 		{ background-color: #db0000 !important; }
+.color.oran	 		{ background-color: #f66200 !important; }
+.color.purple	 	{ background-color: #8d84e4 !important; }
+
+.theme-opt-wrapper ul li a:hover {
+    opacity:.5;
+	filter: alpha(opacity=50);
+}	
+#theme-option .open-close-button {
+    width:30px;
+    height:40px;
+    float:left;
+    margin:0;
+    background:red;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    background-color: #FFF;
+    line-height: 38px;
+    text-align: center;
+    font-size: 18px;
+    border-radius:0 2px 2px 0;
+    -webkit-border-radius:0 2px 2px 0;
+    -moz-border-radius:0 2px 2px 0;
+    border:1px solid #e1e1e1;
+    margin-left:-1px;
+    border-left:0;
+}
+
+
