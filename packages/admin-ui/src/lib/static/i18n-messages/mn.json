@@ -3,7 +3,7 @@
     "create-new-administrator": "Шинэ админ үүсгэх"
   },
   "asset": {
-    "add-asset": "Asset нэмэх",
+    "add-asset": "Файл нэмэх",
     "add-asset-with-count": "Add {count, plural, 0 {assets} one {1 asset} other {{count} assets}}",
     "assets-selected-count": "{ count } assets сонгогдсон",
     "dimensions": "Хэмжүүрүүд",
