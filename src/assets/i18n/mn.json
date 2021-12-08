@@ -1,8 +1,8 @@
 {
     "global": {
-        "edit" : "Edit",
-        "orders" : "Orders",
-        "dashboard" : "Dashboard",
+        "edit": "Edit",
+        "orders": "Orders",
+        "dashboard": "Dashboard",
         "shipping": "Shipping",
         "track-my-order": "Track my order",
         "terms-and-condition": "Terms & Conditions",
@@ -27,7 +27,14 @@
         "total": "Total",
         "remember-me": "Remember me",
         "register": "Register",
-        "forgot": "Forgot password"
+        "forgot": "Forgot password",
+        "page-not-found": "Page not found",
+        "change": "Change",
+        "next": "Next",
+        "or": "Or",
+        "account": "Account",
+        "payment": "Payment",
+        "complete": "Complete"
     },
     "home": {
         "hero-title": "platform.sale storefront",
@@ -36,9 +43,9 @@
     "account": {
         "orders": "Orders",
         "dashboard": "Dashboard",
-        "address-book" : "Address book",
+        "address-book": "Address book",
         "personal-details": "Personal details",
-        "change-credentials" : "Change credentials",
+        "change-credentials": "Change credentials",
         "sign-out": "Sign-out",
         "update-address": "Update address",
         "change-password": "Change password",
@@ -52,6 +59,7 @@
         "verify-new-email-address": "Verify new email address",
         "firstname": "First name",
         "lastname": "Last name",
+        "email": "Email address",
         "phone-number": "Phone number",
         "update-details": "Update details",
         "order": "Order",
@@ -61,6 +69,25 @@
         "order-total": "Total",
         "order-last-updated": "Last updated",
         "register": "Register",
-        "create-account": "Create account"
+        "create-account": "Create account",
+        "already-have-account": "Already have account"
     },
+    "checkout": {
+        "thanks-order": "Thank you for your order!",
+        "placed": "Placed",
+        "expiry": "Expiry",
+        "year": "Year",
+        "month": "Month",
+        "complete-order": "Complete order",
+        "payment-title": "Pay with method",
+        "payment-message": "This is an example payment form. Do not use real card details!",
+        "card-number": "Credit card #",
+        "shipping-address": "Shipping address",
+        "select-address": "Select address",
+        "add-new-address": "Add new address",
+        "customer-details": "Customer details",
+        "send-to-address": "Send to this address",
+        "shipping-method": "Shipping method",
+        "proceed-to-payment": "Proceed to payment"
+    }
 }
