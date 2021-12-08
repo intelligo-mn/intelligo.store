@@ -1,41 +1,57 @@
-<div *ngIf="cart;" class="cart-contents">
+<div *ngIf="cart" class="cart-contents">
     <div class="items">
         <ng-container *ngFor="let line of cart.lines; trackBy: trackByFn">
             <div class="item" [class.has-discount]="isDiscounted(line)">
                 <div class="thumb">
-                    <img [src]="line.featuredAsset?.preview + '?preset=tiny'">
+                    <img [src]="line.featuredAsset?.preview + '?preset=tiny'" />
                 </div>
                 <div class="details">
                     <div class="name">{{ line.productVariant?.name }}</div>
                     <div class="figures">
-                        <div class="price">{{ line.unitPriceWithTax | formatPrice }}</div>
+                        <div class="price">
+                            {{ line.unitPriceWithTax | formatPrice }}
+                        </div>
                         <div class="qty-controls">
-                            <button class="btn btn-sm"
-                                    *ngIf="canAdjustQuantities"
-                                    (click)="decrement(line)">
-                                <fa-icon aria-label="Remove 1" icon="minus"></fa-icon>
+                            <button
+                                class="btn btn-sm"
+                                *ngIf="canAdjustQuantities"
+                                (click)="decrement(line)"
+                            >
+                                <fa-icon
+                                    aria-label="Remove 1"
+                                    icon="minus"
+                                ></fa-icon>
                             </button>
                             <div class="qty">{{ line.quantity }}</div>
-                            <button class="btn btn-sm"
-                                    *ngIf="canAdjustQuantities"
-                                    (click)="increment(line)">
-                                <fa-icon aria-label="Add 1" icon="plus"></fa-icon>
+                            <button
+                                class="btn btn-sm"
+                                *ngIf="canAdjustQuantities"
+                                (click)="increment(line)"
+                            >
+                                <fa-icon
+                                    aria-label="Add 1"
+                                    icon="plus"
+                                ></fa-icon>
                             </button>
                         </div>
                         <div class="total">
-                            <div class="list-price">{{ line.linePriceWithTax | formatPrice }}</div>
+                            <div class="list-price">
+                                {{ line.linePriceWithTax | formatPrice }}
+                            </div>
                             <div class="discounted">
-                                {{ line.discountedLinePriceWithTax | formatPrice }}
+                                {{
+                                    line.discountedLinePriceWithTax
+                                        | formatPrice
+                                }}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </ng-container>
     </div>
     <div class="order-adjustments" *ngIf="cart.discounts.length">
-        Order adjustments:
+        {{ "global.order-adjuctment" | translate }}:
         <div class="adjustment" *ngFor="let discount of cart.discounts">
             <div>{{ discount.description }}</div>
             <div>{{ discount.amountWithTax | formatPrice }}</div>
@@ -43,15 +59,18 @@
     </div>
     <div class="shipping">
         <div class="shipping-price">
-            <span>Shipping:</span>
+            <span>{{ "global.shipping" | translate }}:</span>
             <span>{{ cart.shippingWithTax | formatPrice }}</span>
         </div>
-        <div class="shipping-method" *ngFor="let shippingLine of cart.shippingLines">
+        <div
+            class="shipping-method"
+            *ngFor="let shippingLine of cart.shippingLines"
+        >
             {{ shippingLine.shippingMethod.name }}
         </div>
     </div>
     <div class="totals">
-        <span>Total:</span>
+        <span>{{ "global.total" | translate }}:</span>
         <span>{{ cart.totalWithTax | formatPrice }}</span>
     </div>
 </div>
