@@ -3,9 +3,9 @@
     "create-new-administrator": "Шинэ админ үүсгэх"
   },
   "asset": {
-    "add-asset": "Asset нэмэх",
+    "add-asset": "Файл нэмэх",
     "add-asset-with-count": "Add {count, plural, 0 {assets} one {1 asset} other {{count} assets}}",
-    "assets-selected-count": "{ count } assets сонгогдсон",
+    "assets-selected-count": "{ count } файлууд сонгогдсон",
     "dimensions": "Хэмжүүрүүд",
     "focal-point": "Focal point",
     "notify-create-assets-success": "Created {count, plural, one {new Asset} other {{count} new Assets}}",
@@ -21,7 +21,7 @@
     "update-focal-point": "Оноо шинэчлэх",
     "update-focal-point-error": "Focal point шинэчилж чадсангүй",
     "update-focal-point-success": "Focal point шинэчлэх",
-    "upload-assets": "Файлууд хуулсан",
+    "upload-assets": "Файлууд хуулах",
     "uploading": "Хуулж байна..."
   },
   "breadcrumb": {
@@ -52,8 +52,8 @@
     "zones": "Бүсүүд"
   },
   "catalog": {
-    "add-facet-value": "Facet утга нэмэх",
-    "add-facets": "Facet-ууд нэмэх",
+    "add-facet-value": "Шүүлтүүр утга нэмэх",
+    "add-facets": "Шүүлтүүрүүд нэмэх",
     "add-option": "Боломжууд нэмэх",
     "assign-product-to-channel-success": "Бүтээгдэхүүнийг \"{ channel }\" амжилттай хуваариллаа",
     "assign-products-to-channel": "Бүтээгдэхүүнүүд channel д хуваарилах",
@@ -72,8 +72,8 @@
     "confirm-delete-collection-and-children-body": "Энэ цуглуулгыг устгаснаар хүүхдийн бүх цуглуулгыг мөн устгана",
     "confirm-delete-country": "Улс устгах уу?",
     "confirm-delete-customer": "Хэрэглэгч устгах уу?",
-    "confirm-delete-facet": "Facet устгах уу?",
-    "confirm-delete-facet-value": "Facet-ийн утга устгах уу?",
+    "confirm-delete-facet": "Шүүлтүүр устгах уу?",
+    "confirm-delete-facet-value": "Шүүлтүүрийн утга устгах уу?",
     "confirm-delete-product": "Бүтээгдэхүүн устгах уу?",
     "confirm-delete-product-variant": "Бүтээгдэхүүний сонголт устгах уу?",
     "confirm-delete-promotion": "Урамшуулал устгах уу?",
@@ -82,7 +82,7 @@
     "confirm-deletion-of-unused-variants-body": "Дараах бүтээгдэхүүний хувилбарууд шинэ сонголтууд нэмэгдсэнээр хуучирсан. Бүтээгдэхүүний шинэ хувилбаруудыг үүсгэх явцад тэдгээрийг устгах болно.",
     "confirm-deletion-of-unused-variants-title": "Хуучирсан бүтээгдэхүүний хувилбаруудыг устгах уу?",
     "create-new-collection": "Шинэ багц үүсгэх",
-    "create-new-facet": "Create new facet",
+    "create-new-facet": "Шинэ шүүлтүүр нэмэх",
     "create-new-product": "Бүтээгдэхүүн нэмэх",
     "created-new-variants-success": "Successfully created {count} new {count, plural, one {variant} other {variants}}",
     "default-variant": "Үндсэн хувилбар",
@@ -92,7 +92,7 @@
     "duplicate-sku-warning": "Бүх барааны код /SKU/ нь давтагдахгүй байгаа эсэхийг шалгана уу",
     "edit-options": "Боломжууд засах",
     "expand-all-collections": "Бүх багц дэлгэж харах",
-    "facet-values": "Facet утгууд",
+    "facet-values": "Шүүлтүүр утгууд",
     "filter-by-name": "Нэрээр шүүх",
     "filter-by-name-or-sku": "Нэр болон барааны код /SKU/ ээр шүүх",
     "filters": "Шүүлтүүрүүд",
