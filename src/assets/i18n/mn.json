@@ -13,7 +13,21 @@
         "privacy-notice": "Privacy notice",
         "subscribe": "Subscribe",
         "subscribe-message": "Subscribe to our mailing list for exclusive news and offers!",
-        "signin": "Sign in"
+        "signin": "Sign in",
+        "full-name": "Full name",
+        "company": "Company",
+        "street-line-1": "Street line 1",
+        "street-line-2": "Street line 2",
+        "city": "City",
+        "province": "Province",
+        "post-code": "Post code",
+        "country": "Country",
+        "okey": "Okey",
+        "order-adjuctments": "Order adjuctments",
+        "total": "Total",
+        "remember-me": "Remember me",
+        "register": "Register",
+        "forgot": "Forgot password"
     },
     "home": {
         "hero-title": "platform.sale storefront",
@@ -45,6 +59,8 @@
         "order-code": "Order code",
         "order-status": "Status",
         "order-total": "Total",
-        "order-last-updated": "Last updated"
-    }
+        "order-last-updated": "Last updated",
+        "register": "Register",
+        "create-account": "Create account"
+    },
 }
