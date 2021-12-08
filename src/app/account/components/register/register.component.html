@@ -2,7 +2,7 @@
     <vsf-centered-card>
         <input
             class="form-control"
-            placeholder="First name"
+            placeholder="{{'global.firstname' | translate}}"
             name="firstName"
             required
             [disabled]="registrationSent"
@@ -10,7 +10,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="Last name"
+            placeholder="{{'global.lastname' | translate}}"
             name="lastName"
             required
             [disabled]="registrationSent"
@@ -18,7 +18,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="Email address"
+            placeholder="{{'global.email' | translate}}"
             name="emailAddress"
             required
             type="email"

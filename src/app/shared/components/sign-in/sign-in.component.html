@@ -2,7 +2,7 @@
     <vsf-centered-card>
         <input
             class="form-control"
-            placeholder="Email address"
+            placeholder="{{'global.email' | translate}}"
             name="emailAddress"
             type="email"
             email
@@ -11,7 +11,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="Password"
+            placeholder="{{'global.password' | translate}}"
             type="password"
             name="password"
             required
@@ -26,7 +26,7 @@
                 [(ngModel)]="rememberMe"
             />
             <label class="form-check-label" for="rememberMe">
-                Remember me
+                {{'global.remember-me' | translate}}
             </label>
         </div>
 
