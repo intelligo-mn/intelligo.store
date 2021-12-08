@@ -34,12 +34,29 @@
         "or": "Or",
         "account": "Account",
         "payment": "Payment",
-        "complete": "Complete"
+        "complete": "Complete",
+        "search": "Search...",
+        "filters": "Filters",
+        "result": "Result for ",
+        "load-more": "Load more",
+        "no-result": "No result",
+        "add-to-card": "Add to card",
+        "view-card": "View card",
+        "from": "From",
+        "home": "Home",
+        "card": "Card",
+        "checkout": "Check out",
+        "card-empty": "Card is empty",
+        "share": "Share",
+        "full-screen": "Toggle fullscreen",
+        "close": "Close",
+        "previous": "Previous"
     },
     "home": {
         "hero-title": "platform.sale storefront",
         "top-sellers": "Top Sellers"
     },
+    "core": {},
     "account": {
         "orders": "Orders",
         "dashboard": "Dashboard",

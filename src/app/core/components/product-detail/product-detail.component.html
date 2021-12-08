@@ -1,21 +1,35 @@
 <div class="container">
-    <vsf-collection-breadcrumbs [breadcrumbs]="breadcrumbs"
-                                *ngIf="product"
-                                class="mb-2"
-                                [linkLast]="true"></vsf-collection-breadcrumbs>
+    <vsf-collection-breadcrumbs
+        [breadcrumbs]="breadcrumbs"
+        *ngIf="product"
+        class="mb-2"
+        [linkLast]="true"
+    ></vsf-collection-breadcrumbs>
     <ng-template [ngIf]="product" [ngIfElse]="placeholder">
         <div class="row">
             <div class="col-12 col-md-6 text-center">
-                <vsf-asset-gallery [assets]="product.assets"
-                                   [selectedAssetId]="product.featuredAsset?.id"></vsf-asset-gallery>
+                <vsf-asset-gallery
+                    [assets]="product.assets"
+                    [selectedAssetId]="product.featuredAsset?.id"
+                ></vsf-asset-gallery>
             </div>
             <div class="col-12 col-md-6" #zoomPreviewArea>
                 <h2 class="display-4 product-name">{{ product.name }}</h2>
                 <div class="purchase-options">
-                    <div class="variant-selector" *ngIf="product.variants.length > 1">
-                        <select [(ngModel)]="selectedVariant" class="form-control">
-                            <option *ngFor="let variant of product.variants"
-                                    [ngValue]="variant">{{ variant.name }}</option>
+                    <div
+                        class="variant-selector"
+                        *ngIf="product.variants.length > 1"
+                    >
+                        <select
+                            [(ngModel)]="selectedVariant"
+                            class="form-control"
+                        >
+                            <option
+                                *ngFor="let variant of product.variants"
+                                [ngValue]="variant"
+                            >
+                                {{ variant.name }}
+                            </option>
                         </select>
                     </div>
                     <div class="add-to-cart-row">
@@ -26,17 +40,28 @@
                             {{ selectedVariant?.priceWithTax | formatPrice }}
                         </div>
                         <div class="qty mr-md-2 ml-2">
-                            <input type="number" min="0" max="99" placeholder="Qty" [(ngModel)]="qty"
-                                   class="form-control form-control-lg">
+                            <input
+                                type="number"
+                                min="0"
+                                max="99"
+                                placeholder="Qty"
+                                [(ngModel)]="qty"
+                                class="form-control form-control-lg"
+                            />
                         </div>
-                        <button [disabled]="qty === 0"
-                                class="btn btn-primary btn-lg"
-                                (click)="addToCart(selectedVariant, qty)">Add to cart
+                        <button
+                            [disabled]="qty === 0"
+                            class="btn btn-primary btn-lg"
+                            (click)="addToCart(selectedVariant, qty)"
+                        >
+                            {{ "global.add-to-card" | translate }}
                         </button>
                     </div>
                 </div>
-                <div class="description" [innerHTML]="product.description">
-                </div>
+                <div
+                    class="description"
+                    [innerHTML]="product.description"
+                ></div>
             </div>
         </div>
     </ng-template>
@@ -56,18 +81,29 @@
     </ng-template>
 </div>
 
-<ng-template #addedToCartTemplate let-variant="variant" let-quantity="quantity" let-close="closeFn">
+<ng-template
+    #addedToCartTemplate
+    let-variant="variant"
+    let-quantity="quantity"
+    let-close="closeFn"
+>
     <div class="add-to-cart-notification">
         <div class="thumb mr-2">
             <img
                 class=""
-                [src]="(variant.featuredAsset?.preview || product.featuredAsset?.preview) + '?preset=tiny'"
+                [src]="
+                    (variant.featuredAsset?.preview ||
+                        product.featuredAsset?.preview) + '?preset=tiny'
+                "
                 alt="product thumbnail"
             />
         </div>
         <div>{{ quantity }} x {{ variant.name }}</div>
     </div>
-    <button class="btn btn-sm btn-outline-primary btn-block" (click)="viewCartFromNotification(close)">
-        View cart
+    <button
+        class="btn btn-sm btn-outline-primary btn-block"
+        (click)="viewCartFromNotification(close)"
+    >
+        {{ "global.view-card" | translate }}
     </button>
 </ng-template>
