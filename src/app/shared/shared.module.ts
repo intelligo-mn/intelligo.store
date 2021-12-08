@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogButtonsDirective } from '../core/components/modal-dialog/dialog-buttons.directive';
 import { DialogComponentOutletComponent } from '../core/components/modal-dialog/dialog-component-outlet.component';
@@ -53,12 +54,13 @@ const IMPORTS = [
     ReactiveFormsModule,
     OverlayModule,
     RouterModule,
+    TranslateModule
 ];
 
 @NgModule({
     declarations: SHARED_DECLARATIONS,
     imports: IMPORTS,
-    exports: [...IMPORTS, ...SHARED_DECLARATIONS],
+    exports: [...IMPORTS, ...SHARED_DECLARATIONS, TranslateModule, CommonModule],
 })
 export class SharedModule {
 }
