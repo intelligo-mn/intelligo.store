@@ -53,9 +53,9 @@
 		"about": "Тухай",
 		"about-title": "Бидний тухай",
 		"account": "Хэрэглэгч",
-		"add-to-card": "Карт нэмэх",
-		"card": "Карт",
-		"card-empty": "Карт нэмээгүй байна",
+		"add-to-card": "Сагсанд нэмэх",
+		"card": "Сагс",
+		"card-empty": "Сагс хоосон байна",
 		"change": "Өөрчлөх",
 		"checkout": "Төлбөр төлөх",
 		"city": "Хот",
@@ -74,7 +74,7 @@
 		"home": "Нүүр",
 		"load-more": "Цааш үзэх",
 		"next": "Дараагийн",
-		"no-result": "Үр дүнгүй",
+		"no-result": "Хайлтанд тохирох өгөгдөл олдсонгүй",
 		"okey": "Ок",
 		"or": "бас",
 		"order-adjuctments": "Order adjuctments",
@@ -100,7 +100,7 @@
 		"terms-and-condition": "Terms & Conditions",
 		"total": "Нийт",
 		"track-my-order": "Миний захиалгыг хяна",
-		"view-card": "Карт харах"
+		"view-card": "Сагс харах"
 	},
 	"home": {
 		"hero-title": "platform.sale storefront",

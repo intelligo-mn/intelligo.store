@@ -55,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
             registrationStrategy: "registerWithDelay:5000",
         }),
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
     constructor(
