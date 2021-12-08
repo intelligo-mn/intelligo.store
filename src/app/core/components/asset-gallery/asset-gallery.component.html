@@ -1,24 +1,35 @@
 <div class="product-image">
     <div class="main-image">
-        <img *ngIf="selectedAsset" [src]="selectedAsset | assetPreview:540"
-             #mainPreview
-             class="img-fluid main-preview"
-             height="500"
-             (click)="openImage(selectedAsset.id)">
+        <img
+            *ngIf="selectedAsset"
+            [src]="selectedAsset | assetPreview: 540"
+            #mainPreview
+            class="img-fluid main-preview"
+            height="500"
+            (click)="openImage(selectedAsset.id)"
+        />
     </div>
     <div class="alt-images" *ngIf="1 < assets.length">
-        <div *ngFor="let asset of assets"
-             class="alt-image"
-             [class.selected]="selectedAsset.id === asset.id"
-             (click)="selectImage(asset.id)">
-            <img [src]="asset | assetPreview:'tiny'">
+        <div
+            *ngFor="let asset of assets"
+            class="alt-image"
+            [class.selected]="selectedAsset.id === asset.id"
+            (click)="selectImage(asset.id)"
+        >
+            <img [src]="asset | assetPreview: 'tiny'" />
         </div>
     </div>
 </div>
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <!--<ng-template #overlayTemplate>-->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" #photoswipeModal>
+<div
+    class="pswp"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+    #photoswipeModal
+>
     <!-- Background of PhotoSwipe.
          It's a separate element as animating opacity is faster than rgba(). -->
     <div class="pswp__bg"></div>
@@ -37,10 +48,22 @@
             <div class="pswp__top-bar">
                 <!--  Controls are self-explanatory. Order can be changed. -->
                 <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <button
+                    class="pswp__button pswp__button--close"
+                    title="{{ 'global.close' | translate }} (Esc)"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--share"
+                    title="{{ 'global.share' | translate }}"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--fs"
+                    title="{{ 'global.fulls-screen' | translate }}"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--zoom"
+                    title="Zoom in/out"
+                ></button>
 
                 <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get class pswp__preloader--active when preloader is running -->
@@ -53,14 +76,22 @@
                 </div>
             </div>
 
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div
+                class="
+                    pswp__share-modal pswp__share-modal--hidden pswp__single-tap
+                "
+            >
                 <div class="pswp__share-tooltip"></div>
             </div>
 
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
+            <button
+                class="pswp__button pswp__button--arrow--left"
+                title="{{ 'global.previous' | translate }} (arrow left)"
+            ></button>
+            <button
+                class="pswp__button pswp__button--arrow--right"
+                title="{{ 'global.next' | translate }} (arrow right)"
+            ></button>
 
             <div class="pswp__caption">
                 <div class="pswp__caption__center"></div>

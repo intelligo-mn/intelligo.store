@@ -1,7 +1,13 @@
 <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header" [ngClass]="options.type">
         <strong class="mr-auto">{{ options.title }}</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" (click)="close.next()">
+        <button
+            type="button"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+            (click)="close.next()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -10,7 +16,12 @@
             {{ options.message }}
         </ng-container>
         <ng-container *ngIf="options.templateRef">
-            <ng-container *ngTemplateOutlet="options.templateRef; context: options.templateContext"></ng-container>
+            <ng-container
+                *ngTemplateOutlet="
+                    options.templateRef;
+                    context: options.templateContext
+                "
+            ></ng-container>
         </ng-container>
     </div>
 </div>
