@@ -1,0 +1,62 @@
+@import "variables";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    height: 100vh;
+    width: calc(100vw - 3rem);
+    padding: $spacer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-102vw) translateX(3rem);
+    transition: transform 0.3s;
+    background-color: $gray-100;
+    z-index: $zindex-dropdown;
+    overflow: auto;
+    box-shadow: $box-shadow;
+    font-size: $font-size-lg;
+
+    @include media-breakpoint-up(sm) {
+        display: none;
+    }
+
+    &.visible {
+        transform: translateX(0);
+    }
+
+    > ul {
+        margin: 0 $spacer;
+    }
+}
+
+button.close {
+    position: absolute;
+    top: $spacer;
+    right: $spacer * 2;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul.expandable {
+    overflow: hidden;
+    max-height: 0;
+    &.expanded {
+        max-height: 1000px;
+    }
+}
+
+.level0 {
+    margin-bottom: $spacer;
+}
+.level1 {
+    margin-left: $spacer;
+}
+.level2 {
+    margin-left: $spacer * 1.5;
+}

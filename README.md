@@ -8,9 +8,7 @@ A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js
 
 ### [www.platform.sale](https://www.platform.sale/)
 
-* [Getting Started](https://www.vendure.io/docs/getting-started/): Get Vendure up and running locally in a matter of minutes with a single command
-* [Live Demo](https://demo.vendure.io/)
-* [Slack](https://join.slack.com/t/vendure-ecommerce/shared_invite/enQtNzA1NTcyMDY3NTg0LTMzZGQzNDczOWJiMTU2YjAyNWJlMzdmZGE3ZDY5Y2RjMGYxZWNlYTI4NmU4Y2Q1MDNlYzE4MzQ5ODcyYTdmMGU) Join us on Slack for support and answers to your questions
+* [Live Demo](https://demo.platform.sale/)
 
 ## Structure
 
@@ -20,7 +18,7 @@ This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna).
 platform/
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
-├── packages/       # Source for the Vendure server, admin-ui & plugin packages
+├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
 ├── scripts/
     ├── changelog/  # Scripts used to generate the changelog based on the git history
     ├── codegen/    # Scripts used to generate TypeScript code from the GraphQL APIs
@@ -29,7 +27,7 @@ platform/
 
 ## Development
 
-The following instructions are for those who want to develop the Vendure core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* Vendure, please see the [Getting Started guide](https://www.vendure.io/docs/getting-started/).
+The following instructions are for those who want to develop the platform.sale core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* platform.sale.
 
 ### 1. Install top-level dependencies
 
