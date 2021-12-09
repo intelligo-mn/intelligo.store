@@ -1,0 +1,34 @@
+<div class="nav-wrapper">
+    <ul class="nav" *ngIf="collectionTree$ | async as tree">
+        <li class="nav-item" *ngFor="let collection of tree.children"
+            (mouseenter)="onMouseEnter(collection)"
+            (mouseleave)="close($event)">
+            <a class="nav-link"
+               [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
+               (touchstart)="onTopLevelClick($event, collection)"
+               [routerLink]="['/category', collection.slug ]">{{ collection.name }}</a>
+        </li>
+    </ul>
+</div>
+
+<ng-template #menuTemplate>
+    <div class="collections-menu-sub-collections"
+         *ngIf="activeCollection?.children?.length"
+         (touchstart)="captureTouchStart($event)"
+         (mouseenter)="onMouseEnter(activeCollection)"
+         (mouseleave)="close()"
+    >
+        <div class="container d-flex flex-wrap">
+            <div class="level-1-block" *ngFor="let level1 of activeCollection.children">
+                <vsf-collection-card [collection]="level1"></vsf-collection-card>
+                <ng-container *ngFor="let level2 of level1.children">
+                    <a class="level-2-link"
+                       [routerLink]="['/category', level2.slug]"
+                       (click)="close()">
+                        {{ level2.name }}
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
