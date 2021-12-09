@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  create
+
+env:
+  CI: true
+  node: 12.x
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ env.node }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.node }}
+    - name: Install & build
+      run: |
+        yarn install
+        yarn build:ssr
+    - name: Branch name
+      id: branch_name
+      run: |
+        echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+        echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+        echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+    - name: Zip artifacts
+      env:
+        TAG_NAME: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+      run: |
+        mkdir artifacts
+        zip -r artifacts/vendure-storefront-build-$TAG_NAME.zip dist
+    - name: Deploy to S3
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'eu-central-1'
+        SOURCE_DIR: 'artifacts'
+        DEST_DIR: ${{ steps.branch_name.outputs.SOURCE_TAG }}

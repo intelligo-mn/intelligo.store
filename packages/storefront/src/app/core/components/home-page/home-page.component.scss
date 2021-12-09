@@ -1,0 +1,55 @@
+@import "variables";
+
+$spacer: 1rem;
+
+.hero {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: $spacer * 3 $spacer;
+    color: #d2d2d2;
+    background-size: cover;
+    position: relative;
+    background-position: bottom;
+    min-height: 70vh;
+
+    .logo {
+        opacity: 0.8;
+        max-width: 100%;
+        margin: $spacer;
+    }
+
+    .title {
+        position: absolute;
+        mix-blend-mode: overlay;
+        color: #b1b1b1;
+        line-height: 0.85em;
+        font-size: 20vw;
+        bottom: 1vh;
+    }
+
+    @media all and (min-width: 768px) {
+        .title {
+            font-size: 12vw;
+        }
+
+        .scene {
+            height: 400px;
+        }
+    }
+}
+
+.top-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-row-gap: $spacer;
+    justify-content: space-around;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    grid-row-gap: $spacer;
+    justify-content: space-around;
+}
