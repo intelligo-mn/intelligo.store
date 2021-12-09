@@ -1,0 +1,10 @@
+@import "variables";
+
+.dropdown-content {
+    z-index: $zindex-dropdown;
+    background-color: $white;
+    box-shadow: $box-shadow;
+    width: 100%;
+    overflow: auto;
+}
+
