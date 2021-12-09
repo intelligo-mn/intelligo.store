@@ -1,0 +1,86 @@
+<vsf-layout>
+    <vsf-layout-header>
+        <div class="header">
+            <div class="container">
+                <vsf-mobile-menu-toggle></vsf-mobile-menu-toggle>
+                <a
+                    [routerLink]="['/']"
+                    class="logo-link d-none d-md-inline-block"
+                >
+                    <img
+                        src="assets/cube-logo-line-icon-nostroke.png"
+                        class="logo"
+                        alt="Intelligo E-Commerce"
+                    />
+                </a>
+                <div class="flex-grow-1 d-none d-sm-block"></div>
+                <vsf-product-search-bar
+                    class="flex-grow-1"
+                ></vsf-product-search-bar>
+                <vsf-account-link class="mr-2"></vsf-account-link>
+                <vsf-cart-toggle (toggle)="openCartDrawer()"></vsf-cart-toggle>
+            </div>
+            <vsf-collections-menu></vsf-collections-menu>
+        </div>
+    </vsf-layout-header>
+    <vsf-collections-menu-mobile
+        [visible]="mobileNavVisible$ | async"
+    ></vsf-collections-menu-mobile>
+    <vsf-cart-drawer
+        [visible]="cartDrawerVisible$ | async"
+        (close)="closeCartDrawer()"
+    ></vsf-cart-drawer>
+    <div class="contents">
+        <vsf-home-page *ngIf="isHomePage$ | async; else main"></vsf-home-page>
+        <ng-template #main>
+            <router-outlet></router-outlet>
+        </ng-template>
+    </div>
+
+    <vsf-layout-footer>
+        <div class="row text-muted mt-5 mb-5">
+            <div class="col-md-3 text-center text-md-left">
+                <h3>{{ "global.orders" | translate }}</h3>
+                <ul class="list-unstyled">
+                    <li>{{ "global.shipping" | translate }}</li>
+                    <li>{{ "global.track-my-order" | translate }}</li>
+                    <li>{{ "global.terms-and-condition" | translate }}</li>
+                    <li>{{ "global.returns-policy" | translate }}</li>
+                </ul>
+            </div>
+            <div class="col-md-3 text-center text-md-left">
+                <h3>{{ "global.about" | translate }}</h3>
+                <ul class="list-unstyled">
+                    <li>{{ "global.about-title" | translate }}</li>
+                    <li>{{ "global.contact" | translate }}</li>
+                    <li>{{ "global.privacy-notice" | translate }}</li>
+                </ul>
+            </div>
+            <div class="col">
+                <div class="social d-flex justify-content-around">
+                    <fa-icon size="2x" [icon]="['fab', 'twitter']"></fa-icon>
+                    <fa-icon size="2x" [icon]="['fab', 'facebook']"></fa-icon>
+                    <fa-icon size="2x" [icon]="['fab', 'instagram']"></fa-icon>
+                    <fa-icon size="2x" [icon]="['fab', 'youtube']"></fa-icon>
+                </div>
+                <div class="mailist mt-5 d-flex justify-content-around">
+                    <div class="lead">
+                        {{ "global.subscribe-message" | translate }}
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary btn-lg"
+                    >
+                        {{ "global.subscribe" | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-secondary">
+            This is a demo storefront for <a
+                href="https://www.platform.sale/"
+                >platform.sale</a
+            ><br />
+        </div>
+    </vsf-layout-footer>
+</vsf-layout>

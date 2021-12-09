@@ -1,0 +1,30 @@
+@import "variables";
+
+:host {
+    display: block;
+    margin-bottom: $spacer * 3;
+}
+
+.customer-address {
+    display: inline-block;
+    font-size: $font-size-sm;
+    padding: $spacer;
+    margin-right: $spacer;
+    margin-bottom: $spacer;
+    border-radius: $border-radius;
+    cursor: pointer;
+    border: 1px solid $gray-200;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: $light;
+    }
+}
+
+.shipping-method {
+    display: flex;
+
+    .price {
+        margin-left: $spacer;
+    }
+}
