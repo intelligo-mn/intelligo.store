@@ -1,0 +1,20 @@
+name: mobile
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    container:
+      image:  google/dart:latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: pub get
+      working-directory: ./mobile
+    - name: Run tests
+      run: pub run test
+      working-directory: ./mobile
