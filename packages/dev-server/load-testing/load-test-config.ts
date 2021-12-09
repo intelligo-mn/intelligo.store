@@ -19,8 +19,8 @@ export function getMysqlConnectionOptions(count: number) {
         host: '127.0.0.1',
         port: 3306,
         username: 'root',
-        password: '',
-        database: `vendure-load-testing-${count}`,
+        password: 'new-password',
+        database: `vendure-dev`,
         extra: {
             // connectionLimit: 150,
         },
