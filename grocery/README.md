@@ -106,7 +106,15 @@ The core and several other packages have unit tests which are can be run all tog
 
 Unit tests are co-located with the files which they test, and have the suffix `.spec.ts`.
 
+<<<<<<< HEAD:README.md
 #### End-to-end Tests
+=======
+## License
+
+> Copyright (C) 2019-2021 Intelligo LLC.  
+> Chatbots.mn licensed under the [INTELLIGO](./LICENSE) license.  
+> (See the [LICENSE](./LICENSE) file for the whole license text.)
+>>>>>>> gro/master:grocery/README.md
 
 Certain packages have e2e tests, which are located at `/packages/<name>/e2e/`. All e2e tests can be run by running `yarn e2e` from the root directory, or individually by running it from the package directory.
 
