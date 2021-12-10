@@ -1,0 +1,18 @@
+<div class="clr-row">
+  <div class="clr-col">
+    <form class="form" [formGroup]="webhookForm">
+      <section class="form-block">
+        <vdr-form-field label="Webhook url" for="url">
+          <input id="url" type="text" formControlName="url" />
+        </vdr-form-field>
+        <button
+          class="btn btn-primary"
+          (click)="save()"
+          [disabled]="webhookForm.invalid || webhookForm.pristine"
+        >
+          Save
+        </button>
+      </section>
+    </form>
+  </div>
+</div>

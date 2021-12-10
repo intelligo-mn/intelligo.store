@@ -1,0 +1,32 @@
+{
+  "name": "vendure-plugin-webhook",
+  "version": "1.2.5",
+  "description": "Call webhooks on configured events from Vendure",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc && copyfiles -u 1 'src/ui/**/*' dist/",
+    "start": "yarn ts-node test/dev-server.ts",
+    "test": "jest --preset=\"ts-jest\""
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@vendure/admin-ui": "1.2.1",
+    "@vendure/admin-ui-plugin": "1.2.1",
+    "@vendure/core": "1.2.1",
+    "@vendure/testing": "1.2.1",
+    "@vendure/ui-devkit": "1.2.1",
+    "copyfiles": "^2.4.1",
+    "jest": "^27.0.4",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
