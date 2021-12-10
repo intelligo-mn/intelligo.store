@@ -63,5 +63,3 @@ Then, in your `vendure-config.ts` add
 This will add a formfield for updating the webhook for the current channel under `Settings`:"  
 ![Webhook admin UI](webhook-admin-ui.jpeg)  
 For more information about using pre-compiled admin UI in production: https://www.vendure.io/docs/plugins/extending-the-admin-ui/
-
-[![Pinelab.studio logo](https://pinelab.studio/pinelab_logo.png)](https://pinelab.studio)
