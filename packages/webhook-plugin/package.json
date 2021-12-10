@@ -1,5 +1,5 @@
 {
-  "name": "vendure-plugin-webhook",
+  "name": "@platform-sale/webhook-plugin",
   "version": "1.2.5",
   "description": "Call webhooks on configured events from Vendure",
   "license": "MIT",
@@ -16,17 +16,17 @@
     "test": "jest --preset=\"ts-jest\""
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@vendure/admin-ui": "1.2.1",
-    "@vendure/admin-ui-plugin": "1.2.1",
-    "@vendure/core": "1.2.1",
-    "@vendure/testing": "1.2.1",
-    "@vendure/ui-devkit": "1.2.1",
+    "@types/jest": "^27.0.3",
+    "@vendure/admin-ui": "1.3.4",
+    "@vendure/admin-ui-plugin": "1.3.4",
+    "@vendure/core": "1.3.4",
+    "@vendure/testing": "1.3.4",
+    "@vendure/ui-devkit": "1.3.4",
     "copyfiles": "^2.4.1",
-    "jest": "^27.0.4",
+    "jest": "^27.4.4",
     "rimraf": "^3.0.2",
-    "ts-jest": "^27.0.3",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.2"
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.3"
   }
 }
