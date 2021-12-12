@@ -5,7 +5,7 @@ import { Connection } from 'typeorm';
 
 import { WebhookPlugin } from '../webhook.plugin';
 
-import { WebhookPerChannelEntity } from './webhook-per-channel.entity';
+import { WebhookPerChannel } from './webhook-per-channel.entity';
 
 /**
  * Service for updating and retrieving webhooks from db
@@ -16,14 +16,14 @@ export class WebhookService implements OnModuleInit {
 
     constructor(private eventBus: EventBus, private connection: Connection) {}
 
-    async getWebhook(channelId: string): Promise<WebhookPerChannelEntity | undefined> {
-        return this.connection.getRepository(WebhookPerChannelEntity).findOne({ channelId });
+    async getWebhook(channelId: string): Promise<WebhookPerChannel | undefined> {
+        return this.connection.getRepository(WebhookPerChannel).findOne({ channelId });
     }
 
-    async saveWebhook(webhookUrl: string, channelId: string): Promise<WebhookPerChannelEntity | undefined> {
-        const existing = await this.connection.getRepository(WebhookPerChannelEntity).findOne({ channelId });
+    async saveWebhook(webhookUrl: string, channelId: string): Promise<WebhookPerChannel | undefined> {
+        const existing = await this.connection.getRepository(WebhookPerChannel).findOne({ channelId });
         if (existing) {
-            await this.connection.getRepository(WebhookPerChannelEntity).update(
+            await this.connection.getRepository(WebhookPerChannel).update(
                 { id: existing.id },
                 {
                     channelId,
@@ -31,7 +31,7 @@ export class WebhookService implements OnModuleInit {
                 },
             );
         } else {
-            await this.connection.getRepository(WebhookPerChannelEntity).save({ channelId, url: webhookUrl });
+            await this.connection.getRepository(WebhookPerChannel).save({ channelId, url: webhookUrl });
         }
         return this.getWebhook(channelId);
     }
