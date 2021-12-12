@@ -1,4 +1,4 @@
-import { DeepPartial, VendureEntity, VendureEvent } from '@vendure/core';
+import { DeepPartial, VendureEntity } from '@vendure/core';
 import { Column, Entity } from 'typeorm';
 
 /**
@@ -7,8 +7,8 @@ import { Column, Entity } from 'typeorm';
  * to query in your plugin code.
  */
 @Entity()
-export class WebhookPerChannelEntity extends VendureEntity {
-    constructor(input?: DeepPartial<WebhookPerChannelEntity>) {
+export class WebhookPerChannel extends VendureEntity {
+    constructor(input?: DeepPartial<WebhookPerChannel>) {
         super(input);
     }
 

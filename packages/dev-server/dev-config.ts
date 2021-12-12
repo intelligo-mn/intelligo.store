@@ -1,16 +1,18 @@
 /* tslint:disable:no-console */
+import { WebhookPlugin } from '@platform-sale/webhook-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@vendure/common/lib/shared-constants';
 import {
-    DefaultJobQueuePlugin,
     DefaultLogger,
     DefaultSearchPlugin,
     dummyPaymentHandler,
     LogLevel,
+    ProductEvent,
+    ProductVariantChannelEvent,
+    ProductVariantEvent,
     VendureConfig,
 } from '@vendure/core';
-import { ElasticsearchPlugin } from '@vendure/elasticsearch-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { BullMQJobQueuePlugin } from '@vendure/job-queue-plugin/package/bullmq';
 import path from 'path';
@@ -87,6 +89,12 @@ export const devConfig: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:4201/account/change-email-address',
             },
         }),
+        WebhookPlugin.init({
+            httpMethod: 'POST',
+            delay: 3000,
+            events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent],
+        }),
+
         AdminUiPlugin.init({
             route: 'admin',
             port: 5001,
