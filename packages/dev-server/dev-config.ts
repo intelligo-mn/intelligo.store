@@ -82,9 +82,9 @@ export const devConfig: VendureConfig = {
             templatePath: path.join(__dirname, '../email-plugin/templates'),
             outputPath: path.join(__dirname, 'test-emails'),
             globalTemplateVars: {
-                verifyEmailAddressUrl: 'http://localhost:4201/verify',
-                passwordResetUrl: 'http://localhost:4201/reset-password',
-                changeEmailAddressUrl: 'http://localhost:4201/change-email-address',
+                verifyEmailAddressUrl: 'http://localhost:4201/account/verify',
+                passwordResetUrl: 'http://localhost:4201/account/reset-password',
+                changeEmailAddressUrl: 'http://localhost:4201/account/change-email-address',
             },
         }),
         AdminUiPlugin.init({
