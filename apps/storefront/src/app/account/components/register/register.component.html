@@ -2,7 +2,7 @@
     <vsf-centered-card>
         <input
             class="form-control"
-            placeholder="{{'global.firstname' | translate}}"
+            placeholder="{{ 'global.firstname' | translate }}"
             name="firstName"
             required
             [disabled]="registrationSent"
@@ -10,7 +10,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="{{'global.lastname' | translate}}"
+            placeholder="{{ 'global.lastname' | translate }}"
             name="lastName"
             required
             [disabled]="registrationSent"
@@ -18,7 +18,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="{{'global.email' | translate}}"
+            placeholder="{{ 'global.email' | translate }}"
             name="emailAddress"
             required
             type="email"
@@ -32,10 +32,10 @@
             [disabled]="registerForm.invalid || registrationSent"
             type="submit"
         >
-            {{ "account.register" | translate }}
+            {{ 'account.register' | translate }}
         </button>
         <div *ngIf="registrationSent" class="registration-sent">
-            Мэйл хаягаа шалгана уу. Таны ({{ emailAddress }}) мэйлрүү баталгаажуулах холбоос илгээсэн.
+            {{ 'account.register-alert' | translate: { param: emailAddress } }}
         </div>
     </vsf-centered-card>
 </form>
