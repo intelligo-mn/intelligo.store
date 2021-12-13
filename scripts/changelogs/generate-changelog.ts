@@ -30,6 +30,7 @@ const VALID_SCOPES: string[] = [
     'email-plugin',
     'email',
     'job-queue-plugin',
+    'payments-plugin',
     'testing',
     'ui-devkit',
 ];
@@ -56,7 +57,7 @@ function generateChangelogForPackage() {
                     return context(null, null);
                 }
             },
-            releaseCount: 1,
+            releaseCount: 2,
             outputUnreleased: true,
         },
         {
