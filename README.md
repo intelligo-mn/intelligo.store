@@ -2,8 +2,8 @@
 
 A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
-[![Build Status](https://github.com/vendure-ecommerce/vendure/workflows/Build%20&%20Test/badge.svg)](https://github.com/vendure-ecommerce/vendure/actions) 
-![Publish & Install](https://github.com/vendure-ecommerce/vendure/workflows/Publish%20&%20Install/badge.svg)
+[![Build & Test](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml) 
+[![Publish & Install](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 ### [www.platform.sale](https://www.platform.sale/)
@@ -16,6 +16,7 @@ This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna).
 
 ```
 platform/
+├── apps/           # Storefront and mobile apps
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
 ├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
@@ -95,7 +96,7 @@ Running `yarn codegen` will generate the following files:
 * [`packages/common/src/generated-types.ts`](./packages/common/src/generated-types.ts): Types, Inputs & resolver args relating to the Admin API
 * [`packages/common/src/generated-shop-types.ts`](./packages/common/src/generated-shop-types.ts): Types, Inputs & resolver args relating to the Shop API
 * [`packages/admin-ui/src/lib/core/src/common/generated-types.ts`](./packages/admin-ui/src/lib/core/src/common/generated-types.ts): Types & operations relating to the admin-ui queries & mutations.
-* [`packages/admin-ui/src/lib/core/src/common/introspection-result.ts`](./packages/admin-ui/src/lib/core/src/common/introspection-result.ts): Used by the Apollo Client [`IntrospectionFragmentMatcher`](https://www.apollographql.com/docs/react/data/fragments/#fragments-on-unions-and-interfaces) to correctly handle fragements in the Admin UI.
+* [`packages/admin-ui/src/lib/core/src/common/introspection-result.ts`](./packages/admin-ui/src/lib/core/src/common/introspection-result.ts): Used by the Apollo Client [`IntrospectionFragmentMatcher`](https://www.apollographql.com/docs/react/data/fragments/#fragments-on-unions-and-interfaces) to correctly handle fragments in the Admin UI.
 * Also generates types used in e2e tests in those packages which feature e2e tests (core, elasticsearch-plugin, asset-server-plugin etc).
 
 ### Testing
