@@ -33,8 +33,10 @@ import {
     AddPaymentToOrder,
     ErrorCode,
     GetProductStockLevel,
+    GetShippingMethods,
     PaymentInput,
     SetShippingAddress,
+    SetShippingMethod,
     TestOrderFragmentFragment,
     TestOrderWithPaymentsFragment,
     TransitionToState,
@@ -52,8 +54,10 @@ import {
 import {
     ADD_ITEM_TO_ORDER,
     ADD_PAYMENT,
+    GET_ELIGIBLE_SHIPPING_METHODS,
     GET_PRODUCT_WITH_STOCK_LEVEL,
     SET_SHIPPING_ADDRESS,
+    SET_SHIPPING_METHOD,
     TRANSITION_TO_STATE,
 } from './graphql/shop-definitions';
 import { assertThrowsWithMessage } from './utils/assert-throws-with-message';
@@ -84,6 +88,15 @@ describe('Stock control', () => {
             { id: productId },
         );
         return product;
+    }
+
+    async function setFirstEligibleShippingMethod() {
+        const { eligibleShippingMethods } = await shopClient.query<GetShippingMethods.Query>(
+            GET_ELIGIBLE_SHIPPING_METHODS,
+        );
+        await shopClient.query<SetShippingMethod.Mutation, SetShippingMethod.Variables>(SET_SHIPPING_METHOD, {
+            id: eligibleShippingMethods[0].id,
+        });
     }
 
     beforeAll(async () => {
@@ -259,6 +272,7 @@ describe('Stock control', () => {
                     } as CreateAddressInput,
                 },
             );
+            await setFirstEligibleShippingMethod();
             await shopClient.query<TransitionToState.Mutation, TransitionToState.Variables>(
                 TRANSITION_TO_STATE,
                 { state: 'ArrangingPayment' as OrderState },
@@ -440,6 +454,7 @@ describe('Stock control', () => {
                     } as CreateAddressInput,
                 },
             );
+            await setFirstEligibleShippingMethod();
             await shopClient.query<TransitionToState.Mutation, TransitionToState.Variables>(
                 TRANSITION_TO_STATE,
                 { state: 'ArrangingPayment' as OrderState },
@@ -458,6 +473,7 @@ describe('Stock control', () => {
 
             const trackedVariant2 = await getTrackedVariant();
             expect(trackedVariant2.stockOnHand).toBe(5);
+            expect(trackedVariant2.stockAllocated).toBe(1);
 
             const linesInput =
                 order?.lines
@@ -483,6 +499,7 @@ describe('Stock control', () => {
             const trackedVariant3 = await getTrackedVariant();
 
             expect(trackedVariant3.stockOnHand).toBe(4);
+            expect(trackedVariant3.stockAllocated).toBe(0);
 
             const { transitionFulfillmentToState } = await adminClient.query<
                 TransitionFulfillmentToState.Mutation,
@@ -495,6 +512,7 @@ describe('Stock control', () => {
             const trackedVariant4 = await getTrackedVariant();
 
             expect(trackedVariant4.stockOnHand).toBe(5);
+            expect(trackedVariant4.stockAllocated).toBe(1);
             expect(trackedVariant4.stockMovements.items).toEqual([
                 { id: 'T_4', quantity: 5, type: 'ADJUSTMENT' },
                 { id: 'T_7', quantity: 3, type: 'ALLOCATION' },
@@ -504,9 +522,25 @@ describe('Stock control', () => {
                 { id: 'T_16', quantity: 1, type: 'CANCELLATION' },
                 { id: 'T_21', quantity: 1, type: 'ALLOCATION' },
                 { id: 'T_22', quantity: -1, type: 'SALE' },
-                // This is the cancellation we are testing for
+                // This is the cancellation & allocation we are testing for
                 { id: 'T_23', quantity: 1, type: 'CANCELLATION' },
+                { id: 'T_24', quantity: 1, type: 'ALLOCATION' },
             ]);
+
+            const { cancelOrder } = await adminClient.query<CancelOrder.Mutation, CancelOrder.Variables>(
+                CANCEL_ORDER,
+                {
+                    input: {
+                        orderId: order!.id,
+                        reason: 'Not needed',
+                    },
+                },
+            );
+            orderGuard.assertSuccess(cancelOrder);
+
+            const trackedVariant5 = await getTrackedVariant();
+            expect(trackedVariant5.stockOnHand).toBe(5);
+            expect(trackedVariant5.stockAllocated).toBe(0);
         });
     });
 
@@ -1091,6 +1125,7 @@ describe('Stock control', () => {
                     } as CreateAddressInput,
                 },
             );
+            await setFirstEligibleShippingMethod();
             await shopClient.query<TransitionToState.Mutation, TransitionToState.Variables>(
                 TRANSITION_TO_STATE,
                 {
