@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 
@@ -31,6 +32,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         private stateService: StateService,
         private notificationService: NotificationService,
         private route: ActivatedRoute,
+        private translate: TranslateService,
     ) {}
 
     ngOnInit() {
@@ -87,7 +89,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                         if (variant) {
                             this.notificationService
                                 .notify({
-                                    title: 'Added to cart',
+                                    title: this.translate.instant('global.added-to-card'),
                                     type: 'info',
                                     duration: 3000,
                                     templateRef: this.addToCartTemplate,
