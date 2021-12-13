@@ -16,6 +16,7 @@ This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna).
 
 ```
 platform/
+├── apps/           # Storefront and mobile apps
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
 ├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
