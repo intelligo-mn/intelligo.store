@@ -2,7 +2,7 @@
     <vsf-centered-card>
         <input
             class="form-control"
-            placeholder="{{'global.email' | translate}}"
+            placeholder="{{ 'global.email' | translate }}"
             name="emailAddress"
             type="email"
             email
@@ -11,7 +11,7 @@
         />
         <input
             class="form-control mt-1"
-            placeholder="{{'global.password' | translate}}"
+            placeholder="{{ 'global.password' | translate }}"
             type="password"
             name="password"
             required
@@ -26,7 +26,7 @@
                 [(ngModel)]="rememberMe"
             />
             <label class="form-check-label" for="rememberMe">
-                {{'global.remember-me' | translate}}
+                {{ 'global.remember-me' | translate }}
             </label>
         </div>
 
@@ -35,27 +35,22 @@
             [disabled]="signInForm.invalid || signInForm.pristine"
             type="submit"
         >
-            {{ "global.signin" | translate }}
+            {{ 'global.signin' | translate }}
         </button>
         <div
             class="alert alert-warning invalid-credentials"
             role="alert"
             [class.visible]="invalidCredentials"
         >
-            Invalid credentials. Please try again.<br />
-            <a
-                [routerLink]="[
-                    '/account/forgotten-password',
-                    { email: this.emailAddress }
-                ]"
-                >{{ "global.forgot" | translate }}</a
-            >
+            {{ 'global.invalid-credentials' | translate }}
+            <br />
+            <a [routerLink]="['/account/forgotten-password', { email: this.emailAddress }]">{{
+                'global.forgot' | translate
+            }}</a>
         </div>
 
         <div *ngIf="displayRegisterLink" class="register-link">
-            <a [routerLink]="['/account/register']">{{
-                "global.register" | translate
-            }}</a>
+            <a [routerLink]="['/account/register']">{{ 'global.register' | translate }}</a>
         </div>
     </vsf-centered-card>
 </form>
