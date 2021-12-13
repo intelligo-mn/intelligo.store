@@ -47,7 +47,6 @@ export const devConfig: VendureConfig = {
         cookieOptions: {
             secret: 'abc',
         },
-        // passwordHashingStrategy: new PlaintextHashingStrategy(),
     },
     dbConnectionOptions: {
         synchronize: false,
