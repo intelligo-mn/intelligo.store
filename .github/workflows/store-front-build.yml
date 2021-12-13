@@ -1,8 +1,12 @@
 name: Build
 
 on:
-  create
-
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 env:
   CI: true
   node: 12.x
