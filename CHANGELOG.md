@@ -1,3 +1,11 @@
+## <small>1.4.1 (2021-12-14)</small>
+
+
+#### Fixes
+
+* **core** Fix `Unknown type "ShippingMethodCustomFields"` error ([d810450](https://github.com/vendure-ecommerce/vendure/commit/d810450))
+* **core** Fix FK error with adjustOrderLine when zero saleable stock ([28aeddb](https://github.com/vendure-ecommerce/vendure/commit/28aeddb)), closes [#1273](https://github.com/vendure-ecommerce/vendure/issues/1273)
+
 ## 1.4.0 (2021-12-13)
 
 
