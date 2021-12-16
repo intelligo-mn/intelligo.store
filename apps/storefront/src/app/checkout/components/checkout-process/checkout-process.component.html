@@ -1,0 +1,25 @@
+<div class="container checkout-wrapper">
+    <div class="main">
+        <vsf-checkout-stage-indicator
+            [activeStage]="activeStage$ | async"
+            [signedIn]="signedIn$ | async"
+        ></vsf-checkout-stage-indicator>
+        <router-outlet></router-outlet>
+    </div>
+    <div class="summary" *ngIf="cart$ | async as cart">
+        <vsf-cart-contents [cart]="cart" class="mb-3"></vsf-cart-contents>
+        <vsf-address-card
+            *ngIf="cart.shippingAddress?.streetLine1"
+            title=" {{ 'checkout.shipping-address' | translate }}"
+            [address]="cart.shippingAddress"
+        >
+            <button
+                class="btn btn-secondary"
+                *ngIf="(activeStage$ | async) === 3"
+                (click)="changeShippingAddress()"
+            >
+            {{ "global.change" | translate }}
+            </button>
+        </vsf-address-card>
+    </div>
+</div>

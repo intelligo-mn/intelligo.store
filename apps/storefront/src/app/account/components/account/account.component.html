@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-3"
+             *ngIf="isSignedIn$ | async">
+            <div class="list-group-flush">
+                <a class="list-group-item list-group-item-action"
+                   [routerLink]="['./']"
+                   [routerLinkActiveOptions]="{ exact: true }"
+                   routerLinkActive="active">
+                   {{ "global.dashboard" | translate }}
+                </a>
+                <a class="list-group-item list-group-item-action"
+                   [routerLink]="['./', 'orders']"
+                   routerLinkActive="active">
+                   {{ "global.orders" | translate }}
+                </a>
+                <a class="list-group-item list-group-item-action"
+                   [routerLink]="['./', 'address-book']"
+                   routerLinkActive="active">
+                   {{ "account.address-book" | translate }}
+                </a>
+                <a class="list-group-item list-group-item-action"
+                   [routerLink]="['./', 'details']"
+                   routerLinkActive="active">
+                   {{ "account.personal-details" | translate }}
+                </a>
+                <a class="list-group-item list-group-item-action"
+                   [routerLink]="['./', 'change-credentials']"
+                   routerLinkActive="active">
+                   {{ "account.change-credentials" | translate }}
+                </a>
+                <a class="list-group-item">
+                    <button class="btn btn-warning btn-sm btn-block" (click)="signOut()">{{ "account.sign-out" | translate }}</button>
+                </a>
+            </div>
+        </div>
+        <div class="col-12" [class.col-md-9]="isSignedIn$ | async">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
