@@ -1,9 +1,7 @@
-# Vendure Webhook plugin
+# platform.sale webhook plugin
 
 Triggers a channel aware webhook based on configured events.
 Events are specified in `vendure-config` and webhooks are configured in the database via the admin UI.
-
-1. `yarn add vendure-plugin-webhook`
 
 ## Database entity
 
@@ -15,7 +13,7 @@ Don't forget to run a migration OR `synchronize: true` if you like living on the
 Configure which events should trigger a webhook call in `vendure-config.ts`. HttpMethod can be POST (empty body) or GET.
 
 ```js
-import { WebhookPlugin } from 'vendure-plugin-webhook';
+import { WebhookPlugin } from '@platform-sale/webhook-plugin';
 
 plugins: [
   WebhookPlugin.init({
@@ -37,7 +35,7 @@ Run this script once to compile the admin UI. **Run with ts-node** to compile th
 ```js
 import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import * as path from 'path';
-import { webhookAdminUi } from 'vendure-plugin-webhook';
+import { webhookAdminUi } from '@platform-sale/webhook-plugin';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '__admin-ui'),
