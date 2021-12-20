@@ -1,4 +1,5 @@
-import { DeepPartial, VendureEntity } from '@vendure/core';
+import { DeepPartial } from '@vendure/common/lib/shared-types';
+import { VendureEntity } from '@vendure/core';
 import { Column, Entity } from 'typeorm';
 
 /**
