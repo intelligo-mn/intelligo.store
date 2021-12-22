@@ -1,6 +1,6 @@
-# grocery
+# marketgeek
 
-A new Flutter application.
+Mobile ecommerce solution
 
 ## Getting Started
 
