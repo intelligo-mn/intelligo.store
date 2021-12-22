@@ -23,10 +23,12 @@
   },
   "devDependencies": {
     "@google-cloud/pubsub": "^2.8.0",
+    "@types/ioredis": "^4.28.3",
     "@types/redis": "^2.8.28",
     "@vendure/common": "^1.4.2",
     "@vendure/core": "^1.4.2",
     "bullmq": "^1.40.1",
+    "ioredis": "^4.28.2",
     "redis": "^3.0.2",
     "rimraf": "^3.0.2",
     "typescript": "4.3.5"
