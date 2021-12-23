@@ -60,7 +60,7 @@
     "assign-to-channel": "Дэлгүүрт хуваарилах",
     "assign-to-named-channel": "Хуваарилах { channelCode }",
     "assign-variant-to-channel-success": "Successfully assigned product variant to \"{ channel }\"",
-    "assign-variants-to-channel": "Assign product variants to channel",
+    "assign-variants-to-channel": "Барааны сонголт дэлгүүрт хуваарилах",
     "auto-update-option-variant-name": "Automatically update the names of ProductVariants using this option",
     "auto-update-product-variant-name": "Automatically update the names of ProductVariants",
     "channel-price-preview": "Үнэ урьдчилж харах",
