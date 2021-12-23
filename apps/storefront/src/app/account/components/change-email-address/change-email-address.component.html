@@ -1,0 +1,8 @@
+<div class="alert mt-3" role="alert"
+     [ngClass]="{
+            'alert-secondary': state === 'pending',
+            'alert-danger': state === 'error',
+            'alert-success': state === 'success'
+        }">
+    {{ message }}
+</div>
