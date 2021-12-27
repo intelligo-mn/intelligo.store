@@ -63,7 +63,7 @@
     "assign-variants-to-channel": "Барааны сонголт дэлгүүрт хуваарилах",
     "auto-update-option-variant-name": "Automatically update the names of ProductVariants using this option",
     "auto-update-product-variant-name": "Automatically update the names of ProductVariants",
-    "channel-price-preview": "Үнэ урьдчилж харах",
+    "channel-price-preview": "Дэлгүүр дахь үнэ урьдчилж харах",
     "collection-contents": "Багцын контентууд",
     "confirm-delete-administrator": "Админ устгах уу?",
     "confirm-delete-assets": "Delete {count} {count, plural, one {asset} other {assets}}?",
@@ -369,10 +369,10 @@
     "image-src": "Source",
     "image-title": "Гарчиг",
     "insert-image": "Зураг оруулах",
-    "link-href": "Link href",
-    "link-title": "Link гарчиг",
+    "link-href": "Холбоосын href",
+    "link-title": "Холбоосын гарчиг",
     "remove-link": "Устгах",
-    "set-link": "link тохируулах"
+    "set-link": "Холбоос тохируулах"
   },
   "error": {
     "403-forbidden": "Та одоогоор хандах эрхгүй байна \"{ path }\". Танд зөвшөөрөл байхгүй, эсвэл таны session хугацаа дууссан.",
