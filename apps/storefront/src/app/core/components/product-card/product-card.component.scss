@@ -2,7 +2,7 @@
 
 :host {
     display: block;
-    margin: $spacer $spacer / 2 $spacer * 2;
+    margin: $spacer calc($spacer / 2) $spacer * 2;
     width: 200px;
 
     &:hover {
@@ -48,7 +48,7 @@
 
 .placeholder-title {
     height: $font-size-base;
-    margin-bottom: $spacer / 2;
+    margin-bottom: calc($spacer / 2);
 }
 
 .placeholder-body {
