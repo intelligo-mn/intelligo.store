@@ -85,7 +85,7 @@ export class ModalService {
         });
         const backdropClick$ = overlayRef.backdropClick().pipe(mapTo(undefined));
 
-        return race<R | undefined>(close$, backdropClick$).pipe(
+        return race<R | undefined | any>(close$, backdropClick$).pipe(
             take(1),
             finalize(() => overlayRef.dispose()),
         );
