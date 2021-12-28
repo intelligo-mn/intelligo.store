@@ -41,7 +41,7 @@
 }
 
 .purchase-options {
-    margin: $spacer * 2 0;
+    margin: calc($spacer * 2) 0;
 }
 
 .add-to-cart-row {
@@ -52,13 +52,13 @@
     @include media-breakpoint-down(sm) {
         button {
             width: 100%;
-            margin-top: $spacer / 2;
+            margin-top: calc($spacer / 2);
         }
     }
 }
 
 .variant-selector {
-    margin-bottom: $spacer / 2;
+    margin-bottom: calc($spacer / 2);
 }
 
 .sku {

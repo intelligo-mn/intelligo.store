@@ -3,7 +3,7 @@
 :host {
     display: block;
     position: relative;
-    padding: $spacer / 2 $spacer;
+    padding: calc($spacer / 2) $spacer;
     overflow: hidden;
     margin: $spacer;
 }
