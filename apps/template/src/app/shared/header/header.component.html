@@ -1,0 +1,283 @@
+<!-- Navbar STart -->
+<header id="topnav" class="defaultscroll sticky" (window:scroll)="windowScroll()" [class]="navClass">
+  <div class="container">
+    <!-- Logo container-->
+    <div>
+      <a class="logo" routerLink="/index" *ngIf="navClass !== 'nav-light'">
+        <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt="">
+        <img src="assets/images/logo-dark.png" class="l-light" height="24" alt="">
+      </a>
+      <a class="logo" routerLink="/index" *ngIf="navClass === 'nav-light'">
+        <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt="">
+        <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">
+      </a>
+    </div>
+    <div class="buy-button">
+      <ng-template [ngIf]="navClass === 'nav-light'">
+        <a href="javascript: void(0);" class="btn btn-primary login-btn-primary">Buy Now</a>
+          <a href="javascript: void(0);" class="btn btn-light login-btn-light">Buy Now</a>
+      </ng-template>
+      <ng-template [ngIf]="navClass !== 'nav-light'">
+          <a href="javascript: void(0);" class="btn btn-primary" >Buy Now</a>
+      </ng-template>
+
+    </div>
+
+    <!--end login button-->
+    <!-- End Logo container-->
+    <div class="menu-extras">
+      <div class="menu-item">
+        <!-- Mobile menu toggle-->
+        <a class="navbar-toggle" (click)="toggleMenu()" [ngClass]="{'open': isCondensed === true}">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle-->
+      </div>
+    </div>
+
+    <div id="navigation">
+      <!-- Navigation Menu-->
+      <ul class="navigation-menu" [class]="navClass">
+        <li><a routerLink="/" class="nav-link-ref">Home</a></li>
+        <li class="has-submenu">
+          <a href="javascript:void(0)" (click)="onMenuClick($event)">Landing</a><span class="menu-arrow"></span>
+          <ul class="submenu megamenu">
+            <li>
+              <ul>
+                <li><a class="nav-link-ref" routerLink="/index-saas">Saas</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-classic-saas">Classic Saas</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-agency">Agency</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-apps">Application</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-classic-app">Classic Application</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-studio">Studio</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-business">Business</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-modern-business">Modern Business</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-hotel">Hotel</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-marketing">Marketing</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-enterprise">Enterprise</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-insurance">Insurance</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-shop">Shop</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-coworking">Coworking</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <ul>
+                <li><a class="nav-link-ref" routerLink="/index-it-solution">IT Solution </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-corporate">Corporate Business</a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-task-management">Task Management</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-email-inbox">Email Inbox </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-landing-one">Landing One</a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-landing-two">Landing Two </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-landing-three">Landing Three</a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/index-travel">Travel </a></li>
+                <li><a class="nav-link-ref" routerLink="/index-blog">Blog </a></li>
+                <li><a class="nav-link-ref" routerLink="/forums">Forums</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-personal">Personal</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-services">Service</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-payments">Payments</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-crypto">Cryptocurrency</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a class="nav-link-ref" routerLink="/index-course">Course</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-online-learning">Online Learning</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-hosting">Hosting & Domain</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-event">Event</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-single-product">Product</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-portfolio">Portfolio</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-job">Job</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-social-marketing">Social Media</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-digital-agency">Digital Agency</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-car-riding">Car Ride</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-customer">Customer</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-software">Software</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-ebook">E-Book</a></li>
+                <li><a class="nav-link-ref" routerLink="/index-onepage">Saas <span
+                      class="badge badge-pill badge-warning ml-2">Onepage</span></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="javascript:void(0)" (click)="onMenuClick($event)">Pages</a><span class="menu-arrow"></span>
+          <ul class="submenu">
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Company </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-aboutus"> About Us</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-aboutus-two"> About Us Two </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/page-services">Services</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-history">History </a></li>
+                <li><a class="nav-link-ref" routerLink="/page-team"> Team</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-pricing">Pricing</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Account </a><span class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/account-profile">Profile</a></li>
+                <li><a class="nav-link-ref" routerLink="/account-members">Members </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/account-works">Works </a></li>
+                <li><a class="nav-link-ref" routerLink="/account-messages">Messages </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/account-payments">Payments </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/account-setting">Setting</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-invoice">Invoice</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Shop </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/shop-products">All Products</a></li>
+                <li><a class="nav-link-ref" routerLink="/shop-product-detail">Product Details</a></li>
+                <li><a class="nav-link-ref" routerLink="/shop-cart">Shop Cart</a></li>
+                <li><a class="nav-link-ref" routerLink="/shop-checkouts">Checkouts</a></li>
+                <li><a class="nav-link-ref" routerLink="/shop-myaccount">My Account</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Help center </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/helpcenter-overview">Helpcenter</a></li>
+                <li><a class="nav-link-ref" routerLink="/helpcenter-faqs">Faqs</a></li>
+                <li><a class="nav-link-ref" routerLink="/helpcenter-guides">Guides</a></li>
+                <li><a class="nav-link-ref" routerLink="/helpcenter-support-request">Support Call</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Forums </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/forums">Overview </a></li>
+                <li><a class="nav-link-ref" routerLink="/forums-topic">Forum Topic </a>
+                </li>
+                <li><a class="nav-link-ref" routerLink="/forums-comments">Forum Comments </a>
+                </li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Email Template</a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/email-confirmation">Confirmation</a></li>
+                <li><a class="nav-link-ref" routerLink="/email-password-reset">Reset Password</a></li>
+                <li><a class="nav-link-ref" routerLink="/email-alert">Alert</a></li>
+                <li><a class="nav-link-ref" routerLink="/email-invoice">Invoice</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)">Careers</a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-jobs">Jobs</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-jobs-sidebar">Jobs - Sidebar</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-job-detail">Job Detail</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-job-apply">Job Apply</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-job-company">Company</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-job-candidate">Candidate</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Blog </a><span class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-blog-grid">Blog Grid</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-blog-sidebar">Blog with Sidebar</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-blog-list">Blog Listing</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-blog-list-sidebar">Blog List & Sidebar</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-blog-detail">Blog Detail</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-blog-detail-two">Blog Detail 2 </a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Case Study </a><span class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-cases">All Cases </a></li>
+                <li><a class="nav-link-ref" routerLink="/page-case-detail">Case Detail </a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Works</a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-work-modern">Works Modern</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-work-classic">Works Classic</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-work-grid">Works Grid</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-work-masonry">Works Masonry</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-work-detail">Work Detail</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Auth Pages</a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/auth-login">Login</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-cover-login">Login Cover</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-login-three">Login Simple</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-signup">Signup</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-cover-signup">Signup Cover</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-signup-three">Signup Simple</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-re-password">Reset Password</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-cover-re-password">Reset Password Cover</a></li>
+                <li><a class="nav-link-ref" routerLink="/auth-re-password-three">Reset Password Simple</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Utility </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-terms">Terms of Services</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-privacy">Privacy Policy</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Special </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-comingsoon">Coming Soon</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-comingsoon2">Coming Soon Two</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-maintenance">Maintenance</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-error">Error</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu"><a href="javascript:void(0)" (click)="onMenuClick($event)"> Contact </a><span
+                class="submenu-arrow"></span>
+              <ul class="submenu">
+                <li><a class="nav-link-ref" routerLink="/page-contact-detail">Contact Detail</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-contact-one">Contact One</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-contact-two">Contact Two</a></li>
+                <li><a class="nav-link-ref" routerLink="/page-contact-three">Contact Three</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0)" (click)="onMenuClick($event)">Docs</a><span class="menu-arrow"></span>
+          <ul class="submenu">
+            <li><a class="nav-link-ref" routerLink="/documentation">Documentation</a></li>
+            <li><a class="nav-link-ref" routerLink="/changelog">Changelog</a></li>
+            <li><a class="nav-link-ref" routerLink="/components">Components</a></li>
+            <li><a class="nav-link-ref" routerLink="/widget">Widget</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!--end navigation menu-->
+      <div class="buy-menu-btn d-none">
+        <a href="javascript: void(0);" target="_blank" class="btn btn-primary">Buy Now</a>
+
+      </div>
+      <!--end login button-->
+      <!--end login button-->
+    </div>
+    <!--end navigation-->
+  </div>
+  <!--end container-->
+</header>
+<!--end header-->
+<!-- Navbar End -->
