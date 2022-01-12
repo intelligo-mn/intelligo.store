@@ -74,4 +74,3 @@ server:
 logs:
   - {type: stdout, format: pretty, level: info}
   #- {type: file, path: verdaccio.log, level: info}
-
