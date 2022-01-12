@@ -1,0 +1,558 @@
+<!-- Hero Start -->
+<section class="bg-half-170 border-bottom agency-wrapper d-table w-100" id="home">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 col-md-7 order-1 order-md-2">
+        <div class="title-heading mt-4 ml-lg-5">
+          <h1 class="heading mb-3">We are Startup Creative <span class="text-primary">Landrick</span> Agency</h1>
+          <p class="para-desc text-muted">Launch your campaign and benefit from our expertise on designing and managing
+            conversion centered bootstrap4 html page.</p>
+          <div class="watch-video mt-4 pt-2">
+            <a href="javascript:void(0)" class="btn btn-primary">Learn More <i class="mdi mdi-chevron-right"></i></a>
+            <a (click)="openWindowCustomClass(content)" href="javascript:void(0)"
+              class="video-play-icon watch text-dark mb-2 ml-2"><i
+                class="mdi mdi-play play-icon-circle text-center d-inline-block mr-2 rounded-circle text-white position-relative play play-iconbar"></i>
+              WATCH VIDEO</a>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <iframe src="https://player.vimeo.com/video/99025203" height="450" width="780" frameborder="0"
+                  allowfullscreen allow="autoplay; encrypted-media"></iframe>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-5 col-md-5 order-2 order-md-1 mt-4 pt-2 mt-sm-0 pt-sm-0">
+        <img src="assets/images/illustrator/working_with_computer.svg" class="img-fluid" alt="">
+      </div>
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Feature Start -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-12">
+        <div class="features text-center">
+          <div class="image position-relative d-inline-block">
+            <img src="assets/images/icon/pen.svg" class="avatar avatar-small" alt="">
+          </div>
+
+          <div class="content mt-4">
+            <h4 class="title-2">Design & Development</h4>
+            <p class="text-muted mb-0">Nisi aenean vulputate eleifend tellus vitae eleifend enim a eleifend Aliquam
+              aenean elementum semper.</p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 col-12 mt-5 mt-sm-0">
+        <div class="features text-center">
+          <div class="image position-relative d-inline-block">
+            <img src="assets/images/icon/video.svg" class="avatar avatar-small" alt="">
+          </div>
+
+          <div class="content mt-4">
+            <h4 class="title-2">Management & Marketing</h4>
+            <p class="text-muted mb-0">Allegedly, a Latin scholar established the origin of the text established by
+              compiling unusual word.</p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 col-12 mt-5 mt-sm-0">
+        <div class="features text-center">
+          <div class="image position-relative d-inline-block">
+            <img src="assets/images/icon/intellectual.svg" class="avatar avatar-small" alt="">
+          </div>
+
+          <div class="content mt-4">
+            <h4 class="title-2">Stratagy & Research</h4>
+            <p class="text-muted mb-0">It seems that only fragments of the original text remain in the Lorem the
+              original Ipsum texts used today.</p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <img src="assets/images/saas/2.png" class="img-fluid" alt="">
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-6 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="section-title ml-lg-3">
+          <h4 class="title mb-4">Great Product Analytics With Real Problem</h4>
+          <p class="text-muted">Due to its widespread use as filler text for layouts, non-readability is of great
+            importance: human perception is tuned to recognize certain patterns and repetitions in texts. If the
+            distribution of letters visual impact.</p>
+          <a href="javascript:void(0)" class="mt-3 h6 text-primary">Find Out More <i
+              class="mdi mdi-chevron-right"></i></a>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Feature End -->
+
+<!-- CTA Start -->
+<section class="section bg-cta" style="background: url('assets/images/1.jpg') center center;">
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h4 class="title title-dark text-white mb-4">Stop leaving money on the table.</h4>
+          <p class="text-light para-dark para-desc mx-auto">Start working with Landrick that can provide everything you
+            need to generate awareness, drive traffic, connect.</p>
+          <a href="http://vimeo.com/287684225" (click)="openModal(contentmodal)" href="javascript:void(0)"
+            class="play-btn border border-light mt-4 video-play-icon">
+            <i-feather name="play" class="fea icon-ex-md text-white title-dark"></i-feather>
+          </a>
+          <ng-template #contentmodal let-modal>
+            <div class="modal-header">
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <iframe src="https://player.vimeo.com/video/287684225" height="450" width="780" frameborder="0"
+                allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- CTA End -->
+
+<!-- Key Feature Start -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Template Key Features</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="monitor" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Fully Responsive</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="heart" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Browser Compatibility</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="eye" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Retina Ready</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="bold" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Based On Bootstrap 4</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="feather" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Feather Icons</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="code" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Built With SASS</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="user-check" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">W3c Valid Code</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="git-merge" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Flaticon Icons</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="media key-feature align-items-center p-3 rounded shadow">
+          <div class="icon text-center rounded-circle mr-3">
+            <i-feather name="settings" class="fea icon-ex-md text-primary"></i-feather>
+          </div>
+          <div class="media-body">
+            <h4 class="title mb-0">Easy to customize</h4>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-12 mt-4 pt-2 text-center">
+        <a href="javascript:void(0)" class="btn btn-primary">See More <i class="mdi mdi-arrow-right"></i></a>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Key Feature End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+  <div class="shape overflow-hidden text-light">
+    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+    </svg>
+  </div>
+</div>
+<!--Shape End-->
+
+<!-- Testi Start -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Client Reviews</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row justify-content-center">
+      <div class="col-lg-12 mt-4">
+        <owl-carousel-o id="customer-testi" [options]="customOptions">
+          <ng-template carouselSlide>
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/01.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" It seems that only fragments of the original text remain in the Lorem Ipsum
+                  texts used today. "</p>
+                <h6 class="text-primary">- Thomas Israel <small class="text-muted">C.E.O</small></h6>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/02.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" One disadvantage of Lorum Ipsum is that in Latin certain letters appear
+                  more frequently than others. "</p>
+                <h6 class="text-primary">- Barbara McIntosh <small class="text-muted">M.D</small></h6>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/03.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" The most well-known dummy text is the 'Lorem Ipsum', which is said to have
+                  originated in the 16th century. "</p>
+                <h6 class="text-primary">- Carl Oliver <small class="text-muted">P.A</small></h6>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/04.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" According to most sources, Lorum Ipsum can be traced back to a text
+                  composed by Cicero. "</p>
+                <h6 class="text-primary">- Christa Smith <small class="text-muted">Manager</small></h6>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/05.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" There is now an abundance of readable dummy texts. These are usually used
+                  when a text is required. "</p>
+                <h6 class="text-primary">- Dean Tolle <small class="text-muted">Developer</small></h6>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+
+            <div class="media customer-testi m-2">
+              <img src="assets/images/client/06.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
+              <div class="media-body content p-3 shadow rounded bg-white position-relative">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                  <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <p class="text-muted mt-2">" Thus, Lorem Ipsum has only limited suitability as a visual filler for
+                  German texts. "</p>
+                <h6 class="text-primary">- Jill Webb <small class="text-muted">Designer</small></h6>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+        <!-- </div> -->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Latest News</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="card blog rounded border-0 shadow">
+          <div class="position-relative">
+            <img src="assets/images/blog/01.jpg" class="card-img-top rounded-top" alt="...">
+            <div class="overlay rounded-top bg-dark"></div>
+          </div>
+          <div class="card-body content">
+            <h5><a href="javascript:void(0)" class="card-title title text-dark">Design your apps in your own way</a>
+            </h5>
+            <div class="post-meta d-flex justify-content-between mt-3">
+              <ul class="list-unstyled mb-0">
+                <li class="list-inline-item mr-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i
+                      class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                      class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+              </ul>
+              <a href="page-blog-detail" class="text-muted readmore">Read More <i class="mdi mdi-chevron-right"></i></a>
+            </div>
+          </div>
+          <div class="author">
+            <small class="text-light user d-block"><i class="mdi mdi-account"></i> Calvin Carlo</small>
+            <small class="text-light date"><i class="mdi mdi-calendar-check"></i> 13th August, 2019</small>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="card blog rounded border-0 shadow">
+          <div class="position-relative">
+            <img src="assets/images/blog/02.jpg" class="card-img-top rounded-top" alt="...">
+            <div class="overlay rounded-top bg-dark"></div>
+          </div>
+          <div class="card-body content">
+            <h5><a href="javascript:void(0)" class="card-title title text-dark">How apps is changing the IT world</a>
+            </h5>
+            <div class="post-meta d-flex justify-content-between mt-3">
+              <ul class="list-unstyled mb-0">
+                <li class="list-inline-item mr-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i
+                      class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                      class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+              </ul>
+              <a href="page-blog-detail" class="text-muted readmore">Read More <i class="mdi mdi-chevron-right"></i></a>
+            </div>
+          </div>
+          <div class="author">
+            <small class="text-light user d-block"><i class="mdi mdi-account"></i> Calvin Carlo</small>
+            <small class="text-light date"><i class="mdi mdi-calendar-check"></i> 13th August, 2019</small>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-4 col-md-6 mt-4 pt-2">
+        <div class="card blog rounded border-0 shadow">
+          <div class="position-relative">
+            <img src="assets/images/blog/03.jpg" class="card-img-top rounded-top" alt="...">
+            <div class="overlay rounded-top bg-dark"></div>
+          </div>
+          <div class="card-body content">
+            <h5><a href="javascript:void(0)" class="card-title title text-dark">Smartest Applications for Business</a>
+            </h5>
+            <div class="post-meta d-flex justify-content-between mt-3">
+              <ul class="list-unstyled mb-0">
+                <li class="list-inline-item mr-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i
+                      class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                      class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+              </ul>
+              <a href="page-blog-detail" class="text-muted readmore">Read More <i class="mdi mdi-chevron-right"></i></a>
+            </div>
+          </div>
+          <div class="author">
+            <small class="text-light user d-block"><i class="mdi mdi-account"></i> Calvin Carlo</small>
+            <small class="text-light date"><i class="mdi mdi-calendar-check"></i> 13th August, 2019</small>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Testi End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+  <div class="shape overflow-hidden text-footer">
+    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+    </svg>
+  </div>
+</div>
+<!--Shape End-->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
+  [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

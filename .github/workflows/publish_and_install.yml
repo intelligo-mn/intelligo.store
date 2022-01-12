@@ -2,15 +2,10 @@ name: Publish & Install
 on:
   push:
     branches:
-      - master
-      - major
-      - minor
-      - parallel-e2e
+      - main
   pull_request:
     branches:
-      - master
-      - major
-      - minor
+      - main
 defaults:
   run:
     shell: bash
@@ -19,13 +14,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [12.x, 14.x, 16.x]
+        os: [ubuntu-latest]
+        node-version: [16.x]
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Verdaccio
