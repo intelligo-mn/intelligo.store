@@ -1,16 +1,16 @@
 # Contribution Guidelines
 
-Hi! Thank you for taking the time to contribute to Vendure!
+Hi! Thank you for taking the time to contribute to platform.sale!
 
-In order to make the best use of both your time and that of the Vendure maintainers, please follow the guidelines in this document.
+In order to make the best use of both your time and that of the platform.sale maintainers, please follow the guidelines in this document.
 
 ## Branches
 
 There are 3 important branches to know about:
 
-* `master` - the default branch
-* `minor` - a branch for commits which introduce new features which would go in the next [SemVer minor](https://semver.org/) release.
-* `major` - a branch for commits which introduce breaking changes which would go in the next [SemVer major](https://semver.org/) release.
+* `main` - the default branch
+* `next` - a branch for commits which introduce new features which would go in the next [SemVer minor](https://semver.org/) release.
+* `dev` - a branch for commits which introduce breaking changes which would go in the next [SemVer major](https://semver.org/) release.
 
 Bug fixes should go direct in the `master` branch, from which new patch releases will be made regularly. Periodically the master branch will be merged into the `minor` and `major` branches.
 
@@ -59,6 +59,7 @@ type(scope): Message in present tense
 * common
 * core
 * create
+* store-front
 * email-plugin
 * etc.
 
