@@ -6,9 +6,9 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="title-heading text-center mt-5 pt-4">
-          <h1 class="display-1 font-weight-bold mb-3">Minimal Portfolio</h1>
+          <h1 class="display-1 fw-bold mb-3">Minimal Portfolio</h1>
           <p class="para-desc mx-auto h6">Launch your campaign and benefit from our expertise on designing and managing
-            conversion centered bootstrap4 html page.</p>
+            conversion centered bootstrap v5 html page.</p>
         </div>
       </div>
       <!--end col-->
@@ -35,19 +35,18 @@
   <div class="container">
     <div class="row">
       <ul class="col container-filter list-unstyled categories-filter text-center" id="filter">
-        <li class="list-inline-item"><a class="categories border d-block text-dark rounded"
-            (click)="activeCategory('all')" [ngClass]="{'active': galleryFilter ==='all'}">All</a></li>
-        <li class="list-inline-item"><a class="categories border d-block text-dark rounded"
-            (click)="activeCategory('branding')" [ngClass]="{'active': galleryFilter ==='branding'}">Branding</a></li>
-        <li class="list-inline-item"><a class="categories border d-block text-dark rounded"
-            (click)="activeCategory('designing')" [ngClass]="{'active': galleryFilter ==='designing'}"
-            data-filter=".designing">Designing</a></li>
-        <li class="list-inline-item"><a class="categories border d-block text-dark rounded"
-            (click)="activeCategory('photography')" [ngClass]="{'active': galleryFilter ==='photography'}"
-            data-filter=".photography">Photography</a></li>
-        <li class="list-inline-item"><a class="categories border d-block text-dark rounded"
-            (click)="activeCategory('development')" [ngClass]="{'active': galleryFilter ==='development'}"
-            data-filter=".development">Development</a></li>
+        <li class="list-inline-item categories-name border text-dark rounded me-2" (click)="activeCategory('all')"
+          [ngClass]="{'active': galleryFilter ==='all'}">All</li>
+        <li class="list-inline-item categories-name border text-dark rounded me-2" (click)="activeCategory('branding')"
+          [ngClass]="{'active': galleryFilter ==='branding'}">Branding</li>
+        <li class="list-inline-item categories-name border text-dark rounded me-2" (click)="activeCategory('designing')"
+          [ngClass]="{'active': galleryFilter ==='designing'}">Designing</li>
+        <li class="list-inline-item categories-name border text-dark rounded me-2"
+          (click)="activeCategory('photography')" [ngClass]="{'active': galleryFilter ==='photography'}">Photography
+        </li>
+        <li class="list-inline-item categories-name border text-dark rounded me-2"
+          (click)="activeCategory('development')" [ngClass]="{'active': galleryFilter ==='development'}">Development
+        </li>
       </ul>
     </div>
     <!--end row-->
@@ -63,7 +62,7 @@
               <img src="{{item.image}}" class="img-fluid" alt="work-image">
             </a>
             <div class="content bg-white p-3">
-              <h5 class="mb-0"><a href="page-work-detail" class="text-dark title">{{item.title}}</a></h5>
+              <h5 class="mb-0"><a routerLink="/portfolio-detail-one" class="text-dark title">{{item.title}}</a></h5>
               <h6 class="text-muted tag mb-0">{{item.category}}</h6>
             </div>
           </div>
@@ -81,8 +80,8 @@
       <div class="col-12 text-center">
         <div class="section-title">
           <h4 class="title mb-4">Let's talk about your portfolio</h4>
-          <p class="text-muted para-desc mx-auto">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+          <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
 
           <div class="mt-4 pt-2">
@@ -100,8 +99,7 @@
 
 
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

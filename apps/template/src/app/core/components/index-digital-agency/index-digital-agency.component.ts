@@ -7,9 +7,23 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './index-digital-agency.component.html',
   styleUrls: ['./index-digital-agency.component.css']
 })
+
+/**
+ * Digital Agency Component
+ */
 export class IndexDigitalAgencyComponent implements OnInit {
+
+  /**
+   * Footer bg color set
+   */
+  footerClass: true;
+  footerVariant = 'bg-light';
+
   constructor(private modalService: NgbModal) { }
 
+  /**
+   * Testimonial Slider
+   */
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -31,6 +45,9 @@ export class IndexDigitalAgencyComponent implements OnInit {
     nav: false
   };
 
+  ngOnInit(): void {
+  }
+
   /**
     * Open modal for show the video
     * @param content content of modal
@@ -41,8 +58,5 @@ export class IndexDigitalAgencyComponent implements OnInit {
   openWindowmModal(content) {
     this.modalService.open(content, { windowClass: 'dark-modal', size: 'lg', centered: true });
   }
-  ngOnInit(): void {
-  }
-
 
 }

@@ -5,7 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './shop-cart.component.html',
   styleUrls: ['./shop-cart.component.css']
 })
+
+/**
+ * Shop Cart Component
+ */
 export class ShopCartComponent implements OnInit {
+
+  /***
+   * Header button list show
+   */
+   shopPages = true;
+
   list = [{
     id: 1,
     image: 'assets/images/shop/product/s1.jpg',
@@ -44,6 +54,9 @@ export class ShopCartComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * imcrease-decrememt set
+   */
   increase(val) {
     this.list.map(product => {
       if (product.id === val) {

@@ -5,7 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './email-invoice.component.html',
   styleUrls: ['./email-invoice.component.css']
 })
+
+/**
+ * Email Invoice Component
+ */
 export class EmailInvoiceComponent implements OnInit {
+
+  //Get Year
+  year = new Date().getFullYear();
 
   constructor() { }
 

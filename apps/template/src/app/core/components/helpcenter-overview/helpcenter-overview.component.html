@@ -20,7 +20,7 @@
             <nav aria-label="breadcrumb" class="d-inline-block">
               <ul class="breadcrumb bg-white rounded shadow mb-0">
                 <li class="breadcrumb-item"><a routerLink="/index">Landrick</a></li>
-                <li class="breadcrumb-item"><a routerLink="/helpcenter-overview">Help Center</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Help Center</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ul>
             </nav>
@@ -44,7 +44,7 @@
         <div class="section-title text-center mb-4 pb-2">
           <h4 class="mb-4">Find the help you need</h4>
           <p class="para-desc mx-auto text-muted">Launch your campaign and benefit from our expertise on designing and
-            managing conversion centered bootstrap4 html page.</p>
+            managing conversion centered bootstrap v5 html page.</p>
         </div>
       </div>
       <!--end col-->
@@ -181,11 +181,11 @@
   <div class="container mt-100 mt-60">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-12">
-        <div class="media align-items-center shadow rounded p-4 features">
-          <div class="icons m-0 rounded h2 text-primary text-center px-3">
-            <i class="uil uil-envelope-check"></i>
+        <div class="d-flex align-items-center features feature-clean shadow rounded p-4">
+          <div class="icons text-primary text-center">
+            <i class="uil uil-envelope-check d-block rounded h3 mb-0"></i>
           </div>
-          <div class="content ml-4">
+          <div class="flex-1 content ms-4">
             <h5 class="mb-1"><a href="javascript:void(0)" class="text-dark">Get in Touch !</a></h5>
             <p class="text-muted mb-0">This is required when, for text is not yet available.</p>
             <div class="mt-2">
@@ -197,11 +197,11 @@
       <!--end col-->
 
       <div class="col-lg-6 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-        <div class="media align-items-center shadow rounded p-4 features">
-          <div class="icons m-0 rounded h2 text-primary text-center px-3">
-            <i class="uil uil-webcam"></i>
+        <div class="d-flex align-items-center features feature-clean shadow rounded p-4">
+          <div class="icons text-primary text-center">
+            <i class="uil uil-webcam d-block rounded h3 mb-0"></i>
           </div>
-          <div class="content ml-4">
+          <div class="flex-1 content ms-4">
             <h5 class="mb-1"><a href="javascript:void(0)" class="text-dark">Start a Meeting</a></h5>
             <p class="text-muted mb-0">This is required when, for text is not yet available.</p>
             <div class="mt-2">
@@ -220,8 +220,7 @@
 <!-- End Section -->
 
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

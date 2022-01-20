@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/internal/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-page-comingsoon2',
   templateUrl: './page-comingsoon2.component.html',
   styleUrls: ['./page-comingsoon2.component.css']
 })
+
+/**
+ * Page CommingSoon2 Component
+ */
 export class PageComingsoon2Component implements OnInit {
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
   private _trialEndsAt;
 
   private _diff: number;
@@ -16,8 +21,9 @@ export class PageComingsoon2Component implements OnInit {
   _hours: number;
   _minutes: number;
   _seconds: number;
+
   ngOnInit(): void {
-    this._trialEndsAt = '2020-12-31';
+    this._trialEndsAt = '2022-12-24';
 
     interval(3000).pipe(
       map((x) => {
@@ -30,6 +36,9 @@ export class PageComingsoon2Component implements OnInit {
       });
   }
 
+  /**
+   * Get Date & Time
+   */
   getDays(t) {
     return Math.floor(t / (1000 * 60 * 60 * 24));
   }
@@ -45,4 +54,12 @@ export class PageComingsoon2Component implements OnInit {
   getSeconds(t) {
     return Math.floor((t / 1000) % 60);
   }
+
+  /***
+   * Model open
+   */
+   open(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
 }

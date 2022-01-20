@@ -5,31 +5,37 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-maintenance.component.html',
   styleUrls: ['./page-maintenance.component.css']
 })
+
+/**
+ * Page Maintenance Component
+ */
 export class PageMaintenanceComponent implements OnInit {
 
-  constructor() { }
-  hour;
-  minute;
-  second;
-  ngOnInit(): void {
-    this.todo();
+  display: any;
+  constructor() {
+    this.timer(10);
   }
-  // tslint:disable-next-line: typedef
-  todo() {
-    let v = this;
-    setInterval(() => {
-      const countDownDate = new Date('Jan 1, 2021 15:37:25').getTime();
-      // Get today's date and time
-      let now = new Date().getTime();
+ 
+  ngOnInit(): void {
+  }
 
-      // Find the distance between now and the count down date
-      let distance = countDownDate - now;
+  timer(minute) {
+    let seconds: number = minute * 60;
+    let textSec: any = "0";
+    let statSec: number = 60;
 
-      v.hour = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      v.minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      v.second = Math.floor((distance % (1000 * 60)) / 1000);
+    const prefix = minute < 10 ? "0" : "";
+
+    const timer = setInterval(() => {
+      seconds--;
+      if (statSec != 0) statSec--;
+      else statSec = 59;
+
+      if (statSec < 10) {
+        textSec = "0" + statSec;
+      } else textSec = statSec;
+
+      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
     }, 1000);
   }
 }

@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-error.component.html',
   styleUrls: ['./page-error.component.css']
 })
+
+/**
+ * PAge Error Component
+ */
 export class PageErrorComponent implements OnInit {
 
   constructor() { }

@@ -12,7 +12,7 @@
             <nav aria-label="breadcrumb" class="d-inline-block">
               <ul class="breadcrumb bg-white rounded shadow mb-0">
                 <li class="breadcrumb-item"><a routerLink="/index">Landrick</a></li>
-                <li class="breadcrumb-item"><a href="#">Company</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Company</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Aboutus</li>
               </ul>
             </nav>
@@ -44,20 +44,19 @@
       <!--end col-->
 
       <div class="col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
-        <div class="ml-lg-4">
+        <div class="ms-lg-4">
           <div class="d-flex mb-4">
-            <span class="text-primary h1 mb-0"><span class="counter-value display-1 font-weight-bold"
-              [CountTo]="15"
-              [from]="0" [duration]="4"></span>+</span>
-            <span class="h6 align-self-end ml-2">Years <br> Experience</span>
+            <span class="text-primary h1 mb-0"><span class="counter-value display-1 fw-bold" [CountTo]="15" [from]="0"
+                [duration]="4"></span>+</span>
+            <span class="h6 align-self-end ms-2">Years <br> Experience</span>
           </div>
           <div class="section-title">
             <h4 class="title mb-4">Who we are ?</h4>
-            <p class="text-muted">Start working with <span class="text-primary font-weight-bold">Landrick</span> that
-              can provide everything you need to generate awareness, drive traffic, connect. Dummy text is text that is
-              used in the publishing industry or by web designers to occupy the space which will later be filled with
-              'real' content. This is required when, for example, the final text is not yet available. Dummy texts have
-              been in use by typesetters since the 16th century.</p>
+            <p class="text-muted">Start working with <span class="text-primary fw-bold">Landrick</span> that can provide
+              everything you need to generate awareness, drive traffic, connect. Dummy text is text that is used in the
+              publishing industry or by web designers to occupy the space which will later be filled with 'real'
+              content. This is required when, for example, the final text is not yet available. Dummy texts have been in
+              use by typesetters since the 16th century.</p>
             <a href="javascript:void(0)" class="btn btn-primary mt-3">Contact us</a>
           </div>
         </div>
@@ -68,39 +67,8 @@
   </div>
   <!--end container-->
 
-  <div class="container mt-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/amazon.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/google.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/lenovo.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/paypal.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/shopify.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-2 col-md-2 col-6 text-center pt-4">
-        <img src="assets/images/client/spotify.svg" class="avatar avatar-ex-sm" alt="">
-      </div>
-      <!--end col-->
-    </div>
-    <!--end row-->
+  <div class="container mt-5">
+    <app-clients-logo></app-clients-logo>
   </div>
   <!--end container-->
 </section>
@@ -114,7 +82,7 @@
           <h6 class="text-primary">Work Process</h6>
           <h4 class="title mb-4">How do we works ?</h4>
           <p class="text-muted para-desc mx-auto mb-0">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
@@ -124,13 +92,13 @@
 
     <div class="row">
       <div class="col-md-4 mt-4 pt-2">
-        <div class="card features work-process bg-transparent process-arrow border-0 text-center">
-          <div class="icons rounded h1 text-center text-primary px-3">
-            <i class="uil uil-presentation-edit"></i>
+        <div class="card features feature-clean work-process bg-transparent process-arrow border-0 text-center">
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-presentation-edit d-block rounded h3 mb-0"></i>
           </div>
 
           <div class="card-body">
-            <h4 class="title text-dark">Discussion</h4>
+            <h5 class="text-dark">Discussion</h5>
             <p class="text-muted mb-0">The most well-known dummy text is the 'Lorem Ipsum', which is said to have
               originated</p>
           </div>
@@ -139,13 +107,13 @@
       <!--end col-->
 
       <div class="col-md-4 mt-md-5 pt-md-3 mt-4 pt-2">
-        <div class="card features work-process bg-transparent process-arrow border-0 text-center">
-          <div class="icons rounded h1 text-center text-primary px-3">
-            <i class="uil uil-airplay"></i>
+        <div class="card features feature-clean work-process bg-transparent process-arrow border-0 text-center">
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-airplay d-block rounded h3 mb-0"></i>
           </div>
 
           <div class="card-body">
-            <h4 class="title text-dark">Strategy & Testing</h4>
+            <h5 class="text-dark">Strategy & Testing</h5>
             <p class="text-muted mb-0">Generators convallis odio, vel pharetra quam malesuada vel. Nam porttitor
               malesuada.</p>
           </div>
@@ -154,13 +122,13 @@
       <!--end col-->
 
       <div class="col-md-4 mt-md-5 pt-md-5 mt-4 pt-2">
-        <div class="card features work-process bg-transparent d-none-arrow border-0 text-center">
-          <div class="icons rounded h1 text-center text-primary px-3">
-            <i class="uil uil-image-check"></i>
+        <div class="card features feature-clean work-process bg-transparent d-none-arrow border-0 text-center">
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-image-check d-block rounded h3 mb-0"></i>
           </div>
 
           <div class="card-body">
-            <h4 class="title text-dark">Reporting</h4>
+            <h5 class="text-dark">Reporting</h5>
             <p class="text-muted mb-0">Internet Proin tempus odio, vel pharetra quam malesuada vel. Nam porttitor
               malesuada.</p>
           </div>
@@ -175,18 +143,18 @@
   <div class="container mt-100 mt-60">
     <div class="row align-items-end mb-4 pb-4">
       <div class="col-md-8">
-        <div class="section-title text-center text-md-left">
+        <div class="section-title text-md-left">
           <h6 class="text-primary">Services</h6>
           <h4 class="title mb-4">What we do ?</h4>
-          <p class="text-muted mb-0 para-desc">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+          <p class="text-muted mb-0 para-desc">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
       <!--end col-->
 
       <div class="col-md-4 mt-4 mt-sm-0">
-        <div class="text-center text-md-right">
+        <div class="text-center text-md-end">
           <a href="javascript:void(0)" class="text-primary h6">See More
             <i-feather name="arrow-right" class="fea icon-sm"></i-feather>
           </a>
@@ -202,7 +170,7 @@
         <li ngbNavItem="top">
           <a ngbNavLink class="rounded">
             <div class="text-center pt-1 pb-1">
-              <h4 class="title font-weight-normal mb-0">Web Developing</h4>
+              <h6 class="mb-0">Web Developing</h6>
             </div>
           </a>
           <ng-template ngbNavContent>
@@ -224,7 +192,7 @@
         <li ngbNavItem>
           <a ngbNavLink class="rounded">
             <div class="text-center pt-1 pb-1">
-              <h4 class="title font-weight-normal mb-0">Database Analysis</h4>
+              <h6 class="mb-0">Database Analysis</h6>
             </div>
           </a>
           <ng-template ngbNavContent>
@@ -246,7 +214,7 @@
         <li ngbNavItem>
           <a ngbNavLink class="rounded">
             <div class="text-center pt-1 pb-1">
-              <h4 class="title font-weight-normal mb-0">Server Security</h4>
+              <h6 class="mb-0">Server Security</h6>
             </div>
           </a>
           <ng-template ngbNavContent>
@@ -268,7 +236,7 @@
         <li ngbNavItem>
           <a ngbNavLink class="rounded">
             <div class="text-center pt-1 pb-1">
-              <h4 class="title font-weight-normal mb-0">Web Designing</h4>
+              <h6 class="mb-0">Web Designing</h6>
             </div>
           </a>
           <ng-template ngbNavContent>
@@ -288,7 +256,7 @@
           </ng-template>
         </li>
       </ul>
-      <div [ngbNavOutlet]="nav" class="mt-4"></div>
+      <div [ngbNavOutlet]="nav" class="mt-4 ms-4"></div>
     </div>
     <!--end col-->
 
@@ -317,7 +285,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <youtube-player [videoId]="'jNTZpfXYJa4'" height="450" width="780">
+                  <youtube-player [videoId]="'yba7hPeTSjk'" height="450" width="780">
                   </youtube-player>
                 </div>
               </ng-template>
@@ -328,14 +296,14 @@
               <div class="col-lg-10 text-center">
                 <div class="row align-items-center">
                   <div class="col-md-6 mt-4 pt-2">
-                    <div class="section-title text-md-left">
+                    <div class="section-title text-md-start">
                       <h6 class="text-white-50">Team</h6>
                       <h4 class="title text-white title-dark mb-0">Meet Experience <br> Team Member</h4>
                     </div>
                   </div>
 
                   <div class="col-md-6 col-12 mt-4 pt-md-2">
-                    <div class="section-title text-md-left">
+                    <div class="section-title text-md-start">
                       <p class="text-white-50 para-desc">Start working with Landrick that can provide everything you
                         need to generate awareness, drive traffic, connect.</p>
                       <a href="javascript:void(0)" class="text-white title-dark">Read More
@@ -360,8 +328,7 @@
 <!-- End -->
 
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

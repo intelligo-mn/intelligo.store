@@ -7,14 +7,28 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './index-landing-one.component.html',
   styleUrls: ['./index-landing-one.component.css']
 })
+
+/***
+ * Langing one Component
+ */
 export class IndexLandingOneComponent implements OnInit {
+
+  /***
+   * Nav light class add
+   */
   navClass = 'nav-light';
+
   constructor(private modalService: NgbModal) { }
+
+  /***
+   * Testimonial Slider
+   */
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
+    autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -33,6 +47,7 @@ export class IndexLandingOneComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   /**
   * Open modal for show the video
   * @param content content of modal
@@ -43,4 +58,5 @@ export class IndexLandingOneComponent implements OnInit {
   openModal(content) {
     this.modalService.open(content, { windowClass: 'dark-modal', size: 'lg', centered: true });
   }
+  
 }

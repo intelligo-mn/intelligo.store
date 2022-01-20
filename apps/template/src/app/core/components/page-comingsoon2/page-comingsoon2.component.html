@@ -1,5 +1,5 @@
 <div class="back-to-home rounded d-none d-sm-block">
-  <a routerLink="/index" class="btn btn-icon btn-soft-primary">
+  <a routerLink="/index" class="btn btn-icon btn-primary">
     <i-feather name="home" class="icons"></i-feather>
   </a>
 </div>
@@ -13,12 +13,12 @@
     <source src="http://techslides.com/demos/sample-videos/small.mp4" />
   </video>
 
-  <div class="container position-relative text-md-left text-center" style="z-index: 1;">
+  <div class="container position-relative text-md-left" style="z-index: 1;">
     <div class="row">
       <div class="col-md-12">
         <a href="javascript:void(0)" class="logo h5"><img src="assets/images/logo-light.png" height="24" alt=""></a>
         <h1 class="text-uppercase text-white title-dark mt-2 mb-4 coming-soon">
-          <ngx-typed-js [strings]="['We are Coming soon...', 'UI/UX Designer', 'Web Developer']" [shuffle]="true"
+          <ngx-typed-js [strings]="['We are Coming soon...', 'We are Be Ready to', 'We are Connected with us']" [shuffle]="true"
             [typeSpeed]="80" [loop]="true">
             <span class="element typing"></span>
           </ngx-typed-js>
@@ -31,28 +31,24 @@
     <div class="row">
       <div class="col-md-12">
         <div id="countdown">
-          <div class="count-down"><span class="count-number">{{_days}}</span><span
-              class="count-head position-relative d-block">Days</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_hours}}</span><span
-              class="count-head position-relative d-block">Hours</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_minutes}}</span><span
-              class="count-head position-relative d-block">Minutes</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_seconds}}</span><span
-              class="count-head position-relative d-block">Seconds</span>
-          </div>
-
+          <ul class="count-down list-unstyled">
+            <li id="days" class="count-number list-inline-item m-2">{{_days}}<p class="count-head">Days</p>
+            </li>
+            <li id="hours" class="count-number list-inline-item m-2">{{_hours}}<p class="count-head">Hours</p>
+            </li>
+            <li id="mins" class="count-number list-inline-item m-2">{{_minutes}}<p class="count-head">Minutes</p>
+            </li>
+            <li id="secs" class="count-number list-inline-item m-2">{{_seconds}}<p class="count-head">Seconds</p>
+            </li>
+            <li id="end" class="h1"></li>
+          </ul>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <a routerLink="/index" data-toggle="modal" data-target="#LoginForm" class="btn btn-primary mt-4 mr-2"><i
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#LoginForm" class="btn btn-primary mt-4 me-2" (click)="open(content)"><i
             class="mdi mdi-check"></i> Notify Me</a>
-        <a routerLink="/index" class="btn btn-outline-primary mt-4"><i class="mdi mdi-backup-restore"></i> Go Back
-          Home</a>
       </div>
     </div>
   </div> <!-- end container -->
@@ -60,33 +56,28 @@
 <!-- COMING SOON PAGE -->
 
 <!-- Subscribe start -->
-<div class="modal fade" id="LoginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content rounded shadow border-0">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Subscribe Me</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="bg-white p-3 rounded box-shadow">
-          <p>We are comingsoon. Please, Enter your mail id and subscribe.</p>
-          <form>
-            <div class="form-group mb-0">
-              <div class="input-group">
-                <input name="email" id="email" type="email" class="form-control" placeholder="Your Email :" required=""
-                  aria-describedby="newssubscribebtn">
-                <div class="input-group-append">
-                  <button class="btn btn-primary submitBnt" type="submit" id="paypalmail">Subscribe</button>
-                </div>
-              </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalCenterTitle">Subscribe Me</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="bg-white p-3 rounded box-shadow">
+      <p>We are comingsoon. Please, Enter your mail id and subscribe.</p>
+      <form>
+        <div class="form-group mb-0">
+          <div class="input-group">
+            <input name="email" id="email" type="email" class="form-control" placeholder="Your Email :" required=""
+              aria-describedby="newssubscribebtn">
+            <div class="input-group-append">
+              <button class="btn btn-primary submitBnt" type="submit" id="paypalmail">Subscribe</button>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-</div>
+</ng-template>
 <!-- Subscribe end -->

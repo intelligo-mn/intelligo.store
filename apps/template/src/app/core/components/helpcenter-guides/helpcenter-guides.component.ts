@@ -5,13 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './helpcenter-guides.component.html',
   styleUrls: ['./helpcenter-guides.component.css']
 })
-export class HelpcenterGuidesComponent implements OnInit {
 
+/**
+ * Helpcenter Guides Component
+ */
+export class HelpcenterGuidesComponent implements OnInit {
+  hideFooter = true;
   constructor() { }
 
   ngOnInit(): void {
   }
-
-
 
 }

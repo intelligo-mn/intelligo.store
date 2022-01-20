@@ -6,13 +6,21 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
+
+/**
+ * Index Component
+ */
 export class IndexComponent implements OnInit {
 
+  /**
+   * Partners slider
+   */
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
+    autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {

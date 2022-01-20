@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LightboxModule } from 'ngx-lightbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,11 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CountToModule } from 'angular-count-to';
 import { NgxMasonryModule } from 'ngx-masonry';
-import { ScrollspyDirective } from './shared/scrollspy.directive'
+
+import { SharedModule } from "./shared/shared.module";
+
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AccountMembersComponent } from './core/components/account-members/account-members.component';
 import { AccountMessagesComponent } from './core/components/account-messages/account-messages.component';
@@ -142,6 +147,47 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SwitcherComponent } from './shared/switcher/switcher.component';
 import { IndexOnlineLearningComponent } from './core/components/index-online-learning/index-online-learning.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IndexConstructionComponent } from './core/components/index-construction/index-construction.component';
+import { IndexRealEstateComponent } from './core/components/index-real-estate/index-real-estate.component';
+import { IndexDeveloperComponent } from './core/components/index-developer/index-developer.component';
+import { IndexSeoAgencyComponent } from './core/components/index-seo-agency/index-seo-agency.component';
+import { IndexHospitalComponent } from './core/components/index-hospital/index-hospital.component';
+import { IndexFinanceComponent } from './core/components/index-finance/index-finance.component';
+import { IndexVideocallComponent } from './core/components/index-videocall/index-videocall.component';
+import { IndexItSolutionTwoComponent } from './core/components/index-it-solution-two/index-it-solution-two.component';
+import { IndexFreelancerComponent } from './core/components/index-freelancer/index-freelancer.component';
+import { IndexBlockchainComponent } from './core/components/index-blockchain/index-blockchain.component';
+import { IndexCryptoTwoComponent } from './core/components/index-crypto-two/index-crypto-two.component';
+import { IndexIntegrationComponent } from './core/components/index-integration/index-integration.component';
+import { IndexLandingFourComponent } from './core/components/index-landing-four/index-landing-four.component';
+import { ShopListsComponent } from './core/components/shop-lists/shop-lists.component';
+import { PageJobCompanyListComponent } from './core/components/page-job-company-list/page-job-company-list.component';
+import { PageJobCandidateListComponent } from './core/components/page-job-candidate-list/page-job-candidate-list.component';
+import { PageThankyouComponent } from './core/components/page-thankyou/page-thankyou.component';
+import { PortfolioModernTwoComponent } from './core/components/portfolio-modern-two/portfolio-modern-two.component';
+import { PortfolioModernThreeComponent } from './core/components/portfolio-modern-three/portfolio-modern-three.component';
+import { PortfolioModernFourComponent } from './core/components/portfolio-modern-four/portfolio-modern-four.component';
+import { PortfolioModernFiveComponent } from './core/components/portfolio-modern-five/portfolio-modern-five.component';
+import { PortfolioModernSixComponent } from './core/components/portfolio-modern-six/portfolio-modern-six.component';
+import { PortfolioClassicTwoComponent } from './core/components/portfolio-classic-two/portfolio-classic-two.component';
+import { PortfolioClassicThreeComponent } from './core/components/portfolio-classic-three/portfolio-classic-three.component';
+import { PortfolioClassicFourComponent } from './core/components/portfolio-classic-four/portfolio-classic-four.component';
+import { PortfolioClassicFiveComponent } from './core/components/portfolio-classic-five/portfolio-classic-five.component';
+import { PortfolioClassicSixComponent } from './core/components/portfolio-classic-six/portfolio-classic-six.component';
+import { PortfolioGridTwoComponent } from './core/components/portfolio-grid-two/portfolio-grid-two.component';
+import { PortfolioGridThreeComponent } from './core/components/portfolio-grid-three/portfolio-grid-three.component';
+import { PortfolioGridFourComponent } from './core/components/portfolio-grid-four/portfolio-grid-four.component';
+import { PortfolioGridFiveComponent } from './core/components/portfolio-grid-five/portfolio-grid-five.component';
+import { PortfolioGridSixComponent } from './core/components/portfolio-grid-six/portfolio-grid-six.component';
+import { PortfolioMasonryTwoComponent } from './core/components/portfolio-masonry-two/portfolio-masonry-two.component';
+import { PortfolioMasonryThreeComponent } from './core/components/portfolio-masonry-three/portfolio-masonry-three.component';
+import { PortfolioMasonryFourComponent } from './core/components/portfolio-masonry-four/portfolio-masonry-four.component';
+import { PortfolioMasonryFiveComponent } from './core/components/portfolio-masonry-five/portfolio-masonry-five.component';
+import { PortfolioMasonrySixComponent } from './core/components/portfolio-masonry-six/portfolio-masonry-six.component';
+import { PortfolioDetailOneComponent } from './core/components/portfolio-detail-one/portfolio-detail-one.component';
+import { PortfolioDetailTwoComponent } from './core/components/portfolio-detail-two/portfolio-detail-two.component';
+import { PortfolioDetailThreeComponent } from './core/components/portfolio-detail-three/portfolio-detail-three.component';
+import { PortfolioDetailFourComponent } from './core/components/portfolio-detail-four/portfolio-detail-four.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -270,7 +316,47 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ShopProductsComponent,
     WidgetComponent,
     SwitcherComponent,
-    ScrollspyDirective
+    IndexConstructionComponent,
+    IndexRealEstateComponent,
+    IndexDeveloperComponent,
+    IndexSeoAgencyComponent,
+    IndexHospitalComponent,
+    IndexFinanceComponent,
+    IndexVideocallComponent,
+    IndexItSolutionTwoComponent,
+    IndexFreelancerComponent,
+    IndexBlockchainComponent,
+    IndexCryptoTwoComponent,
+    IndexIntegrationComponent,
+    IndexLandingFourComponent,
+    ShopListsComponent,
+    PageJobCompanyListComponent,
+    PageJobCandidateListComponent,
+    PageThankyouComponent,
+    PortfolioModernTwoComponent,
+    PortfolioModernThreeComponent,
+    PortfolioModernFourComponent,
+    PortfolioModernFiveComponent,
+    PortfolioModernSixComponent,
+    PortfolioClassicTwoComponent,
+    PortfolioClassicThreeComponent,
+    PortfolioClassicFourComponent,
+    PortfolioClassicFiveComponent,
+    PortfolioClassicSixComponent,
+    PortfolioGridTwoComponent,
+    PortfolioGridThreeComponent,
+    PortfolioGridFourComponent,
+    PortfolioGridFiveComponent,
+    PortfolioGridSixComponent,
+    PortfolioMasonryTwoComponent,
+    PortfolioMasonryThreeComponent,
+    PortfolioMasonryFourComponent,
+    PortfolioMasonryFiveComponent,
+    PortfolioMasonrySixComponent,
+    PortfolioDetailOneComponent,
+    PortfolioDetailTwoComponent,
+    PortfolioDetailThreeComponent,
+    PortfolioDetailFourComponent
   ],
   imports: [
     BrowserModule,
@@ -282,6 +368,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ScrollToModule.forRoot(),
     RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     NgxYoutubePlayerModule,
+    NgbDropdownModule,
+    CKEditorModule,
     NgbModule,
     NgbNavModule,
     FormsModule,
@@ -289,11 +377,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NgxTypedJsModule,
     FlatpickrModule.forRoot(),
     CountToModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    LightboxModule,
+    SharedModule
   ],
   exports: [
     FeatherModule,
-    ScrollspyDirective
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

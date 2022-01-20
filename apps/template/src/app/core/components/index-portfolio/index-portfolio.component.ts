@@ -5,7 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './index-portfolio.component.html',
   styleUrls: ['./index-portfolio.component.css']
 })
+
+/**
+ * Portfolio Component
+ */
 export class IndexPortfolioComponent implements OnInit {
+  
+  hideFooter = true;
 
   filterredImages;
   galleryFilter = 'all';
@@ -64,6 +70,9 @@ export class IndexPortfolioComponent implements OnInit {
     this.filterredImages = this.list;
   }
 
+  /**
+   * Filter Class Add
+   */
   activeCategory(category) {
     this.galleryFilter = category;
     if (this.galleryFilter === 'all') {

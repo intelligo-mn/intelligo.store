@@ -7,6 +7,10 @@ import { map } from 'rxjs/internal/operators';
   templateUrl: './page-comingsoon.component.html',
   styleUrls: ['./page-comingsoon.component.css']
 })
+
+/**
+ * Page ComingSoon Component
+ */
 export class PageComingsoonComponent implements OnInit {
 
   constructor() { }
@@ -18,7 +22,7 @@ export class PageComingsoonComponent implements OnInit {
   _minutes: number;
   _seconds: number;
   ngOnInit(): void {
-    this._trialEndsAt = "2020-12-31";
+    this._trialEndsAt = "2022-12-24";
 
     interval(3000).pipe(
       map((x) => {
@@ -31,6 +35,9 @@ export class PageComingsoonComponent implements OnInit {
       });
   }
 
+  /**
+   * Get Date & Time
+   */
   getDays(t) {
     return Math.floor(t / (1000 * 60 * 60 * 24));
   }

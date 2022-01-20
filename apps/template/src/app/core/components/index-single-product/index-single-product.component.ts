@@ -7,6 +7,10 @@ import { SwiperOptions } from 'swiper';
   templateUrl: './index-single-product.component.html',
   styleUrls: ['./index-single-product.component.css']
 })
+
+/**
+ * Single Product Component
+ */
 export class IndexSingleProductComponent implements OnInit {
 
   constructor(private modalService: NgbModal) { }
@@ -22,11 +26,15 @@ export class IndexSingleProductComponent implements OnInit {
     pagination: true
   };
 
+  /**
+   * Testimonial Slider
+   */
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
+    autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -42,6 +50,9 @@ export class IndexSingleProductComponent implements OnInit {
     },
     nav: false
   };
+
+  ngOnInit(): void {
+  }
 
   /**
    * onclick Image show
@@ -61,9 +72,6 @@ export class IndexSingleProductComponent implements OnInit {
   }
   openModal(content) {
     this.modalService.open(content, { windowClass: 'dark-modal', size: 'lg', centered: true });
-  }
-
-  ngOnInit(): void {
   }
 
 }
