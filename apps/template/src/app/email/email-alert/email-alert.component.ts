@@ -5,7 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './email-alert.component.html',
   styleUrls: ['./email-alert.component.css']
 })
+
+/**
+ * Email Alert Component
+ */
 export class EmailAlertComponent implements OnInit {
+
+  //Get Year
+  year = new Date().getFullYear();
 
   constructor() { }
 

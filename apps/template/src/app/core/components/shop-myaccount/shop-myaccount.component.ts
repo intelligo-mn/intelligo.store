@@ -6,33 +6,20 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './shop-myaccount.component.html',
   styleUrls: ['./shop-myaccount.component.css']
 })
+
+/**
+ * Shop MyAccount Component
+ */
 export class ShopMyaccountComponent implements OnInit {
+
+  /**
+   * Header button list show
+   */
+  shopPages = true;
 
   constructor() { }
 
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      },
-      900: {
-        items: 4
-      }
-    },
-    nav: false
-  };
-
   ngOnInit(): void {
   }
-
 
 }

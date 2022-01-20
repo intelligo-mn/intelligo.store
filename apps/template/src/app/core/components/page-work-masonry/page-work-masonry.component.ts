@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxMasonryOptions } from 'ngx-masonry';
+import { NgxMasonryOptions } from 'ngx-masonry'; 
 
 @Component({
   selector: 'app-page-work-masonry',

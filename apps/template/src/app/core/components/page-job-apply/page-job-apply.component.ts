@@ -5,12 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-job-apply.component.html',
   styleUrls: ['./page-job-apply.component.css']
 })
+
+/**
+ * Page Job-Apply Component
+ */
 export class PageJobApplyComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }

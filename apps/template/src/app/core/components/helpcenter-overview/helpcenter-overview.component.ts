@@ -5,12 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './helpcenter-overview.component.html',
   styleUrls: ['./helpcenter-overview.component.css']
 })
-export class HelpcenterOverviewComponent implements OnInit {
 
+/**
+ * Helpcenter Overview Component
+ */
+export class HelpcenterOverviewComponent implements OnInit {
+  hideFooter = true;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }

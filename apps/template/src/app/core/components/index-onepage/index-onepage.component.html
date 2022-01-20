@@ -3,12 +3,12 @@
   <div class="container">
     <!-- Logo container-->
     <div>
-      <a class="logo" href="#">
+      <a class="logo" [ngxScrollTo]="'#home'">
         <img src="assets/images/logo-dark.png" height="24" alt="">
       </a>
     </div>
     <div class="buy-button">
-      <a href="#" target="_blank" class="btn btn-primary">Buy Now</a>
+      <a href="https://1.envato.market/4n73n" target="_blank" class="btn btn-primary">Buy Now</a>
     </div>
     <!--end login button-->
     <!-- End Logo container-->
@@ -62,9 +62,10 @@
         <div class="col-md-9 text-center mt-0 mt-md-5 pt-0 pt-md-5">
           <div class="title-heading margin-top-100">
             <h1 class="heading mb-3" data-aos="fade-up" data-aos-duration="1000">Website Load Faster, and Grow Your
-              <span class="text-primary">SEO</span></h1>
+              <span class="text-primary">SEO</span>
+            </h1>
             <p class="para-desc mx-auto text-muted" data-aos="fade-up" data-aos-duration="1400">Launch your campaign and
-              benefit from our expertise on designing and managing conversion centered bootstrap4 html page.</p>
+              benefit from our expertise on designing and managing conversion centered bootstrap v5 html page.</p>
             <div class="text-center subcribe-form mt-4 pt-2" data-aos="fade-up" data-aos-duration="1800">
               <form>
                 <div class="form-group mb-0">
@@ -97,108 +98,16 @@
           <div class="section-title mb-4 pb-2">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Great Features</h4>
             <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
-              <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
               generate
-              awareness, drive traffic, connect.</p>
+              awareness, drive traffic, connect.
+            </p>
           </div>
         </div>
         <!--end col-->
       </div>
       <!--end row-->
-
-      <div class="row">
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="1000">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/pen.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Design &amp; Development</h4>
-              <p class="text-muted mb-0">Nisi aenean vulputate eleifend tellus vitae eleifend enim a Aliquam aenean
-                elementum semper.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="1400">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/video.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Management &amp; Marketing</h4>
-              <p class="text-muted mb-0">Allegedly, a Latin scholar established the origin of the text by established
-                compiling unusual word.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="1800">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/intellectual.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Stratagy &amp; Research</h4>
-              <p class="text-muted mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum
-                fragments texts used today.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="2200">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/user.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Easy To Use</h4>
-              <p class="text-muted mb-0">Nisi aenean vulputate eleifend tellus vitae eleifend enim a Aliquam aenean
-                elementum semper.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="2400">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/calendar.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Daily Reports</h4>
-              <p class="text-muted mb-0">Allegedly, a Latin scholar established the origin of the text by compiling
-                unusual established word.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-md-4 col-12 mt-5">
-          <div class="features" data-aos="fade-up" data-aos-duration="2800">
-            <div class="image position-relative d-inline-block">
-              <img src="assets/images/icon/sand-clock.svg" class="avatar avatar-small" alt="">
-            </div>
-
-            <div class="content mt-4">
-              <h4 class="title-2">Real Time Zone</h4>
-              <p class="text-muted mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum
-                texts
-                used fragments today.</p>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-      </div>
-      <!--end row-->
+      <app-services [servicesData]="servicesData"></app-services>
     </div>
     <!--end container-->
 
@@ -211,22 +120,22 @@
         <!--end col-->
 
         <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-          <div class="section-title ml-lg-5">
+          <div class="section-title ms-lg-5">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Seamless Operation via Smart SEO</h4>
             <p class="text-muted" data-aos="fade-up" data-aos-duration="1400">You can combine all the Landrick templates
               into a single one, you can take a component from the Application theme and use it in the Website.</p>
             <ul class="list-unstyled mb-0 text-muted" data-aos="fade-up" data-aos-duration="1800">
-              <li class="mb-0"><span class="text-primary h5 mr-2"><i class="uim uim-check-circle"></i></span>Digital
-                Marketing Solutions for Tomorrow</li>
-              <li class="mb-0"><span class="text-primary h5 mr-2"><i class="uim uim-check-circle"></i></span>Our
-                Talented
-                & Experienced Marketing Agency</li>
-              <li class="mb-0"><span class="text-primary h5 mr-2"><i class="uim uim-check-circle"></i></span>Create your
-                own skin to match your brand</li>
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency
+              </li>
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
             </ul>
             <div class="mt-4" data-aos="fade-up" data-aos-duration="2200">
               <a href="javascript:void(0)" class="text-primary p-1 px-2 shadow rounded">Read More <i
-                  class="mdi mdi-chevron-right"></i></a>
+                  class="uil uil-angle-right-b"></i></a>
             </div>
           </div>
         </div>
@@ -247,9 +156,9 @@
           <!--end col-->
 
           <div class="col-sm-5 mt-4 mt-sm-0">
-            <div class="text-sm-right">
+            <div class="text-sm-end">
               <a href="javascript:void(0)" (click)="openTrialModal(freeTrialcontent)"
-                class="btn btn-outline-primary">Free Trial <span class="badge badge-pill badge-danger ml-2">v2.5</span>
+                class="btn btn-outline-primary">Free Trial <span class="badge rounded-pill bg-danger ms-2">v3.2</span>
               </a>
             </div>
           </div>
@@ -265,7 +174,8 @@
       <div class="modal-content rounded shadow border-0">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle">14 Days Free Trial</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -277,34 +187,42 @@
               <form>
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="form-group position-relative">
-                      <label>Name : <span class="text-danger">*</span></label>
-                      <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                      <input type="text" class="form-control pl-5" placeholder="Name" name="name" required="">
+                    <div class="mb-3">
+                      <label class="form-label">Name : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                        <input type="text" class="form-control ps-5" placeholder="Name" name="name" required="">
+                      </div>
                     </div>
                   </div>
                   <!--end col-->
 
                   <div class="col-lg-12">
-                    <div class="form-group position-relative">
-                      <label>Email : <span class="text-danger">*</span></label>
-                      <i-feather name="mail" class="fea icon-sm icons"></i-feather>
-                      <input type="email" class="form-control pl-5" placeholder="Email" name="email" required="">
+                    <div class="mb-3">
+                      <label class="form-label">Email : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                        <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                      </div>
                     </div>
                   </div>
                   <!--end col-->
 
                   <div class="col-lg-12">
-                    <div class="form-group position-relative">
-                      <label>Password : <span class="text-danger">*</span></label>
-                      <i-feather name="key" class="fea icon-sm icons"></i-feather>
-                      <input type="password" class="form-control pl-5" placeholder="Password" required="">
+                    <div class="mb-3">
+                      <label class="form-label">Password : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                        <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                      </div>
                     </div>
                   </div>
                   <!--end col-->
 
                   <div class="col-lg-12 mt-2 mb-0">
-                    <button class="btn btn-primary btn-block">Login</button>
+                    <div class="d-grid">
+                      <button class="btn btn-primary">Login</button>
+                    </div>
                   </div>
                   <!--end col-->
                 </div>
@@ -363,165 +281,25 @@
           <div class="section-title mb-4 pb-2">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Testimonial</h4>
             <p class="text-muted para-desc mb-0 mx-auto" data-aos="fade-up" data-aos-duration="1400">Start working with
-              <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
               generate
-              awareness, drive traffic, connect.</p>
+              awareness, drive traffic, connect.
+            </p>
           </div>
         </div>
       </div>
       <!--end row-->
-
       <div class="row justify-content-center">
         <div class="col-lg-12 mt-4">
-          <!-- <div id="customer-testi" class="owl-carousel owl-theme"> -->
-          <owl-carousel-o id="customer-testi" [options]="customOptions">
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="1000">
-                <img src="assets/images/client/01.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" It seems that only fragments of the original text remain in the Lorem
-                    Ipsum
-                    texts used today. "</p>
-                  <h6 class="text-primary">- Thomas Israel <small class="text-muted">C.E.O</small></h6>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="1400">
-                <img src="assets/images/client/02.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" One disadvantage of Lorum Ipsum is that in Latin certain letters appear
-                    more frequently than others. "</p>
-                  <h6 class="text-primary">- Barbara McIntosh <small class="text-muted">M.D</small></h6>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="1800">
-                <img src="assets/images/client/03.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" The most well-known dummy text is the 'Lorem Ipsum', which is said to
-                    have
-                    originated in the 16th century. "</p>
-                  <h6 class="text-primary">- Carl Oliver <small class="text-muted">P.A</small></h6>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="2200">
-                <img src="assets/images/client/04.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" According to most sources, Lorum Ipsum can be traced back to a text
-                    composed by Cicero. "</p>
-                  <h6 class="text-primary">- Christa Smith <small class="text-muted">Manager</small></h6>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="2400">
-                <img src="assets/images/client/05.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" There is now an abundance of readable dummy texts. These are usually used
-                    when a text is required. "</p>
-                  <h6 class="text-primary">- Dean Tolle <small class="text-muted">Developer</small></h6>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="media customer-testi m-2" data-aos="fade-up" data-aos-duration="2800">
-                <img src="assets/images/client/06.jpg" class="avatar avatar-small mr-3 rounded shadow" alt="">
-                <div class="media-body content p-3 shadow rounded bg-white position-relative">
-                  <ul class="list-unstyled mb-0">
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
-                  </ul>
-                  <p class="text-muted mt-2">" Thus, Lorem Ipsum has only limited suitability as a visual filler for
-                    German texts. "</p>
-                  <h6 class="text-primary">- Jill Webb <small class="text-muted">Designer</small></h6>
-                </div>
-              </div>
-            </ng-template>
-          </owl-carousel-o>
-          <!-- </div> -->
+          <app-testimonial [testimonialData]="testimonialData"></app-testimonial>
         </div>
-        <!--end col-->
       </div>
-      <!--end row-->
     </div>
     <!--end container-->
 
     <!-- Partners start -->
     <div class="container pt-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-2 col-md-2 col-6 text-center" data-aos="fade-up" data-aos-duration="1000">
-          <img src="assets/images/client/amazon.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-2 col-md-2 col-6 text-center" data-aos="fade-up" data-aos-duration="1200">
-          <img src="assets/images/client/google.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-2 col-md-2 col-6 text-center mt-4 mt-sm-0" data-aos="fade-up" data-aos-duration="1400">
-          <img src="assets/images/client/lenovo.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-2 col-md-2 col-6 text-center mt-4 mt-sm-0" data-aos="fade-up" data-aos-duration="1600">
-          <img src="assets/images/client/paypal.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-2 col-md-2 col-6 text-center mt-4 mt-sm-0" data-aos="fade-up" data-aos-duration="1800">
-          <img src="assets/images/client/shopify.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-2 col-md-2 col-6 text-center mt-4 mt-sm-0" data-aos="fade-up" data-aos-duration="2000">
-          <img src="assets/images/client/spotify.svg" class="avatar avatar-ex-sm" alt="">
-        </div>
-        <!--end col-->
-      </div>
-      <!--end row-->
+      <app-clients-logo></app-clients-logo>
     </div>
     <!--end container-->
     <!-- Partners End -->
@@ -537,117 +315,16 @@
           <div class="section-title mb-4 pb-2">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Pricing</h4>
             <p class="text-muted para-desc mb-0 mx-auto" data-aos="fade-up" data-aos-duration="1400">Start working with
-              <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
               generate
-              awareness, drive traffic, connect.</p>
+              awareness, drive traffic, connect.
+            </p>
           </div>
         </div>
         <!--end col-->
       </div>
       <!--end row-->
-
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1000">
-          <div class="card pricing-rates business-rate shadow bg-light border-0 rounded">
-            <div class="card-body">
-              <h2 class="title text-uppercase mb-4">Free</h2>
-              <div class="d-flex mb-4">
-                <span class="h4 mb-0 mt-2">$</span>
-                <span class="price h1 mb-0">0</span>
-                <span class="h4 align-self-end mb-1">/mo</span>
-              </div>
-
-              <ul class="list-unstyled mb-0 pl-0">
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Full Access</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Source Files</li>
-              </ul>
-              <a href="javascript:void(0)" class="btn btn-primary mt-4">Buy Now</a>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1400">
-          <div class="card pricing-rates business-rate shadow bg-white border-0 rounded">
-            <div class="card-body">
-              <h2 class="title text-uppercase text-primary mb-4">Starter</h2>
-              <div class="d-flex mb-4">
-                <span class="h4 mb-0 mt-2">$</span>
-                <span class="price h1 mb-0">39</span>
-                <span class="h4 align-self-end mb-1">/mo</span>
-              </div>
-
-              <ul class="list-unstyled mb-0 pl-0">
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Full Access</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Source Files</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Free Appointments</li>
-              </ul>
-              <a href="javascript:void(0)" class="btn btn-primary mt-4">Get Started</a>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1800">
-          <div class="card pricing-rates business-rate shadow bg-light border-0 rounded">
-            <div class="card-body">
-              <h2 class="title text-uppercase mb-4">Professional</h2>
-              <div class="d-flex mb-4">
-                <span class="h4 mb-0 mt-2">$</span>
-                <span class="price h1 mb-0">59</span>
-                <span class="h4 align-self-end mb-1">/mo</span>
-              </div>
-
-              <ul class="list-unstyled mb-0 pl-0">
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Full Access</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Source Files</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>1 Domain Free</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Enhanced Security</li>
-              </ul>
-              <a href="javascript:void(0)" class="btn btn-primary mt-4">Try It Now</a>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" data-aos="fade-up" data-aos-duration="2200">
-          <div class="card pricing-rates business-rate shadow bg-light border-0 rounded">
-            <div class="card-body">
-              <h2 class="title text-uppercase mb-4">Ultimate</h2>
-              <div class="d-flex mb-4">
-                <span class="h4 mb-0 mt-2">$</span>
-                <span class="price h1 mb-0">79</span>
-                <span class="h4 align-self-end mb-1">/mo</span>
-              </div>
-
-              <ul class="list-unstyled mb-0 pl-0">
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Full Access</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Enhanced Security</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Source Files</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>1 Domain Free</li>
-                <li class="h6 text-muted mb-0"><span class="text-primary h5 mr-2"><i
-                      class="uim uim-check-circle"></i></span>Free Installment</li>
-              </ul>
-              <a href="javascript:void(0)" class="btn btn-primary mt-4">Started Now</a>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-      </div>
-      <!--end row-->
+      <app-pricing [pricingData]="pricingData"></app-pricing>
     </div>
     <!--end container-->
   </section>
@@ -662,141 +339,16 @@
           <div class="section-title mb-4 pb-2">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Team Member</h4>
             <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
-              <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
               generate
-              awareness, drive traffic, connect.</p>
+              awareness, drive traffic, connect.
+            </p>
           </div>
         </div>
         <!--end col-->
       </div>
       <!--end row-->
-
-      <div class="row">
-        <div class="col-lg-3 col-md-6 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1000">
-          <div class="card team text-center rounded border-0">
-            <div class="card-body">
-              <div class="position-relative">
-                <img src="assets/images/client/01.jpg" class="img-fluid avatar avatar-ex-large rounded-circle shadow"
-                  alt="">
-                <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                </ul>
-                <!--end icon-->
-              </div>
-              <div class="content pt-3">
-                <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Ronny Jofra</a></h5>
-                <small class="designation text-muted">UI Designers</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1300">
-          <div class="card team text-center rounded border-0">
-            <div class="card-body">
-              <div class="position-relative">
-                <img src="assets/images/client/04.jpg" class="img-fluid avatar avatar-ex-large rounded-circle shadow"
-                  alt="">
-                <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                </ul>
-                <!--end icon-->
-              </div>
-              <div class="content pt-3">
-                <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Micheal Carlo</a></h5>
-                <small class="designation text-muted">UX Designer</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1600">
-          <div class="card team text-center rounded border-0">
-            <div class="card-body">
-              <div class="position-relative">
-                <img src="assets/images/client/03.jpg" class="img-fluid avatar avatar-ex-large rounded-circle shadow"
-                  alt="">
-                <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                </ul>
-                <!--end icon-->
-              </div>
-              <div class="content pt-3">
-                <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Aliana Rosy</a></h5>
-                <small class="designation text-muted">Web Developer</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-
-        <div class="col-lg-3 col-md-6 mt-4 pt-2" data-aos="fade-up" data-aos-duration="1900">
-          <div class="card team text-center rounded border-0">
-            <div class="card-body">
-              <div class="position-relative">
-                <img src="assets/images/client/02.jpg" class="img-fluid avatar avatar-ex-large rounded-circle shadow"
-                  alt="">
-                <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                  <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
-                      <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
-                    </a></li>
-                </ul>
-                <!--end icon-->
-              </div>
-              <div class="content pt-3">
-                <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Sofia Razaq</a></h5>
-                <small class="designation text-muted">Web Designer</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end col-->
-      </div>
-      <!--end row-->
+      <app-member [memberData]="memberData"></app-member>
     </div>
     <!--end container-->
   </section>
@@ -811,9 +363,10 @@
           <div class="section-title mb-4 pb-2">
             <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Get In Touch !</h4>
             <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
-              <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
               generate
-              awareness, drive traffic, connect.</p>
+              awareness, drive traffic, connect.
+            </p>
           </div>
         </div>
         <!--end col-->
@@ -829,37 +382,45 @@
                 <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
                   <div class="row">
                     <div class="col-lg-6">
-                      <div class="form-group position-relative">
-                        <label>Your Name <span class="text-danger">*</span></label>
-                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                        <input name="name" id="name" type="text" class="form-control pl-5" placeholder="First Name :">
+                      <div class="mb-3">
+                        <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                          <input name="name" id="name" type="text" class="form-control ps-5" placeholder="First Name :">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-lg-6">
-                      <div class="form-group position-relative">
-                        <label>Your Email <span class="text-danger">*</span></label>
-                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
-                        <input name="email" id="email2" type="email" class="form-control pl-5"
-                          placeholder="Your email :">
+                      <div class="mb-3">
+                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                          <input name="email" id="email2" type="email" class="form-control ps-5"
+                            placeholder="Your email :">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-lg-12">
-                      <div class="form-group position-relative">
-                        <label>Comments</label>
-                        <i-feather name="message-circle" class="fea icon-sm icons"></i-feather>
-                        <textarea name="comments" id="comments" rows="4" class="form-control pl-5"
-                          placeholder="Your Message :"></textarea>
+                      <div class="mb-3">
+                        <label class="form-label">Comments</label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="message-circle" class="fea icon-sm icons"></i-feather>
+                          <textarea name="comments" id="comments" rows="4" class="form-control ps-5"
+                            placeholder="Your Message :"></textarea>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <!--end row-->
                   <div class="row">
                     <div class="col-sm-12 text-center">
-                      <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary btn-block"
-                        value="Send Message">
-                      <div id="simple-msg"></div>
+                      <div class="d-grid">
+                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary"
+                          value="Send Message">
+                        <div id="simple-msg"></div>
+                      </div>
                     </div>
                     <!--end col-->
                   </div>
@@ -874,19 +435,19 @@
         <!--end col-->
 
         <div class="col-lg-7 col-md-6 mt-4 pt-2 order-1 order-md-2">
-          <div class="title-heading ml-lg-4">
+          <div class="title-heading ms-lg-4">
             <h4 class="mb-4" data-aos="fade-up" data-aos-duration="1000">Contact Details</h4>
             <p class="text-muted" data-aos="fade-up" data-aos-duration="1400">Start working with <span
-                class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
-              awareness, drive traffic, connect.</p>
+                class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+              drive traffic, connect.</p>
             <div class="card border-0 bg-transparent">
               <div class="card-body p-0">
                 <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1200">
                   <div class="icon">
-                    <i-feather name="mail" class="fea icon-m-md text-dark mr-3"></i-feather>
+                    <i-feather name="mail" class="fea icon-m-md text-dark me-3"></i-feather>
                   </div>
                   <div class="content overflow-hidden d-block">
-                    <h6 class="font-weight-bold mb-0">Email</h6>
+                    <h6 class="fw-bold mb-0">Email</h6>
                     <a href="mailto:contact@example.com" class="text-primary">contact@example.com</a>
                   </div>
                 </div>
@@ -897,10 +458,10 @@
               <div class="card-body p-0">
                 <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1400">
                   <div class="icon">
-                    <i-feather name="phone" class="fea icon-m-md text-dark mr-3"></i-feather>
+                    <i-feather name="phone" class="fea icon-m-md text-dark me-3"></i-feather>
                   </div>
                   <div class="content overflow-hidden d-block">
-                    <h6 class="font-weight-bold mb-0">Phone</h6>
+                    <h6 class="fw-bold mb-0">Phone</h6>
                     <a href="tel:+152534-468-854" class="text-primary">+152 534-468-854</a>
                   </div>
                 </div>
@@ -911,12 +472,26 @@
               <div class="card-body p-0">
                 <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1600">
                   <div class="icon">
-                    <i-feather name="map-pin" class="fea icon-m-md text-dark mr-3"></i-feather>
+                    <i-feather name="map-pin" class="fea icon-m-md text-dark me-3"></i-feather>
                   </div>
                   <div class="content overflow-hidden d-block">
-                    <h6 class="font-weight-bold mb-0">Location</h6>
-                    <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+                    <h6 class="fw-bold mb-0">Location</h6>
+                    <a (click)="mapView(mapcontent)" href="javascript:void(0);" data-type="iframe"
                       class="video-play-icon text-primary">View on Google map</a>
+
+                    <ng-template #mapcontent let-modal>
+                      <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+                          height="450" width="750">
+                        </iframe>
+                      </div>
+                    </ng-template>
                   </div>
                 </div>
               </div>
@@ -948,8 +523,7 @@
   <!-- Contact End -->
 
   <!-- Back to top -->
-  <a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-    [ngxScrollTo]="'#home'">
+  <a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
     <i-feather name="arrow-up" class="icons"></i-feather>
   </a>
   <!-- Back to top -->

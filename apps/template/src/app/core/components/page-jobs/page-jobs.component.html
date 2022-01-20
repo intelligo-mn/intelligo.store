@@ -9,8 +9,8 @@
             <nav aria-label="breadcrumb" class="d-inline-block">
               <ul class="breadcrumb bg-white rounded shadow mb-0">
                 <li class="breadcrumb-item"><a routerLink="/index">Landrick</a></li>
-                <li class="breadcrumb-item"><a href="#">Page</a></li>
-                <li class="breadcrumb-item"><a href="#">Careers</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Page</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Careers</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Jobs</li>
               </ul>
             </nav>
@@ -41,7 +41,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="border-bottom">
+        <div class="border-bottom pb-4">
           <div class="row">
             <div class="col-lg-9 col-md-8">
               <div class="section-title">
@@ -53,10 +53,10 @@
 
             <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
               <div class="form custom-form">
-                <div class="form-group">
-                  <label>Types of jobs :</label>
-                  <select class="form-control custom-select" id="Sortbylist-job">
-                    <option>All Jobs</option>
+                <div class="">
+                  <label class="form-label">Types of jobs :</label>
+                  <select class="form-select form-control" aria-label="Default select example" id="Sortbylist-job">
+                    <option selected>All Jobs</option>
                     <option>Full Time</option>
                     <option>Part Time</option>
                     <option>Remote</option>
@@ -82,15 +82,14 @@
       </div>
       <!--end col-->
 
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" *ngFor="let data of jobsData">
         <div class="card job-box rounded shadow border-0 overflow-hidden">
           <div class="border-bottom">
             <div class="position-relative">
-              <img src="assets/images/job/full.jpg" class="img-fluid" alt="">
+              <img src="{{data.image}}" class="img-fluid" alt="">
               <div class="job-overlay bg-white"></div>
             </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Web
-                Designer</a>
+            <div class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark h5">{{data.designation}}</a>
               <ul class="list-unstyled h6 mb-0 text-warning">
                 <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
@@ -98,634 +97,32 @@
                 <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
               </ul>
-            </h5>
+            </div>
             <ul class="list-unstyled head mb-0">
-              <li class="badge badge-success badge-pill">Full Time</li>
+              <li class="badge  rounded-pill"
+                [ngClass]="{'bg-success': data.message === 'Full Time', 'bg-warning': data.message === 'Part Time', 'bg-danger': data.message === 'Remote'}">
+                {{data.message}}</li>
             </ul>
           </div>
 
           <div class="card-body content position-relative">
             <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Circleci.svg" class="avatar avatar-md-sm" alt="">
+              <img src="{{data.icon}}" class="avatar avatar-md-sm" alt="">
             </div>
             <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">CircleCi</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
+              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">{{data.name}}</a></h5>
+              <p class="text-muted"><a href="javascript:void(0)" class="text-muted">
+                  <i-feather name="map-pin" class="fea icon-sm"></i-feather> {{data.location}}
                 </a></p>
             </div>
             <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
+              <li class="list-inline-item text-muted" *ngFor="let item of data.list">
+                <i-feather name="check" class="fea icon-sm text-success me-1"></i-feather> {{item}}
               </li>
             </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/full.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
+            <div class="d-grid">
+              <a routerLink="/page-job-detail" class="btn btn-outline-primary">Apply Now</a>
             </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Web Developer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-success badge-pill">Full Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Codepen.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Codepen</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/part.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">UX Designer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-warning badge-pill">Part Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Discord.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Discord</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/full.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">UI Designer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-success badge-pill">Full Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Eslint.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Eslint</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/remote.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Back-End Developer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-danger badge-pill">Remote</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Gitlab.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Gitlab</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/part.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Photographer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-warning badge-pill">Part Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Gradle.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Gradle</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/full.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Mechanic</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-success badge-pill">Full Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Mg.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Mg</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/part.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Frontend Developer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-warning badge-pill">Part Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Sketch.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Sketch</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/remote.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Web Designer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-danger badge-pill">Remote</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Twilio.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Twilio</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/part.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Php Developer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-warning badge-pill">Part Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Udemy.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Udemy</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/full.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Web Designer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-success badge-pill">Full Time</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Webhooks.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">Webhooks</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-        <div class="card job-box rounded shadow border-0 overflow-hidden">
-          <div class="border-bottom">
-            <div class="position-relative">
-              <img src="assets/images/job/remote.jpg" class="img-fluid" alt="">
-              <div class="job-overlay bg-white"></div>
-            </div>
-            <h5 class="mb-0 position"><a routerLink="/page-job-detail" class="text-dark">Python Developer</a>
-              <ul class="list-unstyled h6 mb-0 text-warning">
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-                <li class="list-inline-item mb-0"><i class="mdi mdi-star"></i></li>
-              </ul>
-            </h5>
-            <ul class="list-unstyled head mb-0">
-              <li class="badge badge-danger badge-pill">Remote</li>
-            </ul>
-          </div>
-
-          <div class="card-body content position-relative">
-            <div class="firm-logo rounded-circle shadow bg-light text-center">
-              <img src="assets/images/job/Circleci.svg" class="avatar avatar-md-sm" alt="">
-            </div>
-            <div class="company-detail text-center mt-3">
-              <h5 class="mb-0"><a routerLink="/page-job-company" class="text-dark company-name">CircleCi</a></h5>
-              <p class="text-muted"><a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                  class="video-play-icon text-muted">
-                  <i-feather name="map-pin" class="fea icon-sm"></i-feather>
-                  San Francisco
-                </a></p>
-            </div>
-            <ul class="job-facts list-unstyled">
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                2 Year Expirence
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Working Hours- 6hr
-              </li>
-              <li class="list-inline-item text-muted">
-                <i-feather name="check" class="fea icon-sm text-success mr-1"></i-feather>
-                Information strategy
-              </li>
-            </ul>
-            <a routerLink="/page-job-detail" class="btn btn-outline-primary btn-block">Apply Now</a>
           </div>
         </div>
       </div>
@@ -751,10 +148,8 @@
 <!--end section-->
 <!-- Job List End -->
 
-
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

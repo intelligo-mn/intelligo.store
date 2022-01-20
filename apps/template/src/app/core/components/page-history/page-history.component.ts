@@ -5,12 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-history.component.html',
   styleUrls: ['./page-history.component.css']
 })
+
+/**
+ * Page History Component
+ */
 export class PageHistoryComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }

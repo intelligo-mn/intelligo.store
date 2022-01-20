@@ -6,18 +6,23 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './index-car-riding.component.html',
   styleUrls: ['./index-car-riding.component.css']
 })
+
+/**
+ * Car Riding Component
+ */
 export class IndexCarRidingComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Testimonial Slider
+   */
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
+    autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -33,6 +38,9 @@ export class IndexCarRidingComponent implements OnInit {
     },
     nav: false
   };
+
+  ngOnInit(): void {
+  }
 
 
 }

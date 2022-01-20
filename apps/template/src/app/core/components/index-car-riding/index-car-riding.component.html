@@ -8,48 +8,56 @@
             <li ngbNavItem>
               <a ngbNavLink class="py-2 rounded-0">
                 <div class="text-center pt-1 pb-1">
-                  <h4 class="title font-weight-normal mb-0">User</h4>
+                  <h6 class="mb-0">User</h6>
                 </div>
               </a>
               <ng-template ngbNavContent>
                 <form class="card-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>First name <span class="text-danger">*</span></label>
-                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                        <input type="text" class="form-control pl-5" placeholder="First Name" name="s" required="">
+                      <div class="mb-3">
+                        <label class="form-label">First name <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                          <input type="text" class="form-control ps-5" placeholder="First Name" name="s" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>Your Email <span class="text-danger">*</span></label>
-                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
-                        <input type="email" class="form-control pl-5" placeholder="Email" name="email" required="">
+                      <div class="mb-3">
+                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                          <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>Password <span class="text-danger">*</span></label>
-                        <i-feather name="key" class="fea icon-sm icons"></i-feather>
-                        <input type="password" class="form-control pl-5" placeholder="Password" required="">
+                      <div class="mb-3">
+                        <label class="form-label">Password <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                          <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="user-check">
-                          <label class="custom-control-label" for="user-check">I Accept <a href="#"
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="user-check">
+                          <label class="form-check-label" for="user-check">I Accept <a routerLink="/index-car-riding"
                               class="text-primary">Terms And Condition</a></label>
                         </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <button class="btn btn-success w-100">Signup</button>
+                      <div class="d-grid">
+                        <button class="btn btn-primary">Register</button>
+                      </div>
                     </div>
                     <!--end col-->
                   </div>
@@ -61,48 +69,56 @@
             <li ngbNavItem>
               <a ngbNavLink class="py-2 rounded-0">
                 <div class="text-center pt-1 pb-1">
-                  <h4 class="title font-weight-normal mb-0">Driver</h4>
+                  <h6 class="mb-0">Driver</h6>
                 </div>
               </a>
               <ng-template ngbNavContent>
                 <form class="card-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>First name <span class="text-danger">*</span></label>
-                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                        <input type="text" class="form-control pl-5" placeholder="First Name" name="s" required="">
+                      <div class="mb-3">
+                        <label class="form-label">First name <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                          <input type="text" class="form-control ps-5" placeholder="First Name" name="s" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>Your Email <span class="text-danger">*</span></label>
-                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
-                        <input type="email" class="form-control pl-5" placeholder="Email" name="email" required="">
+                      <div class="mb-3">
+                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                          <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group position-relative">
-                        <label>Password <span class="text-danger">*</span></label>
-                        <i-feather name="key" class="fea icon-sm icons"></i-feather>
-                        <input type="password" class="form-control pl-5" placeholder="Password" required="">
+                      <div class="mb-3">
+                        <label class="form-label">Password <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                          <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                        </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="user-check">
-                          <label class="custom-control-label" for="user-check">I Accept <a href="#"
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="driver-check">
+                          <label class="form-check-label" for="driver-check">I Accept <a routerLink="/index-car-riding"
                               class="text-primary">Terms And Condition</a></label>
                         </div>
                       </div>
                     </div>
                     <!--end col-->
                     <div class="col-md-12">
-                      <button class="btn btn-success w-100">Signup</button>
+                      <div class="d-grid">
+                        <button class="btn btn-primary">Register</button>
+                      </div>
                     </div>
                     <!--end col-->
                   </div>
@@ -119,12 +135,12 @@
 
       <div class="col-lg-7 offset-lg-1 col-md-7 order-1 order-md-2">
         <div class="title-heading mt-4">
-          <h1 class="display-4 font-weight-normal mb-3">Unbeatable Price & Expert Services</h1>
+          <h1 class="display-4 fw-normal mb-3">Unbeatable Price & Expert Services</h1>
           <p class="para-desc text-muted">Launch your campaign and benefit from our expertise on designing and managing
-            conversion centered bootstrap4 html page.</p>
+            conversion centered bootstrap v5 html page.</p>
           <div class="mt-4 pt-2">
-            <a href="javascript:void(0)" class="btn btn-primary mt-2 mr-2"><i class="mdi mdi-apple"></i> App Store</a>
-            <a href="javascript:void(0)" class="btn btn-outline-primary mt-2"><i class="mdi mdi-google-play"></i> Play
+            <a href="javascript:void(0)" class="btn btn-primary mt-2 me-2"><i class="uil uil-apple"></i> App Store</a>
+            <a href="javascript:void(0)" class="btn btn-outline-primary mt-2"><i class="uil uil-google-play"></i> Play
               Store</a>
           </div>
         </div>
@@ -153,7 +169,7 @@
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4">Find Your Better Rides</h4>
           <p class="text-muted para-desc mx-auto mb-0">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
@@ -225,31 +241,35 @@
       <div class="row no-gutters align-items-center">
         <div class="col-md-6 mt-2 mt-sm-0 order-2 order-md-1">
           <div class="card-body section-title p-lg-5">
-            <h2 class="mb-4 font-weight-normal">Request a ride now</h2>
+            <h2 class="mb-4 fw-normal">Request a ride now</h2>
             <form>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="form-group position-relative">
-                    <label>Choose Starting Point</label>
-                    <i-feather name="map-pin" class="fea icon-sm icons text-success"></i-feather>
-                    <input name="name" id="location1" type="text" class="form-control pl-5"
-                      placeholder="Choose starting point...">
+                  <div class="mb-3">
+                    <label class="form-label">Choose Starting Point</label>
+                    <div class="form-icon position-relative">
+                      <i-feather name="map-pin" class="fea icon-sm icons text-success"></i-feather>
+                      <input name="name" id="location1" type="text" class="form-control ps-5"
+                        placeholder="Choose starting point...">
+                    </div>
                   </div>
                 </div>
                 <!--end col-->
 
                 <div class="col-md-12">
-                  <div class="form-group position-relative">
-                    <label>Choose Your Destination</label>
-                    <i-feather name="map-pin" class="fea icon-sm icons text-success"></i-feather>
-                    <input name="name" id="location2" type="text" class="form-control pl-5"
-                      placeholder="Choose your destination...">
+                  <div class="mb-3">
+                    <label class="form-label">Choose Your Destination</label>
+                    <div class="form-icon position-relative">
+                      <i-feather name="map-pin" class="fea icon-sm icons text-danger"></i-feather>
+                      <input name="name" id="location2" type="text" class="form-control ps-5"
+                        placeholder="Choose your destination...">
+                    </div>
                   </div>
                 </div>
                 <!--end col-->
               </div>
               <!--end row-->
-              <a href="javascript:void(0)" class="btn btn-primary">Request Now <i class="mdi mdi-chevron-right"></i></a>
+              <a href="javascript:void(0)" class="btn btn-primary">Request Now <i class="uil uil-angle-right-b"></i></a>
             </form>
             <!--end form-->
           </div>
@@ -275,7 +295,7 @@
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4">We've Provided More Services Too</h4>
           <p class="text-muted para-desc mx-auto mb-0">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
@@ -384,7 +404,7 @@
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4">What our customer says!</h4>
           <p class="text-muted para-desc mx-auto mb-0">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
@@ -394,7 +414,7 @@
 
     <div class="row justify-content-center mt-4">
       <div class="col-lg-8 col-12">
-      
+
         <owl-carousel-o id="customer-testi" [options]="customOptions">
           <ng-template carouselSlide>
             <div class="card rounded bg-light overflow-hidden border-0 m-2">
@@ -406,8 +426,7 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Thomas Israel <small
-                        class="text-muted d-block">Driver</small></h6>
+                    <h6 class="text-primary fw-bold">Thomas Israel <small class="text-muted d-block">Driver</small></h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -415,7 +434,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" It seems that only fragments of the original text remain
+                    <p class="text-muted h6 mb-0 fst-italic">" It seems that only fragments of the original text remain
                       in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -434,8 +453,8 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Barbara McIntosh <small
-                        class="text-muted d-block">User</small></h6>
+                    <h6 class="text-primary fw-bold">Barbara McIntosh <small class="text-muted d-block">User</small>
+                    </h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -443,7 +462,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" This seems that only fragments of the original text
+                    <p class="text-muted h6 mb-0 fst-italic">" This seems that only fragments of the original text
                       remain in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -462,8 +481,8 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Christa Smith <small
-                        class="text-muted d-block">Passenger</small></h6>
+                    <h6 class="text-primary fw-bold">Christa Smith <small class="text-muted d-block">Passenger</small>
+                    </h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -471,7 +490,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" I seems that only fragments of the original text remain
+                    <p class="text-muted h6 mb-0 fst-italic">" I seems that only fragments of the original text remain
                       in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -490,8 +509,7 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Carl Oliver <small
-                        class="text-muted d-block">Driver</small></h6>
+                    <h6 class="text-primary fw-bold">Carl Oliver <small class="text-muted d-block">Driver</small></h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -499,7 +517,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" Fully seems that only fragments of the original text
+                    <p class="text-muted h6 mb-0 fst-italic">" Fully seems that only fragments of the original text
                       remain in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -518,8 +536,7 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Jill Webb <small
-                        class="text-muted d-block">Passenger</small></h6>
+                    <h6 class="text-primary fw-bold">Jill Webb <small class="text-muted d-block">Passenger</small></h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -527,7 +544,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" There seems that only fragments of the original text
+                    <p class="text-muted h6 mb-0 fst-italic">" There seems that only fragments of the original text
                       remain in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -546,7 +563,7 @@
 
                 <div class="col-md-7">
                   <div class="card-body customer-testi">
-                    <h6 class="text-primary font-weight-bold">Dean Tolle <small class="text-muted d-block">User</small>
+                    <h6 class="text-primary fw-bold">Dean Tolle <small class="text-muted d-block">User</small>
                     </h6>
                     <ul class="list-unstyled mb-0">
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
@@ -555,7 +572,7 @@
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                       <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
                     </ul>
-                    <p class="text-muted h6 mb-0 font-italic">" It seems that only fragments of the original text remain
+                    <p class="text-muted h6 mb-0 fst-italic">" It seems that only fragments of the original text remain
                       in the Ipsum texts used today. The well known have originated in the 16th century. "</p>
                   </div>
                 </div>
@@ -592,7 +609,7 @@
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4">Have Question ?</h4>
           <p class="text-muted para-desc mx-auto mb-0">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate
             awareness, drive traffic, connect.</p>
         </div>
       </div>
@@ -603,9 +620,9 @@
     <div class="row">
       <div class="row">
         <div class="col-md-6 col-12 mt-4 pt-2">
-          <div class="media">
-            <i-feather name="help-circle" class="fea icon-ex-md text-primary mr-2 mt-1"></i-feather>
-            <div class="media-body">
+          <div class="d-flex">
+            <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+            <div class="flex-1">
               <h5 class="mt-0">How our <span class="text-primary">Landrick</span> work ?</h5>
               <p class="answer text-muted mb-0">Due to its widespread use as filler text for layouts, non-readability is
                 of great importance: human perception is tuned to recognize certain patterns and repetitions in texts.
@@ -616,9 +633,9 @@
         <!--end col-->
 
         <div class="col-md-6 col-12 mt-4 pt-2">
-          <div class="media">
-            <i-feather name="help-circle" class="fea icon-ex-md text-primary mr-2 mt-1"></i-feather>
-            <div class="media-body">
+          <div class="d-flex">
+            <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+            <div class="flex-1">
               <h5 class="mt-0"> What is the main process open account ?</h5>
               <p class="answer text-muted mb-0">If the distribution of letters and 'words' is random, the reader will
                 not be distracted from making a neutral judgement on the visual impact</p>
@@ -628,9 +645,9 @@
         <!--end col-->
 
         <div class="col-md-6 col-12 mt-4 pt-2">
-          <div class="media">
-            <i-feather name="help-circle" class="fea icon-ex-md text-primary mr-2 mt-1"></i-feather>
-            <div class="media-body">
+          <div class="d-flex">
+            <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+            <div class="flex-1">
               <h5 class="mt-0"> How to make unlimited data entry ?</h5>
               <p class="answer text-muted mb-0">Furthermore, it is advantageous when the dummy text is relatively
                 realistic so that the layout impression of the final publication is not compromised.</p>
@@ -640,9 +657,9 @@
         <!--end col-->
 
         <div class="col-md-6 col-12 mt-4 pt-2">
-          <div class="media">
-            <i-feather name="help-circle" class="fea icon-ex-md text-primary mr-2 mt-1"></i-feather>
-            <div class="media-body">
+          <div class="d-flex">
+            <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+            <div class="flex-1">
               <h5 class="mt-0"> Is <span class="text-primary">Landrick</span> safer to use with my account ?</h5>
               <p class="answer text-muted mb-0">The most well-known dummy text is the 'Lorem Ipsum', which is said to
                 have originated in the 16th century. Lorem Ipsum is composed in a pseudo-Latin language which more or
@@ -660,32 +677,22 @@
       <div class="col-12 text-center">
         <div class="section-title">
           <h4 class="title mb-4">Download Our App Now !</h4>
-          <p class="text-muted para-desc mx-auto">Start working with <span
-              class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate
-            awareness, drive traffic, connect.</p>
-          <div class="mt-4">
-            <form>
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <div class="input-group mb-3">
-                      <input name="number" id="number" type="number" class="form-control"
-                        placeholder="Your Cell Number. :" required="" aria-describedby="cellnumber">
-                      <div class="input-group-append">
-                        <button class="btn btn-primary submitBnt" type="submit" id="cellnumber">Send App Link</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--end col-->
-              </div>
-              <!--end row-->
-            </form>
+          <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate awareness, drive traffic, connect.</p>
+          <div class="mt-4 pt-2">
+            <div class="text-center subcribe-form">
+              <form class="mb-4">
+                <input name="number" id="number" type="number" class="form-control rounded-pill"
+                  placeholder="Your Cell Number. :" required="" aria-describedby="cellnumber">
+                <button class="btn btn-pills btn-primary submitBnt" type="submit" id="cellnumber">Send App Link</button>
+              </form>
+              <!--end form-->
+            </div>
 
             <p class="text-muted">Or</p>
 
-            <a href="javascript:void(0)" class="btn btn-primary mt-2 mr-2"><i class="mdi mdi-apple"></i> App Store</a>
-            <a href="javascript:void(0)" class="btn btn-outline-primary mt-2"><i class="mdi mdi-google-play"></i> Play
+            <a href="javascript:void(0)" class="btn btn-primary mt-2 me-2"><i class="uil uil-apple"></i> App Store</a>
+            <a href="javascript:void(0)" class="btn btn-outline-primary mt-2"><i class="uil uil-google-play"></i> Play
               Store</a>
           </div>
         </div>
@@ -707,8 +714,7 @@
 <!-- App End -->
 
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

@@ -1,5 +1,5 @@
 <div class="back-to-home rounded d-none d-sm-block">
-  <a routerLink="/index" class="btn btn-icon btn-soft-primary">
+  <a routerLink="/index" class="btn btn-icon btn-primary">
     <i-feather name="home" class="icons"></i-feather>
   </a>
 </div>
@@ -22,19 +22,17 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <div id="countdown">
-          <div class="count-down"><span class="count-number">{{_days}}</span><span
-              class="count-head position-relative d-block">Days</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_hours}}</span><span
-              class="count-head position-relative d-block">Hours</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_minutes}}</span><span
-              class="count-head position-relative d-block">Minutes</span>
-          </div>
-          <div class="count-down"><span class="count-number">{{_seconds}}</span><span
-              class="count-head position-relative d-block">Seconds</span>
-          </div>
-
+          <ul class="count-down list-unstyled">
+            <li id="days" class="count-number list-inline-item m-2">{{_days}}<p class="count-head">Days</p>
+            </li>
+            <li id="hours" class="count-number list-inline-item m-2">{{_hours}}<p class="count-head">Hours</p>
+            </li>
+            <li id="mins" class="count-number list-inline-item m-2">{{_minutes}}<p class="count-head">Minutes</p>
+            </li>
+            <li id="secs" class="count-number list-inline-item m-2">{{_seconds}}<p class="count-head">Seconds</p>
+            </li>
+            <li id="end" class="h1"></li>
+          </ul>
         </div>
       </div>
     </div>

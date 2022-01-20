@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageInvoiceComponent implements OnInit {
 
+  hideFooter = true;
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }

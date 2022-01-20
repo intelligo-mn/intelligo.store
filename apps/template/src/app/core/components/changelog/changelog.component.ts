@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.css']
 })
+
+/**
+ * Changelog Component
+ */
 export class ChangelogComponent implements OnInit {
 
   constructor() { }

@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-terms.component.html',
   styleUrls: ['./page-terms.component.css']
 })
+
+/***
+ * Page terms Component
+ */
 export class PageTermsComponent implements OnInit {
 
   constructor() { }

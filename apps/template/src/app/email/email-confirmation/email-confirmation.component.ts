@@ -5,7 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './email-confirmation.component.html',
   styleUrls: ['./email-confirmation.component.css']
 })
+
+/**
+ * Email Confirmation Component
+ */
 export class EmailConfirmationComponent implements OnInit {
+
+  //Get Year
+  year = new Date().getFullYear();
 
   constructor() { }
 

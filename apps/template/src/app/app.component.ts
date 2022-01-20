@@ -13,10 +13,15 @@ export class AppComponent {
     /**
      * Unicons icon refreshed on route change.
      */
-    router.events.forEach((event) => {
+    this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         window['Unicons']['refresh']();
       }
+
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
     });
   }
 }

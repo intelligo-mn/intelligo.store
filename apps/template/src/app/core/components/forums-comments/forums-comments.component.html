@@ -44,66 +44,22 @@
             <h6 class="mb-0">Date</h6>
           </div>
 
-          <div class="p-4">
+          <div class="p-4" *ngFor="let data of formData">
             <div class="d-flex justify-content-between">
-              <div class="media align-items-center">
-                <a class="pr-3" href="#">
-                  <img src="assets/images/client/01.jpg" class="img-fluid avatar avatar-md-sm rounded-circle shadow"
+              <div class="d-flex align-items-center">
+                <a class="pe-3" href="javascript:void(0)">
+                  <img src="{{data.profile}}" class="img-fluid avatar avatar-md-sm rounded-circle shadow"
                     alt="img">
                 </a>
-                <div class="commentor-detail">
-                  <h6 class="mb-0"><a href="javascript:void(0)" class="media-heading text-dark">Calvin Carlo</a></h6>
+                <div class="flex-1 commentor-detail">
+                  <h6 class="mb-0"><a href="javascript:void(0)" class="media-heading text-dark">{{data.name}}</a></h6>
                   <small class="text-muted">Author</small>
                 </div>
               </div>
-              <small class="text-muted">16th August, 2019 <br> at 03:44 pm</small>
+              <small class="text-muted">{{data.date}} <br> at {{data.time}}</small>
             </div>
             <div class="mt-3">
-              <p class="text-muted mb-0">" Dummy text is text that is used in the publishing industry or by web
-                designers to occupy the space which will later be filled with 'real' content. This is required when, for
-                example, the final text is not yet available."</p>
-            </div>
-          </div>
-
-          <div class="p-4 border-top">
-            <div class="d-flex justify-content-between">
-              <div class="media align-items-center">
-                <a class="pr-3" href="#">
-                  <img src="assets/images/client/05.jpg" class="img-fluid avatar avatar-md-sm rounded-circle shadow"
-                    alt="img">
-                </a>
-                <div class="commentor-detail">
-                  <h6 class="mb-0"><a href="javascript:void(0)" class="media-heading text-dark">Crista Joseph</a></h6>
-                  <small class="text-muted">Author</small>
-                </div>
-              </div>
-              <small class="text-muted">16th August, 2019 <br> at 03:44 pm</small>
-            </div>
-            <div class="mt-3">
-              <p class="text-muted mb-0">" Dummy text is text that is used in the publishing industry or by web
-                designers to occupy the space which will later be filled with 'real' content. This is required when, for
-                example, the final text is not yet available."</p>
-            </div>
-          </div>
-
-          <div class="p-4 border-top">
-            <div class="d-flex justify-content-between">
-              <div class="media align-items-center">
-                <a class="pr-3" href="#">
-                  <img src="assets/images/client/06.jpg" class="img-fluid avatar avatar-md-sm rounded-circle shadow"
-                    alt="img">
-                </a>
-                <div class="commentor-detail">
-                  <h6 class="mb-0"><a href="javascript:void(0)" class="media-heading text-dark">George Meta</a></h6>
-                  <small class="text-muted">Author</small>
-                </div>
-              </div>
-              <small class="text-muted">16th August, 2019 <br> at 03:44 pm</small>
-            </div>
-            <div class="mt-3">
-              <p class="text-muted mb-0">" Dummy text is text that is used in the publishing industry or by web
-                designers to occupy the space which will later be filled with 'real' content. This is required when, for
-                example, the final text is not yet available."</p>
+              <p class="text-muted mb-0">{{data.content}}</p>
             </div>
           </div>
         </div>
@@ -113,33 +69,39 @@
             <form class="login-form">
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="form-group position-relative">
-                    <label>Your Email <span class="text-danger">*</span></label>
-                    <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                    <input type="email" class="form-control pl-5" placeholder="Email" name="email" required="">
+                  <div class="mb-3">
+                    <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                    <div class="form-icon position-relative">
+                      <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                      <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-lg-12">
-                  <div class="form-group position-relative">
-                    <label>Password <span class="text-danger">*</span></label>
-                    <i-feather name="key" class="fea icon-sm icons"></i-feather>
-                    <input type="password" class="form-control pl-5" placeholder="Password" required="">
+                  <div class="mb-3">
+                    <label class="form-label">Password <span class="text-danger">*</span></label>
+                    <div class="form-icon position-relative">
+                      <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                      <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                    </div>
                   </div>
                 </div>
 
                 <div class="col-lg-12">
                   <div class="d-flex justify-content-between">
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Remember me</label>
+                    <div class="mb-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-12 mb-0">
-                  <button class="btn btn-primary btn-block">Login Now</button>
+                  <div class="d-grid">
+                    <button class="btn btn-primary">Login Now</button>
+                  </div>
                 </div>
               </div>
             </form>
@@ -153,90 +115,99 @@
           <div class="card-body">
             <!-- SEARCH -->
             <div class="widget mb-4 pb-2">
-              <div id="search2" class="widget-search mb-0">
-                <form role="search" method="get" id="searchform" class="searchform">
-                  <div>
-                    <input type="text" class="border rounded" name="s" id="s" placeholder="Search forum...">
-                    <input type="submit" id="searchsubmit" value="Search">
+              <!-- SEARCH -->
+              <div class="widget">
+                <form role="search" method="get">
+                  <div class="input-group mb-3 border rounded">
+                    <input type="text" id="s" name="s" class="form-control border-0" placeholder="Search Keywords...">
+                    <button type="submit" class="input-group-text bg-white border-0" id="searchsubmit"><i
+                        class="uil uil-search"></i></button>
                   </div>
                 </form>
               </div>
+              <!-- SEARCH -->
             </div>
             <!-- SEARCH -->
 
-            <!-- CATAGORIES -->
+            <!-- Categories -->
             <div class="widget mb-4 pb-2">
-              <h4 class="widget-title">Login</h4>
+              <h5 class="widget-title">Login</h5>
               <form class="login-form mt-4">
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="form-group position-relative">
-                      <label>Your Email <span class="text-danger">*</span></label>
-                      <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                      <input type="email" class="form-control pl-5" placeholder="Email" name="email" required="">
+                    <div class="mb-3">
+                      <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                        <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                      </div>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
-                    <div class="form-group position-relative">
-                      <label>Password <span class="text-danger">*</span></label>
-                      <i-feather name="key" class="fea icon-sm icons"></i-feather>
-                      <input type="password" class="form-control pl-5" placeholder="Password" required="">
+                    <div class="mb-3">
+                      <label class="form-label">Password <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                        <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                      </div>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
                     <div class="d-flex justify-content-between">
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1">
-                          <label class="custom-control-label" for="customCheck1">Remember me</label>
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                          <label class="form-check-label" for="flexCheckDefault2">Remember me</label>
                         </div>
                       </div>
                       <p class="forgot-pass mb-0"><a routerLink="/auth-re-password-three"
-                          class="text-dark font-weight-bold">Forgot password ?</a></p>
+                          class="text-dark fw-bold">Forgot password ?</a></p>
                     </div>
                   </div>
                   <div class="col-lg-12 mb-0">
-                    <button class="btn btn-primary btn-block">Sign in</button>
+                    <div class="d-grid">
+                      <button class="btn btn-primary">Sign in</button>
+                    </div>
                   </div>
                   <div class="col-12 text-center">
-                    <p class="mb-0 mt-4"><small class="text-dark mr-2">Don't have an account ?</small> <a
-                        routerLink="/auth-signup-three" class="text-dark font-weight-bold">Sign Up</a></p>
+                    <p class="mb-0 mt-4"><small class="text-dark me-2">Don't have an account ?</small> <a
+                        routerLink="/auth-signup-three" class="text-dark fw-bold">Sign Up</a></p>
                   </div>
                 </div>
               </form>
             </div>
-            <!-- CATAGORIES -->
+            <!-- Categories -->
 
             <!-- RECENT POST -->
             <div class="widget mb-4 pb-2">
-              <h4 class="widget-title">Recent Replies</h4>
+              <h5 class="widget-title">Recent Replies</h5>
               <ul class="list-unstyled mb-0 mt-4">
                 <li class="text-muted small h6">
-                  <i-feather name="user" class="fea icon-sm"></i-feather>
-                  <a href="javascript:void(0)" class="text-dark ml-2">Ameliya</a> on <a href="javascript:void(0)"
-                    class="text-primary">Privacy policy</a>
+                  <i-feather name="user" class="fea icon-sm"></i-feather><a href="javascript:void(0)"
+                    class="text-dark ms-2">Ameliya</a> on <a href="javascript:void(0)" class="text-primary">Privacy
+                    policy</a>
                 </li>
                 <li class="text-muted small h6">
-                  <i-feather name="user" class="fea icon-sm"></i-feather>
-                  <a href="javascript:void(0)" class="text-dark ml-2">Crista</a> on <a href="javascript:void(0)"
-                    class="text-primary">HTML Template hosts</a>
+                  <i-feather name="user" class="fea icon-sm"></i-feather><a href="javascript:void(0)"
+                    class="text-dark ms-2">Crista</a> on <a href="javascript:void(0)" class="text-primary">HTML Template
+                    hosts</a>
                 </li>
                 <li class="text-muted small h6">
-                  <i-feather name="user" class="fea icon-sm"></i-feather>
-                  <a href="javascript:void(0)" class="text-dark ml-2">John</a> on <a href="javascript:void(0)"
-                    class="text-primary">Specific error messages</a>
+                  <i-feather name="user" class="fea icon-sm"></i-feather><a href="javascript:void(0)"
+                    class="text-dark ms-2">John</a> on <a href="javascript:void(0)" class="text-primary">Specific error
+                    messages</a>
                 </li>
                 <li class="text-muted small h6">
-                  <i-feather name="user" class="fea icon-sm"></i-feather>
-                  <a href="javascript:void(0)" class="text-dark ml-2">Jafrin</a> on <a href="javascript:void(0)"
-                    class="text-primary">Network administration</a>
+                  <i-feather name="user" class="fea icon-sm"></i-feather><a href="javascript:void(0)"
+                    class="text-dark ms-2">Jafrin</a> on <a href="javascript:void(0)" class="text-primary">Network
+                    administration</a>
                 </li>
                 <li class="text-muted small h6 mb-0">
-                  <i-feather name="user" class="fea icon-sm"></i-feather>
-                  <a href="javascript:void(0)" class="text-dark ml-2">Harry</a> on <a href="javascript:void(0)"
-                    class="text-primary">Customized template options</a>
+                  <i-feather name="user" class="fea icon-sm"></i-feather><a href="javascript:void(0)"
+                    class="text-dark ms-2">Harry</a> on <a href="javascript:void(0)" class="text-primary">Customized
+                    template options</a>
                 </li>
               </ul>
             </div>
@@ -244,27 +215,27 @@
 
             <!-- SOCIAL -->
             <div class="widget">
-              <h4 class="widget-title">Follow us</h4>
+              <h5 class="widget-title">Follow us</h5>
               <ul class="list-unstyled social-icon social mb-0 mt-4">
                 <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="github" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="youtube" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
-                <li class="list-inline-item ml-1"><a href="javascript:void(0)" class="rounded">
+                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
                     <i-feather name="gitlab" class="fea icon-sm fea-social"></i-feather>
                   </a></li>
               </ul>
@@ -285,8 +256,7 @@
 
 
 <!-- Back to top -->
-<a href="javascript: void(0);" class="btn btn-icon btn-soft-primary back-to-top" id="back-to-top"
-  [ngxScrollTo]="'#home'">
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
   <i-feather name="arrow-up" class="icons"></i-feather>
 </a>
 <!-- Back to top -->

@@ -1,5 +1,6 @@
-<app-header [navClass]="addclass"></app-header>
+<app-header [navClass]="addclass" [buttonList]="buttonShow" [sliderTopbar]="TopbarShow" 
+[isdeveloper]="developerPage" [shopPages]="shopPages"></app-header>
 
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 
-<app-footer></app-footer>
+<app-footer [footerVariant]="footerClass" [hideFooter]="hideFooter"></app-footer> 

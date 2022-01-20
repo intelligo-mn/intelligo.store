@@ -1,5 +1,5 @@
 <div class="back-to-home rounded d-none d-sm-block">
-  <a routerLink="/index" class="btn btn-icon btn-soft-primary">
+  <a routerLink="/index" class="btn btn-icon btn-primary">
     <i-feather name="home" class="icons"></i-feather>
   </a>
 </div>
@@ -21,22 +21,7 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="text-center">
-          <div id="clock" class="mb-4 overflow-hidden text-center">
-            <p class="mb-0 ml-3 mr-3 d-inline-block">
-              <span id="hours" class="d-block position-relative">{{
-                    hour
-                  }}</span>
-              <span class="indicator position-relative d-block">Hours</span>
-            </p>
-            <p class="mb-0 ml-3 mr-3 d-inline-block">
-              <span id="minutes" class="d-block position-relative">{{minute}}</span>
-              <span class="indicator position-relative d-block">Minutes</span>
-            </p>
-            <p class="mb-0 ml-3 mr-3 d-inline-block">
-              <span id="seconds" class="d-block position-relative">{{second}}</span>
-              <span class="indicator position-relative d-block">Seconds</span>
-            </p>
-          </div>
+          <span id="maintenance" class="timer">{{display}}</span><span class="d-block h6 text-uppercase text-white">Minutes</span>
         </div>
       </div>
     </div>

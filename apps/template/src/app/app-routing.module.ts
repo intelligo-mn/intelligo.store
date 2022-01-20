@@ -45,12 +45,25 @@ import { IndexEnterpriseComponent } from './core/components/index-enterprise/ind
 import { IndexEventComponent } from './core/components/index-event/index-event.component';
 import { IndexHostingComponent } from './core/components/index-hosting/index-hosting.component';
 import { IndexHotelComponent } from './core/components/index-hotel/index-hotel.component';
+import { IndexConstructionComponent } from './core/components/index-construction/index-construction.component';
+import { IndexRealEstateComponent } from './core/components/index-real-estate/index-real-estate.component';
+import { IndexDeveloperComponent } from './core/components/index-developer/index-developer.component';
+import { IndexSeoAgencyComponent } from './core/components/index-seo-agency/index-seo-agency.component';
+import { IndexHospitalComponent } from './core/components/index-hospital/index-hospital.component';
+import { IndexFinanceComponent } from './core/components/index-finance/index-finance.component';
+import { IndexVideocallComponent } from './core/components/index-videocall/index-videocall.component';
+import { IndexItSolutionTwoComponent } from './core/components/index-it-solution-two/index-it-solution-two.component';
+import { IndexFreelancerComponent } from './core/components/index-freelancer/index-freelancer.component';
+import { IndexBlockchainComponent } from './core/components/index-blockchain/index-blockchain.component';
+import { IndexCryptoTwoComponent } from './core/components/index-crypto-two/index-crypto-two.component';
+import { IndexIntegrationComponent } from './core/components/index-integration/index-integration.component';
 import { IndexInsuranceComponent } from './core/components/index-insurance/index-insurance.component';
 import { IndexItSolutionComponent } from './core/components/index-it-solution/index-it-solution.component';
 import { IndexJobComponent } from './core/components/index-job/index-job.component';
 import { IndexLandingOneComponent } from './core/components/index-landing-one/index-landing-one.component';
 import { IndexLandingThreeComponent } from './core/components/index-landing-three/index-landing-three.component';
 import { IndexLandingTwoComponent } from './core/components/index-landing-two/index-landing-two.component';
+import { IndexLandingFourComponent } from './core/components/index-landing-four/index-landing-four.component';
 import { IndexMarketingComponent } from './core/components/index-marketing/index-marketing.component';
 import { IndexModernBusinessComponent } from './core/components/index-modern-business/index-modern-business.component';
 import { IndexOnepageComponent } from './core/components/index-onepage/index-onepage.component';
@@ -86,6 +99,7 @@ import { PageContactOneComponent } from './core/components/page-contact-one/page
 import { PageContactThreeComponent } from './core/components/page-contact-three/page-contact-three.component';
 import { PageContactTwoComponent } from './core/components/page-contact-two/page-contact-two.component';
 import { PageErrorComponent } from './core/components/page-error/page-error.component';
+import { PageThankyouComponent } from './core/components/page-thankyou/page-thankyou.component';
 import { PageHistoryComponent } from './core/components/page-history/page-history.component';
 import { PageInvoiceComponent } from './core/components/page-invoice/page-invoice.component';
 import { PageJobApplyComponent } from './core/components/page-job-apply/page-job-apply.component';
@@ -94,6 +108,8 @@ import { PageJobCompanyComponent } from './core/components/page-job-company/page
 import { PageJobDetailComponent } from './core/components/page-job-detail/page-job-detail.component';
 import { PageJobsSidebarComponent } from './core/components/page-jobs-sidebar/page-jobs-sidebar.component';
 import { PageJobsComponent } from './core/components/page-jobs/page-jobs.component';
+import { PageJobCompanyListComponent } from './core/components/page-job-company-list/page-job-company-list.component';
+import { PageJobCandidateListComponent } from './core/components/page-job-candidate-list/page-job-candidate-list.component';
 import { PageMaintenanceComponent } from './core/components/page-maintenance/page-maintenance.component';
 import { PagePricingComponent } from './core/components/page-pricing/page-pricing.component';
 import { PagePrivacyComponent } from './core/components/page-privacy/page-privacy.component';
@@ -110,12 +126,38 @@ import { ShopCheckoutsComponent } from './core/components/shop-checkouts/shop-ch
 import { ShopMyaccountComponent } from './core/components/shop-myaccount/shop-myaccount.component';
 import { ShopProductDetailComponent } from './core/components/shop-product-detail/shop-product-detail.component';
 import { ShopProductsComponent } from './core/components/shop-products/shop-products.component';
+import { ShopListsComponent } from './core/components/shop-lists/shop-lists.component';
 import { WidgetComponent } from './core/components/widget/widget.component';
 import { EmailAlertComponent } from './email/email-alert/email-alert.component';
 import { EmailConfirmationComponent } from './email/email-confirmation/email-confirmation.component';
 import { EmailInvoiceComponent } from './email/email-invoice/email-invoice.component';
 import { EmailPasswordResetComponent } from './email/email-password-reset/email-password-reset.component';
 import { SwitcherComponent } from './shared/switcher/switcher.component';
+import { PortfolioModernTwoComponent } from './core/components/portfolio-modern-two/portfolio-modern-two.component';
+import { PortfolioModernThreeComponent } from './core/components/portfolio-modern-three/portfolio-modern-three.component';
+import { PortfolioModernFourComponent } from './core/components/portfolio-modern-four/portfolio-modern-four.component';
+import { PortfolioModernFiveComponent } from './core/components/portfolio-modern-five/portfolio-modern-five.component';
+import { PortfolioModernSixComponent } from './core/components/portfolio-modern-six/portfolio-modern-six.component';
+import { PortfolioClassicTwoComponent } from './core/components/portfolio-classic-two/portfolio-classic-two.component';
+import { PortfolioClassicThreeComponent } from './core/components/portfolio-classic-three/portfolio-classic-three.component';
+import { PortfolioClassicFourComponent } from './core/components/portfolio-classic-four/portfolio-classic-four.component';
+import { PortfolioClassicFiveComponent } from './core/components/portfolio-classic-five/portfolio-classic-five.component';
+import { PortfolioClassicSixComponent } from './core/components/portfolio-classic-six/portfolio-classic-six.component';
+import { PortfolioGridTwoComponent } from './core/components/portfolio-grid-two/portfolio-grid-two.component';
+import { PortfolioGridThreeComponent } from './core/components/portfolio-grid-three/portfolio-grid-three.component';
+import { PortfolioGridFourComponent } from './core/components/portfolio-grid-four/portfolio-grid-four.component';
+import { PortfolioGridFiveComponent } from './core/components/portfolio-grid-five/portfolio-grid-five.component';
+import { PortfolioGridSixComponent } from './core/components/portfolio-grid-six/portfolio-grid-six.component';
+import { PortfolioMasonryTwoComponent } from './core/components/portfolio-masonry-two/portfolio-masonry-two.component';
+import { PortfolioMasonryThreeComponent } from './core/components/portfolio-masonry-three/portfolio-masonry-three.component';
+import { PortfolioMasonryFourComponent } from './core/components/portfolio-masonry-four/portfolio-masonry-four.component';
+import { PortfolioMasonryFiveComponent } from './core/components/portfolio-masonry-five/portfolio-masonry-five.component';
+import { PortfolioMasonrySixComponent } from './core/components/portfolio-masonry-six/portfolio-masonry-six.component';
+import { PortfolioDetailOneComponent } from './core/components/portfolio-detail-one/portfolio-detail-one.component';
+import { PortfolioDetailTwoComponent } from './core/components/portfolio-detail-two/portfolio-detail-two.component';
+import { PortfolioDetailThreeComponent } from './core/components/portfolio-detail-three/portfolio-detail-three.component';
+import { PortfolioDetailFourComponent } from './core/components/portfolio-detail-four/portfolio-detail-four.component';
+import { combineLatest } from 'rxjs/internal/operators';
 
 const routes: Routes = [
   {
@@ -159,12 +201,25 @@ const routes: Routes = [
       { path: 'index-event', component: IndexEventComponent },
       { path: 'index-hosting', component: IndexHostingComponent },
       { path: 'index-hotel', component: IndexHotelComponent },
+      { path: 'index-construction', component: IndexConstructionComponent },
+      { path: 'index-real-estate', component: IndexRealEstateComponent },
+      { path: 'index-developer', component: IndexDeveloperComponent },
+      { path: 'index-seo-agency', component: IndexSeoAgencyComponent },
+      { path: 'index-hospital', component: IndexHospitalComponent },
+      { path: 'index-finance', component: IndexFinanceComponent },
+      { path: 'index-videocall', component: IndexVideocallComponent },
+      { path: 'index-it-solution-two', component: IndexItSolutionTwoComponent },
+      { path: 'index-freelancer', component: IndexFreelancerComponent },
+      { path: 'index-blockchain', component: IndexBlockchainComponent },
+      { path: 'index-crypto-two', component: IndexCryptoTwoComponent },
+      { path: 'index-integration', component: IndexIntegrationComponent },
       { path: 'index-insurance', component: IndexInsuranceComponent },
       { path: 'index-it-solution', component: IndexItSolutionComponent },
       { path: 'index-job', component: IndexJobComponent },
       { path: 'index-landing-one', component: IndexLandingOneComponent },
       { path: 'index-landing-three', component: IndexLandingThreeComponent },
       { path: 'index-landing-two', component: IndexLandingTwoComponent },
+      { path: 'index-landing-four', component: IndexLandingFourComponent },
       { path: 'index-marketing', component: IndexMarketingComponent },
       { path: 'index-modern-business', component: IndexModernBusinessComponent },
 
@@ -201,6 +256,8 @@ const routes: Routes = [
       { path: 'page-job-company', component: PageJobCompanyComponent },
       { path: 'page-job-detail', component: PageJobDetailComponent },
       { path: 'page-jobs', component: PageJobsComponent },
+      { path: 'page-job-company-list', component: PageJobCompanyListComponent },
+      { path: 'page-job-candidate-list', component: PageJobCandidateListComponent },
       { path: 'page-jobs-sidebar', component: PageJobsSidebarComponent },
       { path: 'page-pricing', component: PagePricingComponent },
       { path: 'page-privacy', component: PagePrivacyComponent },
@@ -217,9 +274,34 @@ const routes: Routes = [
       { path: 'shop-myaccount', component: ShopMyaccountComponent },
       { path: 'shop-product-detail', component: ShopProductDetailComponent },
       { path: 'shop-products', component: ShopProductsComponent },
+      { path: 'shop-lists', component: ShopListsComponent },
       { path: 'widget', component: WidgetComponent },
       { path: 'page-blog-detail-two', component: PageBlogDetailTwoComponent },
       { path: '#', component: SwitcherComponent },
+      { path: 'portfolio-modern-two', component: PortfolioModernTwoComponent },
+      { path: 'portfolio-modern-three', component: PortfolioModernThreeComponent },
+      { path: 'portfolio-modern-four', component: PortfolioModernFourComponent },
+      { path: 'portfolio-modern-five', component: PortfolioModernFiveComponent },
+      { path: 'portfolio-modern-six', component: PortfolioModernSixComponent },
+      { path: 'portfolio-classic-two', component: PortfolioClassicTwoComponent },
+      { path: 'portfolio-classic-three', component: PortfolioClassicThreeComponent },
+      { path: 'portfolio-classic-four', component: PortfolioClassicFourComponent },
+      { path: 'portfolio-classic-five', component: PortfolioClassicFiveComponent },
+      { path: 'portfolio-classic-six', component: PortfolioClassicSixComponent },
+      { path: 'portfolio-grid-two', component: PortfolioGridTwoComponent },
+      { path: 'portfolio-grid-three', component: PortfolioGridThreeComponent },
+      { path: 'portfolio-grid-four', component: PortfolioGridFourComponent },
+      { path: 'portfolio-grid-five', component: PortfolioGridFiveComponent },
+      { path: 'portfolio-grid-six', component: PortfolioGridSixComponent },
+      { path: 'portfolio-masonry-two', component: PortfolioMasonryTwoComponent },
+      { path: 'portfolio-masonry-three', component: PortfolioMasonryThreeComponent },
+      { path: 'portfolio-masonry-four', component: PortfolioMasonryFourComponent },
+      { path: 'portfolio-masonry-five', component: PortfolioMasonryFiveComponent },
+      { path: 'portfolio-masonry-six', component: PortfolioMasonrySixComponent },
+      { path: 'portfolio-detail-one', component: PortfolioDetailOneComponent },
+      { path: 'portfolio-detail-two', component: PortfolioDetailTwoComponent },
+      { path: 'portfolio-detail-three', component: PortfolioDetailThreeComponent },
+      { path: 'portfolio-detail-four', component: PortfolioDetailFourComponent },
     ]
   },
 
@@ -236,6 +318,7 @@ const routes: Routes = [
   { path: 'page-comingsoon', component: PageComingsoonComponent },
   { path: 'page-comingsoon2', component: PageComingsoon2Component },
   { path: 'page-error', component: PageErrorComponent },
+  { path: 'page-thankyou', component: PageThankyouComponent },
   { path: 'page-maintenance', component: PageMaintenanceComponent },
 
   { path: 'email-alert', component: EmailAlertComponent },
@@ -246,7 +329,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "enabled",
+  scrollOffset: [0, 0],
+  // Enable scrolling to anchors
+  anchorScrolling: "enabled"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
