@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './auth-re-password-three.component.html',
   styleUrls: ['./auth-re-password-three.component.css']
 })
+
+/**
+ * Auth RePassword-three Component
+ */
 export class AuthRePasswordThreeComponent implements OnInit {
 
   constructor() { }

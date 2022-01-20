@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './auth-login-three.component.html',
   styleUrls: ['./auth-login-three.component.css']
 })
+
+/**
+ * Auth Login-Three Component
+ */
 export class AuthLoginThreeComponent implements OnInit {
 
   constructor() { }
