@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './auth-login.component.html',
   styleUrls: ['./auth-login.component.css']
 })
+
+/**
+ * Auth Login Component
+ */
 export class AuthLoginComponent implements OnInit {
 
   constructor() { }
