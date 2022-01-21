@@ -1,0 +1,19 @@
+::ng-deep .dark-modal .modal-content {
+  background-color: #000000;
+  color: white;
+  background: none;
+  border: none;
+}
+
+::ng-deep .dark-modal .modal-header {
+  margin-left: auto;
+  border: none;
+  padding: 0 !important;
+}
+
+::ng-deep .dark-modal .close {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 25px;
+}

@@ -1,0 +1,277 @@
+<!-- Hero Start -->
+<section class="bg-marketing d-table w-100" style="background: url('assets/images/marketing/marketing-shape.png')"
+  id="home">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-7 col-md-7 text-center">
+        <img src="assets/images/marketing/marketing.png" class="img-fluid" style="max-height: 400px" alt="">
+
+        <div class="title-heading mt-0 mt-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+          <h1 class="heading mb-3">Social Media Marketing is the Best Ever</h1>
+          <p class="para-desc text-muted">Launch your campaign and benefit from our expertise on designing and managing
+            conversion centered bootstrap v5 html page.</p>
+          <div class="mt-4 pt-2">
+            <a href="javascript:void(0)" class="btn btn-primary mt-2 me-2">Get Started</a>
+            <a routerLink="/page-contact-one" class="btn btn-outline-primary mt-2"><i class="mdi mdi-phone"></i> Contact
+              us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Partners start -->
+<section class="py-4 border-bottom border-top">
+  <div class="container py-4">
+    <app-clients-logo></app-clients-logo>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Partners End -->
+
+<!-- Feature Start -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Sample Features</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <app-features></app-features>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center">
+      <div class="col-lg-5 col-md-6">
+        <img src="assets/images/illustrator/youtube-media.svg" alt="">
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="section-title ms-lg-5">
+          <h4 class="title mb-4">A better compose with landrick marketing</h4>
+          <p class="text-muted">You can combine all the Landrick templates into a single one, you can take a component
+            from the Application theme and use it in the Website.</p>
+          <ul class="list-unstyled text-muted">
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency</li>
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
+          </ul>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Our Valuable Clients</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row justify-content-center">
+      <div class="col-lg-12 mt-4">
+        <app-testimonial [testimonialData]="testimonialData"></app-testimonial>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Feature End -->
+
+<!-- Faq Start -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">See everything about your <span class="text-primary">Landrick</span></h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row" id="counter">
+      <div class="col-md-3 col-6 mt-4 pt-2">
+        <div class="counter-box text-center">
+          <img src="assets/images/illustrator/Asset190.svg" class="avatar avatar-small" alt="">
+          <h2 class="mb-0 mt-4"><span class="counter-value" [from]="3" [duration]="4" [CountTo]="97"></span>%</h2>
+          <h6 class="counter-head text-muted">Happy Client</h6>
+        </div>
+        <!--end counter box-->
+      </div>
+
+      <div class="col-md-3 col-6 mt-4 pt-2">
+        <div class="counter-box text-center">
+          <img src="assets/images/illustrator/Asset189.svg" class="avatar avatar-small" alt="">
+          <h2 class="mb-0 mt-4"><span class="counter-value" [from]="1" [duration]="4" [CountTo]="15"></span>+</h2>
+          <h6 class="counter-head text-muted">Awards</h6>
+        </div>
+        <!--end counter box-->
+      </div>
+
+      <div class="col-md-3 col-6 mt-4 pt-2">
+        <div class="counter-box text-center">
+          <img src="assets/images/illustrator/Asset192.svg" class="avatar avatar-small" alt="">
+          <h2 class="mb-0 mt-4"><span class="counter-value" [CountTo]="2" [from]="0" [duration]="4"></span>K</h2>
+          <h6 class="counter-head text-muted">Job Placement</h6>
+        </div>
+        <!--end counter box-->
+      </div>
+
+      <div class="col-md-3 col-6 mt-4 pt-2">
+        <div class="counter-box text-center">
+          <img src="assets/images/illustrator/Asset187.svg" class="avatar avatar-small" alt="">
+          <h2 class="mb-0 mt-4"><span class="counter-value" [CountTo]="98" [from]="3" [duration]="4"></span>%</h2>
+          <h6 class="counter-head text-muted">Project Complete</h6>
+        </div>
+        <!--end counter box-->
+      </div>
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center">
+      <div class="col-lg-7 col-md-6">
+        <div class="faq-content me-lg-5">
+          <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="true">
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark"> How does it work ? </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans"> There are many variations of passages of Lorem Ipsum available, but
+                  the majority have suffered alteration in some form.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark"> Do I need a designer to use Landrick ? </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">There are many variations of passages of Lorem Ipsum available, but
+                  the majority have suffered alteration in some form.</p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark"> What do I need to do to start selling ? </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">There are many variations of passages of Lorem Ipsum available, but
+                  the majority have suffered alteration in some form.</p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark"> What happens when I receive an order ?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">There are many variations of passages of Lorem Ipsum available, but
+                  the majority have suffered alteration in some form.</p>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <img src="assets/images/illustrator/faq.svg" alt="">
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h4 class="title mb-4">Get Started !</h4>
+          <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate awareness, drive traffic, connect.</p>
+          <div class="mt-4 pt-2">
+            <a href="https://1.envato.market/4n73n" target="_blank" class="btn btn-primary m-2">Buy Now <span
+                class="badge rounded-pill bg-danger ms-2">v3.2</span></a>
+            <a (click)="openWindowCustomClass(content)" href="javascript:void(0);" data-type="youtube"
+              data-id="yba7hPeTSjk" class="btn btn-icon btn-pills btn-primary m-1">
+              <i-feather name="video" class="icons"></i-feather>
+            </a><span class="fw-bold text-uppercase small align-middle ms-1">Watch Now</span>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <iframe src="https://player.vimeo.com/video/99025203" height="450" width="780" frameborder="0"
+                  allowfullscreen allow="autoplay; encrypted-media"></iframe>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+</section>
+<!--end section-->
+<!-- Faq End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

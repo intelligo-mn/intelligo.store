@@ -1,0 +1,326 @@
+<!-- Hero Start -->
+<section class="bg-profile d-table w-100 bg-primary"
+  style="background: url('assets/images/account/bg.png') center center;" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card public-profile border-0 rounded shadow" style="z-index: 1;">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-lg-2 col-md-3 text-md-start text-center">
+                <img src="assets/images/client/05.jpg" class="avatar avatar-large rounded-circle shadow d-block mx-auto"
+                  alt="">
+              </div>
+              <!--end col-->
+
+              <div class="col-lg-10 col-md-9">
+                <div class="row align-items-end">
+                  <div class="col-md-7 text-md-start text-center mt-4 mt-sm-0">
+                    <h3 class="title mb-0">Krista Joseph</h3>
+                    <small class="text-muted h6 me-2">Web Developer</small>
+                    <ul class="list-inline mb-0 mt-3">
+                      <li class="list-inline-item me-2"><a href="javascript:void(0)" class="text-muted"
+                          title="Instagram">
+                          <i-feather name="instagram" class="fea icon-sm me-2"></i-feather>krista_joseph
+                        </a>
+                      </li>
+                      <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="Linkedin">
+                          <i-feather name="linkedin" class="fea icon-sm me-2"></i-feather>Krista Joseph
+                        </a></li>
+                    </ul>
+                  </div>
+                  <!--end col-->
+                  <div class="col-md-5 text-md-end text-center">
+                    <ul class="list-unstyled social-icon social mb-0 mt-4">
+                      <li class="list-inline-item"><a href="javascript:void(0)" class="rounded" data-bs-toggle="tooltip"
+                          data-bs-placement="bottom" title="Add Friend"><i
+                            class="uil uil-user-plus align-middle"></i></a></li>
+                      <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded"
+                          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages"><i
+                            class="uil uil-comment align-middle"></i></a>
+                      </li>
+                      <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded"
+                          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications"><i
+                            class="uil uil-bell align-middle"></i></a>
+                      </li>
+                      <li class="list-inline-item ms-1"><a routerLink="/account-setting" class="rounded"
+                          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings"><i
+                            class="uil uil-cog align-middle"></i></a></li>
+                    </ul>
+                    <!--end icon-->
+                  </div>
+                  <!--end col-->
+                </div>
+                <!--end row-->
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--ed container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Profile Start -->
+<section class="section mt-60">
+  <div class="container mt-lg-3">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12 d-lg-block d-none">
+        <div class="sidebar sticky-bar p-4 rounded shadow">
+          <div class="widget">
+            <h5 class="widget-title">Followers :</h5>
+            <div class="row mt-4">
+              <div class="col-6 text-center">
+                <i-feather name="user-plus" class="fea icon-ex-md text-primary mb-1"></i-feather>
+                <h5 class="mb-0">2588</h5>
+                <p class="text-muted mb-0">Followers</p>
+              </div>
+              <!--end col-->
+
+              <div class="col-6 text-center">
+                <i-feather name="users" class="fea icon-ex-md text-primary mb-1"></i-feather>
+                <h5 class="mb-0">454</h5>
+                <p class="text-muted mb-0">Following</p>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+
+          <div class="widget mt-4 pt-2">
+            <h5 class="widget-title">Projects :</h5>
+            <div class="progress-box mt-4">
+              <h6 class="title text-muted">Progress</h6>
+              <div class="progress">
+                <div class="progress-bar position-relative bg-primary" style="width:50%;">
+                  <div class="progress-value d-block text-muted h6">24 / 48</div>
+                </div>
+              </div>
+            </div>
+            <!--end process box-->
+          </div>
+
+          <div class="widget">
+            <ul class="list-unstyled sidebar-nav mb-0" id="navmenu-nav">
+              <li class="navbar-item account-menu px-0">
+                <a routerLink="/account-profile" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-dashboard"></i></span>
+                  <h6 class="mb-0 ms-2">Profile</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2">
+                <a routerLink="/account-members" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-users-alt"></i></span>
+                  <h6 class="mb-0 ms-2">Members</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2">
+                <a routerLink="/account-works" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-file"></i></span>
+                  <h6 class="mb-0 ms-2">Portfolio</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2 active">
+                <a routerLink="/account-messages"
+                  class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-envelope-star"></i></span>
+                  <h6 class="mb-0 ms-2">Messages</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2">
+                <a routerLink="/account-payments"
+                  class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-transaction"></i></span>
+                  <h6 class="mb-0 ms-2">Payments</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2">
+                <a routerLink="/account-setting" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-setting"></i></span>
+                  <h6 class="mb-0 ms-2">Settings</h6>
+                </a>
+              </li>
+
+              <li class="navbar-item account-menu px-0 mt-2">
+                <a routerLink="/auth-login-three"
+                  class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                  <span class="h4 mb-0"><i class="uil uil-dashboard"></i></span>
+                  <h6 class="mb-0 ms-2">Logout</h6>
+                </a>
+              </li>
+            </ul>
+            <!--end row-->
+          </div>
+
+          <div class="widget mt-4 pt-2">
+            <h5 class="widget-title">Follow me :</h5>
+            <ul class="list-unstyled social-icon mb-0 mt-4">
+              <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="github" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="youtube" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+              <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                  <i-feather name="gitlab" class="fea icon-sm fea-social"></i-feather>
+                </a></li>
+            </ul>
+            <!--end icon-->
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-8 col-12">
+        <div class="rounded shadow p-4">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">Messages:</h5>
+            <a href="javascript:void(0)" (click)="openComposeModal(content)" data-bs-toggle="modal"
+              data-bs-target="#composemail" class="btn btn-primary">
+              <i-feather name="plus" class="fea icon-sm"></i-feather> Compose
+            </a>
+          </div>
+
+          <!-- Modal Content Start -->
+          <ng-template #content let-modal>
+            <div class="modal-content rounded shadow border-0">
+              <div class="modal-header">
+                <h5 class="modal-title" id="composemail-title">Branded T-Shirts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                  (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-4">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                          <input name="name" id="name" type="text" class="form-control ps-5" placeholder="First Name :">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label">Subject</label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="book" class="fea icon-sm icons"></i-feather>
+                          <input name="subject" id="subject" class="form-control ps-5" placeholder="Your subject :">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <ckeditor [editor]="Editor" data="<p>Hello,<br><br> Great doctor if you need your family member to get effective immediate
+                        assistance, emergency treatment or a simple consultation. <br><br>Thank you</p>"></ckeditor>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="border-top p-4">
+                <button type="button" class="btn btn-primary">Send Now</button>
+              </div>
+            </div>
+          </ng-template>
+          <!-- Modal Content End -->
+
+          <div class="d-flex border-bottom align-items-center justify-content-between bg-light mt-4 p-3">
+            <div class="form-check ps-0">
+              <div class="mb-0">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="selectall">
+                  <label class="form-check-label" for="selectall">Select all</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="btn-group dropdown-primary me-2 mt-2" ngbDropdown>
+              <button type="button" class="btn btn-primary dropdown-toggle" ngbDropdownToggle data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Action
+              </button>
+              <div class="dropdown-menu" ngbDropdownMenu>
+                <a href="javascript:void(0)" class="dropdown-item">
+                  <i-feather name="eye-off" class="fea icon-sm"></i-feather>
+                  Mark Unread
+                </a>
+                <a href="javascript:void(0)" class="dropdown-item">
+                  <i-feather name="corner-up-left" class="fea icon-sm"></i-feather> Reply
+                </a>
+                <a href="javascript:void(0)" class="dropdown-item">
+                  <i-feather name="corner-up-right" class="fea icon-sm"></i-feather> Forward
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="javascript:void(0)" class="dropdown-item text-danger">
+                  <i-feather name="trash-2" class="fea icon-sm"></i-feather> Delete
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex border-bottom p-3" *ngFor="let data of messageData">
+            <div class="form-check ps-0">
+              <div class="mb-0">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="mail1">
+                  <label class="form-check-label" for="mail1"></label>
+                </div>
+              </div>
+            </div>
+            <a href="javascript:void(0)">
+              <div class="d-flex ms-2">
+                <img src="{{data.profile}}" class="avatar avatar-md-sm rounded-pill shadow" alt="">
+                <div class="flex-1 ms-3">
+                  <h6 class="text-dark">{{data.name}}</h6>
+                  <p class="text-muted mb-0">{{data.content}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mt-4">
+            <span class="text-muted h6 mb-0">Showing 8 out of 33</span>
+            <a href="javascript:void(0)" class="btn btn-primary">See more</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Profile End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

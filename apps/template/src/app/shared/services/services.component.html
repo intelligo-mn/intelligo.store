@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-4 col-12 mt-5" *ngFor="let data of servicesData">
+        <div class="features features text-center">
+            <div class="image position-relative d-inline-block">
+                <i class="{{data.icon}}"></i>
+            </div>
+
+            <div class="content mt-4">
+                <h5>{{data.title}}</h5>
+                <p class="text-muted mb-0">{{data.description}}</p>
+            </div>
+        </div>
+    </div>
+    <!--end col-->
+</div>
