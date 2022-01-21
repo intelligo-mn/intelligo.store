@@ -65,7 +65,7 @@ export class CollectionsMenuComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.destroy$.next();
+        this.destroy$.next(1);
         this.destroy$.complete();
     }
 

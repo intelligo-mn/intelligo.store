@@ -1,3 +1,62 @@
+## <small>1.4.5 (2022-01-17)</small>
+
+
+#### Fixes
+
+* **admin-ui** Fix custom field select input ([2bbb972](https://github.com/vendure-ecommerce/vendure/commit/2bbb972)), closes [#1342](https://github.com/vendure-ecommerce/vendure/issues/1342)
+* **asset-server-plugin** Correctly handle non-latin filenames ([4cf8434](https://github.com/vendure-ecommerce/vendure/commit/4cf8434)), closes [#1343](https://github.com/vendure-ecommerce/vendure/issues/1343)
+* **core** Demote 404 errors to Verbose log level ([6b3c3fe](https://github.com/vendure-ecommerce/vendure/commit/6b3c3fe)), closes [#1335](https://github.com/vendure-ecommerce/vendure/issues/1335)
+* **core** Fix error with certain custom field config ([ba060b4](https://github.com/vendure-ecommerce/vendure/commit/ba060b4)), closes [#1337](https://github.com/vendure-ecommerce/vendure/issues/1337)
+* **core** Fix filtering by facet value uuid in DefaultSearchPlugin ([53babf6](https://github.com/vendure-ecommerce/vendure/commit/53babf6)), closes [#1341](https://github.com/vendure-ecommerce/vendure/issues/1341)
+* **core** Fix typings for EntityHydrator with nullable relations ([8f57547](https://github.com/vendure-ecommerce/vendure/commit/8f57547))
+* **core** Prevent errors being logged by Nest's ExternalExceptionFilter ([cf4f246](https://github.com/vendure-ecommerce/vendure/commit/cf4f246)), closes [#1335](https://github.com/vendure-ecommerce/vendure/issues/1335)
+* **email-plugin** Fix population of shippingLines in order handler ([4cd7ecd](https://github.com/vendure-ecommerce/vendure/commit/4cd7ecd)), closes [#1354](https://github.com/vendure-ecommerce/vendure/issues/1354)
+
+## <small>1.4.4 (2022-01-10)</small>
+
+
+#### Fixes
+
+* **admin-ui** Improve handling of locale combinations ([87f9f78](https://github.com/vendure-ecommerce/vendure/commit/87f9f78))
+* **core** Correctly hydrate nested relations of empty array ([4a11666](https://github.com/vendure-ecommerce/vendure/commit/4a11666)), closes [#1324](https://github.com/vendure-ecommerce/vendure/issues/1324)
+* **core** Fix PromotionActions not passing state correctly (#1323) ([fc739c5](https://github.com/vendure-ecommerce/vendure/commit/fc739c5)), closes [#1323](https://github.com/vendure-ecommerce/vendure/issues/1323) [#1322](https://github.com/vendure-ecommerce/vendure/issues/1322)
+* **core** Return NotVerifiedError for resetPassword on unverified user ([8257d27](https://github.com/vendure-ecommerce/vendure/commit/8257d27)), closes [#1321](https://github.com/vendure-ecommerce/vendure/issues/1321)
+* **email-plugin** Fix sorting of emails in dev-mailbox ([57cc26e](https://github.com/vendure-ecommerce/vendure/commit/57cc26e))
+
+## <small>1.4.3 (2021-12-22)</small>
+
+
+#### Fixes
+
+* **admin-ui** Do not show cancelled orders in latest orders widget ([e842e6e](https://github.com/vendure-ecommerce/vendure/commit/e842e6e))
+* **admin-ui** Fix broken Zone creation dialog ([2bc6f4d](https://github.com/vendure-ecommerce/vendure/commit/2bc6f4d)), closes [#1309](https://github.com/vendure-ecommerce/vendure/issues/1309)
+* **core** Prevent removal of sole SuperAdmin ([a1debff](https://github.com/vendure-ecommerce/vendure/commit/a1debff)), closes [#1307](https://github.com/vendure-ecommerce/vendure/issues/1307)
+* **core** Restore deleted superadmin entities ([498a5c6](https://github.com/vendure-ecommerce/vendure/commit/498a5c6)), closes [#1307](https://github.com/vendure-ecommerce/vendure/issues/1307)
+
+## <small>1.4.2 (2021-12-20)</small>
+
+
+#### Fixes
+
+* **admin-ui** Allow CustomerGroup to be created ([2782df8](https://github.com/vendure-ecommerce/vendure/commit/2782df8)), closes [#1300](https://github.com/vendure-ecommerce/vendure/issues/1300)
+* **admin-ui** Correct the warning about the division in Sass (#1294) ([0e4e952](https://github.com/vendure-ecommerce/vendure/commit/0e4e952)), closes [#1294](https://github.com/vendure-ecommerce/vendure/issues/1294) [#1293](https://github.com/vendure-ecommerce/vendure/issues/1293)
+* **admin-ui** Fix cmd+u shortcut on macOS (#1291) ([0b74cc9](https://github.com/vendure-ecommerce/vendure/commit/0b74cc9)), closes [#1291](https://github.com/vendure-ecommerce/vendure/issues/1291)
+* **admin-ui** Fix null property access error for configurable args ([3f7d46d](https://github.com/vendure-ecommerce/vendure/commit/3f7d46d)), closes [#1296](https://github.com/vendure-ecommerce/vendure/issues/1296)
+* **admin-ui** Remove deprecated showCircularDependencies option ([a30d639](https://github.com/vendure-ecommerce/vendure/commit/a30d639))
+* **core** Correctly record stock movement when modifying orders ([a983f24](https://github.com/vendure-ecommerce/vendure/commit/a983f24)), closes [#1210](https://github.com/vendure-ecommerce/vendure/issues/1210)
+* **core** EntityHydrator correctly handles custom field relations ([fd3e642](https://github.com/vendure-ecommerce/vendure/commit/fd3e642)), closes [#1284](https://github.com/vendure-ecommerce/vendure/issues/1284)
+* **core** Fix email verification for already-verified accounts (#1304) ([2f17b9a](https://github.com/vendure-ecommerce/vendure/commit/2f17b9a)), closes [#1304](https://github.com/vendure-ecommerce/vendure/issues/1304) [#1303](https://github.com/vendure-ecommerce/vendure/issues/1303)
+* **core** Handle search job buffer timeout errors, increase timeout ([8797456](https://github.com/vendure-ecommerce/vendure/commit/8797456)), closes [#1287](https://github.com/vendure-ecommerce/vendure/issues/1287)
+* **core** Handle substring search terms for postgres & mysql ([81e3672](https://github.com/vendure-ecommerce/vendure/commit/81e3672)), closes [#1277](https://github.com/vendure-ecommerce/vendure/issues/1277)
+
+## <small>1.4.1 (2021-12-14)</small>
+
+
+#### Fixes
+
+* **core** Fix `Unknown type "ShippingMethodCustomFields"` error ([d810450](https://github.com/vendure-ecommerce/vendure/commit/d810450))
+* **core** Fix FK error with adjustOrderLine when zero saleable stock ([28aeddb](https://github.com/vendure-ecommerce/vendure/commit/28aeddb)), closes [#1273](https://github.com/vendure-ecommerce/vendure/issues/1273)
+
 ## 1.4.0 (2021-12-13)
 
 

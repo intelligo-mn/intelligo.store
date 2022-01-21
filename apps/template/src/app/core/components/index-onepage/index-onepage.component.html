@@ -1,0 +1,531 @@
+<!-- Navbar STart -->
+<header id="topnav" class="defaultscroll sticky" (window:scroll)="windowScroll()">
+  <div class="container">
+    <!-- Logo container-->
+    <div>
+      <a class="logo" [ngxScrollTo]="'#home'">
+        <img src="assets/images/logo-dark.png" height="24" alt="">
+      </a>
+    </div>
+    <div class="buy-button">
+      <a href="https://1.envato.market/4n73n" target="_blank" class="btn btn-primary">Buy Now</a>
+    </div>
+    <!--end login button-->
+    <!-- End Logo container-->
+    <div class="menu-extras">
+      <div class="menu-item">
+        <!-- Mobile menu toggle-->
+        <a class="navbar-toggle" (click)="toggleMenu()" [ngClass]="{'open': isCondensed === true}">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle-->
+      </div>
+    </div>
+
+    <div id="navigation">
+      <!-- Navigation Menu-->
+      <ul class="navigation-menu">
+        <li class="has-submenu" [ngClass]="{'active':currentSection === 'home'}">
+          <a href="javascript: void(0);" [ngxScrollTo]="'#home'">Home</a>
+        </li>
+        <li class="has-submenu" [ngClass]="{'active':currentSection === 'service'}">
+          <a href="javascript: void(0);" [ngxScrollTo]="'#service'">Feature</a>
+        </li>
+        <li class="has-submenu" [ngClass]="{'active':currentSection === 'testimonial'}">
+          <a href="javascript: void(0);" [ngxScrollTo]="'#testimonial'">Review</a>
+        </li>
+        <li class="has-submenu" [ngClass]="{'active':currentSection === 'pricing'}">
+          <a href="javascript: void(0);" [ngxScrollTo]="'#pricing'">Price</a>
+        </li>
+        <li class="has-submenu" [ngClass]="{'active':currentSection === 'contact'}">
+          <a href="javascript: void(0);" [ngxScrollTo]="'#contact'">Contact</a>
+        </li>
+      </ul>
+      <!--end navigation menu-->
+    </div>
+    <!--end navigation-->
+  </div>
+  <!--end container-->
+</header>
+<!--end header-->
+<!-- Navbar End -->
+<div appScrollspy [spiedTags]="['SECTION']" (sectionChange)="onSectionChange($event)">
+  <!-- Hero Start -->
+  <section class="bg-home bg-light d-flex align-items-center"
+    style="background: url('assets/images/onepage/bg.png') center center; height: auto;" id="home">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-9 text-center mt-0 mt-md-5 pt-0 pt-md-5">
+          <div class="title-heading margin-top-100">
+            <h1 class="heading mb-3" data-aos="fade-up" data-aos-duration="1000">Website Load Faster, and Grow Your
+              <span class="text-primary">SEO</span>
+            </h1>
+            <p class="para-desc mx-auto text-muted" data-aos="fade-up" data-aos-duration="1400">Launch your campaign and
+              benefit from our expertise on designing and managing conversion centered bootstrap v5 html page.</p>
+            <div class="text-center subcribe-form mt-4 pt-2" data-aos="fade-up" data-aos-duration="1800">
+              <form>
+                <div class="form-group mb-0">
+                  <input type="email" id="email" name="email" class="shadow bg-white rounded-pill" required=""
+                    placeholder="Email Address">
+                  <button type="submit" class="btn btn-pills btn-primary">Get Started</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="home-dashboard onepage-hero" data-aos="fade-up" data-aos-duration="2200">
+            <img src="assets/images/onepage/onepage.png" alt="" class="img-fluid">
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </section>
+  <!--end section-->
+  <!-- Hero End -->
+
+  <!-- Features Start -->
+  <section class="section pb-0" id="service">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <div class="section-title mb-4 pb-2">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Great Features</h4>
+            <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+              generate
+              awareness, drive traffic, connect.
+            </p>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+      <app-services [servicesData]="servicesData"></app-services>
+    </div>
+    <!--end container-->
+
+    <div class="container mt-100 mt-60">
+      <div class="row align-items-center">
+        <div class="col-lg-5 col-md-6">
+          <img src="assets/images/software/mobile01.png" data-aos="fade-up" data-aos-duration="1800" class="img-fluid"
+            alt="">
+        </div>
+        <!--end col-->
+
+        <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+          <div class="section-title ms-lg-5">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Seamless Operation via Smart SEO</h4>
+            <p class="text-muted" data-aos="fade-up" data-aos-duration="1400">You can combine all the Landrick templates
+              into a single one, you can take a component from the Application theme and use it in the Website.</p>
+            <ul class="list-unstyled mb-0 text-muted" data-aos="fade-up" data-aos-duration="1800">
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency
+              </li>
+              <li class="mb-0"><span class="text-primary h5 me-2"><i
+                    class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
+            </ul>
+            <div class="mt-4" data-aos="fade-up" data-aos-duration="2200">
+              <a href="javascript:void(0)" class="text-primary p-1 px-2 shadow rounded">Read More <i
+                  class="uil uil-angle-right-b"></i></a>
+            </div>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+
+    <div class="container mt-100 mt-60">
+      <div class="p-4 rounded bg-light shadow" data-aos="fade-up" data-aos-duration="1400">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <div class="text-sm-left">
+              <h5 class="mb-0">Start building beautiful block-based websites.</h5>
+            </div>
+          </div>
+          <!--end col-->
+
+          <div class="col-sm-5 mt-4 mt-sm-0">
+            <div class="text-sm-end">
+              <a href="javascript:void(0)" (click)="openTrialModal(freeTrialcontent)"
+                class="btn btn-outline-primary">Free Trial <span class="badge rounded-pill bg-danger ms-2">v3.2</span>
+              </a>
+            </div>
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row -->
+      </div>
+    </div>
+    <!--end container-->
+
+    <!-- Modal Content Start -->
+    <ng-template #freeTrialcontent let-modal>
+      <div class="modal-content rounded shadow border-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">14 Days Free Trial</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="feature-form">
+            <img src="assets/images/illustrator/Mobile_notification_SVG.svg" alt="">
+
+            <div class="content mt-4 pt-2">
+              <form>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="mb-3">
+                      <label class="form-label">Name : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                        <input type="text" class="form-control ps-5" placeholder="Name" name="name" required="">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-lg-12">
+                    <div class="mb-3">
+                      <label class="form-label">Email : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                        <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-lg-12">
+                    <div class="mb-3">
+                      <label class="form-label">Password : <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="key" class="fea icon-sm icons"></i-feather>
+                        <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-lg-12 mt-2 mb-0">
+                    <div class="d-grid">
+                      <button class="btn btn-primary">Login</button>
+                    </div>
+                  </div>
+                  <!--end col-->
+                </div>
+                <!--end row-->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- Modal Content End -->
+
+    <div class="container mt-100 mt-60">
+      <div class="row">
+        <div class="col-12">
+          <div class="position-relative" style="z-index: 1;" data-aos="zoom-in" data-aos-duration="1600">
+            <img src="assets/images/onepage/laptop.png" class="rounded img-fluid mx-auto d-block" alt="">
+            <div class="play-icon">
+              <a (click)="openWindowCustomClass(content)" href="javascript:void(0);" class="play-btn video-play-icon">
+                <i class="mdi mdi-play text-primary rounded-circle bg-white shadow"></i>
+              </a>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <iframe src="https://player.vimeo.com/video/287684225" height="450" width="780" frameborder="0"
+                    allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </section>
+  <!--end section-->
+  <div class="position-relative">
+    <div class="shape overflow-hidden text-light">
+      <svg viewBox="0 0 2880 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M720 125L2160 0H2880V250H0V125H720Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <!-- Features End -->
+
+  <!-- Review Start -->
+  <section class="section bg-light" id="testimonial">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <div class="section-title mb-4 pb-2">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Testimonial</h4>
+            <p class="text-muted para-desc mb-0 mx-auto" data-aos="fade-up" data-aos-duration="1400">Start working with
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+              generate
+              awareness, drive traffic, connect.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end row-->
+      <div class="row justify-content-center">
+        <div class="col-lg-12 mt-4">
+          <app-testimonial [testimonialData]="testimonialData"></app-testimonial>
+        </div>
+      </div>
+    </div>
+    <!--end container-->
+
+    <!-- Partners start -->
+    <div class="container pt-5">
+      <app-clients-logo></app-clients-logo>
+    </div>
+    <!--end container-->
+    <!-- Partners End -->
+  </section>
+  <!--end section-->
+  <!-- Review End -->
+
+  <!-- Pricing Start -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <div class="section-title mb-4 pb-2">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Pricing</h4>
+            <p class="text-muted para-desc mb-0 mx-auto" data-aos="fade-up" data-aos-duration="1400">Start working with
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+              generate
+              awareness, drive traffic, connect.
+            </p>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+      <app-pricing [pricingData]="pricingData"></app-pricing>
+    </div>
+    <!--end container-->
+  </section>
+  <!--end section-->
+  <!-- Pricing End -->
+
+  <!-- Team Start -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="section-title mb-4 pb-2">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Our Team Member</h4>
+            <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+              generate
+              awareness, drive traffic, connect.
+            </p>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+      <app-member [memberData]="memberData"></app-member>
+    </div>
+    <!--end container-->
+  </section>
+  <!--end section-->
+  <!-- Team End -->
+
+  <!-- Contact Start -->
+  <section class="section pb-0" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="section-title mb-4 pb-2">
+            <h4 class="title mb-4" data-aos="fade-up" data-aos-duration="1000">Get In Touch !</h4>
+            <p class="text-muted para-desc mx-auto mb-0" data-aos="fade-up" data-aos-duration="1400">Start working with
+              <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+              generate
+              awareness, drive traffic, connect.
+            </p>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+
+      <div class="row align-items-center">
+        <div class="col-lg-5 col-md-6 mt-4 pt-2 order-2 order-md-1">
+          <div class="card rounded shadow border-0" data-aos="fade-up" data-aos-duration="1000">
+            <div class="card-body">
+              <div class="custom-form bg-white">
+                <div id="message"></div>
+                <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                          <input name="name" id="name" type="text" class="form-control ps-5" placeholder="First Name :">
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                          <input name="email" id="email2" type="email" class="form-control ps-5"
+                            placeholder="Your email :">
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-12">
+                      <div class="mb-3">
+                        <label class="form-label">Comments</label>
+                        <div class="form-icon position-relative">
+                          <i-feather name="message-circle" class="fea icon-sm icons"></i-feather>
+                          <textarea name="comments" id="comments" rows="4" class="form-control ps-5"
+                            placeholder="Your Message :"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end row-->
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <div class="d-grid">
+                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary"
+                          value="Send Message">
+                        <div id="simple-msg"></div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
+                <!--end form-->
+              </div>
+              <!--end custom-form-->
+            </div>
+          </div>
+        </div>
+        <!--end col-->
+
+        <div class="col-lg-7 col-md-6 mt-4 pt-2 order-1 order-md-2">
+          <div class="title-heading ms-lg-4">
+            <h4 class="mb-4" data-aos="fade-up" data-aos-duration="1000">Contact Details</h4>
+            <p class="text-muted" data-aos="fade-up" data-aos-duration="1400">Start working with <span
+                class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+              drive traffic, connect.</p>
+            <div class="card border-0 bg-transparent">
+              <div class="card-body p-0">
+                <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1200">
+                  <div class="icon">
+                    <i-feather name="mail" class="fea icon-m-md text-dark me-3"></i-feather>
+                  </div>
+                  <div class="content overflow-hidden d-block">
+                    <h6 class="fw-bold mb-0">Email</h6>
+                    <a href="mailto:contact@example.com" class="text-primary">contact@example.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-0 bg-transparent">
+              <div class="card-body p-0">
+                <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1400">
+                  <div class="icon">
+                    <i-feather name="phone" class="fea icon-m-md text-dark me-3"></i-feather>
+                  </div>
+                  <div class="content overflow-hidden d-block">
+                    <h6 class="fw-bold mb-0">Phone</h6>
+                    <a href="tel:+152534-468-854" class="text-primary">+152 534-468-854</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-0 bg-transparent">
+              <div class="card-body p-0">
+                <div class="contact-detail d-flex align-items-center mt-3" data-aos="fade-up" data-aos-duration="1600">
+                  <div class="icon">
+                    <i-feather name="map-pin" class="fea icon-m-md text-dark me-3"></i-feather>
+                  </div>
+                  <div class="content overflow-hidden d-block">
+                    <h6 class="fw-bold mb-0">Location</h6>
+                    <a (click)="mapView(mapcontent)" href="javascript:void(0);" data-type="iframe"
+                      class="video-play-icon text-primary">View on Google map</a>
+
+                    <ng-template #mapcontent let-modal>
+                      <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+                          height="450" width="750">
+                        </iframe>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end contact-->
+
+    <div class="container-fluid mt-100 mt-60">
+      <div class="row">
+        <div class="col-12 p-0">
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+              style="border:0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </section>
+  <!--end section-->
+  <!-- Contact End -->
+
+  <!-- Back to top -->
+  <a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+    <i-feather name="arrow-up" class="icons"></i-feather>
+  </a>
+  <!-- Back to top -->
+  <app-footer></app-footer>
+</div>
