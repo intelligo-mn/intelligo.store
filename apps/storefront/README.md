@@ -40,6 +40,6 @@ This project is used in the [platform.sale](https://github.com/intelligo-mn/plat
 
 ## License
 
-MIT
+> Copyright (C) 2021 Intelligo LLC.  
 
 

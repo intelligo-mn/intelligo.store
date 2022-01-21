@@ -1,0 +1,13 @@
+<owl-carousel-o id="customer-testi" [options]="customOptions">
+    <ng-container *ngFor="let data of customerData">
+        <ng-template carouselSlide>
+            <div class="card customer-testi text-center border-0 shadow rounded m-2">
+                <div class="card-body">
+                    <img src="{{data.image}}" class="img-fluid avatar avatar-ex-sm mx-auto" alt="">
+                    <p class="text-muted mt-4">{{data.message}}</p>
+                    <h6 class="text-primary">- {{data.name}}</h6>
+                </div>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>

@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-4 col-md-6 mt-4 pt-2" *ngFor="let data of featuresdata">
+    <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+      <div class="icon text-center rounded-circle me-3">
+        <i-feather name="{{data.icon}}" class="fea icon-ex-md text-primary"></i-feather>
+      </div>
+      <div class="flex-1">
+        <h4 class="title mb-0">{{data.title}}</h4>
+      </div>
+    </div>
+  </div>
+  <!--end col-->
+
+  <div class="col-12 mt-4 pt-2 text-center">
+    <a href="javascript:void(0)" class="btn btn-primary">See More <i class="uil uil-angle-right"></i></a>
+  </div>
+  <!--end col-->
+</div>

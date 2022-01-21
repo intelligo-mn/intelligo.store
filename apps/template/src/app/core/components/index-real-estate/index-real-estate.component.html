@@ -1,0 +1,869 @@
+<!-- Hero Start -->
+<swiper [config]="config" class="swiper-slider-hero position-relative d-block vh-100" id="home">
+    <div class="swiper-slide d-flex align-items-center overflow-hidden">
+        <div class="slide-inner slide-bg-image d-flex align-items-center" style="background: center center;"
+            style="background-image:url('assets/images/real/1.jpg')">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="title-heading text-center">
+                            <h4 class="display-4 fw-bold text-white title-dark mb-3">Find your perfect property</h4>
+                            <p class="para-desc text-white-50 mb-0 mx-auto">Launch your campaign and benefit from our
+                                expertise on designing and managing conversion centered bootstrap v5 html page.</p>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </div><!-- end slide-inner -->
+    </div> <!-- end swiper-slide -->
+    <div class="swiper-slide d-flex align-items-center overflow-hidden">
+        <div class="slide-inner slide-bg-image d-flex align-items-center" style="background: center center;"
+            style="background-image:url('assets/images/real/2.jpg')">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="title-heading text-center">
+                            <h4 class="display-4 fw-bold text-white title-dark mb-3">Find your perfect property</h4>
+                            <p class="para-desc text-white-50 mb-0 mx-auto">Launch your campaign and benefit from our
+                                expertise on designing and managing conversion centered bootstrap v5 html page.</p>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </div><!-- end slide-inner -->
+    </div> <!-- end swiper-slide -->
+
+    <div class="swiper-button-next border rounded-circle text-center"></div>
+    <div class="swiper-button-prev border rounded-circle text-center"></div>
+</swiper>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Start -->
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-11 col-12 text-center mt-sm-0 pt-sm-0">
+                <div class="text-center features-absolute">
+                    <ul ngbNav #nav="ngbNav"
+                        class="nav nav-pills shadow border-bottom flex-column flex-sm-row d-md-inline-flex nav-justified mb-0 bg-white rounded-top position-relative overflow-hidden"
+                        id="pills-tab">
+                        <li ngbNavItem class="nav-item m-1">
+                            <a ngbNavLink class="nav-link py-2 px-5 rounded">
+                                <div class="text-center">
+                                    <h6 class="mb-0">Buy</h6>
+                                </div>
+                            </a>
+                            <ng-template ngbNavContent>
+                                <form class="card-body text-start">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Search :</label>
+                                                <div class="form-icon position-relative">
+                                                    <i-feather name="search" class="fea icon-sm icons"></i-feather>
+                                                    <input name="name" id="name" type="text" class="form-control ps-5"
+                                                        placeholder="Search your home :">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Select Categories:</label>
+                                                <select class="form-control custom-select" id="buy-properties">
+                                                    <option>Houses</option>
+                                                    <option>Apartment</option>
+                                                    <option>Offices</option>
+                                                    <option>Townhome</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Min Price :</label>
+                                                <select class="form-control custom-select" id="buy-min-price">
+                                                    <option>Min Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Max Price :</label>
+                                                <select class="form-control custom-select" id="buy-max-price">
+                                                    <option>Max Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-12">
+                                            <a href="javascript:void(0)" class="btn btn-primary">Search now</a>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                                <!--end row-->
+                            </ng-template>
+                        </li>
+                        <li ngbNavItem class="nav-item m-1">
+                            <a ngbNavLink class="nav-link py-2 px-5 rounded">
+                                <div class="text-center">
+                                    <h6 class="mb-0">Sold</h6>
+                                </div>
+                            </a>
+                            <ng-template ngbNavContent>
+                                <form class="card-body text-start">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Search :</label>
+                                                <div class="form-icon position-relative">
+                                                    <i-feather name="search" class="fea icon-sm icons"></i-feather>
+                                                    <input name="name" id="name1" type="text" class="form-control ps-5"
+                                                        placeholder="Search your home :">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Select Categories:</label>
+                                                <select class="form-control custom-select" id="buy-properties2">
+                                                    <option>Houses</option>
+                                                    <option>Apartment</option>
+                                                    <option>Offices</option>
+                                                    <option>Townhome</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Min Price :</label>
+                                                <select class="form-control custom-select" id="buy-min-price2">
+                                                    <option>Min Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Max Price :</label>
+                                                <select class="form-control custom-select" id="buy-max-price2">
+                                                    <option>Max Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-12">
+                                            <a href="javascript:void(0)" class="btn btn-primary">Search now</a>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                                <!--end form-->
+                            </ng-template>
+                        </li>
+                        <li ngbNavItem class="nav-item m-1">
+                            <a ngbNavLink class="nav-link py-2 px-5 rounded">
+                                <div class="text-center">
+                                    <h6 class="mb-0">Rent</h6>
+                                </div>
+                            </a>
+                            <ng-template ngbNavContent>
+                                <form class="card-body text-start">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Search :</label>
+                                                <div class="form-icon position-relative">
+                                                    <i-feather name="search" class="fea icon-sm icons"></i-feather>
+                                                    <input name="name" id="name2" type="text" class="form-control ps-5"
+                                                        placeholder="Search your home :">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Select Categories:</label>
+                                                <select class="form-control custom-select" id="buy-properties3">
+                                                    <option>Houses</option>
+                                                    <option>Apartment</option>
+                                                    <option>Offices</option>
+                                                    <option>Townhome</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Min Price :</label>
+                                                <select class="form-control custom-select" id="buy-min-price3">
+                                                    <option>Min Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <div class="mb-3 text-start">
+                                                <label class="form-label">Max Price :</label>
+                                                <select class="form-control custom-select" id="buy-max-price3">
+                                                    <option>Max Price</option>
+                                                    <option>500</option>
+                                                    <option>1000</option>
+                                                    <option>2000</option>
+                                                    <option>3000</option>
+                                                    <option>4000</option>
+                                                    <option>5000</option>
+                                                    <option>6000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-12">
+                                            <a href="javascript:void(0)" class="btn btn-primary">Search now</a>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                                <!--end form-->
+                            </ng-template>
+                        </li>
+                    </ul>
+                    <div [ngbNavOutlet]="nav" class="col-12 bg-white rounded-bottom shadow"></div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title mb-4 pb-2 text-center">
+                    <span class="badge rounded-pill bg-soft-primary">Process</span>
+                    <h4 class="title mt-3 mb-4">How it work</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">Start working with <span
+                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                        generate awareness, drive traffic, connect.</p>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card border-0 text-center features feature-clean rounded">
+                    <div class="icons text-primary text-center mx-auto">
+                        <i class="uil uil-map-marker-plus d-block rounded h3 mb-0"></i>
+                    </div>
+
+                    <div class="card-body p-0 mt-4">
+                        <a href="javascript:void(0)" class="title h5 text-dark">Map Search</a>
+                        <p class="text-muted mt-3 mb-0">Composed in a pseudo-Latin language which more or less
+                            pseudo-Latin language corresponds.</p>
+                        <div class="mt-2">
+                            <a href="javascript:void(0)" class="text-primary">Read More <i-feather name="arrow-right"
+                                    class="fea icon-sm"></i-feather></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card border-0 text-center features feature-clean rounded">
+                    <div class="icons text-primary text-center mx-auto">
+                        <i class="uil uil-estate d-block rounded h3 mb-0"></i>
+                    </div>
+
+                    <div class="card-body p-0 mt-4">
+                        <a href="javascript:void(0)" class="title h5 text-dark">Property Lookup</a>
+                        <p class="text-muted mt-3 mb-0">Composed in a pseudo-Latin language which more or less
+                            pseudo-Latin language corresponds.</p>
+                        <div class="mt-2">
+                            <a href="javascript:void(0)" class="text-primary">Read More <i-feather name="arrow-right"
+                                    class="fea icon-sm"></i-feather></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card border-0 text-center features feature-clean rounded">
+                    <div class="icons text-primary text-center mx-auto">
+                        <i class="uil uil-house-user d-block rounded h3 mb-0"></i>
+                    </div>
+
+                    <div class="card-body p-0 mt-4">
+                        <a href="javascript:void(0)" class="title h5 text-dark">Buy / Sell Property</a>
+                        <p class="text-muted mt-3 mb-0">Composed in a pseudo-Latin language which more or less
+                            pseudo-Latin language corresponds.</p>
+                        <div class="mt-2">
+                            <a href="javascript:void(0)" class="text-primary">Read More <i-feather name="arrow-right"
+                                    class="fea icon-sm"></i-feather></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="section-title text-center text-lg-start mb-4 mb-lg-0">
+                    <span class="badge rounded-pill bg-soft-primary">Featured Items</span>
+                    <h4 class="title mt-3 mb-4">Latest Property</h4>
+                    <p class="text-muted mx-auto mx-lg-star para-desc mb-0">Start working with <span
+                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                        generate awareness, drive traffic, connect.</p>
+                    <div class="mt-4 d-none d-lg-block">
+                        <a href="javascript:void(0)" class="btn btn-primary">See More</a>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-8 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                <owl-carousel-o id="customer-testi" [options]="customOptions">
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p1.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p2.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p3.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p4.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p5.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p6.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p7.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="tiny-slide">
+                            <div
+                                class="card client-testi shop-list border-0 shadow position-relative overflow-hidden m-2">
+                                <div class="shop-image position-relative overflow-hidden shadow">
+                                    <a routerLink="/shop-product-detail"><img src="assets/images/real/p8.jpg"
+                                            class="img-fluid" alt=""></a>
+                                    <ul class="list-unstyled shop-icons">
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-estate icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-heart icons"></i></a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)"
+                                                class="btn btn-icon btn-pills btn-primary"><i
+                                                    class="uil uil-camera icons"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body content p-4">
+                                    <a href="javascript:void(0)" class="text-dark product-name h6">Luxury Apartment In
+                                        chelsea</a>
+                                    <ul class="list-unstyled text-muted mt-2 mb-0">
+                                        <li class="list-inline-item me-3"><i class="uil uil-bed me-1"></i>1 Bed</li>
+                                        <li class="list-inline-item"><i class="uil uil-bath me-1"></i>1 Bath</li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                        <li class="list-inline-item"><b>$ 44000</b></li>
+                                        <li class="list-inline-item text-muted">$ 850 / sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+
+    <div class="container-fluid mt-100 mt-60">
+        <div class="rounded shadow py-5" style="background: url('assets/images/real/1.jpg') center center;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="rounded p-4 bg-light">
+                            <app-review-testmonial [reviewData]="reviewData"></app-review-testmonial>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </div>
+    </div>
+    <!--end container fluid-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title mb-4 pb-2 text-center">
+                    <h4 class="title mb-4">Our Experts</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">Start working with <span
+                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                        generate awareness, drive traffic, connect.</p>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                <div class="card team bg-light text-center rounded shadow border-0">
+                    <div class="card-body">
+                        <div class="routerLinkn-/relative">
+                            <img src="assets/images/client/01.jpg"
+                                class="img-fluid avatar avatar-ex-large rounded-circle shadow" alt="">
+                            <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                            </ul>
+                            <!--end icon-->
+                        </div>
+                        <div class="content pt-3">
+                            <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Ronny Jofra</a></h5>
+                            <small class="designation text-muted">Commercial Broker</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                <div class="card team bg-light text-center rounded shadow border-0">
+                    <div class="card-body">
+                        <div class="routerLinkn-/relative">
+                            <img src="assets/images/client/04.jpg"
+                                class="img-fluid avatar avatar-ex-large rounded-circle shadow" alt="">
+                            <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                            </ul>
+                            <!--end icon-->
+                        </div>
+                        <div class="content pt-3">
+                            <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Micheal Carlo</a></h5>
+                            <small class="designation text-muted">Commercial Broker</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                <div class="card team bg-light text-center rounded shadow border-0">
+                    <div class="card-body">
+                        <div class="routerLinkn-/relative">
+                            <img src="assets/images/client/03.jpg"
+                                class="img-fluid avatar avatar-ex-large rounded-circle shadow" alt="">
+                            <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                            </ul>
+                            <!--end icon-->
+                        </div>
+                        <div class="content pt-3">
+                            <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Aliana Rosy</a></h5>
+                            <small class="designation text-muted">Commercial Broker</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                <div class="card team bg-light text-center rounded shadow border-0">
+                    <div class="card-body">
+                        <div class="routerLinkn-/relative">
+                            <img src="assets/images/client/02.jpg"
+                                class="img-fluid avatar avatar-ex-large rounded-circle shadow" alt="">
+                            <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                                <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                        <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                    </a></li>
+                            </ul>
+                            <!--end icon-->
+                        </div>
+                        <div class="content pt-3">
+                            <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">Sofia Razaq</a></h5>
+                            <small class="designation text-muted">Commercial Broker</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<!-- End -->
+
+<!-- News Start -->
+<section class="section pt-0" style="background: url('assets/images/real/build.png') bottom no-repeat;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+                    <h4 class="title mb-4">Latest Blog & News</h4>
+                    <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                        generate awareness, drive traffic, connect.</p>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+
+        <app-blog [blogData]="blogData"></app-blog>
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<!-- Blog End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+    <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->
