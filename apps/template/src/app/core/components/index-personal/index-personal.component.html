@@ -1,0 +1,486 @@
+<!-- Hero Start -->
+<section class="bg-home rtl-personal-hero bg-light d-flex align-items-center"
+  style="background:url('assets/images/personal/bg01.png') center center" id="home">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-md-9">
+        <div class="title-heading mt-4">
+          <h1 class="display-3 fw-bold mb-3">Here I'm <br>
+            <ngx-typed-js [strings]="['Calvin Carlo', 'UI/UX Designer', 'Web Developer']" [shuffle]="true"
+              [typeSpeed]="80" [loop]="true">
+              <span class="element typing text-primary"></span>
+            </ngx-typed-js>
+          </h1>
+          <p class="para-desc text-muted">Launch your campaign and benefit from our expertise on designing and managing
+            conversion centered bootstrap v5 html page.</p>
+          <div class="mt-4 pt-2">
+            <a [ngxScrollTo]="'#portfolio'" class="btn btn-primary mt-2 me-2"><i class="uil uil-camera"></i> View
+              Portfolio</a>
+            <a [ngxScrollTo]="'#contact'" class="btn btn-outline-primary mt-2"><i class="uil uil-cloud-download"></i>
+              Hire
+              Me</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- About Start -->
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="section-title">
+          <h4 class="title">About Me</h4>
+          <h6 class="text-primary mb-4">I'm Passionate Web Designer</h6>
+          <p class="text-muted mb-0">Start working with landrick that can provide everything you need to generate
+            awareness, drive traffic, connect. Dummy text is also used to demonstrate the appearance of different
+            typefaces and layouts, and in general the content of dummy text is nonsensical. Due to its widespread use
+            as filler text for layouts, non-readability is of great importance: human perception is tuned to recognize
+            certain patterns and repetitions in texts.</p>
+          <div class="mt-4">
+            <a [ngxScrollTo]="'#contact'" class="btn btn-primary mouse-down"><i class="mdi mdi-phone"></i> Contact
+              Me</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="ms-md-4">
+          <div class="progress-box">
+            <h6 class="title text-muted">WordPress</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:84%;">
+                <div class="progress-value d-block text-muted h6">84%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">PHP / MYSQL</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:75%;">
+                <div class="progress-value d-block text-muted h6">75%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">Angular / JavaScript</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:79%;">
+                <div class="progress-value d-block text-muted h6">79%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">HTML</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:95%;">
+                <div class="progress-value d-block text-muted h6">95%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">CSS</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:93%;">
+                <div class="progress-value d-block text-muted h6">93%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60" id="portfolio">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">My Work & Portfolio</h4>
+          <p class="text-muted para-desc mb-0">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" *ngFor="let item of workList; let i=index">
+        <div class="card border-0 work-container work-modern position-relative d-block overflow-hidden rounded">
+          <div class="card-body p-0">
+            <img src="{{item.image }}" class="img-fluid" alt="work-image">
+            <div class="overlay-work bg-dark"></div>
+            <div class="content">
+              <h5 class="mb-0"><a routerLink="/page-work-detail" class="text-white title">{{item.title}}</a></h5>
+              <h6 class="text-light tag mb-0">{{item.category}}</h6>
+            </div>
+            <div class="icons text-center"> 
+              <a (click)="open(i)"
+                class="text-primary work-icon bg-white d-inline-block rounded-pill mfp-image">
+                <i-feather name="camera" class="fea icon-sm"></i-feather>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-12 mt-4 pt-2">
+        <a routerLink="/portfolio-modern-three" class="btn btn-outline-primary">See More <i
+            class="mdi mdi-chevron-right"></i></a>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Work Process</h4>
+          <p class="text-muted para-desc mb-0">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row">
+      <div class="col-md-4 mt-4 pt-2">
+        <div class="card work-process border-0 rounded shadow">
+          <div class="card-body">
+            <h4 class="title">Discuss The Project</h4>
+            <p class="text-muted para">The most well-known dummy text is the 'Lorem Ipsum', which is said to have
+              originated in the 16th century.</p>
+            <a href="javascript:void(0)" class="text-primary">Read more <i class="mdi mdi-chevron-right"></i></a>
+            <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
+              <li class="step h1 mb-0 fw-bold">Step 01.</li>
+              <li class="step-icon"><i class="mdi mdi-chevron-double-right mdi-36px"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 mt-4 pt-2">
+        <div class="card work-process border-0 rounded shadow">
+          <div class="card-body">
+            <h4 class="title">Develop & Elaborate</h4>
+            <p class="text-muted para">The most well-known dummy text is the 'Lorem Ipsum', which is said to have
+              originated in the 16th century.</p>
+            <a href="javascript:void(0)" class="text-primary">Read more <i class="mdi mdi-chevron-right"></i></a>
+            <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
+              <li class="step h1 mb-0 fw-bold">Step 02.</li>
+              <li class="step-icon"><i class="mdi mdi-chevron-double-right mdi-36px"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 mt-4 pt-2">
+        <div class="card work-process border-0 rounded shadow">
+          <div class="card-body">
+            <h4 class="title">Final Approvement</h4>
+            <p class="text-muted para">The most well-known dummy text is the 'Lorem Ipsum', which is said to have
+              originated in the 16th century.</p>
+            <a href="javascript:void(0)" class="text-primary">Read more <i class="mdi mdi-chevron-right"></i></a>
+            <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
+              <li class="step h1 mb-0 fw-bold">Step 03.</li>
+              <li class="step-icon"><i class="mdi mdi-check-all mdi-36px"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- About End -->
+
+<!-- Testi Start -->
+<section class="section" style="background: url('assets/images/personal/bg02.jpg') center center;">
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 text-center">
+        <!-- <div id="owl-fade" class="owl-carousel owl-theme"> -->
+        <owl-carousel-o id="customer-testi" [options]="customOptions">
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" It seems that only fragments of the original text remain
+                in the Lorem Ipsum texts used today. The most well-known dummy text is the 'Lorem Ipsum', which is said
+                to have originated in the 16th century. "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Thomas Israel </h6>
+              <img src="assets/images/client/01.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" The advantage of its Latin origin and the relative
+                meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the
+                viewer's attention from the layout. "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Carl Oliver </h6>
+              <img src="assets/images/client/02.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" There is now an abundance of readable dummy texts. These
+                are usually used when a text is required purely to fill a space. These alternatives to the classic
+                Lorem Ipsum texts are often amusing and tell short, funny or nonsensical stories. "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Barbara McIntosh </h6>
+              <img src="assets/images/client/03.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" According to most sources, Lorum Ipsum can be traced
+                back to a text composed by Cicero in 45 BC. Allegedly, a Latin scholar established the origin of the
+                text by compiling all the instances of the unusual word 'consectetur' he could find "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Christa Smith </h6>
+              <img src="assets/images/client/04.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" It seems that only fragments of the original text remain
+                in the Lorem Ipsum texts used today. The most well-known dummy text is the 'Lorem Ipsum', which is said
+                to have originated in the 16th century. "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Dean Tolle </h6>
+              <img src="assets/images/client/05.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+              <p class="text-light para-dark h6 fst-italic">" It seems that only fragments of the original text remain
+                in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters
+                were added or deleted at various positions within the text. "</p>
+              <ul class="list-unstyled mb-0 mt-3">
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+              </ul>
+              <h6 class="text-light title-dark"> Jill Webb </h6>
+              <img src="assets/images/client/06.jpg"
+                class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow" alt="">
+            </div>
+            <!--end customer testi-->
+          </ng-template>
+        </owl-carousel-o>
+        <!-- </div> -->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Testi End -->
+
+<!-- Client start -->
+<section class="py-4 border-bottom">
+  <div class="container py-4">
+    <app-clients-logo></app-clients-logo>
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Client End -->
+
+<!-- Blog Start -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12"> 
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Latest News</h4>
+          <p class="text-muted para-desc mb-0">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+    <app-blog [blogData]="blogData"></app-blog>
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60" id="contact">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Contact Me</h4>
+          <p class="text-muted para-desc mb-0">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6  mt-4 pt-2">
+        <div class="card rounded shadow border-0">
+          <div class="card-body">
+            <h4 class="card-title">Get In Touch !</h4>
+
+            <div class="custom-form mt-3">
+              <form method="post" name="myForm" onsubmit="return validateForm()">
+                <p id="error-msg" class="mb-0"></p>
+                <div id="simple-msg"></div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="mb-3">
+                      <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                        <input name="name" id="name" type="text" class="form-control ps-5" placeholder="Name :">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="mb-3">
+                      <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                        <input name="email" id="email" type="email" class="form-control ps-5" placeholder="Email :">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-12">
+                    <div class="mb-3">
+                      <label class="form-label">Subject</label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="book" class="fea icon-sm icons"></i-feather>
+                        <input name="subject" id="subject" class="form-control ps-5" placeholder="Subject :">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end col-->
+
+                  <div class="col-12">
+                    <div class="mb-3">
+                      <label class="form-label">Comments <span class="text-danger">*</span></label>
+                      <div class="form-icon position-relative">
+                        <i-feather name="message-circle" class="fea icon-sm icons clearfix"></i-feather>
+                        <textarea name="comments" id="comments" rows="4" class="form-control ps-5"
+                          placeholder="Message :"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="d-grid">
+                      <button type="submit" id="submit" name="send" class="btn btn-primary">Send Message</button>
+                    </div>
+                  </div>
+                  <!--end col-->
+                </div>
+                <!--end row-->
+              </form>
+            </div>
+            <!--end custom-form-->
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-8 col-md-6 ps-md-3 pe-md-3 mt-4 pt-2">
+        <div class="card border-0 shadow rounded">
+          <div class="map map-height-two map-gray">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+              style="border:0" class="rounded" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Blog End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

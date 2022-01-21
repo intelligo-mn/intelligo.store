@@ -88,11 +88,6 @@ export const devConfig: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:4201/account/change-email-address',
             },
         }),
-        WebhookPlugin.init({
-            httpMethod: 'POST',
-            delay: 3000,
-            events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent],
-        }),
 
         AdminUiPlugin.init({
             route: 'admin',
@@ -138,9 +133,9 @@ function getDbConfig(): ConnectionOptions {
                 type: 'mariadb',
                 host: '127.0.0.1',
                 port: 3306,
-                username: 'root',
-                password: 'new-password',
-                database: 'vendure-dev',
+                username: 'shop-admin',
+                password: 'password',
+                database: 'ecommerce',
             };
     }
 }

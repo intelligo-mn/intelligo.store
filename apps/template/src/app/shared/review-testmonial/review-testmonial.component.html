@@ -1,0 +1,19 @@
+<owl-carousel-o id="customer-testi" [options]="customOptions">
+    <ng-container *ngFor="let data of reviewData">
+        <ng-template carouselSlide>
+            <div class="customer-testi text-center">
+                <p class="text-muted h6 fst-italic">{{data.message}}</p>
+                <img src="{{data.profile}}" class="img-fluid avatar avatar-small mt-3 rounded-circle mx-auto shadow"
+                    alt="">
+                <ul class="list-unstyled mb-0 mt-3">
+                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                </ul>
+                <h6 class="text-primary">- {{data.name}} <small class="text-muted">{{data.designation}}</small></h6>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>

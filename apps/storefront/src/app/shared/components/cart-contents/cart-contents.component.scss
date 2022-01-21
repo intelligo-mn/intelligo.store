@@ -15,7 +15,7 @@
 .items {
     height: 100%;
     overflow: auto;
-    padding-right: $spacer / 2;
+    padding-right: calc($spacer / 2);
 }
 
 .item {

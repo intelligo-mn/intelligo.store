@@ -8,11 +8,11 @@
 }
 
 .filters-title {
-    padding: $spacer / 2;
-    padding-left: $spacer / 3;
+    padding: calc($spacer / 2);
+    padding-left: calc($spacer / 3);
     text-transform: uppercase;
     border-bottom: 1px solid $gray-200;
-    margin-bottom: $spacer / 2;
+    margin-bottom: calc($spacer / 2);
     color: $gray-600;
 }
 
@@ -56,8 +56,8 @@
 button.facet-name {
     font-size: $font-size-sm;
     color: $gray-600;
-    padding: 0 $spacer / 3;
-    margin-right: $spacer / 2;
+    padding: 0 calc($spacer / 3);
+    margin-right: calc($spacer / 2);
     text-transform: uppercase;
     transition: color 0.3s;
     border: none;

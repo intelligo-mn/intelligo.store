@@ -1,0 +1,251 @@
+.bg-primary,
+.btn-primary,
+.btn-soft-primary:hover, 
+.btn-soft-primary:focus, 
+.btn-soft-primary:active, 
+.btn-soft-primary.active, 
+.btn-soft-primary.focus,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.pagination .page-item.active .page-link,
+.nav-pills .nav-link.active,
+#preloader #status .spinner .double-bounce1, 
+#preloader #status .spinner .double-bounce2,
+.social-icon li a:hover,
+#topnav .navbar-toggle.open span:hover,
+.bg-animation-left.crypto-home:after,
+.bg-animation-left.task-management-home:after,
+.classic-app-image .bg-app-shape:after,
+.classic-saas-image .bg-saas-shape:after,
+.swiper-slider-hero .swiper-container .swiper-button-prev:hover,
+.features.fea-primary:hover,
+.tns-nav button.tns-nav-active,
+.ribbon.ribbon-primary span,
+.sidebar .widget .tagcloud > a:hover,
+.work-container.work-modern .icons .work-icon:hover,
+.timeline-page .timeline-item .date-label-left:after, 
+.timeline-page .timeline-item .duration-right:after,
+#navmenu-nav li.account-menu.active .navbar-link,
+#navmenu-nav li.account-menu:hover .navbar-link,
+.form-check-input.form-check-input:checked,
+.qs-datepicker-container .qs-squares .qs-square:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover, 
+.qs-datepicker-container .qs-squares .qs-square.qs-current {
+    background-color: #2f55d4 !important;
+}
+
+.text-primary,
+.bg-soft-primary,
+.component-wrapper.sticky-bar li a:hover, 
+.component-wrapper.sticky-bar li a:focus,
+.btn-soft-primary,
+.btn-outline-primary,
+.dropdown-primary .dropdown-menu .dropdown-item:hover, 
+.dropdown-primary .dropdown-menu .dropdown-item.active, 
+.dropdown-primary .dropdown-menu .dropdown-item:active, 
+.dropdown-primary .dropdown-menu .dropdown-item.focus, 
+.dropdown-primary .dropdown-menu .dropdown-item:focus,
+.alert-outline-primary,
+.breadcrumb .breadcrumb-item a:hover,
+.breadcrumb .breadcrumb-item.active,
+#topnav .has-submenu.active .submenu li.active > a,
+#topnav .navigation-menu > li:hover > a,
+#topnav .navigation-menu > li.active > a,
+#topnav .navigation-menu > li > a:hover, 
+#topnav .navigation-menu > li > a:active,
+#topnav.scroll .navigation-menu > li:hover > a, 
+#topnav.scroll .navigation-menu > li.active > a,
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > a, 
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
+#topnav .navigation-menu > li .submenu li a:hover,
+#topnav .navigation-menu > li:hover > a,
+#topnav .navigation-menu > li.active > a,
+#topnav .navigation-menu > li > a:hover,
+#topnav .navigation-menu > li .submenu li a:hover,
+#topnav .navigation-menu > li.has-submenu.open > a,
+#topnav .has-submenu.active a,
+.features.feature-clean .title:hover,
+.features.fea-primary .content .title:hover,
+.categories a:hover,
+.explore-feature:hover .icon,
+.explore-feature:hover .title,
+.pricing-rates.business-rate:hover .title,
+.blog .content .title:hover,
+.blog .content .post-meta .readmore:hover,
+.sidebar .widget .blog-categories li a:hover,
+.sidebar .widget .post-recent .post-recent-content a:hover,
+.media-list .media .media-heading:hover,
+.job-box .position a:hover,
+.job-box .company-name:hover,
+.candidate-list .name:hover,
+.company-list .name:hover,
+.work-container.work-classic .content .title:hover, 
+.work-container.work-grid .content .title:hover, 
+.work-container.work-modern .content .title:hover,
+.event-schedule .content .title:hover,
+.courses-desc .content .title:hover,
+.container-filter li.active, .container-filter li:hover,
+.shop-list .content .product-name:hover,
+.team .name:hover,
+.accordion .accordion-button:not(.collapsed),
+.accordion .accordion-item .accordion-button:before,
+#navmenu-nav li.active a {
+    color: #2f55d4 !important;
+}
+
+.btn-primary,
+.btn-soft-primary:hover, 
+.btn-soft-primary:focus, 
+.btn-soft-primary:active, 
+.btn-soft-primary.active, 
+.btn-soft-primary.focus,
+.btn-outline-primary,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.alert-primary,
+.alert-outline-primary,
+.pagination .page-item.active .page-link,
+.form-check-input.form-check-input:checked,
+.form-control:focus,
+.form-check-input:focus,
+.social-icon li a:hover,
+#topnav .has-submenu.active.active .menu-arrow,
+#topnav .has-submenu .submenu .has-submenu:hover .submenu-arrow,
+#topnav.scroll .navigation-menu > li:hover > .menu-arrow, 
+#topnav.scroll .navigation-menu > li.active > .menu-arrow,
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > .menu-arrow, 
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > .menu-arrow,
+#topnav .navigation-menu > li:hover > .menu-arrow,
+.swiper-slider-hero .swiper-container .swiper-button-next:hover,
+.pricing-rates.starter-plan,
+.event-schedule:hover,
+.container-filter li.active, .container-filter li:hover{
+    border-color: #2f55d4 !important;
+}
+
+.bg-soft-primary,
+.btn-soft-primary,
+.features .icon,
+.features.feature-clean .icons i,
+.features:hover .image:before,
+.app-feature-shape-right:after,
+.app-feature-shape-left:after,
+.saas-feature-shape-left:after,
+.saas-feature-shape-right:after,
+.social-feature-left:after,
+.social-feature-right:after,
+.event-schedule .date .day {
+    background-color: rgba(47, 85, 212, 0.1) !important;
+}
+
+.bg-soft-primary,
+.btn-soft-primary {
+    border: 1px solid rgba(47, 85, 212, 0.1) !important;
+}
+
+.app-feature-shape-right:after,
+.app-feature-shape-left:after,
+.saas-feature-shape-left:after,
+.saas-feature-shape-right:after,
+.social-feature-left:after,
+.social-feature-right:after {
+    box-shadow: 0 0 40px rgba(47, 85, 212, 0.1);
+}
+
+.event-schedule .date .day {
+    box-shadow: 0px 0px 2px 0.25px rgba(47, 85, 212, 0.5);
+}
+
+.btn-primary,
+.btn-soft-primary,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+    box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
+}
+
+.alert-primary,
+.pagination .page-item .page-link:hover,
+::selection {
+    background: rgba(47, 85, 212, 0.9);
+    border-color: rgba(47, 85, 212, 0.9);
+}
+
+.social-icon li a:hover .fea-social {
+    fill: #2f55d4;
+}
+
+.bg-circle-gradiant {
+    background: radial-gradient(circle at 50% 50%, rgba(47, 85, 212, 0.1) 0%, rgba(47, 85, 212, 0.1) 33.333%, rgba(47, 85, 212, 0.3) 33.333%, rgba(47, 85, 212, 0.3) 66.666%, rgba(47, 85, 212, 0.5) 66.666%, rgba(47, 85, 212, 0.5) 99.999%);
+}
+
+.tns-nav button {
+    background: rgba(47, 85, 212, 0.5) !important;
+}
+
+.classic-app-image .bg-app-shape:after,
+.classic-saas-image .bg-saas-shape:after,
+.freelance-hero .bg-shape:after {
+    box-shadow: 0 0 40px rgba(47, 85, 212, 0.5);
+}
+
+.freelance-hero .bg-shape:after {
+    background-color: #99abea;
+}
+
+.key-feature .icon {
+    background: linear-gradient(45deg, transparent, rgba(47, 85, 212, 0.15));
+}
+
+.features .image:before {
+    background: linear-gradient(45deg, transparent, rgba(47, 85, 212, 0.1));
+}
+
+.home-wrapper:before {
+    background: -webkit-gradient(linear, left top, right top, from(rgba(47, 85, 212, 0.3)), to(transparent));
+    background: linear-gradient(90deg, rgba(47, 85, 212, 0.3), transparent);
+}
+
+.play-icon i {
+    -webkit-text-stroke: 2px #2f55d4;
+    -webkit-text-fill-color: transparent;
+}
+
+.play-icon i:hover {
+    -webkit-text-stroke: 2px #2f55d4;
+    -webkit-text-fill-color: #2f55d4;
+}
+a.text-primary:hover, 
+a.text-primary:focus {
+    color: #284bc1 !important;
+}
+
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active, 
+.btn-primary.active, 
+.btn-primary.focus {
+    background-color: #2443ac !important;
+    border-color: #2443ac !important;
+}
+
+.ribbon.ribbon-primary span:before {
+    border-left-color: #2443ac;
+    border-top-color: #2443ac;
+}
+
+.ribbon.ribbon-primary span:after {
+    border-right-color: #2443ac;
+    border-top-color: #2443ac;
+}
