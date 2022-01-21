@@ -73,6 +73,11 @@ export class TranslationTestPlugin implements OnApplicationBootstrap {
                 CUSTOM_ERROR: CUSTOM_ERROR_MESSAGE_TRANSLATION,
             },
         });
+        this.i18nService.addTranslation('mn', {
+            errorResult: {
+                CUSTOM_ERROR: CUSTOM_ERROR_MESSAGE_TRANSLATION,
+            },
+        });
 
         this.i18nService.addTranslation('de', {
             errorResult: {
@@ -81,6 +86,7 @@ export class TranslationTestPlugin implements OnApplicationBootstrap {
         });
 
         this.i18nService.addTranslationFile('en', path.join(__dirname, '../i18n/en.json'));
+        this.i18nService.addTranslationFile('mn', path.join(__dirname, '../i18n/mn.json'));
         this.i18nService.addTranslationFile('de', path.join(__dirname, '../i18n/de.json'));
     }
 }

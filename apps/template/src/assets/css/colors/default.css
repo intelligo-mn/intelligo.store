@@ -1,0 +1,265 @@
+.bg-primary,
+.btn-primary,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-soft-primary:hover, 
+.btn-soft-primary:focus, 
+.btn-soft-primary:active, 
+.btn-soft-primary.active, 
+.btn-soft-primary.focus,
+.badge-primary,
+.pagination .page-item.active .page-link,
+.nav-pills .nav-link.active,
+.custom-control-input:checked ~ .custom-control-label:before,
+#preloader #status .spinner .double-bounce1, 
+#preloader #status .spinner .double-bounce2,
+.social-icon li a:hover,
+#topnav .navbar-toggle.open span:hover,
+.gradient,
+.flex-control-paging li a.flex-active,
+.owl-theme .owl-dots .owl-dot span,
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots.clickable .owl-dot:hover span,
+.watch-video a .play-icon-circle,
+.sidebar .widget .tagcloud > a:hover,
+.flatpickr-day.selected, 
+.flatpickr-day.selected:hover,
+.bg-animation-left.crypto-home:after,
+.bg-animation-left.task-management-home:after,
+.classic-app-image .bg-app-shape:after,
+.classic-saas-image .bg-saas-shape:after,
+.work-container.work-modern .icons .work-icon:hover,
+.features.fea-primary:hover,
+.accounts:hover, 
+.accounts.active,
+.timeline-page .timeline-item .date-label-left:after, 
+.timeline-page .timeline-item .duration-right:after,
+.swiper-slider-hero .swiper-container .swiper-button-prev:hover,
+.swiper-slider-hero .swiper-container .swiper-button-next:hover {
+    background-color: #2f55d4 !important;
+}
+
+.text-primary,
+.bg-soft-primary,
+.btn-soft-primary,
+.btn-outline-primary,
+.badge-outline-primary,
+.alert-outline-primary,
+.breadcrumb .breadcrumb-item.active,
+.breadcrumb .breadcrumb-item a:hover,
+.faq-content .card a.faq[data-toggle=collapse],
+.faq-content .card a.faq[data-toggle=collapse]:before,
+#topnav .has-submenu.active .submenu li.active > a,
+#topnav .navigation-menu > li:hover > a,
+#topnav .navigation-menu > li.active > a,
+#topnav .navigation-menu > li > a:hover, 
+#topnav .navigation-menu > li > a:active,
+#topnav .navigation-menu > li .submenu li a:hover,
+#topnav .navigation-menu > li:hover > a,
+#topnav .navigation-menu > li.active > a,
+#topnav .navigation-menu > li > a:hover,
+#topnav .navigation-menu > li .submenu li a:hover,
+#topnav .navigation-menu > li.has-submenu.open > a,
+#topnav .has-submenu.active a,
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > a, 
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > a,
+.course-feature .title:hover,
+.pricing-rates.business-rate:hover .title,
+.blog .content .title:hover,
+.blog .content .post-meta .readmore:hover,
+.sidebar .widget .blog-catagories li a:hover,
+.sidebar .widget .post-recent .post-recent-content a:hover,
+.media-list .media .media-heading:hover,
+.job-box .position a:hover,
+.job-box .company-name:hover,
+.event-schedule .content .title:hover,
+.courses-desc .content .title:hover,
+.container-filter li a.active, 
+.container-filter li a:hover,
+.team .name:hover,
+.catagories a:hover,
+.explore-feature:hover .icon,
+.explore-feature:hover .title,
+.work-container.work-classic .content .title:hover, 
+.work-container.work-grid .content .title:hover, 
+.work-container.work-modern .content .title:hover,
+.shop-list .content .product-name:hover,
+.features.fea-primary .content .title:hover,
+.dropdown-primary .dropdown-menu .dropdown-item:hover, 
+.dropdown-primary .dropdown-menu .dropdown-item.active, 
+.dropdown-primary .dropdown-menu .dropdown-item:active, 
+.dropdown-primary .dropdown-menu .dropdown-item.focus, 
+.dropdown-primary .dropdown-menu .dropdown-item:focus {
+    color: #2f55d4 !important;
+}
+
+.btn-primary,
+.btn-outline-primary,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.badge-outline-primary,
+.btn-soft-primary:hover, 
+.btn-soft-primary:focus, 
+.btn-soft-primary:active, 
+.btn-soft-primary.active, 
+.btn-soft-primary.focus,
+.alert-primary,
+.alert-outline-primary,
+.pagination .page-item.active .page-link,
+.form-group .form-control:focus, 
+.form-group .form-control.active,
+.custom-control-input:checked ~ .custom-control-label:before,
+.custom-control-input:focus ~ .custom-control-label::before,
+.form-control:focus,
+.social-icon li a:hover, 
+#topnav .has-submenu.active.active .menu-arrow,
+#topnav.scroll .navigation-menu > li:hover > .menu-arrow, 
+#topnav.scroll .navigation-menu > li.active > .menu-arrow,
+#topnav .navigation-menu > li:hover > .menu-arrow,
+#topnav .has-submenu .submenu .has-submenu:hover .submenu-arrow,
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > .menu-arrow, 
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > .menu-arrow,
+.pricing-rates.business-rate:hover,
+.pricing-rates.starter-plan,
+.event-schedule:hover,
+.container-filter li a.active, 
+.container-filter li a:hover,
+.flatpickr-day.selected, 
+.flatpickr-day.selected:hover,
+.swiper-slider-hero .swiper-container .swiper-button-prev:hover,
+.swiper-slider-hero .swiper-container .swiper-button-next:hover {
+    border-color: #2f55d4 !important;
+}
+
+.btn-primary,
+.btn-soft-primary,
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active, 
+.btn-outline-primary.active, 
+.btn-outline-primary.focus, 
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+    box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
+}
+
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active, 
+.btn-primary.active, 
+.btn-primary.focus {
+    background-color: #2443ac !important;
+    border-color: #2443ac !important;
+}
+
+.btn-soft-primary {
+    background-color: rgba(47, 85, 212, 0.2) !important;
+    border: 1px solid rgba(47, 85, 212, 0.2) !important;
+}
+
+.alert-primary,
+.pagination .page-item .page-link:hover,
+::selection {
+    background-color: rgba(47, 85, 212, 0.9);
+}
+
+.alert-primary .alert-link {
+    color: #122258;
+}
+
+.pagination .page-item .page-link:hover {
+    border-color: rgba(47, 85, 212, 0.9);
+}
+
+a.text-primary:hover, 
+a.text-primary:focus {
+    color: #284bc1 !important;
+}
+
+.social-icon li a:hover .fea-social {
+    fill: #2f55d4;
+}
+
+.bg-overlay-gradient {
+    background-color: rgba(47, 85, 212, 0.6);
+}
+
+.bg-overlay-gradient2 {
+    background-image: linear-gradient(90deg, #2eca8b, #2f55d4, #2eca8b);
+}
+
+.gradient {
+    background: linear-gradient(45deg, #2f55d4, #2f55d4) !important;
+}
+
+.features .image:before {
+    background: linear-gradient(45deg, transparent, rgba(47, 85, 212, 0.09));
+}
+
+.features .icon,
+.features .icons,
+.app-feature-shape-right:after,
+.app-feature-shape-left:after,
+.saas-feature-shape-left:after,
+.saas-feature-shape-right:after,
+.social-feature-left:after,
+.social-feature-right:after {
+    background: rgba(47, 85, 212, 0.1);
+}
+
+.features:hover .image:before {
+    background: rgba(47, 85, 212, 0.07);
+}
+
+.key-feature .icon {
+    background: linear-gradient(45deg, transparent, rgba(47, 85, 212, 0.15));
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    background: rgba(47, 85, 212, 0.5) !important;
+}
+
+.play-icon i,
+.play-icon i:hover {
+    -webkit-text-stroke: 2px #2f55d4;
+}
+  
+.play-icon i:hover {
+    -webkit-text-fill-color: #2f55d4;
+}
+
+.event-schedule .date .day {
+    background: rgba(47, 85, 212, 0.1);
+    box-shadow: 0px 0px 2px 0.25px rgba(47, 85, 212, 0.5);
+}
+
+.classic-app-image .bg-app-shape:after,
+.classic-saas-image .bg-saas-shape:after {
+    box-shadow: 0 0 40px rgba(47, 85, 212, 0.5);
+}
+
+.app-feature-shape-right:after,
+.app-feature-shape-left:after,
+.saas-feature-shape-left:after,
+.saas-feature-shape-right:after,
+.social-feature-left:after,
+.social-feature-right:after {
+    box-shadow: 0 0 40px rgba(47, 85, 212, 0.1);
+}
+
+.bg-circle-gradiant {
+    background: radial-gradient(circle at 50% 50%, rgba(47, 85, 212, 0.1) 0%, rgba(47, 85, 212, 0.1) 33.333%, rgba(47, 85, 212, 0.3) 33.333%, rgba(47, 85, 212, 0.3) 66.666%, rgba(47, 85, 212, 0.5) 66.666%, rgba(47, 85, 212, 0.5) 99.999%);
+}
+
+.bg-soft-primary {
+    background-color: rgba(47, 85, 212, 0.2) !important;
+    border: 1px solid rgba(47, 85, 212, 0.2) !important;
+}

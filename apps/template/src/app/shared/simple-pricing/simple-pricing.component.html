@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-4 col-12 mt-4 pt-2" *ngFor="let data of simple_pricingData">
+        <div class="card pricing-rates business-rate shadow bg-light rounded text-center border-0">
+            <div class="ribbon ribbon-right ribbon-warning overflow-hidden"><span
+                class="text-center d-block shadow small h6">{{data.warning}}</span></div>
+          <div class="card-body py-5">
+            <h6 class="title fw-bold text-uppercase text-primary mb-4">{{data.title}}</h6>
+            <div class="d-flex justify-content-center mb-4">
+              <span class="h4 mb-0 mt-2">$</span>
+              <span class="price h1 mb-0">{{data.price}}</span>
+              <span class="h4 align-self-end mb-1">/mo</span>
+            </div>
+
+            <ul class="list-unstyled mb-0 ps-0" *ngFor="let item of data.list">
+                <li class="h6 text-muted mb-0"><span class="text-primary h5 me-2"><i
+                            class="uil uil-check-circle align-middle"></i></span>{{item}}</li>
+            </ul>
+            <a href="javascript:void(0)" class="btn btn-primary mt-4">{{data.btn}}</a>
+          </div>
+        </div>
+      </div>
+</div>

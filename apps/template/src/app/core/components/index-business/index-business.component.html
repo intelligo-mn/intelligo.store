@@ -1,0 +1,278 @@
+<!-- Hero Start -->
+<section class="bg-half-170 border-bottom d-table w-100" id="home">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="title-heading mt-4">
+          <div class="alert alert-white alert-pills shadow" role="alert">
+            <span class="badge rounded-pill bg-danger me-1">v3.0.0</span>
+            <span class="content"> Build <span class="text-primary">anything</span> you want - Landrick.</span>
+          </div>
+          <h1 class="heading mb-3">
+            <ngx-typed-js [strings]="['Agency', 'Software', 'Technology', 'Studio', 'Webapps']" [shuffle]="true"
+              [typeSpeed]="80" [loop]="true">
+              Leading Digital Business For <span class="element text-primary typing"></span> Solution
+            </ngx-typed-js>
+          </h1>
+          <p class="para-desc text-muted">
+            Launch your campaign and benefit from our expertise on designing and managing conversion centered bootstrap
+            v5 html page.
+          </p>
+          <div class="mt-4">
+            <a href="javascript:void(0)" class="btn btn-outline-primary rounded"><i class="uil uil-store"></i> Make Your
+              Shop</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-6 col-md-5 mt-4 pt-2 mt-sm-0 pt-sm-0">
+        <div class="position-relative">
+          <img src="assets/images/busi01.jpg" class="rounded img-fluid mx-auto d-block" alt="" />
+          <div class="play-icon">
+            <a (click)="openWindowCustomClass(content)" href="javascript:void(0);" class="play-btn video-play-icon">
+              <i class="mdi mdi-play text-primary rounded-circle bg-white shadow"></i>
+            </a>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <youtube-player [videoId]="'yba7hPeTSjk'" height="450" width="780">
+                </youtube-player>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Feature Start -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">What We Do ?</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <app-services [servicesData]="servicesData"></app-services>
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- End feature -->
+
+<!-- CTA Start -->
+<section class="section bg-cta" data-jarallax='{"speed": 0.5}' style="background: url('assets/images/2.jpg')" id="cta">
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h4 class="title title-dark text-white mb-4">
+            Stop leaving money on the table.
+          </h4>
+          <p class="text-light para-dark para-desc mx-auto">
+            Start working with Landrick that can provide everything you need to
+            generate awareness, drive traffic, connect.
+          </p>
+          <a (click)="openModal(contentModal)" href="javascript:void(0);"
+            class="play-btn border border-light mt-4 video-play-icon">
+            <i-feather name="play" class="fea icon-ex-md text-white title-dark"></i-feather>
+          </a>
+          <ng-template #contentModal let-modal>
+            <div class="modal-header">
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <iframe src="https://player.vimeo.com/video/287684225" height="450" width="780" frameborder="0"
+                allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- CTA End -->
+
+<!-- Price Start -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Choose Simple Pricing</h4>
+          <p class="text-muted para-desc mb-0 mx-auto">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+    <app-simple-pricing [simple_pricingData]="simple_pricingData"></app-simple-pricing>
+  </div>
+  <!--end container-->
+  <!-- Price End -->
+
+  <!-- Counter End -->
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="section-title">
+          <h4 class="title mb-4">See everything about your <span class="text-primary">Landrick</span> Business</h4>
+          <p class="text-muted para-desc">Start working with <span class="text-primary fw-bold">Landrick</span> that can
+            provide everything you need to generate awareness, drive traffic, connect.</p>
+          <ul class="list-unstyled text-muted">
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency</li>
+            <li class="mb-0"><span class="text-primary h5 me-2"><i
+                  class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
+          </ul>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-6">
+        <div class="row ms-lg-5" id="counter">
+          <div class="col-md-6 col-12">
+            <div class="row">
+              <div class="col-12 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                <div class="card counter-box border-0 bg-light bg-gradient shadow text-center rounded">
+                  <div class="card-body py-5">
+                    <h2 class="mb-0"><span class="counter-value" [from]="3" [duration]="5" [CountTo]="97"></span>%</h2>
+                    <h5 class="counter-head mb-0">Happy Client</h5>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+
+              <div class="col-12 mt-4 pt-2">
+                <div class="card counter-box border-0 bg-primary bg-gradient shadow text-center rounded">
+                  <div class="card-body py-5">
+                    <h2 class="text-light title-dark mb-0"><span class="counter-value" [from]="1" [duration]="3"
+                        [CountTo]="15"></span>%</h2>
+                    <h5 class="counter-head mb-0 title-dark text-light">Awards</h5>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end Row-->
+          </div>
+          <!--end col-->
+
+          <div class="col-md-6 col-12">
+            <div class="row pt-lg-4 mt-lg-4">
+              <div class="col-12 mt-4 pt-2">
+                <div class="card counter-box border-0 bg-success bg-gradient shadow text-center rounded">
+                  <div class="card-body py-5">
+                    <h2 class="text-light title-dark mb-0"><span class="counter-value" [from]="1" [duration]="1"
+                        [CountTo]="2"></span>K</h2>
+                    <h5 class="counter-head mb-0 title-dark text-light">Job Placement</h5>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+
+              <div class="col-12 mt-4 pt-2">
+                <div class="card counter-box border-0 bg-light bg-gradient shadow text-center rounded">
+                  <div class="card-body py-5">
+                    <h2 class="mb-0"><span class="counter-value" [from]="98" [duration]="5" [CountTo]="3"></span>%</h2>
+                    <h5 class="counter-head mb-0">Project Complete</h5>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end Row-->
+          </div>
+          <!--end col-->
+        </div>
+        <!--end Row-->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Counter End -->
+
+<!-- News Start -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">Latest News</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <app-blog [blogData]="blogData"></app-blog>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h4 class="title mb-4">See everything about your employee at one place.</h4>
+          <p class="text-muted para-desc mx-auto mb-0">Start working with <span
+              class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness,
+            drive traffic, connect.</p>
+
+          <div class="mt-4">
+            <a href="javascript:void(0)" class="btn btn-primary mt-2 me-3">Get Started Now</a>
+            <a href="javascript:void(0)" class="btn btn-outline-primary mt-2">Free Trial</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- News End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->
