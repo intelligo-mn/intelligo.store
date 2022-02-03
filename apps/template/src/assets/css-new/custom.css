@@ -1,0 +1,84 @@
+
+body * {
+	outline: none;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    border-radius: 3px !important;
+    background: rgba(47, 85, 212, 0.5) !important;
+    -webkit-transition: all 0.5s ease !important;
+    transition: all 0.5s ease !important;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots.clickable .owl-dot:hover span {
+    background: #2f55d4 !important;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.owl-theme .owl-nav span {
+    background: #2f55d4 !important;
+}
+
+.accordion .card {
+    border: 0 !important
+}
+
+.accordion .card-header {
+    padding: 1rem !important;
+    margin-bottom: 0;
+    background-color: #f8f9fc !important;
+    box-shadow: none;
+    border: 0 !important
+}
+
+.accordion .card-header button {
+    padding: 0 !important;
+}
+
+.swiper-button-next:after {
+    content: none !important;
+}
+
+.swiper-button-prev:after {
+    content: none !important;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    display: none !important;
+}
+
+.icons {
+    line-height: 1;
+}
+
+/* modal */
+
+.dark-modal .modal-content {
+    background-color: #000000;
+    color: white;
+    background: none;
+    border: none;
+}
+
+.dark-modal .modal-header {
+    margin-left: auto;
+    border: none;
+    padding: 0 !important;
+}
+
+.dark-modal .close {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+}
+
+.swiper-button-next:hover{
+    border-radius: 50%;
+}
+.swiper-button-prev:hover{
+    border-radius: 50%;
+}
