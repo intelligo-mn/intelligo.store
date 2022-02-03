@@ -1,0 +1,62 @@
+<!-- Start Style switcher -->
+<div id="style-switcher" style="left: 0px;" class="bg-light border p-3 pt-2 pb-2"
+    [style]="isVisible ? 'left: 0px' : 'left: -189px' ">
+    <div>
+        <h6 class="title text-center">Select Your Color</h6>
+        <ul class="pattern">
+            <li class="list-inline-item">
+                <a class="color1" href="javascript: void(0);" (click)="onChangeColor('default')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color2" href="javascript: void(0);" (click)="onChangeColor('green')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color3" href="javascript: void(0);" (click)="onChangeColor('purple')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color4" href="javascript: void(0);" (click)="onChangeColor('red')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color5" href="javascript: void(0);" (click)="onChangeColor('skyblue')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color6" href="javascript: void(0);" (click)="onChangeColor('skobleoff')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color7" href="javascript: void(0);" (click)="onChangeColor('cyan')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color8" href="javascript: void(0);" (click)="onChangeColor('slateblue')"></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="color9" href="javascript: void(0);" (click)="onChangeColor('yellow')"></a>
+            </li>
+        </ul>
+
+        <h6 class="title text-center pt-3 mb-0 border-top">Theme Option</h6>
+        <ul class="text-center list-unstyled mb-0">
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-primary rtl-version t-rtl-light mt-2" (click)="setRtl()">RTL</a>
+            </li>
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-primary ltr-version t-ltr-light mt-2" (click)="setLtr()">LTR</a>
+            </li>
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-primary dark-rtl-version t-rtl-dark mt-2"
+                    (click)="darkRtl()">RTL</a></li>
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-primary dark-ltr-version t-ltr-dark mt-2"
+                    (click)="darkLtr()">LTR</a></li>
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-dark dark-version t-dark mt-2" (click)="setDark()">Dark</a></li>
+            <li class="d-grid"><a href="javascript:void(0)"
+                    class="btn btn-sm btn-block btn-dark light-version t-light mt-2" (click)="setLight()">Light</a></li>
+        </ul>
+    </div>
+    <div class="bottom">
+        <a href="javascript: void(0);" class="settings bg-white title-bg-dark shadow d-block"
+            (click)="onChangeSwitch()"><i
+                class="mdi mdi-cog ms-1 mdi-24px position-absolute mdi-spin text-primary"></i></a>
+    </div>
+</div>
+<!-- End Style switcher -->
