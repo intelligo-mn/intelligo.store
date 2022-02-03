@@ -8,8 +8,7 @@ interface member {
 
 @Component({
   selector: 'app-account-members',
-  templateUrl: './account-members.component.html',
-  styleUrls: ['./account-members.component.css']
+  templateUrl: './account-members.component.html'
 })
 
 /**

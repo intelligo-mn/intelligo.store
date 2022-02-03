@@ -17,6 +17,25 @@ nav.sidenav {
     clr-icon {
         margin-right: 12px;
     }
+  
+    .nav-group-header {
+        margin: 0;
+        line-height: 1.2;
+    }
+    .nav-link {
+        display: inline-flex;
+        line-height: 1rem;
+        padding-right: 0.6rem;
+    }
+}
+
+.nav-list clr-icon {
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.nav-group {
+    hyphens: auto;
 }
 
 .nav-group,
