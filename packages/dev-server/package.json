@@ -1,6 +1,6 @@
 {
   "name": "dev-server",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "main": "index.js",
   "license": "MIT",
   "private": true,
@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@types/csv-stringify": "^3.1.0",
-    "@vendure/testing": "^1.4.5",
-    "@vendure/ui-devkit": "^1.4.5",
+    "@vendure/testing": "^1.4.6",
+    "@vendure/ui-devkit": "^1.4.6",
     "concurrently": "^5.0.0",
     "csv-stringify": "^5.3.3"
   }
