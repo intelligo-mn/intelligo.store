@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-email-alert',
-  templateUrl: './email-alert.component.html',
-  styleUrls: ['./email-alert.component.css']
+  templateUrl: './email-alert.component.html'
 })
 
 /**
