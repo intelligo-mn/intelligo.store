@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-auth-cover-re-password',
-  templateUrl: './auth-cover-re-password.component.html',
-  styleUrls: ['./auth-cover-re-password.component.css']
+  templateUrl: './auth-cover-re-password.component.html'
 })
 
 /**
