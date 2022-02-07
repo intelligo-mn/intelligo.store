@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-account-profile',
-  templateUrl: './account-profile.component.html',
-  styleUrls: ['./account-profile.component.css']
+  templateUrl: './account-profile.component.html'
 })
 
 /**

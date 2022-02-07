@@ -8,8 +8,7 @@ interface work {
 
 @Component({
   selector: 'app-account-works',
-  templateUrl: './account-works.component.html',
-  styleUrls: ['./account-works.component.css']
+  templateUrl: './account-works.component.html'
 })
 
 /**
