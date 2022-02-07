@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shop-checkouts',
-  templateUrl: './shop-checkouts.component.html',
-  styleUrls: ['./shop-checkouts.component.css']
+  templateUrl: './shop-checkouts.component.html'
 })
 
 /**

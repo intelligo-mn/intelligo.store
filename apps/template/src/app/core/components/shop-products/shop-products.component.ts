@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shop-products',
-  templateUrl: './shop-products.component.html',
-  styleUrls: ['./shop-products.component.css']
+  templateUrl: './shop-products.component.html'
 })
 
 /**

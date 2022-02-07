@@ -4,8 +4,7 @@ import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-shop-product-detail',
-  templateUrl: './shop-product-detail.component.html',
-  styleUrls: ['./shop-product-detail.component.css']
+  templateUrl: './shop-product-detail.component.html'
 })
 
 /**

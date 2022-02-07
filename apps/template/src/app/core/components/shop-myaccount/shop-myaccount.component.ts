@@ -3,8 +3,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-shop-myaccount',
-  templateUrl: './shop-myaccount.component.html',
-  styleUrls: ['./shop-myaccount.component.css']
+  templateUrl: './shop-myaccount.component.html'
 })
 
 /**
