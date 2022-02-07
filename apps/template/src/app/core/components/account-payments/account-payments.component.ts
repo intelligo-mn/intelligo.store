@@ -4,8 +4,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-account-payments',
-  templateUrl: './account-payments.component.html',
-  styleUrls: ['./account-payments.component.css']
+  templateUrl: './account-payments.component.html'
 })
 
 /**

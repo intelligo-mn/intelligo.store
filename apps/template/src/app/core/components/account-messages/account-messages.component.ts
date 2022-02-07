@@ -10,8 +10,7 @@ interface message {
 
 @Component({
   selector: 'app-account-messages',
-  templateUrl: './account-messages.component.html',
-  styleUrls: ['./account-messages.component.css']
+  templateUrl: './account-messages.component.html'
 })
 
 /**
