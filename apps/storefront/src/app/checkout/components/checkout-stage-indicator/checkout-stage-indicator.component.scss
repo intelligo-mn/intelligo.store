@@ -1,0 +1,48 @@
+@import "variables";
+
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto $spacer * 2;
+}
+
+.stage {
+    display: flex;
+    align-items: center;
+
+    .number {
+        display: flex;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        background-color: $light;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+    }
+
+    &.active {
+        .number {
+            background-color: $success;
+            color: white;
+        }
+
+        .label {
+            color: $gray-900;
+        }
+    }
+
+    .label {
+        margin-left: calc($spacer / 2);
+        color: $gray-600;
+    }
+}
+
+.line {
+    flex: 1;
+    height: 0;
+    border-bottom: 1px solid $gray-300;
+    margin: 0 calc($spacer / 2);
+}

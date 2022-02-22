@@ -1,0 +1,49 @@
+@import "variables";
+
+.checkout-wrapper {
+    display: flex;
+    margin-top: $spacer * 2;
+    @include media-breakpoint-down(sm) {
+        flex-direction: column;
+        .main {
+            margin-right: 0;
+        }
+
+        .summary {
+            margin-left: 0;
+        }
+    }
+}
+
+.main {
+    flex: 1;
+    margin-right: $spacer;
+}
+
+.summary {
+    min-width: 300px;
+    margin-left: $spacer;
+}
+
+
+.summary vsf-cart-contents {
+    max-height: 50vh;
+}
+
+.shipping-address {
+    margin-top: $spacer;
+    padding: $spacer;
+    border: 1px solid #eee;
+    border-radius: 3px;
+
+    h3 {
+        margin: 0 0 $spacer 0;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .address-line {
+        font-size: 12px;
+        color: $gray-600;
+    }
+}

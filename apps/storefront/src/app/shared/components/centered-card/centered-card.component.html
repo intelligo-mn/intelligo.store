@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-header" *ngIf="title || subTitle">
+        <h5 class="card-title" *ngIf="title">{{ title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted" *ngIf="subTitle">{{ subTitle }}</h6>
+    </div>
+    <div class="card-body">
+        <ng-content></ng-content>
+    </div>
+</div>
