@@ -39,6 +39,7 @@ and you should expect to see `UTC` or `Etc/UTC`.
 For a production Vendure server, there are a few security-related points to consider when deploying:
 
 * Set the [Superadmin credentials]({{< relref "auth-options" >}}#superadmincredentials) to something other than the default.
+* Disable introspection in the [ApiOptions]({{ relref "api-options" }}#introspection) (this option is available in v1.5+).
 * Consider taking steps to harden your GraphQL APIs against DOS attacks. Use the [ApiOptions]({{< relref "api-options" >}}) to set up appropriate Express middleware for things like [request timeouts](https://github.com/expressjs/express/issues/3330) and [rate limits](https://www.npmjs.com/package/express-rate-limit). A tool such as [graphql-query-complexity](https://github.com/slicknode/graphql-query-complexity) can be used to mitigate resource-intensive GraphQL queries. 
 * You may wish to restrict the Admin API to only be accessed from trusted IPs. This could be achieved for instance by configuring an nginx reverse proxy that sits in front of the Vendure server.
 * By default, Vendure uses auto-increment integer IDs as entity primary keys. While easier to work with in development, sequential primary keys can leak information such as the number of orders or customers in the system. For this reason you should consider using the [UuidIdStrategy]({{< relref "entity-id-strategy" >}}#uuididstrategy) for production.
@@ -205,14 +206,14 @@ compileUiExtensions({
 ```
 
 
-## Docker / Kubernetes
+## Docker & Kubernetes
 
-For a production ready vendure server running on Kubernetes you can use the following Dockerfile and Kubernetes configuration. 
+For a production ready Vendure server running on Kubernetes you can use the following Dockerfile and Kubernetes configuration. 
 
 ### Docker
 
-Build your Docker container using `docker build -t vendure-shop:latest .`
-
+Assuming a project which has been scaffolded using `@vendure/create`, create a 
+Dockerfile in the root directory that looks like this:
 
 ```Dockerfile
 FROM node:16
@@ -222,9 +223,11 @@ RUN yarn install --production
 RUN yarn build
 ```
 
+Build your Docker container using `docker build -t vendure-shop:latest .`
+
 ### Kubernetes Deployment
 
-This deployment starts the shop container as worker and server.
+This deployment starts the shop container we created above as both worker and server.
 
 ```yaml
 apiVersion: apps/v1
