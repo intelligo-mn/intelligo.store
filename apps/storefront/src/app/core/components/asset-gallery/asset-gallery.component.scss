@@ -1,0 +1,41 @@
+@import "variables";
+
+::ng-deep {
+    $pswp__assets-path: '/assets/';
+    @import "~photoswipe/src/css/main";
+    @import "~photoswipe/src/css/default-skin/default-skin";
+}
+
+.product-image {
+    width: 100%;
+}
+.main-image {
+    min-height: 250px;
+    @include media-breakpoint-up(md) {
+        min-height: 200px;
+    }
+    @include media-breakpoint-up(md) {
+        min-height: 300px;
+    }
+    .main-preview {
+        cursor: zoom-in;
+    }
+}
+.alt-images {
+    display: flex;
+    flex-wrap: wrap;
+
+    .alt-image {
+        cursor: pointer;
+        border: 6px solid transparent;
+
+        img {
+            min-width: 50px;
+            min-height: 50px;
+        }
+
+        &.selected {
+            border-color: #e1e1e1;
+        }
+    }
+}

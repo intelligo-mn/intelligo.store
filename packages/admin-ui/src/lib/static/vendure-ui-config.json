@@ -4,9 +4,10 @@
     "adminApiPath": "admin-api",
     "tokenMethod": "bearer",
     "authTokenHeaderKey": "vendure-auth-token",
-    "defaultLanguage": "en",
+    "defaultLanguage": "mn",
     "availableLanguages": [
         "en",
+        "mn",
         "es",
         "zh_Hant",
         "zh_Hans",

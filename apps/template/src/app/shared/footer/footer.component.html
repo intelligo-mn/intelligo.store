@@ -1,0 +1,269 @@
+<div *ngIf="!hideFooter">
+    <div *ngIf="footerVariant == 'bg-light';else execute_block">
+        <!-- Footer Start -->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                        <a href="#" class="logo-footer">
+                            <img src="assets/images/logo-dark.png" height="24" alt="">
+                        </a>
+                        <p class="mt-4 text-muted">Start working with Landrick that can provide everything you need to
+                            generate awareness, drive traffic, connect.</p>
+                        <ul class="list-unstyled social-icon social mb-0 mt-4">
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                        </ul>
+                        <!--end icon-->
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-dark footer-head">Company</h5>
+                        <ul class="list-unstyled footer-list mt-4">
+                            <li><a routerLink="/page-aboutus" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    About us</a></li>
+                            <li><a routerLink="/page-services" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Services</a></li>
+                            <li><a routerLink="/page-team" class="text-muted"><i class="uil uil-angle-right-b me-1"></i>
+                                    Team</a></li>
+                            <li><a routerLink="/page-pricing" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Pricing</a></li>
+                            <li><a routerLink="/portfolio-modern-three" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i> Project</a></li>
+                            <li><a routerLink="/page-jobs" class="text-muted"><i class="uil uil-angle-right-b me-1"></i>
+                                    Careers</a></li>
+                            <li><a routerLink="/page-blog-grid" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i> Blog</a></li>
+                            <li><a routerLink="/auth-cover-login" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i> Login</a></li>
+                        </ul>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-dark footer-head">Usefull Links</h5>
+                        <ul class="list-unstyled footer-list mt-4">
+                            <li><a routerLink="/page-terms" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Terms of Services</a></li>
+                            <li><a routerLink="/page-privacy" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Privacy Policy</a></li>
+                            <li><a routerLink="/documentation" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Documentation</a></li>
+                            <li><a routerLink="/changelog" class="text-muted"><i class="uil uil-angle-right-b me-1"></i>
+                                    Changelog</a></li>
+                            <li><a routerLink="/components" class="text-muted"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Components</a></li>
+                        </ul>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-dark footer-head">Newsletter</h5>
+                        <p class="mt-4 text-muted">Sign up and receive the latest tips via email.</p>
+
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="foot-subscribe foot-white mb-3">
+                                        <label class="form-label">Write your email <span
+                                                class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                                            <input type="email" name="email" id="emailsubscribe"
+                                                class="form-control bg-light border ps-5 rounded"
+                                                placeholder="Your email : " required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-12">
+                                    <div class="d-grid">
+                                        <input type="submit" id="submitsubscribe" name="send"
+                                            class="btn btn-soft-primary" value="Subscribe">
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </form>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </footer>
+        <!-- Footer End -->
+    </div>
+    <ng-template #execute_block>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                        <a href="#" class="logo-footer">
+                            <img src="assets/images/logo-light.png" height="24" alt="">
+                        </a>
+                        <p class="mt-4">Start working with Landrick that can provide everything you need to generate
+                            awareness, drive traffic, connect.</p>
+                        <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                            <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                                    <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                                </a></li>
+                        </ul>
+                        <!--end icon-->
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-light footer-head">Company</h5>
+                        <ul class="list-unstyled footer-list mt-4">
+                            <li><a routerLink="/page-aboutus" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    About us</a></li>
+                            <li><a routerLink="/page-services" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Services</a></li>
+                            <li><a routerLink="/page-team" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                    Team</a></li>
+                            <li><a routerLink="/page-pricing" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Pricing</a></li>
+                            <li><a routerLink="/portfolio-modern-three" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Project</a></li>
+                            <li><a routerLink="/page-jobs" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                    Careers</a></li>
+                            <li><a routerLink="/page-blog-grid" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Blog</a></li>
+                            <li><a routerLink="/auth-cover-login" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Login</a></li>
+                        </ul>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-light footer-head">Usefull Links</h5>
+                        <ul class="list-unstyled footer-list mt-4">
+                            <li><a routerLink="/page-terms" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                    Terms of Services</a></li>
+                            <li><a routerLink="/page-privacy" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Privacy Policy</a></li>
+                            <li><a routerLink="/documentation" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i>
+                                    Documentation</a></li>
+                            <li><a routerLink="/changelog" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                    Changelog</a></li>
+                            <li><a routerLink="/components" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                    Components</a></li>
+                        </ul>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h5 class="text-light footer-head">Newsletter</h5>
+                        <p class="mt-4">Sign up and receive the latest tips via email.</p>
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="foot-subscribe foot-white mb-3">
+                                        <label class="form-label">Write your email <span
+                                                class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                                            <input type="email" name="email" id="emailsubscribe"
+                                                class="form-control ps-5 rounded" placeholder="Your email : " required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-12">
+                                    <div class="d-grid">
+                                        <input type="submit" id="submitsubscribe" name="send"
+                                            class="btn btn-soft-primary" value="Subscribe">
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </form>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end container-->
+        </footer>
+    </ng-template>
+</div>
+<!--end footer-->
+<footer class="footer footer-bar">
+    <div class="container text-center">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="text-sm-start">
+                    <p class="mb-0">©
+                        <script type="text/javascript" id="www-widgetapi-script"
+                            src="https://www.youtube.com/s/player/5d56cf74/www-widgetapi.vflset/www-widgetapi.js"
+                            async=""></script>
+                        <script id="iframe_api" src="https://www.youtube.com/iframe_api"></script> {{year}}
+                        Landrick. Design with <i class="mdi mdi-heart text-danger"></i> by <a
+                            href="javascript:void(0);" class="text-reset">Themesbrand</a>.
+                    </p>
+                </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-sm-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <ul class="list-unstyled text-sm-end mb-0">
+                    <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="assets/images/payments/american-ex.png" class="avatar avatar-ex-sm"
+                                title="American Express" alt=""></a></li>
+                    <li class="list-inline-item ms-1"><a href="javascript:void(0)"><img
+                                src="assets/images/payments/discover.png" class="avatar avatar-ex-sm" title="Discover"
+                                alt=""></a></li>
+                    <li class="list-inline-item ms-1"><a href="javascript:void(0)"><img
+                                src="assets/images/payments/master-card.png" class="avatar avatar-ex-sm"
+                                title="Master Card" alt=""></a></li>
+                    <li class="list-inline-item ms-1"><a href="javascript:void(0)"><img
+                                src="assets/images/payments/paypal.png" class="avatar avatar-ex-sm" title="Paypal"
+                                alt=""></a></li>
+                    <li class="list-inline-item ms-1"><a href="javascript:void(0)"><img
+                                src="assets/images/payments/visa.png" class="avatar avatar-ex-sm" title="Visa"
+                                alt=""></a></li>
+                </ul>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</footer>
+<!--end footer-->

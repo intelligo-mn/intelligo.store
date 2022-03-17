@@ -1,0 +1,10 @@
+<div class="input-group">
+    <input
+        type="text"
+        [formControl]="searchTerm"
+        (keydown.enter)="doSearch(searchTerm.value)"
+        class="form-control"
+        placeholder="{{ 'global.search' | translate }}"
+        aria-label="Search input"
+    />
+</div>

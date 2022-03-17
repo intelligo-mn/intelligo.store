@@ -1,0 +1,107 @@
+<!-- Hero Start -->
+<section class="bg-half bg-light d-table w-100" id="home">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title"> Work Grid </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a routerLink="/index">Landrick</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Work</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Grid</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+
+<!-- Work Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <ul class="col container-filter list-unstyled categories-filter text-center" id="filter">
+                <li class="list-inline-item categories-name border text-dark rounded ms-2" (click)="activeCategory('all')"
+                    [ngClass]="{'active': galleryFilter ==='all'}">All</li>
+                <li class="list-inline-item categories-name border text-dark rounded ms-2"
+                    (click)="activeCategory('branding')" [ngClass]="{'active': galleryFilter ==='branding'}">Branding
+                </li>
+                <li class="list-inline-item categories-name border text-dark rounded ms-2"
+                    (click)="activeCategory('designing')" [ngClass]="{'active': galleryFilter ==='designing'}">Designing
+                </li>
+                <li class="list-inline-item categories-name border text-dark rounded ms-2"
+                    (click)="activeCategory('photography')" [ngClass]="{'active': galleryFilter ==='photography'}">
+                    Photography</li>
+                <li class="list-inline-item categories-name border text-dark rounded ms-2"
+                    (click)="activeCategory('development')" [ngClass]="{'active': galleryFilter ==='development'}">
+                    Development</li>
+            </ul>
+        </div>
+        <!--end row-->
+
+        <div id="grid" class="row">
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item" *ngFor="let item of filterredImages">
+                <div class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
+                    <div class="card-body p-0">
+                        <a routerLink="/portfolio-detail-one" class="d-inline-block" title="">
+                            <img src="{{item.image}}" class="img-fluid" alt="work-image">
+                        </a>
+                        <div class="content bg-white p-3">
+                            <h5 class="mb-0"><a routerLink="/portfolio-detail-one"
+                                    class="text-dark title">{{item.title}}</a></h5>
+                            <h6 class="text-muted tag mb-0">{{item.type}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+
+        <!-- PAGINATION START -->
+        <div class="row">
+            <div class="col-12 mt-4 pt-2">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous">Prev</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next">Next</a></li>
+                </ul>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+        <!-- PAGINATION END -->
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<!-- Work End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+    <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->
