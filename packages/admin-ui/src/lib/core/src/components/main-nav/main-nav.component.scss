@@ -12,10 +12,12 @@ nav.sidenav {
     border-right-color: var(--clr-sidenav-border-color);
 }
 
-.sidenav .nav-group {
-    .nav-list {
-        margin: 0;
+.nav-list {
+    margin-top: 0.3rem;
+    clr-icon {
+        margin-right: 12px;
     }
+  
     .nav-group-header {
         margin: 0;
         line-height: 1.2;
@@ -47,4 +49,9 @@ nav.sidenav {
 .nav-link vdr-status-badge {
     left: 25px;
     top: 3px;
+}
+
+.nav-group .nav-list,
+.nav-group label {
+    padding: 0 0 0 0.8rem !important;
 }
