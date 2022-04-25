@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 mt-4 pt-2" *ngFor="let data of memberData">
+      <div class="card team text-center border-0">
+        <div class="position-relative">
+          <img src="{{data.profile}}" class="img-fluid avatar avatar-ex-large rounded-circle shadow"
+            alt="">
+          <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+            <li class="list-inline-item ms-1" *ngFor="let item of data.list"><a href="javascript:void(0)" class="rounded">
+                <i-feather name="{{item}}" class="fea icon-sm fea-social"></i-feather>
+              </a></li>
+          </ul>
+          <!--end icon-->
+        </div>
+        <div class="card-body py-3 px-0 content">
+          <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">{{data.name}}</a></h5>
+          <small class="designation text-muted">{{data.designation}}</small>
+        </div>
+      </div>
+    </div>
+</div>
