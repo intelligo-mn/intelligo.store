@@ -1,5 +1,5 @@
 {
-  "name": "@marvel/admin-rest",
+  "name": "@intelligo/admin-rest",
   "version": "7.0.0",
   "private": true,
   "scripts": {

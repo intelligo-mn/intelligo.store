@@ -1,11 +1,11 @@
 {
-  "name": "@marvel/admin-graphql",
+  "name": "@intelligo/dashboard",
   "version": "7.0.0",
   "private": true,
   "scripts": {
     "codegen": "graphql-let",
-    "dev": "yarn codegen && next dev -p 3004",
-    "build": "yarn codegen && next build",
+    "dev": "next dev -p 3004",
+    "build": "next build",
     "start": "next start -p 3004"
   },
   "dependencies": {

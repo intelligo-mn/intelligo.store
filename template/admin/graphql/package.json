@@ -1,5 +1,5 @@
 {
-  "name": "@marvel/admin-graphql",
+  "name": "@intelligo/admin-graphql",
   "version": "7.0.0",
   "private": true,
   "scripts": {

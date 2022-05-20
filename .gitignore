@@ -8,8 +8,6 @@
 # testing
 /coverage
 
-/.cache
-
 # next.js
 /.next/
 /out/
@@ -36,11 +34,13 @@ yarn-error.log*
 # vercel
 .vercel
 
-# graphql-let
-__generated__
-*.graphql.d.ts
-*.graphqls.d.ts
-.cache
-# PWA
-workbox-*.js
-sw.js
+# typescript
+*.tsbuildinfo
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map

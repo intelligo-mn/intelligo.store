@@ -14,15 +14,15 @@
     "dev:shop-rest": "yarn workspace @pick-bazar/shop dev:rest",
     "build:shop-rest": "yarn workspace @pick-bazar/shop build:rest",
     "start:shop-rest": "yarn workspace @pick-bazar/shop start",
-    "dev:admin-rest": "concurrently --kill-others \"yarn workspace @marvel-mock/api-rest start:dev\" \"yarn workspace @marvel/admin-rest dev\"",
-    "build:admin-rest": "yarn workspace @marvel/admin-rest build",
-    "start:admin-rest": "yarn workspace @marvel/admin-rest start",
+    "dev:admin-rest": "concurrently --kill-others \"yarn workspace @intelligo-mock/api-rest start:dev\" \"yarn workspace @intelligo/admin-rest dev\"",
+    "build:admin-rest": "yarn workspace @intelligo/admin-rest build",
+    "start:admin-rest": "yarn workspace @intelligo/admin-rest start",
     "dev:shop-gql": "yarn workspace @pick-bazar/shop dev:gql",
     "build:shop-gql": "yarn workspace @pick-bazar/shop build:gql",
     "start:shop-gql": "yarn workspace @pick-bazar/shop start",
-    "dev:admin-gql": "yarn workspace @marvel/admin-graphql dev",
-    "build:admin-gql": "yarn workspace @marvel/admin-graphql build",
-    "start:admin-gql": "yarn workspace @marvel/admin-graphql start"
+    "dev:admin-gql": "yarn workspace @intelligo/admin-graphql dev",
+    "build:admin-gql": "yarn workspace @intelligo/admin-graphql build",
+    "start:admin-gql": "yarn workspace @intelligo/admin-graphql start"
   },
   "devDependencies": {
     "prettier": "^2.4.0",
