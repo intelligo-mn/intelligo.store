@@ -25,7 +25,7 @@ type FormValues = {
 const addressSchema = yup.object().shape({
   type: yup
     .string()
-    .oneOf([AddressType.BILLING, AddressType.Shipping])
+    .oneOf([AddressType.BILLING, AddressType.SHIPPING])
     .required("error-type-required"),
   title: yup.string().required("error-title-required"),
   address: yup.object().shape({
@@ -69,14 +69,14 @@ const AddressForm: React.FC<any> = ({ onSubmit }) => {
                   id="billing"
                   {...register("type")}
                   type="radio"
-                  value={AddressType.Billing}
+                  value={AddressType.BILLING}
                   label={t("text-billing")}
                 />
                 <Radio
                   id="shipping"
                   {...register("type")}
                   type="radio"
-                  value={AddressType.Shipping}
+                  value={AddressType.SHIPPING}
                   label={t("text-shipping")}
                 />
               </div>

@@ -29,6 +29,9 @@
       "@common/*": [
         "src/common/*"
       ],
+      "@core/*": [
+        "src/core/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
@@ -57,5 +60,5 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "src/components/address/create-or-update.tsx__"  ]
 }

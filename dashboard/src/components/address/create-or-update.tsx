@@ -1,10 +1,10 @@
-import { useUpdateCustomerMutation } from "@graphql/auth.graphql";
+import { AddressType } from "@common/generated-types";
+import AddressForm from "@components/address/address-form";
 import {
   useModalAction,
-  useModalState,
+  useModalState
 } from "@components/ui/modal/modal.context";
-import AddressForm from "@components/address/address-form";
-import { AddressType } from "@common/generated-types";
+import useCustomer from "src/core/user/useCustomer";
 
 type FormValues = {
   __typename?: string;
@@ -24,25 +24,11 @@ const CreateOrUpdateAddressForm = () => {
     data: { customerId, address },
   } = useModalState();
   const { closeModal } = useModalAction();
-  const [updateProfile] = useUpdateCustomerMutation();
+  const {updateCustomer} = useCustomer();
 
   function onSubmit(values: FormValues) {
     const { __typename, ...rest } = values;
-    updateProfile({
-      variables: {
-        input: {
-          id: customerId,
-          address: {
-            upsert: [
-              {
-                ...(address?.id ? { id: address.id } : {}),
-                ...rest,
-              },
-            ],
-          },
-        },
-      },
-    });
+    updateCustomer({id: customerId});
     return closeModal();
   }
   return <AddressForm onSubmit={onSubmit} />;
