@@ -21,19 +21,19 @@ const TaxList = ({ taxes, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -60,7 +60,7 @@ const TaxList = ({ taxes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryTaxClassesOrderByColumn.Name
           }
           isActive={column === QueryTaxClassesOrderByColumn.Name}
@@ -78,7 +78,7 @@ const TaxList = ({ taxes, refetch }: IProps) => {
         <TitleWithSort
           title={`${t("table:table-item-rate")} (%)`}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryTaxClassesOrderByColumn.Rate
           }
           isActive={column === QueryTaxClassesOrderByColumn.Rate}
@@ -95,7 +95,7 @@ const TaxList = ({ taxes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-country")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryTaxClassesOrderByColumn.Country
           }
           isActive={column === QueryTaxClassesOrderByColumn.Country}
@@ -118,7 +118,7 @@ const TaxList = ({ taxes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-state")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryTaxClassesOrderByColumn.State
           }
           isActive={column === QueryTaxClassesOrderByColumn.State}

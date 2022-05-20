@@ -24,7 +24,7 @@ export default function Authors() {
       orderBy: [
         {
           column: QueryAuthorsOrderByColumn.CreatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

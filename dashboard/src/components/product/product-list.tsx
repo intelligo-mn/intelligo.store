@@ -32,19 +32,19 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -81,7 +81,7 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryProductsOrderByColumn.Name
           }
           isActive={column === QueryProductsOrderByColumn.Name}
@@ -121,7 +121,7 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-unit")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryProductsOrderByColumn.Price
           }
           isActive={column === QueryProductsOrderByColumn.Price}
@@ -164,7 +164,7 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-quantity")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryProductsOrderByColumn.Quantity
           }
           isActive={column === QueryProductsOrderByColumn.Quantity}
@@ -182,7 +182,7 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-status")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryProductsOrderByColumn.Status
           }
           isActive={column === QueryProductsOrderByColumn.Status}

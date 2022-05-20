@@ -21,19 +21,19 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -60,7 +60,7 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryShippingClassesOrderByColumn.Name
           }
           isActive={column === QueryShippingClassesOrderByColumn.Name}
@@ -78,7 +78,7 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-amount")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryShippingClassesOrderByColumn.Amount
           }
           isActive={column === QueryShippingClassesOrderByColumn.Amount}
@@ -96,7 +96,7 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-global")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryShippingClassesOrderByColumn.IsGlobal
           }
           isActive={column === QueryShippingClassesOrderByColumn.IsGlobal}
@@ -117,7 +117,7 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-type")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryShippingClassesOrderByColumn.Type
           }
           isActive={column === QueryShippingClassesOrderByColumn.Type}

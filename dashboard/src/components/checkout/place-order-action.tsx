@@ -41,7 +41,7 @@ export const PlaceOrderAction: React.FC = (props) => {
       orderBy: [
         {
           column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortOrder.Asc,
+          order: SortDirection.ASCENDING,
         },
       ],
     },

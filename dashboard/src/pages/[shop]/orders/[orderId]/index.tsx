@@ -50,7 +50,7 @@ export default function OrderDetailsPage() {
       orderBy: [
         {
           column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortOrder.Asc,
+          order: SortDirection.ASCENDING,
         },
       ],
     },

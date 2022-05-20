@@ -34,19 +34,19 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
   const { data, paginatorInfo } = coupons!;
   const { t } = useTranslation();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -89,7 +89,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-code")}
           ascending={
-            order === SortOrder.Asc && column === QueryCouponsOrderByColumn.Code
+            order === SortDirection.ASCENDING && column === QueryCouponsOrderByColumn.Code
           }
           isActive={column === QueryCouponsOrderByColumn.Code}
         />
@@ -108,7 +108,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-amount")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryCouponsOrderByColumn.Amount
           }
           isActive={column === QueryCouponsOrderByColumn.Amount}
@@ -135,7 +135,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-active")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryCouponsOrderByColumn.CreatedAt
           }
           isActive={column === QueryCouponsOrderByColumn.CreatedAt}
@@ -157,7 +157,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-expired")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryCouponsOrderByColumn.ExpireAt
           }
           isActive={column === QueryCouponsOrderByColumn.ExpireAt}

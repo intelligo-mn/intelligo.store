@@ -26,19 +26,19 @@ const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -65,7 +65,7 @@ const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryOrderStatusesOrderByColumn.Name
           }
           isActive={column === QueryOrderStatusesOrderByColumn.Name}
@@ -87,7 +87,7 @@ const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-serial")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryOrderStatusesOrderByColumn.Serial
           }
           isActive={column === QueryOrderStatusesOrderByColumn.Serial}

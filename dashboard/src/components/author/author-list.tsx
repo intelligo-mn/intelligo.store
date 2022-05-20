@@ -31,19 +31,19 @@ const AuthorList = ({ authors, onPagination, refetch }: IProps) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -86,7 +86,7 @@ const AuthorList = ({ authors, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc && column === QueryAuthorsOrderByColumn.Name
+            order === SortDirection.ASCENDING && column === QueryAuthorsOrderByColumn.Name
           }
           isActive={column === QueryAuthorsOrderByColumn.Name}
         />

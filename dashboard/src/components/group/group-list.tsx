@@ -23,19 +23,19 @@ const GroupsList = ({ types, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -62,7 +62,7 @@ const GroupsList = ({ types, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc && column === QueryTypesOrderByColumn.Name
+            order === SortDirection.ASCENDING && column === QueryTypesOrderByColumn.Name
           }
           isActive={column === QueryTypesOrderByColumn.Name}
         />

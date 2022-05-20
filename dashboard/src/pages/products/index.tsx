@@ -30,7 +30,7 @@ export default function ProductsPage() {
       orderBy: [
         {
           column: QueryProductsOrderByColumn.CreatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

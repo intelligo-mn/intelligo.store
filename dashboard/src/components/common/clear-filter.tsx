@@ -21,7 +21,7 @@ export default function ClearFilterButton({ refetch }: Props) {
           orderBy: [
             {
               column: QueryProductsOrderByColumn.CreatedAt,
-              order: SortOrder.Desc,
+              order: SortDirection.DESCENDING,
             },
           ],
           page: 1,

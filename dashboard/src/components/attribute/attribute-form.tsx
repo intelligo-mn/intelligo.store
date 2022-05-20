@@ -1,19 +1,15 @@
-import Input from "@components/ui/input";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Attribute, AttributeValue } from "@common/generated-types";
+import Card from "@components/common/card";
+import Alert from "@components/ui/alert";
 import Button from "@components/ui/button";
 import Description from "@components/ui/description";
-import Card from "@components/common/card";
-import { useRouter } from "next/router";
+import Input from "@components/ui/input";
+import useAttribute from "@core/attribute/useAttribute";
 import { useTranslation } from "next-i18next";
-import { toast } from "react-toastify";
-import {
-  useCreateAttributeMutation,
-  useUpdateAttributeMutation,
-} from "@graphql/attributes.graphql";
-import { useShopQuery } from "@graphql/shops.graphql";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import Alert from "@components/ui/alert";
-import { Attribute, AttributeValue } from "@common/generated-types";
+import { useFieldArray, useForm } from "react-hook-form";
+
 
 type FormValues = {
   name?: string | null;
@@ -30,12 +26,8 @@ export default function CreateOrUpdateAttributeForm({ initialValues }: IProps) {
     query: { shop },
   } = router;
   const { t } = useTranslation();
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.shop?.id!;
+  // TODO: Organization id г оноож өгөх
+  const shopId = "12"!;
   const {
     register,
     handleSubmit,
@@ -48,46 +40,27 @@ export default function CreateOrUpdateAttributeForm({ initialValues }: IProps) {
     control,
     name: "values",
   });
-  const [createAttribute, { loading: creating }] = useCreateAttributeMutation({
-    onCompleted: () => {
-      setErrorMessage(null);
-      router.push(`/${router.query.shop}/attributes`);
-    },
-    onError: (error) => {
-      setErrorMessage(error?.message);
-    },
-  });
-  const [updateAttribute, { loading: updating }] = useUpdateAttributeMutation({
-    onCompleted: () => {
-      toast.success(t("common:update-success"));
-    },
-  });
+  const {loading, addAttribute, editAttribute} = useAttribute();
+ 
   const onSubmit = (values: FormValues) => {
     if (!initialValues) {
-      createAttribute({
-        variables: {
-          input: {
+      addAttribute({
             name: values.name!,
-            shop_id: Number(shopId),
+            organizationID: shopId,
             values: values.values,
           },
-        },
-      });
+       );
     } else {
-      updateAttribute({
-        variables: {
-          input: {
+      editAttribute({
             id: initialValues.id!,
             name: values.name!,
-            shop_id: Number(initialValues?.shop_id),
+            organizationID: initialValues?.organizationID,
             values: values.values.map(({ id, value, meta }: any) => ({
               id: Number(id),
               value,
               meta,
             })),
-          },
-        },
-      });
+          });
     }
   };
   return (
@@ -137,7 +110,12 @@ export default function CreateOrUpdateAttributeForm({ initialValues }: IProps) {
 
           <Card className="w-full sm:w-8/12 md:w-2/3">
             <div>
-              {fields.map((item: AttributeValue, index: number) => (
+              {
+              // TODO: ts error засах
+              //@ts-ignore
+              fields.map((item: AttributeValue, index: number) => 
+              
+                (
                 <div
                   className="border-b border-dashed border-border-200 last:border-0 py-5 md:py-8"
                   key={item.id}
@@ -191,7 +169,7 @@ export default function CreateOrUpdateAttributeForm({ initialValues }: IProps) {
             </Button>
           )}
 
-          <Button loading={creating || updating}>
+          <Button loading={loading}>
             {initialValues
               ? t("form:item-description-update")
               : t("form:item-description-add")}{" "}

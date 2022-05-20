@@ -27,7 +27,7 @@ export default function OrderStatusPage() {
       orderBy: [
         {
           column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortOrder.Asc,
+          order: SortDirection.ASCENDING,
         },
       ],
     },

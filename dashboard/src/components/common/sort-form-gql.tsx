@@ -21,7 +21,7 @@ const SortFormGql: React.FC<Props> = ({
   showLabel = true,
 }) => {
   const { t } = useTranslation("common");
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
   function onOrderChange({ value }: { value: string }) {
     setColumn(value);

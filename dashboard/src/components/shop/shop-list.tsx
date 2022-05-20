@@ -23,16 +23,16 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
-          sortedBy: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
           orderBy: value,
         });
       }, 500),
@@ -67,7 +67,7 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-title")}
-          ascending={order === SortOrder.Asc && column === "name"}
+          ascending={order === SortDirection.ASCENDING && column === "name"}
           isActive={column === "name"}
         />
       ),
@@ -93,7 +93,7 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-total-products")}
-          ascending={order === SortOrder.Asc && column === "products_count"}
+          ascending={order === SortDirection.ASCENDING && column === "products_count"}
           isActive={column === "products_count"}
         />
       ),
@@ -107,7 +107,7 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-total-orders")}
-          ascending={order === SortOrder.Asc && column === "orders_count"}
+          ascending={order === SortDirection.ASCENDING && column === "orders_count"}
           isActive={column === "orders_count"}
         />
       ),
@@ -121,7 +121,7 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortOrder.Asc && column === "is_active"}
+          ascending={order === SortDirection.ASCENDING && column === "is_active"}
           isActive={column === "is_active"}
         />
       ),

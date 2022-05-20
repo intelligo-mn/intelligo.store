@@ -30,16 +30,16 @@ const RefundList = ({ refunds, onPagination, refetch }: IProps) => {
   const router = useRouter();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
-          sortedBy: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
           orderBy: value,
         });
       }, 500),
@@ -82,7 +82,7 @@ const RefundList = ({ refunds, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-amount")}
-          ascending={order === SortOrder.Asc && column === "amount"}
+          ascending={order === SortDirection.ASCENDING && column === "amount"}
           isActive={column === "amount"}
         />
       ),
@@ -114,7 +114,7 @@ const RefundList = ({ refunds, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-created-at")}
-          ascending={order === SortOrder.Asc && column === "created_at"}
+          ascending={order === SortDirection.ASCENDING && column === "created_at"}
           isActive={column === "created_at"}
         />
       ),
@@ -148,7 +148,7 @@ const RefundList = ({ refunds, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortOrder.Asc && column === "status"}
+          ascending={order === SortDirection.ASCENDING && column === "status"}
           isActive={column === "status"}
         />
       ),

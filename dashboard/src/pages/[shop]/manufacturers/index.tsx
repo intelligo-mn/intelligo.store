@@ -31,7 +31,7 @@ export default function Manufacturers() {
       orderBy: [
         {
           column: QueryManufacturersOrderByColumn.CreatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

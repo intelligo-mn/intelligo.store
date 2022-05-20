@@ -36,16 +36,16 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
   const router = useRouter();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
-          sortedBy: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
           orderBy: value,
         });
       }, 500),
@@ -84,7 +84,7 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-total")}
-          ascending={order === SortOrder.Asc && column === "total"}
+          ascending={order === SortDirection.ASCENDING && column === "total"}
           isActive={column === "total"}
         />
       ),
@@ -105,7 +105,7 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-order-date")}
-          ascending={order === SortOrder.Asc && column === "created_at"}
+          ascending={order === SortDirection.ASCENDING && column === "created_at"}
           isActive={column === "created_at"}
         />
       ),
@@ -129,7 +129,7 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortOrder.Asc && column === "status"}
+          ascending={order === SortDirection.ASCENDING && column === "status"}
           isActive={column === "status"}
         />
       ),

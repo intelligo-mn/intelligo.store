@@ -23,7 +23,7 @@ export default function ShippingsPage() {
       orderBy: [
         {
           column: QueryShippingClassesOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
     },

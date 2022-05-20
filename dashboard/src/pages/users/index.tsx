@@ -27,7 +27,7 @@ export default function UsersPage() {
       orderBy: [
         {
           column: QueryUsersOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
     },

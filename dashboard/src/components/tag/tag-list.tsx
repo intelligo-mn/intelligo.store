@@ -28,19 +28,19 @@ const TagList = ({ tags, onPagination, refetch }: IProps) => {
   const rowExpandable = (record: any) => record.children?.length;
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -67,7 +67,7 @@ const TagList = ({ tags, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc && column === QueryTagsOrderByColumn.Name
+            order === SortDirection.ASCENDING && column === QueryTagsOrderByColumn.Name
           }
           isActive={column === QueryTagsOrderByColumn.Name}
         />

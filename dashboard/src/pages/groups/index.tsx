@@ -20,7 +20,7 @@ export default function GroupsPage() {
       orderBy: [
         {
           column: QueryTypesOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
     },

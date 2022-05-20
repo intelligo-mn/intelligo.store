@@ -27,7 +27,7 @@ export default function Categories() {
       orderBy: [
         {
           column: QueryCategoriesOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

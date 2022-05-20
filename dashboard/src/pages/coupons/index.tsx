@@ -24,7 +24,7 @@ export default function Coupons() {
       orderBy: [
         {
           column: QueryCouponsOrderByColumn.CreatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

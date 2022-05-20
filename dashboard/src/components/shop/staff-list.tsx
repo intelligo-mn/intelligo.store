@@ -19,16 +19,16 @@ const StaffList = ({ staffs, onPagination, refetch }: IProps) => {
   const { alignLeft, alignRight } = useIsRTL();
   const { data, paginatorInfo } = staffs!;
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
-          sortedBy: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
           orderBy: value,
         });
       }, 500),
@@ -46,7 +46,7 @@ const StaffList = ({ staffs, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-title")}
-          ascending={order === SortOrder.Asc && column === "name"}
+          ascending={order === SortDirection.ASCENDING && column === "name"}
           isActive={column === "name"}
         />
       ),

@@ -22,7 +22,7 @@ export default function Tags() {
       orderBy: [
         {
           column: QueryTagsOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
       page: 1,

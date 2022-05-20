@@ -3,15 +3,12 @@ import ActionButtons from "@components/common/action-buttons";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  Attribute,
-  Shop,
-  QueryAttributesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+
 import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";
+import { Attribute, Order } from "@common/generated-types";
+import { SortDirection } from "aws-amplify";
 
 export type IProps = {
   attributes: Attribute[] | undefined;
@@ -22,19 +19,19 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
   const router = useRouter();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortOrder.Desc);
+  const [order, setOrder] = useState<SortDirection>(SortDirection.DESCENDING);
   const [column, setColumn] = useState<string>();
 
   const debouncedHeaderClick = useMemo(
     () =>
       debounce((value) => {
         setColumn(value);
-        setOrder(order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc);
+        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
         refetch({
           orderBy: [
             {
               column: value,
-              order: order === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
             },
           ],
         });
@@ -62,7 +59,7 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortOrder.Asc &&
+            order === SortDirection.ASCENDING &&
             column === QueryAttributesOrderByColumn.Name
           }
           isActive={column === QueryAttributesOrderByColumn.Name}

@@ -22,7 +22,7 @@ export default function TaxesPage() {
       orderBy: [
         {
           column: QueryTaxClassesOrderByColumn.UpdatedAt,
-          order: SortOrder.Desc,
+          order: SortDirection.DESCENDING,
         },
       ],
     },
