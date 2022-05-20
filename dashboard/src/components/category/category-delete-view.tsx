@@ -4,30 +4,17 @@ import {
   useModalState,
 } from "@components/ui/modal/modal.context";
 import { getErrorMessage } from "@utils/form-error";
+import { useCategory } from "@core/category/useCategory";
+import { remove } from "lodash";
 
 const CategoryDeleteView = () => {
-  const [deleteCategoryById, { loading }] = useDeleteCategoryMutation({
-    //@ts-ignore
-    update(cache, { data: { deleteCategory } }) {
-      cache.modify({
-        fields: {
-          categories(existingRefs, { readField }) {
-            return existingRefs.data.filter(
-              (ref: any) => deleteCategory.id !== readField("id", ref)
-            );
-          },
-        },
-      });
-    },
-  });
+  const { removeCategory, loading } = useCategory()
 
   const { data: modalData } = useModalState();
   const { closeModal } = useModalAction();
   function handleDelete() {
     try {
-      deleteCategoryById({
-        variables: { id: modalData as string },
-      });
+      removeCategory(modalData as string);
       closeModal();
     } catch (error) {
       closeModal();

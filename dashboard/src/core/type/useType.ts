@@ -1,44 +1,44 @@
-import { CreateCouponInput, CreateCouponMutation, DeleteCouponInput, DeleteCouponMutation, ListCategoriesQuery, UpdateCouponInput, UpdateCouponMutation } from "@common/generated-types";
-import { createCoupon, deleteCoupon, updateCoupon } from "@graphql/mutations";
+import { CreateTypeInput, CreateTypeMutation, DeleteTypeInput, DeleteTypeMutation, ListCategoriesQuery, UpdateTypeInput, UpdateTypeMutation } from "@common/generated-types";
+import { createType, deleteType, updateType } from "@graphql/mutations";
 import { listCategories } from "@graphql/queries";
 import { API } from "aws-amplify";
 import { useState } from "react";
 
-export const useCoupon = () => {
+export const useType = () => {
   const [loading, setLoading] = useState();
-  const addCoupon = async (input: CreateCouponInput): Promise<any> => {
+  const addType = async (input: CreateTypeInput): Promise<any> => {
     try {
       const { data } = (await API.graphql({
-        query: createCoupon,
+        query: createType,
         variables: {
           input: input,
         },
       })) as {
-        data: CreateCouponMutation;
+        data: CreateTypeMutation;
       };
-      return data.createCoupon;
+      return data.createType;
     } catch (error: any) {
       console.error(error);
     }
   };
 
-  const editCoupon = async (input: UpdateCouponInput): Promise<any> => {
+  const editType = async (input: UpdateTypeInput): Promise<any> => {
     try {
       const { data } = (await API.graphql({
-        query: updateCoupon,
+        query: updateType,
         variables: {
           input: input,
         },
       })) as {
-        data: UpdateCouponMutation;
+        data: UpdateTypeMutation;
       };
-      return data.updateCoupon;
+      return data.updateType;
     } catch (error: any) {
       console.error(error);
     }
   };
 
-  const getCoupon = async (): Promise<any> => {
+  const getType = async (): Promise<any> => {
     try {
       const { data } = (await API.graphql({
         query: listCategories,
@@ -53,20 +53,20 @@ export const useCoupon = () => {
   };
 
 
-  const removeCoupon = async (id: string): Promise<any> => {
+  const removeType = async (id: string): Promise<any> => {
     try {
-      const input: DeleteCouponInput = {
+      const input: DeleteTypeInput = {
         id: id
       }
       const { data } = (await API.graphql({
-        query: deleteCoupon,
+        query: deleteType,
         variables: {
           input: input,
         },
       })) as {
-        data: DeleteCouponMutation;
+        data: DeleteTypeMutation;
       };
-      return data.deleteCoupon;
+      return data.deleteType;
     } catch (error: any) {
       console.error(error);
     }
@@ -74,12 +74,12 @@ export const useCoupon = () => {
 
 
   return {
-    addCoupon,
-    getCoupon,
-    removeCoupon,
-    editCoupon,
+    addType,
+    getType,
+    removeType,
+    editType,
     loading
   };
 };
 
-export default useCoupon;
+export default useType;
