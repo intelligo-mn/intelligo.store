@@ -1,0 +1,121 @@
+query Settings {
+  settings {
+    id
+    options {
+      siteTitle
+      siteSubtitle
+      currency
+      minimumOrderAmount
+      currencyToWalletRatio
+      signupPoints
+      useOtp
+      deliveryTime {
+        title
+        description
+      }
+      logo {
+        id
+        thumbnail
+        original
+      }
+      taxClass
+      shippingClass
+      seo {
+        metaTitle
+        metaDescription
+        ogTitle
+        ogDescription
+        ogImage {
+          id
+          thumbnail
+          original
+        }
+        twitterHandle
+        twitterCardType
+        metaTags
+        canonicalUrl
+      }
+      google {
+        isEnable
+        tagManagerId
+      }
+      facebook {
+        isEnable
+        appId
+        pageId
+      }
+      contactDetails {
+        socials {
+          icon
+          url
+        }
+        website
+        contact
+        location {
+          lat
+          lng
+          formattedAddress
+          city
+          state
+          country
+          zip
+        }
+      }
+    }
+  }
+  taxClasses {
+    id
+    name
+  }
+  shippingClasses {
+    id
+    name
+  }
+}
+
+mutation UpdateSettings($input: SettingsInput!) {
+  updateSettings(input: $input) {
+    id
+    options {
+      siteTitle
+      siteSubtitle
+      currency
+      minimumOrderAmount
+      deliveryTime {
+        title
+        description
+      }
+      logo {
+        id
+        thumbnail
+        original
+      }
+      taxClass
+      shippingClass
+      seo {
+        metaTitle
+        metaDescription
+        ogTitle
+        ogDescription
+        ogImage {
+          id
+          thumbnail
+          original
+        }
+        twitterHandle
+        twitterCardType
+        metaTags
+        canonicalUrl
+      }
+      google {
+        isEnable
+        tagManagerId
+      }
+      facebook {
+        isEnable
+        appId
+        pageId
+      }
+    }
+  }
+}

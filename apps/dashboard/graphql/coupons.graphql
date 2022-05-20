@@ -1,0 +1,105 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+
+query Coupons(
+  $first: Int!
+  $page: Int
+  $orderBy: [QueryCouponsOrderByOrderByClause!]
+  $text: String
+) {
+  coupons(first: $first, page: $page, orderBy: $orderBy, text: $text) {
+    data {
+      id
+      description
+      code
+      image {
+        id
+        original
+        thumbnail
+      }
+      type
+      amount
+      expire_at
+      active_from
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Coupon($id: ID, $code: String) {
+  coupon(id: $id, code: $code) {
+    id
+    description
+    code
+    image {
+      id
+      original
+      thumbnail
+    }
+    type
+    amount
+    expire_at
+    active_from
+  }
+}
+
+mutation CreateCoupon($input: CreateCouponInput!) {
+  createCoupon(input: $input) {
+    id
+    description
+    code
+    image {
+      id
+      original
+      thumbnail
+    }
+    amount
+    expire_at
+    active_from
+  }
+}
+
+mutation UpdateCoupon($input: UpdateCouponInput!) {
+  updateCoupon(input: $input) {
+    id
+    description
+    code
+    image {
+      id
+      original
+      thumbnail
+    }
+    amount
+    expire_at
+    active_from
+  }
+}
+mutation DeleteCoupon($id: ID!) {
+  deleteCoupon(id: $id) {
+    id
+    description
+    code
+    image {
+      id
+      original
+      thumbnail
+    }
+    amount
+    expire_at
+    active_from
+  }
+}
+
+mutation VerifyCoupon($code: String!) {
+  verifyCoupon(code: $code) {
+    is_valid
+    coupon {
+      id
+      code
+      type
+      amount
+      is_valid
+    }
+  }
+}

@@ -1,0 +1,84 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+fragment CategoryParts on Category {
+  id
+  name
+  slug
+  icon
+  details
+  type {
+    id
+    name
+    slug
+  }
+  parent {
+    id
+    name
+  }
+  image {
+    id
+    thumbnail
+    original
+  }
+}
+query Categories(
+  $name: String
+  $orderBy: [QueryCategoriesOrderByOrderByClause!]
+  $hasType: QueryCategoriesHasTypeWhereHasConditions
+  $first: Int
+  $page: Int
+  $text: String
+  $parent: ID
+) {
+  categories(
+    name: $name
+    orderBy: $orderBy
+    hasType: $hasType
+    first: $first
+    page: $page
+    text: $text
+    parent: $parent
+  ) {
+    data {
+      ...CategoryParts
+      children {
+        ...CategoryParts
+      }
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+# query CategoriesAlongChildren(
+#   $orderBy: [QueryCategoriesAlongChildrenOrderByOrderByClause!]
+#   $hasType: QueryCategoriesAlongChildrenHasTypeWhereHasConditions
+# ) {
+#   categoriesAlongChildren(orderBy: $orderBy, hasType: $hasType) {
+#     ...CategoryParts
+#     children {
+#       ...CategoryParts
+#     }
+#   }
+# }
+query Category($id: ID, $slug: String) {
+  category(id: $id, slug: $slug) {
+    ...CategoryParts
+  }
+}
+
+mutation CreateCategory($input: CreateCategoryInput!) {
+  createCategory(input: $input) {
+    ...CategoryParts
+  }
+}
+mutation UpdateCategory($input: UpdateCategoryInput!) {
+  updateCategory(input: $input) {
+    ...CategoryParts
+  }
+}
+mutation DeleteCategory($id: ID!) {
+  deleteCategory(id: $id) {
+    ...CategoryParts
+  }
+}

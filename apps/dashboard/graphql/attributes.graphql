@@ -1,0 +1,167 @@
+query Attributes(
+  $shop_id: ID
+  $orderBy: [QueryAttributesOrderByOrderByClause!]
+) {
+  attributes(shop_id: $shop_id, orderBy: $orderBy) {
+    id
+    name
+    slug
+    shop_id
+    shop {
+      name
+    }
+    values {
+      id
+      value
+      meta
+    }
+  }
+}
+
+query Attribute($id: ID, $slug: String) {
+  attribute(id: $id, slug: $slug) {
+    id
+    name
+    slug
+    shop_id
+    values {
+      id
+      value
+      meta
+    }
+  }
+}
+
+# query AttributeValues {
+#   attributeValues {
+#     id
+#     value
+#     attribute {
+#       name
+#       slug
+#     }
+#     # products {
+#     #   id
+#     #   sku
+#     #   slug
+#     #   name
+#     #   description
+#     #   image {
+#     #     id
+#     #     thumbnail
+#     #     original
+#     #   }
+#     #   # in_stock
+#     #   # sale_price
+#     #   price
+#     #   quantity
+#     #   unit
+#     #   gallery {
+#     #     id
+#     #     thumbnail
+#     #     original
+#     #   }
+#     # }
+#     # pivot {
+#     #   price
+#     # }
+#   }
+# }
+
+# query AttributeValue($id: ID!) {
+#   attributeValue(id: $id) {
+#     id
+#     value
+#     meta
+#     attribute {
+#       id
+#       name
+#       slug
+#     }
+#     # products {
+#     #   id
+#     #   sku
+#     #   slug
+#     #   name
+#     #   description
+#     #   image {
+#     #     id
+#     #     thumbnail
+#     #     original
+#     #   }
+#     #   # in_stock
+#     #   # sale_price
+#     #   price
+#     #   quantity
+#     #   unit
+#     #   gallery {
+#     #     id
+#     #     thumbnail
+#     #     original
+#     #   }
+#     # }
+#     # pivot {
+#     #   price
+#     # }
+#   }
+# }
+
+mutation CreateAttribute($input: CreateAttributeInput!) {
+  createAttribute(input: $input) {
+    id
+    name
+    slug
+  }
+}
+
+mutation UpdateAttribute($input: UpdateAttributeInput!) {
+  updateAttribute(input: $input) {
+    id
+    name
+    slug
+  }
+}
+
+mutation DeleteAttribute($id: ID!) {
+  deleteAttribute(id: $id) {
+    id
+    name
+    slug
+  }
+}
+# mutation CreateAttributeValue($input: AttributeValueCreateInput) {
+#   createAttributeValue(input: $input) {
+#     id
+#     value
+#     attribute {
+#       name
+#       slug
+#     }
+#   }
+# }
+
+# mutation UpdateAttributeValue($input: AttributeValueUpdateInput) {
+#   updateAttributeValue(input: $input) {
+#     id
+#     value
+#     attribute {
+#       name
+#       slug
+#     }
+#   }
+# }
+
+# mutation DeleteAttributeValue($id: ID!) {
+#   deleteAttributeValue(id: $id) {
+#     id
+#     value
+#     attribute {
+#       name
+#       slug
+#     }
+#   }
+# }
+
+mutation ImportAttributes($shop_id: ID!, $csv: Upload!) {
+  importAttributes(shop_id: $shop_id, csv: $csv)
+}

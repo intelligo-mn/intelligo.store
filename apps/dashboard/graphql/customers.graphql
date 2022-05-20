@@ -1,0 +1,120 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+
+query Customers(
+  $orderBy: [QueryUsersOrderByOrderByClause!]
+  $first: Int
+  $page: Int
+  $text: String
+) {
+  users(orderBy: $orderBy, first: $first, page: $page, text: $text) {
+    data {
+      id
+      name
+      email
+      permissions {
+        id
+        name
+      }
+      is_active
+      profile {
+        id
+        avatar {
+          id
+          original
+          thumbnail
+        }
+        bio
+      }
+      wallet {
+        id
+        total_points
+        points_used
+        available_points
+      }
+      created_at
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Customer($id: ID!) {
+  user(id: $id) {
+    id
+    name
+    email
+    profile {
+      id
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      bio
+      socials {
+        type
+        link
+      }
+      contact
+    }
+    address {
+      id
+      title
+      default
+      type
+      address {
+        country
+        city
+        state
+        zip
+        street_address
+      }
+    }
+    wallet {
+      id
+      total_points
+      points_used
+      available_points
+    }
+    is_active
+    created_at
+  }
+}
+
+mutation UpdateCustomer($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    name
+    email
+    permissions {
+      id
+      name
+    }
+    profile {
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      contact
+      bio
+      socials {
+        type
+        link
+      }
+    }
+    address {
+      title
+      default
+      address {
+        #street_address
+        country
+        city
+        state
+        zip
+      }
+      type
+    }
+  }
+}

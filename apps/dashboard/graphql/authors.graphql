@@ -1,0 +1,72 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+fragment AuthorPart on Author {
+  id
+  name
+  slug
+  bio
+  quote
+  born
+  death
+  languages
+  socials {
+    icon
+    url
+  }
+  is_approved
+  image {
+    id
+    original
+    thumbnail
+  }
+  cover_image {
+    id
+    original
+    thumbnail
+  }
+}
+query Authors(
+  $text: String
+  $is_approved: Boolean
+  $orderBy: [QueryAuthorsOrderByOrderByClause!]
+  $first: Int = 15
+  $page: Int
+) {
+  authors(
+    first: $first
+    page: $page
+    is_approved: $is_approved
+    orderBy: $orderBy
+    text: $text
+  ) {
+    data {
+      ...AuthorPart
+      products_count
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Author($slug: String) {
+  author(slug: $slug) {
+    ...AuthorPart
+  }
+}
+
+mutation CreateAuthor($input: CreateAuthorInput!) {
+  createAuthor(input: $input) {
+    ...AuthorPart
+  }
+}
+
+mutation UpdateAuthor($input: UpdateAuthorInput!) {
+  updateAuthor(input: $input) {
+    ...AuthorPart
+  }
+}
+mutation DeleteAuthor($id: ID!) {
+  deleteAuthor(id: $id) {
+    ...AuthorPart
+  }
+}

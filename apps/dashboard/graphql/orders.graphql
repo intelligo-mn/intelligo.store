@@ -1,0 +1,433 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+fragment OrderParts on Order {
+  id
+  tracking_number
+  customer_contact
+  customer {
+    name
+  }
+  status {
+    id
+    name
+    color
+    serial
+  }
+  products {
+    # id
+    name
+    price
+    sale_price
+    created_at
+    image {
+      id
+      original
+      thumbnail
+    }
+    variation_options {
+      id
+      title
+    }
+    pivot {
+      variation_option_id
+      order_quantity
+      unit_price
+      subtotal
+    }
+    quantity
+    unit
+  }
+  amount
+  sales_tax
+  total
+  paid_total
+  payment_id
+  payment_gateway
+  coupon {
+    code
+    amount
+    type
+  }
+  discount
+  delivery_fee
+  delivery_time
+  coupon {
+    id
+    code
+  }
+  billing_address {
+    country
+    city
+    state
+    zip
+    street_address
+  }
+  shipping_address {
+    country
+    city
+    state
+    zip
+    street_address
+  }
+  refund {
+    id
+    title
+    amount
+    status
+  }
+  wallet_point {
+    id
+    amount
+  }
+  created_at
+  updated_at
+}
+query orders(
+  $tracking_number: String
+  $orderBy: String
+  $sortedBy: String
+  $customer_id: ID
+  $shop_id: ID
+  $first: Int = 10
+  $page: Int
+) {
+  orders(
+    tracking_number: $tracking_number
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    customer_id: $customer_id
+    shop_id: $shop_id
+    first: $first
+    page: $page
+  ) {
+    data {
+      id
+      customer_id
+      customer {
+        name
+        email
+      }
+      children {
+        id
+        tracking_number
+        delivery_fee
+        total
+        status {
+          id
+          name
+          color
+          serial
+        }
+        shipping_address {
+          street_address
+          country
+          city
+          zip
+          state
+        }
+        # created_at
+      }
+      products {
+        id
+        name
+        pivot {
+          order_quantity
+          unit_price
+          subtotal
+        }
+      }
+      tracking_number
+      customer {
+        id
+        name
+      }
+      customer_contact
+      delivery_fee
+      sales_tax
+      discount
+      amount
+      total
+      paid_total
+      status {
+        id
+        name
+        color
+        serial
+      }
+      shipping_address {
+        street_address
+        country
+        city
+        zip
+        state
+      }
+      created_at
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Order($tracking_number: String, $id: ID) {
+  order(tracking_number: $tracking_number, id: $id) {
+    id
+    tracking_number
+    customer_contact
+    customer {
+      name
+    }
+    children {
+      id
+      tracking_number
+      delivery_fee
+      total
+      amount
+      status {
+        id
+        name
+        color
+        serial
+      }
+      shipping_address {
+        street_address
+        country
+        city
+        zip
+        state
+      }
+      products {
+        id
+        name
+        image {
+          id
+          original
+          thumbnail
+        }
+        slug
+        pivot {
+          variation_option_id
+          order_quantity
+          unit_price
+          subtotal
+        }
+        variation_options {
+          id
+          title
+        }
+      }
+      # created_at
+    }
+    status {
+      id
+      name
+      color
+      serial
+    }
+    products {
+      id
+      name
+      image {
+        id
+        original
+        thumbnail
+      }
+      slug
+      pivot {
+        variation_option_id
+        order_quantity
+        unit_price
+        subtotal
+      }
+      variation_options {
+        id
+        title
+      }
+    }
+    amount
+    sales_tax
+    total
+    paid_total
+    payment_id
+    payment_gateway
+    coupon {
+      code
+      amount
+      type
+    }
+    discount
+    delivery_fee
+    delivery_time
+    coupon {
+      id
+      code
+    }
+    billing_address {
+      country
+      city
+      state
+      zip
+      street_address
+    }
+    shipping_address {
+      street_address
+      country
+      city
+      state
+      zip
+    }
+    created_at
+  }
+}
+
+mutation UpdateOrder($input: UpdateOrderInput!) {
+  updateOrder(input: $input) {
+    id
+    tracking_number
+    customer {
+      name
+    }
+    status {
+      id
+      name
+      color
+      serial
+    }
+    products {
+      id
+      image {
+        id
+        original
+        thumbnail
+      }
+      slug
+      pivot {
+        order_quantity
+        unit_price
+        subtotal
+      }
+    }
+    amount
+    sales_tax
+    total
+    paid_total
+    payment_id
+    payment_gateway
+    coupon {
+      code
+      amount
+      type
+    }
+    discount
+    delivery_fee
+    delivery_time
+    coupon {
+      id
+      code
+    }
+    billing_address {
+      country
+      city
+      state
+      zip
+    }
+    shipping_address {
+      country
+      city
+      state
+      zip
+    }
+    created_at
+  }
+}
+mutation DeleteOrder($id: ID!) {
+  deleteOrder(id: $id) {
+    id
+    tracking_number
+    customer {
+      name
+    }
+    status {
+      id
+      name
+      color
+      serial
+    }
+    products {
+      id
+      image {
+        id
+        original
+        thumbnail
+      }
+      slug
+      pivot {
+        order_quantity
+        unit_price
+        subtotal
+      }
+    }
+    amount
+    sales_tax
+    total
+    paid_total
+    payment_id
+    payment_gateway
+    coupon {
+      code
+      amount
+      type
+    }
+    discount
+    delivery_fee
+    delivery_time
+    coupon {
+      id
+      code
+    }
+    billing_address {
+      country
+      city
+      state
+      zip
+    }
+    shipping_address {
+      country
+      city
+      state
+      zip
+    }
+    created_at
+  }
+}
+
+mutation CreateOrder($input: CreateOrderInput!) {
+  createOrder(input: $input) {
+    ...OrderParts
+  }
+}
+
+query OrderStatuses(
+  $first: Int
+  $page: Int
+  $text: String
+  $orderBy: [QueryOrderStatusesOrderByOrderByClause!]
+) {
+  orderStatuses(first: $first, page: $page, text: $text, orderBy: $orderBy) {
+    data {
+      id
+      name
+      color
+      serial
+    }
+    paginatorInfo {
+      currentPage
+      firstItem
+      hasMorePages
+      lastItem
+      perPage
+      total
+      lastPage
+      count
+    }
+  }
+}

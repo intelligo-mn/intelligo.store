@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "dashboard": "apps/dashboard",
-    "dashboard-e2e": "apps/dashboard-e2e"
+    "dashboard-e2e": "apps/dashboard-e2e",
+    "storefront": "apps/storefront",
+    "storefront-e2e": "apps/storefront-e2e"
   }
 }

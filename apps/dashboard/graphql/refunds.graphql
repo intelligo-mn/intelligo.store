@@ -1,0 +1,195 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+
+query refunds(
+  $orderBy: String
+  $sortedBy: String
+  $shop_id: Int
+  $order_id: Int
+  $customer_id: Int
+  $first: Int = 10
+  $page: Int
+) {
+  refunds(
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    shop_id: $shop_id
+    order_id: $order_id
+    customer_id: $customer_id
+    first: $first
+    page: $page
+  ) {
+    data {
+      id
+      amount
+      title
+      status
+      shop {
+        id
+        name
+      }
+      order {
+        id
+        tracking_number
+        amount
+        payment_gateway
+        created_at
+      }
+      customer {
+        id
+        email
+      }
+      created_at
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query refund($id: ID!) {
+  refund(id: $id) {
+    id
+    title
+    description
+    images {
+      id
+      original
+      thumbnail
+    }
+    amount
+    status
+    shop {
+      id
+      name
+    }
+    order {
+      id
+      tracking_number
+      customer_contact
+      customer {
+        name
+      }
+      children {
+        id
+        tracking_number
+        delivery_fee
+        total
+        amount
+        status {
+          id
+          name
+          color
+          serial
+        }
+        shipping_address {
+          street_address
+          country
+          city
+          zip
+          state
+        }
+        products {
+          id
+          name
+          image {
+            id
+            original
+            thumbnail
+          }
+          slug
+          pivot {
+            order_quantity
+            unit_price
+            subtotal
+          }
+        }
+        # created_at
+      }
+      status {
+        id
+        name
+        color
+        serial
+      }
+      products {
+        id
+        name
+        image {
+          id
+          original
+          thumbnail
+        }
+        slug
+        pivot {
+          order_quantity
+          unit_price
+          subtotal
+        }
+      }
+      amount
+      sales_tax
+      total
+      paid_total
+      payment_id
+      payment_gateway
+      coupon {
+        code
+        amount
+        type
+      }
+      discount
+      delivery_fee
+      delivery_time
+      coupon {
+        id
+        code
+      }
+      billing_address {
+        country
+        city
+        state
+        zip
+        street_address
+      }
+      shipping_address {
+        street_address
+        country
+        city
+        state
+        zip
+      }
+      created_at
+    }
+    customer {
+      id
+      email
+      profile {
+        contact
+      }
+    }
+    created_at
+  }
+}
+
+mutation UpdateRefund($input: UpdateRefundInput!) {
+  updateRefund(input: $input) {
+    id
+    amount
+    status
+    shop {
+      id
+      name
+    }
+    order {
+      id
+      tracking_number
+      amount
+      payment_gateway
+    }
+    customer {
+      id
+      email
+    }
+    created_at
+  }
+}

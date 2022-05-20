@@ -1,0 +1,21 @@
+mutation VerifyCheckout(
+  $amount: Float!
+  $products: [ConnectProductOrderPivot!]!
+  $billing_address: UserAddressInput
+  $shipping_address: UserAddressInput
+) {
+  verifyCheckout(
+    input: {
+      amount: $amount
+      products: $products
+      billing_address: $billing_address
+      shipping_address: $shipping_address
+    }
+  ) {
+    total_tax
+    shipping_charge
+    unavailable_products
+    wallet_amount
+    wallet_currency
+  }
+}

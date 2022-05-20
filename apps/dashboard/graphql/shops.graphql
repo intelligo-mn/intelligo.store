@@ -1,0 +1,247 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+
+fragment ShopParts on Shop {
+  id
+  name
+  slug
+  owner_id
+  owner {
+    name
+    email
+    profile {
+      contact
+    }
+  }
+  staffs {
+    name
+    email
+  }
+  description
+  logo {
+    id
+    thumbnail
+    original
+  }
+  cover_image {
+    id
+    thumbnail
+    original
+  }
+  orders_count
+  products_count
+  is_active
+  balance {
+    admin_commission_rate
+    total_earnings
+    withdrawn_amount
+    current_balance
+    payment_info {
+      account
+      name
+      bank
+      email
+    }
+  }
+  address {
+    street_address
+    country
+    city
+    state
+    zip
+  }
+  created_at
+}
+
+query Shops(
+  $text: String
+  $orderBy: String
+  $sortedBy: String
+  $first: Int = 15
+  $page: Int
+  $is_active: Boolean
+) {
+  shops(
+    first: $first
+    page: $page
+    text: $text
+    orderBy: $orderBy
+    is_active: $is_active
+    sortedBy: $sortedBy
+  ) {
+    data {
+      ...ShopParts
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Shop($id: ID, $slug: String) {
+  shop(id: $id, slug: $slug) {
+    ...ShopParts
+    settings {
+      socials {
+        icon
+        url
+      }
+      website
+      contact
+      location {
+        lat
+        lng
+        formattedAddress
+        city
+        state
+        country
+        zip
+      }
+    }
+  }
+}
+query EditShop($id: ID, $slug: String) {
+  shop(id: $id, slug: $slug) {
+    id
+    name
+    description
+    logo {
+      id
+      thumbnail
+      original
+    }
+    cover_image {
+      id
+      thumbnail
+      original
+    }
+    created_at
+    balance {
+      id
+      admin_commission_rate
+      payment_info {
+        account
+        name
+        bank
+        email
+      }
+    }
+    address {
+      street_address
+      country
+      city
+      state
+      zip
+    }
+    settings {
+      socials {
+        icon
+        url
+      }
+      website
+      contact
+      location {
+        lat
+        lng
+        formattedAddress
+        city
+        state
+        country
+        zip
+      }
+    }
+  }
+}
+
+query MyShops {
+  me {
+    managed_shop {
+      id
+      slug
+      name
+      is_active
+      description
+      logo {
+        thumbnail
+      }
+    }
+    shops {
+      id
+      slug
+      is_active
+      name
+      description
+      logo {
+        thumbnail
+      }
+    }
+  }
+}
+
+query Staffs(
+  $shop_id: ID!
+  $orderBy: String
+  $sortedBy: String
+  $first: Int = 15
+  $page: Int
+) {
+  staffs(
+    shop_id: $shop_id
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    first: $first
+    page: $page
+  ) {
+    data {
+      id
+      name
+      email
+      is_active
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+mutation CreateShop($input: CreateShopInput!) {
+  createShop(input: $input) {
+    id
+    owner_id
+  }
+}
+mutation UpdateShop($input: UpdateShopInput!) {
+  updateShop(input: $input) {
+    id
+    owner_id
+  }
+}
+mutation DeleteShop($id: ID!) {
+  deleteShop(id: $id) {
+    id
+    owner_id
+  }
+}
+
+mutation AddStaff($input: AddStaffInput!) {
+  addStaff(input: $input)
+}
+
+mutation RemoveStaff($id: ID!) {
+  removeStaff(id: $id) {
+    id
+    name
+    email
+    is_active
+  }
+}
+
+mutation ApproveShop($input: ApproveShopInput!) {
+  approveShop(input: $input) {
+    ...ShopParts
+  }
+}
+
+mutation DisApproveShop($id: ID!) {
+  disapproveShop(id: $id) {
+    ...ShopParts
+  }
+}
