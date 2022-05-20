@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next";
 import SelectInput from "@components/ui/select-input";
 import { useIsRTL } from "@utils/locals";
 import { toast } from "react-toastify";
-import { Attachment } from "__generated__/__types__";
+import { Attachment } from "@common/generated-types";
 import { useUpdateRefundMutation } from "@graphql/refunds.graphql";
 import { useModalAction } from "@components/ui/modal/modal.context";
 import dayjs from "dayjs";

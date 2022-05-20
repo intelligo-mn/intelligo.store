@@ -43,16 +43,16 @@
     "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
       "Type": "String"
     },
+    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
+      "Type": "String"
+    },
     "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
       "Type": "String"
     },
     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
       "Type": "String"
     },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationauth0FunctionQuerygetOrganizationauth0FunctionAppSyncFunctionAB36ECF0FunctionId": {
-      "Type": "String"
-    },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId": {
+    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId": {
       "Type": "String"
     },
     "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
@@ -61,19 +61,13 @@
     "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
       "Type": "String"
     },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationcreateOrganizationinit0FunctionMutationcreateOrganizationinit0FunctionAppSyncFunction6EDC71B1FunctionId": {
+    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationcreateOrganizationauth0FunctionMutationcreateOrganizationauth0FunctionAppSyncFunctionF03F6C36FunctionId": {
+    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationupdateOrganizationinit0FunctionMutationupdateOrganizationinit0FunctionAppSyncFunction48CBFBD2FunctionId": {
-      "Type": "String"
-    },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptiononCreateOrganizationauth0FunctionSubscriptiononCreateOrganizationauth0FunctionAppSyncFunction1645D390FunctionId": {
-      "Type": "String"
-    },
-    "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptionOnCreateOrganizationDataResolverFnSubscriptionOnCreateOrganizationDataResolverFnAppSyncFunction91BAF3173": {
+    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId": {
       "Type": "String"
     }
   },
@@ -443,6 +437,36 @@
         "AddressIAMRoleE49E7AFF"
       ]
     },
+    "QuerygetAddressauth0FunctionQuerygetAddressauth0FunctionAppSyncFunction70D46C42": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "QuerygetAddressauth0Function",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Query.getAddress.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
     "QueryGetAddressDataResolverFnQueryGetAddressDataResolverFnAppSyncFunctionACE1094A": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
@@ -510,10 +534,13 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationauth0FunctionQuerygetOrganizationauth0FunctionAppSyncFunctionAB36ECF0FunctionId"
+              "Fn::GetAtt": [
+                "QuerygetAddressauth0FunctionQuerygetAddressauth0FunctionAppSyncFunction70D46C42",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -625,10 +652,13 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationauth0FunctionQuerygetOrganizationauth0FunctionAppSyncFunctionAB36ECF0FunctionId"
+              "Fn::GetAtt": [
+                "QuerygetAddressauth0FunctionQuerygetAddressauth0FunctionAppSyncFunction70D46C42",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -740,10 +770,13 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationauth0FunctionQuerygetOrganizationauth0FunctionAppSyncFunctionAB36ECF0FunctionId"
+              "Fn::GetAtt": [
+                "QuerygetAddressauth0FunctionQuerygetAddressauth0FunctionAppSyncFunction70D46C42",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -786,6 +819,36 @@
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "MutationcreateAddressauth0FunctionMutationcreateAddressauth0FunctionAppSyncFunctionDA8533B1": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "MutationcreateAddressauth0Function",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.createAddress.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "MutationCreateAddressDataResolverFnMutationCreateAddressDataResolverFnAppSyncFunction1D9258BB": {
@@ -855,13 +918,16 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationcreateOrganizationinit0FunctionMutationcreateOrganizationinit0FunctionAppSyncFunction6EDC71B1FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationcreateOrganizationauth0FunctionMutationcreateOrganizationauth0FunctionAppSyncFunctionF03F6C36FunctionId"
+              "Fn::GetAtt": [
+                "MutationcreateAddressauth0FunctionMutationcreateAddressauth0FunctionAppSyncFunctionDA8533B1",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1024,7 +1090,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationMutationupdateOrganizationinit0FunctionMutationupdateOrganizationinit0FunctionAppSyncFunction48CBFBD2FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1033,7 +1099,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1202,7 +1268,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1247,6 +1313,36 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
+    "SubscriptiononCreateAddressauth0FunctionSubscriptiononCreateAddressauth0FunctionAppSyncFunctionB462110E": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "SubscriptiononCreateAddressauth0Function",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Subscription.onCreateAddress.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
     "SubscriptiononCreateAddressResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
@@ -1259,13 +1355,16 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptiononCreateOrganizationauth0FunctionSubscriptiononCreateOrganizationauth0FunctionAppSyncFunction1645D390FunctionId"
+              "Fn::GetAtt": [
+                "SubscriptiononCreateAddressauth0FunctionSubscriptiononCreateAddressauth0FunctionAppSyncFunctionB462110E",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptionOnCreateOrganizationDataResolverFnSubscriptionOnCreateOrganizationDataResolverFnAppSyncFunction91BAF3173"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
             }
           ]
         },
@@ -1312,13 +1411,16 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptiononCreateOrganizationauth0FunctionSubscriptiononCreateOrganizationauth0FunctionAppSyncFunction1645D390FunctionId"
+              "Fn::GetAtt": [
+                "SubscriptiononCreateAddressauth0FunctionSubscriptiononCreateAddressauth0FunctionAppSyncFunctionB462110E",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptionOnCreateOrganizationDataResolverFnSubscriptionOnCreateOrganizationDataResolverFnAppSyncFunction91BAF3173"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
             }
           ]
         },
@@ -1365,13 +1467,16 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptiononCreateOrganizationauth0FunctionSubscriptiononCreateOrganizationauth0FunctionAppSyncFunction1645D390FunctionId"
+              "Fn::GetAtt": [
+                "SubscriptiononCreateAddressauth0FunctionSubscriptiononCreateAddressauth0FunctionAppSyncFunctionB462110E",
+                "FunctionId"
+              ]
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationQuerygetOrganizationpostAuth0FunctionQuerygetOrganizationpostAuth0FunctionAppSyncFunctionCD516D29FunctionId"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackOrganizationNestedStackOrganizationNestedStackResource1D9BAE78OutputstransformerrootstackOrganizationSubscriptionOnCreateOrganizationDataResolverFnSubscriptionOnCreateOrganizationDataResolverFnAppSyncFunction91BAF3173"
+              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
             }
           ]
         },
@@ -1380,6 +1485,101 @@
             "",
             [
               "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteAddress\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "AddressOwnerDataResolverFnAddressOwnerDataResolverFnAppSyncFunction8ED9F99D": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "AddressOwnerDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Address.owner.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Address.owner.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "AddressownerResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "owner",
+        "TypeName": "Address",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "AddressOwnerDataResolverFnAddressOwnerDataResolverFnAppSyncFunction8ED9F99D",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"Address\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },

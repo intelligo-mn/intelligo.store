@@ -4,7 +4,7 @@ import { Control, useFormState, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 import { useTagsQuery } from "@graphql/tags.graphql";
 import { useTranslation } from "next-i18next";
-import { QueryTagsHasTypeColumn, SqlOperator } from "__generated__/__types__";
+import { QueryTagsHasTypeColumn, SqlOperator } from "@common/generated-types";
 
 interface Props {
   control: Control<any>;

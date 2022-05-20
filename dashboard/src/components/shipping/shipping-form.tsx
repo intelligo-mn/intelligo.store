@@ -16,7 +16,7 @@ import { ROUTES } from "@utils/routes";
 import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { shippingValidationSchema } from "./shipping-validation-schema";
-import { Shipping, ShippingInput, ShippingType } from "__generated__/__types__";
+import { Shipping, ShippingInput, ShippingType } from "@common/generated-types";
 const defaultValues = {
   name: "",
   amount: 0,

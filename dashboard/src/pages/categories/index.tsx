@@ -15,7 +15,7 @@ import TypeFilter from "@components/category/type-filter";
 import {
   QueryCategoriesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 export default function Categories() {
   const { t } = useTranslation();

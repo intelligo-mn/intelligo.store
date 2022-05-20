@@ -19,7 +19,7 @@ import { ArrowUp } from "@components/icons/arrow-up";
 import { useModalAction } from "@components/ui/modal/modal.context";
 import Button from "@components/ui/button";
 import { MoreIcon } from "@components/icons/more-icon";
-import { QueryProductsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryProductsOrderByColumn, SortOrder } from "@common/generated-types";
 
 export default function ProductsPage() {
   const {

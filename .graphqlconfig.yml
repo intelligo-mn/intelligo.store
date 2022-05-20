@@ -1,0 +1,18 @@
+projects:
+  platform:
+    schemaPath: amplify/backend/api/platform/build/schema.graphql
+    includes:
+      - dashboard/src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: dashboard/src/common/generated-types.ts
+        docsFilePath: dashboard/src/graphql
+        region: ap-southeast-1
+        apiId: null
+        maxDepth: 5
+extensions:
+  amplify:
+    version: 3

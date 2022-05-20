@@ -11,7 +11,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
-import { QueryAuthorsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryAuthorsOrderByColumn, SortOrder } from "@common/generated-types";
 import { GetStaticProps } from "next";
 import AuthorList from "@components/author/author-list";
 

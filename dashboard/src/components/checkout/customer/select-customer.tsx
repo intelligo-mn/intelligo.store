@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { useTranslation } from "next-i18next";
 import AsyncSelect from "react-select/async";
 import { selectStyles } from "@components/ui/select/select.styles";
-import { User } from "__generated__/__types__";
+import { User } from "@common/generated-types";
 
 const AddOrUpdateCheckoutCustomer = () => {
   const { closeModal } = useModalAction();

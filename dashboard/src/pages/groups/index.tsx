@@ -11,7 +11,7 @@ import { useTypesQuery } from "@graphql/type.graphql";
 import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
 import SortFormGql from "@components/common/sort-form-gql";
-import { QueryTypesOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryTypesOrderByColumn, SortOrder } from "@common/generated-types";
 export default function GroupsPage() {
   const { t } = useTranslation();
 

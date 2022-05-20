@@ -16,7 +16,7 @@ import { ROUTES } from "@utils/routes";
 import {
   QueryManufacturersOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { GetStaticProps } from "next";
 
 export default function Manufacturers() {

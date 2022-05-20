@@ -1,7 +1,7 @@
 import Button from "@components/ui/button";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { QueryProductsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryProductsOrderByColumn, SortOrder } from "@common/generated-types";
 
 type Props = {
   refetch: Function;

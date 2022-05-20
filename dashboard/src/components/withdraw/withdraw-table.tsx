@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { Shop, WithdrawPaginator } from "__generated__/__types__";
+import { Shop, WithdrawPaginator } from "@common/generated-types";
 
 type IProps = {
   withdraws: WithdrawPaginator | null | undefined;

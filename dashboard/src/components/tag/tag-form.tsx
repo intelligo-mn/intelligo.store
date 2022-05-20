@@ -24,7 +24,7 @@ import {
   useUpdateTagMutation,
 } from "@graphql/tags.graphql";
 import { tagValidationSchema } from "./tag-validation-schema";
-import { Tag } from "__generated__/__types__";
+import { Tag } from "@common/generated-types";
 
 function SelectTypes({
   control,

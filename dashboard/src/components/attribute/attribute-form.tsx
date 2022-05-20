@@ -13,7 +13,7 @@ import {
 import { useShopQuery } from "@graphql/shops.graphql";
 import { useState } from "react";
 import Alert from "@components/ui/alert";
-import { Attribute, AttributeValue } from "__generated__/__types__";
+import { Attribute, AttributeValue } from "@common/generated-types";
 
 type FormValues = {
   name?: string | null;

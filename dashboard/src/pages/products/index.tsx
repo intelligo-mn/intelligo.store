@@ -13,7 +13,7 @@ import CategoryTypeFilter from "@components/product/category-type-filter";
 import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
-import { QueryProductsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryProductsOrderByColumn, SortOrder } from "@common/generated-types";
 
 export default function ProductsPage() {
   const { t } = useTranslation();

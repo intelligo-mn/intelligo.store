@@ -6,7 +6,7 @@ import { CloseIcon } from "@components/icons/close-icon";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import isObject from "lodash/isObject";
-import { Attachment } from "__generated__/__types__";
+import { Attachment } from "@common/generated-types";
 
 const getPreviewImage = (value: any) => {
   if (Array.isArray(value)) {

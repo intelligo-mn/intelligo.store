@@ -14,7 +14,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
-import { QueryUsersOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryUsersOrderByColumn, SortOrder } from "@common/generated-types";
 
 export default function UsersPage() {
   const { t } = useTranslation();

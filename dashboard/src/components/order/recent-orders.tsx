@@ -5,7 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useTranslation } from "next-i18next";
-import { OrderPaginator, OrderStatus } from "__generated__/__types__";
+import { OrderPaginator, OrderStatus } from "@common/generated-types";
 
 type IProps = {
   orders: OrderPaginator | null | undefined;

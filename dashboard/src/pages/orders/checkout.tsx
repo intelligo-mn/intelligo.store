@@ -9,7 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticProps } from "next";
 import Layout from "@components/layouts/admin";
 import { adminOnly } from "@utils/auth-utils";
-import { AddressType } from "__generated__/__types__";
+import { AddressType } from "@common/generated-types";
 import CustomerGrid from "@components/checkout/customer/customer-grid";
 import { useCustomerLazyQuery } from "@graphql/customers.graphql";
 import { useEffect } from "react";

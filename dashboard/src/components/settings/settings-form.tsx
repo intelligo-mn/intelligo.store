@@ -29,7 +29,7 @@ import {
   Shipping,
   ShopSocialInput,
   Tax,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import Checkbox from "@components/ui/checkbox/checkbox";
 import SwitchInput from "@components/ui/switch-input";
 

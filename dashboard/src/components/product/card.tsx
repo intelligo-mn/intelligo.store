@@ -1,4 +1,4 @@
-import { Product, ProductType } from "__generated__/__types__";
+import { Product, ProductType } from "@common/generated-types";
 import Image from "next/image";
 import usePrice from "@utils/use-price";
 import { productPlaceholder } from "@utils/placeholders";

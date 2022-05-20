@@ -13,7 +13,7 @@ import { ROUTES } from "@utils/routes";
 import {
   QueryTaxClassesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 export default function TaxesPage() {
   const { t } = useTranslation();

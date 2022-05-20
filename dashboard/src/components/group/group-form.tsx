@@ -31,7 +31,7 @@ import {
   AttachmentInput,
   Type,
   TypeSettingsInput,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 const typeIcon = [
   {

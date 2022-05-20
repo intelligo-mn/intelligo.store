@@ -11,7 +11,7 @@ import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import { useRouter } from "next/router";
 
-import { SortOrder } from "__generated__/__types__";
+import { SortOrder } from "@common/generated-types";
 import { useIsRTL } from "@utils/locals";
 import usePrice from "@utils/use-price";
 

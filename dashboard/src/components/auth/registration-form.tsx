@@ -14,7 +14,7 @@ import * as yup from "yup";
 import { getErrorMessage } from "@utils/form-error";
 import Link from "@components/ui/link";
 import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
-import { Permission } from "__generated__/__types__";
+import { Permission } from "@common/generated-types";
 
 type FormValues = {
   name: string;

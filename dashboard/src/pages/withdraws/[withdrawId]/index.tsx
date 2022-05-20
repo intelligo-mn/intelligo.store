@@ -17,7 +17,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import AdminLayout from "@components/layouts/admin";
 import Card from "@components/common/card";
-import { WithdrawStatus } from "__generated__/__types__";
+import { WithdrawStatus } from "@common/generated-types";
 
 type FormValues = {
   status: any;

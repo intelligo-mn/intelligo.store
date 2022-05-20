@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { ProductType } from "__generated__/__types__";
+import { ProductType } from "@common/generated-types";
 import { ProductTypeOption } from "./form-utils";
 export const productValidationSchema = yup.object().shape({
   name: yup.string().required("form:error-name-required"),

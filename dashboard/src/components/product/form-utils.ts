@@ -10,7 +10,7 @@ import {
   Tag,
   AttachmentInput,
   VariationOption,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import groupBy from "lodash/groupBy";
 import orderBy from "lodash/orderBy";
 import sum from "lodash/sum";

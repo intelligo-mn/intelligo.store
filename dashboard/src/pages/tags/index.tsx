@@ -10,7 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import TagList from "@components/tag/tag-list";
 import { useTagsQuery } from "@graphql/tags.graphql";
 import { adminOnly } from "@utils/auth-utils";
-import { QueryTagsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryTagsOrderByColumn, SortOrder } from "@common/generated-types";
 
 export default function Tags() {
   const { t } = useTranslation();

@@ -3,7 +3,7 @@ import React from "react";
 import { useTypesQuery } from "@graphql/type.graphql";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";
-import { QueryCategoriesHasTypeColumn } from "__generated__/__types__";
+import { QueryCategoriesHasTypeColumn } from "@common/generated-types";
 
 type Props = {
   refetch: Function;

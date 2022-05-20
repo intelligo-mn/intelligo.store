@@ -28,7 +28,7 @@ import {
   ShopSettings,
   ShopSocialInput,
   UserAddressInput,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 const socialIcon = [
   {

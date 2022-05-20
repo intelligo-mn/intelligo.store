@@ -20,7 +20,7 @@ import {
 import {
   QueryOrderStatusesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 export const PlaceOrderAction: React.FC = (props) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);

@@ -14,7 +14,7 @@ import { ROUTES } from "@utils/routes";
 import {
   QueryShippingClassesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 export default function ShippingsPage() {
   const { t } = useTranslation();

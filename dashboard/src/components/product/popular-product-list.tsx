@@ -2,7 +2,7 @@ import { Table } from "@components/ui/table";
 import usePrice from "@utils/use-price";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { Product, Shop, ProductType } from "__generated__/__types__";
+import { Product, Shop, ProductType } from "@common/generated-types";
 
 export type IProps = {
   products: Product[] | null | undefined;

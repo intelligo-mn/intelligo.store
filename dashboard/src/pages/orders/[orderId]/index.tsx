@@ -24,7 +24,7 @@ import {
   Attachment,
   QueryOrderStatusesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import InvoicePdf from "@components/order/invoice-pdf";
 import { DownloadIcon } from "@components/icons/download-icon";

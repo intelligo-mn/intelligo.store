@@ -16,7 +16,7 @@ import {
   ProductStatus,
   QueryProductsOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import ProductCard from "@components/product/card";
 import Cart from "@components/cart/cart";
 import { useUI } from "@contexts/ui.context";

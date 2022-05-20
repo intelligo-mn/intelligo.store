@@ -29,7 +29,7 @@ import { useShopQuery } from "@graphql/shops.graphql";
 import ProductTagInput from "./product-tag-input";
 import Alert from "@components/ui/alert";
 import { useState } from "react";
-import { Product, ProductType } from "__generated__/__types__";
+import { Product, ProductType } from "@common/generated-types";
 import {
   getProductDefaultValues,
   getProductInputValues,

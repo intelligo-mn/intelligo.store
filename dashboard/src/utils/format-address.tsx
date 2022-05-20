@@ -1,4 +1,4 @@
-import { UserAddress } from "__generated__/__types__";
+import { UserAddress } from "@common/generated-types";
 
 function removeFalsy(obj: any) {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => Boolean(v)));

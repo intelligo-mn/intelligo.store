@@ -3,7 +3,7 @@ import ActionButtons from "@components/common/action-buttons";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
 import Pagination from "@components/ui/pagination";
-import { UserPaginator, SortOrder } from "__generated__/__types__";
+import { UserPaginator, SortOrder } from "@common/generated-types";
 import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";

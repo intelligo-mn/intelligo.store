@@ -4,7 +4,7 @@ $util.qr($ctx.stash.put("hasAuth", true))
 #set( $isAuthorized = false )
 #set( $allowedFields = [] )
 #if( $util.authType() == "API Key Authorization" )
-  #set( $isAuthorized = true )
+$util.unauthorized()
 #end
 #if( $util.authType() == "IAM Authorization" )
   #set( $adminRoles = ["ap-southeast-1_Tzrw8we9Y_Full-access/CognitoIdentityCredentials","ap-southeast-1_Tzrw8we9Y_Manage-only/CognitoIdentityCredentials"] )
@@ -13,7 +13,25 @@ $util.qr($ctx.stash.put("hasAuth", true))
       #return($util.toJson({}))
     #end
   #end
-$util.unauthorized()
+  #if( ($ctx.identity.userArn == $ctx.stash.authRole) || ($ctx.identity.cognitoIdentityPoolId == "ap-southeast-1:c5e711ad-f4e0-4988-a186-3eb9771fc33b" && $ctx.identity.cognitoIdentityAuthType == "authenticated") )
+    #set( $isAuthorized = true )
+  #end
+#end
+#if( $util.authType() == "User Pool Authorization" )
+  #if( !$isAuthorized )
+    #set( $staticGroupRoles = [{"claim":"cognito:groups","entity":"intelligoAdmin","allowedFields":["id","code","description","type","image","isValid","amount","activeFrom","expireAt","orders","_version","_deleted","_lastChangedAt"],"isAuthorizedOnAllFields":true}] )
+    #foreach( $groupRole in $staticGroupRoles )
+      #set( $groupsInToken = $util.defaultIfNull($ctx.identity.claims.get($groupRole.claim), []) )
+      #if( $groupsInToken.contains($groupRole.entity) )
+        #if( $groupRole.isAuthorizedOnAllFields )
+          #set( $isAuthorized = true )
+          #break
+        #else
+          $util.qr($allowedFields.addAll($groupRole.allowedFields))
+        #end
+      #end
+    #end
+  #end
 #end
 #if( !$isAuthorized && $allowedFields.isEmpty() )
 $util.unauthorized()

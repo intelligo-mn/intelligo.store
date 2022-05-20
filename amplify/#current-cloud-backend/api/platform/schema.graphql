@@ -1,3 +1,75 @@
+enum WithdrawStatus {
+  APPROVED
+  PROCCESSING
+  REJECTED
+  PENDING
+  ON_HOLD
+}
+
+type Withdraw @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  amount: String
+  status: WithdrawStatus
+  paymentMethod: String
+  details: String
+  note: String
+  organizationID: ID! @index(name: "byOrganization")
+}
+
+type Banner @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  description: String
+  image: Attachment
+  typeID: ID! @index(name: "byType")
+}
+
+type TypeSettings {
+  isHome: Boolean
+  layoutType: String
+  productCard: String
+}
+
+type Type @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  slug: String
+  promotionalSliders: String
+  settings: TypeSettings
+  icon: String
+  banners: [Banner] @hasMany(indexName: "byType", fields: ["id"])
+  categories: [Category] @hasMany(indexName: "byType", fields: ["id"])
+  entities: [Entity] @hasMany(indexName: "byType", fields: ["id"])
+  tags: [Tag] @hasMany(indexName: "byType", fields: ["id"])
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  slug: String
+  details: String
+  image: Attachment
+  icon: String
+  entities: [Entity] @hasMany(indexName: "byTag", fields: ["id"])
+  typeID: ID! @index(name: "byType")
+}
+
+type PaymentInfo {
+  account: String
+  name: String
+  email: String
+  bank: String
+}
+
+type Balance @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  adminCommissionRate: String
+  totalEarnings: String
+  withdrawnAmount: String
+  currentBalance: String
+  paymentInfo: PaymentInfo
+}
+
 type Organization @model @auth(rules: [{allow: public}]) {
   id: ID!
   isActive: String
@@ -8,6 +80,13 @@ type Organization @model @auth(rules: [{allow: public}]) {
   logo: Attachment
   address: UserAddress
   settings: String
+  attributes: [Attribute] @hasMany(indexName: "byOrganization", fields: ["id"])
+  orders: [Order] @hasMany(indexName: "byOrganization", fields: ["id"])
+  entities: [Entity] @hasMany(indexName: "byOrganization", fields: ["id"])
+  staffs: [User] @hasMany(indexName: "byOrganization", fields: ["id"])
+  balance: Balance @hasOne
+  withdraws: [Withdraw] @hasMany(indexName: "byOrganization", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserOrganization")
 }
 
 enum ShippingType {
@@ -85,6 +164,11 @@ type Entity @model @auth(rules: [{allow: public}]) {
   price: Float
   quantity: Int
   unit: String
+  categories: [Category] @manyToMany(relationName: "EntityCategory")
+  orderID: ID! @index(name: "byOrder")
+  organizationID: ID! @index(name: "byOrganization")
+  tagID: ID! @index(name: "byTag")
+  typeID: ID! @index(name: "byType")
 }
 
 enum PaymentGateway {
@@ -106,6 +190,10 @@ type Order @model @auth(rules: [{allow: public}]) {
   billingAddress: UserAddress
   shippingAddress: UserAddress
   paymentGateway: PaymentGateway
+  couponID: ID! @index(name: "byCoupon")
+  entities: [Entity] @hasMany(indexName: "byOrder", fields: ["id"])
+  userID: ID! @index(name: "byUser")
+  organizationID: ID! @index(name: "byOrganization")
 }
 
 enum CouponType {
@@ -114,7 +202,7 @@ enum CouponType {
   FREE_SHIPPING_COUPON
 }
 
-type Coupon @model @auth(rules: [{allow: public}]) {
+type Coupon @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
   id: ID!
   code: String
   description: String
@@ -124,6 +212,7 @@ type Coupon @model @auth(rules: [{allow: public}]) {
   amount: Float
   activeFrom: String
   expireAt: String
+  orders: [Order] @hasMany(indexName: "byCoupon", fields: ["id"])
 }
 
 type Contact @model @auth(rules: [{allow: public}]) {
@@ -139,27 +228,30 @@ type Attachment {
   original: String
 }
 
-type Category @model @auth(rules: [{allow: public}]) {
+type Category @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
   id: ID!
   name: String
   slug: String
   details: String
   image: Attachment
   icon: String
+  entities: [Entity] @manyToMany(relationName: "EntityCategory")
+  typeID: ID! @index(name: "byType")
 }
 
-type AttributeValue @model @auth(rules: [{allow: public}]) {
+type AttributeValue @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
   id: ID!
   value: String
   meta: String
   attributeID: ID! @index(name: "byAttribute")
 }
 
-type Attribute @model @auth(rules: [{allow: public}]) {
+type Attribute @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
   id: ID!
   name: String
   slug: String
   values: [AttributeValue] @hasMany(indexName: "byAttribute", fields: ["id"])
+  organizationID: ID! @index(name: "byOrganization")
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -167,6 +259,9 @@ type User @model @auth(rules: [{allow: public}]) {
   name: String
   email: String
   isActiive: String
+  orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  organizationID: ID! @index(name: "byOrganization")
+  organizations: [Organization] @manyToMany(relationName: "UserOrganization")
 }
 
 type UserAddress {
@@ -182,10 +277,11 @@ enum AddressType {
   SHIPPING
 }
 
-type Address @model @auth(rules: [{allow: public}]) {
+type Address @model @auth(rules: [{allow: owner}, {allow: private, provider: iam}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}]) {
   id: ID!
   title: String
   default: Boolean
   address: UserAddress
   type: AddressType
 }
+ 

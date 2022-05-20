@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import * as yup from "yup";
 import { useModalState } from "@components/ui/modal/modal.context";
 import { Form } from "@components/ui/form/form";
-import { AddressType } from "__generated__/__types__";
+import { AddressType } from "@common/generated-types";
 
 type FormValues = {
   __typename?: string;
@@ -25,7 +25,7 @@ type FormValues = {
 const addressSchema = yup.object().shape({
   type: yup
     .string()
-    .oneOf([AddressType.Billing, AddressType.Shipping])
+    .oneOf([AddressType.BILLING, AddressType.Shipping])
     .required("error-type-required"),
   title: yup.string().required("error-title-required"),
   address: yup.object().shape({

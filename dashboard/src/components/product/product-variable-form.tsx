@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useShopQuery } from "@graphql/shops.graphql";
-import { Product } from "__generated__/__types__";
+import { Product } from "@common/generated-types";
 import FileInput from "@components/ui/file-input";
 import { filterAttributes, getCartesianProduct } from "./form-utils";
 

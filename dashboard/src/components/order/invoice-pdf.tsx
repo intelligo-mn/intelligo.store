@@ -9,7 +9,7 @@ import {
 import { formatAddress } from "@utils/format-address";
 import usePrice from "@utils/use-price";
 import dayjs from "dayjs";
-import { Order, SettingsOptions, UserAddress } from "__generated__/__types__";
+import { Order, SettingsOptions, UserAddress } from "@common/generated-types";
 
 export default function InvoicePdf({
   order,

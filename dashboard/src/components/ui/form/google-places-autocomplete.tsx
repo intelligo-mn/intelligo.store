@@ -3,7 +3,7 @@ import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-ur
 import React from "react";
 import { useTranslation } from "next-i18next";
 import Loader from "../loader/loader";
-import { LocationInput } from "__generated__/__types__";
+import { LocationInput } from "@common/generated-types";
 
 const libraries: Libraries = ["places"];
 export default function GooglePlacesAutocomplete({

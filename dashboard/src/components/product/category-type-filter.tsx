@@ -8,7 +8,7 @@ import cn from "classnames";
 import {
   QueryProductsHasCategoriesColumn,
   QueryProductsHasTypeColumn,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 type Props = {
   refetch: Function;

@@ -15,7 +15,7 @@ import SortFormGql from "@components/common/sort-form-gql";
 import {
   QueryOrderStatusesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 export default function OrderStatusPage() {
   const { t } = useTranslation();

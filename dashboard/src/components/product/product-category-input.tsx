@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import {
   QueryCategoriesHasTypeColumn,
   SqlOperator,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 interface Props {
   control: Control<any>;

@@ -6,7 +6,7 @@ import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
 import Badge from "@components/ui/badge/badge";
-import { ShopPaginator, SortOrder } from "__generated__/__types__";
+import { ShopPaginator, SortOrder } from "@common/generated-types";
 import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";

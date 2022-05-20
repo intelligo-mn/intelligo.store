@@ -10,7 +10,7 @@ import {
   OrderStatusPaginator,
   QueryOrderStatusesOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";

@@ -4,7 +4,7 @@ import {
   useModalState,
 } from "@components/ui/modal/modal.context";
 import AddressForm from "@components/address/address-form";
-import { AddressType } from "__generated__/__types__";
+import { AddressType } from "@common/generated-types";
 
 type FormValues = {
   __typename?: string;

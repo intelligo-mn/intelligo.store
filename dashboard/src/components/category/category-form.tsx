@@ -36,7 +36,7 @@ import {
   Category,
   QueryCategoriesHasTypeColumn,
   SqlOperator,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 function SelectTypes({
   control,

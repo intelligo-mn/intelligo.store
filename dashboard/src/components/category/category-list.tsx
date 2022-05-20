@@ -11,7 +11,7 @@ import {
   CategoryPaginator,
   SortOrder,
   QueryCategoriesOrderByColumn,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { useMemo, useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 import debounce from "lodash/debounce";

@@ -20,7 +20,7 @@ import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { couponValidationSchema } from "./coupon-validation-schema";
-import { AttachmentInput, Coupon, CouponType } from "__generated__/__types__";
+import { AttachmentInput, Coupon, CouponType } from "@common/generated-types";
 
 type FormValues = {
   code: string;

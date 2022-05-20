@@ -16,7 +16,7 @@ import {
   ManufacturerPaginator,
   QueryManufacturersOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { useUpdateManufacturerMutation } from "@graphql/manufacturers.graphql";
 
 type IProps = {

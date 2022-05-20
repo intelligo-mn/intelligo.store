@@ -13,7 +13,7 @@ import { useShopQuery } from "@graphql/shops.graphql";
 import { useState } from "react";
 import Alert from "@components/ui/alert";
 import { animateScroll } from "react-scroll";
-import { Withdraw } from "__generated__/__types__";
+import { Withdraw } from "@common/generated-types";
 import Label from "@components/ui/label";
 
 type FormValues = {

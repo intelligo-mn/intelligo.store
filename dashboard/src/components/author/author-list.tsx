@@ -15,7 +15,7 @@ import {
   AuthorPaginator,
   QueryAuthorsOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { useUpdateAuthorMutation } from "@graphql/authors.graphql";
 import { Switch } from "@headlessui/react";
 

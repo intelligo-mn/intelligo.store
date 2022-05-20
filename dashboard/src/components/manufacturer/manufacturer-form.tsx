@@ -22,7 +22,7 @@ import {
   AttachmentInput,
   Manufacturer,
   ShopSocialInput,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import { getIcon } from "@utils/get-icon";
 import SelectInput from "@components/ui/select-input";
 import * as socialIcons from "@components/icons/social";

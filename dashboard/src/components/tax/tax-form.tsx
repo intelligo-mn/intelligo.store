@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { taxValidationSchema } from "./tax-validation-schema";
-import { Tax } from "__generated__/__types__";
+import { Tax } from "@common/generated-types";
 
 const defaultValues = {
   name: "",

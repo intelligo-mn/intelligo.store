@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ROUTES } from "@utils/routes";
-import { QueryAuthorsOrderByColumn, SortOrder } from "__generated__/__types__";
+import { QueryAuthorsOrderByColumn, SortOrder } from "@common/generated-types";
 import AuthorList from "@components/author/author-list";
 
 export default function Authors() {

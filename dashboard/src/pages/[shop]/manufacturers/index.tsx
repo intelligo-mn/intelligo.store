@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 import {
   QueryManufacturersOrderByColumn,
   SortOrder,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 
 export default function Manufacturers() {
   const { t } = useTranslation();

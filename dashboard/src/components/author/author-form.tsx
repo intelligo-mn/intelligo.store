@@ -23,7 +23,7 @@ import {
   AttachmentInput,
   Author,
   ShopSocialInput,
-} from "__generated__/__types__";
+} from "@common/generated-types";
 import ValidationError from "@components/ui/form-validation-error";
 import { getIcon } from "@utils/get-icon";
 import SelectInput from "@components/ui/select-input";

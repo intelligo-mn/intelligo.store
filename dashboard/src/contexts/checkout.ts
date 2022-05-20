@@ -1,7 +1,7 @@
 import { CHECKOUT } from "@utils/constants";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { Address, Coupon } from "__generated__/__types__";
+import { Address, Coupon } from "@common/generated-types";
 interface DeliveryTime {
   id: string;
   title: string;

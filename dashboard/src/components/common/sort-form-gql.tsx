@@ -3,7 +3,7 @@ import Label from "@components/ui/label";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";
-import { SortOrder } from "__generated__/__types__";
+import { SortOrder } from "@common/generated-types";
 interface Props {
   className?: string;
   showLabel?: boolean;
