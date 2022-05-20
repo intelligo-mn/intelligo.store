@@ -1,0 +1,42 @@
+.progress_container {
+  @apply flex shrink-0 mb-7 last:mb-0 md:w-1/3 lg:w-1/4 2xl:w-1/5 md:mb-0 md:flex-col items-center;
+}
+
+.progress_container:only-child {
+  @apply md:mx-auto;
+}
+
+.bar {
+  @apply absolute bg-gray-100 w-1 h-double ltr:left-1/2 rtl:right-1/2 -top-1/2 ltr:-ml-px rtl:mr-px md:w-full md:h-1 md:top-1/2 ltr:md:left-0 rtl:md:right-0 md:-mt-px;
+}
+
+.progress_container:only-child .bar {
+  @apply w-1 h-full hidden md:mx-auto top-1/2 md:w-1/2 ltr:md:left-1/2 rtl:md:right-1/2 md:h-1;
+}
+
+.progress_container:first-child .bar {
+  @apply w-1 h-full top-1/2 md:w-1/2 ltr:md:left-1/2 rtl:md:right-1/2 md:h-1;
+}
+
+.progress_container:last-child .bar {
+  @apply w-1 h-full -top-1/2 md:w-1/2 md:h-1 md:top-1/2;
+}
+
+.progress_wrapper {
+  @apply relative flex items-center justify-center md:w-full md:mb-4;
+}
+
+.checked {
+}
+
+.progress_wrapper.checked .bar {
+  @apply bg-accent;
+}
+
+.status_wrapper {
+  @apply text-sm font-bold text-accent w-9 h-9 flex items-center justify-center rounded-full bg-light border border-dashed border-accent z-10;
+}
+
+.progress_wrapper.checked .status_wrapper {
+  @apply bg-accent text-light;
+}

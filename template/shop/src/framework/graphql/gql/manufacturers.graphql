@@ -1,0 +1,63 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+
+fragment ManufacturerParts on Manufacturer {
+  id
+  name
+  is_approved
+  slug
+  description
+  website
+  socials {
+    url
+    icon
+  }
+  image {
+    id
+    original
+    thumbnail
+  }
+  type {
+    id
+    name
+    slug
+  }
+  cover_image {
+    id
+    original
+    thumbnail
+  }
+}
+query Manufacturers(
+  $hasType: QueryManufacturersHasTypeWhereHasConditions
+  $text: String
+  $is_approved: Boolean
+  $orderBy: [QueryManufacturersOrderByOrderByClause!]
+  $first: Int = 15
+  $page: Int
+) {
+  manufacturers(
+    text: $text
+    orderBy: $orderBy
+    hasType: $hasType
+    is_approved: $is_approved
+    first: $first
+    page: $page
+  ) {
+    data {
+      ...ManufacturerParts
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+query TopManufacturers($limit: Int = 15) {
+  topManufacturers(limit: $limit) {
+    ...ManufacturerParts
+  }
+}
+query Manufacturer($slug: String) {
+  manufacturer(slug: $slug) {
+    ...ManufacturerParts
+  }
+}

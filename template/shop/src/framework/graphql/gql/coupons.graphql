@@ -1,0 +1,49 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+
+query Coupon($id: ID, $code: String) {
+  coupon(id: $id, code: $code) {
+    id
+    code
+    type
+    amount
+    is_valid
+  }
+}
+
+mutation VerifyCoupon($code: String!) {
+  verifyCoupon(code: $code) {
+    is_valid
+    coupon {
+      id
+      code
+      type
+      amount
+      is_valid
+    }
+  }
+}
+
+query Coupons($first: Int!, $page: Int) {
+  coupons(first: $first, page: $page) {
+    data {
+      id
+      code
+      description
+      type
+      image {
+        id
+        original
+        thumbnail
+      }
+      amount
+      active_from
+      expire_at
+      created_at
+      updated_at
+      is_valid
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}

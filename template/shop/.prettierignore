@@ -1,0 +1,10 @@
+node_modules
+.next
+public
+.husky
+next-env.d.ts
+yarn.lock
+# graphql-let
+__generated__
+*.graphql.d.ts
+*.graphqls.d.ts

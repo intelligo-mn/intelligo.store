@@ -1,0 +1,45 @@
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes pulse {
+  50% {
+    background: white;
+  }
+}
+@keyframes pulse {
+  50% {
+    background: white;
+  }
+}
+
+.loading {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  border: 0.25rem solid rgba(0, 159, 127, 0.3);
+  border-top-color: rgba(0, 159, 127, 1);
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}
+
+.simple_loading {
+  border-radius: 50%;
+  border: 3px solid rgba(0, 159, 127, 0.3);
+  border-top-color: rgba(0, 159, 127, 1);
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}

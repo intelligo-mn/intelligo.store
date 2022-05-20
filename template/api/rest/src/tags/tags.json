@@ -1,0 +1,678 @@
+[
+  {
+    "id": 1,
+    "name": "FIrst Edition",
+    "slug": "first-edition",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:40:17.000000Z",
+    "updated_at": "2021-12-08T13:40:17.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Second Edition",
+    "slug": "second-edition",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:40:37.000000Z",
+    "updated_at": "2021-12-08T13:40:37.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Third Edition",
+    "slug": "third-edition",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:40:49.000000Z",
+    "updated_at": "2021-12-08T13:40:49.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Latest Edition",
+    "slug": "latest-edition",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:41:01.000000Z",
+    "updated_at": "2021-12-08T13:41:01.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Special Edition",
+    "slug": "special-edition",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:41:18.000000Z",
+    "updated_at": "2021-12-08T13:41:18.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Cerebral",
+    "slug": "cerebral",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:41:46.000000Z",
+    "updated_at": "2021-12-08T13:41:46.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Suspense",
+    "slug": "suspense",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:42:04.000000Z",
+    "updated_at": "2021-12-08T13:42:04.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Gothic",
+    "slug": "gothic",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:42:20.000000Z",
+    "updated_at": "2021-12-08T13:42:20.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Disturbing",
+    "slug": "disturbing",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:42:56.000000Z",
+    "updated_at": "2021-12-08T14:17:28.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Romance",
+    "slug": "romance",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:43:09.000000Z",
+    "updated_at": "2021-12-08T13:43:09.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Love",
+    "slug": "love",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T13:43:17.000000Z",
+    "updated_at": "2021-12-08T13:43:17.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Moment",
+    "slug": "moment",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:16:46.000000Z",
+    "updated_at": "2021-12-08T14:17:12.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Award Winning",
+    "slug": "award-winning",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:17:42.000000Z",
+    "updated_at": "2021-12-08T14:17:42.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Scary",
+    "slug": "scary",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:18:08.000000Z",
+    "updated_at": "2021-12-08T14:18:08.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Devil",
+    "slug": "devil",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:18:18.000000Z",
+    "updated_at": "2021-12-08T14:18:18.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Cartoon",
+    "slug": "cartoon",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:18:33.000000Z",
+    "updated_at": "2021-12-08T14:18:33.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 17,
+    "name": "Children",
+    "slug": "children",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:18:43.000000Z",
+    "updated_at": "2021-12-08T14:18:43.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 18,
+    "name": "Super Hero",
+    "slug": "super-hero",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:18:53.000000Z",
+    "updated_at": "2021-12-08T14:18:53.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 19,
+    "name": "Comedy",
+    "slug": "comedy",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:03.000000Z",
+    "updated_at": "2021-12-08T14:19:03.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 20,
+    "name": "Kids Story",
+    "slug": "kids-story",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:13.000000Z",
+    "updated_at": "2021-12-08T14:19:13.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 21,
+    "name": "Sad",
+    "slug": "sad",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:22.000000Z",
+    "updated_at": "2021-12-08T14:19:22.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 22,
+    "name": "Tear",
+    "slug": "tear",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:32.000000Z",
+    "updated_at": "2021-12-08T14:19:32.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 23,
+    "name": "Space",
+    "slug": "space",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:48.000000Z",
+    "updated_at": "2021-12-08T14:19:48.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 24,
+    "name": "Fantasy",
+    "slug": "fantasy",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:19:57.000000Z",
+    "updated_at": "2021-12-08T14:19:57.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 25,
+    "name": "Touching",
+    "slug": "touching",
+    "icon": null,
+    "image": [],
+    "details": null,
+    "type_id": 8,
+    "created_at": "2021-12-08T14:20:19.000000Z",
+    "updated_at": "2021-12-08T14:20:19.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  },
+  {
+    "id": 26,
+    "name": "Combo",
+    "slug": "combo",
+    "icon": "",
+    "image": null,
+    "details": "",
+    "type_id": 8,
+    "created_at": "2022-01-04T16:32:26.000000Z",
+    "updated_at": "2022-01-04T16:37:00.000000Z",
+    "deleted_at": null,
+    "type": {
+      "id": 8,
+      "name": "Books",
+      "settings": {
+        "isHome": false,
+        "layoutType": "compact",
+        "productCard": "radon"
+      },
+      "slug": "books",
+      "icon": "BookIcon",
+      "promotional_sliders": [],
+      "created_at": "2021-12-07T16:30:18.000000Z",
+      "updated_at": "2021-12-08T13:06:56.000000Z"
+    }
+  }
+]

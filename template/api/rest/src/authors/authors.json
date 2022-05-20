@@ -1,0 +1,277 @@
+[
+  {
+    "id": 2,
+    "name": "James N. Almeida",
+    "is_approved": 1,
+    "image": {
+      "id": 1611,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1611/Author-img-800-%285%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1611/conversions/Author-img-800-%285%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1611,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1611/Author-img-800-%285%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1611/conversions/Author-img-800-%285%29-thumbnail.jpg"
+    },
+    "slug": "james-n-almeida",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1973-04-18T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-07T16:32:20.000000Z",
+    "updated_at": "2021-12-20T08:56:39.000000Z",
+    "products_count": 5
+  },
+  {
+    "id": 3,
+    "name": "Earnestine N. Pace",
+    "is_approved": 1,
+    "image": {
+      "id": 1609,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1609/Author-img-800-%2810%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1609/conversions/Author-img-800-%2810%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1609,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1609/Author-img-800-%2810%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1609/conversions/Author-img-800-%2810%29-thumbnail.jpg"
+    },
+    "slug": "earnestine-n-pace",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines respon",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1963-05-20T18:00:00.000Z",
+    "death": null,
+    "languages": "English, Russian",
+    "socials": [],
+    "created_at": "2021-12-07T16:33:36.000000Z",
+    "updated_at": "2021-12-20T08:56:20.000000Z",
+    "products_count": 6
+  },
+  {
+    "id": 4,
+    "name": "Brandon T. Trigg",
+    "is_approved": 1,
+    "image": {
+      "id": 1607,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1607/Author-img-800-%281%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1607/conversions/Author-img-800-%281%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1607,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1607/Author-img-800-%281%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1607/conversions/Author-img-800-%281%29-thumbnail.jpg"
+    },
+    "slug": "brandon-t-trigg",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1989-02-13T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-07T16:37:01.000000Z",
+    "updated_at": "2021-12-20T08:56:10.000000Z",
+    "products_count": 8
+  },
+  {
+    "id": 5,
+    "name": "Jimmy P Bullard",
+    "is_approved": 1,
+    "image": {
+      "id": 1605,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1605/Author-img-800-%286%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1605/conversions/Author-img-800-%286%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1605,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1605/Author-img-800-%286%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1605/conversions/Author-img-800-%286%29-thumbnail.jpg"
+    },
+    "slug": "jimmy-p-bullard",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1987-08-14T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T07:24:58.000000Z",
+    "updated_at": "2021-12-20T08:55:53.000000Z",
+    "products_count": 4
+  },
+  {
+    "id": 6,
+    "name": "Kelton Benjamin",
+    "is_approved": 1,
+    "image": {
+      "id": 1603,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1603/Author-img-800-%284%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1603/conversions/Author-img-800-%284%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1603,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1603/Author-img-800-%284%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1603/conversions/Author-img-800-%284%29-thumbnail.jpg"
+    },
+    "slug": "kelton-benjamin",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1975-02-15T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:21:37.000000Z",
+    "updated_at": "2021-12-20T08:55:44.000000Z",
+    "products_count": 6
+  },
+  {
+    "id": 7,
+    "name": "Sharone C Stone",
+    "is_approved": 1,
+    "image": {
+      "id": 1601,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1601/Author-img-800-%288%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1601/conversions/Author-img-800-%288%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1601,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1601/Author-img-800-%288%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1601/conversions/Author-img-800-%288%29-thumbnail.jpg"
+    },
+    "slug": "sharone-c-stone",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1985-12-16T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:22:20.000000Z",
+    "updated_at": "2021-12-20T08:55:19.000000Z",
+    "products_count": 4
+  },
+  {
+    "id": 8,
+    "name": "Jenifer Wickham",
+    "is_approved": 1,
+    "image": {
+      "id": 1599,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1599/Author-img-800-%287%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1599/conversions/Author-img-800-%287%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1599,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1599/Author-img-800-%287%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1599/conversions/Author-img-800-%287%29-thumbnail.jpg"
+    },
+    "slug": "jenifer-wickham",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1979-05-16T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:22:58.000000Z",
+    "updated_at": "2021-12-20T08:55:04.000000Z",
+    "products_count": 7
+  },
+  {
+    "id": 9,
+    "name": "Kelly White",
+    "is_approved": 1,
+    "image": {
+      "id": 1597,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1597/Author-img-800-%282%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1597/conversions/Author-img-800-%282%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1597,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1597/Author-img-800-%282%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1597/conversions/Author-img-800-%282%29-thumbnail.jpg"
+    },
+    "slug": "kelly-white",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1981-12-25T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:23:53.000000Z",
+    "updated_at": "2021-12-20T08:54:47.000000Z",
+    "products_count": 7
+  },
+  {
+    "id": 10,
+    "name": "Dorian P Price",
+    "is_approved": 1,
+    "image": {
+      "id": 1595,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1595/Author-img-800-%289%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1595/conversions/Author-img-800-%289%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1595,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1595/Author-img-800-%289%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1595/conversions/Author-img-800-%289%29-thumbnail.jpg"
+    },
+    "slug": "dorian-p-price",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1983-11-15T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:24:25.000000Z",
+    "updated_at": "2021-12-20T08:54:33.000000Z",
+    "products_count": 9
+  },
+  {
+    "id": 11,
+    "name": "Jakob Dillon",
+    "is_approved": 1,
+    "image": {
+      "id": 1593,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1593/Author-img-800-%281%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1593/conversions/Author-img-800-%281%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1593,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1593/Author-img-800-%281%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1593/conversions/Author-img-800-%281%29-thumbnail.jpg"
+    },
+    "slug": "jakob-dillon",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1975-05-04T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:25:00.000000Z",
+    "updated_at": "2021-12-20T08:53:56.000000Z",
+    "products_count": 6
+  },
+  {
+    "id": 12,
+    "name": "Kaity lerry",
+    "is_approved": 1,
+    "image": {
+      "id": 1591,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1591/Author-img-800-%283%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1591/conversions/Author-img-800-%283%29-thumbnail.jpg"
+    },
+    "cover_image": {
+      "id": 1591,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1591/Author-img-800-%283%29.jpg",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1591/conversions/Author-img-800-%283%29-thumbnail.jpg"
+    },
+    "slug": "kaity-lerry",
+    "bio": "An author is the creator or originator of any written work similar as a book or play, and is also considered a pen or minstrel. More astronomically defined, an author is\"the person who began or gave actuality to anything\"and whose authorship determines responsibility for what was created.",
+    "quote": "All writers are vain, selfish and lazy, and at the very bottom of their motives lies a mystery. Writing a book is a long, exhausting struggle, like a long bout of some painful illness. One would never undertake such a thing if one were not driven by some demon whom one can neither resist nor understand",
+    "born": "1965-06-21T18:00:00.000Z",
+    "death": null,
+    "languages": "English",
+    "socials": [],
+    "created_at": "2021-12-09T16:25:43.000000Z",
+    "updated_at": "2021-12-20T08:53:26.000000Z",
+    "products_count": 5
+  }
+]

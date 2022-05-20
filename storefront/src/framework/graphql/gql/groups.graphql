@@ -1,0 +1,44 @@
+query Groups($text: String, $orderBy: [QueryTypesOrderByOrderByClause!]) {
+  types(text: $text, orderBy: $orderBy) {
+    id
+    name
+    slug
+    icon
+    banners {
+      id
+      title
+      image {
+        id
+        original
+        thumbnail
+      }
+    }
+    settings {
+      isHome
+      layoutType
+      productCard
+    }
+  }
+}
+
+query Group($id: ID, $slug: String) {
+  type(id: $id, slug: $slug) {
+    id
+    slug
+    banners {
+      id
+      title
+      description
+      image {
+        id
+        original
+        thumbnail
+      }
+    }
+    promotional_sliders {
+      id
+      thumbnail
+      original
+    }
+  }
+}

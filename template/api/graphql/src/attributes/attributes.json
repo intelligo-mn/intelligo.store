@@ -1,0 +1,334 @@
+[
+  {
+    "id": 3,
+    "slug": "color",
+    "name": "Color",
+    "shop_id": 2,
+    "created_at": "2021-05-09T16:10:31.000000Z",
+    "updated_at": "2021-05-09T16:10:31.000000Z",
+    "values": [
+      {
+        "id": 8,
+        "attribute_id": 3,
+        "value": "Red",
+        "meta": "#ce1f6a",
+        "created_at": "2021-05-09T16:10:56.000000Z",
+        "updated_at": "2021-05-09T18:53:16.000000Z"
+      },
+      {
+        "id": 9,
+        "attribute_id": 3,
+        "value": "Blue",
+        "meta": "#344fa1",
+        "created_at": "2021-05-09T16:11:20.000000Z",
+        "updated_at": "2021-05-09T18:52:35.000000Z"
+      },
+      {
+        "id": 10,
+        "attribute_id": 3,
+        "value": "White",
+        "meta": "#e1e5ea",
+        "created_at": "2021-05-09T16:11:35.000000Z",
+        "updated_at": "2021-05-09T18:58:16.000000Z"
+      }
+    ],
+    "shop": {
+      "id": 2,
+      "owner_id": 1,
+      "name": "Clothing Shop",
+      "slug": "clothing-shop",
+      "description": "The clothing shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.",
+      "cover_image": {
+        "id": "886",
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/884/Untitled-4.jpg",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/884/conversions/Untitled-4-thumbnail.jpg"
+      },
+      "logo": {
+        "id": "896",
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/894/fashion.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/894/conversions/fashion-thumbnail.jpg"
+      },
+      "is_active": 1,
+      "address": {
+        "zip": "62656",
+        "city": "Lincoln",
+        "state": "Illinois",
+        "country": "USA",
+        "street_address": "4885  Spring Street"
+      },
+      "settings": {
+        "contact": "212901921221",
+        "socials": [
+          {
+            "url": "https://www.facebook.com/",
+            "icon": "FacebookIcon"
+          }
+        ],
+        "website": "https://redq.io/",
+        "location": {
+          "lat": 40.1576691,
+          "lng": -89.38529779999999,
+          "city": "Lincoln",
+          "state": "IL",
+          "country": "United States",
+          "formattedAddress": "IL-121, Lincoln, IL, USA"
+        }
+      },
+      "created_at": "2021-06-27T03:47:10.000000Z",
+      "updated_at": "2021-07-08T09:26:24.000000Z"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "size",
+    "name": "Size",
+    "shop_id": 2,
+    "created_at": "2021-05-09T16:10:40.000000Z",
+    "updated_at": "2021-05-09T16:10:40.000000Z",
+    "values": [
+      {
+        "id": 11,
+        "attribute_id": 4,
+        "value": "S",
+        "meta": null,
+        "created_at": "2021-05-09T16:11:43.000000Z",
+        "updated_at": "2021-05-09T16:11:43.000000Z"
+      },
+      {
+        "id": 12,
+        "attribute_id": 4,
+        "value": "M",
+        "meta": null,
+        "created_at": "2021-05-09T16:11:50.000000Z",
+        "updated_at": "2021-05-09T16:11:50.000000Z"
+      },
+      {
+        "id": 13,
+        "attribute_id": 4,
+        "value": "L",
+        "meta": null,
+        "created_at": "2021-05-09T17:45:30.000000Z",
+        "updated_at": "2021-05-09T17:45:30.000000Z"
+      },
+      {
+        "id": 14,
+        "attribute_id": 4,
+        "value": "XL",
+        "meta": null,
+        "created_at": "2021-05-09T17:45:39.000000Z",
+        "updated_at": "2021-05-09T17:45:39.000000Z"
+      }
+    ],
+    "shop": {
+      "id": 2,
+      "owner_id": 1,
+      "name": "Clothing Shop",
+      "slug": "clothing-shop",
+      "description": "The clothing shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.",
+      "cover_image": {
+        "id": "886",
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/884/Untitled-4.jpg",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/884/conversions/Untitled-4-thumbnail.jpg"
+      },
+      "logo": {
+        "id": "896",
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/894/fashion.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/894/conversions/fashion-thumbnail.jpg"
+      },
+      "is_active": 1,
+      "address": {
+        "zip": "62656",
+        "city": "Lincoln",
+        "state": "Illinois",
+        "country": "USA",
+        "street_address": "4885  Spring Street"
+      },
+      "settings": {
+        "contact": "212901921221",
+        "socials": [
+          {
+            "url": "https://www.facebook.com/",
+            "icon": "FacebookIcon"
+          }
+        ],
+        "website": "https://redq.io/",
+        "location": {
+          "lat": 40.1576691,
+          "lng": -89.38529779999999,
+          "city": "Lincoln",
+          "state": "IL",
+          "country": "United States",
+          "formattedAddress": "IL-121, Lincoln, IL, USA"
+        }
+      },
+      "created_at": "2021-06-27T03:47:10.000000Z",
+      "updated_at": "2021-07-08T09:26:24.000000Z"
+    }
+  },
+  {
+    "id": 5,
+    "slug": "language",
+    "name": "Language",
+    "shop_id": 7,
+    "created_at": "2021-12-18T12:04:40.000000Z",
+    "updated_at": "2021-12-18T12:04:40.000000Z",
+    "values": [
+      {
+        "id": 15,
+        "attribute_id": 5,
+        "value": "English",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      },
+      {
+        "id": 16,
+        "attribute_id": 5,
+        "value": "Arabic",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      },
+      {
+        "id": 17,
+        "attribute_id": 5,
+        "value": "Spanish",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      },
+      {
+        "id": 18,
+        "attribute_id": 5,
+        "value": "French",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      },
+      {
+        "id": 19,
+        "attribute_id": 5,
+        "value": "Hindi",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      },
+      {
+        "id": 20,
+        "attribute_id": 5,
+        "value": "Hebrew",
+        "meta": null,
+        "created_at": "2021-12-18T12:04:40.000000Z",
+        "updated_at": "2021-12-18T12:04:40.000000Z"
+      }
+    ],
+    "shop": {
+      "id": 7,
+      "owner_id": 1,
+      "name": "Books Shop",
+      "slug": "books-shop",
+      "description": "This is the book shop. All the publications sells their book under this book shop",
+      "cover_image": {
+        "id": 1374,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1374/Cover.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1374/conversions/Cover-thumbnail.jpg"
+      },
+      "logo": {
+        "id": 1613,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1613/Publisher-logo.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1613/conversions/Publisher-logo-thumbnail.jpg"
+      },
+      "is_active": 1,
+      "address": {
+        "zip": "8021",
+        "city": "zurich",
+        "state": "California",
+        "country": "Switzerland",
+        "street_address": "44444"
+      },
+      "settings": {
+        "contact": "0799302967",
+        "socials": [],
+        "website": null,
+        "location": []
+      },
+      "created_at": "2021-12-07T16:47:07.000000Z",
+      "updated_at": "2021-12-26T09:48:16.000000Z"
+    }
+  },
+  {
+    "id": 6,
+    "slug": "book-type",
+    "name": "Book Type",
+    "shop_id": 7,
+    "created_at": "2021-12-18T12:11:47.000000Z",
+    "updated_at": "2021-12-18T12:11:47.000000Z",
+    "values": [
+      {
+        "id": 21,
+        "attribute_id": 6,
+        "value": "Hardcover Book",
+        "meta": null,
+        "created_at": "2021-12-18T12:11:47.000000Z",
+        "updated_at": "2021-12-18T12:11:47.000000Z"
+      },
+      {
+        "id": 22,
+        "attribute_id": 6,
+        "value": "Picture Book",
+        "meta": null,
+        "created_at": "2021-12-18T12:11:47.000000Z",
+        "updated_at": "2021-12-18T12:11:47.000000Z"
+      },
+      {
+        "id": 23,
+        "attribute_id": 6,
+        "value": "Paperback Book",
+        "meta": null,
+        "created_at": "2021-12-18T12:11:47.000000Z",
+        "updated_at": "2021-12-18T12:11:47.000000Z"
+      },
+      {
+        "id": 24,
+        "attribute_id": 6,
+        "value": "PDF Book",
+        "meta": null,
+        "created_at": "2021-12-18T12:11:47.000000Z",
+        "updated_at": "2021-12-18T12:12:50.000000Z"
+      }
+    ],
+    "shop": {
+      "id": 7,
+      "owner_id": 1,
+      "name": "Books Shop",
+      "slug": "books-shop",
+      "description": "This is the book shop. All the publications sells their book under this book shop",
+      "cover_image": {
+        "id": 1374,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1374/Cover.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1374/conversions/Cover-thumbnail.jpg"
+      },
+      "logo": {
+        "id": 1613,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1613/Publisher-logo.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1613/conversions/Publisher-logo-thumbnail.jpg"
+      },
+      "is_active": 1,
+      "address": {
+        "zip": "8021",
+        "city": "zurich",
+        "state": "California",
+        "country": "Switzerland",
+        "street_address": "44444"
+      },
+      "settings": {
+        "contact": "0799302967",
+        "socials": [],
+        "website": null,
+        "location": []
+      },
+      "created_at": "2021-12-07T16:47:07.000000Z",
+      "updated_at": "2021-12-26T09:48:16.000000Z"
+    }
+  }
+]

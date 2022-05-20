@@ -1,0 +1,505 @@
+[
+  {
+    "id": 1,
+    "tracking_number": "8631",
+    "amount": 98.65,
+    "total": 98.29,
+    "delivery_fee": 8.24,
+    "discount": 3.0,
+    "status": {
+      "id": 1,
+      "name": "Delivered",
+      "serial": 4,
+      "color": "#02B290",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "25 May, 2021",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Ocean Mist Farms Green Leaf Lettuce",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-1.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Organic Spring Mix",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-2.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Freshness Guaranteed Mango Spears",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-3.png"
+        }
+      },
+      {
+        "id": 4,
+        "name": "Freshness Guaranteed Mango Spears",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-4.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "1088  Huntz Lane",
+      "country": "USA",
+      "city": "Worcester",
+      "state": "Massachusetts",
+      "zip": "01609"
+    }
+  },
+  {
+    "id": 2,
+    "tracking_number": "8632",
+    "amount": 53.9,
+    "total": 198.29,
+    "delivery_fee": 10.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "On the way",
+      "serial": 3,
+      "color": "#FED030",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "18 Mar, 2021",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Blazer And A Neck Scarf",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-5.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "2173  Patterson Road",
+      "country": "USA",
+      "city": "NEW YORK",
+      "state": "New York",
+      "zip": "10163"
+    }
+  },
+  {
+    "id": 3,
+    "tracking_number": "6504",
+    "amount": 75.08,
+    "total": 75.38,
+    "delivery_fee": 2.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "Order placed",
+      "serial": 2,
+      "color": "#A6B1BD",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "18 Aug, 2021",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Zara Shoes Green",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-8.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Maniac Red Boys",
+        "quantity": 2,
+        "price": 13.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-9.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Nike Black",
+        "quantity": 2,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-10.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "3638  Lang Avenue",
+      "country": "USA",
+      "city": "East Carbon City",
+      "state": "Utah",
+      "zip": "84520"
+    }
+  },
+  {
+    "id": 4,
+    "tracking_number": "8487",
+    "amount": 90.52,
+    "total": 95.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "Delivered",
+      "serial": 4,
+      "color": "#02B290",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "12 Feb, 2020",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Gucci Carlton UK",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-11.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Organic Spring Mix",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-12.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "4346  Adonais Way",
+      "country": "USA",
+      "city": "DARLINGTON",
+      "state": "South Carolina",
+      "zip": "29540"
+    }
+  },
+  {
+    "id": 5,
+    "tracking_number": "3045",
+    "amount": 186.98,
+    "total": 195.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "On the way",
+      "serial": 3,
+      "color": "#FED030",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "16 Jun, 2020",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Regular Fit Flannel Shirt",
+        "quantity": 2,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-14.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Organic Spring Mix",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-15.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Freshness Guaranteed Mango Spears",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-16.png"
+        }
+      },
+      {
+        "id": 4,
+        "name": "Hermes  Carlton London",
+        "quantity": 4,
+        "price": 43.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-20.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "149  Cheshire Road",
+      "country": "USA",
+      "city": "LEWISVILLE",
+      "state": "Minnesota",
+      "zip": "56060"
+    }
+  },
+  {
+    "id": 6,
+    "tracking_number": "86356",
+    "amount": 25.07,
+    "total": 25.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "On the way",
+      "serial": 3,
+      "color": "#FED030",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "25 May, 2021",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Ocean Mist Farms Green Leaf Lettuce",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-17.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "12 Eco-Friendly Clothing Brands That",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-18.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Oversized W Sweater",
+        "quantity": 2,
+        "price": 4.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-19.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "1583  Petunia Way",
+      "country": "USA",
+      "city": "Birmingham",
+      "state": "Alabama",
+      "zip": "35222"
+    }
+  },
+  {
+    "id": 7,
+    "tracking_number": "4507",
+    "amount": 86.98,
+    "total": 88.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "On the way",
+      "serial": 3,
+      "color": "#FED030",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "18 Mar, 2021",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Regular Fit Crew-neck T-shirt",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-20.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Organic Spring Mix",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-21.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Freshness Guaranteed Mango Spears",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-22.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "983  Duff Avenue",
+      "country": "Bangladesh",
+      "city": "MAITLAND",
+      "state": "Florida",
+      "zip": "32751"
+    }
+  },
+  {
+    "id": 8,
+    "tracking_number": "6504",
+    "amount": 75.08,
+    "total": 88.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "On the way",
+      "serial": 3,
+      "color": "#FED030",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "13 Jun, 2020",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "Zara Shoes Green",
+        "quantity": 1,
+        "price": 50.0,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-23.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Women Fitted Neck T-Shirt",
+        "quantity": 4,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-2.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Ocean Mist Farms Green Leaf Lettuce",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-3.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "2552  Webster Street",
+      "country": "USA",
+      "city": "VOLGA",
+      "state": "West Virginia",
+      "zip": "26238"
+    }
+  },
+  {
+    "id": 9,
+    "tracking_number": "8487",
+    "amount": 90.52,
+    "total": 88.38,
+    "delivery_fee": 8.24,
+    "discount": 5.0,
+    "status": {
+      "id": 1,
+      "name": "Order Placed",
+      "serial": 2,
+      "color": "#A6B1BD",
+      "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+      "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+    },
+    "delivery_time": "12 Dec, 2020",
+    "created_at": "Thu Jun 17 2021 16:55:45 GMT+0600",
+    "products": [
+      {
+        "id": 1,
+        "name": "NIKE Shoes",
+        "quantity": 5,
+        "price": 86.98,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-1.png"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Gucci Carlton UK",
+        "quantity": 2,
+        "price": 23.9,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-2.png"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Armani Veni Vidi Vici",
+        "quantity": 4,
+        "price": 47.35,
+        "image": {
+          "id": 1,
+          "thumbnail": "https://s3.amazonaws.com/redqteam.com/Borobazar/products/p-3.png"
+        }
+      }
+    ],
+    "shipping_address": {
+      "street_address": "813  Goff Avenue",
+      "country": "USA",
+      "city": "Grand Rapids",
+      "state": "MI",
+      "zip": "49503"
+    }
+  }
+]

@@ -1,0 +1,101 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+
+fragment ShopParts on Shop {
+  id
+  name
+  slug
+  owner_id
+  owner {
+    name
+    email
+    profile {
+      contact
+    }
+  }
+  staffs {
+    name
+    email
+  }
+  description
+  logo {
+    id
+    thumbnail
+    original
+  }
+  cover_image {
+    id
+    thumbnail
+    original
+  }
+  orders_count
+  products_count
+  is_active
+  balance {
+    admin_commission_rate
+    total_earnings
+    withdrawn_amount
+    current_balance
+    payment_info {
+      account
+      name
+      bank
+      email
+    }
+  }
+  address {
+    street_address
+    country
+    city
+    state
+    zip
+  }
+  created_at
+}
+
+query Shops(
+  $text: String
+  $orderBy: String
+  $sortedBy: String
+  $first: Int = 10
+  $page: Int
+  $is_active: Boolean
+) {
+  shops(
+    first: $first
+    page: $page
+    text: $text
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    is_active: $is_active
+  ) {
+    data {
+      ...ShopParts
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Shop($id: ID, $slug: String) {
+  shop(id: $id, slug: $slug) {
+    ...ShopParts
+    settings {
+      socials {
+        icon
+        url
+      }
+      website
+      contact
+      location {
+        lat
+        lng
+        formattedAddress
+        city
+        state
+        country
+        zip
+      }
+    }
+  }
+}

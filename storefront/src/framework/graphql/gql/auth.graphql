@@ -1,0 +1,149 @@
+mutation Login($input: LoginInput!) {
+  login(input: $input) {
+    token
+    permissions
+  }
+}
+
+mutation SocialLogin($input: SocialLoginInput!) {
+  socialLogin(input: $input) {
+    token
+    permissions
+  }
+}
+
+mutation SendOtpCode($input: OtpInput!) {
+  sendOtpCode(input: $input) {
+    id
+    message
+    success
+    provider
+    phone_number
+    is_contact_exist
+  }
+}
+
+mutation VerifyOtpCode($input: VerifyOtpInput!) {
+  verifyOtpCode(input: $input) {
+    message
+    success
+  }
+}
+
+mutation OtpLogin($input: OtpLoginInput!) {
+  otpLogin(input: $input) {
+    token
+    permissions
+  }
+}
+
+mutation Logout {
+  logout
+}
+
+mutation Register($input: RegisterInput!) {
+  register(input: $input) {
+    token
+    permissions
+  }
+}
+
+mutation ChangePassword($input: ChangePasswordInput!) {
+  changePassword(input: $input) {
+    message
+    success
+  }
+}
+
+mutation ForgetPassword($input: ForgetPasswordInput!) {
+  forgetPassword(input: $input) {
+    message
+    success
+  }
+}
+mutation VerifyForgetPasswordToken($input: VerifyForgetPasswordTokenInput!) {
+  verifyForgetPasswordToken(input: $input) {
+    message
+    success
+  }
+}
+mutation ResetPassword($input: ResetPasswordInput!) {
+  resetPassword(input: $input) {
+    message
+    success
+  }
+}
+
+mutation UpdateCustomer($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    name
+    email
+    profile {
+      id
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      bio
+      socials {
+        type
+        link
+      }
+      contact
+    }
+    address {
+      title
+      default
+      address {
+        country
+        city
+        state
+        zip
+      }
+      type
+    }
+  }
+}
+
+query Customer {
+  me {
+    id
+    name
+    email
+    profile {
+      id
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      bio
+      socials {
+        type
+        link
+      }
+      contact
+    }
+    address {
+      id
+      title
+      default
+      type
+      address {
+        country
+        city
+        state
+        zip
+        street_address
+      }
+    }
+    wallet {
+      id
+      total_points
+      points_used
+      available_points
+    }
+  }
+}

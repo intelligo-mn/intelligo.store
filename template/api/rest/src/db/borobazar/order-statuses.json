@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Order Received",
+    "serial": 1,
+    "color": "#02B290",
+    "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+    "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+  },
+  {
+    "id": 2,
+    "name": "Order placed",
+    "serial": 2,
+    "color": "#02B290",
+    "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+    "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+  },
+  {
+    "id": 3,
+    "name": "On the way",
+    "serial": 3,
+    "color": "#FED030",
+    "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+    "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+  },
+  {
+    "id": 4,
+    "name": "Delivered",
+    "serial": 4,
+    "color": "#02B290",
+    "created_at": "Thu Jun 17 2021 22:12:50 GMT+0600",
+    "updated_at": "Thu Jun 17 2021 22:12:35 GMT+0600"
+  }
+]

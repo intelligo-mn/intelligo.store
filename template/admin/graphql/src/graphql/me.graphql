@@ -1,0 +1,41 @@
+query Me {
+  me {
+    id
+    name
+    email
+    profile {
+      id
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      bio
+      socials {
+        type
+        link
+      }
+      contact
+    }
+    address {
+      id
+      title
+      default
+      type
+      address {
+        country
+        city
+        state
+        zip
+        street_address
+      }
+    }
+    wallet {
+      id
+      total_points
+      points_used
+      available_points
+    }
+    is_active
+  }
+}

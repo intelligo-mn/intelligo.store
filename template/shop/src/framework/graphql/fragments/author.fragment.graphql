@@ -1,0 +1,25 @@
+fragment AuthorParts on Author {
+  id
+  name
+  is_approved
+  slug
+  bio
+  quote
+  born
+  death
+  languages
+  socials {
+    url
+    icon
+  }
+  image {
+    id
+    original
+    thumbnail
+  }
+  cover_image {
+    id
+    original
+    thumbnail
+  }
+}

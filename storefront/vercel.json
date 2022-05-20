@@ -1,0 +1,28 @@
+{
+  "env": {
+    "FRAMEWORK_PROVIDER": "rest",
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "",
+    "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
+    "NEXT_PUBLIC_SITE_URL": "",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
+    "NEXTAUTH_URL": "",
+    "SECRET": "",
+    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_SECRET": "",
+    "NEXT_PUBLIC_ADMIN_URL": ""
+  },
+  "build": {
+    "env": {
+      "FRAMEWORK_PROVIDER": "rest",
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "",
+      "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
+      "NEXT_PUBLIC_SITE_URL": "",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
+      "NEXTAUTH_URL": "",
+      "SECRET": "",
+      "GOOGLE_CLIENT_ID": "",
+      "GOOGLE_CLIENT_SECRET": "",
+      "NEXT_PUBLIC_ADMIN_URL": ""
+    }
+  }
+}

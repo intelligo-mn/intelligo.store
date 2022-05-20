@@ -1,0 +1,50 @@
+query ShippingClasses(
+  $text: String
+  $orderBy: [QueryShippingClassesOrderByOrderByClause!]
+) {
+  shippingClasses(orderBy: $orderBy, text: $text) {
+    id
+    name
+    amount
+    is_global
+    type
+  }
+}
+
+query ShippingClass($id: ID!) {
+  shippingClass(id: $id) {
+    id
+    name
+    amount
+    is_global
+    type
+  }
+}
+
+mutation CreateShippingClass($input: CreateShippingInput!) {
+  createShipping(input: $input) {
+    id
+    name
+    amount
+    is_global
+    type
+  }
+}
+mutation UpdateShippingClass($input: UpdateShippingInput!) {
+  updateShipping(input: $input) {
+    id
+    name
+    amount
+    is_global
+    type
+  }
+}
+mutation DeleteShippingClass($id: ID!) {
+  deleteShipping(id: $id) {
+    id
+    name
+    amount
+    is_global
+    type
+  }
+}

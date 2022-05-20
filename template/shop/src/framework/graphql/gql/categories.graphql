@@ -1,0 +1,51 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+
+fragment CategoryParts on Category {
+  id
+  name
+  slug
+  details
+  parent_id
+  products_count
+  image {
+    id
+    original
+    thumbnail
+  }
+  icon
+  type {
+    id
+    name
+    slug
+  }
+}
+query Categories(
+  $orderBy: [QueryCategoriesOrderByOrderByClause!]
+  $hasType: QueryCategoriesHasTypeWhereHasConditions
+  $name: String
+  $first: Int = 2
+  $page: Int
+  $parent: ID
+) {
+  categories(
+    hasType: $hasType
+    orderBy: $orderBy
+    name: $name
+    first: $first
+    page: $page
+    parent: $parent
+  ) {
+    data {
+      ...CategoryParts
+      children {
+        ...CategoryParts
+        children {
+          ...CategoryParts
+        }
+      }
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}

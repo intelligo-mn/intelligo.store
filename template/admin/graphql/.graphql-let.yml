@@ -1,0 +1,6 @@
+schema: ${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT}
+documents: ./src/**/*.graphql
+plugins:
+  - typescript-operations
+  - typescript-react-apollo
+cacheDir: __generated__

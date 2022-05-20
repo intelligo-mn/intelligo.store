@@ -1,0 +1,74 @@
+query Settings {
+  settings {
+    id
+    options {
+      siteTitle
+      siteSubtitle
+      currency
+      useOtp
+      deliveryTime {
+        title
+        description
+      }
+      logo {
+        id
+        thumbnail
+        original
+      }
+      taxClass
+      shippingClass
+      contactDetails {
+        contact
+        website
+        socials {
+          icon
+          url
+        }
+        location {
+          lat
+          lng
+          city
+          state
+          country
+          zip
+          formattedAddress
+        }
+      }
+      seo {
+        metaTitle
+        metaDescription
+        ogTitle
+        ogDescription
+        ogImage {
+          id
+          thumbnail
+          original
+        }
+        twitterHandle
+        twitterCardType
+        metaTags
+        canonicalUrl
+      }
+      google {
+        isEnable
+        tagManagerId
+      }
+      facebook {
+        isEnable
+        appId
+        pageId
+      }
+    }
+  }
+}
+
+mutation SubscribeToNewsletter($email: String!) {
+  subscribeToNewsletter(email: $email)
+}
+
+mutation ContactUs($input: ContactInput!) {
+  contactUs(input: $input) {
+    message
+    success
+  }
+}

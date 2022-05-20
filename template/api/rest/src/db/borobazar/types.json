@@ -1,0 +1,348 @@
+[
+  {
+    "id": 1,
+    "name": "Grocery",
+    "settings": {
+      "isHome": true,
+      "layoutType": "classic",
+      "productCard": "neon"
+    },
+    "slug": "grocery",
+    "icon": "FruitsVegetable",
+    "promotional_sliders": [
+      {
+        "id": 902,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+      },
+      {
+        "id": 903,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+      },
+      {
+        "id": 904,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      },
+      {
+        "id": 905,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+      },
+      {
+        "id": 906,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+      }
+    ],
+    "created_at": "2021-03-08T07:18:25.000000Z",
+    "updated_at": "2021-08-18T17:12:14.000000Z",
+    "banners": [
+      {
+        "id": 12,
+        "type_id": 1,
+        "title": "Groceries Delivered in 90 Minute",
+        "description": "Get your healthy foods & snacks delivered at your doorsteps all day everyday",
+        "image": {
+          "id": 907,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/grocery.png",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/grocery-thumbnail.jpg"
+        },
+        "created_at": "2021-07-17T13:21:55.000000Z",
+        "updated_at": "2021-07-17T13:21:55.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Bakery",
+    "settings": {
+      "isHome": false,
+      "layoutType": "standard",
+      "productCard": "argon"
+    },
+    "slug": "bakery",
+    "icon": "Bakery",
+    "promotional_sliders": null,
+    "created_at": "2021-03-08T07:18:46.000000Z",
+    "updated_at": "2021-08-18T13:34:28.000000Z",
+    "banners": [
+      {
+        "id": 13,
+        "type_id": 2,
+        "title": "Get Your Bakery Items Delivered",
+        "description": "Get your favorite bakery items baked and delivered to your doorsteps at any time",
+        "image": {
+          "id": 908,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/bakery.jpg",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/bakery-thumbnail.jpg"
+        },
+        "created_at": "2021-07-17T13:22:34.000000Z",
+        "updated_at": "2021-07-17T13:22:34.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Makeup",
+    "settings": {
+      "isHome": false,
+      "layoutType": "classic",
+      "productCard": "helium"
+    },
+    "slug": "makeup",
+    "icon": "FacialCare",
+    "promotional_sliders": [
+      {
+        "id": 902,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+      },
+      {
+        "id": 903,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+      },
+      {
+        "id": 904,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      },
+      {
+        "id": 905,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+      },
+      {
+        "id": 906,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+      }
+    ],
+    "created_at": "2021-03-08T07:19:12.000000Z",
+    "updated_at": "2021-08-18T13:35:43.000000Z",
+    "banners": [
+      {
+        "id": 14,
+        "type_id": 3,
+        "title": "Branded & imported makeups",
+        "description": "Easiest and cheapest way to get your branded & imported makeups",
+        "image": {
+          "id": 909,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/makeup.png",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/makeup-thumbnail.jpg"
+        },
+        "created_at": "2021-07-17T13:23:05.000000Z",
+        "updated_at": "2021-07-17T13:23:05.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Bags",
+    "settings": {
+      "isHome": false,
+      "layoutType": "classic",
+      "productCard": "helium"
+    },
+    "slug": "bags",
+    "icon": "Handbag",
+    "promotional_sliders": [
+      {
+        "id": 902,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+      },
+      {
+        "id": 903,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+      },
+      {
+        "id": 904,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      },
+      {
+        "id": 905,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+      },
+      {
+        "id": 906,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+      }
+    ],
+    "created_at": "2021-03-08T07:19:28.000000Z",
+    "updated_at": "2021-08-18T13:50:45.000000Z",
+    "banners": [
+      {
+        "id": 15,
+        "type_id": 4,
+        "title": "Exclusive Branded bags",
+        "description": "Get your exclusive & branded bags delivered to you in no time",
+        "image": {
+          "id": 910,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/907/bags.png",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/907/conversions/bags-thumbnail.jpg"
+        },
+        "created_at": "2021-07-17T13:23:32.000000Z",
+        "updated_at": "2021-07-17T13:23:32.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Clothing",
+    "settings": {
+      "isHome": false,
+      "layoutType": "classic",
+      "productCard": "xenon"
+    },
+    "slug": "clothing",
+    "icon": "DressIcon",
+    "promotional_sliders": [
+      {
+        "id": 902,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+      },
+      {
+        "id": 903,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+      },
+      {
+        "id": 904,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      },
+      {
+        "id": 905,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+      },
+      {
+        "id": 906,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+      }
+    ],
+    "created_at": "2021-03-08T07:19:38.000000Z",
+    "updated_at": "2021-08-18T18:34:07.000000Z",
+    "banners": [
+      {
+        "id": 16,
+        "type_id": 5,
+        "title": "Shop your designer dresses",
+        "description": "Ready to wear dresses tailored for you online. Hurry up while stock lasts.",
+        "image": {
+          "id": 911,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/908/cloths.png",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/908/conversions/cloths-thumbnail.jpg"
+        },
+        "created_at": "2021-07-17T13:24:28.000000Z",
+        "updated_at": "2021-07-17T13:24:28.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Furniture",
+    "settings": {
+      "isHome": false,
+      "layoutType": "modern",
+      "productCard": "krypton"
+    },
+    "slug": "furniture",
+    "icon": "FurnitureIcon",
+    "promotional_sliders": [
+      {
+        "id": 902,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+      },
+      {
+        "id": 903,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+      },
+      {
+        "id": 904,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+      },
+      {
+        "id": 905,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+      },
+      {
+        "id": 906,
+        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
+        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+      }
+    ],
+    "created_at": "2021-03-08T07:19:49.000000Z",
+    "updated_at": "2021-08-18T18:33:13.000000Z",
+    "banners": [
+      {
+        "id": 18,
+        "type_id": 6,
+        "title": "Exclusive furniture on cheap price",
+        "description": "Make your house a home with our wide collection of beautiful furniture",
+        "image": {
+          "id": 922,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/922/furniture-banner-1.jpg",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/922/conversions/furniture-banner-1-thumbnail.jpg"
+        },
+        "created_at": "2021-08-18T18:45:54.000000Z",
+        "updated_at": "2021-08-18T18:45:54.000000Z"
+      },
+      {
+        "id": 19,
+        "type_id": 6,
+        "title": "Furniter 2",
+        "description": null,
+        "image": {
+          "id": 923,
+          "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/furniture-banner-2.jpg",
+          "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/923/conversions/furniture-banner-2-thumbnail.jpg"
+        },
+        "created_at": "2021-08-18T18:45:54.000000Z",
+        "updated_at": "2021-08-18T18:45:54.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Daily Needs",
+    "settings": {
+      "isHome": false,
+      "layoutType": "minimal",
+      "productCard": "neon"
+    },
+    "slug": "daily-needs",
+    "icon": "FruitsVegetable",
+    "promotional_sliders": null,
+    "created_at": "2021-09-27T14:08:07.000000Z",
+    "updated_at": "2021-09-27T14:08:07.000000Z",
+    "banners": [
+      {
+        "id": 22,
+        "type_id": 7,
+        "title": "You Deserve To Eat Fresh",
+        "description": "We source the best healthy foods for you.",
+        "image": {
+          "id": "1343",
+          "original": "http://localhost/storage/1342/daily-needs.jpg",
+          "thumbnail": "http://localhost/storage/1342/conversions/daily-needs-thumbnail.jpg"
+        },
+        "created_at": "2021-10-03T10:28:29.000000Z",
+        "updated_at": "2021-10-03T10:28:29.000000Z"
+      }
+    ]
+  }
+]

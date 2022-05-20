@@ -1,0 +1,160 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+fragment OrderParts on Order {
+  id
+  tracking_number
+  customer_contact
+  customer {
+    name
+  }
+  status {
+    id
+    name
+    color
+    serial
+  }
+  products {
+    # id
+    name
+    price
+    sale_price
+    created_at
+    image {
+      id
+      original
+      thumbnail
+    }
+    variation_options {
+      id
+      title
+    }
+    pivot {
+      variation_option_id
+      order_quantity
+      unit_price
+      subtotal
+    }
+    quantity
+    unit
+  }
+  amount
+  sales_tax
+  total
+  paid_total
+  payment_id
+  payment_gateway
+  coupon {
+    code
+    amount
+    type
+  }
+  discount
+  delivery_fee
+  delivery_time
+  coupon {
+    id
+    code
+  }
+  billing_address {
+    country
+    city
+    state
+    zip
+    street_address
+  }
+  shipping_address {
+    country
+    city
+    state
+    zip
+    street_address
+  }
+  refund {
+    id
+    title
+    amount
+    status
+  }
+  wallet_point {
+    id
+    amount
+  }
+  created_at
+  updated_at
+}
+query Orders(
+  $tracking_number: String
+  $orderBy: String
+  $sortedBy: String
+  $customer_id: ID
+  $shop_id: ID
+  $first: Int = 10
+  $page: Int
+) {
+  orders(
+    tracking_number: $tracking_number
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    customer_id: $customer_id
+    shop_id: $shop_id
+    first: $first
+    page: $page
+  ) {
+    data {
+      ...OrderParts
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Order($tracking_number: String, $id: ID) {
+  order(tracking_number: $tracking_number, id: $id) {
+    ...OrderParts
+    children {
+      ...OrderParts
+    }
+  }
+}
+
+query OrderStatuses(
+  $first: Int
+  $page: Int
+  $text: String
+  $orderBy: [QueryOrderStatusesOrderByOrderByClause!]
+) {
+  orderStatuses(first: $first, page: $page, text: $text, orderBy: $orderBy) {
+    data {
+      id
+      name
+      color
+      serial
+    }
+    paginatorInfo {
+      currentPage
+      firstItem
+      hasMorePages
+      lastItem
+      perPage
+      total
+      lastPage
+      count
+    }
+  }
+}
+
+mutation VerifyCheckout($input: CheckoutVerificationInput!) {
+  verifyCheckout(input: $input) {
+    total_tax
+    shipping_charge
+    unavailable_products
+    wallet_amount
+    wallet_currency
+  }
+}
+
+mutation CreateOrder($input: CreateOrderInput!) {
+  createOrder(input: $input) {
+    ...OrderParts
+  }
+}

@@ -1,0 +1,36 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+# import AuthorParts from '../fragments/author.fragment.graphql'
+
+query Authors(
+  $text: String
+  $is_approved: Boolean
+  $orderBy: [QueryAuthorsOrderByOrderByClause!]
+  $first: Int = 15
+  $page: Int
+) {
+  authors(
+    text: $text
+    orderBy: $orderBy
+    is_approved: $is_approved
+    first: $first
+    page: $page
+  ) {
+    data {
+      ...AuthorParts
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query TopAuthors($limit: Int = 15) {
+  topAuthors(limit: $limit) {
+    ...AuthorParts
+  }
+}
+query Author($slug: String) {
+  author(slug: $slug) {
+    ...AuthorParts
+  }
+}

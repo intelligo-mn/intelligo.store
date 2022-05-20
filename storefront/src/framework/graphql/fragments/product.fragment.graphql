@@ -1,0 +1,33 @@
+fragment ProductParts on Product {
+  id
+  name
+  slug
+  type {
+    id
+    name
+    slug
+    settings {
+      productCard
+    }
+  }
+  product_type
+  price
+  sale_price
+  min_price
+  max_price
+  quantity
+  unit
+  sku
+  is_digital
+  is_external
+  image {
+    id
+    thumbnail
+    original
+  }
+  tags {
+    id
+    name
+    slug
+  }
+}

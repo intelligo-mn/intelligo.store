@@ -1,0 +1,77 @@
+{
+  "id": 1,
+  "options": {
+    "seo": {
+      "ogImage": null,
+      "ogTitle": null,
+      "metaTags": null,
+      "metaTitle": null,
+      "canonicalUrl": null,
+      "ogDescription": null,
+      "twitterHandle": null,
+      "metaDescription": null,
+      "twitterCardType": null
+    },
+    "logo": {
+      "id": "862",
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/PickBazar.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/conversions/PickBazar-thumbnail.jpg"
+    },
+    "useOtp": false,
+    "currency": "USD",
+    "taxClass": 1,
+    "siteTitle": "Pickbazar",
+    "deliveryTime": [
+      {
+        "title": "Express Delivery",
+        "description": "90 min express delivery"
+      },
+      {
+        "title": "Morning",
+        "description": "8.00 AM - 11.00 AM"
+      },
+      {
+        "title": "Noon",
+        "description": "11.00 AM - 2.00 PM"
+      },
+      {
+        "title": "Afternoon",
+        "description": "2.00 PM - 5.00 PM"
+      },
+      {
+        "title": "Evening",
+        "description": "5.00 PM - 8.00 PM"
+      }
+    ],
+    "siteSubtitle": "Your next ecommerce",
+    "shippingClass": 1,
+    "contactDetails": {
+      "contact": "+129290122122",
+      "socials": [
+        {
+          "url": "https://www.facebook.com/",
+          "icon": "FacebookIcon"
+        },
+        {
+          "url": "https://twitter.com/home",
+          "icon": "TwitterIcon"
+        },
+        {
+          "url": "https://www.instagram.com/",
+          "icon": "InstagramIcon"
+        }
+      ],
+      "website": "https://redq.io",
+      "location": {
+        "lat": 42.9585979,
+        "lng": -76.90872019999999,
+        "state": "NY",
+        "country": "United States",
+        "formattedAddress": "NY State Thruway, New York, USA"
+      }
+    },
+    "minimumOrderAmount": 0
+  },
+  "created_at": "2021-03-24T15:30:18.000000Z",
+  "updated_at": "2021-08-18T10:45:51.000000Z"
+}

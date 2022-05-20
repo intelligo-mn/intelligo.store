@@ -1,0 +1,191 @@
+# import ProductParts from '../fragments/product.fragment.graphql'
+# import AuthorParts from '../fragments/author.fragment.graphql'
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+query Products(
+  $orderBy: [QueryProductsOrderByOrderByClause!]
+  $text: String
+  $status: String
+  $hasType: QueryProductsHasTypeWhereHasConditions
+  $hasCategories: QueryProductsHasCategoriesWhereHasConditions
+  $hasAuthor: QueryProductsHasAuthorWhereHasConditions
+  $hasManufacturer: QueryProductsHasManufacturerWhereHasConditions
+  $hasTags: QueryProductsHasTagsWhereHasConditions
+  $first: Int
+  $page: Int
+  $shop_id: ID
+  $price: PriceRange
+  $max_price: PriceRange
+  $min_price: PriceRange
+) {
+  products(
+    orderBy: $orderBy
+    text: $text
+    status: $status
+    hasType: $hasType
+    hasCategories: $hasCategories
+    hasAuthor: $hasAuthor
+    hasManufacturer: $hasManufacturer
+    hasTags: $hasTags
+    first: $first
+    page: $page
+    shop_id: $shop_id
+    price: $price
+    max_price: $max_price
+    min_price: $min_price
+  ) {
+    data {
+      ...ProductParts
+      author {
+        name
+        slug
+        id
+      }
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Product($id: ID, $slug: String) {
+  product(id: $id, slug: $slug) {
+    ...ProductParts
+    author {
+      ...AuthorParts
+    }
+    manufacturer {
+      id
+      name
+      slug
+    }
+    shop_id
+    shop {
+      name
+      slug
+    }
+    description
+    categories {
+      id
+      name
+      slug
+      children {
+        id
+        name
+        slug
+      }
+    }
+    gallery {
+      id
+      thumbnail
+      original
+    }
+    variations {
+      id
+      value
+      meta
+      attribute {
+        id
+        name
+        slug
+      }
+    }
+    variation_options {
+      id
+      title
+      price
+      sale_price
+      quantity
+      is_disable
+      image {
+        id
+        thumbnail
+        original
+      }
+      options {
+        name
+        value
+      }
+    }
+    author {
+      id
+      name
+      slug
+    }
+    related_products(limit: 8) {
+      ...ProductParts
+    }
+  }
+}
+query PopularProducts($limit: Int, $type_slug: String, $range: Int) {
+  popularProducts(limit: $limit, type_slug: $type_slug, range: $range) {
+    ...ProductParts
+    author {
+      name
+      slug
+      id
+    }
+  }
+}
+# query DownloadableProducts($first: Int = 15, $page: Int) {
+#   downloads(first: $first, page: $page) {
+#     data {
+#       id
+#       purchase_key
+#       digital_file_id
+#       customer_id
+#     }
+#     paginatorInfo {
+#       ...PaginatorParts
+#     }
+#   }
+# }
+
+query DownloadableProducts($first: Int = 15, $page: Int) {
+  downloads(first: $first, page: $page) {
+    data {
+      file {
+        fileable {
+          __typename
+          ... on Product {
+            name
+            slug
+            image {
+              id
+              thumbnail
+              original
+            }
+            shop {
+              name
+              slug
+            }
+          }
+          ... on Variation {
+            title
+            product {
+              name
+              image {
+                id
+                thumbnail
+                original
+              }
+            }
+            image {
+              id
+            }
+          }
+        }
+      }
+      id
+      purchase_key
+      digital_file_id
+      created_at
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+mutation GenerateDownloadableUrl($input: GenerateDownloadableUrlInput!) {
+  generateDownloadableUrl(input: $input)
+}

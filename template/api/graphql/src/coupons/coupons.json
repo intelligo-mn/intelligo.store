@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "code": "EID2",
+    "description": null,
+    "image": {
+      "id": 933,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/933/2x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/933/conversions/2x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 2,
+    "active_from": "2021-03-10T21:48:15.000Z",
+    "expire_at": "2024-07-27T21:48:15.000Z",
+    "created_at": "2021-03-10T21:49:46.000000Z",
+    "updated_at": "2021-08-19T04:00:12.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 2,
+    "code": "FOO",
+    "description": null,
+    "image": {
+      "id": 932,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/932/8x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/932/conversions/8x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 8,
+    "active_from": "2021-03-27T05:33:22.000Z",
+    "expire_at": "2024-05-26T05:33:22.000Z",
+    "created_at": "2021-03-27T05:34:30.000000Z",
+    "updated_at": "2021-08-19T04:00:00.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 3,
+    "code": "EID12",
+    "description": null,
+    "image": {
+      "id": 931,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/931/12x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/931/conversions/12x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 12,
+    "active_from": "2021-03-27T20:48:28.000Z",
+    "expire_at": "2024-05-26T20:48:28.000Z",
+    "created_at": "2021-03-27T20:49:30.000000Z",
+    "updated_at": "2021-08-19T03:59:49.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 4,
+    "code": "HELLO15",
+    "description": null,
+    "image": {
+      "id": 930,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/930/15x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/930/conversions/15x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 15,
+    "active_from": "2021-03-27T20:48:28.000Z",
+    "expire_at": "2024-04-23T20:48:28.000Z",
+    "created_at": "2021-03-27T20:53:35.000000Z",
+    "updated_at": "2021-08-19T03:59:38.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 5,
+    "code": "BAZAR18",
+    "description": null,
+    "image": {
+      "id": 929,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/929/18x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/929/conversions/18x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 18,
+    "active_from": "2021-03-27T20:55:49.000Z",
+    "expire_at": "2024-04-15T20:55:49.000Z",
+    "created_at": "2021-03-27T20:56:23.000000Z",
+    "updated_at": "2021-08-19T03:59:29.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 6,
+    "code": "BAZAR20",
+    "description": null,
+    "image": {
+      "id": 928,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/928/20x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/928/conversions/20x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 20,
+    "active_from": "2021-03-27T20:55:49.000Z",
+    "expire_at": "2024-04-26T20:55:49.000Z",
+    "created_at": "2021-03-27T21:00:04.000000Z",
+    "updated_at": "2021-08-19T03:59:18.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 7,
+    "code": "BAZAR10",
+    "description": null,
+    "image": {
+      "id": 927,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/927/10x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/927/conversions/10x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 10,
+    "active_from": "2021-03-28T05:46:42.000Z",
+    "expire_at": "2025-05-26T05:46:42.000Z",
+    "created_at": "2021-03-28T05:47:25.000000Z",
+    "updated_at": "2021-08-19T03:59:09.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 8,
+    "code": "OFF6",
+    "description": null,
+    "image": {
+      "id": 926,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/926/6x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/926/conversions/6x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 6,
+    "active_from": "2021-03-28T05:46:42.000Z",
+    "expire_at": "2024-07-14T05:46:42.000Z",
+    "created_at": "2021-03-28T05:47:55.000000Z",
+    "updated_at": "2021-08-19T03:58:43.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 9,
+    "code": "5OFF",
+    "description": null,
+    "image": {
+      "id": 925,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/925/5x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/925/conversions/5x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 5,
+    "active_from": "2021-03-28T05:46:42.000Z",
+    "expire_at": "2024-06-23T05:46:42.000Z",
+    "created_at": "2021-03-28T05:48:16.000000Z",
+    "updated_at": "2021-08-19T03:58:34.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  },
+  {
+    "id": 10,
+    "code": "4OFF",
+    "description": null,
+    "image": {
+      "id": 924,
+      "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/924/4x2x.png",
+      "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/924/conversions/4x2x-thumbnail.jpg"
+    },
+    "type": "fixed",
+    "amount": 4,
+    "active_from": "2021-03-28T05:46:42.000Z",
+    "expire_at": "2024-03-28T05:46:42.000Z",
+    "created_at": "2021-03-28T05:48:39.000000Z",
+    "updated_at": "2021-08-19T03:55:53.000000Z",
+    "deleted_at": null,
+    "is_valid": true
+  }
+]

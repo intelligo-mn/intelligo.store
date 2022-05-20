@@ -1,0 +1,76 @@
+# import PaginatorParts from './paginator.fragment.graphql'
+fragment ManufacturerPart on Manufacturer {
+  id
+  name
+  slug
+  description
+  is_approved
+  website
+  socials {
+    icon
+    url
+  }
+  image {
+    id
+    original
+    thumbnail
+  }
+  cover_image {
+    id
+    original
+    thumbnail
+  }
+  type {
+    id
+    name
+    slug
+  }
+}
+query Manufacturers(
+  $text: String
+  $is_approved: Boolean
+  $hasType: QueryManufacturersHasTypeWhereHasConditions
+  $orderBy: [QueryManufacturersOrderByOrderByClause!]
+  $first: Int = 15
+  $page: Int
+) {
+  manufacturers(
+    first: $first
+    page: $page
+    is_approved: $is_approved
+    hasType: $hasType
+    orderBy: $orderBy
+    text: $text
+  ) {
+    data {
+      ...ManufacturerPart
+      products_count
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+query Manufacturer($slug: String) {
+  manufacturer(slug: $slug) {
+    ...ManufacturerPart
+  }
+}
+
+mutation CreateManufacturer($input: CreateManufacturerInput!) {
+  createManufacturer(input: $input) {
+    ...ManufacturerPart
+  }
+}
+
+mutation UpdateManufacturer($input: UpdateManufacturerInput!) {
+  updateManufacturer(input: $input) {
+    ...ManufacturerPart
+  }
+}
+mutation DeleteManufacturer($id: ID!) {
+  deleteManufacturer(id: $id) {
+    ...ManufacturerPart
+  }
+}

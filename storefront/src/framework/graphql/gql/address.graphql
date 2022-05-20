@@ -1,0 +1,15 @@
+mutation DeleteAddress($id: ID!) {
+  deleteAddress(id: $id) {
+    id
+    title
+    type
+    default
+    address {
+      country
+      city
+      state
+      zip
+      street_address
+    }
+  }
+}

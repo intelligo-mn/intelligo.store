@@ -1,0 +1,26 @@
+{
+  "name": "marvel-admin",
+  "version": "7.0.0",
+  "private": true,
+  "repository": "git@github.com:tarex/marvel-admin.git",
+  "author": "RedQ, Inc <redqteam@gmail.com>",
+  "workspaces": [
+    "graphql",
+    "rest"
+  ],
+  "scripts": {
+    "clean": "yarn workspaces run rimraf \"{.next,node_modules,__generated__,.cache,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\" && rimraf node_modules",
+    "gql-clean": "yarn workspaces run rimraf \"{__generated__,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\"",
+    "dev:rest": "yarn workspace @marvel/admin-rest dev",
+    "build:rest": "yarn workspace @marvel/admin-rest build",
+    "start:rest": "yarn workspace @marvel/admin-rest start",
+    "dev:gql": "yarn workspace @marvel/admin-graphql dev",
+    "build:gql": "yarn workspace @marvel/admin-graphql build",
+    "start:gql": "yarn workspace @marvel/admin-graphql start"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2"
+  },
+  "license": "LICENSE"
+}

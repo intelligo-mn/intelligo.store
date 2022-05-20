@@ -1,0 +1,50 @@
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    name
+    email
+    permissions {
+      id
+      name
+    }
+    profile {
+      avatar {
+        id
+        thumbnail
+        original
+      }
+      contact
+      bio
+      socials {
+        type
+        link
+      }
+    }
+    address {
+      title
+      default
+      type
+      address {
+        street_address
+        country
+        city
+        state
+        zip
+      }
+    }
+    wallet {
+      id
+      total_points
+      points_used
+      available_points
+    }
+  }
+}
+
+mutation AddPoints($input: AddPointsInput!) {
+  addPoints(input: $input)
+}
+
+mutation MakeOrRevokeAdmin($input: MakeOrRevokeAdminInput!) {
+  makeOrRevokeAdmin(input: $input)
+}

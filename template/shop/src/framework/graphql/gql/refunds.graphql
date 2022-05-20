@@ -1,0 +1,56 @@
+# import PaginatorParts from '../fragments/paginator.fragment.graphql'
+
+query Refunds(
+  $orderBy: String
+  $sortedBy: String
+  $shop_id: Int
+  $order_id: Int
+  $customer_id: Int
+  $first: Int = 10
+  $page: Int
+) {
+  refunds(
+    orderBy: $orderBy
+    sortedBy: $sortedBy
+    shop_id: $shop_id
+    order_id: $order_id
+    customer_id: $customer_id
+    first: $first
+    page: $page
+  ) {
+    data {
+      id
+      title
+      amount
+      status
+      order {
+        # id
+        tracking_number
+        # amount
+        # payment_gateway
+      }
+      # customer {
+      #   id
+      #   email
+      # }
+      created_at
+      updated_at
+    }
+    paginatorInfo {
+      ...PaginatorParts
+    }
+  }
+}
+
+mutation CreateRefund($input: CreateRefundInput!) {
+  createRefund(input: $input) {
+    id
+    title
+    description
+    images {
+      thumbnail
+      original
+      id
+    }
+  }
+}
