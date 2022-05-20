@@ -3,7 +3,6 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { useDeleteCategoryMutation } from "@graphql/categories.graphql";
 import { getErrorMessage } from "@utils/form-error";
 
 const CategoryDeleteView = () => {
