@@ -46,7 +46,7 @@ const AddressType = {
   "SHIPPING": "SHIPPING"
 };
 
-const { Withdraw, Banner, Type, Category, Entity, Tag, Balance, Organization, Attribute, Order, User, Shipping, Profile, EntityVariation, Coupon, Contact, Address, EntityCategory, UserOrganization, AttributeValue, Attachment, TypeSettings, PaymentInfo, UserAddress, Social, EntityVariationOption } = initSchema(schema);
+const { Withdraw, Banner, Type, Category, Entity, Tag, Balance, Organization, Attribute, Order, User, Shipping, EntityVariation, Coupon, Contact, Address, EntityCategory, UserOrganization, Profile, Attachment, Social, AttributeValue, TypeSettings, PaymentInfo, UserAddress, EntityVariationOption } = initSchema(schema);
 
 export {
   Withdraw,
@@ -61,7 +61,6 @@ export {
   Order,
   User,
   Shipping,
-  Profile,
   EntityVariation,
   Coupon,
   Contact,
@@ -75,11 +74,12 @@ export {
   ShippingType,
   CouponType,
   AddressType,
-  AttributeValue,
+  Profile,
   Attachment,
+  Social,
+  AttributeValue,
   TypeSettings,
   PaymentInfo,
   UserAddress,
-  Social,
   EntityVariationOption
 };

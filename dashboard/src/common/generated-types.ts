@@ -636,6 +636,7 @@ export type User = {
   orders?: ModelOrderConnection | null,
   organizationID: string,
   organizations?: ModelUserOrganizationConnection | null,
+  profile?: Profile | null,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -662,6 +663,21 @@ export type UserOrganization = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+};
+
+export type Profile = {
+  __typename: "Profile",
+  id?: string | null,
+  avatar?: Attachment | null,
+  bio?: string | null,
+  socials?:  Array<Social > | null,
+  contact?: string | null,
+};
+
+export type Social = {
+  __typename: "Social",
+  type?: string | null,
+  link?: string | null,
 };
 
 export type ModelWithdrawConnection = {
@@ -745,62 +761,6 @@ export type UpdateShippingInput = {
 };
 
 export type DeleteShippingInput = {
-  id: string,
-  _version?: number | null,
-};
-
-export type CreateProfileInput = {
-  id?: string | null,
-  avatar?: AttachmentInput | null,
-  bio?: string | null,
-  socials?: Array< SocialInput | null > | null,
-  contact?: string | null,
-  _version?: number | null,
-};
-
-export type SocialInput = {
-  type?: string | null,
-  link?: string | null,
-};
-
-export type ModelProfileConditionInput = {
-  bio?: ModelStringInput | null,
-  contact?: ModelStringInput | null,
-  and?: Array< ModelProfileConditionInput | null > | null,
-  or?: Array< ModelProfileConditionInput | null > | null,
-  not?: ModelProfileConditionInput | null,
-};
-
-export type Profile = {
-  __typename: "Profile",
-  id: string,
-  avatar?: Attachment | null,
-  bio?: string | null,
-  socials?:  Array<Social | null > | null,
-  contact?: string | null,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type Social = {
-  __typename: "Social",
-  type?: string | null,
-  link?: string | null,
-};
-
-export type UpdateProfileInput = {
-  id: string,
-  avatar?: AttachmentInput | null,
-  bio?: string | null,
-  socials?: Array< SocialInput | null > | null,
-  contact?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteProfileInput = {
   id: string,
   _version?: number | null,
 };
@@ -1267,7 +1227,21 @@ export type CreateUserInput = {
   email?: string | null,
   isActiive?: string | null,
   organizationID: string,
+  profile?: ProfileInput | null,
   _version?: number | null,
+};
+
+export type ProfileInput = {
+  id?: string | null,
+  avatar?: AttachmentInput | null,
+  bio?: string | null,
+  socials?: Array< SocialInput > | null,
+  contact?: string | null,
+};
+
+export type SocialInput = {
+  type?: string | null,
+  link?: string | null,
 };
 
 export type ModelUserConditionInput = {
@@ -1286,6 +1260,7 @@ export type UpdateUserInput = {
   email?: string | null,
   isActiive?: string | null,
   organizationID?: string | null,
+  profile?: ProfileInput | null,
   _version?: number | null,
 };
 
@@ -1511,22 +1486,6 @@ export type ModelShippingFilterInput = {
 export type ModelShippingConnection = {
   __typename: "ModelShippingConnection",
   items:  Array<Shipping | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type ModelProfileFilterInput = {
-  id?: ModelIDInput | null,
-  bio?: ModelStringInput | null,
-  contact?: ModelStringInput | null,
-  and?: Array< ModelProfileFilterInput | null > | null,
-  or?: Array< ModelProfileFilterInput | null > | null,
-  not?: ModelProfileFilterInput | null,
-};
-
-export type ModelProfileConnection = {
-  __typename: "ModelProfileConnection",
-  items:  Array<Profile | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
@@ -3062,6 +3021,22 @@ export type CreateOrganizationMutation = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3210,6 +3185,12 @@ export type CreateOrganizationMutation = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -3475,6 +3456,22 @@ export type UpdateOrganizationMutation = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3623,6 +3620,12 @@ export type UpdateOrganizationMutation = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -3888,6 +3891,22 @@ export type DeleteOrganizationMutation = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -4037,6 +4056,12 @@ export type DeleteOrganizationMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4116,93 +4141,6 @@ export type DeleteShippingMutation = {
     amount?: string | null,
     isGlobal?: string | null,
     type?: ShippingType | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type CreateProfileMutationVariables = {
-  input: CreateProfileInput,
-  condition?: ModelProfileConditionInput | null,
-};
-
-export type CreateProfileMutation = {
-  createProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type UpdateProfileMutationVariables = {
-  input: UpdateProfileInput,
-  condition?: ModelProfileConditionInput | null,
-};
-
-export type UpdateProfileMutation = {
-  updateProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type DeleteProfileMutationVariables = {
-  input: DeleteProfileInput,
-  condition?: ModelProfileConditionInput | null,
-};
-
-export type DeleteProfileMutation = {
-  deleteProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -5983,6 +5921,12 @@ export type CreateUserMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5997,6 +5941,22 @@ export type CreateUserMutation = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -6194,6 +6154,12 @@ export type UpdateUserMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6208,6 +6174,22 @@ export type UpdateUserMutation = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -6405,6 +6387,12 @@ export type DeleteUserMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6419,6 +6407,22 @@ export type DeleteUserMutation = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -6689,6 +6693,12 @@ export type CreateUserOrganizationMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6884,6 +6894,22 @@ export type CreateUserOrganizationMutation = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -7073,6 +7099,12 @@ export type UpdateUserOrganizationMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7268,6 +7300,22 @@ export type UpdateUserOrganizationMutation = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -7457,6 +7505,12 @@ export type DeleteUserOrganizationMutation = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7652,6 +7706,22 @@ export type DeleteUserOrganizationMutation = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -9553,6 +9623,22 @@ export type GetOrganizationQuery = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -9701,6 +9787,12 @@ export type GetOrganizationQuery = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -9897,6 +9989,12 @@ export type ListOrganizationsQuery = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -10176,6 +10274,12 @@ export type SyncOrganizationsQuery = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10345,105 +10449,6 @@ export type SyncShippingsQuery = {
       amount?: string | null,
       isGlobal?: string | null,
       type?: ShippingType | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetProfileQueryVariables = {
-  id: string,
-};
-
-export type GetProfileQuery = {
-  getProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListProfilesQueryVariables = {
-  filter?: ModelProfileFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListProfilesQuery = {
-  listProfiles?:  {
-    __typename: "ModelProfileConnection",
-    items:  Array< {
-      __typename: "Profile",
-      id: string,
-      avatar?:  {
-        __typename: "Attachment",
-        thumbnail?: string | null,
-        original?: string | null,
-      } | null,
-      bio?: string | null,
-      socials?:  Array< {
-        __typename: "Social",
-        type?: string | null,
-        link?: string | null,
-      } | null > | null,
-      contact?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncProfilesQueryVariables = {
-  filter?: ModelProfileFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProfilesQuery = {
-  syncProfiles?:  {
-    __typename: "ModelProfileConnection",
-    items:  Array< {
-      __typename: "Profile",
-      id: string,
-      avatar?:  {
-        __typename: "Attachment",
-        thumbnail?: string | null,
-        original?: string | null,
-      } | null,
-      bio?: string | null,
-      socials?:  Array< {
-        __typename: "Social",
-        type?: string | null,
-        link?: string | null,
-      } | null > | null,
-      contact?: string | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -12128,6 +12133,12 @@ export type GetUserQuery = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12142,6 +12153,22 @@ export type GetUserQuery = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -12255,6 +12282,22 @@ export type ListUsersQuery = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -12372,6 +12415,22 @@ export type SyncUsersQuery = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -12656,6 +12715,12 @@ export type GetUserOrganizationQuery = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12851,6 +12916,22 @@ export type GetUserOrganizationQuery = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -13109,6 +13190,22 @@ export type ListUserOrganizationsQuery = {
           } | null >,
           nextToken?: string | null,
           startedAt?: number | null,
+        } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
         } | null,
         createdAt: string,
         updatedAt: string,
@@ -13371,6 +13468,22 @@ export type SyncUserOrganizationsQuery = {
           } | null >,
           nextToken?: string | null,
           startedAt?: number | null,
+        } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
         } | null,
         createdAt: string,
         updatedAt: string,
@@ -15098,6 +15211,22 @@ export type OnCreateOrganizationSubscription = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -15246,6 +15375,12 @@ export type OnCreateOrganizationSubscription = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -15506,6 +15641,22 @@ export type OnUpdateOrganizationSubscription = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -15654,6 +15805,12 @@ export type OnUpdateOrganizationSubscription = {
             __typename: "ModelUserOrganizationConnection",
             nextToken?: string | null,
             startedAt?: number | null,
+          } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
           } | null,
           createdAt: string,
           updatedAt: string,
@@ -15914,6 +16071,22 @@ export type OnDeleteOrganizationSubscription = {
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
+        profile?:  {
+          __typename: "Profile",
+          id?: string | null,
+          avatar?:  {
+            __typename: "Attachment",
+            thumbnail?: string | null,
+            original?: string | null,
+          } | null,
+          bio?: string | null,
+          socials?:  Array< {
+            __typename: "Social",
+            type?: string | null,
+            link?: string | null,
+          } > | null,
+          contact?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -16063,6 +16236,12 @@ export type OnDeleteOrganizationSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -16127,78 +16306,6 @@ export type OnDeleteShippingSubscription = {
     amount?: string | null,
     isGlobal?: string | null,
     type?: ShippingType | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnCreateProfileSubscription = {
-  onCreateProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnUpdateProfileSubscription = {
-  onUpdateProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnDeleteProfileSubscription = {
-  onDeleteProfile?:  {
-    __typename: "Profile",
-    id: string,
-    avatar?:  {
-      __typename: "Attachment",
-      thumbnail?: string | null,
-      original?: string | null,
-    } | null,
-    bio?: string | null,
-    socials?:  Array< {
-      __typename: "Social",
-      type?: string | null,
-      link?: string | null,
-    } | null > | null,
-    contact?: string | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -17869,6 +17976,12 @@ export type OnCreateUserSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17883,6 +17996,22 @@ export type OnCreateUserSubscription = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -18075,6 +18204,12 @@ export type OnUpdateUserSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18089,6 +18224,22 @@ export type OnUpdateUserSubscription = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -18281,6 +18432,12 @@ export type OnDeleteUserSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18295,6 +18452,22 @@ export type OnDeleteUserSubscription = {
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id?: string | null,
+      avatar?:  {
+        __typename: "Attachment",
+        thumbnail?: string | null,
+        original?: string | null,
+      } | null,
+      bio?: string | null,
+      socials?:  Array< {
+        __typename: "Social",
+        type?: string | null,
+        link?: string | null,
+      } > | null,
+      contact?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -18557,6 +18730,12 @@ export type OnCreateUserOrganizationSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18752,6 +18931,22 @@ export type OnCreateUserOrganizationSubscription = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -18936,6 +19131,12 @@ export type OnUpdateUserOrganizationSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19131,6 +19332,22 @@ export type OnUpdateUserOrganizationSubscription = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -19315,6 +19532,12 @@ export type OnDeleteUserOrganizationSubscription = {
             nextToken?: string | null,
             startedAt?: number | null,
           } | null,
+          profile?:  {
+            __typename: "Profile",
+            id?: string | null,
+            bio?: string | null,
+            contact?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19510,6 +19733,22 @@ export type OnDeleteUserOrganizationSubscription = {
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id?: string | null,
+        avatar?:  {
+          __typename: "Attachment",
+          thumbnail?: string | null,
+          original?: string | null,
+        } | null,
+        bio?: string | null,
+        socials?:  Array< {
+          __typename: "Social",
+          type?: string | null,
+          link?: string | null,
+        } > | null,
+        contact?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,

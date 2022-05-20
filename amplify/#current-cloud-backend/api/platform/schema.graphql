@@ -1,3 +1,11 @@
+type Profile {
+  id: String
+  avatar: Attachment
+  bio: String
+  socials: [Social!]
+  contact: String
+}
+
 type AttributeValue {
   id: Int
   value: String
@@ -112,14 +120,6 @@ type Shipping @model @auth(rules: [{allow: public}]) {
 type Social {
   type: String
   link: String
-}
-
-type Profile @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  avatar: Attachment
-  bio: String
-  socials: [Social]
-  contact: String
 }
 
 type EntityVariationOption {
@@ -261,6 +261,7 @@ type User @model @auth(rules: [{allow: public}]) {
   orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
   organizationID: ID! @index(name: "byOrganization")
   organizations: [Organization] @manyToMany(relationName: "UserOrganization")
+  profile: Profile
 }
 
 type UserAddress {

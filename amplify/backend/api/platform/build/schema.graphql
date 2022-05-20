@@ -1,4 +1,12 @@
 
+type Profile @aws_iam @aws_api_key {
+  id: String
+  avatar: Attachment
+  bio: String
+  socials: [Social!]
+  contact: String
+}
+
 type AttributeValue @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: Int
   value: String
@@ -149,19 +157,6 @@ type Shipping @aws_iam @aws_api_key {
 type Social @aws_iam @aws_api_key {
   type: String
   link: String
-}
-
-type Profile @aws_iam @aws_api_key {
-  id: ID!
-  avatar: Attachment
-  bio: String
-  socials: [Social]
-  contact: String
-  createdAt: AWSDateTime!
-  updatedAt: AWSDateTime!
-  _version: Int!
-  _deleted: Boolean
-  _lastChangedAt: AWSTimestamp!
 }
 
 type EntityVariationOption @aws_iam @aws_api_key {
@@ -338,6 +333,7 @@ type User @aws_iam @aws_api_key {
   orders(filter: ModelOrderFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelOrderConnection
   organizationID: ID!
   organizations(filter: ModelUserOrganizationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserOrganizationConnection
+  profile: Profile
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -535,9 +531,6 @@ type Query {
   getShipping(id: ID!): Shipping @aws_api_key @aws_iam
   listShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String): ModelShippingConnection @aws_api_key @aws_iam
   syncShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelShippingConnection @aws_api_key @aws_iam
-  getProfile(id: ID!): Profile @aws_api_key @aws_iam
-  listProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String): ModelProfileConnection @aws_api_key @aws_iam
-  syncProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProfileConnection @aws_api_key @aws_iam
   getEntityVariation(id: ID!): EntityVariation @aws_api_key @aws_iam
   listEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String): ModelEntityVariationConnection @aws_api_key @aws_iam
   syncEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityVariationConnection @aws_api_key @aws_iam
@@ -634,9 +627,6 @@ type Mutation {
   createShipping(input: CreateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
   updateShipping(input: UpdateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
   deleteShipping(input: DeleteShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
-  createProfile(input: CreateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
-  updateProfile(input: UpdateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
-  deleteProfile(input: DeleteProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
   createEntityVariation(input: CreateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
   updateEntityVariation(input: UpdateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
   deleteEntityVariation(input: DeleteEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
@@ -694,9 +684,6 @@ type Subscription {
   onCreateShipping: Shipping @aws_subscribe(mutations: ["createShipping"]) @aws_api_key @aws_iam
   onUpdateShipping: Shipping @aws_subscribe(mutations: ["updateShipping"]) @aws_api_key @aws_iam
   onDeleteShipping: Shipping @aws_subscribe(mutations: ["deleteShipping"]) @aws_api_key @aws_iam
-  onCreateProfile: Profile @aws_subscribe(mutations: ["createProfile"]) @aws_api_key @aws_iam
-  onUpdateProfile: Profile @aws_subscribe(mutations: ["updateProfile"]) @aws_api_key @aws_iam
-  onDeleteProfile: Profile @aws_subscribe(mutations: ["deleteProfile"]) @aws_api_key @aws_iam
   onCreateEntityVariation: EntityVariation @aws_subscribe(mutations: ["createEntityVariation"]) @aws_api_key @aws_iam
   onUpdateEntityVariation: EntityVariation @aws_subscribe(mutations: ["updateEntityVariation"]) @aws_api_key @aws_iam
   onDeleteEntityVariation: EntityVariation @aws_subscribe(mutations: ["deleteEntityVariation"]) @aws_api_key @aws_iam
@@ -1081,57 +1068,6 @@ input UpdateShippingInput {
 }
 
 input DeleteShippingInput {
-  id: ID!
-  _version: Int
-}
-
-input SocialInput {
-  type: String
-  link: String
-}
-
-type ModelProfileConnection @aws_api_key @aws_iam {
-  items: [Profile]!
-  nextToken: String
-  startedAt: AWSTimestamp
-}
-
-input ModelProfileFilterInput {
-  id: ModelIDInput
-  bio: ModelStringInput
-  contact: ModelStringInput
-  and: [ModelProfileFilterInput]
-  or: [ModelProfileFilterInput]
-  not: ModelProfileFilterInput
-}
-
-input ModelProfileConditionInput {
-  bio: ModelStringInput
-  contact: ModelStringInput
-  and: [ModelProfileConditionInput]
-  or: [ModelProfileConditionInput]
-  not: ModelProfileConditionInput
-}
-
-input CreateProfileInput {
-  id: ID
-  avatar: AttachmentInput
-  bio: String
-  socials: [SocialInput]
-  contact: String
-  _version: Int
-}
-
-input UpdateProfileInput {
-  id: ID!
-  avatar: AttachmentInput
-  bio: String
-  socials: [SocialInput]
-  contact: String
-  _version: Int
-}
-
-input DeleteProfileInput {
   id: ID!
   _version: Int
 }
@@ -1645,6 +1581,19 @@ input DeleteAttributeInput {
   _version: Int
 }
 
+input ProfileInput {
+  id: String
+  avatar: AttachmentInput
+  bio: String
+  socials: [SocialInput!]
+  contact: String
+}
+
+input SocialInput {
+  type: String
+  link: String
+}
+
 type ModelUserConnection @aws_iam @aws_api_key {
   items: [User]!
   nextToken: String
@@ -1678,6 +1627,7 @@ input CreateUserInput {
   email: String
   isActiive: String
   organizationID: ID!
+  profile: ProfileInput
   _version: Int
 }
 
@@ -1687,6 +1637,7 @@ input UpdateUserInput {
   email: String
   isActiive: String
   organizationID: ID
+  profile: ProfileInput
   _version: Int
 }
 

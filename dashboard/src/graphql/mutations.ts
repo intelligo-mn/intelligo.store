@@ -1218,6 +1218,19 @@ export const createOrganization = /* GraphQL */ `
             nextToken
             startedAt
           }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
+          }
           createdAt
           updatedAt
           _version
@@ -1346,6 +1359,11 @@ export const createOrganization = /* GraphQL */ `
             organizations {
               nextToken
               startedAt
+            }
+            profile {
+              id
+              bio
+              contact
             }
             createdAt
             updatedAt
@@ -1585,6 +1603,19 @@ export const updateOrganization = /* GraphQL */ `
             nextToken
             startedAt
           }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
+          }
           createdAt
           updatedAt
           _version
@@ -1713,6 +1744,11 @@ export const updateOrganization = /* GraphQL */ `
             organizations {
               nextToken
               startedAt
+            }
+            profile {
+              id
+              bio
+              contact
             }
             createdAt
             updatedAt
@@ -1952,6 +1988,19 @@ export const deleteOrganization = /* GraphQL */ `
             nextToken
             startedAt
           }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
+          }
           createdAt
           updatedAt
           _version
@@ -2081,6 +2130,11 @@ export const deleteOrganization = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -2154,81 +2208,6 @@ export const deleteShipping = /* GraphQL */ `
       amount
       isGlobal
       type
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createProfile = /* GraphQL */ `
-  mutation CreateProfile(
-    $input: CreateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    createProfile(input: $input, condition: $condition) {
-      id
-      avatar {
-        thumbnail
-        original
-      }
-      bio
-      socials {
-        type
-        link
-      }
-      contact
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateProfile = /* GraphQL */ `
-  mutation UpdateProfile(
-    $input: UpdateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    updateProfile(input: $input, condition: $condition) {
-      id
-      avatar {
-        thumbnail
-        original
-      }
-      bio
-      socials {
-        type
-        link
-      }
-      contact
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteProfile = /* GraphQL */ `
-  mutation DeleteProfile(
-    $input: DeleteProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    deleteProfile(input: $input, condition: $condition) {
-      id
-      avatar {
-        thumbnail
-        original
-      }
-      bio
-      socials {
-        type
-        link
-      }
-      contact
       createdAt
       updatedAt
       _version
@@ -3829,6 +3808,11 @@ export const createUser = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -3843,6 +3827,19 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
         startedAt
+      }
+      profile {
+        id
+        avatar {
+          thumbnail
+          original
+        }
+        bio
+        socials {
+          type
+          link
+        }
+        contact
       }
       createdAt
       updatedAt
@@ -4016,6 +4013,11 @@ export const updateUser = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -4030,6 +4032,19 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
         startedAt
+      }
+      profile {
+        id
+        avatar {
+          thumbnail
+          original
+        }
+        bio
+        socials {
+          type
+          link
+        }
+        contact
       }
       createdAt
       updatedAt
@@ -4203,6 +4218,11 @@ export const deleteUser = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -4217,6 +4237,19 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
         startedAt
+      }
+      profile {
+        id
+        avatar {
+          thumbnail
+          original
+        }
+        bio
+        socials {
+          type
+          link
+        }
+        contact
       }
       createdAt
       updatedAt
@@ -4455,6 +4488,11 @@ export const createUserOrganization = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -4632,6 +4670,19 @@ export const createUserOrganization = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt
@@ -4798,6 +4849,11 @@ export const updateUserOrganization = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -4975,6 +5031,19 @@ export const updateUserOrganization = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt
@@ -5141,6 +5210,11 @@ export const deleteUserOrganization = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -5318,6 +5392,19 @@ export const deleteUserOrganization = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt

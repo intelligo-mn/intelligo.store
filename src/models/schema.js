@@ -1541,6 +1541,15 @@ export const schema = {
                         "associatedWith": "user"
                     }
                 },
+                "profile": {
+                    "name": "profile",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Profile"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1651,91 +1660,6 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "Shippings",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Profile": {
-            "name": "Profile",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "avatar": {
-                    "name": "avatar",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "Attachment"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "bio": {
-                    "name": "bio",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "socials": {
-                    "name": "socials",
-                    "isArray": true,
-                    "type": {
-                        "nonModel": "Social"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
-                "contact": {
-                    "name": "contact",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Profiles",
             "attributes": [
                 {
                     "type": "model",
@@ -2422,25 +2346,44 @@ export const schema = {
         }
     },
     "nonModels": {
-        "AttributeValue": {
-            "name": "AttributeValue",
+        "Profile": {
+            "name": "Profile",
             "fields": {
                 "id": {
                     "name": "id",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "value": {
-                    "name": "value",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "meta": {
-                    "name": "meta",
+                "avatar": {
+                    "name": "avatar",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Attachment"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "bio": {
+                    "name": "bio",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "socials": {
+                    "name": "socials",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Social"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "contact": {
+                    "name": "contact",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -2460,6 +2403,51 @@ export const schema = {
                 },
                 "original": {
                     "name": "original",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
+        "Social": {
+            "name": "Social",
+            "fields": {
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "link": {
+                    "name": "link",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        },
+        "AttributeValue": {
+            "name": "AttributeValue",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "value": {
+                    "name": "value",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "meta": {
+                    "name": "meta",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -2566,25 +2554,6 @@ export const schema = {
                 }
             }
         },
-        "Social": {
-            "name": "Social",
-            "fields": {
-                "type": {
-                    "name": "type",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "link": {
-                    "name": "link",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        },
         "EntityVariationOption": {
             "name": "EntityVariationOption",
             "fields": {
@@ -2605,5 +2574,5 @@ export const schema = {
             }
         }
     },
-    "version": "4fb6433fd4de8fd5f06add1af582146e"
+    "version": "69a7b7c0761525b1bbec08cf441c0910"
 };

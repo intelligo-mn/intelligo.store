@@ -1,9 +1,18 @@
-import { CreateUserInput, CreateUserMutation, DeleteUserInput, ListUsersQuery, UpdateUserInput, UpdateUserMutation } from "@common/generated-types";
+import {
+  CreateUserInput,
+  CreateUserMutation,
+  DeleteUserInput,
+  ListUsersQuery,
+  UpdateUserInput,
+  UpdateUserMutation,
+} from "@common/generated-types";
 import { createUser, deleteUser, updateUser } from "@graphql/mutations";
 import { listUsers } from "@graphql/queries";
 import { API } from "aws-amplify";
+import { useState } from "react";
 
 export const useCustomer = () => {
+  const [loading, setLoading] = useState<boolean>();
   const createCustomer = async (input: CreateUserInput): Promise<any> => {
     try {
       const { data } = (await API.graphql({
@@ -40,7 +49,6 @@ export const useCustomer = () => {
     try {
       const { data } = (await API.graphql({
         query: listUsers,
-        
       })) as {
         data: ListUsersQuery;
       };
@@ -50,12 +58,11 @@ export const useCustomer = () => {
     }
   };
 
-
   const removeCustomer = async (id: string): Promise<any> => {
     try {
       const input: DeleteUserInput = {
-        id: id
-      }
+        id: id,
+      };
       const { data } = (await API.graphql({
         query: deleteUser,
         variables: {
@@ -70,8 +77,8 @@ export const useCustomer = () => {
     }
   };
 
-
   return {
+    loading,
     createCustomer,
     listCustomer,
     removeCustomer,

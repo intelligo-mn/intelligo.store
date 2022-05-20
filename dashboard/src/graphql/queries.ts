@@ -1162,6 +1162,19 @@ export const getOrganization = /* GraphQL */ `
             nextToken
             startedAt
           }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
+          }
           createdAt
           updatedAt
           _version
@@ -1290,6 +1303,11 @@ export const getOrganization = /* GraphQL */ `
             organizations {
               nextToken
               startedAt
+            }
+            profile {
+              id
+              bio
+              contact
             }
             createdAt
             updatedAt
@@ -1463,6 +1481,11 @@ export const listOrganizations = /* GraphQL */ `
             organizations {
               nextToken
               startedAt
+            }
+            profile {
+              id
+              bio
+              contact
             }
             createdAt
             updatedAt
@@ -1716,6 +1739,11 @@ export const syncOrganizations = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -1872,94 +1900,6 @@ export const syncShippings = /* GraphQL */ `
         amount
         isGlobal
         type
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getProfile = /* GraphQL */ `
-  query GetProfile($id: ID!) {
-    getProfile(id: $id) {
-      id
-      avatar {
-        thumbnail
-        original
-      }
-      bio
-      socials {
-        type
-        link
-      }
-      contact
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listProfiles = /* GraphQL */ `
-  query ListProfiles(
-    $filter: ModelProfileFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        avatar {
-          thumbnail
-          original
-        }
-        bio
-        socials {
-          type
-          link
-        }
-        contact
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncProfiles = /* GraphQL */ `
-  query SyncProfiles(
-    $filter: ModelProfileFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncProfiles(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        avatar {
-          thumbnail
-          original
-        }
-        bio
-        socials {
-          type
-          link
-        }
-        contact
         createdAt
         updatedAt
         _version
@@ -3497,6 +3437,11 @@ export const getUser = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -3511,6 +3456,19 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
         startedAt
+      }
+      profile {
+        id
+        avatar {
+          thumbnail
+          original
+        }
+        bio
+        socials {
+          type
+          link
+        }
+        contact
       }
       createdAt
       updatedAt
@@ -3612,6 +3570,19 @@ export const listUsers = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt
@@ -3722,6 +3693,19 @@ export const syncUsers = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt
@@ -3973,6 +3957,11 @@ export const getUserOrganization = /* GraphQL */ `
               nextToken
               startedAt
             }
+            profile {
+              id
+              bio
+              contact
+            }
             createdAt
             updatedAt
             _version
@@ -4150,6 +4139,19 @@ export const getUserOrganization = /* GraphQL */ `
           }
           nextToken
           startedAt
+        }
+        profile {
+          id
+          avatar {
+            thumbnail
+            original
+          }
+          bio
+          socials {
+            type
+            link
+          }
+          contact
         }
         createdAt
         updatedAt
@@ -4386,6 +4388,19 @@ export const listUserOrganizations = /* GraphQL */ `
             }
             nextToken
             startedAt
+          }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
           }
           createdAt
           updatedAt
@@ -4627,6 +4642,19 @@ export const syncUserOrganizations = /* GraphQL */ `
             }
             nextToken
             startedAt
+          }
+          profile {
+            id
+            avatar {
+              thumbnail
+              original
+            }
+            bio
+            socials {
+              type
+              link
+            }
+            contact
           }
           createdAt
           updatedAt

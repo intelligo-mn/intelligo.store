@@ -44,17 +44,32 @@ export enum AddressType {
   SHIPPING = "SHIPPING"
 }
 
-export declare class AttributeValue {
-  readonly id?: number | null;
-  readonly value?: string | null;
-  readonly meta?: string | null;
-  constructor(init: ModelInit<AttributeValue>);
+export declare class Profile {
+  readonly id?: string | null;
+  readonly avatar?: Attachment | null;
+  readonly bio?: string | null;
+  readonly socials?: Social[] | null;
+  readonly contact?: string | null;
+  constructor(init: ModelInit<Profile>);
 }
 
 export declare class Attachment {
   readonly thumbnail?: string | null;
   readonly original?: string | null;
   constructor(init: ModelInit<Attachment>);
+}
+
+export declare class Social {
+  readonly type?: string | null;
+  readonly link?: string | null;
+  constructor(init: ModelInit<Social>);
+}
+
+export declare class AttributeValue {
+  readonly id?: number | null;
+  readonly value?: string | null;
+  readonly meta?: string | null;
+  constructor(init: ModelInit<AttributeValue>);
 }
 
 export declare class TypeSettings {
@@ -79,12 +94,6 @@ export declare class UserAddress {
   readonly state?: string | null;
   readonly zip?: string | null;
   constructor(init: ModelInit<UserAddress>);
-}
-
-export declare class Social {
-  readonly type?: string | null;
-  readonly link?: string | null;
-  constructor(init: ModelInit<Social>);
 }
 
 export declare class EntityVariationOption {
@@ -138,10 +147,6 @@ type UserMetaData = {
 }
 
 type ShippingMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type ProfileMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -352,6 +357,7 @@ export declare class User {
   readonly orders?: (Order | null)[] | null;
   readonly organizationID: string;
   readonly organizations?: (UserOrganization | null)[] | null;
+  readonly profile?: Profile | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
@@ -368,18 +374,6 @@ export declare class Shipping {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Shipping, ShippingMetaData>);
   static copyOf(source: Shipping, mutator: (draft: MutableModel<Shipping, ShippingMetaData>) => MutableModel<Shipping, ShippingMetaData> | void): Shipping;
-}
-
-export declare class Profile {
-  readonly id: string;
-  readonly avatar?: Attachment | null;
-  readonly bio?: string | null;
-  readonly socials?: (Social | null)[] | null;
-  readonly contact?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Profile, ProfileMetaData>);
-  static copyOf(source: Profile, mutator: (draft: MutableModel<Profile, ProfileMetaData>) => MutableModel<Profile, ProfileMetaData> | void): Profile;
 }
 
 export declare class EntityVariation {
