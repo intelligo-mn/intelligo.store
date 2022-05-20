@@ -1,0 +1,1264 @@
+
+type Organization @aws_iam @aws_api_key {
+  id: ID!
+  isActive: String
+  name: String
+  slug: String
+  description: String
+  coverImage: Attachment
+  logo: Attachment
+  address: UserAddress
+  settings: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+enum ShippingType {
+  FIXED
+  PERCENTAGE
+  FREE
+}
+
+type Shipping @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  amount: String
+  isGlobal: String
+  type: ShippingType
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Social @aws_iam @aws_api_key {
+  type: String
+  link: String
+}
+
+type Profile @aws_iam @aws_api_key {
+  id: ID!
+  avatar: Attachment
+  bio: String
+  socials: [Social]
+  contact: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type EntityVariationOption @aws_iam @aws_api_key {
+  name: String
+  value: String
+}
+
+type EntityVariation @aws_iam @aws_api_key {
+  id: ID!
+  title: String
+  price: Float
+  sku: String
+  isDisable: Boolean
+  salePrice: Float
+  quantity: Int
+  options: EntityVariationOption
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+enum EntityStatus {
+  PUBLISH
+  DRAFT
+}
+
+enum EntityType {
+  PRODUCT
+  EVENT
+  BOOK
+}
+
+type Entity @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  slug: String
+  entityType: EntityType
+  description: String
+  inStock: Boolean
+  isTaxable: String
+  salePrice: String
+  maxPrice: String
+  minPrice: String
+  sku: String
+  gallery: [Attachment]
+  image: Attachment
+  status: EntityStatus
+  height: String
+  lenght: String
+  width: String
+  price: Float
+  quantity: Int
+  unit: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+enum PaymentGateway {
+  QPAY
+  SOCIAL_PAY
+  CASH_ON_DELIVERY
+  BANK_TRANSACTION
+  CARD
+}
+
+type Order @aws_iam @aws_api_key {
+  id: ID!
+  trakingNumber: String
+  amount: String
+  paidTotal: String
+  discount: String
+  deliveryFee: String
+  deliveryTime: String
+  billingAddress: UserAddress
+  shippingAddress: UserAddress
+  paymentGateway: PaymentGateway
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+enum CouponType {
+  FIXED_COUPON
+  PERCENTAGE_COUPON
+  FREE_SHIPPING_COUPON
+}
+
+type Coupon @aws_iam @aws_api_key {
+  id: ID!
+  code: String
+  description: String
+  type: CouponType
+  image: Attachment
+  isValid: Boolean
+  amount: Float
+  activeFrom: String
+  expireAt: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Contact @aws_iam @aws_api_key {
+  id: ID!
+  subject: String
+  email: String
+  name: String
+  description: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Attachment @aws_iam @aws_api_key {
+  thumbnail: String
+  original: String
+}
+
+type Category @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  slug: String
+  details: String
+  image: Attachment
+  icon: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type AttributeValue @aws_iam @aws_api_key {
+  id: ID!
+  value: String
+  meta: String
+  attributeID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Attribute @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  slug: String
+  values(filter: ModelAttributeValueFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttributeValueConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type User @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  email: String
+  isActiive: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type UserAddress @aws_iam @aws_api_key {
+  streetAddress: String
+  country: String
+  city: String
+  state: String
+  zip: String
+}
+
+enum AddressType {
+  BILLING
+  SHIPPING
+}
+
+type Address @aws_iam @aws_api_key {
+  id: ID!
+  title: String
+  default: Boolean
+  address: UserAddress
+  type: AddressType
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input AttachmentInput {
+  thumbnail: String
+  original: String
+}
+
+input UserAddressInput {
+  streetAddress: String
+  country: String
+  city: String
+  state: String
+  zip: String
+}
+
+type ModelOrganizationConnection @aws_api_key @aws_iam {
+  items: [Organization]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelOrganizationFilterInput {
+  id: ModelIDInput
+  isActive: ModelStringInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  description: ModelStringInput
+  settings: ModelStringInput
+  and: [ModelOrganizationFilterInput]
+  or: [ModelOrganizationFilterInput]
+  not: ModelOrganizationFilterInput
+}
+
+type Query {
+  getOrganization(id: ID!): Organization @aws_api_key @aws_iam
+  listOrganizations(filter: ModelOrganizationFilterInput, limit: Int, nextToken: String): ModelOrganizationConnection @aws_api_key @aws_iam
+  syncOrganizations(filter: ModelOrganizationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelOrganizationConnection @aws_api_key @aws_iam
+  getShipping(id: ID!): Shipping @aws_api_key @aws_iam
+  listShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String): ModelShippingConnection @aws_api_key @aws_iam
+  syncShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelShippingConnection @aws_api_key @aws_iam
+  getProfile(id: ID!): Profile @aws_api_key @aws_iam
+  listProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String): ModelProfileConnection @aws_api_key @aws_iam
+  syncProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProfileConnection @aws_api_key @aws_iam
+  getEntityVariation(id: ID!): EntityVariation @aws_api_key @aws_iam
+  listEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String): ModelEntityVariationConnection @aws_api_key @aws_iam
+  syncEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityVariationConnection @aws_api_key @aws_iam
+  getEntity(id: ID!): Entity @aws_api_key @aws_iam
+  listEntities(filter: ModelEntityFilterInput, limit: Int, nextToken: String): ModelEntityConnection @aws_api_key @aws_iam
+  syncEntities(filter: ModelEntityFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityConnection @aws_api_key @aws_iam
+  getOrder(id: ID!): Order @aws_api_key @aws_iam
+  listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection @aws_api_key @aws_iam
+  syncOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelOrderConnection @aws_api_key @aws_iam
+  getCoupon(id: ID!): Coupon @aws_api_key @aws_iam
+  listCoupons(filter: ModelCouponFilterInput, limit: Int, nextToken: String): ModelCouponConnection @aws_api_key @aws_iam
+  syncCoupons(filter: ModelCouponFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCouponConnection @aws_api_key @aws_iam
+  getContact(id: ID!): Contact @aws_api_key @aws_iam
+  listContacts(filter: ModelContactFilterInput, limit: Int, nextToken: String): ModelContactConnection @aws_api_key @aws_iam
+  syncContacts(filter: ModelContactFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelContactConnection @aws_api_key @aws_iam
+  getCategory(id: ID!): Category @aws_api_key @aws_iam
+  listCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String): ModelCategoryConnection @aws_api_key @aws_iam
+  syncCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCategoryConnection @aws_api_key @aws_iam
+  getAttributeValue(id: ID!): AttributeValue @aws_api_key @aws_iam
+  listAttributeValues(filter: ModelAttributeValueFilterInput, limit: Int, nextToken: String): ModelAttributeValueConnection @aws_api_key @aws_iam
+  syncAttributeValues(filter: ModelAttributeValueFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttributeValueConnection @aws_api_key @aws_iam
+  getAttribute(id: ID!): Attribute @aws_api_key @aws_iam
+  listAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String): ModelAttributeConnection @aws_api_key @aws_iam
+  syncAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttributeConnection @aws_api_key @aws_iam
+  getUser(id: ID!): User @aws_api_key @aws_iam
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_api_key @aws_iam
+  syncUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserConnection @aws_api_key @aws_iam
+  getAddress(id: ID!): Address @aws_api_key @aws_iam
+  listAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String): ModelAddressConnection @aws_api_key @aws_iam
+  syncAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAddressConnection @aws_api_key @aws_iam
+}
+
+input ModelOrganizationConditionInput {
+  isActive: ModelStringInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  description: ModelStringInput
+  settings: ModelStringInput
+  and: [ModelOrganizationConditionInput]
+  or: [ModelOrganizationConditionInput]
+  not: ModelOrganizationConditionInput
+}
+
+input CreateOrganizationInput {
+  id: ID
+  isActive: String
+  name: String
+  slug: String
+  description: String
+  coverImage: AttachmentInput
+  logo: AttachmentInput
+  address: UserAddressInput
+  settings: String
+  _version: Int
+}
+
+input UpdateOrganizationInput {
+  id: ID!
+  isActive: String
+  name: String
+  slug: String
+  description: String
+  coverImage: AttachmentInput
+  logo: AttachmentInput
+  address: UserAddressInput
+  settings: String
+  _version: Int
+}
+
+input DeleteOrganizationInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createOrganization(input: CreateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  updateOrganization(input: UpdateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  deleteOrganization(input: DeleteOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  createShipping(input: CreateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  updateShipping(input: UpdateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  deleteShipping(input: DeleteShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  createProfile(input: CreateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
+  updateProfile(input: UpdateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
+  deleteProfile(input: DeleteProfileInput!, condition: ModelProfileConditionInput): Profile @aws_api_key @aws_iam
+  createEntityVariation(input: CreateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  updateEntityVariation(input: UpdateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  deleteEntityVariation(input: DeleteEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  createEntity(input: CreateEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  updateEntity(input: UpdateEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  deleteEntity(input: DeleteEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  createOrder(input: CreateOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  updateOrder(input: UpdateOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  deleteOrder(input: DeleteOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  createCoupon(input: CreateCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_api_key @aws_iam
+  updateCoupon(input: UpdateCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_api_key @aws_iam
+  deleteCoupon(input: DeleteCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_api_key @aws_iam
+  createContact(input: CreateContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  updateContact(input: UpdateContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  deleteContact(input: DeleteContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  createCategory(input: CreateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_api_key @aws_iam
+  updateCategory(input: UpdateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_api_key @aws_iam
+  deleteCategory(input: DeleteCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_api_key @aws_iam
+  createAttributeValue(input: CreateAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_api_key @aws_iam
+  updateAttributeValue(input: UpdateAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_api_key @aws_iam
+  deleteAttributeValue(input: DeleteAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_api_key @aws_iam
+  createAttribute(input: CreateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_api_key @aws_iam
+  updateAttribute(input: UpdateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_api_key @aws_iam
+  deleteAttribute(input: DeleteAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_api_key @aws_iam
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  createAddress(input: CreateAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+  updateAddress(input: UpdateAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+  deleteAddress(input: DeleteAddressInput!, condition: ModelAddressConditionInput): Address @aws_api_key @aws_iam
+}
+
+type Subscription {
+  onCreateOrganization: Organization @aws_subscribe(mutations: ["createOrganization"]) @aws_api_key @aws_iam
+  onUpdateOrganization: Organization @aws_subscribe(mutations: ["updateOrganization"]) @aws_api_key @aws_iam
+  onDeleteOrganization: Organization @aws_subscribe(mutations: ["deleteOrganization"]) @aws_api_key @aws_iam
+  onCreateShipping: Shipping @aws_subscribe(mutations: ["createShipping"]) @aws_api_key @aws_iam
+  onUpdateShipping: Shipping @aws_subscribe(mutations: ["updateShipping"]) @aws_api_key @aws_iam
+  onDeleteShipping: Shipping @aws_subscribe(mutations: ["deleteShipping"]) @aws_api_key @aws_iam
+  onCreateProfile: Profile @aws_subscribe(mutations: ["createProfile"]) @aws_api_key @aws_iam
+  onUpdateProfile: Profile @aws_subscribe(mutations: ["updateProfile"]) @aws_api_key @aws_iam
+  onDeleteProfile: Profile @aws_subscribe(mutations: ["deleteProfile"]) @aws_api_key @aws_iam
+  onCreateEntityVariation: EntityVariation @aws_subscribe(mutations: ["createEntityVariation"]) @aws_api_key @aws_iam
+  onUpdateEntityVariation: EntityVariation @aws_subscribe(mutations: ["updateEntityVariation"]) @aws_api_key @aws_iam
+  onDeleteEntityVariation: EntityVariation @aws_subscribe(mutations: ["deleteEntityVariation"]) @aws_api_key @aws_iam
+  onCreateEntity: Entity @aws_subscribe(mutations: ["createEntity"]) @aws_api_key @aws_iam
+  onUpdateEntity: Entity @aws_subscribe(mutations: ["updateEntity"]) @aws_api_key @aws_iam
+  onDeleteEntity: Entity @aws_subscribe(mutations: ["deleteEntity"]) @aws_api_key @aws_iam
+  onCreateOrder: Order @aws_subscribe(mutations: ["createOrder"]) @aws_api_key @aws_iam
+  onUpdateOrder: Order @aws_subscribe(mutations: ["updateOrder"]) @aws_api_key @aws_iam
+  onDeleteOrder: Order @aws_subscribe(mutations: ["deleteOrder"]) @aws_api_key @aws_iam
+  onCreateCoupon: Coupon @aws_subscribe(mutations: ["createCoupon"]) @aws_api_key @aws_iam
+  onUpdateCoupon: Coupon @aws_subscribe(mutations: ["updateCoupon"]) @aws_api_key @aws_iam
+  onDeleteCoupon: Coupon @aws_subscribe(mutations: ["deleteCoupon"]) @aws_api_key @aws_iam
+  onCreateContact: Contact @aws_subscribe(mutations: ["createContact"]) @aws_api_key @aws_iam
+  onUpdateContact: Contact @aws_subscribe(mutations: ["updateContact"]) @aws_api_key @aws_iam
+  onDeleteContact: Contact @aws_subscribe(mutations: ["deleteContact"]) @aws_api_key @aws_iam
+  onCreateCategory: Category @aws_subscribe(mutations: ["createCategory"]) @aws_api_key @aws_iam
+  onUpdateCategory: Category @aws_subscribe(mutations: ["updateCategory"]) @aws_api_key @aws_iam
+  onDeleteCategory: Category @aws_subscribe(mutations: ["deleteCategory"]) @aws_api_key @aws_iam
+  onCreateAttributeValue: AttributeValue @aws_subscribe(mutations: ["createAttributeValue"]) @aws_api_key @aws_iam
+  onUpdateAttributeValue: AttributeValue @aws_subscribe(mutations: ["updateAttributeValue"]) @aws_api_key @aws_iam
+  onDeleteAttributeValue: AttributeValue @aws_subscribe(mutations: ["deleteAttributeValue"]) @aws_api_key @aws_iam
+  onCreateAttribute: Attribute @aws_subscribe(mutations: ["createAttribute"]) @aws_api_key @aws_iam
+  onUpdateAttribute: Attribute @aws_subscribe(mutations: ["updateAttribute"]) @aws_api_key @aws_iam
+  onDeleteAttribute: Attribute @aws_subscribe(mutations: ["deleteAttribute"]) @aws_api_key @aws_iam
+  onCreateUser: User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
+  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
+  onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
+  onCreateAddress: Address @aws_subscribe(mutations: ["createAddress"]) @aws_api_key @aws_iam
+  onUpdateAddress: Address @aws_subscribe(mutations: ["updateAddress"]) @aws_api_key @aws_iam
+  onDeleteAddress: Address @aws_subscribe(mutations: ["deleteAddress"]) @aws_api_key @aws_iam
+}
+
+type ModelShippingConnection @aws_api_key @aws_iam {
+  items: [Shipping]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelShippingTypeInput {
+  eq: ShippingType
+  ne: ShippingType
+}
+
+input ModelShippingFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  amount: ModelStringInput
+  isGlobal: ModelStringInput
+  type: ModelShippingTypeInput
+  and: [ModelShippingFilterInput]
+  or: [ModelShippingFilterInput]
+  not: ModelShippingFilterInput
+}
+
+input ModelShippingConditionInput {
+  name: ModelStringInput
+  amount: ModelStringInput
+  isGlobal: ModelStringInput
+  type: ModelShippingTypeInput
+  and: [ModelShippingConditionInput]
+  or: [ModelShippingConditionInput]
+  not: ModelShippingConditionInput
+}
+
+input CreateShippingInput {
+  id: ID
+  name: String
+  amount: String
+  isGlobal: String
+  type: ShippingType
+  _version: Int
+}
+
+input UpdateShippingInput {
+  id: ID!
+  name: String
+  amount: String
+  isGlobal: String
+  type: ShippingType
+  _version: Int
+}
+
+input DeleteShippingInput {
+  id: ID!
+  _version: Int
+}
+
+input SocialInput {
+  type: String
+  link: String
+}
+
+type ModelProfileConnection @aws_api_key @aws_iam {
+  items: [Profile]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelProfileFilterInput {
+  id: ModelIDInput
+  bio: ModelStringInput
+  contact: ModelStringInput
+  and: [ModelProfileFilterInput]
+  or: [ModelProfileFilterInput]
+  not: ModelProfileFilterInput
+}
+
+input ModelProfileConditionInput {
+  bio: ModelStringInput
+  contact: ModelStringInput
+  and: [ModelProfileConditionInput]
+  or: [ModelProfileConditionInput]
+  not: ModelProfileConditionInput
+}
+
+input CreateProfileInput {
+  id: ID
+  avatar: AttachmentInput
+  bio: String
+  socials: [SocialInput]
+  contact: String
+  _version: Int
+}
+
+input UpdateProfileInput {
+  id: ID!
+  avatar: AttachmentInput
+  bio: String
+  socials: [SocialInput]
+  contact: String
+  _version: Int
+}
+
+input DeleteProfileInput {
+  id: ID!
+  _version: Int
+}
+
+input EntityVariationOptionInput {
+  name: String
+  value: String
+}
+
+type ModelEntityVariationConnection @aws_api_key @aws_iam {
+  items: [EntityVariation]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelEntityVariationFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  price: ModelFloatInput
+  sku: ModelStringInput
+  isDisable: ModelBooleanInput
+  salePrice: ModelFloatInput
+  quantity: ModelIntInput
+  and: [ModelEntityVariationFilterInput]
+  or: [ModelEntityVariationFilterInput]
+  not: ModelEntityVariationFilterInput
+}
+
+input ModelEntityVariationConditionInput {
+  title: ModelStringInput
+  price: ModelFloatInput
+  sku: ModelStringInput
+  isDisable: ModelBooleanInput
+  salePrice: ModelFloatInput
+  quantity: ModelIntInput
+  and: [ModelEntityVariationConditionInput]
+  or: [ModelEntityVariationConditionInput]
+  not: ModelEntityVariationConditionInput
+}
+
+input CreateEntityVariationInput {
+  id: ID
+  title: String
+  price: Float
+  sku: String
+  isDisable: Boolean
+  salePrice: Float
+  quantity: Int
+  options: EntityVariationOptionInput
+  _version: Int
+}
+
+input UpdateEntityVariationInput {
+  id: ID!
+  title: String
+  price: Float
+  sku: String
+  isDisable: Boolean
+  salePrice: Float
+  quantity: Int
+  options: EntityVariationOptionInput
+  _version: Int
+}
+
+input DeleteEntityVariationInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelEntityConnection @aws_api_key @aws_iam {
+  items: [Entity]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelEntityTypeInput {
+  eq: EntityType
+  ne: EntityType
+}
+
+input ModelEntityStatusInput {
+  eq: EntityStatus
+  ne: EntityStatus
+}
+
+input ModelEntityFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  entityType: ModelEntityTypeInput
+  description: ModelStringInput
+  inStock: ModelBooleanInput
+  isTaxable: ModelStringInput
+  salePrice: ModelStringInput
+  maxPrice: ModelStringInput
+  minPrice: ModelStringInput
+  sku: ModelStringInput
+  status: ModelEntityStatusInput
+  height: ModelStringInput
+  lenght: ModelStringInput
+  width: ModelStringInput
+  price: ModelFloatInput
+  quantity: ModelIntInput
+  unit: ModelStringInput
+  and: [ModelEntityFilterInput]
+  or: [ModelEntityFilterInput]
+  not: ModelEntityFilterInput
+}
+
+input ModelEntityConditionInput {
+  name: ModelStringInput
+  slug: ModelStringInput
+  entityType: ModelEntityTypeInput
+  description: ModelStringInput
+  inStock: ModelBooleanInput
+  isTaxable: ModelStringInput
+  salePrice: ModelStringInput
+  maxPrice: ModelStringInput
+  minPrice: ModelStringInput
+  sku: ModelStringInput
+  status: ModelEntityStatusInput
+  height: ModelStringInput
+  lenght: ModelStringInput
+  width: ModelStringInput
+  price: ModelFloatInput
+  quantity: ModelIntInput
+  unit: ModelStringInput
+  and: [ModelEntityConditionInput]
+  or: [ModelEntityConditionInput]
+  not: ModelEntityConditionInput
+}
+
+input CreateEntityInput {
+  id: ID
+  name: String
+  slug: String
+  entityType: EntityType
+  description: String
+  inStock: Boolean
+  isTaxable: String
+  salePrice: String
+  maxPrice: String
+  minPrice: String
+  sku: String
+  gallery: [AttachmentInput]
+  image: AttachmentInput
+  status: EntityStatus
+  height: String
+  lenght: String
+  width: String
+  price: Float
+  quantity: Int
+  unit: String
+  _version: Int
+}
+
+input UpdateEntityInput {
+  id: ID!
+  name: String
+  slug: String
+  entityType: EntityType
+  description: String
+  inStock: Boolean
+  isTaxable: String
+  salePrice: String
+  maxPrice: String
+  minPrice: String
+  sku: String
+  gallery: [AttachmentInput]
+  image: AttachmentInput
+  status: EntityStatus
+  height: String
+  lenght: String
+  width: String
+  price: Float
+  quantity: Int
+  unit: String
+  _version: Int
+}
+
+input DeleteEntityInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelOrderConnection @aws_api_key @aws_iam {
+  items: [Order]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelPaymentGatewayInput {
+  eq: PaymentGateway
+  ne: PaymentGateway
+}
+
+input ModelOrderFilterInput {
+  id: ModelIDInput
+  trakingNumber: ModelStringInput
+  amount: ModelStringInput
+  paidTotal: ModelStringInput
+  discount: ModelStringInput
+  deliveryFee: ModelStringInput
+  deliveryTime: ModelStringInput
+  paymentGateway: ModelPaymentGatewayInput
+  and: [ModelOrderFilterInput]
+  or: [ModelOrderFilterInput]
+  not: ModelOrderFilterInput
+}
+
+input ModelOrderConditionInput {
+  trakingNumber: ModelStringInput
+  amount: ModelStringInput
+  paidTotal: ModelStringInput
+  discount: ModelStringInput
+  deliveryFee: ModelStringInput
+  deliveryTime: ModelStringInput
+  paymentGateway: ModelPaymentGatewayInput
+  and: [ModelOrderConditionInput]
+  or: [ModelOrderConditionInput]
+  not: ModelOrderConditionInput
+}
+
+input CreateOrderInput {
+  id: ID
+  trakingNumber: String
+  amount: String
+  paidTotal: String
+  discount: String
+  deliveryFee: String
+  deliveryTime: String
+  billingAddress: UserAddressInput
+  shippingAddress: UserAddressInput
+  paymentGateway: PaymentGateway
+  _version: Int
+}
+
+input UpdateOrderInput {
+  id: ID!
+  trakingNumber: String
+  amount: String
+  paidTotal: String
+  discount: String
+  deliveryFee: String
+  deliveryTime: String
+  billingAddress: UserAddressInput
+  shippingAddress: UserAddressInput
+  paymentGateway: PaymentGateway
+  _version: Int
+}
+
+input DeleteOrderInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelCouponConnection @aws_api_key @aws_iam {
+  items: [Coupon]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelCouponTypeInput {
+  eq: CouponType
+  ne: CouponType
+}
+
+input ModelCouponFilterInput {
+  id: ModelIDInput
+  code: ModelStringInput
+  description: ModelStringInput
+  type: ModelCouponTypeInput
+  isValid: ModelBooleanInput
+  amount: ModelFloatInput
+  activeFrom: ModelStringInput
+  expireAt: ModelStringInput
+  and: [ModelCouponFilterInput]
+  or: [ModelCouponFilterInput]
+  not: ModelCouponFilterInput
+}
+
+input ModelCouponConditionInput {
+  code: ModelStringInput
+  description: ModelStringInput
+  type: ModelCouponTypeInput
+  isValid: ModelBooleanInput
+  amount: ModelFloatInput
+  activeFrom: ModelStringInput
+  expireAt: ModelStringInput
+  and: [ModelCouponConditionInput]
+  or: [ModelCouponConditionInput]
+  not: ModelCouponConditionInput
+}
+
+input CreateCouponInput {
+  id: ID
+  code: String
+  description: String
+  type: CouponType
+  image: AttachmentInput
+  isValid: Boolean
+  amount: Float
+  activeFrom: String
+  expireAt: String
+  _version: Int
+}
+
+input UpdateCouponInput {
+  id: ID!
+  code: String
+  description: String
+  type: CouponType
+  image: AttachmentInput
+  isValid: Boolean
+  amount: Float
+  activeFrom: String
+  expireAt: String
+  _version: Int
+}
+
+input DeleteCouponInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelContactConnection @aws_api_key @aws_iam {
+  items: [Contact]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelContactFilterInput {
+  id: ModelIDInput
+  subject: ModelStringInput
+  email: ModelStringInput
+  name: ModelStringInput
+  description: ModelStringInput
+  and: [ModelContactFilterInput]
+  or: [ModelContactFilterInput]
+  not: ModelContactFilterInput
+}
+
+input ModelContactConditionInput {
+  subject: ModelStringInput
+  email: ModelStringInput
+  name: ModelStringInput
+  description: ModelStringInput
+  and: [ModelContactConditionInput]
+  or: [ModelContactConditionInput]
+  not: ModelContactConditionInput
+}
+
+input CreateContactInput {
+  id: ID
+  subject: String
+  email: String
+  name: String
+  description: String
+  _version: Int
+}
+
+input UpdateContactInput {
+  id: ID!
+  subject: String
+  email: String
+  name: String
+  description: String
+  _version: Int
+}
+
+input DeleteContactInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelCategoryConnection @aws_api_key @aws_iam {
+  items: [Category]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelCategoryFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  details: ModelStringInput
+  icon: ModelStringInput
+  and: [ModelCategoryFilterInput]
+  or: [ModelCategoryFilterInput]
+  not: ModelCategoryFilterInput
+}
+
+input ModelCategoryConditionInput {
+  name: ModelStringInput
+  slug: ModelStringInput
+  details: ModelStringInput
+  icon: ModelStringInput
+  and: [ModelCategoryConditionInput]
+  or: [ModelCategoryConditionInput]
+  not: ModelCategoryConditionInput
+}
+
+input CreateCategoryInput {
+  id: ID
+  name: String
+  slug: String
+  details: String
+  image: AttachmentInput
+  icon: String
+  _version: Int
+}
+
+input UpdateCategoryInput {
+  id: ID!
+  name: String
+  slug: String
+  details: String
+  image: AttachmentInput
+  icon: String
+  _version: Int
+}
+
+input DeleteCategoryInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelAttributeValueConnection @aws_api_key @aws_iam {
+  items: [AttributeValue]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelAttributeValueFilterInput {
+  id: ModelIDInput
+  value: ModelStringInput
+  meta: ModelStringInput
+  attributeID: ModelIDInput
+  and: [ModelAttributeValueFilterInput]
+  or: [ModelAttributeValueFilterInput]
+  not: ModelAttributeValueFilterInput
+}
+
+input ModelAttributeValueConditionInput {
+  value: ModelStringInput
+  meta: ModelStringInput
+  attributeID: ModelIDInput
+  and: [ModelAttributeValueConditionInput]
+  or: [ModelAttributeValueConditionInput]
+  not: ModelAttributeValueConditionInput
+}
+
+input CreateAttributeValueInput {
+  id: ID
+  value: String
+  meta: String
+  attributeID: ID!
+  _version: Int
+}
+
+input UpdateAttributeValueInput {
+  id: ID!
+  value: String
+  meta: String
+  attributeID: ID
+  _version: Int
+}
+
+input DeleteAttributeValueInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelAttributeConnection @aws_api_key @aws_iam {
+  items: [Attribute]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelAttributeFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  slug: ModelStringInput
+  and: [ModelAttributeFilterInput]
+  or: [ModelAttributeFilterInput]
+  not: ModelAttributeFilterInput
+}
+
+input ModelAttributeConditionInput {
+  name: ModelStringInput
+  slug: ModelStringInput
+  and: [ModelAttributeConditionInput]
+  or: [ModelAttributeConditionInput]
+  not: ModelAttributeConditionInput
+}
+
+input CreateAttributeInput {
+  id: ID
+  name: String
+  slug: String
+  _version: Int
+}
+
+input UpdateAttributeInput {
+  id: ID!
+  name: String
+  slug: String
+  _version: Int
+}
+
+input DeleteAttributeInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelUserConnection @aws_api_key @aws_iam {
+  items: [User]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  isActiive: ModelStringInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+input ModelUserConditionInput {
+  name: ModelStringInput
+  email: ModelStringInput
+  isActiive: ModelStringInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+input CreateUserInput {
+  id: ID
+  name: String
+  email: String
+  isActiive: String
+  _version: Int
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: String
+  isActiive: String
+  _version: Int
+}
+
+input DeleteUserInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelAddressConnection @aws_api_key @aws_iam {
+  items: [Address]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelAddressTypeInput {
+  eq: AddressType
+  ne: AddressType
+}
+
+input ModelAddressFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  default: ModelBooleanInput
+  type: ModelAddressTypeInput
+  and: [ModelAddressFilterInput]
+  or: [ModelAddressFilterInput]
+  not: ModelAddressFilterInput
+}
+
+input ModelAddressConditionInput {
+  title: ModelStringInput
+  default: ModelBooleanInput
+  type: ModelAddressTypeInput
+  and: [ModelAddressConditionInput]
+  or: [ModelAddressConditionInput]
+  not: ModelAddressConditionInput
+}
+
+input CreateAddressInput {
+  id: ID
+  title: String
+  default: Boolean
+  address: UserAddressInput
+  type: AddressType
+  _version: Int
+}
+
+input UpdateAddressInput {
+  id: ID!
+  title: String
+  default: Boolean
+  address: UserAddressInput
+  type: AddressType
+  _version: Int
+}
+
+input DeleteAddressInput {
+  id: ID!
+  _version: Int
+}
+

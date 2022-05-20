@@ -1,0 +1,36 @@
+## [Start] Sync Request template. **
+#set( $args = $util.defaultIfNull($ctx.stash.transformedArgs, $ctx.args) )
+#if( !$util.isNullOrEmpty($ctx.stash.authFilter) )
+  #set( $filter = $ctx.stash.authFilter )
+  #if( !$util.isNullOrEmpty($args.filter) )
+    #set( $filter = {
+  "and":   [$filter, $args.filter]
+} )
+  #end
+#else
+  #if( !$util.isNullOrEmpty($args.filter) )
+    #set( $filter = $args.filter )
+  #end
+#end
+#if( !$util.isNullOrEmpty($filter) )
+  #set( $filterExpression = $util.parseJson($util.transform.toDynamoDBFilterExpression($filter)) )
+  #if( !$util.isNullOrBlank($filterExpression.expression) )
+    #if( $filterExpression.expressionValues.size() == 0 )
+      $util.qr($filterExpression.remove("expressionValues"))
+    #end
+    #set( $filter = $filterExpression )
+  #end
+#end
+{
+  "version": "2018-05-29",
+  "operation": "Sync",
+  "filter":   #if( $filter )
+$util.toJson($filter)
+  #else
+null
+  #end,
+  "limit": $util.defaultIfNull($args.limit, 100),
+  "lastSync": $util.toJson($util.defaultIfNull($args.lastSync, null)),
+  "nextToken": $util.toJson($util.defaultIfNull($args.nextToken, null))
+}
+## [End] Sync Request template. **

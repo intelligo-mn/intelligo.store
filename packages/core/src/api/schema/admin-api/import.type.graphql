@@ -1,5 +1,0 @@
-type ImportInfo {
-    errors: [String!]
-    processed: Int!
-    imported: Int!
-}

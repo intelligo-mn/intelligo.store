@@ -1,3 +1,0 @@
-type Mutation {
-    importProducts(csvFile: Upload!): ImportInfo
-}

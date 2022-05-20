@@ -1,138 +1,94 @@
-# platform.sale
 
-A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
-[![Build & Test](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml) 
-[![Publish & Install](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+# Platform
 
-### [www.platform.sale](https://www.platform.sale/)
+This project was generated using [Nx](https://nx.dev).
 
-* [Live Demo](https://demo.platform.sale/)
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-## Structure
+🔎 **Smart, Fast and Extensible Build System**
 
-This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna). Several npm packages are published from this repo, which can be found in the `packages/` directory.
+## Adding capabilities to your workspace
 
-```
-platform/
-├── apps/           # Storefront and mobile apps
-├── docs/           # Documentation source
-├── e2e-common/     # Shared config for package e2e tests
-├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
-├── scripts/
-    ├── changelog/  # Scripts used to generate the changelog based on the git history
-    ├── codegen/    # Scripts used to generate TypeScript code from the GraphQL APIs
-    ├── docs/       # Scripts used to generate documentation markdown from the source
-```
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-## Development
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-The following instructions are for those who want to develop the platform.sale core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* platform.sale.
+Below are our core plugins:
 
-### 1. Install top-level dependencies
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-`yarn`
+There are also many [community plugins](https://nx.dev/community) you could add.
 
-The root directory has a `package.json` which contains build-related dependencies for tasks including:
+## Generate an application
 
-* Building & deploying the docs 
-* Generating TypeScript types from the GraphQL schema
-* Linting, formatting & testing tasks to run on git commit & push
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-### 2. Bootstrap the packages
+> You can use any of the plugins above to generate applications as well.
 
-`yarn bootstrap`
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
-This runs the Lerna "bootstrap" command, which cross-links monorepo dependencies.
+## Generate a library
 
-### 3. Build all packages
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
-`yarn build`
+> You can also use any of the plugins above to generate libraries as well.
 
-Packages must be built (i.e. TypeScript compiled, admin ui app built, certain assets copied etc.) before being used.
+Libraries are shareable across libraries and applications. They can be imported from `@platform/mylib`.
 
-Note that this can take a few minutes.
+## Development server
 
-### 4. Set up the server
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-The server requires an SQL database to be available. The simplest option is to use SQLite, but if you have Docker available you can use the [dev-server docker-compose file](./packages/dev-server/docker-compose.yml) which will start up both MariaDB and Postgres as well as their GUI management tools.
+## Code scaffolding
 
-Vendure uses [TypeORM](http://typeorm.io), and officially supports **MySQL**, **PostgreSQL** and **SQLite**, though other TypeORM-supported databases may work.
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
-1. Configure the [dev config](./packages/dev-server/dev-config.ts), making sure the connection settings in the `getDbConfig()` function are correct for the database type you will be using.
-2. Create the database using your DB admin tool of choice (e.g. phpMyAdmin if you are using the docker image suggested above). Name it according to the `getDbConfig()` settings. If you are using SQLite, you can skip this step.
-3. Populate mock data: 
-   ```bash
-    cd packages/dev-server
-    DB=<mysql|postgres|sqlite> yarn populate
-    ```
-   If you do not specify the `DB` variable, it will default to "mysql".
+## Build
 
-### 5. Run the dev server
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-```
-cd packages/dev-server
-DB=<mysql|postgres|sqlite> yarn start
-```
-Or if you are in the root package 
-```
-DB=<mysql|postgres|sqlite> yarn dev-server:start
-```
-If you do not specify the `DB` argument, it will default to "mysql".
+## Running unit tests
 
-### 6. Launch the admin ui
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
-1. `cd packages/admin-ui`
-2. `yarn start`
-3. Go to http://localhost:4200 and log in with "superadmin", "superadmin"
+Run `nx affected:test` to execute the unit tests affected by a change.
 
-### Code generation
+## Running end-to-end tests
 
-[graphql-code-generator](https://github.com/dotansimha/graphql-code-generator) is used to automatically create TypeScript interfaces for all GraphQL server operations and admin ui queries. These generated interfaces are used in both the admin ui and the server.
+Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
-Running `yarn codegen` will generate the following files:
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-* [`packages/common/src/generated-types.ts`](./packages/common/src/generated-types.ts): Types, Inputs & resolver args relating to the Admin API
-* [`packages/common/src/generated-shop-types.ts`](./packages/common/src/generated-shop-types.ts): Types, Inputs & resolver args relating to the Shop API
-* [`packages/admin-ui/src/lib/core/src/common/generated-types.ts`](./packages/admin-ui/src/lib/core/src/common/generated-types.ts): Types & operations relating to the admin-ui queries & mutations.
-* [`packages/admin-ui/src/lib/core/src/common/introspection-result.ts`](./packages/admin-ui/src/lib/core/src/common/introspection-result.ts): Used by the Apollo Client [`IntrospectionFragmentMatcher`](https://www.apollographql.com/docs/react/data/fragments/#fragments-on-unions-and-interfaces) to correctly handle fragments in the Admin UI.
-* Also generates types used in e2e tests in those packages which feature e2e tests (core, elasticsearch-plugin, asset-server-plugin etc).
+## Understand your workspace
 
-### Testing
+Run `nx graph` to see a diagram of the dependencies of your projects.
 
-#### Server Unit Tests
+## Further help
 
-The core and several other packages have unit tests which are can be run all together by running `yarn test` from the root directory, or individually by running it from the package directory.
+Visit the [Nx Documentation](https://nx.dev) to learn more.
 
-Unit tests are co-located with the files which they test, and have the suffix `.spec.ts`.
 
-#### End-to-end Tests
 
-Certain packages have e2e tests, which are located at `/packages/<name>/e2e/`. All e2e tests can be run by running `yarn e2e` from the root directory, or individually by running it from the package directory.
+## ☁ Nx Cloud
 
-e2e tests use the `@vendure/testing` package. For details of how the setup works, see the [Testing docs](https://www.vendure.io/docs/developer-guide/testing/)
+### Distributed Computation Caching & Distributed Task Execution
 
-When **debugging e2e tests**, set an environment variable `E2E_DEBUG=true` which will increase the global Jest timeout and allow you to step through the e2e tests without the tests automatically failing due to timeout.
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
-### Release Process
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
-All packages in this repo are released at every version change (using [Lerna's fixed mode](https://github.com/lerna/lerna#fixedlocked-mode-default)). This simplifies both the development (tracking multiple disparate versions is tough) and also the developer experience for users of the framework (it is simple to see that all packages are up-to-date and compatible).
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
-To make a release:
-
-##### 1. `yarn publish-release`
-
-It will run `lerna publish` which will prompt for which version to update to. Although we are using [conventional commits](https://www.conventionalcommits.org), the version is not automatically being calculated from the commit messages. Therefore the next version should be manually selected. 
-
-Next it will build all packages to ensure the distributed files are up to date.
-
-Finally the command will create changelog entries for this release.
-
-##### 2. `git push origin master --follow-tags`
-
-The reason we do not rely on Lerna to push the release to Git is that this repo has a lengthy pre-push hook which runs all tests and builds the admin ui. This long wait then invalidates the npm OTP and the publish will fail. So the solution is to publish first and then push.
-
-## License
-
-MIT
+Visit [Nx Cloud](https://nx.app/) to learn more.

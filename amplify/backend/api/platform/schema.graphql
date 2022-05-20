@@ -1,0 +1,191 @@
+type Organization @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  isActive: String
+  name: String
+  slug: String
+  description: String
+  coverImage: Attachment
+  logo: Attachment
+  address: UserAddress
+  settings: String
+}
+
+enum ShippingType {
+  FIXED
+  PERCENTAGE
+  FREE
+}
+
+type Shipping @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  amount: String
+  isGlobal: String
+  type: ShippingType
+}
+
+type Social {
+  type: String
+  link: String
+}
+
+type Profile @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  avatar: Attachment
+  bio: String
+  socials: [Social]
+  contact: String
+}
+
+type EntityVariationOption {
+  name: String
+  value: String
+}
+
+type EntityVariation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  price: Float
+  sku: String
+  isDisable: Boolean
+  salePrice: Float
+  quantity: Int
+  options: EntityVariationOption
+}
+
+enum EntityStatus {
+  PUBLISH
+  DRAFT
+}
+
+enum EntityType {
+  PRODUCT
+  EVENT
+  BOOK
+}
+
+type Entity @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  slug: String
+  entityType: EntityType
+  description: String
+  inStock: Boolean
+  isTaxable: String
+  salePrice: String
+  maxPrice: String
+  minPrice: String
+  sku: String
+  gallery: [Attachment]
+  image: Attachment
+  status: EntityStatus
+  height: String
+  lenght: String
+  width: String
+  price: Float
+  quantity: Int
+  unit: String
+}
+
+enum PaymentGateway {
+  QPAY
+  SOCIAL_PAY
+  CASH_ON_DELIVERY
+  BANK_TRANSACTION
+  CARD
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  trakingNumber: String
+  amount: String
+  paidTotal: String
+  discount: String
+  deliveryFee: String
+  deliveryTime: String
+  billingAddress: UserAddress
+  shippingAddress: UserAddress
+  paymentGateway: PaymentGateway
+}
+
+enum CouponType {
+  FIXED_COUPON
+  PERCENTAGE_COUPON
+  FREE_SHIPPING_COUPON
+}
+
+type Coupon @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  code: String
+  description: String
+  type: CouponType
+  image: Attachment
+  isValid: Boolean
+  amount: Float
+  activeFrom: String
+  expireAt: String
+}
+
+type Contact @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  subject: String
+  email: String
+  name: String
+  description: String
+}
+
+type Attachment {
+  thumbnail: String
+  original: String
+}
+
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  slug: String
+  details: String
+  image: Attachment
+  icon: String
+}
+
+type AttributeValue @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  value: String
+  meta: String
+  attributeID: ID! @index(name: "byAttribute")
+}
+
+type Attribute @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  slug: String
+  values: [AttributeValue] @hasMany(indexName: "byAttribute", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  email: String
+  isActiive: String
+}
+
+type UserAddress {
+  streetAddress: String
+  country: String
+  city: String
+  state: String
+  zip: String
+}
+
+enum AddressType {
+  BILLING
+  SHIPPING
+}
+
+type Address @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  default: Boolean
+  address: UserAddress
+  type: AddressType
+}

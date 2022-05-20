@@ -1,3 +1,0 @@
-type Collection implements Node {
-    isPrivate: Boolean!
-}
