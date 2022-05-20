@@ -1,34 +1,20 @@
 import ConfirmationCard from "@components/common/confirmation-card";
 import {
   useModalAction,
-  useModalState,
+  useModalState
 } from "@components/ui/modal/modal.context";
-import { useDeleteAttributeMutation } from "@graphql/attributes.graphql";
+import useAttribute from "@core/attribute/useAttribute";
 import { getErrorMessage } from "@utils/form-error";
 
+
 const AttributeDeleteView = () => {
-  const [deleteAttributeByID, { loading }] = useDeleteAttributeMutation({
-    //@ts-ignore
-    update(cache, { data: { deleteAttribute } }) {
-      cache.modify({
-        fields: {
-          attributes(existingRefs, { readField }) {
-            return existingRefs.filter(
-              (ref: any) => deleteAttribute.id !== readField("id", ref)
-            );
-          },
-        },
-      });
-    },
-  });
+  const { loading, removeAttribute } = useAttribute();
 
   const { data: modalData } = useModalState();
   const { closeModal } = useModalAction();
   async function handleDelete() {
     try {
-      await deleteAttributeByID({
-        variables: { id: modalData as string },
-      });
+      await removeAttribute(modalData as string);
       closeModal();
     } catch (error) {
       closeModal();

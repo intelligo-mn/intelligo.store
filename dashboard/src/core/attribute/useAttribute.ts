@@ -2,8 +2,10 @@ import { CreateAttributeInput, CreateAttributeMutation, DeleteAttributeInput, De
 import { createAttribute, deleteAttribute, updateAttribute } from "@graphql/mutations";
 import { listAttributes } from "@graphql/queries";
 import { API } from "aws-amplify";
+import { useState } from "react";
 
 export const useAttribute = () => {
+  const [loading, setLoading] = useState();
   const addAttribute = async (input: CreateAttributeInput): Promise<any> => {
     try {
       const { data } = (await API.graphql({
@@ -76,6 +78,7 @@ export const useAttribute = () => {
     getAttributes,
     removeAttribute,
     editAttribute,
+    loading
   };
 };
 
