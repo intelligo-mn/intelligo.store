@@ -1,18 +1,18 @@
+import { useApolloClient } from "@apollo/client";
 import Alert from "@components/ui/alert";
 import Button from "@components/ui/button";
 import Input from "@components/ui/input";
+import Link from "@components/ui/link";
 import PasswordInput from "@components/ui/password-input";
-import { useLoginMutation } from "@graphql/auth.graphql";
+import useAuth from "@core/auth/useAuth";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
+import { ROUTES } from "@utils/routes";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useApolloClient } from "@apollo/client";
-import { ROUTES } from "@utils/routes";
-import { useTranslation } from "next-i18next";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
-import Link from "@components/ui/link";
 
 type FormValues = {
   email: string;
@@ -28,20 +28,7 @@ const loginFormSchema = yup.object().shape({
 const LoginForm = () => {
   const client = useApolloClient();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [login, { loading }] = useLoginMutation({
-    onCompleted: (data) => {
-      if (data.login?.token) {
-        if (hasAccess(allowedRoles, data.login.permissions)) {
-          setAuthCredentials(data.login.token, data.login.permissions);
-          router.push(ROUTES.DASHBOARD);
-          return;
-        }
-        setErrorMessage("form:error-enough-permission");
-      } else {
-        setErrorMessage("form:error-credential-wrong");
-      }
-    },
-  });
+  const { login, loading } = useAuth();
 
   const {
     register,
@@ -55,11 +42,17 @@ const LoginForm = () => {
 
   function onSubmit({ email, password }: FormValues) {
     client.resetStore();
-    login({
-      variables: {
-        email,
-        password,
-      },
+    login(email, password).then((data: any) => {
+      if (data.login?.token) {
+        if (hasAccess(allowedRoles, data.login.permissions)) {
+          setAuthCredentials(data.login.token, data.login.permissions);
+          router.push(ROUTES.DASHBOARD);
+          return;
+        }
+        setErrorMessage("form:error-enough-permission");
+      } else {
+        setErrorMessage("form:error-credential-wrong");
+      }
     });
   }
   return (
@@ -86,18 +79,18 @@ const LoginForm = () => {
           {t("form:button-label-login")}
         </Button>
 
-        <div className="flex flex-col items-center justify-center relative text-sm text-heading mt-8 sm:mt-11 mb-6 sm:mb-8">
+        <div className="text-heading relative mt-8 mb-6 flex flex-col items-center justify-center text-sm sm:mt-11 sm:mb-8">
           <hr className="w-full" />
-          <span className="absolute start-2/4 -top-2.5 px-2 -ms-4 bg-light">
+          <span className="start-2/4 -ms-4 bg-light absolute -top-2.5 px-2">
             {t("common:text-or")}
           </span>
         </div>
 
-        <div className="text-sm sm:text-base text-body text-center">
+        <div className="text-body text-center text-sm sm:text-base">
           {t("form:text-no-account")}{" "}
           <Link
             href={ROUTES.REGISTER}
-            className="ms-1 underline text-accent font-semibold transition-colors duration-200 focus:outline-none hover:text-accent-hover focus:text-accent-700 hover:no-underline focus:no-underline"
+            className="ms-1 text-accent hover:text-accent-hover focus:text-accent-700 font-semibold underline transition-colors duration-200 hover:no-underline focus:no-underline focus:outline-none"
           >
             {t("form:link-register-shop-owner")}
           </Link>

@@ -2,7 +2,7 @@ import { Auth } from "aws-amplify";
 import { useState } from "react";
 
 export const useReset = () => {
-  const [loading, setLoading] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const forgotPassword = (username: string) => {
     return new Promise((resolve, reject) => {
