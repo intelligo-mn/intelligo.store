@@ -9,12 +9,7 @@ import {
 import Button from "@components/ui/button";
 import TextArea from "@components/ui/text-area";
 import Label from "@components/ui/label";
-import {
-  useCategoriesQuery,
-  useCreateCategoryMutation,
-  useUpdateCategoryMutation,
-} from "@graphql/categories.graphql";
-import { useTypesQuery } from "@graphql/type.graphql";
+
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
 import * as categoriesIcon from "@components/icons/category";
@@ -33,10 +28,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { categoryValidationSchema } from "./category-validation-schema";
 import { getFormattedImage } from "@utils/get-formatted-image";
 import {
-  Category,
-  QueryCategoriesHasTypeColumn,
-  SqlOperator,
-} from "@common/generated-types";
+  Category,} from "@common/generated-types";
 
 function SelectTypes({
   control,
