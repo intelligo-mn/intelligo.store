@@ -15,7 +15,7 @@ export default function ImportVariationOptions() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const [importVariationOptions, { loading }] =
     useImportVariationOptionsMutation({
       onCompleted: () => {

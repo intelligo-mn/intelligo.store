@@ -50,12 +50,12 @@
         "GraphQLAPIEndpointOutput": "https://272l5hjxjnc57awjj4xfsx2qam.appsync-api.ap-southeast-1.amazonaws.com/graphql",
         "GraphQLAPIKeyOutput": "da2-jq3it7ho6zbknfh7bfbzoikw3a"
       },
-      "lastPushTimeStamp": "2022-05-20T07:30:26.170Z",
+      "lastPushTimeStamp": "2022-05-20T09:29:59.034Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-platform-staging-104348-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiplatform"
       },
-      "lastPushDirHash": "SN1W3xZSxHBqdV3lJcmgQKA5w1w="
+      "lastPushDirHash": "sqm28ERCl4A3dNLMAArKO/RW2ZQ="
     }
   },
   "auth": {
@@ -100,7 +100,7 @@
         "IdentityPoolName": "testAuthIdentityPool__staging",
         "UserPoolName": "platform"
       },
-      "lastPushTimeStamp": "2022-05-20T07:30:26.176Z",
+      "lastPushTimeStamp": "2022-05-20T09:29:59.037Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-platform-staging-104348-deployment/amplify-cfn-templates/auth/platform-cloudformation-template.json",
         "logicalId": "authplatform"

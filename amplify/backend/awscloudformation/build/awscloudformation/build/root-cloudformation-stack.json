@@ -160,6 +160,12 @@
           "AppSyncApiName": "platform",
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
+          "AuthCognitoUserPoolId": {
+            "Fn::GetAtt": [
+              "authplatform",
+              "Outputs.UserPoolId"
+            ]
+          },
           "authRoleName": {
             "Ref": "AuthRoleName"
           },
@@ -167,7 +173,7 @@
             "Ref": "UnauthRoleName"
           },
           "S3DeploymentBucket": "amplify-platform-staging-104348-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/d4dd0f38548a4d88842fcf0ce3cb1de77b2350fa",
+          "S3DeploymentRootKey": "amplify-appsync-files/bda3c4b0513425d7f36ab633efbed3ae290fb104",
           "env": "staging"
         }
       }

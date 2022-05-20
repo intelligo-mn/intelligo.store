@@ -21,7 +21,7 @@ export default function WithdrawsPage() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const { data, loading, error, refetch } = useWithdrawsQuery({
     skip: !Boolean(shopId),
     variables: {

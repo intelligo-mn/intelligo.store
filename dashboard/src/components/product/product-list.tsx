@@ -112,8 +112,8 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
       width: 120,
       align: "center" as AlignType,
       ellipsis: true,
-      render: (shop: Shop) => (
-        <span className="whitespace-nowrap truncate">{shop?.name}</span>
+      render: (organization: Organization) => (
+        <span className="whitespace-nowrap truncate">{organization?.name}</span>
       ),
     },
     {

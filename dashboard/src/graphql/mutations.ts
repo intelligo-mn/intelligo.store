@@ -1036,22 +1036,12 @@ export const createOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -1413,22 +1403,12 @@ export const updateOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -1790,22 +1770,12 @@ export const deleteOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -3626,60 +3596,6 @@ export const deleteCategory = /* GraphQL */ `
     }
   }
 `;
-export const createAttributeValue = /* GraphQL */ `
-  mutation CreateAttributeValue(
-    $input: CreateAttributeValueInput!
-    $condition: ModelAttributeValueConditionInput
-  ) {
-    createAttributeValue(input: $input, condition: $condition) {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateAttributeValue = /* GraphQL */ `
-  mutation UpdateAttributeValue(
-    $input: UpdateAttributeValueInput!
-    $condition: ModelAttributeValueConditionInput
-  ) {
-    updateAttributeValue(input: $input, condition: $condition) {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteAttributeValue = /* GraphQL */ `
-  mutation DeleteAttributeValue(
-    $input: DeleteAttributeValueInput!
-    $condition: ModelAttributeValueConditionInput
-  ) {
-    deleteAttributeValue(input: $input, condition: $condition) {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const createAttribute = /* GraphQL */ `
   mutation CreateAttribute(
     $input: CreateAttributeInput!
@@ -3689,22 +3605,12 @@ export const createAttribute = /* GraphQL */ `
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -3722,22 +3628,12 @@ export const updateAttribute = /* GraphQL */ `
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -3755,22 +3651,12 @@ export const deleteAttribute = /* GraphQL */ `
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -4454,11 +4340,12 @@ export const createUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -4796,11 +4683,12 @@ export const updateUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -5138,11 +5026,12 @@ export const deleteUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version

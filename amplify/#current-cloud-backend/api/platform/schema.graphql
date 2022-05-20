@@ -1,3 +1,9 @@
+type AttributeValue {
+  id: Int
+  value: String
+  meta: String
+}
+
 enum WithdrawStatus {
   APPROVED
   PROCCESSING
@@ -239,19 +245,12 @@ type Category @model @auth(rules: [{allow: public, operations: [read]}, {allow: 
   typeID: ID! @index(name: "byType")
 }
 
-type AttributeValue @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
-  id: ID!
-  value: String
-  meta: String
-  attributeID: ID! @index(name: "byAttribute")
-}
-
 type Attribute @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["intelligoAdmin"], operations: [read, create, update, delete]}, {allow: private, provider: iam}]) {
   id: ID!
   name: String
   slug: String
-  values: [AttributeValue] @hasMany(indexName: "byAttribute", fields: ["id"])
   organizationID: ID! @index(name: "byOrganization")
+  values: AttributeValue
 }
 
 type User @model @auth(rules: [{allow: public}]) {

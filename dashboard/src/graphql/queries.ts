@@ -980,22 +980,12 @@ export const getOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -1359,11 +1349,12 @@ export const listOrganizations = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -1610,11 +1601,12 @@ export const syncOrganizations = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -3262,95 +3254,18 @@ export const syncCategories = /* GraphQL */ `
     }
   }
 `;
-export const getAttributeValue = /* GraphQL */ `
-  query GetAttributeValue($id: ID!) {
-    getAttributeValue(id: $id) {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listAttributeValues = /* GraphQL */ `
-  query ListAttributeValues(
-    $filter: ModelAttributeValueFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listAttributeValues(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        value
-        meta
-        attributeID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncAttributeValues = /* GraphQL */ `
-  query SyncAttributeValues(
-    $filter: ModelAttributeValueFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncAttributeValues(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        value
-        meta
-        attributeID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getAttribute = /* GraphQL */ `
   query GetAttribute($id: ID!) {
     getAttribute(id: $id) {
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -3370,22 +3285,12 @@ export const listAttributes = /* GraphQL */ `
         id
         name
         slug
-        values {
-          items {
-            id
-            value
-            meta
-            attributeID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          nextToken
-          startedAt
-        }
         organizationID
+        values {
+          id
+          value
+          meta
+        }
         createdAt
         updatedAt
         _version
@@ -3414,22 +3319,12 @@ export const syncAttributes = /* GraphQL */ `
         id
         name
         slug
-        values {
-          items {
-            id
-            value
-            meta
-            attributeID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          nextToken
-          startedAt
-        }
         organizationID
+        values {
+          id
+          value
+          meta
+        }
         createdAt
         updatedAt
         _version
@@ -3963,11 +3858,12 @@ export const getUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version

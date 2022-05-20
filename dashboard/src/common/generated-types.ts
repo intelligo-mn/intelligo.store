@@ -565,33 +565,20 @@ export type Attribute = {
   id: string,
   name?: string | null,
   slug?: string | null,
-  values?: ModelAttributeValueConnection | null,
   organizationID: string,
+  values?: AttributeValue | null,
   createdAt: string,
   updatedAt: string,
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
-};
-
-export type ModelAttributeValueConnection = {
-  __typename: "ModelAttributeValueConnection",
-  items:  Array<AttributeValue | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type AttributeValue = {
   __typename: "AttributeValue",
-  id: string,
+  id?: number | null,
   value?: string | null,
   meta?: string | null,
-  attributeID: string,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type ModelOrderConnection = {
@@ -1236,42 +1223,19 @@ export type DeleteCategoryInput = {
   _version?: number | null,
 };
 
-export type CreateAttributeValueInput = {
-  id?: string | null,
-  value?: string | null,
-  meta?: string | null,
-  attributeID: string,
-  _version?: number | null,
-};
-
-export type ModelAttributeValueConditionInput = {
-  value?: ModelStringInput | null,
-  meta?: ModelStringInput | null,
-  attributeID?: ModelIDInput | null,
-  and?: Array< ModelAttributeValueConditionInput | null > | null,
-  or?: Array< ModelAttributeValueConditionInput | null > | null,
-  not?: ModelAttributeValueConditionInput | null,
-};
-
-export type UpdateAttributeValueInput = {
-  id: string,
-  value?: string | null,
-  meta?: string | null,
-  attributeID?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteAttributeValueInput = {
-  id: string,
-  _version?: number | null,
-};
-
 export type CreateAttributeInput = {
   id?: string | null,
   name?: string | null,
   slug?: string | null,
   organizationID: string,
+  values?: AttributeValueInput | null,
   _version?: number | null,
+};
+
+export type AttributeValueInput = {
+  id?: number | null,
+  value?: string | null,
+  meta?: string | null,
 };
 
 export type ModelAttributeConditionInput = {
@@ -1288,6 +1252,7 @@ export type UpdateAttributeInput = {
   name?: string | null,
   slug?: string | null,
   organizationID?: string | null,
+  values?: AttributeValueInput | null,
   _version?: number | null,
 };
 
@@ -1680,16 +1645,6 @@ export type ModelCategoryFilterInput = {
   and?: Array< ModelCategoryFilterInput | null > | null,
   or?: Array< ModelCategoryFilterInput | null > | null,
   not?: ModelCategoryFilterInput | null,
-};
-
-export type ModelAttributeValueFilterInput = {
-  id?: ModelIDInput | null,
-  value?: ModelStringInput | null,
-  meta?: ModelStringInput | null,
-  attributeID?: ModelIDInput | null,
-  and?: Array< ModelAttributeValueFilterInput | null > | null,
-  or?: Array< ModelAttributeValueFilterInput | null > | null,
-  not?: ModelAttributeValueFilterInput | null,
 };
 
 export type ModelAttributeFilterInput = {
@@ -2906,24 +2861,13 @@ export type CreateOrganizationMutation = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3330,24 +3274,13 @@ export type UpdateOrganizationMutation = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3754,24 +3687,13 @@ export type DeleteOrganizationMutation = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -5795,66 +5717,6 @@ export type DeleteCategoryMutation = {
   } | null,
 };
 
-export type CreateAttributeValueMutationVariables = {
-  input: CreateAttributeValueInput,
-  condition?: ModelAttributeValueConditionInput | null,
-};
-
-export type CreateAttributeValueMutation = {
-  createAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type UpdateAttributeValueMutationVariables = {
-  input: UpdateAttributeValueInput,
-  condition?: ModelAttributeValueConditionInput | null,
-};
-
-export type UpdateAttributeValueMutation = {
-  updateAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type DeleteAttributeValueMutationVariables = {
-  input: DeleteAttributeValueInput,
-  condition?: ModelAttributeValueConditionInput | null,
-};
-
-export type DeleteAttributeValueMutation = {
-  deleteAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
 export type CreateAttributeMutationVariables = {
   input: CreateAttributeInput,
   condition?: ModelAttributeConditionInput | null,
@@ -5866,24 +5728,13 @@ export type CreateAttributeMutation = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -5903,24 +5754,13 @@ export type UpdateAttributeMutation = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -5940,24 +5780,13 @@ export type DeleteAttributeMutation = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -6730,12 +6559,13 @@ export type CreateUserOrganizationMutation = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7113,12 +6943,13 @@ export type UpdateUserOrganizationMutation = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7496,12 +7327,13 @@ export type DeleteUserOrganizationMutation = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9520,24 +9352,13 @@ export type GetOrganizationQuery = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -9947,12 +9768,13 @@ export type ListOrganizationsQuery = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10224,12 +10046,13 @@ export type SyncOrganizationsQuery = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12028,78 +11851,6 @@ export type SyncCategoriesQuery = {
   } | null,
 };
 
-export type GetAttributeValueQueryVariables = {
-  id: string,
-};
-
-export type GetAttributeValueQuery = {
-  getAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListAttributeValuesQueryVariables = {
-  filter?: ModelAttributeValueFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListAttributeValuesQuery = {
-  listAttributeValues?:  {
-    __typename: "ModelAttributeValueConnection",
-    items:  Array< {
-      __typename: "AttributeValue",
-      id: string,
-      value?: string | null,
-      meta?: string | null,
-      attributeID: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncAttributeValuesQueryVariables = {
-  filter?: ModelAttributeValueFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncAttributeValuesQuery = {
-  syncAttributeValues?:  {
-    __typename: "ModelAttributeValueConnection",
-    items:  Array< {
-      __typename: "AttributeValue",
-      id: string,
-      value?: string | null,
-      meta?: string | null,
-      attributeID: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
 export type GetAttributeQueryVariables = {
   id: string,
 };
@@ -12110,24 +11861,13 @@ export type GetAttributeQuery = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -12150,24 +11890,13 @@ export type ListAttributesQuery = {
       id: string,
       name?: string | null,
       slug?: string | null,
-      values?:  {
-        __typename: "ModelAttributeValueConnection",
-        items:  Array< {
-          __typename: "AttributeValue",
-          id: string,
-          value?: string | null,
-          meta?: string | null,
-          attributeID: string,
-          createdAt: string,
-          updatedAt: string,
-          _version: number,
-          _deleted?: boolean | null,
-          _lastChangedAt: number,
-        } | null >,
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
       organizationID: string,
+      values?:  {
+        __typename: "AttributeValue",
+        id?: number | null,
+        value?: string | null,
+        meta?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -12194,24 +11923,13 @@ export type SyncAttributesQuery = {
       id: string,
       name?: string | null,
       slug?: string | null,
-      values?:  {
-        __typename: "ModelAttributeValueConnection",
-        items:  Array< {
-          __typename: "AttributeValue",
-          id: string,
-          value?: string | null,
-          meta?: string | null,
-          attributeID: string,
-          createdAt: string,
-          updatedAt: string,
-          _version: number,
-          _deleted?: boolean | null,
-          _lastChangedAt: number,
-        } | null >,
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
       organizationID: string,
+      values?:  {
+        __typename: "AttributeValue",
+        id?: number | null,
+        value?: string | null,
+        meta?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -12808,12 +12526,13 @@ export type GetUserOrganizationQuery = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -15178,24 +14897,13 @@ export type OnCreateOrganizationSubscription = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -15597,24 +15305,13 @@ export type OnUpdateOrganizationSubscription = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -16016,24 +15713,13 @@ export type OnDeleteOrganizationSubscription = {
         id: string,
         name?: string | null,
         slug?: string | null,
-        values?:  {
-          __typename: "ModelAttributeValueConnection",
-          items:  Array< {
-            __typename: "AttributeValue",
-            id: string,
-            value?: string | null,
-            meta?: string | null,
-            attributeID: string,
-            createdAt: string,
-            updatedAt: string,
-            _version: number,
-            _deleted?: boolean | null,
-            _lastChangedAt: number,
-          } | null >,
-          nextToken?: string | null,
-          startedAt?: number | null,
-        } | null,
         organizationID: string,
+        values?:  {
+          __typename: "AttributeValue",
+          id?: number | null,
+          value?: string | null,
+          meta?: string | null,
+        } | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -17937,75 +17623,19 @@ export type OnDeleteCategorySubscription = {
   } | null,
 };
 
-export type OnCreateAttributeValueSubscription = {
-  onCreateAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnUpdateAttributeValueSubscription = {
-  onUpdateAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnDeleteAttributeValueSubscription = {
-  onDeleteAttributeValue?:  {
-    __typename: "AttributeValue",
-    id: string,
-    value?: string | null,
-    meta?: string | null,
-    attributeID: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
 export type OnCreateAttributeSubscription = {
   onCreateAttribute?:  {
     __typename: "Attribute",
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -18020,24 +17650,13 @@ export type OnUpdateAttributeSubscription = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -18052,24 +17671,13 @@ export type OnDeleteAttributeSubscription = {
     id: string,
     name?: string | null,
     slug?: string | null,
-    values?:  {
-      __typename: "ModelAttributeValueConnection",
-      items:  Array< {
-        __typename: "AttributeValue",
-        id: string,
-        value?: string | null,
-        meta?: string | null,
-        attributeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
     organizationID: string,
+    values?:  {
+      __typename: "AttributeValue",
+      id?: number | null,
+      value?: string | null,
+      meta?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -18819,12 +18427,13 @@ export type OnCreateUserOrganizationSubscription = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19197,12 +18806,13 @@ export type OnUpdateUserOrganizationSubscription = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19575,12 +19185,13 @@ export type OnDeleteUserOrganizationSubscription = {
           id: string,
           name?: string | null,
           slug?: string | null,
-          values?:  {
-            __typename: "ModelAttributeValueConnection",
-            nextToken?: string | null,
-            startedAt?: number | null,
-          } | null,
           organizationID: string,
+          values?:  {
+            __typename: "AttributeValue",
+            id?: number | null,
+            value?: string | null,
+            meta?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
           _version: number,

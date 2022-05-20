@@ -39,7 +39,7 @@ export default function CreateOrUpdateWithdrawForm({ initialValues }: IProps) {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const {
     register,
     handleSubmit,

@@ -15,7 +15,7 @@ export default function ImportProducts() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const [importProducts, { loading }] = useImportProductsMutation({
     onCompleted: () => {
       toast.success(t("common:product-imported-successfully"));

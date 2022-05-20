@@ -10,6 +10,11 @@
       "StackName": "amplify-platform-staging-104348",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:928167604805:stack/amplify-platform-staging-104348/90d604a0-d760-11ec-8a6a-0a5e031cf822",
       "AmplifyAppId": "d2fh56ttd5ag2s"
+    },
+    "categories": {
+      "auth": {
+        "platform": {}
+      }
     }
   }
 }

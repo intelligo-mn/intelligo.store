@@ -44,6 +44,13 @@ export enum AddressType {
   SHIPPING = "SHIPPING"
 }
 
+export declare class AttributeValue {
+  readonly id?: number | null;
+  readonly value?: string | null;
+  readonly meta?: string | null;
+  constructor(init: ModelInit<AttributeValue>);
+}
+
 export declare class Attachment {
   readonly thumbnail?: string | null;
   readonly original?: string | null;
@@ -119,10 +126,6 @@ type OrganizationMetaData = {
 }
 
 type AttributeMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type AttributeValueMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -312,23 +315,12 @@ export declare class Attribute {
   readonly id: string;
   readonly name?: string | null;
   readonly slug?: string | null;
-  readonly values?: (AttributeValue | null)[] | null;
   readonly organizationID: string;
+  readonly values?: AttributeValue | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Attribute, AttributeMetaData>);
   static copyOf(source: Attribute, mutator: (draft: MutableModel<Attribute, AttributeMetaData>) => MutableModel<Attribute, AttributeMetaData> | void): Attribute;
-}
-
-export declare class AttributeValue {
-  readonly id: string;
-  readonly value?: string | null;
-  readonly meta?: string | null;
-  readonly attributeID: string;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  constructor(init: ModelInit<AttributeValue, AttributeValueMetaData>);
-  static copyOf(source: AttributeValue, mutator: (draft: MutableModel<AttributeValue, AttributeValueMetaData>) => MutableModel<AttributeValue, AttributeValueMetaData> | void): AttributeValue;
 }
 
 export declare class Order {

@@ -46,7 +46,7 @@ const WithdrawTable = ({ withdraws, title }: IProps) => {
       dataIndex: "shop",
       key: "shop",
       align: alignLeft,
-      render: (shop: Shop) => shop.name,
+      render: (organization: Organization) => shop.name,
     },
     {
       title: t("table:table-item-amount"),

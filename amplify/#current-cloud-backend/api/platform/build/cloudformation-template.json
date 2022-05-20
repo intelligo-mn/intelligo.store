@@ -137,7 +137,7 @@
                     ]
                 },
                 "Description": "api key description",
-                "Expires": 1655620642
+                "Expires": 1655630385
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -1843,118 +1843,6 @@
                 "GraphQLAPITransformerSchema3CB2AE18"
             ]
         },
-        "AttributeValue": {
-            "Type": "AWS::CloudFormation::Stack",
-            "Properties": {
-                "TemplateURL": {
-                    "Fn::Join": [
-                        "",
-                        [
-                            "https://s3.",
-                            {
-                                "Ref": "AWS::Region"
-                            },
-                            ".",
-                            {
-                                "Ref": "AWS::URLSuffix"
-                            },
-                            "/",
-                            {
-                                "Ref": "S3DeploymentBucket"
-                            },
-                            "/",
-                            {
-                                "Ref": "S3DeploymentRootKey"
-                            },
-                            "/stacks/AttributeValue.json"
-                        ]
-                    ]
-                },
-                "Parameters": {
-                    "DynamoDBModelTableReadIOPS": {
-                        "Ref": "DynamoDBModelTableReadIOPS"
-                    },
-                    "DynamoDBModelTableWriteIOPS": {
-                        "Ref": "DynamoDBModelTableWriteIOPS"
-                    },
-                    "DynamoDBBillingMode": {
-                        "Ref": "DynamoDBBillingMode"
-                    },
-                    "DynamoDBEnablePointInTimeRecovery": {
-                        "Ref": "DynamoDBEnablePointInTimeRecovery"
-                    },
-                    "DynamoDBEnableServerSideEncryption": {
-                        "Ref": "DynamoDBEnableServerSideEncryption"
-                    },
-                    "referencetotransformerrootstackenv10C5A902Ref": {
-                        "Ref": "env"
-                    },
-                    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
-                        "Fn::GetAtt": [
-                            "GraphQLAPI",
-                            "ApiId"
-                        ]
-                    },
-                    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
-                        "Ref": "S3DeploymentBucket"
-                    },
-                    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
-                        "Ref": "S3DeploymentRootKey"
-                    },
-                    "referencetotransformerrootstackCouponNestedStackCouponNestedStackResourceDE9A9422OutputstransformerrootstackCouponQuerygetCouponauth0FunctionQuerygetCouponauth0FunctionAppSyncFunction5E2223C3FunctionId": {
-                        "Fn::GetAtt": [
-                            "Coupon",
-                            "Outputs.transformerrootstackCouponQuerygetCouponauth0FunctionQuerygetCouponauth0FunctionAppSyncFunction5E2223C3FunctionId"
-                        ]
-                    },
-                    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId": {
-                        "Fn::GetAtt": [
-                            "Withdraw",
-                            "Outputs.transformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
-                        ]
-                    },
-                    "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
-                        "Ref": "authRoleName"
-                    },
-                    "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
-                        "Ref": "unauthRoleName"
-                    },
-                    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
-                        "Fn::GetAtt": [
-                            "GraphQLAPINONEDS95A13CF0",
-                            "Name"
-                        ]
-                    },
-                    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId": {
-                        "Fn::GetAtt": [
-                            "Withdraw",
-                            "Outputs.transformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId"
-                        ]
-                    },
-                    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId": {
-                        "Fn::GetAtt": [
-                            "Withdraw",
-                            "Outputs.transformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId"
-                        ]
-                    },
-                    "referencetotransformerrootstackCouponNestedStackCouponNestedStackResourceDE9A9422OutputstransformerrootstackCouponSubscriptiononCreateCouponauth0FunctionSubscriptiononCreateCouponauth0FunctionAppSyncFunction7C2F8443FunctionId": {
-                        "Fn::GetAtt": [
-                            "Coupon",
-                            "Outputs.transformerrootstackCouponSubscriptiononCreateCouponauth0FunctionSubscriptiononCreateCouponauth0FunctionAppSyncFunction7C2F8443FunctionId"
-                        ]
-                    },
-                    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId": {
-                        "Fn::GetAtt": [
-                            "Withdraw",
-                            "Outputs.transformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
-                        ]
-                    }
-                }
-            },
-            "DependsOn": [
-                "GraphQLAPITransformerSchema3CB2AE18"
-            ]
-        },
         "Attribute": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
@@ -2651,18 +2539,6 @@
                             "Outputs.transformerrootstackWithdrawWithdrawTable33DB713DRef"
                         ]
                     },
-                    "referencetotransformerrootstackAttributeValueNestedStackAttributeValueNestedStackResource7200D429OutputstransformerrootstackAttributeValueAttributeValueDataSource789AB4C4Name": {
-                        "Fn::GetAtt": [
-                            "AttributeValue",
-                            "Outputs.transformerrootstackAttributeValueAttributeValueDataSource789AB4C4Name"
-                        ]
-                    },
-                    "referencetotransformerrootstackAttributeValueNestedStackAttributeValueNestedStackResource7200D429OutputstransformerrootstackAttributeValueAttributeValueTable1C6E430CRef": {
-                        "Fn::GetAtt": [
-                            "AttributeValue",
-                            "Outputs.transformerrootstackAttributeValueAttributeValueTable1C6E430CRef"
-                        ]
-                    },
                     "referencetotransformerrootstackBalanceNestedStackBalanceNestedStackResource3992EE9FOutputstransformerrootstackBalanceBalanceDataSource16207E86Name": {
                         "Fn::GetAtt": [
                             "Balance",
@@ -2715,7 +2591,6 @@
             },
             "DependsOn": [
                 "Attribute",
-                "AttributeValue",
                 "Balance",
                 "Banner",
                 "Category",
@@ -2764,20 +2639,6 @@
                                                 ]
                                             },
                                             "typeName": "Category"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/*",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "AttributeValue"
                                         }
                                     ]
                                 },
@@ -3328,164 +3189,6 @@
                                                 ]
                                             },
                                             "typeName": "Query",
-                                            "fieldName": "getAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Query",
-                                            "fieldName": "listAttributeValues"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Query",
-                                            "fieldName": "syncAttributeValues"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Mutation",
-                                            "fieldName": "createAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Mutation",
-                                            "fieldName": "updateAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Mutation",
-                                            "fieldName": "deleteAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Subscription",
-                                            "fieldName": "onCreateAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Subscription",
-                                            "fieldName": "onUpdateAttributeValue"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Subscription",
-                                            "fieldName": "onDeleteAttributeValue"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "Version": "2012-10-17"
-                },
-                "Description": "",
-                "Path": "/",
-                "Roles": [
-                    {
-                        "Ref": "authRoleName"
-                    }
-                ]
-            }
-        },
-        "AuthRolePolicy02A05DD8DC": {
-            "Type": "AWS::IAM::ManagedPolicy",
-            "Properties": {
-                "PolicyDocument": {
-                    "Statement": [
-                        {
-                            "Action": "appsync:GraphQL",
-                            "Effect": "Allow",
-                            "Resource": [
-                                {
-                                    "Fn::Sub": [
-                                        "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
-                                        {
-                                            "apiId": {
-                                                "Fn::GetAtt": [
-                                                    "GraphQLAPI",
-                                                    "ApiId"
-                                                ]
-                                            },
-                                            "typeName": "Query",
                                             "fieldName": "getAttribute"
                                         }
                                     ]
@@ -3620,7 +3323,7 @@
                                                     "ApiId"
                                                 ]
                                             },
-                                            "typeName": "ModelAttributeValueConnection"
+                                            "typeName": "AttributeValue"
                                         }
                                     ]
                                 },
@@ -3638,7 +3341,30 @@
                                             "fieldName": "getAddress"
                                         }
                                     ]
-                                },
+                                }
+                            ]
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                },
+                "Description": "",
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "authRoleName"
+                    }
+                ]
+            }
+        },
+        "AuthRolePolicy02A05DD8DC": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": "appsync:GraphQL",
+                            "Effect": "Allow",
+                            "Resource": [
                                 {
                                     "Fn::Sub": [
                                         "arn:aws:appsync:${AWS::Region}:${AWS::AccountId}:apis/${apiId}/types/${typeName}/fields/${fieldName}",
@@ -3965,7 +3691,6 @@
                 "Coupon",
                 "Contact",
                 "Category",
-                "AttributeValue",
                 "Attribute",
                 "User",
                 "Address",

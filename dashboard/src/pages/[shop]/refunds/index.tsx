@@ -23,7 +23,7 @@ export default function RefundsPage() {
     },
   });
 
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
 
   const { data, loading, error, refetch } = useRefundsQuery({
     skip: !Boolean(shopId),

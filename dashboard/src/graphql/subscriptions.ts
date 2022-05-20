@@ -988,22 +988,12 @@ export const onCreateOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -1362,22 +1352,12 @@ export const onUpdateOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -1736,22 +1716,12 @@ export const onDeleteOrganization = /* GraphQL */ `
           id
           name
           slug
-          values {
-            items {
-              id
-              value
-              meta
-              attributeID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-            }
-            nextToken
-            startedAt
-          }
           organizationID
+          values {
+            id
+            value
+            meta
+          }
           createdAt
           updatedAt
           _version
@@ -3500,73 +3470,18 @@ export const onDeleteCategory = /* GraphQL */ `
     }
   }
 `;
-export const onCreateAttributeValue = /* GraphQL */ `
-  subscription OnCreateAttributeValue {
-    onCreateAttributeValue {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateAttributeValue = /* GraphQL */ `
-  subscription OnUpdateAttributeValue {
-    onUpdateAttributeValue {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteAttributeValue = /* GraphQL */ `
-  subscription OnDeleteAttributeValue {
-    onDeleteAttributeValue {
-      id
-      value
-      meta
-      attributeID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const onCreateAttribute = /* GraphQL */ `
   subscription OnCreateAttribute {
     onCreateAttribute {
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -3581,22 +3496,12 @@ export const onUpdateAttribute = /* GraphQL */ `
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -3611,22 +3516,12 @@ export const onDeleteAttribute = /* GraphQL */ `
       id
       name
       slug
-      values {
-        items {
-          id
-          value
-          meta
-          attributeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
       organizationID
+      values {
+        id
+        value
+        meta
+      }
       createdAt
       updatedAt
       _version
@@ -4289,11 +4184,12 @@ export const onCreateUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -4628,11 +4524,12 @@ export const onUpdateUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version
@@ -4967,11 +4864,12 @@ export const onDeleteUserOrganization = /* GraphQL */ `
             id
             name
             slug
-            values {
-              nextToken
-              startedAt
-            }
             organizationID
+            values {
+              id
+              value
+              meta
+            }
             createdAt
             updatedAt
             _version

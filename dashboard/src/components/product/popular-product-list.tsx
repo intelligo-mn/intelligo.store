@@ -53,8 +53,8 @@ const PopularProductList = ({ products, title }: IProps) => {
       width: 120,
       align: "center",
       ellipsis: true,
-      render: (shop: Shop) => (
-        <span className="whitespace-nowrap truncate">{shop?.name}</span>
+      render: (organization: Organization) => (
+        <span className="whitespace-nowrap truncate">{organization?.name}</span>
       ),
     },
 

@@ -24,7 +24,7 @@ const ShopLayout: React.FC = ({ children }) => {
           return (
             <SidebarItem
               key={label}
-              href={href(shop?.toString()!)}
+              href={href(organization?.toString()!)}
               label={t(label)}
               icon={icon}
             />

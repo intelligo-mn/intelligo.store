@@ -24,7 +24,7 @@ $util.unauthorized()
 #end
 #if( $util.authType() == "User Pool Authorization" )
   #if( !$isAuthorized )
-    #set( $staticGroupRoles = [{"claim":"cognito:groups","entity":"intelligoAdmin","allowedFields":["id","name","slug","values","organizationID","organizationAttributesId","_version","_deleted","_lastChangedAt"],"nullAllowedFields":["id","name","slug","values","organizationID"],"isAuthorizedOnAllFields":true}] )
+    #set( $staticGroupRoles = [{"claim":"cognito:groups","entity":"intelligoAdmin","allowedFields":["id","name","slug","organizationID","values","organizationAttributesId","_version","_deleted","_lastChangedAt"],"nullAllowedFields":["id","name","slug","organizationID","values"],"isAuthorizedOnAllFields":true}] )
     #foreach( $groupRole in $staticGroupRoles )
       #set( $groupsInToken = $util.defaultIfNull($ctx.identity.claims.get($groupRole.claim), []) )
       #if( $groupsInToken.contains($groupRole.entity) )

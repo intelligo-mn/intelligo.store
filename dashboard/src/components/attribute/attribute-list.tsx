@@ -7,7 +7,7 @@ import { useIsRTL } from "@utils/locals";
 import { useMemo, useState } from "react";
 import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";
-import { Attribute, Order } from "@common/generated-types";
+import { Attribute, Order, Organization } from "@common/generated-types";
 import { SortDirection } from "aws-amplify";
 
 export type IProps = {
@@ -60,16 +60,16 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
           title={t("table:table-item-title")}
           ascending={
             order === SortDirection.ASCENDING &&
-            column === QueryAttributesOrderByColumn.Name
+            column === ""
           }
-          isActive={column === QueryAttributesOrderByColumn.Name}
+          isActive={column === ""}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
       align: alignLeft,
-      onHeaderCell: () => onHeaderClick(QueryAttributesOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick(""),
       render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
     },
     {
@@ -79,8 +79,8 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
       width: 120,
       align: "center",
       ellipsis: true,
-      render: (shop: Shop) => (
-        <span className="whitespace-nowrap truncate">{shop?.name}</span>
+      render: (organization: Organization) => (
+        <span className="whitespace-nowrap truncate">{organization?.name}</span>
       ),
     },
     {

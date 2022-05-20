@@ -23,7 +23,7 @@ export default function Orders() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const [searchTerm, setSearchTerm] = useState("");
   const { data, loading, error, refetch } = useOrdersQuery({
     skip: !Boolean(shopId),

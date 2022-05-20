@@ -30,7 +30,7 @@ export default function ProductsPage() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [visible, setVisible] = useState(false);

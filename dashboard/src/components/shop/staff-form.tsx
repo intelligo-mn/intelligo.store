@@ -34,7 +34,7 @@ const AddStaffForm = () => {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const {
     register,
     handleSubmit,

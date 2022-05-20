@@ -51,7 +51,7 @@ export default function CreateOrUpdateProductForm({
       slug: router.query.shop as string,
     },
   });
-  const shopId = data?.shop?.id!;
+  const shopId = data?.organization?.id!;
   const methods = useForm<ProductFormValues>({
     resolver: yupResolver(productValidationSchema),
     shouldUnregister: true,

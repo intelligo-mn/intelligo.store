@@ -28,7 +28,7 @@ export default function VariableProductForm({ initialValues }: IProps) {
       slug: router.query.shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const { data, loading } = useAttributesQuery({
     skip: !Boolean(shopId),
     variables: {

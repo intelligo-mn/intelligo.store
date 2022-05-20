@@ -21,7 +21,7 @@ export default function StaffsPage() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const { data, loading, error, refetch } = useStaffsQuery({
     skip: !Boolean(shopId),
     variables: {

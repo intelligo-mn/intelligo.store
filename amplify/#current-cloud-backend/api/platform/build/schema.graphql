@@ -1,4 +1,10 @@
 
+type AttributeValue @aws_iam @aws_cognito_user_pools @aws_api_key {
+  id: Int
+  value: String
+  meta: String
+}
+
 enum WithdrawStatus {
   APPROVED
   PROCCESSING
@@ -311,24 +317,12 @@ type Category @aws_iam @aws_cognito_user_pools @aws_api_key {
   _lastChangedAt: AWSTimestamp!
 }
 
-type AttributeValue @aws_iam @aws_cognito_user_pools @aws_api_key {
-  id: ID!
-  value: String
-  meta: String
-  attributeID: ID!
-  createdAt: AWSDateTime!
-  updatedAt: AWSDateTime!
-  _version: Int!
-  _deleted: Boolean
-  _lastChangedAt: AWSTimestamp!
-}
-
 type Attribute @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: ID!
   name: String
   slug: String
-  values(filter: ModelAttributeValueFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttributeValueConnection
   organizationID: ID!
+  values: AttributeValue
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -562,9 +556,6 @@ type Query {
   getCategory(id: ID!): Category @aws_api_key @aws_iam @aws_cognito_user_pools
   listCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String): ModelCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
   syncCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getAttributeValue(id: ID!): AttributeValue @aws_api_key @aws_iam @aws_cognito_user_pools
-  listAttributeValues(filter: ModelAttributeValueFilterInput, limit: Int, nextToken: String): ModelAttributeValueConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncAttributeValues(filter: ModelAttributeValueFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttributeValueConnection @aws_api_key @aws_iam @aws_cognito_user_pools
   getAttribute(id: ID!): Attribute @aws_api_key @aws_iam @aws_cognito_user_pools
   listAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String): ModelAttributeConnection @aws_api_key @aws_iam @aws_cognito_user_pools
   syncAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttributeConnection @aws_api_key @aws_iam @aws_cognito_user_pools
@@ -664,9 +655,6 @@ type Mutation {
   createCategory(input: CreateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
   updateCategory(input: UpdateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
   deleteCategory(input: DeleteCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
-  createAttributeValue(input: CreateAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_iam @aws_cognito_user_pools
-  updateAttributeValue(input: UpdateAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_iam @aws_cognito_user_pools
-  deleteAttributeValue(input: DeleteAttributeValueInput!, condition: ModelAttributeValueConditionInput): AttributeValue @aws_iam @aws_cognito_user_pools
   createAttribute(input: CreateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
   updateAttribute(input: UpdateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
   deleteAttribute(input: DeleteAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
@@ -727,9 +715,6 @@ type Subscription {
   onCreateCategory: Category @aws_subscribe(mutations: ["createCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onUpdateCategory: Category @aws_subscribe(mutations: ["updateCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onDeleteCategory: Category @aws_subscribe(mutations: ["deleteCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateAttributeValue: AttributeValue @aws_subscribe(mutations: ["createAttributeValue"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateAttributeValue: AttributeValue @aws_subscribe(mutations: ["updateAttributeValue"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteAttributeValue: AttributeValue @aws_subscribe(mutations: ["deleteAttributeValue"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onCreateAttribute: Attribute @aws_subscribe(mutations: ["createAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onUpdateAttribute: Attribute @aws_subscribe(mutations: ["updateAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onDeleteAttribute: Attribute @aws_subscribe(mutations: ["deleteAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
@@ -1606,50 +1591,10 @@ input DeleteCategoryInput {
   _version: Int
 }
 
-type ModelAttributeValueConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
-  items: [AttributeValue]!
-  nextToken: String
-  startedAt: AWSTimestamp
-}
-
-input ModelAttributeValueFilterInput {
-  id: ModelIDInput
-  value: ModelStringInput
-  meta: ModelStringInput
-  attributeID: ModelIDInput
-  and: [ModelAttributeValueFilterInput]
-  or: [ModelAttributeValueFilterInput]
-  not: ModelAttributeValueFilterInput
-}
-
-input ModelAttributeValueConditionInput {
-  value: ModelStringInput
-  meta: ModelStringInput
-  attributeID: ModelIDInput
-  and: [ModelAttributeValueConditionInput]
-  or: [ModelAttributeValueConditionInput]
-  not: ModelAttributeValueConditionInput
-}
-
-input CreateAttributeValueInput {
-  id: ID
+input AttributeValueInput {
+  id: Int
   value: String
   meta: String
-  attributeID: ID!
-  _version: Int
-}
-
-input UpdateAttributeValueInput {
-  id: ID!
-  value: String
-  meta: String
-  attributeID: ID
-  _version: Int
-}
-
-input DeleteAttributeValueInput {
-  id: ID!
-  _version: Int
 }
 
 type ModelAttributeConnection @aws_iam @aws_api_key @aws_cognito_user_pools {
@@ -1682,6 +1627,7 @@ input CreateAttributeInput {
   name: String
   slug: String
   organizationID: ID!
+  values: AttributeValueInput
   _version: Int
 }
 
@@ -1690,6 +1636,7 @@ input UpdateAttributeInput {
   name: String
   slug: String
   organizationID: ID
+  values: AttributeValueInput
   _version: Int
 }
 

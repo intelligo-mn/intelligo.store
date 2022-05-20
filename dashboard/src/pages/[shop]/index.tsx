@@ -44,12 +44,12 @@ export default function ShopPage() {
   });
   const { price: totalEarnings } = usePrice(
     data && {
-      amount: data?.shop?.balance?.total_earnings!,
+      amount: data?.organization?.balance?.total_earnings!,
     }
   );
   const { price: currentBalance } = usePrice(
     data && {
-      amount: data?.shop?.balance?.current_balance!,
+      amount: data?.organization?.balance?.current_balance!,
     }
   );
   if (loading) return <Loader text={t("common:text-loading")} />;

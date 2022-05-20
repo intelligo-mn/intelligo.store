@@ -24,7 +24,7 @@ export default function AttributePage() {
       slug: shop as string,
     },
   });
-  const shopId = shopData?.shop?.id!;
+  const shopId = shopData?.organization?.id!;
   const { openModal } = useModalAction();
   const { data, loading, error, refetch } = useAttributesQuery({
     skip: !Boolean(shopId),
