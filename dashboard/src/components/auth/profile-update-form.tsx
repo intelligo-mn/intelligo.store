@@ -53,8 +53,7 @@ export default function ProfileUpdate({ me }: any) {
           contact: profile?.contact,
           avatar: {
             thumbnail: profile?.avatar?.thumbnail,
-            original: profile?.avatar?.original,
-            id: profile?.avatar?.id,
+            original: profile?.avatar?.original
           },
         },
       }).then((res: any) => {

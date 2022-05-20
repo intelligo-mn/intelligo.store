@@ -2,7 +2,6 @@ import Alert from "@components/ui/alert";
 import Button from "@components/ui/button";
 import Input from "@components/ui/input";
 import PasswordInput from "@components/ui/password-input";
-import { useRegisterMutation } from "@graphql/auth.graphql";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,13 +13,12 @@ import * as yup from "yup";
 import { getErrorMessage } from "@utils/form-error";
 import Link from "@components/ui/link";
 import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
-import { Permission } from "@common/generated-types";
+import useAuth from "@core/auth/useAuth";
 
 type FormValues = {
   name: string;
   email: string;
   password: string;
-  permission: Permission;
 };
 const registrationFormSchema = yup.object().shape({
   name: yup.string().required("form:error-name-required"),
@@ -29,12 +27,11 @@ const registrationFormSchema = yup.object().shape({
     .email("form:error-email-format")
     .required("form:error-email-required"),
   password: yup.string().required("form:error-password-required"),
-  permission: yup.string().default("STORE_OWNER").oneOf(["STORE_OWNER"]),
 });
 const RegistrationForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const client = useApolloClient();
-  const [registerUser, { loading }] = useRegisterMutation();
+  const {signUp, loading} = useAuth();
 
   const {
     register,
@@ -43,34 +40,26 @@ const RegistrationForm = () => {
     setError,
   } = useForm<FormValues>({
     resolver: yupResolver(registrationFormSchema),
-    defaultValues: {
-      permission: Permission.StoreOwner,
-    },
+    
   });
   const router = useRouter();
   const { t } = useTranslation();
 
-  async function onSubmit({ name, email, password, permission }: FormValues) {
+  async function onSubmit({ name, email, password }: FormValues) {
     try {
       await client.resetStore();
-      const { data } = await registerUser({
-        variables: {
-          name,
-          email,
-          password,
-          permission,
-        },
-      });
-      if (data?.register?.token) {
-        if (hasAccess(allowedRoles, data?.register?.permissions)) {
-          setAuthCredentials(data.register.token, data.register.permissions);
-          router.push(ROUTES.DASHBOARD);
-          return;
-        }
-        setErrorMessage("form:error-enough-permission");
-      } else {
-        setErrorMessage("form:error-credential-wrong");
-      }
+      signUp(email, password).then((data: any)=>{
+        if (data?.register?.token) {
+               if (hasAccess(allowedRoles, data?.register?.permissions)) {
+                 setAuthCredentials(data.register.token, data.register.permissions);
+                 router.push(ROUTES.DASHBOARD);
+                 return;
+               }
+               setErrorMessage("form:error-enough-permission");
+             } else {
+               setErrorMessage("form:error-credential-wrong");
+             }
+             })
     } catch (error) {
       const serverErrors = getErrorMessage(error);
       Object.keys(serverErrors?.validation).forEach((field: any) => {
