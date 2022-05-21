@@ -1,18 +1,18 @@
-export function fadeInLeft(duration: number = 0.3) {
+export function fadeInLeft (duration:number = 0.3) {
   return {
-    from: {
-      left: "-100%",
+    from: { 
+      left: '-100%',
       transition: {
-        type: "easeInOut",
-        duration: duration,
-      },
+        type: 'easeInOut',
+				duration: duration,
+      } 
     },
-    to: {
+    to: { 
       left: 0,
       transition: {
-        type: "easeInOut",
-        duration: duration,
-      },
+        type: 'easeInOut',
+				duration: duration,
+      } 
     },
-  };
+  }
 }

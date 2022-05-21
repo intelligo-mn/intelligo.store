@@ -1,18 +1,18 @@
-export function fadeInOut(duration: number = 0.2) {
+export function fadeInOut (duration:number = 0.2) {
   return {
-    from: {
+    from: { 
       opacity: 0,
       transition: {
-        type: "easeInOut",
-        duration: duration,
-      },
+        type: 'easeInOut',
+				duration: duration,
+      } 
     },
-    to: {
+    to: { 
       opacity: 1,
       transition: {
-        type: "easeInOut",
-        duration: duration,
-      },
+        type: 'easeInOut',
+				duration: duration,
+      } 
     },
-  };
+  }
 }

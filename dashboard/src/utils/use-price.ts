@@ -49,6 +49,7 @@ type PriceProps = {
 };
 export default function usePrice(data?: PriceProps | null) {
   const { currency } = useSettings();
+
   const { amount, baseAmount, currencyCode = currency } = data ?? {};
   const locale = siteSettings.defaultLanguage;
   const value = useMemo(() => {

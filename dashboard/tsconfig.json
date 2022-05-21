@@ -49,6 +49,12 @@
       ],
       "@types/*": [
         "src/types/*"
+      ],
+      "@repositories/*": [
+        "src/repositories/*"
+      ],
+      "@data/*": [
+        "src/data/*"
       ]
     },
     "incremental": true
