@@ -21,7 +21,7 @@ const ExportImportView = () => {
         <ImportVariationOptions />
 
         <a
-          href={`${process?.env?.NEXT_PUBLIC_API_ROOT}/export-products/${shopId}`}
+          href={`${process?.env?.NEXT_PUBLIC_REST_API_ENDPOINT}/export-products/${shopId}`}
           target="_blank"
           className="border-dashed border-2 border-border-base h-36 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none p-5"
         >
@@ -33,7 +33,7 @@ const ExportImportView = () => {
         </a>
 
         <a
-          href={`${process?.env?.NEXT_PUBLIC_API_ROOT}/export-variation-options/${shopId}`}
+          href={`${process?.env?.NEXT_PUBLIC_REST_API_ENDPOINT}/export-variation-options/${shopId}`}
           target="_blank"
           className="border-dashed border-2 border-border-base h-36 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none p-5"
         >

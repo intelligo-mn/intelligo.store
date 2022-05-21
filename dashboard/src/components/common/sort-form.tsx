@@ -6,7 +6,8 @@ import { useTranslation } from "next-i18next";
 interface Props {
   className?: string;
   showLabel?: boolean;
-  refetch: Function;
+  onSortChange: Function;
+  onOrderChange: Function;
   options: {
     id?: number;
     value: string;
@@ -15,31 +16,13 @@ interface Props {
 }
 
 const SortForm: React.FC<Props> = ({
-  refetch,
+  onSortChange,
+  onOrderChange,
   options,
   className,
   showLabel = true,
 }) => {
-  const { t } = useTranslation();
-  function onSortChange({ value }: { value: string }) {
-    refetch({
-      page: 1,
-      sortedBy: value,
-    });
-  }
-  function onOrderChange({ value }: { value: string }) {
-    refetch({
-      page: 1,
-      orderBy: value,
-    });
-  }
-
-  // const ascDesc = function onAscDescChange({ value }: { value: string }) {
-  //   refetch({
-  //     page: 1,
-  //     sortedBy: value,
-  //   });
-  // }
+  const { t } = useTranslation("common");
 
   return (
     <div className={cn("flex items-end w-full", className)}>
@@ -56,11 +39,11 @@ const SortForm: React.FC<Props> = ({
       <div className="w-[150px] ms-5">
         <Select
           options={[
-            { id: 1, value: "ASC", label: "ASC" },
-            { id: 2, value: "DESC", label: "DESC" },
+            { id: 1, value: "asc", label: "ASC" },
+            { id: 2, value: "desc", label: "DESC" },
           ]}
           onChange={onSortChange}
-          defaultValue={{ id: 1, value: "DESC", label: "DESC" }}
+          defaultValue={{ id: 1, value: "desc", label: "DESC" }}
           name="sortedBy"
         />
       </div>

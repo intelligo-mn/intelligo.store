@@ -1,23 +1,15 @@
+import Layout from "@components/layouts/app";
 import ProfileUpdateFrom from "@components/auth/profile-update-form";
-import { useMeQuery } from "@graphql/me.graphql";
 import ChangePasswordForm from "@components/auth/change-password-from";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
+import { useMeQuery } from "@data/user/use-me.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import {
-  allowedRoles,
-  getAuthCredentials,
-  hasAccess,
-  isAuthenticated,
-} from "@utils/auth-utils";
-import { GetServerSideProps } from "next";
-import { ROUTES } from "@utils/routes";
-import AppLayout from "@components/layouts/app";
 
 export default function ProfilePage() {
   const { t } = useTranslation();
-  const { data, loading, error } = useMeQuery();
+  const { data, isLoading: loading, error } = useMeQuery();
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (
@@ -28,32 +20,15 @@ export default function ProfilePage() {
         </h1>
       </div>
 
-      <ProfileUpdateFrom me={data?.me} />
+      <ProfileUpdateFrom me={data} />
       <ChangePasswordForm />
     </>
   );
 }
+ProfilePage.Layout = Layout;
 
-ProfilePage.Layout = AppLayout;
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { locale } = ctx;
-  const { token, permissions } = getAuthCredentials(ctx);
-  if (
-    !isAuthenticated({ token, permissions }) ||
-    !hasAccess(allowedRoles, permissions)
-  ) {
-    return {
-      redirect: {
-        destination: ROUTES.LOGIN,
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {
-      ...(await serverSideTranslations(locale!, ["common", "form"])),
-      userPermissions: permissions,
-    },
-  };
-};
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["form", "common"])),
+  },
+});

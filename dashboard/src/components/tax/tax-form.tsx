@@ -1,20 +1,15 @@
 import Input from "@components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "@components/ui/button";
-import {
-  useCreateTaxClassMutation,
-  useUpdateTaxClassMutation,
-} from "@graphql/tax.graphql";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
-import { getErrorMessage } from "@utils/form-error";
 import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
-import { toast } from "react-toastify";
+import { Tax } from "@ts-types/generated";
+import { useCreateTaxClassMutation } from "@data/tax/use-tax-create.mutation";
+import { useUpdateTaxClassMutation } from "@data/tax/use-tax-update.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { taxValidationSchema } from "./tax-validation-schema";
-import { Tax } from "@common/generated-types";
 
 const defaultValues = {
   name: "",
@@ -34,46 +29,38 @@ export default function CreateOrUpdateTaxForm({ initialValues }: IProps) {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<Tax>({
     shouldUnregister: true,
     resolver: yupResolver(taxValidationSchema),
     defaultValues: initialValues ?? defaultValues,
   });
-  const [createTaxClass, { loading: creating }] = useCreateTaxClassMutation();
-  const [updateTaxClass, { loading: updating }] = useUpdateTaxClassMutation();
+  const { mutate: createTaxClass, isLoading: creating } =
+    useCreateTaxClassMutation();
+  const { mutate: updateTaxClass, isLoading: updating } =
+    useUpdateTaxClassMutation();
   const onSubmit = async (values: Tax) => {
-    try {
-      if (initialValues) {
-        const { data } = await updateTaxClass({
-          variables: {
-            input: {
-              ...values,
-              id: initialValues.id!,
-            },
+    if (initialValues) {
+      updateTaxClass({
+        variables: {
+          id: initialValues.id!,
+          input: {
+            ...values,
           },
-        });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
-        }
-      } else {
-        await createTaxClass({
-          variables: {
-            input: {
-              ...values,
-            },
+        },
+      });
+    } else {
+      createTaxClass({
+        variables: {
+          input: {
+            ...values,
           },
-        });
-        router.push(ROUTES.TAXES);
-      }
-    } catch (error) {
-      getErrorMessage(error);
+        },
+      });
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-wrap my-5 sm:my-8">
         <Description
           title={t("form:form-title-information")}
@@ -88,7 +75,7 @@ export default function CreateOrUpdateTaxForm({ initialValues }: IProps) {
         <Card className="w-full sm:w-8/12 md:w-2/3">
           <Input
             label={t("form:input-label-name")}
-            {...register("name")}
+            {...register("name", { required: "Name is required" })}
             error={t(errors.name?.message!)}
             variant="outline"
             className="mb-5"
@@ -104,24 +91,28 @@ export default function CreateOrUpdateTaxForm({ initialValues }: IProps) {
           <Input
             label={t("form:input-label-country")}
             {...register("country")}
+            error={t(errors.country?.message!)}
             variant="outline"
             className="mb-5"
           />
           <Input
             label={t("form:input-label-city")}
             {...register("city")}
+            error={t(errors.city?.message!)}
             variant="outline"
             className="mb-5"
           />
           <Input
-            label="State"
+            label={t("form:input-label-state")}
             {...register("state")}
+            error={t(errors.state?.message!)}
             variant="outline"
             className="mb-5"
           />
           <Input
             label={t("form:input-label-zip")}
             {...register("zip")}
+            error={t(errors.zip?.message!)}
             variant="outline"
             className="mb-5"
           />

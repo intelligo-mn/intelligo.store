@@ -20,6 +20,7 @@ const FileInput = ({
     <Controller
       control={control}
       name={name}
+      defaultValue={[]}
       render={({ field: { ref, ...rest } }) => (
         <Uploader
           {...rest}

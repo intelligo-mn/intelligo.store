@@ -1,10 +1,10 @@
-import { AddressType } from "@common/generated-types";
-import AddressForm from "@components/address/address-form";
 import {
   useModalAction,
-  useModalState
+  useModalState,
 } from "@components/ui/modal/modal.context";
-import useCustomer from "src/core/user/useCustomer";
+import AddressForm from "@components/address/address-form";
+import { AddressType } from "@ts-types/generated";
+import { useUpdateUserMutation } from "@data/user/use-user-update.mutation";
 
 type FormValues = {
   __typename?: string;
@@ -24,11 +24,23 @@ const CreateOrUpdateAddressForm = () => {
     data: { customerId, address },
   } = useModalState();
   const { closeModal } = useModalAction();
-  const {updateCustomer} = useCustomer();
+  const { mutate: updateProfile } = useUpdateUserMutation();
 
   function onSubmit(values: FormValues) {
     const { __typename, ...rest } = values;
-    updateCustomer({id: customerId});
+    updateProfile({
+      variables: {
+        id: customerId,
+        input: {
+          address: [
+            {
+              ...(address?.id ? { id: address.id } : {}),
+              ...rest,
+            },
+          ],
+        },
+      },
+    });
     return closeModal();
   }
   return <AddressForm onSubmit={onSubmit} />;

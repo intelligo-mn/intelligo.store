@@ -1,35 +1,26 @@
 import ConfirmationCard from "@components/common/confirmation-card";
-import { getErrorMessage } from "@utils/form-error";
-import {
-  useBanUserMutation,
-  useActiveUserMutation,
-} from "@graphql/auth.graphql";
 import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
+import { useBlockUserMutation } from "@data/user/use-user-block.mutation";
+import { useUnblockUserMutation } from "@data/user/use-user-unblock.mutation";
 
 const CustomerBanView = () => {
-  const [banUser, { loading }] = useBanUserMutation();
-  const [activeUser, { loading: activeLoading }] = useActiveUserMutation();
+  const { mutate: blockUser, isLoading: loading } = useBlockUserMutation();
+  const { mutate: unblockUser, isLoading: activeLoading } =
+    useUnblockUserMutation();
+
   const { data } = useModalState();
   const { closeModal } = useModalAction();
+
   async function handleDelete() {
-    try {
-      if (data?.type === "ban") {
-        await banUser({
-          variables: { id: data?.id },
-        });
-      } else {
-        await activeUser({
-          variables: { id: data?.id },
-        });
-      }
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
+    if (data?.type === "ban") {
+      blockUser(data?.id);
+    } else {
+      unblockUser(data?.id);
     }
+    closeModal();
   }
   return (
     <ConfirmationCard

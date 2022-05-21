@@ -2,7 +2,6 @@ import Card from "@components/common/card";
 import Search from "@components/common/search";
 import ManufacturerList from "@components/manufacturer/manufacturer-list";
 import LinkButton from "@components/ui/link-button";
-import { useManufacturersQuery } from "@graphql/manufacturers.graphql";
 import { useState } from "react";
 
 import { LIMIT } from "@utils/constants";
@@ -14,10 +13,8 @@ import { ROUTES } from "@utils/routes";
 import ShopLayout from "@components/layouts/shop";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
 import { useRouter } from "next/router";
-import {
-  QueryManufacturersOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { SortOrder } from "@ts-types/generated";
+import { useManufacturersQuery } from "@data/manufacturer/use-manufacturers.query";
 
 export default function Manufacturers() {
   const { t } = useTranslation();
@@ -25,34 +22,28 @@ export default function Manufacturers() {
     query: { shop },
   } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useManufacturersQuery({
-    variables: {
-      first: LIMIT,
-      orderBy: [
-        {
-          column: QueryManufacturersOrderByColumn.CreatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useManufacturersQuery({
+    limit: LIMIT,
+    orderBy,
+    sortedBy,
+    text: searchTerm,
+    page,
   });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: number) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -78,7 +69,8 @@ export default function Manufacturers() {
       <ManufacturerList
         manufacturers={data?.manufacturers}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

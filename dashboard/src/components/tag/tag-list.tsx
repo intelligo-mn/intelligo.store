@@ -7,50 +7,44 @@ import { ROUTES } from "@utils/routes";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  TagPaginator,
-  QueryTagsOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { SortOrder } from "@ts-types/generated";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
-  tags: TagPaginator | undefined | null;
+  tags: any | undefined | null;
   onPagination: (key: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const TagList = ({ tags, onPagination, refetch }: IProps) => {
+const TagList = ({ tags, onPagination, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { data, paginatorInfo } = tags! ?? {};
   const rowExpandable = (record: any) => record.children?.length;
+
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 300),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -67,16 +61,16 @@ const TagList = ({ tags, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING && column === QueryTagsOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryTagsOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
       align: alignLeft,
-      onHeaderCell: () => onHeaderClick(QueryTagsOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: t("table:table-item-slug"),
@@ -90,7 +84,6 @@ const TagList = ({ tags, onPagination, refetch }: IProps) => {
       dataIndex: "type",
       key: "type",
       align: alignLeft,
-
       render: (type: any) => (
         <div
           className="whitespace-nowrap truncate overflow-hidden"

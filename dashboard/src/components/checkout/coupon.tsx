@@ -2,10 +2,10 @@ import { useState } from "react";
 import Input from "@components/ui/input";
 import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import { useVerifyCouponMutation } from "@graphql/coupons.graphql";
 import { useTranslation } from "next-i18next";
 import { couponAtom } from "@contexts/checkout";
 import { useAtom } from "jotai";
+import { useVerifyCouponMutation } from "@data/coupon/use-verify-coupon-mutation";
 
 const Coupon = () => {
   const { t } = useTranslation("common");
@@ -18,23 +18,24 @@ const Coupon = () => {
     setError,
     formState: { errors },
   } = useForm();
-  const [verifyCoupon, { loading }] = useVerifyCouponMutation({
-    onCompleted: (data) => {
-      if (data?.verifyCoupon?.is_valid) {
-        //@ts-ignore
-        applyCoupon(data?.verifyCoupon?.coupon);
-        setHasCoupon(false);
-        return;
-      }
-      if (!data?.verifyCoupon?.is_valid) {
-        setError("code", {
-          type: "manual",
-          message: "error-invalid-coupon",
-        });
-      }
-    },
-  });
-
+  const { mutate: verifyCoupon, isLoading: loading } =
+    useVerifyCouponMutation();
+  // {
+  //   onCompleted: (data) => {
+  //     if (data?.verifyCoupon?.is_valid) {
+  //       //@ts-ignore
+  //       applyCoupon(data?.verifyCoupon?.coupon);
+  //       setHasCoupon(false);
+  //       return;
+  //     }
+  //     if (!data?.verifyCoupon?.is_valid) {
+  //       setError("code", {
+  //         type: "manual",
+  //         message: "error-invalid-coupon",
+  //       });
+  //     }
+  //   },
+  // }
   if (!hasCoupon && !coupon) {
     return (
       <p
@@ -47,11 +48,27 @@ const Coupon = () => {
     );
   }
   function onSubmit({ code }: { code: string }) {
-    verifyCoupon({
-      variables: {
+    verifyCoupon(
+      {
         code,
       },
-    });
+      {
+        onSuccess: (data) => {
+          if (data?.verifyCoupon?.is_valid) {
+            //@ts-ignore
+            applyCoupon(data?.verifyCoupon?.coupon);
+            setHasCoupon(false);
+            return;
+          }
+          if (!data?.verifyCoupon?.is_valid) {
+            setError("code", {
+              type: "manual",
+              message: "error-invalid-coupon",
+            });
+          }
+        },
+      }
+    );
   }
 
   return (

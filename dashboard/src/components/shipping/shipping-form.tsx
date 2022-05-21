@@ -1,22 +1,18 @@
 import Input from "@components/ui/input";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import Button from "@components/ui/button";
-import {
-  useCreateShippingClassMutation,
-  useUpdateShippingClassMutation,
-} from "@graphql/shipping.graphql";
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
 import Radio from "@components/ui/radio/radio";
 import Label from "@components/ui/label";
-import { getErrorMessage } from "@utils/form-error";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { ROUTES } from "@utils/routes";
-import { toast } from "react-toastify";
+import { ShippingInput, ShippingType, Shipping } from "@ts-types/generated";
+import { useCreateShippingClassMutation } from "@data/shipping/use-shipping-create.mutation";
+import { useUpdateShippingClassMutation } from "@data/shipping/use-shipping-update.mutation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { shippingValidationSchema } from "./shipping-validation-schema";
-import { Shipping, ShippingInput, ShippingType } from "@common/generated-types";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+
 const defaultValues = {
   name: "",
   amount: 0,
@@ -25,7 +21,7 @@ const defaultValues = {
 };
 
 type IProps = {
-  initialValues?: Shipping | null;
+  initialValues?: Shipping | undefined | null;
 };
 
 export default function CreateOrUpdateShippingForm({ initialValues }: IProps) {
@@ -34,49 +30,39 @@ export default function CreateOrUpdateShippingForm({ initialValues }: IProps) {
   const {
     register,
     handleSubmit,
-    watch,
-
+    control,
     formState: { errors },
   } = useForm<Shipping>({
     shouldUnregister: true,
     resolver: yupResolver(shippingValidationSchema),
     defaultValues: initialValues ?? defaultValues,
   });
-  const [createShippingClass, { loading: creating }] =
+  const { mutate: createShippingClass, isLoading: creating } =
     useCreateShippingClassMutation();
-  const [updateShipping, { loading: updating }] =
+  const { mutate: updateShippingClass, isLoading: updating } =
     useUpdateShippingClassMutation();
   const onSubmit = async (values: ShippingInput) => {
-    try {
-      if (initialValues) {
-        const { data } = await updateShipping({
-          variables: {
-            input: {
-              ...values,
-              id: initialValues.id!,
-            },
+    if (initialValues) {
+      updateShippingClass({
+        variables: {
+          id: initialValues.id!,
+          input: {
+            ...values,
           },
-        });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
-        }
-      } else {
-        await createShippingClass({
-          variables: {
-            input: {
-              ...values,
-            },
+        },
+      });
+    } else {
+      createShippingClass({
+        variables: {
+          input: {
+            ...values,
           },
-        });
-        router.push(ROUTES.SHIPPINGS);
-      }
-    } catch (error) {
-      getErrorMessage(error);
+        },
+      });
     }
   };
 
-  const type = watch("type");
+  const type = useWatch({ name: "type", control });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,7 +79,7 @@ export default function CreateOrUpdateShippingForm({ initialValues }: IProps) {
         <Card className="w-full sm:w-8/12 md:w-2/3">
           <Input
             label={t("form:input-label-name")}
-            {...register("name")}
+            {...register("name", { required: "Name is required" })}
             error={t(errors.name?.message!)}
             variant="outline"
             className="mb-5"

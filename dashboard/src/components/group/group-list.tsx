@@ -1,51 +1,44 @@
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
+import { SortOrder, Type } from "@ts-types/generated";
 import { getIcon } from "@utils/get-icon";
 import * as typeIcons from "@components/icons/type";
 import { ROUTES } from "@utils/routes";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  Type,
-  QueryTypesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
   types: Type[] | undefined;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const GroupsList = ({ types, refetch }: IProps) => {
+const TypeList = ({ types, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -62,16 +55,16 @@ const GroupsList = ({ types, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING && column === QueryTypesOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryTypesOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
       align: alignLeft,
-      onHeaderCell: () => onHeaderClick(QueryTypesOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
       render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
     },
     {
@@ -94,12 +87,12 @@ const GroupsList = ({ types, refetch }: IProps) => {
     },
     {
       title: t("table:table-item-actions"),
-      dataIndex: "id",
+      dataIndex: "slug",
       key: "actions",
       align: alignRight,
-      render: (id: string) => (
+      render: (id: string, record: Type) => (
         <ActionButtons
-          id={id}
+          id={record.id}
           editUrl={`${ROUTES.GROUPS}/${id}/edit`}
           deleteModalView="DELETE_TYPE"
         />
@@ -109,8 +102,8 @@ const GroupsList = ({ types, refetch }: IProps) => {
 
   return (
     <div className="rounded overflow-hidden shadow mb-8">
-      {/* @ts-ignore */}
       <Table
+        //@ts-ignore
         columns={columns}
         emptyText={t("table:empty-table-data")}
         data={types}
@@ -121,4 +114,4 @@ const GroupsList = ({ types, refetch }: IProps) => {
   );
 };
 
-export default GroupsList;
+export default TypeList;

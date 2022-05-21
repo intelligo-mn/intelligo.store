@@ -3,28 +3,22 @@ import { Control, FieldErrors, useForm } from "react-hook-form";
 import Button from "@components/ui/button";
 import TextArea from "@components/ui/text-area";
 import Label from "@components/ui/label";
-import { useTypesQuery } from "@graphql/type.graphql";
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
 import * as categoriesIcon from "@components/icons/category";
 import { getIcon } from "@utils/get-icon";
 import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
 import { getErrorMessage } from "@utils/form-error";
 import ValidationError from "@components/ui/form-validation-error";
-import { toast } from "react-toastify";
 import { tagIcons } from "./tag-icons";
 import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
 import SelectInput from "@components/ui/select-input";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getFormattedImage } from "@utils/get-formatted-image";
-import {
-  useCreateTagMutation,
-  useUpdateTagMutation,
-} from "@graphql/tags.graphql";
 import { tagValidationSchema } from "./tag-validation-schema";
-import { Tag } from "@common/generated-types";
+import { useTypesQuery } from "@data/type/use-types.query";
+import { useCreateTagMutation } from "@data/tag/use-tag-create.mutation";
+import { useUpdateTagMutation } from "@data/tag/use-tag-update.mutation";
 
 function SelectTypes({
   control,
@@ -34,9 +28,7 @@ function SelectTypes({
   errors: FieldErrors;
 }) {
   const { t } = useTranslation();
-  const { data: types, loading } = useTypesQuery({
-    fetchPolicy: "network-only",
-  });
+  const { data: types, isLoading: loading } = useTypesQuery();
   return (
     <div className="mb-5">
       <Label>{t("form:input-label-types")}</Label>
@@ -86,7 +78,7 @@ const defaultValues = {
 };
 
 type IProps = {
-  initialValues?: Tag | null;
+  initialValues?: any;
 };
 export default function CreateOrUpdateTagForm({ initialValues }: IProps) {
   const router = useRouter();
@@ -112,40 +104,37 @@ export default function CreateOrUpdateTagForm({ initialValues }: IProps) {
     resolver: yupResolver(tagValidationSchema),
   });
 
-  const [createTag, { loading: creating }] = useCreateTagMutation();
-  const [updateTag, { loading: updating }] = useUpdateTagMutation();
+  const { mutate: createTag, isLoading: creating } = useCreateTagMutation();
+  const { mutate: updateTag, isLoading: updating } = useUpdateTagMutation();
 
   const onSubmit = async (values: FormValues) => {
     const input = {
       name: values.name,
       details: values.details,
-      image: getFormattedImage(values?.image),
-      icon: values.icon?.value ?? "",
-      type: {
-        connect: values.type?.id,
+      image: {
+        thumbnail: values?.image?.thumbnail,
+        original: values?.image?.original,
+        id: values?.image?.id,
       },
+      icon: values.icon?.value ?? "",
+      type_id: values.type?.id,
     };
     try {
       if (initialValues) {
-        const { data } = await updateTag({
+        updateTag({
           variables: {
+            id: initialValues?.id!,
             input: {
               ...input,
-              id: initialValues?.id!,
             },
           },
         });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
-        }
       } else {
-        await createTag({
+        createTag({
           variables: {
             input,
           },
         });
-        router.push(ROUTES.TAGS);
       }
     } catch (err) {
       getErrorMessage(err);

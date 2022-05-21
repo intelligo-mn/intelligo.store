@@ -3,24 +3,19 @@ import { Controller, useForm } from "react-hook-form";
 import { DatePicker } from "@components/ui/date-picker";
 import Button from "@components/ui/button";
 import TextArea from "@components/ui/text-area";
-import {
-  useCreateCouponMutation,
-  useUpdateCouponMutation,
-} from "@graphql/coupons.graphql";
-import { getErrorMessage } from "@utils/form-error";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
 import Label from "@components/ui/label";
 import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
 import ValidationError from "@components/ui/form-validation-error";
-import { toast } from "react-toastify";
 import { useSettings } from "@contexts/settings.context";
+import { AttachmentInput, Coupon, CouponType } from "@ts-types/generated";
+import { useCreateCouponMutation } from "@data/coupon/use-coupon-create.mutation";
+import { useUpdateCouponMutation } from "@data/coupon/use-coupon-update.mutation";
 import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { couponValidationSchema } from "./coupon-validation-schema";
-import { AttachmentInput, Coupon, CouponType } from "@common/generated-types";
 
 type FormValues = {
   code: string;
@@ -54,7 +49,6 @@ export default function CreateOrUpdateCouponForm({ initialValues }: IProps) {
 
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: yupResolver(couponValidationSchema),
     // @ts-ignore
     defaultValues: initialValues
       ? {
@@ -63,13 +57,16 @@ export default function CreateOrUpdateCouponForm({ initialValues }: IProps) {
           expire_at: new Date(initialValues.expire_at!),
         }
       : defaultValues,
+    resolver: yupResolver(couponValidationSchema),
   });
   const { currency } = useSettings();
+  const { mutate: createCoupon, isLoading: creating } =
+    useCreateCouponMutation();
+  const { mutate: updateCoupon, isLoading: updating } =
+    useUpdateCouponMutation();
 
   const [active_from, expire_at] = watch(["active_from", "expire_at"]);
   const couponType = watch("type");
-  const [createCoupon, { loading: creating }] = useCreateCouponMutation();
-  const [updateCoupon, { loading: updating }] = useUpdateCouponMutation();
 
   const onSubmit = async (values: FormValues) => {
     const input = {
@@ -85,36 +82,43 @@ export default function CreateOrUpdateCouponForm({ initialValues }: IProps) {
         id: values?.image?.id,
       },
     };
-    try {
-      if (initialValues) {
-        const { data } = await updateCoupon({
+    if (initialValues) {
+      updateCoupon(
+        {
           variables: {
-            input: {
-              id: initialValues.id!,
-              ...input,
-            },
+            id: initialValues.id!,
+            input,
           },
-        });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
+        },
+        {
+          onError: (error: any) => {
+            Object.keys(error?.response?.data).forEach((field: any) => {
+              setError(field, {
+                type: "manual",
+                message: error?.response?.data[field][0],
+              });
+            });
+          },
         }
-      } else {
-        await createCoupon({
+      );
+    } else {
+      createCoupon(
+        {
           variables: {
             input,
           },
-        });
-        router.push(ROUTES.COUPONS);
-      }
-    } catch (error) {
-      const serverErrors = getErrorMessage(error);
-      Object.keys(serverErrors?.validation).forEach((field: any) => {
-        setError(field.split(".")[1], {
-          type: "manual",
-          message: serverErrors?.validation[field][0],
-        });
-      });
+        },
+        {
+          onError: (error: any) => {
+            Object.keys(error?.response?.data).forEach((field: any) => {
+              setError(field, {
+                type: "manual",
+                message: error?.response?.data[field][0],
+              });
+            });
+          },
+        }
+      );
     }
   };
 

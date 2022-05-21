@@ -5,30 +5,32 @@ import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOnly } from "@utils/auth-utils";
-import { LIMIT } from "@utils/constants";
-import { useRefundsQuery } from "@graphql/refunds.graphql";
+import { useState } from "react";
+import { SortOrder } from "@ts-types/generated";
+import { useRefundsQuery } from "@data/refunds/use-refunds.query";
 import RefundList from "@components/refund/refund-list";
 
 export default function RefundsPage() {
   const { t } = useTranslation();
-
-  const { data, loading, error, refetch } = useRefundsQuery({
-    variables: {
-      first: LIMIT,
-      page: 1,
-      orderBy: "updated_at",
-      sortedBy: "DESC",
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useRefundsQuery({
+    limit: 10,
+    page,
+    sortedBy,
+    orderBy,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handlePagination(current: any) {
-    refetch({
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -43,7 +45,8 @@ export default function RefundsPage() {
       <RefundList
         refunds={data?.refunds}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

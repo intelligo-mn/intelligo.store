@@ -1,23 +1,18 @@
 import Pagination from "@components/ui/pagination";
 import Image from "next/image";
-import dayjs from "dayjs";
 import { Table } from "@components/ui/table";
+import { CouponPaginator, SortOrder } from "@ts-types/generated";
 import ActionButtons from "@components/common/action-buttons";
 import { siteSettings } from "@settings/site.settings";
+import { Attachment } from "@ts-types/generated";
 import usePrice from "@utils/use-price";
 import { ROUTES } from "@utils/routes";
+import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useTranslation } from "next-i18next";
-import {
-  Attachment,
-  CouponPaginator,
-  SortOrder,
-  QueryCouponsOrderByColumn,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 dayjs.extend(relativeTime);
@@ -27,36 +22,33 @@ dayjs.extend(timezone);
 type IProps = {
   coupons: CouponPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
+const CouponList = ({ coupons, onPagination, onSort, onOrder }: IProps) => {
   const { data, paginatorInfo } = coupons!;
   const { t } = useTranslation();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -89,16 +81,16 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-code")}
           ascending={
-            order === SortDirection.ASCENDING && column === QueryCouponsOrderByColumn.Code
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "code"
           }
-          isActive={column === QueryCouponsOrderByColumn.Code}
+          isActive={sortingObj.column === "code"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "code",
       key: "code",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryCouponsOrderByColumn.Code),
+      onHeaderCell: () => onHeaderClick("code"),
       render: (text: string) => (
         <span className="whitespace-nowrap">{text}</span>
       ),
@@ -108,10 +100,9 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-amount")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryCouponsOrderByColumn.Amount
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "amount"
           }
-          isActive={column === QueryCouponsOrderByColumn.Amount}
+          isActive={sortingObj.column === "amount"}
         />
       ),
       className: "cursor-pointer",
@@ -119,7 +110,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
       key: "amount",
       align: "center",
       width: 132,
-      onHeaderCell: () => onHeaderClick(QueryCouponsOrderByColumn.Amount),
+      onHeaderCell: () => onHeaderClick("amount"),
       render: (amount: number, record: any) => {
         const { price } = usePrice({
           amount: amount,
@@ -135,20 +126,20 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-active")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryCouponsOrderByColumn.CreatedAt
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "active_from"
           }
-          isActive={column === QueryCouponsOrderByColumn.CreatedAt}
+          isActive={sortingObj.column === "active_from"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "active_from",
       key: "active_from",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryCouponsOrderByColumn.CreatedAt),
-      render: (date: string) => (
+      onHeaderCell: () => onHeaderClick("active_from"),
+      render: (active_date: string) => (
         <span className="whitespace-nowrap">
-          {dayjs().to(dayjs.utc(date).tz(dayjs.tz.guess()))}
+          {dayjs().to(dayjs.utc(active_date).tz(dayjs.tz.guess()))}
         </span>
       ),
     },
@@ -157,20 +148,20 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-expired")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryCouponsOrderByColumn.ExpireAt
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "expire_at"
           }
-          isActive={column === QueryCouponsOrderByColumn.ExpireAt}
+          isActive={sortingObj.column === "expire_at"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "expire_at",
       key: "expire_at",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryCouponsOrderByColumn.ExpireAt),
-      render: (date: string) => (
+      onHeaderCell: () => onHeaderClick("expire_at"),
+      render: (expired_date: string) => (
         <span className="whitespace-nowrap">
-          {dayjs().to(dayjs.utc(date).tz(dayjs.tz.guess()))}
+          {dayjs().to(dayjs.utc(expired_date).tz(dayjs.tz.guess()))}
         </span>
       ),
     },
@@ -182,7 +173,7 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
       render: (id: string) => (
         <ActionButtons
           id={id}
-          editUrl={`${ROUTES.COUPONS}/${id}/edit`}
+          editUrl={`${ROUTES.COUPONS}/edit/${id}`}
           deleteModalView="DELETE_COUPON"
         />
       ),
@@ -192,8 +183,8 @@ const CouponList = ({ coupons, onPagination, refetch }: IProps) => {
   return (
     <>
       <div className="rounded overflow-hidden shadow mb-6">
-        {/* @ts-ignore */}
         <Table
+          //@ts-ignore
           columns={columns}
           emptyText={t("table:empty-table-data")}
           data={data}

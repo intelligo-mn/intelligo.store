@@ -1,8 +1,7 @@
-import { useTranslation } from "next-i18next";
 import Layout from "@components/layouts/admin";
 import CreateOrUpdateCategoriesForm from "@components/category/category-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
+import { useTranslation } from "next-i18next";
 
 export default function CreateCategoriesPage() {
   const { t } = useTranslation();
@@ -17,9 +16,7 @@ export default function CreateCategoriesPage() {
     </>
   );
 }
-CreateCategoriesPage.authenticate = {
-  permissions: adminOnly,
-};
+
 CreateCategoriesPage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({

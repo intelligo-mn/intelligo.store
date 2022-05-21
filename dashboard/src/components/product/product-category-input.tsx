@@ -1,13 +1,9 @@
 import SelectInput from "@components/ui/select-input";
 import Label from "@components/ui/label";
 import { Control, useFormState, useWatch } from "react-hook-form";
-import { useCategoriesQuery } from "@graphql/categories.graphql";
 import { useEffect } from "react";
+import { useCategoriesQuery } from "@data/category/use-categories.query";
 import { useTranslation } from "next-i18next";
-import {
-  QueryCategoriesHasTypeColumn,
-  SqlOperator,
-} from "@common/generated-types";
 
 interface Props {
   control: Control<any>;
@@ -15,7 +11,7 @@ interface Props {
 }
 
 const ProductCategoryInput = ({ control, setValue }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const type = useWatch({
     control,
     name: "type",
@@ -29,19 +25,11 @@ const ProductCategoryInput = ({ control, setValue }: Props) => {
     }
   }, [type?.slug]);
 
-  const { data, loading } = useCategoriesQuery({
-    fetchPolicy: "network-only",
-    variables: {
-      ...(type && {
-        hasType: {
-          column: QueryCategoriesHasTypeColumn.Slug,
-          operator: SqlOperator.Eq,
-          value: type?.slug,
-        },
-      }),
-      first: 1000,
-    },
+  const { data, isLoading: loading } = useCategoriesQuery({
+    limit: 999,
+    type: type?.slug,
   });
+
   return (
     <div className="mb-5">
       <Label>{t("form:input-label-categories")}</Label>
@@ -52,7 +40,7 @@ const ProductCategoryInput = ({ control, setValue }: Props) => {
         getOptionLabel={(option: any) => option.name}
         getOptionValue={(option: any) => option.id}
         // @ts-ignore
-        options={data?.categories?.data ?? []}
+        options={data?.categories?.data}
         isLoading={loading}
       />
     </div>

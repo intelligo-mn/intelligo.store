@@ -3,42 +3,49 @@ import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useWithdrawsQuery } from "@graphql/withdraws.graphql";
 import WithdrawList from "@components/withdraw/withdraw-list";
 import LinkButton from "@components/ui/link-button";
 import ShopLayout from "@components/layouts/shop";
 import { useRouter } from "next/router";
 import { adminAndOwnerOnly } from "@utils/auth-utils";
-import { useShopQuery } from "@graphql/shops.graphql";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useWithdrawsQuery } from "@data/withdraw/use-withdraws.query";
+import { useState } from "react";
+import { SortOrder } from "@ts-types/generated";
 
 export default function WithdrawsPage() {
   const { t } = useTranslation();
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
   const {
     query: { shop },
   } = useRouter();
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
-  const { data, loading, error, refetch } = useWithdrawsQuery({
-    skip: !Boolean(shopId),
-    variables: {
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
+
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useWithdrawsQuery(
+    {
       shop_id: Number(shopId)!,
-      first: 10,
-      page: 1,
+      limit: 10,
+      page,
+      orderBy,
+      sortedBy,
     },
-    fetchPolicy: "network-only",
-  });
+    {
+      enabled: Boolean(shopId),
+    }
+  );
 
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handlePagination(current: any) {
-    refetch({
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -60,7 +67,8 @@ export default function WithdrawsPage() {
       <WithdrawList
         withdraws={data?.withdraws}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

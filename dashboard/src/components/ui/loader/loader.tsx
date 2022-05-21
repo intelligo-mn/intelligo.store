@@ -1,6 +1,5 @@
 import styles from "./loader.module.css";
 import cn from "classnames";
-import { useTranslation } from "next-i18next";
 
 interface Props {
   className?: string;
@@ -10,8 +9,7 @@ interface Props {
 }
 
 const Loader = (props: Props) => {
-  const { t } = useTranslation();
-  const { className, showText = true, text = "text-loading", simple } = props;
+  const { className, showText = true, text = "Loading...", simple } = props;
   return (
     <>
       {simple ? (
@@ -27,9 +25,7 @@ const Loader = (props: Props) => {
           <div className={styles.loading} />
 
           {showText && (
-            <h3 className="text-lg font-semibold text-body italic">
-              {t(text)}
-            </h3>
+            <h3 className="text-lg font-semibold text-body italic">{text}</h3>
           )}
         </div>
       )}

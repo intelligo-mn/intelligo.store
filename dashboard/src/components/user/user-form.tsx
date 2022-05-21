@@ -1,26 +1,28 @@
 import Button from "@components/ui/button";
 import Input from "@components/ui/input";
 import PasswordInput from "@components/ui/password-input";
-import { useRegisterMutation } from "@graphql/auth.graphql";
 import { useForm } from "react-hook-form";
-import { getErrorMessage } from "@utils/form-error";
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
-import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
+import { useCreateUserMutation } from "@data/user/use-user-create.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerValidationSchema } from "./user-validation-schema";
+
 type FormValues = {
   name: string;
   email: string;
   password: string;
 };
 
-const UserRegistrationForm = () => {
-  const [registerUser, { loading }] = useRegisterMutation();
-  const router = useRouter();
+const defaultValues = {
+  email: "",
+  password: "",
+};
+
+const CustomerCreateForm = () => {
   const { t } = useTranslation();
+  const { mutate: registerUser, isLoading: loading } = useCreateUserMutation();
 
   const {
     register,
@@ -29,28 +31,30 @@ const UserRegistrationForm = () => {
 
     formState: { errors },
   } = useForm<FormValues>({
+    defaultValues,
     resolver: yupResolver(customerValidationSchema),
   });
 
   async function onSubmit({ name, email, password }: FormValues) {
-    try {
-      await registerUser({
+    registerUser(
+      {
         variables: {
           name,
           email,
           password,
         },
-      });
-      router.push(ROUTES.USERS);
-    } catch (error) {
-      const serverErrors = getErrorMessage(error);
-      Object.keys(serverErrors?.validation).forEach((field: any) => {
-        setError(field.split(".")[1], {
-          type: "manual",
-          message: serverErrors?.validation[field][0],
-        });
-      });
-    }
+      },
+      {
+        onError: (error: any) => {
+          Object.keys(error?.response?.data).forEach((field: any) => {
+            setError(field, {
+              type: "manual",
+              message: error?.response?.data[field][0],
+            });
+          });
+        },
+      }
+    );
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -97,4 +101,4 @@ const UserRegistrationForm = () => {
   );
 };
 
-export default UserRegistrationForm;
+export default CustomerCreateForm;

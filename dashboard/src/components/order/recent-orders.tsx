@@ -4,17 +4,17 @@ import usePrice from "@utils/use-price";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import { Order, OrderStatus } from "@ts-types/generated";
 import { useTranslation } from "next-i18next";
-import { OrderPaginator, OrderStatus } from "@common/generated-types";
 
 type IProps = {
-  orders: OrderPaginator | null | undefined;
+  orders: Order[];
   title?: string;
 };
 
 const RecentOrders = ({ orders, title }: IProps) => {
-  const { data } = orders!;
   const { t } = useTranslation();
+
   const rowExpandable = (record: any) => record.children?.length;
 
   const columns = [
@@ -79,9 +79,9 @@ const RecentOrders = ({ orders, title }: IProps) => {
           //@ts-ignore
           columns={columns}
           emptyText={t("table:empty-table-data")}
-          data={data}
+          data={orders}
           rowKey="id"
-          scroll={{ x: 500 }}
+          scroll={{ x: 200 }}
           expandable={{
             expandedRowRender: () => "",
             rowExpandable: rowExpandable,

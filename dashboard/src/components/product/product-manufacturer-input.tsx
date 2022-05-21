@@ -1,9 +1,9 @@
 import SelectInput from "@components/ui/select-input";
 import Label from "@components/ui/label";
 import { Control, useWatch, useFormState } from "react-hook-form";
-import { useManufacturersQuery } from "@graphql/manufacturers.graphql";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
+import { useManufacturersQuery } from "@data/manufacturer/use-manufacturers.query";
 
 interface Props {
   control: Control<any>;
@@ -26,18 +26,12 @@ const ProductManufacturerInput = ({ control, setValue }: Props) => {
     }
   }, [type?.slug]);
 
-  const { data, loading } = useManufacturersQuery({
-    fetchPolicy: "network-only",
-    variables: {
-      first: 1000,
-      is_approved: true,
-      ...(type && {
-        hasType: {
-          column: "SLUG",
-          value: type?.slug,
-        },
-      }),
-    },
+  const { data, isLoading: loading } = useManufacturersQuery({
+    limit: 1000,
+    is_approved: true,
+    ...(type && {
+      type: type?.slug,
+    }),
   });
 
   return (

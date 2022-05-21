@@ -1,69 +1,88 @@
-import Alert from "@components/ui/alert";
-import useReset from "@core/auth/useReset";
-import { useTranslation } from "next-i18next";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import Alert from "@components/ui/alert";
+import { useForgetPasswordMutation } from "@data/user/use-forget-password.mutation";
+import { useVerifyForgetPasswordTokenMutation } from "@data/user/use-verify-forget-password-token.mutation";
+import { useResetPasswordMutation } from "@data/user/use-reset-password.mutation";
+import dynamic from "next/dynamic";
+import Router from "next/router";
+import { useTranslation } from "next-i18next";
 const EnterEmailView = dynamic(() => import("./enter-email-view"));
 const EnterTokenView = dynamic(() => import("./enter-token-view"));
 const EnterNewPasswordView = dynamic(() => import("./enter-new-password-view"));
 
-const ForgetPassword = () => {
+const ForgotPassword = () => {
   const { t } = useTranslation();
-  const router = useRouter();
-  // const [forgetPassword, { loading }] = useForgetPasswordMutation();
-  // const [verifyToken, { loading: verifying }] =
-  //   useVerifyForgetPasswordTokenMutation();
-  // const [resetPassword, { loading: resetting }] = useResetPasswordMutation();
+  const { mutate: forgetPassword, isLoading } = useForgetPasswordMutation();
+  const { mutate: verifyToken, isLoading: verifying } =
+    useVerifyForgetPasswordTokenMutation();
+  const { mutate: resetPassword, isLoading: resetting } =
+    useResetPasswordMutation();
   const [errorMsg, setErrorMsg] = useState<string | null | undefined>("");
-  const { loading } = useReset();
   const [verifiedEmail, setVerifiedEmail] = useState("");
   const [verifiedToken, setVerifiedToken] = useState("");
 
-  async function handleEmailSubmit({ email }: { email: string }) {
-    // const response = await forgetPassword({
-    //   variables: {
-    //     input: {
-    //       email,
-    //     },
-    //   },
-    // });
-    // if (response?.data?.forgetPassword?.success) {
-    //   setVerifiedEmail(email);
-    // } else {
-    //   setErrorMsg(response?.data?.forgetPassword?.message);
-    // }
+  function handleEmailSubmit({ email }: { email: string }) {
+    forgetPassword(
+      {
+        variables: {
+          input: {
+            email,
+          },
+        },
+      },
+      {
+        onSuccess: ({ data }) => {
+          if (data?.success) {
+            setVerifiedEmail(email);
+          } else {
+            setErrorMsg(data?.message);
+          }
+        },
+      }
+    );
   }
-  async function handleTokenSubmit({ token }: { token: string }) {
-    // const response = await verifyToken({
-    //   variables: {
-    //     input: {
-    //       email: verifiedEmail,
-    //       token,
-    //     },
-    //   },
-    // });
-    // if (response?.data?.verifyForgetPasswordToken?.success) {
-    //   setVerifiedToken(token);
-    // } else {
-    //   setErrorMsg(response?.data?.verifyForgetPasswordToken?.message);
-    // }
+  function handleTokenSubmit({ token }: { token: string }) {
+    verifyToken(
+      {
+        variables: {
+          input: {
+            email: verifiedEmail,
+            token,
+          },
+        },
+      },
+      {
+        onSuccess: ({ data }) => {
+          if (data?.success) {
+            setVerifiedToken(token);
+          } else {
+            setErrorMsg(data?.message);
+          }
+        },
+      }
+    );
   }
-  async function handleResetPassword({ password }: { password: string }) {
-    // const response = await resetPassword({
-    //   variables: {
-    //     input: {
-    //       email: verifiedEmail,
-    //       token: verifiedToken,
-    //       password,
-    //     },
-    //   },
-    // });
-    // if (response?.data?.resetPassword?.success) {
-    //   await router.push("/");
-    // } else {
-    //   setErrorMsg(response?.data?.resetPassword?.message);
-    // }
+  function handleResetPassword({ password }: { password: string }) {
+    resetPassword(
+      {
+        variables: {
+          input: {
+            email: verifiedEmail,
+            token: verifiedToken,
+            password,
+          },
+        },
+      },
+      {
+        onSuccess: ({ data }) => {
+          if (data?.success) {
+            Router.push("/");
+          } else {
+            setErrorMsg(data?.message);
+          }
+        },
+      }
+    );
   }
 
   return (
@@ -72,19 +91,20 @@ const ForgetPassword = () => {
         <Alert
           variant="error"
           message={t(`common:${errorMsg}`)}
+          className="mb-6"
           closeable={true}
           onClose={() => setErrorMsg("")}
         />
       )}
       {!verifiedEmail && (
-        <EnterEmailView loading={loading} onSubmit={handleEmailSubmit} />
+        <EnterEmailView loading={isLoading} onSubmit={handleEmailSubmit} />
       )}
       {verifiedEmail && !verifiedToken && (
-        <EnterTokenView loading={loading} onSubmit={handleTokenSubmit} />
+        <EnterTokenView loading={verifying} onSubmit={handleTokenSubmit} />
       )}
       {verifiedEmail && verifiedToken && (
         <EnterNewPasswordView
-          loading={loading}
+          loading={resetting}
           onSubmit={handleResetPassword}
         />
       )}
@@ -92,4 +112,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ForgotPassword;

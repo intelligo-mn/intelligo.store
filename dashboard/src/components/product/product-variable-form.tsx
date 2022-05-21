@@ -6,34 +6,24 @@ import Card from "@components/common/card";
 import Label from "@components/ui/label";
 import Title from "@components/ui/title";
 import Checkbox from "@components/ui/checkbox/checkbox";
-import { useAttributesQuery } from "@graphql/attributes.graphql";
 import SelectInput from "@components/ui/select-input";
 import { useEffect } from "react";
+import { Product } from "@ts-types/generated";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-import { useShopQuery } from "@graphql/shops.graphql";
-import { Product } from "@common/generated-types";
+import { useAttributesQuery } from "@data/attributes/use-attributes.query";
 import FileInput from "@components/ui/file-input";
-import { filterAttributes, getCartesianProduct } from "./form-utils";
+import ValidationError from "@components/ui/form-validation-error";
+import { getCartesianProduct, filterAttributes } from "./form-utils";
 
 type IProps = {
   initialValues?: Product | null;
+  shopId: string | undefined;
 };
 
-export default function VariableProductForm({ initialValues }: IProps) {
+export default function ProductVariableForm({ shopId, initialValues }: IProps) {
   const { t } = useTranslation();
-  const router = useRouter();
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: router.query.shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
-  const { data, loading } = useAttributesQuery({
-    skip: !Boolean(shopId),
-    variables: {
-      shop_id: initialValues ? initialValues.shop_id : shopId,
-    },
+  const { data, isLoading } = useAttributesQuery({
+    shop_id: initialValues ? Number(initialValues.shop_id) : Number(shopId),
   });
   const {
     register,
@@ -49,7 +39,7 @@ export default function VariableProductForm({ initialValues }: IProps) {
     control,
     name: "variations",
   });
-  const variations = watch("variations"); // watch all the variations and rerender the form
+  const variations = watch("variations");
   const cartesianProduct = getCartesianProduct(getValues("variations"));
   const attributes = data?.attributes;
   return (
@@ -98,7 +88,7 @@ export default function VariableProductForm({ initialValues }: IProps) {
                         getOptionLabel={(option: any) => option.name}
                         getOptionValue={(option: any) => option.id}
                         options={filterAttributes(attributes, variations)!}
-                        isLoading={loading}
+                        isLoading={isLoading}
                       />
                     </div>
 
@@ -123,7 +113,10 @@ export default function VariableProductForm({ initialValues }: IProps) {
           <div className="px-5 md:px-8">
             <Button
               disabled={fields.length === attributes?.length}
-              onClick={() => append({ attribute: "", value: [] })}
+              onClick={(e: any) => {
+                e.preventDefault();
+                append({ attribute: "", value: [] });
+              }}
               type="button"
             >
               {t("form:button-label-add-option")}
@@ -205,7 +198,6 @@ export default function VariableProductForm({ initialValues }: IProps) {
                           className="mb-5"
                         />
                       </div>
-
                       <div>
                         <Label>{t("form:input-label-image")}</Label>
                         <FileInput
@@ -219,7 +211,7 @@ export default function VariableProductForm({ initialValues }: IProps) {
                           {...register(`variation_options.${index}.is_digital`)}
                           label={t("form:input-label-is-digital")}
                         />
-                        {watch(`variation_options.${index}.is_digital`) && (
+                        {!!watch(`variation_options.${index}.is_digital`) && (
                           <div className="mt-5">
                             <Label>{t("form:input-label-digital-file")}</Label>
                             <FileInput
@@ -229,6 +221,13 @@ export default function VariableProductForm({ initialValues }: IProps) {
                               acceptFile={true}
                               helperText={t("form:text-upload-digital-file")}
                             />
+                            <ValidationError
+                              message={t(
+                                errors?.variation_options?.[index]
+                                  ?.digital_file_input?.message
+                              )}
+                            />
+
                             <input
                               type="hidden"
                               {...register(

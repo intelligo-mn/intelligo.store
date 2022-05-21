@@ -6,13 +6,12 @@ import {
 } from "@components/ui/modal/modal.context";
 import Input from "@components/ui/input";
 import { useTranslation } from "next-i18next";
-import { useAddPointsMutation } from "@graphql/user.graphql";
+import { useAddWalletPointsMutation } from "@data/user/use-add-wallet-points.mutation";
 import * as Yup from "yup";
 
 type FormValues = {
   points: number;
 };
-
 const addPointsValidationSchema = Yup.object().shape({
   points: Yup.number()
     .typeError("wallet points must be a number")
@@ -21,12 +20,8 @@ const addPointsValidationSchema = Yup.object().shape({
 });
 const UserWalletPointsAddView = () => {
   const { t } = useTranslation();
-  const [addWalletPoints, { loading }] = useAddPointsMutation({
-    refetchQueries: ["Customers"],
-    onCompleted: () => {
-      closeModal();
-    },
-  });
+  const { mutate: addWalletPoints, isLoading: loading } =
+    useAddWalletPointsMutation();
 
   const { data: customerId } = useModalState();
   const { closeModal } = useModalAction();
@@ -36,10 +31,11 @@ const UserWalletPointsAddView = () => {
       variables: {
         input: {
           customer_id: customerId as string,
-          points: Number(points),
+          points: points,
         },
       },
     });
+    closeModal();
   }
   return (
     <Form<FormValues>

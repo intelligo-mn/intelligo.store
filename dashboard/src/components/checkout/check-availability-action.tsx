@@ -2,7 +2,6 @@ import { formatOrderedProduct } from "@utils/format-ordered-product";
 import { useState } from "react";
 import ValidationError from "@components/ui/validation-error";
 import omit from "lodash/omit";
-import { useVerifyCheckoutMutation } from "@graphql/checkout.graphql";
 import { useAtom } from "jotai";
 import {
   billingAddressAtom,
@@ -12,6 +11,7 @@ import {
 import Button from "@components/ui/button";
 import { useCart } from "@contexts/quick-cart/cart.context";
 import { useTranslation } from "next-i18next";
+import { useVerifyCheckoutMutation } from "@data/checkout/use-verify-checkout-mutation";
 
 export const CheckAvailabilityAction: React.FC = (props) => {
   const { t } = useTranslation("common");
@@ -23,20 +23,23 @@ export const CheckAvailabilityAction: React.FC = (props) => {
   const [errorMessage, setError] = useState("");
   const { items, total, isEmpty } = useCart();
 
-  const [verifyCheckout, { loading }] = useVerifyCheckoutMutation({
-    onCompleted: (data) => {
-      //@ts-ignore
-      setVerifiedResponse(data.verifyCheckout);
-    },
-    onError: (error) => {
-      setError(error?.message);
-    },
-  });
+  const { mutate: verifyCheckout, isLoading: loading } =
+    useVerifyCheckoutMutation();
+
+  // {
+  //   onCompleted: (data) => {
+  //     //@ts-ignore
+  //     setVerifiedResponse(data.verifyCheckout);
+  //   },
+  //   onError: (error) => {
+  //     setError(error?.message);
+  //   },
+  // }
 
   function handleVerifyCheckout() {
     if (billing_address && shipping_address) {
-      verifyCheckout({
-        variables: {
+      verifyCheckout(
+        {
           amount: total,
           products: items?.map((item) => formatOrderedProduct(item)),
           billing_address: {
@@ -48,7 +51,16 @@ export const CheckAvailabilityAction: React.FC = (props) => {
               omit(shipping_address.address, ["__typename"])),
           },
         },
-      });
+        {
+          onSuccess: ({ data }: any) => {
+            //@ts-ignore
+            setVerifiedResponse(data);
+          },
+          onError: (error: any) => {
+            setError(error?.message);
+          },
+        }
+      );
     } else {
       setError("error-add-both-address");
     }

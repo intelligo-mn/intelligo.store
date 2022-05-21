@@ -1,34 +1,28 @@
 import Button from "@components/ui/button";
 import Input from "@components/ui/input";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { ROUTES } from "@utils/routes";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  useCreateShopMutation,
-  useUpdateShopMutation,
-} from "@graphql/shops.graphql";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
 import FileInput from "@components/ui/file-input";
 import TextArea from "@components/ui/text-area";
-import { useRouter } from "next/router";
 import { shopValidationSchema } from "./shop-validation-schema";
 import { getFormattedImage } from "@utils/get-formatted-image";
-import { toast } from "react-toastify";
-import { adminOnly, getAuthCredentials, hasAccess } from "@utils/auth-utils";
-import GooglePlacesAutocomplete from "@components/ui/form/google-places-autocomplete";
-import Label from "@components/ui/label";
-import { getIcon } from "@utils/get-icon";
-import SelectInput from "@components/ui/select-input";
-import * as socialIcons from "@components/icons/social";
-import omit from "lodash/omit";
+import { useCreateShopMutation } from "@data/shop/use-shop-create.mutation";
+import { useUpdateShopMutation } from "@data/shop/use-shop-update.mutation";
 import {
   BalanceInput,
   ShopSettings,
   ShopSocialInput,
   UserAddressInput,
-} from "@common/generated-types";
+} from "@ts-types/generated";
+import GooglePlacesAutocomplete from "@components/form/google-places-autocomplete";
+import Label from "@components/ui/label";
+import { getIcon } from "@utils/get-icon";
+import SelectInput from "@components/ui/select-input";
+import * as socialIcons from "@components/icons/social";
+import omit from "lodash/omit";
 
 const socialIcon = [
   {
@@ -71,26 +65,13 @@ type FormValues = {
   cover_image: any;
   logo: any;
   balance: BalanceInput;
-  settings: ShopSettings;
   address: UserAddressInput;
+  settings: ShopSettings;
 };
 
 const ShopForm = ({ initialValues }: { initialValues?: any }) => {
-  const router = useRouter();
-  const [createShop, { loading: creating }] = useCreateShopMutation({
-    onCompleted: () => {
-      const { permissions } = getAuthCredentials();
-      if (hasAccess(adminOnly, permissions)) {
-        return router.push(ROUTES.ADMIN_MY_SHOPS);
-      }
-      router.push(ROUTES.DASHBOARD);
-    },
-  });
-  const [updateShop, { loading: updating }] = useUpdateShopMutation({
-    onCompleted: () => {
-      toast.success(t("common:successfully-updated"));
-    },
-  });
+  const { mutate: createShop, isLoading: creating } = useCreateShopMutation();
+  const { mutate: updateShop, isLoading: updating } = useUpdateShopMutation();
   const {
     register,
     handleSubmit,
@@ -121,7 +102,6 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
       : {}),
     resolver: yupResolver(shopValidationSchema),
   });
-
   const { t } = useTranslation();
   const { fields, append, remove } = useFieldArray({
     control,
@@ -140,16 +120,13 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
         : [],
     };
     if (initialValues) {
-      // const { __typename, ...restAddress } = values.address;
-      // const { __typename: newTypename, ...location } =
-      //   values?.settings?.location;
-
+      const { ...restAddress } = values.address;
       updateShop({
         variables: {
+          id: initialValues.id,
           input: {
-            id: initialValues.id,
             ...values,
-            address: { ...omit(values.address, "__typename") },
+            address: restAddress,
             settings,
             balance: {
               id: initialValues.balance?.id,
@@ -345,8 +322,6 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
               className="mb-5"
               error={t(errors.settings?.website?.message!)}
             />
-
-            {/* Social and Icon picker */}
             <div>
               {fields.map(
                 (item: ShopSocialInput & { id: string }, index: number) => (
@@ -374,7 +349,7 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
                       /> */}
                       <Input
                         className="sm:col-span-2"
-                        label={t("form:input-label-social-url")}
+                        label={t("form:input-label-url")}
                         variant="outline"
                         {...register(`settings.socials.${index}.url` as const)}
                         defaultValue={item.url!} // make sure to set up defaultValue
@@ -393,7 +368,6 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
                 )
               )}
             </div>
-
             <Button
               type="button"
               onClick={() => append({ icon: "", url: "" })}
@@ -403,6 +377,7 @@ const ShopForm = ({ initialValues }: { initialValues?: any }) => {
             </Button>
           </Card>
         </div>
+
         <div className="mb-5 text-end">
           <Button
             loading={creating || updating}

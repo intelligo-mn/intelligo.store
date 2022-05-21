@@ -1,35 +1,32 @@
 import Input from "@components/ui/input";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import Button from "@components/ui/button";
-import { useUpdateSettingsMutation } from "@graphql/settings.graphql";
-import Description from "@components/ui/description";
-import Card from "@components/common/card";
-import Label from "@components/ui/label";
-import { getErrorMessage } from "@utils/form-error";
-import { CURRENCY } from "./currency";
-import { siteSettings } from "@settings/site.settings";
-import ValidationError from "@components/ui/form-validation-error";
-import { toast } from "react-toastify";
-import { useSettings } from "@contexts/settings.context";
-import { useTranslation } from "next-i18next";
-import FileInput from "@components/ui/file-input";
-import SelectInput from "@components/ui/select-input";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { settingsValidationSchema } from "./settings-validation-schema";
-import TextArea from "@components/ui/text-area";
-import { getFormattedImage } from "@utils/get-formatted-image";
-import Alert from "@components/ui/alert";
-import omit from "lodash/omit";
-import { getIcon } from "@utils/get-icon";
-import * as socialIcons from "@components/icons/social";
-import GooglePlacesAutocomplete from "@components/ui/form/google-places-autocomplete";
 import {
   ContactDetailsInput,
   SettingsOptions,
   Shipping,
   ShopSocialInput,
   Tax,
-} from "@common/generated-types";
+} from "@ts-types/generated";
+import Description from "@components/ui/description";
+import Card from "@components/common/card";
+import Label from "@components/ui/label";
+import { CURRENCY } from "./currency";
+import { siteSettings } from "@settings/site.settings";
+import ValidationError from "@components/ui/form-validation-error";
+import { useUpdateSettingsMutation } from "@data/settings/use-settings-update.mutation";
+import { useTranslation } from "next-i18next";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { settingsValidationSchema } from "./settings-validation-schema";
+import FileInput from "@components/ui/file-input";
+import SelectInput from "@components/ui/select-input";
+import TextArea from "@components/ui/text-area";
+import { getFormattedImage } from "@utils/get-formatted-image";
+import Alert from "@components/ui/alert";
+import { getIcon } from "@utils/get-icon";
+import * as socialIcons from "@components/icons/social";
+import GooglePlacesAutocomplete from "@components/form/google-places-autocomplete";
+import omit from "lodash/omit";
 import Checkbox from "@components/ui/checkbox/checkbox";
 import SwitchInput from "@components/ui/switch-input";
 
@@ -38,17 +35,17 @@ type FormValues = {
   siteSubtitle: string;
   currency: any;
   minimumOrderAmount: number;
-  signupPoints: number;
-  useOtp: boolean;
-  currencyToWalletRatio: number;
   logo: any;
+  useOtp: boolean;
   taxClass: Tax;
+  shippingClass: Shipping;
+  signupPoints: number;
+  currencyToWalletRatio: number;
+  contactDetails: ContactDetailsInput;
   deliveryTime: {
     title: string;
     description: string;
   };
-  shippingClass: Shipping;
-  contactDetails: ContactDetailsInput;
   seo: {
     metaTitle: string;
     metaDescription: string;
@@ -107,7 +104,7 @@ export const updatedIcons = socialIcon.map((item: any) => {
 });
 
 type IProps = {
-  settings: SettingsOptions | undefined | null;
+  settings?: SettingsOptions | null;
   taxClasses: Tax[] | undefined | null;
   shippingClasses: Shipping[] | undefined | null;
 };
@@ -118,7 +115,8 @@ export default function SettingsForm({
   shippingClasses,
 }: IProps) {
   const { t } = useTranslation();
-  const [updateSettingsMutation, { loading }] = useUpdateSettingsMutation();
+  const { mutate: updateSettingsMutation, isLoading: loading } =
+    useUpdateSettingsMutation();
   const {
     register,
     handleSubmit,
@@ -171,50 +169,39 @@ export default function SettingsForm({
     name: "contactDetails.socials",
   });
 
-  const { updateSettings } = useSettings();
-
   async function onSubmit(values: FormValues) {
-    try {
-      const contactDetails = {
-        ...values?.contactDetails,
-        location: { ...omit(values?.contactDetails?.location, "__typename") },
-        socials: values?.contactDetails?.socials
-          ? values?.contactDetails?.socials?.map((social: any) => ({
-              icon: social?.icon?.value,
-              url: social?.url,
-            }))
-          : [],
-      };
-      const { data } = await updateSettingsMutation({
-        variables: {
-          input: {
-            // @ts-ignore
-            options: {
-              ...values,
-              signupPoints: Number(values.signupPoints),
-              currencyToWalletRatio: Number(values.currencyToWalletRatio),
-              minimumOrderAmount: Number(values.minimumOrderAmount),
-              currency: values.currency?.code,
-              taxClass: values?.taxClass?.id,
-              shippingClass: values?.shippingClass?.id,
-              logo: getFormattedImage(values?.logo),
-              contactDetails,
-              seo: {
-                ...values?.seo,
-                ogImage: getFormattedImage(values?.seo?.ogImage),
-              },
+    const contactDetails = {
+      ...values?.contactDetails,
+      location: { ...omit(values?.contactDetails?.location, "__typename") },
+      socials: values?.contactDetails?.socials
+        ? values?.contactDetails?.socials?.map((social: any) => ({
+            icon: social?.icon?.value,
+            url: social?.url,
+          }))
+        : [],
+    };
+    updateSettingsMutation({
+      variables: {
+        input: {
+          options: {
+            ...values,
+            signupPoints: Number(values.signupPoints),
+            currencyToWalletRatio: Number(values.currencyToWalletRatio),
+            minimumOrderAmount: Number(values.minimumOrderAmount),
+            currency: values.currency?.code,
+            taxClass: values?.taxClass?.id,
+            shippingClass: values?.shippingClass?.id,
+            logo: values?.logo,
+            contactDetails,
+            //@ts-ignore
+            seo: {
+              ...values?.seo,
+              ogImage: getFormattedImage(values?.seo?.ogImage),
             },
           },
         },
-      });
-
-      if (data) {
-        updateSettings(data?.updateSettings?.options);
-        toast.success(t("common:successfully-updated"));
-      }
-    } catch (error) {
-      getErrorMessage(error);
-    }
+      },
+    });
   }
 
   const logoInformation = (
@@ -252,12 +239,14 @@ export default function SettingsForm({
           <Input
             label={t("form:input-label-site-title")}
             {...register("siteTitle")}
+            error={t(errors.siteTitle?.message!)}
             variant="outline"
             className="mb-5"
           />
           <Input
             label={t("form:input-label-site-subtitle")}
             {...register("siteSubtitle")}
+            error={t(errors.siteSubtitle?.message!)}
             variant="outline"
             className="mb-5"
           />
@@ -271,7 +260,7 @@ export default function SettingsForm({
               getOptionValue={(option: any) => option.code}
               options={CURRENCY}
             />
-            <ValidationError message={t(errors.currency?.message!)} />
+            <ValidationError message={t(errors.currency?.message)} />
           </div>
 
           <Input
@@ -327,7 +316,6 @@ export default function SettingsForm({
           </div>
         </Card>
       </div>
-
       <div className="flex flex-wrap pb-8 border-b border-dashed border-border-base my-5 sm:my-8">
         <Description
           title="SEO"
@@ -425,6 +413,7 @@ export default function SettingsForm({
                       defaultValue={item.description!} // make sure to set up defaultValue
                     />
                   </div>
+
                   <button
                     onClick={() => {
                       remove(index);

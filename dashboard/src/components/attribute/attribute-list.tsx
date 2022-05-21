@@ -1,47 +1,45 @@
+import { useState } from "react";
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
+import { Attribute, Shop, SortOrder } from "@ts-types/generated";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@utils/locals";
-
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";
-import { Attribute, Order, Organization } from "@common/generated-types";
-import { SortDirection } from "aws-amplify";
 
 export type IProps = {
   attributes: Attribute[] | undefined;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-const AttributeList = ({ attributes, refetch }: IProps) => {
+const AttributeList = ({ attributes, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortDirection>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const alignLeft =
+    router.locale === "ar" || router.locale === "he" ? "right" : "left";
+  const alignRight =
+    router.locale === "ar" || router.locale === "he" ? "left" : "right";
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -59,17 +57,16 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === ""
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === ""}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
       align: alignLeft,
-      onHeaderCell: () => onHeaderClick(""),
+      onHeaderCell: () => onHeaderClick("name"),
       render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
     },
     {
@@ -79,8 +76,8 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
       width: 120,
       align: "center",
       ellipsis: true,
-      render: (organization: Organization) => (
-        <span className="whitespace-nowrap truncate">{organization?.name}</span>
+      render: (shop: Shop) => (
+        <span className="whitespace-nowrap truncate">{shop?.name}</span>
       ),
     },
     {
@@ -91,7 +88,7 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
       render: (values: any) => {
         return (
           <span className="whitespace-nowrap">
-            {values.map((singleValues: any, index: number) => {
+            {values?.map((singleValues: any, index: number) => {
               return index > 0
                 ? `, ${singleValues.value}`
                 : `${singleValues.value}`;
@@ -118,7 +115,6 @@ const AttributeList = ({ attributes, refetch }: IProps) => {
   if (router?.query?.shop) {
     columns = columns?.filter((column) => column?.key !== "shop");
   }
-
   return (
     <div className="rounded overflow-hidden shadow mb-8">
       <Table

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const EditIcon = ({ ...props }) => {
+const Edit = ({ ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,3 +21,5 @@ export const EditIcon = ({ ...props }) => {
     </svg>
   );
 };
+
+export default Edit;

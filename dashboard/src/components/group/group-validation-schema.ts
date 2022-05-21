@@ -1,5 +1,5 @@
 import * as yup from "yup";
-export const groupValidationSchema = yup.object().shape({
+export const typeValidationSchema = yup.object().shape({
   name: yup.string().required("form:error-name-required"),
   banners: yup
     .array()
@@ -9,8 +9,4 @@ export const groupValidationSchema = yup.object().shape({
         title: yup.string().required("form:error-title-required"),
       })
     ),
-  settings: yup.object().shape({
-    productCard: yup.string().required("form:error-product-card-required"),
-    layoutType: yup.string().required("form:error-layout-type-required"),
-  }),
 });

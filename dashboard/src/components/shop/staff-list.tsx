@@ -3,41 +3,42 @@ import ActionButtons from "@components/common/action-buttons";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
 import Pagination from "@components/ui/pagination";
-import { UserPaginator, SortOrder } from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { UserPaginator, SortOrder } from "@ts-types/generated";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 type IProps = {
   staffs: UserPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const StaffList = ({ staffs, onPagination, refetch }: IProps) => {
+const StaffList = ({ staffs, onPagination, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
   const { data, paginatorInfo } = staffs!;
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-          orderBy: value,
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -46,8 +47,10 @@ const StaffList = ({ staffs, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-title")}
-          ascending={order === SortDirection.ASCENDING && column === "name"}
-          isActive={column === "name"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
+          }
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",

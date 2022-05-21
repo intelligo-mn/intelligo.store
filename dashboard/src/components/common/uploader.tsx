@@ -1,22 +1,18 @@
 import { UploadIcon } from "@components/icons/upload-icon";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useUploadMutation } from "@graphql/upload.graphql";
+import { Attachment } from "@ts-types/generated";
 import { CloseIcon } from "@components/icons/close-icon";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
-import isObject from "lodash/isObject";
-import { Attachment } from "@common/generated-types";
+import { useUploadMutation } from "@data/upload/use-upload.mutation";
 
 const getPreviewImage = (value: any) => {
-  if (Array.isArray(value)) {
-    return value.map(({ __typename, ...u }: any) => u);
+  let images: any[] = [];
+  if (value) {
+    images = Array.isArray(value) ? value : [{ ...value }];
   }
-  if (isObject(value)) {
-    const { __typename, ...rest }: any = value;
-    return [rest];
-  }
-  return [];
+  return images;
 };
 export default function Uploader({
   onChange,
@@ -27,38 +23,35 @@ export default function Uploader({
 }: any) {
   const { t } = useTranslation();
   const [files, setFiles] = useState<Attachment[]>(getPreviewImage(value));
-  const [upload, { loading }] = useUploadMutation();
+  const { mutate: upload, isLoading: loading } = useUploadMutation();
   const { getRootProps, getInputProps } = useDropzone({
     ...(!acceptFile ? { accept: "image/*" } : {}),
     multiple,
     onDrop: async (acceptedFiles) => {
       if (acceptedFiles.length) {
-        const { data } = await upload({
-          variables: {
-            attachment: acceptedFiles, // it will be an array of uploaded attachments
-          },
-        });
-        let dataAfterRemoveTypename =
-          data?.upload?.map(({ __typename, ...u }: any) => u) ?? [];
-        if (multiple) {
-          dataAfterRemoveTypename = [...files, ...dataAfterRemoveTypename];
-        } else {
-          dataAfterRemoveTypename = dataAfterRemoveTypename?.[0];
-        }
-        setFiles(
-          Array.isArray(dataAfterRemoveTypename)
-            ? dataAfterRemoveTypename
-            : [dataAfterRemoveTypename]
+        upload(
+          acceptedFiles, // it will be an array of uploaded attachments
+          {
+            onSuccess: (data) => {
+              let mergedData;
+              if (multiple) {
+                mergedData = files.concat(data);
+                setFiles(files.concat(data));
+              } else {
+                mergedData = data[0];
+                setFiles(data);
+              }
+              if (onChange) {
+                onChange(mergedData);
+              }
+            },
+          }
         );
-        if (onChange) {
-          onChange(dataAfterRemoveTypename);
-        }
       }
     },
   });
 
   const handleDelete = (image: string) => {
-    // @ts-ignore
     const images = files.filter((file) => file.thumbnail !== image);
 
     setFiles(images);
@@ -78,9 +71,17 @@ export default function Uploader({
       "eps",
       "raw",
     ];
+    // let filename, fileType, isImage;
     if (file.id) {
+      // if (!file?.thumbnail) {
       const splitArray = file?.original?.split("/");
       let fileSplitName = splitArray[splitArray?.length - 1]?.split("."); // it will create an array of words of filename
+
+      // filename = splitArray[splitArray?.length - 1];
+
+      // fileType = filename?.split(".")[1];
+
+      // fileType = filename?.split(".").pop();
 
       const fileType = fileSplitName.pop(); // it will pop the last item from the fileSplitName arr which is the file ext
       const filename = fileSplitName.join("."); // it will join the array with dot, which restore the original filename
@@ -113,9 +114,6 @@ export default function Uploader({
                 .{fileType}
               </p>
             </div>
-            // <>
-            //   {fileType}-{filename}
-            // </>
           )}
           {multiple ? (
             <button

@@ -5,18 +5,18 @@ import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
-import { useRefundQuery } from "@graphql/refunds.graphql";
 import RefundDetailsView from "@components/refund/refund-details-view";
+import { useRefundQuery } from "@data/refunds/use-refund.query";
 
 export default function RefundDetailsPage() {
   const { t } = useTranslation();
   const { query } = useRouter();
 
-  const { data, loading, error } = useRefundQuery({
-    variables: {
-      id: query.refundId as string,
-    },
-  });
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useRefundQuery(query.refundId as string);
 
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;

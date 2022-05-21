@@ -3,52 +3,45 @@ import Image from "next/image";
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
 import { siteSettings } from "@settings/site.settings";
-import { useMeQuery } from "@graphql/me.graphql";
+import { UserPaginator, SortOrder } from "@ts-types/generated";
+import { useMeQuery } from "@data/user/use-me.query";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  UserPaginator,
-  SortOrder,
-  QueryUsersOrderByColumn,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 type IProps = {
   customers: UserPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const UsersList = ({ customers, onPagination, refetch }: IProps) => {
+const CustomerList = ({ customers, onPagination, onSort, onOrder }: IProps) => {
   const { data, paginatorInfo } = customers!;
   const { t } = useTranslation();
-  const { alignLeft, alignRight } = useIsRTL();
+  const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: any | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: any | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+
+      onOrder(column);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -106,30 +99,29 @@ const UsersList = ({ customers, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-status")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryUsersOrderByColumn.IsActive
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "is_active"
           }
-          isActive={column === QueryUsersOrderByColumn.IsActive}
+          isActive={sortingObj.column === "is_active"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "is_active",
       key: "is_active",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryUsersOrderByColumn.IsActive),
-      render: (is_active: boolean) =>
-        is_active ? t("common:text-active") : t("common:text-inactive"),
+      onHeaderCell: () => onHeaderClick("is_active"),
+      render: (is_active: boolean) => (is_active ? "Active" : "Inactive"),
     },
     {
       title: t("table:table-item-actions"),
       dataIndex: "id",
       key: "actions",
-      align: alignRight,
+      align: "center",
       render: (id: string, { is_active }: any) => {
-        const { data: currentUser } = useMeQuery();
+        const { data } = useMeQuery();
         return (
           <>
-            {currentUser?.me?.id !== id && (
+            {data?.id != id && (
               <ActionButtons
                 id={id}
                 userStatus={true}
@@ -171,4 +163,4 @@ const UsersList = ({ customers, onPagination, refetch }: IProps) => {
   );
 };
 
-export default UsersList;
+export default CustomerList;

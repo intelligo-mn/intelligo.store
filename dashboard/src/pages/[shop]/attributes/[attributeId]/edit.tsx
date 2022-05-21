@@ -2,20 +2,19 @@ import { useRouter } from "next/router";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
 import CreateOrUpdateAttributeForm from "@components/attribute/attribute-form";
-import { useAttributeQuery } from "@graphql/attributes.graphql";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ShopLayout from "@components/layouts/shop";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
+import { useAttributeQuery } from "@data/attributes/use-attribute.query";
 export default function UpdateAttributePage() {
   const { t } = useTranslation();
   const { query } = useRouter();
-  const { data, loading, error } = useAttributeQuery({
-    variables: {
-      id: query.attributeId as string,
-    },
-    fetchPolicy: "network-only",
-  });
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useAttributeQuery(query.attributeId as string);
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (

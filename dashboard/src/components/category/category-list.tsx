@@ -4,53 +4,51 @@ import ActionButtons from "@components/common/action-buttons";
 import { getIcon } from "@utils/get-icon";
 import * as categoriesIcon from "@components/icons/category";
 import { ROUTES } from "@utils/routes";
+import { CategoryPaginator, SortOrder } from "@ts-types/generated";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  CategoryPaginator,
-  SortOrder,
-  QueryCategoriesOrderByColumn,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
-import debounce from "lodash/debounce";
 
 export type IProps = {
   categories: CategoryPaginator | undefined | null;
   onPagination: (key: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
+const CategoryList = ({
+  categories,
+  onPagination,
+  onSort,
+  onOrder,
+}: IProps) => {
   const { t } = useTranslation();
   const { data, paginatorInfo } = categories!;
   const rowExpandable = (record: any) => record.children?.length;
+
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 300),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -67,10 +65,9 @@ const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryCategoriesOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryCategoriesOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
@@ -78,15 +75,14 @@ const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
       key: "name",
       align: alignLeft,
       width: 150,
-      // onHeaderCell: () => onHeaderClick(QueryCategoriesOrderByColumn.Name),
-      onHeaderCell: () => onHeaderClick(QueryCategoriesOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: t("table:table-item-details"),
       dataIndex: "details",
       key: "details",
-      align: alignLeft,
       ellipsis: true,
+      align: alignLeft,
       width: 200,
     },
     {
@@ -135,6 +131,14 @@ const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
       align: "center",
       ellipsis: true,
       width: 150,
+      render: (slug: any) => (
+        <div
+          className="whitespace-nowrap truncate overflow-hidden"
+          title={slug}
+        >
+          {slug}
+        </div>
+      ),
     },
     {
       title: t("table:table-item-group"),
@@ -160,7 +164,7 @@ const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
       render: (id: string) => (
         <ActionButtons
           id={id}
-          editUrl={`${ROUTES.CATEGORIES}/${id}/edit`}
+          editUrl={`${ROUTES.CATEGORIES}/edit/${id}`}
           deleteModalView="DELETE_CATEGORY"
         />
       ),
@@ -174,7 +178,6 @@ const CategoryList = ({ categories, onPagination, refetch }: IProps) => {
           //@ts-ignore
           columns={columns}
           emptyText={t("table:empty-table-data")}
-          //@ts-ignore
           data={data}
           rowKey="id"
           scroll={{ x: 1000 }}

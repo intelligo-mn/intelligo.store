@@ -2,9 +2,8 @@ import SelectInput from "@components/ui/select-input";
 import Label from "@components/ui/label";
 import { Control, useFormState, useWatch } from "react-hook-form";
 import { useEffect } from "react";
-import { useTagsQuery } from "@graphql/tags.graphql";
+import { useTagsQuery } from "@data/tag/use-tags.query";
 import { useTranslation } from "next-i18next";
-import { QueryTagsHasTypeColumn, SqlOperator } from "@common/generated-types";
 
 interface Props {
   control: Control<any>;
@@ -12,7 +11,7 @@ interface Props {
 }
 
 const ProductTagInput = ({ control, setValue }: Props) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
   const type = useWatch({
     control,
     name: "type",
@@ -26,18 +25,9 @@ const ProductTagInput = ({ control, setValue }: Props) => {
     }
   }, [type?.slug]);
 
-  const { data, loading } = useTagsQuery({
-    fetchPolicy: "network-only",
-    variables: {
-      ...(type && {
-        hasType: {
-          column: QueryTagsHasTypeColumn.Slug,
-          operator: SqlOperator.Eq,
-          value: type?.slug,
-        },
-        first: 100,
-      }),
-    },
+  const { data, isLoading: loading } = useTagsQuery({
+    limit: 999,
+    type: type?.slug,
   });
 
   return (

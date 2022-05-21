@@ -1,7 +1,6 @@
 import Card from "@components/common/card";
 import Search from "@components/common/search";
 import OrderList from "@components/order/order-list";
-import { useOrdersQuery } from "@graphql/orders.graphql";
 import { LIMIT } from "@utils/constants";
 import { useState } from "react";
 import ErrorMessage from "@components/ui/error-message";
@@ -11,46 +10,51 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ShopLayout from "@components/layouts/shop";
 import { useRouter } from "next/router";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
-import { useShopQuery } from "@graphql/shops.graphql";
+import { useOrdersQuery } from "@data/order/use-orders.query";
+import { SortOrder } from "@ts-types/generated";
+import { useShopQuery } from "@data/shop/use-shop.query";
 
 export default function Orders() {
   const {
     query: { shop },
   } = useRouter();
   const { t } = useTranslation();
-  const { data: shopData, loading: fetchingShop } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const { data: shopData, isLoading: fetchingShop } = useShopQuery(
+    shop as string
+  );
+  const shopId = shopData?.shop?.id!;
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useOrdersQuery({
-    skip: !Boolean(shopId),
-    variables: {
-      first: LIMIT,
-      page: 1,
-      orderBy: "created_at",
-      sortedBy: "DESC",
-      shop_id: shopId,
+  const [page, setPage] = useState(1);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useOrdersQuery(
+    {
+      limit: LIMIT,
+      page,
+      text: searchTerm,
+      orderBy,
+      sortedBy,
+      shop_id: Number(shopId),
     },
-    fetchPolicy: "network-only",
-  });
+    {
+      enabled: Boolean(shopId),
+    }
+  );
   if (loading || fetchingShop)
     return <Loader text={t("common:text-loading")} />;
-  if (error) return <ErrorMessage message={error.message} />;
+  if (error)
+    return (
+      <ErrorMessage message={error?.response?.data?.message || error.message} />
+    );
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      tracking_number: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: any) {
-    refetch({
-      tracking_number: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -69,7 +73,8 @@ export default function Orders() {
       <OrderList
         orders={data?.orders}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

@@ -45,7 +45,7 @@ function SidebarMenuItem({ className, item, depth = 0 }: any) {
         <button
           className={cn(
             "flex w-full items-center text-base text-start outline-none border-0 focus:outline-none focus:ring-0 focus:text-accent",
-            router.pathname === item.href ? "text-accent" : "text-heading",
+            router.pathname === href ? "text-accent" : "text-heading",
             className
           )}
         >

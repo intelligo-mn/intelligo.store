@@ -3,37 +3,16 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { useDeleteTypeMutation } from "@graphql/type.graphql";
-import { getErrorMessage } from "@utils/form-error";
+import { useDeleteTypeMutation } from "@data/type/use-type-delete.mutation";
 
-const GroupDeleteView = () => {
-  const [deleteTypeByID, { loading }] = useDeleteTypeMutation({
-    //@ts-ignore
-    update(cache, { data: { deleteType } }) {
-      cache.modify({
-        fields: {
-          types(existingRefs, { readField }) {
-            return existingRefs.filter(
-              (ref: any) => deleteType.id !== readField("id", ref)
-            );
-          },
-        },
-      });
-    },
-  });
+const TypeDeleteView = () => {
+  const { mutate: deleteType, isLoading: loading } = useDeleteTypeMutation();
 
-  const { data: modalData } = useModalState();
+  const { data } = useModalState();
   const { closeModal } = useModalAction();
   async function handleDelete() {
-    try {
-      await deleteTypeByID({
-        variables: { id: modalData as string },
-      });
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
-    }
+    deleteType(data);
+    closeModal();
   }
   return (
     <ConfirmationCard
@@ -44,4 +23,4 @@ const GroupDeleteView = () => {
   );
 };
 
-export default GroupDeleteView;
+export default TypeDeleteView;

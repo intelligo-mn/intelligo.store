@@ -1,25 +1,24 @@
 import Image from "next/image";
 import { CheckMarkFill } from "@components/icons/checkmark-circle-fill";
 import { CloseFillIcon } from "@components/icons/close-fill";
-import { useMeQuery } from "@graphql/me.graphql";
 import { useTranslation } from "next-i18next";
 import Link from "@components/ui/link";
 import { ROUTES } from "@utils/routes";
 import Loader from "@components/ui/loader/loader";
-import { siteSettings } from "@settings/site.settings";
+import { useMeQuery } from "@data/user/use-me.query";
 
 const UserDetails: React.FC = () => {
   const { t } = useTranslation("common");
-  const { data, loading } = useMeQuery();
+  const { data, isLoading: loading } = useMeQuery();
   if (loading) return <Loader text={t("text-loading")} />;
 
-  const { name, email, profile, is_active } = data?.me! ?? {};
+  const { name, email, profile, is_active } = data!;
 
   return (
     <div className="h-full p-5 flex flex-col items-center">
       <div className="w-32 h-32 relative rounded-full flex items-center justify-center overflow-hidden border border-gray-200">
         <Image
-          src={profile?.avatar?.thumbnail ?? siteSettings?.avatar?.placeholder}
+          src={profile?.avatar?.thumbnail ?? "/avatar-placeholder.svg"}
           layout="fill"
         />
       </div>

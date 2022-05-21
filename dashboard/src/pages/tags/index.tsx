@@ -8,26 +8,29 @@ import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import TagList from "@components/tag/tag-list";
-import { useTagsQuery } from "@graphql/tags.graphql";
 import { adminOnly } from "@utils/auth-utils";
-import { QueryTagsOrderByColumn, SortOrder } from "@common/generated-types";
+import { useTagsQuery } from "@data/tag/use-tags.query";
+import { SortOrder } from "@ts-types/generated";
+import { OrderField } from "@ts-types/index";
+import { ROUTES } from "@utils/routes";
+import SortForm from "@components/common/sort-form";
 
 export default function Tags() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-
-  const { data, loading, error, refetch } = useTagsQuery({
-    variables: {
-      first: 10,
-      orderBy: [
-        {
-          column: QueryTagsOrderByColumn.UpdatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useTagsQuery({
+    limit: 10,
+    orderBy,
+    sortedBy,
+    text: searchTerm,
+    page,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
@@ -35,16 +38,9 @@ export default function Tags() {
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -59,7 +55,7 @@ export default function Tags() {
           <Search onSearch={handleSearch} />
 
           <LinkButton
-            href="/tags/create"
+            href={`${ROUTES.TAGS}/create`}
             className="h-12 md:ms-6 w-full md:w-auto"
           >
             <span className="block md:hidden xl:block">
@@ -75,7 +71,8 @@ export default function Tags() {
       <TagList
         tags={data?.tags}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

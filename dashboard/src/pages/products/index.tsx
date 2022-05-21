@@ -4,38 +4,43 @@ import Search from "@components/common/search";
 import ProductList from "@components/product/product-list";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useProductsQuery } from "@graphql/products.graphql";
+import { SortOrder } from "@ts-types/generated";
 import { useState } from "react";
+import { useProductsQuery } from "@data/product/products.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
 import CategoryTypeFilter from "@components/product/category-type-filter";
 import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
-import { QueryProductsOrderByColumn, SortOrder } from "@common/generated-types";
+import { adminOnly } from "@utils/auth-utils";
 
 export default function ProductsPage() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
+  const [type, setType] = useState("");
+  const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
+  const { t } = useTranslation();
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
     setVisible((v) => !v);
   };
 
-  const { data, loading, error, refetch } = useProductsQuery({
-    variables: {
-      first: 10,
-      orderBy: [
-        {
-          column: QueryProductsOrderByColumn.CreatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useProductsQuery({
+    limit: 20,
+    page,
+    type,
+    category,
+    text: searchTerm,
+    orderBy,
+    sortedBy,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
@@ -43,16 +48,10 @@ export default function ProductsPage() {
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
+    setPage(1);
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -88,14 +87,25 @@ export default function ProductsPage() {
           })}
         >
           <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-8 border-t border-gray-200 pt-5 md:pt-8 w-full">
-            <CategoryTypeFilter refetch={refetch} className="w-full" />
+            <CategoryTypeFilter
+              className="w-full"
+              onCategoryFilter={({ slug }: { slug: string }) => {
+                setPage(1);
+                setCategory(slug);
+              }}
+              onTypeFilter={({ slug }: { slug: string }) => {
+                setType(slug);
+                setPage(1);
+              }}
+            />
           </div>
         </div>
       </Card>
       <ProductList
         products={data?.products}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

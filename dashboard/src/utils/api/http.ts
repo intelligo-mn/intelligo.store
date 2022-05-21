@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Router from "next/router";
 
 const http = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT, // TODO: take this api URL from env
+  baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT || "https://pickbazarapi.redq.io/admin", // TODO: take this api URL from env
   timeout: 30000,
   headers: {
     Accept: "application/json",

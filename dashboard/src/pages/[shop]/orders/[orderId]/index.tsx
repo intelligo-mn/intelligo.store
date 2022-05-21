@@ -2,10 +2,8 @@ import Card from "@components/common/card";
 import Image from "next/image";
 import { Table } from "@components/ui/table";
 import ProgressBox from "@components/ui/progress-box/progress-box";
-import { useOrderQuery, useUpdateOrderMutation } from "@graphql/orders.graphql";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useOrderStatusesQuery } from "@graphql/order_status.graphql";
 import Button from "@components/ui/button";
 import ErrorMessage from "@components/ui/error-message";
 import { siteSettings } from "@settings/site.settings";
@@ -19,15 +17,13 @@ import SelectInput from "@components/ui/select-input";
 import ShopLayout from "@components/layouts/shop";
 import { useIsRTL } from "@utils/locals";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
-import { toast } from "react-toastify";
-import {
-  Attachment,
-  QueryOrderStatusesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { useUpdateOrderMutation } from "@data/order/use-order-update.mutation";
+import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
+import { useOrderQuery } from "@data/order/use-order.query";
+import { Attachment } from "@ts-types/generated";
+import { DownloadIcon } from "@components/icons/download-icon";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import InvoicePdf from "@components/order/invoice-pdf";
-import { DownloadIcon } from "@components/icons/download-icon";
 import { useSettings } from "@contexts/settings.context";
 
 type FormValues = {
@@ -38,29 +34,16 @@ export default function OrderDetailsPage() {
   const { query } = useRouter();
   const settings = useSettings();
   const { alignLeft, alignRight } = useIsRTL();
-  const [updateOrder, { loading: updating }] = useUpdateOrderMutation({
-    onCompleted: () => {
-      toast.success(t("common:update-success"));
-    },
-  });
-
+  const { mutate: updateOrder, isLoading: updating } = useUpdateOrderMutation();
   const { data: orderStatusData } = useOrderStatusesQuery({
-    variables: {
-      first: 100,
-      orderBy: [
-        {
-          column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortDirection.ASCENDING,
-        },
-      ],
-    },
+    limit: 100,
   });
 
-  const { data, loading, error } = useOrderQuery({
-    variables: {
-      id: query.orderId as string,
-    },
-  });
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useOrderQuery(query.orderId as string);
 
   const {
     handleSubmit,
@@ -74,8 +57,8 @@ export default function OrderDetailsPage() {
   const ChangeStatus = ({ order_status }: FormValues) => {
     updateOrder({
       variables: {
+        id: data?.order?.id as string,
         input: {
-          id: data?.order?.id as string,
           status: order_status?.id as string,
         },
       },
@@ -141,12 +124,12 @@ export default function OrderDetailsPage() {
     },
     {
       title: t("table:table-item-total"),
-      dataIndex: "price",
-      key: "price",
+      dataIndex: "pivot",
+      key: "pivot",
       align: alignRight,
-      render: (_: any, item: any) => {
+      render: (pivot: any) => {
         const { price } = usePrice({
-          amount: item.pivot.subtotal,
+          amount: Number(pivot?.subtotal),
         });
         return <span>{price}</span>;
       },
@@ -196,7 +179,7 @@ export default function OrderDetailsPage() {
               control={control}
               getOptionLabel={(option: any) => option.name}
               getOptionValue={(option: any) => option.id}
-              options={orderStatusData?.orderStatuses?.data!}
+              options={orderStatusData?.order_statuses?.data!}
               placeholder={t("form:input-placeholder-order-status")}
               rules={{
                 required: "Status is required",
@@ -218,7 +201,7 @@ export default function OrderDetailsPage() {
 
       <div className="my-5 lg:my-10 flex justify-center items-center">
         <ProgressBox
-          data={orderStatusData?.orderStatuses?.data}
+          data={orderStatusData?.order_statuses?.data}
           status={data?.order?.status?.serial!}
         />
       </div>

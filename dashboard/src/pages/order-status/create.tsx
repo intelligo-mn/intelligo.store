@@ -1,6 +1,5 @@
 import Layout from "@components/layouts/admin";
 import CreateOrUpdateOrderStatusForm from "@components/order-status/order-status-form";
-import { adminOnly } from "@utils/auth-utils";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -17,9 +16,6 @@ export default function CreateOrderStatusPage() {
     </>
   );
 }
-CreateOrderStatusPage.authenticate = {
-  permissions: adminOnly,
-};
 CreateOrderStatusPage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({

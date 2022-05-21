@@ -6,36 +6,64 @@ import ErrorMessage from "@components/ui/error-message";
 import usePrice from "@utils/use-price";
 import Loader from "@components/ui/loader/loader";
 import RecentOrders from "@components/order/recent-orders";
-import { useTranslation } from "next-i18next";
 import PopularProductList from "@components/product/popular-product-list";
-import { useAdminDashboardQuery } from "@graphql/admin-dashboard-query.graphql";
+import { useOrdersQuery } from "@data/order/use-orders.query";
+import { usePopularProductsQuery } from "@data/analytics/use-popular-products.query";
+import { useAnalyticsQuery } from "@data/analytics/use-analytics.query";
+import { useTranslation } from "next-i18next";
+import { useWithdrawsQuery } from "@data/withdraw/use-withdraws.query";
 import WithdrawTable from "@components/withdraw/withdraw-table";
 import { ShopIcon } from "@components/icons/sidebar";
 import { DollarIcon } from "@components/icons/shops/dollar";
 
 export default function Dashboard() {
   const { t } = useTranslation();
-  const { data, loading, error } = useAdminDashboardQuery();
+  const { data, isLoading: loading } = useAnalyticsQuery();
   const { price: total_revenue } = usePrice(
     data && {
-      amount: data?.analytics?.totalRevenue!,
+      amount: data?.totalRevenue!,
     }
   );
   const { price: todays_revenue } = usePrice(
     data && {
-      amount: data?.analytics?.todaysRevenue!,
+      amount: data?.todaysRevenue!,
     }
   );
 
-  if (loading) return <Loader text={t("common:text-loading")} />;
-  if (error) return <ErrorMessage message={error?.message} />;
+  const {
+    data: orderData,
+    isLoading: orderLoading,
+    error: orderError,
+  } = useOrdersQuery({
+    limit: 10,
+    page: 1,
+  });
+  const {
+    data: popularProductData,
+    isLoading: popularProductLoading,
+    error: popularProductError,
+  } = usePopularProductsQuery({ limit: 10 });
+
+  const { data: withdrawsData, isLoading: withdrawLoading } = useWithdrawsQuery(
+    { limit: 10 }
+  );
+
+  if (loading || orderLoading || popularProductLoading || withdrawLoading) {
+    return <Loader text={t("common:text-loading")} />;
+  }
+  if (orderError || popularProductError) {
+    return (
+      <ErrorMessage
+        message={orderError?.message || popularProductError?.message}
+      />
+    );
+  }
   let salesByYear: number[] = Array.from({ length: 12 }, (_) => 0);
-  if (!!data?.analytics?.totalYearSaleByMonth?.length) {
-    salesByYear = data.analytics.totalYearSaleByMonth.map((item: any) =>
+  if (!!data?.totalYearSaleByMonth?.length) {
+    salesByYear = data.totalYearSaleByMonth.map((item: any) =>
       item.total.toFixed(2)
     );
   }
-
   return (
     <>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
@@ -45,37 +73,37 @@ export default function Dashboard() {
             subtitleTransKey="sticker-card-subtitle-rev"
             icon={<DollarIcon className="w-7 h-7" color="#047857" />}
             iconBgStyle={{ backgroundColor: "#A7F3D0" }}
-            count={total_revenue}
+            price={total_revenue}
           />
         </div>
-        <div className="w-full">
+        <div className="w-full ">
           <StickerCard
             titleTransKey="sticker-card-title-order"
             subtitleTransKey="sticker-card-subtitle-order"
             icon={<CartIconBig />}
-            count={data?.analytics?.totalOrders}
+            price={data?.totalOrders}
           />
         </div>
-        <div className="w-full">
+        <div className="w-full ">
           <StickerCard
             titleTransKey="sticker-card-title-today-rev"
             icon={<CoinIcon />}
-            count={todays_revenue}
+            price={todays_revenue}
           />
         </div>
-        <div className="w-full">
+        <div className="w-full ">
           <StickerCard
             titleTransKey="sticker-card-title-total-shops"
             icon={<ShopIcon className="w-6" color="#1D4ED8" />}
             iconBgStyle={{ backgroundColor: "#93C5FD" }}
-            count={data?.analytics?.totalShops}
+            price={data?.totalShops}
           />
         </div>
       </div>
 
       <div className="w-full flex flex-wrap mb-6">
         <ColumnChart
-          widgetTitle={t("common:sale-history")}
+          widgetTitle="Sale History"
           colors={["#03D3B5"]}
           series={salesByYear}
           categories={[
@@ -95,11 +123,10 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="w-full flex flex-wrap">
+      <div className="w-full flex flex-wrap mb-6">
         <div className="w-full sm:w-1/2 xl:w-1/2 sm:px-3 sm:pl-0 mb-6 xl:mb-0">
           <RecentOrders
-            //@ts-ignore
-            orders={data?.orders}
+            orders={orderData?.orders?.data}
             title={t("table:recent-order-table-title")}
           />
         </div>
@@ -107,16 +134,15 @@ export default function Dashboard() {
         <div className="w-full sm:w-1/2 xl:w-1/2 sm:px-3 sm:pr-0 mb-6 xl:mb-0">
           <WithdrawTable
             //@ts-ignore
-            withdraws={data?.withdraws}
+            withdraws={withdrawsData?.withdraws}
             title={t("table:withdraw-table-title")}
           />
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full sm:pe-0 mb-6 xl:mb-0">
         <PopularProductList
+          products={popularProductData}
           title={t("table:popular-products-table-title")}
-          //@ts-ignore
-          products={data?.popularProducts}
         />
       </div>
     </>

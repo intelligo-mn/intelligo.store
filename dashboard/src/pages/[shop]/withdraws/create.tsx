@@ -8,7 +8,7 @@ export default function CreateWithdrawPage() {
   const { t } = useTranslation();
   return (
     <>
-      <div className="py-5 sm:py-8 flex justify-between border-b border-dashed border-gray-300">
+      <div className="py-5 sm:py-8 flex border-b border-dashed border-gray-300">
         <h1 className="text-lg font-semibold text-heading">
           {t("form:form-title-create-withdraw")}
         </h1>

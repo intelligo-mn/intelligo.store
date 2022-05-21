@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  useCreateOrderMutation,
-  useOrderStatusesQuery,
-} from "@graphql/orders.graphql";
+
 import { ROUTES } from "@utils/routes";
 
 import ValidationError from "@components/ui/validation-error";
@@ -17,34 +14,17 @@ import {
   calculatePaidTotal,
   calculateTotal,
 } from "@contexts/quick-cart/cart.utils";
-import {
-  QueryOrderStatusesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { useCreateOrderMutation } from "@data/order/use-create-order-mutation";
+import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
+
 export const PlaceOrderAction: React.FC = (props) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [createOrder, { loading }] = useCreateOrderMutation({
-    onCompleted: (data) => {
-      if (data?.createOrder?.id) {
-        router.push(`${ROUTES.ORDERS}/${data?.createOrder?.id}`);
-      }
-    },
-    onError: (error) => {
-      setErrorMessage(error.message);
-    },
-  });
+  const { mutate: createOrder, isLoading: loading } = useCreateOrderMutation();
+
   const { data: orderStatusData } = useOrderStatusesQuery({
-    variables: {
-      first: 100,
-      page: 1,
-      orderBy: [
-        {
-          column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortDirection.ASCENDING,
-        },
-      ],
-    },
+    limit: 100,
+    page: 1,
   });
 
   const { items } = useCart();
@@ -122,14 +102,26 @@ export const PlaceOrderAction: React.FC = (props) => {
     //   input.token = token;
     // }
 
-    delete input.billing_address.__typename;
-    delete input.shipping_address.__typename;
-    createOrder({
-      variables: {
-        // @ts-ignore
-        input,
+    // delete input.billing_address.__typename;
+    // delete input.shipping_address.__typename;
+    createOrder(
+      {
+        variables: {
+          // @ts-ignore
+          input,
+        },
       },
-    });
+      {
+        onSuccess: ({ data }: any) => {
+          if (data?.id) {
+            router.push(`${ROUTES.ORDERS}/${data?.id}`);
+          }
+        },
+        onError: (error: any) => {
+          setErrorMessage(error.message);
+        },
+      }
+    );
   };
   const isAllRequiredFieldSelected = [
     customer,

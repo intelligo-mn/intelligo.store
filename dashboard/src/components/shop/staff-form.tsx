@@ -1,15 +1,15 @@
 import Button from "@components/ui/button";
 import Input from "@components/ui/input";
 import PasswordInput from "@components/ui/password-input";
-import { useAddStaffMutation, useShopQuery } from "@graphql/shops.graphql";
 import { useForm } from "react-hook-form";
-import { getErrorMessage } from "@utils/form-error";
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useAddStaffMutation } from "@data/user/use-add-staff.mutation";
 
 type FormValues = {
   name: string;
@@ -29,12 +29,8 @@ const AddStaffForm = () => {
   const {
     query: { shop },
   } = router;
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
   const {
     register,
     handleSubmit,
@@ -44,33 +40,30 @@ const AddStaffForm = () => {
   } = useForm<FormValues>({
     resolver: yupResolver(staffFormSchema),
   });
-  const [addStaff, { loading }] = useAddStaffMutation({
-    onCompleted: () => {
-      router.push(`/${router.query.shop}/staffs`);
-    },
-    onError: (error) => {
-      const serverErrors = getErrorMessage(error);
-      Object.keys(serverErrors?.validation).forEach((field: any) => {
-        setError(field.split(".")[1], {
-          type: "manual",
-          message: serverErrors?.validation[field][0],
-        });
-      });
-    },
-  });
+  const { mutate: addStaff, isLoading: loading } = useAddStaffMutation();
   const { t } = useTranslation();
 
   function onSubmit({ name, email, password }: FormValues) {
-    addStaff({
-      variables: {
-        input: {
+    addStaff(
+      {
+        variables: {
           name,
           email,
           password,
           shop_id: Number(shopId),
         },
       },
-    });
+      {
+        onError: (error: any) => {
+          Object.keys(error?.response?.data).forEach((field: any) => {
+            setError(field, {
+              type: "manual",
+              message: error?.response?.data[field],
+            });
+          });
+        },
+      }
+    );
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>

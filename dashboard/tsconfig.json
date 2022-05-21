@@ -2,11 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,50 +17,23 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
-      "@assets/*": [
-        "src/assets/*"
-      ],
-      "@common/*": [
-        "src/common/*"
-      ],
-      "@core/*": [
-        "src/core/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@contexts/*": [
-        "src/contexts/*"
-      ],
-      "@graphql/*": [
-        "src/graphql/*"
-      ],
-      "@settings/*": [
-        "src/settings/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-      "@repositories/*": [
-        "src/repositories/*"
-      ],
-      "@data/*": [
-        "src/data/*"
-      ]
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@core/*": ["src/core/*"],
+      "@common/*": ["src/common/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@graphql/*": ["src/graphql/*"],
+      "@settings/*": ["src/settings/*"],
+      "@utils/*": ["src/utils/*"],
+      "@ts-types/*": ["src/ts-types/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@data/*": ["src/data/*"]
     },
     "incremental": true
   },
-  "exclude": [
-    "node_modules",
-    ".cache"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-, "src/components/address/create-or-update.tsx__"  ]
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.js"],
+  "exclude": ["node_modules"]
 }

@@ -5,13 +5,13 @@ import { useIsRTL } from "@utils/locals";
 import usePrice from "@utils/use-price";
 import { adminOnly, getAuthCredentials, hasAccess } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
+import { Shop, WithdrawPaginator } from "@ts-types/generated";
 import { useRouter } from "next/router";
 import Badge from "@components/ui/badge/badge";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { Shop, WithdrawPaginator } from "@common/generated-types";
 
 type IProps = {
   withdraws: WithdrawPaginator | null | undefined;
@@ -26,7 +26,7 @@ const WithdrawTable = ({ withdraws, title }: IProps) => {
   const router = useRouter();
 
   const renderStatusBadge = (status: string) => {
-    switch (status) {
+    switch (status.toUpperCase()) {
       case "APPROVED":
         return <Badge text={t("text-approved")} color="bg-accent" />;
       case "PENDING":
@@ -46,7 +46,7 @@ const WithdrawTable = ({ withdraws, title }: IProps) => {
       dataIndex: "shop",
       key: "shop",
       align: alignLeft,
-      render: (organization: Organization) => shop.name,
+      render: (shop: Shop) => shop.name,
     },
     {
       title: t("table:table-item-amount"),
@@ -103,7 +103,6 @@ const WithdrawTable = ({ withdraws, title }: IProps) => {
   if (router?.query?.shop) {
     columns = columns?.filter((column) => column?.key !== "actions");
   }
-
   return (
     <div className="rounded overflow-hidden shadow mb-6">
       <h3 className="text-heading text-center font-semibold px-4 py-3 bg-light border-b border-border-200">

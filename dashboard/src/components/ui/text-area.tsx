@@ -5,7 +5,7 @@ export interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
   inputClassName?: string;
   label?: string;
-  // name: string;
+  name: string;
   error?: string;
   shadow?: boolean;
   variant?: "normal" | "solid" | "outline";

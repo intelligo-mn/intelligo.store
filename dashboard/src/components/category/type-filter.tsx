@@ -1,21 +1,18 @@
 import Select from "@components/ui/select/select";
 import React from "react";
-import { useTypesQuery } from "@graphql/type.graphql";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";
-import { QueryCategoriesHasTypeColumn } from "@common/generated-types";
+import { useTypesQuery } from "@data/type/use-types.query";
 
 type Props = {
-  refetch: Function;
+  onTypeFilter: Function;
   className?: string;
 };
 
-export default function TypeFilter({ refetch, className }: Props) {
+export default function TypeFilter({ onTypeFilter, className }: Props) {
   const { t } = useTranslation();
 
-  const { data, loading } = useTypesQuery({
-    fetchPolicy: "network-only",
-  });
+  const { data, isLoading: loading } = useTypesQuery();
 
   return (
     <div className={cn("flex w-full", className)}>
@@ -26,15 +23,7 @@ export default function TypeFilter({ refetch, className }: Props) {
           getOptionLabel={(option: any) => option.name}
           getOptionValue={(option: any) => option.slug}
           placeholder={t("common:filter-by-group-placeholder")}
-          onChange={({ slug }: { slug: string }) => {
-            refetch({
-              page: 1,
-              hasType: {
-                column: QueryCategoriesHasTypeColumn.Slug,
-                value: slug,
-              },
-            });
-          }}
+          onChange={onTypeFilter}
         />
       </div>
     </div>

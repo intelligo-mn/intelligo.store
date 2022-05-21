@@ -4,43 +4,40 @@ import ShippingList from "@components/shipping/shipping-list";
 import Search from "@components/common/search";
 
 import LinkButton from "@components/ui/link-button";
-import { useShippingClassesQuery } from "@graphql/shipping.graphql";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
+import { useState } from "react";
+import { useShippingClassesQuery } from "@data/shipping/use-shippingClasses.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
-import {
-  QueryShippingClassesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { SortOrder } from "@ts-types/generated";
+import { adminOnly } from "@utils/auth-utils";
 
 export default function ShippingsPage() {
   const { t } = useTranslation();
-  const { data, loading, error, refetch } = useShippingClassesQuery({
-    variables: {
-      orderBy: [
-        {
-          column: QueryShippingClassesOrderByColumn.UpdatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-    },
-    fetchPolicy: "network-only",
+  const [searchTerm, setSearch] = useState("");
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useShippingClassesQuery({
+    text: searchTerm,
+    orderBy,
+    sortedBy,
   });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handleSearch({ searchText }: { searchText: string }) {
-    refetch({
-      text: `%${searchText}%`,
-    });
+    setSearch(searchText);
   }
   return (
     <>
       <Card className="flex flex-col xl:flex-row items-center mb-8">
-        <div className="md:w-1/4 mb-4 xl:mb-0">
+        <div className="md:w-1/4 mb-4 md:mb-0">
           <h1 className="text-xl font-semibold text-heading">
             {t("form:input-label-shippings")}
           </h1>
@@ -59,13 +56,19 @@ export default function ShippingsPage() {
           </LinkButton>
         </div>
       </Card>
-      <ShippingList shippings={data?.shippingClasses} refetch={refetch} />
+      <ShippingList
+        shippings={data?.shippingClasses}
+        onOrder={setOrder}
+        onSort={setColumn}
+      />
     </>
   );
 }
+
 ShippingsPage.authenticate = {
   permissions: adminOnly,
 };
+
 ShippingsPage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({

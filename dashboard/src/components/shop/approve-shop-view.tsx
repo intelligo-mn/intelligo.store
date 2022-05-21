@@ -5,24 +5,16 @@ import {
   useModalState,
 } from "@components/ui/modal/modal.context";
 import Input from "@components/ui/input";
-import { useApproveShopMutation } from "@graphql/shops.graphql";
-import { getErrorMessage } from "@utils/form-error";
 import { useTranslation } from "next-i18next";
+import { useApproveShopMutation } from "@data/shop/use-approve-shop.mutation";
 type FormValues = {
   admin_commission_rate: number;
 };
 
 const ApproveShopView = () => {
   const { t } = useTranslation();
-  const [approveShopMutation, { loading }] = useApproveShopMutation({
-    onCompleted: () => {
-      closeModal();
-    },
-    onError: (error) => {
-      closeModal();
-      getErrorMessage(error);
-    },
-  });
+  const { mutate: approveShopMutation, isLoading: loading } =
+    useApproveShopMutation();
 
   const { data: shopId } = useModalState();
   const { closeModal } = useModalAction();
@@ -36,6 +28,7 @@ const ApproveShopView = () => {
         },
       },
     });
+    closeModal();
   }
   return (
     <Form<FormValues> onSubmit={onSubmit}>
@@ -44,7 +37,7 @@ const ApproveShopView = () => {
           <Input
             label={t("form:input-label-admin-commission-rate")}
             {...register("admin_commission_rate", {
-              required: "form:error-admin-commission",
+              required: "You must need to set your commission rate",
             })}
             defaultValue="10"
             variant="outline"

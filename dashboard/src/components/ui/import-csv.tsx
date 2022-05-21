@@ -1,5 +1,4 @@
 import { UploadIcon } from "@components/icons/upload-icon";
-
 import { useDropzone } from "react-dropzone";
 
 export default function ImportCsv({ onDrop, loading, title }: any) {

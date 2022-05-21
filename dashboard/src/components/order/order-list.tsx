@@ -7,54 +7,55 @@ import { formatAddress } from "@utils/format-address";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { useRouter } from "next/router";
-import InvoicePdf from "./invoice-pdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@utils/locals";
 import {
   Order,
   OrderPaginator,
   OrderStatus,
-  UserAddress,
   SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+  UserAddress,
+} from "@ts-types/generated";
+import InvoicePdf from "./invoice-pdf";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { useIsRTL } from "@utils/locals";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 type IProps = {
   orders: OrderPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const OrderList = ({ orders, onPagination, refetch }: IProps) => {
-  const { t } = useTranslation();
+const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
   const { data, paginatorInfo } = orders! ?? {};
+  const { t } = useTranslation();
   const rowExpandable = (record: any) => record.children?.length;
   const router = useRouter();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-          orderBy: value,
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -79,13 +80,14 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
         return <span>{price}</span>;
       },
     },
-
     {
       title: (
         <TitleWithSort
           title={t("table:table-item-total")}
-          ascending={order === SortDirection.ASCENDING && column === "total"}
-          isActive={column === "total"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "total"
+          }
+          isActive={sortingObj.column === "total"}
         />
       ),
       className: "cursor-pointer",
@@ -105,8 +107,11 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-order-date")}
-          ascending={order === SortDirection.ASCENDING && column === "created_at"}
-          isActive={column === "created_at"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "created_at"
+          }
+          isActive={sortingObj.column === "created_at"}
         />
       ),
       className: "cursor-pointer",
@@ -129,8 +134,10 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortDirection.ASCENDING && column === "status"}
-          isActive={column === "status"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "status"
+          }
+          isActive={sortingObj.column === "status"}
         />
       ),
       className: "cursor-pointer",
@@ -157,6 +164,7 @@ const OrderList = ({ orders, onPagination, refetch }: IProps) => {
       ),
     },
     // {
+    //   // title: "Download",
     //   title: t("common:text-download"),
     //   dataIndex: "id",
     //   key: "download",

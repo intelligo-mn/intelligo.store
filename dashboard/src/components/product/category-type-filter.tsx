@@ -1,33 +1,31 @@
 import Select from "@components/ui/select/select";
-import { useCategoriesQuery } from "@graphql/categories.graphql";
+
 import React from "react";
-import { useTypesQuery } from "@graphql/type.graphql";
 import { useTranslation } from "next-i18next";
 import Label from "@components/ui/label";
 import cn from "classnames";
-import {
-  QueryProductsHasCategoriesColumn,
-  QueryProductsHasTypeColumn,
-} from "@common/generated-types";
+import { useTypesQuery } from "@data/type/use-types.query";
+import { useCategoriesQuery } from "@data/category/use-categories.query";
 
 type Props = {
-  refetch: Function;
+  onCategoryFilter: Function;
+  onTypeFilter: Function;
   className?: string;
 };
 
-export default function CategoryTypeFilter({ refetch, className }: Props) {
+export default function CategoryTypeFilter({
+  onTypeFilter,
+  onCategoryFilter,
+  className,
+}: Props) {
   const { t } = useTranslation();
 
-  const { data, loading } = useTypesQuery({
-    fetchPolicy: "network-only",
-  });
-  const { data: categoryData, loading: categoryLoading } = useCategoriesQuery({
-    variables: {
-      first: 999,
-      page: 1,
-    },
-    fetchPolicy: "network-only",
-  });
+  const { data, isLoading: loading } = useTypesQuery();
+  const { data: categoryData, isLoading: categoryLoading } = useCategoriesQuery(
+    {
+      limit: 999,
+    }
+  );
 
   return (
     <div
@@ -44,15 +42,7 @@ export default function CategoryTypeFilter({ refetch, className }: Props) {
           getOptionLabel={(option: any) => option.name}
           getOptionValue={(option: any) => option.slug}
           placeholder={t("common:filter-by-group-placeholder")}
-          onChange={({ slug }: { slug: string }) => {
-            refetch({
-              page: 1,
-              hasType: {
-                column: QueryProductsHasTypeColumn.Slug,
-                value: slug,
-              },
-            });
-          }}
+          onChange={onTypeFilter}
         />
       </div>
       <div className="w-full">
@@ -61,17 +51,9 @@ export default function CategoryTypeFilter({ refetch, className }: Props) {
           options={categoryData?.categories?.data}
           getOptionLabel={(option: any) => option.name}
           getOptionValue={(option: any) => option.slug}
-          isLoading={categoryLoading}
           placeholder={t("common:filter-by-category-placeholder")}
-          onChange={({ slug }: { slug: string }) => {
-            refetch({
-              page: 1,
-              hasCategories: {
-                column: QueryProductsHasCategoriesColumn.Slug,
-                value: slug,
-              },
-            });
-          }}
+          isLoading={categoryLoading}
+          onChange={onCategoryFilter}
         />
       </div>
     </div>

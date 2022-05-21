@@ -1,8 +1,8 @@
 import SelectInput from "@components/ui/select-input";
 import Label from "@components/ui/label";
 import { Control } from "react-hook-form";
-import { useAuthorsQuery } from "@graphql/authors.graphql";
 import { useTranslation } from "next-i18next";
+import { useAuthorsQuery } from "@data/author/use-authors.query";
 
 interface Props {
   control: Control<any>;
@@ -11,12 +11,9 @@ interface Props {
 const ProductAuthorInput = ({ control }: Props) => {
   const { t } = useTranslation();
 
-  const { data, loading } = useAuthorsQuery({
-    fetchPolicy: "network-only",
-    variables: {
-      first: 1000,
-      is_approved: true,
-    },
+  const { data, isLoading: loading } = useAuthorsQuery({
+    limit: 1000,
+    is_approved: true,
   });
 
   return (

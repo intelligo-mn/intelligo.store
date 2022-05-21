@@ -5,34 +5,35 @@ import TypeList from "@components/group/group-list";
 import ErrorMessage from "@components/ui/error-message";
 import LinkButton from "@components/ui/link-button";
 import Loader from "@components/ui/loader/loader";
+import { SortOrder } from "@ts-types/generated";
+import { useState } from "react";
+import { useTypesQuery } from "@data/type/use-types.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTypesQuery } from "@graphql/type.graphql";
-import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
-import SortFormGql from "@components/common/sort-form-gql";
-import { QueryTypesOrderByColumn, SortOrder } from "@common/generated-types";
-export default function GroupsPage() {
-  const { t } = useTranslation();
+import { adminOnly } from "@utils/auth-utils";
 
-  const { data, loading, error, refetch } = useTypesQuery({
-    variables: {
-      orderBy: [
-        {
-          column: QueryTypesOrderByColumn.UpdatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-    },
-    fetchPolicy: "network-only",
+export default function TypesPage() {
+  const { t } = useTranslation();
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const [searchTerm, setSearchTerm] = useState("");
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useTypesQuery({
+    text: searchTerm,
+    orderBy,
+    sortedBy,
   });
+
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   function handleSearch({ searchText }: { searchText: string }) {
-    refetch({
-      text: `%${searchText}%`,
-    });
+    setSearchTerm(searchText);
   }
+
   return (
     <>
       <Card className="flex flex-col xl:flex-row items-center mb-8">
@@ -58,14 +59,16 @@ export default function GroupsPage() {
           </LinkButton>
         </div>
       </Card>
-      <TypeList types={data?.types} refetch={refetch} />
+      <TypeList types={data?.types} onOrder={setOrder} onSort={setColumn} />
     </>
   );
 }
-GroupsPage.authenticate = {
+
+TypesPage.authenticate = {
   permissions: adminOnly,
 };
-GroupsPage.Layout = Layout;
+
+TypesPage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {

@@ -35,8 +35,6 @@ const Search: React.FC<SearchProps> = ({
   inputClassName,
   ...rest
 }) => {
-  const { t } = useTranslation();
-
   const {
     register,
     handleSubmit,
@@ -50,6 +48,7 @@ const Search: React.FC<SearchProps> = ({
     },
   });
   const searchText = watch("searchText");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!searchText) {

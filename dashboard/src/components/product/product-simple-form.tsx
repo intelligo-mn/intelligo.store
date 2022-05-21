@@ -1,24 +1,24 @@
 import Input from "@components/ui/input";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import Checkbox from "@components/ui/checkbox/checkbox";
-import FileInput from "@components/ui/file-input";
 import Label from "@components/ui/label";
+import FileInput from "@components/ui/file-input";
+import Checkbox from "@components/ui/checkbox/checkbox";
 
 type IProps = {
   initialValues: any;
 };
 
-export default function SimpleProductForm({ initialValues }: IProps) {
-  const { t } = useTranslation();
+export default function ProductSimpleForm({ initialValues }: IProps) {
   const {
     register,
-    formState: { errors },
     control,
     watch,
+    formState: { errors },
   } = useFormContext();
+  const { t } = useTranslation();
 
   const is_digital = watch("is_digital");
   const is_external = watch("is_external");
@@ -107,7 +107,7 @@ export default function SimpleProductForm({ initialValues }: IProps) {
           className="mb-5"
         />
 
-        {is_digital && (
+        {is_digital ? (
           <>
             <Label>{t("form:input-label-digital-file")}</Label>
             <FileInput
@@ -115,12 +115,11 @@ export default function SimpleProductForm({ initialValues }: IProps) {
               control={control}
               multiple={false}
               acceptFile={true}
-              helperText={t("form:text-upload-digital-file")}
             />
             <input type="hidden" {...register(`digital_file`)} />
           </>
-        )}
-        {is_external && (
+        ) : null}
+        {is_external ? (
           <div>
             <Input
               label={t("form:input-label-external-product-url")}
@@ -137,7 +136,7 @@ export default function SimpleProductForm({ initialValues }: IProps) {
               className="mb-5"
             />
           </div>
-        )}
+        ) : null}
       </Card>
     </div>
   );

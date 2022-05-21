@@ -6,6 +6,7 @@ import Document, {
   DocumentContext,
 } from "next/document";
 import { i18n } from "next-i18next";
+
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     return Document.getInitialProps(ctx);

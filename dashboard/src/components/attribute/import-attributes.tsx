@@ -1,37 +1,25 @@
-import ImportCsv from "@components/ui/import-csv";
-import useAttribute from "@core/attribute/useAttribute";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import ImportCsv from "@components/ui/import-csv";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useImportAttributesMutation } from "@data/import/use-import-attributes.mutation";
 
 export default function ImportAttributes() {
   const { t } = useTranslation();
-  const { loading } = useAttribute();
   const {
     query: { shop },
   } = useRouter();
-  // const { data: shopData } = useShopQuery({
-  //   variables: {
-  //     slug: shop as string,
-  //   },
-  // });
-  // const shopId = shopData?.organization?.id!;
-  // const [importAttributes, { loading }] = useImportAttributesMutation({
-  //   onCompleted: () => {
-  //     toast.success(t("common:attribute-imported-successfully"));
-  //   },
-  //   onError: (error: any) => {
-  //     toast.error(t(`common:${error?.message}`));
-  //   },
-  // });
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
+  const { mutate: importAttributes, isLoading: loading } =
+    useImportAttributesMutation();
 
   const handleDrop = async (acceptedFiles: any) => {
     if (acceptedFiles.length) {
-      // await importAttributes({
-      //   variables: {
-      //     shop_id: shopId,
-      //     csv: acceptedFiles[0],
-      //   },
-      // });
+      importAttributes({
+        shop_id: shopId,
+        csv: acceptedFiles[0],
+      });
     }
   };
 

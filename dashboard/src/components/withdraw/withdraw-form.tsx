@@ -7,13 +7,13 @@ import Description from "@components/ui/description";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCreateWithdrawMutation } from "@graphql/withdraws.graphql";
 import { withdrawValidationSchema } from "./withdraw-validation-schema";
-import { useShopQuery } from "@graphql/shops.graphql";
 import { useState } from "react";
 import Alert from "@components/ui/alert";
 import { animateScroll } from "react-scroll";
-import { Withdraw } from "@common/generated-types";
+import { Withdraw } from "@ts-types/generated";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useCreateWithdrawMutation } from "@data/withdraw/use-withdraw-create.mutation";
 import Label from "@components/ui/label";
 
 type FormValues = {
@@ -34,12 +34,8 @@ export default function CreateOrUpdateWithdrawForm({ initialValues }: IProps) {
     query: { shop },
   } = router;
   const { t } = useTranslation();
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
   const {
     register,
     handleSubmit,
@@ -50,16 +46,8 @@ export default function CreateOrUpdateWithdrawForm({ initialValues }: IProps) {
     resolver: yupResolver(withdrawValidationSchema),
   });
 
-  const [createWithdraw, { loading: creating }] = useCreateWithdrawMutation({
-    onCompleted: () => {
-      setErrorMessage(null);
-      router.push(`/${router.query.shop}/withdraws`);
-    },
-    onError: (error) => {
-      setErrorMessage(error?.message);
-      animateScroll.scrollToTop();
-    },
-  });
+  const { mutate: createWithdraw, isLoading: creating } =
+    useCreateWithdrawMutation();
 
   const onSubmit = (values: FormValues) => {
     const input = {
@@ -70,18 +58,26 @@ export default function CreateOrUpdateWithdrawForm({ initialValues }: IProps) {
       note: values.note,
     };
 
-    createWithdraw({
-      variables: {
-        input,
+    createWithdraw(
+      {
+        variables: {
+          input,
+        },
       },
-    });
+      {
+        onError: (error: any) => {
+          setErrorMessage(error?.response?.data?.message);
+          animateScroll.scrollToTop();
+        },
+      }
+    );
   };
 
   return (
     <>
       {errorMessage ? (
         <Alert
-          message={t(errorMessage)}
+          message={t(`common:${errorMessage}`)}
           variant="error"
           closeable={true}
           className="mt-5"

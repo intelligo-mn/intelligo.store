@@ -3,13 +3,11 @@ import { useForm } from "react-hook-form";
 import Button from "@components/ui/button";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
-import { getErrorMessage } from "@utils/form-error";
+import { useUpdateUserMutation } from "@data/user/use-user-update.mutation";
 import TextArea from "@components/ui/text-area";
-import pick from "lodash/pick";
-import FileInput from "@components/ui/file-input";
 import { useTranslation } from "next-i18next";
-import { toast } from "react-toastify";
-import useCustomer from "@core/user/useCustomer";
+import FileInput from "@components/ui/file-input";
+import pick from "lodash/pick";
 
 type FormValues = {
   name: string;
@@ -27,8 +25,7 @@ type FormValues = {
 
 export default function ProfileUpdate({ me }: any) {
   const { t } = useTranslation();
-  const { updateCustomer, loading } = useCustomer();
-
+  const { mutate: updateUser, isLoading: loading } = useUpdateUserMutation();
   const {
     register,
     handleSubmit,
@@ -43,34 +40,33 @@ export default function ProfileUpdate({ me }: any) {
 
   async function onSubmit(values: FormValues) {
     const { name, profile } = values;
-    try {
-      await updateCustomer({
+    updateUser({
+      variables: {
         id: me?.id,
-        name,
-        profile: {
-          id: me?.profile?.id,
-          bio: profile?.bio,
-          contact: profile?.contact,
-          avatar: {
-            thumbnail: profile?.avatar?.thumbnail,
-            original: profile?.avatar?.original
+        input: {
+          name: name,
+          profile: {
+            id: me?.profile?.id,
+            bio: profile?.bio,
+            contact: profile?.contact,
+            avatar: {
+              thumbnail: profile?.avatar?.thumbnail,
+              original: profile?.avatar?.original,
+              id: profile?.avatar?.id,
+            },
           },
         },
-      }).then((res: any) => {
-        toast.success(t("common:update-success"));
-      });
-    } catch (error) {
-      getErrorMessage(error);
-    }
+      },
+    });
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="border-border-base my-5 flex flex-wrap border-b border-dashed pb-8 sm:my-8">
+      <div className="flex flex-wrap pb-8 border-b border-dashed border-border-base my-5 sm:my-8">
         <Description
           title={t("form:input-label-avatar")}
           details={t("form:avatar-help-text")}
-          className="sm:pe-4 md:pe-5 w-full px-0 pb-5 sm:w-4/12 sm:py-8 md:w-1/3"
+          className="w-full px-0 sm:pe-4 md:pe-5 pb-5 sm:w-4/12 md:w-1/3 sm:py-8"
         />
 
         <Card className="w-full sm:w-8/12 md:w-2/3">
@@ -78,14 +74,14 @@ export default function ProfileUpdate({ me }: any) {
         </Card>
       </div>
 
-      <div className="border-border-base my-5 flex flex-wrap border-b border-dashed pb-8 sm:my-8">
+      <div className="flex flex-wrap pb-8 border-b border-dashed border-border-base my-5 sm:my-8">
         <Description
           title={t("form:form-title-information")}
           details={t("form:profile-info-help-text")}
-          className="sm:pe-4 md:pe-5 w-full px-0 pb-5 sm:w-4/12 sm:py-8 md:w-1/3"
+          className="w-full px-0 sm:pe-4 md:pe-5 pb-5 sm:w-4/12 md:w-1/3 sm:py-8"
         />
 
-        <Card className="mb-5 w-full sm:w-8/12 md:w-2/3">
+        <Card className="w-full sm:w-8/12 md:w-2/3 mb-5">
           <Input
             label={t("form:input-label-name")}
             {...register("name")}
@@ -109,7 +105,7 @@ export default function ProfileUpdate({ me }: any) {
           />
         </Card>
 
-        <div className="text-end w-full">
+        <div className="w-full text-end">
           <Button loading={loading} disabled={loading}>
             {t("form:button-label-save")}
           </Button>

@@ -2,26 +2,44 @@ import { adminOnly } from "@utils/auth-utils";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import {
-  useApproveWithdrawMutation,
-  useWithdrawQuery,
-} from "@graphql/withdraws.graphql";
 import Loader from "@components/ui/loader/loader";
 import ErrorMessage from "@components/ui/error-message";
 import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import SelectInput from "@components/ui/select-input";
 import ValidationError from "@components/ui/form-validation-error";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import AdminLayout from "@components/layouts/admin";
+import { useWithdrawQuery } from "@data/withdraw/use-withdraw.query";
+import { useApproveWithdrawMutation } from "@data/withdraw/use-approve-withdraw.mutation";
 import Card from "@components/common/card";
-import { WithdrawStatus } from "@common/generated-types";
 
 type FormValues = {
   status: any;
 };
+const WithdrawStatus = [
+  {
+    name: "Approved",
+    id: "approved",
+  },
+  {
+    name: "On Hold",
+    id: "on_hold",
+  },
+  {
+    name: "Processing",
+    id: "processing",
+  },
+  {
+    name: "Pending",
+    id: "pending",
+  },
+  {
+    name: "Rejected",
+    id: "rejected",
+  },
+];
 
 const Withdraw = () => {
   const router = useRouter();
@@ -31,19 +49,18 @@ const Withdraw = () => {
     query: { withdrawId },
   } = router;
 
-  const { data, error, loading } = useWithdrawQuery({
-    variables: {
-      id: withdrawId as string,
-    },
-    fetchPolicy: "network-only",
-  });
+  const {
+    data,
+    error,
+    isLoading: loading,
+  } = useWithdrawQuery(withdrawId as string);
 
   useEffect(() => {
     if (data?.withdraw?.status) {
-      setValue("status", {
-        name: data?.withdraw?.status,
-        id: data?.withdraw?.status,
-      });
+      setValue(
+        "status",
+        WithdrawStatus?.find((status) => status.id === data?.withdraw?.status)
+      );
     }
   }, [data?.withdraw?.status]);
 
@@ -53,23 +70,20 @@ const Withdraw = () => {
     setValue,
     formState: { errors },
   } = useForm<FormValues>();
-
-  const [approveWithdraw, { loading: approving }] = useApproveWithdrawMutation({
-    onCompleted: () => {
-      toast.success(t("common:successfully-updated"));
-    },
-  });
+  const { mutate: approveWithdraw, isLoading: approving } =
+    useApproveWithdrawMutation();
 
   function handleApproveWithdraw({ status }: any) {
     approveWithdraw({
       variables: {
         input: {
           id: withdrawId as string,
-          status: status.name,
+          status: status.id,
         },
       },
     });
   }
+
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
@@ -90,12 +104,7 @@ const Withdraw = () => {
                 control={control}
                 getOptionLabel={(option: any) => option.name}
                 getOptionValue={(option: any) => option.id}
-                options={Object.values(WithdrawStatus).map((status) => {
-                  return {
-                    name: status,
-                    id: status,
-                  };
-                })}
+                options={WithdrawStatus}
                 placeholder={t("form:input-placeholder-order-status")}
                 rules={{
                   required: "Status is required",
@@ -109,7 +118,7 @@ const Withdraw = () => {
                 {t("form:button-label-change-status")}
               </span>
               <span className="block sm:hidden">
-                {t("form:button-label-change")}
+                {t("form:form:button-label-change")}
               </span>
             </Button>
           </form>
@@ -133,9 +142,7 @@ const Withdraw = () => {
                 <span>:</span>
               </div>
               <span className="text-heading text-sm font-semibold w-full">
-                {!!data?.withdraw?.payment_method
-                  ? data?.withdraw?.payment_method
-                  : "N/A"}
+                {data?.withdraw?.payment_method ?? "N/A"}
               </span>
             </div>
 
@@ -145,7 +152,11 @@ const Withdraw = () => {
                 <span>:</span>
               </div>
               <span className="text-heading text-sm font-semibold w-full">
-                {data?.withdraw?.status}
+                {
+                  WithdrawStatus?.find(
+                    (status) => status.id === data?.withdraw?.status
+                  )?.name
+                }
               </span>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 export const couponValidationSchema = yup.object().shape({
-  code: yup.string().required("form:error-coupon-code-required"),
+  code: yup.string().required("Coupon Code is required"),
   amount: yup
     .number()
     .typeError("form:error-amount-number")

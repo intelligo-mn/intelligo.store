@@ -17,7 +17,7 @@ const VariationGroups: React.FC<Props> = ({ variations }) => {
           className="py-4 border-b border-border-200  border-opacity-70 first:pt-0 flex items-center last:pb-0 last:border-b-0"
           key={index}
         >
-          <span className="text-sm font-semibold text-heading leading-none capitalize me-5 min-w-[60px] inline-block whitespace-nowrap">
+          <span className="text-sm font-semibold text-heading leading-none capitalize me-4 min-w-[60px] inline-block whitespace-nowrap">
             {replaceHyphens(variationName)}:
           </span>
           <div className="w-full overflow-hidden -mb-5">

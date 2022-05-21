@@ -3,13 +3,15 @@ import AttributeList from "@components/attribute/attribute-list";
 import ErrorMessage from "@components/ui/error-message";
 import LinkButton from "@components/ui/link-button";
 import Loader from "@components/ui/loader/loader";
-import { useAttributesQuery } from "@graphql/attributes.graphql";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ShopLayout from "@components/layouts/shop";
 import { useRouter } from "next/router";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
-import { useShopQuery } from "@graphql/shops.graphql";
+import { useAttributesQuery } from "@data/attributes/use-attributes.query";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useState } from "react";
+import { SortOrder } from "@ts-types/generated";
 import { useModalAction } from "@components/ui/modal/modal.context";
 import { MoreIcon } from "@components/icons/more-icon";
 import Button from "@components/ui/button";
@@ -19,25 +21,31 @@ export default function AttributePage() {
     query: { shop },
   } = useRouter();
   const { t } = useTranslation();
-  const { data: shopData, loading: fetchingShop } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
   const { openModal } = useModalAction();
-  const { data, loading, error, refetch } = useAttributesQuery({
-    skip: !Boolean(shopId),
-    variables: {
-      shop_id: Number(shopId),
-    },
-    fetchPolicy: "network-only",
-  });
 
+  const [orderBy, setOrder] = useState("updated_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const { data: shopData, isLoading: fetchingShop } = useShopQuery(
+    shop as string
+  );
+  const shopId = shopData?.shop?.id!;
   function handleImportModal() {
     openModal("EXPORT_IMPORT_ATTRIBUTE", shopId);
   }
-
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useAttributesQuery(
+    {
+      shop_id: Number(shopId),
+      orderBy,
+      sortedBy,
+    },
+    {
+      enabled: Boolean(shopId),
+    }
+  );
   if (loading || fetchingShop)
     return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
@@ -63,7 +71,6 @@ export default function AttributePage() {
           <Button onClick={handleImportModal} className="mt-5 w-full md:hidden">
             {t("common:text-export-import")}
           </Button>
-
           <button
             onClick={handleImportModal}
             className="hidden md:flex w-8 h-8 rounded-full bg-gray-50 hover:bg-gray-100 items-center justify-center flex-shrink-0 ms-6 transition duration-300"
@@ -72,8 +79,11 @@ export default function AttributePage() {
           </button>
         </div>
       </Card>
-
-      <AttributeList attributes={data?.attributes as any} refetch={refetch} />
+      <AttributeList
+        attributes={data?.attributes as any}
+        onOrder={setOrder}
+        onSort={setColumn}
+      />
     </>
   );
 }

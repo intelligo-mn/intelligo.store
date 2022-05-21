@@ -5,7 +5,7 @@ export interface Props extends LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
 }
 
-const Label: React.FC<Props> = ({ className = "mb-3", ...rest }) => {
+const Label: React.FC<Props> = ({ className, ...rest }) => {
   return (
     <label
       className={cn(

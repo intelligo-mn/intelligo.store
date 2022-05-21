@@ -6,32 +6,31 @@ import { useIsRTL } from "@utils/locals";
 import usePrice from "@utils/use-price";
 import { adminOnly, getAuthCredentials, hasAccess } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
+import { Shop, SortOrder, WithdrawPaginator } from "@ts-types/generated";
 import { useRouter } from "next/router";
 import Badge from "@components/ui/badge/badge";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { Shop, SortOrder, WithdrawPaginator } from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 type IProps = {
   withdraws: WithdrawPaginator | null | undefined;
-  onPagination?: (current: number) => void;
-  refetch: Function;
+  onPagination: (current: number) => void;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
-  const { data, paginatorInfo } = withdraws! ?? {};
+const WithdrawList = ({ withdraws, onPagination, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft } = useIsRTL();
 
   const router = useRouter();
 
   const renderStatusBadge = (status: string) => {
-    switch (status) {
+    switch (status.toUpperCase()) {
       case "APPROVED":
         return <Badge text={t("text-approved")} color="bg-accent" />;
       case "PENDING":
@@ -45,25 +44,26 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
     }
   };
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-          orderBy: value,
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -73,14 +73,16 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
       dataIndex: "shop",
       key: "shop",
       align: alignLeft,
-      render: (organization: Organization) => shop.name,
+      render: (shop: Shop) => shop.name,
     },
     {
       title: (
         <TitleWithSort
           title={t("table:table-item-amount")}
-          ascending={order === SortDirection.ASCENDING && column === "amount"}
-          isActive={column === "amount"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "amount"
+          }
+          isActive={sortingObj.column === "amount"}
         />
       ),
       className: "cursor-pointer",
@@ -99,8 +101,10 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortDirection.ASCENDING && column === "status"}
-          isActive={column === "status"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "status"
+          }
+          isActive={sortingObj.column === "status"}
         />
       ),
       className: "cursor-pointer",
@@ -113,16 +117,19 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
     {
       title: (
         <TitleWithSort
-          title={t("table:table-item-title")}
-          ascending={order === SortDirection.ASCENDING && column === "created-at"}
-          isActive={column === "created-at"}
+          title={t("table:table-item-created-at")}
+          ascending={
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "created_at"
+          }
+          isActive={sortingObj.column === "created_at"}
         />
       ),
       className: "cursor-pointer",
-      onHeaderCell: () => onHeaderClick("created-at"),
       dataIndex: "created_at",
       key: "created_at",
       align: "center",
+      onHeaderCell: () => onHeaderClick("created_at"),
       render: (date: string) => {
         dayjs.extend(relativeTime);
         dayjs.extend(utc);
@@ -150,11 +157,9 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
       },
     },
   ];
-
   if (router?.query?.shop) {
     columns = columns?.filter((column) => column?.key !== "actions");
   }
-
   return (
     <>
       <div className="rounded overflow-hidden shadow mb-6">
@@ -162,18 +167,18 @@ const WithdrawList = ({ withdraws, onPagination, refetch }: IProps) => {
           //@ts-ignore
           columns={columns}
           emptyText={t("table:empty-table-data")}
-          data={data}
+          data={withdraws?.data}
           rowKey="id"
           scroll={{ x: 800 }}
         />
       </div>
 
-      {!!paginatorInfo?.total && (
+      {!!withdraws?.paginatorInfo.total && (
         <div className="flex justify-end items-center">
           <Pagination
-            total={paginatorInfo?.total}
-            current={paginatorInfo?.currentPage}
-            pageSize={paginatorInfo?.perPage}
+            total={withdraws?.paginatorInfo.total}
+            current={withdraws?.paginatorInfo.currentPage}
+            pageSize={withdraws?.paginatorInfo.perPage}
             onChange={onPagination}
           />
         </div>

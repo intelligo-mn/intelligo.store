@@ -1,19 +1,25 @@
-import Layout from "@components/layouts/admin";
+import AdminLayout from "@components/layouts/admin";
 import SettingsForm from "@components/settings/settings-form";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useSettingsQuery } from "@graphql/settings.graphql";
+import { useSettingsQuery } from "@data/settings/use-settings.query";
+import { useShippingClassesQuery } from "@data/shipping/use-shippingClasses.query";
+import { useTaxesQuery } from "@data/tax/use-taxes.query";
 import { adminOnly } from "@utils/auth-utils";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function Settings() {
   const { t } = useTranslation();
-  const { data, loading, error } = useSettingsQuery({
-    fetchPolicy: "network-only",
-  });
+  const { data: taxData, isLoading: taxLoading } = useTaxesQuery();
+  const { data: ShippingData, isLoading: shippingLoading } =
+    useShippingClassesQuery();
+
+  const { data, isLoading: loading, error } = useSettingsQuery();
   console.log("data:", data);
-  if (loading) return <Loader text={t("common:text-loading")} />;
+
+  if (loading || shippingLoading || taxLoading)
+    return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (
     <>
@@ -23,9 +29,9 @@ export default function Settings() {
         </h1>
       </div>
       <SettingsForm
-        settings={data?.settings?.options}
-        taxClasses={data?.taxClasses}
-        shippingClasses={data?.shippingClasses}
+        settings={data?.options}
+        taxClasses={taxData?.taxes}
+        shippingClasses={ShippingData?.shippingClasses}
       />
     </>
   );
@@ -33,7 +39,7 @@ export default function Settings() {
 Settings.authenticate = {
   permissions: adminOnly,
 };
-Settings.Layout = Layout;
+Settings.Layout = AdminLayout;
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {

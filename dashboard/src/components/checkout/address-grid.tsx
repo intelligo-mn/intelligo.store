@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import AddressCard from "@components/address/address-card";
 import { AddressHeader } from "@components/address/address-header";
 import { useTranslation } from "next-i18next";
-import { Address } from "@common/generated-types";
+import { Address } from "__generated__/__types__";
 
 interface AddressesProps {
   addresses: Address[] | undefined;

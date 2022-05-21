@@ -1,49 +1,41 @@
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
+import { SortOrder, Tax } from "@ts-types/generated";
 import { ROUTES } from "@utils/routes";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  Tax,
-  QueryTaxClassesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
   taxes: Tax[] | undefined;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const TaxList = ({ taxes, refetch }: IProps) => {
+const TaxList = ({ taxes, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 300),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -60,52 +52,49 @@ const TaxList = ({ taxes, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryTaxClassesOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryTaxClassesOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
-      onHeaderCell: () => onHeaderClick(QueryTaxClassesOrderByColumn.Name),
       dataIndex: "name",
       key: "name",
       align: alignLeft,
       width: 150,
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: (
         <TitleWithSort
           title={`${t("table:table-item-rate")} (%)`}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryTaxClassesOrderByColumn.Rate
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "rate"
           }
-          isActive={column === QueryTaxClassesOrderByColumn.Rate}
+          isActive={sortingObj.column === "rate"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "rate",
       key: "rate",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryTaxClassesOrderByColumn.Rate),
+      onHeaderCell: () => onHeaderClick("rate"),
     },
     {
       title: (
         <TitleWithSort
           title={t("table:table-item-country")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryTaxClassesOrderByColumn.Country
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "country"
           }
-          isActive={column === QueryTaxClassesOrderByColumn.Country}
+          isActive={sortingObj.column === "country"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "country",
       key: "country",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryTaxClassesOrderByColumn.Country),
+      onHeaderCell: () => onHeaderClick("country"),
     },
     {
       title: t("table:table-item-city"),
@@ -114,21 +103,10 @@ const TaxList = ({ taxes, refetch }: IProps) => {
       align: "center",
     },
     {
-      title: (
-        <TitleWithSort
-          title={t("table:table-item-state")}
-          ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryTaxClassesOrderByColumn.State
-          }
-          isActive={column === QueryTaxClassesOrderByColumn.State}
-        />
-      ),
-      className: "cursor-pointer",
+      title: t("table:table-item-state"),
       dataIndex: "state",
       key: "state",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryTaxClassesOrderByColumn.State),
     },
     {
       title: t("table:table-item-zip"),
@@ -144,14 +122,13 @@ const TaxList = ({ taxes, refetch }: IProps) => {
       render: (id: string) => (
         <ActionButtons
           id={id}
-          editUrl={`${ROUTES.TAXES}/${id}/edit`}
+          editUrl={`${ROUTES.TAXES}/edit/${id}`}
           deleteModalView="DELETE_TAX"
         />
       ),
       width: 200,
     },
   ];
-
   return (
     <div className="rounded overflow-hidden shadow mb-8">
       {/* @ts-ignore */}

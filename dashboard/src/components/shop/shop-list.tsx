@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Pagination from "@components/ui/pagination";
 import Image from "next/image";
 import { Table } from "@components/ui/table";
@@ -6,42 +7,42 @@ import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
 import Badge from "@components/ui/badge/badge";
-import { ShopPaginator, SortOrder } from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { ShopPaginator, SortOrder } from "@ts-types/generated";
 import TitleWithSort from "@components/ui/title-with-sort";
 import Link from "@components/ui/link";
 
 type IProps = {
   shops: ShopPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const ShopList = ({ shops, onPagination, refetch }: IProps) => {
+const ShopList = ({ shops, onPagination, onSort, onOrder }: IProps) => {
   const { data, paginatorInfo } = shops! ?? {};
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          sortedBy: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-          orderBy: value,
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -67,8 +68,10 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-title")}
-          ascending={order === SortDirection.ASCENDING && column === "name"}
-          isActive={column === "name"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
+          }
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
@@ -93,8 +96,11 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-total-products")}
-          ascending={order === SortDirection.ASCENDING && column === "products_count"}
-          isActive={column === "products_count"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "products_count"
+          }
+          isActive={sortingObj.column === "products_count"}
         />
       ),
       className: "cursor-pointer",
@@ -107,8 +113,11 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-total-orders")}
-          ascending={order === SortDirection.ASCENDING && column === "orders_count"}
-          isActive={column === "orders_count"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "orders_count"
+          }
+          isActive={sortingObj.column === "orders_count"}
         />
       ),
       className: "cursor-pointer",
@@ -121,8 +130,11 @@ const ShopList = ({ shops, onPagination, refetch }: IProps) => {
       title: (
         <TitleWithSort
           title={t("table:table-item-status")}
-          ascending={order === SortDirection.ASCENDING && column === "is_active"}
-          isActive={column === "is_active"}
+          ascending={
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "is_active"
+          }
+          isActive={sortingObj.column === "is_active"}
         />
       ),
       className: "cursor-pointer",

@@ -11,9 +11,7 @@ import ValidationError from "@components/ui/form-validation-error";
 import { useTranslation } from "next-i18next";
 import SelectInput from "@components/ui/select-input";
 import { useIsRTL } from "@utils/locals";
-import { toast } from "react-toastify";
-import { Attachment } from "@common/generated-types";
-import { useUpdateRefundMutation } from "@graphql/refunds.graphql";
+import { useUpdateRefundMutation } from "@data/refunds/use-refund-update.mutation";
 import { useModalAction } from "@components/ui/modal/modal.context";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -26,19 +24,19 @@ dayjs.extend(timezone);
 
 const RefundStatus = [
   {
-    value: "APPROVED",
+    value: "approved",
     name: "Approved",
   },
   {
-    value: "PENDING",
+    value: "pending",
     name: "Pending",
   },
   {
-    value: "REJECTED",
+    value: "rejected",
     name: "Rejected",
   },
   {
-    value: "PROCESSING",
+    value: "processing",
     name: "Processing",
   },
 ];
@@ -54,18 +52,8 @@ export default function RefundDetailsView({
   const { query } = useRouter();
   const { alignLeft, alignRight } = useIsRTL();
   const { openModal } = useModalAction();
-
-  const [updateRefund, { loading: updating }] = useUpdateRefundMutation({
-    onCompleted: () => {
-      toast.success(t("common:update-success"));
-    },
-    onError: (error) => {
-      setError("status", {
-        type: "manual",
-        message: error?.message,
-      });
-    },
-  });
+  const { mutate: updateRefund, isLoading: updating } =
+    useUpdateRefundMutation();
 
   async function handleUpdateRefundStatus({ status }: any) {
     const input = {
@@ -74,11 +62,21 @@ export default function RefundDetailsView({
 
     const id = query.refundId as string;
 
-    updateRefund({
-      variables: {
-        input: { id, ...input },
+    updateRefund(
+      {
+        variables: {
+          input: { id, ...input },
+        },
       },
-    });
+      {
+        onError: (error: any) => {
+          setError("status", {
+            type: "manual",
+            message: error?.response?.data?.message,
+          });
+        },
+      }
+    );
   }
 
   const handleImageClick = (idx: number) => {
@@ -131,7 +129,7 @@ export default function RefundDetailsView({
       dataIndex: "image",
       key: "image",
       width: 70,
-      render: (image: Attachment) => (
+      render: (image: any) => (
         <Image
           src={image?.thumbnail ?? siteSettings.product.placeholder}
           alt="alt text"
@@ -270,7 +268,7 @@ export default function RefundDetailsView({
               {t("form:input-label-contact")}
             </span>
             <span className="hidden sm:block mx-2">: </span>
-            <span>{refund?.customer?.profile?.contact}</span>
+            <span>{refund?.order?.customer_contact}</span>
           </p>
         </div>
       </div>

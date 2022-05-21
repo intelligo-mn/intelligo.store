@@ -4,26 +4,25 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { getErrorMessage } from "@utils/form-error";
-import { useDisApproveShopMutation } from "@graphql/shops.graphql";
+import { useDisApproveShopMutation } from "@data/shop/use-disapprove-shop.mutation";
 
 const ProductDeleteView = () => {
-  const [disApproveShopById, { loading }] = useDisApproveShopMutation({
-    onCompleted: () => {
-      closeModal();
-    },
-    onError: (error) => {
-      closeModal();
-      getErrorMessage(error);
-    },
-  });
+  const { mutate: disApproveShopById, isLoading: loading } =
+    useDisApproveShopMutation();
 
   const { data: modalData } = useModalState();
   const { closeModal } = useModalAction();
   async function handleDelete() {
-    disApproveShopById({
-      variables: { id: modalData as string },
-    });
+    disApproveShopById(
+      {
+        variables: { id: modalData as string },
+      },
+      {
+        onSettled: () => {
+          closeModal();
+        },
+      }
+    );
   }
   return (
     <ConfirmationCard

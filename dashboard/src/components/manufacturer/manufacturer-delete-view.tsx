@@ -3,38 +3,17 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { useDeleteManufacturerMutation } from "@graphql/manufacturers.graphql";
-import { getErrorMessage } from "@utils/form-error";
+import { useDeleteManufacturerMutation } from "@data/manufacturer/use-manufacturer-delete.mutation";
 
 const ManufacturerDeleteView = () => {
-  const [deleteManufacturerMutation, { loading }] =
-    useDeleteManufacturerMutation({
-      //@ts-ignore
-      update(cache, { data: { deleteManufacturer } }) {
-        cache.modify({
-          fields: {
-            manufacturers(existingRefs, { readField }) {
-              return existingRefs.data.filter(
-                (ref: any) => deleteManufacturer.id !== readField("id", ref)
-              );
-            },
-          },
-        });
-      },
-    });
+  const { mutate: deleteManufacturerMutation, isLoading: loading } =
+    useDeleteManufacturerMutation();
 
   const { data: modalData } = useModalState();
   const { closeModal } = useModalAction();
   function handleDelete() {
-    try {
-      deleteManufacturerMutation({
-        variables: { id: modalData as string },
-      });
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
-    }
+    deleteManufacturerMutation(modalData as string);
+    closeModal();
   }
   return (
     <ConfirmationCard

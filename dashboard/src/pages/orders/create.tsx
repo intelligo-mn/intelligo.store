@@ -3,7 +3,6 @@ import Layout from "@components/layouts/admin";
 import Search from "@components/common/search";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useProductsQuery } from "@graphql/products.graphql";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -12,11 +11,6 @@ import CategoryTypeFilter from "@components/product/category-type-filter";
 import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
-import {
-  ProductStatus,
-  QueryProductsOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
 import ProductCard from "@components/product/card";
 import Cart from "@components/cart/cart";
 import { useUI } from "@contexts/ui.context";
@@ -24,30 +18,33 @@ import DrawerWrapper from "@components/ui/drawer-wrapper";
 import Drawer from "@components/ui/drawer";
 import CartCounterButton from "@components/cart/cart-counter-button";
 import Pagination from "@components/ui/pagination";
+import { Product, ProductStatus } from "@ts-types/generated";
+import { useProductsQuery } from "@data/product/products.query";
 import NotFound from "@components/ui/not-found";
 
 export default function ProductsPage() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
+  const [type, setType] = useState("");
+  const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
   const [visible, setVisible] = useState(false);
   const { displayCartSidebar, closeCartSidebar } = useUI();
   const toggleVisible = () => {
     setVisible((v) => !v);
   };
 
-  const { data, loading, error, refetch } = useProductsQuery({
-    variables: {
-      first: 18,
-      status: ProductStatus.Publish,
-      orderBy: [
-        {
-          column: QueryProductsOrderByColumn.CreatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useProductsQuery({
+    limit: 18,
+    status: ProductStatus.Publish,
+    text: searchTerm,
+    page,
+    type,
+    category,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
@@ -55,16 +52,9 @@ export default function ProductsPage() {
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   const { products } = data;
   return (
@@ -101,7 +91,17 @@ export default function ProductsPage() {
           })}
         >
           <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-8 border-t border-gray-200 pt-5 md:pt-8 w-full">
-            <CategoryTypeFilter refetch={refetch} className="w-full" />
+            <CategoryTypeFilter
+              onCategoryFilter={({ slug }: { slug: string }) => {
+                setCategory(slug);
+                setPage(1);
+              }}
+              onTypeFilter={({ slug }: { slug: string }) => {
+                setType(slug);
+                setPage(1);
+              }}
+              className="w-full"
+            />
           </div>
         </div>
       </Card>
@@ -109,7 +109,7 @@ export default function ProductsPage() {
       {/* <Card> */}
       <div className="flex space-x-5">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-4 3xl:grid-cols-6 gap-4">
-          {products?.data?.map((product) => (
+          {products?.data?.map((product: Product) => (
             <ProductCard key={product.id} item={product} />
           ))}
         </div>

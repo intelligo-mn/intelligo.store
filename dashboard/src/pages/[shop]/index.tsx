@@ -1,6 +1,5 @@
 import ShopLayout from "@components/layouts/shop";
 import LinkButton from "@components/ui/link-button";
-import { ShopDocument, useShopQuery } from "@graphql/shops.graphql";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,7 +9,7 @@ import Loader from "@components/ui/loader/loader";
 import dayjs from "dayjs";
 import { CheckMarkFill } from "@components/icons/checkmark-circle-fill";
 import { CloseFillIcon } from "@components/icons/close-fill";
-import { EditIcon } from "@components/icons/edit";
+import EditIcon from "@components/icons/edit";
 import { formatAddress } from "@utils/format-address";
 import {
   adminAndOwnerOnly,
@@ -21,8 +20,9 @@ import {
 import ErrorMessage from "@components/ui/error-message";
 import usePrice from "@utils/use-price";
 import { useTranslation } from "next-i18next";
-import { addApolloState, initializeApollo } from "@utils/apollo";
 import isEmpty from "lodash/isEmpty";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { GetStaticPaths } from "next";
 import { CubeIcon } from "@components/icons/shops/cube";
 import { OrdersIcon } from "@components/icons/sidebar";
 import { PriceWalletIcon } from "@components/icons/shops/price-wallet";
@@ -37,37 +37,32 @@ export default function ShopPage() {
     query: { shop },
     locale,
   } = useRouter();
-  const { data, loading, error } = useShopQuery({
-    variables: {
-      slug: shop!.toString(),
-    },
-  });
+  const { data, isLoading: loading, error } = useShopQuery(shop!.toString());
   const { price: totalEarnings } = usePrice(
     data && {
-      amount: data?.organization?.balance?.total_earnings!,
+      amount: data?.shop?.balance?.total_earnings!,
     }
   );
   const { price: currentBalance } = usePrice(
     data && {
-      amount: data?.organization?.balance?.current_balance!,
+      amount: data?.shop?.balance?.current_balance!,
     }
   );
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   const {
     name,
-    owner,
     is_active,
     logo,
-    slug,
     cover_image,
     description,
     products_count,
     orders_count,
     balance,
     address,
-    settings,
     created_at,
+    settings,
+    slug,
   } = data?.shop! ?? {};
 
   return (
@@ -141,7 +136,7 @@ export default function ShopPage() {
       </div>
 
       {/* Cover Photo */}
-      <div className="order-1 xl:order-2 col-span-12 xl:col-span-8 3xl:col-span-9 h-full overflow-hidden relative rounded bg-light min-h-[400px]">
+      <div className="order-1 xl:order-2 col-span-12 xl:col-span-8 3xl:col-span-9 rounded h-full overflow-hidden relative bg-light min-h-[400px]">
         <Image
           src={cover_image?.original ?? "/product-placeholder-borderless.svg"}
           layout="fill"
@@ -322,20 +317,12 @@ ShopPage.Layout = ShopLayout;
 ShopPage.authenticate = {
   permissions: adminOwnerAndStaffOnly,
 };
-export const getServerSideProps = async ({ locale, params }: any) => {
-  const apolloClient = initializeApollo();
-  const { data } = await apolloClient.query({
-    query: ShopDocument,
-    variables: { slug: params.shop },
-  });
-  if (!data?.shop) {
-    return {
-      notFound: true,
-    };
-  }
-  return addApolloState(apolloClient, {
-    props: {
-      ...(await serverSideTranslations(locale, ["form", "common"])),
-    },
-  });
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["form", "common", "table"])),
+  },
+});
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [], fallback: "blocking" };
 };

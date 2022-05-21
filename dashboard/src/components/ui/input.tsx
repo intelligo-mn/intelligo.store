@@ -6,7 +6,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   inputClassName?: string;
   label?: string;
   note?: string;
-  // name: string;/
+  name: string;
   error?: string;
   type?: string;
   shadow?: boolean;
@@ -27,7 +27,6 @@ const sizeClasses = {
   medium: "h-12",
   big: "h-14",
 };
-
 const Input = React.forwardRef<HTMLInputElement, Props>(
   (
     {
@@ -62,14 +61,12 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className={className}>
-        {label && (
-          <label
-            htmlFor={name}
-            className="block text-body-dark font-semibold text-sm leading-none mb-3"
-          >
-            {label}
-          </label>
-        )}
+        <label
+          htmlFor={name}
+          className="block text-body-dark font-semibold text-sm leading-none mb-3"
+        >
+          {label}
+        </label>
         <input
           id={name}
           name={name}

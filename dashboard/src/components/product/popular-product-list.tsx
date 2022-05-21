@@ -1,8 +1,9 @@
 import { Table } from "@components/ui/table";
+import { Product, Shop, ProductType } from "@ts-types/generated";
 import usePrice from "@utils/use-price";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { Product, Shop, ProductType } from "@common/generated-types";
+import { useIsRTL } from "@utils/locals";
 
 export type IProps = {
   products: Product[] | null | undefined;
@@ -12,10 +13,7 @@ export type IProps = {
 const PopularProductList = ({ products, title }: IProps) => {
   const router = useRouter();
   const { t } = useTranslation();
-  const alignLeft =
-    router.locale === "ar" || router.locale === "he" ? "right" : "left";
-  const alignRight =
-    router.locale === "ar" || router.locale === "he" ? "left" : "right";
+  const { alignLeft, alignRight } = useIsRTL();
 
   let columns = [
     {
@@ -53,8 +51,8 @@ const PopularProductList = ({ products, title }: IProps) => {
       width: 120,
       align: "center",
       ellipsis: true,
-      render: (organization: Organization) => (
-        <span className="whitespace-nowrap truncate">{organization?.name}</span>
+      render: (shop: Shop) => (
+        <span className="whitespace-nowrap truncate">{shop?.name}</span>
       ),
     },
 
@@ -98,25 +96,26 @@ const PopularProductList = ({ products, title }: IProps) => {
       width: 80,
     },
   ];
+
   if (router?.query?.shop) {
     columns = columns?.filter((column) => column?.key !== "shop");
   }
+
   return (
-    <>
-      <div className="rounded overflow-hidden shadow mb-6">
-        <h3 className="text-heading text-center font-semibold px-4 py-3 bg-light border-b border-border-200">
-          {title}
-        </h3>
-        <Table
-          //@ts-ignore
-          columns={columns}
-          emptyText={t("table:empty-table-data")}
-          data={products!}
-          rowKey="id"
-          scroll={{ x: 700 }}
-        />
-      </div>
-    </>
+    <div className="rounded overflow-hidden shadow mb-6">
+      <h3 className="text-heading text-center font-semibold px-4 py-3 bg-light border-b border-border-200">
+        {title}
+      </h3>
+      <Table
+        //@ts-ignore
+        columns={columns}
+        emptyText={t("table:empty-table-data")}
+        //@ts-ignore
+        data={products}
+        rowKey="id"
+        scroll={{ x: 700 }}
+      />
+    </div>
   );
 };
 

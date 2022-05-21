@@ -8,7 +8,7 @@ const StickerCard = ({
   subtitleTransKey,
   icon,
   iconBgStyle,
-  count,
+  price,
   indicator,
   indicatorText,
   note,
@@ -36,7 +36,7 @@ const StickerCard = ({
         </div>
       </div>
 
-      <span className="text-xl font-semibold text-heading mb-2">{count}</span>
+      <span className="text-xl font-semibold text-heading mb-2">{price}</span>
       {indicator === "up" && (
         <span
           className="text-sm text-body font-semibold mb-12 inline-block"

@@ -3,10 +3,8 @@ import Layout from "@components/layouts/admin";
 import Image from "next/image";
 import { Table } from "@components/ui/table";
 import ProgressBox from "@components/ui/progress-box/progress-box";
-import { useOrderQuery, useUpdateOrderMutation } from "@graphql/orders.graphql";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useOrderStatusesQuery } from "@graphql/order_status.graphql";
 import Button from "@components/ui/button";
 import ErrorMessage from "@components/ui/error-message";
 import { siteSettings } from "@settings/site.settings";
@@ -14,20 +12,21 @@ import usePrice from "@utils/use-price";
 import { formatAddress } from "@utils/format-address";
 import Loader from "@components/ui/loader/loader";
 import ValidationError from "@components/ui/form-validation-error";
+import { Attachment } from "@ts-types/generated";
+import { useOrderQuery } from "@data/order/use-order.query";
+import { useUpdateOrderMutation } from "@data/order/use-order-update.mutation";
+import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SelectInput from "@components/ui/select-input";
 import { useIsRTL } from "@utils/locals";
-import { adminOnly } from "@utils/auth-utils";
-import { toast } from "react-toastify";
-import {
-  Attachment,
-  QueryOrderStatusesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { DownloadIcon } from "@components/icons/download-icon";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import InvoicePdf from "@components/order/invoice-pdf";
-import { DownloadIcon } from "@components/icons/download-icon";
+import { useCart } from "@contexts/quick-cart/cart.context";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { clearCheckoutAtom } from "@contexts/checkout";
 import { useSettings } from "@contexts/settings.context";
 
 type FormValues = {
@@ -38,29 +37,21 @@ export default function OrderDetailsPage() {
   const { query } = useRouter();
   const settings = useSettings();
   const { alignLeft, alignRight } = useIsRTL();
+  const { resetCart } = useCart();
+  const [, resetCheckout] = useAtom(clearCheckoutAtom);
 
-  const [updateOrder, { loading: updating }] = useUpdateOrderMutation({
-    onCompleted: () => {
-      toast.success(t("common:successfully-updated"));
-    },
-  });
-  const { data: orderStatusData } = useOrderStatusesQuery({
-    variables: {
-      first: 100,
-      orderBy: [
-        {
-          column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortDirection.ASCENDING,
-        },
-      ],
-    },
-  });
+  useEffect(() => {
+    resetCart();
+    resetCheckout();
+  }, [resetCart, resetCheckout]);
 
-  const { data, loading, error } = useOrderQuery({
-    variables: {
-      id: query.orderId as string,
-    },
-  });
+  const { mutate: updateOrder, isLoading: updating } = useUpdateOrderMutation();
+  const { data: orderStatusData } = useOrderStatusesQuery({});
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useOrderQuery(query.orderId as string);
 
   const {
     handleSubmit,
@@ -68,14 +59,14 @@ export default function OrderDetailsPage() {
 
     formState: { errors },
   } = useForm<FormValues>({
-    defaultValues: { order_status: data?.order?.status ?? "" },
+    defaultValues: { order_status: data?.order?.status?.id ?? "" },
   });
 
   const ChangeStatus = ({ order_status }: FormValues) => {
     updateOrder({
       variables: {
+        id: data?.order?.id as string,
         input: {
-          id: data?.order?.id as string,
           status: order_status?.id as string,
         },
       },
@@ -147,7 +138,7 @@ export default function OrderDetailsPage() {
       align: alignRight,
       render: (_: any, item: any) => {
         const { price } = usePrice({
-          amount: item.pivot.subtotal,
+          amount: parseFloat(item.pivot.subtotal),
         });
         return <span>{price}</span>;
       },
@@ -200,14 +191,11 @@ export default function OrderDetailsPage() {
               control={control}
               getOptionLabel={(option: any) => option.name}
               getOptionValue={(option: any) => option.id}
-              options={orderStatusData?.orderStatuses?.data!}
+              options={orderStatusData?.order_statuses?.data}
               placeholder={t("form:input-placeholder-order-status")}
-              rules={{
-                required: "Status is required",
-              }}
             />
 
-            <ValidationError message={errors?.order_status?.message} />
+            <ValidationError message={t(errors?.order_status?.message)} />
           </div>
           <Button loading={updating}>
             <span className="hidden sm:block">
@@ -222,7 +210,7 @@ export default function OrderDetailsPage() {
 
       <div className="my-5 lg:my-10 flex justify-center items-center">
         <ProgressBox
-          data={orderStatusData?.orderStatuses?.data}
+          data={orderStatusData?.order_statuses?.data}
           status={data?.order?.status?.serial!}
         />
       </div>
@@ -233,7 +221,6 @@ export default function OrderDetailsPage() {
             //@ts-ignore
             columns={columns}
             emptyText={t("table:empty-table-data")}
-            //@ts-ignore
             data={data?.order?.products!}
             rowKey="id"
             scroll={{ x: 300 }}
@@ -259,7 +246,7 @@ export default function OrderDetailsPage() {
             <span>{t("common:order-discount")}</span>
             <span>{discount}</span>
           </div>
-          <div className="flex items-center justify-between text-body font-semibold">
+          <div className="flex items-center justify-between text-base text-heading font-semibold">
             <span>{t("common:order-total")}</span>
             <span>{total}</span>
           </div>
@@ -302,9 +289,6 @@ export default function OrderDetailsPage() {
     </Card>
   );
 }
-OrderDetailsPage.authenticate = {
-  permissions: adminOnly,
-};
 OrderDetailsPage.Layout = Layout;
 
 export const getServerSideProps = async ({ locale }: any) => ({

@@ -1,6 +1,7 @@
 export const selectStyles = {
   option: (provided: any, state: any) => ({
     ...provided,
+    // fontSize: '1rem',
     fontSize: "0.875rem",
     color: "#6B7280",
     paddingLeft: 16,
@@ -19,6 +20,7 @@ export const selectStyles = {
     display: "flex",
     alignItems: "center",
     minHeight: 50,
+    // backgroundColor: '#F3F4F6',
     backgroundColor: "#ffffff",
     borderRadius: 5,
     border: "1px solid #D1D5DB",
@@ -60,6 +62,7 @@ export const selectStyles = {
   }),
   singleValue: (provided: any, _: any) => ({
     ...provided,
+    // fontSize: '1rem',
     fontSize: "0.875rem",
     color: "#4B5563",
   }),

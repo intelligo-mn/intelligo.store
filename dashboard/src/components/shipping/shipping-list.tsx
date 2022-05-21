@@ -1,49 +1,41 @@
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
 import { ROUTES } from "@utils/routes";
+import { Shipping, SortOrder } from "@ts-types/generated";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import {
-  Shipping,
-  QueryShippingClassesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
   shippings: Shipping[] | undefined;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const ShippingList = ({ shippings, refetch }: IProps) => {
+const ShippingList = ({ shippings, onSort, onOrder }: IProps) => {
   const { t } = useTranslation();
   const { alignLeft } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 300),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -60,10 +52,9 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryShippingClassesOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryShippingClassesOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
@@ -71,43 +62,29 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
       key: "name",
       align: alignLeft,
       width: 150,
-      onHeaderCell: () => onHeaderClick(QueryShippingClassesOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: (
         <TitleWithSort
           title={t("table:table-item-amount")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryShippingClassesOrderByColumn.Amount
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "amount"
           }
-          isActive={column === QueryShippingClassesOrderByColumn.Amount}
+          isActive={sortingObj.column === "amount"}
         />
       ),
       className: "cursor-pointer",
-      onHeaderCell: () =>
-        onHeaderClick(QueryShippingClassesOrderByColumn.Amount),
       dataIndex: "amount",
       key: "amount",
       align: "center",
+      onHeaderCell: () => onHeaderClick("amount"),
     },
     {
-      title: (
-        <TitleWithSort
-          title={t("table:table-item-global")}
-          ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryShippingClassesOrderByColumn.IsGlobal
-          }
-          isActive={column === QueryShippingClassesOrderByColumn.IsGlobal}
-        />
-      ),
-      className: "cursor-pointer",
+      title: t("table:table-item-global"),
       dataIndex: "is_global",
       key: "is_global",
       align: "center",
-      onHeaderCell: () =>
-        onHeaderClick(QueryShippingClassesOrderByColumn.IsGlobal),
       render: (value: boolean) => (
         <span className="capitalize">{value.toString()}</span>
       ),
@@ -115,19 +92,18 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
     {
       title: (
         <TitleWithSort
-          title={t("table:table-item-type")}
+          title={t("table:table-shipping-type")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryShippingClassesOrderByColumn.Type
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "type"
           }
-          isActive={column === QueryShippingClassesOrderByColumn.Type}
+          isActive={sortingObj.column === "type"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "type",
       key: "type",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryShippingClassesOrderByColumn.Type),
+      onHeaderCell: () => onHeaderClick("type"),
     },
     {
       title: t("table:table-item-actions"),
@@ -137,7 +113,7 @@ const ShippingList = ({ shippings, refetch }: IProps) => {
       render: (id: string) => (
         <ActionButtons
           id={id}
-          editUrl={`${ROUTES.SHIPPINGS}/${id}/edit`}
+          editUrl={`${ROUTES.SHIPPINGS}/edit/${id}`}
           deleteModalView="DELETE_SHIPPING"
         />
       ),

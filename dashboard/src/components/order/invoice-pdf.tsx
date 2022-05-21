@@ -1,15 +1,8 @@
-import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-  Font,
-} from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { Order, SettingsOptions, UserAddress } from "@ts-types/generated";
 import { formatAddress } from "@utils/format-address";
 import usePrice from "@utils/use-price";
 import dayjs from "dayjs";
-import { Order, SettingsOptions, UserAddress } from "@common/generated-types";
 
 export default function InvoicePdf({
   order,
@@ -96,11 +89,13 @@ export default function InvoicePdf({
                 </Text>
               </View>
 
-              {order?.products?.map((product, index) => {
+              {order.products.map((product, index) => {
                 const { price } = usePrice({
                   // @ts-ignore
                   amount: parseFloat(product.pivot.subtotal),
+                  currencyCode: settings.currency!,
                 });
+
                 return (
                   <View style={styles.tr} key={index} wrap={false}>
                     <Text
@@ -108,9 +103,7 @@ export default function InvoicePdf({
                     >
                       {index + 1}
                     </Text>
-                    <Text style={[styles.td, { flex: 1 }]}>
-                      {product?.name}
-                    </Text>
+                    <Text style={[styles.td, { flex: 1 }]}>{product.name}</Text>
                     <Text
                       style={[styles.td, { width: 75, textAlign: "center" }]}
                     >
@@ -173,16 +166,6 @@ export default function InvoicePdf({
   );
 }
 
-Font.register({
-  family: "Lato",
-  src: `https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wWw.ttf`,
-});
-
-Font.register({
-  family: "Lato Bold",
-  src: `https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPHA.ttf`,
-});
-
 const styles = StyleSheet.create({
   container: {
     maxWidth: 600,
@@ -235,6 +218,7 @@ const styles = StyleSheet.create({
 
   th: {
     fontSize: 11,
+    // fontFamily: "Lato Bold",
     color: "#374151",
     padding: "12pt 16pt",
     borderRightWidth: 1,

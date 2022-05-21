@@ -1,57 +1,55 @@
 import Pagination from "@components/ui/pagination";
 import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
-
 import { ROUTES } from "@utils/routes";
-import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@utils/locals";
 import {
   OrderStatus,
   OrderStatusPaginator,
-  QueryOrderStatusesOrderByColumn,
   SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+} from "@ts-types/generated";
+import { useTranslation } from "next-i18next";
+import { useIsRTL } from "@utils/locals";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
   order_statuses: OrderStatusPaginator | undefined | null;
   onPagination: (key: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
-
-const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
+const OrderStatusList = ({
+  order_statuses,
+  onPagination,
+  onSort,
+  onOrder,
+}: IProps) => {
   const { data, paginatorInfo } = order_statuses!;
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
-
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 300),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
-    onClick: () => {
-      debouncedHeaderClick(value);
-    },
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
   });
 
+  const onHeaderClick = (column: string | null) => ({
+    onClick: () => {
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
+    },
+  });
   const columns = [
     {
       title: t("table:table-item-id"),
@@ -65,19 +63,18 @@ const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryOrderStatusesOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryOrderStatusesOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
       align: alignLeft,
-      onHeaderCell: () => onHeaderClick(QueryOrderStatusesOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
       render: (name: string, record: OrderStatus) => (
-        <span className="font-semibold" style={{ color: record.color! }}>
+        <span className="font-semibold" style={{ color: record?.color! }}>
           {name}
         </span>
       ),
@@ -87,28 +84,26 @@ const OrderStatusList = ({ order_statuses, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-serial")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryOrderStatusesOrderByColumn.Serial
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "serial"
           }
-          isActive={column === QueryOrderStatusesOrderByColumn.Serial}
+          isActive={sortingObj.column === "serial"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "serial",
       key: "serial",
       align: "center",
-      onHeaderCell: () => onHeaderClick(QueryOrderStatusesOrderByColumn.Serial),
+      onHeaderCell: () => onHeaderClick("serial"),
     },
     {
       title: t("table:table-item-actions"),
       dataIndex: "id",
       key: "actions",
       align: alignRight,
-      render: (id: string) => (
+      render: (id: string, record: OrderStatus) => (
         <ActionButtons
           id={id}
-          editUrl={`${ROUTES.ORDER_STATUS}/${id}/edit`}
-          deleteModalView="DELETE_ORDER_STATUS"
+          editUrl={`${ROUTES.ORDER_STATUS}/edit/${record?.name}`}
         />
       ),
     },

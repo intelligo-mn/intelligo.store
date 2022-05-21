@@ -3,23 +3,17 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { getErrorMessage } from "@utils/form-error";
-import { useCategory } from "@core/category/useCategory";
-import { remove } from "lodash";
+import { useDeleteCategoryMutation } from "@data/category/use-category-delete.mutation";
 
 const CategoryDeleteView = () => {
-  const { removeCategory, loading } = useCategory()
+  const { mutate: deleteCategory, isLoading: loading } =
+    useDeleteCategoryMutation();
 
-  const { data: modalData } = useModalState();
+  const { data } = useModalState();
   const { closeModal } = useModalAction();
   function handleDelete() {
-    try {
-      removeCategory(modalData as string);
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
-    }
+    deleteCategory(data);
+    closeModal();
   }
   return (
     <ConfirmationCard

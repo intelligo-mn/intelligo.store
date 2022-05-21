@@ -3,11 +3,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import Button from "@components/ui/button";
 import TextArea from "@components/ui/text-area";
 import Label from "@components/ui/label";
-import {
-  useCreateManufacturerMutation,
-  useUpdateManufacturerMutation,
-} from "@graphql/manufacturers.graphql";
-import { useShopQuery } from "@graphql/shops.graphql";
 import { getErrorMessage } from "@utils/form-error";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
@@ -18,15 +13,18 @@ import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { manufacturerValidationSchema } from "./manufacturer-validation-schema";
-import {
-  AttachmentInput,
-  Manufacturer,
-  ShopSocialInput,
-} from "@common/generated-types";
 import { getIcon } from "@utils/get-icon";
 import SelectInput from "@components/ui/select-input";
 import * as socialIcons from "@components/icons/social";
 import ProductGroupInput from "@components/product/product-group-input";
+import {
+  AttachmentInput,
+  Manufacturer,
+  ShopSocialInput,
+} from "@ts-types/generated";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useCreateManufacturerMutation } from "@data/manufacturer/use-manufacturer-create.mutation";
+import { useUpdateManufacturerMutation } from "@data/manufacturer/use-manufacturer-update.mutation";
 
 const socialIcon = [
   {
@@ -93,12 +91,8 @@ export default function CreateOrUpdateManufacturerForm({
   const {
     query: { shop },
   } = router;
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
   const {
     register,
     handleSubmit,
@@ -122,17 +116,9 @@ export default function CreateOrUpdateManufacturerForm({
     }),
   });
 
-  const [createManufacturer, { loading: creating }] =
-    useCreateManufacturerMutation({
-      onCompleted: () => {
-        if (shop) {
-          router.push(`/${shop}${ROUTES.MANUFACTURERS}`);
-        } else {
-          router.push(ROUTES.MANUFACTURERS);
-        }
-      },
-    });
-  const [updateManufacturer, { loading: updating }] =
+  const { mutate: createManufacturer, isLoading: creating } =
+    useCreateManufacturerMutation();
+  const { mutate: updateManufacturer, isLoading: updating } =
     useUpdateManufacturerMutation();
 
   const { fields, append, remove } = useFieldArray({
@@ -176,21 +162,17 @@ export default function CreateOrUpdateManufacturerForm({
     };
     try {
       if (initialValues) {
-        const { data } = await updateManufacturer({
+        updateManufacturer({
           variables: {
             input: {
+              ...input,
               id: initialValues.id!,
               shop_id: shopId,
-              ...input,
             },
           },
         });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
-        }
       } else {
-        await createManufacturer({
+        createManufacturer({
           variables: {
             input: {
               ...input,

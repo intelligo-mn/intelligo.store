@@ -3,7 +3,6 @@ import Search from "@components/common/search";
 import ProductList from "@components/product/product-list";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useProductsQuery } from "@graphql/products.graphql";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -11,28 +10,32 @@ import ShopLayout from "@components/layouts/shop";
 import { useRouter } from "next/router";
 import LinkButton from "@components/ui/link-button";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
-import { useShopQuery } from "@graphql/shops.graphql";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useProductsQuery } from "@data/product/products.query";
+import { SortOrder } from "@ts-types/generated";
 import CategoryTypeFilter from "@components/product/category-type-filter";
 import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
 import { useModalAction } from "@components/ui/modal/modal.context";
-import Button from "@components/ui/button";
 import { MoreIcon } from "@components/icons/more-icon";
-import { QueryProductsOrderByColumn, SortOrder } from "@common/generated-types";
+import Button from "@components/ui/button";
 
 export default function ProductsPage() {
   const {
     query: { shop },
   } = useRouter();
-  const { data: shopData, loading: fetchingShop } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
+  const { data: shopData, isLoading: fetchingShop } = useShopQuery(
+    shop as string
+  );
+  const shopId = shopData?.shop?.id!;
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
+  const [type, setType] = useState("");
+  const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
   const [visible, setVisible] = useState(false);
   const { openModal } = useModalAction();
 
@@ -40,25 +43,29 @@ export default function ProductsPage() {
     setVisible((v) => !v);
   };
 
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useProductsQuery(
+    {
+      text: searchTerm,
+      limit: 10,
+      shop_id: Number(shopId),
+      type,
+      category,
+      orderBy,
+      sortedBy,
+      page,
+    },
+    {
+      enabled: Boolean(shopId),
+    }
+  );
+
   function handleImportModal() {
     openModal("EXPORT_IMPORT_PRODUCT", shopId);
   }
-
-  const { data, loading, error, refetch } = useProductsQuery({
-    skip: !Boolean(shopId),
-    variables: {
-      first: 10,
-      shop_id: Number(shopId),
-      orderBy: [
-        {
-          column: QueryProductsOrderByColumn.CreatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
-  });
 
   if (loading || fetchingShop)
     return <Loader text={t("common:text-loading")} />;
@@ -66,16 +73,9 @@ export default function ProductsPage() {
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -139,15 +139,23 @@ export default function ProductsPage() {
           })}
         >
           <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-8 border-t border-gray-200 pt-5 md:pt-8 w-full">
-            <CategoryTypeFilter refetch={refetch} className="w-full" />
+            <CategoryTypeFilter
+              className="w-full"
+              onCategoryFilter={({ slug }: { slug: string }) => {
+                setCategory(slug);
+              }}
+              onTypeFilter={({ slug }: { slug: string }) => {
+                setType(slug);
+              }}
+            />
           </div>
         </div>
       </Card>
-
       <ProductList
         products={data?.products}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

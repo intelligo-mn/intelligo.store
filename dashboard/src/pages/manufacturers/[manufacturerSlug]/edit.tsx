@@ -2,20 +2,20 @@ import Layout from "@components/layouts/admin";
 import ManufacturerCreateOrUpdateForm from "@components/manufacturer/manufacturer-form";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useManufacturerQuery } from "@graphql/manufacturers.graphql";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOnly } from "@utils/auth-utils";
+import { useManufacturerQuery } from "@data/manufacturer/use-manufacturer.query";
 
 export default function UpdateManufacturerPage() {
   const { query } = useRouter();
   const { t } = useTranslation();
-  const { data, loading, error } = useManufacturerQuery({
-    variables: {
-      slug: query.manufacturerSlug as string,
-    },
-  });
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useManufacturerQuery(query.manufacturerSlug as string);
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (
@@ -25,7 +25,7 @@ export default function UpdateManufacturerPage() {
           {t("form:form-title-update-manufacturer")}
         </h1>
       </div>
-      <ManufacturerCreateOrUpdateForm initialValues={data?.manufacturer} />
+      <ManufacturerCreateOrUpdateForm initialValues={data} />
     </>
   );
 }

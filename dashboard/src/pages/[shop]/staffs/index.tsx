@@ -5,39 +5,53 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ShopLayout from "@components/layouts/shop";
 import { useRouter } from "next/router";
-import { useShopQuery, useStaffsQuery } from "@graphql/shops.graphql";
 import StaffList from "@components/shop/staff-list";
 import { adminAndOwnerOnly } from "@utils/auth-utils";
 import ErrorMessage from "@components/ui/error-message";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useStaffsQuery } from "@data/shop/use-staffs.query";
+import { useState } from "react";
+import { SortOrder } from "@ts-types/generated";
+import SortForm from "@components/common/sort-form";
 
 export default function StaffsPage() {
   const {
     query: { shop },
   } = useRouter();
   const { t } = useTranslation();
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
 
-  const { data: shopData, loading: fetchingShopId } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
-  const { data, loading, error, refetch } = useStaffsQuery({
-    skip: !Boolean(shopId),
-    variables: {
+  const { data: shopData, isLoading: fetchingShopId } = useShopQuery(
+    shop as string
+  );
+
+  const shopId = shopData?.shop?.id!;
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useStaffsQuery(
+    {
       shop_id: Number(shopId),
+      page,
+      orderBy,
+      sortedBy,
     },
-    fetchPolicy: "network-only",
-  });
-
+    {
+      enabled: Boolean(shopId),
+    }
+  );
   if (fetchingShopId || loading)
     return <Loader text={t("common:text-loading")} />;
-  if (error) return <ErrorMessage message={error.message} />;
+  if (error)
+    return (
+      <ErrorMessage message={error?.response?.data?.message || error.message} />
+    );
 
   function handlePagination(current: any) {
-    refetch({
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -58,7 +72,8 @@ export default function StaffsPage() {
       <StaffList
         staffs={data?.staffs}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

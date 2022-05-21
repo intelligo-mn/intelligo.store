@@ -1,38 +1,24 @@
 import { useTranslation } from "next-i18next";
-import { useImportVariationOptionsMutation } from "@graphql/products.graphql";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { useShopQuery } from "@graphql/shops.graphql";
 import ImportCsv from "@components/ui/import-csv";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useImportVariationOptionsMutation } from "@data/import/use-import-variation-options.mutation";
 
 export default function ImportVariationOptions() {
   const { t } = useTranslation();
   const {
     query: { shop },
   } = useRouter();
-  const { data: shopData } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-  const shopId = shopData?.organization?.id!;
-  const [importVariationOptions, { loading }] =
-    useImportVariationOptionsMutation({
-      onCompleted: () => {
-        toast.success(t("common:variations-imported-successfully"));
-      },
-      onError: (error: any) => {
-        toast.error(t(`common:${error?.message}`));
-      },
-    });
+  const { data: shopData } = useShopQuery(shop as string);
+  const shopId = shopData?.shop?.id!;
+  const { mutate: importVariationOptions, isLoading: loading } =
+    useImportVariationOptionsMutation();
 
   const handleDrop = async (acceptedFiles: any) => {
     if (acceptedFiles.length) {
-      await importVariationOptions({
-        variables: {
-          shop_id: shopId,
-          csv: acceptedFiles[0],
-        },
+      importVariationOptions({
+        shop_id: shopId,
+        csv: acceptedFiles[0],
       });
     }
   };

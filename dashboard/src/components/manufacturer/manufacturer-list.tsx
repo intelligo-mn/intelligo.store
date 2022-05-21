@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Pagination from "@components/ui/pagination";
 import Image from "next/image";
 import { Table, AlignType } from "@components/ui/table";
@@ -6,53 +6,53 @@ import ActionButtons from "@components/common/action-buttons";
 import { siteSettings } from "@settings/site.settings";
 import { ROUTES } from "@utils/routes";
 import { useTranslation } from "next-i18next";
-import debounce from "lodash/debounce";
 import TitleWithSort from "@components/ui/title-with-sort";
 import { Switch } from "@headlessui/react";
 import { useRouter } from "next/router";
-
 import {
   Attachment,
   ManufacturerPaginator,
-  QueryManufacturersOrderByColumn,
   SortOrder,
-} from "@common/generated-types";
-import { useUpdateManufacturerMutation } from "@graphql/manufacturers.graphql";
+} from "@ts-types/generated";
+import { useUpdateManufacturerMutation } from "@data/manufacturer/use-manufacturer-update.mutation";
 
 type IProps = {
   manufacturers: ManufacturerPaginator | null | undefined;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const ManufacturerList = ({ manufacturers, onPagination, refetch }: IProps) => {
+const ManufacturerList = ({
+  manufacturers,
+  onPagination,
+  onSort,
+  onOrder,
+}: IProps) => {
   const { data, paginatorInfo } = manufacturers!;
   const { t } = useTranslation();
   const router = useRouter();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<{
+    sort: SortOrder;
+    column: string | null;
+  }>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -85,16 +85,15 @@ const ManufacturerList = ({ manufacturers, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryManufacturersOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryManufacturersOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       dataIndex: "name",
       key: "name",
       align: "center" as AlignType,
-      onHeaderCell: () => onHeaderClick(QueryManufacturersOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: t("table:table-item-products"),
@@ -108,7 +107,7 @@ const ManufacturerList = ({ manufacturers, onPagination, refetch }: IProps) => {
       key: "approve",
       align: "center" as AlignType,
       render: (is_approved: boolean, record: any) => {
-        const [updateManufacturer, { loading: updating }] =
+        const { mutate: updateManufacturer, isLoading: updating } =
           useUpdateManufacturerMutation();
         function handleOnClick() {
           updateManufacturer({

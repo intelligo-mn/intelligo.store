@@ -1,17 +1,12 @@
 import Input from "@components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "@components/ui/button";
-import {
-  useCreateOrderStatusMutation,
-  useUpdateOrderStatusMutation,
-} from "@graphql/order_status.graphql";
-import { getErrorMessage } from "@utils/form-error";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
 import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
 import ColorPicker from "@components/ui/color-picker/color-picker";
-import { toast } from "react-toastify";
+import { useCreateOrderStatusMutation } from "@data/order-status/product-create.mutation";
+import { useUpdateOrderStatusMutation } from "@data/order-status/product-update.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { orderStatusValidationSchema } from "./order-status-validation-schema";
@@ -41,43 +36,58 @@ export default function CreateOrUpdateOrderStatusForm({ initialValues }: any) {
     resolver: yupResolver(orderStatusValidationSchema),
     defaultValues: initialValues ?? defaultValues,
   });
-  const [createOrderStatus, { loading }] = useCreateOrderStatusMutation();
-  const [updateOrderStatus, { loading: updating }] =
+  const { mutate: createOrderStatus, isLoading: creating } =
+    useCreateOrderStatusMutation();
+  const { mutate: updateOrderStatus, isLoading: updating } =
     useUpdateOrderStatusMutation();
 
   const onSubmit = async (values: FormValues) => {
-    try {
-      if (initialValues) {
-        const { data } = await updateOrderStatus({
+    if (initialValues) {
+      updateOrderStatus(
+        {
           variables: {
+            id: initialValues.id,
             input: {
-              ...values,
               id: initialValues.id,
+              name: values.name,
+              color: values.color,
+              serial: values.serial,
             },
           },
-        });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
+        },
+        {
+          onError: (error: any) => {
+            Object.keys(error?.response?.data).forEach((field: any) => {
+              setError(field, {
+                type: "manual",
+                message: error?.response?.data[field][0],
+              });
+            });
+          },
         }
-      } else {
-        await createOrderStatus({
+      );
+    } else {
+      createOrderStatus(
+        {
           variables: {
             input: {
-              ...values,
+              name: values.name,
+              color: values.color,
+              serial: values.serial,
             },
           },
-        });
-        router.push(ROUTES.ORDER_STATUS);
-      }
-    } catch (error) {
-      const serverErrors = getErrorMessage(error);
-      Object.keys(serverErrors?.validation).forEach((field: any) => {
-        setError(field.split(".")[1], {
-          type: "manual",
-          message: serverErrors?.validation[field][0],
-        });
-      });
+        },
+        {
+          onError: (error: any) => {
+            Object.keys(error?.response?.data).forEach((field: any) => {
+              setError(field, {
+                type: "manual",
+                message: error?.response?.data[field][0],
+              });
+            });
+          },
+        }
+      );
     }
   };
 
@@ -134,7 +144,7 @@ export default function CreateOrUpdateOrderStatusForm({ initialValues }: any) {
           </Button>
         )}
 
-        <Button loading={loading || updating}>
+        <Button loading={creating || updating}>
           {initialValues
             ? t("form:button-label-update")
             : t("form:button-label-add")}{" "}

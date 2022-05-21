@@ -1,60 +1,58 @@
 import Pagination from "@components/ui/pagination";
 import Image from "next/image";
-import { Table, AlignType } from "@components/ui/table";
+import { Table } from "@components/ui/table";
 import ActionButtons from "@components/common/action-buttons";
 import { siteSettings } from "@settings/site.settings";
 import usePrice from "@utils/use-price";
-import { useRouter } from "next/router";
 import Badge from "@components/ui/badge/badge";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@utils/locals";
 import {
   Product,
   ProductPaginator,
   ProductType,
   Shop,
-  QueryProductsOrderByColumn,
   SortOrder,
-} from "@common/generated-types";
-import { useMemo, useState } from "react";
-import debounce from "lodash/debounce";
+} from "@ts-types/generated";
+import { useIsRTL } from "@utils/locals";
+import { useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
 
 export type IProps = {
-  products: ProductPaginator | null | undefined;
+  products?: ProductPaginator;
   onPagination: (current: number) => void;
-  refetch: Function;
+  onSort: (current: any) => void;
+  onOrder: (current: string) => void;
 };
 
-const ProductList = ({ products, onPagination, refetch }: IProps) => {
-  const { data, paginatorInfo } = products!;
+type SortingObjType = {
+  sort: SortOrder;
+  column: string | null;
+};
+
+const ProductList = ({ products, onPagination, onSort, onOrder }: IProps) => {
+  const { data, paginatorInfo } = products! ?? {};
   const router = useRouter();
   const { t } = useTranslation();
   const { alignLeft, alignRight } = useIsRTL();
 
-  const [order, setOrder] = useState<SortOrder>(SortDirection.DESCENDING);
-  const [column, setColumn] = useState<string>();
+  const [sortingObj, setSortingObj] = useState<SortingObjType>({
+    sort: SortOrder.Desc,
+    column: null,
+  });
 
-  const debouncedHeaderClick = useMemo(
-    () =>
-      debounce((value) => {
-        setColumn(value);
-        setOrder(order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING);
-        refetch({
-          orderBy: [
-            {
-              column: value,
-              order: order === SortDirection.DESCENDING ? SortDirection.ASCENDING : SortDirection.DESCENDING,
-            },
-          ],
-        });
-      }, 500),
-    [order]
-  );
-
-  const onHeaderClick = (value: string | undefined) => ({
+  const onHeaderClick = (column: string | null) => ({
     onClick: () => {
-      debouncedHeaderClick(value);
+      onSort((currentSortDirection: SortOrder) =>
+        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+      );
+      onOrder(column!);
+
+      setSortingObj({
+        sort:
+          sortingObj.sort === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc,
+        column: column,
+      });
     },
   });
 
@@ -63,7 +61,7 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
       title: t("table:table-item-image"),
       dataIndex: "image",
       key: "image",
-      align: alignLeft as AlignType,
+      align: alignLeft,
       width: 74,
       render: (image: any, { name }: { name: string }) => (
         <Image
@@ -81,26 +79,26 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-title")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryProductsOrderByColumn.Name
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "name"
           }
-          isActive={column === QueryProductsOrderByColumn.Name}
+          isActive={sortingObj.column === "name"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "name",
       key: "name",
-      align: alignLeft as AlignType,
+      align: alignLeft,
       width: 200,
       ellipsis: true,
-      onHeaderCell: () => onHeaderClick(QueryProductsOrderByColumn.Name),
+      onHeaderCell: () => onHeaderClick("name"),
     },
     {
       title: t("table:table-item-group"),
       dataIndex: "type",
       key: "type",
       width: 120,
-      align: "center" as AlignType,
+      align: "center",
+      ellipsis: true,
       render: (type: any) => (
         <span className="whitespace-nowrap truncate">{type?.name}</span>
       ),
@@ -110,10 +108,20 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
       dataIndex: "shop",
       key: "shop",
       width: 120,
-      align: "center" as AlignType,
+      align: "center",
       ellipsis: true,
-      render: (organization: Organization) => (
-        <span className="whitespace-nowrap truncate">{organization?.name}</span>
+      render: (shop: Shop) => (
+        <span className="whitespace-nowrap truncate">{shop?.name}</span>
+      ),
+    },
+    {
+      title: "Product Type",
+      dataIndex: "product_type",
+      key: "product_type",
+      width: 120,
+      align: "center",
+      render: (product_type: string) => (
+        <span className="whitespace-nowrap truncate">{product_type}</span>
       ),
     },
     {
@@ -121,18 +129,17 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-unit")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryProductsOrderByColumn.Price
+            sortingObj.sort === SortOrder.Asc && sortingObj.column === "price"
           }
-          isActive={column === QueryProductsOrderByColumn.Price}
+          isActive={sortingObj.column === "price"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "price",
       key: "price",
-      align: alignRight as AlignType,
-      width: 180,
-      onHeaderCell: () => onHeaderClick(QueryProductsOrderByColumn.Price),
+      align: alignRight,
+      width: 100,
+      onHeaderCell: () => onHeaderClick("price"),
       render: (value: number, record: Product) => {
         if (record?.product_type === ProductType.Variable) {
           const { price: max_price } = usePrice({
@@ -164,53 +171,46 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
         <TitleWithSort
           title={t("table:table-item-quantity")}
           ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryProductsOrderByColumn.Quantity
+            sortingObj.sort === SortOrder.Asc &&
+            sortingObj.column === "quantity"
           }
-          isActive={column === QueryProductsOrderByColumn.Quantity}
+          isActive={sortingObj.column === "quantity"}
         />
       ),
       className: "cursor-pointer",
       dataIndex: "quantity",
       key: "quantity",
-      align: "center" as AlignType,
+      align: "center",
       width: 100,
-      onHeaderCell: () => onHeaderClick(QueryProductsOrderByColumn.Quantity),
+      onHeaderCell: () => onHeaderClick("quantity"),
     },
     {
-      title: (
-        <TitleWithSort
-          title={t("table:table-item-status")}
-          ascending={
-            order === SortDirection.ASCENDING &&
-            column === QueryProductsOrderByColumn.Status
-          }
-          isActive={column === QueryProductsOrderByColumn.Status}
-        />
-      ),
-      className: "cursor-pointer",
+      title: t("table:table-item-status"),
       dataIndex: "status",
       key: "status",
-      align: "center" as AlignType,
+      align: "center",
       width: 100,
-      onHeaderCell: () => onHeaderClick(QueryProductsOrderByColumn.Status),
       render: (status: string) => (
         <Badge
           text={status}
-          color={status === "DRAFT" ? "bg-yellow-400" : "bg-accent"}
+          color={
+            status.toLocaleLowerCase() === "draft"
+              ? "bg-yellow-400"
+              : "bg-accent"
+          }
         />
       ),
     },
     {
       title: t("table:table-item-actions"),
-      dataIndex: "id",
+      dataIndex: "slug",
       key: "actions",
-      align: "center" as AlignType,
+      align: "center",
       width: 80,
-      render: (id: string) => (
+      render: (slug: string, record: Product) => (
         <ActionButtons
-          id={id}
-          editUrl={`${router.asPath}/${id}/edit`}
+          id={record?.id}
+          editUrl={`${router.asPath}/${slug}/edit`}
           deleteModalView="DELETE_PRODUCT"
         />
       ),
@@ -218,13 +218,14 @@ const ProductList = ({ products, onPagination, refetch }: IProps) => {
   ];
 
   if (router?.query?.shop) {
-    columns = columns?.filter((col) => col?.key !== "shop");
+    columns = columns?.filter((column) => column?.key !== "shop");
   }
 
   return (
     <>
       <div className="rounded overflow-hidden shadow mb-6">
         <Table
+          /* @ts-ignore */
           columns={columns}
           emptyText={t("table:empty-table-data")}
           data={data}

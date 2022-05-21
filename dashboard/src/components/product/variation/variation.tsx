@@ -5,8 +5,8 @@ import VariationGroups from "./variation-groups";
 import VariationPrice from "./variation-price";
 import isEqual from "lodash/isEqual";
 import { AttributesProvider, useAttributes } from "./attributes.context";
-import { useProductQuery } from "@graphql/products.graphql";
 import { AddToCart } from "@components/cart/add-to-cart/add-to-cart";
+import { useProductQuery } from "@data/product/product.query";
 
 interface Props {
   product: any;
@@ -29,7 +29,7 @@ const Variation = ({ product }: Props) => {
     );
   }
   return (
-    <div className="bg-white p-8 w-[95vw] max-w-md rounded-md">
+    <div className="bg-white p-8 w-[95vw] max-w-lg rounded-md">
       <h3 className="text-2xl font-semibold text-heading text-center mb-2">
         {product?.name}
       </h3>
@@ -54,15 +54,11 @@ const Variation = ({ product }: Props) => {
 };
 
 const ProductVariation = ({ productSlug }: { productSlug: string }) => {
-  const { data, loading } = useProductQuery({
-    variables: {
-      slug: productSlug,
-    },
-  });
-  if (loading || !data?.product) return <div>Loading</div>;
+  const { data, isLoading: loading } = useProductQuery(productSlug);
+  if (loading || !data) return <div>Loading</div>;
   return (
     <AttributesProvider>
-      <Variation product={data?.product} />
+      <Variation product={data} />
     </AttributesProvider>
   );
 };

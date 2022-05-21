@@ -1,4 +1,3 @@
-import { Product, ProductType } from "@common/generated-types";
 import Image from "next/image";
 import usePrice from "@utils/use-price";
 import { productPlaceholder } from "@utils/placeholders";
@@ -6,6 +5,7 @@ import { useModalAction } from "@components/ui/modal/modal.context";
 import { AddToCart } from "@components/cart/add-to-cart/add-to-cart";
 import { useTranslation } from "next-i18next";
 import { PlusIcon } from "@components/icons/plus-icon";
+import { Product, ProductType } from "@ts-types/generated";
 
 interface Props {
   item: Product;

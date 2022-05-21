@@ -1,9 +1,9 @@
 import Navbar from "@components/layouts/navigation/top-navbar";
 import { Fragment } from "react";
+import MobileNavigation from "@components/layouts/navigation/mobile-navigation";
 import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
-import MobileNavigation from "@components/layouts/navigation/mobile-navigation";
-import SidebarItem from "../navigation/sidebar-item";
+import SidebarItem from "@components/layouts/navigation/sidebar-item";
 
 const AdminLayout: React.FC = ({ children }) => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ const AdminLayout: React.FC = ({ children }) => {
   const SidebarItemMap = () => (
     <Fragment>
       {siteSettings.sidebarLinks.admin.map(({ href, label, icon }) => (
-        <SidebarItem key={label} href={href} label={t(label)} icon={icon} />
+        <SidebarItem href={href} label={t(label)} icon={icon} key={href} />
       ))}
     </Fragment>
   );

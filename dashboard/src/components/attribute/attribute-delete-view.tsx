@@ -1,25 +1,19 @@
 import ConfirmationCard from "@components/common/confirmation-card";
 import {
   useModalAction,
-  useModalState
+  useModalState,
 } from "@components/ui/modal/modal.context";
-import useAttribute from "@core/attribute/useAttribute";
-import { getErrorMessage } from "@utils/form-error";
-
+import { useDeleteAttributeMutation } from "@data/attributes/use-attribute-delete.mutation";
 
 const AttributeDeleteView = () => {
-  const { loading, removeAttribute } = useAttribute();
+  const { mutate: deleteAttributeByID, isLoading: loading } =
+    useDeleteAttributeMutation();
 
-  const { data: modalData } = useModalState();
+  const { data } = useModalState();
   const { closeModal } = useModalAction();
   async function handleDelete() {
-    try {
-      await removeAttribute(modalData as string);
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
-    }
+    deleteAttributeByID(data);
+    closeModal();
   }
   return (
     <ConfirmationCard

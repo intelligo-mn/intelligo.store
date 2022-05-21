@@ -21,7 +21,7 @@
   top: 0;
   width: 18px;
   height: 18px;
-  border: 1px solid rgb(var(--color-border-base));
+  border: 1px solid rgb(var(--color-gray-300));
   border-radius: 100%;
   background-color: #ffffff;
 }

@@ -6,45 +6,48 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
 import { LIMIT } from "@utils/constants";
-import { useShopQuery } from "@graphql/shops.graphql";
-import { useRefundsQuery } from "@graphql/refunds.graphql";
+import { useShopQuery } from "@data/shop/use-shop.query";
+import { useRefundsQuery } from "@data/refunds/use-refunds.query";
 import RefundList from "@components/refund/refund-list";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { SortOrder } from "@ts-types/generated";
 
 export default function RefundsPage() {
   const {
     query: { shop },
   } = useRouter();
   const { t } = useTranslation();
-
-  const { data: shopData, loading: fetchingShop } = useShopQuery({
-    variables: {
-      slug: shop as string,
-    },
-  });
-
-  const shopId = shopData?.organization?.id!;
-
-  const { data, loading, error, refetch } = useRefundsQuery({
-    skip: !Boolean(shopId),
-    variables: {
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const { data: shopData, isLoading: fetchingShop } = useShopQuery(
+    shop as string
+  );
+  const shopId = shopData?.shop?.id!;
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useRefundsQuery(
+    {
       shop_id: Number(shopId),
-      first: LIMIT,
-      page: 1,
-      orderBy: "updated_at",
-      sortedBy: "DESC",
+      limit: LIMIT,
+      page,
+      sortedBy,
+      orderBy,
     },
-    fetchPolicy: "network-only",
-  });
+    {
+      enabled: Boolean(shopId),
+    }
+  );
 
   if (loading || fetchingShop)
     return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handlePagination(current: any) {
-    refetch({
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -59,7 +62,8 @@ export default function RefundsPage() {
       <RefundList
         refunds={data?.refunds}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

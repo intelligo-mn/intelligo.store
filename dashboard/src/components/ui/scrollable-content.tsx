@@ -1,5 +1,8 @@
 import React, { useLayoutEffect } from "react";
 import cn from "classnames";
+// import './ScrollTable.style.scss';
+// import NextIcon from '../../assets/image/carousel-next-gray.svg';
+// import PrevIcon from '../../assets/image/carousel-prev-gray.svg';
 
 type Props = {
   selector: string;

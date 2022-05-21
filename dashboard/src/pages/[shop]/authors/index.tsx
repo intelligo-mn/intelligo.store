@@ -3,7 +3,6 @@ import ShopLayout from "@components/layouts/shop";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
 import Search from "@components/common/search";
 import LinkButton from "@components/ui/link-button";
-import { useAuthorsQuery } from "@graphql/authors.graphql";
 import { useState } from "react";
 import { LIMIT } from "@utils/constants";
 import ErrorMessage from "@components/ui/error-message";
@@ -12,8 +11,9 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ROUTES } from "@utils/routes";
-import { QueryAuthorsOrderByColumn, SortOrder } from "@common/generated-types";
 import AuthorList from "@components/author/author-list";
+import { useAuthorsQuery } from "@data/author/use-authors.query";
+import { SortOrder } from "@ts-types/generated";
 
 export default function Authors() {
   const { t } = useTranslation();
@@ -21,34 +21,28 @@ export default function Authors() {
     query: { shop },
   } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useAuthorsQuery({
-    variables: {
-      first: LIMIT,
-      orderBy: [
-        {
-          column: QueryAuthorsOrderByColumn.CreatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useAuthorsQuery({
+    limit: LIMIT,
+    sortedBy,
+    orderBy,
+    text: searchTerm,
+    page,
   });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: number) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -74,7 +68,8 @@ export default function Authors() {
       <AuthorList
         authors={data?.authors}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

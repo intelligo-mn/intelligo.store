@@ -5,49 +5,40 @@ import OrderStatusList from "@components/order-status/order-status-list";
 import ErrorMessage from "@components/ui/error-message";
 import LinkButton from "@components/ui/link-button";
 import Loader from "@components/ui/loader/loader";
-import { useOrderStatusesQuery } from "@graphql/order_status.graphql";
 import { ROUTES } from "@utils/routes";
+import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { SortOrder } from "@ts-types/generated";
 import { adminOnly } from "@utils/auth-utils";
-import SortFormGql from "@components/common/sort-form-gql";
-import {
-  QueryOrderStatusesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
 
 export default function OrderStatusPage() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useOrderStatusesQuery({
-    variables: {
-      first: 100,
-      page: 1,
-      orderBy: [
-        {
-          column: QueryOrderStatusesOrderByColumn.Serial,
-          order: SortDirection.ASCENDING,
-        },
-      ],
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("serial");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useOrderStatusesQuery({
+    limit: 100,
+    page,
+    text: searchTerm,
+    orderBy,
+    sortedBy,
   });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
+    setPage(1);
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -70,14 +61,18 @@ export default function OrderStatusPage() {
         </div>
       </Card>
 
-      <OrderStatusList
-        order_statuses={data?.orderStatuses}
-        onPagination={handlePagination}
-        refetch={refetch}
-      />
+      {loading ? null : (
+        <OrderStatusList
+          order_statuses={data?.order_statuses}
+          onPagination={handlePagination}
+          onOrder={setOrder}
+          onSort={setColumn}
+        />
+      )}
     </>
   );
 }
+
 OrderStatusPage.authenticate = {
   permissions: adminOnly,
 };

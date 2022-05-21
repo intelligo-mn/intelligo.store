@@ -2,42 +2,39 @@ import Card from "@components/common/card";
 import Layout from "@components/layouts/admin";
 import Search from "@components/common/search";
 import OrderList from "@components/order/order-list";
-import { useOrdersQuery } from "@graphql/orders.graphql";
-import { LIMIT } from "@utils/constants";
 import { useState } from "react";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
+import { useOrdersQuery } from "@data/order/use-orders.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { SortOrder } from "@ts-types/generated";
 import { adminOnly } from "@utils/auth-utils";
 
 export default function Orders() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useOrdersQuery({
-    variables: {
-      first: LIMIT,
-      page: 1,
-      orderBy: "updated_at",
-      sortedBy: "DESC",
-    },
-    fetchPolicy: "network-only",
-  });
+  const [page, setPage] = useState(1);
+  const { t } = useTranslation();
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
 
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useOrdersQuery({
+    limit: 20,
+    page,
+    text: searchTerm,
+  });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      tracking_number: `%${searchText}%`,
-      page: 1,
-    });
+    setPage(1);
   }
   function handlePagination(current: any) {
-    refetch({
-      tracking_number: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -56,11 +53,13 @@ export default function Orders() {
       <OrderList
         orders={data?.orders}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );
 }
+
 Orders.authenticate = {
   permissions: adminOnly,
 };

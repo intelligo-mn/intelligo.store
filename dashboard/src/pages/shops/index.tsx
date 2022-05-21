@@ -4,39 +4,38 @@ import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useShopsQuery } from "@graphql/shops.graphql";
 import ShopList from "@components/shop/shop-list";
 import { useState } from "react";
 import Search from "@components/common/search";
 import { adminOnly } from "@utils/auth-utils";
+import { useShopsQuery } from "@data/shop/use-shops.query";
+import { SortOrder } from "@ts-types/generated";
 
 export default function AllShopPage() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error, refetch } = useShopsQuery({
-    variables: {
-      first: 10,
-      page: 1,
-      sortedBy: "DESC",
-      orderBy: "products_count",
-    },
-    fetchPolicy: "network-only",
+  const [page, setPage] = useState(1);
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useShopsQuery({
+    text: searchTerm,
+    limit: 10,
+    page,
+    orderBy,
+    sortedBy,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -54,7 +53,8 @@ export default function AllShopPage() {
       <ShopList
         shops={data?.shops}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );

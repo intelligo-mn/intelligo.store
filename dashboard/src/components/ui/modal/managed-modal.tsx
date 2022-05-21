@@ -1,21 +1,13 @@
 import Modal from "@components/ui/modal/modal";
 import dynamic from "next/dynamic";
 import { MODAL_VIEWS, useModalAction, useModalState } from "./modal.context";
-const AuthorDeleteView = dynamic(
-  () => import("@components/author/author-delete-view")
-);
-const ManufacturerDeleteView = dynamic(
-  () => import("@components/manufacturer/manufacturer-delete-view")
-);
-const ProductVariation = dynamic(
-  () => import("@components/product/variation/variation")
-);
-const UserWalletPointsAddView = dynamic(
-  () => import("@components/user/user-wallet-points-add-view")
-);
 const TagDeleteView = dynamic(() => import("@components/tag/tag-delete-view"));
 const TaxDeleteView = dynamic(() => import("@components/tax/tax-delete-view"));
 const BanCustomerView = dynamic(() => import("@components/user/user-ban-view"));
+const UserWalletPointsAddView = dynamic(
+  () => import("@components/user/user-wallet-points-add-view")
+);
+const MakeAdminView = dynamic(() => import("@components/user/make-admin-view"));
 const ShippingDeleteView = dynamic(
   () => import("@components/shipping/shipping-delete-view")
 );
@@ -25,9 +17,7 @@ const CategoryDeleteView = dynamic(
 const CouponDeleteView = dynamic(
   () => import("@components/coupon/coupon-delete-view")
 );
-const OrderDeleteView = dynamic(
-  () => import("@components/order/order-delete-view")
-);
+
 const ProductDeleteView = dynamic(
   () => import("@components/product/product-delete-view")
 );
@@ -37,9 +27,7 @@ const TypeDeleteView = dynamic(
 const AttributeDeleteView = dynamic(
   () => import("@components/attribute/attribute-delete-view")
 );
-const OrderStatusDeleteView = dynamic(
-  () => import("@components/order-status/order-status-delete-view")
-);
+
 const ApproveShopView = dynamic(
   () => import("@components/shop/approve-shop-view")
 );
@@ -63,7 +51,7 @@ const UpdateRefundConfirmationView = dynamic(
 const RefundImageModal = dynamic(
   () => import("@components/refund/refund-image-modal")
 );
-const MakeAdminView = dynamic(() => import("@components/user/make-admin-view"));
+
 const CreateOrUpdateAddressForm = dynamic(
   () => import("@components/address/create-or-update")
 );
@@ -73,6 +61,18 @@ const AddOrUpdateCheckoutContact = dynamic(
 const SelectCustomer = dynamic(
   () => import("@components/checkout/customer/select-customer")
 );
+
+const AuthorDeleteView = dynamic(
+  () => import("@components/author/author-delete-view")
+);
+const ManufacturerDeleteView = dynamic(
+  () => import("@components/manufacturer/manufacturer-delete-view")
+);
+
+const ProductVariation = dynamic(
+  () => import("@components/product/variation/variation")
+);
+
 function renderModal(view: MODAL_VIEWS | undefined, data: any) {
   switch (view) {
     case "DELETE_PRODUCT":
@@ -83,16 +83,16 @@ function renderModal(view: MODAL_VIEWS | undefined, data: any) {
       return <AttributeDeleteView />;
     case "DELETE_CATEGORY":
       return <CategoryDeleteView />;
-    case "DELETE_ORDER":
-      return <OrderDeleteView />;
+    // case "DELETE_ORDER":
+    //   return <OrderDeleteView />;
     case "DELETE_COUPON":
       return <CouponDeleteView />;
     case "DELETE_TAX":
       return <TaxDeleteView />;
     case "DELETE_SHIPPING":
       return <ShippingDeleteView />;
-    case "DELETE_ORDER_STATUS":
-      return <OrderStatusDeleteView />;
+    // case "DELETE_ORDER_STATUS":
+    //   return <OrderStatusDeleteView />;
     case "DELETE_TAG":
       return <TagDeleteView />;
     case "DELETE_MANUFACTURER":

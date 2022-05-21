@@ -9,26 +9,40 @@ import {
 import Button from "@components/ui/button";
 import TextArea from "@components/ui/text-area";
 import Label from "@components/ui/label";
-
 import Card from "@components/common/card";
 import Description from "@components/ui/description";
 import * as categoriesIcon from "@components/icons/category";
 import { getIcon } from "@utils/get-icon";
 import { useRouter } from "next/router";
-import { ROUTES } from "@utils/routes";
-import { getErrorMessage } from "@utils/form-error";
 import ValidationError from "@components/ui/form-validation-error";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
+import { Category } from "@ts-types/generated";
+import { useTypesQuery } from "@data/type/use-types.query";
+import { useCategoriesQuery } from "@data/category/use-categories.query";
+import { useUpdateCategoryMutation } from "@data/category/use-category-update.mutation";
+import { useCreateCategoryMutation } from "@data/category/use-category-create.mutation";
 import { categoryIcons } from "./category-icons";
 import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
 import SelectInput from "@components/ui/select-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { categoryValidationSchema } from "./category-validation-schema";
-import { getFormattedImage } from "@utils/get-formatted-image";
-import {
-  Category,} from "@common/generated-types";
+
+export const updatedIcons = categoryIcons.map((item: any) => {
+  item.label = (
+    <div className="flex space-s-5 items-center">
+      <span className="flex w-5 h-5 items-center justify-center">
+        {getIcon({
+          iconList: categoriesIcon,
+          iconName: item.value,
+          className: "max-h-full max-w-full",
+        })}
+      </span>
+      <span>{item.label}</span>
+    </div>
+  );
+  return item;
+});
 
 function SelectTypes({
   control,
@@ -38,9 +52,7 @@ function SelectTypes({
   errors: FieldErrors;
 }) {
   const { t } = useTranslation();
-  const { data: types, loading } = useTypesQuery({
-    fetchPolicy: "network-only",
-  });
+  const { data, isLoading } = useTypesQuery();
   return (
     <div className="mb-5">
       <Label>{t("form:input-label-types")}</Label>
@@ -49,13 +61,14 @@ function SelectTypes({
         control={control}
         getOptionLabel={(option: any) => option.name}
         getOptionValue={(option: any) => option.slug}
-        options={types?.types!}
-        isLoading={loading}
+        options={data?.types!}
+        isLoading={isLoading}
       />
       <ValidationError message={t(errors.type?.message)} />
     </div>
   );
 }
+
 function SelectCategories({
   control,
   setValue,
@@ -76,17 +89,9 @@ function SelectCategories({
       setValue("parent", []);
     }
   }, [type?.slug]);
-  const { data: categories, loading } = useCategoriesQuery({
-    fetchPolicy: "network-only",
-    variables: {
-      ...(type && {
-        hasType: {
-          column: QueryCategoriesHasTypeColumn.Slug,
-          operator: SqlOperator.Eq,
-          value: type?.slug,
-        },
-      }),
-    },
+  const { data, isLoading: loading } = useCategoriesQuery({
+    limit: 999,
+    type: type?.slug,
   });
   return (
     <div>
@@ -96,29 +101,13 @@ function SelectCategories({
         control={control}
         getOptionLabel={(option: any) => option.name}
         getOptionValue={(option: any) => option.id}
-        options={categories?.categories?.data!}
+        options={data?.categories?.data!}
         isClearable={true}
         isLoading={loading}
       />
     </div>
   );
 }
-
-export const updatedIcons = categoryIcons.map((item: any) => {
-  item.label = (
-    <div className="flex space-s-5 items-center">
-      <span className="flex w-5 h-5 items-center justify-center">
-        {getIcon({
-          iconList: categoriesIcon,
-          iconName: item.value,
-          className: "max-h-full max-w-full",
-        })}
-      </span>
-      <span>{item.label}</span>
-    </div>
-  );
-  return item;
-});
 
 type FormValues = {
   name: string;
@@ -151,8 +140,10 @@ export default function CreateOrUpdateCategoriesForm({
     handleSubmit,
     control,
     setValue,
+
     formState: { errors },
   } = useForm<FormValues>({
+    // shouldUnregister: true,
     //@ts-ignore
     defaultValues: initialValues
       ? {
@@ -164,48 +155,42 @@ export default function CreateOrUpdateCategoriesForm({
             : "",
         }
       : defaultValues,
-
     resolver: yupResolver(categoryValidationSchema),
   });
 
-  const [createCategory, { loading: creating }] = useCreateCategoryMutation();
-  const [updateCategory, { loading: updating }] = useUpdateCategoryMutation();
+  const { mutate: createCategory, isLoading: creating } =
+    useCreateCategoryMutation();
+  const { mutate: updateCategory, isLoading: updating } =
+    useUpdateCategoryMutation();
 
   const onSubmit = async (values: FormValues) => {
     const input = {
       name: values.name,
       details: values.details,
-      image: getFormattedImage(values?.image),
-      icon: values.icon?.value ?? "",
-      parent: values.parent?.id,
-      type: {
-        connect: values.type?.id,
+      image: {
+        thumbnail: values?.image?.thumbnail,
+        original: values?.image?.original,
+        id: values?.image?.id,
       },
+      icon: values.icon?.value || "",
+      parent: values.parent?.id,
+      type_id: values.type?.id,
     };
-    try {
-      if (initialValues) {
-        const { data } = await updateCategory({
-          variables: {
-            input: {
-              ...input,
-              id: initialValues?.id!,
-            },
+    if (initialValues) {
+      updateCategory({
+        variables: {
+          id: initialValues?.id,
+          input: {
+            ...input,
           },
-        });
-
-        if (data) {
-          toast.success(t("common:successfully-updated"));
-        }
-      } else {
-        await createCategory({
-          variables: {
-            input,
-          },
-        });
-        router.push(ROUTES.CATEGORIES);
-      }
-    } catch (err) {
-      getErrorMessage(err);
+        },
+      });
+    } else {
+      createCategory({
+        variables: {
+          input,
+        },
+      });
     }
   };
 

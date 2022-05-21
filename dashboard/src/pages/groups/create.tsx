@@ -1,10 +1,9 @@
-import { useTranslation } from "next-i18next";
 import Layout from "@components/layouts/admin";
 import CreateOrUpdateTypeForm from "@components/group/group-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
+import { useTranslation } from "next-i18next";
 
-export default function CreateGroupPage() {
+export default function CreateTypePage() {
   const { t } = useTranslation();
   return (
     <>
@@ -17,10 +16,7 @@ export default function CreateGroupPage() {
     </>
   );
 }
-CreateGroupPage.authenticate = {
-  permissions: adminOnly,
-};
-CreateGroupPage.Layout = Layout;
+CreateTypePage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {

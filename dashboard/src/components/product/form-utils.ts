@@ -2,7 +2,7 @@ import {
   ProductType,
   Product,
   ProductStatus,
-  CreateProductInput,
+  CreateProduct,
   Type,
   Author,
   Manufacturer,
@@ -10,7 +10,7 @@ import {
   Tag,
   AttachmentInput,
   VariationOption,
-} from "@common/generated-types";
+} from "@ts-types/generated";
 import groupBy from "lodash/groupBy";
 import orderBy from "lodash/orderBy";
 import sum from "lodash/sum";
@@ -19,8 +19,9 @@ import isEmpty from "lodash/isEmpty";
 import omit from "lodash/omit";
 import { omitTypename } from "@utils/omit-typename";
 import { cartesian } from "@utils/cartesian";
+
 export type ProductFormValues = Omit<
-  CreateProductInput,
+  CreateProduct,
   | "author_id"
   | "type_id"
   | "manufacturer_id"
@@ -36,6 +37,7 @@ export type ProductFormValues = Omit<
   categories: Pick<Category, "id" | "name">[];
   tags: Pick<Tag, "id" | "name">[];
   digital_file_input: AttachmentInput;
+  is_digital: boolean;
 };
 
 export type ProductTypeOption = {
@@ -135,8 +137,8 @@ export function getProductDefaultValues(product: Product) {
 
     ...(product_type === ProductType.Variable && {
       variations: getFormattedVariations(variations),
-      variation_options: variation_options?.map(
-        ({ image, ...option }: any) => ({
+      variation_options: variation_options?.map(({ image, ...option }: any) => {
+        return {
           ...option,
           ...(!isEmpty(image) && { image: omitTypename(image) }),
           ...(option?.digital_file && {
@@ -146,8 +148,8 @@ export function getProductDefaultValues(product: Product) {
               original: option?.digital_file?.url,
             },
           }),
-        })
-      ),
+        };
+      }),
     }),
     // isVariation: variations?.length && variation_options?.length ? true : false,
   });
@@ -194,6 +196,7 @@ export function getProductInputValues(
   } = values;
   return {
     ...simpleValues,
+    is_digital,
     author_id: author?.id,
     manufacturer_id: manufacturer?.id,
     type_id: type?.id,
@@ -202,8 +205,8 @@ export function getProductInputValues(
     tags: tags.map((tag) => tag?.id),
     image: omitTypename<any>(image),
     gallery: values.gallery?.map((gi: any) => omitTypename(gi)),
-    is_digital,
-    ...(product_type.value === ProductType.Simple && {
+
+    ...(product_type?.value === ProductType?.Simple && {
       quantity,
       ...(is_digital && {
         digital_file: {
@@ -220,7 +223,7 @@ export function getProductInputValues(
         (variation) => variation?.id
       ),
     },
-    ...(product_type.value === ProductType.Variable && {
+    ...(product_type?.value === ProductType?.Variable && {
       quantity: calculateQuantity(variation_options),
       variations: variations?.flatMap(({ value }: any) =>
         value?.map(({ id }: any) => ({ attribute_value_id: id }))
@@ -230,8 +233,8 @@ export function getProductInputValues(
           ({
             options,
             id,
-            image: variationImage,
             digital_file,
+            image: variationImage,
             digital_file_input: digital_file_input_,
             ...rest
           }: any) => ({
@@ -240,7 +243,7 @@ export function getProductInputValues(
             ...(!isEmpty(variationImage) && {
               image: omitTypename(variationImage),
             }),
-            ...(rest.is_digital && {
+            ...(rest?.is_digital && {
               digital_file: {
                 id: digital_file?.id,
                 attachment_id: digital_file_input_?.id,

@@ -5,41 +5,38 @@ import TaxList from "@components/tax/tax-list";
 import ErrorMessage from "@components/ui/error-message";
 import LinkButton from "@components/ui/link-button";
 import Loader from "@components/ui/loader/loader";
-import { useTaxesQuery } from "@graphql/tax.graphql";
+import { useTaxesQuery } from "@data/tax/use-taxes.query";
+import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
-import {
-  QueryTaxClassesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { SortOrder } from "@ts-types/generated";
+import { adminOnly } from "@utils/auth-utils";
 
 export default function TaxesPage() {
   const { t } = useTranslation();
-  const { data, loading, error, refetch } = useTaxesQuery({
-    variables: {
-      orderBy: [
-        {
-          column: QueryTaxClassesOrderByColumn.UpdatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-    },
-    fetchPolicy: "network-only",
+  const [searchTerm, setSearch] = useState("");
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useTaxesQuery({
+    text: searchTerm,
+    orderBy,
+    sortedBy,
   });
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   function handleSearch({ searchText }: { searchText: string }) {
-    refetch({
-      text: `%${searchText}%`,
-    });
+    setSearch(searchText);
   }
 
   return (
     <>
       <Card className="flex flex-col xl:flex-row items-center mb-8">
-        <div className="md:w-1/4 mb-4 xl:mb-0">
+        <div className="md:w-1/4 mb-4 md:mb-0">
           <h1 className="text-xl font-semibold text-heading">
             {t("form:input-label-taxes")}
           </h1>
@@ -56,11 +53,13 @@ export default function TaxesPage() {
           </LinkButton>
         </div>
       </Card>
-
-      <TaxList taxes={data?.taxClasses} refetch={refetch} />
+      {!loading ? (
+        <TaxList taxes={data?.taxes} onOrder={setOrder} onSort={setColumn} />
+      ) : null}
     </>
   );
 }
+
 TaxesPage.authenticate = {
   permissions: adminOnly,
 };

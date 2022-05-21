@@ -8,7 +8,7 @@ type Props = {
   isActive: boolean;
 };
 
-const TitleWithSort = ({ title, ascending, isActive }: Props) => {
+const TitleWithSort = ({ title, ascending, isActive = true }: Props) => {
   return (
     <span className="inline-flex items-center">
       <span>{title}</span>
@@ -16,14 +16,14 @@ const TitleWithSort = ({ title, ascending, isActive }: Props) => {
       {ascending ? (
         <TriangleArrowUp
           width="9"
-          className={cn("ml-1 flex-shrink-0 text-gray-400", {
+          className={cn("ml-1 flex-shrink-0 text-gray-300", {
             "!text-heading": isActive,
           })}
         />
       ) : (
         <TriangleArrowDown
           width="9"
-          className={cn("ml-1 flex-shrink-0 text-gray-400", {
+          className={cn("ml-1 flex-shrink-0 text-gray-300", {
             "!text-heading": isActive,
           })}
         />

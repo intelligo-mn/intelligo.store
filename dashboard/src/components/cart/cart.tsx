@@ -21,12 +21,12 @@ const Cart = () => {
   // const [_, closeSidebar] = useAtom(drawerAtom);
   const router = useRouter();
   function handleCheckout() {
-    const regularCheckout = items.find((item) => item.is_digital === false);
-    if (regularCheckout) {
-      router.push(ROUTES.CHECKOUT);
-    } else {
-      // router.push(ROUTES.CHECKOUT_DIGITAL);
-    }
+    // const regularCheckout = items.find((item) => item.is_digital === false);
+    // if (regularCheckout) {
+    router.push(ROUTES.CHECKOUT);
+    // } else {
+    // router.push(ROUTES.CHECKOUT_DIGITAL);
+    // }
 
     // closeSidebar({ display: false, view: '' });
   }

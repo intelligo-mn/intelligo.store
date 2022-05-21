@@ -2,17 +2,16 @@ import { Fragment } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@components/layouts/navigation/top-navbar";
 import { getAuthCredentials, hasAccess } from "@utils/auth-utils";
-import { siteSettings } from "@settings/site.settings";
 import SidebarItem from "@components/layouts/navigation/sidebar-item";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import MobileNavigation from "@components/layouts/navigation/mobile-navigation";
 
 const ShopLayout: React.FC = ({ children }) => {
   const { t } = useTranslation();
-  const router = useRouter();
   const {
     query: { shop },
-  } = router;
+  } = useRouter();
 
   const { permissions: currentUserPermissions } = getAuthCredentials();
 
@@ -24,7 +23,7 @@ const ShopLayout: React.FC = ({ children }) => {
           return (
             <SidebarItem
               key={label}
-              href={href(organization?.toString()!)}
+              href={href(shop?.toString()!)}
               label={t(label)}
               icon={icon}
             />

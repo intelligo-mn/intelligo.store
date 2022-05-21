@@ -3,37 +3,36 @@ import Card from "@components/common/card";
 import Layout from "@components/layouts/admin";
 import Search from "@components/common/search";
 import LinkButton from "@components/ui/link-button";
-import { useCategoriesQuery } from "@graphql/categories.graphql";
 import { useState } from "react";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
+import { SortOrder } from "@ts-types/generated";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
 import TypeFilter from "@components/category/type-filter";
-import {
-  QueryCategoriesOrderByColumn,
-  SortOrder,
-} from "@common/generated-types";
+import { useCategoriesQuery } from "@data/category/use-categories.query";
+import { adminOnly } from "@utils/auth-utils";
 
 export default function Categories() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-
-  const { data, loading, error, refetch } = useCategoriesQuery({
-    variables: {
-      first: 10,
-      orderBy: [
-        {
-          column: QueryCategoriesOrderByColumn.UpdatedAt,
-          order: SortDirection.DESCENDING,
-        },
-      ],
-      page: 1,
-      parent: null,
-    },
-    fetchPolicy: "network-only",
+  const [type, setType] = useState("");
+  const [page, setPage] = useState(1);
+  const { t } = useTranslation();
+  const [orderBy, setOrder] = useState("created_at");
+  const [sortedBy, setColumn] = useState<SortOrder>(SortOrder.Desc);
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useCategoriesQuery({
+    limit: 20,
+    page,
+    type,
+    text: searchTerm,
+    orderBy,
+    sortedBy,
+    parent: null,
   });
 
   if (loading) return <Loader text={t("common:text-loading")} />;
@@ -41,16 +40,10 @@ export default function Categories() {
 
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
-    refetch({
-      text: `%${searchText}%`,
-      page: 1,
-    });
+    setPage(1);
   }
   function handlePagination(current: any) {
-    refetch({
-      text: `%${searchTerm}%`,
-      page: current,
-    });
+    setPage(current);
   }
   return (
     <>
@@ -64,7 +57,15 @@ export default function Categories() {
 
           <div className="w-full xl:w-3/4 flex flex-col md:flex-row space-y-4 md:space-y-0 items-center ms-auto">
             <Search onSearch={handleSearch} />
-            <TypeFilter refetch={refetch} className="md:ms-6" />
+
+            <TypeFilter
+              className="md:ms-6"
+              onTypeFilter={({ slug }: { slug: string }) => {
+                setType(slug);
+                setPage(1);
+              }}
+            />
+
             <LinkButton
               href={`${ROUTES.CATEGORIES}/create`}
               className="h-12 md:ms-6 w-full md:w-auto"
@@ -79,15 +80,16 @@ export default function Categories() {
           </div>
         </div>
       </Card>
-
       <CategoryList
         categories={data?.categories}
         onPagination={handlePagination}
-        refetch={refetch}
+        onOrder={setOrder}
+        onSort={setColumn}
       />
     </>
   );
 }
+
 Categories.authenticate = {
   permissions: adminOnly,
 };

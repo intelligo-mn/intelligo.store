@@ -22,7 +22,7 @@ export default function LoginPage() {
   const { t } = useTranslation("common");
   return (
     <div className="flex items-center justify-center h-screen bg-light sm:bg-gray-100">
-      <div className="m-auto max-w-[420px] w-full bg-light sm:shadow p-5 sm:p-8 rounded">
+      <div className="m-auto max-w-md w-full bg-light sm:shadow p-5 sm:p-8 rounded">
         <div className="flex justify-center mb-2">
           <Logo />
         </div>

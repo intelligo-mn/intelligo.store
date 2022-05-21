@@ -1,6 +1,5 @@
 import Layout from "@components/layouts/admin";
 import CreateOrUpdateTaxForm from "@components/tax/tax-form";
-import { adminOnly } from "@utils/auth-utils";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -17,9 +16,6 @@ export default function CreateTaxPage() {
     </>
   );
 }
-CreateTaxPage.authenticate = {
-  permissions: adminOnly,
-};
 CreateTaxPage.Layout = Layout;
 
 export const getStaticProps = async ({ locale }: any) => ({

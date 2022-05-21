@@ -9,12 +9,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticProps } from "next";
 import Layout from "@components/layouts/admin";
 import { adminOnly } from "@utils/auth-utils";
-import { AddressType } from "@common/generated-types";
 import CustomerGrid from "@components/checkout/customer/customer-grid";
-import { useCustomerLazyQuery } from "@graphql/customers.graphql";
 import { useEffect } from "react";
 import { useAtom } from "jotai";
 import Loader from "@components/ui/loader/loader";
+import { useUserQuery } from "@data/user/use-user-query";
+import { AddressType } from "@ts-types/generated";
 
 const ScheduleGrid = dynamic(
   () => import("@components/checkout/schedule/schedule-grid")
@@ -29,18 +29,21 @@ const RightSideView = dynamic(
 
 export default function CheckoutPage() {
   const [customer] = useAtom(customerAtom);
-
-  const [getCustomer, { data, loading }] = useCustomerLazyQuery();
   const { t } = useTranslation();
+
+  const {
+    data: user,
+    isLoading: loading,
+    refetch,
+  } = useUserQuery(customer?.value);
   useEffect(() => {
     if (customer?.value) {
-      getCustomer({ variables: { id: customer.value } });
+      refetch(customer?.value);
     }
   }, [customer?.value]);
 
   if (loading) return <Loader text={t("common:text-loading")} />;
 
-  const { user } = data ?? {};
   return (
     <div className="bg-gray-100">
       <div className="flex flex-col lg:flex-row items-center lg:items-start m-auto lg:space-s-8 w-full max-w-5xl">

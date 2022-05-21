@@ -62,10 +62,6 @@
   outline: 0;
   box-shadow: none;
 }
-.react-datepicker .react-datepicker__navigation > span::before {
-  display: none;
-}
-
 .react-datepicker .react-datepicker__navigation--previous {
   background-image: url("/arrow-previous.svg");
   left: 19px;
@@ -274,13 +270,13 @@
 }
 .react-datepicker .react-datepicker__month .react-datepicker__day--highlighted {
   color: #fff;
-  background-color: rgb(var(--color-muted));
+  background-color: rgb(var(--secondary));
 }
 .react-datepicker
   .react-datepicker__month
   .react-datepicker__day--highlighted:hover {
   color: #fff;
-  background-color: rgb(var(--color-muted-dark));
+  background-color: rgb(var(--secondary));
 }
 .react-datepicker
   .react-datepicker__month
@@ -406,9 +402,7 @@
 .rc-pagination {
   @apply flex items-center flex-wrap;
 }
-/*
-group
-*/
+
 .rc-pagination .rc-pagination-item,
 .rc-pagination .rc-pagination-prev,
 .rc-pagination .rc-pagination-next,
@@ -421,11 +415,11 @@ group
 .rc-pagination .rc-pagination-next.rc-pagination-disabled {
   @apply text-muted hover:text-muted hover:border-border-base focus:border-border-base;
 }
-/*
+
 .rc-pagination .rc-pagination-prev svg,
 .rc-pagination .rc-pagination-next svg {
   @apply w-4 h-4 rtl:transform rtl:rotate-180;
-} */
+}
 
 .rc-pagination .rc-pagination-item a {
   @apply font-body text-sm text-heading;

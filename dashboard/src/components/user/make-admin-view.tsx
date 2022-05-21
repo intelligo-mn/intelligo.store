@@ -1,26 +1,19 @@
 import ConfirmationCard from "@components/common/confirmation-card";
-import { getErrorMessage } from "@utils/form-error";
 import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { useMakeOrRevokeAdminMutation } from "@graphql/user.graphql";
+import { useMakeOrRevokeAdminMutation } from "@data/user/use-make-revoke-admin-mutation";
 
 const CustomerBanView = () => {
-  const [makeOrRevokeAdmin, { loading }] = useMakeOrRevokeAdminMutation();
+  const { mutate: makeOrRevokeAdmin, isLoading: loading } =
+    useMakeOrRevokeAdminMutation();
   const { data } = useModalState();
 
   const { closeModal } = useModalAction();
   async function handleMakeAdmin() {
-    try {
-      await makeOrRevokeAdmin({
-        variables: { input: { user_id: data } },
-      });
-      closeModal();
-    } catch (error) {
-      closeModal();
-      getErrorMessage(error);
-    }
+    makeOrRevokeAdmin({ input: { user_id: data } });
+    closeModal();
   }
   return (
     <ConfirmationCard

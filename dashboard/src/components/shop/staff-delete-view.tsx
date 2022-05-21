@@ -3,32 +3,18 @@ import {
   useModalAction,
   useModalState,
 } from "@components/ui/modal/modal.context";
-import { useRemoveStaffMutation } from "@graphql/shops.graphql";
+import { useRemoveStaffMutation } from "@data/shop/use-staff-delete.mutation";
 import { getErrorMessage } from "@utils/form-error";
 
 const StaffDeleteView = () => {
-  const [removeStaffByID, { loading }] = useRemoveStaffMutation({
-    //@ts-ignore
-    update(cache, { data: { removeStaff } }) {
-      cache.modify({
-        fields: {
-          staffs(existingRefs, { readField }) {
-            return existingRefs?.data?.filter(
-              (ref: any) => removeStaff.id !== readField("id", ref)
-            );
-          },
-        },
-      });
-    },
-  });
+  const { mutate: removeStaffByID, isLoading: loading } =
+    useRemoveStaffMutation();
 
-  const { data: modalData } = useModalState();
+  const { data } = useModalState();
   const { closeModal } = useModalAction();
   async function handleDelete() {
     try {
-      await removeStaffByID({
-        variables: { id: modalData as string },
-      });
+      removeStaffByID(data);
       closeModal();
     } catch (error) {
       closeModal();

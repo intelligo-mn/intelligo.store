@@ -1,21 +1,22 @@
 import CreateOrUpdateProductForm from "@components/product/product-form";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { useProductQuery } from "@graphql/products.graphql";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ShopLayout from "@components/layouts/shop";
 import { adminOwnerAndStaffOnly } from "@utils/auth-utils";
+import { useProductQuery } from "@data/product/product.query";
 
 export default function UpdateProductPage() {
   const { query } = useRouter();
   const { t } = useTranslation();
-  const { data, loading, error } = useProductQuery({
-    variables: {
-      id: query.productId as string,
-    },
-  });
+
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useProductQuery(query.productId as string);
   if (loading) return <Loader text={t("common:text-loading")} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (
@@ -25,7 +26,7 @@ export default function UpdateProductPage() {
           {t("form:form-title-edit-product")}
         </h1>
       </div>
-      <CreateOrUpdateProductForm initialValues={data?.product} />
+      <CreateOrUpdateProductForm initialValues={data} />
     </>
   );
 }
