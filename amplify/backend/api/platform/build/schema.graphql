@@ -1,5 +1,72 @@
 
-type Profile {
+type FacebookSettings @aws_iam @aws_api_key {
+  isEnable: Boolean
+  appId: String
+  pageId: String
+}
+
+type GoogleSettings @aws_iam @aws_api_key {
+  isEnable: Boolean
+  tagManagerId: String
+}
+
+type SeoSettings @aws_iam @aws_api_key {
+  metaTitle: String
+  metaDescription: String
+  ogTitle: String
+  ogImage: Attachment
+  twitterHandle: String
+  twitterCardType: String
+  metaTags: String
+  canonicalUrl: String
+}
+
+type DeliveryTime @aws_iam @aws_api_key {
+  title: String
+  description: String
+}
+
+type SettingsOptions @aws_iam @aws_api_key {
+  siteTitle: String
+  siteSubtitle: String
+  currency: String
+  minimumOrderAmount: String
+  currencyToWalletRatio: String
+  signupPoints: String
+  deliveryTime: [DeliveryTime]
+  logo: Attachment
+  taxClass: String
+  shippingClass: String
+  seo: SeoSettings
+  google: GoogleSettings
+  facebook: FacebookSettings
+  contactDetails: String
+  useOTP: String
+}
+
+type Settings @aws_iam @aws_api_key {
+  id: ID!
+  options: SettingsOptions
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Wallet @aws_iam @aws_api_key {
+  id: ID!
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Profile @aws_iam @aws_api_key {
   id: String
   avatar: Attachment
   bio: String
@@ -7,7 +74,7 @@ type Profile {
   contact: String
 }
 
-type AttributeValue {
+type AttributeValue @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: Int
   value: String
   meta: String
@@ -21,7 +88,7 @@ enum WithdrawStatus {
   ON_HOLD
 }
 
-type Withdraw {
+type Withdraw @aws_iam @aws_api_key {
   id: ID!
   amount: String
   status: WithdrawStatus
@@ -29,33 +96,33 @@ type Withdraw {
   details: String
   note: String
   organizationID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Banner {
+type Banner @aws_iam @aws_api_key {
   id: ID!
   title: String
   description: String
   image: Attachment
   typeID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type TypeSettings {
+type TypeSettings @aws_iam @aws_api_key {
   isHome: Boolean
   layoutType: String
   productCard: String
 }
 
-type Type {
+type Type @aws_iam @aws_api_key {
   id: ID!
   name: String
   slug: String
@@ -66,14 +133,14 @@ type Type {
   categories(filter: ModelCategoryFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCategoryConnection
   entities(filter: ModelEntityFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEntityConnection
   tags(filter: ModelTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagConnection
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Tag {
+type Tag @aws_iam @aws_api_key {
   id: ID!
   name: String
   slug: String
@@ -82,35 +149,35 @@ type Tag {
   icon: String
   entities(filter: ModelEntityFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEntityConnection
   typeID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type PaymentInfo {
+type PaymentInfo @aws_iam @aws_api_key {
   account: String
   name: String
   email: String
   bank: String
 }
 
-type Balance {
+type Balance @aws_iam @aws_api_key {
   id: ID!
   adminCommissionRate: String
   totalEarnings: String
   withdrawnAmount: String
   currentBalance: String
   paymentInfo: PaymentInfo
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Organization {
+type Organization @aws_iam @aws_api_key {
   id: ID!
   isActive: String
   name: String
@@ -127,11 +194,11 @@ type Organization {
   balance: Balance
   withdraws(filter: ModelWithdrawFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelWithdrawConnection
   users(filter: ModelUserOrganizationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserOrganizationConnection
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
   organizationBalanceId: ID
 }
 
@@ -141,30 +208,30 @@ enum ShippingType {
   FREE
 }
 
-type Shipping {
+type Shipping @aws_iam @aws_api_key {
   id: ID!
   name: String
   amount: String
   isGlobal: String
   type: ShippingType
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Social {
+type Social @aws_iam @aws_api_key {
   type: String
   link: String
 }
 
-type EntityVariationOption {
+type EntityVariationOption @aws_iam @aws_api_key {
   name: String
   value: String
 }
 
-type EntityVariation {
+type EntityVariation @aws_iam @aws_api_key {
   id: ID!
   title: String
   price: Float
@@ -173,11 +240,11 @@ type EntityVariation {
   salePrice: Float
   quantity: Int
   options: EntityVariationOption
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
 enum EntityStatus {
@@ -191,7 +258,7 @@ enum EntityType {
   BOOK
 }
 
-type Entity {
+type Entity @aws_iam @aws_api_key {
   id: ID!
   name: String
   slug: String
@@ -217,11 +284,11 @@ type Entity {
   organizationID: ID!
   tagID: ID!
   typeID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
 enum PaymentGateway {
@@ -232,7 +299,7 @@ enum PaymentGateway {
   CARD
 }
 
-type Order {
+type Order @aws_iam @aws_api_key {
   id: ID!
   trakingNumber: String
   amount: String
@@ -247,11 +314,11 @@ type Order {
   entities(filter: ModelEntityFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEntityConnection
   userID: ID!
   organizationID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
 enum CouponType {
@@ -260,7 +327,7 @@ enum CouponType {
   FREE_SHIPPING_COUPON
 }
 
-type Coupon {
+type Coupon @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: ID!
   code: String
   description: String
@@ -271,32 +338,32 @@ type Coupon {
   activeFrom: String
   expireAt: String
   orders(filter: ModelOrderFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelOrderConnection
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Contact {
+type Contact @aws_iam @aws_api_key {
   id: ID!
   subject: String
   email: String
   name: String
   description: String
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Attachment {
+type Attachment @aws_iam @aws_api_key @aws_cognito_user_pools {
   thumbnail: String
   original: String
 }
 
-type Category {
+type Category @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: ID!
   name: String
   slug: String
@@ -305,27 +372,27 @@ type Category {
   icon: String
   entities(filter: ModelEntityCategoryFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEntityCategoryConnection
   typeID: ID!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type Attribute {
+type Attribute @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: ID!
   name: String
   slug: String
   organizationID: ID!
   values: AttributeValue
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type User {
+type User @aws_iam @aws_api_key {
   id: ID!
   name: String
   email: String
@@ -334,14 +401,16 @@ type User {
   organizationID: ID!
   organizations(filter: ModelUserOrganizationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserOrganizationConnection
   profile: Profile
-  createdAt: String!
-  updatedAt: String!
+  wallet: Wallet
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
+  userWalletId: ID
 }
 
-type UserAddress {
+type UserAddress @aws_iam @aws_api_key @aws_cognito_user_pools {
   streetAddress: String
   country: String
   city: String
@@ -354,44 +423,44 @@ enum AddressType {
   SHIPPING
 }
 
-type Address {
+type Address @aws_iam @aws_cognito_user_pools {
   id: ID!
   title: String
   default: Boolean
   address: UserAddress
   type: AddressType
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
   owner: String
 }
 
-type UserOrganization {
+type UserOrganization @aws_iam @aws_api_key {
   id: ID!
   organizationID: ID!
   userID: ID!
   organization: Organization!
   user: User!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
-type EntityCategory {
+type EntityCategory @aws_iam @aws_cognito_user_pools @aws_api_key {
   id: ID!
   entityID: ID!
   categoryID: ID!
   entity: Entity!
   category: Category!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
-  _lastChangedAt: String!
+  _lastChangedAt: AWSTimestamp!
 }
 
 input ModelStringInput {
@@ -485,10 +554,331 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelWithdrawConnection {
+input SettingsOptionsInput {
+  siteTitle: String
+  siteSubtitle: String
+  currency: String
+  minimumOrderAmount: String
+  currencyToWalletRatio: String
+  signupPoints: String
+  deliveryTime: [DeliveryTimeInput]
+  logo: AttachmentInput
+  taxClass: String
+  shippingClass: String
+  seo: SeoSettingsInput
+  google: GoogleSettingsInput
+  facebook: FacebookSettingsInput
+  contactDetails: String
+  useOTP: String
+}
+
+input DeliveryTimeInput {
+  title: String
+  description: String
+}
+
+input AttachmentInput {
+  thumbnail: String
+  original: String
+}
+
+input SeoSettingsInput {
+  metaTitle: String
+  metaDescription: String
+  ogTitle: String
+  ogImage: AttachmentInput
+  twitterHandle: String
+  twitterCardType: String
+  metaTags: String
+  canonicalUrl: String
+}
+
+input GoogleSettingsInput {
+  isEnable: Boolean
+  tagManagerId: String
+}
+
+input FacebookSettingsInput {
+  isEnable: Boolean
+  appId: String
+  pageId: String
+}
+
+type ModelSettingsConnection @aws_api_key @aws_iam {
+  items: [Settings]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelSettingsFilterInput {
+  id: ModelIDInput
+  and: [ModelSettingsFilterInput]
+  or: [ModelSettingsFilterInput]
+  not: ModelSettingsFilterInput
+}
+
+type Query {
+  getSettings(id: ID!): Settings @aws_api_key @aws_iam
+  listSettings(filter: ModelSettingsFilterInput, limit: Int, nextToken: String): ModelSettingsConnection @aws_api_key @aws_iam
+  syncSettings(filter: ModelSettingsFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelSettingsConnection @aws_api_key @aws_iam
+  getWallet(id: ID!): Wallet @aws_api_key @aws_iam
+  listWallets(filter: ModelWalletFilterInput, limit: Int, nextToken: String): ModelWalletConnection @aws_api_key @aws_iam
+  syncWallets(filter: ModelWalletFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelWalletConnection @aws_api_key @aws_iam
+  getWithdraw(id: ID!): Withdraw @aws_api_key @aws_iam
+  listWithdraws(filter: ModelWithdrawFilterInput, limit: Int, nextToken: String): ModelWithdrawConnection @aws_api_key @aws_iam
+  syncWithdraws(filter: ModelWithdrawFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelWithdrawConnection @aws_api_key @aws_iam
+  getBanner(id: ID!): Banner @aws_api_key @aws_iam
+  listBanners(filter: ModelBannerFilterInput, limit: Int, nextToken: String): ModelBannerConnection @aws_api_key @aws_iam
+  syncBanners(filter: ModelBannerFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelBannerConnection @aws_api_key @aws_iam
+  getType(id: ID!): Type @aws_api_key @aws_iam
+  listTypes(filter: ModelTypeFilterInput, limit: Int, nextToken: String): ModelTypeConnection @aws_api_key @aws_iam
+  syncTypes(filter: ModelTypeFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTypeConnection @aws_api_key @aws_iam
+  getTag(id: ID!): Tag @aws_api_key @aws_iam
+  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection @aws_api_key @aws_iam
+  syncTags(filter: ModelTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTagConnection @aws_api_key @aws_iam
+  getBalance(id: ID!): Balance @aws_api_key @aws_iam
+  listBalances(filter: ModelBalanceFilterInput, limit: Int, nextToken: String): ModelBalanceConnection @aws_api_key @aws_iam
+  syncBalances(filter: ModelBalanceFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelBalanceConnection @aws_api_key @aws_iam
+  getOrganization(id: ID!): Organization @aws_api_key @aws_iam
+  listOrganizations(filter: ModelOrganizationFilterInput, limit: Int, nextToken: String): ModelOrganizationConnection @aws_api_key @aws_iam
+  syncOrganizations(filter: ModelOrganizationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelOrganizationConnection @aws_api_key @aws_iam
+  getShipping(id: ID!): Shipping @aws_api_key @aws_iam
+  listShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String): ModelShippingConnection @aws_api_key @aws_iam
+  syncShippings(filter: ModelShippingFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelShippingConnection @aws_api_key @aws_iam
+  getEntityVariation(id: ID!): EntityVariation @aws_api_key @aws_iam
+  listEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String): ModelEntityVariationConnection @aws_api_key @aws_iam
+  syncEntityVariations(filter: ModelEntityVariationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityVariationConnection @aws_api_key @aws_iam
+  getEntity(id: ID!): Entity @aws_api_key @aws_iam
+  listEntities(filter: ModelEntityFilterInput, limit: Int, nextToken: String): ModelEntityConnection @aws_api_key @aws_iam
+  syncEntities(filter: ModelEntityFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityConnection @aws_api_key @aws_iam
+  getOrder(id: ID!): Order @aws_api_key @aws_iam
+  listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection @aws_api_key @aws_iam
+  syncOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelOrderConnection @aws_api_key @aws_iam
+  getCoupon(id: ID!): Coupon @aws_api_key @aws_iam @aws_cognito_user_pools
+  listCoupons(filter: ModelCouponFilterInput, limit: Int, nextToken: String): ModelCouponConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncCoupons(filter: ModelCouponFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCouponConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getContact(id: ID!): Contact @aws_api_key @aws_iam
+  listContacts(filter: ModelContactFilterInput, limit: Int, nextToken: String): ModelContactConnection @aws_api_key @aws_iam
+  syncContacts(filter: ModelContactFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelContactConnection @aws_api_key @aws_iam
+  getCategory(id: ID!): Category @aws_api_key @aws_iam @aws_cognito_user_pools
+  listCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String): ModelCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncCategories(filter: ModelCategoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getAttribute(id: ID!): Attribute @aws_api_key @aws_iam @aws_cognito_user_pools
+  listAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String): ModelAttributeConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncAttributes(filter: ModelAttributeFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttributeConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getUser(id: ID!): User @aws_api_key @aws_iam
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_api_key @aws_iam
+  syncUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserConnection @aws_api_key @aws_iam
+  getAddress(id: ID!): Address @aws_iam @aws_cognito_user_pools
+  listAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String): ModelAddressConnection @aws_iam @aws_cognito_user_pools
+  syncAddresses(filter: ModelAddressFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAddressConnection @aws_iam @aws_cognito_user_pools
+  getUserOrganization(id: ID!): UserOrganization @aws_api_key @aws_iam
+  listUserOrganizations(filter: ModelUserOrganizationFilterInput, limit: Int, nextToken: String): ModelUserOrganizationConnection @aws_api_key @aws_iam
+  syncUserOrganizations(filter: ModelUserOrganizationFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserOrganizationConnection @aws_api_key @aws_iam
+  getEntityCategory(id: ID!): EntityCategory @aws_api_key @aws_iam @aws_cognito_user_pools
+  listEntityCategories(filter: ModelEntityCategoryFilterInput, limit: Int, nextToken: String): ModelEntityCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncEntityCategories(filter: ModelEntityCategoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSettingsConditionInput {
+  and: [ModelSettingsConditionInput]
+  or: [ModelSettingsConditionInput]
+  not: ModelSettingsConditionInput
+}
+
+input CreateSettingsInput {
+  id: ID
+  options: SettingsOptionsInput
+  _version: Int
+}
+
+input UpdateSettingsInput {
+  id: ID!
+  options: SettingsOptionsInput
+  _version: Int
+}
+
+input DeleteSettingsInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createSettings(input: CreateSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  updateSettings(input: UpdateSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  deleteSettings(input: DeleteSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  createWallet(input: CreateWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
+  updateWallet(input: UpdateWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
+  deleteWallet(input: DeleteWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
+  createWithdraw(input: CreateWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
+  updateWithdraw(input: UpdateWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
+  deleteWithdraw(input: DeleteWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
+  createBanner(input: CreateBannerInput!, condition: ModelBannerConditionInput): Banner @aws_api_key @aws_iam
+  updateBanner(input: UpdateBannerInput!, condition: ModelBannerConditionInput): Banner @aws_api_key @aws_iam
+  deleteBanner(input: DeleteBannerInput!, condition: ModelBannerConditionInput): Banner @aws_api_key @aws_iam
+  createType(input: CreateTypeInput!, condition: ModelTypeConditionInput): Type @aws_api_key @aws_iam
+  updateType(input: UpdateTypeInput!, condition: ModelTypeConditionInput): Type @aws_api_key @aws_iam
+  deleteType(input: DeleteTypeInput!, condition: ModelTypeConditionInput): Type @aws_api_key @aws_iam
+  createTag(input: CreateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam
+  updateTag(input: UpdateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam
+  deleteTag(input: DeleteTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam
+  createBalance(input: CreateBalanceInput!, condition: ModelBalanceConditionInput): Balance @aws_api_key @aws_iam
+  updateBalance(input: UpdateBalanceInput!, condition: ModelBalanceConditionInput): Balance @aws_api_key @aws_iam
+  deleteBalance(input: DeleteBalanceInput!, condition: ModelBalanceConditionInput): Balance @aws_api_key @aws_iam
+  createOrganization(input: CreateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  updateOrganization(input: UpdateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  deleteOrganization(input: DeleteOrganizationInput!, condition: ModelOrganizationConditionInput): Organization @aws_api_key @aws_iam
+  createShipping(input: CreateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  updateShipping(input: UpdateShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  deleteShipping(input: DeleteShippingInput!, condition: ModelShippingConditionInput): Shipping @aws_api_key @aws_iam
+  createEntityVariation(input: CreateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  updateEntityVariation(input: UpdateEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  deleteEntityVariation(input: DeleteEntityVariationInput!, condition: ModelEntityVariationConditionInput): EntityVariation @aws_api_key @aws_iam
+  createEntity(input: CreateEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  updateEntity(input: UpdateEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  deleteEntity(input: DeleteEntityInput!, condition: ModelEntityConditionInput): Entity @aws_api_key @aws_iam
+  createOrder(input: CreateOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  updateOrder(input: UpdateOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  deleteOrder(input: DeleteOrderInput!, condition: ModelOrderConditionInput): Order @aws_api_key @aws_iam
+  createCoupon(input: CreateCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_iam @aws_cognito_user_pools
+  updateCoupon(input: UpdateCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_iam @aws_cognito_user_pools
+  deleteCoupon(input: DeleteCouponInput!, condition: ModelCouponConditionInput): Coupon @aws_iam @aws_cognito_user_pools
+  createContact(input: CreateContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  updateContact(input: UpdateContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  deleteContact(input: DeleteContactInput!, condition: ModelContactConditionInput): Contact @aws_api_key @aws_iam
+  createCategory(input: CreateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
+  updateCategory(input: UpdateCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
+  deleteCategory(input: DeleteCategoryInput!, condition: ModelCategoryConditionInput): Category @aws_iam @aws_cognito_user_pools
+  createAttribute(input: CreateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
+  updateAttribute(input: UpdateAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
+  deleteAttribute(input: DeleteAttributeInput!, condition: ModelAttributeConditionInput): Attribute @aws_iam @aws_cognito_user_pools
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  createAddress(input: CreateAddressInput!, condition: ModelAddressConditionInput): Address @aws_iam @aws_cognito_user_pools
+  updateAddress(input: UpdateAddressInput!, condition: ModelAddressConditionInput): Address @aws_iam @aws_cognito_user_pools
+  deleteAddress(input: DeleteAddressInput!, condition: ModelAddressConditionInput): Address @aws_iam @aws_cognito_user_pools
+  createUserOrganization(input: CreateUserOrganizationInput!, condition: ModelUserOrganizationConditionInput): UserOrganization @aws_api_key @aws_iam
+  updateUserOrganization(input: UpdateUserOrganizationInput!, condition: ModelUserOrganizationConditionInput): UserOrganization @aws_api_key @aws_iam
+  deleteUserOrganization(input: DeleteUserOrganizationInput!, condition: ModelUserOrganizationConditionInput): UserOrganization @aws_api_key @aws_iam
+  createEntityCategory(input: CreateEntityCategoryInput!, condition: ModelEntityCategoryConditionInput): EntityCategory @aws_iam @aws_cognito_user_pools
+  updateEntityCategory(input: UpdateEntityCategoryInput!, condition: ModelEntityCategoryConditionInput): EntityCategory @aws_iam @aws_cognito_user_pools
+  deleteEntityCategory(input: DeleteEntityCategoryInput!, condition: ModelEntityCategoryConditionInput): EntityCategory @aws_iam @aws_cognito_user_pools
+}
+
+type Subscription {
+  onCreateSettings: Settings @aws_subscribe(mutations: ["createSettings"]) @aws_api_key @aws_iam
+  onUpdateSettings: Settings @aws_subscribe(mutations: ["updateSettings"]) @aws_api_key @aws_iam
+  onDeleteSettings: Settings @aws_subscribe(mutations: ["deleteSettings"]) @aws_api_key @aws_iam
+  onCreateWallet: Wallet @aws_subscribe(mutations: ["createWallet"]) @aws_api_key @aws_iam
+  onUpdateWallet: Wallet @aws_subscribe(mutations: ["updateWallet"]) @aws_api_key @aws_iam
+  onDeleteWallet: Wallet @aws_subscribe(mutations: ["deleteWallet"]) @aws_api_key @aws_iam
+  onCreateWithdraw: Withdraw @aws_subscribe(mutations: ["createWithdraw"]) @aws_api_key @aws_iam
+  onUpdateWithdraw: Withdraw @aws_subscribe(mutations: ["updateWithdraw"]) @aws_api_key @aws_iam
+  onDeleteWithdraw: Withdraw @aws_subscribe(mutations: ["deleteWithdraw"]) @aws_api_key @aws_iam
+  onCreateBanner: Banner @aws_subscribe(mutations: ["createBanner"]) @aws_api_key @aws_iam
+  onUpdateBanner: Banner @aws_subscribe(mutations: ["updateBanner"]) @aws_api_key @aws_iam
+  onDeleteBanner: Banner @aws_subscribe(mutations: ["deleteBanner"]) @aws_api_key @aws_iam
+  onCreateType: Type @aws_subscribe(mutations: ["createType"]) @aws_api_key @aws_iam
+  onUpdateType: Type @aws_subscribe(mutations: ["updateType"]) @aws_api_key @aws_iam
+  onDeleteType: Type @aws_subscribe(mutations: ["deleteType"]) @aws_api_key @aws_iam
+  onCreateTag: Tag @aws_subscribe(mutations: ["createTag"]) @aws_api_key @aws_iam
+  onUpdateTag: Tag @aws_subscribe(mutations: ["updateTag"]) @aws_api_key @aws_iam
+  onDeleteTag: Tag @aws_subscribe(mutations: ["deleteTag"]) @aws_api_key @aws_iam
+  onCreateBalance: Balance @aws_subscribe(mutations: ["createBalance"]) @aws_api_key @aws_iam
+  onUpdateBalance: Balance @aws_subscribe(mutations: ["updateBalance"]) @aws_api_key @aws_iam
+  onDeleteBalance: Balance @aws_subscribe(mutations: ["deleteBalance"]) @aws_api_key @aws_iam
+  onCreateOrganization: Organization @aws_subscribe(mutations: ["createOrganization"]) @aws_api_key @aws_iam
+  onUpdateOrganization: Organization @aws_subscribe(mutations: ["updateOrganization"]) @aws_api_key @aws_iam
+  onDeleteOrganization: Organization @aws_subscribe(mutations: ["deleteOrganization"]) @aws_api_key @aws_iam
+  onCreateShipping: Shipping @aws_subscribe(mutations: ["createShipping"]) @aws_api_key @aws_iam
+  onUpdateShipping: Shipping @aws_subscribe(mutations: ["updateShipping"]) @aws_api_key @aws_iam
+  onDeleteShipping: Shipping @aws_subscribe(mutations: ["deleteShipping"]) @aws_api_key @aws_iam
+  onCreateEntityVariation: EntityVariation @aws_subscribe(mutations: ["createEntityVariation"]) @aws_api_key @aws_iam
+  onUpdateEntityVariation: EntityVariation @aws_subscribe(mutations: ["updateEntityVariation"]) @aws_api_key @aws_iam
+  onDeleteEntityVariation: EntityVariation @aws_subscribe(mutations: ["deleteEntityVariation"]) @aws_api_key @aws_iam
+  onCreateEntity: Entity @aws_subscribe(mutations: ["createEntity"]) @aws_api_key @aws_iam
+  onUpdateEntity: Entity @aws_subscribe(mutations: ["updateEntity"]) @aws_api_key @aws_iam
+  onDeleteEntity: Entity @aws_subscribe(mutations: ["deleteEntity"]) @aws_api_key @aws_iam
+  onCreateOrder: Order @aws_subscribe(mutations: ["createOrder"]) @aws_api_key @aws_iam
+  onUpdateOrder: Order @aws_subscribe(mutations: ["updateOrder"]) @aws_api_key @aws_iam
+  onDeleteOrder: Order @aws_subscribe(mutations: ["deleteOrder"]) @aws_api_key @aws_iam
+  onCreateCoupon: Coupon @aws_subscribe(mutations: ["createCoupon"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateCoupon: Coupon @aws_subscribe(mutations: ["updateCoupon"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteCoupon: Coupon @aws_subscribe(mutations: ["deleteCoupon"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateContact: Contact @aws_subscribe(mutations: ["createContact"]) @aws_api_key @aws_iam
+  onUpdateContact: Contact @aws_subscribe(mutations: ["updateContact"]) @aws_api_key @aws_iam
+  onDeleteContact: Contact @aws_subscribe(mutations: ["deleteContact"]) @aws_api_key @aws_iam
+  onCreateCategory: Category @aws_subscribe(mutations: ["createCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateCategory: Category @aws_subscribe(mutations: ["updateCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteCategory: Category @aws_subscribe(mutations: ["deleteCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateAttribute: Attribute @aws_subscribe(mutations: ["createAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateAttribute: Attribute @aws_subscribe(mutations: ["updateAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteAttribute: Attribute @aws_subscribe(mutations: ["deleteAttribute"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateUser: User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
+  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
+  onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
+  onCreateAddress(owner: String): Address @aws_subscribe(mutations: ["createAddress"]) @aws_iam @aws_cognito_user_pools
+  onUpdateAddress(owner: String): Address @aws_subscribe(mutations: ["updateAddress"]) @aws_iam @aws_cognito_user_pools
+  onDeleteAddress(owner: String): Address @aws_subscribe(mutations: ["deleteAddress"]) @aws_iam @aws_cognito_user_pools
+  onCreateUserOrganization: UserOrganization @aws_subscribe(mutations: ["createUserOrganization"]) @aws_api_key @aws_iam
+  onUpdateUserOrganization: UserOrganization @aws_subscribe(mutations: ["updateUserOrganization"]) @aws_api_key @aws_iam
+  onDeleteUserOrganization: UserOrganization @aws_subscribe(mutations: ["deleteUserOrganization"]) @aws_api_key @aws_iam
+  onCreateEntityCategory: EntityCategory @aws_subscribe(mutations: ["createEntityCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateEntityCategory: EntityCategory @aws_subscribe(mutations: ["updateEntityCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteEntityCategory: EntityCategory @aws_subscribe(mutations: ["deleteEntityCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+type ModelWalletConnection @aws_api_key @aws_iam {
+  items: [Wallet]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelWalletFilterInput {
+  id: ModelIDInput
+  totalPoints: ModelIntInput
+  pointsUsed: ModelIntInput
+  availablePoints: ModelIntInput
+  and: [ModelWalletFilterInput]
+  or: [ModelWalletFilterInput]
+  not: ModelWalletFilterInput
+}
+
+input ModelWalletConditionInput {
+  totalPoints: ModelIntInput
+  pointsUsed: ModelIntInput
+  availablePoints: ModelIntInput
+  and: [ModelWalletConditionInput]
+  or: [ModelWalletConditionInput]
+  not: ModelWalletConditionInput
+}
+
+input CreateWalletInput {
+  id: ID
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  _version: Int
+}
+
+input UpdateWalletInput {
+  id: ID!
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  _version: Int
+}
+
+input DeleteWalletInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelWithdrawConnection @aws_api_key @aws_iam {
   items: [Withdraw]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelWithdrawStatusInput {
@@ -508,7 +898,6 @@ input ModelWithdrawFilterInput {
   or: [ModelWithdrawFilterInput]
   not: ModelWithdrawFilterInput
 }
-
 
 input ModelWithdrawConditionInput {
   amount: ModelStringInput
@@ -549,15 +938,10 @@ input DeleteWithdrawInput {
   _version: Int
 }
 
-input AttachmentInput {
-  thumbnail: String
-  original: String
-}
-
-type ModelBannerConnection {
+type ModelBannerConnection @aws_api_key @aws_iam {
   items: [Banner]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelBannerFilterInput {
@@ -608,10 +992,10 @@ input TypeSettingsInput {
   productCard: String
 }
 
-type ModelTypeConnection {
+type ModelTypeConnection @aws_api_key @aws_iam {
   items: [Type]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelTypeFilterInput {
@@ -660,10 +1044,10 @@ input DeleteTypeInput {
   _version: Int
 }
 
-type ModelTagConnection {
+type ModelTagConnection @aws_iam @aws_api_key {
   items: [Tag]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelTagFilterInput {
@@ -723,10 +1107,10 @@ input PaymentInfoInput {
   bank: String
 }
 
-type ModelBalanceConnection {
+type ModelBalanceConnection @aws_api_key @aws_iam {
   items: [Balance]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelBalanceFilterInput {
@@ -783,10 +1167,10 @@ input UserAddressInput {
   zip: String
 }
 
-type ModelOrganizationConnection {
+type ModelOrganizationConnection @aws_api_key @aws_iam {
   items: [Organization]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelOrganizationFilterInput {
@@ -847,10 +1231,10 @@ input DeleteOrganizationInput {
   _version: Int
 }
 
-type ModelShippingConnection {
+type ModelShippingConnection @aws_api_key @aws_iam {
   items: [Shipping]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelShippingTypeInput {
@@ -907,10 +1291,10 @@ input EntityVariationOptionInput {
   value: String
 }
 
-type ModelEntityVariationConnection {
+type ModelEntityVariationConnection @aws_api_key @aws_iam {
   items: [EntityVariation]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelEntityVariationFilterInput {
@@ -967,10 +1351,10 @@ input DeleteEntityVariationInput {
   _version: Int
 }
 
-type ModelEntityConnection {
+type ModelEntityConnection @aws_iam @aws_api_key {
   items: [Entity]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelEntityTypeInput {
@@ -1099,10 +1483,10 @@ input DeleteEntityInput {
   _version: Int
 }
 
-type ModelOrderConnection {
+type ModelOrderConnection @aws_iam @aws_api_key @aws_cognito_user_pools {
   items: [Order]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelPaymentGatewayInput {
@@ -1182,10 +1566,10 @@ input DeleteOrderInput {
   _version: Int
 }
 
-type ModelCouponConnection {
+type ModelCouponConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
   items: [Coupon]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelCouponTypeInput {
@@ -1251,10 +1635,10 @@ input DeleteCouponInput {
   _version: Int
 }
 
-type ModelContactConnection {
+type ModelContactConnection @aws_api_key @aws_iam {
   items: [Contact]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelContactFilterInput {
@@ -1301,10 +1685,10 @@ input DeleteContactInput {
   _version: Int
 }
 
-type ModelCategoryConnection {
+type ModelCategoryConnection @aws_iam @aws_api_key @aws_cognito_user_pools {
   items: [Category]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelCategoryFilterInput {
@@ -1363,10 +1747,10 @@ input AttributeValueInput {
   meta: String
 }
 
-type ModelAttributeConnection {
+type ModelAttributeConnection @aws_iam @aws_api_key @aws_cognito_user_pools {
   items: [Attribute]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelAttributeFilterInput {
@@ -1424,10 +1808,10 @@ input SocialInput {
   link: String
 }
 
-type ModelUserConnection {
+type ModelUserConnection @aws_iam @aws_api_key {
   items: [User]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelUserFilterInput {
@@ -1439,6 +1823,7 @@ input ModelUserFilterInput {
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
   not: ModelUserFilterInput
+  userWalletId: ModelIDInput
 }
 
 input ModelUserConditionInput {
@@ -1449,6 +1834,7 @@ input ModelUserConditionInput {
   and: [ModelUserConditionInput]
   or: [ModelUserConditionInput]
   not: ModelUserConditionInput
+  userWalletId: ModelIDInput
 }
 
 input CreateUserInput {
@@ -1459,6 +1845,7 @@ input CreateUserInput {
   organizationID: ID!
   profile: ProfileInput
   _version: Int
+  userWalletId: ID
 }
 
 input UpdateUserInput {
@@ -1469,6 +1856,7 @@ input UpdateUserInput {
   organizationID: ID
   profile: ProfileInput
   _version: Int
+  userWalletId: ID
 }
 
 input DeleteUserInput {
@@ -1476,10 +1864,10 @@ input DeleteUserInput {
   _version: Int
 }
 
-type ModelAddressConnection {
+type ModelAddressConnection @aws_iam @aws_cognito_user_pools {
   items: [Address]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelAddressTypeInput {
@@ -1529,10 +1917,10 @@ input DeleteAddressInput {
   _version: Int
 }
 
-type ModelUserOrganizationConnection {
+type ModelUserOrganizationConnection @aws_iam @aws_api_key {
   items: [UserOrganization]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelUserOrganizationFilterInput {
@@ -1571,10 +1959,10 @@ input DeleteUserOrganizationInput {
   _version: Int
 }
 
-type ModelEntityCategoryConnection {
+type ModelEntityCategoryConnection @aws_iam @aws_api_key @aws_cognito_user_pools {
   items: [EntityCategory]!
   nextToken: String
-  startedAt: String
+  startedAt: AWSTimestamp
 }
 
 input ModelEntityCategoryFilterInput {

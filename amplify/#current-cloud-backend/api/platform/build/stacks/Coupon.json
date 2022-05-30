@@ -52,7 +52,7 @@
     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
       "Type": "String"
     },
-    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId": {
+    "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId": {
       "Type": "String"
     },
     "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
@@ -61,13 +61,13 @@
     "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
       "Type": "String"
     },
-    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId": {
+    "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsMutationcreateSettingsinit0FunctionMutationcreateSettingsinit0FunctionAppSyncFunctionA9197353FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId": {
+    "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsMutationupdateSettingsinit0FunctionMutationupdateSettingsinit0FunctionAppSyncFunctionFEB7865AFunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId": {
+    "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsSubscriptionOnCreateSettingsDataResolverFnSubscriptionOnCreateSettingsDataResolverFnAppSyncFunction0F4E33DAFunctionId": {
       "Type": "String"
     }
   },
@@ -540,7 +540,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -658,7 +658,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -776,7 +776,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -918,7 +918,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationcreateWithdrawinit0FunctionMutationcreateWithdrawinit0FunctionAppSyncFunction793B8082FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsMutationcreateSettingsinit0FunctionMutationcreateSettingsinit0FunctionAppSyncFunctionA9197353FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -927,7 +927,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1090,7 +1090,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawMutationupdateWithdrawinit0FunctionMutationupdateWithdrawinit0FunctionAppSyncFunction8D88B166FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsMutationupdateSettingsinit0FunctionMutationupdateSettingsinit0FunctionAppSyncFunctionFEB7865AFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1099,7 +1099,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1268,7 +1268,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1361,10 +1361,10 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsSubscriptionOnCreateSettingsDataResolverFnSubscriptionOnCreateSettingsDataResolverFnAppSyncFunction0F4E33DAFunctionId"
             }
           ]
         },
@@ -1417,10 +1417,10 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsSubscriptionOnCreateSettingsDataResolverFnSubscriptionOnCreateSettingsDataResolverFnAppSyncFunction0F4E33DAFunctionId"
             }
           ]
         },
@@ -1473,10 +1473,10 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawQuerygetWithdrawpostAuth0FunctionQuerygetWithdrawpostAuth0FunctionAppSyncFunction17FDB161FunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsQuerygetSettingspostAuth0FunctionQuerygetSettingspostAuth0FunctionAppSyncFunction30C12C27FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackWithdrawNestedStackWithdrawNestedStackResource51B3A578OutputstransformerrootstackWithdrawSubscriptionOnCreateWithdrawDataResolverFnSubscriptionOnCreateWithdrawDataResolverFnAppSyncFunctionB7AB574EFunctionId"
+              "Ref": "referencetotransformerrootstackSettingsNestedStackSettingsNestedStackResource1144DCA2OutputstransformerrootstackSettingsSubscriptionOnCreateSettingsDataResolverFnSubscriptionOnCreateSettingsDataResolverFnAppSyncFunction0F4E33DAFunctionId"
             }
           ]
         },

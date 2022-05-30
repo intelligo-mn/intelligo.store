@@ -1,4 +1,71 @@
 
+type FacebookSettings @aws_iam @aws_api_key {
+  isEnable: Boolean
+  appId: String
+  pageId: String
+}
+
+type GoogleSettings @aws_iam @aws_api_key {
+  isEnable: Boolean
+  tagManagerId: String
+}
+
+type SeoSettings @aws_iam @aws_api_key {
+  metaTitle: String
+  metaDescription: String
+  ogTitle: String
+  ogImage: Attachment
+  twitterHandle: String
+  twitterCardType: String
+  metaTags: String
+  canonicalUrl: String
+}
+
+type DeliveryTime @aws_iam @aws_api_key {
+  title: String
+  description: String
+}
+
+type SettingsOptions @aws_iam @aws_api_key {
+  siteTitle: String
+  siteSubtitle: String
+  currency: String
+  minimumOrderAmount: String
+  currencyToWalletRatio: String
+  signupPoints: String
+  deliveryTime: [DeliveryTime]
+  logo: Attachment
+  taxClass: String
+  shippingClass: String
+  seo: SeoSettings
+  google: GoogleSettings
+  facebook: FacebookSettings
+  contactDetails: String
+  useOTP: String
+}
+
+type Settings @aws_iam @aws_api_key {
+  id: ID!
+  options: SettingsOptions
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Wallet @aws_iam @aws_api_key {
+  id: ID!
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
 type Profile @aws_iam @aws_api_key {
   id: String
   avatar: Attachment
@@ -334,11 +401,13 @@ type User @aws_iam @aws_api_key {
   organizationID: ID!
   organizations(filter: ModelUserOrganizationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserOrganizationConnection
   profile: Profile
+  wallet: Wallet
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
   _lastChangedAt: AWSTimestamp!
+  userWalletId: ID
 }
 
 type UserAddress @aws_iam @aws_api_key @aws_cognito_user_pools {
@@ -485,31 +554,76 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelWithdrawConnection @aws_api_key @aws_iam {
-  items: [Withdraw]!
+input SettingsOptionsInput {
+  siteTitle: String
+  siteSubtitle: String
+  currency: String
+  minimumOrderAmount: String
+  currencyToWalletRatio: String
+  signupPoints: String
+  deliveryTime: [DeliveryTimeInput]
+  logo: AttachmentInput
+  taxClass: String
+  shippingClass: String
+  seo: SeoSettingsInput
+  google: GoogleSettingsInput
+  facebook: FacebookSettingsInput
+  contactDetails: String
+  useOTP: String
+}
+
+input DeliveryTimeInput {
+  title: String
+  description: String
+}
+
+input AttachmentInput {
+  thumbnail: String
+  original: String
+}
+
+input SeoSettingsInput {
+  metaTitle: String
+  metaDescription: String
+  ogTitle: String
+  ogImage: AttachmentInput
+  twitterHandle: String
+  twitterCardType: String
+  metaTags: String
+  canonicalUrl: String
+}
+
+input GoogleSettingsInput {
+  isEnable: Boolean
+  tagManagerId: String
+}
+
+input FacebookSettingsInput {
+  isEnable: Boolean
+  appId: String
+  pageId: String
+}
+
+type ModelSettingsConnection @aws_api_key @aws_iam {
+  items: [Settings]!
   nextToken: String
   startedAt: AWSTimestamp
 }
 
-input ModelWithdrawStatusInput {
-  eq: WithdrawStatus
-  ne: WithdrawStatus
-}
-
-input ModelWithdrawFilterInput {
+input ModelSettingsFilterInput {
   id: ModelIDInput
-  amount: ModelStringInput
-  status: ModelWithdrawStatusInput
-  paymentMethod: ModelStringInput
-  details: ModelStringInput
-  note: ModelStringInput
-  organizationID: ModelIDInput
-  and: [ModelWithdrawFilterInput]
-  or: [ModelWithdrawFilterInput]
-  not: ModelWithdrawFilterInput
+  and: [ModelSettingsFilterInput]
+  or: [ModelSettingsFilterInput]
+  not: ModelSettingsFilterInput
 }
 
 type Query {
+  getSettings(id: ID!): Settings @aws_api_key @aws_iam
+  listSettings(filter: ModelSettingsFilterInput, limit: Int, nextToken: String): ModelSettingsConnection @aws_api_key @aws_iam
+  syncSettings(filter: ModelSettingsFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelSettingsConnection @aws_api_key @aws_iam
+  getWallet(id: ID!): Wallet @aws_api_key @aws_iam
+  listWallets(filter: ModelWalletFilterInput, limit: Int, nextToken: String): ModelWalletConnection @aws_api_key @aws_iam
+  syncWallets(filter: ModelWalletFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelWalletConnection @aws_api_key @aws_iam
   getWithdraw(id: ID!): Withdraw @aws_api_key @aws_iam
   listWithdraws(filter: ModelWithdrawFilterInput, limit: Int, nextToken: String): ModelWithdrawConnection @aws_api_key @aws_iam
   syncWithdraws(filter: ModelWithdrawFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelWithdrawConnection @aws_api_key @aws_iam
@@ -566,46 +680,36 @@ type Query {
   syncEntityCategories(filter: ModelEntityCategoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEntityCategoryConnection @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
-input ModelWithdrawConditionInput {
-  amount: ModelStringInput
-  status: ModelWithdrawStatusInput
-  paymentMethod: ModelStringInput
-  details: ModelStringInput
-  note: ModelStringInput
-  organizationID: ModelIDInput
-  and: [ModelWithdrawConditionInput]
-  or: [ModelWithdrawConditionInput]
-  not: ModelWithdrawConditionInput
+input ModelSettingsConditionInput {
+  and: [ModelSettingsConditionInput]
+  or: [ModelSettingsConditionInput]
+  not: ModelSettingsConditionInput
 }
 
-input CreateWithdrawInput {
+input CreateSettingsInput {
   id: ID
-  amount: String
-  status: WithdrawStatus
-  paymentMethod: String
-  details: String
-  note: String
-  organizationID: ID!
+  options: SettingsOptionsInput
   _version: Int
 }
 
-input UpdateWithdrawInput {
+input UpdateSettingsInput {
   id: ID!
-  amount: String
-  status: WithdrawStatus
-  paymentMethod: String
-  details: String
-  note: String
-  organizationID: ID
+  options: SettingsOptionsInput
   _version: Int
 }
 
-input DeleteWithdrawInput {
+input DeleteSettingsInput {
   id: ID!
   _version: Int
 }
 
 type Mutation {
+  createSettings(input: CreateSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  updateSettings(input: UpdateSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  deleteSettings(input: DeleteSettingsInput!, condition: ModelSettingsConditionInput): Settings @aws_api_key @aws_iam
+  createWallet(input: CreateWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
+  updateWallet(input: UpdateWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
+  deleteWallet(input: DeleteWalletInput!, condition: ModelWalletConditionInput): Wallet @aws_api_key @aws_iam
   createWithdraw(input: CreateWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
   updateWithdraw(input: UpdateWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
   deleteWithdraw(input: DeleteWithdrawInput!, condition: ModelWithdrawConditionInput): Withdraw @aws_api_key @aws_iam
@@ -663,6 +767,12 @@ type Mutation {
 }
 
 type Subscription {
+  onCreateSettings: Settings @aws_subscribe(mutations: ["createSettings"]) @aws_api_key @aws_iam
+  onUpdateSettings: Settings @aws_subscribe(mutations: ["updateSettings"]) @aws_api_key @aws_iam
+  onDeleteSettings: Settings @aws_subscribe(mutations: ["deleteSettings"]) @aws_api_key @aws_iam
+  onCreateWallet: Wallet @aws_subscribe(mutations: ["createWallet"]) @aws_api_key @aws_iam
+  onUpdateWallet: Wallet @aws_subscribe(mutations: ["updateWallet"]) @aws_api_key @aws_iam
+  onDeleteWallet: Wallet @aws_subscribe(mutations: ["deleteWallet"]) @aws_api_key @aws_iam
   onCreateWithdraw: Withdraw @aws_subscribe(mutations: ["createWithdraw"]) @aws_api_key @aws_iam
   onUpdateWithdraw: Withdraw @aws_subscribe(mutations: ["updateWithdraw"]) @aws_api_key @aws_iam
   onDeleteWithdraw: Withdraw @aws_subscribe(mutations: ["deleteWithdraw"]) @aws_api_key @aws_iam
@@ -719,9 +829,113 @@ type Subscription {
   onDeleteEntityCategory: EntityCategory @aws_subscribe(mutations: ["deleteEntityCategory"]) @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
-input AttachmentInput {
-  thumbnail: String
-  original: String
+type ModelWalletConnection @aws_api_key @aws_iam {
+  items: [Wallet]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelWalletFilterInput {
+  id: ModelIDInput
+  totalPoints: ModelIntInput
+  pointsUsed: ModelIntInput
+  availablePoints: ModelIntInput
+  and: [ModelWalletFilterInput]
+  or: [ModelWalletFilterInput]
+  not: ModelWalletFilterInput
+}
+
+input ModelWalletConditionInput {
+  totalPoints: ModelIntInput
+  pointsUsed: ModelIntInput
+  availablePoints: ModelIntInput
+  and: [ModelWalletConditionInput]
+  or: [ModelWalletConditionInput]
+  not: ModelWalletConditionInput
+}
+
+input CreateWalletInput {
+  id: ID
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  _version: Int
+}
+
+input UpdateWalletInput {
+  id: ID!
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+  _version: Int
+}
+
+input DeleteWalletInput {
+  id: ID!
+  _version: Int
+}
+
+type ModelWithdrawConnection @aws_api_key @aws_iam {
+  items: [Withdraw]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelWithdrawStatusInput {
+  eq: WithdrawStatus
+  ne: WithdrawStatus
+}
+
+input ModelWithdrawFilterInput {
+  id: ModelIDInput
+  amount: ModelStringInput
+  status: ModelWithdrawStatusInput
+  paymentMethod: ModelStringInput
+  details: ModelStringInput
+  note: ModelStringInput
+  organizationID: ModelIDInput
+  and: [ModelWithdrawFilterInput]
+  or: [ModelWithdrawFilterInput]
+  not: ModelWithdrawFilterInput
+}
+
+input ModelWithdrawConditionInput {
+  amount: ModelStringInput
+  status: ModelWithdrawStatusInput
+  paymentMethod: ModelStringInput
+  details: ModelStringInput
+  note: ModelStringInput
+  organizationID: ModelIDInput
+  and: [ModelWithdrawConditionInput]
+  or: [ModelWithdrawConditionInput]
+  not: ModelWithdrawConditionInput
+}
+
+input CreateWithdrawInput {
+  id: ID
+  amount: String
+  status: WithdrawStatus
+  paymentMethod: String
+  details: String
+  note: String
+  organizationID: ID!
+  _version: Int
+}
+
+input UpdateWithdrawInput {
+  id: ID!
+  amount: String
+  status: WithdrawStatus
+  paymentMethod: String
+  details: String
+  note: String
+  organizationID: ID
+  _version: Int
+}
+
+input DeleteWithdrawInput {
+  id: ID!
+  _version: Int
 }
 
 type ModelBannerConnection @aws_api_key @aws_iam {
@@ -1609,6 +1823,7 @@ input ModelUserFilterInput {
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
   not: ModelUserFilterInput
+  userWalletId: ModelIDInput
 }
 
 input ModelUserConditionInput {
@@ -1619,6 +1834,7 @@ input ModelUserConditionInput {
   and: [ModelUserConditionInput]
   or: [ModelUserConditionInput]
   not: ModelUserConditionInput
+  userWalletId: ModelIDInput
 }
 
 input CreateUserInput {
@@ -1629,6 +1845,7 @@ input CreateUserInput {
   organizationID: ID!
   profile: ProfileInput
   _version: Int
+  userWalletId: ID
 }
 
 input UpdateUserInput {
@@ -1639,6 +1856,7 @@ input UpdateUserInput {
   organizationID: ID
   profile: ProfileInput
   _version: Int
+  userWalletId: ID
 }
 
 input DeleteUserInput {

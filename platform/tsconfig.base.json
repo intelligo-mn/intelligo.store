@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@intelligo/dashboard/assets/*": ["apps/dashboard/src/assets/*"],
+      "@intelligo/dashboard/components/*": ["apps/dashboard/src/components/*"],
+      "@intelligo/dashboard/contexts/*": ["apps/dashboard/src/contexts/*"],
+      "@intelligo/dashboard/graphql/*": ["apps/dashboard/src/graphql/*"],
+      "@intelligo/dashboard/settings/*": ["apps/dashboard/src/settings/*"],
+      "@intelligo/dashboard/utils/*": ["apps/dashboard/src/utils/*"],
+      "@intelligo/dashboard/ts-types/*": ["apps/dashboard/src/ts-types/*"],
+      "@intelligo/dashboard/repositories/*": ["apps/dashboard/src/repositories/*"],
+      "@intelligo/dashboard/data/*": ["apps/dashboard/src/data/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

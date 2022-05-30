@@ -1,0 +1,17 @@
+export { AttributeIcon } from "@intelligo/dashboard/components/icons/sidebar/attribute";
+export { AttributeValueIcon } from "@intelligo/dashboard/components/icons/sidebar/attribute-value";
+export { CategoriesIcon } from "@intelligo/dashboard/components/icons/sidebar/categories";
+export { CouponsIcon } from "@intelligo/dashboard/components/icons/sidebar/coupons";
+export { OrdersIcon } from "@intelligo/dashboard/components/icons/sidebar/orders";
+export { OrdersStatusIcon } from "@intelligo/dashboard/components/icons/sidebar/order-status";
+export { ProductsIcon } from "@intelligo/dashboard/components/icons/sidebar/products";
+export { DashboardIcon } from "@intelligo/dashboard/components/icons/sidebar/dashboard";
+export { SettingsIcon } from "@intelligo/dashboard/components/icons/sidebar/settings";
+export { ShopIcon } from "@intelligo/dashboard/components/icons/sidebar/shop";
+export { MyShopIcon } from "@intelligo/dashboard/components/icons/sidebar/my-shop";
+export { TagIcon } from "@intelligo/dashboard/components/icons/sidebar/tags";
+export { TypesIcon } from "@intelligo/dashboard/components/icons/sidebar/types";
+export { UsersIcon } from "@intelligo/dashboard/components/icons/sidebar/users";
+export { ShippingsIcon } from "@intelligo/dashboard/components/icons/sidebar/shippings";
+export { WithdrawIcon } from "@intelligo/dashboard/components/icons/sidebar/withdraw";
+export { TaxesIcon } from "@intelligo/dashboard/components/icons/sidebar/taxes";

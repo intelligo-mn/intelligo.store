@@ -1,3 +1,60 @@
+type FacebookSettings {
+  isEnable: Boolean
+  appId: String
+  pageId: String
+}
+
+type GoogleSettings {
+  isEnable: Boolean
+  tagManagerId: String
+}
+
+type SeoSettings {
+  metaTitle: String
+  metaDescription: String
+  ogTitle: String
+  ogImage: Attachment
+  twitterHandle: String
+  twitterCardType: String
+  metaTags: String
+  canonicalUrl: String
+}
+
+type DeliveryTime {
+  title: String
+  description: String
+}
+
+type SettingsOptions {
+  siteTitle: String
+  siteSubtitle: String
+  currency: String
+  minimumOrderAmount: String
+  currencyToWalletRatio: String
+  signupPoints: String
+  deliveryTime: [DeliveryTime]
+  logo: Attachment
+  taxClass: String
+  shippingClass: String
+  seo: SeoSettings
+  google: GoogleSettings
+  facebook: FacebookSettings
+  contactDetails: String
+  useOTP: String
+}
+
+type Settings @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  options: SettingsOptions
+}
+
+type Wallet @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  totalPoints: Int
+  pointsUsed: Int
+  availablePoints: Int
+}
+
 type Profile {
   id: String
   avatar: Attachment
@@ -262,6 +319,7 @@ type User @model @auth(rules: [{allow: public}]) {
   organizationID: ID! @index(name: "byOrganization")
   organizations: [Organization] @manyToMany(relationName: "UserOrganization")
   profile: Profile
+  wallet: Wallet @hasOne
 }
 
 type UserAddress {
