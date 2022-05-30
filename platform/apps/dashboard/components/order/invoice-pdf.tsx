@@ -1,7 +1,7 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import { Order, UserAddress } from "apps/dashboard/src/ts-types/generated";
-import { formatAddress } from "apps/dashboard/src/utils/format-address";
-import usePrice from "apps/dashboard/src/utils/use-price";
+import { Order, UserAddress } from "apps/dashboard/ts-types/generated";
+import { formatAddress } from "apps/dashboard/utils/format-address";
+import usePrice from "apps/dashboard/utils/use-price";
 import dayjs from "dayjs";
 
 export default function InvoicePdf({ order }: { order: Order }) {

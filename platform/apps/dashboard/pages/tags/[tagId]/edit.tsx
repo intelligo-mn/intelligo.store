@@ -1,12 +1,12 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
+import Layout from "apps/dashboard/components/layouts/admin";
 import { useRouter } from "next/router";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import CreateOrUpdateTagForm from "apps/dashboard/src/components/tag/tag-form";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useTagQuery } from "apps/dashboard/src/data/tag/use-tag.query";
+import CreateOrUpdateTagForm from "apps/dashboard/components/tag/tag-form";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
+import { useTagQuery } from "apps/dashboard/data/tag/use-tag.query";
 
 export default function UpdateTagPage() {
   const { t } = useTranslation();

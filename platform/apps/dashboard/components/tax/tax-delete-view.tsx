@@ -1,9 +1,9 @@
-import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "apps/dashboard/src/components/ui/modal/modal.context";
-import { useDeleteTaxMutation } from "apps/dashboard/src/data/tax/use-tax-delete.mutation";
+} from "apps/dashboard/components/ui/modal/modal.context";
+import { useDeleteTaxMutation } from "apps/dashboard/data/tax/use-tax-delete.mutation";
 
 const TaxDeleteView = () => {
   const { mutate: deleteTax, isLoading: loading } = useDeleteTaxMutation();

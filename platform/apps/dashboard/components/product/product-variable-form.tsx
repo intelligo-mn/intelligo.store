@@ -1,19 +1,19 @@
-import Input from "apps/dashboard/src/components/ui/input";
+import Input from "apps/dashboard/components/ui/input";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import Button from "apps/dashboard/src/components/ui/button";
-import Description from "apps/dashboard/src/components/ui/description";
-import Card from "apps/dashboard/src/components/common/card";
-import Label from "apps/dashboard/src/components/ui/label";
-import Title from "apps/dashboard/src/components/ui/title";
+import Button from "apps/dashboard/components/ui/button";
+import Description from "apps/dashboard/components/ui/description";
+import Card from "apps/dashboard/components/common/card";
+import Label from "apps/dashboard/components/ui/label";
+import Title from "apps/dashboard/components/ui/title";
 
-import Checkbox from "apps/dashboard/src/components/ui/checkbox/checkbox";
-import SelectInput from "apps/dashboard/src/components/ui/select-input";
-import { cartesian } from "apps/dashboard/src/utils/cartesian";
+import Checkbox from "apps/dashboard/components/ui/checkbox/checkbox";
+import SelectInput from "apps/dashboard/components/ui/select-input";
+import { cartesian } from "apps/dashboard/utils/cartesian";
 import isEmpty from "lodash/isEmpty";
 import { useEffect } from "react";
-import { Product } from "apps/dashboard/src/ts-types/generated";
+import { Product } from "apps/dashboard/ts-types/generated";
 import { useTranslation } from "next-i18next";
-import { useAttributesQuery } from "apps/dashboard/src/data/attributes/use-attributes.query";
+import { useAttributesQuery } from "apps/dashboard/data/attributes/use-attributes.query";
 
 type IProps = {
 	initialValues?: Product | null;

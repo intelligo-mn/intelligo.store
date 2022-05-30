@@ -1,14 +1,14 @@
-import Pagination from "apps/dashboard/src/components/ui/pagination";
+import Pagination from "apps/dashboard/components/ui/pagination";
 import Image from "next/image";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
-import { UserPaginator, SortOrder } from "apps/dashboard/src/ts-types/generated";
-import { useMeQuery } from "apps/dashboard/src/data/user/use-me.query";
+import { Table } from "apps/dashboard/components/ui/table";
+import ActionButtons from "apps/dashboard/components/common/action-buttons";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
+import { UserPaginator, SortOrder } from "apps/dashboard/ts-types/generated";
+import { useMeQuery } from "apps/dashboard/data/user/use-me.query";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import { useIsRTL } from "apps/dashboard/utils/locals";
 import { useState } from "react";
-import Badge from "apps/dashboard/src/components/ui/badge/badge";
+import Badge from "apps/dashboard/components/ui/badge/badge";
 
 type IProps = {
   customers: UserPaginator | null | undefined;

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Alert from "apps/dashboard/src/components/ui/alert";
-import { useForgetPasswordMutation } from "apps/dashboard/src/data/user/use-forget-password.mutation";
-import { useVerifyForgetPasswordTokenMutation } from "apps/dashboard/src/data/user/use-verify-forget-password-token.mutation";
-import { useResetPasswordMutation } from "apps/dashboard/src/data/user/use-reset-password.mutation";
+import Alert from "apps/dashboard/components/ui/alert";
+import { useForgetPasswordMutation } from "apps/dashboard/data/user/use-forget-password.mutation";
+import { useVerifyForgetPasswordTokenMutation } from "apps/dashboard/data/user/use-verify-forget-password-token.mutation";
+import { useResetPasswordMutation } from "apps/dashboard/data/user/use-reset-password.mutation";
 import dynamic from "next/dynamic";
 import Router from "next/router";
 import { useTranslation } from "next-i18next";
 const EnterEmailView = dynamic(() => import("./enter-email-view"));
 const EnterTokenView = dynamic(() => import("./enter-token-view"));
 const EnterNewPasswordView = dynamic(() => import("./enter-new-password-view"));
-import Link from "apps/dashboard/src/components/ui/link";
+import Link from "apps/dashboard/components/ui/link";
 
 const ForgotPassword = () => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
-import OrderStatus from "apps/dashboard/src/repositories/order-status";
+import OrderStatus from "apps/dashboard/repositories/order-status";
 import { useQuery } from "react-query";
-import { OrderStatus as TOrderStatus } from "apps/dashboard/src/ts-types/generated";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { OrderStatus as TOrderStatus } from "apps/dashboard/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const fetchOrderStatus = async (slug: string) => {
   const { data } = await OrderStatus.find(

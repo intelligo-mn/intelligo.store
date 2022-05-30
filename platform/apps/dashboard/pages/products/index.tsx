@@ -1,19 +1,19 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import ProductList from "apps/dashboard/src/components/product/product-list";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import ProductList from "apps/dashboard/components/product/product-list";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 import { useState } from "react";
-import { useProductsQuery } from "apps/dashboard/src/data/product/products.query";
+import { useProductsQuery } from "apps/dashboard/data/product/products.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import SortForm from "apps/dashboard/src/components/common/sort-form";
-import CategoryTypeFilter from "apps/dashboard/src/components/product/category-type-filter";
+import SortForm from "apps/dashboard/components/common/sort-form";
+import CategoryTypeFilter from "apps/dashboard/components/product/category-type-filter";
 import cn from "classnames";
-import { ArrowDown } from "apps/dashboard/src/components/icons/arrow-down";
-import { ArrowUp } from "apps/dashboard/src/components/icons/arrow-up";
+import { ArrowDown } from "apps/dashboard/components/icons/arrow-down";
+import { ArrowUp } from "apps/dashboard/components/icons/arrow-up";
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");

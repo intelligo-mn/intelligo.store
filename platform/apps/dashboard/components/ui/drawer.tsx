@@ -7,9 +7,9 @@ import {
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 import cn from "classnames";
-import { fadeInRight } from "apps/dashboard/src/utils/motion/fade-in-right";
-import { fadeInLeft } from "apps/dashboard/src/utils/motion/fade-in-left";
-import { fadeInOut } from "apps/dashboard/src/utils/motion/fade-in-out";
+import { fadeInRight } from "apps/dashboard/utils/motion/fade-in-right";
+import { fadeInLeft } from "apps/dashboard/utils/motion/fade-in-left";
+import { fadeInOut } from "apps/dashboard/utils/motion/fade-in-out";
 
 interface SidebarProps {
   children: any;

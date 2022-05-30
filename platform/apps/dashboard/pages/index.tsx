@@ -6,12 +6,12 @@ import {
   getAuthCredentials,
   hasAccess,
   isAuthenticated,
-} from "apps/dashboard/src/utils/auth-utils";
-import { SUPER_ADMIN } from "apps/dashboard/src/utils/constants";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import AppLayout from "apps/dashboard/src/components/layouts/app";
-const AdminDashboard = dynamic(() => import("apps/dashboard/src/components/dashboard/admin"));
-const OwnerDashboard = dynamic(() => import("apps/dashboard/src/components/dashboard/owner"));
+} from "apps/dashboard/utils/auth-utils";
+import { SUPER_ADMIN } from "apps/dashboard/utils/constants";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import AppLayout from "apps/dashboard/components/layouts/app";
+const AdminDashboard = dynamic(() => import("apps/dashboard/components/dashboard/admin"));
+const OwnerDashboard = dynamic(() => import("apps/dashboard/components/dashboard/owner"));
 
 export default function Dashboard({
   userPermissions,

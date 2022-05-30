@@ -1,19 +1,19 @@
-import Pagination from "apps/dashboard/src/components/ui/pagination";
+import Pagination from "apps/dashboard/components/ui/pagination";
 import Image from "next/image";
 import dayjs from "dayjs";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import { CouponPaginator, SortOrder } from "apps/dashboard/src/ts-types/generated";
-import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
-import { Attachment } from "apps/dashboard/src/ts-types/generated";
-import usePrice from "apps/dashboard/src/utils/use-price";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { Table } from "apps/dashboard/components/ui/table";
+import { CouponPaginator, SortOrder } from "apps/dashboard/ts-types/generated";
+import ActionButtons from "apps/dashboard/components/common/action-buttons";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
+import { Attachment } from "apps/dashboard/ts-types/generated";
+import usePrice from "apps/dashboard/utils/use-price";
+import { ROUTES } from "apps/dashboard/utils/routes";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/components/ui/title-with-sort";
 
 dayjs.extend(relativeTime);
 dayjs.extend(utc);

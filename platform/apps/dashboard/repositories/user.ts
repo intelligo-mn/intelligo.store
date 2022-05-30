@@ -7,8 +7,8 @@ import {
   ForgetPasswordInput,
   VerifyForgetPasswordTokenInput,
   ResetPasswordInput,
-} from "apps/dashboard/src/ts-types/generated";
-import http from "apps/dashboard/src/utils/api/http";
+} from "apps/dashboard/ts-types/generated";
+import http from "apps/dashboard/utils/api/http";
 import Base from "./base";
 
 class User extends Base<CreateUser, UpdateUser> {

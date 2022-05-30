@@ -1,6 +1,6 @@
 import Base from "./base";
 
-import { CreateTypeInput } from "apps/dashboard/src/ts-types/generated";
+import { CreateTypeInput } from "apps/dashboard/ts-types/generated";
 
 class Type extends Base<CreateTypeInput, CreateTypeInput> {}
 

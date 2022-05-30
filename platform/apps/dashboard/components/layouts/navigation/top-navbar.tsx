@@ -1,16 +1,16 @@
-import Logo from "apps/dashboard/src/components/ui/logo";
-import { useUI } from "apps/dashboard/src/contexts/ui.context";
+import Logo from "apps/dashboard/components/ui/logo";
+import { useUI } from "apps/dashboard/contexts/ui.context";
 import AuthorizedMenu from "./authorized-menu";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
-import { NavbarIcon } from "apps/dashboard/src/components/icons/navbar-icon";
+import LinkButton from "apps/dashboard/components/ui/link-button";
+import { NavbarIcon } from "apps/dashboard/components/icons/navbar-icon";
 import { motion } from "framer-motion";
 import { useTranslation } from "next-i18next";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { ROUTES } from "apps/dashboard/utils/routes";
 import {
 	adminAndOwnerOnly,
 	getAuthCredentials,
 	hasAccess,
-} from "apps/dashboard/src/utils/auth-utils";
+} from "apps/dashboard/utils/auth-utils";
 
 const Navbar = () => {
 	const { t } = useTranslation();

@@ -1,4 +1,4 @@
-import Charts from "apps/dashboard/src/components/ui/chart";
+import Charts from "apps/dashboard/components/ui/chart";
 
 const GraphChart = ({ widgetTitle, series, labels, colors }: any) => {
   const options = {

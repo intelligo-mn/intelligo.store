@@ -1,12 +1,12 @@
 import {
   QueryParamsType,
   CategoriesQueryOptionsType,
-} from "apps/dashboard/src/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
+} from "apps/dashboard/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/utils/data-mappers";
 import { useQuery } from "react-query";
-import Category from "apps/dashboard/src/repositories/category";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
-import { CategoryPaginator } from "apps/dashboard/src/ts-types/generated";
+import Category from "apps/dashboard/repositories/category";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
+import { CategoryPaginator } from "apps/dashboard/ts-types/generated";
 
 const fetchCategories = async ({
   queryKey,

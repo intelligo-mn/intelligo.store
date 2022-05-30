@@ -1,4 +1,4 @@
-import Charts from "apps/dashboard/src/components/ui/chart";
+import Charts from "apps/dashboard/components/ui/chart";
 import { Line } from "rc-progress";
 
 const GradientGraphChart = ({

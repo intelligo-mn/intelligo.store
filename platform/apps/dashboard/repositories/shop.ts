@@ -4,7 +4,7 @@ import {
   ApproveShopInput,
   ShopInput,
   AddStaffInput,
-} from "apps/dashboard/src/ts-types/generated";
+} from "apps/dashboard/ts-types/generated";
 
 class Shop extends Base<ShopInput, ShopInput> {
   staffs = (url: string) => {

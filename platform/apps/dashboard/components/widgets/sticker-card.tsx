@@ -1,6 +1,6 @@
 import React from "react";
-import { IosArrowDown } from "apps/dashboard/src/components/icons/ios-arrow-down";
-import { IosArrowUp } from "apps/dashboard/src/components/icons/ios-arrow-up";
+import { IosArrowDown } from "apps/dashboard/components/icons/ios-arrow-down";
+import { IosArrowUp } from "apps/dashboard/components/icons/ios-arrow-up";
 import { useTranslation } from "next-i18next";
 
 const StickerCard = ({

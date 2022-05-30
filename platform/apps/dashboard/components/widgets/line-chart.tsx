@@ -1,4 +1,4 @@
-import Chart from "apps/dashboard/src/components/ui/chart";
+import Chart from "apps/dashboard/components/ui/chart";
 
 const LineChart = ({
   widgetTitle,

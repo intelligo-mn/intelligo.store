@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Tax from "apps/dashboard/src/repositories/tax";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Tax from "apps/dashboard/repositories/tax";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const useDeleteTaxMutation = () => {
   const queryClient = useQueryClient();

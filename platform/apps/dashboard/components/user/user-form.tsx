@@ -1,10 +1,10 @@
-import Button from "apps/dashboard/src/components/ui/button";
-import Input from "apps/dashboard/src/components/ui/input";
-import PasswordInput from "apps/dashboard/src/components/ui/password-input";
+import Button from "apps/dashboard/components/ui/button";
+import Input from "apps/dashboard/components/ui/input";
+import PasswordInput from "apps/dashboard/components/ui/password-input";
 import { useForm } from "react-hook-form";
-import Card from "apps/dashboard/src/components/common/card";
-import Description from "apps/dashboard/src/components/ui/description";
-import { useCreateUserMutation } from "apps/dashboard/src/data/user/use-user-create.mutation";
+import Card from "apps/dashboard/components/common/card";
+import Description from "apps/dashboard/components/ui/description";
+import { useCreateUserMutation } from "apps/dashboard/data/user/use-user-create.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerValidationSchema } from "./user-validation-schema";

@@ -1,15 +1,15 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import CouponList from "apps/dashboard/src/components/coupon/coupon-list";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import CouponList from "apps/dashboard/components/coupon/coupon-list";
+import LinkButton from "apps/dashboard/components/ui/link-button";
 import { useState } from "react";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useCouponsQuery } from "apps/dashboard/src/data/coupon/use-coupons.query";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useCouponsQuery } from "apps/dashboard/data/coupon/use-coupons.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 
 export default function Coupons() {
   const { t } = useTranslation();

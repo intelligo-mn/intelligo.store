@@ -1,10 +1,10 @@
-import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "apps/dashboard/src/components/ui/modal/modal.context";
-import { useRemoveStaffMutation } from "apps/dashboard/src/data/shop/use-staff-delete.mutation";
-import { getErrorMessage } from "apps/dashboard/src/utils/form-error";
+} from "apps/dashboard/components/ui/modal/modal.context";
+import { useRemoveStaffMutation } from "apps/dashboard/data/shop/use-staff-delete.mutation";
+import { getErrorMessage } from "apps/dashboard/utils/form-error";
 
 const StaffDeleteView = () => {
   const { mutate: removeStaffByID, isLoading: loading } =

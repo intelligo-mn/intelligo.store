@@ -1,5 +1,5 @@
-import { Eye } from "apps/dashboard/src/components/icons/eye-icon";
-import { EyeOff } from "apps/dashboard/src/components/icons/eye-off-icon";
+import { Eye } from "apps/dashboard/components/icons/eye-icon";
+import { EyeOff } from "apps/dashboard/components/icons/eye-off-icon";
 import cn from "classnames";
 import React, { InputHTMLAttributes, useState } from "react";
 import Link from "./link";

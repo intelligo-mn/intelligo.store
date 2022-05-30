@@ -1,5 +1,5 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CreateOrUpdateCategoriesForm from "apps/dashboard/src/components/category/category-form";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CreateOrUpdateCategoriesForm from "apps/dashboard/components/category/category-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 

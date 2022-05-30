@@ -1,5 +1,5 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CreateOrUpdateShippingForm from "apps/dashboard/src/components/shipping/shipping-form";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CreateOrUpdateShippingForm from "apps/dashboard/components/shipping/shipping-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

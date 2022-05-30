@@ -1,4 +1,4 @@
-import { useSettings } from "apps/dashboard/src/contexts/settings.context";
+import { useSettings } from "apps/dashboard/contexts/settings.context";
 import { DefaultSeo as NextDefaultSeo } from "next-seo";
 
 const DefaultSeo = () => {

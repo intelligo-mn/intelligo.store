@@ -1,7 +1,7 @@
-import Type from "apps/dashboard/src/repositories/type";
+import Type from "apps/dashboard/repositories/type";
 import { useQuery } from "react-query";
-import { Type as TType } from "apps/dashboard/src/ts-types/generated";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { Type as TType } from "apps/dashboard/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const fetchType = async (slug: string) => {
   const { data } = await Type.find(`${API_ENDPOINTS.TYPES}/${slug}`);

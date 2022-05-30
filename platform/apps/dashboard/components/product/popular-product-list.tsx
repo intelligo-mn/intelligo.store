@@ -1,9 +1,9 @@
-import { Table } from "apps/dashboard/src/components/ui/table";
-import {Product, ProductType, Shop} from "apps/dashboard/src/ts-types/generated";
-import usePrice from "apps/dashboard/src/utils/use-price";
+import { Table } from "apps/dashboard/components/ui/table";
+import {Product, ProductType, Shop} from "apps/dashboard/ts-types/generated";
+import usePrice from "apps/dashboard/utils/use-price";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import { useIsRTL } from "apps/dashboard/utils/locals";
 
 export type IProps = {
   products: Product[] | null | undefined;

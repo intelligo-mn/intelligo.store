@@ -1,6 +1,6 @@
 import Base from "./base";
 
-import { TaxInput, TaxUpdateInput } from "apps/dashboard/src/ts-types/generated";
+import { TaxInput, TaxUpdateInput } from "apps/dashboard/ts-types/generated";
 
 class Tax extends Base<TaxInput, TaxUpdateInput> {}
 

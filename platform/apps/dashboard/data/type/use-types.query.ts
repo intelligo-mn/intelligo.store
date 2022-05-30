@@ -1,9 +1,9 @@
-import { QueryParamsType, TypesQueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
+import { QueryParamsType, TypesQueryOptionsType } from "apps/dashboard/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/utils/data-mappers";
 import { useQuery } from "react-query";
-import Type from "apps/dashboard/src/repositories/type";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
-import { Type as TTYpe } from "apps/dashboard/src/ts-types/generated";
+import Type from "apps/dashboard/repositories/type";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
+import { Type as TTYpe } from "apps/dashboard/ts-types/generated";
 
 export type TypesPaginator = {
   data: Array<TTYpe>

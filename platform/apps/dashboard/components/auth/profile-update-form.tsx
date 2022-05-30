@@ -1,12 +1,12 @@
-import Input from "apps/dashboard/src/components/ui/input";
+import Input from "apps/dashboard/components/ui/input";
 import { useForm } from "react-hook-form";
-import Button from "apps/dashboard/src/components/ui/button";
-import Description from "apps/dashboard/src/components/ui/description";
-import Card from "apps/dashboard/src/components/common/card";
-import { useUpdateUserMutation } from "apps/dashboard/src/data/user/use-user-update.mutation";
-import TextArea from "apps/dashboard/src/components/ui/text-area";
+import Button from "apps/dashboard/components/ui/button";
+import Description from "apps/dashboard/components/ui/description";
+import Card from "apps/dashboard/components/common/card";
+import { useUpdateUserMutation } from "apps/dashboard/data/user/use-user-update.mutation";
+import TextArea from "apps/dashboard/components/ui/text-area";
 import { useTranslation } from "next-i18next";
-import FileInput from "apps/dashboard/src/components/ui/file-input";
+import FileInput from "apps/dashboard/components/ui/file-input";
 import pick from "lodash/pick";
 
 type FormValues = {

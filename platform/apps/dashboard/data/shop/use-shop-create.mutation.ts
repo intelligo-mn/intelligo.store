@@ -1,10 +1,10 @@
-import { ShopInput } from "apps/dashboard/src/ts-types/generated";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import Shop from "apps/dashboard/src/repositories/shop";
+import { ShopInput } from "apps/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import Shop from "apps/dashboard/repositories/shop";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
-import { adminOnly, getAuthCredentials, hasAccess } from "apps/dashboard/src/utils/auth-utils";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
+import { adminOnly, getAuthCredentials, hasAccess } from "apps/dashboard/utils/auth-utils";
 
 export interface IShopCreateVariables {
   variables: {

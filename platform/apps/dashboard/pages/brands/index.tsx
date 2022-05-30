@@ -1,16 +1,16 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import TypeList from "apps/dashboard/src/components/brand/brand-list";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import TypeList from "apps/dashboard/components/brand/brand-list";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import LinkButton from "apps/dashboard/components/ui/link-button";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 import { useState } from "react";
-import { useTypesQuery } from "apps/dashboard/src/data/type/use-types.query";
+import { useTypesQuery } from "apps/dashboard/data/type/use-types.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { ROUTES } from "apps/dashboard/utils/routes";
 
 export default function TypesPage() {
   const { t } = useTranslation();

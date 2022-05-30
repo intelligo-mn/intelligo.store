@@ -11,8 +11,8 @@ function withOpacity(variableName) {
 module.exports = {
   mode: "jit",
   purge: [
-    "apps/dashboard/src/components/**/*.{js,ts,jsx,tsx}",
-    "apps/dashboard/src/pages/**/*.{js,ts,jsx,tsx}",
+    "apps/dashboard/components/**/*.{js,ts,jsx,tsx}",
+    "apps/dashboard/pages/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

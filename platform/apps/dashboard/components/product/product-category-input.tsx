@@ -1,7 +1,7 @@
-import SelectInput from "apps/dashboard/src/components/ui/select-input";
-import Label from "apps/dashboard/src/components/ui/label";
+import SelectInput from "apps/dashboard/components/ui/select-input";
+import Label from "apps/dashboard/components/ui/label";
 import { Control } from "react-hook-form";
-import { useCategoriesQuery } from "apps/dashboard/src/data/category/use-categories.query";
+import { useCategoriesQuery } from "apps/dashboard/data/category/use-categories.query";
 import { useTranslation } from "next-i18next";
 
 interface Props {

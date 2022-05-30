@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import usePrice from "apps/dashboard/src/utils/use-price";
+import { Table } from "apps/dashboard/components/ui/table";
+import usePrice from "apps/dashboard/utils/use-price";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { Order, OrderStatus } from "apps/dashboard/src/ts-types/generated";
+import { Order, OrderStatus } from "apps/dashboard/ts-types/generated";
 import { useTranslation } from "next-i18next";
 
 type IProps = {

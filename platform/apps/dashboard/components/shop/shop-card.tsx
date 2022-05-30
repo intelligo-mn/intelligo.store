@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import Link from "apps/dashboard/src/components/ui/link";
-import Badge from "apps/dashboard/src/components/ui/badge/badge";
+import Link from "apps/dashboard/components/ui/link";
+import Badge from "apps/dashboard/components/ui/badge/badge";
 
 type ShopCardProps = {
   shop: any;

@@ -1,16 +1,16 @@
-import CategoryList from "apps/dashboard/src/components/category/category-list";
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import CategoryList from "apps/dashboard/components/category/category-list";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import LinkButton from "apps/dashboard/components/ui/link-button";
 import { useState } from "react";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import { useCategoriesQuery } from "apps/dashboard/src/data/category/use-categories.query";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import { useCategoriesQuery } from "apps/dashboard/data/category/use-categories.query";
 
 export default function Categories() {
   const [searchTerm, setSearchTerm] = useState("");

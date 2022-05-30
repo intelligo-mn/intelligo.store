@@ -1,8 +1,8 @@
-import ForgotPasswordForm from "apps/dashboard/src/components/auth/forget-password/forget-password";
-import Logo from "apps/dashboard/src/components/ui/logo";
-import { SUPER_ADMIN } from "apps/dashboard/src/utils/constants";
-import { parseContextCookie } from "apps/dashboard/src/utils/parse-cookie";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import ForgotPasswordForm from "apps/dashboard/components/auth/forget-password/forget-password";
+import Logo from "apps/dashboard/components/ui/logo";
+import { SUPER_ADMIN } from "apps/dashboard/utils/constants";
+import { parseContextCookie } from "apps/dashboard/utils/parse-cookie";
+import { ROUTES } from "apps/dashboard/utils/routes";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

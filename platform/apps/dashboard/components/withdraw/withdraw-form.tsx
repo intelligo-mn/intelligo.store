@@ -1,19 +1,19 @@
-import Input from "apps/dashboard/src/components/ui/input";
+import Input from "apps/dashboard/components/ui/input";
 import { useForm } from "react-hook-form";
-import Button from "apps/dashboard/src/components/ui/button";
-import TextArea from "apps/dashboard/src/components/ui/text-area";
-import Card from "apps/dashboard/src/components/common/card";
-import Description from "apps/dashboard/src/components/ui/description";
+import Button from "apps/dashboard/components/ui/button";
+import TextArea from "apps/dashboard/components/ui/text-area";
+import Card from "apps/dashboard/components/common/card";
+import Description from "apps/dashboard/components/ui/description";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withdrawValidationSchema } from "./withdraw-validation-schema";
 import { useState } from "react";
-import Alert from "apps/dashboard/src/components/ui/alert";
+import Alert from "apps/dashboard/components/ui/alert";
 import { animateScroll } from "react-scroll";
-import { Withdraw } from "apps/dashboard/src/ts-types/generated";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
-import { useCreateWithdrawMutation } from "apps/dashboard/src/data/withdraw/use-withdraw-create.mutation";
+import { Withdraw } from "apps/dashboard/ts-types/generated";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
+import { useCreateWithdrawMutation } from "apps/dashboard/data/withdraw/use-withdraw-create.mutation";
 
 type FormValues = {
   amount: number;

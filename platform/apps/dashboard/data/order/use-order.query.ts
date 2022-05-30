@@ -1,7 +1,7 @@
-import Order from "apps/dashboard/src/repositories/order";
+import Order from "apps/dashboard/repositories/order";
 import { useQuery } from "react-query";
-import { Order as TOrder } from "apps/dashboard/src/ts-types/generated";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { Order as TOrder } from "apps/dashboard/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const fetchOrder = async (id: string) => {
   const { data } = await Order.find(`${API_ENDPOINTS.ORDERS}/${id}`);

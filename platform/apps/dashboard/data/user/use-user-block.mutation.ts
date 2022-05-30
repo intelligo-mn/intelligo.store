@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import User from "apps/dashboard/src/repositories/user";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import User from "apps/dashboard/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const useBlockUserMutation = () => {
   const queryClient = useQueryClient();

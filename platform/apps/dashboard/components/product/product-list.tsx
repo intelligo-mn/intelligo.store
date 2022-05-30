@@ -1,10 +1,10 @@
-import Pagination from "apps/dashboard/src/components/ui/pagination";
+import Pagination from "apps/dashboard/components/ui/pagination";
 import Image from "next/image";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
-import usePrice from "apps/dashboard/src/utils/use-price";
-import Badge from "apps/dashboard/src/components/ui/badge/badge";
+import { Table } from "apps/dashboard/components/ui/table";
+import ActionButtons from "apps/dashboard/components/common/action-buttons";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
+import usePrice from "apps/dashboard/utils/use-price";
+import Badge from "apps/dashboard/components/ui/badge/badge";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import {
@@ -13,10 +13,10 @@ import {
 	ProductType,
 	Shop,
 	SortOrder,
-} from "apps/dashboard/src/ts-types/generated";
-import { useIsRTL } from "apps/dashboard/src/utils/locals";
+} from "apps/dashboard/ts-types/generated";
+import { useIsRTL } from "apps/dashboard/utils/locals";
 import { useState } from "react";
-import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/components/ui/title-with-sort";
 
 export type IProps = {
 	products?: ProductPaginator;

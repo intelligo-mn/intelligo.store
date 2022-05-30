@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Tag from "apps/dashboard/src/repositories/tag";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Tag from "apps/dashboard/repositories/tag";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const useDeleteTagMutation = () => {
   const queryClient = useQueryClient();

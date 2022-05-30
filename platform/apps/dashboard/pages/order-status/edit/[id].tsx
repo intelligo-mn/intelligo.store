@@ -1,8 +1,8 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CreateOrUpdateOrderStatusForm from "apps/dashboard/src/components/order-status/order-status-form";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useOrderStatusQuery } from "apps/dashboard/src/data/order-status/use-order-status.query";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CreateOrUpdateOrderStatusForm from "apps/dashboard/components/order-status/order-status-form";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useOrderStatusQuery } from "apps/dashboard/data/order-status/use-order-status.query";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

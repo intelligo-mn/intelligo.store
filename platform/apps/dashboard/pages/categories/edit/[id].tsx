@@ -1,9 +1,9 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CreateOrUpdateCategoriesForm from "apps/dashboard/src/components/category/category-form";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CreateOrUpdateCategoriesForm from "apps/dashboard/components/category/category-form";
 import { useRouter } from "next/router";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useCategoryQuery } from "apps/dashboard/src/data/category/use-category.query";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useCategoryQuery } from "apps/dashboard/data/category/use-category.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

@@ -1,9 +1,9 @@
-import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "apps/dashboard/src/components/ui/modal/modal.context";
-import { useDeleteAttributeMutation } from "apps/dashboard/src/data/attributes/use-attribute-delete.mutation";
+} from "apps/dashboard/components/ui/modal/modal.context";
+import { useDeleteAttributeMutation } from "apps/dashboard/data/attributes/use-attribute-delete.mutation";
 
 const AttributeDeleteView = () => {
   const { mutate: deleteAttributeByID, isLoading: loading } =

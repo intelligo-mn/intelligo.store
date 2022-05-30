@@ -1,9 +1,9 @@
-import { QueryParamsType, ShopsQueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
+import { QueryParamsType, ShopsQueryOptionsType } from "apps/dashboard/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/utils/data-mappers";
 import { useQuery } from "react-query";
-import Shop from "apps/dashboard/src/repositories/shop";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
-import { ShopPaginator } from "apps/dashboard/src/ts-types/generated";
+import Shop from "apps/dashboard/repositories/shop";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
+import { ShopPaginator } from "apps/dashboard/ts-types/generated";
 
 const fetchShops = async ({
   queryKey,

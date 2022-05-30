@@ -1,11 +1,11 @@
-import AdminLayout from "apps/dashboard/src/components/layouts/admin";
-import SettingsForm from "apps/dashboard/src/components/settings/settings-form";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useSettingsQuery } from "apps/dashboard/src/data/settings/use-settings.query";
-import { useShippingClassesQuery } from "apps/dashboard/src/data/shipping/use-shippingClasses.query";
-import { useTaxesQuery } from "apps/dashboard/src/data/tax/use-taxes.query";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
+import AdminLayout from "apps/dashboard/components/layouts/admin";
+import SettingsForm from "apps/dashboard/components/settings/settings-form";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useSettingsQuery } from "apps/dashboard/data/settings/use-settings.query";
+import { useShippingClassesQuery } from "apps/dashboard/data/shipping/use-shippingClasses.query";
+import { useTaxesQuery } from "apps/dashboard/data/tax/use-taxes.query";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

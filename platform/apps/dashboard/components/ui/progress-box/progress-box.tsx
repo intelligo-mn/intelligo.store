@@ -1,6 +1,6 @@
-import { CheckMark } from "apps/dashboard/src/components/icons/checkmark";
+import { CheckMark } from "apps/dashboard/components/icons/checkmark";
 import cn from "classnames";
-import Scrollbar from "apps/dashboard/src/components/ui/scrollbar";
+import Scrollbar from "apps/dashboard/components/ui/scrollbar";
 import styles from "./progress-box.module.css";
 
 type ProgressProps = {

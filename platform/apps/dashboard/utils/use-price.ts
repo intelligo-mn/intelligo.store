@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
-import { useSettings } from "apps/dashboard/src/contexts/settings.context";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
+import { useSettings } from "apps/dashboard/contexts/settings.context";
 export function formatPrice({
   amount,
   currencyCode,

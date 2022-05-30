@@ -1,34 +1,34 @@
-import ShopLayout from "apps/dashboard/src/components/layouts/shop";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import ShopLayout from "apps/dashboard/components/layouts/shop";
+import LinkButton from "apps/dashboard/components/ui/link-button";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { MapPin } from "apps/dashboard/src/components/icons/map-pin";
-import { PhoneIcon } from "apps/dashboard/src/components/icons/phone";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { MapPin } from "apps/dashboard/components/icons/map-pin";
+import { PhoneIcon } from "apps/dashboard/components/icons/phone";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import dayjs from "dayjs";
-import { CheckMarkFill } from "apps/dashboard/src/components/icons/checkmark-circle-fill";
-import { CloseFillIcon } from "apps/dashboard/src/components/icons/close-fill";
-import EditIcon from "apps/dashboard/src/components/icons/edit";
-import { formatAddress } from "apps/dashboard/src/utils/format-address";
+import { CheckMarkFill } from "apps/dashboard/components/icons/checkmark-circle-fill";
+import { CloseFillIcon } from "apps/dashboard/components/icons/close-fill";
+import EditIcon from "apps/dashboard/components/icons/edit";
+import { formatAddress } from "apps/dashboard/utils/format-address";
 import {
   adminAndOwnerOnly,
   adminOwnerAndStaffOnly,
   getAuthCredentials,
   hasAccess,
-} from "apps/dashboard/src/utils/auth-utils";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import usePrice from "apps/dashboard/src/utils/use-price";
+} from "apps/dashboard/utils/auth-utils";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import usePrice from "apps/dashboard/utils/use-price";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
 import { GetStaticPaths } from "next";
-import { CubeIcon } from "apps/dashboard/src/components/icons/shops/cube";
-import { OrdersIcon } from "apps/dashboard/src/components/icons/sidebar";
-import { PriceWalletIcon } from "apps/dashboard/src/components/icons/shops/price-wallet";
-import { PercentageIcon } from "apps/dashboard/src/components/icons/shops/percentage";
-import { DollarIcon } from "apps/dashboard/src/components/icons/shops/dollar";
-import ReadMore from "apps/dashboard/src/components/ui/truncate";
+import { CubeIcon } from "apps/dashboard/components/icons/shops/cube";
+import { OrdersIcon } from "apps/dashboard/components/icons/sidebar";
+import { PriceWalletIcon } from "apps/dashboard/components/icons/shops/price-wallet";
+import { PercentageIcon } from "apps/dashboard/components/icons/shops/percentage";
+import { DollarIcon } from "apps/dashboard/components/icons/shops/dollar";
+import ReadMore from "apps/dashboard/components/ui/truncate";
 
 export default function ShopPage() {
   const { t } = useTranslation();

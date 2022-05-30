@@ -1,11 +1,11 @@
 import cn from "classnames";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import Avatar from "apps/dashboard/src/components/common/avatar";
-import Link from "apps/dashboard/src/components/ui/link";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
+import Avatar from "apps/dashboard/components/common/avatar";
+import Link from "apps/dashboard/components/ui/link";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
 import { useTranslation } from "next-i18next";
-import { useMeQuery } from "apps/dashboard/src/data/user/use-me.query";
+import { useMeQuery } from "apps/dashboard/data/user/use-me.query";
 
 export default function AuthorizedMenu() {
   const { data } = useMeQuery();

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import Pagination from "apps/dashboard/src/components/ui/pagination";
+import Pagination from "apps/dashboard/components/ui/pagination";
 import Image from "next/image";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
+import { Table } from "apps/dashboard/components/ui/table";
+import ActionButtons from "apps/dashboard/components/common/action-buttons";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "apps/dashboard/src/utils/locals";
-import Badge from "apps/dashboard/src/components/ui/badge/badge";
-import { ShopPaginator, SortOrder } from "apps/dashboard/src/ts-types/generated";
-import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
+import { useIsRTL } from "apps/dashboard/utils/locals";
+import Badge from "apps/dashboard/components/ui/badge/badge";
+import { ShopPaginator, SortOrder } from "apps/dashboard/ts-types/generated";
+import TitleWithSort from "apps/dashboard/components/ui/title-with-sort";
 
 type IProps = {
   shops: ShopPaginator | null | undefined;

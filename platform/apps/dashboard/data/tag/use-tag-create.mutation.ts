@@ -1,9 +1,9 @@
-import { CreateTag } from "apps/dashboard/src/ts-types/generated";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import Tag from "apps/dashboard/src/repositories/tag";
+import { CreateTag } from "apps/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import Tag from "apps/dashboard/repositories/tag";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export interface ITagCreateVariables {
   variables: { input: CreateTag };

@@ -1,5 +1,5 @@
-import { getAuthCredentials } from "apps/dashboard/src/utils/auth-utils";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { getAuthCredentials } from "apps/dashboard/utils/auth-utils";
+import { ROUTES } from "apps/dashboard/utils/routes";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Router from "next/router";

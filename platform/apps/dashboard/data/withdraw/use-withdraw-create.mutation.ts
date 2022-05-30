@@ -1,9 +1,9 @@
-import { CreateWithdrawInput } from "apps/dashboard/src/ts-types/generated";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import Withdraw from "apps/dashboard/src/repositories/withdraw";
+import { CreateWithdrawInput } from "apps/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import Withdraw from "apps/dashboard/repositories/withdraw";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 import { animatedScrollTo } from "react-select/src/utils";
 
 export interface IWithdrawCreateVariables {

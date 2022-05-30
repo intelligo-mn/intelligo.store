@@ -1,14 +1,14 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import WithdrawList from "apps/dashboard/src/components/withdraw/withdraw-list";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useWithdrawsQuery } from "apps/dashboard/src/data/withdraw/use-withdraws.query";
+import WithdrawList from "apps/dashboard/components/withdraw/withdraw-list";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
+import { useWithdrawsQuery } from "apps/dashboard/data/withdraw/use-withdraws.query";
 import { useState } from "react";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 
 export default function WithdrawsPage() {
   const { t } = useTranslation();

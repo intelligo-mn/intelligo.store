@@ -1,7 +1,7 @@
-import { LoginInput } from "apps/dashboard/src/ts-types/generated";
+import { LoginInput } from "apps/dashboard/ts-types/generated";
 import { useMutation } from "react-query";
-import User from "apps/dashboard/src/repositories/user";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import User from "apps/dashboard/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export interface ILoginVariables {
   variables: LoginInput;

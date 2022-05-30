@@ -1,4 +1,4 @@
-import { PaginatorInfo } from "apps/dashboard/src/ts-types/generated";
+import { PaginatorInfo } from "apps/dashboard/ts-types/generated";
 
 export const getPaginatorInfo = (data: any): PaginatorInfo => {
   if (data?.length) {

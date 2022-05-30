@@ -1,14 +1,14 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import OrderList from "apps/dashboard/src/components/order/order-list";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import OrderList from "apps/dashboard/components/order/order-list";
 import { useState } from "react";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useOrdersQuery } from "apps/dashboard/src/data/order/use-orders.query";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useOrdersQuery } from "apps/dashboard/data/order/use-orders.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 
 export default function Orders() {
   const [searchTerm, setSearchTerm] = useState("");

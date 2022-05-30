@@ -1,9 +1,9 @@
-import { SettingsInput } from "apps/dashboard/src/ts-types/generated";
+import { SettingsInput } from "apps/dashboard/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import Settings from "apps/dashboard/src/repositories/settings";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
-import { useSettings } from "apps/dashboard/src/contexts/settings.context";
+import Settings from "apps/dashboard/repositories/settings";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
+import { useSettings } from "apps/dashboard/contexts/settings.context";
 import { useTranslation } from "next-i18next";
 
 export interface ISettingsUpdateVariables {

@@ -1,7 +1,7 @@
-import Link from "apps/dashboard/src/components/ui/link";
-import { getIcon } from "apps/dashboard/src/utils/get-icon";
-import * as sidebarIcons from "apps/dashboard/src/components/icons/sidebar";
-import { useUI } from "apps/dashboard/src/contexts/ui.context";
+import Link from "apps/dashboard/components/ui/link";
+import { getIcon } from "apps/dashboard/utils/get-icon";
+import * as sidebarIcons from "apps/dashboard/components/icons/sidebar";
+import { useUI } from "apps/dashboard/contexts/ui.context";
 
 const SidebarItem = ({ href, icon, label }: any) => {
   const { closeSidebar } = useUI();

@@ -1,8 +1,8 @@
-import { QueryParamsType, QueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
-import { mapPaginatorData } from "apps/dashboard/src/utils/data-mappers";
+import { QueryParamsType, QueryOptionsType } from "apps/dashboard/ts-types/custom.types";
+import { mapPaginatorData } from "apps/dashboard/utils/data-mappers";
 import { useQuery } from "react-query";
-import User from "apps/dashboard/src/repositories/user";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import User from "apps/dashboard/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 const fetchUsers = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

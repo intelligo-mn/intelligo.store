@@ -1,8 +1,8 @@
-import { CreateTypeInput } from "apps/dashboard/src/ts-types/generated";
+import { CreateTypeInput } from "apps/dashboard/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import Type from "apps/dashboard/src/repositories/type";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Type from "apps/dashboard/repositories/type";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 export interface ITypeUpdateVariables {
   variables: {

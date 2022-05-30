@@ -1,9 +1,9 @@
-import Navbar from "apps/dashboard/src/components/layouts/navigation/top-navbar";
+import Navbar from "apps/dashboard/components/layouts/navigation/top-navbar";
 import { Fragment } from "react";
-import MobileNavigation from "apps/dashboard/src/components/layouts/navigation/mobile-navigation";
-import { siteSettings } from "apps/dashboard/src/settings/site.settings";
+import MobileNavigation from "apps/dashboard/components/layouts/navigation/mobile-navigation";
+import { siteSettings } from "apps/dashboard/settings/site.settings";
 import { useTranslation } from "next-i18next";
-import SidebarItem from "apps/dashboard/src/components/layouts/navigation/sidebar-item";
+import SidebarItem from "apps/dashboard/components/layouts/navigation/sidebar-item";
 
 const AdminLayout: React.FC = ({ children }) => {
   const { t } = useTranslation();

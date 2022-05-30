@@ -1,12 +1,12 @@
-import { Form } from "apps/dashboard/src/components/ui/form/form";
-import Button from "apps/dashboard/src/components/ui/button";
+import { Form } from "apps/dashboard/components/ui/form/form";
+import Button from "apps/dashboard/components/ui/button";
 import {
   useModalAction,
   useModalState,
-} from "apps/dashboard/src/components/ui/modal/modal.context";
-import Input from "apps/dashboard/src/components/ui/input";
+} from "apps/dashboard/components/ui/modal/modal.context";
+import Input from "apps/dashboard/components/ui/input";
 import { useTranslation } from "next-i18next";
-import { useAddWalletPointsMutation } from "apps/dashboard/src/data/user/use-add-wallet-points.mutation";
+import { useAddWalletPointsMutation } from "apps/dashboard/data/user/use-add-wallet-points.mutation";
 type FormValues = {
   points: number;
 };

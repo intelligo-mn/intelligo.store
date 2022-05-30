@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import CreateOrUpdateAttributeForm from "apps/dashboard/src/components/attribute/attribute-form";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import CreateOrUpdateAttributeForm from "apps/dashboard/components/attribute/attribute-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "apps/dashboard/src/components/layouts/shop";
-import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useAttributeQuery } from "apps/dashboard/src/data/attributes/use-attribute.query";
+import ShopLayout from "apps/dashboard/components/layouts/shop";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/utils/auth-utils";
+import { useAttributeQuery } from "apps/dashboard/data/attributes/use-attribute.query";
 export default function UpdateAttributePage() {
   const { t } = useTranslation();
   const { query } = useRouter();

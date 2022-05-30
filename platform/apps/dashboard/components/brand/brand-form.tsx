@@ -1,27 +1,27 @@
-import Input from "apps/dashboard/src/components/ui/input";
+import Input from "apps/dashboard/components/ui/input";
 import { useFieldArray, useForm } from "react-hook-form";
-import Button from "apps/dashboard/src/components/ui/button";
-import Description from "apps/dashboard/src/components/ui/description";
-import Card from "apps/dashboard/src/components/common/card";
+import Button from "apps/dashboard/components/ui/button";
+import Description from "apps/dashboard/components/ui/description";
+import Card from "apps/dashboard/components/common/card";
 import { useRouter } from "next/router";
-import { getIcon } from "apps/dashboard/src/utils/get-icon";
-import Label from "apps/dashboard/src/components/ui/label";
-import * as typeIcons from "apps/dashboard/src/components/icons/type";
+import { getIcon } from "apps/dashboard/utils/get-icon";
+import Label from "apps/dashboard/components/ui/label";
+import * as typeIcons from "apps/dashboard/components/icons/type";
 import {
   Attachment,
   Type,
   TypeSettingsInput
-} from "apps/dashboard/src/ts-types/generated";
-import { useCreateTypeMutation } from "apps/dashboard/src/data/type/use-type-create.mutation";
-import { useUpdateTypeMutation } from "apps/dashboard/src/data/type/use-type-update.mutation";
+} from "apps/dashboard/ts-types/generated";
+import { useCreateTypeMutation } from "apps/dashboard/data/type/use-type-create.mutation";
+import { useUpdateTypeMutation } from "apps/dashboard/data/type/use-type-update.mutation";
 import { typeIconList } from "./brand-icons";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { typeValidationSchema } from "./brand-validation-schema";
-import SelectInput from "apps/dashboard/src/components/ui/select-input";
-import Alert from "apps/dashboard/src/components/ui/alert";
-import FileInput from "apps/dashboard/src/components/ui/file-input";
-import ValidationError from "apps/dashboard/src/components/ui/form-validation-error";
+import SelectInput from "apps/dashboard/components/ui/select-input";
+import Alert from "apps/dashboard/components/ui/alert";
+import FileInput from "apps/dashboard/components/ui/file-input";
+import ValidationError from "apps/dashboard/components/ui/form-validation-error";
 
 export const updatedIcons = typeIconList.map((item: any) => {
   item.label = (

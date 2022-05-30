@@ -1,7 +1,7 @@
-import Tag from "apps/dashboard/src/repositories/tag";
+import Tag from "apps/dashboard/repositories/tag";
 import { useQuery } from "react-query";
-import { Tag as TTag } from "apps/dashboard/src/ts-types/generated";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { Tag as TTag } from "apps/dashboard/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const fetchTag = async (id: string) => {
   const { data } = await Tag.find(`${API_ENDPOINTS.TAGS}/${id}`);

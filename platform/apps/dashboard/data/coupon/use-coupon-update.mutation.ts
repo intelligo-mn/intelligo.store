@@ -1,8 +1,8 @@
-import { CouponUpdateInput } from "apps/dashboard/src/ts-types/generated";
+import { CouponUpdateInput } from "apps/dashboard/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import Coupon from "apps/dashboard/src/repositories/coupon";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Coupon from "apps/dashboard/repositories/coupon";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 export interface ICouponUpdateVariables {
   variables: { id: number | string; input: CouponUpdateInput };

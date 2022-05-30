@@ -1,5 +1,5 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CouponCreateOrUpdateForm from "apps/dashboard/src/components/coupon/coupon-form";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CouponCreateOrUpdateForm from "apps/dashboard/components/coupon/coupon-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

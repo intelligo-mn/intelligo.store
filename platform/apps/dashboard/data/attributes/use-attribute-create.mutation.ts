@@ -1,9 +1,9 @@
-import { AttributeInput } from "apps/dashboard/src/ts-types/generated";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import Attribute from "apps/dashboard/src/repositories/attribute";
+import { AttributeInput } from "apps/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import Attribute from "apps/dashboard/repositories/attribute";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export interface IAttributeCreateVariables {
   variables: {

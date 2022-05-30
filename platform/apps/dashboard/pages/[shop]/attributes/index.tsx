@@ -1,20 +1,20 @@
-import Card from "apps/dashboard/src/components/common/card";
-import AttributeList from "apps/dashboard/src/components/attribute/attribute-list";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import Card from "apps/dashboard/components/common/card";
+import AttributeList from "apps/dashboard/components/attribute/attribute-list";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import LinkButton from "apps/dashboard/components/ui/link-button";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import ShopLayout from "apps/dashboard/components/layouts/shop";
 import { useRouter } from "next/router";
-import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useAttributesQuery } from "apps/dashboard/src/data/attributes/use-attributes.query";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/utils/auth-utils";
+import { useAttributesQuery } from "apps/dashboard/data/attributes/use-attributes.query";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
 import { useState } from "react";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
-import { useModalAction } from "apps/dashboard/src/components/ui/modal/modal.context";
-import { MoreIcon } from "apps/dashboard/src/components/icons/more-icon";
-import Button from "apps/dashboard/src/components/ui/button";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
+import { useModalAction } from "apps/dashboard/components/ui/modal/modal.context";
+import { MoreIcon } from "apps/dashboard/components/icons/more-icon";
+import Button from "apps/dashboard/components/ui/button";
 
 export default function AttributePage() {
   const {

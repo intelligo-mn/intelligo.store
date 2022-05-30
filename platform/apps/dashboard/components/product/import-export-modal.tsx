@@ -1,6 +1,6 @@
-import Card from "apps/dashboard/src/components/common/card";
-import { DownloadIcon } from "apps/dashboard/src/components/icons/download-icon";
-import { useModalState } from "apps/dashboard/src/components/ui/modal/modal.context";
+import Card from "apps/dashboard/components/common/card";
+import { DownloadIcon } from "apps/dashboard/components/icons/download-icon";
+import { useModalState } from "apps/dashboard/components/ui/modal/modal.context";
 import { useTranslation } from "next-i18next";
 import ImportProducts from "./import-products";
 import ImportVariationOptions from "./import-variation-options";

@@ -1,5 +1,5 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import CreateOrUpdateTypeForm from "apps/dashboard/src/components/brand/brand-form";
+import Layout from "apps/dashboard/components/layouts/admin";
+import CreateOrUpdateTypeForm from "apps/dashboard/components/brand/brand-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 

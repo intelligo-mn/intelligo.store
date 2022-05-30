@@ -1,6 +1,6 @@
-import Select from "apps/dashboard/src/components/ui/select/select";
+import Select from "apps/dashboard/components/ui/select/select";
 import cn from "classnames";
-import Label from "apps/dashboard/src/components/ui/label";
+import Label from "apps/dashboard/components/ui/label";
 import { useTranslation } from "next-i18next";
 
 interface Props {

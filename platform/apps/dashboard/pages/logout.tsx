@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useLogoutMutation } from "apps/dashboard/src/data/user/use-logout.mutation";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useLogoutMutation } from "apps/dashboard/data/user/use-logout.mutation";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

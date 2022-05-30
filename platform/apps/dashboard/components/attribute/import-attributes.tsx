@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import ImportCsv from "apps/dashboard/src/components/ui/import-csv";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
-import { useImportAttributesMutation } from "apps/dashboard/src/data/import/use-import-attributes.mutation";
+import ImportCsv from "apps/dashboard/components/ui/import-csv";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
+import { useImportAttributesMutation } from "apps/dashboard/data/import/use-import-attributes.mutation";
 
 export default function ImportAttributes() {
   const { t } = useTranslation();

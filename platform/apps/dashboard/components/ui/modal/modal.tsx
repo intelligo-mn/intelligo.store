@@ -1,4 +1,4 @@
-import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
+import { CloseIcon } from "apps/dashboard/components/icons/close-icon";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef } from "react";
 import { useTranslation } from "next-i18next";

@@ -1,16 +1,16 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import TaxList from "apps/dashboard/src/components/tax/tax-list";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useTaxesQuery } from "apps/dashboard/src/data/tax/use-taxes.query";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import TaxList from "apps/dashboard/components/tax/tax-list";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import LinkButton from "apps/dashboard/components/ui/link-button";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useTaxesQuery } from "apps/dashboard/data/tax/use-taxes.query";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 
 export default function TaxesPage() {
   const { t } = useTranslation();

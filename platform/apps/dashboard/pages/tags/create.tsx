@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
-import Layout from "apps/dashboard/src/components/layouts/admin";
+import Layout from "apps/dashboard/components/layouts/admin";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import CreateOrUpdateTagForm from "apps/dashboard/src/components/tag/tag-form";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
+import CreateOrUpdateTagForm from "apps/dashboard/components/tag/tag-form";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
 
 export default function CreateCategoriesPage() {
   const { t } = useTranslation();

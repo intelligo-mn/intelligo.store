@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Attribute from "apps/dashboard/src/repositories/attribute";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Attribute from "apps/dashboard/repositories/attribute";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const useDeleteAttributeMutation = () => {
   const queryClient = useQueryClient();

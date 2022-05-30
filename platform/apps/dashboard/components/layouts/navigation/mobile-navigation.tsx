@@ -1,6 +1,6 @@
-import { useUI } from "apps/dashboard/src/contexts/ui.context";
-import DrawerWrapper from "apps/dashboard/src/components/ui/drawer-wrapper";
-import Drawer from "apps/dashboard/src/components/ui/drawer";
+import { useUI } from "apps/dashboard/contexts/ui.context";
+import DrawerWrapper from "apps/dashboard/components/ui/drawer-wrapper";
+import Drawer from "apps/dashboard/components/ui/drawer";
 
 const MobileNavigation: React.FC = ({ children }) => {
   const { displaySidebar, closeSidebar } = useUI();

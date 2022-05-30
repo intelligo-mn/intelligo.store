@@ -1,17 +1,17 @@
-import Alert from "apps/dashboard/src/components/ui/alert";
-import Button from "apps/dashboard/src/components/ui/button";
-import Input from "apps/dashboard/src/components/ui/input";
-import PasswordInput from "apps/dashboard/src/components/ui/password-input";
+import Alert from "apps/dashboard/components/ui/alert";
+import Button from "apps/dashboard/components/ui/button";
+import Input from "apps/dashboard/components/ui/input";
+import PasswordInput from "apps/dashboard/components/ui/password-input";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
-import { useLoginMutation } from "apps/dashboard/src/data/user/use-login.mutation";
+import { ROUTES } from "apps/dashboard/utils/routes";
+import { useLoginMutation } from "apps/dashboard/data/user/use-login.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Link from "apps/dashboard/src/components/ui/link";
-import { allowedRoles, hasAccess, setAuthCredentials } from "apps/dashboard/src/utils/auth-utils";
+import Link from "apps/dashboard/components/ui/link";
+import { allowedRoles, hasAccess, setAuthCredentials } from "apps/dashboard/utils/auth-utils";
 
 type FormValues = {
 	email: string;

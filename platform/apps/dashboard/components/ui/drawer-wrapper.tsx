@@ -1,5 +1,5 @@
-import Logo from "apps/dashboard/src/components/ui/logo";
-import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
+import Logo from "apps/dashboard/components/ui/logo";
+import { CloseIcon } from "apps/dashboard/components/icons/close-icon";
 import Scrollbar from "./scrollbar";
 
 type DrawerWrapperProps = {

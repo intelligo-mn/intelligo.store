@@ -1,10 +1,10 @@
-import LoginForm from "apps/dashboard/src/components/auth/login-form";
-import Logo from "apps/dashboard/src/components/ui/logo";
+import LoginForm from "apps/dashboard/components/auth/login-form";
+import Logo from "apps/dashboard/components/ui/logo";
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { ROUTES } from "apps/dashboard/utils/routes";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { getAuthCredentials, isAuthenticated } from "apps/dashboard/src/utils/auth-utils";
+import { getAuthCredentials, isAuthenticated } from "apps/dashboard/utils/auth-utils";
 import { useRouter } from "next/router";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({

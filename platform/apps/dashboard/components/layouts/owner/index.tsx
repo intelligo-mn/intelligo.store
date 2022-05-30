@@ -1,6 +1,6 @@
-import Navbar from "apps/dashboard/src/components/layouts/navigation/top-navbar";
-import OwnerInformation from "apps/dashboard/src/components/user/user-details";
-import MobileNavigation from "apps/dashboard/src/components/layouts/navigation/mobile-navigation";
+import Navbar from "apps/dashboard/components/layouts/navigation/top-navbar";
+import OwnerInformation from "apps/dashboard/components/user/user-details";
+import MobileNavigation from "apps/dashboard/components/layouts/navigation/mobile-navigation";
 
 const OwnerLayout: React.FC = ({ children }) => {
   return (

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Type from "apps/dashboard/src/repositories/type";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Type from "apps/dashboard/repositories/type";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const useDeleteTypeMutation = () => {
   const queryClient = useQueryClient();

@@ -1,21 +1,21 @@
-import Input from "apps/dashboard/src/components/ui/input";
+import Input from "apps/dashboard/components/ui/input";
 import { useForm } from "react-hook-form";
-import Button from "apps/dashboard/src/components/ui/button";
-import TextArea from "apps/dashboard/src/components/ui/text-area";
-import Label from "apps/dashboard/src/components/ui/label";
-import Card from "apps/dashboard/src/components/common/card";
-import Description from "apps/dashboard/src/components/ui/description";
-import * as categoriesIcon from "apps/dashboard/src/components/icons/category";
-import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import Button from "apps/dashboard/components/ui/button";
+import TextArea from "apps/dashboard/components/ui/text-area";
+import Label from "apps/dashboard/components/ui/label";
+import Card from "apps/dashboard/components/common/card";
+import Description from "apps/dashboard/components/ui/description";
+import * as categoriesIcon from "apps/dashboard/components/icons/category";
+import { getIcon } from "apps/dashboard/utils/get-icon";
 import { useRouter } from "next/router";
-import { getErrorMessage } from "apps/dashboard/src/utils/form-error";
+import { getErrorMessage } from "apps/dashboard/utils/form-error";
 import { tagIcons } from "./tag-icons";
 import { useTranslation } from "next-i18next";
-import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import SelectInput from "apps/dashboard/components/ui/select-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { tagValidationSchema } from "./tag-validation-schema";
-import { useCreateTagMutation } from "apps/dashboard/src/data/tag/use-tag-create.mutation";
-import { useUpdateTagMutation } from "apps/dashboard/src/data/tag/use-tag-update.mutation";
+import { useCreateTagMutation } from "apps/dashboard/data/tag/use-tag-create.mutation";
+import { useUpdateTagMutation } from "apps/dashboard/data/tag/use-tag-update.mutation";
 
 
 export const updatedIcons = tagIcons.map((item: any) => {

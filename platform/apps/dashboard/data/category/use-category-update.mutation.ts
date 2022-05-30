@@ -1,8 +1,8 @@
-import { UpdateCategory } from "apps/dashboard/src/ts-types/generated";
+import { UpdateCategory } from "apps/dashboard/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import Category from "apps/dashboard/src/repositories/category";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import Category from "apps/dashboard/repositories/category";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 
 export interface ICategoryUpdateVariables {

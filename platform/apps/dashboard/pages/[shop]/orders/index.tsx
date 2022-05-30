@@ -1,18 +1,18 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Search from "apps/dashboard/src/components/common/search";
-import OrderList from "apps/dashboard/src/components/order/order-list";
-import { LIMIT } from "apps/dashboard/src/utils/constants";
+import Card from "apps/dashboard/components/common/card";
+import Search from "apps/dashboard/components/common/search";
+import OrderList from "apps/dashboard/components/order/order-list";
+import { LIMIT } from "apps/dashboard/utils/constants";
 import { useState } from "react";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import ShopLayout from "apps/dashboard/components/layouts/shop";
 import { useRouter } from "next/router";
-import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useOrdersQuery } from "apps/dashboard/src/data/order/use-orders.query";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/utils/auth-utils";
+import { useOrdersQuery } from "apps/dashboard/data/order/use-orders.query";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
 
 export default function Orders() {
   const {

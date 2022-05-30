@@ -1,4 +1,4 @@
-import Chart from "apps/dashboard/src/components/ui/chart";
+import Chart from "apps/dashboard/components/ui/chart";
 
 const DonutChart = ({ series, icon, labels, prefix, colors }: any) => {
   const options = {

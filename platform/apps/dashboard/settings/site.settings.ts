@@ -1,5 +1,5 @@
-import { adminAndOwnerOnly, adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { adminAndOwnerOnly, adminOwnerAndStaffOnly } from "apps/dashboard/utils/auth-utils";
+import { ROUTES } from "apps/dashboard/utils/routes";
 
 export const siteSettings = {
   name: "ChawkBazar",

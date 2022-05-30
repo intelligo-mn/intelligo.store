@@ -1,7 +1,7 @@
-import Product from "apps/dashboard/src/repositories/product";
+import Product from "apps/dashboard/repositories/product";
 import { useQuery } from "react-query";
-import { Product as TProduct } from "apps/dashboard/src/ts-types/generated";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { Product as TProduct } from "apps/dashboard/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 
 export const fetchProduct = async (slug: string) => {
   const { data } = await Product.find(`${API_ENDPOINTS.PRODUCTS}/${slug}`);

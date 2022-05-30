@@ -1,12 +1,12 @@
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopForm from "apps/dashboard/src/components/shop/shop-form";
-import ShopLayout from "apps/dashboard/src/components/layouts/shop";
-import { adminAndOwnerOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import ShopForm from "apps/dashboard/components/shop/shop-form";
+import ShopLayout from "apps/dashboard/components/layouts/shop";
+import { adminAndOwnerOnly } from "apps/dashboard/utils/auth-utils";
+import { useShopQuery } from "apps/dashboard/data/shop/use-shop.query";
 
 export default function UpdateShopPage() {
   const { query } = useRouter();

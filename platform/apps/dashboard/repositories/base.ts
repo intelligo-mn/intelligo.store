@@ -1,4 +1,4 @@
-import http from "apps/dashboard/src/utils/api/http";
+import http from "apps/dashboard/utils/api/http";
 
 export default class Base<C, U> {
   http = async <T>(

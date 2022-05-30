@@ -1,9 +1,9 @@
-import Pagination from "apps/dashboard/src/components/ui/pagination";
+import Pagination from "apps/dashboard/components/ui/pagination";
 import dayjs from "dayjs";
-import { Table } from "apps/dashboard/src/components/ui/table";
-import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
-import usePrice from "apps/dashboard/src/utils/use-price";
-import { formatAddress } from "apps/dashboard/src/utils/format-address";
+import { Table } from "apps/dashboard/components/ui/table";
+import ActionButtons from "apps/dashboard/components/common/action-buttons";
+import usePrice from "apps/dashboard/utils/use-price";
+import { formatAddress } from "apps/dashboard/utils/format-address";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -13,14 +13,14 @@ import {
 	OrderStatus,
 	SortOrder,
 	UserAddress,
-} from "apps/dashboard/src/ts-types/generated";
+} from "apps/dashboard/ts-types/generated";
 import InvoicePdf from "./invoice-pdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import { useIsRTL } from "apps/dashboard/utils/locals";
 import { useState } from "react";
-import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/components/ui/title-with-sort";
 
 type IProps = {
 	orders: OrderPaginator | null | undefined;

@@ -1,6 +1,6 @@
-import OwnerLayout from "apps/dashboard/src/components/layouts/owner";
-import ShopForm from "apps/dashboard/src/components/shop/shop-form";
-import { adminAndOwnerOnly } from "apps/dashboard/src/utils/auth-utils";
+import OwnerLayout from "apps/dashboard/components/layouts/owner";
+import ShopForm from "apps/dashboard/components/shop/shop-form";
+import { adminAndOwnerOnly } from "apps/dashboard/utils/auth-utils";
 import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

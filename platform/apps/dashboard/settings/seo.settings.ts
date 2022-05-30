@@ -1,4 +1,4 @@
-import { siteSettings } from 'apps/dashboard/src/settings/site.settings';
+import { siteSettings } from 'apps/dashboard/settings/site.settings';
 export const SEO = {
   openGraph: {
     type: 'website',

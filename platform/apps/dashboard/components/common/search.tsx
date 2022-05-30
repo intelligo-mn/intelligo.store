@@ -1,5 +1,5 @@
-import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
-import { SearchIcon } from "apps/dashboard/src/components/icons/search-icon";
+import { CloseIcon } from "apps/dashboard/components/icons/close-icon";
+import { SearchIcon } from "apps/dashboard/components/icons/search-icon";
 import cn from "classnames";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";

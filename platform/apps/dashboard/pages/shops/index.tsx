@@ -1,15 +1,15 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopList from "apps/dashboard/src/components/shop/shop-list";
+import ShopList from "apps/dashboard/components/shop/shop-list";
 import { useState } from "react";
-import Search from "apps/dashboard/src/components/common/search";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useShopsQuery } from "apps/dashboard/src/data/shop/use-shops.query";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import Search from "apps/dashboard/components/common/search";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
+import { useShopsQuery } from "apps/dashboard/data/shop/use-shops.query";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 
 export default function AllShopPage() {
   const { t } = useTranslation();

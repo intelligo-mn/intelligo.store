@@ -1,12 +1,12 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import AttributeList from "apps/dashboard/src/components/attribute/attribute-list";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useAttributesQuery } from "apps/dashboard/src/data/attributes/use-attributes.query";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import AttributeList from "apps/dashboard/components/attribute/attribute-list";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useAttributesQuery } from "apps/dashboard/data/attributes/use-attributes.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
 import { useState } from "react";
 
 export default function AttributePage() {

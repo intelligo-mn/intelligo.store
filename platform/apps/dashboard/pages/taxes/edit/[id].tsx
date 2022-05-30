@@ -1,9 +1,9 @@
-import Layout from "apps/dashboard/src/components/layouts/admin";
+import Layout from "apps/dashboard/components/layouts/admin";
 import { useRouter } from "next/router";
-import CreateOrUpdateTaxForm from "apps/dashboard/src/components/tax/tax-form";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
-import { useTaxQuery } from "apps/dashboard/src/data/tax/use-tax.query";
+import CreateOrUpdateTaxForm from "apps/dashboard/components/tax/tax-form";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
+import { useTaxQuery } from "apps/dashboard/data/tax/use-tax.query";
 import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";

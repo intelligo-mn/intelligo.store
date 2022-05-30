@@ -1,7 +1,7 @@
-import { ApproveWithdrawInput } from "apps/dashboard/src/ts-types/generated";
-import Withdraw from "apps/dashboard/src/repositories/withdraw";
+import { ApproveWithdrawInput } from "apps/dashboard/ts-types/generated";
+import Withdraw from "apps/dashboard/repositories/withdraw";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/utils/api/endpoints";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 export interface IWithdrawApproveVariables {

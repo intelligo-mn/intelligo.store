@@ -1,6 +1,6 @@
-import OwnerDashboard from "apps/dashboard/src/components/dashboard/owner";
-import AdminLayout from "apps/dashboard/src/components/layouts/admin";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
+import OwnerDashboard from "apps/dashboard/components/dashboard/owner";
+import AdminLayout from "apps/dashboard/components/layouts/admin";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

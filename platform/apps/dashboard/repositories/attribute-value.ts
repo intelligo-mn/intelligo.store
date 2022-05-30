@@ -3,7 +3,7 @@ import Base from "./base";
 import {
   AttributeValueCreateInput,
   AttributeValueUpdateInput,
-} from "apps/dashboard/src/ts-types/generated";
+} from "apps/dashboard/ts-types/generated";
 
 class AttributeValue extends Base<
   AttributeValueCreateInput,

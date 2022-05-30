@@ -1,17 +1,17 @@
-import Card from "apps/dashboard/src/components/common/card";
-import Layout from "apps/dashboard/src/components/layouts/admin";
-import Search from "apps/dashboard/src/components/common/search";
-import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import Card from "apps/dashboard/components/common/card";
+import Layout from "apps/dashboard/components/layouts/admin";
+import Search from "apps/dashboard/components/common/search";
+import LinkButton from "apps/dashboard/components/ui/link-button";
 import { useState } from "react";
-import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
-import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import Loader from "apps/dashboard/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import TagList from "apps/dashboard/src/components/tag/tag-list";
-import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
-import { useTagsQuery } from "apps/dashboard/src/data/tag/use-tags.query";
-import { SortOrder } from "apps/dashboard/src/ts-types/generated";
-import { ROUTES } from "apps/dashboard/src/utils/routes";
+import TagList from "apps/dashboard/components/tag/tag-list";
+import { adminOnly } from "apps/dashboard/utils/auth-utils";
+import { useTagsQuery } from "apps/dashboard/data/tag/use-tags.query";
+import { SortOrder } from "apps/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/utils/routes";
 
 export default function Tags() {
   const { t } = useTranslation();
