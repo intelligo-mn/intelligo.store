@@ -1,17 +1,17 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import ShippingList from "@intelligo/dashboard/components/shipping/shipping-list";
-import Search from "@intelligo/dashboard/components/common/search";
+import Card from "apps/dashboard/src/components/common/card";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import ShippingList from "apps/dashboard/src/components/shipping/shipping-list";
+import Search from "apps/dashboard/src/components/common/search";
 
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useState } from "react";
-import { useShippingClassesQuery } from "@data/shipping/use-shippingClasses.query";
+import { useShippingClassesQuery } from "apps/dashboard/src/data/shipping/use-shippingClasses.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 
 export default function ShippingsPage() {
   const { t } = useTranslation();

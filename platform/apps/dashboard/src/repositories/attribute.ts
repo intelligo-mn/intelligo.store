@@ -1,6 +1,6 @@
 import Base from "./base";
 
-import { AttributeInput } from "@intelligo/dashboard/ts-types/generated";
+import { AttributeInput } from "apps/dashboard/src/ts-types/generated";
 
 class Attribute extends Base<AttributeInput, AttributeInput> {}
 

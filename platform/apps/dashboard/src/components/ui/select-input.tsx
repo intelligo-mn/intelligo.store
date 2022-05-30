@@ -1,4 +1,4 @@
-import Select from "@intelligo/dashboard/components/ui/select/select";
+import Select from "apps/dashboard/src/components/ui/select/select";
 import { Controller } from "react-hook-form";
 
 interface SelectInputProps {

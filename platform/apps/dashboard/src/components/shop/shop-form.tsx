@@ -1,27 +1,27 @@
-import Button from "@intelligo/dashboard/components/ui/button";
-import Input from "@intelligo/dashboard/components/ui/input";
+import Button from "apps/dashboard/src/components/ui/button";
+import Input from "apps/dashboard/src/components/ui/input";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
-import FileInput from "@intelligo/dashboard/components/ui/file-input";
-import TextArea from "@intelligo/dashboard/components/ui/text-area";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
+import FileInput from "apps/dashboard/src/components/ui/file-input";
+import TextArea from "apps/dashboard/src/components/ui/text-area";
 import { shopValidationSchema } from "./shop-validation-schema";
-import { getFormattedImage } from "@intelligo/dashboard/utils/get-formatted-image";
-import { useCreateShopMutation } from "@data/shop/use-shop-create.mutation";
-import { useUpdateShopMutation } from "@data/shop/use-shop-update.mutation";
+import { getFormattedImage } from "apps/dashboard/src/utils/get-formatted-image";
+import { useCreateShopMutation } from "apps/dashboard/src/data/shop/use-shop-create.mutation";
+import { useUpdateShopMutation } from "apps/dashboard/src/data/shop/use-shop-update.mutation";
 import {
   BalanceInput,
   ShopSettings,
   ShopSocialInput,
   UserAddressInput,
-} from "@intelligo/dashboard/ts-types/generated";
-import GooglePlacesAutocomplete from "@intelligo/dashboard/components/form/google-places-autocomplete";
-import Label from "@intelligo/dashboard/components/ui/label";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import * as socialIcons from "@intelligo/dashboard/components/icons/social";
+} from "apps/dashboard/src/ts-types/generated";
+import GooglePlacesAutocomplete from "apps/dashboard/src/components/form/google-places-autocomplete";
+import Label from "apps/dashboard/src/components/ui/label";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import * as socialIcons from "apps/dashboard/src/components/icons/social";
 import omit from "lodash/omit";
 
 const socialIcon = [

@@ -1,7 +1,7 @@
-import { ForgetPasswordInput } from "@intelligo/dashboard/ts-types/generated";
+import { ForgetPasswordInput } from "apps/dashboard/src/ts-types/generated";
 import { useMutation } from "react-query";
-import User from "@intelligo/dashboard/repositories/user";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import User from "apps/dashboard/src/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export interface IForgetPassVariables {
   variables: { input: ForgetPasswordInput };

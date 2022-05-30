@@ -1,9 +1,9 @@
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { useMeQuery } from "@data/user/use-me.query";
-import ShopCard from "@intelligo/dashboard/components/shop/shop-card";
+import { useMeQuery } from "apps/dashboard/src/data/user/use-me.query";
+import ShopCard from "apps/dashboard/src/components/shop/shop-card";
 import NoShopSvg from "../../../public/no-shop.svg";
 
 export default function OwnerDashboard() {

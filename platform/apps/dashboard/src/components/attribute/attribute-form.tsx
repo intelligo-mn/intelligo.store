@@ -1,18 +1,18 @@
-import Input from "@intelligo/dashboard/components/ui/input";
+import Input from "apps/dashboard/src/components/ui/input";
 import { useFieldArray, useForm } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
+import Button from "apps/dashboard/src/components/ui/button";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { Attribute } from "@intelligo/dashboard/ts-types/generated";
-import { useShopQuery } from "@data/shop/use-shop.query";
-import { useCreateAttributeMutation } from "@data/attributes/use-attribute-create.mutation";
-import { useUpdateAttributeMutation } from "@data/attributes/use-attribute-update.mutation";
+import { Attribute } from "apps/dashboard/src/ts-types/generated";
+import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { useCreateAttributeMutation } from "apps/dashboard/src/data/attributes/use-attribute-create.mutation";
+import { useUpdateAttributeMutation } from "apps/dashboard/src/data/attributes/use-attribute-update.mutation";
 import { useState } from "react";
-import Alert from "@intelligo/dashboard/components/ui/alert";
+import Alert from "apps/dashboard/src/components/ui/alert";
 import { animateScroll } from "react-scroll";
-import { attributeValidationSchema } from "@intelligo/dashboard/components/attribute/attribute-validation-schema";
+import { attributeValidationSchema } from "apps/dashboard/src/components/attribute/attribute-validation-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormValues = {

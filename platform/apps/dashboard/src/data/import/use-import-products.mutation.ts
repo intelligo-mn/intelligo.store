@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Import from "@intelligo/dashboard/repositories/import";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Import from "apps/dashboard/src/repositories/import";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 

@@ -1,9 +1,9 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
+import Layout from "apps/dashboard/src/components/layouts/admin";
 import { useRouter } from "next/router";
-import CreateOrUpdateTypeForm from "@intelligo/dashboard/components/brand/brand-form";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useTypeQuery } from "@data/type/use-type.query";
+import CreateOrUpdateTypeForm from "apps/dashboard/src/components/brand/brand-form";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useTypeQuery } from "apps/dashboard/src/data/type/use-type.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

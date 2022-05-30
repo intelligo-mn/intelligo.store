@@ -1,4 +1,4 @@
-import { UserAddress } from "@intelligo/dashboard/ts-types/generated";
+import { UserAddress } from "apps/dashboard/src/ts-types/generated";
 function removeFalsy(obj: any) {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => Boolean(v)));
 }

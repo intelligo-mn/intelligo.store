@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import CreateOrUpdateWithdrawForm from "@intelligo/dashboard/components/withdraw/withdraw-form";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
-import { adminAndOwnerOnly } from "@intelligo/dashboard/utils/auth-utils";
+import CreateOrUpdateWithdrawForm from "apps/dashboard/src/components/withdraw/withdraw-form";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import { adminAndOwnerOnly } from "apps/dashboard/src/utils/auth-utils";
 
 export default function CreateWithdrawPage() {
   const { t } = useTranslation();

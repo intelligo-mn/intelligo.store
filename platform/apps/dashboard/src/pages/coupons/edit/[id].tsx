@@ -1,8 +1,8 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import CouponCreateOrUpdateForm from "@intelligo/dashboard/components/coupon/coupon-form";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useCouponQuery } from "@data/coupon/use-coupon.query";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import CouponCreateOrUpdateForm from "apps/dashboard/src/components/coupon/coupon-form";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useCouponQuery } from "apps/dashboard/src/data/coupon/use-coupon.query";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

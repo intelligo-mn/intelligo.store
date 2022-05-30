@@ -1,8 +1,8 @@
-import { AttributeValueUpdateInput } from "@intelligo/dashboard/ts-types/generated";
+import { AttributeValueUpdateInput } from "apps/dashboard/src/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import AttributeValue from "@intelligo/dashboard/repositories/attribute-value";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import AttributeValue from "apps/dashboard/src/repositories/attribute-value";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 
 export interface IAttributeValueUpdateVariables {

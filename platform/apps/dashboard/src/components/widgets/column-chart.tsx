@@ -1,7 +1,7 @@
-import Chart from "@intelligo/dashboard/components/ui/chart";
+import Chart from "apps/dashboard/src/components/ui/chart";
 import cn from "classnames";
-import { ArrowUp } from "@intelligo/dashboard/components/icons/arrow-up";
-import { ArrowDown } from "@intelligo/dashboard/components/icons/arrow-down";
+import { ArrowUp } from "apps/dashboard/src/components/icons/arrow-up";
+import { ArrowDown } from "apps/dashboard/src/components/icons/arrow-down";
 
 const BarChart = ({
   widgetTitle,

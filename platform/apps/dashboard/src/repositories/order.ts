@@ -2,7 +2,7 @@ import {
 	CheckoutVerificationInput,
 	CreateOrder,
 	UpdateOrder,
-} from "@intelligo/dashboard/ts-types/generated";
+} from "apps/dashboard/src/ts-types/generated";
 import Base from "./base";
 
 class Order extends Base<CreateOrder, UpdateOrder> {

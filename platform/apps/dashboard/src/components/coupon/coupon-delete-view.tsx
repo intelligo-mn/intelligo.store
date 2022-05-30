@@ -1,9 +1,9 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useDeleteCouponMutation } from "@data/coupon/use-coupon-delete.mutation";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useDeleteCouponMutation } from "apps/dashboard/src/data/coupon/use-coupon-delete.mutation";
 
 const CouponDeleteView = () => {
   const { mutate: deleteCoupon, isLoading: loading } =

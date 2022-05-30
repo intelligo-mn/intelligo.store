@@ -1,8 +1,8 @@
-import { QueryParamsType, QueryOptionsType } from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+import { QueryParamsType, QueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import Coupon from "@intelligo/dashboard/repositories/coupon";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Coupon from "apps/dashboard/src/repositories/coupon";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 const fetchCoupons = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

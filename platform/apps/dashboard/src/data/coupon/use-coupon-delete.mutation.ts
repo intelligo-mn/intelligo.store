@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Coupon from "@intelligo/dashboard/repositories/coupon";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Coupon from "apps/dashboard/src/repositories/coupon";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useDeleteCouponMutation = () => {
   const queryClient = useQueryClient();

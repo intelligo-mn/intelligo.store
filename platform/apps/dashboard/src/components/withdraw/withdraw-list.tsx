@@ -1,20 +1,20 @@
-import Pagination from "@intelligo/dashboard/components/ui/pagination";
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
+import Pagination from "apps/dashboard/src/components/ui/pagination";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
-import usePrice from "@intelligo/dashboard/utils/use-price";
-import { adminOnly, getAuthCredentials, hasAccess } from "@intelligo/dashboard/utils/auth-utils";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import { Shop, SortOrder, WithdrawPaginator } from "@intelligo/dashboard/ts-types/generated";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import usePrice from "apps/dashboard/src/utils/use-price";
+import { adminOnly, getAuthCredentials, hasAccess } from "apps/dashboard/src/utils/auth-utils";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { Shop, SortOrder, WithdrawPaginator } from "apps/dashboard/src/ts-types/generated";
 import { useRouter } from "next/router";
-import Badge from "@intelligo/dashboard/components/ui/badge/badge";
+import Badge from "apps/dashboard/src/components/ui/badge/badge";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 type IProps = {
   withdraws: WithdrawPaginator | null | undefined;

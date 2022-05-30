@@ -1,9 +1,9 @@
-import { OrderStatusInput } from "@intelligo/dashboard/ts-types/generated";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import OrderStatus from "@intelligo/dashboard/repositories/order-status";
+import { OrderStatusInput } from "apps/dashboard/src/ts-types/generated";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import OrderStatus from "apps/dashboard/src/repositories/order-status";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export interface IOrderStatusCreateVariables {
   variables: {

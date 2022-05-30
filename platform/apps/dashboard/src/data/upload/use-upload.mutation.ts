@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Attachment from "@intelligo/dashboard/repositories/upload";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Attachment from "apps/dashboard/src/repositories/upload";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useUploadMutation = () => {
   const queryClient = useQueryClient();

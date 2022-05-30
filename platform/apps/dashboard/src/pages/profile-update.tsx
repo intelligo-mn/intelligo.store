@@ -1,9 +1,9 @@
-import Layout from "@intelligo/dashboard/components/layouts/app";
-import ProfileUpdateFrom from "@intelligo/dashboard/components/auth/profile-update-form";
-import ChangePasswordForm from "@intelligo/dashboard/components/auth/change-password-from";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useMeQuery } from "@data/user/use-me.query";
+import Layout from "apps/dashboard/src/components/layouts/app";
+import ProfileUpdateFrom from "apps/dashboard/src/components/auth/profile-update-form";
+import ChangePasswordForm from "apps/dashboard/src/components/auth/change-password-from";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useMeQuery } from "apps/dashboard/src/data/user/use-me.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

@@ -1,4 +1,4 @@
-import { CreateCategory, UpdateCategory } from "@intelligo/dashboard/ts-types/generated";
+import { CreateCategory, UpdateCategory } from "apps/dashboard/src/ts-types/generated";
 import Base from "./base";
 
 class Category extends Base<CreateCategory, UpdateCategory> {

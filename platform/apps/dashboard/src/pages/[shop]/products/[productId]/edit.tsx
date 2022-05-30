@@ -1,12 +1,12 @@
-import CreateOrUpdateProductForm from "@intelligo/dashboard/components/product/product-form";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import CreateOrUpdateProductForm from "apps/dashboard/src/components/product/product-form";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
-import { adminOwnerAndStaffOnly } from "@intelligo/dashboard/utils/auth-utils";
-import { useProductQuery } from "@data/product/product.query";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
+import { useProductQuery } from "apps/dashboard/src/data/product/product.query";
 
 export default function UpdateProductPage() {
   const { query } = useRouter();

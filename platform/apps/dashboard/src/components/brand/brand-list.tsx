@@ -1,16 +1,16 @@
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
-import { SortOrder, Type } from "@intelligo/dashboard/ts-types/generated";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as typeIcons from "@intelligo/dashboard/components/icons/type";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
+import { SortOrder, Type } from "apps/dashboard/src/ts-types/generated";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as typeIcons from "apps/dashboard/src/components/icons/type";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 import Image from "next/image";
-import Pagination from "@intelligo/dashboard/components/ui/pagination";
-import { TypesPaginator } from "@data/type/use-types.query";
+import Pagination from "apps/dashboard/src/components/ui/pagination";
+import { TypesPaginator } from "apps/dashboard/src/data/type/use-types.query";
 
 export type IProps = {
 	types: TypesPaginator | undefined | null;

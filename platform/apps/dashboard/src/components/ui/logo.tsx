@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "@intelligo/dashboard/components/ui/link";
+import Link from "apps/dashboard/src/components/ui/link";
 import cn from "classnames";
-import { siteSettings } from "@intelligo/dashboard/settings/site.settings";
-import { useSettings } from "@intelligo/dashboard/contexts/settings.context";
+import { siteSettings } from "apps/dashboard/src/settings/site.settings";
+import { useSettings } from "apps/dashboard/src/contexts/settings.context";
 
 const Logo: React.FC<React.AnchorHTMLAttributes<{}>> = ({
   className,

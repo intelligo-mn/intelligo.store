@@ -1,12 +1,12 @@
 import {
   QueryParamsType,
   WithdrawsQueryOptionsType,
-} from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData } from "@intelligo/dashboard/utils/data-mappers";
+} from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import Withdraw from "@intelligo/dashboard/repositories/withdraw";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
-import { WithdrawPaginator } from "@intelligo/dashboard/ts-types/generated";
+import Withdraw from "apps/dashboard/src/repositories/withdraw";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { WithdrawPaginator } from "apps/dashboard/src/ts-types/generated";
 
 const fetchWithdraws = async ({
   queryKey,

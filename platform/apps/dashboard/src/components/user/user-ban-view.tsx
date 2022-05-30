@@ -1,10 +1,10 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useBlockUserMutation } from "@data/user/use-user-block.mutation";
-import { useUnblockUserMutation } from "@data/user/use-user-unblock.mutation";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useBlockUserMutation } from "apps/dashboard/src/data/user/use-user-block.mutation";
+import { useUnblockUserMutation } from "apps/dashboard/src/data/user/use-user-unblock.mutation";
 
 const CustomerBanView = () => {
   const { mutate: blockUser, isLoading: loading } = useBlockUserMutation();

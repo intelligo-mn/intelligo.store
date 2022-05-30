@@ -1,9 +1,9 @@
-import { QueryParamsType } from "@intelligo/dashboard/ts-types/custom.types";
+import { QueryParamsType } from "apps/dashboard/src/ts-types/custom.types";
 import { useQuery } from "react-query";
-import Product from "@intelligo/dashboard/repositories/product";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
-import { Product as TProduct } from "@intelligo/dashboard/ts-types/generated";
-import { stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+import Product from "apps/dashboard/src/repositories/product";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { Product as TProduct } from "apps/dashboard/src/ts-types/generated";
+import { stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 
 const fetchPopularProducts = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

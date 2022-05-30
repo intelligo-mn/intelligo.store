@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
-import AddStaffForm from "@intelligo/dashboard/components/shop/staff-form";
-import { adminAndOwnerOnly } from "@intelligo/dashboard/utils/auth-utils";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import AddStaffForm from "apps/dashboard/src/components/shop/staff-form";
+import { adminAndOwnerOnly } from "apps/dashboard/src/utils/auth-utils";
 
 export default function AddStaffPage() {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import CustomerCreateForm from "@intelligo/dashboard/components/user/user-form";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import CustomerCreateForm from "apps/dashboard/src/components/user/user-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

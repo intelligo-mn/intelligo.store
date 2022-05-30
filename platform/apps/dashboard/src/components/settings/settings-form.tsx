@@ -1,31 +1,31 @@
-import Input from "@intelligo/dashboard/components/ui/input";
+import Input from "apps/dashboard/src/components/ui/input";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
+import Button from "apps/dashboard/src/components/ui/button";
 import {
 	ContactDetailsInput,
 	SettingsOptions,
 	Shipping,
 	ShopSocialInput,
 	Tax,
-} from "@intelligo/dashboard/ts-types/generated";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
-import Label from "@intelligo/dashboard/components/ui/label";
+} from "apps/dashboard/src/ts-types/generated";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
+import Label from "apps/dashboard/src/components/ui/label";
 import { CURRENCY } from "./currency";
-import { siteSettings } from "@intelligo/dashboard/settings/site.settings";
-import ValidationError from "@intelligo/dashboard/components/ui/form-validation-error";
-import { useUpdateSettingsMutation } from "@data/settings/use-settings-update.mutation";
+import { siteSettings } from "apps/dashboard/src/settings/site.settings";
+import ValidationError from "apps/dashboard/src/components/ui/form-validation-error";
+import { useUpdateSettingsMutation } from "apps/dashboard/src/data/settings/use-settings-update.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { settingsValidationSchema } from "./settings-validation-schema";
-import FileInput from "@intelligo/dashboard/components/ui/file-input";
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import TextArea from "@intelligo/dashboard/components/ui/text-area";
-import { getFormattedImage } from "@intelligo/dashboard/utils/get-formatted-image";
-import Alert from "@intelligo/dashboard/components/ui/alert";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as socialIcons from "@intelligo/dashboard/components/icons/social";
-import GooglePlacesAutocomplete from "@intelligo/dashboard/components/form/google-places-autocomplete";
+import FileInput from "apps/dashboard/src/components/ui/file-input";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import TextArea from "apps/dashboard/src/components/ui/text-area";
+import { getFormattedImage } from "apps/dashboard/src/utils/get-formatted-image";
+import Alert from "apps/dashboard/src/components/ui/alert";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as socialIcons from "apps/dashboard/src/components/icons/social";
+import GooglePlacesAutocomplete from "apps/dashboard/src/components/form/google-places-autocomplete";
 import omit from "lodash/omit";
 
 type FormValues = {

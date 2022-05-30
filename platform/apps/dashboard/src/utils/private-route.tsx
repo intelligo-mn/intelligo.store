@@ -1,8 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { getAuthCredentials, hasAccess } from "./auth-utils";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import AccessDeniedPage from "@intelligo/dashboard/components/common/access-denied";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import AccessDeniedPage from "apps/dashboard/src/components/common/access-denied";
 import { ROUTES } from "./routes";
 
 const PrivateRoute: React.FC<{ authProps: any }> = ({

@@ -1,17 +1,17 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import Card from "apps/dashboard/src/components/common/card";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import WithdrawList from "@intelligo/dashboard/components/withdraw/withdraw-list";
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
+import WithdrawList from "apps/dashboard/src/components/withdraw/withdraw-list";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
 import { useRouter } from "next/router";
-import { adminAndOwnerOnly } from "@intelligo/dashboard/utils/auth-utils";
-import { useShopQuery } from "@data/shop/use-shop.query";
-import { useWithdrawsQuery } from "@data/withdraw/use-withdraws.query";
+import { adminAndOwnerOnly } from "apps/dashboard/src/utils/auth-utils";
+import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { useWithdrawsQuery } from "apps/dashboard/src/data/withdraw/use-withdraws.query";
 import { useState } from "react";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 
 export default function WithdrawsPage() {
   const { t } = useTranslation();

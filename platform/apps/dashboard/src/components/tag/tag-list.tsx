@@ -1,14 +1,14 @@
-import Pagination from "@intelligo/dashboard/components/ui/pagination";
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as categoriesIcon from "@intelligo/dashboard/components/icons/category";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
+import Pagination from "apps/dashboard/src/components/ui/pagination";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as categoriesIcon from "apps/dashboard/src/components/icons/category";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 export type IProps = {
   tags: any | undefined | null;

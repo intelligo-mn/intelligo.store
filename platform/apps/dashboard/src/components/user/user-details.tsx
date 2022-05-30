@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { CheckMarkFill } from "@intelligo/dashboard/components/icons/checkmark-circle-fill";
-import { CloseFillIcon } from "@intelligo/dashboard/components/icons/close-fill";
+import { CheckMarkFill } from "apps/dashboard/src/components/icons/checkmark-circle-fill";
+import { CloseFillIcon } from "apps/dashboard/src/components/icons/close-fill";
 import { useTranslation } from "next-i18next";
-import Link from "@intelligo/dashboard/components/ui/link";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useMeQuery } from "@data/user/use-me.query";
+import Link from "apps/dashboard/src/components/ui/link";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useMeQuery } from "apps/dashboard/src/data/user/use-me.query";
 
 const UserDetails: React.FC = () => {
   const { t } = useTranslation("common");

@@ -1,8 +1,8 @@
-import { QueryParamsType, QueryOptionsType } from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+import { QueryParamsType, QueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import OrderStatus from "@intelligo/dashboard/repositories/order-status";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import OrderStatus from "apps/dashboard/src/repositories/order-status";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 const fetchOrderStatuses = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

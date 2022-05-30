@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
+import Layout from "apps/dashboard/src/components/layouts/admin";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import CreateOrUpdateTagForm from "@intelligo/dashboard/components/tag/tag-form";
-import { adminOnly } from "@intelligo/dashboard/utils/auth-utils";
+import CreateOrUpdateTagForm from "apps/dashboard/src/components/tag/tag-form";
+import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
 
 export default function CreateCategoriesPage() {
   const { t } = useTranslation();

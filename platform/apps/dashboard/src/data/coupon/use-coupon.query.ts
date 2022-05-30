@@ -1,7 +1,7 @@
-import Coupon from "@intelligo/dashboard/repositories/coupon";
+import Coupon from "apps/dashboard/src/repositories/coupon";
 import { useQuery } from "react-query";
-import { Coupon as TCoupon } from "@intelligo/dashboard/ts-types/generated";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { Coupon as TCoupon } from "apps/dashboard/src/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const fetchCoupon = async (id: string) => {
   const { data } = await Coupon.find(`${API_ENDPOINTS.COUPONS}/${id}`);

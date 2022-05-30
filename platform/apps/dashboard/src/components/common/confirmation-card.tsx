@@ -1,5 +1,5 @@
-import TrashIcon from "@intelligo/dashboard/components/icons/trash";
-import Button from "@intelligo/dashboard/components/ui/button";
+import TrashIcon from "apps/dashboard/src/components/icons/trash";
+import Button from "apps/dashboard/src/components/ui/button";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";
 

@@ -1,12 +1,12 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import AttributeList from "@intelligo/dashboard/components/attribute/attribute-list";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useAttributesQuery } from "@data/attributes/use-attributes.query";
+import Card from "apps/dashboard/src/components/common/card";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import AttributeList from "apps/dashboard/src/components/attribute/attribute-list";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useAttributesQuery } from "apps/dashboard/src/data/attributes/use-attributes.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useState } from "react";
 
 export default function AttributePage() {

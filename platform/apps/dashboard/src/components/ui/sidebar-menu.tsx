@@ -2,11 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import cn from "classnames";
-import { ExpandLessIcon } from "@intelligo/dashboard/components/icons/expand-less-icon";
-import { ExpandMoreIcon } from "@intelligo/dashboard/components/icons/expand-more-icon";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as sidebarIcons from "@intelligo/dashboard/components/icons/sidebar";
-import { useUI } from "@intelligo/dashboard/contexts/ui.context";
+import { ExpandLessIcon } from "apps/dashboard/src/components/icons/expand-less-icon";
+import { ExpandMoreIcon } from "apps/dashboard/src/components/icons/expand-more-icon";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as sidebarIcons from "apps/dashboard/src/components/icons/sidebar";
+import { useUI } from "apps/dashboard/src/contexts/ui.context";
 import { useTranslation } from "next-i18next";
 
 function SidebarMenuItem({ className, item, depth = 0 }: any) {

@@ -1,9 +1,9 @@
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-url";
-import { LocationInput } from "@intelligo/dashboard/ts-types/generated";
+import { LocationInput } from "apps/dashboard/src/ts-types/generated";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 
 const libraries: Libraries = ["places"];
 export default function GooglePlacesAutocomplete({

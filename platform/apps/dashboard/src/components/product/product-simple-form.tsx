@@ -1,6 +1,6 @@
-import Input from "@intelligo/dashboard/components/ui/input";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
+import Input from "apps/dashboard/src/components/ui/input";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 

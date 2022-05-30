@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Product from "@intelligo/dashboard/repositories/product";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Product from "apps/dashboard/src/repositories/product";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useDeleteProductMutation = () => {
   const queryClient = useQueryClient();

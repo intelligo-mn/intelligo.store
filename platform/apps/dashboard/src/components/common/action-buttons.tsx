@@ -1,13 +1,13 @@
-import { BanUser } from "@intelligo/dashboard/components/icons/ban-user";
-import EditIcon from "@intelligo/dashboard/components/icons/edit";
-import Trash from "@intelligo/dashboard/components/icons/trash";
-import { Eye } from "@intelligo/dashboard/components/icons/eye-icon";
-import { WalletPointsIcon } from "@intelligo/dashboard/components/icons/wallet-point";
-import Link from "@intelligo/dashboard/components/ui/link";
+import { BanUser } from "apps/dashboard/src/components/icons/ban-user";
+import EditIcon from "apps/dashboard/src/components/icons/edit";
+import Trash from "apps/dashboard/src/components/icons/trash";
+import { Eye } from "apps/dashboard/src/components/icons/eye-icon";
+import { WalletPointsIcon } from "apps/dashboard/src/components/icons/wallet-point";
+import Link from "apps/dashboard/src/components/ui/link";
 import { useTranslation } from "next-i18next";
-import { CheckMarkCircle } from "@intelligo/dashboard/components/icons/checkmark-circle";
-import { useModalAction } from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { CloseFillIcon } from "@intelligo/dashboard/components/icons/close-fill";
+import { CheckMarkCircle } from "apps/dashboard/src/components/icons/checkmark-circle";
+import { useModalAction } from "apps/dashboard/src/components/ui/modal/modal.context";
+import { CloseFillIcon } from "apps/dashboard/src/components/icons/close-fill";
 
 type Props = {
   id: string;

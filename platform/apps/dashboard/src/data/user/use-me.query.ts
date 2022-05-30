@@ -1,7 +1,7 @@
-import User from "@intelligo/dashboard/repositories/user";
+import User from "apps/dashboard/src/repositories/user";
 import { useQuery } from "react-query";
-import { User as TUser } from "@intelligo/dashboard/ts-types/generated";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { User as TUser } from "apps/dashboard/src/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const fetchMe = async () => {
   const { data } = await User.find(API_ENDPOINTS.ME);

@@ -1,18 +1,18 @@
-import Alert from "@intelligo/dashboard/components/ui/alert";
-import Button from "@intelligo/dashboard/components/ui/button";
-import Input from "@intelligo/dashboard/components/ui/input";
-import PasswordInput from "@intelligo/dashboard/components/ui/password-input";
+import Alert from "apps/dashboard/src/components/ui/alert";
+import Button from "apps/dashboard/src/components/ui/button";
+import Input from "apps/dashboard/src/components/ui/input";
+import PasswordInput from "apps/dashboard/src/components/ui/password-input";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Link from "@intelligo/dashboard/components/ui/link";
-import { allowedRoles, hasAccess, setAuthCredentials } from "@intelligo/dashboard/utils/auth-utils";
-import { Permission } from "@intelligo/dashboard/ts-types/generated";
-import { useRegisterMutation } from "@data/user/use-register.mutation";
+import Link from "apps/dashboard/src/components/ui/link";
+import { allowedRoles, hasAccess, setAuthCredentials } from "apps/dashboard/src/utils/auth-utils";
+import { Permission } from "apps/dashboard/src/ts-types/generated";
+import { useRegisterMutation } from "apps/dashboard/src/data/user/use-register.mutation";
 
 type FormValues = {
 	name: string;

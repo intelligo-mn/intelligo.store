@@ -1,8 +1,8 @@
-import { UpdateUser } from "@intelligo/dashboard/ts-types/generated";
+import { UpdateUser } from "apps/dashboard/src/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import User from "@intelligo/dashboard/repositories/user";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import User from "apps/dashboard/src/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 
 export interface IUserUpdateVariables {

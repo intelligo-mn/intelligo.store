@@ -1,4 +1,4 @@
-import Uploader from "@intelligo/dashboard/components/common/uploader";
+import Uploader from "apps/dashboard/src/components/common/uploader";
 import { Controller } from "react-hook-form";
 
 interface FileInputProps {

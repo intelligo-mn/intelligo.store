@@ -1,4 +1,4 @@
-import Charts from "@intelligo/dashboard/components/ui/chart";
+import Charts from "apps/dashboard/src/components/ui/chart";
 
 const GraphChart = ({ widgetTitle, series, labels, colors }: any) => {
   const options = {

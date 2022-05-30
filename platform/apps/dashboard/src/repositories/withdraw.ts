@@ -1,6 +1,6 @@
 import Base from "./base";
 
-import { ApproveWithdrawInput, CreateWithdrawInput } from "@intelligo/dashboard/ts-types/generated";
+import { ApproveWithdrawInput, CreateWithdrawInput } from "apps/dashboard/src/ts-types/generated";
 
 class Withdraw extends Base<CreateWithdrawInput, CreateWithdrawInput> {
   approve = async (url: string, variables: ApproveWithdrawInput) => {

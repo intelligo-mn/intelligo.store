@@ -1,15 +1,15 @@
-import Pagination from "@intelligo/dashboard/components/ui/pagination";
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as categoriesIcon from "@intelligo/dashboard/components/icons/category";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import { CategoryPaginator, SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import Pagination from "apps/dashboard/src/components/ui/pagination";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as categoriesIcon from "apps/dashboard/src/components/icons/category";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { CategoryPaginator, SortOrder } from "apps/dashboard/src/ts-types/generated";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 export type IProps = {
 	categories: CategoryPaginator | undefined | null;

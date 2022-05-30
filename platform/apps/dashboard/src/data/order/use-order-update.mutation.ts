@@ -1,7 +1,7 @@
-import { UpdateOrder } from "@intelligo/dashboard/ts-types/generated";
+import { UpdateOrder } from "apps/dashboard/src/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
-import Order from "@intelligo/dashboard/repositories/order";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Order from "apps/dashboard/src/repositories/order";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 

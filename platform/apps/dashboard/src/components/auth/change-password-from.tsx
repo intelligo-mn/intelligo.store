@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
-import Card from "@intelligo/dashboard/components/common/card";
-import Description from "@intelligo/dashboard/components/ui/description";
+import Button from "apps/dashboard/src/components/ui/button";
+import Card from "apps/dashboard/src/components/common/card";
+import Description from "apps/dashboard/src/components/ui/description";
 import { toast } from "react-toastify";
-import PasswordInput from "@intelligo/dashboard/components/ui/password-input";
-import { useChangePasswordMutation } from "@data/user/use-change-password.mutation";
+import PasswordInput from "apps/dashboard/src/components/ui/password-input";
+import { useChangePasswordMutation } from "apps/dashboard/src/data/user/use-change-password.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

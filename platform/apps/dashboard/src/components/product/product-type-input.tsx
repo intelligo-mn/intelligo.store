@@ -1,9 +1,9 @@
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import Label from "@intelligo/dashboard/components/ui/label";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import Label from "apps/dashboard/src/components/ui/label";
 import { useFormContext } from "react-hook-form";
-import Card from "@intelligo/dashboard/components/common/card";
-import ValidationError from "@intelligo/dashboard/components/ui/form-validation-error";
-import { ProductType } from "@intelligo/dashboard/ts-types/generated";
+import Card from "apps/dashboard/src/components/common/card";
+import ValidationError from "apps/dashboard/src/components/ui/form-validation-error";
+import { ProductType } from "apps/dashboard/src/ts-types/generated";
 import { useTranslation } from "next-i18next";
 
 const productType = [

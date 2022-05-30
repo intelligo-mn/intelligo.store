@@ -1,9 +1,9 @@
-import { QueryParamsType, TagsQueryOptionsType } from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+import { QueryParamsType, TagsQueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import Tag from "@intelligo/dashboard/repositories/tag";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
-import { TagPaginator } from "@intelligo/dashboard/ts-types/generated";
+import Tag from "apps/dashboard/src/repositories/tag";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
+import { TagPaginator } from "apps/dashboard/src/ts-types/generated";
 
 const fetchTags = async ({
   queryKey,

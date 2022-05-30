@@ -1,6 +1,6 @@
-import { useUI } from "@intelligo/dashboard/contexts/ui.context";
-import DrawerWrapper from "@intelligo/dashboard/components/ui/drawer-wrapper";
-import Drawer from "@intelligo/dashboard/components/ui/drawer";
+import { useUI } from "apps/dashboard/src/contexts/ui.context";
+import DrawerWrapper from "apps/dashboard/src/components/ui/drawer-wrapper";
+import Drawer from "apps/dashboard/src/components/ui/drawer";
 
 const MobileNavigation: React.FC = ({ children }) => {
   const { displaySidebar, closeSidebar } = useUI();

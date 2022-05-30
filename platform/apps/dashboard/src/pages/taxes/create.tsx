@@ -1,5 +1,5 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import CreateOrUpdateTaxForm from "@intelligo/dashboard/components/tax/tax-form";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import CreateOrUpdateTaxForm from "apps/dashboard/src/components/tax/tax-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

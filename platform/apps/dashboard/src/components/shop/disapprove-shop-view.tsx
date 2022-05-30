@@ -1,10 +1,10 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
-import { CheckMarkCircle } from "@intelligo/dashboard/components/icons/checkmark-circle";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
+import { CheckMarkCircle } from "apps/dashboard/src/components/icons/checkmark-circle";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useDisApproveShopMutation } from "@data/shop/use-disapprove-shop.mutation";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useDisApproveShopMutation } from "apps/dashboard/src/data/shop/use-disapprove-shop.mutation";
 
 const ProductDeleteView = () => {
   const { mutate: disApproveShopById, isLoading: loading } =

@@ -1,5 +1,5 @@
-import Logo from "@intelligo/dashboard/components/ui/logo";
-import { CloseIcon } from "@intelligo/dashboard/components/icons/close-icon";
+import Logo from "apps/dashboard/src/components/ui/logo";
+import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
 import Scrollbar from "./scrollbar";
 
 type DrawerWrapperProps = {

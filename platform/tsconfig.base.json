@@ -15,15 +15,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@intelligo/dashboard/assets/*": ["apps/dashboard/src/assets/*"],
-      "@intelligo/dashboard/components/*": ["apps/dashboard/src/components/*"],
-      "@intelligo/dashboard/contexts/*": ["apps/dashboard/src/contexts/*"],
-      "@intelligo/dashboard/graphql/*": ["apps/dashboard/src/graphql/*"],
-      "@intelligo/dashboard/settings/*": ["apps/dashboard/src/settings/*"],
-      "@intelligo/dashboard/utils/*": ["apps/dashboard/src/utils/*"],
-      "@intelligo/dashboard/ts-types/*": ["apps/dashboard/src/ts-types/*"],
-      "@intelligo/dashboard/repositories/*": ["apps/dashboard/src/repositories/*"],
-      "@intelligo/dashboard/data/*": ["apps/dashboard/src/data/*"]
+      "apps/dashboard/src/assets/*": ["apps/dashboard/src/assets/*"],
+      "apps/dashboard/src/components/*": ["apps/dashboard/src/components/*"],
+      "apps/dashboard/src/contexts/*": ["apps/dashboard/src/contexts/*"],
+      "apps/dashboard/src/data/*": ["apps/dashboard/src/data/*"],
+      "apps/dashboard/src/graphql/*": ["apps/dashboard/src/graphql/*"],
+      "apps/dashboard/src/repositories/*": [
+        "apps/dashboard/src/repositories/*"
+      ],
+      "apps/dashboard/src/settings/*": ["apps/dashboard/src/settings/*"],
+      "apps/dashboard/src/ts-types/*": ["apps/dashboard/src/ts-types/*"],
+      "apps/dashboard/src/utils/*": ["apps/dashboard/src/utils/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

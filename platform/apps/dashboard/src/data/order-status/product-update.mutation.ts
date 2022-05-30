@@ -1,8 +1,8 @@
-import { OrderStatusUpdateInput } from "@intelligo/dashboard/ts-types/generated";
+import { OrderStatusUpdateInput } from "apps/dashboard/src/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import OrderStatus from "@intelligo/dashboard/repositories/order-status";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import OrderStatus from "apps/dashboard/src/repositories/order-status";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 
 export interface IOrderStatusUpdateVariables {

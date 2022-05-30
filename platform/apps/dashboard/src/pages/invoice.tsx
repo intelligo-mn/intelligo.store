@@ -1,7 +1,7 @@
-import InvoicePdf from "@intelligo/dashboard/components/order/invoice-pdf";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useOrderQuery } from "@data/order/use-order.query";
+import InvoicePdf from "apps/dashboard/src/components/order/invoice-pdf";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useOrderQuery } from "apps/dashboard/src/data/order/use-order.query";
 import { PDFViewer } from "@react-pdf/renderer";
 
 const InvoicePage = () => {

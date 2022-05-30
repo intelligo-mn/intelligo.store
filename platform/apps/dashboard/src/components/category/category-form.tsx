@@ -1,22 +1,22 @@
-import Input from "@intelligo/dashboard/components/ui/input";
+import Input from "apps/dashboard/src/components/ui/input";
 import {
   useForm
 } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
-import TextArea from "@intelligo/dashboard/components/ui/text-area";
-import Label from "@intelligo/dashboard/components/ui/label";
-import Card from "@intelligo/dashboard/components/common/card";
-import Description from "@intelligo/dashboard/components/ui/description";
-import * as categoriesIcon from "@intelligo/dashboard/components/icons/category";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
+import Button from "apps/dashboard/src/components/ui/button";
+import TextArea from "apps/dashboard/src/components/ui/text-area";
+import Label from "apps/dashboard/src/components/ui/label";
+import Card from "apps/dashboard/src/components/common/card";
+import Description from "apps/dashboard/src/components/ui/description";
+import * as categoriesIcon from "apps/dashboard/src/components/icons/category";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
 import { useRouter } from "next/router";
-import { Category } from "@intelligo/dashboard/ts-types/generated";
-import { useUpdateCategoryMutation } from "@data/category/use-category-update.mutation";
-import { useCreateCategoryMutation } from "@data/category/use-category-create.mutation";
+import { Category } from "apps/dashboard/src/ts-types/generated";
+import { useUpdateCategoryMutation } from "apps/dashboard/src/data/category/use-category-update.mutation";
+import { useCreateCategoryMutation } from "apps/dashboard/src/data/category/use-category-create.mutation";
 import { categoryIcons } from "./category-icons";
 import { useTranslation } from "next-i18next";
-import FileInput from "@intelligo/dashboard/components/ui/file-input";
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
+import FileInput from "apps/dashboard/src/components/ui/file-input";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { categoryValidationSchema } from "./category-validation-schema";
 

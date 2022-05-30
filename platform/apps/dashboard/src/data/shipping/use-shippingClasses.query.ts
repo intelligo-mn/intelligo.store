@@ -1,8 +1,8 @@
-import { QueryParamsType, QueryOptionsType } from "@intelligo/dashboard/ts-types/custom.types";
-import { stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+import { QueryParamsType, QueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
+import { stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import Shipping from "@intelligo/dashboard/repositories/shipping";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Shipping from "apps/dashboard/src/repositories/shipping";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 const fetchShippingClasses = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

@@ -1,8 +1,8 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import CreateOrUpdateProductForm from "@intelligo/dashboard/components/product/product-form";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useProductQuery } from "@data/product/product.query";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import CreateOrUpdateProductForm from "apps/dashboard/src/components/product/product-form";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useProductQuery } from "apps/dashboard/src/data/product/product.query";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";

@@ -1,20 +1,20 @@
-import { CartIconBig } from "@intelligo/dashboard/components/icons/cart-icon-bag";
-import { CoinIcon } from "@intelligo/dashboard/components/icons/coin-icon";
-import ColumnChart from "@intelligo/dashboard/components/widgets/column-chart";
-import StickerCard from "@intelligo/dashboard/components/widgets/sticker-card";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import usePrice from "@intelligo/dashboard/utils/use-price";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import RecentOrders from "@intelligo/dashboard/components/order/recent-orders";
-import PopularProductList from "@intelligo/dashboard/components/product/popular-product-list";
-import { useOrdersQuery } from "@data/order/use-orders.query";
-import { usePopularProductsQuery } from "@data/analytics/use-popular-products.query";
-import { useAnalyticsQuery } from "@data/analytics/use-analytics.query";
+import { CartIconBig } from "apps/dashboard/src/components/icons/cart-icon-bag";
+import { CoinIcon } from "apps/dashboard/src/components/icons/coin-icon";
+import ColumnChart from "apps/dashboard/src/components/widgets/column-chart";
+import StickerCard from "apps/dashboard/src/components/widgets/sticker-card";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import usePrice from "apps/dashboard/src/utils/use-price";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import RecentOrders from "apps/dashboard/src/components/order/recent-orders";
+import PopularProductList from "apps/dashboard/src/components/product/popular-product-list";
+import { useOrdersQuery } from "apps/dashboard/src/data/order/use-orders.query";
+import { usePopularProductsQuery } from "apps/dashboard/src/data/analytics/use-popular-products.query";
+import { useAnalyticsQuery } from "apps/dashboard/src/data/analytics/use-analytics.query";
 import { useTranslation } from "next-i18next";
-import { useWithdrawsQuery } from "@data/withdraw/use-withdraws.query";
-import WithdrawTable from "@intelligo/dashboard/components/withdraw/withdraw-table";
-import { ShopIcon } from "@intelligo/dashboard/components/icons/sidebar";
-import { DollarIcon } from "@intelligo/dashboard/components/icons/shops/dollar";
+import { useWithdrawsQuery } from "apps/dashboard/src/data/withdraw/use-withdraws.query";
+import WithdrawTable from "apps/dashboard/src/components/withdraw/withdraw-table";
+import { ShopIcon } from "apps/dashboard/src/components/icons/sidebar";
+import { DollarIcon } from "apps/dashboard/src/components/icons/shops/dollar";
 
 export default function Dashboard() {
   const { t } = useTranslation();

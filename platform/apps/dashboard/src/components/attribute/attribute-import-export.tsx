@@ -1,8 +1,8 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import { DownloadIcon } from "@intelligo/dashboard/components/icons/download-icon";
+import Card from "apps/dashboard/src/components/common/card";
+import { DownloadIcon } from "apps/dashboard/src/components/icons/download-icon";
 import { useTranslation } from "next-i18next";
-import ImportAttributes from "@intelligo/dashboard/components/attribute/import-attributes";
-import { useModalState } from "@intelligo/dashboard/components/ui/modal/modal.context";
+import ImportAttributes from "apps/dashboard/src/components/attribute/import-attributes";
+import { useModalState } from "apps/dashboard/src/components/ui/modal/modal.context";
 
 const AttributeExportImport = () => {
   const { t } = useTranslation();

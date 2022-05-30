@@ -1,16 +1,16 @@
-import Input from "@intelligo/dashboard/components/ui/input";
+import Input from "apps/dashboard/src/components/ui/input";
 import { useForm } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
+import Button from "apps/dashboard/src/components/ui/button";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
 import { useRouter } from "next/router";
-import ColorPicker from "@intelligo/dashboard/components/ui/color-picker/color-picker";
-import { useCreateOrderStatusMutation } from "@data/order-status/product-create.mutation";
-import { useUpdateOrderStatusMutation } from "@data/order-status/product-update.mutation";
+import ColorPicker from "apps/dashboard/src/components/ui/color-picker/color-picker";
+import { useCreateOrderStatusMutation } from "apps/dashboard/src/data/order-status/product-create.mutation";
+import { useUpdateOrderStatusMutation } from "apps/dashboard/src/data/order-status/product-update.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { orderStatusValidationSchema } from "./order-status-validation-schema";
-import DisplayColorCode from "@intelligo/dashboard/components/ui/color-picker/display-color-code";
+import DisplayColorCode from "apps/dashboard/src/components/ui/color-picker/display-color-code";
 
 type FormValues = {
   name: string;

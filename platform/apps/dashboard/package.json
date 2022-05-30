@@ -1,5 +1,5 @@
 {
-  "name": "@intelligo/dashboard",
+  "name": "apps/dashboard/src",
   "version": "0.0.0",
   "license": "MIT"
 }

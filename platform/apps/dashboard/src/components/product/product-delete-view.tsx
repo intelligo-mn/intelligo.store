@@ -1,9 +1,9 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useDeleteProductMutation } from "@data/product/product-delete.mutation";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useDeleteProductMutation } from "apps/dashboard/src/data/product/product-delete.mutation";
 
 const ProductDeleteView = () => {
   const { mutate: deleteProduct, isLoading: loading } =

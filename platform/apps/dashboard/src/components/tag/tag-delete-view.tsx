@@ -1,10 +1,10 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useDeleteTagMutation } from "@data/tag/use-tag-delete.mutation";
-import { getErrorMessage } from "@intelligo/dashboard/utils/form-error";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useDeleteTagMutation } from "apps/dashboard/src/data/tag/use-tag-delete.mutation";
+import { getErrorMessage } from "apps/dashboard/src/utils/form-error";
 
 const TagDeleteView = () => {
   const { mutate: deleteTagById, isLoading: loading } = useDeleteTagMutation();

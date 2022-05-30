@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { CloseIcon } from "@intelligo/dashboard/components/icons/close-icon";
+import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
 
 type AlertProps = {
   message: string | undefined | null;

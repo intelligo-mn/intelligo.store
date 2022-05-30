@@ -1,7 +1,7 @@
-import { ApproveShopInput } from "@intelligo/dashboard/ts-types/generated";
-import Shop from "@intelligo/dashboard/repositories/shop";
+import { ApproveShopInput } from "apps/dashboard/src/ts-types/generated";
+import Shop from "apps/dashboard/src/repositories/shop";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 export interface IShopApproveVariables {

@@ -1,9 +1,9 @@
-import { CreateTypeInput } from "@intelligo/dashboard/ts-types/generated";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import Type from "@intelligo/dashboard/repositories/type";
+import { CreateTypeInput } from "apps/dashboard/src/ts-types/generated";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import Type from "apps/dashboard/src/repositories/type";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export interface ITypeCreateVariables {
   variables: {

@@ -1,14 +1,14 @@
-import Input from "@intelligo/dashboard/components/ui/input";
-import TextArea from "@intelligo/dashboard/components/ui/text-area";
+import Input from "apps/dashboard/src/components/ui/input";
+import TextArea from "apps/dashboard/src/components/ui/text-area";
 import { useForm, FormProvider } from "react-hook-form";
-import Button from "@intelligo/dashboard/components/ui/button";
-import Description from "@intelligo/dashboard/components/ui/description";
-import Card from "@intelligo/dashboard/components/common/card";
-import Label from "@intelligo/dashboard/components/ui/label";
-import Radio from "@intelligo/dashboard/components/ui/radio/radio";
+import Button from "apps/dashboard/src/components/ui/button";
+import Description from "apps/dashboard/src/components/ui/description";
+import Card from "apps/dashboard/src/components/common/card";
+import Label from "apps/dashboard/src/components/ui/label";
+import Radio from "apps/dashboard/src/components/ui/radio/radio";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
-import FileInput from "@intelligo/dashboard/components/ui/file-input";
+import FileInput from "apps/dashboard/src/components/ui/file-input";
 import { productValidationSchema } from "./product-validation-schema";
 import groupBy from "lodash/groupBy";
 import ProductVariableForm from "./product-variable-form";
@@ -28,13 +28,13 @@ import {
   Product,
   VariationOption,
   Tag,
-} from "@intelligo/dashboard/ts-types/generated";
-import { useCreateProductMutation } from "@data/product/product-create.mutation";
+} from "apps/dashboard/src/ts-types/generated";
+import { useCreateProductMutation } from "apps/dashboard/src/data/product/product-create.mutation";
 import { useTranslation } from "next-i18next";
-import { useUpdateProductMutation } from "@data/product/product-update.mutation";
-import { useShopQuery } from "@data/shop/use-shop.query";
+import { useUpdateProductMutation } from "apps/dashboard/src/data/product/product-update.mutation";
+import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
 import ProductTagInput from "./product-tag-input";
-import Alert from "@intelligo/dashboard/components/ui/alert";
+import Alert from "apps/dashboard/src/components/ui/alert";
 import { useState } from "react";
 import { animateScroll } from "react-scroll";
 

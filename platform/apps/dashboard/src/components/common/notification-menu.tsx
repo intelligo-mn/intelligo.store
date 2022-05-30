@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLayer } from "react-laag";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bell } from "@intelligo/dashboard/components/icons/bell";
-import { Dot } from "@intelligo/dashboard/components/icons/dot";
-import NotificationCard from "@intelligo/dashboard/components/ui/notification-card";
+import { Bell } from "apps/dashboard/src/components/icons/bell";
+import { Dot } from "apps/dashboard/src/components/icons/dot";
+import NotificationCard from "apps/dashboard/src/components/ui/notification-card";
 
 type ItemType = {
   source?: string;

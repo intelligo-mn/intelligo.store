@@ -1,4 +1,4 @@
-import { ShippingType } from "@intelligo/dashboard/ts-types/generated";
+import { ShippingType } from "apps/dashboard/src/ts-types/generated";
 import * as yup from "yup";
 export const shippingValidationSchema = yup.object().shape({
   name: yup.string().required("form:error-name-required"),

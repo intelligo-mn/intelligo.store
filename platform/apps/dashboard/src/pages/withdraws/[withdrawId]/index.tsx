@@ -1,19 +1,19 @@
-import { adminOnly } from "@intelligo/dashboard/utils/auth-utils";
+import { adminOnly } from "apps/dashboard/src/utils/auth-utils";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Button from "@intelligo/dashboard/components/ui/button";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Button from "apps/dashboard/src/components/ui/button";
 import { useForm } from "react-hook-form";
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import ValidationError from "@intelligo/dashboard/components/ui/form-validation-error";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import ValidationError from "apps/dashboard/src/components/ui/form-validation-error";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
-import AdminLayout from "@intelligo/dashboard/components/layouts/admin";
-import { useWithdrawQuery } from "@data/withdraw/use-withdraw.query";
-import { useApproveWithdrawMutation } from "@data/withdraw/use-approve-withdraw.mutation";
-import Card from "@intelligo/dashboard/components/common/card";
+import AdminLayout from "apps/dashboard/src/components/layouts/admin";
+import { useWithdrawQuery } from "apps/dashboard/src/data/withdraw/use-withdraw.query";
+import { useApproveWithdrawMutation } from "apps/dashboard/src/data/withdraw/use-approve-withdraw.mutation";
+import Card from "apps/dashboard/src/components/common/card";
 
 type FormValues = {
 	status: any;

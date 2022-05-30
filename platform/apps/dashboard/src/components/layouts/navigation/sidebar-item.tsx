@@ -1,7 +1,7 @@
-import Link from "@intelligo/dashboard/components/ui/link";
-import { getIcon } from "@intelligo/dashboard/utils/get-icon";
-import * as sidebarIcons from "@intelligo/dashboard/components/icons/sidebar";
-import { useUI } from "@intelligo/dashboard/contexts/ui.context";
+import Link from "apps/dashboard/src/components/ui/link";
+import { getIcon } from "apps/dashboard/src/utils/get-icon";
+import * as sidebarIcons from "apps/dashboard/src/components/icons/sidebar";
+import { useUI } from "apps/dashboard/src/contexts/ui.context";
 
 const SidebarItem = ({ href, icon, label }: any) => {
   const { closeSidebar } = useUI();

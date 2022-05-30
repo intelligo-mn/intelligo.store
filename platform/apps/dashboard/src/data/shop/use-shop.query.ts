@@ -1,7 +1,7 @@
-import Shop from "@intelligo/dashboard/repositories/shop";
+import Shop from "apps/dashboard/src/repositories/shop";
 import { QueryKey, useQuery, UseQueryOptions } from "react-query";
-import { Shop as TShop } from "@intelligo/dashboard/ts-types/generated";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { Shop as TShop } from "apps/dashboard/src/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const fetchShop = async (slug: string) => {
   const { data } = await Shop.find(`${API_ENDPOINTS.SHOPS}/${slug}`);

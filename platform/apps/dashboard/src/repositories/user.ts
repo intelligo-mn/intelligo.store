@@ -7,8 +7,8 @@ import {
   ForgetPasswordInput,
   VerifyForgetPasswordTokenInput,
   ResetPasswordInput,
-} from "@intelligo/dashboard/ts-types/generated";
-import http from "@intelligo/dashboard/utils/api/http";
+} from "apps/dashboard/src/ts-types/generated";
+import http from "apps/dashboard/src/utils/api/http";
 import Base from "./base";
 
 class User extends Base<CreateUser, UpdateUser> {

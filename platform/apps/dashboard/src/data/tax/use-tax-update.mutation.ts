@@ -1,8 +1,8 @@
-import { TaxUpdateInput } from "@intelligo/dashboard/ts-types/generated";
+import { TaxUpdateInput } from "apps/dashboard/src/ts-types/generated";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import Tax from "@intelligo/dashboard/repositories/tax";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Tax from "apps/dashboard/src/repositories/tax";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { useTranslation } from "next-i18next";
 export interface ITaxUpdateVariables {
   variables: {

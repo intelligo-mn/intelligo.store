@@ -1,8 +1,8 @@
-import Select from "@intelligo/dashboard/components/ui/select/select";
+import Select from "apps/dashboard/src/components/ui/select/select";
 import React from "react";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";
-import { useTypesQuery } from "@data/type/use-types.query";
+import { useTypesQuery } from "apps/dashboard/src/data/type/use-types.query";
 
 type Props = {
   onTypeFilter: Function;

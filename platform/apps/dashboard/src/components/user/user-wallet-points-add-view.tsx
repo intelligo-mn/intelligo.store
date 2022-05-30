@@ -1,12 +1,12 @@
-import { Form } from "@intelligo/dashboard/components/ui/form/form";
-import Button from "@intelligo/dashboard/components/ui/button";
+import { Form } from "apps/dashboard/src/components/ui/form/form";
+import Button from "apps/dashboard/src/components/ui/button";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import Input from "@intelligo/dashboard/components/ui/input";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import Input from "apps/dashboard/src/components/ui/input";
 import { useTranslation } from "next-i18next";
-import { useAddWalletPointsMutation } from "@data/user/use-add-wallet-points.mutation";
+import { useAddWalletPointsMutation } from "apps/dashboard/src/data/user/use-add-wallet-points.mutation";
 type FormValues = {
   points: number;
 };

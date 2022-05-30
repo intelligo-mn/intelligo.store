@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import Link from "@intelligo/dashboard/components/ui/link";
+import Link from "apps/dashboard/src/components/ui/link";
 
 const AccessDeniedPage = () => {
 	const { t } = useTranslation("common");

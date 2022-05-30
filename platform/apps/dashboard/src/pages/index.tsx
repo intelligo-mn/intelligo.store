@@ -6,12 +6,12 @@ import {
   getAuthCredentials,
   hasAccess,
   isAuthenticated,
-} from "@intelligo/dashboard/utils/auth-utils";
-import { SUPER_ADMIN } from "@intelligo/dashboard/utils/constants";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import AppLayout from "@intelligo/dashboard/components/layouts/app";
-const AdminDashboard = dynamic(() => import("@intelligo/dashboard/components/dashboard/admin"));
-const OwnerDashboard = dynamic(() => import("@intelligo/dashboard/components/dashboard/owner"));
+} from "apps/dashboard/src/utils/auth-utils";
+import { SUPER_ADMIN } from "apps/dashboard/src/utils/constants";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import AppLayout from "apps/dashboard/src/components/layouts/app";
+const AdminDashboard = dynamic(() => import("apps/dashboard/src/components/dashboard/admin"));
+const OwnerDashboard = dynamic(() => import("apps/dashboard/src/components/dashboard/owner"));
 
 export default function Dashboard({
   userPermissions,

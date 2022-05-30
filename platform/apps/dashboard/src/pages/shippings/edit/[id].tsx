@@ -1,9 +1,9 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
+import Layout from "apps/dashboard/src/components/layouts/admin";
 import { useRouter } from "next/router";
-import CreateOrUpdateShippingForm from "@intelligo/dashboard/components/shipping/shipping-form";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { useShippingQuery } from "@data/shipping/use-shipping.query";
+import CreateOrUpdateShippingForm from "apps/dashboard/src/components/shipping/shipping-form";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { useShippingQuery } from "apps/dashboard/src/data/shipping/use-shipping.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

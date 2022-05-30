@@ -1,4 +1,4 @@
-import { ProductType } from "@intelligo/dashboard/ts-types/generated";
+import { ProductType } from "apps/dashboard/src/ts-types/generated";
 import * as yup from "yup";
 
 export const productValidationSchema = yup.object().shape({

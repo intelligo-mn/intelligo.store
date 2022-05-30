@@ -1,11 +1,11 @@
-import Select from "@intelligo/dashboard/components/ui/select/select";
+import Select from "apps/dashboard/src/components/ui/select/select";
 
 import React from "react";
 import { useTranslation } from "next-i18next";
-import Label from "@intelligo/dashboard/components/ui/label";
+import Label from "apps/dashboard/src/components/ui/label";
 import cn from "classnames";
-import { useTypesQuery } from "@data/type/use-types.query";
-import { useCategoriesQuery } from "@data/category/use-categories.query";
+import { useTypesQuery } from "apps/dashboard/src/data/type/use-types.query";
+import { useCategoriesQuery } from "apps/dashboard/src/data/category/use-categories.query";
 
 type Props = {
   onCategoryFilter: Function;

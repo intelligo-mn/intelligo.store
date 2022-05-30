@@ -4,7 +4,7 @@ import {
   ApproveShopInput,
   ShopInput,
   AddStaffInput,
-} from "@intelligo/dashboard/ts-types/generated";
+} from "apps/dashboard/src/ts-types/generated";
 
 class Shop extends Base<ShopInput, ShopInput> {
   staffs = (url: string) => {

@@ -1,4 +1,4 @@
-import Chart from "@intelligo/dashboard/components/ui/chart";
+import Chart from "apps/dashboard/src/components/ui/chart";
 
 const RadialBarChart = ({
   widgetTitle,

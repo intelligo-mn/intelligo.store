@@ -1,16 +1,16 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import Search from "@intelligo/dashboard/components/common/search";
-import OrderStatusList from "@intelligo/dashboard/components/order-status/order-status-list";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
+import Card from "apps/dashboard/src/components/common/card";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import Search from "apps/dashboard/src/components/common/search";
+import OrderStatusList from "apps/dashboard/src/components/order-status/order-status-list";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { useOrderStatusesQuery } from "apps/dashboard/src/data/order-status/use-order-statuses.query";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 
 export default function OrderStatusPage() {
   const { t } = useTranslation();

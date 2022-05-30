@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Shipping from "@intelligo/dashboard/repositories/product";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Shipping from "apps/dashboard/src/repositories/product";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useDeleteShippingClassMutation = () => {
   const queryClient = useQueryClient();

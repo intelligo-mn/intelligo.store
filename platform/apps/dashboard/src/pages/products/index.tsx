@@ -1,19 +1,19 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import Search from "@intelligo/dashboard/components/common/search";
-import ProductList from "@intelligo/dashboard/components/product/product-list";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import Card from "apps/dashboard/src/components/common/card";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import Search from "apps/dashboard/src/components/common/search";
+import ProductList from "apps/dashboard/src/components/product/product-list";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useState } from "react";
-import { useProductsQuery } from "@data/product/products.query";
+import { useProductsQuery } from "apps/dashboard/src/data/product/products.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import SortForm from "@intelligo/dashboard/components/common/sort-form";
-import CategoryTypeFilter from "@intelligo/dashboard/components/product/category-type-filter";
+import SortForm from "apps/dashboard/src/components/common/sort-form";
+import CategoryTypeFilter from "apps/dashboard/src/components/product/category-type-filter";
 import cn from "classnames";
-import { ArrowDown } from "@intelligo/dashboard/components/icons/arrow-down";
-import { ArrowUp } from "@intelligo/dashboard/components/icons/arrow-up";
+import { ArrowDown } from "apps/dashboard/src/components/icons/arrow-down";
+import { ArrowUp } from "apps/dashboard/src/components/icons/arrow-up";
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,16 +1,16 @@
-import CategoryList from "@intelligo/dashboard/components/category/category-list";
-import Card from "@intelligo/dashboard/components/common/card";
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import Search from "@intelligo/dashboard/components/common/search";
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
+import CategoryList from "apps/dashboard/src/components/category/category-list";
+import Card from "apps/dashboard/src/components/common/card";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import Search from "apps/dashboard/src/components/common/search";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
 import { useState } from "react";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import { useCategoriesQuery } from "@data/category/use-categories.query";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import { useCategoriesQuery } from "apps/dashboard/src/data/category/use-categories.query";
 
 export default function Categories() {
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,6 +1,6 @@
-import User from "@intelligo/dashboard/repositories/user";
+import User from "apps/dashboard/src/repositories/user";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 export interface IAddWalletPointsVariables {

@@ -1,11 +1,11 @@
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
-import { SortOrder, Tax } from "@intelligo/dashboard/ts-types/generated";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
+import { SortOrder, Tax } from "apps/dashboard/src/ts-types/generated";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 export type IProps = {
   taxes: Tax[] | undefined;

@@ -1,6 +1,6 @@
 import Base from "./base";
 
-import { ShippingInput, ShippingUpdateInput } from "@intelligo/dashboard/ts-types/generated";
+import { ShippingInput, ShippingUpdateInput } from "apps/dashboard/src/ts-types/generated";
 
 class Shipping extends Base<ShippingInput, ShippingUpdateInput> {}
 

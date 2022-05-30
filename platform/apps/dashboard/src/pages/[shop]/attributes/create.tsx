@@ -1,8 +1,8 @@
-import CreateOrUpdateAttributeForm from "@intelligo/dashboard/components/attribute/attribute-form";
+import CreateOrUpdateAttributeForm from "apps/dashboard/src/components/attribute/attribute-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
-import { adminOwnerAndStaffOnly } from "@intelligo/dashboard/utils/auth-utils";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
 
 export default function CreateAttributePage() {
   const { t } = useTranslation();

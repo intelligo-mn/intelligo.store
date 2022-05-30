@@ -1,4 +1,4 @@
-import { CreateProduct, UpdateProduct } from "@intelligo/dashboard/ts-types/generated";
+import { CreateProduct, UpdateProduct } from "apps/dashboard/src/ts-types/generated";
 import Base from "./base";
 
 class Product extends Base<CreateProduct, UpdateProduct> {

@@ -1,8 +1,8 @@
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import ImportCsv from "@intelligo/dashboard/components/ui/import-csv";
-import { useShopQuery } from "@data/shop/use-shop.query";
-import { useImportProductsMutation } from "@data/import/use-import-products.mutation";
+import ImportCsv from "apps/dashboard/src/components/ui/import-csv";
+import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { useImportProductsMutation } from "apps/dashboard/src/data/import/use-import-products.mutation";
 
 export default function ImportProducts() {
   const { t } = useTranslation("common");

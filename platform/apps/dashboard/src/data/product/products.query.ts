@@ -1,11 +1,11 @@
 import {
   QueryParamsType,
   ProductsQueryOptionsType,
-} from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData, stringifySearchQuery } from "@intelligo/dashboard/utils/data-mappers";
+} from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData, stringifySearchQuery } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import Product from "@intelligo/dashboard/repositories/product";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Product from "apps/dashboard/src/repositories/product";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 const fetchProducts = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

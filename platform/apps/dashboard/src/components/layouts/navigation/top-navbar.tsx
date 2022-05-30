@@ -1,16 +1,16 @@
-import Logo from "@intelligo/dashboard/components/ui/logo";
-import { useUI } from "@intelligo/dashboard/contexts/ui.context";
+import Logo from "apps/dashboard/src/components/ui/logo";
+import { useUI } from "apps/dashboard/src/contexts/ui.context";
 import AuthorizedMenu from "./authorized-menu";
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
-import { NavbarIcon } from "@intelligo/dashboard/components/icons/navbar-icon";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import { NavbarIcon } from "apps/dashboard/src/components/icons/navbar-icon";
 import { motion } from "framer-motion";
 import { useTranslation } from "next-i18next";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
 import {
 	adminAndOwnerOnly,
 	getAuthCredentials,
 	hasAccess,
-} from "@intelligo/dashboard/utils/auth-utils";
+} from "apps/dashboard/src/utils/auth-utils";
 
 const Navbar = () => {
 	const { t } = useTranslation();

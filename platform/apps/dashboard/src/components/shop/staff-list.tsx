@@ -1,11 +1,11 @@
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "@intelligo/dashboard/utils/locals";
-import Pagination from "@intelligo/dashboard/components/ui/pagination";
-import { UserPaginator, SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { useIsRTL } from "apps/dashboard/src/utils/locals";
+import Pagination from "apps/dashboard/src/components/ui/pagination";
+import { UserPaginator, SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useState } from "react";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 type IProps = {
   staffs: UserPaginator | null | undefined;

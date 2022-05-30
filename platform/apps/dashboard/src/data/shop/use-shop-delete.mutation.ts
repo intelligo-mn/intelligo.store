@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Shop from "@intelligo/dashboard/repositories/shop";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Shop from "apps/dashboard/src/repositories/shop";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useDeleteShopMutation = () => {
   const queryClient = useQueryClient();

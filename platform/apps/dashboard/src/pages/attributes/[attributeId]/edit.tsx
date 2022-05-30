@@ -1,9 +1,9 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
+import Layout from "apps/dashboard/src/components/layouts/admin";
 import { useRouter } from "next/router";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
-import CreateOrUpdateAttributeForm from "@intelligo/dashboard/components/attribute/attribute-form";
-import { useAttributeQuery } from "@data/attributes/use-attribute.query";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
+import CreateOrUpdateAttributeForm from "apps/dashboard/src/components/attribute/attribute-form";
+import { useAttributeQuery } from "apps/dashboard/src/data/attributes/use-attribute.query";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPaths } from "next";

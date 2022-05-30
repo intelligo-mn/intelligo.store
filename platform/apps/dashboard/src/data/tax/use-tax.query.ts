@@ -1,7 +1,7 @@
-import Tax from "@intelligo/dashboard/repositories/tax";
+import Tax from "apps/dashboard/src/repositories/tax";
 import { useQuery } from "react-query";
-import { Tax as TTax } from "@intelligo/dashboard/ts-types/generated";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { Tax as TTax } from "apps/dashboard/src/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const fetchTax = async (id: string) => {
   const { data } = await Tax.find(`${API_ENDPOINTS.TAXES}/${id}`);

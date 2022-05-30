@@ -1,8 +1,8 @@
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
-import CreateOrUpdateProductForm from "@intelligo/dashboard/components/product/product-form";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
+import CreateOrUpdateProductForm from "apps/dashboard/src/components/product/product-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { adminOwnerAndStaffOnly } from "@intelligo/dashboard/utils/auth-utils";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
 
 export default function CreateProductPage() {
   const { t } = useTranslation();

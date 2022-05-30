@@ -1,48 +1,48 @@
-import Modal from "@intelligo/dashboard/components/ui/modal/modal";
+import Modal from "apps/dashboard/src/components/ui/modal/modal";
 import dynamic from "next/dynamic";
 import { useModalAction, useModalState } from "./modal.context";
-const TagDeleteView = dynamic(() => import("@intelligo/dashboard/components/tag/tag-delete-view"));
-const TaxDeleteView = dynamic(() => import("@intelligo/dashboard/components/tax/tax-delete-view"));
-const BanCustomerView = dynamic(() => import("@intelligo/dashboard/components/user/user-ban-view"));
+const TagDeleteView = dynamic(() => import("apps/dashboard/src/components/tag/tag-delete-view"));
+const TaxDeleteView = dynamic(() => import("apps/dashboard/src/components/tax/tax-delete-view"));
+const BanCustomerView = dynamic(() => import("apps/dashboard/src/components/user/user-ban-view"));
 const UserWalletPointsAddView = dynamic(
-  () => import("@intelligo/dashboard/components/user/user-wallet-points-add-view")
+  () => import("apps/dashboard/src/components/user/user-wallet-points-add-view")
 );
 const ShippingDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/shipping/shipping-delete-view")
+  () => import("apps/dashboard/src/components/shipping/shipping-delete-view")
 );
 const CategoryDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/category/category-delete-view")
+  () => import("apps/dashboard/src/components/category/category-delete-view")
 );
 const CouponDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/coupon/coupon-delete-view")
+  () => import("apps/dashboard/src/components/coupon/coupon-delete-view")
 );
 
 const ProductDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/product/product-delete-view")
+  () => import("apps/dashboard/src/components/product/product-delete-view")
 );
 const TypeDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/brand/brand-delete-view")
+  () => import("apps/dashboard/src/components/brand/brand-delete-view")
 );
 const AttributeDeleteView = dynamic(
-  () => import("@intelligo/dashboard/components/attribute/attribute-delete-view")
+  () => import("apps/dashboard/src/components/attribute/attribute-delete-view")
 );
 
 const ApproveShopView = dynamic(
-  () => import("@intelligo/dashboard/components/shop/approve-shop-view")
+  () => import("apps/dashboard/src/components/shop/approve-shop-view")
 );
 const DisApproveShopView = dynamic(
-  () => import("@intelligo/dashboard/components/shop/disapprove-shop-view")
+  () => import("apps/dashboard/src/components/shop/disapprove-shop-view")
 );
 const RemoveStaffView = dynamic(
-  () => import("@intelligo/dashboard/components/shop/staff-delete-view")
+  () => import("apps/dashboard/src/components/shop/staff-delete-view")
 );
 
 const ExportImportView = dynamic(
-  () => import("@intelligo/dashboard/components/product/import-export-modal")
+  () => import("apps/dashboard/src/components/product/import-export-modal")
 );
 
 const AttributeExportImport = dynamic(
-  () => import("@intelligo/dashboard/components/attribute/attribute-import-export")
+  () => import("apps/dashboard/src/components/attribute/attribute-import-export")
 );
 const ManagedModal = () => {
   const { isOpen, view } = useModalState();

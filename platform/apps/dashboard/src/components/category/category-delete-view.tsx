@@ -1,9 +1,9 @@
-import ConfirmationCard from "@intelligo/dashboard/components/common/confirmation-card";
+import ConfirmationCard from "apps/dashboard/src/components/common/confirmation-card";
 import {
   useModalAction,
   useModalState,
-} from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { useDeleteCategoryMutation } from "@data/category/use-category-delete.mutation";
+} from "apps/dashboard/src/components/ui/modal/modal.context";
+import { useDeleteCategoryMutation } from "apps/dashboard/src/data/category/use-category-delete.mutation";
 
 const CategoryDeleteView = () => {
   const { mutate: deleteCategory, isLoading: loading } =

@@ -1,7 +1,7 @@
-import AttributeValue from "@intelligo/dashboard/repositories/attribute-value";
+import AttributeValue from "apps/dashboard/src/repositories/attribute-value";
 import { useQuery } from "react-query";
-import { AttributeValue as TAttributeValue } from "@intelligo/dashboard/ts-types/generated";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { AttributeValue as TAttributeValue } from "apps/dashboard/src/ts-types/generated";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const fetchAttributeValue = async (id: string) => {
   const { data } = await AttributeValue.find(

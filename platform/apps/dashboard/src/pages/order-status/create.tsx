@@ -1,5 +1,5 @@
-import Layout from "@intelligo/dashboard/components/layouts/admin";
-import CreateOrUpdateOrderStatusForm from "@intelligo/dashboard/components/order-status/order-status-form";
+import Layout from "apps/dashboard/src/components/layouts/admin";
+import CreateOrUpdateOrderStatusForm from "apps/dashboard/src/components/order-status/order-status-form";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

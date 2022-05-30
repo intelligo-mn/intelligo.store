@@ -1,25 +1,25 @@
-import Card from "@intelligo/dashboard/components/common/card";
-import Search from "@intelligo/dashboard/components/common/search";
-import ProductList from "@intelligo/dashboard/components/product/product-list";
-import ErrorMessage from "@intelligo/dashboard/components/ui/error-message";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import Card from "apps/dashboard/src/components/common/card";
+import Search from "apps/dashboard/src/components/common/search";
+import ProductList from "apps/dashboard/src/components/product/product-list";
+import ErrorMessage from "apps/dashboard/src/components/ui/error-message";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ShopLayout from "@intelligo/dashboard/components/layouts/shop";
+import ShopLayout from "apps/dashboard/src/components/layouts/shop";
 import { useRouter } from "next/router";
-import LinkButton from "@intelligo/dashboard/components/ui/link-button";
-import { adminOwnerAndStaffOnly } from "@intelligo/dashboard/utils/auth-utils";
-import { useShopQuery } from "@data/shop/use-shop.query";
-import { useProductsQuery } from "@data/product/products.query";
-import { SortOrder } from "@intelligo/dashboard/ts-types/generated";
-import CategoryTypeFilter from "@intelligo/dashboard/components/product/category-type-filter";
+import LinkButton from "apps/dashboard/src/components/ui/link-button";
+import { adminOwnerAndStaffOnly } from "apps/dashboard/src/utils/auth-utils";
+import { useShopQuery } from "apps/dashboard/src/data/shop/use-shop.query";
+import { useProductsQuery } from "apps/dashboard/src/data/product/products.query";
+import { SortOrder } from "apps/dashboard/src/ts-types/generated";
+import CategoryTypeFilter from "apps/dashboard/src/components/product/category-type-filter";
 import cn from "classnames";
-import { ArrowDown } from "@intelligo/dashboard/components/icons/arrow-down";
-import { ArrowUp } from "@intelligo/dashboard/components/icons/arrow-up";
-import { useModalAction } from "@intelligo/dashboard/components/ui/modal/modal.context";
-import { MoreIcon } from "@intelligo/dashboard/components/icons/more-icon";
-import Button from "@intelligo/dashboard/components/ui/button";
+import { ArrowDown } from "apps/dashboard/src/components/icons/arrow-down";
+import { ArrowUp } from "apps/dashboard/src/components/icons/arrow-up";
+import { useModalAction } from "apps/dashboard/src/components/ui/modal/modal.context";
+import { MoreIcon } from "apps/dashboard/src/components/icons/more-icon";
+import Button from "apps/dashboard/src/components/ui/button";
 
 export default function ProductsPage() {
   const {

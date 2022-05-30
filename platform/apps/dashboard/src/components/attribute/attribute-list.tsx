@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Table } from "@intelligo/dashboard/components/ui/table";
-import ActionButtons from "@intelligo/dashboard/components/common/action-buttons";
-import { Attribute, Shop, SortOrder } from "@intelligo/dashboard/ts-types/generated";
+import { Table } from "apps/dashboard/src/components/ui/table";
+import ActionButtons from "apps/dashboard/src/components/common/action-buttons";
+import { Attribute, Shop, SortOrder } from "apps/dashboard/src/ts-types/generated";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import TitleWithSort from "@intelligo/dashboard/components/ui/title-with-sort";
+import TitleWithSort from "apps/dashboard/src/components/ui/title-with-sort";
 
 export type IProps = {
 	attributes: Attribute[] | undefined;

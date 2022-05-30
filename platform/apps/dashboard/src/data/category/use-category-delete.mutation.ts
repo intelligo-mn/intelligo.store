@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import Category from "@intelligo/dashboard/repositories/category";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import Category from "apps/dashboard/src/repositories/category";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export const useDeleteCategoryMutation = () => {
   const queryClient = useQueryClient();

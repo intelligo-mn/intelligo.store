@@ -1,4 +1,4 @@
-import { PaginatorInfo } from "@intelligo/dashboard/ts-types/generated";
+import { PaginatorInfo } from "apps/dashboard/src/ts-types/generated";
 import camelcaseKeys from "camelcase-keys";
 import pickBy from "lodash/pickBy";
 

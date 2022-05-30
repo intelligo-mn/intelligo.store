@@ -1,4 +1,4 @@
-import { CouponInput, CouponUpdateInput } from "@intelligo/dashboard/ts-types/generated";
+import { CouponInput, CouponUpdateInput } from "apps/dashboard/src/ts-types/generated";
 import Base from "./base";
 
 class Coupon extends Base<CouponInput, CouponUpdateInput> {}

@@ -1,8 +1,8 @@
-import { SUPER_ADMIN } from "@intelligo/dashboard/utils/constants";
+import { SUPER_ADMIN } from "apps/dashboard/src/utils/constants";
 import dynamic from "next/dynamic";
 
-const AdminLayout = dynamic(() => import("@intelligo/dashboard/components/layouts/admin"));
-const OwnerLayout = dynamic(() => import("@intelligo/dashboard/components/layouts/owner"));
+const AdminLayout = dynamic(() => import("apps/dashboard/src/components/layouts/admin"));
+const OwnerLayout = dynamic(() => import("apps/dashboard/src/components/layouts/owner"));
 
 export default function AppLayout({
   userPermissions,

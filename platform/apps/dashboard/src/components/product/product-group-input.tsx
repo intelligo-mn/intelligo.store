@@ -1,8 +1,8 @@
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import Label from "@intelligo/dashboard/components/ui/label";
-import ValidationError from "@intelligo/dashboard/components/ui/form-validation-error";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import Label from "apps/dashboard/src/components/ui/label";
+import ValidationError from "apps/dashboard/src/components/ui/form-validation-error";
 import { Control } from "react-hook-form";
-import { useTypesQuery } from "@data/type/use-types.query";
+import { useTypesQuery } from "apps/dashboard/src/data/type/use-types.query";
 import { useTranslation } from "next-i18next";
 
 interface Props {

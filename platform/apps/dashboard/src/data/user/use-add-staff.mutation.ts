@@ -1,9 +1,9 @@
-import { AddStaffInput } from "@intelligo/dashboard/ts-types/generated";
-import { ROUTES } from "@intelligo/dashboard/utils/routes";
-import Shop from "@intelligo/dashboard/repositories/shop";
+import { AddStaffInput } from "apps/dashboard/src/ts-types/generated";
+import { ROUTES } from "apps/dashboard/src/utils/routes";
+import Shop from "apps/dashboard/src/repositories/shop";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 export interface IAddStaffVariables {
   variables: AddStaffInput;

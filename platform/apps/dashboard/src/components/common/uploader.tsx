@@ -1,11 +1,11 @@
-import { UploadIcon } from "@intelligo/dashboard/components/icons/upload-icon";
+import { UploadIcon } from "apps/dashboard/src/components/icons/upload-icon";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Attachment } from "@intelligo/dashboard/ts-types/generated";
-import { CloseIcon } from "@intelligo/dashboard/components/icons/close-icon";
-import Loader from "@intelligo/dashboard/components/ui/loader/loader";
+import { Attachment } from "apps/dashboard/src/ts-types/generated";
+import { CloseIcon } from "apps/dashboard/src/components/icons/close-icon";
+import Loader from "apps/dashboard/src/components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
-import { useUploadMutation } from "@data/upload/use-upload.mutation";
+import { useUploadMutation } from "apps/dashboard/src/data/upload/use-upload.mutation";
 
 const getPreviewImage = (value: any) => {
 	let images: any[] = [];

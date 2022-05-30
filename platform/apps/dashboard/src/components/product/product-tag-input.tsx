@@ -1,7 +1,7 @@
-import SelectInput from "@intelligo/dashboard/components/ui/select-input";
-import Label from "@intelligo/dashboard/components/ui/label";
+import SelectInput from "apps/dashboard/src/components/ui/select-input";
+import Label from "apps/dashboard/src/components/ui/label";
 import { Control } from "react-hook-form";
-import { useTagsQuery } from "@data/tag/use-tags.query";
+import { useTagsQuery } from "apps/dashboard/src/data/tag/use-tags.query";
 import { useTranslation } from "next-i18next";
 
 interface Props {

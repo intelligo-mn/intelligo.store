@@ -1,8 +1,8 @@
-import { QueryParamsType, QueryOptionsType } from "@intelligo/dashboard/ts-types/custom.types";
-import { mapPaginatorData } from "@intelligo/dashboard/utils/data-mappers";
+import { QueryParamsType, QueryOptionsType } from "apps/dashboard/src/ts-types/custom.types";
+import { mapPaginatorData } from "apps/dashboard/src/utils/data-mappers";
 import { useQuery } from "react-query";
-import User from "@intelligo/dashboard/repositories/user";
-import { API_ENDPOINTS } from "@intelligo/dashboard/utils/api/endpoints";
+import User from "apps/dashboard/src/repositories/user";
+import { API_ENDPOINTS } from "apps/dashboard/src/utils/api/endpoints";
 
 const fetchUsers = async ({ queryKey }: QueryParamsType) => {
   const [_key, params] = queryKey;

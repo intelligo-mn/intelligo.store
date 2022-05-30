@@ -1,5 +1,5 @@
-import Button from "@intelligo/dashboard/components/ui/button";
-import Input from "@intelligo/dashboard/components/ui/input";
+import Button from "apps/dashboard/src/components/ui/button";
+import Input from "apps/dashboard/src/components/ui/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
