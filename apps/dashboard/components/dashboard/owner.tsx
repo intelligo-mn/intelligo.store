@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useMeQuery } from "@data/user/use-me.query";
 import ShopCard from "@components/shop/shop-card";
-import NoShopSvg from "../../../public/no-shop.svg";
+import NoShopSvg from "../../public/no-shop.svg";
 
 export default function OwnerDashboard() {
   const { t } = useTranslation();
