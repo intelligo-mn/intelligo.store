@@ -36,7 +36,7 @@
   "table-item-zip": "ZIP",
   "table-item-global": "Global",
   "table-item-values": "Values",
-  "table-item-group": "Brand",
+  "table-item-group": "Group",
   "table-item-shop-id": "Shop ID",
   "table-item-shop-name": "Shop Name",
   "table-item-payment-method": "Payment Method",
@@ -46,8 +46,5 @@
   "table-item-total-orders": "Orders",
   "table-item-shop": "Shop",
   "withdraw-table-title": "Recent Withdraws",
-  "table-item-created-at": "Created",
-  "table-shipping-type": "Shipping Type",
-  "table-item-available_wallet_points": "Available wallet points",
-  "table-item-banner-image": "Banner"
+  "table-item-created-at": "Created"
 }
