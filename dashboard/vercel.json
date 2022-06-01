@@ -1,8 +1,0 @@
-{
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
-      "NEXT_PUBLIC_SHOP_URL": ""
-    }
-  }
-}

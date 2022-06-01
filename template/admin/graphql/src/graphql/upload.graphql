@@ -1,7 +1,0 @@
-mutation Upload($attachment: [Upload!]!) {
-  upload(attachment: $attachment) {
-    original
-    thumbnail
-    id
-  }
-}

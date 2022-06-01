@@ -1,0 +1,200 @@
+[
+  {
+    "id": 1,
+    "name": "Bags",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=bag-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/bags/1.png",
+          "original": "/assets/images/category/two/bags/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=bag-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/bags/2.png",
+          "original": "/assets/images/category/two/bags/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=bag-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/bags/3.png",
+          "original": "/assets/images/category/two/bags/3.png"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Shoes",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=shoes-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/shoes/1.png",
+          "original": "/assets/images/category/two/shoes/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=shoes-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/shoes/2.png",
+          "original": "/assets/images/category/two/shoes/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=shoes-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/shoes/3.png",
+          "original": "/assets/images/category/two/shoes/3.png"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Wallets",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=wallet-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/wallets/1.png",
+          "original": "/assets/images/category/two/wallets/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=wallet-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/wallets/2.png",
+          "original": "/assets/images/category/two/wallets/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=wallet-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/wallets/3.png",
+          "original": "/assets/images/category/two/wallets/3.png"
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Jewellers",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=jeweller-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/jewellers/1.png",
+          "original": "/assets/images/category/two/jewellers/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=jeweller-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/jewellers/2.png",
+          "original": "/assets/images/category/two/jewellers/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=jeweller-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/jewellers/3.png",
+          "original": "/assets/images/category/two/jewellers/3.png"
+        }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Watches",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=watch-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/watches/1.png",
+          "original": "/assets/images/category/two/watches/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=watch-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/watches/2.png",
+          "original": "/assets/images/category/two/watches/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=watch-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/watches/3.png",
+          "original": "/assets/images/category/two/watches/3.png"
+        }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Sun Glasses",
+    "products": [
+      {
+        "id": 1,
+        "slug": "/search?q=sun-glasses-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/sun-glasses/1.png",
+          "original": "/assets/images/category/two/sun-glasses/1.png"
+        }
+      },
+      {
+        "id": 2,
+        "slug": "/search?q=sun-glasses-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/sun-glasses/2.png",
+          "original": "/assets/images/category/two/sun-glasses/2.png"
+        }
+      },
+      {
+        "id": 3,
+        "slug": "/search?q=sun-glasses-in-fashion",
+        "image": {
+          "id": 1,
+          "thumbnail": "/assets/images/category/two/sun-glasses/3.png",
+          "original": "/assets/images/category/two/sun-glasses/3.png"
+        }
+      }
+    ]
+  }
+]

@@ -1,25 +1,31 @@
 {
-  "name": "platform.sale",
-  "version": "7.0.0",
-  "license": "MIT",
+  "name": "chawkbazar",
+  "version": "2.1.0",
   "private": true,
-  "author": "Intelligo LLC",
+  "author": "RedQ, Inc.",
   "workspaces": [
-    "dashboard",
-    "storefront"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "clean": "yarn workspaces run rimraf \"{.next,node_modules,__generated__,.cache,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\" && rimraf node_modules",
-    "gql-clean": "yarn workspaces run rimraf \"{__generated__,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\"",
-    "dev:web": "yarn workspace @intelligo/storefront dev:gql",
-    "build:web": "yarn workspace @intelligo/storefront build:gql",
-    "start:web": "yarn workspace @intelligo/storefront start",
+    "clean": "yarn workspaces run rimraf \"{.next,node_modules}\" && rimraf node_modules",
+    "dev:store": "yarn workspace @intelligo/store dev",
+    "build:store": "yarn workspace @intelligo/store build",
+    "start:store": "yarn workspace @intelligo/store start",
     "dev:dashboard": "yarn workspace @intelligo/dashboard dev",
     "build:dashboard": "yarn workspace @intelligo/dashboard build",
-    "start:dashboard": "yarn workspace @intelligo/dashboard start"
+    "start:dashboard": "yarn workspace @intelligo/dashboard start",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "prettier": "^2.4.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.2.1",
     "rimraf": "^3.0.2"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,md,css}": [
+      "prettier --trailing-comma es5 --write"
+    ]
   }
 }

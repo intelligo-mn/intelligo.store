@@ -1,0 +1,457 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Bag",
+    "description": "Rolex’s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement",
+    "slug": "nike-bag",
+    "image": {
+      "id": 1,
+      "thumbnail": "/assets/images/products/featured/1.png",
+      "original": "/assets/images/products/featured/1.png"
+    },
+    "price": 20.38,
+    "sale_price": 16.38,
+    "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Adidas Woolen Cap",
+    "description": "Casual wear (casual attire or clothing) may be a Western code that’s relaxed, occasional, spontaneous and fitted to everyday use. Casual wear became popular within the Western world following the counterculture of the 1960s.",
+    "slug": "adidas-woolen-cap",
+    "image": {
+      "id": 1,
+      "thumbnail": "/assets/images/products/featured/2.png",
+      "original": "/assets/images/products/featured/2.png"
+    },
+    "price": 20.00,
+    "sale_price": 16.00,
+    "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Nike Leader VT",
+    "description": "Footwear refers to garments worn on the feet, which originally serves to purpose of protection against adversities of the environment, usually regarding ground textures and temperature.",
+    "slug": "nike-leader-vt",
+    "image": {
+      "id": 1,
+      "thumbnail": "/assets/images/products/featured/3.png",
+      "original": "/assets/images/products/featured/3.png"
+    },
+    "price": "",
+    "sale_price": 16.38,
+    "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Ray ban Aviator",
+    "description": "Polarized sunglasses reduce glare reflected off of roads, bodies of water, snow and other horizontal surfaces.Restore true color.Vision lenses are 400UV rated, meaning it can block UVA and UVB radiation.",
+    "slug": "ray-ban-aviator",
+    "image": {
+      "id": 1,
+      "thumbnail": "/assets/images/products/featured/4.png",
+      "original": "/assets/images/products/featured/4.png"
+    },
+    "price": 850.00,
+    "sale_price": 720.00,
+    "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Tissot Classic",
+    "description": "The new-model Submariner now features Rolex’s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,",
+    "slug": "tissot-classic",
+    "image": {
+      "id": 1,
+      "thumbnail": "/assets/images/products/featured/5.png",
+      "original": "/assets/images/products/featured/5.png"
+    },
+    "price": "20.38",
+    "sale_price": 600.00,
+    "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+  }
+]

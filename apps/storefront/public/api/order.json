@@ -1,0 +1,38 @@
+{
+  "id": 1,
+  "tracking_number": "XRQ4567",
+  "customer": {
+    "id": 1,
+    "email": "customer@demo.com"
+  },
+  "total": 132,
+  "shipping_fee": 17,
+  "payment_gateway": "cash on delivery",
+  "products": [
+    {
+      "id": 1,
+      "name": "Nike Black - Black, S",
+      "quantity": 10,
+      "price": 5
+    },
+    {
+      "id": 1,
+      "name": "Hermes  Carlton London - Red, XL",
+      "quantity": 10,
+      "price": 15
+    },
+    {
+      "id": 1,
+      "name": "Gucci Carlton UK, Green, M",
+      "quantity": 5,
+      "price": 25
+    },
+    {
+      "id": 1,
+      "name": "Regular Fit Flannel Shirt, Blue, X",
+      "quantity": 10,
+      "price": 35
+    }
+  ],
+  "note": "new order"
+}

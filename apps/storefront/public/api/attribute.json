@@ -1,0 +1,39 @@
+{
+  "id": 2,
+  "name": "Color",
+  "slug": "color",
+  "values": [
+    {
+      "id": 5,
+      "value": "#e86c25"
+    },
+    {
+      "id": 6,
+      "value": "#ffa5b4"
+    },
+    {
+      "id": 7,
+      "value": "#8224e3"
+    },
+    {
+      "id": 8,
+      "value": "#dd3333"
+    },
+    {
+      "id": 8,
+      "value": "#ff3333"
+    },
+    {
+      "id": 8,
+      "value": "#ee3333"
+    },
+    {
+      "id": 8,
+      "value": "#fe3333"
+    },
+    {
+      "id": 8,
+      "value": "#ef3333"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "env": {
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "Add your REST API Endpoints",
+    "NEXT_PUBLIC_SHOP_URL": "Your shop frontend URL",
+    "NEXT_PUBLIC_GOOGLE_MAP_API_KEY": "Your Google Map Key"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "Add your REST API Endpoints",
+      "NEXT_PUBLIC_SHOP_URL": "Your shop frontend URL",
+      "NEXT_PUBLIC_GOOGLE_MAP_API_KEY": "Your Google Map Key"
+    }
+  }
+}
