@@ -50,10 +50,10 @@ export default function Home() {
           className="mb-12 lg:mb-14 xl:mb-16 pb-0.5 lg:pb-1 xl:pb-0"
           classNameInner="h-28 sm:h-auto"
         />
-        </Container>
+      </Container>
 
-        <CategoryBlock sectionHeading="text-shop-by-category" />
-        <Container>
+      <CategoryBlock sectionHeading="text-shop-by-category" />
+      <Container>
         <Divider />
         <BestSellerProductFeed />
         <BannerCard
@@ -62,24 +62,17 @@ export default function Home() {
           className="mb-12 lg:mb-14 xl:mb-16 pb-0.5 lg:pb-1 xl:pb-0"
           classNameInner="h-28 sm:h-auto"
         />
-        
-        
-        
-          <NewArrivalsProductFeed />
-          <Divider />
-          <TestimonialCarousel sectionHeading="text-testimonial" />
-          
-          
-        </Container>
-        <BrandBlock sectionHeading="text-top-brands" />
-        <Subscription className="bg-opacity-0 px-5 sm:px-16 xl:px-0 py-12 md:py-14 xl:py-16" />
-        {/* <CollectionBlock data={collectionData} /> */}
-       
-        {/* <DownloadApps className="bg-linen" /> */}
-        {/* <Support /> */}
-        
-      
-      
+
+        <NewArrivalsProductFeed />
+        <Divider />
+        <TestimonialCarousel sectionHeading="text-testimonial" />
+      </Container>
+      <BrandBlock sectionHeading="text-top-brands" />
+      <Subscription className="bg-opacity-0 px-5 sm:px-16 xl:px-0 py-12 md:py-14 xl:py-16" />
+      {/* <CollectionBlock data={collectionData} /> */}
+
+      {/* <DownloadApps className="bg-linen" /> */}
+      {/* <Support /> */}
     </>
   );
 }
