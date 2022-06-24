@@ -19,6 +19,7 @@ module.exports = withPWA({
       "s3.amazonaws.com",
       "18.141.64.26",
       "via.placeholder.com",
+      "api.mindbank.us",
       "pickbazarlaravel.s3.ap-southeast-1.amazonaws.com",
       "chawkbazarlaravel.s3.ap-southeast-1.amazonaws.com",
       "picsum.photos",
