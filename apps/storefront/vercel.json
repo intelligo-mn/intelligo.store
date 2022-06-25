@@ -8,7 +8,7 @@
     "SECRET": "3e8a013b87a5b84376b1972795b14205",
     "GOOGLE_CLIENT_ID": "Google Client Key",
     "GOOGLE_CLIENT_SECRET": "Google Client Secret",
-    "REVALIDATE_DURATION": 120
+    "REVALIDATE_DURATION": "120"
   },
   "build": {
     "env": {
@@ -20,7 +20,7 @@
       "SECRET": "3e8a013b87a5b84376b1972795b14205",
       "GOOGLE_CLIENT_ID": "Google Client Key",
       "GOOGLE_CLIENT_SECRET": "Google Client Secret",
-      "REVALIDATE_DURATION": 120
+      "REVALIDATE_DURATION": "120"
     }
   }
 }
