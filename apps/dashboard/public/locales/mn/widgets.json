@@ -1,10 +1,10 @@
 {
-	"sticker-card-subtitle-customer": "",
-	"sticker-card-subtitle-order": "",
+	"sticker-card-subtitle-customer": "(Сүүлийн 30 хоног)",
+	"sticker-card-subtitle-order": "(Сүүлийн 30 хоног)",
 	"sticker-card-subtitle-rev": "Сүүлийн 30 өдөр",
-	"sticker-card-title-customer": "",
-	"sticker-card-title-order": "",
-	"sticker-card-title-rev": "",
-	"sticker-card-title-today-rev": "",
-	"sticker-card-title-total-shops": ""
+	"sticker-card-title-customer": "Шинэ үйлчлүүлэгч",
+	"sticker-card-title-order": "Нийт захиалга",
+	"sticker-card-title-rev": "Нийт орлого",
+	"sticker-card-title-today-rev": "Өнөөдрийн орлого",
+	"sticker-card-title-total-shops": "Нийт дэлгүүрүүд"
 }
