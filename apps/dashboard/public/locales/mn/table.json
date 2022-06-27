@@ -35,7 +35,7 @@
 	"table-item-shop-id": "Дэлгүүрийн ID",
 	"table-item-shop-name": "Дэлгүүрийн нэр",
 	"table-item-slug": "Слаг",
-	"table-item-state": "Муж",
+	"table-item-state": "Сум/Дүүрэг",
 	"table-item-status": "Статус",
 	"table-item-title": "Нэр",
 	"table-item-total": "нийт",
@@ -46,5 +46,5 @@
 	"table-item-unit": "Үнэ/нэгж",
 	"table-item-values": "Үнэ цэнэ",
 	"table-item-zip": "ZIP",
-	"withdraw-table-title": "Саяхны буцаан таталтууд"
+	"withdraw-table-title": "Буцаалтууд"
 }
