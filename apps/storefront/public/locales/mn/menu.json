@@ -49,7 +49,7 @@
 	"menu-privacy-policy": "Нууцлалын бодлого",
 	"menu-refined": "Сайжруулсан",
 	"menu-search": "Хайх",
-	"menu-shops": "Дэлгүүрүүд",
+	"menu-shops": "Байгууллагууд",
 	"menu-shorts-skirts": "Богино өмд ба банзал",
 	"menu-shurgs": "Шүргс",
 	"menu-sign-in": "Нэвтрэх",
@@ -71,5 +71,13 @@
 	"menu-vintage": "Хувцасны чимэг",
 	"menu-watches-wearables": "Бугуйн цаг, зүүх хэрэгсэл",
 	"menu-western-wear": "Баруун хувцас",
-	"menu-women-wear": "Эмэгтэйчүүдийн хувцас"
+	"menu-women-wear": "Эмэгтэйчүүдийн хувцас",
+	"menu-festival": "Шоу арга хэмжээ",
+	"menu-exhibition": "Үзэсгэлэн",
+	"menu-game": "Тоглоом",
+	"menu-conference": "Хуралт зөвлөгөөн",
+	"menu-sport": "Спорт арга хэмжээ",
+	"menu-training": "Сургалт",
+	"menu-music": "Дуу хөгжим",
+	"menu-travel": "Аялал"
 }
