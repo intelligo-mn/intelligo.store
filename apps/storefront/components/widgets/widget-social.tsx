@@ -14,30 +14,25 @@ const WidgetSocial: FC = () => {
 
   return (
     <div>
-      {/* <h4 className="text-heading text-sm md:text-base xl:text-lg font-semibold mb-5 2xl:mb-6 3xl:mb-7">
+      <h4 className="text-heading text-sm md:text-base xl:text-lg font-semibold mb-5 2xl:mb-6 3xl:mb-7">
         {t(`footer:widget-title-social`)}
-      </h4> */}
-      <ul className="text-xs md:text-[13px] lg:text-sm text-body flex flex-row space-y-3 lg:space-y-3.5">
+      </h4>
+      <ul className="text-xs md:text-[13px] lg:text-sm text-body flex flex-col space-y-3 lg:space-y-3.5">
         {socials?.map((social: Social, index: number) => (
-          <li key={`widget-list--key${index}`} className="flex justify-center">
+          <li key={`widget-list--key${index}`} className="flex items-baseline">
+            {social.icon && (
+              <span className="ltr:mr-3 rtl:ml-3 relative top-0.5 lg:top-1 text-sm lg:text-base">
+                {getIcon({
+                  iconList: socialIcons,
+                  iconName: social?.icon,
+                })}
+              </span>
+            )}
             <Link href={social.url ? social.url : "#!"}>
-              <a className="transition-colors duration-200 hover:text-black">
-                  {social.icon && (
-                    <span className="ltr:mr-3 rtl:ml-3 relative top-0.5 lg:top-1 text-sm lg:text-base">
-                      {getIcon({
-                        iconList: socialIcons,
-                        iconName: social?.icon,
-                      })}
-                    </span>
-                  )}
-              </a>
-            </Link>
-           
-            {/* <Link href={social.url ? social.url : "#!"}>
               <a className="transition-colors duration-200 hover:text-black">
                 {social?.label ? social?.label : social?.url}
               </a>
-            </Link> */}
+            </Link>
           </li>
         ))}
       </ul>
