@@ -20,7 +20,7 @@ const WidgetLink: FC<Props> = ({ className, data }) => {
   const { t } = useTranslation("footer");
   return (
     <div className={`${className}`}>
-      <h4 className="text-white text-sm md:text-base xl:text-lg font-semibold mb-5 2xl:mb-6 3xl:mb-7">
+      <h4 className="text-heading text-sm md:text-base xl:text-lg font-semibold mb-5 2xl:mb-6 3xl:mb-7">
         {t(`${widgetTitle}`)}
       </h4>
       <ul className="text-xs md:text-[13px] lg:text-sm text-body flex flex-col space-y-3 lg:space-y-3.5">
@@ -35,7 +35,7 @@ const WidgetLink: FC<Props> = ({ className, data }) => {
               </span>
             )}
             <Link href={list.path ? list.path : "#!"}>
-              <a className="text-white transition-colors duration-200 hover:text-black">
+              <a className="transition-colors duration-200 hover:text-black">
                 {t(`${list.title}`)}
               </a>
             </Link>
