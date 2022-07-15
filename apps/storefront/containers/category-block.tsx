@@ -13,7 +13,6 @@ import NotFoundItem from "@components/404/not-found-item";
 import { useTranslation } from "next-i18next";
 import React from "react";
 import { getCategoryTypeImage } from "@lib/get-category-type-image";
-import Container from "@components/ui/container";
 
 interface CategoriesProps {
 	sectionHeading: string;
@@ -105,7 +104,7 @@ const modernBreakpoints = {
 };
 
 const CategoryBlock: React.FC<CategoriesProps> = ({
-	className = "mb-10 md:mb-11 lg:mb-12 xl:mb-14 lg:pb-1 xl:pb-0 bg-category-bg bg-no-repeat py-3",
+	className = "mb-10 md:mb-11 lg:mb-12 xl:mb-14 lg:pb-1 xl:pb-0",
 	sectionHeading,
 	variant = "circle",
 	effectPosition = "imageOnly",
@@ -135,52 +134,49 @@ const CategoryBlock: React.FC<CategoriesProps> = ({
 
 	return (
 		<div className={className}>
-			<Container>
-				{/* <SectionHeader sectionHeading={sectionHeading} /> */}
-				{error ? (
-					<Alert message={error?.message} />
-				) : (
-					<Carousel
-						breakpoints={sliderBreakpoints}
-						buttonClassName="-mt-8 md:-mt-10"
-					>
-						{loading && !categories?.data
-							? Array.from({ length: 10 }).map((_, idx) => {
-									if (variant === "rounded") {
-										return (
-											<SwiperSlide key={`card-rounded-${idx}`}>
-												<CardRoundedLoader uniqueKey={`card-rounded-${idx}`} />
-											</SwiperSlide>
-										);
-									} else if (variant === "modern") {
-										return (
-											<SwiperSlide key={`card-rounded-${idx}`}>
-												<CardIconLoader uniqueKey={`card-rounded-${idx}`} />
-											</SwiperSlide>
-										);
-									}
+			<SectionHeader sectionHeading={sectionHeading} />
+			{error ? (
+				<Alert message={error?.message} />
+			) : (
+				<Carousel
+					breakpoints={sliderBreakpoints}
+					buttonClassName="-mt-8 md:-mt-10"
+				>
+					{loading && !categories?.data
+						? Array.from({ length: 10 }).map((_, idx) => {
+								if (variant === "rounded") {
 									return (
-										<SwiperSlide key={`card-circle-${idx}`}>
-											<CardLoader uniqueKey={`card-circle-${idx}`} />
+										<SwiperSlide key={`card-rounded-${idx}`}>
+											<CardRoundedLoader uniqueKey={`card-rounded-${idx}`} />
 										</SwiperSlide>
 									);
-							})
-							: categories?.data?.map((category) => (
-									<SwiperSlide key={`category--key-${category.id}`}>
-										<Card
-											item={category}
-											href={`${ROUTES.CATEGORY}/${category.slug}`}
-											variant={variant}
-											effectActive={true}
-											effectPosition={effectPosition}
-						image={getCategoryTypeImage(category, type)}
-										/>
+								} else if (variant === "modern") {
+									return (
+										<SwiperSlide key={`card-rounded-${idx}`}>
+											<CardIconLoader uniqueKey={`card-rounded-${idx}`} />
+										</SwiperSlide>
+									);
+								}
+								return (
+									<SwiperSlide key={`card-circle-${idx}`}>
+										<CardLoader uniqueKey={`card-circle-${idx}`} />
 									</SwiperSlide>
-							))}
-					</Carousel>
-				)}
-			</Container>
-			
+								);
+						  })
+						: categories?.data?.map((category) => (
+								<SwiperSlide key={`category--key-${category.id}`}>
+									<Card
+										item={category}
+										href={`${ROUTES.CATEGORY}/${category.slug}`}
+										variant={variant}
+										effectActive={true}
+										effectPosition={effectPosition}
+                    image={getCategoryTypeImage(category, type)}
+									/>
+								</SwiperSlide>
+						  ))}
+				</Carousel>
+			)}
 		</div>
 	);
 };
