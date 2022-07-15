@@ -12,7 +12,6 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { Type } from "@framework/types";
 import { filterBrandImages, filterBrands } from "@lib/filter-brands";
-import Container from "@components/ui/container";
 
 interface BrandProps {
 	sectionHeading: string;
@@ -63,41 +62,36 @@ const BrandBlock: React.FC<BrandProps> = ({
   const sliderBrand: Type[] = filterBrands(brands?.data, "slider-layout");
 
   return (
-	  <div className="bg-gray-300">
-		  <Container>
-			<div className={className}>
-				{/* <SectionHeader sectionHeading={sectionHeading} /> */}
+		<div className={className}>
+			<SectionHeader sectionHeading={sectionHeading} />
 
-				{error ? (
-					<Alert message={error?.message} />
-				) : (
-					<Carousel breakpoints={breakpoints} loop={false} buttonClassName="-mt-8 md:-mt-12">
-						{loading && !brands?.data
-							? Array.from({ length: 7 }).map((_, idx) => (
-									<SwiperSlide key={idx}>
-										<CardRoundedLoader uniqueKey={`category-${idx}`} />
-									</SwiperSlide>
-							))
-							: sliderBrand?.map((brand) => (
-									<SwiperSlide key={`brand--key${brand.id}`}>
-										<Card
-											item={brand}
-											variant="rounded"
-											// size="medium"
-											href={{
-												pathname: ROUTES.SEARCH,
-												query: { brand: brand.slug },
-											}}
-						image={filterBrandImages(brand?.images, "slider-layout")?.image?.[0]}
-										/>
-									</SwiperSlide>
-							))}
-					</Carousel>
-				)}
-			</div>
-		  </Container>
-	  </div>
-		
+			{error ? (
+				<Alert message={error?.message} />
+			) : (
+				<Carousel breakpoints={breakpoints} loop={false} buttonClassName="-mt-8 md:-mt-12">
+					{loading && !brands?.data
+						? Array.from({ length: 7 }).map((_, idx) => (
+								<SwiperSlide key={idx}>
+									<CardRoundedLoader uniqueKey={`category-${idx}`} />
+								</SwiperSlide>
+						  ))
+						: sliderBrand?.map((brand) => (
+								<SwiperSlide key={`brand--key${brand.id}`}>
+									<Card
+										item={brand}
+										variant="rounded"
+										// size="medium"
+										href={{
+											pathname: ROUTES.SEARCH,
+											query: { brand: brand.slug },
+										}}
+                    image={filterBrandImages(brand?.images, "slider-layout")?.image?.[0]}
+									/>
+								</SwiperSlide>
+						  ))}
+				</Carousel>
+			)}
+		</div>
 	);
 };
 
