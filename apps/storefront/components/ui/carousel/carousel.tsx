@@ -32,7 +32,6 @@ const Carousel: React.FunctionComponent<CarouselPropsType> = ({
 	buttonSize = "default",
 	paginationVariant = "default",
 	breakpoints,
-
   	loop,
 	autoplay = {
 		delay: 4000,

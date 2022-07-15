@@ -29,4 +29,5 @@ export default function AccountDetailsPage() {
   );
 }
 
+AccountDetailsPage.authenticate = true;
 AccountDetailsPage.getLayout = getLayout;

@@ -7,7 +7,7 @@ import { StaticBanner } from "@framework/types";
 
 const breakpoints = {
 	"1500": {
-		slidesPerView: 1,
+		slidesPerView: 2,
 	},
 	"0": {
 		slidesPerView: 1,

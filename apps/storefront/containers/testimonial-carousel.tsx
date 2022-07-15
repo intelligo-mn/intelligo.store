@@ -12,16 +12,16 @@ interface TestimonialsProps {
 
 const breakpoints = {
 	"1720": {
-		slidesPerView: 1,
+		slidesPerView: 4,
 	},
 	"1366": {
-		slidesPerView: 1,
+		slidesPerView: 3,
 	},
 	"1025": {
-		slidesPerView: 1,
+		slidesPerView: 3,
 	},
 	"768": {
-		slidesPerView: 1,
+		slidesPerView: 2,
 	},
 	"0": {
 		slidesPerView: 1,
@@ -37,7 +37,7 @@ const TestimonialCarousel: React.FC<TestimonialsProps> = ({
 			<SectionHeader sectionHeading={sectionHeading} />
 			<Carousel
 				autoplay={{
-					delay: 400000,
+					delay: 4000,
 				}}
 				breakpoints={breakpoints}
 				className="testimonial-carousel"

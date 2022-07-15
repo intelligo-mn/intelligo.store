@@ -72,8 +72,8 @@ const CustomApp: any = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
       <QueryClientProvider client={queryClient}>
-        <AppSettings>
-          <Hydrate state={pageProps.dehydratedState}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <AppSettings>
             <ManagedUIContext>
               <DefaultSeo />
               {Boolean(authProps) ? (
@@ -88,9 +88,9 @@ const CustomApp: any = ({ Component, pageProps }: AppPropsWithLayout) => {
               <ManagedModal />
               <ManagedDrawer />
             </ManagedUIContext>
-          </Hydrate>
-          {/* <ReactQueryDevtools /> */}
-        </AppSettings>
+          </AppSettings>
+        </Hydrate>
+        {/* <ReactQueryDevtools /> */}
       </QueryClientProvider>
     </AnimatePresence>
   );

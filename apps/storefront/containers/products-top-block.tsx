@@ -20,8 +20,6 @@ const ProductsTopBlock: React.FC<Props> = ({
 		limit: limit,
 	});
 
-	console.log(data)
-
 	return (
 		<div className={`${className}`}>
 			<SectionHeader sectionHeading={sectionHeading} />
