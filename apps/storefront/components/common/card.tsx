@@ -75,9 +75,9 @@ const Card: React.FC<Props> = ({
 								(["rounded", "modern", "elegant"].includes(variant) && "rounded-md") || (variant === "circle" && "rounded-full")
 							}`}
 						/>
-						{/* <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+						<div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
 							<FaLink className="text-white text-base sm:text-xl lg:text-2xl xl:text-3xl transform opacity-0 scale-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:scale-100" />
-						</div> */}
+						</div>
 					</>
 				)}
 			</div>
@@ -86,7 +86,7 @@ const Card: React.FC<Props> = ({
 					{name}
 				</Text>
 			:
-				<Text variant="heading" className="capitalize text-white">
+				<Text variant="heading" className="capitalize">
 					{name}
 				</Text>
 			}
@@ -106,9 +106,9 @@ const Card: React.FC<Props> = ({
 							(["rounded", "modern", "elegant"].includes(variant) && "rounded-md") || (variant === "circle" && "rounded-full")
 						}`}
 					/>
-					{/* <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+					<div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
 						<FaLink className="text-white text-base sm:text-xl lg:text-2xl xl:text-3xl transform opacity-0 scale-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:scale-100" />
-					</div> */}
+					</div>
 				</>
 			)}
 		</Link>
