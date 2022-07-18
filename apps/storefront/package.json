@@ -27,7 +27,7 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
     "next": "^11.1.0",
-    "next-auth": "3.28.0",
+    "next-auth": "3.29.8",
     "next-i18next": "^8.6.0",
     "next-pwa": "^5.3.1",
     "next-seo": "^4.26.0",
