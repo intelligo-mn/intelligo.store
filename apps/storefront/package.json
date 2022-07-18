@@ -53,7 +53,7 @@
     "react-tabs": "^3.2.2",
     "react-toastify": "^7.0.4",
     "react-use": "^17.2.4",
-    "sharp": "^0.29.2",
+    "sharp": "^0.30.5",
     "swiper": "^6.5.9",
     "yup": "^0.32.9"
   },
