@@ -24,7 +24,7 @@
     "@nrwl/jest": "14.6.4",
     "@nrwl/linter": "14.6.4",
     "@nrwl/nx-cloud": "latest",
-    "@nrwl/react": "14.6.4",
+    "@nrwl/react": "^14.6.4",
     "@nrwl/web": "14.6.4",
     "@nrwl/workspace": "14.5.10",
     "@testing-library/react": "13.3.0",

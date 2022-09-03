@@ -1861,7 +1861,7 @@
     tar "6.1.11"
     yargs-parser ">=21.0.1"
 
-"@nrwl/react@14.6.4":
+"@nrwl/react@14.6.4", "@nrwl/react@^14.6.4":
   version "14.6.4"
   resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-14.6.4.tgz#28343fd4043bd1fe4a369e254d44258a43f72ef6"
   integrity sha512-K7Qjl/TjlQtxt88tvc+ZMQJh5qlkbb4pfr17Ca+gR8y+6TEmrJJvMex/rf108JZW+sioUv6L3Dvg1glmQR0sOw==
