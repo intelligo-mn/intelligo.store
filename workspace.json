@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "common": "libs/common",
+    "config": "libs/config",
     "context": "libs/context",
     "dashboard": "apps/dashboard",
     "dashboard-e2e": "apps/dashboard-e2e",
