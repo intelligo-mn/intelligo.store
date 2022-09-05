@@ -8,6 +8,7 @@
     "graphql": "libs/graphql",
     "store": "libs/store",
     "storefront": "apps/storefront",
-    "storefront-e2e": "apps/storefront-e2e"
+    "storefront-e2e": "apps/storefront-e2e",
+    "utils": "libs/utils"
   }
 }
