@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@intelligo/common": ["libs/common/src/index.ts"],
+      "@intelligo/context": ["libs/context/src/index.ts"],
       "@intelligo/graphql": ["libs/graphql/src/index.ts"],
       "@intelligo/store": ["libs/store/src/index.ts"],
       "@intelligo/utils": ["libs/utils/src/index.ts"]
