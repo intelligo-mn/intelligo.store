@@ -1,37 +1,18 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": true,
-    "alwaysStrict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@containers/*": ["containers/*"],
-      "@contexts/*": ["contexts/*"],
-      "@framework/*": ["framework/rest/*"],
-      "@lib/*": ["lib/*"],
-      "@settings/*": ["settings/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@store/*": ["store/*"],
-      "@assets/*": ["assets/*"],
-      "@data/*": ["data/*"],
-    }
+    "incremental": true,
+    "types": ["jest", "node"]
   },
-  "include": ["next-env.d.ts", "additional.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
+  "exclude": ["node_modules", "jest.config.ts"]
 }
