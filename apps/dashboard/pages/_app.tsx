@@ -1,18 +1,71 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import type { AppProps } from "next/app";
+import "@fontsource/open-sans";
+import "@fontsource/open-sans/600.css";
+import "@fontsource/open-sans/700.css";
+import "react-toastify/dist/ReactToastify.css";
+import "apps/dashboard/assets/main.css";
+import { UIProvider } from "apps/dashboard/contexts/ui.context";
+import { SettingsProvider } from "apps/dashboard/contexts/settings.context";
+import ErrorMessage from "apps/dashboard/components/ui/error-message";
+import PageLoader from "apps/dashboard/components/ui/page-loader/page-loader";
+import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Hydrate } from "react-query/hydration";
+import { useRef } from "react";
+import { useSettingsQuery } from "apps/dashboard/data/settings/use-settings.query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { appWithTranslation } from "next-i18next";
+import { ModalProvider } from "apps/dashboard/components/ui/modal/modal.context";
+import DefaultSeo from "apps/dashboard/components/ui/default-seo";
+import PrivateRoute from "apps/dashboard/utils/private-route";
+import ManagedModal from "apps/dashboard/components/ui/modal/managed-modal";
 
-function CustomApp({ Component, pageProps }: AppProps) {
+const Noop: React.FC = ({ children }) => <>{children}</>;
+
+const AppSettings: React.FC = (props) => {
+  const { data, isLoading: loading, error } = useSettingsQuery();
+  if (loading) return <PageLoader />;
+  if (error) return <ErrorMessage message={error.message} />;
+  return <SettingsProvider initialValue={data?.options} {...props} />;
+};
+
+const CustomApp = ({ Component, pageProps }: AppProps) => {
+  const queryClientRef = useRef<any>(null);
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+  const Layout = (Component as any).Layout || Noop;
+  const authProps = (Component as any).authenticate;
+
   return (
-    <>
-      <Head>
-        <title>Welcome to dashboard!</title>
-      </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-    </>
+    <QueryClientProvider client={queryClientRef.current}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <AppSettings>
+          <UIProvider>
+            <ModalProvider>
+              <>
+                <DefaultSeo />
+                {authProps ? (
+                  <PrivateRoute authProps={authProps}>
+                    <Layout {...pageProps}>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </PrivateRoute>
+                ) : (
+                  <Layout {...pageProps}>
+                    <Component {...pageProps} />
+                  </Layout>
+                )}
+                <ToastContainer autoClose={2000} theme="colored" />
+                <ManagedModal />
+              </>
+            </ModalProvider>
+          </UIProvider>
+        </AppSettings>
+        <ReactQueryDevtools />
+      </Hydrate>
+    </QueryClientProvider>
   );
-}
+};
 
-export default CustomApp;
+export default appWithTranslation(CustomApp);
