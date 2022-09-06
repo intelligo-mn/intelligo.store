@@ -1,4 +1,4 @@
-import styles from "./loader.module.css";
+// import styles from "./loader.module.css";
 import cn from "classnames";
 
 interface Props {
@@ -13,7 +13,7 @@ const Loader = (props: Props) => {
   return (
     <>
       {simple ? (
-        <div className={cn(className, styles.simple_loading)} />
+        <div className={cn(className)} />
       ) : (
         <div
           className={cn(
@@ -22,7 +22,7 @@ const Loader = (props: Props) => {
           )}
           style={{ height: "calc(100vh - 200px)" }}
         >
-          <div className={styles.loading} />
+          {/* <div className={styles.loading} /> */}
 
           {showText && (
             <h3 className="text-lg font-semibold text-body italic">{text}</h3>

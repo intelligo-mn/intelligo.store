@@ -1,3 +1,5 @@
+const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
+const { join } = require('path');
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
@@ -7,14 +9,19 @@ function withOpacity(variableName) {
     }
   };
 }
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit",
+  content: [
+    join(
+      __dirname,
+      '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+    ),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
   purge: [
     "./components/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       screens: {
