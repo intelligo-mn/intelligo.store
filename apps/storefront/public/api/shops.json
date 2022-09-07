@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": true,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-1.jpg",
+      "original": "/assets/images/shop/shop-banner-1.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-1.jpg",
+      "original": "/assets/images/shop/shop-logo-1.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 2,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": false,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-2.jpg",
+      "original": "/assets/images/shop/shop-banner-2.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-2.jpg",
+      "original": "/assets/images/shop/shop-logo-2.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 3,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": true,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-3.jpg",
+      "original": "/assets/images/shop/shop-banner-3.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-3.jpg",
+      "original": "/assets/images/shop/shop-logo-3.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 4,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": false,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-4.jpg",
+      "original": "/assets/images/shop/shop-banner-4.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-4.jpg",
+      "original": "/assets/images/shop/shop-logo-4.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 5,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": false,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-5.jpg",
+      "original": "/assets/images/shop/shop-banner-5.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-5.jpg",
+      "original": "/assets/images/shop/shop-logo-5.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 6,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": true,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-1.jpg",
+      "original": "/assets/images/shop/shop-banner-1.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-6.jpg",
+      "original": "/assets/images/shop/shop-logo-6.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 7,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": false,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-2.jpg",
+      "original": "/assets/images/shop/shop-banner-2.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-7.jpg",
+      "original": "/assets/images/shop/shop-logo-7.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 8,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": true,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-3.jpg",
+      "original": "/assets/images/shop/shop-banner-3.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-8.jpg",
+      "original": "/assets/images/shop/shop-logo-8.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  },
+  {
+    "id": 9,
+    "owner_id": 1,
+    "owner_name": "Marcel",
+    "is_active": false,
+    "address": "115 E 9th St, New York, CA 90079,USA",
+    "phone": "+971-321-4841-78",
+    "website": "www.area365mart.com",
+    "ratings": "5.00 rating from 1 review",
+    "name": "Area 365 Mart",
+    "slug": "area-365-mart",
+    "description": "You will get quality product",
+    "cover_image": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-banner-4.jpg",
+      "original": "/assets/images/shop/shop-banner-4.jpg"
+    },
+    "logo": {
+      "id": 1,
+      "thumbnail": "/assets/images/shop/shop-logo-9.jpg",
+      "original": "/assets/images/shop/shop-logo-9.jpg"
+    },
+    "created_at": "2018-05-23",
+    "updated_at": "2020-05-23"
+  }
+]

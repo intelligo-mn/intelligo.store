@@ -1,0 +1,39 @@
+.page_loader {
+	margin: 100px auto;
+	width: 120px;
+	height: 120px;
+	border: 16px solid #f9f9f9;
+	border-top: 16px solid #212121;
+	border-radius: 50%;
+	animation: spin 2s linear infinite, heart-beat 2s linear infinite;
+	background-color: #fff;
+	text-align: center;
+	line-height: 120px;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes heart-beat {
+	55% {
+		background-color: #fff;
+	}
+	60% {
+		background-color: #212121;
+	}
+	65% {
+		background-color: #fff;
+	}
+	70% {
+		background-color: #212121;
+	}
+	100% {
+		background-color: #fff;
+	}
+}

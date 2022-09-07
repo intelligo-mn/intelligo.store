@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="_256_256" data-name="256*256" transform="translate(-635 -130)">
+    <rect id="Rectangle_3818" data-name="Rectangle 3818" width="256" height="256" transform="translate(635 130)" fill="#eaedef"/>
+    <g id="Placeholder_icon" data-name="Placeholder icon" transform="translate(12514 -12743)">
+      <rect id="Rectangle_3548" data-name="Rectangle 3548" width="45" height="40.4" transform="translate(-11774 12983)" fill="#fff"/>
+      <g id="_001-insert-picture-icon" data-name="001-insert-picture-icon" transform="translate(-11778 12976)">
+        <path id="Path_21712" data-name="Path 21712" d="M47.9,9.35H6.108A6.1,6.1,0,0,0,0,15.434V53.671a6.1,6.1,0,0,0,6.108,6.077H47.9A6.094,6.094,0,0,0,54,53.671V15.434A6.1,6.1,0,0,0,47.9,9.35ZM34.92,18.4a5.874,5.874,0,1,1-5.9,5.873,5.874,5.874,0,0,1,5.9-5.873Zm11.06,35.73H8.864A1.662,1.662,0,0,1,7.244,51.5L17.368,31.542a1.707,1.707,0,0,1,3.122-.289L30.67,44.5a2.5,2.5,0,0,0,3.866.244l2.49-2.511a2.377,2.377,0,0,1,3.765.317l6.449,9.171C48.172,53.05,47.609,54.128,45.98,54.128Z" transform="translate(0 -9.35)" fill="#c2cbd2"/>
+      </g>
+    </g>
+  </g>
+</svg>

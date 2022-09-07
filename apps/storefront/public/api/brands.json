@@ -1,0 +1,326 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "Shovia",
+      "slug": "shovia",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/shovia.png",
+        "original": "/assets/images/brands/shovia.png"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Fusion",
+      "slug": "fusion",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/fusion.png",
+        "original": "/assets/images/brands/fusion.png"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Hunter Shoes",
+      "slug": "hunter-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/hunter-shoes.png",
+        "original": "/assets/images/brands/hunter-shoes.png"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Club Shoes",
+      "slug": "club-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/club-shoes.png",
+        "original": "/assets/images/brands/club-shoes.png"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Hoppister",
+      "slug": "hoppister",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/hoppister.png",
+        "original": "/assets/images/brands/hoppister.png"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Blaze Fashion",
+      "slug": "blaze-fashion",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/blaze-fashion.png",
+        "original": "/assets/images/brands/blaze-fashion.png"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Elegance",
+      "slug": "elegance",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/elegance.png",
+        "original": "/assets/images/brands/elegance.png"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Fashadil",
+      "slug": "fashadil",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/fashadil.png",
+        "original": "/assets/images/brands/fashadil.png"
+      }
+    }
+  ],
+  "brandsGrid": [
+    {
+      "id": 1,
+      "name": "Fusion",
+      "slug": "fusion",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fusion.png",
+        "original": "/assets/images/brands/grid/fusion.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fusion-bg.jpg",
+        "original": "/assets/images/brands/grid/fusion-bg.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Sholy",
+      "slug": "sholy",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/sholy.png",
+        "original": "/assets/images/brands/grid/sholy.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/sholy-bg.jpg",
+        "original": "/assets/images/brands/grid/sholy-bg.jpg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Tyrant",
+      "slug": "tyrant",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/tyrant.png",
+        "original": "/assets/images/brands/grid/tyrant.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/tyrant-bg.jpg",
+        "original": "/assets/images/brands/grid/tyrant-bg.jpg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Fashadil",
+      "slug": "fashadil",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fashadil.png",
+        "original": "/assets/images/brands/grid/fashadil.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fashadil-bg.jpg",
+        "original": "/assets/images/brands/grid/fashadil-bg.jpg"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Clothingegy",
+      "slug": "clothingegy",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/clothingegy.png",
+        "original": "/assets/images/brands/grid/clothingegy.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/clothingegy-bg.jpg",
+        "original": "/assets/images/brands/grid/clothingegy-bg.jpg"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Shosio",
+      "slug": "shosio",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shosio.png",
+        "original": "/assets/images/brands/grid/shosio.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shosio-bg.jpg",
+        "original": "/assets/images/brands/grid/shosio-bg.jpg"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Club Shoes",
+      "slug": "club-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/club-shoes.png",
+        "original": "/assets/images/brands/grid/club-shoes.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/club-shoes-bg.jpg",
+        "original": "/assets/images/brands/grid/club-shoes-bg.jpg"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Pop Clothing",
+      "slug": "pop-clothing",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/pop-clothing.png",
+        "original": "/assets/images/brands/grid/pop-clothing.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/pop-clothing-bg.jpg",
+        "original": "/assets/images/brands/grid/pop-clothing-bg.jpg"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Hoppister",
+      "slug": "hoppister",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/hoppister.png",
+        "original": "/assets/images/brands/grid/hoppister.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/hoppister-bg.jpg",
+        "original": "/assets/images/brands/grid/hoppister-bg.jpg"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Shovia",
+      "slug": "shovia",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shovia.png",
+        "original": "/assets/images/brands/grid/shovia.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shovia-bg.jpg",
+        "original": "/assets/images/brands/grid/shovia-bg.jpg"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Shoozly",
+      "slug": "shoozly",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shoozly.png",
+        "original": "/assets/images/brands/grid/shoozly.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/shoozly-bg.jpg",
+        "original": "/assets/images/brands/grid/shoozly-bg.jpg"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Blaze Fashion",
+      "slug": "blaze-fashion",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/blaze-fashion.png",
+        "original": "/assets/images/brands/grid/blaze-fashion.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/blaze-fashion-bg.jpg",
+        "original": "/assets/images/brands/grid/blaze-fashion-bg.jpg"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Elegance",
+      "slug": "elegance",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/elegance.png",
+        "original": "/assets/images/brands/grid/elegance.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/elegance-bg.jpg",
+        "original": "/assets/images/brands/grid/elegance-bg.jpg"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Clothingtastic",
+      "slug": "clothingtastic",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/clothingtastic.png",
+        "original": "/assets/images/brands/grid/clothingtastic.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/clothingtastic-bg.jpg",
+        "original": "/assets/images/brands/grid/clothingtastic-bg.jpg"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Fashnetic",
+      "slug": "fashnetic",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fashnetic.png",
+        "original": "/assets/images/brands/grid/fashnetic.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/fashnetic-bg.jpg",
+        "original": "/assets/images/brands/grid/fashnetic-bg.jpg"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Hunter Shoes",
+      "slug": "hunter-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/hunter-shoes.png",
+        "original": "/assets/images/brands/grid/hunter-shoes.png"
+      },
+      "background_image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/grid/hunter-shoes-bg.jpg",
+        "original": "/assets/images/brands/grid/hunter-shoes-bg.jpg"
+      }
+    }
+  ]
+}

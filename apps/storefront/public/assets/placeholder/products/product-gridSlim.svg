@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="322" height="322" viewBox="0 0 322 322">
+  <g id="_322_322" data-name="322*322" transform="translate(-931 -130)">
+    <rect id="Rectangle_3819" data-name="Rectangle 3819" width="322" height="322" transform="translate(931 130)" fill="#eaedef"/>
+    <g id="Placeholder_icon" data-name="Placeholder icon" transform="translate(12840 -12713)">
+      <rect id="Rectangle_3548" data-name="Rectangle 3548" width="51" height="45" transform="translate(-11774 12983)" fill="#fff"/>
+      <g id="_001-insert-picture-icon" data-name="001-insert-picture-icon" transform="translate(-11778 12976)">
+        <path id="Path_21712" data-name="Path 21712" d="M53.217,9.35H6.786A6.778,6.778,0,0,0,0,16.11V58.6a6.774,6.774,0,0,0,6.786,6.752H53.217A6.771,6.771,0,0,0,60,58.6V16.11A6.775,6.775,0,0,0,53.217,9.35ZM38.8,19.4a6.526,6.526,0,1,1-6.555,6.526A6.526,6.526,0,0,1,38.8,19.4ZM51.089,59.1H9.849c-1.81,0-2.617-1.3-1.8-2.914L19.3,34.007a1.9,1.9,0,0,1,3.469-.321L34.078,48.4a2.781,2.781,0,0,0,4.3.271l2.767-2.79a2.641,2.641,0,0,1,4.183.352l7.165,10.19C53.524,57.906,52.9,59.1,51.089,59.1Z" transform="translate(0 -9.35)" fill="#c2cbd2"/>
+      </g>
+    </g>
+  </g>
+</svg>

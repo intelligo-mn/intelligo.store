@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Winter Collection",
+      "slug": "winter-collection"
+    },
+    {
+      "id": 2,
+      "name": "Summer Collection",
+      "slug": "summer-collection"
+    },
+    {
+      "id": 3,
+      "name": "Wedding Collection",
+      "slug": "wedding-collection"
+    },
+    {
+      "id": 4,
+      "name": "Trekking Collection",
+      "slug": "trekking-collection"
+    },
+    {
+      "id": 5,
+      "name": "Gift Collection",
+      "slug": "gift-collection"
+    },
+    {
+      "id": 6,
+      "name": "Mens Collection",
+      "slug": "mens-collection"
+    },
+    {
+      "id": 7,
+      "name": "Womens Collection",
+      "slug": "womens-collection"
+    },
+    {
+      "id": 8,
+      "name": "Kids Collection",
+      "slug": "kids-collection"
+    },
+    {
+      "id": 9,
+      "name": "Party Collection",
+      "slug": "party-collection"
+    },
+    {
+      "id": 10,
+      "name": "Backpack Collection",
+      "slug": "backpack-collection"
+    }
+  ]
+}
