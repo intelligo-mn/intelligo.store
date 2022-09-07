@@ -2,19 +2,19 @@ import { adminAndOwnerOnly, adminOwnerAndStaffOnly } from "apps/dashboard/utils/
 import { ROUTES } from "apps/dashboard/utils/routes";
 
 export const siteSettings = {
-  name: "ChawkBazar",
+  name: "Intelligo",
   description: "",
   logo: {
     url: "/logo.svg",
-    alt: "ChawkBazar",
+    alt: "Intelligo",
     href: "/",
     width: 128,
     height: 40,
   },
   defaultLanguage: "en",
   author: {
-    name: "RedQ, Inc.",
-    websiteUrl: "https://redq.io",
+    name: "Intelligo LLC",
+    websiteUrl: "https://intelligo.dev",
     address: "",
   },
   headerLinks: [],

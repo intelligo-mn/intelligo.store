@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@intelligo-mn/chart": ["libs/chart/src/index.ts"],
+      "@intelligo-mn/icons": ["libs/icons/src/index.ts"],
       "@intelligo/common": ["libs/common/src/index.ts"],
       "@intelligo/config": ["libs/config/src/index.ts"],
       "@intelligo/context": ["libs/context/src/index.ts"],

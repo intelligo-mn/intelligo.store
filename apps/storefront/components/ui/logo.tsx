@@ -19,7 +19,7 @@ const Logo: React.FC<React.AnchorHTMLAttributes<{}>> = ({
 		>
 			<Image
         src={logo?.original ?? siteSettings.logo.url}
-				alt={siteTitle || "ChawkBazar Logo"}
+				alt={siteTitle || "Intelligo Logo"}
         // TODO: Make it dynamic
 				height={30}
 				width={95}

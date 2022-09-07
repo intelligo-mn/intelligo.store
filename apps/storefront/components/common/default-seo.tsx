@@ -30,7 +30,7 @@ const DefaultSeo = () => {
         },
       ]}
       title={settings?.seo?.metaTitle || settings?.siteTitle || 'E-Commerce'}
-      defaultTitle="ChawkBazar"
+      defaultTitle="Intelligo"
       description={settings?.seo?.metaDescription || settings?.siteSubtitle}
       canonical={settings?.seo?.canonicalUrl}
       openGraph={{

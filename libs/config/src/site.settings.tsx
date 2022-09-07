@@ -6,17 +6,17 @@ import { DEFlag } from "@components/icons/DEFlag";
 import { ESFlag } from "@components/icons/ESFlag";
 
 export const siteSettings = {
-  name: "ChawkBazar",
+  name: "Intelligo",
   description:
     "Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS.",
   author: {
-    name: "RedQ, Inc.",
-    websiteUrl: "https://redq.io",
+    name: "Intelligo LLC",
+    websiteUrl: "https://intelligo.dev",
     address: "",
   },
   logo: {
     url: "/assets/images/logo.svg",
-    alt: "ChawkBazar",
+    alt: "Intelligo",
     href: "/",
     width: 95,
     height: 30,

@@ -65,7 +65,7 @@ export default function InvoicePdf({ order }: { order: Order }) {
                   { color: "#374151", fontSize: 12 },
                 ]}
               >
-                ChawkBazar
+                Intelligo
               </Text>
               <Text style={styles.addressTextRight}>chawkbazar@dummy.com</Text>
               <Text style={styles.addressTextRight}>+123456789</Text>
