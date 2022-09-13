@@ -1,4 +1,5 @@
 {
-  "name": "@intelligo/config",
-  "version": "0.0.1"
+  "name": "@platform/config",
+  "version": "0.0.1",
+  "type": "commonjs"
 }

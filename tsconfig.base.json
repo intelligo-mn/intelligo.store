@@ -22,7 +22,9 @@
       "@intelligo/context": ["libs/context/src/index.ts"],
       "@intelligo/graphql": ["libs/graphql/src/index.ts"],
       "@intelligo/store": ["libs/store/src/index.ts"],
-      "@intelligo/utils": ["libs/utils/src/index.ts"]
+      "@intelligo/utils": ["libs/utils/src/index.ts"],
+      "@platform/common": ["libs/common/src/index.ts"],
+      "@platform/config": ["libs/config/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,1 +1,2 @@
-export * from './lib/config';
+export * from './environment';
+export * from './ienvironment';
