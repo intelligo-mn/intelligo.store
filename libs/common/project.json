@@ -2,33 +2,34 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/common/src",
   "projectType": "library",
-  "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/web:rollup",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/common",
+        "main": "libs/common/src/index.ts",
         "tsConfig": "libs/common/tsconfig.lib.json",
-        "project": "libs/common/package.json",
-        "entryFile": "libs/common/src/index.ts",
-        "external": ["react/jsx-runtime"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-        "compiler": "babel",
-        "assets": [
-          {
-            "glob": "libs/common/README.md",
-            "input": ".",
-            "output": "."
-          }
-        ]
+        "assets": ["libs/common/*.md"]
       }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs common {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/common/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/common/**/*.ts"]
       }
     },
     "test": {
@@ -39,5 +40,6 @@
         "passWithNoTests": true
       }
     }
-  }
+  },
+  "tags": []
 }

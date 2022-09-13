@@ -1,4 +1,5 @@
 {
-  "name": "@intelligo/common",
-  "version": "0.0.1"
+  "name": "@platform/common",
+  "version": "0.0.1",
+  "type": "commonjs"
 }
