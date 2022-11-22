@@ -1,8 +1,0 @@
-@import "variables";
-
-:host {
-    display: block;
-    @include media-breakpoint-up(sm) {
-        display: none;
-    }
-}
