@@ -1,0 +1,15 @@
+
+:host {
+    display: flex;
+    align-items: center;
+    margin: 0 0.5rem;
+    height: 2.5rem;
+}
+
+.active-channel {
+    color: var(--color-grey-200);
+
+    clr-icon {
+        color: white;
+    }
+}

@@ -1,0 +1,18 @@
+
+:host {
+    display: block;
+    max-width: 360px;
+}
+
+clr-input-container {
+    margin-bottom: 12px;
+}
+
+.defaul-controls {
+    display: flex;
+}
+
+.is-default {
+    margin: 0;
+    color: var(--color-success-500);
+}

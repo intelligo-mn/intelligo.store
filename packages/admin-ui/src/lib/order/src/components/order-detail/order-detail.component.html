@@ -1,0 +1,183 @@
+<vdr-action-bar *ngIf="entity$ | async as order">
+    <vdr-ab-left>
+        <div class="flex clr-align-items-center">
+            <vdr-entity-info [entity]="entity$ | async"></vdr-entity-info>
+            <vdr-order-state-label [state]="order.state">
+                <button
+                    class="icon-button"
+                    (click)="openStateDiagram()"
+                    [title]="'order.order-state-diagram' | translate"
+                >
+                    <clr-icon shape="list"></clr-icon>
+                </button>
+            </vdr-order-state-label>
+        </div>
+    </vdr-ab-left>
+
+    <vdr-ab-right>
+        <vdr-action-bar-items locationId="order-detail"></vdr-action-bar-items>
+        <button
+            class="btn btn-primary"
+            *ngIf="
+                (order.state === 'ArrangingPayment' || order.state === 'ArrangingAdditionalPayment') &&
+                (hasUnsettledModifications(order) || 0 < outstandingPaymentAmount(order))
+            "
+            (click)="addManualPayment(order)"
+        >
+            {{ 'order.add-payment-to-order' | translate }}
+            ({{ outstandingPaymentAmount(order) | localeCurrency: order.currencyCode }})
+        </button>
+        <button
+            class="btn btn-primary"
+            *ngIf="
+                order.active === false &&
+                order.state !== 'ArrangingAdditionalPayment' &&
+                order.state !== 'ArrangingPayment' &&
+                0 < outstandingPaymentAmount(order)
+            "
+            (click)="transitionToState('ArrangingAdditionalPayment')"
+        >
+            {{ 'order.arrange-additional-payment' | translate }}
+        </button>
+        <button class="btn btn-primary" (click)="fulfillOrder()" [disabled]="!canAddFulfillment(order)">
+            {{ 'order.fulfill-order' | translate }}
+        </button>
+        <vdr-dropdown>
+            <button class="icon-button" vdrDropdownTrigger>
+                <clr-icon shape="ellipsis-vertical"></clr-icon>
+            </button>
+            <vdr-dropdown-menu vdrPosition="bottom-right">
+                <ng-container *ngIf="order.nextStates.includes('Modifying')">
+                    <button type="button" class="btn" vdrDropdownItem (click)="transitionToModifying()">
+                        <clr-icon shape="pencil"></clr-icon>
+                        {{ 'order.modify-order' | translate }}
+                    </button>
+                    <div class="dropdown-divider"></div>
+                </ng-container>
+                <button
+                    type="button"
+                    class="btn"
+                    vdrDropdownItem
+                    *ngIf="order.nextStates.includes('Cancelled')"
+                    (click)="cancelOrRefund(order)"
+                >
+                    <clr-icon shape="error-standard" class="is-error"></clr-icon>
+                    <ng-container *ngIf="orderHasSettledPayments(order); else cancelOnly">
+                        {{ 'order.refund-and-cancel-order' | translate }}
+                    </ng-container>
+                    <ng-template #cancelOnly>
+                        {{ 'order.cancel-order' | translate }}
+                    </ng-template>
+                </button>
+
+                <ng-container *ngIf="(nextStates$ | async)?.length">
+                    <div class="dropdown-divider"></div>
+                    <button
+                        *ngFor="let nextState of nextStates$ | async"
+                        type="button"
+                        class="btn"
+                        vdrDropdownItem
+                        (click)="transitionToState(nextState)"
+                    >
+                        <clr-icon shape="step-forward-2"></clr-icon>
+                        {{
+                            'order.transition-to-state'
+                                | translate: { state: (nextState | stateI18nToken | translate) }
+                        }}
+                    </button>
+                </ng-container>
+                <div class="dropdown-divider"></div>
+                <button type="button" class="btn" vdrDropdownItem (click)="manuallyTransitionToState(order)">
+                    <clr-icon shape="step-forward-2" class="is-warning"></clr-icon>
+                    {{ 'order.manually-transition-to-state' | translate }}
+                </button>
+            </vdr-dropdown-menu>
+        </vdr-dropdown>
+    </vdr-ab-right>
+</vdr-action-bar>
+
+<div *ngIf="entity$ | async as order">
+    <div class="clr-row">
+        <div class="clr-col-lg-8">
+            <vdr-order-table
+                [order]="order"
+                [orderLineCustomFields]="orderLineCustomFields"
+            ></vdr-order-table>
+            <h4>{{ 'order.tax-summary' | translate }}</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ 'common.description' | translate }}</th>
+                        <th>{{ 'order.tax-rate' | translate }}</th>
+                        <th>{{ 'order.tax-base' | translate }}</th>
+                        <th>{{ 'order.tax-total' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of order.taxSummary">
+                        <td>{{ row.description }}</td>
+                        <td>{{ row.taxRate / 100 | percent }}</td>
+                        <td>{{ row.taxBase | localeCurrency: order.currencyCode }}</td>
+                        <td>{{ row.taxTotal | localeCurrency: order.currencyCode }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <vdr-custom-detail-component-host
+                locationId="order-detail"
+                [entity$]="entity$"
+                [detailForm]="detailForm"
+            ></vdr-custom-detail-component-host>
+
+            <vdr-order-history
+                [order]="order"
+                [history]="history$ | async"
+                (addNote)="addNote($event)"
+                (updateNote)="updateNote($event)"
+                (deleteNote)="deleteNote($event)"
+            ></vdr-order-history>
+        </div>
+        <div class="clr-col-lg-4 order-cards">
+            <vdr-order-custom-fields-card
+                [customFieldsConfig]="customFields"
+                [customFieldValues]="order.customFields"
+                (updateClick)="updateCustomFields($event)"
+            ></vdr-order-custom-fields-card>
+            <div class="card">
+                <div class="card-header">
+                    {{ 'order.customer' | translate }}
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <vdr-customer-label [customer]="order.customer"></vdr-customer-label>
+                        <h6 *ngIf="getOrderAddressLines(order.shippingAddress).length">
+                            {{ 'order.shipping-address' | translate }}
+                        </h6>
+                        <vdr-formatted-address [address]="order.shippingAddress"></vdr-formatted-address>
+                        <h6 *ngIf="getOrderAddressLines(order.billingAddress).length">
+                            {{ 'order.billing-address' | translate }}
+                        </h6>
+                        <vdr-formatted-address [address]="order.billingAddress"></vdr-formatted-address>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="order.payments && order.payments.length">
+                <vdr-order-payment-card
+                    *ngFor="let payment of order.payments"
+                    [currencyCode]="order.currencyCode"
+                    [payment]="payment"
+                    (settlePayment)="settlePayment($event)"
+                    (transitionPaymentState)="transitionPaymentState($event)"
+                    (settleRefund)="settleRefund($event)"
+                ></vdr-order-payment-card>
+            </ng-container>
+            <ng-container *ngFor="let fulfillment of order.fulfillments">
+                <vdr-fulfillment-card
+                    [fulfillment]="fulfillment"
+                    [order]="order"
+                    (transitionState)="transitionFulfillment(fulfillment.id, $event)"
+                ></vdr-fulfillment-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

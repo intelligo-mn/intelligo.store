@@ -1,0 +1,26 @@
+type Query {
+    taxCategories: [TaxCategory!]!
+    taxCategory(id: ID!): TaxCategory
+}
+
+type Mutation {
+    "Create a new TaxCategory"
+    createTaxCategory(input: CreateTaxCategoryInput!): TaxCategory!
+
+    "Update an existing TaxCategory"
+    updateTaxCategory(input: UpdateTaxCategoryInput!): TaxCategory!
+
+    "Deletes a TaxCategory"
+    deleteTaxCategory(id: ID!): DeletionResponse!
+}
+
+input CreateTaxCategoryInput {
+    name: String!
+    isDefault: Boolean
+}
+
+input UpdateTaxCategoryInput {
+    id: ID!
+    name: String
+    isDefault: Boolean
+}

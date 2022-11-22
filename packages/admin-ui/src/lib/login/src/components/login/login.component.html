@@ -1,0 +1,56 @@
+<div class="login-wrapper">
+    <form class="login">
+        <label class="title">
+            <img src="assets/logo-300px.png" />
+            <span *ngIf="!hideVendureBranding">vendure</span>
+        </label>
+        <div class="login-group">
+            <input
+                class="username"
+                type="text"
+                name="username"
+                id="login_username"
+                [(ngModel)]="username"
+                [placeholder]="'common.username' | translate"
+            />
+            <input
+                class="password"
+                name="password"
+                type="password"
+                id="login_password"
+                [(ngModel)]="password"
+                [placeholder]="'common.password' | translate"
+            />
+            <clr-alert [clrAlertType]="'danger'"  [clrAlertClosable]="false" [class.visible]="errorMessage" class="login-error">
+                <clr-alert-item>
+                    <span class="alert-text">
+                        {{ errorMessage }}
+                    </span>
+                </clr-alert-item>
+            </clr-alert>
+            <clr-checkbox-wrapper>
+                <input
+                    type="checkbox"
+                    clrCheckbox
+                    id="rememberme"
+                    name="rememberme"
+                    [(ngModel)]="rememberMe"
+                />
+                <label>{{ 'common.remember-me' | translate }}</label>
+            </clr-checkbox-wrapper>
+            <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="logIn()"
+                [disabled]="!username || !password"
+            >
+                {{ 'common.login' | translate }}
+            </button>
+        </div>
+        <div class="version">
+            <span *ngIf="brand">{{ brand }} <span *ngIf="!hideVendureBranding || !hideVersion">-</span></span>
+            <span *ngIf="!hideVendureBranding">vendure</span>
+            <span *ngIf="!hideVersion">v{{ version }}</span>
+        </div>
+    </form>
+</div>

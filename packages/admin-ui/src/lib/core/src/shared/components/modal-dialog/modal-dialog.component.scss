@@ -1,0 +1,13 @@
+::ng-deep clr-modal {
+    &.modal-valign-top .modal {
+        justify-content: flex-start;
+    }
+    &.modal-valign-bottom .modal {
+        justify-content: flex-end;
+    }
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}

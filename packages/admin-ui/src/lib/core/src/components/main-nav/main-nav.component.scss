@@ -1,0 +1,56 @@
+@import 'variables';
+
+:host {
+    // flex: 0 0 auto;
+    order: -1;
+    background-color: var(--clr-nav-background-color);
+}
+
+nav.sidenav {
+    height: 100%;
+    border-right-color: var(--clr-sidenav-border-color);
+}
+
+.nav-list {
+    margin-top: 0.3rem;
+    clr-icon {
+        margin-right: 12px;
+    }
+  
+    .nav-group-header {
+        margin: 0;
+        line-height: 1.2;
+    }
+    .nav-link {
+        display: inline-flex;
+        line-height: 1rem;
+        padding-right: 0.6rem;
+    }
+}
+
+.nav-list clr-icon {
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.nav-group {
+    hyphens: auto;
+}
+
+.nav-group,
+.nav-link {
+    position: relative;
+}
+.nav-group vdr-status-badge {
+    left: 10px;
+    top: 6px;
+}
+.nav-link vdr-status-badge {
+    left: 25px;
+    top: 3px;
+}
+
+.nav-group .nav-list,
+.nav-group label {
+    padding: 0 0 0 0.8rem !important;
+}

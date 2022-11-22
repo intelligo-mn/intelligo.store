@@ -1,0 +1,22 @@
+<clr-main-container>
+    <clr-header>
+        <div class="branding">
+            <a [routerLink]="['/']"><img src="assets/logo-75px.png" class="logo" /><span class="wordmark" *ngIf="!hideVendureBranding">vendure</span></a>
+        </div>
+        <div class="header-nav"></div>
+        <div class="header-actions">
+            <vdr-channel-switcher *vdrIfMultichannel></vdr-channel-switcher>
+            <vdr-user-menu [userName]="userName$ | async"
+                           [uiLanguageAndLocale]="uiLanguageAndLocale$ | async"
+                           [availableLanguages]="availableLanguages"
+                           (selectUiLanguage)="selectUiLanguage()"
+                           (logOut)="logOut()"></vdr-user-menu>
+        </div>
+    </clr-header>
+    <nav class="subnav"><vdr-breadcrumb></vdr-breadcrumb></nav>
+
+    <div class="content-container">
+        <div class="content-area"><router-outlet></router-outlet></div>
+        <vdr-main-nav></vdr-main-nav>
+    </div>
+</clr-main-container>

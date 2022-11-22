@@ -1,0 +1,80 @@
+<div class="alert alert-danger" role="alert" *ngIf="paymentErrorMessage">
+    {{ paymentErrorMessage }}
+</div>
+<ng-container *ngFor="let paymentMethod of paymentMethods$ | async">
+    <div class="row">
+        <div class="col col-lg-6 offset-lg-3">
+            <h4>
+                {{ "checkout.payment-title" | translate }} "{{
+                    paymentMethod.code
+                }}"
+            </h4>
+            <div class="alert alert-info my-4" role="alert">
+                {{ "checkout.payment-message" | translate }}
+            </div>
+        </div>
+    </div>
+    <form
+        class="payment-form mb-5"
+        #paymentForm="ngForm"
+        (submit)="completeOrder(paymentMethod.code)"
+    >
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <fa-icon icon="credit-card"></fa-icon>
+                </span>
+            </div>
+            <input
+                type="text"
+                class="form-control"
+                name="cardNumber"
+                [required]="true"
+                [(ngModel)]="cardNumber"
+                placeholder="{{ 'checkout.card-number' | translate }}"
+            />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="month">{{
+                    "checkout.expiry" | translate
+                }}</label>
+            </div>
+            <select
+                class="custom-select"
+                id="month"
+                name="expMonth"
+                [(ngModel)]="expMonth"
+                [required]="true"
+            >
+                <option selected [ngValue]="undefined">
+                    {{ "checkout.month" | translate }}
+                </option>
+                <option *ngFor="let month of getMonths()" [ngValue]="month">
+                    {{ month }}
+                </option>
+            </select>
+            <select
+                class="custom-select"
+                id="year"
+                name="expYear"
+                [(ngModel)]="expYear"
+                [required]="true"
+            >
+                <option selected [ngValue]="undefined">
+                    {{ "checkout.year" | translate }}
+                </option>
+                <option *ngFor="let year of getYears()" [ngValue]="year">
+                    {{ year }}
+                </option>
+            </select>
+        </div>
+
+        <button
+            class="btn btn-primary btn-lg"
+            [disabled]="paymentForm.pristine || paymentForm.invalid"
+        >
+            {{ "checkout.complete-order" | translate }}
+        </button>
+    </form>
+</ng-container>

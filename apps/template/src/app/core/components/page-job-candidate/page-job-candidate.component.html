@@ -1,0 +1,293 @@
+<!-- Hero Start -->
+<section class="bg-half-260 d-table w-100" id="home" style="background: url('assets/images/job/candidate.jpg');">
+  <div class="bg-overlay"></div>
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Candidate Detail Start -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 col-12">
+        <div class="card job-profile shadow border-0">
+          <div class="text-center py-5 border-bottom rounded-top">
+            <img src="assets/images/client/01.jpg" class="avatar avatar-medium mx-auto rounded-circle shadow d-block"
+              alt="">
+            <h5 class="mt-3 mb-0">Thomas Brewer</h5>
+            <p class="text-muted mb-0">Senior Web Developer</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Personal Details :</h5>
+
+            <ul class="list-unstyled">
+              <li class="h6">
+                <i-feather name="mail" class="fea icon-sm text-warning me-3"></i-feather><span class="text-muted">Email
+                  :</span> thomas@mail.com
+              </li>
+              <li class="h6">
+                <i-feather name="gift" class="fea icon-sm text-warning me-3"></i-feather><span class="text-muted">D.O.B.
+                  :</span> 31st Dec, 1996
+              </li>
+              <li class="h6">
+                <i-feather name="home" class="fea icon-sm text-warning me-3"></i-feather><span
+                  class="text-muted">Address :</span> 15 Razy street
+              </li>
+              <li class="h6">
+                <i-feather name="map-pin" class="fea icon-sm text-warning me-3"></i-feather><span
+                  class="text-muted">City :</span> London
+              </li>
+              <li class="h6">
+                <i-feather name="globe" class="fea icon-sm text-warning me-3"></i-feather><span
+                  class="text-muted">Country :</span> UK
+              </li>
+              <li class="h6">
+                <i-feather name="server" class="fea icon-sm text-warning me-3"></i-feather><span
+                  class="text-muted">Postal Code :</span> 521452
+              </li>
+              <li class="h6">
+                <i-feather name="phone" class="fea icon-sm text-warning me-3"></i-feather><span
+                  class="text-muted">Mobile :</span> (+125) 1542-8452
+              </li>
+
+              <li>
+                <ul class="list-unstyled social-icon mb-0 mt-4">
+                  <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="facebook" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="instagram" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="twitter" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="linkedin" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="github" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="youtube" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                  <li class="list-inline-item ms-1"><a href="javascript:void(0)" class="rounded">
+                      <i-feather name="gitlab" class="fea icon-sm fea-social"></i-feather>
+                    </a></li>
+                </ul>
+                <!--end icon-->
+              </li>
+            </ul>
+            <div class="d-grid">
+              <a href="javascript:void(0)" (click)="openModal(contactMe)" data-bs-toggle="modal"
+                data-bs-target="#Contactme" class="btn btn-primary"><i class="uil uil-envelope align-middle"></i>
+                Contact Me</a>
+            </div>
+            <!-- Modal Content Start -->
+            <ng-template #contactMe let-modal>
+              <div class="modal-content rounded shadow border-0">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Contact Me </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <div class="custom-form mt-3">
+                    <form method="post" name="myForm" onsubmit="return validateForm()">
+                      <p id="error-msg" class="mb-0"></p>
+                      <div id="simple-msg"></div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                              <input name="name" id="name" type="text" class="form-control ps-5" placeholder="Name :">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                              <input name="email" id="email" type="email" class="form-control ps-5"
+                                placeholder="Email :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="book" class="fea icon-sm icons"></i-feather>
+                              <input name="subject" id="subject" class="form-control ps-5" placeholder="subject :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Comments <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="message-circle" class="fea icon-sm icons clearfix"></i-feather>
+                              <textarea name="comments" id="comments" rows="4" class="form-control ps-5"
+                                placeholder="Message :"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="d-grid">
+                            <button type="submit" id="submit" name="send" class="btn btn-primary">Send Message</button>
+                          </div>
+                        </div>
+                        <!--end col-->
+                      </div>
+                      <!--end row-->
+                    </form>
+                  </div>
+                  <!--end custom-form-->
+                </div>
+              </div>
+            </ng-template>
+            <!-- Modal Content End -->
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-8 col-md-7 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="ms-lg-4">
+          <h4>About us :</h4>
+          <p class="text-muted">Obviously I'M Web Developer. Web Developer with over 3 years of experience. Experienced
+            with all stages of the development cycle for dynamic web projects. The as opposed to using 'Content here,
+            content here', making it look like readable English.</p>
+          <p class="text-muted mb-0">Data Structures and Algorithms are the heart of programming. Initially most of the
+            developers do not realize its importance but when you will start your career in software development, you
+            will find your code is either taking too much time or taking too much space.</p>
+
+          <!-- Skills Start -->
+          <h4 class="mt-lg-5 mt-4">Skills :</h4>
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">WordPress</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:84%;">
+                <div class="progress-value d-block text-muted h6">84%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">PHP / MYSQL</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:75%;">
+                <div class="progress-value d-block text-muted h6">75%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">Angular / JavaScript</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:79%;">
+                <div class="progress-value d-block text-muted h6">79%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">HTML</h6>
+            <div class="progress">
+              <div class="progress-bar position-relative bg-primary" style="width:95%;">
+                <div class="progress-value d-block text-muted h6">95%</div>
+              </div>
+            </div>
+          </div>
+          <!--end process box-->
+          <!-- Skills End -->
+
+          <!-- Experience Start -->
+          <h4 class="mt-lg-5 mt-4">Experience :</h4>
+          <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+              <div class="d-flex">
+                <div class="company-logo text-muted h6 me-3 text-center">
+                  <img src="assets/images/job/Codepen.svg" class="avatar avatar-md-sm mx-auto d-block mb-2"
+                    alt="">2017-18
+                </div>
+                <div class="flex-1">
+                  <h5 class="title mb-0">Back-end Developer</h5>
+                  <small class="text-muted company-university">Codepen - CHINA</small>
+                  <p class="text-muted mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem
+                    Ipsum texts used today. One may speculate that over the course of time certain letters were added or
+                    deleted at various positions within the text. </p>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-12 mt-4 pt-2">
+              <div class="d-flex">
+                <div class="company-logo text-muted h6 me-3 text-center">
+                  <img src="assets/images/job/Circleci.svg" class="avatar avatar-md-sm mx-auto d-block mb-2"
+                    alt="">2014-17
+                </div>
+                <div class="flex-1">
+                  <h5 class="title mb-0">Senior Web Designer</h5>
+                  <small class="text-muted company-university">CircleCi - SAN FRANCISCO</small>
+                  <p class="text-muted mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem
+                    Ipsum texts used today. One may speculate that over the course of time certain letters were added or
+                    deleted at various positions within the text. </p>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+          <!-- Experience End -->
+
+          <!-- Start Projects Work -->
+          <h4 class="mt-lg-5 mt-4">Projects :</h4>
+          <div class="row">
+            <div class="col-md-6 col-12 mt-4 pt-2" *ngFor="let data of candidatesData">
+              <div class="card border-0 work-container work-classic">
+                <div class="card-body p-0">
+                  <a routerLink="/portfolio-detail-one"><img src="{{data.image}}" class="img-fluid rounded work-image"
+                      alt=""></a>
+                  <div class="content pt-3">
+                    <h5 class="mb-0"><a routerLink="/portfolio-detail-one" class="text-dark title">{{data.name}}</a>
+                    </h5>
+                    <h6 class="text-muted tag mb-0">{{data.designation}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end col-->
+          <!-- End Projects Work -->
+          <div class="mt-4 pt-2">
+            <a href="javascript:void(0)" class="btn btn-primary me-2"><i class="uil uil-user-check"></i> Hire me</a>
+            <a href="javascript:void(0)" class="btn btn-outline-primary"><i class="uil uil-print"></i> Print CV</a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--enn row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+
+<!-- Candidate Detail End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

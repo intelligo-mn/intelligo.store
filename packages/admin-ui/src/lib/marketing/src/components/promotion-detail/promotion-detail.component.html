@@ -1,0 +1,150 @@
+<vdr-action-bar>
+    <vdr-ab-left>
+        <div class="flex clr-align-items-center">
+            <vdr-entity-info [entity]="entity$ | async"></vdr-entity-info>
+            <clr-toggle-wrapper *vdrIfPermissions="'UpdatePromotion'">
+                <input type="checkbox" clrToggle name="enabled" [formControl]="detailForm.get(['enabled'])" />
+                <label>{{ 'common.enabled' | translate }}</label>
+            </clr-toggle-wrapper>
+        </div>
+    </vdr-ab-left>
+
+    <vdr-ab-right>
+        <vdr-action-bar-items locationId="promotion-detail"></vdr-action-bar-items>
+        <button
+            class="btn btn-primary"
+            *ngIf="isNew$ | async; else updateButton"
+            (click)="create()"
+            [disabled]="!saveButtonEnabled()"
+        >
+            {{ 'common.create' | translate }}
+        </button>
+        <ng-template #updateButton>
+            <button
+                class="btn btn-primary"
+                (click)="save()"
+                *vdrIfPermissions="'UpdatePromotion'"
+                [disabled]="!saveButtonEnabled()"
+            >
+                {{ 'common.update' | translate }}
+            </button>
+        </ng-template>
+    </vdr-ab-right>
+</vdr-action-bar>
+
+<form class="form" [formGroup]="detailForm">
+    <vdr-form-field [label]="'common.name' | translate" for="name">
+        <input
+            id="name"
+            [readonly]="!('UpdatePromotion' | hasPermission)"
+            type="text"
+            formControlName="name"
+        />
+    </vdr-form-field>
+    <vdr-form-field [label]="'marketing.starts-at' | translate" for="startsAt">
+        <vdr-datetime-picker formControlName="startsAt"></vdr-datetime-picker>
+    </vdr-form-field>
+    <vdr-form-field [label]="'marketing.ends-at' | translate" for="endsAt">
+        <vdr-datetime-picker formControlName="endsAt"></vdr-datetime-picker>
+    </vdr-form-field>
+    <vdr-form-field [label]="'marketing.coupon-code' | translate" for="couponCode">
+        <input
+            id="couponCode"
+            [readonly]="!('UpdatePromotion' | hasPermission)"
+            type="text"
+            formControlName="couponCode"
+        />
+    </vdr-form-field>
+    <vdr-form-field [label]="'marketing.per-customer-limit' | translate" for="perCustomerUsageLimit">
+        <input
+            id="perCustomerUsageLimit"
+            [readonly]="!('UpdatePromotion' | hasPermission)"
+            type="number"
+            min="1"
+            max="999"
+            formControlName="perCustomerUsageLimit"
+        />
+    </vdr-form-field>
+    <section formGroupName="customFields" *ngIf="customFields.length">
+        <label>{{ 'common.custom-fields' | translate }}</label>
+        <vdr-tabbed-custom-fields
+            entityName="Promotion"
+            [customFields]="customFields"
+            [customFieldsFormGroup]="detailForm.get('customFields')"
+            [readonly]="!('UpdatePromotion' | hasPermission)"
+        ></vdr-tabbed-custom-fields>
+    </section>
+
+    <vdr-custom-detail-component-host
+        locationId="promotion-detail"
+        [entity$]="entity$"
+        [detailForm]="detailForm"
+    ></vdr-custom-detail-component-host>
+
+    <div class="clr-row">
+        <div class="clr-col" formArrayName="conditions">
+            <label class="clr-control-label">{{ 'marketing.conditions' | translate }}</label>
+            <ng-container *ngFor="let condition of conditions; index as i">
+                <vdr-configurable-input
+                    (remove)="removeCondition($event)"
+                    [position]="i"
+                    [readonly]="!('UpdatePromotion' | hasPermission)"
+                    [operation]="condition"
+                    [operationDefinition]="getConditionDefinition(condition)"
+                    [formControlName]="i"
+                ></vdr-configurable-input>
+            </ng-container>
+
+            <div>
+                <vdr-dropdown *vdrIfPermissions="'UpdatePromotion'">
+                    <button class="btn btn-outline" vdrDropdownTrigger>
+                        <clr-icon shape="plus"></clr-icon>
+                        {{ 'marketing.add-condition' | translate }}
+                    </button>
+                    <vdr-dropdown-menu vdrPosition="bottom-left">
+                        <button
+                            *ngFor="let condition of getAvailableConditions()"
+                            type="button"
+                            vdrDropdownItem
+                            class="item-wrap"
+                            (click)="addCondition(condition)"
+                        >
+                            {{ condition.description }}
+                        </button>
+                    </vdr-dropdown-menu>
+                </vdr-dropdown>
+            </div>
+        </div>
+        <div class="clr-col" formArrayName="actions">
+            <label class="clr-control-label">{{ 'marketing.actions' | translate }}</label>
+            <vdr-configurable-input
+                *ngFor="let action of actions; index as i"
+                (remove)="removeAction($event)"
+                [position]="i"
+                [operation]="action"
+                [readonly]="!('UpdatePromotion' | hasPermission)"
+                [operationDefinition]="getActionDefinition(action)"
+                [formControlName]="i"
+            ></vdr-configurable-input>
+            <div>
+                <vdr-dropdown *vdrIfPermissions="'UpdatePromotion'">
+                    <button class="btn btn-outline" vdrDropdownTrigger>
+                        <clr-icon shape="plus"></clr-icon>
+                        {{ 'marketing.add-action' | translate }}
+                    </button>
+                    <vdr-dropdown-menu vdrPosition="bottom-left">
+                        <button
+                            *ngFor="let action of getAvailableActions()"
+                            type="button"
+                            vdrDropdownItem
+                            class="item-wrap"
+                            (click)="addAction(action)"
+                        >
+                            {{ action.description }}
+                        </button>
+                    </vdr-dropdown-menu>
+                </vdr-dropdown>
+            </div>
+        </div>
+    </div>
+</form>

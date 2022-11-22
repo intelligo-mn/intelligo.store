@@ -1,0 +1,17 @@
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.refund-icon {
+    margin-right: 6px;
+    color: var(--color-grey-400);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

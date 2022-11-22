@@ -1,0 +1,305 @@
+<!-- Hero Start -->
+<section class="bg-half-260 d-table w-100" id="home"
+  style="background: url('assets/images/job/company.jpg') center center;">
+  <div class="bg-overlay"></div>
+</section>
+<!--end section-->
+<!-- Hero End -->
+
+<!-- Company Detail Start -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 col-12">
+        <div class="job-profile position-relative">
+          <div class="rounded shadow bg-white">
+            <div class="text-center py-5 border-bottom">
+              <img src="assets/images/job/Circleci.svg" class="avatar avatar-medium mx-auto rounded-circle d-block"
+                alt="">
+              <h5 class="mt-3 mb-0">CircleCi</h5>
+              <p class="text-muted mb-0">Internet Services</p>
+            </div>
+
+            <div class="p-4">
+              <h5>Company Details :</h5>
+              <ul class="list-unstyled mb-4">
+                <li class="h6">
+                  <i-feather name="map-pin" class="fea icon-sm text-warning me-3"></i-feather><span
+                    class="text-muted">Location :</span> San Francisco
+                </li>
+                <li class="h6">
+                  <i-feather name="link" class="fea icon-sm text-warning me-3"></i-feather><span
+                    class="text-muted">Comapny :</span> circleci.com
+                </li>
+                <li class="h6">
+                  <i-feather name="dollar-sign" class="fea icon-sm text-warning me-3"></i-feather><span
+                    class="text-muted">Revenue :</span> $ 5M / Annual
+                </li>
+                <li class="h6">
+                  <i-feather name="users" class="fea icon-sm text-warning me-3"></i-feather><span class="text-muted">No.
+                    of employees :</span> 200
+                </li>
+              </ul>
+              <div class="d-grid">
+                <a href="javascript:void(0)" (click)="openModal(applynow)" data-bs-toggle="modal"
+                  class="btn btn-primary">Apply Now</a>
+              </div>
+              <!-- Modal Content Start -->
+              <ng-template #applynow let-modal>
+                <div class="modal-content rounded shadow border-0">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Apply now </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"></button>
+                  </div>
+                  <div class="modal-body p-4">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label">Your Name :<span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                              <input name="name" id="name" type="text" class="form-control ps-5" required
+                                placeholder="First Name :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label">Your Email :<span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="mail" class="fea icon-sm icons"></i-feather>
+                              <input name="email" id="email" type="email" class="form-control ps-5" required
+                                placeholder="Your email :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label">Your Phone no. :<span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="phone" class="fea icon-sm icons"></i-feather>
+                              <input name="number" id="number" type="number" class="form-control ps-5" required
+                                placeholder="Your phone no. :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label">Job Title :</label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="book" class="fea icon-sm icons"></i-feather>
+                              <input name="subject" id="subject" class="form-control ps-5" required
+                                placeholder="Title :">
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label">Types of jobs :</label>
+                            <select class="form-select form-control" aria-label="Default select example"
+                              id="Sortbylist-job">
+                              <option selected>All Jobs</option>
+                              <option>Full Time</option>
+                              <option>Half Time</option>
+                              <option>Remote</option>
+                              <option>In Office</option>
+                            </select>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-12">
+                          <div class="mb-3">
+                            <label class="form-label">Description :</label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="message-circle" class="fea icon-sm icons"></i-feather>
+                              <textarea name="comments" id="comments" rows="4" class="form-control ps-5" required
+                                placeholder="Describe the job :"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-12">
+                          <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Your Cv / Resume :</label>
+                            <input class="form-control" type="file" id="formFile">
+                          </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-md-12">
+                          <div class="mb-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                              <label class="form-check-label" for="flexCheckDefault">I Accept <a
+                                  routerLink="/page-job-company" class="text-primary">Terms And Condition</a></label>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end col-->
+                      </div>
+                      <!--end row-->
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary"
+                            value="Apply Now">
+                        </div>
+                        <!--end col-->
+                      </div>
+                      <!--end row-->
+                    </form>
+                    <!--end form-->
+                  </div>
+                </div>
+              </ng-template>
+              <!-- Modal Content End -->
+            </div>
+          </div>
+
+          <div class="map mt-4 pt-2">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.9459036900826!2d-122.39420768440696!3d37.79130751898054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085806516341641%3A0x3f1e44c262252836!2sCircleCI!5e0!3m2!1sen!2sin!4v1575034257139!5m2!1sen!2sin"
+              style="border:0" class="rounded" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-lg-8 col-md-7 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="ms-md-4">
+          <h4>About us :</h4>
+          <p class="text-muted">Almost no business is immune from the need for quality software development. The act of
+            building quality software, and shipping it quickly, has become the core engine of value creation in
+            companies across all industries. CircleCI allows teams to rapidly release code they trust by automating the
+            build, test, and delivery process. Thousands of leading companies, including Samsung, Ford Motor Company,
+            Spotify, Lyft, Coinbase, PagerDuty, Stitch Fix, and BuzzFeed rely on CircleCI to accelerate delivery and
+            improve quality.</p>
+          <p class="text-muted">CircleCI was named a Leader in cloud-native continuous integration by Forrester in 2019
+            and has been named to multiple Best DevOps Tools lists. CircleCI is the first CI/CD tool to become FedRAMP
+            certified and processes more than 30 million builds each month across Linux, macOS, Docker and Windows build
+            environments.</p>
+          <p class="text-muted mb-0">Founded in 2011 and headquartered in San Francisco with a global remote workforce,
+            CircleCI is venture-backed by Scale Venture Partners, Threshold Ventures (formerly DFJ), Baseline Ventures,
+            Top Tier Capital, Industry Ventures, Heavybit, Harrison Metal Capital, Owl Rock Capital Partners, and
+            NextEquity Partners.</p>
+
+          <h4 class="mt-lg-5 mt-4">Join The Team :</h4>
+          <p class="text-muted mb-0">Started in 2011, we have grown to over 200 employees all over the world.
+            Headquartered in San Francisco, we have offices in London, Tokyo, Toronto, Boston, and Denver, with team
+            members working across 50+ cities and 13 countries.</p>
+
+          <div class="row">
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="monitor" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">Senior Web Developer</h4>
+                    <p class="text-muted mb-0">London, UK</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="airplay" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">Front-End Developer</h4>
+                    <p class="text-muted mb-0">Brasilia, Brazil</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="cpu" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">Back-End Developer</h4>
+                    <p class="text-muted mb-0">Ottawa, Canada</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="hexagon" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">UI Designer</h4>
+                    <p class="text-muted mb-0">Beijing, China</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="figma" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">UX Designer</h4>
+                    <p class="text-muted mb-0">Bogota, Colombia</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-6 mt-4 pt-2">
+              <a routerLink="/page-job-detail" class="text-dark">
+                <div class="key-feature d-flex align-items-center p-3 bg-white rounded shadow">
+                  <div class="icon text-center rounded-circle me-3">
+                    <i-feather name="crop" class="fea icon-ex-md text-primary"></i-feather>
+                  </div>
+                  <div class="content">
+                    <h4 class="title mb-0">Php Developer</h4>
+                    <p class="text-muted mb-0">Havana, Cuba</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!--end col-->
+            <div class="col-12 mt-4 pt-2">
+              <a routerLink="/page-jobs" class="btn btn-primary">See All Jobs <i
+                  class="uil uil-angle-right-b align-middle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Company Detail End -->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

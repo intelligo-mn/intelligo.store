@@ -1,0 +1,20 @@
+@import "variables";
+
+:host {
+    display: flex;
+    align-items: center;
+    margin: 0 0.5rem;
+    height: 2.5rem;
+}
+
+.user-name {
+    color: var(--color-grey-200);
+    margin-right: 12px;
+    @media screen and (max-width: $breakpoint-small) {
+        display: none;
+    }
+}
+
+.trigger clr-icon {
+    color: white;
+}

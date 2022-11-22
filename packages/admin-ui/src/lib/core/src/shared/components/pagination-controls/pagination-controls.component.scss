@@ -1,0 +1,28 @@
+
+pagination-template {
+    display: block;
+    ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+    }
+    li {
+        transition: border-bottom-color 0.2s;
+    }
+    li > a {
+        cursor: pointer;
+        &:hover, &:focus {
+            border-bottom-color: var(--color-grey-300);
+            text-decoration: none;
+        }
+    }
+    li > a, li > div {
+        padding: 3px 12px;
+        display: block;
+        border-bottom: 3px solid transparent;
+        user-select: none;
+    }
+    li > div.current {
+        border-bottom-color: var(--color-primary-500);
+    }
+}

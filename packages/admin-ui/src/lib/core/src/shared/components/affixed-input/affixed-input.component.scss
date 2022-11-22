@@ -1,0 +1,37 @@
+
+:host {
+    display: inline-flex;
+}
+
+.affix {
+    color: var(--color-grey-800);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-grey-200);
+    border: 1px solid var(--color-component-border-300);
+    top: 1px;
+    padding: 3px;
+    line-height: .58333rem;
+    transition: border 0.2s;
+}
+
+::ng-deep .has-prefix input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.prefix {
+    order: -1;
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+}
+
+::ng-deep .has-suffix input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.suffix {
+    border-radius: 0 3px 3px 0;
+    border-left: none;
+}

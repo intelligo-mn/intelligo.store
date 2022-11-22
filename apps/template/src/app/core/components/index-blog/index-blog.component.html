@@ -1,0 +1,230 @@
+<!-- Hero Start -->
+<section class="main-slider" id="home">
+  <ngb-carousel class="slides" [showNavigationArrows]="showNavigationArrows"
+    [showNavigationIndicators]="showNavigationIndicators">
+    <ng-template ngbSlide>
+      <div class="bg-half-170 rounded-md" style="background: url('assets/images/blog/bg1.jpg') center center;">
+        <div class="bg-overlay rounded-md"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="title-heading text-center">
+                <h2 class="text-white title-dark mb-3">Weekend Travel</h2>
+                <ul class="list-unstyled">
+                  <li class="list-inline-item small user text-white-50 me-2"><i
+                      class="uil uil-user text-white title-dark"></i> Calvin Carlo</li>
+                  <li class="list-inline-item small date text-white-50"><i
+                      class="uil uil-calendar-alt text-white title-dark"></i> 13th August, 2019</li>
+                </ul>
+                <p class="para-desc mx-auto text-white-50 mb-0">Start working with Landrick that can provide
+                  everything you need to generate awareness, drive traffic, connect.</p>
+                <div class="mt-4">
+                  <a href="javascript:void(0)" class="btn btn-primary">Read More </a>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="bg-half-170 rounded-md" style="background: url('assets/images/blog/bg2.jpg') center center;">
+        <div class="bg-overlay rounded-md"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="title-heading text-center">
+                <h1 class="text-white title-dark mb-3">Business Meeting</h1>
+                <ul class="list-unstyled">
+                  <li class="list-inline-item small user text-white-50 me-2"><i
+                      class="mdi mdi-account text-white title-dark"></i> Calvin Carlo</li>
+                  <li class="list-inline-item small date text-white-50"><i
+                      class="mdi mdi-calendar-check text-white title-dark"></i> 13th August, 2019</li>
+                </ul>
+                <p class="para-desc mx-auto text-white-50 mb-0">Start working with Landrick that can provide
+                  everything you need to generate awareness, drive traffic, connect.</p>
+                <div class="mt-4">
+                  <a href="javascript:void(0)" class="btn btn-primary">Read More </a>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="bg-half-170 rounded-md" style="background: url('assets/images/blog/bg3.jpg') center center;">
+        <div class="bg-overlay rounded-md"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="title-heading text-center">
+                <h1 class="text-white title-dark mb-3">Delicious & Organic</h1>
+                <ul class="list-unstyled">
+                  <li class="list-inline-item small user text-white-50 me-2"><i
+                      class="mdi mdi-account text-white title-dark"></i> Calvin Carlo</li>
+                  <li class="list-inline-item small date text-white-50"><i
+                      class="mdi mdi-calendar-check text-white title-dark"></i> 13th August, 2019</li>
+                </ul>
+                <p class="para-desc mx-auto text-white-50 mb-0">Start working with Landrick that can provide
+                  everything you need to generate awareness, drive traffic, connect.</p>
+                <div class="mt-4">
+                  <a href="javascript:void(0)" class="btn btn-primary">Read More </a>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</section>
+<!--end container-->
+<!-- Hero End -->
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="features-absolute blog-search">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="text-center subcribe-form">
+                <form style="max-width: 800px;">
+                  <input type="text" id="course" name="name" class="rounded-pill shadow-md bg-white"
+                    placeholder="Search keywords...">
+                  <button type="submit" class="btn btn-pills btn-primary">Search</button>
+                </form>
+                <!--end form-->
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end div-->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+
+  <div class="container mt-4 mt-lg-0">
+    <div class="row align-items-center mb-4 pb-4">
+      <div class="col-md-8">
+        <div class="section-title text-md-left">
+          <h4 class="mb-4">Popular post</h4>
+          <p class="text-muted mb-0 para-desc">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 mt-4 mt-sm-0">
+        <div class="text-center text-md-end">
+          <a href="javascript:void(0)" class="btn btn-soft-primary">See More
+            <i-feather name="arrow-right" class="fea icon-sm"></i-feather>
+          </a>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <app-blog [blogData]="blogData"></app-blog>
+  </div>
+  <!--end container-->
+
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center mb-4 pb-4">
+      <div class="col-md-8">
+        <div class="section-title text-md-left">
+          <h4 class="mb-4">Recent Post</h4>
+          <p class="text-muted mb-0 para-desc">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-md-4 mt-4 mt-sm-0">
+        <div class="text-center text-md-end">
+          <a href="javascript:void(0)" class="btn btn-soft-primary">See More
+            <i-feather name="arrow-right" class="icons"></i-feather>
+          </a>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+    <app-blog [blogData]="resentPostData"></app-blog>
+  </div>
+  <!--end container-->
+
+  <!-- Cta start -->
+  <div class="container-fluid mt-100 mt-60">
+    <div class="rounded-md shadow-md py-5 position-relative"
+      style="background: url('assets/images/3.jpg') center center;">
+      <div class="bg-overlay rounded-md"></div>
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2 class="fw-bold text-white title-dark mb-4 pb-2">People are podcasting <br> all over the world
+              </h2>
+              <a href="javascript:void(0)" class="btn btn-primary">Read More
+                <i-feather name="arrow-right" class="fea icon-sm"></i-feather>
+              </a>
+            </div>
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
+      </div>
+      <!--end container-->
+    </div>
+    <!--end slide-->
+  </div>
+  <!--end container-->
+  <!-- Cta End -->
+
+  <div class="container mt-100 mt-60">
+    <div class="row align-items-center mb-4 pb-4">
+      <div class="col-md-8">
+        <div class="section-title text-md-left">
+          <h4 class="mb-4">All News or Blog Post</h4>
+          <p class="text-muted mb-0 para-desc">Start working with <span class="text-primary fw-bold">Landrick</span>
+            that can provide everything you need to generate
+            awareness, drive traffic, connect.</p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+    <app-blog [blogData]="blogData"></app-blog>
+    <app-blog [blogData]="resentPostData"></app-blog>
+    <div class="col-12 mt-4 pt-2">
+      <div class="text-center">
+        <a href="javascript:void(0)" class="btn btn-primary">See More <i-feather name="arrow-right" class="fea icon-sm">
+          </i-feather></a>
+      </div>
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+  <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

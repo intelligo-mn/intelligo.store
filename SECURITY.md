@@ -2,6 +2,7 @@
 
 ## Supported Versions
 
+<<<<<<< HEAD
 Use this section to tell people about which versions of your project are
 currently being supported with security updates.
 
@@ -19,3 +20,13 @@ Use this section to tell people how to report a vulnerability.
 Tell them where to go, how often they can expect to get an update on a
 reported vulnerability, what to expect if the vulnerability is accepted or
 declined, etc.
+=======
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.x.x   | :white_check_mark: |
+| < 1.0   | :x:                |
+
+## Reporting a Vulnerability
+
+To report a security vulnarability, email [contact@vendure.io](mailto:contact@vendure.io).
+>>>>>>> 97d9defddefcc7222397dcb6198b998d4ea065e1
