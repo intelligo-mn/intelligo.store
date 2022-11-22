@@ -136,6 +136,7 @@ export type DefaultFormComponentId =
     | 'date-form-input'
     | 'facet-value-form-input'
     | 'json-editor-form-input'
+    | 'html-editor-form-input'
     | 'number-form-input'
     | 'password-form-input'
     | 'product-selector-form-input'
@@ -143,7 +144,10 @@ export type DefaultFormComponentId =
     | 'rich-text-form-input'
     | 'select-form-input'
     | 'text-form-input'
-    | 'textarea-form-input';
+    | 'textarea-form-input'
+    | 'asset-form-input'
+    | 'product-multi-form-input'
+    | 'combination-mode-form-input';
 
 /**
  * @description
@@ -158,6 +162,7 @@ type DefaultFormConfigHash = {
     'date-form-input': { min?: string; max?: string; yearRange?: number };
     'facet-value-form-input': {};
     'json-editor-form-input': { height?: string };
+    'html-editor-form-input': { height?: string };
     'number-form-input': { min?: number; max?: number; step?: number; prefix?: string; suffix?: string };
     'password-form-input': {};
     'product-selector-form-input': {};
@@ -170,6 +175,11 @@ type DefaultFormConfigHash = {
     'textarea-form-input': {
         spellcheck?: boolean;
     };
+    'asset-form-input': {};
+    'product-multi-form-input': {
+        selectionMode?: 'product' | 'variant';
+    };
+    'combination-mode-form-input': {};
 };
 
 export type DefaultFormComponentUiConfig<T extends DefaultFormComponentId | string> =
@@ -264,8 +274,6 @@ export interface AdminUiConfig {
     /**
      * @description
      * An array of languages for which translations exist for the Admin UI.
-     *
-     * @default [LanguageCode.en, LanguageCode.es]
      */
     availableLanguages: LanguageCode[];
     /**
@@ -295,6 +303,16 @@ export interface AdminUiConfig {
      * @default false
      */
     hideVersion?: boolean;
+    /**
+     * @description
+     * Allows you to provide default reasons for a refund or cancellation. This will be used in the
+     * refund/cancel dialog. The values can be literal strings (e.g. "Not in stock") or translation
+     * tokens (see [Adding Admin UI Translations](/docs/plugins/extending-the-admin-ui/adding-ui-translations/)).
+     *
+     * @since 1.5.0
+     * @default ['order.cancel-reason-customer-request', 'order.cancel-reason-not-available']
+     */
+    cancellationReasons?: string[];
 }
 
 /**

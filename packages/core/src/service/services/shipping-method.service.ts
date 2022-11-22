@@ -10,6 +10,7 @@ import { omit } from '@vendure/common/lib/omit';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { EntityNotFoundError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
@@ -25,7 +26,7 @@ import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
-import { translateDeep } from '../helpers/utils/translate-entity';
+import { TranslatorService } from '../helpers/translator/translator.service';
 
 import { ChannelService } from './channel.service';
 
@@ -46,6 +47,7 @@ export class ShippingMethodService {
         private translatableSaver: TranslatableSaver,
         private customFieldRelationService: CustomFieldRelationService,
         private eventBus: EventBus,
+        private translator: TranslatorService,
     ) {}
 
     /** @internal */
@@ -61,17 +63,18 @@ export class ShippingMethodService {
     findAll(
         ctx: RequestContext,
         options?: ListQueryOptions<ShippingMethod>,
+        relations: RelationPaths<ShippingMethod> = [],
     ): Promise<PaginatedList<ShippingMethod>> {
         return this.listQueryBuilder
             .build(ShippingMethod, options, {
-                relations: ['channels'],
+                relations,
                 where: { deletedAt: null },
                 channelId: ctx.channelId,
                 ctx,
             })
             .getManyAndCount()
             .then(([items, totalItems]) => ({
-                items: items.map(i => translateDeep(i, ctx.languageCode)),
+                items: items.map(i => this.translator.translate(i, ctx)),
                 totalItems,
             }));
     }
@@ -80,6 +83,7 @@ export class ShippingMethodService {
         ctx: RequestContext,
         shippingMethodId: ID,
         includeDeleted = false,
+        relations: RelationPaths<ShippingMethod> = [],
     ): Promise<ShippingMethod | undefined> {
         const shippingMethod = await this.connection.findOneInChannel(
             ctx,
@@ -87,11 +91,11 @@ export class ShippingMethodService {
             shippingMethodId,
             ctx.channelId,
             {
-                relations: ['channels'],
+                relations,
                 ...(includeDeleted === false ? { where: { deletedAt: null } } : {}),
             },
         );
-        return shippingMethod && translateDeep(shippingMethod, ctx.languageCode);
+        return shippingMethod && this.translator.translate(shippingMethod, ctx);
     }
 
     async create(ctx: RequestContext, input: CreateShippingMethodInput): Promise<ShippingMethod> {
@@ -202,14 +206,14 @@ export class ShippingMethodService {
         });
         return shippingMethods
             .filter(sm => sm.channels.find(c => idsAreEqual(c.id, ctx.channelId)))
-            .map(m => translateDeep(m, ctx.languageCode));
+            .map(m => this.translator.translate(m, ctx));
     }
 
     /**
      * Ensures that all ShippingMethods have a valid fulfillmentHandlerCode
      */
     private async verifyShippingMethods() {
-        const activeShippingMethods = await this.connection.getRepository(ShippingMethod).find({
+        const activeShippingMethods = await this.connection.rawConnection.getRepository(ShippingMethod).find({
             where: { deletedAt: null },
         });
         for (const method of activeShippingMethods) {
@@ -217,7 +221,7 @@ export class ShippingMethodService {
             const verifiedHandlerCode = this.ensureValidFulfillmentHandlerCode(method.code, handlerCode);
             if (handlerCode !== verifiedHandlerCode) {
                 method.fulfillmentHandlerCode = verifiedHandlerCode;
-                await this.connection.getRepository(ShippingMethod).save(method);
+                await this.connection.rawConnection.getRepository(ShippingMethod).save(method);
             }
         }
     }

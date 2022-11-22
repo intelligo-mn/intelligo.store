@@ -1,17 +1,25 @@
+import { Logger } from '@nestjs/common';
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { CollectionBreadcrumb, ProductVariantListOptions } from '@vendure/common/lib/generated-types';
+import {
+    CollectionBreadcrumb,
+    ConfigurableOperation,
+    ProductVariantListOptions,
+} from '@vendure/common/lib/generated-types';
 import { PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { ListQueryOptions } from '../../../common/types/common-types';
 import { Translated } from '../../../common/types/locale-types';
+import { CollectionFilter } from '../../../config/index';
 import { Asset, Collection, Product, ProductVariant } from '../../../entity';
 import { LocaleStringHydrator } from '../../../service/helpers/locale-string-hydrator/locale-string-hydrator';
 import { AssetService } from '../../../service/services/asset.service';
 import { CollectionService } from '../../../service/services/collection.service';
 import { ProductVariantService } from '../../../service/services/product-variant.service';
+import { ConfigurableOperationCodec } from '../../common/configurable-operation-codec';
 import { ApiType } from '../../common/get-api-type';
 import { RequestContext } from '../../common/request-context';
 import { Api } from '../../decorators/api.decorator';
+import { RelationPaths, Relations } from '../../decorators/relations.decorator';
 import { Ctx } from '../../decorators/request-context.decorator';
 
 @Resolver('Collection')
@@ -21,6 +29,7 @@ export class CollectionEntityResolver {
         private collectionService: CollectionService,
         private assetService: AssetService,
         private localeStringHydrator: LocaleStringHydrator,
+        private configurableOperationCodec: ConfigurableOperationCodec,
     ) {}
 
     @ResolveField()
@@ -39,11 +48,17 @@ export class CollectionEntityResolver {
     }
 
     @ResolveField()
+    languageCode(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<string> {
+        return this.localeStringHydrator.hydrateLocaleStringField(ctx, collection, 'languageCode');
+    }
+
+    @ResolveField()
     async productVariants(
         @Ctx() ctx: RequestContext,
         @Parent() collection: Collection,
         @Args() args: { options: ProductVariantListOptions },
         @Api() apiType: ApiType,
+        @Relations({ entity: ProductVariant, omit: ['assets'] }) relations: RelationPaths<ProductVariant>,
     ): Promise<PaginatedList<Translated<ProductVariant>>> {
         let options: ListQueryOptions<Product> = args.options;
         if (apiType === 'shop') {
@@ -55,7 +70,7 @@ export class CollectionEntityResolver {
                 },
             };
         }
-        return this.productVariantService.getVariantsByCollectionId(ctx, collection.id, options);
+        return this.productVariantService.getVariantsByCollectionId(ctx, collection.id, options, relations);
     }
 
     @ResolveField()
@@ -89,7 +104,7 @@ export class CollectionEntityResolver {
     ): Promise<Collection[]> {
         let children: Collection[] = [];
         if (collection.children) {
-            children = collection.children;
+            children = collection.children.sort((a, b) => a.position - b.position);
         } else {
             children = (await this.collectionService.getChildren(ctx, collection.id)) as any;
         }
@@ -110,5 +125,20 @@ export class CollectionEntityResolver {
     @ResolveField()
     async assets(@Ctx() ctx: RequestContext, @Parent() collection: Collection): Promise<Asset[] | undefined> {
         return this.assetService.getEntityAssets(ctx, collection);
+    }
+
+    @ResolveField()
+    filters(@Ctx() ctx: RequestContext, @Parent() collection: Collection): ConfigurableOperation[] {
+        try {
+            return this.configurableOperationCodec.encodeConfigurableOperationIds(
+                CollectionFilter,
+                collection.filters,
+            );
+        } catch (e: any) {
+            Logger.error(
+                `Could not decode the collection filter arguments for "${collection.name}" (id: ${collection.id}). Error message: ${e.message}`,
+            );
+            return [];
+        }
     }
 }

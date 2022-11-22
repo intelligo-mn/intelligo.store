@@ -10,6 +10,7 @@ import {
     CustomerGroupListOptions,
     CustomerListOptions,
     DeleteCustomer,
+    DeleteCustomerAddress,
     DeleteCustomerGroup,
     DeleteCustomerNote,
     GetCustomer,
@@ -18,6 +19,7 @@ import {
     GetCustomerHistory,
     GetCustomerList,
     HistoryEntryListOptions,
+    LogicalOperator,
     OrderListOptions,
     RemoveCustomersFromGroup,
     UpdateAddressInput,
@@ -36,6 +38,7 @@ import {
     CREATE_CUSTOMER_ADDRESS,
     CREATE_CUSTOMER_GROUP,
     DELETE_CUSTOMER,
+    DELETE_CUSTOMER_ADDRESS,
     DELETE_CUSTOMER_GROUP,
     DELETE_CUSTOMER_NOTE,
     GET_CUSTOMER,
@@ -62,6 +65,9 @@ export class CustomerDataService {
                       emailAddress: {
                           contains: filterTerm,
                       },
+                      lastName: {
+                          contains: filterTerm,
+                      },
                   },
               }
             : {};
@@ -72,6 +78,7 @@ export class CustomerDataService {
                     take,
                     skip,
                     ...filter,
+                    filterOperator: LogicalOperator.OR,
                 },
             },
         );
@@ -126,6 +133,13 @@ export class CustomerDataService {
             {
                 input,
             },
+        );
+    }
+
+    deleteCustomerAddress(id: string) {
+        return this.baseDataService.mutate<DeleteCustomerAddress.Mutation, DeleteCustomerAddress.Variables>(
+            DELETE_CUSTOMER_ADDRESS,
+            { id },
         );
     }
 

@@ -14,7 +14,7 @@ import { Translated } from '../../common/types/locale-types';
 import { assertFound } from '../../common/utils';
 import { ConfigService } from '../../config/config.service';
 import { TransactionalConnection } from '../../connection/transactional-connection';
-import { Product, ProductVariant } from '../../entity';
+import { Asset, Product, ProductVariant } from '../../entity';
 import { FacetValueTranslation } from '../../entity/facet-value/facet-value-translation.entity';
 import { FacetValue } from '../../entity/facet-value/facet-value.entity';
 import { Facet } from '../../entity/facet/facet.entity';
@@ -22,6 +22,7 @@ import { EventBus } from '../../event-bus';
 import { FacetValueEvent } from '../../event-bus/events/facet-value-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
+import { TranslatorService } from '../helpers/translator/translator.service';
 import { translateDeep } from '../helpers/utils/translate-entity';
 
 import { ChannelService } from './channel.service';
@@ -41,15 +42,31 @@ export class FacetValueService {
         private customFieldRelationService: CustomFieldRelationService,
         private channelService: ChannelService,
         private eventBus: EventBus,
+        private translator: TranslatorService,
     ) {}
 
-    findAll(lang: LanguageCode): Promise<Array<Translated<FacetValue>>> {
-        return this.connection
-            .getRepository(FacetValue)
+    /**
+     * @deprecated Use {@link FacetValueService.findAll findAll(ctx, lang)} instead
+     */
+    findAll(lang: LanguageCode): Promise<Array<Translated<FacetValue>>>;
+    findAll(ctx: RequestContext, lang: LanguageCode): Promise<Array<Translated<FacetValue>>>;
+    findAll(
+        ctxOrLang: RequestContext | LanguageCode,
+        lang?: LanguageCode,
+    ): Promise<Array<Translated<FacetValue>>> {
+        const [repository, languageCode] =
+            ctxOrLang instanceof RequestContext
+                ? // tslint:disable-next-line:no-non-null-assertion
+                  [this.connection.getRepository(ctxOrLang, FacetValue), lang!]
+                : [this.connection.rawConnection.getRepository(FacetValue), ctxOrLang];
+        // ToDo Implement usage of channelLanguageCode
+        return repository
             .find({
                 relations: ['facet'],
             })
-            .then(facetValues => facetValues.map(facetValue => translateDeep(facetValue, lang, ['facet'])));
+            .then(facetValues =>
+                facetValues.map(facetValue => translateDeep(facetValue, languageCode, ['facet'])),
+            );
     }
 
     findOne(ctx: RequestContext, id: ID): Promise<Translated<FacetValue> | undefined> {
@@ -58,7 +75,7 @@ export class FacetValueService {
             .findOne(id, {
                 relations: ['facet'],
             })
-            .then(facetValue => facetValue && translateDeep(facetValue, ctx.languageCode, ['facet']));
+            .then(facetValue => facetValue && this.translator.translate(facetValue, ctx, ['facet']));
     }
 
     findByIds(ctx: RequestContext, ids: ID[]): Promise<Array<Translated<FacetValue>>> {
@@ -66,7 +83,7 @@ export class FacetValueService {
             relations: ['facet'],
         });
         return facetValues.then(values =>
-            values.map(facetValue => translateDeep(facetValue, ctx.languageCode, ['facet'])),
+            values.map(facetValue => this.translator.translate(facetValue, ctx, ['facet'])),
         );
     }
 
@@ -82,7 +99,7 @@ export class FacetValueService {
                     facet: { id },
                 },
             })
-            .then(values => values.map(facetValue => translateDeep(facetValue, ctx.languageCode)));
+            .then(values => values.map(facetValue => this.translator.translate(facetValue, ctx)));
     }
 
     async create(
@@ -127,18 +144,27 @@ export class FacetValueService {
 
         const isInUse = !!(productCount || variantCount);
         const both = !!(productCount && variantCount) ? 'both' : 'single';
-        const i18nVars = { products: productCount, variants: variantCount, both };
         let message = '';
         let result: DeletionResult;
 
+        const facetValue = await this.connection.getEntityOrThrow(ctx, FacetValue, id);
+        const i18nVars = {
+            products: productCount,
+            variants: variantCount,
+            both,
+            facetValueCode: facetValue.code,
+        };
+        // Create a new facetValue so that the id is still available
+        // after deletion (the .remove() method sets it to undefined)
+        const deletedFacetValue = new FacetValue(facetValue);
+
         if (!isInUse) {
-            const facetValue = await this.connection.getEntityOrThrow(ctx, FacetValue, id);
             await this.connection.getRepository(ctx, FacetValue).remove(facetValue);
+            this.eventBus.publish(new FacetValueEvent(ctx, deletedFacetValue, 'deleted', id));
             result = DeletionResult.DELETED;
         } else if (force) {
-            const facetValue = await this.connection.getEntityOrThrow(ctx, FacetValue, id);
             await this.connection.getRepository(ctx, FacetValue).remove(facetValue);
-            this.eventBus.publish(new FacetValueEvent(ctx, facetValue, 'deleted', id));
+            this.eventBus.publish(new FacetValueEvent(ctx, deletedFacetValue, 'deleted', id));
             message = ctx.translate('message.facet-value-force-deleted', i18nVars);
             result = DeletionResult.DELETED;
         } else {
@@ -159,24 +185,40 @@ export class FacetValueService {
     async checkFacetValueUsage(
         ctx: RequestContext,
         facetValueIds: ID[],
+        channelId?: ID,
     ): Promise<{ productCount: number; variantCount: number }> {
-        const consumingProducts = await this.connection
+        const consumingProductsQb = this.connection
             .getRepository(ctx, Product)
             .createQueryBuilder('product')
             .leftJoinAndSelect('product.facetValues', 'facetValues')
             .where('facetValues.id IN (:...facetValueIds)', { facetValueIds })
-            .getMany();
+            .andWhere('product.deletedAt IS NULL');
 
-        const consumingVariants = await this.connection
+        const consumingVariantsQb = this.connection
             .getRepository(ctx, ProductVariant)
             .createQueryBuilder('variant')
             .leftJoinAndSelect('variant.facetValues', 'facetValues')
             .where('facetValues.id IN (:...facetValueIds)', { facetValueIds })
-            .getMany();
+            .andWhere('variant.deletedAt IS NULL');
+
+        if (channelId) {
+            consumingProductsQb
+                .leftJoin('product.channels', 'product_channel')
+                .leftJoin('facetValues.channels', 'channel')
+                .andWhere('product_channel.id = :channelId')
+                .andWhere('channel.id = :channelId')
+                .setParameter('channelId', channelId);
+            consumingVariantsQb
+                .leftJoin('variant.channels', 'variant_channel')
+                .leftJoin('facetValues.channels', 'channel')
+                .andWhere('variant_channel.id = :channelId')
+                .andWhere('channel.id = :channelId')
+                .setParameter('channelId', channelId);
+        }
 
         return {
-            productCount: consumingProducts.length,
-            variantCount: consumingVariants.length,
+            productCount: await consumingProductsQb.getCount(),
+            variantCount: await consumingVariantsQb.getCount(),
         };
     }
 }

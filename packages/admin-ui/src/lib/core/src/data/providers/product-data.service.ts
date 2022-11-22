@@ -19,6 +19,8 @@ import {
     CreateTagInput,
     DeleteAssets,
     DeleteProduct,
+    DeleteProductOption,
+    DeleteProducts,
     DeleteProductVariant,
     DeleteTag,
     GetAsset,
@@ -73,7 +75,9 @@ import {
     CREATE_TAG,
     DELETE_ASSETS,
     DELETE_PRODUCT,
+    DELETE_PRODUCT_OPTION,
     DELETE_PRODUCT_VARIANT,
+    DELETE_PRODUCTS,
     DELETE_TAG,
     GET_ASSET,
     GET_ASSET_LIST,
@@ -253,6 +257,15 @@ export class ProductDataService {
         });
     }
 
+    deleteProducts(ids: string[]) {
+        return this.baseDataService.mutate<DeleteProducts.Mutation, DeleteProducts.Variables>(
+            DELETE_PRODUCTS,
+            {
+                ids,
+            },
+        );
+    }
+
     createProductVariants(input: CreateProductVariantInput[]) {
         return this.baseDataService.mutate<CreateProductVariants.Mutation, CreateProductVariants.Variables>(
             CREATE_PRODUCT_VARIANTS,
@@ -319,6 +332,13 @@ export class ProductDataService {
         return this.baseDataService.mutate<AddOptionToGroup.Mutation, AddOptionToGroup.Variables>(
             ADD_OPTION_TO_GROUP,
             { input },
+        );
+    }
+
+    deleteProductOption(id: string) {
+        return this.baseDataService.mutate<DeleteProductOption.Mutation, DeleteProductOption.Variables>(
+            DELETE_PRODUCT_OPTION,
+            { id },
         );
     }
 

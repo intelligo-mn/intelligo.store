@@ -25,6 +25,11 @@ export type AddItemInput = {
   quantity: Scalars['Int'];
 };
 
+export type AddItemToDraftOrderInput = {
+  productVariantId: Scalars['ID'];
+  quantity: Scalars['Int'];
+};
+
 export type AddManualPaymentToOrderResult = Order | ManualPaymentStateError;
 
 export type AddNoteToCustomerInput = {
@@ -58,6 +63,11 @@ export type Address = Node & {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
+export type AdjustDraftOrderLineInput = {
+  orderLineId: Scalars['ID'];
+  quantity: Scalars['Int'];
+};
+
 export type AdjustOrderLineInput = {
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
@@ -73,7 +83,8 @@ export type Adjustment = {
 
 export enum AdjustmentType {
   PROMOTION = 'PROMOTION',
-  DISTRIBUTED_ORDER_PROMOTION = 'DISTRIBUTED_ORDER_PROMOTION'
+  DISTRIBUTED_ORDER_PROMOTION = 'DISTRIBUTED_ORDER_PROMOTION',
+  OTHER = 'OTHER'
 }
 
 export type Administrator = Node & {
@@ -154,6 +165,8 @@ export type AlreadyRefundedError = ErrorResult & {
   refundId: Scalars['ID'];
 };
 
+export type ApplyCouponCodeResult = Order | CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError;
+
 export type Asset = Node & {
   __typename?: 'Asset';
   tags: Array<Tag>;
@@ -231,6 +244,16 @@ export type AssignAssetsToChannelInput = {
   channelId: Scalars['ID'];
 };
 
+export type AssignCollectionsToChannelInput = {
+  collectionIds: Array<Scalars['ID']>;
+  channelId: Scalars['ID'];
+};
+
+export type AssignFacetsToChannelInput = {
+  facetIds: Array<Scalars['ID']>;
+  channelId: Scalars['ID'];
+};
+
 export type AssignProductVariantsToChannelInput = {
   productVariantIds: Array<Scalars['ID']>;
   channelId: Scalars['ID'];
@@ -275,6 +298,11 @@ export type BooleanCustomFieldConfig = CustomField & {
   ui?: Maybe<Scalars['JSON']>;
 };
 
+/** Operators for filtering on a list of Boolean fields */
+export type BooleanListOperators = {
+  inList: Scalars['Boolean'];
+};
+
 /** Operators for filtering on a Boolean field */
 export type BooleanOperators = {
   eq?: Maybe<Scalars['Boolean']>;
@@ -293,10 +321,22 @@ export type CancelOrderInput = {
   orderId: Scalars['ID'];
   /** Optionally specify which OrderLines to cancel. If not provided, all OrderLines will be cancelled */
   lines?: Maybe<Array<OrderLineInput>>;
+  /** Specify whether the shipping charges should also be cancelled. Defaults to false */
+  cancelShipping?: Maybe<Scalars['Boolean']>;
   reason?: Maybe<Scalars['String']>;
 };
 
 export type CancelOrderResult = Order | EmptyOrderLineSelectionError | QuantityTooGreatError | MultipleOrderError | CancelActiveOrderError | OrderStateTransitionError;
+
+/** Returned if the Payment cancellation fails */
+export type CancelPaymentError = ErrorResult & {
+  __typename?: 'CancelPaymentError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  paymentErrorMessage: Scalars['String'];
+};
+
+export type CancelPaymentResult = Payment | CancelPaymentError | PaymentStateTransitionError;
 
 export type Cancellation = Node & StockMovement & {
   __typename?: 'Cancellation';
@@ -549,6 +589,31 @@ export type CountryTranslationInput = {
   languageCode: LanguageCode;
   name?: Maybe<Scalars['String']>;
   customFields?: Maybe<Scalars['JSON']>;
+};
+
+/** Returned if the provided coupon code is invalid */
+export type CouponCodeExpiredError = ErrorResult & {
+  __typename?: 'CouponCodeExpiredError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  couponCode: Scalars['String'];
+};
+
+/** Returned if the provided coupon code is invalid */
+export type CouponCodeInvalidError = ErrorResult & {
+  __typename?: 'CouponCodeInvalidError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  couponCode: Scalars['String'];
+};
+
+/** Returned if the provided coupon code is invalid */
+export type CouponCodeLimitError = ErrorResult & {
+  __typename?: 'CouponCodeLimitError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  couponCode: Scalars['String'];
+  limit: Scalars['Int'];
 };
 
 export type CreateAddressInput = {
@@ -1193,6 +1258,7 @@ export type CustomerOrdersArgs = {
 };
 
 export type CustomerFilterParameter = {
+  postalCode?: Maybe<StringOperators>;
   id?: Maybe<IdOperators>;
   createdAt?: Maybe<DateOperators>;
   updatedAt?: Maybe<DateOperators>;
@@ -1281,6 +1347,11 @@ export type CustomerSortParameter = {
   emailAddress?: Maybe<SortOrder>;
 };
 
+/** Operators for filtering on a list of Date fields */
+export type DateListOperators = {
+  inList: Scalars['DateTime'];
+};
+
 /** Operators for filtering on a DateTime field */
 export type DateOperators = {
   eq?: Maybe<Scalars['DateTime']>;
@@ -1349,7 +1420,7 @@ export type Discount = {
   amountWithTax: Scalars['Int'];
 };
 
-/** Retured when attemting to create a Customer with an email address already registered to an existing User. */
+/** Returned when attempting to create a Customer with an email address already registered to an existing User. */
 export type EmailAddressConflictError = ErrorResult & {
   __typename?: 'EmailAddressConflictError';
   errorCode: ErrorCode;
@@ -1367,8 +1438,10 @@ export enum ErrorCode {
   UNKNOWN_ERROR = 'UNKNOWN_ERROR',
   MIME_TYPE_ERROR = 'MIME_TYPE_ERROR',
   LANGUAGE_NOT_AVAILABLE_ERROR = 'LANGUAGE_NOT_AVAILABLE_ERROR',
+  FACET_IN_USE_ERROR = 'FACET_IN_USE_ERROR',
   CHANNEL_DEFAULT_LANGUAGE_ERROR = 'CHANNEL_DEFAULT_LANGUAGE_ERROR',
   SETTLE_PAYMENT_ERROR = 'SETTLE_PAYMENT_ERROR',
+  CANCEL_PAYMENT_ERROR = 'CANCEL_PAYMENT_ERROR',
   EMPTY_ORDER_LINE_SELECTION_ERROR = 'EMPTY_ORDER_LINE_SELECTION_ERROR',
   ITEMS_ALREADY_FULFILLED_ERROR = 'ITEMS_ALREADY_FULFILLED_ERROR',
   INVALID_FULFILLMENT_HANDLER_ERROR = 'INVALID_FULFILLMENT_HANDLER_ERROR',
@@ -1397,7 +1470,13 @@ export enum ErrorCode {
   EMAIL_ADDRESS_CONFLICT_ERROR = 'EMAIL_ADDRESS_CONFLICT_ERROR',
   ORDER_LIMIT_ERROR = 'ORDER_LIMIT_ERROR',
   NEGATIVE_QUANTITY_ERROR = 'NEGATIVE_QUANTITY_ERROR',
-  INSUFFICIENT_STOCK_ERROR = 'INSUFFICIENT_STOCK_ERROR'
+  INSUFFICIENT_STOCK_ERROR = 'INSUFFICIENT_STOCK_ERROR',
+  COUPON_CODE_INVALID_ERROR = 'COUPON_CODE_INVALID_ERROR',
+  COUPON_CODE_EXPIRED_ERROR = 'COUPON_CODE_EXPIRED_ERROR',
+  COUPON_CODE_LIMIT_ERROR = 'COUPON_CODE_LIMIT_ERROR',
+  ORDER_MODIFICATION_ERROR = 'ORDER_MODIFICATION_ERROR',
+  INELIGIBLE_SHIPPING_METHOD_ERROR = 'INELIGIBLE_SHIPPING_METHOD_ERROR',
+  NO_ACTIVE_ORDER_ERROR = 'NO_ACTIVE_ORDER_ERROR'
 }
 
 export type ErrorResult = {
@@ -1427,6 +1506,15 @@ export type FacetFilterParameter = {
   languageCode?: Maybe<StringOperators>;
   name?: Maybe<StringOperators>;
   code?: Maybe<StringOperators>;
+};
+
+export type FacetInUseError = ErrorResult & {
+  __typename?: 'FacetInUseError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  facetCode: Scalars['String'];
+  productCount: Scalars['Int'];
+  variantCount: Scalars['Int'];
 };
 
 export type FacetList = PaginatedList & {
@@ -1552,10 +1640,17 @@ export type Fulfillment = Node & {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   orderItems: Array<OrderItem>;
+  summary: Array<FulfillmentLineSummary>;
   state: Scalars['String'];
   method: Scalars['String'];
   trackingCode?: Maybe<Scalars['String']>;
   customFields?: Maybe<Scalars['JSON']>;
+};
+
+export type FulfillmentLineSummary = {
+  __typename?: 'FulfillmentLineSummary';
+  orderLine: OrderLine;
+  quantity: Scalars['Int'];
 };
 
 /** Returned when there is an error in transitioning the Fulfillment state */
@@ -1657,6 +1752,11 @@ export enum HistoryEntryType {
   ORDER_MODIFIED = 'ORDER_MODIFIED'
 }
 
+/** Operators for filtering on a list of ID fields */
+export type IdListOperators = {
+  inList: Scalars['ID'];
+};
+
 /** Operators for filtering on an ID field */
 export type IdOperators = {
   eq?: Maybe<Scalars['String']>;
@@ -1670,6 +1770,13 @@ export type ImportInfo = {
   errors?: Maybe<Array<Scalars['String']>>;
   processed: Scalars['Int'];
   imported: Scalars['Int'];
+};
+
+/** Returned when attempting to set a ShippingMethod for which the Order is not eligible */
+export type IneligibleShippingMethodError = ErrorResult & {
+  __typename?: 'IneligibleShippingMethodError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
 };
 
 /** Returned when attempting to add more items to the Order than are available */
@@ -2226,6 +2333,7 @@ export type ModifyOrderInput = {
   note?: Maybe<Scalars['String']>;
   refund?: Maybe<AdministratorRefundInput>;
   options?: Maybe<ModifyOrderOptions>;
+  couponCodes?: Maybe<Array<Scalars['String']>>;
 };
 
 export type ModifyOrderOptions = {
@@ -2233,7 +2341,7 @@ export type ModifyOrderOptions = {
   recalculateShipping?: Maybe<Scalars['Boolean']>;
 };
 
-export type ModifyOrderResult = Order | NoChangesSpecifiedError | OrderModificationStateError | PaymentMethodMissingError | RefundPaymentIdMissingError | OrderLimitError | NegativeQuantityError | InsufficientStockError;
+export type ModifyOrderResult = Order | NoChangesSpecifiedError | OrderModificationStateError | PaymentMethodMissingError | RefundPaymentIdMissingError | OrderLimitError | NegativeQuantityError | InsufficientStockError | CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError;
 
 export type MoveCollectionInput = {
   collectionId: Scalars['ID'];
@@ -2287,8 +2395,14 @@ export type Mutation = {
   updateCollection: Collection;
   /** Delete a Collection and all of its descendants */
   deleteCollection: DeletionResponse;
+  /** Delete multiple Collections and all of their descendants */
+  deleteCollections: Array<DeletionResponse>;
   /** Move a Collection to a different parent or index */
   moveCollection: Collection;
+  /** Assigns Collections to the specified Channel */
+  assignCollectionsToChannel: Array<Collection>;
+  /** Removes Collections from the specified Channel */
+  removeCollectionsFromChannel: Array<Collection>;
   /** Create a new Country */
   createCountry: Country;
   /** Update an existing Country */
@@ -2326,12 +2440,18 @@ export type Mutation = {
   updateFacet: Facet;
   /** Delete an existing Facet */
   deleteFacet: DeletionResponse;
+  /** Delete multiple existing Facets */
+  deleteFacets: Array<DeletionResponse>;
   /** Create one or more FacetValues */
   createFacetValues: Array<FacetValue>;
   /** Update one or more FacetValues */
   updateFacetValues: Array<FacetValue>;
   /** Delete one or more FacetValues */
   deleteFacetValues: Array<DeletionResponse>;
+  /** Assigns Facets to the specified Channel */
+  assignFacetsToChannel: Array<Facet>;
+  /** Removes Facets from the specified Channel */
+  removeFacetsFromChannel: Array<RemoveFacetFromChannelResult>;
   updateGlobalSettings: UpdateGlobalSettingsResult;
   importProducts?: Maybe<ImportInfo>;
   /** Remove all settled jobs in the given queues older than the given date. Returns the number of jobs deleted. */
@@ -2339,6 +2459,7 @@ export type Mutation = {
   cancelJob: Job;
   flushBufferedJobs: Success;
   settlePayment: SettlePaymentResult;
+  cancelPayment: CancelPaymentResult;
   addFulfillmentToOrder: AddFulfillmentToOrderResult;
   cancelOrder: CancelOrderResult;
   refundOrder: RefundOrderResult;
@@ -2365,6 +2486,29 @@ export type Mutation = {
    * Payment.
    */
   addManualPaymentToOrder: AddManualPaymentToOrderResult;
+  /** Creates a draft Order */
+  createDraftOrder: Order;
+  /** Deletes a draft Order */
+  deleteDraftOrder: DeletionResponse;
+  /** Adds an item to the draft Order. */
+  addItemToDraftOrder: UpdateOrderItemsResult;
+  /** Adjusts a draft OrderLine. If custom fields are defined on the OrderLine entity, a third argument 'customFields' of type `OrderLineCustomFieldsInput` will be available. */
+  adjustDraftOrderLine: UpdateOrderItemsResult;
+  /** Remove an OrderLine from the draft Order */
+  removeDraftOrderLine: RemoveOrderItemsResult;
+  setCustomerForDraftOrder: SetCustomerForDraftOrderResult;
+  /** Sets the shipping address for a draft Order */
+  setDraftOrderShippingAddress: Order;
+  /** Sets the billing address for a draft Order */
+  setDraftOrderBillingAddress: Order;
+  /** Allows any custom fields to be set for the active order */
+  setDraftOrderCustomFields: Order;
+  /** Applies the given coupon code to the draft Order */
+  applyCouponCodeToDraftOrder: ApplyCouponCodeResult;
+  /** Removes the given coupon code from the draft Order */
+  removeCouponCodeFromDraftOrder?: Maybe<Order>;
+  /** Sets the shipping method by id, which can be obtained with the `eligibleShippingMethodsForDraftOrder` query */
+  setDraftOrderShippingMethod: SetOrderShippingMethodResult;
   /** Create existing PaymentMethod */
   createPaymentMethod: PaymentMethod;
   /** Update an existing PaymentMethod */
@@ -2379,14 +2523,20 @@ export type Mutation = {
   createProductOption: ProductOption;
   /** Create a new ProductOption within a ProductOptionGroup */
   updateProductOption: ProductOption;
+  /** Delete a ProductOption */
+  deleteProductOption: DeletionResponse;
   reindex: Job;
   runPendingSearchIndexUpdates: Success;
   /** Create a new Product */
   createProduct: Product;
   /** Update an existing Product */
   updateProduct: Product;
+  /** Update multiple existing Products */
+  updateProducts: Array<Product>;
   /** Delete a Product */
   deleteProduct: DeletionResponse;
+  /** Delete multiple Products */
+  deleteProducts: Array<DeletionResponse>;
   /** Add an OptionGroup to a Product */
   addOptionGroupToProduct: Product;
   /** Remove an OptionGroup from a Product */
@@ -2397,6 +2547,8 @@ export type Mutation = {
   updateProductVariants: Array<Maybe<ProductVariant>>;
   /** Delete a ProductVariant */
   deleteProductVariant: DeletionResponse;
+  /** Delete multiple ProductVariants */
+  deleteProductVariants: Array<DeletionResponse>;
   /** Assigns all ProductVariants of Product to the specified Channel */
   assignProductsToChannel: Array<Product>;
   /** Removes all ProductVariants of Product from the specified Channel */
@@ -2549,8 +2701,23 @@ export type MutationDeleteCollectionArgs = {
 };
 
 
+export type MutationDeleteCollectionsArgs = {
+  ids: Array<Scalars['ID']>;
+};
+
+
 export type MutationMoveCollectionArgs = {
   input: MoveCollectionInput;
+};
+
+
+export type MutationAssignCollectionsToChannelArgs = {
+  input: AssignCollectionsToChannelInput;
+};
+
+
+export type MutationRemoveCollectionsFromChannelArgs = {
+  input: RemoveCollectionsFromChannelInput;
 };
 
 
@@ -2659,6 +2826,12 @@ export type MutationDeleteFacetArgs = {
 };
 
 
+export type MutationDeleteFacetsArgs = {
+  ids: Array<Scalars['ID']>;
+  force?: Maybe<Scalars['Boolean']>;
+};
+
+
 export type MutationCreateFacetValuesArgs = {
   input: Array<CreateFacetValueInput>;
 };
@@ -2672,6 +2845,16 @@ export type MutationUpdateFacetValuesArgs = {
 export type MutationDeleteFacetValuesArgs = {
   ids: Array<Scalars['ID']>;
   force?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationAssignFacetsToChannelArgs = {
+  input: AssignFacetsToChannelInput;
+};
+
+
+export type MutationRemoveFacetsFromChannelArgs = {
+  input: RemoveFacetsFromChannelInput;
 };
 
 
@@ -2702,6 +2885,11 @@ export type MutationFlushBufferedJobsArgs = {
 
 
 export type MutationSettlePaymentArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCancelPaymentArgs = {
   id: Scalars['ID'];
 };
 
@@ -2774,6 +2962,72 @@ export type MutationAddManualPaymentToOrderArgs = {
 };
 
 
+export type MutationDeleteDraftOrderArgs = {
+  orderId: Scalars['ID'];
+};
+
+
+export type MutationAddItemToDraftOrderArgs = {
+  orderId: Scalars['ID'];
+  input: AddItemToDraftOrderInput;
+};
+
+
+export type MutationAdjustDraftOrderLineArgs = {
+  orderId: Scalars['ID'];
+  input: AdjustDraftOrderLineInput;
+};
+
+
+export type MutationRemoveDraftOrderLineArgs = {
+  orderId: Scalars['ID'];
+  orderLineId: Scalars['ID'];
+};
+
+
+export type MutationSetCustomerForDraftOrderArgs = {
+  orderId: Scalars['ID'];
+  customerId?: Maybe<Scalars['ID']>;
+  input?: Maybe<CreateCustomerInput>;
+};
+
+
+export type MutationSetDraftOrderShippingAddressArgs = {
+  orderId: Scalars['ID'];
+  input: CreateAddressInput;
+};
+
+
+export type MutationSetDraftOrderBillingAddressArgs = {
+  orderId: Scalars['ID'];
+  input: CreateAddressInput;
+};
+
+
+export type MutationSetDraftOrderCustomFieldsArgs = {
+  orderId: Scalars['ID'];
+  input: UpdateOrderInput;
+};
+
+
+export type MutationApplyCouponCodeToDraftOrderArgs = {
+  orderId: Scalars['ID'];
+  couponCode: Scalars['String'];
+};
+
+
+export type MutationRemoveCouponCodeFromDraftOrderArgs = {
+  orderId: Scalars['ID'];
+  couponCode: Scalars['String'];
+};
+
+
+export type MutationSetDraftOrderShippingMethodArgs = {
+  orderId: Scalars['ID'];
+  shippingMethodId: Scalars['ID'];
+};
+
+
 export type MutationCreatePaymentMethodArgs = {
   input: CreatePaymentMethodInput;
 };
@@ -2810,6 +3064,11 @@ export type MutationUpdateProductOptionArgs = {
 };
 
 
+export type MutationDeleteProductOptionArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationCreateProductArgs = {
   input: CreateProductInput;
 };
@@ -2820,8 +3079,18 @@ export type MutationUpdateProductArgs = {
 };
 
 
+export type MutationUpdateProductsArgs = {
+  input: Array<UpdateProductInput>;
+};
+
+
 export type MutationDeleteProductArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteProductsArgs = {
+  ids: Array<Scalars['ID']>;
 };
 
 
@@ -2849,6 +3118,11 @@ export type MutationUpdateProductVariantsArgs = {
 
 export type MutationDeleteProductVariantArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteProductVariantsArgs = {
+  ids: Array<Scalars['ID']>;
 };
 
 
@@ -3003,7 +3277,7 @@ export type NativeAuthInput = {
   password: Scalars['String'];
 };
 
-/** Retured when attempting an operation that relies on the NativeAuthStrategy, if that strategy is not configured. */
+/** Returned when attempting an operation that relies on the NativeAuthStrategy, if that strategy is not configured. */
 export type NativeAuthStrategyError = ErrorResult & {
   __typename?: 'NativeAuthStrategyError';
   errorCode: ErrorCode;
@@ -3012,9 +3286,19 @@ export type NativeAuthStrategyError = ErrorResult & {
 
 export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NativeAuthStrategyError;
 
-/** Retured when attemting to set a negative OrderLine quantity. */
+/** Returned when attempting to set a negative OrderLine quantity. */
 export type NegativeQuantityError = ErrorResult & {
   __typename?: 'NegativeQuantityError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+};
+
+/**
+ * Returned when invoking a mutation which depends on there being an active Order on the
+ * current session.
+ */
+export type NoActiveOrderError = ErrorResult & {
+  __typename?: 'NoActiveOrderError';
   errorCode: ErrorCode;
   message: Scalars['String'];
 };
@@ -3035,6 +3319,11 @@ export type NothingToRefundError = ErrorResult & {
   __typename?: 'NothingToRefundError';
   errorCode: ErrorCode;
   message: Scalars['String'];
+};
+
+/** Operators for filtering on a list of Number fields */
+export type NumberListOperators = {
+  inList: Scalars['Float'];
 };
 
 /** Operators for filtering on a Int or Float field */
@@ -3133,6 +3422,7 @@ export type OrderAddress = {
 
 export type OrderFilterParameter = {
   customerLastName?: Maybe<StringOperators>;
+  transactionId?: Maybe<StringOperators>;
   id?: Maybe<IdOperators>;
   createdAt?: Maybe<DateOperators>;
   updatedAt?: Maybe<DateOperators>;
@@ -3187,7 +3477,7 @@ export type OrderItem = Node & {
   refundId?: Maybe<Scalars['ID']>;
 };
 
-/** Retured when the maximum order size limit has been reached. */
+/** Returned when the maximum order size limit has been reached. */
 export type OrderLimitError = ErrorResult & {
   __typename?: 'OrderLimitError';
   errorCode: ErrorCode;
@@ -3253,6 +3543,7 @@ export type OrderLine = Node & {
   discounts: Array<Discount>;
   taxLines: Array<TaxLine>;
   order: Order;
+  fulfillments?: Maybe<Array<Fulfillment>>;
   customFields?: Maybe<Scalars['JSON']>;
 };
 
@@ -3294,6 +3585,13 @@ export type OrderModification = Node & {
   isSettled: Scalars['Boolean'];
 };
 
+/** Returned when attempting to modify the contents of an Order that is not in the `AddingItems` state. */
+export type OrderModificationError = ErrorResult & {
+  __typename?: 'OrderModificationError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+};
+
 /** Returned when attempting to modify the contents of an Order that is not in the `Modifying` state. */
 export type OrderModificationStateError = ErrorResult & {
   __typename?: 'OrderModificationStateError';
@@ -3309,6 +3607,7 @@ export type OrderProcessState = {
 
 export type OrderSortParameter = {
   customerLastName?: Maybe<SortOrder>;
+  transactionId?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
@@ -3464,6 +3763,31 @@ export type PaymentStateTransitionError = ErrorResult & {
  * @description
  * Permissions for administrators and customers. Used to control access to
  * GraphQL resolvers via the {@link Allow} decorator.
+ *
+ * ## Understanding Permission.Owner
+ *
+ * `Permission.Owner` is a special permission which is used in some Vendure resolvers to indicate that that resolver should only
+ * be accessible to the "owner" of that resource.
+ *
+ * For example, the Shop API `activeCustomer` query resolver should only return the Customer object for the "owner" of that Customer, i.e.
+ * based on the activeUserId of the current session. As a result, the resolver code looks like this:
+ *
+ * @example
+ * ```TypeScript
+ * \@Query()
+ * \@Allow(Permission.Owner)
+ * async activeCustomer(\@Ctx() ctx: RequestContext): Promise<Customer | undefined> {
+ *   const userId = ctx.activeUserId;
+ *   if (userId) {
+ *     return this.customerService.findOneByUserId(ctx, userId);
+ *   }
+ * }
+ * ```
+ *
+ * Here we can see that the "ownership" must be enforced by custom logic inside the resolver. Since "ownership" cannot be defined generally
+ * nor statically encoded at build-time, any resolvers using `Permission.Owner` **must** include logic to enforce that only the owner
+ * of the resource has access. If not, then it is the equivalent of using `Permission.Public`.
+ *
  *
  * @docsCategory common
  */
@@ -3645,6 +3969,11 @@ export type PermissionDefinition = {
   name: Scalars['String'];
   description: Scalars['String'];
   assignable: Scalars['Boolean'];
+};
+
+export type PreviewCollectionVariantsInput = {
+  parentId?: Maybe<Scalars['ID']>;
+  filters: Array<ConfigurableOperationInput>;
 };
 
 /** The price range where the result has more than one price */
@@ -3998,6 +4327,8 @@ export type Query = {
   /** Get a Collection either by id or slug. If neither id nor slug is specified, an error will result. */
   collection?: Maybe<Collection>;
   collectionFilters: Array<ConfigurableOperationDefinition>;
+  /** Used for real-time previews of the contents of a Collection */
+  previewCollectionVariants: ProductVariantList;
   countries: CountryList;
   country?: Maybe<Country>;
   customerGroups: CustomerGroupList;
@@ -4014,6 +4345,8 @@ export type Query = {
   jobBufferSize: Array<JobBufferSize>;
   order?: Maybe<Order>;
   orders: OrderList;
+  /** Returns a list of eligible shipping methods for the draft Order */
+  eligibleShippingMethodsForDraftOrder: Array<ShippingMethodQuote>;
   paymentMethods: PaymentMethodList;
   paymentMethod?: Maybe<PaymentMethod>;
   paymentMethodEligibilityCheckers: Array<ConfigurableOperationDefinition>;
@@ -4024,7 +4357,7 @@ export type Query = {
   pendingSearchIndexUpdates: Scalars['Int'];
   /** List Products */
   products: ProductList;
-  /** Get a Product either by id or slug. If neither id nor slug is speicified, an error will result. */
+  /** Get a Product either by id or slug. If neither id nor slug is specified, an error will result. */
   product?: Maybe<Product>;
   /** List ProductVariants either all or for the specific product. */
   productVariants: ProductVariantList;
@@ -4087,6 +4420,12 @@ export type QueryCollectionsArgs = {
 export type QueryCollectionArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryPreviewCollectionVariantsArgs = {
+  input: PreviewCollectionVariantsInput;
+  options?: Maybe<ProductVariantListOptions>;
 };
 
 
@@ -4157,6 +4496,11 @@ export type QueryOrderArgs = {
 
 export type QueryOrdersArgs = {
   options?: Maybe<OrderListOptions>;
+};
+
+
+export type QueryEligibleShippingMethodsForDraftOrderArgs = {
+  orderId: Scalars['ID'];
 };
 
 
@@ -4358,7 +4702,22 @@ export type Release = Node & StockMovement & {
   orderItem: OrderItem;
 };
 
+export type RemoveCollectionsFromChannelInput = {
+  collectionIds: Array<Scalars['ID']>;
+  channelId: Scalars['ID'];
+};
+
+export type RemoveFacetFromChannelResult = Facet | FacetInUseError;
+
+export type RemoveFacetsFromChannelInput = {
+  facetIds: Array<Scalars['ID']>;
+  channelId: Scalars['ID'];
+  force?: Maybe<Scalars['Boolean']>;
+};
+
 export type RemoveOptionGroupFromProductResult = Product | ProductOptionInUseError;
+
+export type RemoveOrderItemsResult = Order | OrderModificationError;
 
 export type RemoveProductVariantsFromChannelInput = {
   productVariantIds: Array<Scalars['ID']>;
@@ -4490,7 +4849,7 @@ export type SearchResult = {
   facetValueIds: Array<Scalars['ID']>;
   /** An array of ids of the Collections in which this result appears */
   collectionIds: Array<Scalars['ID']>;
-  /** A relevence score for the result. Differs between database implementations */
+  /** A relevance score for the result. Differs between database implementations */
   score: Scalars['Float'];
 };
 
@@ -4517,6 +4876,10 @@ export type ServerConfig = {
   customFieldConfig: CustomFields;
 };
 
+export type SetCustomerForDraftOrderResult = Order | EmailAddressConflictError;
+
+export type SetOrderShippingMethodResult = Order | OrderModificationError | IneligibleShippingMethodError | NoActiveOrderError;
+
 /** Returned if the Payment settlement fails */
 export type SettlePaymentError = ErrorResult & {
   __typename?: 'SettlePaymentError';
@@ -4536,6 +4899,7 @@ export type SettleRefundResult = Refund | RefundStateTransitionError;
 
 export type ShippingLine = {
   __typename?: 'ShippingLine';
+  id: Scalars['ID'];
   shippingMethod: ShippingMethod;
   price: Scalars['Int'];
   priceWithTax: Scalars['Int'];
@@ -4549,6 +4913,7 @@ export type ShippingMethod = Node & {
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  languageCode: LanguageCode;
   code: Scalars['String'];
   name: Scalars['String'];
   description: Scalars['String'];
@@ -4563,6 +4928,7 @@ export type ShippingMethodFilterParameter = {
   id?: Maybe<IdOperators>;
   createdAt?: Maybe<DateOperators>;
   updatedAt?: Maybe<DateOperators>;
+  languageCode?: Maybe<StringOperators>;
   code?: Maybe<StringOperators>;
   name?: Maybe<StringOperators>;
   description?: Maybe<StringOperators>;
@@ -4702,6 +5068,11 @@ export type StringFieldOption = {
   __typename?: 'StringFieldOption';
   value: Scalars['String'];
   label?: Maybe<Array<LocalizedString>>;
+};
+
+/** Operators for filtering on a list of String fields */
+export type StringListOperators = {
+  inList: Scalars['String'];
 };
 
 /** Operators for filtering on a String field */
@@ -5046,6 +5417,8 @@ export type UpdateOrderInput = {
   id: Scalars['ID'];
   customFields?: Maybe<Scalars['JSON']>;
 };
+
+export type UpdateOrderItemsResult = Order | OrderModificationError | OrderLimitError | NegativeQuantityError | InsufficientStockError;
 
 export type UpdateOrderNoteInput = {
   noteId: Scalars['ID'];

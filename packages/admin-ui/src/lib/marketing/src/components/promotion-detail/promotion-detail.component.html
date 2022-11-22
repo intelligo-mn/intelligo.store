@@ -87,6 +87,7 @@
             <ng-container *ngFor="let condition of conditions; index as i">
                 <vdr-configurable-input
                     (remove)="removeCondition($event)"
+                    [position]="i"
                     [readonly]="!('UpdatePromotion' | hasPermission)"
                     [operation]="condition"
                     [operationDefinition]="getConditionDefinition(condition)"
@@ -105,6 +106,7 @@
                             *ngFor="let condition of getAvailableConditions()"
                             type="button"
                             vdrDropdownItem
+                            class="item-wrap"
                             (click)="addCondition(condition)"
                         >
                             {{ condition.description }}
@@ -118,6 +120,7 @@
             <vdr-configurable-input
                 *ngFor="let action of actions; index as i"
                 (remove)="removeAction($event)"
+                [position]="i"
                 [operation]="action"
                 [readonly]="!('UpdatePromotion' | hasPermission)"
                 [operationDefinition]="getActionDefinition(action)"
@@ -134,6 +137,7 @@
                             *ngFor="let action of getAvailableActions()"
                             type="button"
                             vdrDropdownItem
+                            class="item-wrap"
                             (click)="addAction(action)"
                         >
                             {{ action.description }}

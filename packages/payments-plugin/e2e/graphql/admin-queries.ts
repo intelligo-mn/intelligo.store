@@ -1,3 +1,4 @@
+import { CHANNEL_FRAGMENT } from '@vendure/core/e2e/graphql/fragments';
 import gql from 'graphql-tag';
 
 export const PAYMENT_METHOD_FRAGMENT = gql`
@@ -76,4 +77,38 @@ export const REFUND_ORDER = gql`
         }
     }
     ${REFUND_FRAGMENT}
+`;
+
+export const GET_ORDER_PAYMENTS = gql`
+    query order($id: ID!) {
+        order(id: $id) {
+            id
+            payments {
+                id
+                transactionId
+                method
+                amount
+                state
+                errorMessage
+                metadata
+            }
+        }
+    }
+`;
+
+export const CREATE_CHANNEL = gql`
+    mutation CreateChannel($input: CreateChannelInput!) {
+        createChannel(input: $input) {
+            ... on Channel {
+                id
+                code
+                token
+                currencyCode
+            }
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }
 `;

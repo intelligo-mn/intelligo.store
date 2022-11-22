@@ -3,14 +3,17 @@ import { ID } from '@vendure/common/lib/shared-types';
 import { Brackets, SelectQueryBuilder } from 'typeorm';
 
 import { RequestContext } from '../../../api/common/request-context';
+import { Injector } from '../../../common';
 import { UserInputError } from '../../../common/error/errors';
 import { TransactionalConnection } from '../../../connection/transactional-connection';
+import { PLUGIN_INIT_OPTIONS } from '../constants';
 import { SearchIndexItem } from '../entities/search-index-item.entity';
 import { DefaultSearchPluginInitOptions, SearchInput } from '../types';
 
 import { SearchStrategy } from './search-strategy';
 import { getFieldsToSelect } from './search-strategy-common';
 import {
+    applyLanguageConstraints,
     createCollectionIdCountMap,
     createFacetIdCountMap,
     createPlaceholderFromId,
@@ -22,11 +25,13 @@ import {
  */
 export class PostgresSearchStrategy implements SearchStrategy {
     private readonly minTermLength = 2;
+    private connection: TransactionalConnection;
+    private options: DefaultSearchPluginInitOptions;
 
-    constructor(
-        private connection: TransactionalConnection,
-        private options: DefaultSearchPluginInitOptions,
-    ) {}
+    async init(injector: Injector) {
+        this.connection = injector.get(TransactionalConnection);
+        this.options = injector.get(PLUGIN_INIT_OPTIONS);
+    }
 
     async getFacetValueIds(
         ctx: RequestContext,
@@ -34,7 +39,7 @@ export class PostgresSearchStrategy implements SearchStrategy {
         enabledOnly: boolean,
     ): Promise<Map<ID, number>> {
         const facetValuesQb = this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .createQueryBuilder('si')
             .select(['"si"."productId"', 'MAX("si"."productVariantId")'])
             .addSelect(`string_agg("si"."facetValueIds",',')`, 'facetValues');
@@ -56,7 +61,7 @@ export class PostgresSearchStrategy implements SearchStrategy {
         enabledOnly: boolean,
     ): Promise<Map<ID, number>> {
         const collectionsQb = this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .createQueryBuilder('si')
             .select(['"si"."productId"', 'MAX("si"."productVariantId")'])
             .addSelect(`string_agg("si"."collectionIds",',')`, 'collections');
@@ -81,14 +86,14 @@ export class PostgresSearchStrategy implements SearchStrategy {
         const skip = input.skip || 0;
         const sort = input.sort;
         const qb = this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .createQueryBuilder('si')
             .select(this.createPostgresSelect(!!input.groupByProduct));
         if (input.groupByProduct) {
-            qb.addSelect('MIN(price)', 'minPrice')
-                .addSelect('MAX(price)', 'maxPrice')
-                .addSelect('MIN("priceWithTax")', 'minPriceWithTax')
-                .addSelect('MAX("priceWithTax")', 'maxPriceWithTax');
+            qb.addSelect('MIN(si.price)', 'minPrice')
+                .addSelect('MAX(si.price)', 'maxPrice')
+                .addSelect('MIN(si.priceWithTax)', 'minPriceWithTax')
+                .addSelect('MAX(si.priceWithTax)', 'maxPriceWithTax');
         }
         this.applyTermAndFilters(ctx, qb, input);
 
@@ -111,8 +116,8 @@ export class PostgresSearchStrategy implements SearchStrategy {
         }
 
         return qb
-            .take(take)
-            .skip(skip)
+            .limit(take)
+            .offset(skip)
             .getRawMany()
             .then(res => res.map(r => mapToSearchResult(r, ctx.channel.currencyCode)));
     }
@@ -121,7 +126,7 @@ export class PostgresSearchStrategy implements SearchStrategy {
         const innerQb = this.applyTermAndFilters(
             ctx,
             this.connection
-                .getRepository(SearchIndexItem)
+                .getRepository(ctx, SearchIndexItem)
                 .createQueryBuilder('si')
                 .select(this.createPostgresSelect(!!input.groupByProduct)),
             input,
@@ -150,7 +155,7 @@ export class PostgresSearchStrategy implements SearchStrategy {
             ? term
                   .trim()
                   .split(/\s+/g)
-                  .map(t => `${t}:*`)
+                  .map(t => `'${t}':*`)
                   .join(' & ')
             : '';
 
@@ -239,7 +244,8 @@ export class PostgresSearchStrategy implements SearchStrategy {
                 collectionSlug,
             });
         }
-        qb.andWhere('si.languageCode = :languageCode', { languageCode: ctx.languageCode });
+
+        applyLanguageConstraints(qb, ctx.languageCode, ctx.channel.defaultLanguageCode);
         qb.andWhere('si.channelId = :channelId', { channelId: ctx.channelId });
         if (input.groupByProduct === true) {
             qb.groupBy('si.productId');

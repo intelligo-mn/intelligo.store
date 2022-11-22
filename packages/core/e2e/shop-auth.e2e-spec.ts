@@ -10,6 +10,8 @@ import {
     IdentifierChangeRequestEvent,
     mergeConfig,
     PasswordResetEvent,
+    PasswordValidationStrategy,
+    RequestContext,
     VendurePlugin,
 } from '@vendure/core';
 import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
@@ -19,6 +21,7 @@ import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
 import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
+import { PasswordValidationError } from '../src/common/error/generated-graphql-shop-errors';
 
 import {
     CreateAdministrator,
@@ -26,6 +29,8 @@ import {
     GetCustomer,
     GetCustomerHistory,
     GetCustomerList,
+    GetCustomerListQuery,
+    GetCustomerListQueryVariables,
     HistoryEntryType,
     Permission,
 } from './graphql/generated-e2e-admin-types';
@@ -70,6 +75,7 @@ let sendEmailFn: jest.Mock;
 })
 class TestEmailPlugin implements OnModuleInit {
     constructor(private eventBus: EventBus) {}
+
     onModuleInit() {
         this.eventBus.ofType(AccountRegistrationEvent).subscribe(event => {
             sendEmailFn(event);
@@ -94,10 +100,29 @@ const currentUserErrorGuard: ErrorResultGuard<CurrentUserShopFragment> = createE
     input => input.identifier != null,
 );
 
+class TestPasswordValidationStrategy implements PasswordValidationStrategy {
+    validate(ctx: RequestContext, password: string): boolean | string {
+        if (password === 'test') {
+            // allow the default seed data password
+            return true;
+        }
+        if (password.length < 8) {
+            return 'Password must be more than 8 characters';
+        }
+        if (password === '12345678') {
+            return `Don't use 12345678!`;
+        }
+        return true;
+    }
+}
+
 describe('Shop auth & accounts', () => {
     const { server, adminClient, shopClient } = createTestEnvironment(
         mergeConfig(testConfig(), {
             plugins: [TestEmailPlugin as any],
+            authOptions: {
+                passwordValidationStrategy: new TestPasswordValidationStrategy(),
+            },
         }),
     );
 
@@ -276,6 +301,23 @@ describe('Shop auth & accounts', () => {
             expect(verifyCustomerAccount.errorCode).toBe(ErrorCode.MISSING_PASSWORD_ERROR);
         });
 
+        it('verification fails with invalid password', async () => {
+            const { verifyCustomerAccount } = await shopClient.query<Verify.Mutation, Verify.Variables>(
+                VERIFY_EMAIL,
+                {
+                    token: verificationToken,
+                    password: '2short',
+                },
+            );
+            currentUserErrorGuard.assertErrorResult(verifyCustomerAccount);
+
+            expect(verifyCustomerAccount.message).toBe(`Password is invalid`);
+            expect((verifyCustomerAccount as PasswordValidationError).validationErrorMessage).toBe(
+                `Password must be more than 8 characters`,
+            );
+            expect(verifyCustomerAccount.errorCode).toBe(ErrorCode.PASSWORD_VALIDATION_ERROR);
+        });
+
         it('verification succeeds with password and correct token', async () => {
             const { verifyCustomerAccount } = await shopClient.query<Verify.Mutation, Verify.Variables>(
                 VERIFY_EMAIL,
@@ -360,6 +402,28 @@ describe('Shop auth & accounts', () => {
         const password = 'password';
         const emailAddress = 'test2@test.com';
         let verificationToken: string;
+
+        it('registerCustomerAccount fails with invalid password', async () => {
+            const input: RegisterCustomerInput = {
+                firstName: 'Lu',
+                lastName: 'Tester',
+                phoneNumber: '443324',
+                emailAddress,
+                password: '12345678',
+            };
+            const { registerCustomerAccount } = await shopClient.query<Register.Mutation, Register.Variables>(
+                REGISTER_ACCOUNT,
+                {
+                    input,
+                },
+            );
+            successErrorGuard.assertErrorResult(registerCustomerAccount);
+            expect(registerCustomerAccount.errorCode).toBe(ErrorCode.PASSWORD_VALIDATION_ERROR);
+            expect(registerCustomerAccount.message).toBe(`Password is invalid`);
+            expect((registerCustomerAccount as PasswordValidationError).validationErrorMessage).toBe(
+                `Don't use 12345678!`,
+            );
+        });
 
         it('register a new account with password', async () => {
             const verificationTokenPromise = getVerificationTokenPromise();
@@ -497,6 +561,23 @@ describe('Shop auth & accounts', () => {
             expect(resetPassword.errorCode).toBe(ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR);
         });
 
+        it('resetPassword fails with invalid password', async () => {
+            const { resetPassword } = await shopClient.query<ResetPassword.Mutation, ResetPassword.Variables>(
+                RESET_PASSWORD,
+                {
+                    token: passwordResetToken,
+                    password: '2short',
+                },
+            );
+            currentUserErrorGuard.assertErrorResult(resetPassword);
+
+            expect(resetPassword.message).toBe(`Password is invalid`);
+            expect((resetPassword as PasswordValidationError).validationErrorMessage).toBe(
+                `Password must be more than 8 characters`,
+            );
+            expect(resetPassword.errorCode).toBe(ErrorCode.PASSWORD_VALIDATION_ERROR);
+        });
+
         it('resetPassword works with valid token', async () => {
             const { resetPassword } = await shopClient.query<ResetPassword.Mutation, ResetPassword.Variables>(
                 RESET_PASSWORD,
@@ -535,6 +616,92 @@ describe('Shop auth & accounts', () => {
                     data: {},
                 },
             ]);
+        });
+    });
+
+    // https://github.com/vendure-ecommerce/vendure/issues/1659
+    describe('password reset before verification', () => {
+        const password = 'password';
+        const emailAddress = 'test3@test.com';
+        let verificationToken: string;
+        let passwordResetToken: string;
+        let newCustomerId: string;
+
+        beforeEach(() => {
+            sendEmailFn = jest.fn();
+        });
+
+        it('register a new account without password', async () => {
+            const verificationTokenPromise = getVerificationTokenPromise();
+            const input: RegisterCustomerInput = {
+                firstName: 'Bobby',
+                lastName: 'Tester',
+                phoneNumber: '123456',
+                emailAddress,
+            };
+            const { registerCustomerAccount } = await shopClient.query<Register.Mutation, Register.Variables>(
+                REGISTER_ACCOUNT,
+                { input },
+            );
+            successErrorGuard.assertSuccess(registerCustomerAccount);
+            verificationToken = await verificationTokenPromise;
+
+            const { customers } = await adminClient.query<
+                GetCustomerListQuery,
+                GetCustomerListQueryVariables
+            >(GET_CUSTOMER_LIST, {
+                options: {
+                    filter: {
+                        emailAddress: { eq: emailAddress },
+                    },
+                },
+            });
+
+            expect(customers.items[0].user?.verified).toBe(false);
+            newCustomerId = customers.items[0].id;
+        });
+
+        it('requestPasswordReset', async () => {
+            const passwordResetTokenPromise = getPasswordResetTokenPromise();
+            const { requestPasswordReset } = await shopClient.query<
+                RequestPasswordReset.Mutation,
+                RequestPasswordReset.Variables
+            >(REQUEST_PASSWORD_RESET, {
+                identifier: emailAddress,
+            });
+            successErrorGuard.assertSuccess(requestPasswordReset);
+
+            await waitForSendEmailFn();
+            passwordResetToken = await passwordResetTokenPromise;
+            expect(requestPasswordReset.success).toBe(true);
+            expect(sendEmailFn).toHaveBeenCalled();
+            expect(passwordResetToken).toBeDefined();
+        });
+
+        it('resetPassword also performs verification', async () => {
+            const { resetPassword } = await shopClient.query<ResetPassword.Mutation, ResetPassword.Variables>(
+                RESET_PASSWORD,
+                {
+                    token: passwordResetToken,
+                    password: 'newPassword',
+                },
+            );
+            currentUserErrorGuard.assertSuccess(resetPassword);
+
+            expect(resetPassword.identifier).toBe(emailAddress);
+            const { customer } = await adminClient.query<GetCustomer.Query, GetCustomer.Variables>(
+                GET_CUSTOMER,
+                {
+                    id: newCustomerId,
+                },
+            );
+
+            expect(customer?.user?.verified).toBe(true);
+        });
+
+        it('can log in with new password', async () => {
+            const loginResult = await shopClient.asUserWithCredentials(emailAddress, 'newPassword');
+            expect(loginResult.identifier).toBe(emailAddress);
         });
     });
 

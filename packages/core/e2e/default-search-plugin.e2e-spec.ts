@@ -2,7 +2,6 @@
 import { pick } from '@vendure/common/lib/pick';
 import {
     DefaultJobQueuePlugin,
-    DefaultLogger,
     DefaultSearchPlugin,
     facetValueCollectionFilter,
     mergeConfig,
@@ -43,14 +42,13 @@ import {
     SearchGetPrices,
     SearchInput,
     SearchResultSortParameter,
-    SortOrder,
     UpdateAsset,
     UpdateCollection,
     UpdateProduct,
     UpdateProductVariants,
     UpdateTaxRate,
 } from './graphql/generated-e2e-admin-types';
-import { LogicalOperator, SearchProductsShop } from './graphql/generated-e2e-shop-types';
+import { LogicalOperator, SearchProductsShop, SortOrder } from './graphql/generated-e2e-shop-types';
 import {
     ASSIGN_PRODUCTVARIANT_TO_CHANNEL,
     ASSIGN_PRODUCT_TO_CHANNEL,
@@ -1190,6 +1188,50 @@ describe('Default search plugin', () => {
                 ]);
             });
 
+            // https://github.com/vendure-ecommerce/vendure/issues/1482
+            it('price range omits disabled variant', async () => {
+                const result1 = await shopClient.query<SearchGetPrices.Query, SearchGetPrices.Variables>(
+                    SEARCH_GET_PRICES,
+                    {
+                        input: {
+                            groupByProduct: true,
+                            term: 'monitor',
+                            take: 3,
+                        } as SearchInput,
+                    },
+                );
+                expect(result1.search.items).toEqual([
+                    {
+                        price: { min: 14374, max: 16994 },
+                        priceWithTax: { min: 21561, max: 25491 },
+                    },
+                ]);
+                await adminClient.query<UpdateProductVariants.Mutation, UpdateProductVariants.Variables>(
+                    UPDATE_PRODUCT_VARIANTS,
+                    {
+                        input: [{ id: 'T_5', enabled: false }],
+                    },
+                );
+                await awaitRunningJobs(adminClient);
+
+                const result2 = await shopClient.query<SearchGetPrices.Query, SearchGetPrices.Variables>(
+                    SEARCH_GET_PRICES,
+                    {
+                        input: {
+                            groupByProduct: true,
+                            term: 'monitor',
+                            take: 3,
+                        } as SearchInput,
+                    },
+                );
+                expect(result2.search.items).toEqual([
+                    {
+                        price: { min: 16994, max: 16994 },
+                        priceWithTax: { min: 25491, max: 25491 },
+                    },
+                ]);
+            });
+
             // https://github.com/vendure-ecommerce/vendure/issues/745
             it('very long Product descriptions no not cause indexing to fail', async () => {
                 // We generate this long string out of random chars because Postgres uses compression
@@ -1522,7 +1564,7 @@ describe('Default search plugin', () => {
                     SEARCH_PRODUCTS,
                     {
                         input: {
-                            take: 1,
+                            take: 100,
                         },
                     },
                     {
@@ -1575,25 +1617,90 @@ describe('Default search plugin', () => {
                 await awaitRunningJobs(adminClient);
             });
 
+            it('fallbacks to default language', async () => {
+                const { search } = await searchInLanguage(LanguageCode.af);
+                // No records for AF language, but we expect > 0
+                // because of fallback to default language (EN)
+                expect(search.totalItems).toBeGreaterThan(0);
+            });
+
             it('indexes product-level languages', async () => {
                 const { search: search1 } = await searchInLanguage(LanguageCode.de);
 
-                expect(search1.items[0].productName).toBe('laptop name de');
-                expect(search1.items[0].slug).toBe('laptop-slug-de');
-                expect(search1.items[0].description).toBe('laptop description de');
+                expect(search1.items.map(i => i.productName)).toContain('laptop name de');
+                expect(search1.items.map(i => i.productName)).not.toContain('laptop name zh');
+                expect(search1.items.map(i => i.slug)).toContain('laptop-slug-de');
+                expect(search1.items.map(i => i.description)).toContain('laptop description de');
 
                 const { search: search2 } = await searchInLanguage(LanguageCode.zh);
 
-                expect(search2.items[0].productName).toBe('laptop name zh');
-                expect(search2.items[0].slug).toBe('laptop-slug-zh');
-                expect(search2.items[0].description).toBe('laptop description zh');
+                expect(search2.items.map(i => i.productName)).toContain('laptop name zh');
+                expect(search2.items.map(i => i.productName)).not.toContain('laptop name de');
+                expect(search2.items.map(i => i.slug)).toContain('laptop-slug-zh');
+                expect(search2.items.map(i => i.description)).toContain('laptop description zh');
             });
 
             it('indexes product variant-level languages', async () => {
                 const { search: search1 } = await searchInLanguage(LanguageCode.fr);
 
-                expect(search1.items[0].productName).toBe('Laptop');
-                expect(search1.items[0].productVariantName).toBe('laptop variant fr');
+                expect(search1.items.map(i => i.productName)).toContain('Laptop');
+                expect(search1.items.map(i => i.productVariantName)).toContain('laptop variant fr');
+            });
+
+            // https://github.com/vendure-ecommerce/vendure/issues/1752
+            // https://github.com/vendure-ecommerce/vendure/issues/1746
+            it('sort by name with non-default languageCode', async () => {
+                const result = await adminClient.query<SearchProductsShop.Query, SearchProductShopVariables>(
+                    SEARCH_PRODUCTS,
+                    {
+                        input: {
+                            take: 2,
+                            sort: {
+                                name: SortOrder.ASC,
+                            },
+                        },
+                    },
+                    {
+                        languageCode: LanguageCode.de,
+                    },
+                );
+                expect(result.search.items.length).toEqual(2);
+            });
+        });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/1789
+        describe('input escaping', () => {
+            function search(term: string) {
+                return adminClient.query<SearchProductsShop.Query, SearchProductShopVariables>(
+                    SEARCH_PRODUCTS,
+                    {
+                        input: { take: 10, term },
+                    },
+                    {
+                        languageCode: LanguageCode.en,
+                    },
+                );
+            }
+            it('correctly escapes "a & b"', async () => {
+                const result = await search('laptop & camera');
+                expect(result.search.items).toBeDefined();
+            });
+
+            it('correctly escapes other special chars', async () => {
+                const result = await search('a : b ? * (c) ! "foo"');
+                expect(result.search.items).toBeDefined();
+            });
+
+            it('correctly escapes mysql binary mode chars', async () => {
+                expect((await search('foo+')).search.items).toBeDefined();
+                expect((await search('foo-')).search.items).toBeDefined();
+                expect((await search('foo<')).search.items).toBeDefined();
+                expect((await search('foo>')).search.items).toBeDefined();
+                expect((await search('foo*')).search.items).toBeDefined();
+                expect((await search('foo~')).search.items).toBeDefined();
+                expect((await search('foo@bar')).search.items).toBeDefined();
+                expect((await search('foo + - *')).search.items).toBeDefined();
+                expect((await search('foo + - bar')).search.items).toBeDefined();
             });
         });
     });

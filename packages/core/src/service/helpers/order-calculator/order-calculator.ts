@@ -20,6 +20,17 @@ import { ShippingCalculator } from '../shipping-calculator/shipping-calculator';
 
 import { prorate } from './prorate';
 
+/**
+ * @description
+ * This helper is used when making changes to an Order, to apply all applicable price adjustments to that Order,
+ * including:
+ *
+ * - Promotions
+ * - Taxes
+ * - Shipping
+ *
+ * @docsCategory service-helpers
+ */
 @Injectable()
 export class OrderCalculator {
     constructor(
@@ -32,6 +43,7 @@ export class OrderCalculator {
     ) {}
 
     /**
+     * @description
      * Applies taxes and promotions to an Order. Mutates the order object.
      * Returns an array of any OrderItems which had new adjustments
      * applied, either tax or promotions.
@@ -44,6 +56,9 @@ export class OrderCalculator {
         options?: { recalculateShipping?: boolean },
     ): Promise<OrderItem[]> {
         const { taxZoneStrategy } = this.configService.taxOptions;
+        // We reset the promotions array as all promotions
+        // must be revalidated on any changes to an Order.
+        order.promotions = [];
         const zones = await this.zoneService.findAll(ctx);
         const activeTaxZone = await this.requestContextCache.get(ctx, 'activeTaxZone', () =>
             taxZoneStrategy.determineTaxZone(ctx, zones, ctx.channel, order),
@@ -85,16 +100,17 @@ export class OrderCalculator {
                 // altered the unit prices, which in turn will alter the tax payable.
                 await this.applyTaxes(ctx, order, activeTaxZone);
             }
-            if (options?.recalculateShipping !== false) {
-                await this.applyShipping(ctx, order);
-                await this.applyShippingPromotions(ctx, order, promotions);
-            }
+        }
+        if (options?.recalculateShipping !== false) {
+            await this.applyShipping(ctx, order);
+            await this.applyShippingPromotions(ctx, order, promotions);
         }
         this.calculateOrderTotals(order);
         return taxZoneChanged ? order.getOrderItems() : Array.from(updatedOrderItems);
     }
 
     /**
+     * @description
      * Applies the correct TaxRate to each OrderItem in the order.
      */
     private async applyTaxes(ctx: RequestContext, order: Order, activeZone: Zone) {
@@ -106,6 +122,7 @@ export class OrderCalculator {
     }
 
     /**
+     * @description
      * Applies the correct TaxRate to an OrderLine
      */
     private async applyTaxesToOrderLine(
@@ -129,6 +146,7 @@ export class OrderCalculator {
     }
 
     /**
+     * @description
      * Returns a memoized function for performing an efficient
      * lookup of the correct TaxRate for a given TaxCategory.
      */
@@ -150,6 +168,7 @@ export class OrderCalculator {
     }
 
     /**
+     * @description
      * Applies any eligible promotions to each OrderItem in the order. Returns an array of
      * any OrderItems which had their Adjustments modified.
      */
@@ -168,6 +187,7 @@ export class OrderCalculator {
     }
 
     /**
+     * @description
      * Applies promotions to OrderItems. This is a quite complex function, due to the inherent complexity
      * of applying the promotions, and also due to added complexity in the name of performance
      * optimization. Therefore it is heavily annotated so that the purpose of each step is clear.
@@ -232,6 +252,7 @@ export class OrderCalculator {
                         this.calculateOrderTotals(order);
                         priceAdjusted = false;
                     }
+                    this.addPromotion(order, promotion);
                 }
             }
             const lineNoLongerHasPromotions = !line.firstItem?.adjustments?.find(
@@ -253,6 +274,7 @@ export class OrderCalculator {
     }
 
     /**
+     * @description
      * An OrderLine may have promotion adjustments from Promotions which are no longer applicable.
      * For example, a coupon code might have caused a discount to be applied, and now that code has
      * been removed from the order. The adjustment will still be there on each OrderItem it was applied
@@ -337,6 +359,7 @@ export class OrderCalculator {
                         });
                         this.calculateOrderTotals(order);
                     }
+                    this.addPromotion(order, promotion);
                 }
             }
             this.calculateOrderTotals(order);
@@ -362,6 +385,7 @@ export class OrderCalculator {
                             shippingLine.addAdjustment(adjustment);
                         }
                     }
+                    this.addPromotion(order, promotion);
                 }
             }
         } else {
@@ -416,7 +440,17 @@ export class OrderCalculator {
         }
     }
 
-    private calculateOrderTotals(order: Order) {
+    /**
+     * @description
+     * Sets the totals properties on an Order by summing each OrderLine, and taking
+     * into account any Surcharges and ShippingLines. Does not save the Order, so
+     * the entity must be persisted to the DB after calling this method.
+     *
+     * Note that this method does *not* evaluate any taxes or promotions. It assumes
+     * that has already been done and is solely responsible for summing the
+     * totals.
+     */
+    public calculateOrderTotals(order: Order) {
         let totalPrice = 0;
         let totalPriceWithTax = 0;
 
@@ -441,5 +475,11 @@ export class OrderCalculator {
 
         order.shipping = shippingPrice;
         order.shippingWithTax = shippingPriceWithTax;
+    }
+
+    private addPromotion(order: Order, promotion: Promotion) {
+        if (order.promotions && !order.promotions.find(p => idsAreEqual(p.id, promotion.id))) {
+            order.promotions.push(promotion);
+        }
     }
 }

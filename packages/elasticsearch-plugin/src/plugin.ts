@@ -36,6 +36,25 @@ import { ElasticsearchIndexService } from './indexing/elasticsearch-index.servic
 import { ElasticsearchIndexerController } from './indexing/indexer.controller';
 import { ElasticsearchOptions, ElasticsearchRuntimeOptions, mergeWithDefaults } from './options';
 
+function getCustomResolvers(options: ElasticsearchRuntimeOptions) {
+    const requiresUnionResolver =
+        0 < Object.keys(options.customProductMappings || {}).length &&
+        0 < Object.keys(options.customProductVariantMappings || {}).length;
+    const requiresUnionScriptResolver =
+        0 <
+            Object.values(options.searchConfig.scriptFields || {}).filter(
+                field => field.context !== 'product',
+            ).length &&
+        0 <
+            Object.values(options.searchConfig.scriptFields || {}).filter(
+                field => field.context !== 'variant',
+            ).length;
+    return [
+        ...(requiresUnionResolver ? [CustomMappingsResolver] : []),
+        ...(requiresUnionScriptResolver ? [CustomScriptFieldsResolver] : []),
+    ];
+}
+
 /**
  * @description
  * This plugin allows your product search to be powered by [Elasticsearch](https://github.com/elastic/elasticsearch) - a powerful Open Source search
@@ -45,8 +64,8 @@ import { ElasticsearchOptions, ElasticsearchRuntimeOptions, mergeWithDefaults } 
  *
  * ## Installation
  *
- * **Requires Elasticsearch v7.0 or higher.**
- *
+ * **Requires Elasticsearch v7.0 < required Elasticsearch version < 7.10 **
+ * Elasticsearch version 7.10.2 will throw error due to incompatibility with elasticsearch-js client. [Check here for more info](https://github.com/elastic/elasticsearch-js/issues/1519)
  * `yarn add \@elastic/elasticsearch \@vendure/elasticsearch-plugin`
  *
  * or
@@ -214,31 +233,19 @@ import { ElasticsearchOptions, ElasticsearchRuntimeOptions, mergeWithDefaults } 
         },
     ],
     adminApiExtensions: {
-        resolvers: [AdminElasticSearchResolver, EntityElasticSearchResolver],
+        resolvers: () => [
+            AdminElasticSearchResolver,
+            EntityElasticSearchResolver,
+            ...getCustomResolvers(ElasticsearchPlugin.options),
+        ],
         schema: () => generateSchemaExtensions(ElasticsearchPlugin.options as any),
     },
     shopApiExtensions: {
-        resolvers: () => {
-            const { options } = ElasticsearchPlugin;
-            const requiresUnionResolver =
-                0 < Object.keys(options.customProductMappings || {}).length &&
-                0 < Object.keys(options.customProductVariantMappings || {}).length;
-            const requiresUnionScriptResolver =
-                0 <
-                    Object.values(options.searchConfig.scriptFields || {}).filter(
-                        field => field.context !== 'product',
-                    ).length &&
-                0 <
-                    Object.values(options.searchConfig.scriptFields || {}).filter(
-                        field => field.context !== 'variant',
-                    ).length;
-            return [
-                ShopElasticSearchResolver,
-                EntityElasticSearchResolver,
-                ...(requiresUnionResolver ? [CustomMappingsResolver] : []),
-                ...(requiresUnionScriptResolver ? [CustomScriptFieldsResolver] : []),
-            ];
-        },
+        resolvers: () => [
+            ShopElasticSearchResolver,
+            EntityElasticSearchResolver,
+            ...getCustomResolvers(ElasticsearchPlugin.options),
+        ],
         // `any` cast is there due to a strange error "Property '[Symbol.iterator]' is missing in type... URLSearchParams"
         // which looks like possibly a TS/definitions bug.
         schema: () => generateSchemaExtensions(ElasticsearchPlugin.options as any),

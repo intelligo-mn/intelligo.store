@@ -4,11 +4,17 @@
     min-width: 0;
 }
 .logo {
-    width: 60px;
+    width: 40px;
+}
+.wordmark {
+    font-weight: bold;
+    margin-left: 12px;
+    font-size: 24px;
+    color: var(--color-primary-500);
 }
 vdr-breadcrumb {
     @media screen and (min-width: $breakpoint-small){
-        margin-left: 10.8rem;
+        margin-left: $clr-sidenav-width;
     }
 }
 .header-actions {
@@ -16,4 +22,10 @@ vdr-breadcrumb {
 }
 .content-area {
     position: relative;
+}
+
+::ng-deep {
+    .header {
+        background-image: linear-gradient(to right, var(--color-header-gradient-from), var(--color-header-gradient-to));
+    }
 }

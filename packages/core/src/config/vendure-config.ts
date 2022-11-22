@@ -1,8 +1,7 @@
-import { DynamicModule, NestMiddleware, Type } from '@nestjs/common';
+import { DynamicModule, Type } from '@nestjs/common';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { LanguageCode } from '@vendure/common/lib/generated-types';
 import { PluginDefinition } from 'apollo-server-core';
-import { RequestHandler } from 'express';
 import { ValidationContext } from 'graphql';
 import { ConnectionOptions } from 'typeorm';
 
@@ -10,16 +9,19 @@ import { Middleware } from '../common';
 import { PermissionDefinition } from '../common/permission-definition';
 import { JobBufferStorageStrategy } from '../job-queue/job-buffer/job-buffer-storage-strategy';
 
+import { AssetImportStrategy } from './asset-import-strategy/asset-import-strategy';
 import { AssetNamingStrategy } from './asset-naming-strategy/asset-naming-strategy';
 import { AssetPreviewStrategy } from './asset-preview-strategy/asset-preview-strategy';
 import { AssetStorageStrategy } from './asset-storage-strategy/asset-storage-strategy';
 import { AuthenticationStrategy } from './auth/authentication-strategy';
 import { PasswordHashingStrategy } from './auth/password-hashing-strategy';
+import { PasswordValidationStrategy } from './auth/password-validation-strategy';
 import { CollectionFilter } from './catalog/collection-filter';
 import { ProductVariantPriceCalculationStrategy } from './catalog/product-variant-price-calculation-strategy';
 import { StockDisplayStrategy } from './catalog/stock-display-strategy';
 import { CustomFields } from './custom-field/custom-field-types';
 import { EntityIdStrategy } from './entity-id-strategy/entity-id-strategy';
+import { EntityMetadataModifier } from './entity-metadata/entity-metadata-modifier';
 import { CustomFulfillmentProcess } from './fulfillment/custom-fulfillment-process';
 import { FulfillmentHandler } from './fulfillment/fulfillment-handler';
 import { JobQueueStrategy } from './job-queue/job-queue-strategy';
@@ -40,6 +42,7 @@ import { PromotionCondition } from './promotion/promotion-condition';
 import { SessionCacheStrategy } from './session-cache/session-cache-strategy';
 import { ShippingCalculator } from './shipping-method/shipping-calculator';
 import { ShippingEligibilityChecker } from './shipping-method/shipping-eligibility-checker';
+import { HealthCheckStrategy } from './system/health-check-strategy';
 import { TaxLineCalculationStrategy } from './tax/tax-line-calculation-strategy';
 import { TaxZoneStrategy } from './tax/tax-zone-strategy';
 
@@ -177,6 +180,26 @@ export interface ApiOptions {
      * @default []
      */
     apolloServerPlugins?: PluginDefinition[];
+    /**
+     * @description
+     * Controls whether introspection of the GraphQL APIs is enabled. For production, it is recommended to disable
+     * introspection, since exposing your entire schema can allow an attacker to trivially learn all operations
+     * and much more easily find any potentially exploitable queries.
+     *
+     * **Note:** when introspection is disabled, tooling which relies on it for things like autocompletion
+     * will not work.
+     *
+     * @example
+     * ```TypeScript
+     * {
+     *   introspection: process.env.NODE_ENV !== 'production'
+     * }
+     * ```
+     *
+     * @default true
+     * @since 1.5.0
+     */
+    introspection?: boolean;
 }
 
 /**
@@ -400,6 +423,27 @@ export interface AuthOptions {
      * @since 1.3.0
      */
     passwordHashingStrategy?: PasswordHashingStrategy;
+    /**
+     * @description
+     * Allows you to set a custom policy for passwords when using the {@link NativeAuthenticationStrategy}.
+     * By default, it uses the {@link DefaultPasswordValidationStrategy}, which will impose a minimum length
+     * of four characters. To improve security for production, you are encouraged to specify a more strict
+     * policy, which you can do like this:
+     *
+     * @example
+     * ```ts
+     * {
+     *   passwordValidationStrategy: new DefaultPasswordValidationStrategy({
+     *     // Minimum eight characters, at least one letter and one number
+     *     regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+     *   }),
+     * }
+     * ```
+     *
+     * @since 1.5.0
+     * @default DefaultPasswordValidationStrategy
+     */
+    passwordValidationStrategy?: PasswordValidationStrategy;
 }
 
 /**
@@ -730,6 +774,14 @@ export interface ImportExportOptions {
      * @default __dirname
      */
     importAssetsDir?: string;
+    /**
+     * @description
+     * This strategy determines how asset files get imported based on the path given in the
+     * import CSV or via the {@link AssetImporter} `getAssets()` method.
+     *
+     * @since 1.7.0
+     */
+    assetImportStrategy?: AssetImportStrategy;
 }
 
 /**
@@ -771,6 +823,17 @@ export interface JobQueueOptions {
      * @default false
      */
     enableWorkerHealthCheck?: boolean;
+    /**
+     * @description
+     * Prefixes all job queue names with the passed string. This is useful with multiple deployments
+     * in cloud environments using services such as Amazon SQS or Google Cloud Tasks.
+     *
+     * For example, we might have a staging and a production deployment in the same account/project and
+     * each one will need its own task queue. We can achieve this with a prefix.
+     *
+     * @since 1.5.0
+     */
+    prefix?: string;
 }
 
 /**
@@ -779,6 +842,8 @@ export interface JobQueueOptions {
  *
  * @since 1.3.0
  * @docsCategory configuration
+ * @docsPage EntityOptions
+ * @docsWeight 0
  */
 export interface EntityOptions {
     /**
@@ -787,6 +852,13 @@ export interface EntityOptions {
      * in the database, and the encoding & decoding of those ids when exposing
      * entities via the API. The default uses a simple auto-increment integer
      * strategy.
+     *
+     * {{% alert "warning" %}}
+     * Note: changing from an integer-based strategy to a uuid-based strategy
+     * on an existing Vendure database will lead to problems with broken foreign-key
+     * references. To change primary key types like this, you'll need to start with
+     * a fresh database.
+     * {{% /alert %}}
      *
      * @since 1.3.0
      * @default AutoIncrementIdStrategy
@@ -814,6 +886,36 @@ export interface EntityOptions {
      * @default 30000
      */
     zoneCacheTtl?: number;
+    /**
+     * @description
+     * Allows the metadata of the built-in TypeORM entities to be manipulated. This allows you
+     * to do things like altering data types, adding indices etc. This is an advanced feature
+     * which should be used with some caution as it will result in DB schema changes. For examples
+     * see {@link EntityMetadataModifier}.
+     *
+     * @since 1.6.0
+     * @default []
+     */
+    metadataModifiers?: EntityMetadataModifier[];
+}
+
+/**
+ * @description
+ * Options relating to system functions.
+ *
+ * @since 1.6.0
+ * @docsCategory configuration
+ */
+export interface SystemOptions {
+    /**
+     * @description
+     * Defines an array of {@link HealthCheckStrategy} instances which are used by the `/health` endpoint to verify
+     * that any critical systems which the Vendure server depends on are also healthy.
+     *
+     * @default [TypeORMHealthCheckStrategy]
+     * @since 1.6.0
+     */
+    healthChecks?: HealthCheckStrategy[];
 }
 
 /**
@@ -937,6 +1039,13 @@ export interface VendureConfig {
      * Configures how the job queue is persisted and processed.
      */
     jobQueueOptions?: JobQueueOptions;
+    /**
+     * @description
+     * Configures system options
+     *
+     * @since 1.6.0
+     */
+    systemOptions?: SystemOptions;
 }
 
 /**
@@ -959,6 +1068,7 @@ export interface RuntimeVendureConfig extends Required<VendureConfig> {
     promotionOptions: Required<PromotionOptions>;
     shippingOptions: Required<ShippingOptions>;
     taxOptions: Required<TaxOptions>;
+    systemOptions: Required<SystemOptions>;
 }
 
 type DeepPartialSimple<T> = {

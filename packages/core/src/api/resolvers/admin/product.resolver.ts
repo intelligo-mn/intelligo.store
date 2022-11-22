@@ -7,11 +7,14 @@ import {
     MutationCreateProductArgs,
     MutationCreateProductVariantsArgs,
     MutationDeleteProductArgs,
+    MutationDeleteProductsArgs,
     MutationDeleteProductVariantArgs,
+    MutationDeleteProductVariantsArgs,
     MutationRemoveOptionGroupFromProductArgs,
     MutationRemoveProductsFromChannelArgs,
     MutationRemoveProductVariantsFromChannelArgs,
     MutationUpdateProductArgs,
+    MutationUpdateProductsArgs,
     MutationUpdateProductVariantsArgs,
     Permission,
     QueryProductArgs,
@@ -32,6 +35,7 @@ import { ProductVariantService } from '../../../service/services/product-variant
 import { ProductService } from '../../../service/services/product.service';
 import { RequestContext } from '../../common/request-context';
 import { Allow } from '../../decorators/allow.decorator';
+import { RelationPaths, Relations } from '../../decorators/relations.decorator';
 import { Ctx } from '../../decorators/request-context.decorator';
 import { Transaction } from '../../decorators/transaction.decorator';
 
@@ -48,8 +52,9 @@ export class ProductResolver {
     async products(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryProductsArgs,
+        @Relations({ entity: Product, omit: ['variants', 'assets'] }) relations: RelationPaths<Product>,
     ): Promise<PaginatedList<Translated<Product>>> {
-        return this.productService.findAll(ctx, args.options || undefined);
+        return this.productService.findAll(ctx, args.options || undefined, relations);
     }
 
     @Query()
@@ -57,15 +62,16 @@ export class ProductResolver {
     async product(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryProductArgs,
+        @Relations({ entity: Product, omit: ['variants', 'assets'] }) relations: RelationPaths<Product>,
     ): Promise<Translated<Product> | undefined> {
         if (args.id) {
-            const product = await this.productService.findOne(ctx, args.id);
+            const product = await this.productService.findOne(ctx, args.id, relations);
             if (args.slug && product && product.slug !== args.slug) {
                 throw new UserInputError(`error.product-id-slug-mismatch`);
             }
             return product;
         } else if (args.slug) {
-            return this.productService.findOneBySlug(ctx, args.slug);
+            return this.productService.findOneBySlug(ctx, args.slug, relations);
         } else {
             throw new UserInputError(`error.product-id-or-slug-must-be-provided`);
         }
@@ -76,12 +82,14 @@ export class ProductResolver {
     async productVariants(
         @Ctx() ctx: RequestContext,
         @Args() args: QueryProductVariantsArgs,
+        @Relations({ entity: ProductVariant, omit: ['assets'] }) relations: RelationPaths<ProductVariant>,
     ): Promise<PaginatedList<Translated<ProductVariant>>> {
         if (args.productId) {
             return this.productVariantService.getVariantsByProductId(
                 ctx,
                 args.productId,
                 args.options || undefined,
+                relations,
             );
         }
 
@@ -121,12 +129,33 @@ export class ProductResolver {
 
     @Transaction()
     @Mutation()
+    @Allow(Permission.UpdateCatalog, Permission.UpdateProduct)
+    async updateProducts(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationUpdateProductsArgs,
+    ): Promise<Array<Translated<Product>>> {
+        const { input } = args;
+        return await Promise.all(args.input.map(i => this.productService.update(ctx, i)));
+    }
+
+    @Transaction()
+    @Mutation()
     @Allow(Permission.DeleteCatalog, Permission.DeleteProduct)
     async deleteProduct(
         @Ctx() ctx: RequestContext,
         @Args() args: MutationDeleteProductArgs,
     ): Promise<DeletionResponse> {
         return this.productService.softDelete(ctx, args.id);
+    }
+
+    @Transaction()
+    @Mutation()
+    @Allow(Permission.DeleteCatalog, Permission.DeleteProduct)
+    async deleteProducts(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationDeleteProductsArgs,
+    ): Promise<DeletionResponse[]> {
+        return Promise.all(args.ids.map(id => this.productService.softDelete(ctx, id)));
     }
 
     @Transaction()
@@ -181,6 +210,16 @@ export class ProductResolver {
         @Args() args: MutationDeleteProductVariantArgs,
     ): Promise<DeletionResponse> {
         return this.productVariantService.softDelete(ctx, args.id);
+    }
+
+    @Transaction()
+    @Mutation()
+    @Allow(Permission.DeleteCatalog, Permission.DeleteProduct)
+    async deleteProductVariants(
+        @Ctx() ctx: RequestContext,
+        @Args() args: MutationDeleteProductVariantsArgs,
+    ): Promise<DeletionResponse[]> {
+        return Promise.all(args.ids.map(id => this.productVariantService.softDelete(ctx, id)));
     }
 
     @Transaction()

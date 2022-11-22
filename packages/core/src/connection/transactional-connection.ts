@@ -7,17 +7,19 @@ import {
     EntitySchema,
     FindOneOptions,
     FindOptionsUtils,
-    getRepository,
     ObjectType,
     Repository,
+    SelectQueryBuilder,
 } from 'typeorm';
 
 import { RequestContext } from '../api/common/request-context';
 import { TRANSACTION_MANAGER_KEY } from '../common/constants';
 import { EntityNotFoundError } from '../common/error/errors';
 import { ChannelAware, SoftDeletable } from '../common/types/common-types';
+import { Logger } from '../config/index';
 import { VendureEntity } from '../entity/base/base.entity';
 
+import { removeCustomFieldsWithEagerRelations } from './remove-custom-fields-with-eager-relations';
 import { TransactionWrapper } from './transaction-wrapper';
 import { GetEntityOrThrowOptions } from './types';
 
@@ -55,6 +57,8 @@ export class TransactionalConnection {
      * Returns a TypeORM repository. Note that when no RequestContext is supplied, the repository will not
      * be aware of any existing transaction. Therefore calling this method without supplying a RequestContext
      * is discouraged without a deliberate reason.
+     *
+     * @deprecated since 1.7.0: Use {@link TransactionalConnection.rawConnection rawConnection.getRepository()} function instead.
      */
     getRepository<Entity>(target: ObjectType<Entity> | EntitySchema<Entity> | string): Repository<Entity>;
     /**
@@ -73,15 +77,16 @@ export class TransactionalConnection {
     ): Repository<Entity> {
         if (ctxOrTarget instanceof RequestContext) {
             const transactionManager = this.getTransactionManager(ctxOrTarget);
-            if (transactionManager && maybeTarget && !transactionManager.queryRunner?.isReleased) {
-                return transactionManager.getRepository(maybeTarget);
+            if (transactionManager) {
+                // tslint:disable-next-line:no-non-null-assertion
+                return transactionManager.getRepository(maybeTarget!);
             } else {
                 // tslint:disable-next-line:no-non-null-assertion
-                return getRepository(maybeTarget!);
+                return this.rawConnection.getRepository(maybeTarget!);
             }
         } else {
             // tslint:disable-next-line:no-non-null-assertion
-            return getRepository(ctxOrTarget ?? maybeTarget!);
+            return this.rawConnection.getRepository(ctxOrTarget ?? maybeTarget!);
         }
     }
 
@@ -101,21 +106,25 @@ export class TransactionalConnection {
      * of Vendure internal services.
      *
      * If there is already a {@link RequestContext} object available, you should pass it in as the first
-     * argument in order to add a new transaction to it. If not, omit the first argument and an empty
+     * argument in order to create transactional context as the copy. If not, omit the first argument and an empty
      * RequestContext object will be created, which is then used to propagate the transaction to
      * all inner method calls.
      *
      * @example
      * ```TypeScript
-     * private async transferCredit(fromId: ID, toId: ID, amount: number) {
-     *   await this.connection.withTransaction(ctx => {
-     *     await this.giftCardService.updateCustomerCredit(fromId, -amount);
+     * private async transferCredit(outerCtx: RequestContext, fromId: ID, toId: ID, amount: number) {
+     *   await this.connection.withTransaction(outerCtx, async ctx => {
+     *     // Note you must not use `outerCtx` here, instead use `ctx`. Otherwise, this query
+     *     // will be executed outside of transaction
+     *     await this.giftCardService.updateCustomerCredit(ctx, fromId, -amount);
+     *
+     *     await this.connection.getRepository(ctx, GiftCard).update(fromId, { transferred: true })
      *
      *     // If some intermediate logic here throws an Error,
      *     // then all DB transactions will be rolled back and neither Customer's
      *     // credit balance will have changed.
      *
-     *     await this.giftCardService.updateCustomerCredit(toId, amount);
+     *     await this.giftCardService.updateCustomerCredit(ctx, toId, amount);
      *   })
      * }
      * ```
@@ -138,7 +147,7 @@ export class TransactionalConnection {
             ctx = RequestContext.empty();
             work = ctxOrWork;
         }
-        return this.transactionWrapper.executeInTransaction(ctx, () => work(ctx), 'auto', this.rawConnection);
+        return this.transactionWrapper.executeInTransaction(ctx, work, 'auto', this.rawConnection);
     }
 
     /**
@@ -255,9 +264,31 @@ export class TransactionalConnection {
         channelId: ID,
         options: FindOneOptions = {},
     ) {
-        const qb = this.getRepository(ctx, entity).createQueryBuilder('entity');
-        FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, options);
-        if (options.loadEagerRelations !== false) {
+        let qb = this.getRepository(ctx, entity).createQueryBuilder('entity');
+        options.relations = removeCustomFieldsWithEagerRelations(qb, options.relations);
+        let skipEagerRelations = false;
+        try {
+            FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, options);
+        } catch (e: any) {
+            // https://github.com/vendure-ecommerce/vendure/issues/1664
+            // This is a failsafe to catch edge cases related to the TypeORM
+            // bug described in the doc block of `removeCustomFieldsWithEagerRelations`.
+            // In this case, a nested custom field relation has an eager-loaded relation,
+            // and is throwing an error. In this case we throw our hands up and say
+            // "sod it!", refuse to load _any_ relations at all, and rely on the
+            // GraphQL entity resolvers to take care of them.
+            Logger.debug(
+                `TransactionalConnection.findOneInChannel ran into issues joining nested custom field relations. Running the query without joining any relations instead.`,
+            );
+            qb = this.getRepository(ctx, entity).createQueryBuilder('entity');
+            FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, {
+                ...options,
+                relations: [],
+                loadEagerRelations: false,
+            });
+            skipEagerRelations = true;
+        }
+        if (options.loadEagerRelations !== false && !skipEagerRelations) {
             // tslint:disable-next-line:no-non-null-assertion
             FindOptionsUtils.joinEagerRelations(qb, qb.alias, qb.expressionMap.mainAlias!.metadata);
         }

@@ -151,6 +151,18 @@ If you need to support an entirely different payment flow than the above, it is 
 Here's an example which adds a new "Validating" state to the Payment state machine, and combines it with a [CustomOrderProcess]({{< relref "custom-order-process" >}}), [PaymentMethodHandler]({{< relref "payment-method-handler" >}}) and [OrderPlacedStrategy]({{< relref "order-placed-strategy" >}}).
 
 ```TypeScript
+// types.ts
+import { CustomOrderStates } from '@vendure/core';
+
+/**
+ * Declare your custom state in special interface to make it type-safe
+ */
+declare module '@vendure/core' {
+  interface CustomPaymentStates {
+    Validating: never;
+  }
+}
+
 /**
  * Define a new "Validating" Payment state, and set up the
  * permitted transitions to/from it.
@@ -243,4 +255,4 @@ The checkout flow works as follows:
 
 When integrating with a system like this, you would need to create a Controller to accept POST redirects from the payment processor (usually a success and a failure URL), as well as serve a POST form on your store frontend.
 
-With a hosted payment form the payment is already authorized by the time the card processor makes the POST request to Vendure, possibly settled even, so the payment handler won't do anything in particular - just return the data it has been passed. The validation of the POST request is done in the controller or service and the payment amount and payment refernce are just passed to the payment handler which passes them on.
+With a hosted payment form the payment is already authorized by the time the card processor makes the POST request to Vendure, possibly settled even, so the payment handler won't do anything in particular - just return the data it has been passed. The validation of the POST request is done in the controller or service and the payment amount and payment reference are just passed to the payment handler which passes them on.

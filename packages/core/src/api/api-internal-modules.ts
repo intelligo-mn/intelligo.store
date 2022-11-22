@@ -19,6 +19,7 @@ import { CollectionResolver } from './resolvers/admin/collection.resolver';
 import { CountryResolver } from './resolvers/admin/country.resolver';
 import { CustomerGroupResolver } from './resolvers/admin/customer-group.resolver';
 import { CustomerResolver } from './resolvers/admin/customer.resolver';
+import { DraftOrderResolver } from './resolvers/admin/draft-order.resolver';
 import { FacetResolver } from './resolvers/admin/facet.resolver';
 import { GlobalSettingsResolver } from './resolvers/admin/global-settings.resolver';
 import { ImportResolver } from './resolvers/admin/import.resolver';
@@ -72,8 +73,10 @@ import {
 import { RefundEntityResolver } from './resolvers/entity/refund-entity.resolver';
 import { RoleEntityResolver } from './resolvers/entity/role-entity.resolver';
 import { ShippingLineEntityResolver } from './resolvers/entity/shipping-line-entity.resolver';
+import { ShippingMethodEntityResolver } from './resolvers/entity/shipping-method-entity.resolver';
 import { TaxRateEntityResolver } from './resolvers/entity/tax-rate-entity.resolver';
 import { UserEntityResolver } from './resolvers/entity/user-entity.resolver';
+import { ZoneEntityResolver } from './resolvers/entity/zone-entity.resolver';
 import { ShopAuthResolver } from './resolvers/shop/shop-auth.resolver';
 import { ShopCustomerResolver } from './resolvers/shop/shop-customer.resolver';
 import { ShopEnvironmentResolver } from './resolvers/shop/shop-environment.resolver';
@@ -89,6 +92,7 @@ const adminResolvers = [
     CountryResolver,
     CustomerGroupResolver,
     CustomerResolver,
+    DraftOrderResolver,
     FacetResolver,
     GlobalSettingsResolver,
     ImportResolver,
@@ -136,6 +140,8 @@ export const entityResolvers = [
     ShippingLineEntityResolver,
     UserEntityResolver,
     TaxRateEntityResolver,
+    ShippingMethodEntityResolver,
+    ZoneEntityResolver,
 ];
 
 export const adminEntityResolvers = [

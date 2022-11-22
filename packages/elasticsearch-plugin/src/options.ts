@@ -92,6 +92,8 @@ export interface ElasticsearchOptions {
      *   }
      * },
      * ```
+     * A more complete example can be found in the discussion thread
+     * [How to make elastic plugin to search by substring with stemming](https://github.com/vendure-ecommerce/vendure/discussions/1066).
      *
      * @since 1.2.0
      * @default
@@ -273,7 +275,7 @@ export interface ElasticsearchOptions {
      *       graphQlType: '[String!]',
      *       // Here we can be sure that the `product.assets` array is populated
      *       // with an Asset object
-     *       valueFn: (product) => product.assets.map(asset => asset.preview),
+     *       valueFn: (product) => product.assets.map(a => a.asset.preview),
      *     }
      *   }
      * }
@@ -561,6 +563,9 @@ export interface SearchConfig {
      * @description
      * Allows extending the `sort` input of the elasticsearch body as covered in
      * [Elasticsearch sort docs](https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html)
+     *
+     * The `sort` input parameter contains the ElasticSearchSortInput generated for the default sort parameters "name" and "price".
+     * If neither of those are applied it will be empty.
      *
      * @example
      * ```TS

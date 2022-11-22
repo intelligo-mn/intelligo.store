@@ -12,9 +12,13 @@ The bare minimum requirements are:
 * A server with Node.js installed
 * A database server (if using MySQL/Postgres)
 
-A typical pattern is to run the Vendure app on the server, e.g. at `http://localhost:3000` an then use [nginx as a reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) to direct requests from the Internet to the Vendure application.
+A typical pattern is to run the Vendure app on the server, e.g. at `http://localhost:3000` and then use [nginx as a reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) to direct requests from the Internet to the Vendure application.
 
-Here is a good guide to setting up a production-ready server for an app such as Vendure: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04
+Here is a [general guide to setting up a production-ready server](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04) for an app such as Vendure.
+
+{{< alert >}}
+You can find more information & discussion about platform-specific deployments in our [GitHub Discussions Deployment category](https://github.com/vendure-ecommerce/vendure/discussions/categories/deployment).
+{{< /alert >}}
 
 ## Database Timezone
 
@@ -39,6 +43,7 @@ and you should expect to see `UTC` or `Etc/UTC`.
 For a production Vendure server, there are a few security-related points to consider when deploying:
 
 * Set the [Superadmin credentials]({{< relref "auth-options" >}}#superadmincredentials) to something other than the default.
+* Disable introspection in the [ApiOptions]({{< relref "api-options" >}}#introspection) (this option is available in v1.5+).
 * Consider taking steps to harden your GraphQL APIs against DOS attacks. Use the [ApiOptions]({{< relref "api-options" >}}) to set up appropriate Express middleware for things like [request timeouts](https://github.com/expressjs/express/issues/3330) and [rate limits](https://www.npmjs.com/package/express-rate-limit). A tool such as [graphql-query-complexity](https://github.com/slicknode/graphql-query-complexity) can be used to mitigate resource-intensive GraphQL queries. 
 * You may wish to restrict the Admin API to only be accessed from trusted IPs. This could be achieved for instance by configuring an nginx reverse proxy that sits in front of the Vendure server.
 * By default, Vendure uses auto-increment integer IDs as entity primary keys. While easier to work with in development, sequential primary keys can leak information such as the number of orders or customers in the system. For this reason you should consider using the [UuidIdStrategy]({{< relref "entity-id-strategy" >}}#uuididstrategy) for production.
@@ -57,7 +62,7 @@ For a production Vendure server, there are a few security-related points to cons
 Vendure supports running in a serverless or multi-instance (horizontally scaled) environment. The key consideration in configuring Vendure for this scenario is to ensure that any persistent state is managed externally from the Node process, and is shared by all instances. Namely:
 
 * The JobQueue should be stored externally using the [DefaultJobQueuePlugin]({{< relref "default-job-queue-plugin" >}}) (which stores jobs in the database) or the [BullMQJobQueuePlugin]({{< relref "bull-mqjob-queue-plugin" >}}) (which stores jobs in Redis), or some other custom JobQueueStrategy.
-* A custom [SessionCacheStrategy]({{< relref "session-cache-strategy" >}}) must be used which stores the session cache externally (such as in the database or Redis), since the default strategy stores the cache in-memory and will cause inconsistencies in multi-instance setups.
+* A custom [SessionCacheStrategy]({{< relref "session-cache-strategy" >}}) must be used which stores the session cache externally (such as in the database or Redis), since the default strategy stores the cache in-memory and will cause inconsistencies in multi-instance setups. [Example Redis-based SessionCacheStrategy]({{< relref "session-cache-strategy" >}})
 * When using cookies to manage sessions, make sure all instances are using the _same_ cookie secret:
     ```TypeScript
     const config: VendureConfig = {
@@ -130,4 +135,140 @@ REQUEST: GET http://localhost:3020/health
 
 ## Admin UI
 
-If you have customized the Admin UI with extensions, it can make sense to [compile your extensions ahead-of-time as part of the deployment process]({{< relref "/docs/plugins/extending-the-admin-ui" >}}#compiling-as-a-deployment-step).
+If you have customized the Admin UI with extensions, you should [compile your extensions ahead-of-time as part of the deployment process]({{< relref "/docs/plugins/extending-the-admin-ui" >}}#compiling-as-a-deployment-step).
+
+### Deploying a stand-alone Admin UI
+
+Usually, the Admin UI is served from the Vendure server via the AdminUiPlugin. However, you may wish to deploy the Admin UI app elsewhere. Since it is just a static Angular app, it can be deployed to any static hosting service such as Vercel or Netlify.
+
+Here's an example script that can be run as part of your host's `build` command, which will generate a stand-alone app bundle and configure it to point to your remote server API.
+
+This example is for Vercel, and assumes:
+
+* A `BASE_HREF` environment variable to be set to `/`
+* A public (output) directory set to `build/dist`
+* A build command set to `npm run build` or `yarn build`
+* A package.json like this:
+    ```json
+    {
+      "name": "standalone-admin-ui",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "build": "ts-node compile.ts"
+      },
+      "devDependencies": {
+        "@vendure/ui-devkit": "^1.4.5",
+        "ts-node": "^10.2.1",
+        "typescript": "~4.3.5"
+      }
+    }
+    ```
+
+```TypeScript
+// compile.ts
+import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
+import { DEFAULT_BASE_HREF } from '@vendure/ui-devkit/compiler/constants';
+import path from 'path';
+import { promises as fs } from 'fs';
+
+/**
+ * Compiles the Admin UI. If the BASE_HREF is defined, use that. 
+ * Otherwise, go back to the default admin route.
+ */
+compileUiExtensions({
+  outputPath: path.join(__dirname, 'build'),
+  baseHref: process.env.BASE_HREF ?? DEFAULT_BASE_HREF,
+  extensions: [
+      /* any UI extensions would go here, or leave empty */
+  ],
+})
+  .compile?.()
+  .then(() => {
+    // If building for Vercel deployment, replace the config to make 
+    // api calls to api.example.com instead of localhost.
+    if (process.env.VERCEL) {
+      console.log('Overwriting the vendure-ui-config.json for Vercel deployment.');
+      return fs.writeFile(
+        path.join(__dirname, 'build', 'dist', 'vendure-ui-config.json'),
+        JSON.stringify({
+          apiHost: 'https://api.example.com',
+          apiPort: '443',
+          adminApiPath: 'admin-api',
+          tokenMethod: 'cookie',
+          defaultLanguage: 'en',
+          availableLanguages: ['en', 'de'],
+          hideVendureBranding: false,
+          hideVersion: false,
+        }),
+      );
+    }
+  })
+  .then(() => {
+    process.exit(0);
+  });
+```
+
+
+## Docker & Kubernetes
+
+For a production ready Vendure server running on Kubernetes you can use the following Dockerfile and Kubernetes configuration. 
+
+### Docker
+
+Assuming a project which has been scaffolded using `@vendure/create`, create a 
+Dockerfile in the root directory that looks like this:
+
+```Dockerfile
+FROM node:16
+WORKDIR /usr/src/app
+COPY . .
+RUN yarn install --production
+RUN yarn build
+```
+
+Build your Docker container using `docker build -t vendure-shop:latest .`
+
+### Kubernetes Deployment
+
+This deployment starts the shop container we created above as both worker and server.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vendure-shop
+spec:
+  selector:
+    matchLabels:
+      app: vendure-shop
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vendure-shop
+    spec:
+      containers:
+        - name: server
+          image: vendure-shop:latest
+          command:
+            - node
+          args:
+            - "dist/index.js"
+          env:
+          # your env config here
+          ports:
+            - containerPort: 3000
+
+        - name: worker
+          image: vendure-shop:latest
+          imagePullPolicy: Always
+          command:
+            - node
+          args:
+            - "dist/index-worker.js"
+          env:
+          # your env config here
+          ports:
+            - containerPort: 3000
+```

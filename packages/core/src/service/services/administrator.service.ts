@@ -4,17 +4,18 @@ import {
     DeletionResult,
     UpdateAdministratorInput,
 } from '@vendure/common/lib/generated-types';
-import { SUPER_ADMIN_ROLE_CODE } from '@vendure/common/lib/shared-constants';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
-import { EntityNotFoundError, InternalServerError } from '../../common/error/errors';
+import { RelationPaths } from '../../api/index';
+import { EntityNotFoundError, InternalServerError, UserInputError } from '../../common/error/errors';
 import { idsAreEqual } from '../../common/index';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { ConfigService } from '../../config';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Administrator } from '../../entity/administrator/administrator.entity';
 import { NativeAuthenticationMethod } from '../../entity/authentication-method/native-authentication-method.entity';
+import { Role } from '../../entity/index';
 import { User } from '../../entity/user/user.entity';
 import { EventBus } from '../../event-bus';
 import { AdministratorEvent } from '../../event-bus/events/administrator-event';
@@ -22,6 +23,8 @@ import { RoleChangeEvent } from '../../event-bus/events/role-change-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { PasswordCipher } from '../helpers/password-cipher/password-cipher';
+import { RequestContextService } from '../helpers/request-context/request-context.service';
+import { getChannelPermissions } from '../helpers/utils/get-user-channels-permissions';
 import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { RoleService } from './role.service';
@@ -44,6 +47,7 @@ export class AdministratorService {
         private roleService: RoleService,
         private customFieldRelationService: CustomFieldRelationService,
         private eventBus: EventBus,
+        private requestContextService: RequestContextService,
     ) {}
 
     /** @internal */
@@ -58,10 +62,11 @@ export class AdministratorService {
     findAll(
         ctx: RequestContext,
         options?: ListQueryOptions<Administrator>,
+        relations?: RelationPaths<Administrator>,
     ): Promise<PaginatedList<Administrator>> {
         return this.listQueryBuilder
             .build(Administrator, options, {
-                relations: ['user', 'user.roles'],
+                relations: relations ?? ['user', 'user.roles'],
                 where: { deletedAt: null },
                 ctx,
             })
@@ -76,9 +81,13 @@ export class AdministratorService {
      * @description
      * Get an Administrator by id.
      */
-    findOne(ctx: RequestContext, administratorId: ID): Promise<Administrator | undefined> {
+    findOne(
+        ctx: RequestContext,
+        administratorId: ID,
+        relations?: RelationPaths<Administrator>,
+    ): Promise<Administrator | undefined> {
         return this.connection.getRepository(ctx, Administrator).findOne(administratorId, {
-            relations: ['user', 'user.roles'],
+            relations: relations ?? ['user', 'user.roles'],
             where: {
                 deletedAt: null,
             },
@@ -89,8 +98,13 @@ export class AdministratorService {
      * @description
      * Get an Administrator based on the User id.
      */
-    findOneByUserId(ctx: RequestContext, userId: ID): Promise<Administrator | undefined> {
+    findOneByUserId(
+        ctx: RequestContext,
+        userId: ID,
+        relations?: RelationPaths<Administrator>,
+    ): Promise<Administrator | undefined> {
         return this.connection.getRepository(ctx, Administrator).findOne({
+            relations,
             where: {
                 user: { id: userId },
                 deletedAt: null,
@@ -103,6 +117,7 @@ export class AdministratorService {
      * Create a new Administrator.
      */
     async create(ctx: RequestContext, input: CreateAdministratorInput): Promise<Administrator> {
+        await this.checkActiveUserCanGrantRoles(ctx, input.roleIds);
         const administrator = new Administrator(input);
         administrator.user = await this.userService.createAdminUser(ctx, input.emailAddress, input.password);
         let createdAdministrator = await this.connection
@@ -130,6 +145,9 @@ export class AdministratorService {
         if (!administrator) {
             throw new EntityNotFoundError('Administrator', input.id);
         }
+        if (input.roleIds) {
+            await this.checkActiveUserCanGrantRoles(ctx, input.roleIds);
+        }
         let updatedAdministrator = patchEntity(administrator, input);
         await this.connection.getRepository(ctx, Administrator).save(administrator, { reload: false });
 
@@ -148,7 +166,7 @@ export class AdministratorService {
         if (input.roleIds) {
             const isSoleSuperAdmin = await this.isSoleSuperadmin(ctx, input.id);
             if (isSoleSuperAdmin) {
-                const superAdminRole = await this.roleService.getSuperAdminRole();
+                const superAdminRole = await this.roleService.getSuperAdminRole(ctx);
                 if (!input.roleIds.find(id => idsAreEqual(id, superAdminRole.id))) {
                     throw new InternalServerError('error.superadmin-must-have-superadmin-role');
                 }
@@ -177,6 +195,28 @@ export class AdministratorService {
         );
         this.eventBus.publish(new AdministratorEvent(ctx, administrator, 'updated', input));
         return updatedAdministrator;
+    }
+
+    /**
+     * @description
+     * Checks that the active user is allowed to grant the specified Roles when creating or
+     * updating an Administrator.
+     */
+    private async checkActiveUserCanGrantRoles(ctx: RequestContext, roleIds: ID[]) {
+        const roles = await this.connection
+            .getRepository(ctx, Role)
+            .findByIds(roleIds, { relations: ['channels'] });
+        const permissionsRequired = getChannelPermissions(roles);
+        for (const channelPermissions of permissionsRequired) {
+            const activeUserHasRequiredPermissions = await this.roleService.userHasAllPermissionsOnChannel(
+                ctx,
+                channelPermissions.id,
+                channelPermissions.permissions,
+            );
+            if (!activeUserHasRequiredPermissions) {
+                throw new UserInputError('error.active-user-does-not-have-sufficient-permissions');
+            }
+        }
     }
 
     /**
@@ -224,7 +264,7 @@ export class AdministratorService {
      * with SuperAdmin permissions.
      */
     private async isSoleSuperadmin(ctx: RequestContext, id: ID) {
-        const superAdminRole = await this.roleService.getSuperAdminRole();
+        const superAdminRole = await this.roleService.getSuperAdminRole(ctx);
         const allAdmins = await this.connection.getRepository(ctx, Administrator).find({
             relations: ['user', 'user.roles'],
         });
@@ -248,46 +288,56 @@ export class AdministratorService {
     private async ensureSuperAdminExists() {
         const { superadminCredentials } = this.configService.authOptions;
 
-        const superAdminUser = await this.connection.getRepository(User).findOne({
+        const superAdminUser = await this.connection.rawConnection.getRepository(User).findOne({
             where: {
                 identifier: superadminCredentials.identifier,
             },
         });
 
         if (!superAdminUser) {
+            const ctx = await this.requestContextService.create({ apiType: 'admin' });
             const superAdminRole = await this.roleService.getSuperAdminRole();
-            const administrator = await this.create(RequestContext.empty(), {
+            const administrator = new Administrator({
                 emailAddress: superadminCredentials.identifier,
-                password: superadminCredentials.password,
                 firstName: 'Super',
                 lastName: 'Admin',
-                roleIds: [superAdminRole.id],
             });
+            administrator.user = await this.userService.createAdminUser(
+                ctx,
+                superadminCredentials.identifier,
+                superadminCredentials.password,
+            );
+            const createdAdministrator = await this.connection
+                .getRepository(ctx, Administrator)
+                .save(administrator);
+            await this.assignRole(ctx, createdAdministrator.id, superAdminRole.id);
         } else {
-            const superAdministrator = await this.connection.getRepository(Administrator).findOne({
-                where: {
-                    user: superAdminUser,
-                },
-            });
+            const superAdministrator = await this.connection.rawConnection
+                .getRepository(Administrator)
+                .findOne({
+                    where: {
+                        user: superAdminUser,
+                    },
+                });
             if (!superAdministrator) {
                 const administrator = new Administrator({
                     emailAddress: superadminCredentials.identifier,
                     firstName: 'Super',
                     lastName: 'Admin',
                 });
-                const createdAdministrator = await this.connection
+                const createdAdministrator = await this.connection.rawConnection
                     .getRepository(Administrator)
                     .save(administrator);
                 createdAdministrator.user = superAdminUser;
-                await this.connection.getRepository(Administrator).save(createdAdministrator);
+                await this.connection.rawConnection.getRepository(Administrator).save(createdAdministrator);
             } else if (superAdministrator.deletedAt != null) {
                 superAdministrator.deletedAt = null;
-                await this.connection.getRepository(Administrator).save(superAdministrator);
+                await this.connection.rawConnection.getRepository(Administrator).save(superAdministrator);
             }
 
             if (superAdminUser.deletedAt != null) {
                 superAdminUser.deletedAt = null;
-                await this.connection.getRepository(User).save(superAdminUser);
+                await this.connection.rawConnection.getRepository(User).save(superAdminUser);
             }
         }
     }

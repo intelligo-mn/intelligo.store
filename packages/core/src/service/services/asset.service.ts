@@ -17,12 +17,14 @@ import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
 import { unique } from '@vendure/common/lib/unique';
 import { ReadStream as FSReadStream } from 'fs';
 import { ReadStream } from 'fs-extra';
+import { IncomingMessage } from 'http';
 import mime from 'mime-types';
 import path from 'path';
 import { Readable, Stream } from 'stream';
 import { camelCase } from 'typeorm/util/StringUtils';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { isGraphQlErrorResult } from '../../common/error/error-result';
 import { ForbiddenError, InternalServerError } from '../../common/error/errors';
 import { MimeTypeError } from '../../common/error/generated-graphql-admin-errors';
@@ -106,14 +108,20 @@ export class AssetService {
             });
     }
 
-    findOne(ctx: RequestContext, id: ID): Promise<Asset | undefined> {
-        return this.connection.findOneInChannel(ctx, Asset, id, ctx.channelId);
+    findOne(ctx: RequestContext, id: ID, relations?: RelationPaths<Asset>): Promise<Asset | undefined> {
+        return this.connection.findOneInChannel(ctx, Asset, id, ctx.channelId, {
+            relations: relations ?? [],
+        });
     }
 
-    findAll(ctx: RequestContext, options?: AssetListOptions): Promise<PaginatedList<Asset>> {
+    findAll(
+        ctx: RequestContext,
+        options?: AssetListOptions,
+        relations?: RelationPaths<Asset>,
+    ): Promise<PaginatedList<Asset>> {
         const qb = this.listQueryBuilder.build(Asset, options, {
             ctx,
-            relations: options?.tags ? ['tags', 'channels'] : ['channels'],
+            relations: [...(relations ?? []), 'tags'],
             channelId: ctx.channelId,
         });
         const tags = options?.tags;
@@ -425,21 +433,45 @@ export class AssetService {
      * @description
      * Create an Asset from a file stream, for example to create an Asset during data import.
      */
-    async createFromFileStream(stream: ReadStream): Promise<CreateAssetResult>;
-    async createFromFileStream(stream: Readable, filePath: string): Promise<CreateAssetResult>;
+    async createFromFileStream(stream: ReadStream, ctx?: RequestContext): Promise<CreateAssetResult>;
+    async createFromFileStream(
+        stream: Readable,
+        filePath: string,
+        ctx?: RequestContext,
+    ): Promise<CreateAssetResult>;
     async createFromFileStream(
         stream: ReadStream | Readable,
-        maybeFilePath?: string,
+        maybeFilePathOrCtx?: string | RequestContext,
+        maybeCtx?: RequestContext,
     ): Promise<CreateAssetResult> {
+        const { assetImportStrategy } = this.configService.importExportOptions;
+        const filePathFromArgs =
+            maybeFilePathOrCtx instanceof RequestContext ? undefined : maybeFilePathOrCtx;
         const filePath =
-            stream instanceof ReadStream || stream instanceof FSReadStream ? stream.path : maybeFilePath;
+            stream instanceof ReadStream || stream instanceof FSReadStream ? stream.path : filePathFromArgs;
         if (typeof filePath === 'string') {
-            const filename = path.basename(filePath);
-            const mimetype = mime.lookup(filename) || 'application/octet-stream';
-            return this.createAssetInternal(RequestContext.empty(), stream, filename, mimetype);
+            const filename = path.basename(filePath).split('?')[0];
+            const mimetype = this.getMimeType(stream, filename);
+            const ctx =
+                maybeFilePathOrCtx instanceof RequestContext
+                    ? maybeFilePathOrCtx
+                    : maybeCtx instanceof RequestContext
+                    ? maybeCtx
+                    : RequestContext.empty();
+            return this.createAssetInternal(ctx, stream, filename, mimetype);
         } else {
             throw new InternalServerError(`error.path-should-be-a-string-got-buffer`);
         }
+    }
+
+    private getMimeType(stream: Readable, filename: string): string {
+        if (stream instanceof IncomingMessage) {
+            const contentType = stream.headers['content-type'];
+            if (contentType) {
+                return contentType;
+            }
+        }
+        return mime.lookup(filename) || 'application/octet-stream';
     }
 
     /**

@@ -10,8 +10,10 @@ import {
     UpdateProductVariantInput,
 } from '@vendure/common/lib/generated-types';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
+import { unique } from '@vendure/common/lib/unique';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/decorators/relations.decorator';
 import { RequestContextCacheService } from '../../cache/request-context-cache.service';
 import { ForbiddenError, InternalServerError, UserInputError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
@@ -39,8 +41,8 @@ import { CustomFieldRelationService } from '../helpers/custom-field-relation/cus
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { ProductPriceApplicator } from '../helpers/product-price-applicator/product-price-applicator';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
+import { TranslatorService } from '../helpers/translator/translator.service';
 import { samplesEach } from '../helpers/utils/samples-each';
-import { translateDeep } from '../helpers/utils/translate-entity';
 
 import { AssetService } from './asset.service';
 import { ChannelService } from './channel.service';
@@ -74,6 +76,7 @@ export class ProductVariantService {
         private customFieldRelationService: CustomFieldRelationService,
         private requestCache: RequestContextCacheService,
         private productPriceApplicator: ProductPriceApplicator,
+        private translator: TranslatorService,
     ) {}
 
     async findAll(
@@ -90,11 +93,7 @@ export class ProductVariantService {
             })
             .getManyAndCount()
             .then(async ([variants, totalItems]) => {
-                const items = await Promise.all(
-                    variants.map(async variant =>
-                        translateDeep(await this.applyChannelPriceAndTax(variant, ctx), ctx.languageCode),
-                    ),
-                );
+                const items = await this.applyPricesAndTranslateVariants(ctx, variants);
                 return {
                     items,
                     totalItems,
@@ -102,16 +101,22 @@ export class ProductVariantService {
             });
     }
 
-    findOne(ctx: RequestContext, productVariantId: ID): Promise<Translated<ProductVariant> | undefined> {
-        const relations = ['product', 'product.featuredAsset', 'taxCategory'];
+    findOne(
+        ctx: RequestContext,
+        productVariantId: ID,
+        relations?: RelationPaths<ProductVariant>,
+    ): Promise<Translated<ProductVariant> | undefined> {
         return this.connection
             .findOneInChannel(ctx, ProductVariant, productVariantId, ctx.channelId, {
-                relations,
+                relations: [
+                    ...(relations || ['product', 'featuredAsset', 'product.featuredAsset']),
+                    'taxCategory',
+                ],
                 where: { deletedAt: null },
             })
             .then(async result => {
                 if (result) {
-                    return translateDeep(await this.applyChannelPriceAndTax(result, ctx), ctx.languageCode, [
+                    return this.translator.translate(await this.applyChannelPriceAndTax(result, ctx), ctx, [
                         'product',
                     ]);
                 }
@@ -130,36 +135,27 @@ export class ProductVariantService {
                     'featuredAsset',
                 ],
             })
-            .then(variants => {
-                return Promise.all(
-                    variants.map(async variant =>
-                        translateDeep(await this.applyChannelPriceAndTax(variant, ctx), ctx.languageCode, [
-                            'options',
-                            'facetValues',
-                            ['facetValues', 'facet'],
-                        ]),
-                    ),
-                );
-            });
+            .then(variants => this.applyPricesAndTranslateVariants(ctx, variants));
     }
 
     getVariantsByProductId(
         ctx: RequestContext,
         productId: ID,
         options: ListQueryOptions<ProductVariant> = {},
+        relations?: RelationPaths<ProductVariant>,
     ): Promise<PaginatedList<Translated<ProductVariant>>> {
-        const relations = [
-            'options',
-            'facetValues',
-            'facetValues.facet',
-            'taxCategory',
-            'assets',
-            'featuredAsset',
-        ];
-
         const qb = this.listQueryBuilder
             .build(ProductVariant, options, {
-                relations,
+                relations: [
+                    ...(relations || [
+                        'options',
+                        'facetValues',
+                        'facetValues.facet',
+                        'assets',
+                        'featuredAsset',
+                    ]),
+                    'taxCategory',
+                ],
                 orderBy: { id: 'ASC' },
                 where: { deletedAt: null },
                 ctx,
@@ -176,17 +172,7 @@ export class ProductVariantService {
         }
 
         return qb.getManyAndCount().then(async ([variants, totalItems]) => {
-            const items = await Promise.all(
-                variants.map(async variant => {
-                    const variantWithPrices = await this.applyChannelPriceAndTax(variant, ctx);
-                    return translateDeep(variantWithPrices, ctx.languageCode, [
-                        'options',
-                        'facetValues',
-                        ['facetValues', 'facet'],
-                    ]);
-                }),
-            );
-
+            const items = await this.applyPricesAndTranslateVariants(ctx, variants);
             return {
                 items,
                 totalItems,
@@ -202,10 +188,11 @@ export class ProductVariantService {
         ctx: RequestContext,
         collectionId: ID,
         options: ListQueryOptions<ProductVariant>,
+        relations: RelationPaths<ProductVariant> = [],
     ): Promise<PaginatedList<Translated<ProductVariant>>> {
         const qb = this.listQueryBuilder
             .build(ProductVariant, options, {
-                relations: ['taxCategory', 'channels'],
+                relations: unique([...relations, 'taxCategory']),
                 channelId: ctx.channelId,
                 ctx,
             })
@@ -220,12 +207,7 @@ export class ProductVariantService {
         }
 
         return qb.getManyAndCount().then(async ([variants, totalItems]) => {
-            const items = await Promise.all(
-                variants.map(async variant => {
-                    const variantWithPrices = await this.applyChannelPriceAndTax(variant, ctx);
-                    return translateDeep(variantWithPrices, ctx.languageCode);
-                }),
-            );
+            const items = await this.applyPricesAndTranslateVariants(ctx, variants);
             return {
                 items,
                 totalItems,
@@ -251,9 +233,10 @@ export class ProductVariantService {
      */
     async getVariantByOrderLineId(ctx: RequestContext, orderLineId: ID): Promise<Translated<ProductVariant>> {
         const { productVariant } = await this.connection.getEntityOrThrow(ctx, OrderLine, orderLineId, {
-            relations: ['productVariant'],
+            relations: ['productVariant', 'productVariant.taxCategory'],
+            includeSoftDeleted: true,
         });
-        return translateDeep(productVariant, ctx.languageCode);
+        return this.translator.translate(await this.applyChannelPriceAndTax(productVariant, ctx), ctx);
     }
 
     /**
@@ -265,7 +248,7 @@ export class ProductVariantService {
             .findOneInChannel(ctx, ProductVariant, variantId, ctx.channelId, {
                 relations: ['options'],
             })
-            .then(variant => (!variant ? [] : variant.options.map(o => translateDeep(o, ctx.languageCode))));
+            .then(variant => (!variant ? [] : variant.options.map(o => this.translator.translate(o, ctx))));
     }
 
     getFacetValuesForVariant(ctx: RequestContext, variantId: ID): Promise<Array<Translated<FacetValue>>> {
@@ -274,7 +257,7 @@ export class ProductVariantService {
                 relations: ['facetValues', 'facetValues.facet', 'facetValues.channels'],
             })
             .then(variant =>
-                !variant ? [] : variant.facetValues.map(o => translateDeep(o, ctx.languageCode, ['facet'])),
+                !variant ? [] : variant.facetValues.map(o => this.translator.translate(o, ctx, ['facet'])),
             );
     }
 
@@ -288,7 +271,7 @@ export class ProductVariantService {
         const product = await this.connection.getEntityOrThrow(ctx, Product, variant.productId, {
             includeSoftDeleted: true,
         });
-        return translateDeep(product, ctx.languageCode);
+        return this.translator.translate(product, ctx);
     }
 
     /**
@@ -316,6 +299,23 @@ export class ProductVariantService {
             : variant.outOfStockThreshold;
 
         return variant.stockOnHand - variant.stockAllocated - effectiveOutOfStockThreshold;
+    }
+
+    private async getOutOfStockThreshold(ctx: RequestContext, variant: ProductVariant): Promise<number> {
+        const { outOfStockThreshold, trackInventory } = await this.requestCache.get(
+            ctx,
+            'globalSettings',
+            () => this.globalSettingsService.getSettings(ctx),
+        );
+
+        const inventoryNotTracked =
+            variant.trackInventory === GlobalFlag.FALSE ||
+            (variant.trackInventory === GlobalFlag.INHERIT && trackInventory === false);
+        if (inventoryNotTracked) {
+            return 0;
+        } else {
+            return variant.useGlobalOutOfStockThreshold ? outOfStockThreshold : variant.outOfStockThreshold;
+        }
     }
 
     /**
@@ -425,7 +425,7 @@ export class ProductVariantService {
             );
         }
 
-        const defaultChannelId = (await this.channelService.getDefaultChannel()).id;
+        const defaultChannelId = (await this.channelService.getDefaultChannel(ctx)).id;
         await this.createOrUpdateProductVariantPrice(ctx, createdVariant.id, input.price, ctx.channelId);
         if (!idsAreEqual(ctx.channelId, defaultChannelId)) {
             // When creating a ProductVariant _not_ in the default Channel, we still need to
@@ -446,7 +446,8 @@ export class ProductVariantService {
             channelId: ctx.channelId,
             relations: ['facetValues', 'facetValues.channels'],
         });
-        if (input.stockOnHand && input.stockOnHand < 0) {
+        const outOfStockThreshold = await this.getOutOfStockThreshold(ctx, existingVariant);
+        if (input.stockOnHand && input.stockOnHand < outOfStockThreshold) {
             throw new UserInputError('error.stockonhand-cannot-be-negative');
         }
         const inputWithoutPrice = {
@@ -492,18 +493,7 @@ export class ProductVariantService {
         });
         await this.customFieldRelationService.updateRelations(ctx, ProductVariant, input, updatedVariant);
         if (input.price != null) {
-            const variantPriceRepository = this.connection.getRepository(ctx, ProductVariantPrice);
-            const variantPrice = await variantPriceRepository.findOne({
-                where: {
-                    variant: input.id,
-                    channelId: ctx.channelId,
-                },
-            });
-            if (!variantPrice) {
-                throw new InternalServerError(`error.could-not-find-product-variant-price`);
-            }
-            variantPrice.price = input.price;
-            await variantPriceRepository.save(variantPrice);
+            await this.createOrUpdateProductVariantPrice(ctx, input.id, input.price, ctx.channelId);
         }
         return updatedVariant.id;
     }
@@ -571,7 +561,7 @@ export class ProductVariantService {
                             ctx,
                             ProductVariant,
                             variant.id,
-                            { relations: ['productVariantPrices'] },
+                            { relations: ['productVariantPrices'], includeSoftDeleted: true },
                         );
                         variant.productVariantPrices = variantWithPrices.productVariantPrices;
                     }
@@ -580,7 +570,7 @@ export class ProductVariantService {
                             ctx,
                             ProductVariant,
                             variant.id,
-                            { relations: ['taxCategory'] },
+                            { relations: ['taxCategory'], includeSoftDeleted: true },
                         );
                         variant.taxCategory = variantWithTaxCategory.taxCategory;
                     }
@@ -593,6 +583,27 @@ export class ProductVariantService {
         }
         const hydratedVariant = await populatePricesPromise;
         return hydratedVariant[priceField];
+    }
+
+    /**
+     * @description
+     * Given an array of ProductVariants from the database, this method will apply the correct price and tax
+     * and translate each item.
+     */
+    private async applyPricesAndTranslateVariants(
+        ctx: RequestContext,
+        variants: ProductVariant[],
+    ): Promise<Array<Translated<ProductVariant>>> {
+        return await Promise.all(
+            variants.map(async variant => {
+                const variantWithPrices = await this.applyChannelPriceAndTax(variant, ctx);
+                return this.translator.translate(variantWithPrices, ctx, [
+                    'options',
+                    'facetValues',
+                    ['facetValues', 'facet'],
+                ]);
+            }),
+        );
     }
 
     /**
@@ -635,10 +646,12 @@ export class ProductVariantService {
             await this.applyChannelPriceAndTax(variant, ctx);
             await this.channelService.assignToChannels(ctx, Product, variant.productId, [input.channelId]);
             await this.channelService.assignToChannels(ctx, ProductVariant, variant.id, [input.channelId]);
+            const targetChannel = await this.channelService.findOne(ctx, input.channelId);
+            const price = targetChannel?.pricesIncludeTax ? variant.priceWithTax : variant.price;
             await this.createOrUpdateProductVariantPrice(
                 ctx,
                 variant.id,
-                variant.price * priceFactor,
+                Math.round(price * priceFactor),
                 input.channelId,
             );
             const assetIds = variant.assets?.map(a => a.assetId) || [];
@@ -666,7 +679,7 @@ export class ProductVariantService {
         if (!hasPermission) {
             throw new ForbiddenError();
         }
-        const defaultChannel = await this.channelService.getDefaultChannel();
+        const defaultChannel = await this.channelService.getDefaultChannel(ctx);
         if (idsAreEqual(input.channelId, defaultChannel.id)) {
             throw new UserInputError('error.products-cannot-be-removed-from-default-channel');
         }
@@ -747,7 +760,7 @@ export class ProductVariantService {
                 const variantOptionIds = this.sortJoin(variant.options, ',', 'id');
                 if (variantOptionIds === inputOptionIds) {
                     throw new UserInputError('error.product-variant-options-combination-already-exists', {
-                        variantName: translateDeep(variant, ctx.languageCode).name,
+                        variantName: this.translator.translate(variant, ctx).name,
                     });
                 }
             });

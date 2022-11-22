@@ -17,6 +17,7 @@ import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 import { unique } from '@vendure/common/lib/unique';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { ErrorResultUnion, JustErrorResults } from '../../common/error/error-result';
 import { IllegalOperationError, UserInputError } from '../../common/error/errors';
 import { MissingConditionsError } from '../../common/error/generated-graphql-admin-errors';
@@ -37,7 +38,9 @@ import { Promotion } from '../../entity/promotion/promotion.entity';
 import { EventBus } from '../../event-bus';
 import { PromotionEvent } from '../../event-bus/events/promotion-event';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
+import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
+import { OrderState } from '../helpers/order-state-machine/order-state';
 import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { ChannelService } from './channel.service';
@@ -59,18 +62,23 @@ export class PromotionService {
         private channelService: ChannelService,
         private listQueryBuilder: ListQueryBuilder,
         private configArgService: ConfigArgService,
+        private customFieldRelationService: CustomFieldRelationService,
         private eventBus: EventBus,
     ) {
         this.availableConditions = this.configService.promotionOptions.promotionConditions || [];
         this.availableActions = this.configService.promotionOptions.promotionActions || [];
     }
 
-    findAll(ctx: RequestContext, options?: ListQueryOptions<Promotion>): Promise<PaginatedList<Promotion>> {
+    findAll(
+        ctx: RequestContext,
+        options?: ListQueryOptions<Promotion>,
+        relations: RelationPaths<Promotion> = [],
+    ): Promise<PaginatedList<Promotion>> {
         return this.listQueryBuilder
             .build(Promotion, options, {
                 where: { deletedAt: null },
                 channelId: ctx.channelId,
-                relations: ['channels'],
+                relations,
                 ctx,
             })
             .getManyAndCount()
@@ -80,9 +88,14 @@ export class PromotionService {
             }));
     }
 
-    async findOne(ctx: RequestContext, adjustmentSourceId: ID): Promise<Promotion | undefined> {
+    async findOne(
+        ctx: RequestContext,
+        adjustmentSourceId: ID,
+        relations: RelationPaths<Promotion> = [],
+    ): Promise<Promotion | undefined> {
         return this.connection.findOneInChannel(ctx, Promotion, adjustmentSourceId, ctx.channelId, {
             where: { deletedAt: null },
+            relations,
         });
     }
 
@@ -119,7 +132,13 @@ export class PromotionService {
         }
         await this.channelService.assignToCurrentChannel(promotion, ctx);
         const newPromotion = await this.connection.getRepository(ctx, Promotion).save(promotion);
-        this.eventBus.publish(new PromotionEvent(ctx, newPromotion, 'created', input));
+        const promotionWithRelations = await this.customFieldRelationService.updateRelations(
+            ctx,
+            Promotion,
+            input,
+            newPromotion,
+        );
+        this.eventBus.publish(new PromotionEvent(ctx, promotionWithRelations, 'created', input));
         return assertFound(this.findOne(ctx, newPromotion.id));
     }
 
@@ -146,6 +165,12 @@ export class PromotionService {
         }
         promotion.priorityScore = this.calculatePriorityScore(input);
         await this.connection.getRepository(ctx, Promotion).save(updatedPromotion, { reload: false });
+        await this.customFieldRelationService.updateRelations(
+            ctx,
+            Promotion,
+            input,
+            updatedPromotion,
+        );
         this.eventBus.publish(new PromotionEvent(ctx, promotion, 'updated', input));
         return assertFound(this.findOne(ctx, updatedPromotion.id));
     }
@@ -166,7 +191,7 @@ export class PromotionService {
         ctx: RequestContext,
         input: AssignPromotionsToChannelInput,
     ): Promise<Promotion[]> {
-        const defaultChannel = await this.channelService.getDefaultChannel();
+        const defaultChannel = await this.channelService.getDefaultChannel(ctx);
         if (!idsAreEqual(ctx.channelId, defaultChannel.id)) {
             throw new IllegalOperationError(`promotion-channels-can-only-be-changed-from-default-channel`);
         }
@@ -184,7 +209,7 @@ export class PromotionService {
     }
 
     async removePromotionsFromChannel(ctx: RequestContext, input: RemovePromotionsFromChannelInput) {
-        const defaultChannel = await this.channelService.getDefaultChannel();
+        const defaultChannel = await this.channelService.getDefaultChannel(ctx);
         if (!idsAreEqual(ctx.channelId, defaultChannel.id)) {
             throw new IllegalOperationError(`promotion-channels-can-only-be-changed-from-default-channel`);
         }
@@ -218,8 +243,13 @@ export class PromotionService {
                 enabled: true,
                 deletedAt: null,
             },
+            relations: ['channels'],
         });
-        if (!promotion) {
+        if (
+            !promotion ||
+            promotion.couponCode !== couponCode ||
+            !promotion.channels.find(c => idsAreEqual(c.id, ctx.channelId))
+        ) {
             return new CouponCodeInvalidError(couponCode);
         }
         if (promotion.endsAt && +promotion.endsAt < +new Date()) {
@@ -234,9 +264,49 @@ export class PromotionService {
         return promotion;
     }
 
+    getActivePromotionsInChannel(ctx: RequestContext) {
+        return this.connection
+            .getRepository(ctx, Promotion)
+            .createQueryBuilder('promotion')
+            .leftJoin('promotion.channels', 'channel')
+            .where('channel.id = :channelId', { channelId: ctx.channelId })
+            .andWhere('promotion.deletedAt IS NULL')
+            .andWhere('promotion.enabled = :enabled', { enabled: true })
+            .orderBy('promotion.priorityScore', 'ASC')
+            .getMany();
+    }
+
+    async getActivePromotionsOnOrder(ctx: RequestContext, orderId: ID): Promise<Promotion[]> {
+        const order = await this.connection
+            .getRepository(ctx, Order)
+            .createQueryBuilder('order')
+            .leftJoinAndSelect('order.promotions', 'promotions')
+            .where('order.id = :orderId', { orderId })
+            .getOne();
+        return order?.promotions ?? [];
+    }
+
+    async runPromotionSideEffects(ctx: RequestContext, order: Order, promotionsPre: Promotion[]) {
+        const promotionsPost = order.promotions;
+        for (const activePre of promotionsPre) {
+            if (!promotionsPost.find(p => idsAreEqual(p.id, activePre.id))) {
+                // activePre is no longer active, so call onDeactivate
+                await activePre.deactivate(ctx, order);
+            }
+        }
+        for (const activePost of promotionsPost) {
+            if (!promotionsPre.find(p => idsAreEqual(p.id, activePost.id))) {
+                // activePost was not previously active, so call onActivate
+                await activePost.activate(ctx, order);
+            }
+        }
+    }
+
     /**
      * @description
      * Used internally to associate a Promotion with an Order, once an Order has been placed.
+     *
+     * @deprecated This method is no longer used and will be removed in v2.0
      */
     async addPromotionsToOrder(ctx: RequestContext, order: Order): Promise<Order> {
         const allPromotionIds = order.discounts.map(
@@ -258,7 +328,8 @@ export class PromotionService {
             .createQueryBuilder('order')
             .leftJoin('order.promotions', 'promotion')
             .where('promotion.id = :promotionId', { promotionId })
-            .andWhere('order.customer = :customerId', { customerId });
+            .andWhere('order.customer = :customerId', { customerId })
+            .andWhere('order.state != :state', { state: 'Cancelled' as OrderState });
 
         return qb.getCount();
     }

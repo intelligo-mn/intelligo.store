@@ -1,9 +1,15 @@
 @import "variables";
 
+.image-col {
+    width: 70px;
+}
 .image-placeholder {
     width: 50px;
     height: 50px;
     background-color: var(--color-component-bg-200);
+    img {
+        border-radius: var(--border-radius-img);
+    }
     .placeholder {
         text-align: center;
         color: var(--color-grey-300);
@@ -13,9 +19,9 @@
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 6px;
+    //margin-bottom: 6px;
 }
-.search-input {
+vdr-product-search-input {
     min-width: 300px;
     @media screen and (max-width: $breakpoint-small){
         min-width: 100px;
@@ -40,4 +46,10 @@ td.disabled {
         left: 10px;
         top: 10px;
     }
+}
+.edit-button {
+    margin-right: 24px;
+}
+.sku {
+    color: var(--color-text-300);
 }

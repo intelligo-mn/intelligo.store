@@ -1,6 +1,6 @@
 import { from, Observable, of } from 'rxjs';
 import { retryWhen, take, tap } from 'rxjs/operators';
-import { Connection, QueryRunner } from 'typeorm';
+import { Connection, EntityManager, QueryRunner } from 'typeorm';
 import { TransactionAlreadyStartedError } from 'typeorm/error/TransactionAlreadyStartedError';
 
 import { RequestContext } from '../api/common/request-context';
@@ -18,21 +18,23 @@ export class TransactionWrapper {
      * Executes the `work` function within the context of a transaction. If the `work` function
      * resolves / completes, then all the DB operations it contains will be committed. If it
      * throws an error or rejects, then all DB operations will be rolled back.
+     * 
+     * @note
+     * This function does not mutate your context. Instead, this function makes a copy and passes
+     * context to work function.
      */
     async executeInTransaction<T>(
-        ctx: RequestContext,
-        work: () => Observable<T> | Promise<T>,
+        originalCtx: RequestContext,
+        work: (ctx: RequestContext) => Observable<T> | Promise<T>,
         mode: TransactionMode,
         connection: Connection,
     ): Promise<T> {
-        const queryRunnerExists = !!(ctx as any)[TRANSACTION_MANAGER_KEY];
-        if (queryRunnerExists) {
-            // If a QueryRunner already exists on the RequestContext, there must be an existing
-            // outer transaction in progress. In that case, we just execute the work function
-            // as usual without needing to further wrap in a transaction.
-            return from(work()).toPromise();
-        }
-        const queryRunner = connection.createQueryRunner();
+        // Copy to make sure original context will remain valid after transaction completes
+        const ctx = originalCtx.copy();
+
+        const entityManager: EntityManager | undefined = (ctx as any)[TRANSACTION_MANAGER_KEY];
+        const queryRunner = entityManager?.queryRunner || connection.createQueryRunner();
+
         if (mode === 'auto') {
             await this.startTransaction(queryRunner);
         }
@@ -40,7 +42,7 @@ export class TransactionWrapper {
 
         try {
             const maxRetries = 5;
-            const result = await from(work())
+            const result = await from(work(ctx))
                 .pipe(
                     retryWhen(errors =>
                         errors.pipe(
@@ -64,7 +66,11 @@ export class TransactionWrapper {
             }
             throw error;
         } finally {
-            if (queryRunner?.isReleased === false) {
+            if (!queryRunner.isTransactionActive 
+                && queryRunner.isReleased === false) {
+                // There is a check for an active transaction
+                // because this could be a nested transaction (savepoint).
+
                 await queryRunner.release();
             }
         }

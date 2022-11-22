@@ -108,7 +108,7 @@ export class OrderStateMachine {
                 return `message.cannot-transition-from-arranging-additional-payment`;
             }
         }
-        if (fromState === 'AddingItems') {
+        if (fromState === 'AddingItems' && toState !== 'Cancelled' && data.order.lines.length > 0) {
             const variantIds = unique(data.order.lines.map(l => l.productVariant.id));
             const qb = this.connection
                 .getRepository(data.ctx, ProductVariant)
@@ -184,7 +184,6 @@ export class OrderStateMachine {
             if (shouldSetAsPlaced) {
                 order.active = false;
                 order.orderPlacedAt = new Date();
-                await this.promotionService.addPromotionsToOrder(ctx, order);
                 this.eventBus.publish(new OrderPlacedEvent(fromState, toState, ctx, order));
             }
         }

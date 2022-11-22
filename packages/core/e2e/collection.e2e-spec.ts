@@ -5,21 +5,33 @@ import {
     facetValueCollectionFilter,
     variantNameCollectionFilter,
 } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@vendure/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 
 import { initialData } from '../../../e2e-common/e2e-initial-data';
 import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-config';
 import { pick } from '../../common/lib/pick';
+import { productIdCollectionFilter, variantIdCollectionFilter } from '../src/index';
 
 import { COLLECTION_FRAGMENT, FACET_VALUE_FRAGMENT } from './graphql/fragments';
 import {
+    AssignCollectionsToChannelMutation,
+    AssignCollectionsToChannelMutationVariables,
+    ChannelFragment,
     Collection,
+    CollectionFragment,
+    CreateChannel,
     CreateCollection,
     CreateCollectionInput,
+    CreateCollectionMutation,
+    CreateCollectionMutationVariables,
     CreateCollectionSelectVariants,
+    CurrencyCode,
     DeleteCollection,
+    DeleteCollectionsBulk,
+    DeleteCollectionsBulkMutation,
+    DeleteCollectionsBulkMutationVariables,
     DeleteProduct,
     DeleteProductVariant,
     DeletionResult,
@@ -27,6 +39,10 @@ import {
     GetAssetList,
     GetCollection,
     GetCollectionBreadcrumbs,
+    GetCollectionListAdminQuery,
+    GetCollectionListAdminQueryVariables,
+    GetCollectionListQuery,
+    GetCollectionListQueryVariables,
     GetCollectionNestedParents,
     GetCollectionProducts,
     GetCollections,
@@ -38,16 +54,22 @@ import {
     GetProductsWithVariantIds,
     LanguageCode,
     MoveCollection,
+    PreviewCollectionVariantsQuery,
+    PreviewCollectionVariantsQueryVariables,
+    RemoveCollectionsFromChannelMutation,
+    RemoveCollectionsFromChannelMutationVariables,
     SortOrder,
     UpdateCollection,
     UpdateProduct,
     UpdateProductVariants,
 } from './graphql/generated-e2e-admin-types';
 import {
+    CREATE_CHANNEL,
     CREATE_COLLECTION,
     DELETE_PRODUCT,
     DELETE_PRODUCT_VARIANT,
     GET_ASSET_LIST,
+    GET_COLLECTIONS,
     UPDATE_COLLECTION,
     UPDATE_PRODUCT,
     UPDATE_PRODUCT_VARIANTS,
@@ -70,6 +92,8 @@ describe('Collection resolver', () => {
     let electronicsBreadcrumbsCollection: Collection.Fragment;
     let computersBreadcrumbsCollection: Collection.Fragment;
     let pearBreadcrumbsCollection: Collection.Fragment;
+    let secondChannel: ChannelFragment;
+    const SECOND_CHANNEL_TOKEN = 'second_channel_token';
 
     beforeAll(async () => {
         await server.init({
@@ -94,6 +118,21 @@ describe('Collection resolver', () => {
             (values, facet) => [...values, ...facet.values],
             [] as FacetValueFragment[],
         );
+        const { createChannel } = await adminClient.query<CreateChannel.Mutation, CreateChannel.Variables>(
+            CREATE_CHANNEL,
+            {
+                input: {
+                    code: 'second-channel',
+                    token: SECOND_CHANNEL_TOKEN,
+                    defaultLanguageCode: LanguageCode.en,
+                    currencyCode: CurrencyCode.USD,
+                    pricesIncludeTax: true,
+                    defaultShippingZoneId: 'T_1',
+                    defaultTaxZoneId: 'T_1',
+                },
+            },
+        );
+        secondChannel = createChannel;
     }, TEST_SETUP_TIMEOUT_MS);
 
     afterAll(async () => {
@@ -281,7 +320,41 @@ describe('Collection resolver', () => {
                 'zubehor-2',
             );
         });
-        it('creates a root collection to became a 1st level collection later #779', async () => {
+
+        it('creates the duplicate slug without suffix in another channel', async () => {
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { createCollection } = await adminClient.query<
+                CreateCollection.Mutation,
+                CreateCollection.Variables
+            >(CREATE_COLLECTION, {
+                input: {
+                    translations: [
+                        {
+                            languageCode: LanguageCode.en,
+                            name: 'Accessories',
+                            description: '',
+                            slug: 'Accessories',
+                        },
+                        {
+                            languageCode: LanguageCode.de,
+                            name: 'Zubehör',
+                            description: '',
+                            slug: 'Zubehör',
+                        },
+                    ],
+                    filters: [],
+                },
+            });
+            expect(createCollection.translations.find(t => t.languageCode === LanguageCode.en)?.slug).toBe(
+                'accessories',
+            );
+            expect(createCollection.translations.find(t => t.languageCode === LanguageCode.de)?.slug).toBe(
+                'zubehor',
+            );
+        });
+
+        it('creates a root collection to become a 1st level collection later #779', async () => {
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
             const result = await adminClient.query<CreateCollection.Mutation, CreateCollection.Variables>(
                 CREATE_COLLECTION,
                 {
@@ -534,9 +607,17 @@ describe('Collection resolver', () => {
             expect(product?.collections.sort(sortById)).toEqual([
                 {
                     id: 'T_10',
+                    name: 'Electronics Breadcrumbs',
+                    parent: {
+                        id: 'T_1',
+                        name: '__root_collection__',
+                    },
+                },
+                {
+                    id: 'T_11',
                     name: 'Pear Breadcrumbs',
                     parent: {
-                        id: 'T_8',
+                        id: 'T_9',
                         name: 'Computers Breadcrumbs',
                     },
                 },
@@ -565,16 +646,8 @@ describe('Collection resolver', () => {
                     },
                 },
                 {
-                    id: 'T_8',
-                    name: 'Computers Breadcrumbs',
-                    parent: {
-                        id: 'T_1',
-                        name: '__root_collection__',
-                    },
-                },
-                {
                     id: 'T_9',
-                    name: 'Electronics Breadcrumbs',
+                    name: 'Computers Breadcrumbs',
                     parent: {
                         id: 'T_1',
                         name: '__root_collection__',
@@ -852,6 +925,28 @@ describe('Collection resolver', () => {
             ),
         );
 
+        // https://github.com/vendure-ecommerce/vendure/issues/1595
+        it('children correctly ordered', async () => {
+            await adminClient.query<MoveCollection.Mutation, MoveCollection.Variables>(MOVE_COLLECTION, {
+                input: {
+                    collectionId: computersCollection.id,
+                    parentId: 'T_1',
+                    index: 4,
+                },
+            });
+            const result = await adminClient.query<GetCollection.Query, GetCollection.Variables>(
+                GET_COLLECTION,
+                {
+                    id: 'T_1',
+                },
+            );
+            if (!result.collection) {
+                fail(`did not return the collection`);
+                return;
+            }
+            expect(result.collection.children?.map(c => (c as any).position)).toEqual([0, 1, 2, 3, 4, 5, 6]);
+        });
+
         async function getChildrenOf(parentId: string): Promise<Array<{ name: string; id: string }>> {
             const result = await adminClient.query<GetCollections.Query>(GET_COLLECTIONS);
             return result.collections.items.filter(i => i.parent!.id === parentId);
@@ -968,23 +1063,23 @@ describe('Collection resolver', () => {
                     name: 'Pear',
                 },
                 {
-                    id: 'T_8',
+                    id: 'T_9',
                     name: 'Computers Breadcrumbs',
                 },
                 {
-                    id: 'T_9',
+                    id: 'T_10',
                     name: 'Electronics Breadcrumbs',
                 },
                 {
-                    id: 'T_10',
+                    id: 'T_11',
                     name: 'Pear Breadcrumbs',
                 },
                 {
-                    id: 'T_11',
+                    id: 'T_12',
                     name: 'Delete Me Parent',
                 },
                 {
-                    id: 'T_12',
+                    id: 'T_13',
                     name: 'Delete Me Child',
                 },
             ]);
@@ -1034,15 +1129,15 @@ describe('Collection resolver', () => {
                 { id: 'T_4', name: 'Computers' },
                 { id: 'T_5', name: 'Pear' },
                 {
-                    id: 'T_8',
+                    id: 'T_9',
                     name: 'Computers Breadcrumbs',
                 },
                 {
-                    id: 'T_9',
+                    id: 'T_10',
                     name: 'Electronics Breadcrumbs',
                 },
                 {
-                    id: 'T_10',
+                    id: 'T_11',
                     name: 'Pear Breadcrumbs',
                 },
             ]);
@@ -1430,6 +1525,92 @@ describe('Collection resolver', () => {
             });
         });
 
+        describe('variantId filter', () => {
+            it('contains expects variants', async () => {
+                const { createCollection } = await adminClient.query<
+                    CreateCollection.Mutation,
+                    CreateCollection.Variables
+                >(CREATE_COLLECTION, {
+                    input: {
+                        translations: [
+                            {
+                                languageCode: LanguageCode.en,
+                                name: `variantId filter test`,
+                                description: '',
+                                slug: `variantId-filter-test`,
+                            },
+                        ],
+                        filters: [
+                            {
+                                code: variantIdCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'variantIds',
+                                        value: `["T_1", "T_4"]`,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                });
+                await awaitRunningJobs(adminClient, 5000);
+
+                const result = await adminClient.query<
+                    GetCollectionProducts.Query,
+                    GetCollectionProducts.Variables
+                >(GET_COLLECTION_PRODUCT_VARIANTS, {
+                    id: createCollection.id,
+                });
+                expect(result.collection!.productVariants.items.map(i => i.id).sort()).toEqual([
+                    'T_1',
+                    'T_4',
+                ]);
+            });
+        });
+
+        describe('productId filter', () => {
+            it('contains expects variants', async () => {
+                const { createCollection } = await adminClient.query<
+                    CreateCollection.Mutation,
+                    CreateCollection.Variables
+                >(CREATE_COLLECTION, {
+                    input: {
+                        translations: [
+                            {
+                                languageCode: LanguageCode.en,
+                                name: `productId filter test`,
+                                description: '',
+                                slug: `productId-filter-test`,
+                            },
+                        ],
+                        filters: [
+                            {
+                                code: productIdCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'productIds',
+                                        value: `["T_2"]`,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                });
+                await awaitRunningJobs(adminClient, 5000);
+
+                const result = await adminClient.query<
+                    GetCollectionProducts.Query,
+                    GetCollectionProducts.Variables
+                >(GET_COLLECTION_PRODUCT_VARIANTS, {
+                    id: createCollection.id,
+                });
+                expect(result.collection!.productVariants.items.map(i => i.id).sort()).toEqual([
+                    'T_5',
+                    'T_6',
+                ]);
+            });
+        });
+
         describe('re-evaluation of contents on changes', () => {
             let products: GetProductsWithVariantIds.Items[];
 
@@ -1600,6 +1781,153 @@ describe('Collection resolver', () => {
                 // no "Hat"
             ]);
         });
+
+        describe('previewCollectionVariants', () => {
+            it('returns correct contents', async () => {
+                const { previewCollectionVariants } = await adminClient.query<
+                    PreviewCollectionVariantsQuery,
+                    PreviewCollectionVariantsQueryVariables
+                >(PREVIEW_COLLECTION_VARIANTS, {
+                    input: {
+                        parentId: electronicsCollection.parent?.id,
+                        filters: [
+                            {
+                                code: facetValueCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'facetValueIds',
+                                        value: `["${getFacetValueId('electronics')}","${getFacetValueId(
+                                            'pear',
+                                        )}"]`,
+                                    },
+                                    {
+                                        name: 'containsAny',
+                                        value: `false`,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                });
+                expect(previewCollectionVariants.items.map(i => i.name).sort()).toEqual([
+                    'Curvy Monitor 24 inch',
+                    'Curvy Monitor 27 inch',
+                    'Gaming PC i7-8700 240GB SSD',
+                    'Instant Camera',
+                    'Laptop 13 inch 16GB',
+                    'Laptop 13 inch 8GB',
+                    'Laptop 15 inch 16GB',
+                    'Laptop 15 inch 8GB',
+                ]);
+            });
+
+            it('works with list options', async () => {
+                const { previewCollectionVariants } = await adminClient.query<
+                    PreviewCollectionVariantsQuery,
+                    PreviewCollectionVariantsQueryVariables
+                >(PREVIEW_COLLECTION_VARIANTS, {
+                    input: {
+                        parentId: electronicsCollection.parent?.id,
+                        filters: [
+                            {
+                                code: facetValueCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'facetValueIds',
+                                        value: `["${getFacetValueId('electronics')}"]`,
+                                    },
+                                    {
+                                        name: 'containsAny',
+                                        value: `false`,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    options: {
+                        sort: {
+                            name: SortOrder.ASC,
+                        },
+                        filter: {
+                            name: {
+                                contains: 'mon',
+                            },
+                        },
+                        take: 5,
+                    },
+                });
+                expect(previewCollectionVariants.items).toEqual([
+                    { id: 'T_5', name: 'Curvy Monitor 24 inch' },
+                    { id: 'T_6', name: 'Curvy Monitor 27 inch' },
+                ]);
+            });
+
+            it('takes parent filters into account', async () => {
+                const { previewCollectionVariants } = await adminClient.query<
+                    PreviewCollectionVariantsQuery,
+                    PreviewCollectionVariantsQueryVariables
+                >(PREVIEW_COLLECTION_VARIANTS, {
+                    input: {
+                        parentId: electronicsCollection.id,
+                        filters: [
+                            {
+                                code: variantNameCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'operator',
+                                        value: 'startsWith',
+                                    },
+                                    {
+                                        name: 'term',
+                                        value: 'h',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                });
+                expect(previewCollectionVariants.items.map(i => i.name).sort()).toEqual([
+                    'Hard Drive 1TB',
+                    'Hard Drive 2TB',
+                    'Hard Drive 3TB',
+                    'Hard Drive 4TB',
+                    'Hard Drive 6TB',
+                ]);
+            });
+
+            it('with no parentId, operates at the root level', async () => {
+                const { previewCollectionVariants } = await adminClient.query<
+                    PreviewCollectionVariantsQuery,
+                    PreviewCollectionVariantsQueryVariables
+                >(PREVIEW_COLLECTION_VARIANTS, {
+                    input: {
+                        filters: [
+                            {
+                                code: variantNameCollectionFilter.code,
+                                arguments: [
+                                    {
+                                        name: 'operator',
+                                        value: 'startsWith',
+                                    },
+                                    {
+                                        name: 'term',
+                                        value: 'h',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                });
+                expect(previewCollectionVariants.items.map(i => i.name).sort()).toEqual([
+                    'Hard Drive 1TB',
+                    'Hard Drive 2TB',
+                    'Hard Drive 3TB',
+                    'Hard Drive 4TB',
+                    'Hard Drive 6TB',
+                    'Hat',
+                ]);
+            });
+        });
     });
 
     describe('Product collections property', () => {
@@ -1618,27 +1946,27 @@ describe('Collection resolver', () => {
                     name: 'Pear',
                 },
                 {
-                    id: 'T_9',
+                    id: 'T_10',
                     name: 'Electronics Breadcrumbs',
                 },
                 {
-                    id: 'T_14',
+                    id: 'T_15',
                     name: 'Photo AND Pear',
                 },
                 {
-                    id: 'T_15',
+                    id: 'T_16',
                     name: 'Photo OR Pear',
                 },
                 {
-                    id: 'T_17',
+                    id: 'T_18',
                     name: 'contains camera',
                 },
                 {
-                    id: 'T_19',
+                    id: 'T_20',
                     name: 'endsWith camera',
                 },
                 {
-                    id: 'T_23',
+                    id: 'T_26',
                     name: 'pear electronics',
                 },
             ]);
@@ -1762,6 +2090,166 @@ describe('Collection resolver', () => {
         });
     });
 
+    describe('channel assignment & removal', () => {
+        let testCollection: CollectionFragment;
+
+        beforeAll(async () => {
+            const { createCollection } = await adminClient.query<
+                CreateCollectionMutation,
+                CreateCollectionMutationVariables
+            >(CREATE_COLLECTION, {
+                input: {
+                    filters: [
+                        {
+                            code: facetValueCollectionFilter.code,
+                            arguments: [
+                                {
+                                    name: 'facetValueIds',
+                                    value: `["${getFacetValueId('electronics')}"]`,
+                                },
+                                {
+                                    name: 'containsAny',
+                                    value: `false`,
+                                },
+                            ],
+                        },
+                    ],
+                    translations: [
+                        {
+                            languageCode: LanguageCode.en,
+                            name: 'Channels Test Collection',
+                            description: '',
+                            slug: 'channels-test-collection',
+                        },
+                    ],
+                },
+            });
+
+            testCollection = createCollection;
+        });
+
+        it('assign to channel', async () => {
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { collections: before } = await adminClient.query<
+                GetCollectionListAdminQuery,
+                GetCollectionListAdminQueryVariables
+            >(GET_COLLECTION_LIST);
+            expect(before.items.length).toBe(1);
+            expect(before.items.map(i => i.id).includes(testCollection.id)).toBe(false);
+
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
+            const { assignCollectionsToChannel } = await adminClient.query<
+                AssignCollectionsToChannelMutation,
+                AssignCollectionsToChannelMutationVariables
+            >(ASSIGN_COLLECTIONS_TO_CHANNEL, {
+                input: {
+                    channelId: secondChannel.id,
+                    collectionIds: [testCollection.id],
+                },
+            });
+
+            expect(assignCollectionsToChannel.map(c => c.id)).toEqual([testCollection.id]);
+
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { collections: after } = await adminClient.query<
+                GetCollectionListAdminQuery,
+                GetCollectionListAdminQueryVariables
+            >(GET_COLLECTION_LIST);
+            expect(after.items.length).toBe(2);
+            expect(after.items.map(i => i.id).includes(testCollection.id)).toBe(true);
+        });
+
+        it('remove from channel', async () => {
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
+            const { removeCollectionsFromChannel } = await adminClient.query<
+                RemoveCollectionsFromChannelMutation,
+                RemoveCollectionsFromChannelMutationVariables
+            >(REMOVE_COLLECTIONS_FROM_CHANNEL, {
+                input: {
+                    channelId: secondChannel.id,
+                    collectionIds: [testCollection.id],
+                },
+            });
+
+            expect(removeCollectionsFromChannel.map(c => c.id)).toEqual([testCollection.id]);
+
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { collections: after } = await adminClient.query<
+                GetCollectionListAdminQuery,
+                GetCollectionListAdminQueryVariables
+            >(GET_COLLECTION_LIST);
+            expect(after.items.length).toBe(1);
+            expect(after.items.map(i => i.id).includes(testCollection.id)).toBe(false);
+        });
+    });
+
+    describe('deleteCollections (multiple)', () => {
+        let top: CollectionFragment;
+        let child: CollectionFragment;
+        let grandchild: CollectionFragment;
+        beforeAll(async () => {
+            async function createNewCollection(name: string, parentId?: string) {
+                const { createCollection } = await adminClient.query<
+                    CreateCollectionMutation,
+                    CreateCollectionMutationVariables
+                >(CREATE_COLLECTION, {
+                    input: {
+                        translations: [
+                            {
+                                languageCode: LanguageCode.en,
+                                name,
+                                description: '',
+                                slug: name,
+                            },
+                        ],
+                        filters: [],
+                    },
+                });
+                return createCollection;
+            }
+
+            top = await createNewCollection('top');
+            child = await createNewCollection('child', top.id);
+            grandchild = await createNewCollection('grandchild', child.id);
+        });
+
+        it('deletes all selected collections', async () => {
+            const { collections: before } = await adminClient.query<
+                GetCollectionListQuery,
+                GetCollectionListQueryVariables
+            >(GET_COLLECTION_LIST);
+
+            expect(before.items.map(pick(['id', 'name'])).sort(sortById)).toEqual([
+                { id: 'T_28', name: 'top' },
+                { id: 'T_29', name: 'child' },
+                { id: 'T_30', name: 'grandchild' },
+                { id: 'T_8', name: 'Accessories' },
+            ]);
+
+            const { deleteCollections } = await adminClient.query<
+                DeleteCollectionsBulkMutation,
+                DeleteCollectionsBulkMutationVariables
+            >(DELETE_COLLECTIONS_BULK, {
+                ids: [top.id, child.id, grandchild.id],
+            });
+
+            expect(deleteCollections).toEqual([
+                { result: DeletionResult.DELETED, message: null },
+                { result: DeletionResult.DELETED, message: null },
+                { result: DeletionResult.DELETED, message: null },
+            ]);
+
+            const { collections: after } = await adminClient.query<
+                GetCollectionListQuery,
+                GetCollectionListQueryVariables
+            >(GET_COLLECTION_LIST);
+
+            expect(after.items.map(pick(['id', 'name'])).sort(sortById)).toEqual([
+                { id: 'T_8', name: 'Accessories' },
+            ]);
+        });
+    });
+
     function getFacetValueId(code: string): string {
         const match = facetValues.find(fv => fv.code === code);
         if (!match) {
@@ -1787,6 +2275,18 @@ export const GET_COLLECTION = gql`
     ${COLLECTION_FRAGMENT}
 `;
 
+export const GET_COLLECTION_LIST = gql`
+    query GetCollectionListAdmin($options: CollectionListOptions) {
+        collections(options: $options) {
+            items {
+                ...Collection
+            }
+            totalItems
+        }
+    }
+    ${COLLECTION_FRAGMENT}
+`;
+
 export const MOVE_COLLECTION = gql`
     mutation MoveCollection($input: MoveCollectionInput!) {
         moveCollection(input: $input) {
@@ -1807,22 +2307,6 @@ const GET_FACET_VALUES = gql`
         }
     }
     ${FACET_VALUE_FRAGMENT}
-`;
-
-const GET_COLLECTIONS = gql`
-    query GetCollections {
-        collections {
-            items {
-                id
-                name
-                position
-                parent {
-                    id
-                    name
-                }
-            }
-        }
-    }
 `;
 
 const GET_COLLECTION_PRODUCT_VARIANTS = gql`
@@ -1936,6 +2420,48 @@ const GET_COLLECTION_NESTED_PARENTS = gql`
                     }
                 }
             }
+        }
+    }
+`;
+
+const PREVIEW_COLLECTION_VARIANTS = gql`
+    query PreviewCollectionVariants(
+        $input: PreviewCollectionVariantsInput!
+        $options: ProductVariantListOptions
+    ) {
+        previewCollectionVariants(input: $input, options: $options) {
+            items {
+                id
+                name
+            }
+            totalItems
+        }
+    }
+`;
+
+const ASSIGN_COLLECTIONS_TO_CHANNEL = gql`
+    mutation AssignCollectionsToChannel($input: AssignCollectionsToChannelInput!) {
+        assignCollectionsToChannel(input: $input) {
+            ...Collection
+        }
+    }
+    ${COLLECTION_FRAGMENT}
+`;
+
+const REMOVE_COLLECTIONS_FROM_CHANNEL = gql`
+    mutation RemoveCollectionsFromChannel($input: RemoveCollectionsFromChannelInput!) {
+        removeCollectionsFromChannel(input: $input) {
+            ...Collection
+        }
+    }
+    ${COLLECTION_FRAGMENT}
+`;
+
+const DELETE_COLLECTIONS_BULK = gql`
+    mutation DeleteCollectionsBulk($ids: [ID!]!) {
+        deleteCollections(ids: $ids) {
+            message
+            result
         }
     }
 `;

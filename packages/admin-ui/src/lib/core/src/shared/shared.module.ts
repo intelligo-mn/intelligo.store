@@ -27,8 +27,10 @@ import { AssetFileInputComponent } from './components/asset-file-input/asset-fil
 import { AssetGalleryComponent } from './components/asset-gallery/asset-gallery.component';
 import { AssetPickerDialogComponent } from './components/asset-picker-dialog/asset-picker-dialog.component';
 import { AssetPreviewDialogComponent } from './components/asset-preview-dialog/asset-preview-dialog.component';
+import { AssetPreviewLinksComponent } from './components/asset-preview-links/asset-preview-links.component';
 import { AssetPreviewComponent } from './components/asset-preview/asset-preview.component';
 import { AssetSearchInputComponent } from './components/asset-search-input/asset-search-input.component';
+import { BulkActionMenuComponent } from './components/bulk-action-menu/bulk-action-menu.component';
 import { ChannelAssignmentControlComponent } from './components/channel-assignment-control/channel-assignment-control.component';
 import { ChannelBadgeComponent } from './components/channel-badge/channel-badge.component';
 import { ChipComponent } from './components/chip/chip.component';
@@ -68,9 +70,15 @@ import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.com
 import { ObjectTreeComponent } from './components/object-tree/object-tree.component';
 import { OrderStateLabelComponent } from './components/order-state-label/order-state-label.component';
 import { PaginationControlsComponent } from './components/pagination-controls/pagination-controls.component';
+import { ProductMultiSelectorDialogComponent } from './components/product-multi-selector-dialog/product-multi-selector-dialog.component';
+import { ProductSearchInputComponent } from './components/product-search-input/product-search-input.component';
 import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
+import { RadioCardFieldsetComponent } from './components/radio-card/radio-card-fieldset.component';
+import { RadioCardComponent } from './components/radio-card/radio-card.component';
 import { ExternalImageDialogComponent } from './components/rich-text-editor/external-image-dialog/external-image-dialog.component';
 import { LinkDialogComponent } from './components/rich-text-editor/link-dialog/link-dialog.component';
+import { ContextMenuComponent } from './components/rich-text-editor/prosemirror/context-menu/context-menu.component';
+import { RawHtmlDialogComponent } from './components/rich-text-editor/raw-html-dialog/raw-html-dialog.component';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { SelectToggleComponent } from './components/select-toggle/select-toggle.component';
 import { SimpleDialogComponent } from './components/simple-dialog/simple-dialog.component';
@@ -86,7 +94,9 @@ import { IfDefaultChannelActiveDirective } from './directives/if-default-channel
 import { IfMultichannelDirective } from './directives/if-multichannel.directive';
 import { IfPermissionsDirective } from './directives/if-permissions.directive';
 import { BooleanFormInputComponent } from './dynamic-form-inputs/boolean-form-input/boolean-form-input.component';
+import { HtmlEditorFormInputComponent } from './dynamic-form-inputs/code-editor-form-input/html-editor-form-input.component';
 import { JsonEditorFormInputComponent } from './dynamic-form-inputs/code-editor-form-input/json-editor-form-input.component';
+import { CombinationModeFormInputComponent } from './dynamic-form-inputs/combination-mode-form-input/combination-mode-form-input.component';
 import { CurrencyFormInputComponent } from './dynamic-form-inputs/currency-form-input/currency-form-input.component';
 import { CustomerGroupFormInputComponent } from './dynamic-form-inputs/customer-group-form-input/customer-group-form-input.component';
 import { DateFormInputComponent } from './dynamic-form-inputs/date-form-input/date-form-input.component';
@@ -94,9 +104,11 @@ import { DynamicFormInputComponent } from './dynamic-form-inputs/dynamic-form-in
 import { FacetValueFormInputComponent } from './dynamic-form-inputs/facet-value-form-input/facet-value-form-input.component';
 import { NumberFormInputComponent } from './dynamic-form-inputs/number-form-input/number-form-input.component';
 import { PasswordFormInputComponent } from './dynamic-form-inputs/password-form-input/password-form-input.component';
+import { ProductMultiSelectorFormInputComponent } from './dynamic-form-inputs/product-multi-selector-form-input/product-multi-selector-form-input.component';
 import { ProductSelectorFormInputComponent } from './dynamic-form-inputs/product-selector-form-input/product-selector-form-input.component';
 import { RelationAssetInputComponent } from './dynamic-form-inputs/relation-form-input/asset/relation-asset-input.component';
 import { RelationCustomerInputComponent } from './dynamic-form-inputs/relation-form-input/customer/relation-customer-input.component';
+import { RelationGenericInputComponent } from './dynamic-form-inputs/relation-form-input/generic/relation-generic-input.component';
 import { RelationProductVariantInputComponent } from './dynamic-form-inputs/relation-form-input/product-variant/relation-product-variant-input.component';
 import { RelationProductInputComponent } from './dynamic-form-inputs/relation-form-input/product/relation-product-input.component';
 import {
@@ -112,6 +124,7 @@ import { TextFormInputComponent } from './dynamic-form-inputs/text-form-input/te
 import { TextareaFormInputComponent } from './dynamic-form-inputs/textarea-form-input/textarea-form-input.component';
 import { AssetPreviewPipe } from './pipes/asset-preview.pipe';
 import { ChannelLabelPipe } from './pipes/channel-label.pipe';
+import { CustomFieldDescriptionPipe } from './pipes/custom-field-description.pipe';
 import { CustomFieldLabelPipe } from './pipes/custom-field-label.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
@@ -203,6 +216,7 @@ const DECLARATIONS = [
     IfDefaultChannelActiveDirective,
     ExtensionHostComponent,
     CustomFieldLabelPipe,
+    CustomFieldDescriptionPipe,
     FocalPointControlComponent,
     AssetPreviewPipe,
     LinkDialogComponent,
@@ -231,6 +245,14 @@ const DECLARATIONS = [
     TabbedCustomFieldsComponent,
     UiExtensionPointComponent,
     CustomDetailComponentHostComponent,
+    AssetPreviewLinksComponent,
+    ProductMultiSelectorDialogComponent,
+    ProductSearchInputComponent,
+    ContextMenuComponent,
+    RawHtmlDialogComponent,
+    BulkActionMenuComponent,
+    RadioCardComponent,
+    RadioCardFieldsetComponent,
 ];
 
 const DYNAMIC_FORM_INPUTS = [
@@ -251,9 +273,13 @@ const DYNAMIC_FORM_INPUTS = [
     RelationCardPreviewDirective,
     RelationCardDetailDirective,
     RelationSelectorDialogComponent,
+    RelationGenericInputComponent,
     TextareaFormInputComponent,
     RichTextFormInputComponent,
     JsonEditorFormInputComponent,
+    HtmlEditorFormInputComponent,
+    ProductMultiSelectorFormInputComponent,
+    CombinationModeFormInputComponent,
 ];
 
 @NgModule({

@@ -2,20 +2,22 @@
     display: block;
     margin-bottom: 12px;
 
-    >.card {
+    > .card {
         margin-top: 6px;
     }
 }
 
 .operation-inputs {
-
     padding-top: 0;
 
     .arg-row:not(:last-child) {
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 
     .arg-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         label {
             margin-right: 6px;
         }
@@ -23,5 +25,9 @@
 
     .hidden {
         display: none;
+    }
+    label {
+        min-width: 130px;
+        display: inline-block;
     }
 }

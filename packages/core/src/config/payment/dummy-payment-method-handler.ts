@@ -51,7 +51,7 @@ export const dummyPaymentHandler = new PaymentMethodHandler({
             defaultValue: false,
         },
     },
-    createPayment: async (ctx, order, amount, args, metadata) => {
+    createPayment: async (ctx, order, amount, args, metadata, method) => {
         if (metadata.shouldDecline) {
             return {
                 amount,
@@ -78,7 +78,7 @@ export const dummyPaymentHandler = new PaymentMethodHandler({
             };
         }
     },
-    settlePayment: async (ctx, order, payment, args) => {
+    settlePayment: async (ctx, order, payment, args, method) => {
         if (payment.metadata.shouldErrorOnSettle) {
             return {
                 success: false,
@@ -87,6 +87,14 @@ export const dummyPaymentHandler = new PaymentMethodHandler({
         }
         return {
             success: true,
+        };
+    },
+    cancelPayment: (ctx, order, payment) => {
+        return {
+            success: true,
+            metadata: {
+                cancellationDate: new Date().toISOString(),
+            },
         };
     },
 });

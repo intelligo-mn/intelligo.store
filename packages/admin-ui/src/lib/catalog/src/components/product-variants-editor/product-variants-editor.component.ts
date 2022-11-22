@@ -7,6 +7,7 @@ import {
     CurrencyCode,
     DataService,
     DeactivateAware,
+    DeletionResult,
     getDefaultUiLanguage,
     GetProductVariantOptions,
     LanguageCode,
@@ -19,7 +20,7 @@ import { pick } from '@vendure/common/lib/pick';
 import { generateAllCombinations, notNullOrUndefined } from '@vendure/common/lib/shared-utils';
 import { unique } from '@vendure/common/lib/unique';
 import { EMPTY, forkJoin, Observable, of } from 'rxjs';
-import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
+import { defaultIfEmpty, filter, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { ProductDetailService } from '../../providers/product-detail/product-detail.service';
 import { ConfirmVariantDeletionDialogComponent } from '../confirm-variant-deletion-dialog/confirm-variant-deletion-dialog.component';
@@ -41,6 +42,18 @@ export class GeneratedVariant {
     }
 }
 
+interface OptionGroupUiModel {
+    id?: string;
+    isNew: boolean;
+    name: string;
+    locked: boolean;
+    values: Array<{
+        id?: string;
+        name: string;
+        locked: boolean;
+    }>;
+}
+
 @Component({
     selector: 'vdr-product-variants-editor',
     templateUrl: './product-variants-editor.component.html',
@@ -49,17 +62,9 @@ export class GeneratedVariant {
 })
 export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
     formValueChanged = false;
+    optionsChanged = false;
     generatedVariants: GeneratedVariant[] = [];
-    optionGroups: Array<{
-        id?: string;
-        isNew: boolean;
-        name: string;
-        values: Array<{
-            id?: string;
-            name: string;
-            locked: boolean;
-        }>;
-    }>;
+    optionGroups: OptionGroupUiModel[];
     product: GetProductVariantOptions.Product;
     currencyCode: CurrencyCode;
     private languageCode: LanguageCode;
@@ -100,12 +105,106 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
             : variant.options.map(o => o.name).join(' ');
     }
 
-    addOption() {
+    addOptionGroup() {
         this.optionGroups.push({
             isNew: true,
+            locked: false,
             name: '',
             values: [],
         });
+        this.optionsChanged = true;
+    }
+
+    removeOptionGroup(optionGroup: OptionGroupUiModel) {
+        const id = optionGroup.id;
+        if (optionGroup.isNew) {
+            this.optionGroups = this.optionGroups.filter(og => og !== optionGroup);
+            this.generateVariants();
+            this.optionsChanged = true;
+        } else if (id) {
+            this.modalService
+                .dialog({
+                    title: _('catalog.confirm-delete-product-option-group'),
+                    translationVars: { name: optionGroup.name },
+                    buttons: [
+                        { type: 'secondary', label: _('common.cancel') },
+                        { type: 'danger', label: _('common.delete'), returnValue: true },
+                    ],
+                })
+                .pipe(
+                    switchMap(val => {
+                        if (val) {
+                            return this.dataService.product.removeOptionGroupFromProduct({
+                                optionGroupId: id,
+                                productId: this.product.id,
+                            });
+                        } else {
+                            return EMPTY;
+                        }
+                    }),
+                )
+                .subscribe(({ removeOptionGroupFromProduct }) => {
+                    if (removeOptionGroupFromProduct.__typename === 'Product') {
+                        this.notificationService.success(_('common.notify-delete-success'), {
+                            entity: 'ProductOptionGroup',
+                        });
+                        this.initOptionsAndVariants();
+                        this.optionsChanged = true;
+                    } else if (removeOptionGroupFromProduct.__typename === 'ProductOptionInUseError') {
+                        this.notificationService.error(removeOptionGroupFromProduct.message ?? '');
+                    }
+                });
+        }
+    }
+
+    addOption(index: number, optionName: string) {
+        const group = this.optionGroups[index];
+        if (group) {
+            group.values.push({ name: optionName, locked: false });
+            this.generateVariants();
+            this.optionsChanged = true;
+        }
+    }
+
+    removeOption(index: number, { id, name }: { id?: string; name: string }) {
+        const optionGroup = this.optionGroups[index];
+        if (optionGroup) {
+            if (!id) {
+                optionGroup.values = optionGroup.values.filter(v => v.name !== name);
+                this.generateVariants();
+            } else {
+                this.modalService
+                    .dialog({
+                        title: _('catalog.confirm-delete-product-option'),
+                        translationVars: { name },
+                        buttons: [
+                            { type: 'secondary', label: _('common.cancel') },
+                            { type: 'danger', label: _('common.delete'), returnValue: true },
+                        ],
+                    })
+                    .pipe(
+                        switchMap(val => {
+                            if (val) {
+                                return this.dataService.product.deleteProductOption(id);
+                            } else {
+                                return EMPTY;
+                            }
+                        }),
+                    )
+                    .subscribe(({ deleteProductOption }) => {
+                        if (deleteProductOption.result === DeletionResult.DELETED) {
+                            this.notificationService.success(_('common.notify-delete-success'), {
+                                entity: 'ProductOption',
+                            });
+                            optionGroup.values = optionGroup.values.filter(v => v.id !== id);
+                            this.generateVariants();
+                            this.optionsChanged = true;
+                        } else {
+                            this.notificationService.error(deleteProductOption.message ?? '');
+                        }
+                    });
+            }
+        }
     }
 
     generateVariants() {
@@ -163,10 +262,11 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
         };
     }
 
-    deleteVariant(id: string) {
+    deleteVariant(id: string, options: GeneratedVariant['options']) {
         this.modalService
             .dialog({
                 title: _('catalog.confirm-delete-product-variant'),
+                translationVars: { name: options.map(o => o.name).join(' ') },
                 buttons: [
                     { type: 'secondary', label: _('common.cancel') },
                     { type: 'danger', label: _('common.delete'), returnValue: true },
@@ -194,6 +294,7 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
     }
 
     save() {
+        this.optionGroups = this.optionGroups.filter(g => g.values.length);
         const newOptionGroups = this.optionGroups
             .filter(og => og.isNew)
             .map(og => ({
@@ -221,13 +322,17 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
                         count: variants.length,
                     });
                     this.initOptionsAndVariants();
+                    this.optionsChanged = false;
                 },
             });
     }
 
     private checkUniqueSkus() {
         const withDuplicateSkus = this.generatedVariants.filter((variant, index) => {
-            return this.generatedVariants.find(gv => gv.sku.trim() === variant.sku.trim() && gv !== variant);
+            return (
+                variant.enabled &&
+                this.generatedVariants.find(gv => gv.sku.trim() === variant.sku.trim() && gv !== variant)
+            );
         });
         if (withDuplicateSkus.length) {
             return this.modalService
@@ -330,7 +435,7 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
                     .mapSingle(data => data.productOptionGroup)
                     .pipe(filter(notNullOrUndefined)),
             ),
-        );
+        ).pipe(defaultIfEmpty([] as ProductOptionGroupWithOptionsFragment[]));
     }
 
     private createNewProductVariants(groups: ProductOptionGroupWithOptionsFragment[]) {
@@ -340,15 +445,22 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
             .reduce((flat, o) => [...flat, ...o], []);
         const variants = this.generatedVariants
             .filter(v => v.enabled && !v.existing)
-            .map(v => ({
-                price: v.price,
-                sku: v.sku,
-                stock: v.stock,
-                optionIds: v.options
-                    .map(name => options.find(o => o.name === name.name))
-                    .filter(notNullOrUndefined)
-                    .map(o => o.id),
-            }));
+            .map(v => {
+                const optionIds = groups.map((group, index) => {
+                    const option = group.options.find(o => o.name === v.options[index].name);
+                    if (option) {
+                        return option.id;
+                    } else {
+                        throw new Error(`Could not find a matching option for group ${group.name}`);
+                    }
+                });
+                return {
+                    price: v.price,
+                    sku: v.sku,
+                    stock: v.stock,
+                    optionIds,
+                };
+            });
         return this.productDetailService.createProductVariants(
             this.product,
             variants,
@@ -387,15 +499,20 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
             .mapSingle(({ product }) => product!)
             .subscribe(p => {
                 this.product = p;
+                const allUsedOptionIds = p.variants.map(v => v.options.map(option => option.id)).flat();
+                const allUsedOptionGroupIds = p.variants
+                    .map(v => v.options.map(option => option.groupId))
+                    .flat();
                 this.optionGroups = p.optionGroups.map(og => {
                     return {
                         id: og.id,
                         isNew: false,
                         name: og.name,
+                        locked: allUsedOptionGroupIds.includes(og.id),
                         values: og.options.map(o => ({
                             id: o.id,
                             name: o.name,
-                            locked: true,
+                            locked: allUsedOptionIds.includes(o.id),
                         })),
                     };
                 });

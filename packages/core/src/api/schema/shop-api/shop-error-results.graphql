@@ -1,15 +1,3 @@
-"Returned when attempting to modify the contents of an Order that is not in the `AddingItems` state."
-type OrderModificationError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-}
-
-"Returned when attempting to set a ShippingMethod for which the Order is not eligible"
-type IneligibleShippingMethodError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-}
-
 "Returned when attempting to add a Payment to an Order that is not in the `ArrangingPayment` state."
 type OrderPaymentStateError implements ErrorResult {
     errorCode: ErrorCode!
@@ -37,55 +25,33 @@ type PaymentDeclinedError implements ErrorResult {
     paymentErrorMessage: String!
 }
 
-"Returned if the provided coupon code is invalid"
-type CouponCodeInvalidError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-    couponCode: String!
-}
-
-"Returned if the provided coupon code is invalid"
-type CouponCodeInvalidError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-    couponCode: String!
-}
-
-"Returned if the provided coupon code is invalid"
-type CouponCodeExpiredError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-    couponCode: String!
-}
-
-"Returned if the provided coupon code is invalid"
-type CouponCodeLimitError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-    couponCode: String!
-    limit: Int!
-}
-
-"Retured when attemting to set the Customer for an Order when already logged in."
+"Returned when attempting to set the Customer for an Order when already logged in."
 type AlreadyLoggedInError implements ErrorResult {
     errorCode: ErrorCode!
     message: String!
 }
 
-"Retured when attemting to register or verify a customer account without a password, when one is required."
+"Returned when attempting to register or verify a customer account without a password, when one is required."
 type MissingPasswordError implements ErrorResult {
     errorCode: ErrorCode!
     message: String!
 }
 
-"Retured when attemting to verify a customer account with a password, when a password has already been set."
+"Returned when attempting to register or verify a customer account where the given password fails password validation."
+type PasswordValidationError implements ErrorResult {
+    errorCode: ErrorCode!
+    message: String!
+    validationErrorMessage: String!
+}
+
+"Returned when attempting to verify a customer account with a password, when a password has already been set."
 type PasswordAlreadySetError implements ErrorResult {
     errorCode: ErrorCode!
     message: String!
 }
 
 """
-Retured if the verification token (used to verify a Customer's email address) is either
+Returned if the verification token (used to verify a Customer's email address) is either
 invalid or does not match any expected tokens.
 """
 type VerificationTokenInvalidError implements ErrorResult {
@@ -103,7 +69,7 @@ type VerificationTokenExpiredError implements ErrorResult {
 }
 
 """
-Retured if the token used to change a Customer's email address is either
+Returned if the token used to change a Customer's email address is either
 invalid or does not match any expected tokens.
 """
 type IdentifierChangeTokenInvalidError implements ErrorResult {
@@ -112,7 +78,7 @@ type IdentifierChangeTokenInvalidError implements ErrorResult {
 }
 
 """
-Retured if the token used to change a Customer's email address is valid, but has
+Returned if the token used to change a Customer's email address is valid, but has
 expired according to the `verificationTokenDuration` setting in the AuthOptions.
 """
 type IdentifierChangeTokenExpiredError implements ErrorResult {
@@ -121,7 +87,7 @@ type IdentifierChangeTokenExpiredError implements ErrorResult {
 }
 
 """
-Retured if the token used to reset a Customer's password is either
+Returned if the token used to reset a Customer's password is either
 invalid or does not match any expected tokens.
 """
 type PasswordResetTokenInvalidError implements ErrorResult {
@@ -130,7 +96,7 @@ type PasswordResetTokenInvalidError implements ErrorResult {
 }
 
 """
-Retured if the token used to reset a Customer's password is valid, but has
+Returned if the token used to reset a Customer's password is valid, but has
 expired according to the `verificationTokenDuration` setting in the AuthOptions.
 """
 type PasswordResetTokenExpiredError implements ErrorResult {
@@ -143,15 +109,6 @@ Returned if `authOptions.requireVerification` is set to `true` (which is the def
 and an unverified user attempts to authenticate.
 """
 type NotVerifiedError implements ErrorResult {
-    errorCode: ErrorCode!
-    message: String!
-}
-
-"""
-Returned when invoking a mutation which depends on there being an active Order on the
-current session.
-"""
-type NoActiveOrderError implements ErrorResult {
     errorCode: ErrorCode!
     message: String!
 }

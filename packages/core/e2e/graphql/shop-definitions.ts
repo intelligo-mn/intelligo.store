@@ -154,6 +154,9 @@ export const REGISTER_ACCOUNT = gql`
                 errorCode
                 message
             }
+            ... on PasswordValidationError {
+                validationErrorMessage
+            }
         }
     }
 `;
@@ -177,6 +180,9 @@ export const VERIFY_EMAIL = gql`
             ... on ErrorResult {
                 errorCode
                 message
+            }
+            ... on PasswordValidationError {
+                validationErrorMessage
             }
         }
     }
@@ -216,6 +222,9 @@ export const RESET_PASSWORD = gql`
             ... on ErrorResult {
                 errorCode
                 message
+            }
+            ... on PasswordValidationError {
+                validationErrorMessage
             }
         }
     }
@@ -675,6 +684,21 @@ export const GET_ACTIVE_ORDER_ORDERS = gql`
     }
 `;
 
+export const GET_ACTIVE_CUSTOMER_ORDERS = gql`
+    query GetActiveCustomerOrders {
+        activeCustomer {
+            id
+            orders {
+                totalItems
+                items {
+                    id
+                    state
+                }
+            }
+        }
+    }
+`;
+
 export const APPLY_COUPON_CODE = gql`
     mutation ApplyCouponCode($couponCode: String!) {
         applyCouponCode(couponCode: $couponCode) {
@@ -743,6 +767,24 @@ export const GET_ACTIVE_CUSTOMER_WITH_ORDERS_PRODUCT_SLUG = gql`
                             product {
                                 slug
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+export const GET_ACTIVE_CUSTOMER_WITH_ORDERS_PRODUCT_PRICE = gql`
+    query GetActiveCustomerWithOrdersProductPrice($options: OrderListOptions) {
+        activeCustomer {
+            orders(options: $options) {
+                items {
+                    lines {
+                        linePrice
+                        productVariant {
+                            id
+                            name
+                            price
                         }
                     }
                 }

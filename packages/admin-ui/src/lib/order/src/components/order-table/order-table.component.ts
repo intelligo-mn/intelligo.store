@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AdjustmentType, CustomFieldConfig, OrderDetail } from '@vendure/admin-ui/core';
+import { AdjustmentType, CustomFieldConfig, OrderDetail, OrderDetailFragment } from '@vendure/admin-ui/core';
 
 @Component({
     selector: 'vdr-order-table',
@@ -11,6 +11,9 @@ import { AdjustmentType, CustomFieldConfig, OrderDetail } from '@vendure/admin-u
 export class OrderTableComponent implements OnInit {
     @Input() order: OrderDetail.Fragment;
     @Input() orderLineCustomFields: CustomFieldConfig[];
+    @Input() isDraft = false;
+    @Output() adjust = new EventEmitter<{ lineId: string; quantity: number }>();
+    @Output() remove = new EventEmitter<{ lineId: string }>();
     orderLineCustomFieldsVisible = false;
     customFieldsForLine: {
         [lineId: string]: Array<{ config: CustomFieldConfig; formGroup: FormGroup; value: any }>;
@@ -27,6 +30,12 @@ export class OrderTableComponent implements OnInit {
     ngOnInit(): void {
         this.orderLineCustomFieldsVisible = this.orderLineCustomFields.length < 2;
         this.getLineCustomFields();
+    }
+
+    draftInputBlur(line: OrderDetailFragment['lines'][number], quantity: number) {
+        if (line.quantity !== quantity) {
+            this.adjust.emit({ lineId: line.id, quantity });
+        }
     }
 
     toggleOrderLineCustomFields() {
@@ -70,6 +79,14 @@ export class OrderTableComponent implements OnInit {
         const promotion = order.promotions.find(p => p.id === id);
         if (promotion) {
             return promotion.couponCode || undefined;
+        }
+    }
+
+    getShippingNames(order: OrderDetail.Fragment) {
+        if (order.shippingLines.length) {
+            return order.shippingLines.map(shippingLine => shippingLine.shippingMethod.name).join(', ');
+        } else {
+            return '';
         }
     }
 }

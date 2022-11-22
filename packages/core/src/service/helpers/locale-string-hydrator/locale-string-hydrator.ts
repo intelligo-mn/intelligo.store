@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { LanguageCode } from '@vendure/common/lib/generated-types';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { RequestContextCacheService } from '../../../cache/request-context-cache.service';
 import { Translatable, TranslatableKeys, Translated } from '../../../common/types/locale-types';
 import { TransactionalConnection } from '../../../connection/transactional-connection';
 import { VendureEntity } from '../../../entity/base/base.entity';
-import { ProductVariant } from '../../../entity/product-variant/product-variant.entity';
-import { translateDeep } from '../utils/translate-entity';
+import { TranslatorService } from '../translator/translator.service';
 
 /**
  * This helper class is to be used in GraphQL entity resolvers, to resolve fields which depend on being
@@ -17,12 +17,13 @@ export class LocaleStringHydrator {
     constructor(
         private connection: TransactionalConnection,
         private requestCache: RequestContextCacheService,
+        private translator: TranslatorService,
     ) {}
 
-    async hydrateLocaleStringField<T extends VendureEntity & Translatable>(
+    async hydrateLocaleStringField<T extends VendureEntity & Translatable & { languageCode?: LanguageCode }>(
         ctx: RequestContext,
         entity: T,
-        fieldName: TranslatableKeys<T>,
+        fieldName: TranslatableKeys<T> | 'languageCode',
     ): Promise<string> {
         if (entity[fieldName]) {
             // Already hydrated, so return the value
@@ -59,9 +60,14 @@ export class LocaleStringHydrator {
             });
         }
         if (entity.translations.length) {
-            const translated = translateDeep(entity, ctx.languageCode);
+            const translated = this.translator.translate(entity, ctx);
             for (const localeStringProp of Object.keys(entity.translations[0])) {
-                if (localeStringProp === 'base' || localeStringProp === 'languageCode') {
+                if (
+                    localeStringProp === 'base' ||
+                    localeStringProp === 'id' ||
+                    localeStringProp === 'createdAt' ||
+                    localeStringProp === 'updatedAt'
+                ) {
                     continue;
                 }
                 if (localeStringProp === 'customFields') {

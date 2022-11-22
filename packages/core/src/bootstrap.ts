@@ -13,6 +13,7 @@ import { RuntimeVendureConfig, VendureConfig } from './config/vendure-config';
 import { Administrator } from './entity/administrator/administrator.entity';
 import { coreEntitiesMap } from './entity/entities';
 import { registerCustomEntityFields } from './entity/register-custom-entity-fields';
+import { runEntityMetadataModifiers } from './entity/run-entity-metadata-modifiers';
 import { setEntityIdStrategy } from './entity/set-entity-id-strategy';
 import { validateCustomFieldsConfig } from './entity/validate-custom-fields-config';
 import { getConfigurationFunction, getEntitiesFromPlugins } from './plugin/plugin-metadata';
@@ -97,9 +98,7 @@ export async function bootstrap(userConfig: Partial<VendureConfig>): Promise<INe
 export async function bootstrapWorker(userConfig: Partial<VendureConfig>): Promise<VendureWorker> {
     const vendureConfig = await preBootstrapConfig(userConfig);
     const config = disableSynchronize(vendureConfig);
-    if (config.logger instanceof DefaultLogger) {
-        config.logger.setDefaultContext('Vendure Worker');
-    }
+    config.logger.setDefaultContext?.('Vendure Worker');
     Logger.useLogger(config.logger);
     Logger.info(`Bootstrapping Vendure Worker (pid: ${process.pid})...`);
 
@@ -133,7 +132,10 @@ export async function preBootstrapConfig(
     setConfig({
         dbConnectionOptions: {
             entities,
-            subscribers: Object.values(coreSubscribersMap) as Array<Type<EntitySubscriberInterface>>,
+            subscribers: [
+                ...(userConfig.dbConnectionOptions?.subscribers ?? []),
+                ...(Object.values(coreSubscribersMap) as Array<Type<EntitySubscriberInterface>>),
+            ],
         },
     });
 
@@ -147,6 +149,7 @@ export async function preBootstrapConfig(
     }
     config = await runPluginConfigurations(config);
     registerCustomEntityFields(config);
+    await runEntityMetadataModifiers(config);
     setExposedHeaders(config);
     return config;
 }

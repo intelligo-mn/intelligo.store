@@ -46,7 +46,7 @@ textarea,
 
 input,
 select {
-    border-radius: 3px !important;
+    border-radius: var(--border-radius-input) !important;
     border: 1px solid var(--color-grey-300) !important;
     padding: 5px !important;
     height: initial !important;
@@ -95,10 +95,6 @@ clr-input-container.expand {
     }
 }
 
-clr-select-container {
-    margin-bottom: 18px;
-}
-
 .tooltip.tooltip-validation::before {
     top: 10px !important;
 }
@@ -108,6 +104,9 @@ select {
 }
 
 .select::after,
+.clr-select-wrapper {
+    max-height: inherit;
+}
 .clr-select-wrapper::after {
     z-index: 10;
     top: 13px;
@@ -127,12 +126,14 @@ select {
     }
     input {
         border: none !important;
-        padding: 0;
         background: none !important;
     }
 }
 .ng-select.ng-select-single > .ng-select-container {
     padding-top: 9px;
+    input {
+        padding-left: 0 !important;
+    }
 }
 .ng-select.ng-select-focused > .ng-select-container {
     border-color: var(--color-primary-500) !important;
@@ -143,5 +144,5 @@ select {
     background: var(--color-form-input-bg) !important;
 }
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    background-color: var(--color-grey-100);
+    background-color: var(--color-grey-200);
 }

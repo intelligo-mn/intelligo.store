@@ -5,13 +5,16 @@ import {
     SUPER_ADMIN_USER_PASSWORD,
 } from '@vendure/common/lib/shared-constants';
 
+import { TypeORMHealthCheckStrategy } from '../health-check/typeorm-health-check-strategy';
 import { InMemoryJobQueueStrategy } from '../job-queue/in-memory-job-queue-strategy';
 import { InMemoryJobBufferStorageStrategy } from '../job-queue/job-buffer/in-memory-job-buffer-storage-strategy';
 
+import { DefaultAssetImportStrategy } from './asset-import-strategy/default-asset-import-strategy';
 import { DefaultAssetNamingStrategy } from './asset-naming-strategy/default-asset-naming-strategy';
 import { NoAssetPreviewStrategy } from './asset-preview-strategy/no-asset-preview-strategy';
 import { NoAssetStorageStrategy } from './asset-storage-strategy/no-asset-storage-strategy';
 import { BcryptPasswordHashingStrategy } from './auth/bcrypt-password-hashing-strategy';
+import { DefaultPasswordValidationStrategy } from './auth/default-password-validation-strategy';
 import { NativeAuthenticationStrategy } from './auth/native-authentication-strategy';
 import { defaultCollectionFilters } from './catalog/default-collection-filters';
 import { DefaultProductVariantPriceCalculationStrategy } from './catalog/default-product-variant-price-calculation-strategy';
@@ -64,6 +67,7 @@ export const defaultConfig: RuntimeVendureConfig = {
             credentials: true,
         },
         middleware: [],
+        introspection: true,
         apolloServerPlugins: [],
     },
     authOptions: {
@@ -87,6 +91,7 @@ export const defaultConfig: RuntimeVendureConfig = {
         adminAuthenticationStrategy: [new NativeAuthenticationStrategy()],
         customPermissions: [],
         passwordHashingStrategy: new BcryptPasswordHashingStrategy(),
+        passwordValidationStrategy: new DefaultPasswordValidationStrategy({ minLength: 4 }),
     },
     catalogOptions: {
         collectionFilters: defaultCollectionFilters,
@@ -108,6 +113,7 @@ export const defaultConfig: RuntimeVendureConfig = {
     entityOptions: {
         channelCacheTtl: 30000,
         zoneCacheTtl: 30000,
+        metadataModifiers: [],
     },
     promotionOptions: {
         promotionConditions: defaultPromotionConditions,
@@ -143,12 +149,14 @@ export const defaultConfig: RuntimeVendureConfig = {
     },
     importExportOptions: {
         importAssetsDir: __dirname,
+        assetImportStrategy: new DefaultAssetImportStrategy(),
     },
     jobQueueOptions: {
         jobQueueStrategy: new InMemoryJobQueueStrategy(),
         jobBufferStorageStrategy: new InMemoryJobBufferStorageStrategy(),
         activeQueues: [],
         enableWorkerHealthCheck: false,
+        prefix: '',
     },
     customFields: {
         Address: [],
@@ -178,4 +186,7 @@ export const defaultConfig: RuntimeVendureConfig = {
         Zone: [],
     },
     plugins: [],
+    systemOptions: {
+        healthChecks: [new TypeORMHealthCheckStrategy()],
+    },
 };

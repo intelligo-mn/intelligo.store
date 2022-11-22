@@ -1,13 +1,15 @@
 import { REQUEST_CONTEXT_KEY } from '@vendure/core/dist/common/constants';
 import { Request } from 'express';
 
-import { AssetServerOptions } from './types';
+import { AssetServerOptions, ImageTransformFormat } from './types';
 
 export function getAssetUrlPrefixFn(options: AssetServerOptions) {
     const { assetUrlPrefix, route } = options;
     if (assetUrlPrefix == null) {
-        return (request: Request, identifier: string) =>
-            `${request.protocol}://${request.get('host')}/${route}/`;
+        return (request: Request, identifier: string) => {
+            const protocol = request.headers['x-forwarded-proto'] ?? request.protocol;
+            return `${protocol}://${request.get('host')}/${route}/`;
+        };
     }
     if (typeof assetUrlPrefix === 'string') {
         return (...args: any[]) => assetUrlPrefix;
@@ -19,4 +21,20 @@ export function getAssetUrlPrefixFn(options: AssetServerOptions) {
         };
     }
     throw new Error(`The assetUrlPrefix option was of an unexpected type: ${JSON.stringify(assetUrlPrefix)}`);
+}
+
+export function getValidFormat(format?: unknown): ImageTransformFormat | undefined {
+    if (typeof format !== 'string') {
+        return undefined;
+    }
+    switch (format) {
+        case 'jpg':
+        case 'jpeg':
+        case 'png':
+        case 'webp':
+        case 'avif':
+            return format;
+        default:
+            return undefined;
+    }
 }

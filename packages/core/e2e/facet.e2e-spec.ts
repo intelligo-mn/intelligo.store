@@ -8,6 +8,8 @@ import { testConfig, TEST_SETUP_TIMEOUT_MS } from '../../../e2e-common/test-conf
 
 import { FACET_VALUE_FRAGMENT, FACET_WITH_VALUES_FRAGMENT } from './graphql/fragments';
 import {
+    AssignFacetsToChannelMutation,
+    AssignFacetsToChannelMutationVariables,
     AssignProductsToChannel,
     ChannelFragment,
     CreateChannel,
@@ -19,10 +21,16 @@ import {
     DeletionResult,
     FacetWithValues,
     GetFacetList,
+    GetFacetListSimple,
+    GetFacetListSimpleQuery,
     GetFacetWithValues,
     GetProductListWithVariants,
+    GetProductWithFacetValues,
     GetProductWithVariants,
     LanguageCode,
+    RemoveCollectionsFromChannelMutationVariables,
+    RemoveFacetsFromChannelMutation,
+    RemoveFacetsFromChannelMutationVariables,
     UpdateFacet,
     UpdateFacetValues,
     UpdateProduct,
@@ -132,12 +140,13 @@ describe('Facet resolver', () => {
     });
 
     it('updateFacetValues', async () => {
+        const portableFacetValue = speakerTypeFacet.values.find(v => v.code === 'portable')!;
         const result = await adminClient.query<UpdateFacetValues.Mutation, UpdateFacetValues.Variables>(
             UPDATE_FACET_VALUES,
             {
                 input: [
                     {
-                        id: speakerTypeFacet.values[0].id,
+                        id: portableFacetValue.id,
                         code: 'compact',
                     },
                 ],
@@ -178,6 +187,52 @@ describe('Facet resolver', () => {
         expect(result.facet!.name).toBe('Speaker Category');
     });
 
+    it('product.facetValues resolver omits private facets in shop-api', async () => {
+        const publicFacetValue = brandFacet.values[0];
+        const privateFacetValue = speakerTypeFacet.values[0];
+        await adminClient.query<UpdateProduct.Mutation, UpdateProduct.Variables>(UPDATE_PRODUCT, {
+            input: {
+                id: 'T_1',
+                facetValueIds: [publicFacetValue.id, privateFacetValue.id],
+            },
+        });
+        const { product } = await shopClient.query<
+            GetProductWithFacetValues.Query,
+            GetProductWithFacetValues.Variables
+        >(GET_PRODUCT_WITH_FACET_VALUES, {
+            id: 'T_1',
+        });
+
+        expect(product?.facetValues.map(v => v.id).includes(publicFacetValue.id)).toBe(true);
+        expect(product?.facetValues.map(v => v.id).includes(privateFacetValue.id)).toBe(false);
+    });
+
+    it('productVariant.facetValues resolver omits private facets in shop-api', async () => {
+        const publicFacetValue = brandFacet.values[0];
+        const privateFacetValue = speakerTypeFacet.values[0];
+        await adminClient.query<UpdateProductVariants.Mutation, UpdateProductVariants.Variables>(
+            UPDATE_PRODUCT_VARIANTS,
+            {
+                input: [
+                    {
+                        id: 'T_1',
+                        facetValueIds: [publicFacetValue.id, privateFacetValue.id],
+                    },
+                ],
+            },
+        );
+        const { product } = await shopClient.query<
+            GetProductWithFacetValues.Query,
+            GetProductWithFacetValues.Variables
+        >(GET_PRODUCT_WITH_FACET_VALUES, {
+            id: 'T_1',
+        });
+
+        const productVariant1 = product?.variants.find(v => v.id === 'T_1');
+        expect(productVariant1?.facetValues.map(v => v.id).includes(publicFacetValue.id)).toBe(true);
+        expect(productVariant1?.facetValues.map(v => v.id).includes(privateFacetValue.id)).toBe(false);
+    });
+
     describe('deletion', () => {
         let products: GetProductListWithVariants.Items[];
 
@@ -187,11 +242,13 @@ describe('Facet resolver', () => {
                 GET_PRODUCTS_LIST_WITH_VARIANTS,
             );
             products = result1.products.items;
+            const pcFacetValue = speakerTypeFacet.values.find(v => v.code === 'pc')!;
+            const hifiFacetValue = speakerTypeFacet.values.find(v => v.code === 'hi-fi')!;
 
             await adminClient.query<UpdateProduct.Mutation, UpdateProduct.Variables>(UPDATE_PRODUCT, {
                 input: {
                     id: products[0].id,
-                    facetValueIds: [speakerTypeFacet.values[0].id],
+                    facetValueIds: [pcFacetValue.id],
                 },
             });
 
@@ -201,7 +258,7 @@ describe('Facet resolver', () => {
                     input: [
                         {
                             id: products[0].variants[0].id,
-                            facetValueIds: [speakerTypeFacet.values[0].id],
+                            facetValueIds: [pcFacetValue.id],
                         },
                     ],
                 },
@@ -210,13 +267,13 @@ describe('Facet resolver', () => {
             await adminClient.query<UpdateProduct.Mutation, UpdateProduct.Variables>(UPDATE_PRODUCT, {
                 input: {
                     id: products[1].id,
-                    facetValueIds: [speakerTypeFacet.values[1].id],
+                    facetValueIds: [hifiFacetValue.id],
                 },
             });
         });
 
         it('deleteFacetValues deletes unused facetValue', async () => {
-            const facetValueToDelete = speakerTypeFacet.values[2];
+            const facetValueToDelete = speakerTypeFacet.values.find(v => v.code === 'compact')!;
             const result1 = await adminClient.query<DeleteFacetValues.Mutation, DeleteFacetValues.Variables>(
                 DELETE_FACET_VALUES,
                 {
@@ -242,7 +299,7 @@ describe('Facet resolver', () => {
         });
 
         it('deleteFacetValues for FacetValue in use returns NOT_DELETED', async () => {
-            const facetValueToDelete = speakerTypeFacet.values[0];
+            const facetValueToDelete = speakerTypeFacet.values.find(v => v.code === 'pc')!;
             const result1 = await adminClient.query<DeleteFacetValues.Mutation, DeleteFacetValues.Variables>(
                 DELETE_FACET_VALUES,
                 {
@@ -260,7 +317,7 @@ describe('Facet resolver', () => {
             expect(result1.deleteFacetValues).toEqual([
                 {
                     result: DeletionResult.NOT_DELETED,
-                    message: `The selected FacetValue is assigned to 1 Product, 1 ProductVariant`,
+                    message: `The FacetValue "pc" is assigned to 1 Product, 1 ProductVariant`,
                 },
             ]);
 
@@ -268,7 +325,7 @@ describe('Facet resolver', () => {
         });
 
         it('deleteFacetValues for FacetValue in use can be force deleted', async () => {
-            const facetValueToDelete = speakerTypeFacet.values[0];
+            const facetValueToDelete = speakerTypeFacet.values.find(v => v.code === 'pc')!;
             const result1 = await adminClient.query<DeleteFacetValues.Mutation, DeleteFacetValues.Variables>(
                 DELETE_FACET_VALUES,
                 {
@@ -320,7 +377,7 @@ describe('Facet resolver', () => {
 
             expect(result1.deleteFacet).toEqual({
                 result: DeletionResult.NOT_DELETED,
-                message: `The selected Facet includes FacetValues which are assigned to 1 Product`,
+                message: `The Facet "speaker-type" includes FacetValues which are assigned to 1 Product`,
             });
 
             expect(result2.facet).not.toBe(null);
@@ -383,6 +440,7 @@ describe('Facet resolver', () => {
 
     describe('channels', () => {
         const SECOND_CHANNEL_TOKEN = 'second_channel_token';
+        let secondChannel: ChannelFragment;
         let createdFacet: CreateFacet.CreateFacet;
 
         beforeAll(async () => {
@@ -401,12 +459,14 @@ describe('Facet resolver', () => {
                 },
             });
 
+            secondChannel = createChannel as ChannelFragment;
+
             const { assignProductsToChannel } = await adminClient.query<
                 AssignProductsToChannel.Mutation,
                 AssignProductsToChannel.Variables
             >(ASSIGN_PRODUCT_TO_CHANNEL, {
                 input: {
-                    channelId: (createChannel as ChannelFragment).id,
+                    channelId: secondChannel.id,
                     productIds: ['T_1'],
                     priceFactor: 0.5,
                 },
@@ -587,6 +647,91 @@ describe('Facet resolver', () => {
                 );
             }, `No Facet with the id '1' could be found`),
         );
+
+        it('removing from channel with error', async () => {
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: before } = await adminClient.query<GetFacetListSimpleQuery>(
+                GET_FACET_LIST_SIMPLE,
+            );
+            expect(before.items).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
+            const { removeFacetsFromChannel } = await adminClient.query<
+                RemoveFacetsFromChannelMutation,
+                RemoveFacetsFromChannelMutationVariables
+            >(REMOVE_FACETS_FROM_CHANNEL, {
+                input: {
+                    channelId: secondChannel.id,
+                    facetIds: [createdFacet.id],
+                    force: false,
+                },
+            });
+
+            expect(removeFacetsFromChannel).toEqual([
+                {
+                    errorCode: 'FACET_IN_USE_ERROR',
+                    message:
+                        'The Facet "channel-facet" includes FacetValues which are assigned to 1 Product 1 ProductVariant',
+                    productCount: 1,
+                    variantCount: 1,
+                },
+            ]);
+
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: after } = await adminClient.query<GetFacetListSimpleQuery>(GET_FACET_LIST_SIMPLE);
+            expect(after.items).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+        });
+
+        it('force removing from channel', async () => {
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: before } = await adminClient.query<GetFacetListSimpleQuery>(
+                GET_FACET_LIST_SIMPLE,
+            );
+            expect(before.items).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
+            const { removeFacetsFromChannel } = await adminClient.query<
+                RemoveFacetsFromChannelMutation,
+                RemoveFacetsFromChannelMutationVariables
+            >(REMOVE_FACETS_FROM_CHANNEL, {
+                input: {
+                    channelId: secondChannel.id,
+                    facetIds: [createdFacet.id],
+                    force: true,
+                },
+            });
+
+            expect(removeFacetsFromChannel).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: after } = await adminClient.query<GetFacetListSimpleQuery>(GET_FACET_LIST_SIMPLE);
+            expect(after.items).toEqual([]);
+        });
+
+        it('assigning to channel', async () => {
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: before } = await adminClient.query<GetFacetListSimpleQuery>(
+                GET_FACET_LIST_SIMPLE,
+            );
+            expect(before.items).toEqual([]);
+
+            adminClient.setChannelToken(E2E_DEFAULT_CHANNEL_TOKEN);
+            const { assignFacetsToChannel } = await adminClient.query<
+                AssignFacetsToChannelMutation,
+                AssignFacetsToChannelMutationVariables
+            >(ASSIGN_FACETS_TO_CHANNEL, {
+                input: {
+                    channelId: secondChannel.id,
+                    facetIds: [createdFacet.id],
+                },
+            });
+
+            expect(assignFacetsToChannel).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+
+            adminClient.setChannelToken(SECOND_CHANNEL_TOKEN);
+            const { facets: after } = await adminClient.query<GetFacetListSimpleQuery>(GET_FACET_LIST_SIMPLE);
+            expect(after.items).toEqual([{ id: 'T_4', name: 'Channel Facet' }]);
+        });
     });
 
     // https://github.com/vendure-ecommerce/vendure/issues/715
@@ -672,6 +817,27 @@ const DELETE_FACET = gql`
     }
 `;
 
+const GET_PRODUCT_WITH_FACET_VALUES = gql`
+    query GetProductWithFacetValues($id: ID!) {
+        product(id: $id) {
+            id
+            facetValues {
+                id
+                name
+                code
+            }
+            variants {
+                id
+                facetValues {
+                    id
+                    name
+                    code
+                }
+            }
+        }
+    }
+`;
+
 const GET_PRODUCTS_LIST_WITH_VARIANTS = gql`
     query GetProductListWithVariants {
         products {
@@ -704,4 +870,30 @@ export const UPDATE_FACET_VALUES = gql`
         }
     }
     ${FACET_VALUE_FRAGMENT}
+`;
+
+export const ASSIGN_FACETS_TO_CHANNEL = gql`
+    mutation AssignFacetsToChannel($input: AssignFacetsToChannelInput!) {
+        assignFacetsToChannel(input: $input) {
+            id
+            name
+        }
+    }
+`;
+
+export const REMOVE_FACETS_FROM_CHANNEL = gql`
+    mutation RemoveFacetsFromChannel($input: RemoveFacetsFromChannelInput!) {
+        removeFacetsFromChannel(input: $input) {
+            ... on Facet {
+                id
+                name
+            }
+            ... on FacetInUseError {
+                errorCode
+                message
+                productCount
+                variantCount
+            }
+        }
+    }
 `;

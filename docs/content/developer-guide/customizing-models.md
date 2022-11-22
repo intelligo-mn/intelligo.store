@@ -19,7 +19,7 @@ const config = {
       { name: 'shortName', type: 'localeString' },
     ],
     User: [
-      { name: 'socialLoginToken', type: 'string' },
+      { name: 'socialLoginToken', type: 'string', unique: true },
     ],
   },
 }
@@ -204,9 +204,13 @@ However, this sacrifices type safety. To make our custom fields type-safe we can
 
 ```TypeScript
 // types.ts
-import { CustomProductFields } from '@vendure/core';
 
-declare module '@vendure/core' {
+// Note: we are using deep a import here, rather than importing from `@vendure/core` due to 
+// a possible bug in TypeScript (https://github.com/microsoft/TypeScript/issues/46617) which
+// causes issues when multiple plugins extend the same custom fields interface.
+import { CustomProductFields } from '@vendure/core/dist/entity/custom-entity-fields';
+
+declare module '@vendure/core/dist/entity/custom-entity-fields' {
   interface CustomProductFields {
     infoUrl: string;
     downloadable: boolean;
@@ -342,7 +346,7 @@ Some custom fields may be used internally in your business logic, or for integra
 
 * `public: false` means that it will not be exposed via the Shop API.
 * `readonly: true` means it will be exposed, but cannot be updated via the Admin API. It can only be changed programmatically in plugin code.
-* `internal: false` - means the field _will not_ be exposed via either the Shop or Admin GraphQL APIs. Internal custom fields are useful for purely internal implementation details.
+* `internal: false` - means the field _will_ be exposed via the GraphQL APIs (in this case on the Admin API due to the `public: false` setting). If it was set to `internal: true`, then the field would not be exposed _at all_ in either of the GraphQL APIs, and will not be visible in the Admin UI. Internal custom fields are useful for purely internal implementation details.
 
 ```TypeScript
 Customer: [
@@ -353,7 +357,7 @@ Customer: [
     readonly: true,
     internal: false,
   },
-]
+],
 ```
 
 ### Relations
@@ -401,11 +405,7 @@ mutation {
 {{% alert %}}
 **UI for relation type**
 
-The Admin UI app has built-in selection components for "relation" custom fields which reference certain common entity types, such as Asset, Product, ProductVariant and Customer. If you are relating to an entity not covered by the built-in selection components, you will instead see the message:
+The Admin UI app has built-in selection components for "relation" custom fields which reference certain common entity types, such as Asset, Product, ProductVariant and Customer. If you are relating to an entity not covered by the built-in selection components, you will see a generic relation component which allows you to manually enter the ID of the entity you wish to select.
 
-```text
-No input component configured for "<entity>" type
-```
-
-In this case, you will need to create a UI extension which defines a custom field control for that custom field. You can read more about this in the [custom form input guide]({{< relref "custom-form-inputs" >}})
+If the generic selector is not suitable, or is you wish to replace one of the built-in selector components, you can create a UI extension which defines a custom field control for that custom field. You can read more about this in the [custom form input guide]({{< relref "custom-form-inputs" >}})
 {{< /alert >}}

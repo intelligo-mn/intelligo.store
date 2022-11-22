@@ -13,6 +13,7 @@ import { shopErrorOperationTypeResolvers } from '../../common/error/generated-gr
 import { Translatable } from '../../common/types/locale-types';
 import { ConfigService } from '../../config/config.service';
 import { CustomFieldConfig, RelationCustomFieldConfig } from '../../config/custom-field/custom-field-types';
+import { getPluginAPIExtensions } from '../../plugin/plugin-metadata';
 import { CustomFieldRelationResolverService } from '../common/custom-field-relation-resolver.service';
 import { ApiType } from '../common/get-api-type';
 import { RequestContext } from '../common/request-context';
@@ -118,8 +119,8 @@ export function generateResolvers(
 
     const resolvers =
         apiType === 'admin'
-            ? { ...commonResolvers, ...adminResolvers }
-            : { ...commonResolvers, ...shopResolvers };
+            ? { ...commonResolvers, ...adminResolvers, ...getCustomScalars(configService, 'admin') }
+            : { ...commonResolvers, ...shopResolvers, ...getCustomScalars(configService, 'shop') };
     return resolvers;
 }
 
@@ -157,15 +158,24 @@ function generateCustomFieldRelationResolvers(
                 [ENTITY_ID_KEY]: source.id,
             };
         };
-        adminResolvers[entityName] = {
+        const resolverObject = {
             customFields: customFieldResolver,
         };
+        adminResolvers[entityName] = resolverObject;
         if (!excludeFromShopApi) {
-            shopResolvers[entityName] = {
-                customFields: customFieldResolver,
-            };
+            shopResolvers[entityName] = resolverObject;
+            if (entityName === 'ShippingMethod') {
+                shopResolvers.ShippingMethodQuote = resolverObject;
+            }
+            if (entityName === 'PaymentMethod') {
+                shopResolvers.PaymentMethodQuote = resolverObject;
+            }
         }
         for (const fieldDef of relationCustomFields) {
+            if (fieldDef.internal === true) {
+                // Do not create any resolvers for internal relations
+                continue;
+            }
             const relationResolver: IFieldResolver<any, any> = async (
                 source: any,
                 args: any,
@@ -198,6 +208,18 @@ function generateCustomFieldRelationResolvers(
         }
     }
     return { adminResolvers, shopResolvers };
+}
+
+function getCustomScalars(configService: ConfigService, apiType: 'admin' | 'shop') {
+    return getPluginAPIExtensions(configService.plugins, apiType)
+        .map(e => (typeof e.scalars === 'function' ? e.scalars() : e.scalars ?? {}))
+        .reduce(
+            (all, scalarMap) => ({
+                ...all,
+                ...scalarMap,
+            }),
+            {},
+        );
 }
 
 function isRelationalType(input: CustomFieldConfig): input is RelationCustomFieldConfig {

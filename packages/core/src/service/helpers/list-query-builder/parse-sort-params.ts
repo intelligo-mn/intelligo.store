@@ -5,6 +5,7 @@ import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';
 
 import { UserInputError } from '../../../common/error/errors';
 import { NullOptionals, SortParameter } from '../../../common/types/common-types';
+import { CustomFieldConfig } from '../../../config/index';
 import { VendureEntity } from '../../../entity/base/base.entity';
 
 import { escapeCalculatedColumnExpression, getColumnMetadata } from './connection-utils';
@@ -22,11 +23,14 @@ export function parseSortParams<T extends VendureEntity>(
     entity: Type<T>,
     sortParams?: NullOptionals<SortParameter<T>> | null,
     customPropertyMap?: { [name: string]: string },
+    entityAlias?: string,
+    customFields?: CustomFieldConfig[],
 ): OrderByCondition {
     if (!sortParams || Object.keys(sortParams).length === 0) {
         return {};
     }
-    const { columns, translationColumns, alias } = getColumnMetadata(connection, entity);
+    const { columns, translationColumns, alias: defaultAlias } = getColumnMetadata(connection, entity);
+    const alias = entityAlias ?? defaultAlias;
     const calculatedColumns = getCalculatedColumns(entity);
     const output: OrderByCondition = {};
     for (const [key, order] of Object.entries(sortParams)) {
@@ -36,10 +40,17 @@ export function parseSortParams<T extends VendureEntity>(
             output[`${alias}.${matchingColumn.propertyPath}`] = order as any;
         } else if (translationColumns.find(c => c.propertyName === key)) {
             const translationsAlias = connection.namingStrategy.eagerJoinRelationAlias(alias, 'translations');
-            output[`${translationsAlias}.${key}`] = order as any;
+            const pathParts = [translationsAlias];
+            const isLocaleStringCustomField =
+                customFields?.find(f => f.name === key)?.type === 'localeString';
+            if (isLocaleStringCustomField) {
+                pathParts.push('customFields');
+            }
+            pathParts.push(key);
+            output[pathParts.join('.')] = order as any;
         } else if (calculatedColumnDef) {
             const instruction = calculatedColumnDef.listQuery;
-            if (instruction) {
+            if (instruction && instruction.expression) {
                 output[escapeCalculatedColumnExpression(connection, instruction.expression)] = order as any;
             }
         } else if (customPropertyMap?.[key]) {

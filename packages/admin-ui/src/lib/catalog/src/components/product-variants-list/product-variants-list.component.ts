@@ -33,7 +33,7 @@ import { PaginationInstance } from 'ngx-pagination';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-import { AssetChange } from '../product-assets/product-assets.component';
+import { AssetChange } from '../assets/assets.component';
 import {
     PaginationConfig,
     SelectedAssets,
@@ -145,6 +145,13 @@ export class ProductVariantsListComponent implements OnChanges, OnInit, OnDestro
             return match ? match.name : '';
         }
         return '';
+    }
+
+    getStockOnHandMinValue(variant: FormGroup) {
+        const effectiveOutOfStockThreshold = variant.get('useGlobalOutOfStockThreshold')?.value
+            ? this.globalOutOfStockThreshold
+            : variant.get('outOfStockThreshold')?.value;
+        return effectiveOutOfStockThreshold;
     }
 
     getSaleableStockLevel(variant: ProductVariant.Fragment) {

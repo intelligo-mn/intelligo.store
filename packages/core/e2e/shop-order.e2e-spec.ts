@@ -22,6 +22,9 @@ import {
 import { countryCodeShippingEligibilityChecker } from './fixtures/test-shipping-eligibility-checkers';
 import {
     AttemptLogin,
+    CanceledOrderFragment,
+    CancelOrderMutation,
+    CancelOrderMutationVariables,
     CreateAddressInput,
     CreateShippingMethod,
     CreateShippingMethodInput,
@@ -65,6 +68,7 @@ import {
 } from './graphql/generated-e2e-shop-types';
 import {
     ATTEMPT_LOGIN,
+    CANCEL_ORDER,
     CREATE_SHIPPING_METHOD,
     DELETE_PRODUCT,
     DELETE_PRODUCT_VARIANT,
@@ -126,6 +130,8 @@ describe('Shop orders', () => {
                     { name: 'notes', type: 'string' },
                     { name: 'privateField', type: 'string', public: false },
                     { name: 'lineImage', type: 'relation', entity: Asset },
+                    { name: 'lineImages', type: 'relation', list: true, entity: Asset },
+                    { name: 'dropShip', type: 'boolean', defaultValue: false },
                 ],
             },
             orderOptions: {
@@ -138,6 +144,7 @@ describe('Shop orders', () => {
         | UpdatedOrderFragment
         | TestOrderFragmentFragment
         | TestOrderWithPaymentsFragment
+        | CanceledOrderFragment
         | ActiveOrderCustomerFragment;
     const orderResultGuard: ErrorResultGuard<OrderSuccessResult> = createErrorResultGuard(
         input => !!input.lines,
@@ -274,6 +281,9 @@ describe('Shop orders', () => {
                                 lineImage {
                                     id
                                 }
+                                lineImages {
+                                    id
+                                }
                             }
                         }
                     }
@@ -375,6 +385,77 @@ describe('Shop orders', () => {
                 );
             });
 
+            // https://github.com/vendure-ecommerce/vendure/issues/1670
+            it('adding a second item after adjusting custom field adds new OrderLine', async () => {
+                const { addItemToOrder: add1 } = await shopClient.query<AddItemToOrder.Mutation>(
+                    ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
+                    {
+                        productVariantId: 'T_3',
+                        quantity: 1,
+                    },
+                );
+                orderResultGuard.assertSuccess(add1);
+                expect(add1!.lines.length).toBe(2);
+                expect(add1!.lines[1].quantity).toBe(1);
+
+                const { adjustOrderLine } = await shopClient.query(ADJUST_ORDER_LINE_WITH_CUSTOM_FIELDS, {
+                    orderLineId: add1.lines[1].id,
+                    quantity: 1,
+                    customFields: {
+                        notes: 'updated notes',
+                    },
+                });
+                expect(adjustOrderLine.lines[1].customFields).toEqual({
+                    lineImage: null,
+                    lineImages: [],
+                    notes: 'updated notes',
+                });
+                const { activeOrder: ao1 } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
+                expect(ao1.lines[1].customFields).toEqual({
+                    lineImage: null,
+                    lineImages: [],
+                    notes: 'updated notes',
+                });
+                const updatedNotesLineId = ao1.lines[1].id;
+
+                const { addItemToOrder: add2 } = await shopClient.query<AddItemToOrder.Mutation>(
+                    ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
+                    {
+                        productVariantId: 'T_3',
+                        quantity: 1,
+                    },
+                );
+                orderResultGuard.assertSuccess(add2);
+                expect(add2!.lines.length).toBe(3);
+                expect(add2!.lines[1].quantity).toBe(1);
+                expect(add2!.lines[2].quantity).toBe(1);
+
+                const { activeOrder } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
+                expect(activeOrder.lines.find((l: any) => l.id === updatedNotesLineId)?.customFields).toEqual(
+                    {
+                        lineImage: null,
+                        lineImages: [],
+                        notes: 'updated notes',
+                    },
+                );
+
+                // clean up
+                await shopClient.query<RemoveItemFromOrder.Mutation, RemoveItemFromOrder.Variables>(
+                    REMOVE_ITEM_FROM_ORDER,
+                    {
+                        orderLineId: add2!.lines[1].id,
+                    },
+                );
+                const { removeOrderLine } = await shopClient.query<
+                    RemoveItemFromOrder.Mutation,
+                    RemoveItemFromOrder.Variables
+                >(REMOVE_ITEM_FROM_ORDER, {
+                    orderLineId: add2!.lines[2].id,
+                });
+                orderResultGuard.assertSuccess(removeOrderLine);
+                expect(removeOrderLine.lines.length).toBe(1);
+            });
+
             it('addItemToOrder with relation customField', async () => {
                 const { addItemToOrder } = await shopClient.query<AddItemToOrder.Mutation>(
                     ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
@@ -440,28 +521,6 @@ describe('Shop orders', () => {
 
             it('adjustOrderLine updates relation reference', async () => {
                 const { activeOrder } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
-
-                const ADJUST_ORDER_LINE_WITH_CUSTOM_FIELDS = gql`
-                    mutation ($orderLineId: ID!, $quantity: Int!, $customFields: OrderLineCustomFieldsInput) {
-                        adjustOrderLine(
-                            orderLineId: $orderLineId
-                            quantity: $quantity
-                            customFields: $customFields
-                        ) {
-                            ... on Order {
-                                lines {
-                                    id
-                                    customFields {
-                                        notes
-                                        lineImage {
-                                            id
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                `;
                 const { adjustOrderLine } = await shopClient.query(ADJUST_ORDER_LINE_WITH_CUSTOM_FIELDS, {
                     orderLineId: activeOrder.lines[2].id,
                     quantity: 1,
@@ -478,12 +537,95 @@ describe('Shop orders', () => {
                         orderLineId: activeOrder!.lines[2].id,
                     },
                 );
+                const { removeOrderLine } = await shopClient.query<
+                    RemoveItemFromOrder.Mutation,
+                    RemoveItemFromOrder.Variables
+                >(REMOVE_ITEM_FROM_ORDER, {
+                    orderLineId: activeOrder!.lines[1].id,
+                });
+                orderResultGuard.assertSuccess(removeOrderLine);
+                expect(removeOrderLine.lines.length).toBe(1);
+            });
+
+            it('addItemToOrder with list relation customField', async () => {
+                const { addItemToOrder } = await shopClient.query<AddItemToOrder.Mutation>(
+                    ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
+                    {
+                        productVariantId: 'T_3',
+                        quantity: 1,
+                        customFields: {
+                            lineImagesIds: ['T_1', 'T_2'],
+                        },
+                    },
+                );
+
+                orderResultGuard.assertSuccess(addItemToOrder);
+                expect(addItemToOrder!.lines.length).toBe(2);
+                expect(addItemToOrder!.lines[1].quantity).toBe(1);
+
+                const { activeOrder } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
+                expect(activeOrder.lines[1].customFields.lineImages.length).toBe(2);
+                expect(activeOrder.lines[1].customFields.lineImages).toContainEqual({ id: 'T_1' });
+                expect(activeOrder.lines[1].customFields.lineImages).toContainEqual({ id: 'T_2' });
+            });
+
+            it('addItemToOrder with equal list relation customField adds to quantity', async () => {
+                const { addItemToOrder } = await shopClient.query<AddItemToOrder.Mutation>(
+                    ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
+                    {
+                        productVariantId: 'T_3',
+                        quantity: 1,
+                        customFields: {
+                            lineImagesIds: ['T_1', 'T_2'],
+                        },
+                    },
+                );
+
+                orderResultGuard.assertSuccess(addItemToOrder);
+                expect(addItemToOrder!.lines.length).toBe(2);
+                expect(addItemToOrder!.lines[1].quantity).toBe(2);
+
+                const { activeOrder } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
+
+                expect(activeOrder.lines[1].customFields.lineImages.length).toBe(2);
+                expect(activeOrder.lines[1].customFields.lineImages).toContainEqual({ id: 'T_1' });
+                expect(activeOrder.lines[1].customFields.lineImages).toContainEqual({ id: 'T_2' });
+            });
+
+            it('addItemToOrder with different list relation customField adds new line', async () => {
+                const { addItemToOrder } = await shopClient.query<AddItemToOrder.Mutation>(
+                    ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS,
+                    {
+                        productVariantId: 'T_3',
+                        quantity: 1,
+                        customFields: {
+                            lineImagesIds: ['T_1'],
+                        },
+                    },
+                );
+
+                orderResultGuard.assertSuccess(addItemToOrder);
+                expect(addItemToOrder!.lines.length).toBe(3);
+                expect(addItemToOrder!.lines[2].quantity).toBe(1);
+
+                const { activeOrder } = await shopClient.query(GET_ORDER_WITH_ORDER_LINE_CUSTOM_FIELDS);
+
+                expect(activeOrder.lines[2].customFields.lineImages).toEqual([{ id: 'T_1' }]);
+
                 await shopClient.query<RemoveItemFromOrder.Mutation, RemoveItemFromOrder.Variables>(
                     REMOVE_ITEM_FROM_ORDER,
                     {
-                        orderLineId: activeOrder!.lines[1].id,
+                        orderLineId: activeOrder!.lines[2].id,
                     },
                 );
+                const { removeOrderLine } = await shopClient.query<
+                    RemoveItemFromOrder.Mutation,
+                    RemoveItemFromOrder.Variables
+                >(REMOVE_ITEM_FROM_ORDER, {
+                    orderLineId: activeOrder!.lines[1].id,
+                });
+                orderResultGuard.assertSuccess(removeOrderLine);
+                expect(removeOrderLine.lines.length).toBe(1);
             });
         });
 
@@ -559,7 +701,7 @@ describe('Shop orders', () => {
                 AdjustItemQuantity.Mutation,
                 AdjustItemQuantity.Variables
             >(ADJUST_ITEM_QUANTITY, {
-                orderLineId: 'T_8',
+                orderLineId: addItemToOrder!.order.lines[1].id,
                 quantity: 101,
             });
             orderResultGuard.assertErrorResult(adjustOrderLine);
@@ -575,7 +717,7 @@ describe('Shop orders', () => {
                 AdjustItemQuantity.Mutation,
                 AdjustItemQuantity.Variables
             >(ADJUST_ITEM_QUANTITY, {
-                orderLineId: 'T_8',
+                orderLineId: addItemToOrder!.order.lines[1].id,
                 quantity: 0,
             });
             orderResultGuard.assertSuccess(adjustLine2);
@@ -758,7 +900,7 @@ describe('Shop orders', () => {
             const address: CreateAddressInput = {
                 fullName: 'name',
                 company: 'company',
-                streetLine1: '12 the street',
+                streetLine1: '12 Shipping Street',
                 streetLine2: null,
                 city: 'foo',
                 province: 'bar',
@@ -776,7 +918,7 @@ describe('Shop orders', () => {
             expect(setOrderShippingAddress!.shippingAddress).toEqual({
                 fullName: 'name',
                 company: 'company',
-                streetLine1: '12 the street',
+                streetLine1: '12 Shipping Street',
                 streetLine2: null,
                 city: 'foo',
                 province: 'bar',
@@ -790,7 +932,7 @@ describe('Shop orders', () => {
             const address: CreateAddressInput = {
                 fullName: 'name',
                 company: 'company',
-                streetLine1: '12 the street',
+                streetLine1: '22 Billing Avenue',
                 streetLine2: null,
                 city: 'foo',
                 province: 'bar',
@@ -808,7 +950,7 @@ describe('Shop orders', () => {
             expect(setOrderBillingAddress!.billingAddress).toEqual({
                 fullName: 'name',
                 company: 'company',
-                streetLine1: '12 the street',
+                streetLine1: '22 Billing Avenue',
                 streetLine2: null,
                 city: 'foo',
                 province: 'bar',
@@ -898,11 +1040,18 @@ describe('Shop orders', () => {
             });
 
             // tslint:disable-next-line:no-non-null-assertion
-            const address = result.customer!.addresses![0];
-            expect(address.streetLine1).toBe('12 the street');
-            expect(address.postalCode).toBe('123456');
-            expect(address.defaultBillingAddress).toBe(true);
-            expect(address.defaultShippingAddress).toBe(true);
+            const shippingAddress = result.customer!.addresses!.find(a => a.defaultShippingAddress)!;
+            expect(shippingAddress.streetLine1).toBe('12 Shipping Street');
+            expect(shippingAddress.postalCode).toBe('123456');
+            expect(shippingAddress.defaultBillingAddress).toBe(false);
+            expect(shippingAddress.defaultShippingAddress).toBe(true);
+
+            // tslint:disable-next-line:no-non-null-assertion
+            const billingAddress = result.customer!.addresses!.find(a => a.defaultBillingAddress)!;
+            expect(billingAddress.streetLine1).toBe('22 Billing Avenue');
+            expect(billingAddress.postalCode).toBe('123456');
+            expect(billingAddress.defaultBillingAddress).toBe(true);
+            expect(billingAddress.defaultShippingAddress).toBe(false);
         });
     });
 
@@ -1831,6 +1980,7 @@ describe('Shop orders', () => {
             }, `No ProductVariant with the id '34' could be found`),
         );
 
+        let orderWithDeletedProductVariantId: string;
         it('errors when transitioning to ArrangingPayment with deleted variant', async () => {
             const orchidProductId = 'T_19';
             const orchidVariantId = 'T_33';
@@ -1845,6 +1995,7 @@ describe('Shop orders', () => {
             });
 
             orderResultGuard.assertSuccess(addItemToOrder);
+            orderWithDeletedProductVariantId = addItemToOrder.id;
 
             await adminClient.query<DeleteProduct.Mutation, DeleteProduct.Variables>(DELETE_PRODUCT, {
                 id: orchidProductId,
@@ -1862,6 +2013,22 @@ describe('Shop orders', () => {
                 `Cannot transition to "ArrangingPayment" because the Order contains ProductVariants which are no longer available`,
             );
             expect(transitionOrderToState!.errorCode).toBe(ErrorCode.ORDER_STATE_TRANSITION_ERROR);
+        });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/1567
+        it('allows transitioning to Cancelled with deleted variant', async () => {
+            const { cancelOrder } = await adminClient.query<
+                CancelOrderMutation,
+                CancelOrderMutationVariables
+            >(CANCEL_ORDER, {
+                input: {
+                    orderId: orderWithDeletedProductVariantId,
+                },
+            });
+
+            orderResultGuard.assertSuccess(cancelOrder);
+
+            expect(cancelOrder.state).toBe('Cancelled');
         });
     });
 
@@ -1989,6 +2156,121 @@ describe('Shop orders', () => {
             const result = await shopClient.query<GetActiveOrder.Query>(GET_ACTIVE_ORDER);
             expect(result.activeOrder?.shippingLines).toEqual([]);
         });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/1441
+        it('shipping methods are re-evaluated when all OrderLines are removed', async () => {
+            const { createShippingMethod } = await adminClient.query<
+                CreateShippingMethod.Mutation,
+                CreateShippingMethod.Variables
+            >(CREATE_SHIPPING_METHOD, {
+                input: {
+                    code: `min-price-shipping`,
+                    translations: [
+                        { languageCode: LanguageCode.en, name: `min price shipping`, description: '' },
+                    ],
+                    fulfillmentHandler: manualFulfillmentHandler.code,
+                    checker: {
+                        code: defaultShippingEligibilityChecker.code,
+                        arguments: [{ name: 'orderMinimum', value: '100' }],
+                    },
+                    calculator: {
+                        code: defaultShippingCalculator.code,
+                        arguments: [
+                            { name: 'rate', value: '1000' },
+                            { name: 'taxRate', value: '0' },
+                            { name: 'includesTax', value: 'auto' },
+                        ],
+                    },
+                },
+            });
+            const minPriceShippingMethodId = createShippingMethod.id;
+
+            await shopClient.query<SetShippingMethod.Mutation, SetShippingMethod.Variables>(
+                SET_SHIPPING_METHOD,
+                {
+                    id: minPriceShippingMethodId,
+                },
+            );
+            const result1 = await shopClient.query<GetActiveOrder.Query>(GET_ACTIVE_ORDER);
+            expect(result1.activeOrder?.shippingLines[0].shippingMethod.id).toBe(minPriceShippingMethodId);
+
+            const { removeAllOrderLines } = await shopClient.query<
+                RemoveAllOrderLines.Mutation,
+                RemoveAllOrderLines.Variables
+            >(REMOVE_ALL_ORDER_LINES);
+            orderResultGuard.assertSuccess(removeAllOrderLines);
+            expect(removeAllOrderLines.shippingLines.length).toBe(0);
+            expect(removeAllOrderLines.shippingWithTax).toBe(0);
+        });
+    });
+
+    describe('edge cases', () => {
+        it('calling setShippingMethod and setBillingMethod in parallel does not introduce race condition', async () => {
+            const shippingAddress: CreateAddressInput = {
+                fullName: 'name',
+                company: 'company',
+                streetLine1: '12 Shipping Street',
+                streetLine2: null,
+                city: 'foo',
+                province: 'bar',
+                postalCode: '123456',
+                countryCode: 'US',
+                phoneNumber: '4444444',
+            };
+            const billingAddress: CreateAddressInput = {
+                fullName: 'name',
+                company: 'company',
+                streetLine1: '22 Billing Avenue',
+                streetLine2: null,
+                city: 'foo',
+                province: 'bar',
+                postalCode: '123456',
+                countryCode: 'US',
+                phoneNumber: '4444444',
+            };
+
+            await Promise.all([
+                shopClient.query<SetBillingAddress.Mutation, SetBillingAddress.Variables>(
+                    SET_BILLING_ADDRESS,
+                    {
+                        input: billingAddress,
+                    },
+                ),
+                shopClient.query<SetShippingAddress.Mutation, SetShippingAddress.Variables>(
+                    SET_SHIPPING_ADDRESS,
+                    {
+                        input: shippingAddress,
+                    },
+                ),
+            ]);
+
+            const { activeOrder } = await shopClient.query(gql`
+                query {
+                    activeOrder {
+                        shippingAddress {
+                            ...OrderAddress
+                        }
+                        billingAddress {
+                            ...OrderAddress
+                        }
+                    }
+                }
+                fragment OrderAddress on OrderAddress {
+                    fullName
+                    company
+                    streetLine1
+                    streetLine2
+                    city
+                    province
+                    postalCode
+                    countryCode
+                    phoneNumber
+                }
+            `);
+
+            expect(activeOrder.shippingAddress).toEqual(shippingAddress);
+            expect(activeOrder.billingAddress).toEqual(billingAddress);
+        });
     });
 });
 
@@ -2053,4 +2335,25 @@ export const ADD_ITEM_TO_ORDER_WITH_CUSTOM_FIELDS = gql`
         }
     }
     ${UPDATED_ORDER_FRAGMENT}
+`;
+
+const ADJUST_ORDER_LINE_WITH_CUSTOM_FIELDS = gql`
+    mutation ($orderLineId: ID!, $quantity: Int!, $customFields: OrderLineCustomFieldsInput) {
+        adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity, customFields: $customFields) {
+            ... on Order {
+                lines {
+                    id
+                    customFields {
+                        notes
+                        lineImage {
+                            id
+                        }
+                        lineImages {
+                            id
+                        }
+                    }
+                }
+            }
+        }
+    }
 `;

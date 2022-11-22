@@ -8,6 +8,7 @@ import {
     BooleanOperators,
     DateOperators,
     FilterParameter,
+    ListOperators,
     NullOptionals,
     NumberOperators,
     StringOperators,
@@ -22,7 +23,7 @@ export interface WhereCondition {
     parameters: { [param: string]: string | number };
 }
 
-type AllOperators = StringOperators & BooleanOperators & NumberOperators & DateOperators;
+type AllOperators = StringOperators & BooleanOperators & NumberOperators & DateOperators & ListOperators;
 type Operator = { [K in keyof AllOperators]-?: K }[keyof AllOperators];
 
 export function parseFilterParams<T extends VendureEntity>(
@@ -30,11 +31,13 @@ export function parseFilterParams<T extends VendureEntity>(
     entity: Type<T>,
     filterParams?: NullOptionals<FilterParameter<T>> | null,
     customPropertyMap?: { [name: string]: string },
+    entityAlias?: string,
 ): WhereCondition[] {
     if (!filterParams) {
         return [];
     }
-    const { columns, translationColumns, alias } = getColumnMetadata(connection, entity);
+    const { columns, translationColumns, alias: defaultAlias } = getColumnMetadata(connection, entity);
+    const alias = entityAlias ?? defaultAlias;
     const calculatedColumns = getCalculatedColumns(entity);
     const output: WhereCondition[] = [];
     const dbType = connection.options.type;
@@ -95,11 +98,14 @@ function buildWhereCondition(
                 clause: `${fieldName} != :arg${argIndex}`,
                 parameters: { [`arg${argIndex}`]: convertDate(operand) },
             };
+        case 'inList':
         case 'contains': {
             const LIKE = dbType === 'postgres' ? 'ILIKE' : 'LIKE';
             return {
                 clause: `${fieldName} ${LIKE} :arg${argIndex}`,
-                parameters: { [`arg${argIndex}`]: `%${operand.trim()}%` },
+                parameters: {
+                    [`arg${argIndex}`]: `%${typeof operand === 'string' ? operand.trim() : operand}%`,
+                },
             };
         }
         case 'notContains': {

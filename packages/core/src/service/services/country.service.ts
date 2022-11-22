@@ -8,6 +8,7 @@ import {
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { UserInputError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { Translated } from '../../common/types/locale-types';
@@ -20,9 +21,7 @@ import { EventBus } from '../../event-bus';
 import { CountryEvent } from '../../event-bus/events/country-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
-import { translateDeep } from '../helpers/utils/translate-entity';
-
-import { ZoneService } from './zone.service';
+import { TranslatorService } from '../helpers/translator/translator.service';
 
 /**
  * @description
@@ -37,17 +36,19 @@ export class CountryService {
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
         private eventBus: EventBus,
+        private translator: TranslatorService,
     ) {}
 
     findAll(
         ctx: RequestContext,
         options?: ListQueryOptions<Country>,
+        relations: RelationPaths<Country> = [],
     ): Promise<PaginatedList<Translated<Country>>> {
         return this.listQueryBuilder
-            .build(Country, options, { ctx })
+            .build(Country, options, { ctx, relations })
             .getManyAndCount()
             .then(([countries, totalItems]) => {
-                const items = countries.map(country => translateDeep(country, ctx.languageCode));
+                const items = countries.map(country => this.translator.translate(country, ctx));
                 return {
                     items,
                     totalItems,
@@ -55,11 +56,15 @@ export class CountryService {
             });
     }
 
-    findOne(ctx: RequestContext, countryId: ID): Promise<Translated<Country> | undefined> {
+    findOne(
+        ctx: RequestContext,
+        countryId: ID,
+        relations: RelationPaths<Country> = [],
+    ): Promise<Translated<Country> | undefined> {
         return this.connection
             .getRepository(ctx, Country)
-            .findOne(countryId)
-            .then(country => country && translateDeep(country, ctx.languageCode));
+            .findOne(countryId, { relations })
+            .then(country => country && this.translator.translate(country, ctx));
     }
 
     /**
@@ -70,7 +75,7 @@ export class CountryService {
         return this.connection
             .getRepository(ctx, Country)
             .find({ where: { enabled: true } })
-            .then(items => items.map(country => translateDeep(country, ctx.languageCode)));
+            .then(items => items.map(country => this.translator.translate(country, ctx)));
     }
 
     /**
@@ -86,7 +91,7 @@ export class CountryService {
         if (!country) {
             throw new UserInputError('error.country-code-not-valid', { countryCode });
         }
-        return translateDeep(country, ctx.languageCode);
+        return this.translator.translate(country, ctx);
     }
 
     async create(ctx: RequestContext, input: CreateCountryInput): Promise<Translated<Country>> {
@@ -125,8 +130,9 @@ export class CountryService {
                 message: ctx.translate('message.country-used-in-addresses', { count: addressesUsingCountry }),
             };
         } else {
+            const deletedCountry = new Country(country);
             await this.connection.getRepository(ctx, Country).remove(country);
-            this.eventBus.publish(new CountryEvent(ctx, country, 'deleted', id));
+            this.eventBus.publish(new CountryEvent(ctx, deletedCountry, 'deleted', id));
             return {
                 result: DeletionResult.DELETED,
                 message: '',

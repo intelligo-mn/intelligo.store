@@ -4,7 +4,8 @@ export type Extension =
     | AdminUiExtension
     | TranslationExtension
     | StaticAssetExtension
-    | GlobalStylesExtension;
+    | GlobalStylesExtension
+    | SassVariableOverridesExtension;
 
 /**
  * @description
@@ -63,6 +64,22 @@ export interface GlobalStylesExtension {
      * incorporated into the Admin UI app global stylesheet.
      */
     globalStyles: string[] | string;
+}
+
+/**
+ * @description
+ * Defines an extension which allows overriding Clarity Design System's Sass variables used in styles on the Admin UI.
+ *
+ * @docsCategory UiDevkit
+ * @docsPage AdminUiExtension
+ */
+export interface SassVariableOverridesExtension {
+    /**
+     * @description
+     * Specifies a path to a Sass style file containing variable declarations, which will take precedence over
+     * default values defined in Clarity.
+     */
+    sassVariableOverrides: string;
 }
 
 /**
@@ -175,6 +192,14 @@ export interface AdminUiExtensionLazyModule {
 
 /**
  * @description
+ * Argument to configure process (watch or compile)
+ *
+ * @docsCategory UiDevkit
+ */
+export type UiExtensionCompilerProcessArgument = string | [string, any];
+
+/**
+ * @description
  * Options to configure how the Admin UI should be compiled.
  *
  * @docsCategory UiDevkit
@@ -218,6 +243,30 @@ export interface UiExtensionCompilerOptions {
      * @default 4200 | undefined
      */
     watchPort?: number;
+
+    /**
+     * @description
+     * Internally, the Angular CLI will be invoked as an npm script. By default, the compiler will use Yarn
+     * to run the script if it is detected, otherwise it will use npm. This setting allows you to explicitly
+     * set which command to use, rather than relying on the default behavior.
+     *
+     * @since 1.5.0
+     */
+    command?: 'yarn' | 'npm';
+
+    /**
+     * @description
+     * Additional command-line arguments which will get passed to the [ng build](https://angular.io/cli/build)
+     * command (or [ng serve](https://angular.io/cli/serve) if `devMode = true`).
+     *
+     * @example
+     * ['--disable-host-check'] // to disable host check
+     *
+     * @default undefined
+     *
+     * @since 1.5.0
+     */
+    additionalProcessArguments?: UiExtensionCompilerProcessArgument[];
 }
 
 export type Translations = {

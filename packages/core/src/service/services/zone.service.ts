@@ -21,8 +21,8 @@ import { Zone } from '../../entity/zone/zone.entity';
 import { EventBus } from '../../event-bus';
 import { ZoneEvent } from '../../event-bus/events/zone-event';
 import { ZoneMembersEvent } from '../../event-bus/events/zone-members-event';
+import { TranslatorService } from '../helpers/translator/translator.service';
 import { patchEntity } from '../helpers/utils/patch-entity';
-import { translateDeep } from '../helpers/utils/translate-entity';
 
 /**
  * @description
@@ -40,7 +40,8 @@ export class ZoneService {
         private connection: TransactionalConnection,
         private configService: ConfigService,
         private eventBus: EventBus,
-    ) { }
+        private translator: TranslatorService,
+    ) {}
 
     /** @internal */
     async initZones() {
@@ -48,7 +49,7 @@ export class ZoneService {
     }
 
     /**
-     * Creates a zones cache, that can be used to reduce number of zones queries to database 
+     * Creates a zones cache, that can be used to reduce number of zones queries to database
      *
      * @internal
      */
@@ -67,10 +68,10 @@ export class ZoneService {
     }
 
     async findAll(ctx: RequestContext): Promise<Zone[]> {
-        return this.zones.memoize([ctx.languageCode], [ctx], (zones, languageCode) => {
+        return this.zones.memoize([], [ctx], zones => {
             return zones.map((zone, i) => {
                 const cloneZone = { ...zone };
-                cloneZone.members = zone.members.map(country => translateDeep(country, languageCode));
+                cloneZone.members = zone.members.map(country => this.translator.translate(country, ctx));
                 return cloneZone;
             });
         });
@@ -84,7 +85,7 @@ export class ZoneService {
             })
             .then(zone => {
                 if (zone) {
-                    zone.members = zone.members.map(country => translateDeep(country, ctx.languageCode));
+                    zone.members = zone.members.map(country => this.translator.translate(country, ctx));
                     return zone;
                 }
             });
@@ -112,7 +113,7 @@ export class ZoneService {
 
     async delete(ctx: RequestContext, id: ID): Promise<DeletionResponse> {
         const zone = await this.connection.getEntityOrThrow(ctx, Zone, id);
-
+        const deletedZone = new Zone(zone);
         const channelsUsingZone = await this.connection
             .getRepository(ctx, Channel)
             .createQueryBuilder('channel')
@@ -145,7 +146,7 @@ export class ZoneService {
         } else {
             await this.connection.getRepository(ctx, Zone).remove(zone);
             await this.zones.refresh(ctx);
-            this.eventBus.publish(new ZoneEvent(ctx, zone, 'deleted', id));
+            this.eventBus.publish(new ZoneEvent(ctx, deletedZone, 'deleted', id));
             return {
                 result: DeletionResult.DELETED,
                 message: '',
@@ -188,11 +189,11 @@ export class ZoneService {
     }
 
     /**
-    * Ensures zones cache exists. If not, this method creates one.
-    */
+     * Ensures zones cache exists. If not, this method creates one.
+     */
     private async ensureCacheExists() {
         if (this.zones) {
-            return
+            return;
         }
 
         this.zones = await this.createCache();

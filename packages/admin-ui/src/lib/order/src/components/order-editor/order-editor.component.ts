@@ -20,10 +20,20 @@ import {
     ServerConfigService,
     SortOrder,
     SurchargeInput,
+    transformRelationCustomFieldInputs,
 } from '@vendure/admin-ui/core';
 import { assertNever, notNullOrUndefined } from '@vendure/common/lib/shared-utils';
-import { EMPTY, Observable, of } from 'rxjs';
-import { mapTo, shareReplay, switchMap, takeUntil } from 'rxjs/operators';
+import { simpleDeepClone } from '@vendure/common/lib/simple-deep-clone';
+import { concat, EMPTY, Observable, of, Subject } from 'rxjs';
+import {
+    distinctUntilChanged,
+    map,
+    mapTo,
+    shareReplay,
+    startWith,
+    switchMap,
+    takeUntil,
+} from 'rxjs/operators';
 
 import { OrderTransitionService } from '../../providers/order-transition.service';
 import {
@@ -54,10 +64,12 @@ type ModifyOrderData = Omit<ModifyOrderInput, 'addItems' | 'adjustOrderLines'> &
 })
 export class OrderEditorComponent
     extends BaseDetailComponent<OrderDetail.Fragment>
-    implements OnInit, OnDestroy {
+    implements OnInit, OnDestroy
+{
     availableCountries$: Observable<GetAvailableCountries.Items[]>;
     addressCustomFields: CustomFieldConfig[];
     detailForm = new FormGroup({});
+    couponCodesControl = new FormControl();
     orderLineCustomFieldsFormArray: FormArray;
     addItemCustomFieldsFormArray: FormArray;
     addItemCustomFieldsForm: FormGroup;
@@ -114,10 +126,14 @@ export class OrderEditorComponent
 
     ngOnInit(): void {
         this.init();
+        this.dataService.promotion.getPromotions();
         this.addressCustomFields = this.getCustomFieldConfig('Address');
         this.modifyOrderInput.orderId = this.route.snapshot.paramMap.get('id') as string;
         this.orderLineCustomFields = this.getCustomFieldConfig('OrderLine');
         this.entity$.pipe(takeUntil(this.destroy$)).subscribe(order => {
+            if (order.couponCodes.length) {
+                this.couponCodesControl.setValue(order.couponCodes);
+            }
             this.surchargeForm = new FormGroup({
                 description: new FormControl('', Validators.required),
                 sku: new FormControl(''),
@@ -178,6 +194,7 @@ export class OrderEditorComponent
                 this.orderLineCustomFieldsFormArray.push(formGroup);
             }
         });
+
         this.addItemCustomFieldsFormArray = new FormArray([]);
         this.addItemCustomFieldsForm = new FormGroup({});
         for (const customField of this.orderLineCustomFields) {
@@ -219,7 +236,8 @@ export class OrderEditorComponent
             !!surcharges?.length ||
             !!adjustOrderLines?.length ||
             (this.shippingAddressForm.dirty && this.shippingAddressForm.valid) ||
-            (this.billingAddressForm.dirty && this.billingAddressForm.valid)
+            (this.billingAddressForm.dirty && this.billingAddressForm.valid) ||
+            this.couponCodesControl.dirty
         );
     }
 
@@ -345,13 +363,20 @@ export class OrderEditorComponent
     }
 
     previewAndModify(order: OrderDetail.Fragment) {
-        const input: ModifyOrderInput = {
+        const modifyOrderInput: ModifyOrderData = {
             ...this.modifyOrderInput,
+            adjustOrderLines: this.modifyOrderInput.adjustOrderLines.map(line => {
+                return transformRelationCustomFieldInputs(simpleDeepClone(line), this.orderLineCustomFields);
+            }),
+        };
+        const input: ModifyOrderInput = {
+            ...modifyOrderInput,
             ...(this.billingAddressForm.dirty ? { updateBillingAddress: this.billingAddressForm.value } : {}),
             ...(this.shippingAddressForm.dirty
                 ? { updateShippingAddress: this.shippingAddressForm.value }
                 : {}),
             dryRun: true,
+            couponCodes: this.couponCodesControl.dirty ? this.couponCodesControl.value : undefined,
             note: this.note ?? '',
             options: {
                 recalculateShipping: this.recalculateShipping,
@@ -380,7 +405,10 @@ export class OrderEditorComponent
                         case 'OrderLimitError':
                         case 'OrderModificationStateError':
                         case 'PaymentMethodMissingError':
-                        case 'RefundPaymentIdMissingError': {
+                        case 'RefundPaymentIdMissingError':
+                        case 'CouponCodeLimitError':
+                        case 'CouponCodeExpiredError':
+                        case 'CouponCodeInvalidError': {
                             this.notificationService.error(modifyOrder.message);
                             return of(false as const);
                         }

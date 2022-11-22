@@ -13,8 +13,9 @@ import { unique } from '@vendure/common/lib/unique';
 import { FindOptionsUtils } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/decorators/relations.decorator';
 import { ErrorResultUnion } from '../../common/error/error-result';
-import { EntityNotFoundError } from '../../common/error/errors';
+import { EntityNotFoundError, InternalServerError, UserInputError } from '../../common/error/errors';
 import { ProductOptionInUseError } from '../../common/error/generated-graphql-admin-errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { Translated } from '../../common/types/locale-types';
@@ -33,12 +34,13 @@ import { CustomFieldRelationService } from '../helpers/custom-field-relation/cus
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { SlugValidator } from '../helpers/slug-validator/slug-validator';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
-import { translateDeep } from '../helpers/utils/translate-entity';
+import { TranslatorService } from '../helpers/translator/translator.service';
 
 import { AssetService } from './asset.service';
 import { ChannelService } from './channel.service';
 import { CollectionService } from './collection.service';
 import { FacetValueService } from './facet-value.service';
+import { ProductOptionGroupService } from './product-option-group.service';
 import { ProductVariantService } from './product-variant.service';
 import { RoleService } from './role.service';
 import { TaxRateService } from './tax-rate.service';
@@ -67,15 +69,18 @@ export class ProductService {
         private eventBus: EventBus,
         private slugValidator: SlugValidator,
         private customFieldRelationService: CustomFieldRelationService,
+        private translator: TranslatorService,
+        private productOptionGroupService: ProductOptionGroupService,
     ) {}
 
     async findAll(
         ctx: RequestContext,
         options?: ListQueryOptions<Product>,
+        relations?: RelationPaths<Product>,
     ): Promise<PaginatedList<Translated<Product>>> {
         return this.listQueryBuilder
             .build(Product, options, {
-                relations: this.relations,
+                relations: relations || this.relations,
                 channelId: ctx.channelId,
                 where: { deletedAt: null },
                 ctx,
@@ -83,7 +88,7 @@ export class ProductService {
             .getManyAndCount()
             .then(async ([products, totalItems]) => {
                 const items = products.map(product =>
-                    translateDeep(product, ctx.languageCode, ['facetValues', ['facetValues', 'facet']]),
+                    this.translator.translate(product, ctx, ['facetValues', ['facetValues', 'facet']]),
                 );
                 return {
                     items,
@@ -92,9 +97,19 @@ export class ProductService {
             });
     }
 
-    async findOne(ctx: RequestContext, productId: ID): Promise<Translated<Product> | undefined> {
+    async findOne(
+        ctx: RequestContext,
+        productId: ID,
+        relations?: RelationPaths<Product>,
+    ): Promise<Translated<Product> | undefined> {
+        const effectiveRelations = relations ?? this.relations;
+        if (relations && effectiveRelations.includes('facetValues')) {
+            // We need the facet to determine with the FacetValues are public
+            // when serving via the Shop API.
+            effectiveRelations.push('facetValues.facet');
+        }
         const product = await this.connection.findOneInChannel(ctx, Product, productId, ctx.channelId, {
-            relations: this.relations,
+            relations: unique(effectiveRelations),
             where: {
                 deletedAt: null,
             },
@@ -102,12 +117,18 @@ export class ProductService {
         if (!product) {
             return;
         }
-        return translateDeep(product, ctx.languageCode, ['facetValues', ['facetValues', 'facet']]);
+        return this.translator.translate(product, ctx, ['facetValues', ['facetValues', 'facet']]);
     }
 
-    async findByIds(ctx: RequestContext, productIds: ID[]): Promise<Array<Translated<Product>>> {
+    async findByIds(
+        ctx: RequestContext,
+        productIds: ID[],
+        relations?: RelationPaths<Product>,
+    ): Promise<Array<Translated<Product>>> {
         const qb = this.connection.getRepository(ctx, Product).createQueryBuilder('product');
-        FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, { relations: this.relations });
+        FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, {
+            relations: (relations && false) || this.relations,
+        });
         // tslint:disable-next-line:no-non-null-assertion
         FindOptionsUtils.joinEagerRelations(qb, qb.alias, qb.expressionMap.mainAlias!.metadata);
         return qb
@@ -118,7 +139,7 @@ export class ProductService {
             .getMany()
             .then(products =>
                 products.map(product =>
-                    translateDeep(product, ctx.languageCode, ['facetValues', ['facetValues', 'facet']]),
+                    this.translator.translate(product, ctx, ['facetValues', ['facetValues', 'facet']]),
                 ),
             );
     }
@@ -142,39 +163,42 @@ export class ProductService {
                 relations: ['facetValues', 'facetValues.facet', 'facetValues.channels'],
             })
             .then(variant =>
-                !variant ? [] : variant.facetValues.map(o => translateDeep(o, ctx.languageCode, ['facet'])),
+                !variant ? [] : variant.facetValues.map(o => this.translator.translate(o, ctx, ['facet'])),
             );
     }
 
-    async findOneBySlug(ctx: RequestContext, slug: string): Promise<Translated<Product> | undefined> {
+    async findOneBySlug(
+        ctx: RequestContext,
+        slug: string,
+        relations?: RelationPaths<Product>,
+    ): Promise<Translated<Product> | undefined> {
         const qb = this.connection.getRepository(ctx, Product).createQueryBuilder('product');
-        FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, { relations: this.relations });
-        // tslint:disable-next-line:no-non-null-assertion
-        FindOptionsUtils.joinEagerRelations(qb, qb.alias, qb.expressionMap.mainAlias!.metadata);
         const translationQb = this.connection
             .getRepository(ctx, ProductTranslation)
-            .createQueryBuilder('product_translation')
-            .select('product_translation.baseId')
-            .andWhere('product_translation.slug = :slug', { slug });
+            .createQueryBuilder('_product_translation')
+            .select('_product_translation.baseId')
+            .andWhere('_product_translation.slug = :slug', { slug });
 
-        return qb
-            .leftJoin('product.channels', 'channel')
+        qb.leftJoin('product.translations', 'translation')
+            .andWhere('product.deletedAt IS NULL')
             .andWhere('product.id IN (' + translationQb.getQuery() + ')')
             .setParameters(translationQb.getParameters())
-            .andWhere('product.deletedAt IS NULL')
-            .andWhere('channel.id = :channelId', { channelId: ctx.channelId })
+            .select('product.id', 'id')
             .addSelect(
                 // tslint:disable-next-line:max-line-length
-                `CASE product_translations.languageCode WHEN '${ctx.languageCode}' THEN 2 WHEN '${ctx.channel.defaultLanguageCode}' THEN 1 ELSE 0 END`,
+                `CASE translation.languageCode WHEN '${ctx.languageCode}' THEN 2 WHEN '${ctx.channel.defaultLanguageCode}' THEN 1 ELSE 0 END`,
                 'sort_order',
             )
-            .orderBy('sort_order', 'DESC')
-            .getOne()
-            .then(product =>
-                product
-                    ? translateDeep(product, ctx.languageCode, ['facetValues', ['facetValues', 'facet']])
-                    : undefined,
-            );
+            .orderBy('sort_order', 'DESC');
+        // We use getRawOne here to simply get the ID as efficiently as possible,
+        // which we then pass to the regular findOne() method which will handle
+        // all the joins etc.
+        const result = await qb.getRawOne();
+        if (result) {
+            return this.findOne(ctx, result.id, relations);
+        } else {
+            return undefined;
+        }
     }
 
     async create(ctx: RequestContext, input: CreateProductInput): Promise<Translated<Product>> {
@@ -231,15 +255,31 @@ export class ProductService {
     async softDelete(ctx: RequestContext, productId: ID): Promise<DeletionResponse> {
         const product = await this.connection.getEntityOrThrow(ctx, Product, productId, {
             channelId: ctx.channelId,
-            relations: ['variants'],
+            relations: ['variants', 'optionGroups'],
         });
         product.deletedAt = new Date();
         await this.connection.getRepository(ctx, Product).save(product, { reload: false });
         this.eventBus.publish(new ProductEvent(ctx, product, 'deleted', productId));
-        await this.productVariantService.softDelete(
+
+        const variantResult = await this.productVariantService.softDelete(
             ctx,
             product.variants.map(v => v.id),
         );
+        if (variantResult.result === DeletionResult.NOT_DELETED) {
+            await this.connection.rollBackTransaction(ctx);
+            return variantResult;
+        }
+        for (const optionGroup of product.optionGroups) {
+            const groupResult = await this.productOptionGroupService.deleteGroupAndOptionsFromProduct(
+                ctx,
+                optionGroup.id,
+                productId,
+            );
+            if (groupResult.result === DeletionResult.NOT_DELETED) {
+                await this.connection.rollBackTransaction(ctx);
+                return groupResult;
+            }
+        }
         return {
             result: DeletionResult.DELETED,
         };
@@ -316,9 +356,16 @@ export class ProductService {
         const product = await this.getProductWithOptionGroups(ctx, productId);
         const optionGroup = await this.connection
             .getRepository(ctx, ProductOptionGroup)
-            .findOne(optionGroupId);
+            .findOne(optionGroupId, { relations: ['product'] });
         if (!optionGroup) {
             throw new EntityNotFoundError('ProductOptionGroup', optionGroupId);
+        }
+        if (optionGroup.product) {
+            const translated = this.translator.translate(optionGroup.product, ctx);
+            throw new UserInputError(`error.product-option-group-already-assigned`, {
+                groupCode: optionGroup.code,
+                productName: translated.name,
+            });
         }
 
         if (Array.isArray(product.optionGroups)) {
@@ -342,12 +389,25 @@ export class ProductService {
         if (!optionGroup) {
             throw new EntityNotFoundError('ProductOptionGroup', optionGroupId);
         }
-        if (product.variants.length) {
+        const optionIsInUse = product.variants.some(
+            variant =>
+                variant.deletedAt == null &&
+                variant.options.some(option => idsAreEqual(option.groupId, optionGroupId)),
+        );
+        if (optionIsInUse) {
             return new ProductOptionInUseError(optionGroup.code, product.variants.length);
         }
+        const result = await this.productOptionGroupService.deleteGroupAndOptionsFromProduct(
+            ctx,
+            optionGroupId,
+            productId,
+        );
         product.optionGroups = product.optionGroups.filter(g => g.id !== optionGroupId);
-
         await this.connection.getRepository(ctx, Product).save(product, { reload: false });
+        if (result.result === DeletionResult.NOT_DELETED) {
+            // tslint:disable-next-line:no-non-null-assertion
+            throw new InternalServerError(result.message!);
+        }
         this.eventBus.publish(new ProductOptionGroupChangeEvent(ctx, product, optionGroupId, 'removed'));
         return assertFound(this.findOne(ctx, productId));
     }

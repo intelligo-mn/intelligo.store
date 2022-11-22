@@ -1,16 +1,19 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     Optional,
     SimpleChanges,
     SkipSelf,
 } from '@angular/core';
-import { DataService, Permission } from '@vendure/admin-ui/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService, Permission, SelectionManager } from '@vendure/admin-ui/core';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { RootNode, TreeNode } from './array-to-tree';
@@ -22,20 +25,25 @@ import { CollectionPartial, CollectionTreeComponent } from './collection-tree.co
     styleUrls: ['./collection-tree-node.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CollectionTreeNodeComponent implements OnInit, OnChanges {
+export class CollectionTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     depth = 0;
     parentName: string;
     @Input() collectionTree: TreeNode<CollectionPartial>;
     @Input() activeCollectionId: string;
     @Input() expandAll = false;
+    @Input() selectionManager: SelectionManager<CollectionPartial>;
     hasUpdatePermission$: Observable<boolean>;
     hasDeletePermission$: Observable<boolean>;
     moveListItems: Array<{ path: string; id: string }> = [];
+    private subscription: Subscription;
 
     constructor(
         @SkipSelf() @Optional() private parent: CollectionTreeNodeComponent,
         private root: CollectionTreeComponent,
         private dataService: DataService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private changeDetectorRef: ChangeDetectorRef,
     ) {
         if (parent) {
             this.depth = parent.depth + 1;
@@ -60,6 +68,9 @@ export class CollectionTreeNodeComponent implements OnInit, OnChanges {
                     perms.includes(Permission.DeleteCatalog) || perms.includes(Permission.DeleteCollection),
             ),
         );
+        this.subscription = this.selectionManager?.selectionChanges$.subscribe(() =>
+            this.changeDetectorRef.markForCheck(),
+        );
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -71,8 +82,29 @@ export class CollectionTreeNodeComponent implements OnInit, OnChanges {
         }
     }
 
+    ngOnDestroy() {
+        this.subscription?.unsubscribe();
+    }
+
     trackByFn(index: number, item: CollectionPartial) {
         return item.id;
+    }
+
+    toggleExpanded(collection: TreeNode<CollectionPartial>) {
+        collection.expanded = !collection.expanded;
+        let expandedIds = this.route.snapshot.queryParamMap.get('expanded')?.split(',') ?? [];
+        if (collection.expanded) {
+            expandedIds.push(collection.id);
+        } else {
+            expandedIds = expandedIds.filter(id => id !== collection.id);
+        }
+        this.router.navigate(['./'], {
+            queryParams: {
+                expanded: expandedIds.filter(id => !!id).join(','),
+            },
+            queryParamsHandling: 'merge',
+            relativeTo: this.route,
+        });
     }
 
     getMoveListItems(collection: CollectionPartial) {

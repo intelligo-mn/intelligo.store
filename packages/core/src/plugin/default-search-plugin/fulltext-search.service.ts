@@ -7,6 +7,7 @@ import { InternalServerError } from '../../common/error/errors';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Collection, FacetValue } from '../../entity';
 import { EventBus } from '../../event-bus/event-bus';
+import { SearchEvent } from '../../event-bus/events/search-event';
 import { Job } from '../../job-queue/job';
 import { CollectionService } from '../../service/services/collection.service';
 import { FacetValueService } from '../../service/services/facet-value.service';
@@ -27,7 +28,7 @@ import { DefaultSearchPluginInitOptions } from './types';
  */
 @Injectable()
 export class FulltextSearchService {
-    private searchStrategy: SearchStrategy;
+    private _searchStrategy: SearchStrategy;
     private readonly minTermLength = 2;
 
     constructor(
@@ -52,8 +53,10 @@ export class FulltextSearchService {
         input: SearchInput,
         enabledOnly: boolean = false,
     ): Promise<Omit<Omit<SearchResponse, 'facetValues'>, 'collections'>> {
-        const items = await this.searchStrategy.getSearchResults(ctx, input, enabledOnly);
-        const totalItems = await this.searchStrategy.getTotalCount(ctx, input, enabledOnly);
+        const items = await this._searchStrategy.getSearchResults(ctx, input, enabledOnly);
+        const totalItems = await this._searchStrategy.getTotalCount(ctx, input, enabledOnly);
+        this.eventBus.publish(new SearchEvent(ctx, input));
+
         return {
             items,
             totalItems,
@@ -68,7 +71,7 @@ export class FulltextSearchService {
         input: SearchInput,
         enabledOnly: boolean = false,
     ): Promise<Array<{ facetValue: FacetValue; count: number }>> {
-        const facetValueIdsMap = await this.searchStrategy.getFacetValueIds(ctx, input, enabledOnly);
+        const facetValueIdsMap = await this._searchStrategy.getFacetValueIds(ctx, input, enabledOnly);
         const facetValues = await this.facetValueService.findByIds(ctx, Array.from(facetValueIdsMap.keys()));
         return facetValues.map((facetValue, index) => {
             return {
@@ -86,7 +89,7 @@ export class FulltextSearchService {
         input: SearchInput,
         enabledOnly: boolean = false,
     ): Promise<Array<{ collection: Collection; count: number }>> {
-        const collectionIdsMap = await this.searchStrategy.getCollectionIds(ctx, input, enabledOnly);
+        const collectionIdsMap = await this._searchStrategy.getCollectionIds(ctx, input, enabledOnly);
         const collections = await this.collectionService.findByIds(ctx, Array.from(collectionIdsMap.keys()));
         return collections.map((collection, index) => {
             return {
@@ -108,21 +111,32 @@ export class FulltextSearchService {
      * Sets the SearchStrategy appropriate to th configured database type.
      */
     private setSearchStrategy() {
-        switch (this.connection.rawConnection.options.type) {
-            case 'mysql':
-            case 'mariadb':
-                this.searchStrategy = new MysqlSearchStrategy(this.connection, this.options);
-                break;
-            case 'sqlite':
-            case 'sqljs':
-            case 'better-sqlite3':
-                this.searchStrategy = new SqliteSearchStrategy(this.connection, this.options);
-                break;
-            case 'postgres':
-                this.searchStrategy = new PostgresSearchStrategy(this.connection, this.options);
-                break;
-            default:
-                throw new InternalServerError(`error.database-not-supported-by-default-search-plugin`);
+        if (this.options.searchStategy) {
+            this._searchStrategy = this.options.searchStategy;
+        } else {
+            switch (this.connection.rawConnection.options.type) {
+                case 'mysql':
+                case 'mariadb':
+                case 'aurora-data-api':
+                    this._searchStrategy = new MysqlSearchStrategy();
+                    break;
+                case 'sqlite':
+                case 'sqljs':
+                case 'better-sqlite3':
+                    this._searchStrategy = new SqliteSearchStrategy();
+                    break;
+                case 'postgres':
+                case 'aurora-data-api-pg':
+                case 'cockroachdb':
+                    this._searchStrategy = new PostgresSearchStrategy();
+                    break;
+                default:
+                    throw new InternalServerError(`error.database-not-supported-by-default-search-plugin`);
+            }
         }
+    }
+
+    public get searchStrategy(): SearchStrategy {
+        return this._searchStrategy;
     }
 }

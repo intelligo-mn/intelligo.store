@@ -9,8 +9,7 @@ import {
 } from '../../common/configurable-operation';
 import { OnTransitionStartFn, StateMachineConfig } from '../../common/finite-state-machine/types';
 import { PaymentMetadata } from '../../common/types/common-types';
-import { Order } from '../../entity/order/order.entity';
-import { Payment } from '../../entity/payment/payment.entity';
+import { Order, Payment, PaymentMethod } from '../../entity';
 import {
     PaymentState,
     PaymentTransitionData,
@@ -145,6 +144,45 @@ export interface SettlePaymentErrorResult {
 
 /**
  * @description
+ * This object is the return value of the {@link CancelPaymentFn} when the Payment
+ * has been successfully cancelled.
+ *
+ * @docsCategory payment
+ * @docsPage Payment Method Types
+ */
+export interface CancelPaymentResult {
+    success: true;
+    metadata?: PaymentMetadata;
+}
+/**
+ * @description
+ * This object is the return value of the {@link CancelPaymentFn} when the Payment
+ * could not be cancelled.
+ *
+ * @docsCategory payment
+ * @docsPage Payment Method Types
+ */
+export interface CancelPaymentErrorResult {
+    success: false;
+    /**
+     * @description
+     * The state to transition this Payment to upon unsuccessful cancellation.
+     * Defaults to `Error`. Note that if using a different state, it must be
+     * legal to transition to that state from the `Authorized` state according
+     * to the PaymentState config (which can be customized using the
+     * {@link CustomPaymentProcess}).
+     */
+    state?: Exclude<PaymentState, 'Cancelled'>;
+    /**
+     * @description
+     * The message that will be returned when attempting to cancel the payment, and will
+     * also be persisted as `Payment.errorMessage`.
+     */
+    errorMessage?: string;
+    metadata?: PaymentMetadata;
+}
+/**
+ * @description
  * This function contains the logic for creating a payment. See {@link PaymentMethodHandler} for an example.
  *
  * Returns a {@link CreatePaymentResult}.
@@ -158,6 +196,7 @@ export type CreatePaymentFn<T extends ConfigArgs> = (
     amount: number,
     args: ConfigArgValues<T>,
     metadata: PaymentMetadata,
+    method: PaymentMethod,
 ) => CreatePaymentResult | CreatePaymentErrorResult | Promise<CreatePaymentResult | CreatePaymentErrorResult>;
 
 /**
@@ -172,7 +211,23 @@ export type SettlePaymentFn<T extends ConfigArgs> = (
     order: Order,
     payment: Payment,
     args: ConfigArgValues<T>,
+    method: PaymentMethod,
 ) => SettlePaymentResult | SettlePaymentErrorResult | Promise<SettlePaymentResult | SettlePaymentErrorResult>;
+
+/**
+ * @description
+ * This function contains the logic for cancelling a payment. See {@link PaymentMethodHandler} for an example.
+ *
+ * @docsCategory payment
+ * @docsPage Payment Method Types
+ */
+export type CancelPaymentFn<T extends ConfigArgs> = (
+    ctx: RequestContext,
+    order: Order,
+    payment: Payment,
+    args: ConfigArgValues<T>,
+    method: PaymentMethod,
+) => CancelPaymentResult | CancelPaymentErrorResult | Promise<CancelPaymentResult | CancelPaymentErrorResult>;
 
 /**
  * @description
@@ -188,6 +243,7 @@ export type CreateRefundFn<T extends ConfigArgs> = (
     order: Order,
     payment: Payment,
     args: ConfigArgValues<T>,
+    method: PaymentMethod,
 ) => CreateRefundResult | Promise<CreateRefundResult>;
 
 /**
@@ -212,6 +268,17 @@ export interface PaymentMethodConfigOptions<T extends ConfigArgs> extends Config
      * need only return `{ success: true }`.
      */
     settlePayment: SettlePaymentFn<T>;
+    /**
+     * @description
+     * This function provides the logic for cancelling a payment, which would be invoked when a call is
+     * made to the `cancelPayment` mutation in the Admin API. Cancelling a payment can apply
+     * if, for example, you have created a "payment intent" with the payment provider but not yet
+     * completed the payment. It allows the incomplete payment to be cleaned up on the provider's end
+     * if it gets cancelled via Vendure.
+     *
+     * @since 1.7.0
+     */
+    cancelPayment?: CancelPaymentFn<T>;
     /**
      * @description
      * This function provides the logic for refunding a payment created with this
@@ -287,6 +354,7 @@ export interface PaymentMethodConfigOptions<T extends ConfigArgs> extends Config
 export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends ConfigurableOperationDef<T> {
     private readonly createPaymentFn: CreatePaymentFn<T>;
     private readonly settlePaymentFn: SettlePaymentFn<T>;
+    private readonly cancelPaymentFn?: CancelPaymentFn<T>;
     private readonly createRefundFn?: CreateRefundFn<T>;
     private readonly onTransitionStartFn?: OnTransitionStartFn<PaymentState, PaymentTransitionData>;
 
@@ -294,7 +362,7 @@ export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends Con
         super(config);
         this.createPaymentFn = config.createPayment;
         this.settlePaymentFn = config.settlePayment;
-        this.settlePaymentFn = config.settlePayment;
+        this.cancelPaymentFn = config.cancelPayment;
         this.createRefundFn = config.createRefund;
         this.onTransitionStartFn = config.onStateTransitionStart;
     }
@@ -311,6 +379,7 @@ export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends Con
         amount: number,
         args: ConfigArg[],
         metadata: PaymentMetadata,
+        method: PaymentMethod,
     ) {
         const paymentConfig = await this.createPaymentFn(
             ctx,
@@ -318,6 +387,7 @@ export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends Con
             amount,
             this.argsArrayToHash(args),
             metadata,
+            method,
         );
         return {
             method: this.code,
@@ -332,8 +402,30 @@ export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends Con
      *
      * @internal
      */
-    async settlePayment(ctx: RequestContext, order: Order, payment: Payment, args: ConfigArg[]) {
-        return this.settlePaymentFn(ctx, order, payment, this.argsArrayToHash(args));
+    async settlePayment(
+        ctx: RequestContext,
+        order: Order,
+        payment: Payment,
+        args: ConfigArg[],
+        method: PaymentMethod,
+    ) {
+        return this.settlePaymentFn(ctx, order, payment, this.argsArrayToHash(args), method);
+    }
+
+    /**
+     * @description
+     * Called internally to cancel a payment
+     *
+     * @internal
+     */
+    async cancelPayment(
+        ctx: RequestContext,
+        order: Order,
+        payment: Payment,
+        args: ConfigArg[],
+        method: PaymentMethod,
+    ) {
+        return this.cancelPaymentFn?.(ctx, order, payment, this.argsArrayToHash(args), method);
     }
 
     /**
@@ -349,9 +441,10 @@ export class PaymentMethodHandler<T extends ConfigArgs = ConfigArgs> extends Con
         order: Order,
         payment: Payment,
         args: ConfigArg[],
+        method: PaymentMethod,
     ) {
         return this.createRefundFn
-            ? this.createRefundFn(ctx, input, amount, order, payment, this.argsArrayToHash(args))
+            ? this.createRefundFn(ctx, input, amount, order, payment, this.argsArrayToHash(args), method)
             : false;
     }
 

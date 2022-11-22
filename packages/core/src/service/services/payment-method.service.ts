@@ -12,6 +12,7 @@ import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { UserInputError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { idsAreEqual } from '../../common/utils';
@@ -24,6 +25,7 @@ import { PaymentMethod } from '../../entity/payment-method/payment-method.entity
 import { EventBus } from '../../event-bus/event-bus';
 import { PaymentMethodEvent } from '../../event-bus/events/payment-method-event';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
+import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { patchEntity } from '../helpers/utils/patch-entity';
 
@@ -44,14 +46,16 @@ export class PaymentMethodService {
         private eventBus: EventBus,
         private configArgService: ConfigArgService,
         private channelService: ChannelService,
+        private customFieldRelationService: CustomFieldRelationService,
     ) {}
 
     findAll(
         ctx: RequestContext,
         options?: ListQueryOptions<PaymentMethod>,
+        relations: RelationPaths<PaymentMethod> = [],
     ): Promise<PaginatedList<PaymentMethod>> {
         return this.listQueryBuilder
-            .build(PaymentMethod, options, { ctx, relations: ['channels'], channelId: ctx.channelId })
+            .build(PaymentMethod, options, { ctx, relations, channelId: ctx.channelId })
             .getManyAndCount()
             .then(([items, totalItems]) => ({
                 items,
@@ -59,8 +63,14 @@ export class PaymentMethodService {
             }));
     }
 
-    findOne(ctx: RequestContext, paymentMethodId: ID): Promise<PaymentMethod | undefined> {
-        return this.connection.findOneInChannel(ctx, PaymentMethod, paymentMethodId, ctx.channelId);
+    findOne(
+        ctx: RequestContext,
+        paymentMethodId: ID,
+        relations: RelationPaths<PaymentMethod> = [],
+    ): Promise<PaymentMethod | undefined> {
+        return this.connection.findOneInChannel(ctx, PaymentMethod, paymentMethodId, ctx.channelId, {
+            relations,
+        });
     }
 
     async create(ctx: RequestContext, input: CreatePaymentMethodInput): Promise<PaymentMethod> {
@@ -76,6 +86,7 @@ export class PaymentMethodService {
         const savedPaymentMethod = await this.connection
             .getRepository(ctx, PaymentMethod)
             .save(paymentMethod);
+        await this.customFieldRelationService.updateRelations(ctx, PaymentMethod, input, savedPaymentMethod);
         this.eventBus.publish(new PaymentMethodEvent(ctx, savedPaymentMethod, 'created', input));
         return savedPaymentMethod;
     }
@@ -95,7 +106,13 @@ export class PaymentMethodService {
         if (input.handler) {
             paymentMethod.handler = this.configArgService.parseInput('PaymentMethodHandler', input.handler);
         }
-        this.eventBus.publish(new PaymentMethodEvent(ctx, paymentMethod, 'updated', input));
+        await this.customFieldRelationService.updateRelations(
+            ctx,
+            PaymentMethod,
+            input,
+            updatedPaymentMethod,
+        );
+        this.eventBus.publish(new PaymentMethodEvent(ctx, updatedPaymentMethod, 'updated', input));
         return this.connection.getRepository(ctx, PaymentMethod).save(updatedPaymentMethod);
     }
 
@@ -120,8 +137,11 @@ export class PaymentMethodService {
                 return { result, message };
             }
             try {
+                const deletedPaymentMethod = new PaymentMethod(paymentMethod);
                 await this.connection.getRepository(ctx, PaymentMethod).remove(paymentMethod);
-                this.eventBus.publish(new PaymentMethodEvent(ctx, paymentMethod, 'deleted', paymentMethodId));
+                this.eventBus.publish(
+                    new PaymentMethodEvent(ctx, deletedPaymentMethod, 'deleted', paymentMethodId),
+                );
                 return {
                     result: DeletionResult.DELETED,
                 };
@@ -169,7 +189,7 @@ export class PaymentMethodService {
                     'PaymentMethodEligibilityChecker',
                     method.checker.code,
                 );
-                const eligible = await checker.check(ctx, order, method.checker.args);
+                const eligible = await checker.check(ctx, order, method.checker.args, method);
                 if (eligible === false || typeof eligible === 'string') {
                     isEligible = false;
                     eligibilityMessage = typeof eligible === 'string' ? eligible : undefined;

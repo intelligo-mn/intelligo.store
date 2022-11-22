@@ -35,12 +35,8 @@ import {
 import { MutableRequestContext } from './mutable-request-context';
 
 export const BATCH_SIZE = 1000;
+export const productRelations = ['featuredAsset', 'facetValues', 'facetValues.facet', 'channels'];
 export const variantRelations = [
-    'product',
-    'product.featuredAsset',
-    'product.facetValues',
-    'product.facetValues.facet',
-    'product.channels',
     'featuredAsset',
     'facetValues',
     'facetValues.facet',
@@ -69,13 +65,13 @@ export class IndexerController {
         const ctx = MutableRequestContext.deserialize(rawContext);
         return asyncObservable(async observer => {
             const timeStart = Date.now();
-            const qb = this.getSearchIndexQueryBuilder(ctx.channelId);
+            const qb = this.getSearchIndexQueryBuilder(ctx, ctx.channelId);
             const count = await qb.getCount();
             Logger.verbose(`Reindexing ${count} variants for channel ${ctx.channel.code}`, workerLoggerCtx);
             const batches = Math.ceil(count / BATCH_SIZE);
 
             await this.connection
-                .getRepository(SearchIndexItem)
+                .getRepository(ctx, SearchIndexItem)
                 .delete({ languageCode: ctx.languageCode, channelId: ctx.channelId });
             Logger.verbose('Deleted existing index items', workerLoggerCtx);
 
@@ -83,7 +79,6 @@ export class IndexerController {
                 Logger.verbose(`Processing batch ${i + 1} of ${batches}`, workerLoggerCtx);
 
                 const variants = await qb
-                    .andWhere('variants__product.deletedAt IS NULL')
                     .take(BATCH_SIZE)
                     .skip(i * BATCH_SIZE)
                     .getMany();
@@ -95,6 +90,7 @@ export class IndexerController {
                 });
             }
             Logger.verbose(`Completed reindexing`, workerLoggerCtx);
+
             return {
                 total: count,
                 completed: count,
@@ -120,7 +116,7 @@ export class IndexerController {
                     const end = begin + BATCH_SIZE;
                     Logger.verbose(`Updating ids from index ${begin} to ${end}`);
                     const batchIds = ids.slice(begin, end);
-                    const batch = await this.connection.getRepository(ProductVariant).findByIds(batchIds, {
+                    const batch = await this.connection.getRepository(ctx, ProductVariant).findByIds(batchIds, {
                         relations: variantRelations,
                         where: { deletedAt: null },
                     });
@@ -158,7 +154,7 @@ export class IndexerController {
 
     async deleteVariant(data: UpdateVariantMessageData): Promise<boolean> {
         const ctx = MutableRequestContext.deserialize(data.ctx);
-        const variants = await this.connection.getRepository(ProductVariant).findByIds(data.variantIds);
+        const variants = await this.connection.getRepository(ctx, ProductVariant).findByIds(data.variantIds);
         if (variants.length) {
             const languageVariants = unique([
                 ...variants
@@ -166,6 +162,7 @@ export class IndexerController {
                     .map(t => t.languageCode),
             ]);
             await this.removeSearchIndexItems(
+                ctx,
                 ctx.channelId,
                 variants.map(v => v.id),
                 languageVariants,
@@ -191,14 +188,15 @@ export class IndexerController {
 
     async removeVariantFromChannel(data: VariantChannelMessageData): Promise<boolean> {
         const ctx = MutableRequestContext.deserialize(data.ctx);
-        const variant = await this.connection.getRepository(ProductVariant).findOne(data.productVariantId);
+        const variant = await this.connection.getRepository(ctx, ProductVariant).findOne(data.productVariantId);
         const languageVariants = variant?.translations.map(t => t.languageCode) ?? [];
-        await this.removeSearchIndexItems(data.channelId, [data.productVariantId], languageVariants);
+        await this.removeSearchIndexItems(ctx, data.channelId, [data.productVariantId], languageVariants);
         return true;
     }
 
     async updateAsset(data: UpdateAssetMessageData): Promise<boolean> {
         const id = data.asset.id;
+        const ctx = MutableRequestContext.deserialize(data.ctx);
 
         function getFocalPoint(point?: { x: number; y: number }) {
             return point && point.x && point.y ? point : null;
@@ -206,21 +204,23 @@ export class IndexerController {
 
         const focalPoint = getFocalPoint(data.asset.focalPoint);
         await this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .update({ productAssetId: id }, { productPreviewFocalPoint: focalPoint });
         await this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .update({ productVariantAssetId: id }, { productVariantPreviewFocalPoint: focalPoint });
         return true;
     }
 
     async deleteAsset(data: UpdateAssetMessageData): Promise<boolean> {
         const id = data.asset.id;
+        const ctx = MutableRequestContext.deserialize(data.ctx);
+
         await this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .update({ productAssetId: id }, { productAssetId: null });
         await this.connection
-            .getRepository(SearchIndexItem)
+            .getRepository(ctx, SearchIndexItem)
             .update({ productVariantAssetId: id }, { productVariantAssetId: null });
         return true;
     }
@@ -230,11 +230,11 @@ export class IndexerController {
         productId: ID,
         channelId: ID,
     ): Promise<boolean> {
-        const product = await this.connection.getRepository(Product).findOne(productId, {
+        const product = await this.connection.getRepository(ctx, Product).findOne(productId, {
             relations: ['variants'],
         });
         if (product) {
-            const updatedVariants = await this.connection.getRepository(ProductVariant).findByIds(
+            const updatedVariants = await this.connection.getRepository(ctx, ProductVariant).findByIds(
                 product.variants.map(v => v.id),
                 {
                     relations: variantRelations,
@@ -264,7 +264,7 @@ export class IndexerController {
         variantIds: ID[],
         channelId: ID,
     ): Promise<boolean> {
-        const variants = await this.connection.getRepository(ProductVariant).findByIds(variantIds, {
+        const variants = await this.connection.getRepository(ctx, ProductVariant).findByIds(variantIds, {
             relations: variantRelations,
             where: { deletedAt: null },
         });
@@ -280,7 +280,7 @@ export class IndexerController {
         productId: ID,
         channelId: ID,
     ): Promise<boolean> {
-        const product = await this.connection.getRepository(Product).findOne(productId, {
+        const product = await this.connection.getRepository(ctx, Product).findOne(productId, {
             relations: ['variants'],
         });
         if (product) {
@@ -293,14 +293,14 @@ export class IndexerController {
 
             const removedVariantIds = product.variants.map(v => v.id);
             if (removedVariantIds.length) {
-                await this.removeSearchIndexItems(channelId, removedVariantIds, languageVariants);
+                await this.removeSearchIndexItems(ctx, channelId, removedVariantIds, languageVariants);
             }
         }
         return true;
     }
 
-    private getSearchIndexQueryBuilder(channelId: ID) {
-        const qb = this.connection.getRepository(ProductVariant).createQueryBuilder('variants');
+    private getSearchIndexQueryBuilder(ctx: RequestContext, channelId: ID) {
+        const qb = this.connection.getRepository(ctx, ProductVariant).createQueryBuilder('variants');
         FindOptionsUtils.applyFindManyOptionsOrConditionsToQueryBuilder(qb, {
             relations: variantRelations,
         });
@@ -312,7 +312,7 @@ export class IndexerController {
         qb.leftJoin('variants.product', 'product')
             .leftJoin('product.channels', 'channel')
             .where('channel.id = :channelId', { channelId })
-            .andWhere('variants__product.deletedAt IS NULL')
+            .andWhere('product.deletedAt IS NULL')
             .andWhere('variants.deletedAt IS NULL');
         return qb;
     }
@@ -320,15 +320,24 @@ export class IndexerController {
     private async saveVariants(ctx: MutableRequestContext, variants: ProductVariant[]) {
         const items: SearchIndexItem[] = [];
 
-        await this.removeSyntheticVariants(variants);
+        await this.removeSyntheticVariants(ctx, variants);
+        const productMap = new Map<ID, Product>();
 
         for (const variant of variants) {
+            let product = productMap.get(variant.productId);
+            if (!product) {
+                product = await this.connection.getEntityOrThrow(ctx, Product, variant.productId, {
+                    relations: productRelations,
+                });
+                productMap.set(variant.productId, product);
+            }
+
             const languageVariants = unique([
                 ...variant.translations.map(t => t.languageCode),
-                ...variant.product.translations.map(t => t.languageCode),
+                ...product.translations.map(t => t.languageCode),
             ]);
             for (const languageCode of languageVariants) {
-                const productTranslation = this.getTranslation(variant.product, languageCode);
+                const productTranslation = this.getTranslation(product, languageCode);
                 const variantTranslation = this.getTranslation(variant, languageCode);
                 const collectionTranslations = variant.collections.map(c =>
                     this.getTranslation(c, languageCode),
@@ -344,29 +353,25 @@ export class IndexerController {
                         price: variant.price,
                         priceWithTax: variant.priceWithTax,
                         sku: variant.sku,
-                        enabled: variant.product.enabled === false ? false : variant.enabled,
+                        enabled: product.enabled === false ? false : variant.enabled,
                         slug: productTranslation.slug,
-                        productId: variant.product.id,
+                        productId: product.id,
                         productName: productTranslation.name,
                         description: this.constrainDescription(productTranslation.description),
                         productVariantName: variantTranslation.name,
-                        productAssetId: variant.product.featuredAsset
-                            ? variant.product.featuredAsset.id
-                            : null,
-                        productPreviewFocalPoint: variant.product.featuredAsset
-                            ? variant.product.featuredAsset.focalPoint
+                        productAssetId: product.featuredAsset ? product.featuredAsset.id : null,
+                        productPreviewFocalPoint: product.featuredAsset
+                            ? product.featuredAsset.focalPoint
                             : null,
                         productVariantPreviewFocalPoint: variant.featuredAsset
                             ? variant.featuredAsset.focalPoint
                             : null,
                         productVariantAssetId: variant.featuredAsset ? variant.featuredAsset.id : null,
-                        productPreview: variant.product.featuredAsset
-                            ? variant.product.featuredAsset.preview
-                            : '',
+                        productPreview: product.featuredAsset ? product.featuredAsset.preview : '',
                         productVariantPreview: variant.featuredAsset ? variant.featuredAsset.preview : '',
                         channelIds: variant.channels.map(c => c.id as string),
-                        facetIds: this.getFacetIds(variant),
-                        facetValueIds: this.getFacetValueIds(variant),
+                        facetIds: this.getFacetIds(variant, product),
+                        facetValueIds: this.getFacetValueIds(variant, product),
                         collectionIds: variant.collections.map(c => c.id.toString()),
                         collectionSlugs: collectionTranslations.map(c => c.slug),
                     });
@@ -401,7 +406,9 @@ export class IndexerController {
             }
         }
 
-        await this.queue.push(() => this.connection.getRepository(SearchIndexItem).save(items, { chunk: 2500 }));
+        await this.queue.push(() =>
+            this.connection.getRepository(ctx, SearchIndexItem).save(items, { chunk: 2500 }),
+        );
     }
 
     /**
@@ -435,17 +442,17 @@ export class IndexerController {
             collectionIds: [],
             collectionSlugs: [],
         });
-        await this.queue.push(() => this.connection.getRepository(SearchIndexItem).save(item));
+        await this.queue.push(() => this.connection.getRepository(ctx, SearchIndexItem).save(item));
     }
 
     /**
      * Removes any synthetic variants for the given product
      */
-    private async removeSyntheticVariants(variants: ProductVariant[]) {
+    private async removeSyntheticVariants(ctx: RequestContext, variants: ProductVariant[]) {
         const prodIds = unique(variants.map(v => v.productId));
         for (const productId of prodIds) {
             await this.queue.push(() =>
-                this.connection.getRepository(SearchIndexItem).delete({
+                this.connection.getRepository(ctx, SearchIndexItem).delete({
                     productId,
                     sku: '',
                     price: 0,
@@ -463,24 +470,24 @@ export class IndexerController {
             translatable.translations[0]) as unknown as Translation<T>;
     }
 
-    private getFacetIds(variant: ProductVariant): string[] {
+    private getFacetIds(variant: ProductVariant, product: Product): string[] {
         const facetIds = (fv: FacetValue) => fv.facet.id.toString();
         const variantFacetIds = variant.facetValues.map(facetIds);
-        const productFacetIds = variant.product.facetValues.map(facetIds);
+        const productFacetIds = product.facetValues.map(facetIds);
         return unique([...variantFacetIds, ...productFacetIds]);
     }
 
-    private getFacetValueIds(variant: ProductVariant): string[] {
+    private getFacetValueIds(variant: ProductVariant, product: Product): string[] {
         const facetValueIds = (fv: FacetValue) => fv.id.toString();
         const variantFacetValueIds = variant.facetValues.map(facetValueIds);
-        const productFacetValueIds = variant.product.facetValues.map(facetValueIds);
+        const productFacetValueIds = product.facetValues.map(facetValueIds);
         return unique([...variantFacetValueIds, ...productFacetValueIds]);
     }
 
     /**
      * Remove items from the search index
      */
-    private async removeSearchIndexItems(channelId: ID, variantIds: ID[], languageCodes: LanguageCode[]) {
+    private async removeSearchIndexItems(ctx: RequestContext, channelId: ID, variantIds: ID[], languageCodes: LanguageCode[]) {
         const keys: Array<Partial<SearchIndexItem>> = [];
         for (const productVariantId of variantIds) {
             for (const languageCode of languageCodes) {
@@ -491,7 +498,7 @@ export class IndexerController {
                 });
             }
         }
-        await this.queue.push(() => this.connection.getRepository(SearchIndexItem).delete(keys as any));
+        await this.queue.push(() => this.connection.getRepository(ctx, SearchIndexItem).delete(keys as any));
     }
 
     /**

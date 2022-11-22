@@ -512,6 +512,12 @@ export const GET_ORDER_FULFILLMENTS = gql`
                 state
                 nextStates
                 method
+                summary {
+                    orderLine {
+                        id
+                    }
+                    quantity
+                }
             }
         }
     }
@@ -712,6 +718,7 @@ export const CANCEL_ORDER = gql`
     }
     fragment CanceledOrder on Order {
         id
+        state
         lines {
             quantity
             items {
@@ -932,4 +939,78 @@ export const GET_SHIPPING_METHOD_LIST = gql`
         }
     }
     ${SHIPPING_METHOD_FRAGMENT}
+`;
+
+export const GET_COLLECTIONS = gql`
+    query GetCollections {
+        collections {
+            items {
+                id
+                name
+                position
+                parent {
+                    id
+                    name
+                }
+            }
+        }
+    }
+`;
+
+export const TRANSITION_PAYMENT_TO_STATE = gql`
+    mutation TransitionPaymentToState($id: ID!, $state: String!) {
+        transitionPaymentToState(id: $id, state: $state) {
+            ...Payment
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+            ... on PaymentStateTransitionError {
+                transitionError
+            }
+        }
+    }
+    ${PAYMENT_FRAGMENT}
+`;
+
+export const GET_PRODUCT_VARIANT_LIST = gql`
+    query GetProductVariantLIST($options: ProductVariantListOptions, $productId: ID) {
+        productVariants(options: $options, productId: $productId) {
+            items {
+                id
+                name
+                sku
+                price
+                priceWithTax
+            }
+            totalItems
+        }
+    }
+`;
+
+export const DELETE_PROMOTION = gql`
+    mutation DeletePromotion($id: ID!) {
+        deletePromotion(id: $id) {
+            result
+        }
+    }
+`;
+
+export const GET_CHANNELS = gql`
+    query GetChannels {
+        channels {
+            id
+            code
+            token
+        }
+    }
+`;
+
+export const UPDATE_ADMINISTRATOR = gql`
+    mutation UpdateAdministrator($input: UpdateAdministratorInput!) {
+        updateAdministrator(input: $input) {
+            ...Administrator
+        }
+    }
+    ${ADMINISTRATOR_FRAGMENT}
 `;

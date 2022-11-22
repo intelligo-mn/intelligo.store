@@ -1,12 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { ModifyOrderInput, ModifyOrderResult, RefundOrderInput } from '@vendure/common/lib/generated-types';
+import {
+    HistoryEntryType,
+    ModifyOrderInput,
+    ModifyOrderResult,
+    RefundOrderInput,
+} from '@vendure/common/lib/generated-types';
 import { ID } from '@vendure/common/lib/shared-types';
-import { summate } from '@vendure/common/lib/shared-utils';
+import { getGraphQlInputName, summate } from '@vendure/common/lib/shared-utils';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { isGraphQlErrorResult, JustErrorResults } from '../../../common/error/error-result';
 import { EntityNotFoundError, InternalServerError, UserInputError } from '../../../common/error/errors';
 import {
+    CouponCodeExpiredError,
+    CouponCodeInvalidError,
+    CouponCodeLimitError,
     NoChangesSpecifiedError,
     OrderModificationStateError,
     RefundPaymentIdMissingError,
@@ -18,24 +26,30 @@ import {
 } from '../../../common/error/generated-graphql-shop-errors';
 import { idsAreEqual } from '../../../common/utils';
 import { ConfigService } from '../../../config/config.service';
+import { CustomFieldConfig } from '../../../config/custom-field/custom-field-types';
 import { TransactionalConnection } from '../../../connection/transactional-connection';
+import { VendureEntity } from '../../../entity/base/base.entity';
 import { OrderItem } from '../../../entity/order-item/order-item.entity';
 import { OrderLine } from '../../../entity/order-line/order-line.entity';
 import { OrderModification } from '../../../entity/order-modification/order-modification.entity';
 import { Order } from '../../../entity/order/order.entity';
 import { Payment } from '../../../entity/payment/payment.entity';
 import { ProductVariant } from '../../../entity/product-variant/product-variant.entity';
-import { Promotion } from '../../../entity/promotion/promotion.entity';
 import { ShippingLine } from '../../../entity/shipping-line/shipping-line.entity';
 import { Surcharge } from '../../../entity/surcharge/surcharge.entity';
+import { EventBus } from '../../../event-bus/event-bus';
+import { OrderLineEvent } from '../../../event-bus/index';
 import { CountryService } from '../../services/country.service';
+import { HistoryService } from '../../services/history.service';
 import { PaymentService } from '../../services/payment.service';
 import { ProductVariantService } from '../../services/product-variant.service';
+import { PromotionService } from '../../services/promotion.service';
 import { StockMovementService } from '../../services/stock-movement.service';
 import { CustomFieldRelationService } from '../custom-field-relation/custom-field-relation.service';
+import { EntityHydrator } from '../entity-hydrator/entity-hydrator.service';
 import { OrderCalculator } from '../order-calculator/order-calculator';
+import { TranslatorService } from '../translator/translator.service';
 import { patchEntity } from '../utils/patch-entity';
-import { translateDeep } from '../utils/translate-entity';
 
 /**
  * @description
@@ -47,6 +61,8 @@ import { translateDeep } from '../utils/translate-entity';
  * So this helper was mainly extracted to isolate the huge `modifyOrder` method since the
  * OrderService was just growing too large. Future refactoring could improve the organization
  * of these Order-related methods into a more clearly-delineated set of classes.
+ *
+ * @docsCategory service-helpers
  */
 @Injectable()
 export class OrderModifier {
@@ -59,9 +75,15 @@ export class OrderModifier {
         private stockMovementService: StockMovementService,
         private productVariantService: ProductVariantService,
         private customFieldRelationService: CustomFieldRelationService,
+        private promotionService: PromotionService,
+        private eventBus: EventBus,
+        private entityHydrator: EntityHydrator,
+        private historyService: HistoryService,
+        private translator: TranslatorService,
     ) {}
 
     /**
+     * @description
      * Ensure that the ProductVariant has sufficient saleable stock to add the given
      * quantity to an Order.
      */
@@ -79,6 +101,11 @@ export class OrderModifier {
         return correctedQuantity;
     }
 
+    /**
+     * @description
+     * Given a ProductVariant ID and optional custom fields, this method will return an existing OrderLine that
+     * matches, or `undefined` if no match is found.
+     */
     async getExistingOrderLine(
         ctx: RequestContext,
         order: Order,
@@ -96,6 +123,7 @@ export class OrderModifier {
     }
 
     /**
+     * @description
      * Returns the OrderLine to which a new OrderItem belongs, creating a new OrderLine
      * if no existing line is found.
      */
@@ -115,7 +143,7 @@ export class OrderModifier {
             new OrderLine({
                 productVariant,
                 taxCategory: productVariant.taxCategory,
-                featuredAsset: productVariant.product.featuredAsset,
+                featuredAsset: productVariant.featuredAsset ?? productVariant.product.featuredAsset,
                 customFields,
             }),
         );
@@ -129,20 +157,22 @@ export class OrderModifier {
                 'productVariant.taxCategory',
             ],
         });
-        lineWithRelations.productVariant = translateDeep(
+        lineWithRelations.productVariant = this.translator.translate(
             await this.productVariantService.applyChannelPriceAndTax(
                 lineWithRelations.productVariant,
                 ctx,
                 order,
             ),
-            ctx.languageCode,
+            ctx,
         );
         order.lines.push(lineWithRelations);
         await this.connection.getRepository(ctx, Order).save(order, { reload: false });
+        this.eventBus.publish(new OrderLineEvent(ctx, order, lineWithRelations, 'created'));
         return lineWithRelations;
     }
 
     /**
+     * @description
      * Updates the quantity of an OrderLine, taking into account the available saleable stock level.
      * Returns the actual quantity that the OrderLine was updated to (which may be less than the
      * `quantity` argument if insufficient stock was available.
@@ -181,8 +211,8 @@ export class OrderModifier {
             newOrderItems.forEach((item, i) => (item.id = identifiers[i].id));
             orderLine.items = await this.connection
                 .getRepository(ctx, OrderItem)
-                .find({ where: { line: orderLine } });
-            if (!order.active) {
+                .find({ where: { line: orderLine }, order: { createdAt: 'ASC' } });
+            if (!order.active && order.state !== 'Draft') {
                 await this.stockMovementService.createAllocationsForOrderLines(ctx, [
                     {
                         orderLine,
@@ -191,7 +221,7 @@ export class OrderModifier {
                 ]);
             }
         } else if (quantity < currentQuantity) {
-            if (order.active) {
+            if (order.active || order.state === 'Draft') {
                 // When an Order is still active, it is fine to just delete
                 // any OrderItems that are no longer needed
                 const keepItems = orderLine.items.slice(0, quantity);
@@ -216,6 +246,7 @@ export class OrderModifier {
             }
         }
         await this.connection.getRepository(ctx, OrderLine).save(orderLine);
+        this.eventBus.publish(new OrderLineEvent(ctx, order, orderLine, 'updated'));
         return orderLine;
     }
 
@@ -392,19 +423,62 @@ export class OrderModifier {
             modification.billingAddressChange = input.updateBillingAddress;
         }
 
+        if (input.couponCodes) {
+            for (const couponCode of input.couponCodes) {
+                const validationResult = await this.promotionService.validateCouponCode(
+                    ctx,
+                    couponCode,
+                    order.customer && order.customer.id,
+                );
+                if (isGraphQlErrorResult(validationResult)) {
+                    return validationResult as
+                        | CouponCodeExpiredError
+                        | CouponCodeInvalidError
+                        | CouponCodeLimitError;
+                }
+                if (!order.couponCodes.includes(couponCode)) {
+                    // This is a new coupon code that hadn't been applied before
+                    await this.historyService.createHistoryEntryForOrder({
+                        ctx,
+                        orderId: order.id,
+                        type: HistoryEntryType.ORDER_COUPON_APPLIED,
+                        data: { couponCode, promotionId: validationResult.id },
+                    });
+                }
+            }
+            for (const existingCouponCode of order.couponCodes) {
+                if (!input.couponCodes.includes(existingCouponCode)) {
+                    // An existing coupon code has been removed
+                    await this.historyService.createHistoryEntryForOrder({
+                        ctx,
+                        orderId: order.id,
+                        type: HistoryEntryType.ORDER_COUPON_REMOVED,
+                        data: { couponCode: existingCouponCode },
+                    });
+                }
+            }
+            order.couponCodes = input.couponCodes;
+        }
+
         const updatedOrderLines = order.lines.filter(l => updatedOrderLineIds.includes(l.id));
-        const promotions = await this.connection.getRepository(ctx, Promotion).find({
-            where: { enabled: true, deletedAt: null },
-            order: { priorityScore: 'ASC' },
-        });
-        await this.orderCalculator.applyPriceAdjustments(ctx, order, promotions, updatedOrderLines, {
-            recalculateShipping: input.options?.recalculateShipping,
-        });
+        const promotions = await this.promotionService.getActivePromotionsInChannel(ctx);
+        const activePromotionsPre = await this.promotionService.getActivePromotionsOnOrder(ctx, order.id);
+        const updatedOrderItems = await this.orderCalculator.applyPriceAdjustments(
+            ctx,
+            order,
+            promotions,
+            updatedOrderLines,
+            {
+                recalculateShipping: input.options?.recalculateShipping,
+            },
+        );
 
         const orderCustomFields = (input as any).customFields;
         if (orderCustomFields) {
             patchEntity(order, { customFields: orderCustomFields });
         }
+
+        await this.promotionService.runPromotionSideEffects(ctx, order, activePromotionsPre);
 
         if (dryRun) {
             return { order, modification };
@@ -421,6 +495,7 @@ export class OrderModifier {
             if (shippingDelta < 0) {
                 refundInput.shipping = shippingDelta * -1;
             }
+            refundInput.adjustment += this.calculateRefundAdjustment(delta, refundInput);
             const existingPayments = await this.getOrderPayments(ctx, order.id);
             const payment = existingPayments.find(p => idsAreEqual(p.id, input.refund?.paymentId));
             if (payment) {
@@ -444,7 +519,18 @@ export class OrderModifier {
             .getRepository(ctx, OrderModification)
             .save(modification);
         await this.connection.getRepository(ctx, Order).save(order);
-        await this.connection.getRepository(ctx, OrderItem).save(modification.orderItems, { reload: false });
+        if (input.couponCodes) {
+            // When coupon codes have changed, this will likely affect the adjustments applied to
+            // OrderItems. So in this case we need to save all of them.
+            const orderItems = order.lines.reduce((all, line) => all.concat(line.items), [] as OrderItem[]);
+            await this.connection.getRepository(ctx, OrderItem).save(orderItems, { reload: false });
+        } else {
+            // Otherwise, just save those OrderItems that were specifically added/removed
+            // or updated when applying `OrderCalculator.applyPriceAdjustments()`
+            await this.connection
+                .getRepository(ctx, OrderItem)
+                .save([...modification.orderItems, ...updatedOrderItems], { reload: false });
+        }
         await this.connection.getRepository(ctx, ShippingLine).save(order.shippingLines, { reload: false });
         return { order, modification: createdModification };
     }
@@ -456,8 +542,26 @@ export class OrderModifier {
             !input.surcharges?.length &&
             !input.updateShippingAddress &&
             !input.updateBillingAddress &&
+            !input.couponCodes &&
             !(input as any).customFields;
         return noChanges;
+    }
+
+    /**
+     * @description
+     * Because a Refund's amount is calculated based on the orderItems changed, plus shipping change,
+     * we need to make sure the amount gets adjusted to match any changes caused by other factors,
+     * i.e. promotions that were previously active but are no longer.
+     */
+    private calculateRefundAdjustment(
+        delta: number,
+        refundInput: RefundOrderInput & { orderItems: OrderItem[] },
+    ): number {
+        const existingAdjustment = refundInput.adjustment;
+        const itemAmount = summate(refundInput.orderItems, 'proratedUnitPriceWithTax');
+        const calculatedDelta = itemAmount + refundInput.shipping + existingAdjustment;
+        const absDelta = Math.abs(delta);
+        return absDelta !== calculatedDelta ? absDelta - calculatedDelta : 0;
     }
 
     private getOrderPayments(ctx: RequestContext, orderId: ID): Promise<Payment[]> {
@@ -475,12 +579,26 @@ export class OrderModifier {
         inputCustomFields: { [key: string]: any } | null | undefined,
         existingCustomFields?: { [key: string]: any },
     ): Promise<boolean> {
+        const customFieldDefs = this.configService.customFields.OrderLine;
         if (inputCustomFields == null && typeof existingCustomFields === 'object') {
             // A null value for an OrderLine customFields input is the equivalent
-            // of every property of an existing customFields object being null.
-            return Object.values(existingCustomFields).every(v => v === null);
+            // of every property of an existing customFields object being null
+            // or equal to the defaultValue
+            for (const def of customFieldDefs) {
+                const key = def.name;
+                const existingValue = this.coerceValue(def, existingCustomFields);
+                if (existingValue != null && (!def.list || existingValue?.length !== 0)) {
+                    if (def.defaultValue != null) {
+                        if (existingValue !== def.defaultValue) {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
-        const customFieldDefs = this.configService.customFields.OrderLine;
 
         const customFieldRelations = customFieldDefs.filter(d => d.type === 'relation');
         let lineWithCustomFieldRelations: OrderLine | undefined;
@@ -496,25 +614,47 @@ export class OrderModifier {
 
         for (const def of customFieldDefs) {
             const key = def.name;
-            const existingValue = existingCustomFields?.[key];
-            if (existingValue !== undefined) {
+            const existingValue = this.coerceValue(def, existingCustomFields);
+            if (def.type !== 'relation' && existingValue !== undefined) {
                 const valuesMatch =
                     JSON.stringify(inputCustomFields?.[key]) === JSON.stringify(existingValue);
                 const undefinedMatchesNull = existingValue === null && inputCustomFields?.[key] === undefined;
-                if (!valuesMatch && !undefinedMatchesNull) {
+                const defaultValueMatch =
+                    inputCustomFields?.[key] === undefined && def.defaultValue === existingValue;
+                if (!valuesMatch && !undefinedMatchesNull && !defaultValueMatch) {
                     return false;
                 }
             } else if (def.type === 'relation') {
-                const inputId = `${key}Id`;
+                const inputId = getGraphQlInputName(def);
                 const inputValue = inputCustomFields?.[inputId];
                 // tslint:disable-next-line:no-non-null-assertion
                 const existingRelation = (lineWithCustomFieldRelations!.customFields as any)[key];
-                if (inputValue && inputValue !== existingRelation?.id) {
-                    return false;
+                if (inputValue) {
+                    const customFieldNotEqual = def.list
+                        ? JSON.stringify((inputValue as ID[]).sort()) !==
+                          JSON.stringify(
+                              existingRelation?.map((relation: VendureEntity) => relation.id).sort(),
+                          )
+                        : inputValue !== existingRelation?.id;
+                    if (customFieldNotEqual) {
+                        return false;
+                    }
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * This function is required because with the MySQL driver, boolean customFields with a default
+     * of `false` were being represented as `0`, thus causing the equality check to fail.
+     * So if it's a boolean, we'll explicitly coerce the value to a boolean.
+     */
+    private coerceValue(def: CustomFieldConfig, existingCustomFields: { [p: string]: any } | undefined) {
+        const key = def.name;
+        return def.type === 'boolean' && typeof existingCustomFields?.[key] === 'number'
+            ? !!existingCustomFields?.[key]
+            : existingCustomFields?.[key];
     }
 
     private async getProductVariantOrThrow(

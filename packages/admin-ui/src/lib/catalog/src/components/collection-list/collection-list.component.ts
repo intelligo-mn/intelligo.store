@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
@@ -9,6 +9,7 @@ import {
     ModalService,
     NotificationService,
     QueryResult,
+    SelectionManager,
     ServerConfigService,
 } from '@vendure/admin-ui/core';
 import { combineLatest, EMPTY, Observable, Subject } from 'rxjs';
@@ -23,7 +24,7 @@ import {
     tap,
 } from 'rxjs/operators';
 
-import { RearrangeEvent } from '../collection-tree/collection-tree.component';
+import { CollectionPartial, RearrangeEvent } from '../collection-tree/collection-tree.component';
 
 @Component({
     selector: 'vdr-collection-list',
@@ -39,6 +40,8 @@ export class CollectionListComponent implements OnInit, OnDestroy {
     availableLanguages$: Observable<LanguageCode[]>;
     contentLanguage$: Observable<LanguageCode>;
     expandAll = false;
+    expandedIds: string[] = [];
+    selectionManager: SelectionManager<CollectionPartial>;
     private queryResult: QueryResult<any>;
     private destroy$ = new Subject<void>();
 
@@ -49,15 +52,29 @@ export class CollectionListComponent implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private serverConfigService: ServerConfigService,
-    ) {}
+        private changeDetectorRef: ChangeDetectorRef,
+    ) {
+        this.selectionManager = new SelectionManager({
+            additiveMode: true,
+            multiSelect: true,
+            itemsAreEqual: (a, b) => a.id === b.id,
+        });
+    }
 
     ngOnInit() {
         this.queryResult = this.dataService.collection.getCollections(1000, 0).refetchOnChannelChange();
-        this.items$ = this.queryResult.mapStream(data => data.collections.items).pipe(shareReplay(1));
+        this.items$ = this.queryResult
+            .mapStream(data => data.collections.items)
+            .pipe(
+                tap(items => this.selectionManager.setCurrentItems(items)),
+                shareReplay(1),
+            );
         this.activeCollectionId$ = this.route.paramMap.pipe(
             map(pm => pm.get('contents')),
             distinctUntilChanged(),
         );
+        this.expandedIds = this.route.snapshot.queryParamMap.get('expanded')?.split(',') ?? [];
+        this.expandAll = this.route.snapshot.queryParamMap.get('expanded') === 'all';
 
         this.activeCollectionTitle$ = combineLatest(this.activeCollectionId$, this.items$).pipe(
             map(([id, collections]) => {
@@ -76,13 +93,40 @@ export class CollectionListComponent implements OnInit, OnDestroy {
 
         this.filterTermControl.valueChanges
             .pipe(debounceTime(250), takeUntil(this.destroy$))
+            .subscribe(term => {
+                this.router.navigate(['./'], {
+                    queryParams: {
+                        q: term || undefined,
+                    },
+                    queryParamsHandling: 'merge',
+                    relativeTo: this.route,
+                });
+            });
+
+        this.route.queryParamMap
+            .pipe(
+                map(qpm => qpm.get('q')),
+                distinctUntilChanged(),
+                takeUntil(this.destroy$),
+            )
             .subscribe(() => this.refresh());
+        this.filterTermControl.patchValue(this.route.snapshot.queryParamMap.get('q'));
     }
 
     ngOnDestroy() {
         this.queryResult.completed$.next();
         this.destroy$.next(undefined);
         this.destroy$.complete();
+    }
+
+    toggleExpandAll() {
+        this.router.navigate(['./'], {
+            queryParams: {
+                expanded: this.expandAll ? 'all' : undefined,
+            },
+            queryParamsHandling: 'merge',
+            relativeTo: this.route,
+        });
     }
 
     onRearrange(event: RearrangeEvent) {
@@ -141,16 +185,17 @@ export class CollectionListComponent implements OnInit, OnDestroy {
         this.dataService.client.setContentLanguage(code).subscribe();
     }
 
-    private refresh() {
+    refresh() {
+        const filterTerm = this.route.snapshot.queryParamMap.get('q');
         this.queryResult.ref.refetch({
             options: {
                 skip: 0,
                 take: 1000,
-                ...(this.filterTermControl.value
+                ...(filterTerm
                     ? {
                           filter: {
                               name: {
-                                  contains: this.filterTermControl.value,
+                                  contains: filterTerm,
                               },
                           },
                       }

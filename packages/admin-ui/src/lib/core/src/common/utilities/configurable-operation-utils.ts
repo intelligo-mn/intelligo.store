@@ -15,7 +15,7 @@ import {
  */
 export function getConfigArgValue(value: any) {
     try {
-        return value ? JSON.parse(value) : undefined;
+        return value != null ? JSON.parse(value) : undefined;
     } catch (e) {
         return value;
     }
@@ -56,7 +56,7 @@ export function configurableDefinitionToInstance(
  * ```
  * {
  *     code: 'my-operation',
- *     args: [
+ *     arguments: [
  *         { name: 'someProperty', value: 'foo' }
  *     ]
  * }
@@ -64,16 +64,24 @@ export function configurableDefinitionToInstance(
  */
 export function toConfigurableOperationInput(
     operation: ConfigurableOperation,
-    formValueOperations: any,
+    formValueOperations: { args: Record<string, string> | Array<{ name: string; value: string }> },
 ): ConfigurableOperationInput {
+    const argsArray = Array.isArray(formValueOperations.args) ? formValueOperations.args : undefined;
+    const argsMap = !Array.isArray(formValueOperations.args) ? formValueOperations.args : undefined;
     return {
         code: operation.code,
-        arguments: Object.values<any>(formValueOperations.args || {}).map((value, j) => ({
-            name: operation.args[j].name,
-            value: value.hasOwnProperty('value')
-                ? encodeConfigArgValue((value as any).value)
-                : encodeConfigArgValue(value),
-        })),
+        arguments: operation.args.map(({ name, value }, j) => {
+            const formValue = argsArray?.find(arg => arg.name === name)?.value ?? argsMap?.[name];
+            if (formValue == null) {
+                throw new Error(`Cannot find an argument value for the key "${name}"`);
+            }
+            return {
+                name,
+                value: formValue?.hasOwnProperty('value')
+                    ? encodeConfigArgValue((formValue as any).value)
+                    : encodeConfigArgValue(formValue),
+            };
+        }),
     };
 }
 
@@ -100,5 +108,23 @@ export function configurableOperationValueIsValid(
  * Returns a default value based on the type of the config arg.
  */
 export function getDefaultConfigArgValue(arg: ConfigArgDefinition): any {
-    return arg.list ? [] : arg.defaultValue ?? null;
+    if (arg.list) {
+        return [];
+    }
+    if (arg.defaultValue != null) {
+        return arg.defaultValue;
+    }
+    const type = arg.type as ConfigArgType;
+    switch (type) {
+        case 'string':
+        case 'datetime':
+        case 'float':
+        case 'ID':
+        case 'int':
+            return null;
+        case 'boolean':
+            return false;
+        default:
+            assertNever(type);
+    }
 }

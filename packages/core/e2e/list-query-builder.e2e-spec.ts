@@ -29,7 +29,7 @@ describe('ListQueryBuilder', () => {
         await server.init({
             initialData,
             productsCsvPath: path.join(__dirname, 'fixtures/e2e-products-minimal.csv'),
-            customerCount: 1,
+            customerCount: 3,
         });
         await adminClient.asSuperAdmin();
     }, TEST_SETUP_TIMEOUT_MS);
@@ -954,6 +954,130 @@ describe('ListQueryBuilder', () => {
             expect(testEntities.items.map((x: any) => x.name)).toEqual(['egg', 'fahrrad']);
         });
     });
+
+    // https://github.com/vendure-ecommerce/vendure/issues/1586
+    it('using the getMany() of the resulting QueryBuilder', async () => {
+        const { testEntitiesGetMany } = await adminClient.query(GET_ARRAY_LIST, {});
+        expect(testEntitiesGetMany.sort((a: any, b: any) => a.id - b.id).map((x: any) => x.price)).toEqual([
+            11, 9, 22, 14, 13, 33,
+        ]);
+    });
+
+    // https://github.com/vendure-ecommerce/vendure/issues/1611
+    describe('translations handling', () => {
+        const allTranslations = [
+            [
+                { languageCode: LanguageCode.en, name: 'apple' },
+                { languageCode: LanguageCode.de, name: 'apfel' },
+            ],
+            [
+                { languageCode: LanguageCode.en, name: 'bike' },
+                { languageCode: LanguageCode.de, name: 'fahrrad' },
+            ],
+        ];
+
+        function getTestEntityTranslations(testEntities: { items: any[] }) {
+            // Explicitly sort the order of the translations as it was being non-deterministic on
+            // the mysql CI tests.
+            return testEntities.items.map((e: any) =>
+                e.translations.sort((a: any, b: any) => (a.languageCode < b.languageCode ? 1 : -1)),
+            );
+        }
+
+        it('returns all translations with default languageCode', async () => {
+            const { testEntities } = await shopClient.query(GET_LIST_WITH_TRANSLATIONS, {
+                options: {
+                    take: 2,
+                    sort: {
+                        order: SortOrder.ASC,
+                    },
+                },
+            });
+
+            const testEntityTranslations = getTestEntityTranslations(testEntities);
+            expect(testEntities.items.map((e: any) => e.name)).toEqual(['apple', 'bike']);
+            expect(testEntityTranslations).toEqual(allTranslations);
+        });
+        it('returns all translations with non-default languageCode', async () => {
+            const { testEntities } = await shopClient.query(
+                GET_LIST_WITH_TRANSLATIONS,
+                {
+                    options: {
+                        take: 2,
+                        sort: {
+                            order: SortOrder.ASC,
+                        },
+                    },
+                },
+                { languageCode: LanguageCode.de },
+            );
+
+            const testEntityTranslations = getTestEntityTranslations(testEntities);
+            expect(testEntities.items.map((e: any) => e.name)).toEqual(['apfel', 'fahrrad']);
+            expect(testEntityTranslations).toEqual(allTranslations);
+        });
+    });
+
+    describe('customPropertyMap', () => {
+        it('filter by custom string field', async () => {
+            const { testEntities } = await shopClient.query(GET_LIST_WITH_ORDERS, {
+                options: {
+                    sort: {
+                        label: SortOrder.ASC,
+                    },
+                    filter: {
+                        customerLastName: { contains: 'zieme' },
+                    },
+                },
+            });
+
+            expect(testEntities.items).toEqual([
+                {
+                    id: 'T_1',
+                    label: 'A',
+                    name: 'apple',
+                    orderRelation: {
+                        customer: {
+                            firstName: 'Hayden',
+                            lastName: 'Zieme',
+                        },
+                        id: 'T_1',
+                    },
+                },
+                {
+                    id: 'T_4',
+                    label: 'D',
+                    name: 'dog',
+                    orderRelation: {
+                        customer: {
+                            firstName: 'Hayden',
+                            lastName: 'Zieme',
+                        },
+                        id: 'T_4',
+                    },
+                },
+            ]);
+        });
+
+        it('sort by custom string field', async () => {
+            const { testEntities } = await shopClient.query(GET_LIST_WITH_ORDERS, {
+                options: {
+                    sort: {
+                        customerLastName: SortOrder.ASC,
+                    },
+                },
+            });
+
+            expect(testEntities.items.map((i: any) => i.orderRelation.customer)).toEqual([
+                { firstName: 'Trevor', lastName: 'Donnelly' },
+                { firstName: 'Trevor', lastName: 'Donnelly' },
+                { firstName: 'Marques', lastName: 'Sawayn' },
+                { firstName: 'Marques', lastName: 'Sawayn' },
+                { firstName: 'Hayden', lastName: 'Zieme' },
+                { firstName: 'Hayden', lastName: 'Zieme' },
+            ]);
+        });
+    });
 });
 
 const GET_LIST = gql`
@@ -966,6 +1090,56 @@ const GET_LIST = gql`
                 name
                 date
             }
+        }
+    }
+`;
+
+const GET_LIST_WITH_TRANSLATIONS = gql`
+    query GetTestEntitiesWithTranslations($options: TestEntityListOptions) {
+        testEntities(options: $options) {
+            totalItems
+            items {
+                id
+                label
+                name
+                date
+                translations {
+                    languageCode
+                    name
+                }
+            }
+        }
+    }
+`;
+
+const GET_LIST_WITH_ORDERS = gql`
+    query GetTestEntitiesWithTranslations($options: TestEntityListOptions) {
+        testEntities(options: $options) {
+            totalItems
+            items {
+                id
+                label
+                name
+                orderRelation {
+                    id
+                    customer {
+                        firstName
+                        lastName
+                    }
+                }
+            }
+        }
+    }
+`;
+
+const GET_ARRAY_LIST = gql`
+    query GetTestEntitiesArray($options: TestEntityListOptions) {
+        testEntitiesGetMany(options: $options) {
+            id
+            label
+            name
+            date
+            price
         }
     }
 `;

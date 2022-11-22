@@ -93,6 +93,7 @@ type OrderList implements PaginatedList {
 }
 
 type ShippingLine {
+    id: ID!
     shippingMethod: ShippingMethod!
     price: Int!
     priceWithTax: Int!
@@ -210,6 +211,7 @@ type OrderLine implements Node {
     discounts: [Discount!]!
     taxLines: [TaxLine!]!
     order: Order!
+    fulfillments: [Fulfillment!]
 }
 
 type Payment implements Node {
@@ -242,11 +244,17 @@ type Refund implements Node {
     metadata: JSON
 }
 
+type FulfillmentLineSummary {
+    orderLine: OrderLine!
+    quantity: Int!
+}
+
 type Fulfillment implements Node {
     id: ID!
     createdAt: DateTime!
     updatedAt: DateTime!
     orderItems: [OrderItem!]!
+    summary: [FulfillmentLineSummary!]!
     state: String!
     method: String!
     trackingCode: String

@@ -10,9 +10,11 @@ import {
     CreateAddressInput,
     CreateCustomerInput,
     CreateCustomerResult,
+    CustomerListOptions,
     DeletionResponse,
     DeletionResult,
     HistoryEntryType,
+    OrderAddress,
     UpdateAddressInput,
     UpdateCustomerInput,
     UpdateCustomerNoteInput,
@@ -21,6 +23,7 @@ import {
 import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
+import { RelationPaths } from '../../api/index';
 import { ErrorResultUnion, isGraphQlErrorResult } from '../../common/error/error-result';
 import { EntityNotFoundError, InternalServerError } from '../../common/error/errors';
 import { EmailAddressConflictError as EmailAddressConflictAdminError } from '../../common/error/generated-graphql-admin-errors';
@@ -31,6 +34,7 @@ import {
     MissingPasswordError,
     PasswordResetTokenExpiredError,
     PasswordResetTokenInvalidError,
+    PasswordValidationError,
 } from '../../common/error/generated-graphql-shop-errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { assertFound, idsAreEqual, normalizeEmailAddress } from '../../common/utils';
@@ -43,6 +47,7 @@ import { Channel } from '../../entity/channel/channel.entity';
 import { CustomerGroup } from '../../entity/customer-group/customer-group.entity';
 import { Customer } from '../../entity/customer/customer.entity';
 import { HistoryEntry } from '../../entity/history-entry/history-entry.entity';
+import { Order } from '../../entity/index';
 import { User } from '../../entity/user/user.entity';
 import { EventBus } from '../../event-bus/event-bus';
 import { AccountRegistrationEvent } from '../../event-bus/events/account-registration-event';
@@ -55,9 +60,9 @@ import { PasswordResetEvent } from '../../event-bus/events/password-reset-event'
 import { PasswordResetVerifiedEvent } from '../../event-bus/events/password-reset-verified-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
+import { TranslatorService } from '../helpers/translator/translator.service';
 import { addressToLine } from '../helpers/utils/address-to-line';
 import { patchEntity } from '../helpers/utils/patch-entity';
-import { translateDeep } from '../helpers/utils/translate-entity';
 
 import { ChannelService } from './channel.service';
 import { CountryService } from './country.service';
@@ -82,25 +87,39 @@ export class CustomerService {
         private historyService: HistoryService,
         private channelService: ChannelService,
         private customFieldRelationService: CustomFieldRelationService,
+        private translator: TranslatorService,
     ) {}
 
     findAll(
         ctx: RequestContext,
         options: ListQueryOptions<Customer> | undefined,
+        relations: RelationPaths<Customer> = [],
     ): Promise<PaginatedList<Customer>> {
+        const customPropertyMap: { [name: string]: string } = {};
+        const hasPostalCodeFilter = !!(options as CustomerListOptions)?.filter?.postalCode;
+        if (hasPostalCodeFilter) {
+            relations.push('addresses');
+            customPropertyMap.postalCode = 'addresses.postalCode';
+        }
         return this.listQueryBuilder
             .build(Customer, options, {
-                relations: ['channels'],
+                relations,
                 channelId: ctx.channelId,
                 where: { deletedAt: null },
                 ctx,
+                customPropertyMap,
             })
             .getManyAndCount()
             .then(([items, totalItems]) => ({ items, totalItems }));
     }
 
-    findOne(ctx: RequestContext, id: ID): Promise<Customer | undefined> {
+    findOne(
+        ctx: RequestContext,
+        id: ID,
+        relations: RelationPaths<Customer> = [],
+    ): Promise<Customer | undefined> {
         return this.connection.findOneInChannel(ctx, Customer, id, ctx.channelId, {
+            relations,
             where: { deletedAt: null },
         });
     }
@@ -139,7 +158,7 @@ export class CustomerService {
             .getMany()
             .then(addresses => {
                 addresses.forEach(address => {
-                    address.country = translateDeep(address.country, ctx.languageCode);
+                    address.country = this.translator.translate(address.country, ctx);
                 });
                 return addresses;
             });
@@ -219,12 +238,16 @@ export class CustomerService {
             // Customer already exists, bring to this Channel
             const updatedCustomer = patchEntity(existingCustomer, input);
             updatedCustomer.channels.push(ctx.channel);
-            return this.connection.getRepository(Customer).save(updatedCustomer);
+            return this.connection.getRepository(ctx, Customer).save(updatedCustomer);
         } else if (existingCustomer || existingUser) {
             // Not sure when this situation would occur
             return new EmailAddressConflictAdminError();
         }
-        customer.user = await this.userService.createCustomerUser(ctx, input.emailAddress, password);
+        const customerUser = await this.userService.createCustomerUser(ctx, input.emailAddress, password);
+        if (isGraphQlErrorResult(customerUser)) {
+            throw customerUser;
+        }
+        customer.user = customerUser;
 
         if (password && password !== '') {
             const verificationToken = customer.user.getNativeAuthenticationMethod().verificationToken;
@@ -343,7 +366,7 @@ export class CustomerService {
     async registerCustomerAccount(
         ctx: RequestContext,
         input: RegisterCustomerInput,
-    ): Promise<RegisterCustomerAccountResult | EmailAddressConflictError> {
+    ): Promise<RegisterCustomerAccountResult | EmailAddressConflictError | PasswordValidationError> {
         if (!this.configService.authOptions.requireVerification) {
             if (!input.password) {
                 return new MissingPasswordError();
@@ -381,19 +404,29 @@ export class CustomerService {
             },
         });
         if (!user) {
-            user = await this.userService.createCustomerUser(
+            const customerUser = await this.userService.createCustomerUser(
                 ctx,
                 input.emailAddress,
                 input.password || undefined,
             );
+            if (isGraphQlErrorResult(customerUser)) {
+                return customerUser;
+            } else {
+                user = customerUser;
+            }
         }
         if (!hasNativeAuthMethod) {
-            user = await this.userService.addNativeAuthenticationMethod(
+            const addAuthenticationResult = await this.userService.addNativeAuthenticationMethod(
                 ctx,
                 user,
                 input.emailAddress,
                 input.password || undefined,
             );
+            if (isGraphQlErrorResult(addAuthenticationResult)) {
+                return addAuthenticationResult;
+            } else {
+                user = addAuthenticationResult;
+            }
         }
         if (!user.verified) {
             user = await this.userService.setVerificationToken(ctx, user);
@@ -495,7 +528,9 @@ export class CustomerService {
         ctx: RequestContext,
         passwordResetToken: string,
         password: string,
-    ): Promise<User | PasswordResetTokenExpiredError | PasswordResetTokenInvalidError> {
+    ): Promise<
+        User | PasswordResetTokenExpiredError | PasswordResetTokenInvalidError | PasswordValidationError
+    > {
         const result = await this.userService.resetPasswordByToken(ctx, passwordResetToken, password);
         if (isGraphQlErrorResult(result)) {
             return result;
@@ -671,6 +706,7 @@ export class CustomerService {
             type: HistoryEntryType.CUSTOMER_ADDRESS_CREATED,
             data: { address: addressToLine(createdAddress) },
         });
+        createdAddress.customer = customer;
         this.eventBus.publish(new CustomerAddressEvent(ctx, createdAddress, 'created', input));
         return createdAddress;
     }
@@ -691,7 +727,7 @@ export class CustomerService {
         if (input.countryCode && input.countryCode !== address.country.code) {
             address.country = await this.countryService.findOneByCode(ctx, input.countryCode);
         } else {
-            address.country = translateDeep(address.country, ctx.languageCode);
+            address.country = this.translator.translate(address.country, ctx);
         }
         let updatedAddress = patchEntity(address, input);
         updatedAddress = await this.connection.getRepository(ctx, Address).save(updatedAddress);
@@ -707,6 +743,7 @@ export class CustomerService {
                 input,
             },
         });
+        updatedAddress.customer = customer;
         this.eventBus.publish(new CustomerAddressEvent(ctx, updatedAddress, 'updated', input));
         return updatedAddress;
     }
@@ -724,7 +761,7 @@ export class CustomerService {
         if (!customer) {
             throw new EntityNotFoundError('Address', id);
         }
-        address.country = translateDeep(address.country, ctx.languageCode);
+        address.country = this.translator.translate(address.country, ctx);
         await this.reassignDefaultsForDeletedAddress(ctx, address);
         await this.historyService.createHistoryEntryForCustomer({
             customerId: address.customer.id,
@@ -734,8 +771,10 @@ export class CustomerService {
                 address: addressToLine(address),
             },
         });
+        const deletedAddress = new Address(address);
         await this.connection.getRepository(ctx, Address).remove(address);
-        this.eventBus.publish(new CustomerAddressEvent(ctx, address, 'deleted', id));
+        address.customer = customer;
+        this.eventBus.publish(new CustomerAddressEvent(ctx, deletedAddress, 'deleted', id));
         return true;
     }
 
@@ -752,6 +791,57 @@ export class CustomerService {
         return {
             result: DeletionResult.DELETED,
         };
+    }
+
+    /**
+     * @description
+     * If the Customer associated with the given Order does not yet have any Addresses,
+     * this method will create new Address(es) based on the Order's shipping & billing
+     * addresses.
+     */
+    async createAddressesForNewCustomer(ctx: RequestContext, order: Order) {
+        if (!order.customer) {
+            return;
+        }
+        const addresses = await this.findAddressesByCustomerId(ctx, order.customer.id);
+        // If the Customer has no addresses yet, use the shipping/billing address data
+        // to populate the initial default Address.
+        if (addresses.length === 0 && order.shippingAddress?.country) {
+            const shippingAddress = order.shippingAddress;
+            const billingAddress = order.billingAddress;
+            const hasSeparateBillingAddress =
+                billingAddress?.streetLine1 && !this.addressesAreEqual(shippingAddress, billingAddress);
+            if (shippingAddress.streetLine1) {
+                await this.createAddress(ctx, order.customer.id, {
+                    ...shippingAddress,
+                    company: shippingAddress.company || '',
+                    streetLine1: shippingAddress.streetLine1 || '',
+                    streetLine2: shippingAddress.streetLine2 || '',
+                    countryCode: shippingAddress.countryCode || '',
+                    defaultBillingAddress: !hasSeparateBillingAddress,
+                    defaultShippingAddress: true,
+                });
+            }
+            if (hasSeparateBillingAddress) {
+                await this.createAddress(ctx, order.customer.id, {
+                    ...billingAddress,
+                    company: billingAddress.company || '',
+                    streetLine1: billingAddress.streetLine1 || '',
+                    streetLine2: billingAddress.streetLine2 || '',
+                    countryCode: billingAddress.countryCode || '',
+                    defaultBillingAddress: true,
+                    defaultShippingAddress: false,
+                });
+            }
+        }
+    }
+
+    private addressesAreEqual(address1: OrderAddress, address2: OrderAddress): boolean {
+        return (
+            address1.streetLine1 === address2.streetLine1 &&
+            address1.streetLine2 === address2.streetLine2 &&
+            address1.postalCode === address2.postalCode
+        );
     }
 
     async addNoteToCustomer(ctx: RequestContext, input: AddNoteToCustomerInput): Promise<Customer> {

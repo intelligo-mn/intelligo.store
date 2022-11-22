@@ -7,13 +7,14 @@ import {
     DataService,
     GetOrderList,
     LocalStorageService,
+    LogicalOperator,
     OrderListOptions,
     ServerConfigService,
     SortOrder,
 } from '@vendure/admin-ui/core';
 import { Order } from '@vendure/common/lib/generated-types';
 import { merge, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, skip, takeUntil, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
 interface OrderFilterConfig {
     active?: boolean;
@@ -34,7 +35,9 @@ interface FilterPreset {
 })
 export class OrderListComponent
     extends BaseListComponent<GetOrderList.Query, GetOrderList.Items>
-    implements OnInit {
+    implements OnInit
+{
+    searchControl = new FormControl('');
     searchOrderCodeControl = new FormControl('');
     searchLastNameControl = new FormControl('');
     customFilterForm: FormGroup;
@@ -46,7 +49,7 @@ export class OrderListComponent
             config: {
                 active: false,
                 states: this.orderStates.filter(
-                    s => s !== 'Delivered' && s !== 'Cancelled' && s !== 'Shipped',
+                    s => s !== 'Delivered' && s !== 'Cancelled' && s !== 'Shipped' && s !== 'Draft',
                 ),
             },
         },
@@ -73,8 +76,17 @@ export class OrderListComponent
                 active: true,
             },
         },
+        {
+            name: 'draft',
+            label: _('order.filter-preset-draft'),
+            config: {
+                active: false,
+                states: ['Draft'],
+            },
+        },
     ];
     activePreset$: Observable<string>;
+    canCreateDraftOrder = false;
 
     constructor(
         private serverConfigService: ServerConfigService,
@@ -93,14 +105,20 @@ export class OrderListComponent
                 this.createQueryOptions(
                     skip,
                     take,
-                    this.searchOrderCodeControl.value,
-                    this.searchLastNameControl.value,
+                    this.searchControl.value,
                     this.route.snapshot.queryParamMap.get('filter') || 'open',
                 ),
         );
         const lastFilters = this.localStorageService.get('orderListLastCustomFilters');
         if (lastFilters) {
             this.setQueryParam(lastFilters, { replaceUrl: true });
+        }
+        this.canCreateDraftOrder = !!this.serverConfigService
+            .getOrderProcessStates()
+            .find(state => state.name === 'Created')
+            ?.to.includes('Draft');
+        if (!this.canCreateDraftOrder) {
+            this.filterPresets = this.filterPresets.filter(p => p.name !== 'draft');
         }
     }
 
@@ -110,10 +128,7 @@ export class OrderListComponent
             map(qpm => qpm.get('filter') || 'open'),
             distinctUntilChanged(),
         );
-        const searchTerms$ = merge(
-            this.searchOrderCodeControl.valueChanges,
-            this.searchLastNameControl.valueChanges,
-        ).pipe(
+        const searchTerms$ = merge(this.searchControl.valueChanges).pipe(
             filter(value => 2 < value.length || value.length === 0),
             debounceTime(250),
         );
@@ -164,13 +179,13 @@ export class OrderListComponent
         // tslint:disable-next-line:no-shadowed-variable
         skip: number,
         take: number,
-        orderCodeSearchTerm: string,
-        customerNameSearchTerm: string,
+        searchTerm: string,
         activeFilterPreset?: string,
     ): { options: OrderListOptions } {
         const filterConfig = this.filterPresets.find(p => p.name === activeFilterPreset);
         // tslint:disable-next-line:no-shadowed-variable
-        const filter: any = {};
+        let filter: any = {};
+        let filterOperator: LogicalOperator = LogicalOperator.AND;
         if (filterConfig) {
             if (filterConfig.config.active != null) {
                 filter.active = {
@@ -209,15 +224,19 @@ export class OrderListComponent
                 };
             }
         }
-        if (customerNameSearchTerm) {
-            filter.customerLastName = {
-                contains: customerNameSearchTerm,
+        if (searchTerm) {
+            filter = {
+                customerLastName: {
+                    contains: searchTerm,
+                },
+                transactionId: {
+                    contains: searchTerm,
+                },
+                code: {
+                    contains: searchTerm,
+                },
             };
-        }
-        if (orderCodeSearchTerm) {
-            filter.code = {
-                contains: orderCodeSearchTerm,
-            };
+            filterOperator = LogicalOperator.OR;
         }
         return {
             options: {
@@ -229,6 +248,7 @@ export class OrderListComponent
                 sort: {
                     updatedAt: SortOrder.DESC,
                 },
+                filterOperator,
             },
         };
     }
