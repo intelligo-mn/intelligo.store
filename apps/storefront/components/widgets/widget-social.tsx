@@ -1,10 +1,10 @@
 import type { FC } from "react";
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useSettings } from "@contexts/settings.context";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import socialIcons from "../icons/social-icon";
-import { Social } from "apps/storefront/framework/rest/types";
-import { getIcon } from "apps/storefront/lib/get-icon";
+import { Social } from "@framework/types";
+import { getIcon } from "@lib/get-icon";
 
 const WidgetSocial: FC = () => {
   const { t } = useTranslation();

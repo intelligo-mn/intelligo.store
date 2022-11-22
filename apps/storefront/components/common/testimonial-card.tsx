@@ -1,6 +1,6 @@
-import Text from "apps/storefront/components/ui/text";
-import StarIcon from "apps/storefront/components/icons/star-icon";
-import QuoteIcon from "apps/storefront/components/icons/quote-icon";
+import Text from "@components/ui/text";
+import StarIcon from "@components/icons/star-icon";
+import QuoteIcon from "@components/icons/quote-icon";
 
 interface Props {
 	item: any;

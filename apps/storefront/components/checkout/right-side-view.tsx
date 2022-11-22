@@ -1,13 +1,13 @@
 import { useAtom } from "jotai";
 import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
-import { verifiedResponseAtom } from "apps/storefront/store/checkout";
+import { verifiedResponseAtom } from "@store/checkout";
 
 const UnverifiedItemList = dynamic(
-  () => import("apps/storefront/components/checkout/item/unverified-item-list")
+  () => import("@components/checkout/item/unverified-item-list")
 );
 const VerifiedItemList = dynamic(
-  () => import("apps/storefront/components/checkout/item/verified-item-list")
+  () => import("@components/checkout/item/verified-item-list")
 );
 
 export const RightSideView = () => {

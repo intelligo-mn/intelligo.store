@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { signOut as socialLoginSignOut } from "next-auth/client";
 import Cookies from "js-cookie";
-import { AUTH_TOKEN } from "apps/storefront/lib/constants";
-import { useLogoutMutation } from "apps/storefront/framework/rest/auth/auth.query";
+import { AUTH_TOKEN } from "@lib/constants";
+import { useLogoutMutation } from "@framework/auth/auth.query";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
+import { authorizationAtom } from "@store/authorization-atom";
 import { useRouter } from "next/router";
 import { GetStaticProps } from "next";
-import PageLoader from "apps/storefront/components/ui/page-loader/page-loader";
+import PageLoader from "@components/ui/page-loader/page-loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { clearCheckoutAtom } from "apps/storefront/store/checkout";
+import { clearCheckoutAtom } from "@store/checkout";
 
 const Logout = () => {
   const { mutate } = useLogoutMutation();

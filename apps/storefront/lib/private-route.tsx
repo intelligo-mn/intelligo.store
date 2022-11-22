@@ -1,10 +1,10 @@
-import useUser from "apps/storefront/framework/rest/auth/use-user";
+import useUser from "@framework/auth/use-user";
 import { useRouter } from "next/router";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
-import { BackArrowRound } from "apps/storefront/components/icons/back-arrow-round";
-import PageLoader from "apps/storefront/components/ui/page-loader/page-loader";
-import LoginForm from "apps/storefront/components/auth/login-form";
+import { authorizationAtom } from "@store/authorization-atom";
+import { BackArrowRound } from "@components/icons/back-arrow-round";
+import PageLoader from "@components/ui/page-loader/page-loader";
+import LoginForm from "@components/auth/login-form";
 
 const PrivateRoute: React.FC = ({ children }) => {
   const router = useRouter();

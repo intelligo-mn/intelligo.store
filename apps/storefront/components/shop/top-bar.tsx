@@ -1,12 +1,12 @@
-import { Drawer } from "apps/storefront/components/common/drawer/drawer";
-import FilterIcon from "apps/storefront/components/icons/filter-icon";
-import Text from "apps/storefront/components/ui/text";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import FilterSidebar from "apps/storefront/components/shop/filter-sidebar";
-import ListBox from "apps/storefront/components/ui/list-box";
+import { Drawer } from "@components/common/drawer/drawer";
+import FilterIcon from "@components/icons/filter-icon";
+import Text from "@components/ui/text";
+import { useUI } from "@contexts/ui.context";
+import FilterSidebar from "@components/shop/filter-sidebar";
+import ListBox from "@components/ui/list-box";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 import isEmpty from "lodash/isEmpty";
 import React from "react";
 

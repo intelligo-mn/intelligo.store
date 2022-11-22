@@ -2,7 +2,7 @@ import React from "react";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
-import { useInstagram } from "apps/storefront/framework/rest/instagram/instagram.query";
+import { useInstagram } from "@framework/instagram/instagram.query";
 
 interface Props {
   className?: string;

@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
-import Link from "apps/storefront/components/ui/link";
-import usePrice from "apps/storefront/lib/use-price";
-import { formatAddress } from "apps/storefront/lib/format-address";
-import { formatString } from "apps/storefront/lib/format-string";
-import { ROUTES } from "apps/storefront/lib/routes";
+import Link from "@components/ui/link";
+import usePrice from "@lib/use-price";
+import { formatAddress } from "@lib/format-address";
+import { formatString } from "@lib/format-string";
+import { ROUTES } from "@lib/routes";
 import { useTranslation } from "next-i18next";
-import Badge from "apps/storefront/components/ui/badge";
-import { OrderItems } from "apps/storefront/components/orders/order-items";
-import SuborderItems from "apps/storefront/components/orders/suborder-items";
+import Badge from "@components/ui/badge";
+import { OrderItems } from "@components/orders/order-items";
+import SuborderItems from "@components/orders/suborder-items";
 
 export default function OrderView({ order }: any) {
   const { t } = useTranslation("common");

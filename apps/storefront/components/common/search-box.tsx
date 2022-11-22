@@ -1,4 +1,4 @@
-import SearchIcon from "apps/storefront/components/icons/search-icon";
+import SearchIcon from "@components/icons/search-icon";
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { IoCloseOutline } from "@react-icons/all-files/io5/IoCloseOutline";

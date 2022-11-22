@@ -1,14 +1,14 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeInOut } from "apps/storefront/utils/motion/fade-in-out";
+import { fadeInOut } from "@utils/motion/fade-in-out";
 import { IoIosCloseCircle } from "@react-icons/all-files/io/IoIosCloseCircle";
-import Counter from "apps/storefront/components/common/counter";
-import usePrice from "apps/storefront/lib/use-price";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { generateCartItemName } from "apps/storefront/utils/generate-cart-item-name";
+import Counter from "@components/common/counter";
+import usePrice from "@lib/use-price";
+import { ROUTES } from "@lib/routes";
+import { generateCartItemName } from "@utils/generate-cart-item-name";
 import { useTranslation } from "next-i18next";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
+import { useCart } from "@store/quick-cart/cart.context";
 
 type CartItemProps = {
 	item: any;

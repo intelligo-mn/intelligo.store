@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
-import { Image } from "apps/storefront/components/ui/image";
-import noResult from "apps/storefront/assets/not-found.svg";
+import { Image } from "@components/ui/image";
+import noResult from "@assets/not-found.svg";
 
 interface Props {
   text?: string;

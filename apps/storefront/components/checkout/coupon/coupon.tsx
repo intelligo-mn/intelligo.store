@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Input from "apps/storefront/components/ui/formatted-input";
-import Button from "apps/storefront/components/ui/button";
+import Input from "@components/ui/formatted-input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import { useVerifyCouponMutation } from "apps/storefront/framework/rest/coupons/coupons.query";
+import { useVerifyCouponMutation } from "@framework/coupons/coupons.query";
 import { useTranslation } from "next-i18next";
-import { couponAtom } from "apps/storefront/store/checkout";
+import { couponAtom } from "@store/checkout";
 import { useAtom } from "jotai";
 
 const Coupon = () => {

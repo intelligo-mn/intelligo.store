@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
-import SearchIcon from "apps/storefront/components/icons/search-icon";
-import Logo from "apps/storefront/components/ui/logo";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { addActiveScroll } from "apps/storefront/utils/add-active-scroll";
+import SearchIcon from "@components/icons/search-icon";
+import Logo from "@components/ui/logo";
+import { useUI } from "@contexts/ui.context";
+import { ROUTES } from "@lib/routes";
+import { addActiveScroll } from "@utils/add-active-scroll";
 import dynamic from "next/dynamic";
 import { useTranslation } from "next-i18next";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
-import { menu } from "apps/storefront/data/static/menus";
-import HeaderMenu from "apps/storefront/components/layout/header/header-menu";
+import { authorizationAtom } from "@store/authorization-atom";
+import { menu } from "@data/static/menus";
+import HeaderMenu from "@components/layout/header/header-menu";
 const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
-const CartButton = dynamic(() => import("apps/storefront/components/cart/cart-button"), {
+const CartButton = dynamic(() => import("@components/cart/cart-button"), {
 	ssr: false,
 });
 

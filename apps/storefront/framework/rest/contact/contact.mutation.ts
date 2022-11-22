@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
-import request from "apps/storefront/framework/rest/utils/request";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
+import request from "@framework/utils/request";
 
 export type ContactFormValues = {
   name: string;

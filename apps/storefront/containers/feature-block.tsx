@@ -1,5 +1,5 @@
-import TextInformation from "apps/storefront/components/common/text-information";
-import { featureBlock as data } from "apps/storefront/data/static/feature-block";
+import TextInformation from "@components/common/text-information";
+import { featureBlock as data } from "@data/static/feature-block";
 
 interface Props {
   className?: string;

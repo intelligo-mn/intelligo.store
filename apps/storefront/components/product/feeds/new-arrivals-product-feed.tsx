@@ -1,8 +1,8 @@
-import ProductsBlock from "apps/storefront/containers/products-block";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
+import ProductsBlock from "@containers/products-block";
+import { useProductsQuery } from "@framework/products/products.query";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 
 export default function NewArrivalsProductFeed() {
   const { t } = useTranslation();

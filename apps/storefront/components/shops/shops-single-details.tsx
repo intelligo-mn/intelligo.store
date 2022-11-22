@@ -1,17 +1,17 @@
 import StickyBox from "react-sticky-box";
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { getDirection } from "apps/storefront/utils/get-direction";
-import Container from "apps/storefront/components/ui/container";
-import { Drawer } from "apps/storefront/components/common/drawer/drawer";
+import { useUI } from "@contexts/ui.context";
+import { getDirection } from "@utils/get-direction";
+import Container from "@components/ui/container";
+import { Drawer } from "@components/common/drawer/drawer";
 import ShopSidebar from "./shop-sidebar";
 import ShopSidebarDrawer from "./shop-sidebar-drawer";
-import { Shop } from "apps/storefront/framework/rest/types";
-import { productPlaceholder } from "apps/storefront/lib/placeholders";
+import { Shop } from "@framework/types";
+import { productPlaceholder } from "@lib/placeholders";
 import { useTranslation } from "next-i18next";
-import ShopProductsGrid from "apps/storefront/components/shops/shop-products-grid";
+import ShopProductsGrid from "@components/shops/shop-products-grid";
 
 type Props = {
   data: Shop;

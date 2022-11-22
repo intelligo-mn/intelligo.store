@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
-import { Category, QueryParamsType } from "apps/storefront/framework/rest/types";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
-import request from "apps/storefront/framework/rest/utils/request";
+import { Category, QueryParamsType } from "@framework/types";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
+import request from "@framework/utils/request";
 
 export const fetchFeaturedCategories = async ({ queryKey }: QueryParamsType) => {
   const [_key, params]: any = queryKey;

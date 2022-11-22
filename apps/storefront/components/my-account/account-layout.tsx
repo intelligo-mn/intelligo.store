@@ -1,9 +1,9 @@
-import PageHeader from "apps/storefront/components/ui/page-header";
-import Container from "apps/storefront/components/ui/container";
-import AccountNav from "apps/storefront/components/my-account/account-nav";
-import AccountNavMobile from "apps/storefront/components/my-account/account-nav-mobile";
-import Subscription from "apps/storefront/components/common/subscription";
-import { ROUTES } from "apps/storefront/lib/routes";
+import PageHeader from "@components/ui/page-header";
+import Container from "@components/ui/container";
+import AccountNav from "@components/my-account/account-nav";
+import AccountNavMobile from "@components/my-account/account-nav-mobile";
+import Subscription from "@components/common/subscription";
+import { ROUTES } from "@lib/routes";
 
 import { IoHomeOutline } from "@react-icons/all-files/io5/IoHomeOutline";
 import { IoCartOutline } from "@react-icons/all-files/io5/IoCartOutline";

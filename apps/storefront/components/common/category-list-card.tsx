@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { IoIosArrowForward } from "@react-icons/all-files/io/IoIosArrowForward";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { Category } from "apps/storefront/framework/rest/types";
+import { ROUTES } from "@lib/routes";
+import { Category } from "@framework/types";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { getCategoryTypeImage } from "apps/storefront/lib/get-category-type-image";
+import { getCategoryTypeImage } from "@lib/get-category-type-image";
 
 interface Props {
 	category: Category;

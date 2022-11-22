@@ -1,11 +1,11 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
-import usePrice from "apps/storefront/lib/use-price";
-import { ROUTES } from "apps/storefront/lib/routes";
+import usePrice from "@lib/use-price";
+import { ROUTES } from "@lib/routes";
 import isEmpty from "lodash/isEmpty";
-import VariationPrice from "apps/storefront/components/product/product-variant-price";
+import VariationPrice from "@components/product/product-variant-price";
 import React from "react";
-import {getVariations} from "apps/storefront/framework/rest/utils/get-variations";
+import {getVariations} from "@framework/utils/get-variations";
 
 type SearchProductProps = {
   item: any;

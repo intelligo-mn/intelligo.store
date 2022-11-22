@@ -1,8 +1,8 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import { useTranslation } from "next-i18next";
-import { CollectionBanner } from "apps/storefront/framework/rest/types";
+import { CollectionBanner } from "@framework/types";
 import cn from "classnames";
 
 interface Props {

@@ -1,24 +1,24 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Container from "apps/storefront/components/ui/container";
-import CategoryBlock from "apps/storefront/containers/category-block";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import BannerWithProducts from "apps/storefront/containers/banner-with-products";
-import NewArrivalsProductFeed from "apps/storefront/components/product/feeds/new-arrivals-product-feed";
-import ProductsFlashSaleBlock from "apps/storefront/containers/product-flash-sale-block";
-import ProductsFeatured from "apps/storefront/containers/products-featured";
-import Subscription from "apps/storefront/components/common/subscription";
-import { ROUTES } from "apps/storefront/lib/routes";
-import HeroSlider from "apps/storefront/containers/hero-slider";
-import BrandGridBlock from "apps/storefront/containers/brand-grid-block";
-import SaleBannerGrid from "apps/storefront/containers/sale-banner-grid";
+import BannerCard from "@components/common/banner-card";
+import Container from "@components/ui/container";
+import CategoryBlock from "@containers/category-block";
+import { getLayout } from "@components/layout/layout";
+import BannerWithProducts from "@containers/banner-with-products";
+import NewArrivalsProductFeed from "@components/product/feeds/new-arrivals-product-feed";
+import ProductsFlashSaleBlock from "@containers/product-flash-sale-block";
+import ProductsFeatured from "@containers/products-featured";
+import Subscription from "@components/common/subscription";
+import { ROUTES } from "@lib/routes";
+import HeroSlider from "@containers/hero-slider";
+import BrandGridBlock from "@containers/brand-grid-block";
+import SaleBannerGrid from "@containers/sale-banner-grid";
 import {
   trendyDemoHeroBanner as heroBanner,
   homeTrendyCoupons as coupons,
   homeTrendyProductWithBanner as productWithBanner,
-} from "apps/storefront/data/static/banners";
-import TestimonialCarousel from "apps/storefront/containers/testimonial-carousel";
+} from "@data/static/banners";
+import TestimonialCarousel from "@containers/testimonial-carousel";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/homepage/trendy";
+export { getStaticProps } from "@framework/ssr/homepage/trendy";
 
 export default function Home() {
   return (

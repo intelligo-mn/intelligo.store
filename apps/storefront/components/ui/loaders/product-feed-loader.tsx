@@ -1,4 +1,4 @@
-import ProductCardLoader from "apps/storefront/components/ui/loaders/product-card-loader";
+import ProductCardLoader from "@components/ui/loaders/product-card-loader";
 
 interface Props {
 	limit?: number;

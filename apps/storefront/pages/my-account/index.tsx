@@ -1,11 +1,11 @@
-import Link from "apps/storefront/components/ui/link";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import AccountLayout from "apps/storefront/components/my-account/account-layout";
-import { ROUTES } from "apps/storefront/lib/routes";
+import Link from "@components/ui/link";
+import { getLayout } from "@components/layout/layout";
+import AccountLayout from "@components/my-account/account-layout";
+import { ROUTES } from "@lib/routes";
 import { useTranslation } from "next-i18next";
-import useUser from "apps/storefront/framework/rest/auth/use-user";
+import useUser from "@framework/auth/use-user";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/common";
+export { getStaticProps } from "@framework/ssr/common";
 
 export default function AccountPage() {
   const { t } = useTranslation("common");

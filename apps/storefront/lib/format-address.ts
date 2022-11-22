@@ -1,4 +1,4 @@
-import { UserAddress } from 'apps/storefront/framework/rest/types';
+import { UserAddress } from '@framework/types';
 
 function removeFalsy(obj: any) {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => Boolean(v)));

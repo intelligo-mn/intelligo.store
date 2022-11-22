@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from 'apps/storefront/lib/constants';
+import { AUTH_TOKEN } from '@lib/constants';
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
 

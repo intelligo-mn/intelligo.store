@@ -1,5 +1,5 @@
 import React from "react";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { siteSettings } from "@settings/site.settings";
 
 type State = typeof initialState;
 

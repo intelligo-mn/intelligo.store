@@ -1,30 +1,30 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Container from "apps/storefront/components/ui/container";
-import CollectionBlock from "apps/storefront/containers/collection-block";
-import BannerCarouselBlock from "apps/storefront/containers/banner-carousel-block";
-import Divider from "apps/storefront/components/ui/divider";
-import DownloadApps from "apps/storefront/components/common/download-apps";
-import Support from "apps/storefront/components/common/support";
-import Subscription from "apps/storefront/components/common/subscription";
-import HeroBlock from "apps/storefront/containers/hero-block";
-import BrandBlock from "apps/storefront/containers/brand-block";
-import CategoryBlock from "apps/storefront/containers/category-block";
-import FeatureBlock from "apps/storefront/containers/feature-block";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import FlashSaleBlock from "apps/storefront/components/product/feeds/flash-sale-product-feed";
-import BestSellerProductFeed from "apps/storefront/components/product/feeds/best-seller-product-feed";
-import NewArrivalsProductFeed from "apps/storefront/components/product/feeds/new-arrivals-product-feed";
+import BannerCard from "@components/common/banner-card";
+import Container from "@components/ui/container";
+import CollectionBlock from "@containers/collection-block";
+import BannerCarouselBlock from "@containers/banner-carousel-block";
+import Divider from "@components/ui/divider";
+import DownloadApps from "@components/common/download-apps";
+import Support from "@components/common/support";
+import Subscription from "@components/common/subscription";
+import HeroBlock from "@containers/hero-block";
+import BrandBlock from "@containers/brand-block";
+import CategoryBlock from "@containers/category-block";
+import FeatureBlock from "@containers/feature-block";
+import { getLayout } from "@components/layout/layout";
+import FlashSaleBlock from "@components/product/feeds/flash-sale-product-feed";
+import BestSellerProductFeed from "@components/product/feeds/best-seller-product-feed";
+import NewArrivalsProductFeed from "@components/product/feeds/new-arrivals-product-feed";
 import { useEffect } from "react";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { ROUTES } from "@lib/routes";
+import { useUI } from "@contexts/ui.context";
 import {
   standardDemoBanner as banner,
   standardDemoHeroBanner as heroBanner,
   standardDemoPromotionBanner as promotionalBanner,
-} from "apps/storefront/data/static/banners";
-import { collectionData } from "apps/storefront/data/static/collection";
+} from "@data/static/banners";
+import { collectionData } from "@data/static/collection";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/homepage/standard";
+export { getStaticProps } from "@framework/ssr/homepage/standard";
 
 export default function Home() {
   const { openModal, setModalView } = useUI();

@@ -1,7 +1,7 @@
 import React from "react";
-import { useProductsInfiniteQuery } from "apps/storefront/framework/rest/products/products.query";
-import ProductInfiniteGrid from "apps/storefront/components/product/product-infinite-grid";
-import CollectionTopBar from "apps/storefront/components/collection/collection-top-bar";
+import { useProductsInfiniteQuery } from "@framework/products/products.query";
+import ProductInfiniteGrid from "@components/product/product-infinite-grid";
+import CollectionTopBar from "@components/collection/collection-top-bar";
 
 type Props = {
   classname?: string;

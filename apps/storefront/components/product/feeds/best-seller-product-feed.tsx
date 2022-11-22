@@ -1,8 +1,8 @@
-import ProductsBlock from "apps/storefront/containers/products-block";
+import ProductsBlock from "@containers/products-block";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
-import { usePopularProductsQuery } from "apps/storefront/framework/rest/products/popular-products.query";
+import NotFoundItem from "@components/404/not-found-item";
+import { usePopularProductsQuery } from "@framework/products/popular-products.query";
 
 export default function BestSellerProductFeed() {
   const { t } = useTranslation();

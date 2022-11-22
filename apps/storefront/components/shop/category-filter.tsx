@@ -1,10 +1,10 @@
-import { CheckBox } from "apps/storefront/components/ui/checkbox";
+import { CheckBox } from "@components/ui/checkbox";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { Category } from "apps/storefront/framework/rest/types";
-import Button from "apps/storefront/components/ui/button";
-import { useCategoriesInfiniteQuery } from "apps/storefront/framework/rest/category/categories.query";
+import { Category } from "@framework/types";
+import Button from "@components/ui/button";
+import { useCategoriesInfiniteQuery } from "@framework/category/categories.query";
 
 export const CategoryFilter = () => {
   const { t } = useTranslation("common");

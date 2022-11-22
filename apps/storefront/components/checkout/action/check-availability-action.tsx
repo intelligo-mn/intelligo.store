@@ -1,15 +1,15 @@
-import { formatOrderedProduct } from "apps/storefront/lib/format-ordered-product";
+import { formatOrderedProduct } from "@lib/format-ordered-product";
 import { useState } from "react";
-import ValidationError from "apps/storefront/components/ui/validation-error";
-import { useVerifyCheckoutMutation } from "apps/storefront/framework/rest/checkout/checkout.query";
+import ValidationError from "@components/ui/validation-error";
+import { useVerifyCheckoutMutation } from "@framework/checkout/checkout.query";
 import { useAtom } from "jotai";
 import {
   billingAddressAtom,
   shippingAddressAtom,
   verifiedResponseAtom,
-} from "apps/storefront/store/checkout";
-import Button from "apps/storefront/components/ui/button";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
+} from "@store/checkout";
+import Button from "@components/ui/button";
+import { useCart } from "@store/quick-cart/cart.context";
 import { useTranslation } from "next-i18next";
 
 export const CheckAvailabilityAction: React.FC = (props) => {

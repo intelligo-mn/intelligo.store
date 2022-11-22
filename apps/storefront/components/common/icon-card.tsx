@@ -1,5 +1,5 @@
-import Link from "apps/storefront/components/ui/link";
-import Text from "apps/storefront/components/ui/text";
+import Link from "@components/ui/link";
+import Text from "@components/ui/text";
 import { FaLink } from "@react-icons/all-files/fa/FaLink";
 import { useTranslation } from "next-i18next";
 import cn from "classnames";

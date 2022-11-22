@@ -1,14 +1,14 @@
-import { getLayout } from "apps/storefront/components/layout/layout";
-import Container from "apps/storefront/components/ui/container";
-import PageHeader from "apps/storefront/components/ui/page-header";
-import { privacyPolicy } from "apps/storefront/settings/privacy-settings";
+import { getLayout } from "@components/layout/layout";
+import Container from "@components/ui/container";
+import PageHeader from "@components/ui/page-header";
+import { privacyPolicy } from "@settings/privacy-settings";
 import { Link, Element } from "react-scroll";
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import {QueryClient} from "react-query";
-import {API_ENDPOINTS} from "apps/storefront/framework/rest/utils/endpoints";
-import {fetchSettings} from "apps/storefront/framework/rest/settings/settings.query";
+import {API_ENDPOINTS} from "@framework/utils/endpoints";
+import {fetchSettings} from "@framework/settings/settings.query";
 
 function makeTitleToDOMId(title: string) {
   return title.toLowerCase().split(" ").join("_");

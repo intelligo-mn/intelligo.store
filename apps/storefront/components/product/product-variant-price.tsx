@@ -1,4 +1,4 @@
-import usePrice from "apps/storefront/lib/use-price";
+import usePrice from "@lib/use-price";
 import isEmpty from "lodash/isEmpty";
 import React from "react";
 

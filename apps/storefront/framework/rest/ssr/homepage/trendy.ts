@@ -1,12 +1,12 @@
 import { GetStaticProps } from "next";
 import { QueryClient } from "react-query";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
+import { fetchSettings } from "@framework/settings/settings.query";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { fetchCategories } from "apps/storefront/framework/rest/category/categories.query";
-import { fetchBrands } from "apps/storefront/framework/rest/brand/brands.query";
-import { fetchProducts } from "apps/storefront/framework/rest/products/products.query";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { fetchCategories } from "@framework/category/categories.query";
+import { fetchBrands } from "@framework/brand/brands.query";
+import { fetchProducts } from "@framework/products/products.query";
+import { siteSettings } from "@settings/site.settings";
 import { dehydrate } from "react-query/hydration";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

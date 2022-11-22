@@ -3,10 +3,10 @@ import { IoLocationSharp } from "@react-icons/all-files/io5/IoLocationSharp";
 import { IoMail } from "@react-icons/all-files/io5/IoMail";
 import { IoCallSharp } from "@react-icons/all-files/io5/IoCallSharp";
 import { useTranslation } from "next-i18next";
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useSettings } from "@contexts/settings.context";
 import isEmpty from "lodash/isEmpty";
-import { formatAddress } from "apps/storefront/lib/format-address";
-import GoogleStaticMap from "apps/storefront/components/common/google-static-map";
+import { formatAddress } from "@lib/format-address";
+import GoogleStaticMap from "@components/common/google-static-map";
 
 interface Props {
   image?: HTMLImageElement;

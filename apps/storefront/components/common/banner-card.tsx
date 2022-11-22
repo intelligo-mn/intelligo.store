@@ -1,7 +1,7 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
 import type { FC } from "react";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
+import { useWindowSize } from "@utils/use-window-size";
 import cn from "classnames";
 import { LinkProps } from "next/link";
 

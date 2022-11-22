@@ -1,13 +1,13 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import SellWithProgress from "apps/storefront/components/common/sale-with-progress";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
+import BannerCard from "@components/common/banner-card";
+import SellWithProgress from "@components/common/sale-with-progress";
+import { useProductsQuery } from "@framework/products/products.query";
 import classNames from "classnames";
-import { ROUTES } from "apps/storefront/lib/routes";
-import Alert from "apps/storefront/components/ui/alert";
+import { ROUTES } from "@lib/routes";
+import Alert from "@components/ui/alert";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import NotFoundItem from "@components/404/not-found-item";
+import { siteSettings } from "@settings/site.settings";
 
 interface Props {
   className?: string;

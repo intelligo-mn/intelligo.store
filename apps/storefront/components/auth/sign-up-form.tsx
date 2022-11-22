@@ -1,23 +1,23 @@
-import Input from "apps/storefront/components/ui/input";
-import PasswordInput from "apps/storefront/components/ui/password-input";
-import Button from "apps/storefront/components/ui/button";
+import Input from "@components/ui/input";
+import PasswordInput from "@components/ui/password-input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import Logo from "apps/storefront/components/ui/logo";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import Logo from "@components/ui/logo";
+import { useUI } from "@contexts/ui.context";
 /* @ts-ignore */
 import { ImGoogle2 } from "@react-icons/all-files/im/ImGoogle2";
 // import { ImFacebook2 } from "@react-icons/all-files/im/ImFacebook2";
-import Link from "apps/storefront/components/ui/link";
-import { ROUTES } from "apps/storefront/lib/routes";
+import Link from "@components/ui/link";
+import { ROUTES } from "@lib/routes";
 import { useTranslation } from "next-i18next";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Alert from "apps/storefront/components/ui/alert";
+import Alert from "@components/ui/alert";
 import React, { useState } from "react";
-import { useRegisterMutation } from "apps/storefront/framework/rest/auth/auth.query";
-import { AUTH_TOKEN } from "apps/storefront/lib/constants";
+import { useRegisterMutation } from "@framework/auth/auth.query";
+import { AUTH_TOKEN } from "@lib/constants";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
+import { authorizationAtom } from "@store/authorization-atom";
 import Cookies from "js-cookie";
 import {useRouter} from "next/router";
 

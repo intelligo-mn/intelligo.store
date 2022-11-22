@@ -1,6 +1,6 @@
-import { CoreApi } from "apps/storefront/framework/rest/utils/core-api";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
+import { CoreApi } from "@framework/utils/core-api";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
+import { authorizationAtom } from "@store/authorization-atom";
 import { useAtom } from "jotai";
 import { QueryKey, useQuery, UseQueryOptions } from "react-query";
 

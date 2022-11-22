@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import { useTranslation } from "next-i18next";
 
 interface MenuItem {

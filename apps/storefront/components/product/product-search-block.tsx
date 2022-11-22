@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { useProductsInfiniteQuery } from "apps/storefront/framework/rest/products/products.query";
+import { useProductsInfiniteQuery } from "@framework/products/products.query";
 import { useRouter } from "next/router";
-import { formatPriceRange } from "apps/storefront/lib/format-price-range";
-import SearchTopBar from "apps/storefront/components/shop/top-bar";
-import ProductInfiniteGrid from "apps/storefront/components/product/product-infinite-grid";
+import { formatPriceRange } from "@lib/format-price-range";
+import SearchTopBar from "@components/shop/top-bar";
+import ProductInfiniteGrid from "@components/product/product-infinite-grid";
 
 interface ProductGridProps {
   className?: string;

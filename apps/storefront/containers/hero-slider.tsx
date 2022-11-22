@@ -1,6 +1,6 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
-import { ROUTES } from "apps/storefront/lib/routes";
+import BannerCard from "@components/common/banner-card";
+import Carousel from "@components/ui/carousel/carousel";
+import { ROUTES } from "@lib/routes";
 import { SwiperSlide } from "swiper/react";
 import cn from "classnames";
 

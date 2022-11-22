@@ -1,10 +1,10 @@
-import { CloseIcon } from "apps/storefront/components/icons/close-icon";
-import { PencilIcon } from "apps/storefront/components/icons/pencil-icon";
-import { formatAddress } from "apps/storefront/lib/format-address";
+import { CloseIcon } from "@components/icons/close-icon";
+import { PencilIcon } from "@components/icons/pencil-icon";
+import { formatAddress } from "@lib/format-address";
 import classNames from "classnames";
 import { useTranslation } from "next-i18next";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { AddressType } from "apps/storefront/framework/rest/utils/constants";
+import { useUI } from "@contexts/ui.context";
+import { AddressType } from "@framework/utils/constants";
 
 interface AddressProps {
   address: any;

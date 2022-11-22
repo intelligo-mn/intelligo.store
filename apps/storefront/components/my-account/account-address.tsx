@@ -1,10 +1,10 @@
-// import { useModalAction } from 'apps/storefront/components/ui/modal/modal.context';
-import { Address } from 'apps/storefront/framework/rest/types';
-import AddressCard from 'apps/storefront/components/address/address-card';
-import { AddressHeader } from 'apps/storefront/components/address/address-header';
+// import { useModalAction } from '@components/ui/modal/modal.context';
+import { Address } from '@framework/types';
+import AddressCard from '@components/address/address-card';
+import { AddressHeader } from '@components/address/address-header';
 import { useTranslation } from 'next-i18next';
-import { AddressType } from 'apps/storefront/framework/rest/utils/constants';
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { AddressType } from '@framework/utils/constants';
+import { useUI } from "@contexts/ui.context";
 
 interface AddressesProps {
   addresses: Address[] | undefined;

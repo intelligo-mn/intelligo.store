@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useCategoryQuery } from "apps/storefront/framework/rest/category/categories.query";
-import {categoryBannerPlaceholder} from "apps/storefront/lib/placeholders";
+import { useCategoryQuery } from "@framework/category/categories.query";
+import {categoryBannerPlaceholder} from "@lib/placeholders";
 interface CategoryBannerProps {
 	className?: string;
 }

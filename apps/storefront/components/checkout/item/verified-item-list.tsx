@@ -1,23 +1,23 @@
-import Coupon from 'apps/storefront/components/checkout/coupon/coupon';
-import usePrice from 'apps/storefront/lib/use-price';
-import EmptyCartIcon from 'apps/storefront/components/icons/empty-cart';
-import { CloseIcon } from 'apps/storefront/components/icons/close-icon';
+import Coupon from '@components/checkout/coupon/coupon';
+import usePrice from '@lib/use-price';
+import EmptyCartIcon from '@components/icons/empty-cart';
+import { CloseIcon } from '@components/icons/close-icon';
 import { useTranslation } from 'next-i18next';
-import { useCart } from 'apps/storefront/store/quick-cart/cart.context';
+import { useCart } from '@store/quick-cart/cart.context';
 import {
   calculatePaidTotal,
   calculateTotal,
-} from "apps/storefront/store/quick-cart/cart.utils";
+} from "@store/quick-cart/cart.utils";
 import { useAtom } from "jotai";
 import {
   couponAtom,
   discountAtom,
   verifiedResponseAtom,
-} from 'apps/storefront/store/checkout';
-import ItemCard from 'apps/storefront/components/checkout/item/item-card';
-import { ItemInfoRow } from 'apps/storefront/components/checkout/item/item-info-row';
-import PaymentGrid from 'apps/storefront/components/checkout/payment/payment-grid';
-import { PlaceOrderAction } from 'apps/storefront/components/checkout/action/place-order-action';
+} from '@store/checkout';
+import ItemCard from '@components/checkout/item/item-card';
+import { ItemInfoRow } from '@components/checkout/item/item-info-row';
+import PaymentGrid from '@components/checkout/payment/payment-grid';
+import { PlaceOrderAction } from '@components/checkout/action/place-order-action';
 
 interface Props {
   className?: string;

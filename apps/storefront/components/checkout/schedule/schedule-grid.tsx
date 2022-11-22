@@ -1,10 +1,10 @@
 import { RadioGroup } from "@headlessui/react";
 import { useAtom } from "jotai";
 import ScheduleCard from "./schedule-card";
-import { deliveryTimeAtom } from "apps/storefront/store/checkout";
+import { deliveryTimeAtom } from "@store/checkout";
 import { useEffect } from "react";
 import { useTranslation } from "next-i18next";
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useSettings } from "@contexts/settings.context";
 
 interface ScheduleProps {
   label: string;

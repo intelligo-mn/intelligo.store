@@ -5,8 +5,8 @@ import { PriceFilter } from "./price-filter";
 import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "next-i18next";
-import { useAttributesQuery } from "apps/storefront/framework/rest/attributes/attributes.query";
-import { AttributesFilter } from "apps/storefront/components/shop/attributes-filter";
+import { useAttributesQuery } from "@framework/attributes/attributes.query";
+import { AttributesFilter } from "@components/shop/attributes-filter";
 
 export const ShopFilters: React.FC = () => {
 	const router = useRouter();

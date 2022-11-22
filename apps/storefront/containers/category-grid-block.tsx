@@ -1,13 +1,13 @@
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import SectionHeader from "@components/common/section-header";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import CategoryCard from "apps/storefront/components/common/category-card";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
-import CategoryCardLoader from "apps/storefront/components/ui/loaders/category-card-loader";
-import Alert from "apps/storefront/components/ui/alert";
-import { useFeaturedCategoriesQuery } from "apps/storefront/framework/rest/category/featured-categories.query";
+import CategoryCard from "@components/common/category-card";
+import { useWindowSize } from "@utils/use-window-size";
+import CategoryCardLoader from "@components/ui/loaders/category-card-loader";
+import Alert from "@components/ui/alert";
+import { useFeaturedCategoriesQuery } from "@framework/category/featured-categories.query";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 import { useTranslation } from "next-i18next";
 
 interface CategoriesProps {

@@ -1,4 +1,4 @@
-import { KeyBasedImage, Type } from "apps/storefront/framework/rest/types";
+import { KeyBasedImage, Type } from "@framework/types";
 
 /**
  * Helper methods to filter brands

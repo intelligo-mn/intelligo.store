@@ -1,8 +1,8 @@
 import type { FC } from "react";
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useSettings } from "@contexts/settings.context";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { ROUTES } from "apps/storefront/lib/routes";
+import { ROUTES } from "@lib/routes";
 
 const WidgetContact: FC = () => {
   const { t } = useTranslation();

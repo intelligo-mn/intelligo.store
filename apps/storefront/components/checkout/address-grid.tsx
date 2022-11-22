@@ -1,11 +1,11 @@
-import { Address } from "apps/storefront/framework/rest/types";
+import { Address } from "@framework/types";
 import { RadioGroup } from "@headlessui/react";
 import { useAtom, WritableAtom } from "jotai";
 import { useEffect } from "react";
-import AddressCard from "apps/storefront/components/address/address-card";
-import { AddressHeader } from "apps/storefront/components/address/address-header";
+import AddressCard from "@components/address/address-card";
+import { AddressHeader } from "@components/address/address-header";
 import { useTranslation } from "next-i18next";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 interface AddressesProps {
   addresses: Address[] | undefined;

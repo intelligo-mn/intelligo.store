@@ -1,12 +1,12 @@
-import Button from 'apps/storefront/components/ui/button';
-import { verifiedTokenAtom } from 'apps/storefront/store/checkout';
+import Button from '@components/ui/button';
+import { verifiedTokenAtom } from '@store/checkout';
 import {
   Elements,
   CardElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import getStripe from 'apps/storefront/lib/get-stripe';
+import getStripe from '@lib/get-stripe';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';

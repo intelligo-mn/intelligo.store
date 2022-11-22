@@ -1,25 +1,25 @@
 import { useTranslation } from "next-i18next";
-import { billingAddressAtom, shippingAddressAtom } from "apps/storefront/store/checkout";
+import { billingAddressAtom, shippingAddressAtom } from "@store/checkout";
 import dynamic from "next/dynamic";
-import useUser from "apps/storefront/framework/rest/auth/use-user";
-import { AddressType } from "apps/storefront/framework/rest/utils/constants";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import { Address } from "apps/storefront/framework/rest/types";
-import Divider from "apps/storefront/components/ui/divider";
-import Container from "apps/storefront/components/ui/container";
-import Subscription from "apps/storefront/components/common/subscription";
+import useUser from "@framework/auth/use-user";
+import { AddressType } from "@framework/utils/constants";
+import { getLayout } from "@components/layout/layout";
+import { Address } from "@framework/types";
+import Divider from "@components/ui/divider";
+import Container from "@components/ui/container";
+import Subscription from "@components/common/subscription";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/common";
+export { getStaticProps } from "@framework/ssr/common";
 
 const ScheduleGrid = dynamic(
-  () => import("apps/storefront/components/checkout/schedule/schedule-grid")
+  () => import("@components/checkout/schedule/schedule-grid")
 );
-const AddressGrid = dynamic(() => import("apps/storefront/components/checkout/address-grid"));
+const AddressGrid = dynamic(() => import("@components/checkout/address-grid"));
 const ContactGrid = dynamic(
-  () => import("apps/storefront/components/checkout/contact/contact-grid")
+  () => import("@components/checkout/contact/contact-grid")
 );
 const RightSideView = dynamic(
-  () => import("apps/storefront/components/checkout/right-side-view")
+  () => import("@components/checkout/right-side-view")
 );
 
 export default function CheckoutPage() {

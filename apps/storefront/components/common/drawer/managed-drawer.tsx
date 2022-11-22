@@ -1,8 +1,8 @@
-import Cart from "apps/storefront/components/cart/cart";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { Drawer } from "apps/storefront/components/common/drawer/drawer";
+import Cart from "@components/cart/cart";
+import { useUI } from "@contexts/ui.context";
+import { Drawer } from "@components/common/drawer/drawer";
 import { useRouter } from "next/router";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 
 const ManagedDrawer = () => {
 	const { displayCart, closeCart } = useUI();

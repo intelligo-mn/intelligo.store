@@ -8,10 +8,10 @@ import {
 } from "body-scroll-lock";
 import cn from "classnames";
 import { IoClose } from "@react-icons/all-files/io5/IoClose";
-import { fadeInOut } from "apps/storefront/utils/motion/fade-in-out";
-import { zoomOutIn } from "apps/storefront/utils/motion/zoom-out-in";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import useOnClickOutside from "apps/storefront/utils/use-click-outside";
+import { fadeInOut } from "@utils/motion/fade-in-out";
+import { zoomOutIn } from "@utils/motion/zoom-out-in";
+import { useUI } from "@contexts/ui.context";
+import useOnClickOutside from "@utils/use-click-outside";
 
 type ModalProps = {
   open?: boolean;

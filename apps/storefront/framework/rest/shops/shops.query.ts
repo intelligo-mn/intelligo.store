@@ -1,7 +1,7 @@
-import { QueryParamsType, ShopsQueryOptionsType, Shop } from 'apps/storefront/framework/rest/types';
-import { CoreApi, ParamsType } from 'apps/storefront/framework/rest/utils/core-api';
-import { mapPaginatorData } from 'apps/storefront/framework/rest/utils/data-mappers';
-import { API_ENDPOINTS } from 'apps/storefront/framework/rest/utils/endpoints';
+import { QueryParamsType, ShopsQueryOptionsType, Shop } from '@framework/types';
+import { CoreApi, ParamsType } from '@framework/utils/core-api';
+import { mapPaginatorData } from '@framework/utils/data-mappers';
+import { API_ENDPOINTS } from '@framework/utils/endpoints';
 import {
   QueryKey,
   useInfiniteQuery,

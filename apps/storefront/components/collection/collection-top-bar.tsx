@@ -1,10 +1,10 @@
-import { Drawer } from "apps/storefront/components/common/drawer/drawer";
+import { Drawer } from "@components/common/drawer/drawer";
 import { MdCollectionsBookmark } from "@react-icons/all-files/md/MdCollectionsBookmark";
-import Text from "apps/storefront/components/ui/text";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import Text from "@components/ui/text";
+import { useUI } from "@contexts/ui.context";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 import CollectionFilterSidebar from "./collection-filter-sidebar";
 import React from "react";
 

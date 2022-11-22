@@ -1,6 +1,6 @@
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
-import { fetchShops } from "apps/storefront/framework/rest/shops/shops.query";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+import { fetchSettings } from "@framework/settings/settings.query";
+import { fetchShops } from "@framework/shops/shops.query";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { GetStaticProps } from "next";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

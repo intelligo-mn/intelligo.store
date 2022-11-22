@@ -1,5 +1,5 @@
-import TrashIcon from 'apps/storefront/components/icons/trash';
-import Button from 'apps/storefront/components/ui/button';
+import TrashIcon from '@components/icons/trash';
+import Button from '@components/ui/button';
 import { useTranslation } from 'next-i18next';
 import cn from 'classnames';
 

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ROUTES } from "apps/storefront/lib/routes";
+import { ROUTES } from "@lib/routes";
 import { useTranslation } from "next-i18next";
-import { Type } from "apps/storefront/framework/rest/types";
-import { filterBrandImages } from "apps/storefront/lib/filter-brands";
+import { Type } from "@framework/types";
+import { filterBrandImages } from "@lib/filter-brands";
 import React from "react";
 
 const BrandCard: React.FC<{ brand: Type }> = ({ brand }) => {

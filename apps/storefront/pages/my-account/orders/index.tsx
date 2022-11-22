@@ -1,14 +1,14 @@
-import { getLayout } from "apps/storefront/components/layout/layout";
-import AccountLayout from "apps/storefront/components/my-account/account-layout";
-import OrdersTable from "apps/storefront/components/my-account/orders-table";
-import ErrorMessage from "apps/storefront/components/ui/error-message";
-import Spinner from "apps/storefront/components/ui/loaders/spinner/spinner";
-import { useOrdersQuery } from "apps/storefront/framework/rest/orders/orders.query";
+import { getLayout } from "@components/layout/layout";
+import AccountLayout from "@components/my-account/account-layout";
+import OrdersTable from "@components/my-account/orders-table";
+import ErrorMessage from "@components/ui/error-message";
+import Spinner from "@components/ui/loaders/spinner/spinner";
+import { useOrdersQuery } from "@framework/orders/orders.query";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
-import NotFound from "apps/storefront/components/404/not-found";
+import NotFound from "@components/404/not-found";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/common";
+export { getStaticProps } from "@framework/ssr/common";
 
 export default function OrdersTablePage() {
   const { t } = useTranslation();

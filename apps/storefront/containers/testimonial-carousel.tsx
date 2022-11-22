@@ -1,7 +1,7 @@
-import TestimonialCard from "apps/storefront/components/common/testimonial-card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
-import { testimonials } from "apps/storefront/data/static/testimonial";
+import TestimonialCard from "@components/common/testimonial-card";
+import SectionHeader from "@components/common/section-header";
+import Carousel from "@components/ui/carousel/carousel";
+import { testimonials } from "@data/static/testimonial";
 import { SwiperSlide } from "swiper/react";
 
 interface TestimonialsProps {

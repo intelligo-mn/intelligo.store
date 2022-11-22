@@ -1,6 +1,6 @@
-import CartIcon from "apps/storefront/components/icons/cart-icon";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
+import CartIcon from "@components/icons/cart-icon";
+import { useUI } from "@contexts/ui.context";
+import { useCart } from "@store/quick-cart/cart.context";
 
 const CartButton = () => {
   const { openCart } = useUI();

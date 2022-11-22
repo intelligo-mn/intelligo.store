@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import Button from "apps/storefront/components/ui/button";
-import Counter from "apps/storefront/components/common/counter";
-import { getVariations } from "apps/storefront/framework/rest/utils/get-variations";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
-import usePrice from "apps/storefront/lib/use-price";
-import { generateCartItem } from "apps/storefront/utils/generate-cart-item";
+import Button from "@components/ui/button";
+import Counter from "@components/common/counter";
+import { getVariations } from "@framework/utils/get-variations";
+import { useCart } from "@store/quick-cart/cart.context";
+import usePrice from "@lib/use-price";
+import { generateCartItem } from "@utils/generate-cart-item";
 import { ProductAttributes } from "./product-attributes";
 import isEmpty from "lodash/isEmpty";
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import { useWindowSize } from "@utils/use-window-size";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import { Attachment, Product } from "apps/storefront/framework/rest/types";
+import { Attachment, Product } from "@framework/types";
 import isEqual from "lodash/isEqual";
-import VariationPrice from "apps/storefront/components/product/product-variant-price";
+import VariationPrice from "@components/product/product-variant-price";
 import { useTranslation } from "next-i18next";
 import isMatch from "lodash/isMatch";
-import { ROUTES } from "apps/storefront/lib/routes";
+import { ROUTES } from "@lib/routes";
 
 const productGalleryCarouselResponsive = {
   "768": {

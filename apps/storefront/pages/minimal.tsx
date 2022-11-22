@@ -1,28 +1,28 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Container from "apps/storefront/components/ui/container";
-import BrandBlock from "apps/storefront/containers/brand-block";
-import CategoryGridBlock from "apps/storefront/containers/category-grid-block";
-import FeatureBlock from "apps/storefront/containers/feature-block";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import CollectionBlock from "apps/storefront/containers/collection-block";
-import Divider from "apps/storefront/components/ui/divider";
-import ProductsWithFlashSale from "apps/storefront/containers/products-with-flash-sale";
-import DownloadApps from "apps/storefront/components/common/download-apps";
-import Support from "apps/storefront/components/common/support";
-import HeroWithCategory from "apps/storefront/containers/hero-with-category";
-import BannerGridBlock from "apps/storefront/containers/banner-grid-block";
-import BestSellerProductFeed from "apps/storefront/components/product/feeds/best-seller-product-feed";
-import NewArrivalsProductFeed from "apps/storefront/components/product/feeds/new-arrivals-product-feed";
-import Subscription from "apps/storefront/components/common/subscription";
-import { ROUTES } from "apps/storefront/lib/routes";
+import BannerCard from "@components/common/banner-card";
+import Container from "@components/ui/container";
+import BrandBlock from "@containers/brand-block";
+import CategoryGridBlock from "@containers/category-grid-block";
+import FeatureBlock from "@containers/feature-block";
+import { getLayout } from "@components/layout/layout";
+import CollectionBlock from "@containers/collection-block";
+import Divider from "@components/ui/divider";
+import ProductsWithFlashSale from "@containers/products-with-flash-sale";
+import DownloadApps from "@components/common/download-apps";
+import Support from "@components/common/support";
+import HeroWithCategory from "@containers/hero-with-category";
+import BannerGridBlock from "@containers/banner-grid-block";
+import BestSellerProductFeed from "@components/product/feeds/best-seller-product-feed";
+import NewArrivalsProductFeed from "@components/product/feeds/new-arrivals-product-feed";
+import Subscription from "@components/common/subscription";
+import { ROUTES } from "@lib/routes";
 import {
   gridBanner,
   minimalDemoHeroBanner as heroBanner,
   minimalDemoBanner as banner,
-} from "apps/storefront/data/static/banners";
-import { collectionData } from "apps/storefront/data/static/collection";
+} from "@data/static/banners";
+import { collectionData } from "@data/static/collection";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/homepage/minimal";
+export { getStaticProps } from "@framework/ssr/homepage/minimal";
 
 const flashSaleCarouselBreakpoint = {
   "1281": {

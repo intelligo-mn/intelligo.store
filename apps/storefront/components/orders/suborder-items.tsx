@@ -1,12 +1,12 @@
-import { useIsRTL } from "apps/storefront/lib/locals";
+import { useIsRTL } from "@lib/locals";
 import { useTranslation } from "next-i18next";
 import dayjs from "dayjs";
-import Badge from "apps/storefront/components/ui/badge";
-import { formatString } from "apps/storefront/lib/format-string";
-import usePrice from "apps/storefront/lib/use-price";
-import Link from "apps/storefront/components/ui/link";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { Table } from "apps/storefront/components/ui/table";
+import Badge from "@components/ui/badge";
+import { formatString } from "@lib/format-string";
+import usePrice from "@lib/use-price";
+import Link from "@components/ui/link";
+import { ROUTES } from "@lib/routes";
+import { Table } from "@components/ui/table";
 
 interface SuborderItemsProps {
   items: any;

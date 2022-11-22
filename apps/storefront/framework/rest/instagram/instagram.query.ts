@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Instagram, QueryParamsType } from "apps/storefront/framework/rest/types";
+import { Instagram, QueryParamsType } from "@framework/types";
 
 const INSTAGRAM_TOKEN =
   process.env.NEXT_PUBLIC_INSTAGRAM_BASIC_DISPLAY_USER_TOKEN;

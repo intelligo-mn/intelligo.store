@@ -1,7 +1,7 @@
-import PlusIcon from "apps/storefront/components/icons/plus-icon";
-import ContactCard from "apps/storefront/components/ui/contact-card";
+import PlusIcon from "@components/icons/plus-icon";
+import ContactCard from "@components/ui/contact-card";
 import { useTranslation } from "next-i18next";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 interface Props {
   userId: string;

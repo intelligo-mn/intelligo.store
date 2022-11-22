@@ -1,7 +1,7 @@
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
-import { fetchInfiniteProducts } from "apps/storefront/framework/rest/products/products.query";
-import { Category } from "apps/storefront/framework/rest/types";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+import { fetchSettings } from "@framework/settings/settings.query";
+import { fetchInfiniteProducts } from "@framework/products/products.query";
+import { Category } from "@framework/types";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { GetStaticPathsContext, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { QueryClient } from "react-query";
@@ -9,7 +9,7 @@ import { dehydrate } from "react-query/hydration";
 import {
   fetchCategories,
   fetchCategory,
-} from "apps/storefront/framework/rest/category/categories.query";
+} from "@framework/category/categories.query";
 
 // This function gets called at build time
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {

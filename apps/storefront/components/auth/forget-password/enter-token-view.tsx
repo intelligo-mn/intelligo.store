@@ -1,5 +1,5 @@
-import Button from "apps/storefront/components/ui/button";
-import Input from "apps/storefront/components/ui/input";
+import Button from "@components/ui/button";
+import Input from "@components/ui/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

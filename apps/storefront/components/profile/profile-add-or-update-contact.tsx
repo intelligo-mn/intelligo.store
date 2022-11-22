@@ -1,9 +1,9 @@
-import { useUpdateCustomerMutation } from "apps/storefront/framework/rest/customer/customer.query";
-import { OTP } from "apps/storefront/framework/rest/otp/otp";
+import { useUpdateCustomerMutation } from "@framework/customer/customer.query";
+import { OTP } from "@framework/otp/otp";
 import { useTranslation } from "next-i18next";
 import { toast } from "react-toastify";
 import React from "react";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 type Props = {
   data: {

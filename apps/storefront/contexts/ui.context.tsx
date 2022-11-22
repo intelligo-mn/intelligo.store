@@ -1,5 +1,5 @@
 import React from "react";
-import { CartProvider } from "apps/storefront/store/quick-cart/cart.context";
+import { CartProvider } from "@store/quick-cart/cart.context";
 
 export interface State {
   displaySidebar: boolean;

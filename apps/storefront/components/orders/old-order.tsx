@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useOrderQuery } from "apps/storefront/framework/rest/orders/orders.query";
-import Spinner from "apps/storefront/components/ui/loaders/spinner/spinner";
-import OrderView from "apps/storefront/components/orders/order-view";
-import Divider from "apps/storefront/components/ui/divider";
-import Subscription from "apps/storefront/components/common/subscription";
-import Container from "apps/storefront/components/ui/container";
+import { useOrderQuery } from "@framework/orders/orders.query";
+import Spinner from "@components/ui/loaders/spinner/spinner";
+import OrderView from "@components/orders/order-view";
+import Divider from "@components/ui/divider";
+import Subscription from "@components/common/subscription";
+import Container from "@components/ui/container";
 
 export default function OldOrder() {
   const { query } = useRouter();

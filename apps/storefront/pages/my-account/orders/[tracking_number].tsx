@@ -1,9 +1,9 @@
-import { getLayout } from "apps/storefront/components/layout/layout";
+import { getLayout } from "@components/layout/layout";
 import { useRouter } from "next/router";
-import PageLoader from "apps/storefront/components/ui/page-loader/page-loader";
-import OldOrder from "apps/storefront/components/orders/old-order";
+import PageLoader from "@components/ui/page-loader/page-loader";
+import OldOrder from "@components/orders/old-order";
 
-export { getStaticPaths, getStaticProps } from "apps/storefront/framework/rest/ssr/order";
+export { getStaticPaths, getStaticProps } from "@framework/ssr/order";
 
 export default function OrderPage() {
   const router = useRouter();

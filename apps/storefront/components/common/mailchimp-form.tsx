@@ -1,12 +1,12 @@
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import React, {useEffect, useState} from "react";
-import Input from "apps/storefront/components/ui/input";
-import Button from "apps/storefront/components/ui/button";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "next-i18next";
 import * as yup from "yup";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 type FormValues = {
   subscribe_email: string;

@@ -1,8 +1,8 @@
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import React from "react";
 import {useTranslation} from "next-i18next";
-import MailchimpForm from "apps/storefront/components/common/mailchimp-form";
-import { getDirection } from 'apps/storefront/utils/get-direction';
+import MailchimpForm from "@components/common/mailchimp-form";
+import { getDirection } from '@utils/get-direction';
 import { useRouter } from 'next/router';
 
 interface Props {

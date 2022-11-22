@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import MailchimpForm from "apps/storefront/components/common/mailchimp-form";
+import MailchimpForm from "@components/common/mailchimp-form";
 
 
 export default function Newsletter() {

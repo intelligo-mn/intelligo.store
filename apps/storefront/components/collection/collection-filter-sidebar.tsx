@@ -1,9 +1,9 @@
-import Scrollbar from "apps/storefront/components/common/scrollbar";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import Scrollbar from "@components/common/scrollbar";
+import { useUI } from "@contexts/ui.context";
 import { IoArrowBack } from "@react-icons/all-files/io5/IoArrowBack";
 import { IoArrowForward } from "@react-icons/all-files/io5/IoArrowForward";
 import { useTranslation } from "next-i18next";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 import { useRouter } from "next/router";
 import { CollectionFilters } from "./collection-filters";
 

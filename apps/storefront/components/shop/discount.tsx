@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Container from "apps/storefront/components/ui/container";
+import Container from "@components/ui/container";
 import { IoClose } from "@react-icons/all-files/io5/IoClose";
 import { useTranslation } from "next-i18next";
 

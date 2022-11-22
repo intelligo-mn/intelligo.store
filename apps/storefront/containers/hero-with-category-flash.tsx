@@ -1,19 +1,19 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import CategoryListCard from "apps/storefront/components/common/category-list-card";
-import SellWithProgress from "apps/storefront/components/common/sale-with-progress";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import BannerCard from "@components/common/banner-card";
+import CategoryListCard from "@components/common/category-list-card";
+import SellWithProgress from "@components/common/sale-with-progress";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import { useCategoriesQuery } from "apps/storefront/framework/rest/category/categories.query";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
-import CategoryListCardLoader from "apps/storefront/components/ui/loaders/category-list-card-loader";
-import { ROUTES } from "apps/storefront/lib/routes";
-import Alert from "apps/storefront/components/ui/alert";
+import { useCategoriesQuery } from "@framework/category/categories.query";
+import { useProductsQuery } from "@framework/products/products.query";
+import { useWindowSize } from "@utils/use-window-size";
+import CategoryListCardLoader from "@components/ui/loaders/category-list-card-loader";
+import { ROUTES } from "@lib/routes";
+import Alert from "@components/ui/alert";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 import React from "react";
-import { StaticBanner } from "apps/storefront/framework/rest/types";
+import { StaticBanner } from "@framework/types";
 
 interface Props {
   data: StaticBanner[];

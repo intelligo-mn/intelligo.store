@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Text from "apps/storefront/components/ui/text";
-import Button from "apps/storefront/components/ui/button";
+import Text from "@components/ui/text";
+import Button from "@components/ui/button";
 import { IoChatbubbleEllipsesOutline } from "@react-icons/all-files/io5/IoChatbubbleEllipsesOutline";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { siteSettings } from "@settings/site.settings";
 
 const data = {
 	title: "support-heading",

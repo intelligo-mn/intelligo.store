@@ -1,21 +1,21 @@
-import Button from "apps/storefront/components/ui/button";
+import Button from "@components/ui/button";
 import {
   useOtpLoginMutation,
   useSendOtpCodeMutation,
-} from "apps/storefront/framework/rest/auth/auth.query";
+} from "@framework/auth/auth.query";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
-import Alert from "apps/storefront/components/ui/alert";
+import Alert from "@components/ui/alert";
 import MobileOtpInput from "react-otp-input";
-import Label from "apps/storefront/components/ui/label";
+import Label from "@components/ui/label";
 import { useTranslation } from "next-i18next";
 import "react-phone-input-2/lib/bootstrap.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import Input from "apps/storefront/components/ui/input";
+import Input from "@components/ui/input";
 import { Controller } from "react-hook-form";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 import { useRouter } from "next/router";
 
 interface OTPProps {

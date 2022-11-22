@@ -1,7 +1,7 @@
-import { QueryParamsType, TagsQueryOptionsType, Tag } from "apps/storefront/framework/rest/types";
-import { CoreApi, ParamsType } from "apps/storefront/framework/rest/utils/core-api";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
-import { mapPaginatorData } from "apps/storefront/framework/rest/utils/data-mappers";
+import { QueryParamsType, TagsQueryOptionsType, Tag } from "@framework/types";
+import { CoreApi, ParamsType } from "@framework/utils/core-api";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
+import { mapPaginatorData } from "@framework/utils/data-mappers";
 import {
   QueryKey,
   useInfiniteQuery,

@@ -1,7 +1,7 @@
 import { useState, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { HiOutlineSelector } from "@react-icons/all-files/hi/HiOutlineSelector";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 

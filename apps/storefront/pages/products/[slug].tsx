@@ -1,16 +1,16 @@
-import Container from "apps/storefront/components/ui/container";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import Subscription from "apps/storefront/components/common/subscription";
-import ProductSingleDetails from "apps/storefront/components/product/product-single-details";
-import Divider from "apps/storefront/components/ui/divider";
-import Breadcrumb from "apps/storefront/components/common/breadcrumb";
+import Container from "@components/ui/container";
+import { getLayout } from "@components/layout/layout";
+import Subscription from "@components/common/subscription";
+import ProductSingleDetails from "@components/product/product-single-details";
+import Divider from "@components/ui/divider";
+import Breadcrumb from "@components/common/breadcrumb";
 import { useRouter } from "next/router";
-import Spinner from "apps/storefront/components/ui/loaders/spinner/spinner";
+import Spinner from "@components/ui/loaders/spinner/spinner";
 import dynamic from "next/dynamic";
 
-export { getStaticPaths, getStaticProps } from "apps/storefront/framework/rest/ssr/product";
+export { getStaticPaths, getStaticProps } from "@framework/ssr/product";
 
-const RelatedProducts = dynamic(() => import("apps/storefront/containers/related-products"));
+const RelatedProducts = dynamic(() => import("@containers/related-products"));
 
 export default function ProductPage({ product }: any) {
   const router = useRouter();

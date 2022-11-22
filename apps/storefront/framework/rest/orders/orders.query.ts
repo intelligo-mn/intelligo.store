@@ -2,9 +2,9 @@ import {
   QueryParamsType,
   Order,
   OrdersQueryOptionsType,
-} from "apps/storefront/framework/rest/types";
-import { mapPaginatorData } from "apps/storefront/framework/rest/utils/data-mappers";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+} from "@framework/types";
+import { mapPaginatorData } from "@framework/utils/data-mappers";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { useMutation, useQuery } from "react-query";
 import { OrderService } from "./order.service";
 

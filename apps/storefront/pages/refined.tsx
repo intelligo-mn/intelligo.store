@@ -1,30 +1,30 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Container from "apps/storefront/components/ui/container";
-import CategoryBlock from "apps/storefront/containers/category-block";
-import { getLayout } from "apps/storefront/components/layout/layout-two";
-import NewArrivalsProductFeed from "apps/storefront/components/product/feeds/new-arrivals-product-feed";
-import ProductsFlashSaleBlock from "apps/storefront/containers/product-flash-sale-block";
-import ProductsFeatured from "apps/storefront/containers/products-featured";
-import Subscription from "apps/storefront/components/common/subscription";
-import { ROUTES } from "apps/storefront/lib/routes";
+import BannerCard from "@components/common/banner-card";
+import Container from "@components/ui/container";
+import CategoryBlock from "@containers/category-block";
+import { getLayout } from "@components/layout/layout-two";
+import NewArrivalsProductFeed from "@components/product/feeds/new-arrivals-product-feed";
+import ProductsFlashSaleBlock from "@containers/product-flash-sale-block";
+import ProductsFeatured from "@containers/products-featured";
+import Subscription from "@components/common/subscription";
+import { ROUTES } from "@lib/routes";
 import {
     homeRefinedHeroBanner as heroBanner,
     bannerDataFour,
     bannerDataFourMobile,
     homeEightWinterBanner,
     homeEightCoupons
-} from "apps/storefront/data/static/banners";
-import TestimonialCarousel from "apps/storefront/containers/testimonial-carousel";
-import BrandBlock from "apps/storefront/containers/brand-block";
-import CollectionBlock from "apps/storefront/containers/collection-block";
-import { modernDemoCollectionData } from "apps/storefront/data/static/collection";
-import ProductsTopBlock from "apps/storefront/containers/products-top-block";
-import HeroWithCategory from "apps/storefront/containers/hero-with-category";
-import SaleBannerWithProducts from "apps/storefront/containers/sale-banner-with-products";
-import BannerBlock from "apps/storefront/containers/banner-block";
-import Instagram from "apps/storefront/components/common/instagram";
+} from "@data/static/banners";
+import TestimonialCarousel from "@containers/testimonial-carousel";
+import BrandBlock from "@containers/brand-block";
+import CollectionBlock from "@containers/collection-block";
+import { modernDemoCollectionData } from "@data/static/collection";
+import ProductsTopBlock from "@containers/products-top-block";
+import HeroWithCategory from "@containers/hero-with-category";
+import SaleBannerWithProducts from "@containers/sale-banner-with-products";
+import BannerBlock from "@containers/banner-block";
+import Instagram from "@components/common/instagram";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/homepage/refined";
+export { getStaticProps } from "@framework/ssr/homepage/refined";
 export default function Home() {
   return (
     <>

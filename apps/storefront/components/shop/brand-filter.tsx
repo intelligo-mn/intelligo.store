@@ -1,10 +1,10 @@
-import { CheckBox } from "apps/storefront/components/ui/checkbox";
-import { useBrandsInfiniteQuery } from "apps/storefront/framework/rest/brand/brands.query";
+import { CheckBox } from "@components/ui/checkbox";
+import { useBrandsInfiniteQuery } from "@framework/brand/brands.query";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { Type } from "apps/storefront/framework/rest/types";
-import Button from "apps/storefront/components/ui/button";
+import { Type } from "@framework/types";
+import Button from "@components/ui/button";
 
 export const BrandFilter = () => {
   const { t } = useTranslation("common");

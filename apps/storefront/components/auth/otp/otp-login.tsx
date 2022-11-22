@@ -1,14 +1,14 @@
 import React from "react";
-import Logo from "apps/storefront/components/ui/logo";
+import Logo from "@components/ui/logo";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { ROUTES } from "@lib/routes";
+import { useUI } from "@contexts/ui.context";
 import Cookies from "js-cookie";
-import { AUTH_TOKEN } from "apps/storefront/lib/constants";
+import { AUTH_TOKEN } from "@lib/constants";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
-import { OTPLoginForm } from "apps/storefront/components/auth/otp/otp-login-form";
+import { authorizationAtom } from "@store/authorization-atom";
+import { OTPLoginForm } from "@components/auth/otp/otp-login-form";
 
 type Props = {
   layout?: "modal" | "page";

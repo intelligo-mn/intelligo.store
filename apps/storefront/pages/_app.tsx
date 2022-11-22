@@ -1,16 +1,16 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { AnimatePresence } from "framer-motion";
-import { ManagedUIContext } from "apps/storefront/contexts/ui.context";
-import ManagedModal from "apps/storefront/components/common/modal/managed-modal";
-import ManagedDrawer from "apps/storefront/components/common/drawer/managed-drawer";
+import { ManagedUIContext } from "@contexts/ui.context";
+import ManagedModal from "@components/common/modal/managed-modal";
+import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import React, { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ToastContainer } from "react-toastify";
 // import { ReactQueryDevtools } from "react-query/devtools";
 import { appWithTranslation } from "next-i18next";
-import DefaultSeo from "apps/storefront/components/common/default-seo";
+import DefaultSeo from "@components/common/default-seo";
 
 // Load Open Sans and satisfy typeface font
 import "@fontsource/open-sans";
@@ -20,17 +20,17 @@ import "@fontsource/satisfy";
 // external
 import "react-toastify/dist/ReactToastify.css";
 // base css file
-import "apps/storefront/styles/scrollbar.css";
-import "apps/storefront/styles/swiper-carousel.css";
-import "apps/storefront/styles/custom-plugins.css";
-import "apps/storefront/styles/tailwind.css";
-import { getDirection } from "apps/storefront/utils/get-direction";
-import PageLoader from "apps/storefront/components/ui/page-loader/page-loader";
-import ErrorMessage from "apps/storefront/components/ui/error-message";
-import { SettingsProvider } from "apps/storefront/contexts/settings.context";
-import { useSettingsQuery } from "apps/storefront/framework/rest/settings/settings.query";
+import "@styles/scrollbar.css";
+import "@styles/swiper-carousel.css";
+import "@styles/custom-plugins.css";
+import "@styles/tailwind.css";
+import { getDirection } from "@utils/get-direction";
+import PageLoader from "@components/ui/page-loader/page-loader";
+import ErrorMessage from "@components/ui/error-message";
+import { SettingsProvider } from "@contexts/settings.context";
+import { useSettingsQuery } from "@framework/settings/settings.query";
 import type { NextPage } from "next";
-import PrivateRoute from "apps/storefront/lib/private-route";
+import PrivateRoute from "@lib/private-route";
 import SocialLoginProvider from "../providers/social-login-provider";
 
 function handleExitComplete() {

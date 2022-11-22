@@ -1,24 +1,24 @@
-import Link from "apps/storefront/components/ui/link";
-import SearchIcon from "apps/storefront/components/icons/search-icon";
-import UserIcon from "apps/storefront/components/icons/user-icon";
-import MenuIcon from "apps/storefront/components/icons/menu-icon";
-import HomeIcon from "apps/storefront/components/icons/home-icon";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import Link from "@components/ui/link";
+import SearchIcon from "@components/icons/search-icon";
+import UserIcon from "@components/icons/user-icon";
+import MenuIcon from "@components/icons/menu-icon";
+import HomeIcon from "@components/icons/home-icon";
+import { useUI } from "@contexts/ui.context";
 import { useRouter } from "next/router";
-import { ROUTES } from "apps/storefront/lib/routes";
+import { ROUTES } from "@lib/routes";
 import dynamic from "next/dynamic";
-import { Drawer } from "apps/storefront/components/common/drawer/drawer";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { Drawer } from "@components/common/drawer/drawer";
+import { getDirection } from "@utils/get-direction";
 import { useAtom } from "jotai";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
-const CartButton = dynamic(() => import("apps/storefront/components/cart/cart-button"), {
+import { authorizationAtom } from "@store/authorization-atom";
+const CartButton = dynamic(() => import("@components/cart/cart-button"), {
 	ssr: false,
 });
-const AuthMenu = dynamic(() => import("apps/storefront/components/layout/header/auth-menu"), {
+const AuthMenu = dynamic(() => import("@components/layout/header/auth-menu"), {
 	ssr: false,
 });
 const MobileMenu = dynamic(
-	() => import("apps/storefront/components/layout/header/mobile-menu")
+	() => import("@components/layout/header/mobile-menu")
 );
 
 const BottomNavigation: React.FC = () => {

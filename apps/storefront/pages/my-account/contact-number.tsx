@@ -1,9 +1,9 @@
-import { getLayout } from "apps/storefront/components/layout/layout";
-import AccountLayout from "apps/storefront/components/my-account/account-layout";
-import ProfileContactNumber from "apps/storefront/components/profile/profile-contact-number";
-import useUser from "apps/storefront/framework/rest/auth/use-user";
+import { getLayout } from "@components/layout/layout";
+import AccountLayout from "@components/my-account/account-layout";
+import ProfileContactNumber from "@components/profile/profile-contact-number";
+import useUser from "@framework/auth/use-user";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/common";
+export { getStaticProps } from "@framework/ssr/common";
 
 export default function ChangeContactNumber() {
   const { me } = useUser();

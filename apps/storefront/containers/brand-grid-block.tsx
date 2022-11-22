@@ -1,14 +1,14 @@
-import BrandCard from "apps/storefront/components/common/brand-card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import BrandCardLoader from "apps/storefront/components/ui/loaders/brand-card-loader";
-import Alert from "apps/storefront/components/ui/alert";
-import { useBrandsQuery } from "apps/storefront/framework/rest/brand/brands.query";
+import BrandCard from "@components/common/brand-card";
+import SectionHeader from "@components/common/section-header";
+import BrandCardLoader from "@components/ui/loaders/brand-card-loader";
+import Alert from "@components/ui/alert";
+import { useBrandsQuery } from "@framework/brand/brands.query";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
-import { Type } from "apps/storefront/framework/rest/types";
+import NotFoundItem from "@components/404/not-found-item";
+import { Type } from "@framework/types";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { filterBrands } from "apps/storefront/lib/filter-brands";
+import { filterBrands } from "@lib/filter-brands";
 
 interface BrandProps {
   sectionHeading: string;

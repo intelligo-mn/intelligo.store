@@ -1,7 +1,7 @@
 import React from "react";
-import { Attribute } from "apps/storefront/framework/rest/types";
-import { ColorFilter } from "apps/storefront/components/shop/color-filter";
-import { VariationFilter } from "apps/storefront/components/shop/variation-filter";
+import { Attribute } from "@framework/types";
+import { ColorFilter } from "@components/shop/color-filter";
+import { VariationFilter } from "@components/shop/variation-filter";
 
 type Props = {
   attributes: Attribute[]

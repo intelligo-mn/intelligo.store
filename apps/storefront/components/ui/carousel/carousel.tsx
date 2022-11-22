@@ -6,7 +6,7 @@ import { IoIosArrowBack } from "@react-icons/all-files/io/IoIosArrowBack";
 import { IoIosArrowForward } from "@react-icons/all-files/io/IoIosArrowForward";
 import { NavigationOptions } from "swiper/types/components/navigation";
 import "swiper/swiper-bundle.min.css";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar]);
 

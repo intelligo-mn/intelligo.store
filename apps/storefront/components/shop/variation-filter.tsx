@@ -1,7 +1,7 @@
-import { CheckBox } from "apps/storefront/components/ui/checkbox";
+import { CheckBox } from "@components/ui/checkbox";
 import { useRouter } from "next/router";
 import React from "react";
-import { AttributeValue, Attribute } from "apps/storefront/framework/rest/types";
+import { AttributeValue, Attribute } from "@framework/types";
 
 type Props = {
   attribute: Attribute

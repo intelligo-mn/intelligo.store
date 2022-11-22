@@ -1,15 +1,15 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductCard from "apps/storefront/components/product/product-card";
-import ProductCardListSmallLoader from "apps/storefront/components/ui/loaders/product-card-small-list-loader";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import Alert from "apps/storefront/components/ui/alert";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import BannerCard from "@components/common/banner-card";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
+import ProductCardListSmallLoader from "@components/ui/loaders/product-card-small-list-loader";
+import { useProductsQuery } from "@framework/products/products.query";
+import Alert from "@components/ui/alert";
+import { ROUTES } from "@lib/routes";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
-import {StaticBanner} from "apps/storefront/framework/rest/types";
+import NotFoundItem from "@components/404/not-found-item";
+import {StaticBanner} from "@framework/types";
 
 interface ProductsProps {
   	data: StaticBanner[],

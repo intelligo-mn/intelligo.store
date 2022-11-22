@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import { useTranslation } from "next-i18next";
-import { exclusiveBlock as data } from "apps/storefront/data/static/exclusive-block";
+import { exclusiveBlock as data } from "@data/static/exclusive-block";
 
 interface Props {
   className?: string;

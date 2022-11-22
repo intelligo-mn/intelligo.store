@@ -1,5 +1,5 @@
-import Button from "apps/storefront/components/ui/button";
-import PasswordInput from "apps/storefront/components/ui/password-input";
+import Button from "@components/ui/button";
+import PasswordInput from "@components/ui/password-input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

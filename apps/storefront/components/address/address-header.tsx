@@ -1,4 +1,4 @@
-import PlusIcon from "apps/storefront/components/icons/plus-icon";
+import PlusIcon from "@components/icons/plus-icon";
 import { useTranslation } from "next-i18next";
 
 interface AddressHeaderProps {

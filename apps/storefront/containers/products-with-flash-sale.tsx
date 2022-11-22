@@ -1,15 +1,15 @@
-import SellWithProgress from "apps/storefront/components/common/sale-with-progress";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductCard from "apps/storefront/components/product/product-card";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import ProductListFeedLoader from "apps/storefront/components/ui/loaders/product-list-feed-loader";
-import Alert from "apps/storefront/components/ui/alert";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import SellWithProgress from "@components/common/sale-with-progress";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
+import { useWindowSize } from "@utils/use-window-size";
+import { useProductsQuery } from "@framework/products/products.query";
+import ProductListFeedLoader from "@components/ui/loaders/product-list-feed-loader";
+import Alert from "@components/ui/alert";
+import NotFoundItem from "@components/404/not-found-item";
 import { useTranslation } from "next-i18next";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { siteSettings } from "@settings/site.settings";
 import React from "react";
-import { usePopularProductsQuery } from "apps/storefront/framework/rest/products/popular-products.query";
+import { usePopularProductsQuery } from "@framework/products/popular-products.query";
 
 interface Props {
 	className?: string;

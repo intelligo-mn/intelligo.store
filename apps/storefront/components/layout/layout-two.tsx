@@ -1,7 +1,7 @@
-import Header from "apps/storefront/components/layout/header/header";
-import Footer from "apps/storefront/components/layout/footer/footer";
-import MobileNavigation from "apps/storefront/components/layout/mobile-navigation/mobile-navigation";
-import Search from "apps/storefront/components/common/search";
+import Header from "@components/layout/header/header";
+import Footer from "@components/layout/footer/footer";
+import MobileNavigation from "@components/layout/mobile-navigation/mobile-navigation";
+import Search from "@components/common/search";
 import React from "react";
 
 const SiteLayout: React.FC = ({ children }) => {

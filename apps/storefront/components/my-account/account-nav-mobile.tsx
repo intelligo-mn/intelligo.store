@@ -4,8 +4,8 @@ import { IoLogOutOutline } from "@react-icons/all-files/io5/IoLogOutOutline";
 import { FaChevronDown } from "@react-icons/all-files/fa/FaChevronDown";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { ROUTES } from "apps/storefront/lib/routes";
-import Link from "apps/storefront/components/ui/link";
+import { ROUTES } from "@lib/routes";
+import Link from "@components/ui/link";
 type Option = {
   name: string;
   slug: string;

@@ -1,6 +1,6 @@
-import { Attribute } from 'apps/storefront/framework/rest/types';
-import { CoreApi } from 'apps/storefront/framework/rest/utils/core-api';
-import { API_ENDPOINTS } from 'apps/storefront/framework/rest/utils/endpoints';
+import { Attribute } from '@framework/types';
+import { CoreApi } from '@framework/utils/core-api';
+import { API_ENDPOINTS } from '@framework/utils/endpoints';
 import { useQuery } from 'react-query';
 
 const AttributesService = new CoreApi(API_ENDPOINTS.ATTRIBUTES);

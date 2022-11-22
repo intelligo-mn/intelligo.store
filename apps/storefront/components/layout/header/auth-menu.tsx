@@ -1,4 +1,4 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import React from "react";
 
 interface Props {

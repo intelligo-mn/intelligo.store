@@ -1,8 +1,8 @@
-import ProductCard from "apps/storefront/components/product/product-card";
-import { usePopularProductsQuery } from "apps/storefront/framework/rest/products/popular-products.query";
-import ProductListFeedLoader from "apps/storefront/components/ui/loaders/product-list-feed-loader";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Alert from "apps/storefront/components/ui/alert";
+import ProductCard from "@components/product/product-card";
+import { usePopularProductsQuery } from "@framework/products/popular-products.query";
+import ProductListFeedLoader from "@components/ui/loaders/product-list-feed-loader";
+import SectionHeader from "@components/common/section-header";
+import Alert from "@components/ui/alert";
 
 interface Props {
 	sectionHeading: string;

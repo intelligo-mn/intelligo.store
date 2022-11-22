@@ -1,18 +1,18 @@
-import Card from "apps/storefront/components/common/card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
-import CardLoader from "apps/storefront/components/ui/loaders/card-loader";
-import CardRoundedLoader from "apps/storefront/components/ui/loaders/card-rounded-loader";
-import CardIconLoader from "apps/storefront/components/ui/loaders/card-icon-loader";
-import { useCategoriesQuery } from "apps/storefront/framework/rest/category/categories.query";
-import { ROUTES } from "apps/storefront/lib/routes";
-import Alert from "apps/storefront/components/ui/alert";
+import Card from "@components/common/card";
+import SectionHeader from "@components/common/section-header";
+import Carousel from "@components/ui/carousel/carousel";
+import CardLoader from "@components/ui/loaders/card-loader";
+import CardRoundedLoader from "@components/ui/loaders/card-rounded-loader";
+import CardIconLoader from "@components/ui/loaders/card-icon-loader";
+import { useCategoriesQuery } from "@framework/category/categories.query";
+import { ROUTES } from "@lib/routes";
+import Alert from "@components/ui/alert";
 import { SwiperSlide } from "swiper/react";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { getCategoryTypeImage } from "apps/storefront/lib/get-category-type-image";
+import { getCategoryTypeImage } from "@lib/get-category-type-image";
 
 interface CategoriesProps {
 	sectionHeading: string;

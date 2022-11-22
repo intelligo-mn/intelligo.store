@@ -1,14 +1,14 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductCard from "apps/storefront/components/product/product-card";
-import ProductCardListSmallLoader from "apps/storefront/components/ui/loaders/product-card-small-list-loader";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import { saleBannerWithProducts as banner } from "apps/storefront/data/static/banners";
-import Alert from "apps/storefront/components/ui/alert";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { Product } from "apps/storefront/framework/rest/types";
+import BannerCard from "@components/common/banner-card";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
+import ProductCardListSmallLoader from "@components/ui/loaders/product-card-small-list-loader";
+import { useProductsQuery } from "@framework/products/products.query";
+import { saleBannerWithProducts as banner } from "@data/static/banners";
+import Alert from "@components/ui/alert";
+import { ROUTES } from "@lib/routes";
+import { Product } from "@framework/types";
 
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { siteSettings } from "@settings/site.settings";
 
 interface ProductsProps {
   sectionHeading: string;

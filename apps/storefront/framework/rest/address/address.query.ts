@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { CustomerService } from 'apps/storefront/framework/rest/customer/customer.service';
+import { CustomerService } from '@framework/customer/customer.service';
 
 export const useDeleteAddressMutation = () => {
   const queryClient = useQueryClient();

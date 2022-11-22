@@ -1,16 +1,16 @@
 import { useState } from "react";
-import Link from "apps/storefront/components/ui/link";
-import Scrollbar from "apps/storefront/components/common/scrollbar";
+import Link from "@components/ui/link";
+import Scrollbar from "@components/common/scrollbar";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import Logo from "apps/storefront/components/ui/logo";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import Logo from "@components/ui/logo";
+import { useUI } from "@contexts/ui.context";
 import { IoClose } from "@react-icons/all-files/io5/IoClose";
 import { useTranslation } from "next-i18next";
-import { useSettings } from "apps/storefront/contexts/settings.context";
-import { getIcon } from "apps/storefront/lib/get-icon";
-import socialIcons from "apps/storefront/components/icons/social-icon";
-import { Social } from "apps/storefront/framework/rest/types";
-import { mobileMenu } from "apps/storefront/data/static/menus";
+import { useSettings } from "@contexts/settings.context";
+import { getIcon } from "@lib/get-icon";
+import socialIcons from "@components/icons/social-icon";
+import { Social } from "@framework/types";
+import { mobileMenu } from "@data/static/menus";
 
 export default function MobileMenu() {
 	const [activeMenus, setActiveMenus] = useState<any>([]);

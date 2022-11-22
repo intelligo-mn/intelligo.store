@@ -1,22 +1,22 @@
 import React, { useRef, useEffect } from "react";
 import cn from "classnames";
-import SearchResultLoader from "apps/storefront/components/ui/loaders/search-result-loader";
-import { Image } from "apps/storefront/components/ui/image";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import SearchBox from "apps/storefront/components/common/search-box";
-import { useProductsInfiniteQuery } from "apps/storefront/framework/rest/products/products.query";
+import SearchResultLoader from "@components/ui/loaders/search-result-loader";
+import { Image } from "@components/ui/image";
+import { useUI } from "@contexts/ui.context";
+import SearchBox from "@components/common/search-box";
+import { useProductsInfiniteQuery } from "@framework/products/products.query";
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
-import Scrollbar from "apps/storefront/components/common/scrollbar";
-import SearchProduct from "apps/storefront/components/common/search-product";
+import Scrollbar from "@components/common/scrollbar";
+import SearchProduct from "@components/common/search-product";
 import { useTranslation } from "next-i18next";
-import noResult from "apps/storefront/assets/not-found.svg";
-import { ROUTES } from "apps/storefront/lib/routes";
+import noResult from "@assets/not-found.svg";
+import { ROUTES } from "@lib/routes";
 import { useRouter } from "next/router";
-import Button from "apps/storefront/components/ui/button";
+import Button from "@components/ui/button";
 
 export default function Search() {
   const router = useRouter();

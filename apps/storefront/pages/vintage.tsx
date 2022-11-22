@@ -1,30 +1,30 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Container from "apps/storefront/components/ui/container";
-import BrandBlock from "apps/storefront/containers/brand-block";
-import CategoryBlock from "apps/storefront/containers/category-block";
-import CategoryGridBlock from "apps/storefront/containers/category-grid-block";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import BannerWithProducts from "apps/storefront/containers/banner-with-products";
-import NewArrivalsProductFeed from "apps/storefront/components/product/feeds/new-arrivals-product-feed";
-import Divider from "apps/storefront/components/ui/divider";
-import DownloadApps from "apps/storefront/components/common/download-apps";
-import Support from "apps/storefront/components/common/support";
-import Instagram from "apps/storefront/components/common/instagram";
-import ProductsFlashSaleBlock from "apps/storefront/containers/product-flash-sale-block";
-import ProductsFeatured from "apps/storefront/containers/products-featured";
-import BannerSliderBlock from "apps/storefront/containers/banner-slider-block";
-import ExclusiveBlock from "apps/storefront/containers/exclusive-block";
-import HeroWithCategoryFlash from "apps/storefront/containers/hero-with-category-flash";
-import Subscription from "apps/storefront/components/common/subscription";
-import { ROUTES } from "apps/storefront/lib/routes";
+import BannerCard from "@components/common/banner-card";
+import Container from "@components/ui/container";
+import BrandBlock from "@containers/brand-block";
+import CategoryBlock from "@containers/category-block";
+import CategoryGridBlock from "@containers/category-grid-block";
+import { getLayout } from "@components/layout/layout";
+import BannerWithProducts from "@containers/banner-with-products";
+import NewArrivalsProductFeed from "@components/product/feeds/new-arrivals-product-feed";
+import Divider from "@components/ui/divider";
+import DownloadApps from "@components/common/download-apps";
+import Support from "@components/common/support";
+import Instagram from "@components/common/instagram";
+import ProductsFlashSaleBlock from "@containers/product-flash-sale-block";
+import ProductsFeatured from "@containers/products-featured";
+import BannerSliderBlock from "@containers/banner-slider-block";
+import ExclusiveBlock from "@containers/exclusive-block";
+import HeroWithCategoryFlash from "@containers/hero-with-category-flash";
+import Subscription from "@components/common/subscription";
+import { ROUTES } from "@lib/routes";
 import {
   promotionBanner,
   vintageDemoGridBanner as gridBanner,
   vintageDemoProductBanner as productBanner,
   vintageDemoBanner as banner,
-} from "apps/storefront/data/static/banners";
+} from "@data/static/banners";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/homepage/vintage";
+export { getStaticProps } from "@framework/ssr/homepage/vintage";
 
 export default function Home() {
   return (

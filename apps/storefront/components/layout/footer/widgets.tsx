@@ -1,7 +1,7 @@
-import Container from "apps/storefront/components/ui/container";
-import WidgetLink from "apps/storefront/components/widgets/widget-link";
-import WidgetSocial from "apps/storefront/components/widgets/widget-social";
-import WidgetContact from "apps/storefront/components/widgets/widget-contact";
+import Container from "@components/ui/container";
+import WidgetLink from "@components/widgets/widget-link";
+import WidgetSocial from "@components/widgets/widget-social";
+import WidgetContact from "@components/widgets/widget-contact";
 
 interface WidgetsProps {
   widgets: {

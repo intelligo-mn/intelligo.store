@@ -1,9 +1,9 @@
-import PasswordInput from "apps/storefront/components/ui/password-input";
-import Button from "apps/storefront/components/ui/button";
+import PasswordInput from "@components/ui/password-input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { fadeInTop } from "apps/storefront/utils/motion/fade-in-top";
-import { useChangePasswordMutation } from "apps/storefront/framework/rest/auth/auth.query";
+import { fadeInTop } from "@utils/motion/fade-in-top";
+import { useChangePasswordMutation } from "@framework/auth/auth.query";
 import { useTranslation } from "next-i18next";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

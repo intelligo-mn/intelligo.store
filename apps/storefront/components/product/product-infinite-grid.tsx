@@ -1,12 +1,12 @@
-import ProductCard from "apps/storefront/components/product/product-card";
-import Button from "apps/storefront/components/ui/button";
+import ProductCard from "@components/product/product-card";
+import Button from "@components/ui/button";
 import type { FC } from "react";
-import { PaginatedProduct } from "apps/storefront/framework/rest/products/products.query";
-import ProductFeedLoader from "apps/storefront/components/ui/loaders/product-feed-loader";
+import { PaginatedProduct } from "@framework/products/products.query";
+import ProductFeedLoader from "@components/ui/loaders/product-feed-loader";
 import { useTranslation } from "next-i18next";
-import { Product } from "apps/storefront/framework/rest/types";
+import { Product } from "@framework/types";
 import isEmpty from "lodash/isEmpty";
-import NotFound from "apps/storefront/components/404/not-found";
+import NotFound from "@components/404/not-found";
 
 interface ProductGridProps {
   className?: string;

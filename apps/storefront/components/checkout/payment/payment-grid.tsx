@@ -1,11 +1,11 @@
 import { RadioGroup } from "@headlessui/react";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import Alert from "apps/storefront/components/ui/alert";
-import StripePayment from "apps/storefront/components/checkout/payment/stripe";
-import CashOnDelivery from "apps/storefront/components/checkout/payment/cash-on-delivery";
+import Alert from "@components/ui/alert";
+import StripePayment from "@components/checkout/payment/stripe";
+import CashOnDelivery from "@components/checkout/payment/cash-on-delivery";
 import { useAtom } from "jotai";
-import { paymentGatewayAtom, PaymentMethodName } from "apps/storefront/store/checkout";
+import { paymentGatewayAtom, PaymentMethodName } from "@store/checkout";
 import cn from "classnames";
 
 interface PaymentMethodInformation {

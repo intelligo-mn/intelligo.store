@@ -1,7 +1,7 @@
 import {
   OrderService,
   VerifyCheckoutInputType,
-} from 'apps/storefront/framework/rest/orders/order.service';
+} from '@framework/orders/order.service';
 import { useMutation } from 'react-query';
 
 export const useVerifyCheckoutMutation = () => {

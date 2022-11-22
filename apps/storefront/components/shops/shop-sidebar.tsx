@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import * as socialIcons from "react-share";
-import { formatAddress } from "apps/storefront/lib/format-address";
-import { getIcon } from "apps/storefront/lib/get-icon";
+import { formatAddress } from "@lib/format-address";
+import { getIcon } from "@lib/get-icon";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
 import cn from "classnames";
-import { productPlaceholder } from "apps/storefront/lib/placeholders";
+import { productPlaceholder } from "@lib/placeholders";
 
 interface ShopSidebarProps {
   data: any;

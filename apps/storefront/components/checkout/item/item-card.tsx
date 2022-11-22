@@ -1,8 +1,8 @@
-import usePrice from "apps/storefront/lib/use-price";
+import usePrice from "@lib/use-price";
 import Image from "next/image";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
-import { productPlaceholderThumbnail } from "apps/storefront/lib/placeholders";
+import { productPlaceholderThumbnail } from "@lib/placeholders";
 
 interface Props {
   item: any;

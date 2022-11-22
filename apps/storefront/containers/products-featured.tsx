@@ -1,13 +1,13 @@
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductOverlayCard from "apps/storefront/components/product/product-overlay-card";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import Alert from "apps/storefront/components/ui/alert";
-import { Product } from "apps/storefront/framework/rest/types";
-import Spinner from "apps/storefront/components/ui/loaders/spinner/spinner";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import SectionHeader from "@components/common/section-header";
+import ProductOverlayCard from "@components/product/product-overlay-card";
+import { useProductsQuery } from "@framework/products/products.query";
+import Alert from "@components/ui/alert";
+import { Product } from "@framework/types";
+import Spinner from "@components/ui/loaders/spinner/spinner";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 
 interface ProductsProps {
   sectionHeading: string;

@@ -1,9 +1,9 @@
-import { OTP } from "apps/storefront/framework/rest/otp/otp";
-import { customerContactAtom } from "apps/storefront/store/checkout";
+import { OTP } from "@framework/otp/otp";
+import { customerContactAtom } from "@store/checkout";
 import { useAtom } from "jotai";
 import { useTranslation } from "next-i18next";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import {useUpdateCustomerMutation} from "apps/storefront/framework/rest/customer/customer.query";
+import { useUI } from "@contexts/ui.context";
+import {useUpdateCustomerMutation} from "@framework/customer/customer.query";
 import React from "react";
 
 type Props = {

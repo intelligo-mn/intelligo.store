@@ -1,5 +1,5 @@
-import Text from "apps/storefront/components/ui/text";
-import Link from "apps/storefront/components/ui/link";
+import Text from "@components/ui/text";
+import Link from "@components/ui/link";
 import { useTranslation } from "next-i18next";
 
 interface Props {

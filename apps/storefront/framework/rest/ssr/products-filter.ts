@@ -1,13 +1,13 @@
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
-import { fetchInfiniteCategories } from "apps/storefront/framework/rest/category/categories.query";
-import { fetchInfiniteBrands } from "apps/storefront/framework/rest/brand/brands.query";
-import { fetchInfiniteProducts } from "apps/storefront/framework/rest/products/products.query";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+import { fetchSettings } from "@framework/settings/settings.query";
+import { fetchInfiniteCategories } from "@framework/category/categories.query";
+import { fetchInfiniteBrands } from "@framework/brand/brands.query";
+import { fetchInfiniteProducts } from "@framework/products/products.query";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
-import { fetchAttributes } from "apps/storefront/framework/rest/attributes/attributes.query";
+import { fetchAttributes } from "@framework/attributes/attributes.query";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient({

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { customerContactAtom } from "apps/storefront/store/checkout";
-import ContactCard from "apps/storefront/components/ui/contact-card";
-import PlusIcon from "apps/storefront/components/icons/plus-icon";
+import { customerContactAtom } from "@store/checkout";
+import ContactCard from "@components/ui/contact-card";
+import PlusIcon from "@components/icons/plus-icon";
 import { useTranslation } from "next-i18next";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 interface ContactProps {
   contact: string | undefined;

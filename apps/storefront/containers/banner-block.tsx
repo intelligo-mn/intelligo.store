@@ -1,6 +1,6 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { StaticBanner } from "apps/storefront/framework/rest/types";
+import BannerCard from "@components/common/banner-card";
+import { ROUTES } from "@lib/routes";
+import { StaticBanner } from "@framework/types";
 
 interface BannerProps {
 	data: StaticBanner[];

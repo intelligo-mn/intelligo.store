@@ -1,10 +1,10 @@
-import { useCart } from 'apps/storefront/store/quick-cart/cart.context';
+import { useCart } from '@store/quick-cart/cart.context';
 import { useTranslation } from 'next-i18next';
 import ItemCard from './item-card';
-import EmptyCartIcon from 'apps/storefront/components/icons/empty-cart';
-import usePrice from 'apps/storefront/lib/use-price';
+import EmptyCartIcon from '@components/icons/empty-cart';
+import usePrice from '@lib/use-price';
 import { ItemInfoRow } from './item-info-row';
-import { CheckAvailabilityAction } from 'apps/storefront/components/checkout/action/check-availability-action';
+import { CheckAvailabilityAction } from '@components/checkout/action/check-availability-action';
 
 const UnverifiedItemList = () => {
   const { t } = useTranslation("common");

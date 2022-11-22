@@ -1,5 +1,5 @@
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+import { fetchSettings } from "@framework/settings/settings.query";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { QueryClient } from "react-query";

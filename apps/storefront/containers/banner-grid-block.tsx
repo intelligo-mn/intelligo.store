@@ -1,9 +1,9 @@
-import BannerCard from "apps/storefront/components/common/banner-card";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import BannerCard from "@components/common/banner-card";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { StaticBanner } from "apps/storefront/framework/rest/types";
+import { useWindowSize } from "@utils/use-window-size";
+import { ROUTES } from "@lib/routes";
+import { StaticBanner } from "@framework/types";
 
 const breakpoints = {
 	"1025": {

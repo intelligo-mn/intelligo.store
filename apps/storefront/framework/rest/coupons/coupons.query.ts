@@ -1,6 +1,6 @@
-import { Coupon, QueryParamsType } from 'apps/storefront/framework/rest/types';
-import { mapPaginatorData } from 'apps/storefront/framework/rest/utils/data-mappers';
-import { API_ENDPOINTS } from 'apps/storefront/framework/rest/utils/endpoints';
+import { Coupon, QueryParamsType } from '@framework/types';
+import { mapPaginatorData } from '@framework/utils/data-mappers';
+import { API_ENDPOINTS } from '@framework/utils/endpoints';
 import { useInfiniteQuery, useMutation } from 'react-query';
 import { CouponService, VerifyCouponInputType } from './coupon.service';
 

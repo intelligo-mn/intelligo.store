@@ -1,10 +1,10 @@
-import { Table } from "apps/storefront/components/ui/table";
-import usePrice from "apps/storefront/lib/use-price";
+import { Table } from "@components/ui/table";
+import usePrice from "@lib/use-price";
 import { useTranslation } from "next-i18next";
-import { useIsRTL } from "apps/storefront/lib/locals";
+import { useIsRTL } from "@lib/locals";
 import { useMemo } from "react";
-import { Image } from "apps/storefront/components/ui/image";
-import { productPlaceholder } from "apps/storefront/lib/placeholders";
+import { Image } from "@components/ui/image";
+import { productPlaceholder } from "@lib/placeholders";
 
 const OrderItemList = (_: any, record: any) => {
   const { price } = usePrice({

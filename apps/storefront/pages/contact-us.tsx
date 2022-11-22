@@ -1,12 +1,12 @@
-import Container from "apps/storefront/components/ui/container";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import Subscription from "apps/storefront/components/common/subscription";
-import PageHeader from "apps/storefront/components/ui/page-header";
-import ContactForm from "apps/storefront/components/common/form/contact-form";
-import ContactInfoBlock from "apps/storefront/containers/contact-info";
+import Container from "@components/ui/container";
+import { getLayout } from "@components/layout/layout";
+import Subscription from "@components/common/subscription";
+import PageHeader from "@components/ui/page-header";
+import ContactForm from "@components/common/form/contact-form";
+import ContactInfoBlock from "@containers/contact-info";
 import { useTranslation } from "next-i18next";
 
-export { getStaticProps } from "apps/storefront/framework/rest/ssr/common";
+export { getStaticProps } from "@framework/ssr/common";
 
 export default function ContactUsPage() {
   const { t } = useTranslation("common");

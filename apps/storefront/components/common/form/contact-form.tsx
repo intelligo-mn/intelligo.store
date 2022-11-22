@@ -1,9 +1,9 @@
-import Input from "apps/storefront/components/ui/input";
-import Button from "apps/storefront/components/ui/button";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import TextArea from "apps/storefront/components/ui/text-area";
+import TextArea from "@components/ui/text-area";
 import { useTranslation } from "next-i18next";
-import { ContactFormValues, useContactMutation } from "apps/storefront/framework/rest/contact/contact.mutation";
+import { ContactFormValues, useContactMutation } from "@framework/contact/contact.mutation";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";

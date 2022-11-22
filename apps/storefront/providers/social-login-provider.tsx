@@ -1,10 +1,10 @@
 import { useSession } from "next-auth/client";
-import { useSocialLoginMutation } from "apps/storefront/framework/rest/auth/auth.query";
+import { useSocialLoginMutation } from "@framework/auth/auth.query";
 import { useEffect, useState } from "react";
-import { authorizationAtom } from "apps/storefront/store/authorization-atom";
+import { authorizationAtom } from "@store/authorization-atom";
 import { useAtom } from "jotai";
 import Cookies from "js-cookie";
-import { AUTH_TOKEN } from "apps/storefront/lib/constants";
+import { AUTH_TOKEN } from "@lib/constants";
 import { useTranslation } from "next-i18next";
 
 const SocialLoginProvider: React.FC = () => {

@@ -1,5 +1,5 @@
 import { DefaultSeo as NextDefaultSeo } from 'next-seo';
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useSettings } from "@contexts/settings.context";
 
 const DefaultSeo = () => {
   const settings = useSettings();
@@ -30,7 +30,7 @@ const DefaultSeo = () => {
         },
       ]}
       title={settings?.seo?.metaTitle || settings?.siteTitle || 'E-Commerce'}
-      defaultTitle="Intelligo"
+      defaultTitle="ChawkBazar"
       description={settings?.seo?.metaDescription || settings?.siteSubtitle}
       canonical={settings?.seo?.canonicalUrl}
       openGraph={{

@@ -1,8 +1,8 @@
-import ConfirmationCard from 'apps/storefront/components/ui/cards/confirmation';
-import { useDeleteAddressMutation } from 'apps/storefront/framework/rest/address/address.query';
-import { Address } from "apps/storefront/framework/rest/types";
+import ConfirmationCard from '@components/ui/cards/confirmation';
+import { useDeleteAddressMutation } from '@framework/address/address.query';
+import { Address } from "@framework/types";
 import React from "react";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 
 type Props = {
   data: Address

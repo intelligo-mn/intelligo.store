@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import { useTranslation } from "next-i18next";
-import { Product } from "apps/storefront/framework/rest/types";
+import { Product } from "@framework/types";
 import React from "react";
-import {ROUTES} from "apps/storefront/lib/routes";
+import {ROUTES} from "@lib/routes";
 
 interface Props {
 	category: any;

@@ -1,9 +1,9 @@
-import Input from "apps/storefront/components/ui/input";
-import Button from "apps/storefront/components/ui/button";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-import TextArea from "apps/storefront/components/ui/text-area";
+import TextArea from "@components/ui/text-area";
 import ReactStars from "react-rating-stars-component";
-import { CheckBox } from "apps/storefront/components/ui/checkbox";
+import { CheckBox } from "@components/ui/checkbox";
 import { useTranslation } from "next-i18next";
 
 interface ReviewFormValues {

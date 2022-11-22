@@ -1,11 +1,11 @@
-import Container from "apps/storefront/components/ui/container";
-import { getLayout } from "apps/storefront/components/layout/layout";
-import Subscription from "apps/storefront/components/common/subscription";
-import CategoryBanner from "apps/storefront/containers/category-banner";
+import Container from "@components/ui/container";
+import { getLayout } from "@components/layout/layout";
+import Subscription from "@components/common/subscription";
+import CategoryBanner from "@containers/category-banner";
 import { useRouter } from "next/router";
-import CategoryProductsGrid from "apps/storefront/components/category/category-products-grid";
+import CategoryProductsGrid from "@components/category/category-products-grid";
 
-export { getStaticPaths, getStaticProps } from "apps/storefront/framework/rest/ssr/category";
+export { getStaticPaths, getStaticProps } from "@framework/ssr/category";
 
 export default function Category() {
   const { query } = useRouter();

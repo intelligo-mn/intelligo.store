@@ -1,17 +1,17 @@
-import Card from "apps/storefront/components/common/card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import Card from "@components/common/card";
+import SectionHeader from "@components/common/section-header";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import CardRoundedLoader from "apps/storefront/components/ui/loaders/card-rounded-loader";
-import { useBrandsQuery } from "apps/storefront/framework/rest/brand/brands.query";
-import { ROUTES } from "apps/storefront/lib/routes";
-import Alert from "apps/storefront/components/ui/alert";
+import CardRoundedLoader from "@components/ui/loaders/card-rounded-loader";
+import { useBrandsQuery } from "@framework/brand/brands.query";
+import { ROUTES } from "@lib/routes";
+import Alert from "@components/ui/alert";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
+import NotFoundItem from "@components/404/not-found-item";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { Type } from "apps/storefront/framework/rest/types";
-import { filterBrandImages, filterBrands } from "apps/storefront/lib/filter-brands";
+import { Type } from "@framework/types";
+import { filterBrandImages, filterBrands } from "@lib/filter-brands";
 
 interface BrandProps {
 	sectionHeading: string;

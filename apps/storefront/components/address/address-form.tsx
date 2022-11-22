@@ -1,15 +1,15 @@
-import Button from "apps/storefront/components/ui/button";
-import Input from "apps/storefront/components/ui/input";
-import Label from "apps/storefront/components/ui/label";
-import { RadioBox as Radio } from "apps/storefront/components/ui/radiobox";
-import TextArea from "apps/storefront/components/ui/text-area";
+import Button from "@components/ui/button";
+import Input from "@components/ui/input";
+import Label from "@components/ui/label";
+import { RadioBox as Radio } from "@components/ui/radiobox";
+import TextArea from "@components/ui/text-area";
 import { useTranslation } from "next-i18next";
 import * as yup from "yup";
-import { AddressType } from "apps/storefront/framework/rest/utils/constants";
+import { AddressType } from "@framework/utils/constants";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { useUpdateCustomerMutation } from "apps/storefront/framework/rest/customer/customer.query";
+import { useUI } from "@contexts/ui.context";
+import { useUpdateCustomerMutation } from "@framework/customer/customer.query";
 
 type FormValues = {
   __typename?: string;

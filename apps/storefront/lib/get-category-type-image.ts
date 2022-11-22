@@ -1,4 +1,4 @@
-import { Category } from "apps/storefront/framework/rest/types";
+import { Category } from "@framework/types";
 
 export const getCategoryTypeImage = (category: Category, variant = "image") => {
   const { image } = category;

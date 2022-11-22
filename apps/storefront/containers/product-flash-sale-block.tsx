@@ -1,14 +1,14 @@
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductCard from "apps/storefront/components/product/product-card";
-import ProductCardGridLoader from "apps/storefront/components/ui/loaders/product-card-grid-loader";
-import Alert from "apps/storefront/components/ui/alert";
-import { useProductsQuery } from "apps/storefront/framework/rest/products/products.query";
-import { Product } from "apps/storefront/framework/rest/types";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
+import ProductCardGridLoader from "@components/ui/loaders/product-card-grid-loader";
+import Alert from "@components/ui/alert";
+import { useProductsQuery } from "@framework/products/products.query";
+import { Product } from "@framework/types";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
 import isEmpty from "lodash/isEmpty";
-import NotFoundItem from "apps/storefront/components/404/not-found-item";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import NotFoundItem from "@components/404/not-found-item";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
 
 interface ProductsProps {

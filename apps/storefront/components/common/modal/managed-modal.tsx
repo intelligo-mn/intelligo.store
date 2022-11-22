@@ -1,24 +1,24 @@
-import { useUI } from "apps/storefront/contexts/ui.context";
+import { useUI } from "@contexts/ui.context";
 import Modal from "./modal";
 import dynamic from "next/dynamic";
 import Newsletter from "../newsletter";
 
-const LoginForm = dynamic(() => import("apps/storefront/components/auth/login-form"));
-const OtpLogin = dynamic(() => import("apps/storefront/components/auth/otp/otp-login"));
-const SignUpForm = dynamic(() => import("apps/storefront/components/auth/sign-up-form"));
+const LoginForm = dynamic(() => import("@components/auth/login-form"));
+const OtpLogin = dynamic(() => import("@components/auth/otp/otp-login"));
+const SignUpForm = dynamic(() => import("@components/auth/sign-up-form"));
 const ForgetPasswordForm = dynamic(
-  () => import("apps/storefront/components/auth/forget-password/forget-password")
+  () => import("@components/auth/forget-password/forget-password")
 );
-const ProductPopup = dynamic(() => import("apps/storefront/components/product/product-popup"));
-const AddressForm = dynamic(() => import("apps/storefront/components/address/address-form"));
+const ProductPopup = dynamic(() => import("@components/product/product-popup"));
+const AddressForm = dynamic(() => import("@components/address/address-form"));
 const AddressDeleteView = dynamic(
-  () => import("apps/storefront/components/address/address-delete-view")
+  () => import("@components/address/address-delete-view")
 );
 const AddOrUpdateCheckoutContact = dynamic(
-  () => import("apps/storefront/components/checkout/contact/add-or-update")
+  () => import("@components/checkout/contact/add-or-update")
 );
 const ProfileAddOrUpdateContact = dynamic(
-  () => import("apps/storefront/components/profile/profile-add-or-update-contact")
+  () => import("@components/profile/profile-add-or-update-contact")
 );
 
 const ManagedModal: React.FC = () => {

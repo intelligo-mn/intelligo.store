@@ -1,10 +1,10 @@
-import { fetchSettings } from "apps/storefront/framework/rest/settings/settings.query";
+import { fetchSettings } from "@framework/settings/settings.query";
 import {
   fetchProduct,
   fetchProducts,
-} from "apps/storefront/framework/rest/products/products.query";
-import { Product } from "apps/storefront/framework/rest/types";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+} from "@framework/products/products.query";
+import { Product } from "@framework/types";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 import { GetStaticPathsContext, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { QueryClient } from "react-query";

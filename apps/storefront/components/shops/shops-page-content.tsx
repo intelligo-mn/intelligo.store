@@ -1,10 +1,10 @@
 import { useState, Fragment } from "react";
-import VendorCard from "apps/storefront/components/common/vendor-card";
-import Alert from "apps/storefront/components/ui/alert";
+import VendorCard from "@components/common/vendor-card";
+import Alert from "@components/ui/alert";
 import { BsGridFill } from "@react-icons/all-files/bs/BsGridFill";
 import { BsList } from "@react-icons/all-files/bs/BsList";
-import { useShopsQuery } from "apps/storefront/framework/rest/shops/shops.query";
-import Button from "apps/storefront/components/ui/button";
+import { useShopsQuery } from "@framework/shops/shops.query";
+import Button from "@components/ui/button";
 import { useTranslation } from "next-i18next";
 
 const ShopsPageContent: React.FC = () => {

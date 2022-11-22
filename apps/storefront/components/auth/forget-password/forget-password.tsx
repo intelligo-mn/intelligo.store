@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Logo from "apps/storefront/components/ui/logo";
-import Alert from "apps/storefront/components/ui/alert";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import { useForgetPasswordMutation } from "apps/storefront/framework/rest/auth/auth.query";
-import { useVerifyForgetPasswordTokenMutation } from "apps/storefront/framework/rest/auth/auth.query";
-import { useResetPasswordMutation } from "apps/storefront/framework/rest/auth/auth.query";
+import Logo from "@components/ui/logo";
+import Alert from "@components/ui/alert";
+import { useUI } from "@contexts/ui.context";
+import { useForgetPasswordMutation } from "@framework/auth/auth.query";
+import { useVerifyForgetPasswordTokenMutation } from "@framework/auth/auth.query";
+import { useResetPasswordMutation } from "@framework/auth/auth.query";
 import dynamic from "next/dynamic";
 import { useTranslation } from "next-i18next";
 import {useRouter} from "next/router";
-import {ROUTES} from "apps/storefront/lib/routes";
+import {ROUTES} from "@lib/routes";
 
 const EnterEmailView = dynamic(() => import("./enter-email-view"));
 const EnterTokenView = dynamic(() => import("./enter-token-view"));

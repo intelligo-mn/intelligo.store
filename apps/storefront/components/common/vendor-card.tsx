@@ -1,10 +1,10 @@
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt";
 import { useTranslation } from "next-i18next";
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
 import cn from "classnames";
-import { Shop } from "apps/storefront/framework/rest/types";
-import { formatAddress } from "apps/storefront/lib/format-address";
+import { Shop } from "@framework/types";
+import { formatAddress } from "@lib/format-address";
 import isEmpty from "lodash/isEmpty";
 
 type VendorCardProps = {

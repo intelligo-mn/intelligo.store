@@ -1,5 +1,5 @@
-import { Address, Coupon } from 'apps/storefront/framework/rest/types';
-import { CHECKOUT } from 'apps/storefront/lib/constants';
+import { Address, Coupon } from '@framework/types';
+import { CHECKOUT } from '@lib/constants';
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 interface DeliveryTime {

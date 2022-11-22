@@ -1,5 +1,5 @@
-import SectionHeader from "apps/storefront/components/common/section-header";
-import ProductCard from "apps/storefront/components/product/product-card";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
 
 interface ProductsProps {
 	sectionHeading: string;

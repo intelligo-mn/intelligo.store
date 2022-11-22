@@ -1,6 +1,6 @@
 import React from "react";
-import ActiveLink from "apps/storefront/components/ui/active-link";
-import useBreadcrumb, { convertBreadcrumbTitle } from "apps/storefront/utils/use-breadcrumb";
+import ActiveLink from "@components/ui/active-link";
+import useBreadcrumb, { convertBreadcrumbTitle } from "@utils/use-breadcrumb";
 import { useTranslation } from "next-i18next";
 
 interface Props {

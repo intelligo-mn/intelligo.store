@@ -1,5 +1,5 @@
-import CollectionCard from "apps/storefront/components/common/collection-card";
-import { CollectionBanner } from "apps/storefront/framework/rest/types";
+import CollectionCard from "@components/common/collection-card";
+import { CollectionBanner } from "@framework/types";
 
 
 interface Props {

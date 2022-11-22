@@ -5,7 +5,7 @@ import Document, {
 	NextScript,
 	DocumentContext,
 } from "next/document";
-import { getDirection } from "apps/storefront/utils/get-direction";
+import { getDirection } from "@utils/get-direction";
 
 export default class CustomDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext) {

@@ -1,10 +1,10 @@
 import cn from "classnames";
 import Image from "next/image";
 import type { FC } from "react";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import usePrice from "apps/storefront/lib/use-price";
-import { Product } from "apps/storefront/framework/rest/types";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import { useUI } from "@contexts/ui.context";
+import usePrice from "@lib/use-price";
+import { Product } from "@framework/types";
+import { siteSettings } from "@settings/site.settings";
 
 interface ProductProps {
   product: Product;

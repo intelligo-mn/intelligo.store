@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Collapse } from "apps/storefront/components/common/accordion";
-import ReviewForm from "apps/storefront/components/common/form/review-form";
+import { Collapse } from "@components/common/accordion";
+import ReviewForm from "@components/common/form/review-form";
 
 interface Props {
 	data: any;

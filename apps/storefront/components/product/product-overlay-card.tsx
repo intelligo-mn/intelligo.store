@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import usePrice from "apps/storefront/lib/use-price";
-import { Product } from "apps/storefront/framework/rest/types";
-import { useSettings } from "apps/storefront/contexts/settings.context";
+import { useUI } from "@contexts/ui.context";
+import usePrice from "@lib/use-price";
+import { Product } from "@framework/types";
+import { useSettings } from "@contexts/settings.context";
 
 interface ProductProps {
   product: Product;

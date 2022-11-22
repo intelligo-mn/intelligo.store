@@ -1,14 +1,14 @@
-import Scrollbar from "apps/storefront/components/common/scrollbar";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
+import Scrollbar from "@components/common/scrollbar";
+import { useCart } from "@store/quick-cart/cart.context";
 import { motion } from "framer-motion";
-import { fadeInOut } from "apps/storefront/utils/motion/fade-in-out";
-import { useUI } from "apps/storefront/contexts/ui.context";
-import usePrice from "apps/storefront/lib/use-price";
+import { fadeInOut } from "@utils/motion/fade-in-out";
+import { useUI } from "@contexts/ui.context";
+import usePrice from "@lib/use-price";
 import { IoClose } from "@react-icons/all-files/io5/IoClose";
 import CartItem from "./cart-item";
 import EmptyCart from "./empty-cart";
-import Link from "apps/storefront/components/ui/link";
-import { ROUTES } from "apps/storefront/lib/routes";
+import Link from "@components/ui/link";
+import { ROUTES } from "@lib/routes";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
 

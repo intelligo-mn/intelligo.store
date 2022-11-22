@@ -1,7 +1,7 @@
-import Container from "apps/storefront/components/ui/container";
-import { siteSettings } from "apps/storefront/settings/site.settings";
+import Container from "@components/ui/container";
+import { siteSettings } from "@settings/site.settings";
 import { useTranslation } from "next-i18next";
-import { Image } from "apps/storefront/components/ui/image";
+import { Image } from "@components/ui/image";
 
 interface CopyrightProps {
   payment?: {

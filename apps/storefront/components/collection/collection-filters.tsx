@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import ActiveLink from "apps/storefront/components/ui/active-link";
-import { ROUTES } from "apps/storefront/lib/routes";
-import { useTagsQuery } from "apps/storefront/framework/rest/tags/tags.query";
-import { useUI } from "apps/storefront/contexts/ui.context";
+import ActiveLink from "@components/ui/active-link";
+import { ROUTES } from "@lib/routes";
+import { useTagsQuery } from "@framework/tags/tags.query";
+import { useUI } from "@contexts/ui.context";
 import {useRouter} from "next/router";
 import classNames from "classnames";
 

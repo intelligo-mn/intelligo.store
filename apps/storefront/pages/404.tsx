@@ -1,6 +1,6 @@
-import Layout from "apps/storefront/components/layout/layout";
+import Layout from "@components/layout/layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ErrorInformation from "apps/storefront/components/404/error-information";
+import ErrorInformation from "@components/404/error-information";
 
 export default function ErrorPage() {
 	return <ErrorInformation />;

@@ -1,8 +1,8 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import { FaChevronDown } from "@react-icons/all-files/fa/FaChevronDown";
-import MegaMenu from "apps/storefront/components/ui/mega-menu";
+import MegaMenu from "@components/ui/mega-menu";
 import classNames from "classnames";
-import ListMenu from "apps/storefront/components/ui/list-menu";
+import ListMenu from "@components/ui/list-menu";
 import { useTranslation } from "next-i18next";
 import React from "react";
 

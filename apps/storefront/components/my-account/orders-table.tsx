@@ -1,11 +1,11 @@
-import { useWindowSize } from "apps/storefront/utils/use-window-size";
+import { useWindowSize } from "@utils/use-window-size";
 import { useTranslation } from "next-i18next";
-import { Order } from "apps/storefront/framework/rest/types";
-import OrderSingleTable from "apps/storefront/components/my-account/order-single-list";
-import OrderSingleList from "apps/storefront/components/my-account/order-single-table";
+import { Order } from "@framework/types";
+import OrderSingleTable from "@components/my-account/order-single-list";
+import OrderSingleList from "@components/my-account/order-single-table";
 import React from "react";
-import { PaginatedOrder } from "apps/storefront/framework/rest/orders/orders.query";
-import Pagination from "apps/storefront/components/ui/pagination";
+import { PaginatedOrder } from "@framework/orders/orders.query";
+import Pagination from "@components/ui/pagination";
 
 type Props = {
   orders: PaginatedOrder | undefined | null;

@@ -3,20 +3,20 @@ import { useRouter } from "next/router";
 import {
   useCreateOrderMutation,
   useOrderStatusesQuery,
-} from "apps/storefront/framework/rest/orders/orders.query";
-import { API_ENDPOINTS } from "apps/storefront/framework/rest/utils/endpoints";
+} from "@framework/orders/orders.query";
+import { API_ENDPOINTS } from "@framework/utils/endpoints";
 
-import ValidationError from "apps/storefront/components/ui/validation-error";
-import Button from "apps/storefront/components/ui/button";
+import ValidationError from "@components/ui/validation-error";
+import Button from "@components/ui/button";
 import isEmpty from "lodash/isEmpty";
-import { formatOrderedProduct } from "apps/storefront/lib/format-ordered-product";
-import { useCart } from "apps/storefront/store/quick-cart/cart.context";
+import { formatOrderedProduct } from "@lib/format-ordered-product";
+import { useCart } from "@store/quick-cart/cart.context";
 import { useAtom } from "jotai";
-import { checkoutAtom, discountAtom } from "apps/storefront/store/checkout";
+import { checkoutAtom, discountAtom } from "@store/checkout";
 import {
   calculatePaidTotal,
   calculateTotal,
-} from "apps/storefront/store/quick-cart/cart.utils";
+} from "@store/quick-cart/cart.utils";
 import {useTranslation} from "next-i18next";
 
 export const PlaceOrderAction: React.FC = (props) => {

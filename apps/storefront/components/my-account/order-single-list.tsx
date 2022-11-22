@@ -1,9 +1,9 @@
 import React from "react";
-import { Order } from "apps/storefront/framework/rest/types";
-import Link from "apps/storefront/components/ui/link";
+import { Order } from "@framework/types";
+import Link from "@components/ui/link";
 import dayjs from "dayjs";
 import { useTranslation } from "next-i18next";
-import { ROUTES } from "apps/storefront/lib/routes";
+import { ROUTES } from "@lib/routes";
 
 type Props = {
   order: Order;

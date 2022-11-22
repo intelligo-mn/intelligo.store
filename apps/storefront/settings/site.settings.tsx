@@ -1,22 +1,22 @@
-import { ILFlag } from "apps/storefront/components/icons/ILFlag";
-import { SAFlag } from "apps/storefront/components/icons/SAFlag";
-import { CNFlag } from "apps/storefront/components/icons/CNFlag";
-import { USFlag } from "apps/storefront/components/icons/USFlag";
-import { DEFlag } from "apps/storefront/components/icons/DEFlag";
-import { ESFlag } from "apps/storefront/components/icons/ESFlag";
+import { ILFlag } from "@components/icons/ILFlag";
+import { SAFlag } from "@components/icons/SAFlag";
+import { CNFlag } from "@components/icons/CNFlag";
+import { USFlag } from "@components/icons/USFlag";
+import { DEFlag } from "@components/icons/DEFlag";
+import { ESFlag } from "@components/icons/ESFlag";
 
 export const siteSettings = {
-  name: "Intelligo",
+  name: "ChawkBazar",
   description:
     "Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS.",
   author: {
-    name: "Intelligo LLC",
-    websiteUrl: "https://intelligo.dev",
+    name: "RedQ, Inc.",
+    websiteUrl: "https://redq.io",
     address: "",
   },
   logo: {
     url: "/assets/images/logo.svg",
-    alt: "Intelligo",
+    alt: "ChawkBazar",
     href: "/",
     width: 95,
     height: 30,

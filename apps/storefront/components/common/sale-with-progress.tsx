@@ -1,12 +1,12 @@
-import ProductCard from "apps/storefront/components/product/product-card";
-import Carousel from "apps/storefront/components/ui/carousel/carousel";
+import ProductCard from "@components/product/product-card";
+import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import ProductFlashSaleGridLoader from "apps/storefront/components/ui/loaders/product-flash-sale-grid-loader";
-import ProductFlashSaleLoader from "apps/storefront/components/ui/loaders/product-flash-sale-loader";
-import ProgressCard from "apps/storefront/components/common/progress-card";
-import SectionHeader from "apps/storefront/components/common/section-header";
-import Alert from "apps/storefront/components/ui/alert";
-import { Product } from "apps/storefront/framework/rest/types";
+import ProductFlashSaleGridLoader from "@components/ui/loaders/product-flash-sale-grid-loader";
+import ProductFlashSaleLoader from "@components/ui/loaders/product-flash-sale-loader";
+import ProgressCard from "@components/common/progress-card";
+import SectionHeader from "@components/common/section-header";
+import Alert from "@components/ui/alert";
+import { Product } from "@framework/types";
 import React from "react";
 
 interface Props {

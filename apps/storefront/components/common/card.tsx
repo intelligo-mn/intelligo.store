@@ -1,12 +1,12 @@
-import Link from "apps/storefront/components/ui/link";
+import Link from "@components/ui/link";
 import Image from "next/image";
-import Text from "apps/storefront/components/ui/text";
+import Text from "@components/ui/text";
 import { FaLink } from "@react-icons/all-files/fa/FaLink";
 import { LinkProps } from "next/link";
 import { useTranslation } from "next-i18next";
 import React from "react";
-// import { filterBrandImages } from "apps/storefront/lib/filter-brands";
-import { Attachment } from "apps/storefront/framework/rest/types";
+// import { filterBrandImages } from "@lib/filter-brands";
+import { Attachment } from "@framework/types";
 
 interface Props {
 	item: any;
