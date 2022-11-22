@@ -1,11 +1,7 @@
 {
-<<<<<<< HEAD
-  "singleQuote": true
-=======
     "singleQuote": true,
     "trailingComma": "all",
     "printWidth": 110,
     "tabWidth": 4,
     "arrowParens": "avoid"
->>>>>>> 97d9defddefcc7222397dcb6198b998d4ea065e1
 }
