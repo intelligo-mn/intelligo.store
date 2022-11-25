@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 4003",
     "build": "next build",
-    "start": "next start -p 3003"
+    "start": "next start -p 3003",
+    "codegen": "npx graphql-code-generator --config ./codegen.yml"
   },
   "dependencies": {
     "@fontsource/open-sans": "^4.3.0",
