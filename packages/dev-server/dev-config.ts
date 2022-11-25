@@ -66,14 +66,15 @@ export const devConfig: VendureConfig = {
             assetUploadDir: path.join(__dirname, 'assets'),
         }),
         DefaultSearchPlugin.init({ bufferUpdates: true, indexStockStatus: false }),
-        // BullMQJobQueuePlugin.init({}),
+        BullMQJobQueuePlugin.init({}),
         DefaultJobQueuePlugin.init({}),
         // JobQueueTestPlugin.init({ queueCount: 10 }),
-        // ElasticsearchPlugin.init({
-        //     host: 'http://localhost',
-        //     port: 9200,
-        //     bufferUpdates: true,
-        // }),
+        ElasticsearchPlugin.init({
+            host: 'http://localhost',
+            port: 9200,
+            bufferUpdates: false,
+            indexPrefix: 'intelligo',
+        }),
         EmailPlugin.init({
             devMode: true,
             route: 'mailbox',
@@ -88,6 +89,10 @@ export const devConfig: VendureConfig = {
         }),
         AdminUiPlugin.init({
             route: 'admin',
+            adminUiConfig: {
+                defaultLocale: 'mn',
+                brand: 'Intelligo',
+            },
             port: 5001,
         }),
     ],
