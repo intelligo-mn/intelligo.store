@@ -1,26 +1,25 @@
-# Vendure
+# platform.sale
 
 A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
-[![Build Status](https://github.com/vendure-ecommerce/vendure/workflows/Build%20&%20Test/badge.svg)](https://github.com/vendure-ecommerce/vendure/actions) 
-![Publish & Install](https://github.com/vendure-ecommerce/vendure/workflows/Publish%20&%20Install/badge.svg)
+[![Build & Test](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml) 
+[![Publish & Install](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-### [www.vendure.io](https://www.vendure.io/)
+### [www.platform.sale](https://www.platform.sale/)
 
-* [Getting Started](https://www.vendure.io/docs/getting-started/): Get Vendure up and running locally in a matter of minutes with a single command
-* [Live Demo](https://demo.vendure.io/)
-* [Vendure Slack](https://join.slack.com/t/vendure-ecommerce/shared_invite/zt-1exzio25w-vjL5TYkyJZjK52d6jkOsIA) Join us on Slack for support and answers to your questions
+* [Live Demo](https://demo.platform.sale/)
 
 ## Structure
 
 This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna). Several npm packages are published from this repo, which can be found in the `packages/` directory.
 
 ```
-vendure/
+platform/
+├── apps/           # Storefront and mobile apps
 ├── docs/           # Documentation source
 ├── e2e-common/     # Shared config for package e2e tests
-├── packages/       # Source for the Vendure server, admin-ui & plugin packages
+├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
 ├── scripts/
     ├── changelog/  # Scripts used to generate the changelog based on the git history
     ├── codegen/    # Scripts used to generate TypeScript code from the GraphQL APIs
@@ -29,7 +28,7 @@ vendure/
 
 ## Development
 
-The following instructions are for those who want to develop the Vendure core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* Vendure, please see the [Getting Started guide](https://www.vendure.io/docs/getting-started/).
+The following instructions are for those who want to develop the platform.sale core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* platform.sale.
 
 ### 1. Install top-level dependencies
 

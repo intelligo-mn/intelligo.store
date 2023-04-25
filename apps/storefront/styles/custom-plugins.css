@@ -1,0 +1,210 @@
+/* Accordion */
+.accordion.rc-collapse {
+	@apply bg-transparent border-0 space-y-2.5;
+}
+.accordion.rc-collapse > .rc-collapse-item {
+	@apply border-0 rounded-md bg-gray-200 px-6;
+}
+.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-header {
+	@apply px-0 py-4 outline-none;
+}
+.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-header h3 {
+	@apply py-0.5 transition duration-200 ease-in;
+	letter-spacing: 0.015em;
+}
+.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-header:hover h3 {
+	@apply text-black;
+}
+.accordion.rc-collapse > .rc-collapse-item > .rc-collapse-content {
+	@apply bg-transparent py-0 pl-0 ltr:pr-32 rtl:pl-32 text-body;
+}
+.accordion.rc-collapse
+	> .rc-collapse-item
+	> .rc-collapse-content
+	> .rc-collapse-content-box {
+	@apply my-0 text-sm leading-6 pb-5;
+}
+
+.react-tabs__tab--selected {
+	@apply font-semibold  rounded-md bg-gray-100 !important;
+}
+
+.react-stars {
+	@apply space-x-0.5;
+}
+
+.Toastify .fancy-progress-bar {
+	background: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 480px) {
+	.Toastify .Toastify__toast-container--top-left,
+	.Toastify .Toastify__toast-container--top-center,
+	.Toastify .Toastify__toast-container--top-right {
+		top: 66px;
+	}
+	.Toastify .Toastify__toast-container {
+		width: calc(100vw - 32px);
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 4px;
+		overflow: hidden;
+	}
+}
+
+/* Drawer */
+.drawer .drawer-content-wrapper {
+	@apply w-full sm:w-450px;
+}
+.drawer-search {
+	transform: translate(-50%, 50px);
+}
+.drawer-search.open {
+	@apply fixed block visible opacity-100 top-0;
+	transform: translate(-50%, 0);
+}
+.overlay {
+	background-color: rgba(0, 0, 0, 0.35);
+	z-index: 21;
+	visibility: hidden;
+	@apply w-full;
+	@apply h-full;
+	@apply flex;
+	@apply fixed;
+	@apply opacity-0;
+	@apply top-0;
+	@apply ltr:left-0 rtl:right-0;
+	transition: 0.35s ease-in-out;
+}
+.overlay.open {
+	@apply opacity-100;
+	visibility: visible;
+}
+
+/*
+* RC Pagination
+*/
+.rc-pagination {
+	@apply flex items-center flex-wrap;
+}
+
+.rc-pagination .rc-pagination-item,
+.rc-pagination .rc-pagination-prev,
+.rc-pagination .rc-pagination-next,
+.rc-pagination.rc-pagination-simple .rc-pagination-prev,
+.rc-pagination.rc-pagination-simple .rc-pagination-next {
+	@apply w-8 h-8 ltr:mr-2 rtl:ml-2 mt-2 flex items-center justify-center rounded border border-gray-300 bg-white hover:border-heading  hover:text-heading focus:border-gray-100 focus:text-heading transition-all cursor-pointer;
+}
+.rc-pagination .rc-pagination-next {
+	@apply mr-0;
+}
+
+.rc-pagination .rc-pagination-prev.rc-pagination-disabled,
+.rc-pagination .rc-pagination-next.rc-pagination-disabled {
+	@apply text-body text-opacity-60 border-gray-100 hover:text-body hover:border-gray-200 hover:text-opacity-60 focus:border-gray-200 focus:text-opacity-60;
+}
+
+.rc-pagination .rc-pagination-prev svg,
+.rc-pagination .rc-pagination-next svg {
+	@apply w-4 h-4 rtl:transform rtl:rotate-180;
+}
+
+.rc-pagination .rc-pagination-item:focus a,
+.rc-pagination .rc-pagination-item:hover a {
+	@apply text-heading;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active {
+	@apply border-heading bg-heading text-body;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active a {
+	@apply text-white hover:text-white focus:text-white;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager {
+	@apply flex items-center font-body text-sm text-heading;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper input,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager input {
+	@apply h-8 border border-gray-200 bg-gray-50 rounded px-2 font-body text-sm text-heading hover:border-gray-200 focus:border-gray-200 focus:outline-none;
+}
+
+/* Order Table */
+.rc-table {
+	@apply border-separate border border-gray-100 rounded-md overflow-hidden pb-1 md:pb-3;
+	border-spacing: 0;
+}
+
+.rc-table .rc-table-content,
+.rc-table .rc-table-body,
+.rc-table .rc-table-header {
+	@apply border-0;
+}
+
+.rc-table tr th {
+	@apply border-0 border-b border-gray-100;
+}
+
+.rc-table tr td {
+	@apply border-0;
+}
+
+.rc-table thead.rc-table-thead th {
+	@apply bg-gray-100 py-3 px-4 md:px-5 font-body font-bold text-sm md:text-[15px] lg:text-base text-heading border-gray-100;
+}
+.rc-table .rc-table-cell.rc-table-cell-row-hover {
+	@apply bg-gray-200;
+}
+.rc-table tr.rc-table-row:hover {
+	background-color: inherit;
+}
+
+.rc-table tr.rc-table-row td {
+	@apply pt-4 pb-1 px-3 md:px-6 font-body text-sm md:text-[15px] font-normal text-heading;
+}
+
+.rc-table tr.rc-table-row:not(.rc-table-expanded-row) {
+	cursor: pointer;
+}
+
+.rc-table tr.rc-table-expanded-row > td {
+	@apply p-0 whitespace-normal border border-gray-50;
+}
+
+.rc-table tr.rc-table-expanded-row tr.rc-table-row {
+	cursor: default;
+}
+
+.rc-table .rc-table-expanded-row-fixed::after {
+	border-width: 0;
+}
+.subOrderTable.rc-table {
+	@apply pb-0;
+}
+.subOrderTable.rc-table thead.rc-table-thead th:first-of-type,
+.subOrderTable.rc-table tr.rc-table-row td:first-of-type {
+	@apply ltr:pl-7 rtl:pr-7;
+}
+.subOrderTable.rc-table tr.rc-table-row td {
+	@apply py-6 px-4 md:px-5;
+}
+
+/* React Tel Input */
+.react-tel-input .selected-flag.open::before,
+.react-tel-input .selected-flag:focus::before {
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+.react-tel-input .country-list {
+	margin-top: 7px !important;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+}
+.rtl-view .react-tel-input .selected-flag {
+	@apply pr-3;
+}
+.rtl-view .react-tel-input .selected-flag .arrow {
+	@apply left-auto right-8;
+}

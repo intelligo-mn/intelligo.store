@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "owner_id": 1,
+  "owner_name": "Marcel",
+  "is_active": true,
+  "address": "115 E 9th St, New York, CA 90079,USA",
+  "phone": "+971-321-4841-78",
+  "website": "www.area365mart.com",
+  "ratings": "5.00 rating from 1 review",
+  "name": "Area 365 Mart",
+  "slug": "area-365-mart",
+  "description": "You will get quality product",
+  "cover_image": {
+    "id": 1,
+    "thumbnail": "/assets/images/shop/shop-banner-1.jpg",
+    "original": "/assets/images/shop/shop-banner-1.jpg"
+  },
+  "logo": {
+    "id": 1,
+    "thumbnail": "/assets/images/shop/shop-logo-1.jpg",
+    "original": "/assets/images/shop/shop-logo-1.jpg"
+  },
+  "created_at": "2018-05-23",
+  "updated_at": "2020-05-23"
+}

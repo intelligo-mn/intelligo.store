@@ -1,10 +1,37 @@
 version: '3.7'
 services:
+  elasticsearch:
+    image: elasticsearch:7.16.1
+    container_name: elastic-search
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    networks:
+      - elastic
+  kibana:
+    image: kibana:7.16.1
+    container_name: kibaba
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
   mariadb:
     image: 'bitnami/mariadb:latest'
     container_name: mariadb
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=root
+      - MARIADB_DATABASE=vendure-dev
     volumes:
       - 'mariadb_data:/bitnami'
     ports:
@@ -19,79 +46,38 @@ services:
       - 8080:80
     volumes:
       - /sessions
-  mysql:
-    image: bitnami/mysql:8.0
-    container_name: mysql-8
+  redis:
+    image: bitnami/redis:6.2
+    hostname: redis
+    container_name: redis
     environment:
-      ALLOW_EMPTY_PASSWORD: 'yes'
-      MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-    volumes:
-      - 'mysql_data:/bitnami'
+      - ALLOW_EMPTY_PASSWORD=yes
     ports:
-      - '3306:3306'
-  mysql5:
-    image: bitnami/mysql:5.7
-    container_name: mysql-5.7
+      - "6379:6379"
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
     environment:
-      ALLOW_EMPTY_PASSWORD: 'yes'
-    volumes:
-      - 'mysql_data:/bitnami'
+      - REDIS_HOSTS=local:redis:6379
     ports:
-      - '3306:3306'
-  phpmyadmin-mysql5:
-    image: 'phpmyadmin/phpmyadmin:latest'
-    container_name: phpmyadmin-mysql5
-    environment:
-      - PMA_HOST=mysql-5.7
-      - PMA_USER=root
-    ports:
-      - 8082:80
-    volumes:
-      - /sessions
-  phpmyadmin-mysql:
-    image: 'phpmyadmin/phpmyadmin:latest'
-    container_name: phpmyadmin-mysql
-    environment:
-      - PMA_HOST=mysql
-      - PMA_USER=root
-    ports:
-      - 8082:80
-    volumes:
-      - /sessions
-  postgres:
-    image: postgres:12.3
-    container_name: postgres
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: secret
-      PGDATA: /var/lib/postgresql/data
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c pg_stat_statements.max=100000 -c max_connections=200
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:4.18
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@localhost.dev
-      PGADMIN_DEFAULT_PASSWORD: secret
-      PGADMIN_LISTEN_PORT: 80
-    ports:
-      - "8081:80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-    links:
-      - "postgres:pgsql-server"
+      - "8085:8081"
+  jenkins:
+    image: "jenkins:2.60.3"
+    container_name: "jenkins"
+    restart: "always"
+    ports: 
+      - "9001:9001"
+      - "50000:50000"
+    volumes: 
+      - "jenkins_home:/var/jenkins_home"
+
 volumes:
-  postgres_data:
-    driver: local
-  pgadmin_data:
-    driver: local
   mariadb_data:
-    driver: local
-  mysql_data:
     driver: local
   phpmyadmin_data:
     driver: local
+  jenkins_home:
+networks:
+  elastic:
+    driver: bridge

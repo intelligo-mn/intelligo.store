@@ -1,0 +1,1795 @@
+{
+  "productFlashSellList": [
+    {
+      "id": 1,
+      "name": "REDQ Steel Watch",
+      "description": "The Black Bay celebrates 60 years of diving watches with extraordinary heritage. The iconic model inherits the general lines.",
+      "slug": "redq-steel-watch",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-29-sm.png",
+        "original": "/assets/images/products/p-29-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-29-1.png",
+          "original": "/assets/images/products/p-29-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-29-2.png",
+          "original": "/assets/images/products/p-29-2.png"
+        }
+      ],
+      "price": 120.00,
+      "sale_price": 80.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "name": "Wayfarer Sunglasses",
+      "description": "Our optical engineers developed these sunglasses for hiking. Ideal for occasional use in the mountains.",
+      "slug": "wayfarer-sunglasses",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-27-sm.png",
+        "original": "/assets/images/products/p-27-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-27-1.png",
+          "original": "/assets/images/products/p-27-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-27-2.png",
+          "original": "/assets/images/products/p-27-2.png"
+        }
+      ],
+      "price": 25.00,
+      "sale_price": 20.00,
+      "quantity": 267,
+      "sold": 120,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 3,
+      "name": "NIKE Shoes",
+      "description": "NIKE 2020 Black White is a clean and monochromatic colourway of the label’s latest high-technology silhouette. The model first launched late last year and is currently Jordan Brand’s flagship performance pair.",
+      "slug": "nike-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-24-sm.png",
+        "original": "/assets/images/products/p-24-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-24-1.png",
+          "original": "/assets/images/products/p-24-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-24-2.png",
+          "original": "/assets/images/products/p-24-2.png"
+        }
+      ],
+      "price": 80.00,
+      "sale_price": 50.00,
+      "quantity": 267,
+      "sold": 120,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    }
+  ],
+  "productFlashSellGrid": [
+    {
+      "id": 1,
+      "name": "Polarised Wayfarer Sunglasses",
+      "description": "This item is only exchangeable for the same or a different size, if available, and cannot be returned",
+      "slug": "polarised-wayfarer-sunglasses",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-25-md.png",
+        "original": "/assets/images/products/p-25-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-25-1.png",
+          "original": "/assets/images/products/p-25-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-25-2.png",
+          "original": "/assets/images/products/p-25-2.png"
+        }
+      ],
+      "price": 35.00,
+      "sale_price": 20.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "name": "Adidas Shoes Black",
+      "description": "Men Black top sleeveless gown",
+      "slug": "adidas-shoes-black",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-26-md.png",
+        "original": "/assets/images/products/p-26-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-26-1.png",
+          "original": "/assets/images/products/p-26-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-26-2.png",
+          "original": "/assets/images/products/p-26-2.png"
+        }
+      ],
+      "price": 99.99,
+      "sale_price": 45.00,
+      "quantity": 267,
+      "sold": 120,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    }
+  ],
+  "productFlashSellGridOne": [
+    {
+      "id": 1,
+      "name": "Armani Wide-Leg Trousers",
+      "description": "Monochrome elegance. Made with a relaxed wide-leg, these trousers are made from a sustainable soft organic cotton with a mechanical stretch making the garment easily recycled.",
+      "slug": "armani-wide-leg-trousers",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-16-lg.png",
+        "original": "/assets/images/products/p-16-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-16-1.png",
+          "original": "/assets/images/products/p-16-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-16-2.png",
+          "original": "/assets/images/products/p-16-2.png"
+        }
+      ],
+      "price": 80.00,
+      "sale_price": 60.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "name": "Scuba Stand Collar Topper Jacket",
+      "description": "Zara provides only the highest-quality selection of dresses, womens suits, and suited separates.",
+      "slug": "scuba-stand-collar-topper-jacket",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-15-lg.png",
+        "original": "/assets/images/products/p-15-md.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-15-1.png",
+          "original": "/assets/images/products/p-15-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-15-2.png",
+          "original": "/assets/images/products/p-15-2.png"
+        }
+      ],
+      "price": 16.00,
+      "sale_price": 12.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    }
+  ],
+  "productFlashSellGridTwo": [
+    {
+      "id": 1,
+      "name": "Adidas Shoes Black",
+      "description": "Men Black top sleeveless gown",
+      "slug": "adidas-shoes-black",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-26-md.png",
+        "original": "/assets/images/products/p-26-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-26-1.png",
+          "original": "/assets/images/products/p-26-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-26-2.png",
+          "original": "/assets/images/products/p-26-2.png"
+        }
+      ],
+      "price": 99.99,
+      "sale_price": 45.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "name": "Armani Wide-Leg Trousers",
+      "description": "Monochrome elegance. Made with a relaxed wide-leg, these trousers are made from a sustainable soft organic cotton with a mechanical stretch making the garment easily recycled.",
+      "slug": "armani-wide-leg-trousers",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-16-md.png",
+        "original": "/assets/images/products/p-16-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-16-1.png",
+          "original": "/assets/images/products/p-16-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-16-2.png",
+          "original": "/assets/images/products/p-16-2.png"
+        }
+      ],
+      "price": 16.00,
+      "sale_price": 12.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 3,
+      "name": "Zara Shoes Green",
+      "description": "Footwear refers to garments worn on the feet, which originally serves to purpose of protection against adversities of the environment, usually regarding ground textures and temperature.",
+      "slug": "style-quotient",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-3.png",
+        "original": "/assets/images/products/p-3-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-3-1.png",
+          "original": "/assets/images/products/p-3-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-3-2.png",
+          "original": "/assets/images/products/p-3-2.png"
+        }
+      ],
+      "price": "16.38",
+      "sale_price": 50.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 4,
+      "name": "Wayfarer Sunglasses",
+      "description": "Our optical engineers developed these sunglasses for hiking. Ideal for occasional use in the mountains.",
+      "slug": "wayfarer-sunglasses",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-25-md.png",
+        "original": "/assets/images/products/p-25-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-25-1.png",
+          "original": "/assets/images/products/p-25-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-25-2.png",
+          "original": "/assets/images/products/p-25-2.png"
+        }
+      ],
+      "price": 18.00,
+      "sale_price": 15.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 5,
+      "name": "Tissot Classic",
+      "description": "The new-model Submariner now features Rolex’s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,",
+      "slug": "style-quotient",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-30-md.png",
+        "original": "/assets/images/products/p-30-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-30-1.png",
+          "original": "/assets/images/products/p-30-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-30-2.png",
+          "original": "/assets/images/products/p-30-2.png"
+        }
+      ],
+      "price": "",
+      "sale_price": 600.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 6,
+      "name": "Hermes Carlton London",
+      "description": "Off-White self-striped knitted midi A-line dress, has a scoop neck, sleeveless, straight hem",
+      "slug": "hermes-carlton-london",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-14-md.png",
+        "original": "/assets/images/products/p-14-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-14-1.png",
+          "original": "/assets/images/products/p-14-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-14-2.png",
+          "original": "/assets/images/products/p-14-2.png"
+        }
+      ],
+      "price": "",
+      "sale_price": 15.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 7,
+      "name": "Polarised Wayfarer Sunglasses",
+      "description": "This item is only exchangeable for the same or a different size, if available, and cannot be returned",
+      "slug": "polarised-wayfarer-sunglasses",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-27-md.png",
+        "original": "/assets/images/products/p-27-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-27-1.png",
+          "original": "/assets/images/products/p-27-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-27-2.png",
+          "original": "/assets/images/products/p-27-2.png"
+        }
+      ],
+      "price": 35.00,
+      "sale_price": 20.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 8,
+      "name": "Gucci Carlton UK",
+      "description": "Knitted midi A-line dress, has a scoop neck, sleeveless, straight hem",
+      "slug": "gucci-carlton-uk",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-8-md.png",
+        "original": "/assets/images/products/p-8-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-8-1.png",
+          "original": "/assets/images/products/p-8-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-8-2.png",
+          "original": "/assets/images/products/p-8-2.png"
+        }
+      ],
+      "price": 19.99,
+      "sale_price": 14.99,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 9,
+      "name": "NIKE Shoes",
+      "description": "NIKE 2020 Black White is a clean and monochromatic colourway of the label’s latest high-technology silhouette. The model first launched late last year and is currently Jordan Brand’s flagship performance pair.",
+      "slug": "nike-shoes",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-24-md.png",
+        "original": "/assets/images/products/p-24-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-24-1.png",
+          "original": "/assets/images/products/p-24-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-24-2.png",
+          "original": "/assets/images/products/p-24-2.png"
+        }
+      ],
+      "price": 80.00,
+      "sale_price": 50.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    },
+    {
+      "id": 10,
+      "name": "Wayfarer Sunglasses",
+      "description": "Our optical engineers developed these sunglasses for hiking. Ideal for occasional use in the mountains.",
+      "slug": "wayfarer-sunglasses",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/products/p-12-md.png",
+        "original": "/assets/images/products/p-12-m.png"
+      },
+      "gallery": [
+        {
+          "id": 1,
+          "thumbnail": "/assets/images/products/p-12-1.png",
+          "original": "/assets/images/products/p-12-1.png"
+        },
+        {
+          "id": 2,
+          "thumbnail": "/assets/images/products/p-12-2.png",
+          "original": "/assets/images/products/p-12-2.png"
+        }
+      ],
+      "price": 25.00,
+      "sale_price": 20.00,
+      "quantity": 320,
+      "sold": 180,
+      "variations": [
+      {
+        "id": 1,
+        "value": "S",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "attribute": {
+          "id": 1,
+          "name": "Size",
+          "slug": "size"
+        }
+      },
+      {
+        "id": 5,
+        "value": "Orange",
+        "meta": "#e86c25",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 6,
+        "value": "Pink",
+        "meta": "#ffa5b4",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 7,
+        "value": "Purple",
+        "meta": "#8224e3",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      },
+      {
+        "id": 8,
+        "value": "Red",
+        "meta": "#dd3333",
+        "attribute": {
+          "id": 1,
+          "name": "Color",
+          "slug": "color"
+        }
+      }
+    ]
+    }
+  ]
+}

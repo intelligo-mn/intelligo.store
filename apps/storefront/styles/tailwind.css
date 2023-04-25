@@ -1,0 +1,306 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Write your own custom base styles here */
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+	html,
+	body {
+		@apply text-body font-body antialiased;
+	}
+	p {
+		@apply mb-5;
+	}
+	p:last-of-type {
+		@apply mb-0;
+	}
+	p > a {
+		@apply text-body transition;
+	}
+	p > a:hover {
+		@apply text-heading;
+	}
+}
+
+@layer components {
+	.menuIcon {
+		width: 26px;
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		@apply space-y-1.5;
+	}
+	.bar {
+		width: 100%;
+		height: 2px;
+		transition: all 0.25s ease-in-out;
+		@apply flex bg-heading rounded-2xl;
+	}
+	.bar:first-child {
+		width: 50%;
+	}
+	.bar:last-child {
+		width: 75%;
+	}
+	.menuBtn:hover .bar:first-child,
+	.menuBtn:hover .bar:last-child {
+		@apply w-full;
+	}
+	.menuBtn:hover .bar:nth-child(2) {
+		width: 60%;
+	}
+
+	/* Header Menu */
+	#siteHeader.is-scrolling .innerSticky {
+		@apply shadow-header;
+	}
+	.headerMenu .menuItem > a::before {
+		@apply absolute ltr:right-0 rtl:left-0 w-0 bg-heading -bottom-7;
+		content: "";
+		height: 3px;
+		transition: all 0.3s ease-in-out 0s;
+	}
+	.megaMenu,
+	.subMenu {
+		visibility: hidden;
+		transition: all 0.4s;
+		top: calc(100% + 25px);
+	}
+	.megaMenu {
+		width: 970px;
+	}
+	@media (min-width: 1280px) {
+		.megaMenu {
+			width: 1070px;
+		}
+	}
+	@media (min-width: 1500px) {
+		.megaMenu {
+			width: 1200px;
+		}
+	}
+	.megaMenu ul > li:last-of-type {
+		@apply pb-0 border-0 mb-0;
+	}
+	.subMenu {
+		width: 220px;
+	}
+	@media (min-width: 1280px) {
+		.subMenu {
+			width: 240px;
+		}
+	}
+	.subMenuChild {
+		transition: all 0.3s;
+	}
+	.subMenu li:hover > .subMenuChild {
+		@apply opacity-100 visible -top-3;
+	}
+	.megaMenu .subMenuGrid > li:last-of-type {
+		@apply border-b-0 pb-0 mb-0;
+	}
+
+	.headerMenu .menuItem:hover > a::before {
+		@apply w-full ltr:right-auto ltr:left-0 rtl:left-auto rtl:right-0;
+	}
+	.headerMenu .menuItem:hover > .megaMenu,
+	.headerMenu .menuItem:hover > .subMenu {
+		visibility: visible;
+		@apply top-full;
+	}
+
+	/* Mobile Drawer Menu */
+	.mobileMenu .menu-item.active {
+		@apply text-black font-semibold;
+	}
+	.mobileMenu .menu-item.active::before {
+		content: "";
+		width: 3px;
+		@apply flex absolute h-full bg-heading top-0 ltr:left-0 rtl:right-0 bottom-0;
+	}
+	.mobileMenu li li {
+		@apply text-body text-sm;
+	}
+	.mobileMenu li li div > a {
+		@apply relative py-2.5 text-body;
+	}
+	.mobileMenu li > ul > li > div > a:before {
+		content: "";
+		height: 1px;
+		@apply flex absolute bg-body top-1/2 ltr:left-1.5 rtl:right-1.5 ltr:md:left-3 rtl:md:right-3 w-1.5 md:w-2;
+	}
+
+	/* Hero Banner */
+	@media (min-width: 1500px) {
+		.heroBannerOne > div {
+			margin-left: -500px;
+			margin-right: -500px;
+		}
+	}
+	@media (min-width: 1780px) {
+		.heroBannerOne > div {
+			margin-left: -750px;
+			margin-right: -750px;
+		}
+	}
+	@media (min-width: 1850px) {
+		.heroBannerOne > div {
+			margin-left: -850px;
+			margin-right: -850px;
+		}
+	}
+
+	/* Exclusive Year Section css */
+	.exclusiveYear {
+		opacity: 0.02;
+		font-size: 3.5rem;
+	}
+	@media (min-width: 480px) {
+		.exclusiveYear {
+			font-size: 5rem;
+		}
+	}
+	@media (min-width: 768px) {
+		.exclusiveYear {
+			font-size: 8rem;
+		}
+	}
+	@media (min-width: 1280px) {
+		.exclusiveYear {
+			font-size: 160px;
+		}
+	}
+	@media (min-width: 1500px) {
+		.exclusiveYear {
+			font-size: 200px;
+		}
+	}
+	@media (min-width: 1780px) {
+		.exclusiveYear {
+			font-size: 240px;
+		}
+	}
+
+	@media (min-width: 667px) {
+		.exclusiveImage {
+			min-width: 280px;
+			min-height: 300px;
+		}
+	}
+
+	/* Your own custom utilities */
+	.productColor.active {
+		@apply border-heading;
+	}
+	.productSize.active {
+		@apply border-heading bg-heading text-white;
+	}
+	.productTags a:last-of-type > span {
+		display: none;
+	}
+	/* For login and signup switch */
+	.switch {
+		height: 22px;
+	}
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 16px;
+		width: 16px;
+		left: 4px;
+		bottom: 3px;
+		background-color: white;
+		-webkit-transition: 0.4s;
+		transition: 0.4s;
+	}
+	input:focus + .slider {
+		background-color: #b0afaf;
+	}
+	input:checked + .slider {
+		background-color: #212121;
+	}
+
+	input:checked + .slider:before {
+		-webkit-transform: translateX(16px);
+		-ms-transform: translateX(16px);
+		transform: translateX(16px);
+	}
+
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 20px;
+	}
+
+	.slider.round:before {
+		border-radius: 50%;
+	}
+	::-webkit-input-placeholder {
+		/* Chrome/Opera/Safari */
+		color: #707070;
+	}
+	::-moz-placeholder {
+		/* Firefox 19+ */
+		color: #707070;
+	}
+	input::placeholder {
+		color: #707070;
+	}
+
+	.popupClosed {
+		@apply -top-3.5 md:-top-4 -end-3.5 md:-end-4;
+	}
+	.h-screen-40 {
+		height: calc(100vh - 40px);
+	}
+	.modal-root .os-content {
+		@apply flex items-center justify-center lg:block;
+	}
+
+	.cart-counter-badge {
+		min-width: 20px;
+		min-height: 20px;
+		padding: 2px;
+		border-radius: 20px;
+		font-size: 10px;
+	}
+
+	@media (max-wdith: 1279px) {
+		.cart-counter-badge {
+			min-width: 16px;
+			min-height: 16px;
+		}
+	}
+	.carouselWrapper .product-gallery + div {
+		@apply hidden;
+	}
+
+	.carouselWrapper.pagination-left .swiper-pagination-bullets {
+		@apply ltr:left-6 ltr:sm:left-9 ltr:md:left-11 ltr:lg:left-14 ltr:xl:left-20 ltr:2xl:left-24 ltr:3xl:left-28 rtl:right-6 rtl:sm:right-9 rtl:md:right-11 rtl:lg:right-14 rtl:xl:right-20 rtl:2xl:right-24 rtl:3xl:right-28;
+	}
+	.hero-slider-pagination-area
+		.carouselWrapper.pagination-left
+		.swiper-pagination-bullets {
+		@apply ltr:left-6 ltr:sm:left-9 ltr:md:left-11 ltr:lg:left-14 ltr:xl:left-20 ltr:2xl:left-20 rtl:right-6 rtl:sm:right-9 rtl:md:right-11 rtl:lg:right-14 rtl:xl:right-20 rtl:2xl:right-20;
+	}
+	.carouselWrapper.carousel-full-width.pagination-left .swiper-pagination-bullets {
+		@apply ltr:left-5 ltr:sm:left-9 ltr:md:left-11 ltr:lg:left-14 ltr:xl:left-20 ltr:2xl:left-24 ltr:3xl:left-48 rtl:right-5 rtl:sm:right-9 rtl:md:right-11 rtl:lg:right-14 rtl:xl:right-20 rtl:2xl:right-24 rtl:3xl:right-48;
+	}
+	.carouselWrapper.pagination-left .swiper-pagination {
+		display: inline-flex;
+		text-align: left;
+		width: auto;
+	}
+	.carouselWrapper.pagination-none .swiper-pagination{
+		@apply hidden;
+	}
+}
+
+/* Breadcrumb truncate last child */
+.chawkbazarBreadcrumb li:last-child {
+	@apply truncate;
+}

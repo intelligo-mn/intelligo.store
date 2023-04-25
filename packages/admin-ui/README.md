@@ -1,4 +1,4 @@
-# Vendure Admin UI
+# Platform Admin UI
 
 This is the administration interface for Vendure.
 
