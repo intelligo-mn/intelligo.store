@@ -214,7 +214,7 @@ export type CustomFieldsObject = { [key: string]: any };
 export interface AdminUiConfig {
     /**
      * @description
-     * The hostname of the Vendure server which the admin ui will be making API calls
+     * The hostname of the Vendure server which the admin UI will be making API calls
      * to. If set to "auto", the Admin UI app will determine the hostname from the
      * current location (i.e. `window.location.hostname`).
      *
@@ -223,7 +223,7 @@ export interface AdminUiConfig {
     apiHost: string | 'auto';
     /**
      * @description
-     * The port of the Vendure server which the admin ui will be making API calls
+     * The port of the Vendure server which the admin UI will be making API calls
      * to. If set to "auto", the Admin UI app will determine the port from the
      * current location (i.e. `window.location.port`).
      *
@@ -305,6 +305,13 @@ export interface AdminUiConfig {
     hideVersion?: boolean;
     /**
      * @description
+     * A url of a custom image to be used on the login screen, to override the images provided by Vendure's login image server.
+     *
+     * @since 1.9.0
+     */
+    loginImageUrl?: string;
+    /**
+     * @description
      * Allows you to provide default reasons for a refund or cancellation. This will be used in the
      * refund/cancel dialog. The values can be literal strings (e.g. "Not in stock") or translation
      * tokens (see [Adding Admin UI Translations](/docs/plugins/extending-the-admin-ui/adding-ui-translations/)).
@@ -324,7 +331,7 @@ export interface AdminUiConfig {
 export interface AdminUiAppConfig {
     /**
      * @description
-     * The path to the compiled admin ui app files. If not specified, an internal
+     * The path to the compiled admin UI app files. If not specified, an internal
      * default build is used. This path should contain the `vendure-ui-config.json` file,
      * index.html, the compiled js bundles etc.
      */
@@ -352,7 +359,7 @@ export interface AdminUiAppConfig {
 export interface AdminUiAppDevModeConfig {
     /**
      * @description
-     * The path to the uncompiled ui app source files. This path should contain the `vendure-ui-config.json` file.
+     * The path to the uncompiled UI app source files. This path should contain the `vendure-ui-config.json` file.
      */
     sourcePath: string;
     /**

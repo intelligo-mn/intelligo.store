@@ -733,14 +733,15 @@ export class ProductVariantService {
         ).optionGroups;
 
         const optionIds = input.optionIds || [];
+        const activeOptions = optionGroups && optionGroups.filter(group => !group.deletedAt);
 
-        if (optionIds.length !== optionGroups.length) {
+        if (optionIds.length !== activeOptions.length) {
             this.throwIncompatibleOptionsError(optionGroups);
         }
         if (
             !samplesEach(
                 optionIds,
-                optionGroups.map(g => g.options.map(o => o.id)),
+                activeOptions.map(g => g.options.map(o => o.id)),
             )
         ) {
             this.throwIncompatibleOptionsError(optionGroups);

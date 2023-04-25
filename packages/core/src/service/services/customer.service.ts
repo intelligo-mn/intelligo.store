@@ -227,12 +227,11 @@ export class CustomerService {
                 deletedAt: null,
             },
         });
-        const existingUser = await this.connection.getRepository(ctx, User).findOne({
-            where: {
-                identifier: input.emailAddress,
-                deletedAt: null,
-            },
-        });
+        const existingUser = await this.userService.getUserByEmailAddress(
+            ctx,
+            input.emailAddress,
+            'customer',
+        );
 
         if (existingCustomer && existingUser) {
             // Customer already exists, bring to this Channel
@@ -326,6 +325,7 @@ export class CustomerService {
                     const existingUserWithEmailAddress = await this.userService.getUserByEmailAddress(
                         ctx,
                         input.emailAddress,
+                        'customer',
                     );
 
                     if (
@@ -786,7 +786,9 @@ export class CustomerService {
             .getRepository(ctx, Customer)
             .update({ id: customerId }, { deletedAt: new Date() });
         // tslint:disable-next-line:no-non-null-assertion
-        await this.userService.softDelete(ctx, customer.user!.id);
+        if (customer.user) {
+            await this.userService.softDelete(ctx, customer.user.id);
+        }
         this.eventBus.publish(new CustomerEvent(ctx, customer, 'deleted', customerId));
         return {
             result: DeletionResult.DELETED,

@@ -20,6 +20,7 @@ import { CUSTOMER_FRAGMENT } from './graphql/fragments';
 import {
     AddNoteToCustomer,
     CreateAddress,
+    CreateAdministrator,
     CreateCustomer,
     CustomerFragment,
     DeleteCustomer,
@@ -37,9 +38,18 @@ import {
     UpdateCustomer,
     UpdateCustomerNote,
 } from './graphql/generated-e2e-admin-types';
-import { AddItemToOrder, UpdatedOrderFragment } from './graphql/generated-e2e-shop-types';
+import {
+    ActiveOrderCustomerFragment,
+    AddItemToOrder,
+    AddItemToOrderMutation,
+    AddItemToOrderMutationVariables,
+    SetCustomerForOrderMutation,
+    SetCustomerForOrderMutationVariables,
+    UpdatedOrderFragment,
+} from './graphql/generated-e2e-shop-types';
 import {
     CREATE_ADDRESS,
+    CREATE_ADMINISTRATOR,
     CREATE_CUSTOMER,
     DELETE_CUSTOMER,
     DELETE_CUSTOMER_NOTE,
@@ -51,7 +61,7 @@ import {
     UPDATE_CUSTOMER,
     UPDATE_CUSTOMER_NOTE,
 } from './graphql/shared-definitions';
-import { ADD_ITEM_TO_ORDER } from './graphql/shop-definitions';
+import { ADD_ITEM_TO_ORDER, SET_CUSTOMER } from './graphql/shop-definitions';
 import { assertThrowsWithMessage } from './utils/assert-throws-with-message';
 
 // tslint:disable:no-non-null-assertion
@@ -131,16 +141,51 @@ describe('Customer resolver', () => {
     });
 
     it('customer resolver resolves User', async () => {
+        const emailAddress = 'same-email@test.com';
+
+        // Create an administrator with the same email first in order to ensure the right user is resolved.
+        // This test also validates that a customer can be created with the same identifier
+        // of an existing administrator
+        const { createAdministrator } = await adminClient.query<
+            CreateAdministrator.Mutation,
+            CreateAdministrator.Variables
+        >(CREATE_ADMINISTRATOR, {
+            input: {
+                emailAddress,
+                firstName: 'First',
+                lastName: 'Last',
+                password: '123',
+                roleIds: ['1'],
+            },
+        });
+
+        expect(createAdministrator.emailAddress).toEqual(emailAddress);
+
+        const { createCustomer } = await adminClient.query<CreateCustomer.Mutation, CreateCustomer.Variables>(
+            CREATE_CUSTOMER,
+            {
+                input: {
+                    emailAddress,
+                    firstName: 'New',
+                    lastName: 'Customer',
+                },
+                password: 'test',
+            },
+        );
+
+        customerErrorGuard.assertSuccess(createCustomer);
+        expect(createCustomer.emailAddress).toEqual(emailAddress);
+
         const { customer } = await adminClient.query<
             GetCustomerWithUser.Query,
             GetCustomerWithUser.Variables
         >(GET_CUSTOMER_WITH_USER, {
-            id: firstCustomer.id,
+            id: createCustomer.id,
         });
 
         expect(customer!.user).toEqual({
-            id: 'T_2',
-            identifier: firstCustomer.emailAddress,
+            id: createCustomer.user?.id,
+            identifier: emailAddress,
             verified: true,
         });
     });
@@ -585,6 +630,41 @@ describe('Customer resolver', () => {
             expect(createCustomer.emailAddress).toBe(thirdCustomer.emailAddress);
             expect(createCustomer.firstName).toBe('Reusing Email');
             expect(createCustomer.user?.identifier).toBe(thirdCustomer.emailAddress);
+        });
+
+        // https://github.com/vendure-ecommerce/vendure/issues/1960
+        it('delete a guest Customer', async () => {
+            const orderErrorGuard: ErrorResultGuard<ActiveOrderCustomerFragment> = createErrorResultGuard(
+                input => !!input.lines,
+            );
+
+            await shopClient.asAnonymousUser();
+            await shopClient.query<AddItemToOrderMutation, AddItemToOrderMutationVariables>(
+                ADD_ITEM_TO_ORDER,
+                {
+                    productVariantId: 'T_1',
+                    quantity: 1,
+                },
+            );
+            const { setCustomerForOrder } = await shopClient.query<
+                SetCustomerForOrderMutation,
+                SetCustomerForOrderMutationVariables
+            >(SET_CUSTOMER, {
+                input: {
+                    firstName: 'Guest',
+                    lastName: 'Customer',
+                    emailAddress: 'guest@test.com',
+                },
+            });
+
+            orderErrorGuard.assertSuccess(setCustomerForOrder);
+
+            const result = await adminClient.query<DeleteCustomer.Mutation, DeleteCustomer.Variables>(
+                DELETE_CUSTOMER,
+                { id: setCustomerForOrder.customer!.id },
+            );
+
+            expect(result.deleteCustomer).toEqual({ result: DeletionResult.DELETED });
         });
     });
 

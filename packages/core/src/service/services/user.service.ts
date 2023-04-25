@@ -48,14 +48,24 @@ export class UserService {
         });
     }
 
-    async getUserByEmailAddress(ctx: RequestContext, emailAddress: string): Promise<User | undefined> {
-        return this.connection.getRepository(ctx, User).findOne({
-            where: {
-                identifier: emailAddress,
-                deletedAt: null,
-            },
-            relations: ['roles', 'roles.channels', 'authenticationMethods'],
-        });
+    async getUserByEmailAddress(
+        ctx: RequestContext,
+        emailAddress: string,
+        userType?: 'administrator' | 'customer',
+    ): Promise<User | undefined> {
+        const entity = userType ?? (ctx.apiType === 'admin' ? 'administrator' : 'customer');
+        const table = `${this.configService.dbConnectionOptions.entityPrefix ?? ''}${entity}`;
+
+        return this.connection
+            .getRepository(ctx, User)
+            .createQueryBuilder('user')
+            .innerJoin(table, table, `${table}.userId = user.id`)
+            .leftJoinAndSelect('user.roles', 'roles')
+            .leftJoinAndSelect('roles.channels', 'channels')
+            .leftJoinAndSelect('user.authenticationMethods', 'authenticationMethods')
+            .where('user.identifier = :identifier', { identifier: emailAddress })
+            .andWhere('user.deletedAt IS NULL')
+            .getOne();
     }
 
     /**
@@ -179,8 +189,9 @@ export class UserService {
         const user = await this.connection
             .getRepository(ctx, User)
             .createQueryBuilder('user')
-            .leftJoinAndSelect('user.authenticationMethods', 'authenticationMethod')
-            .addSelect('authenticationMethod.passwordHash')
+            .leftJoinAndSelect('user.authenticationMethods', 'aums')
+            .leftJoin('user.authenticationMethods', 'authenticationMethod')
+            .addSelect('aums.passwordHash')
             .where('authenticationMethod.verificationToken = :verificationToken', { verificationToken })
             .getOne();
         if (user) {
@@ -222,7 +233,10 @@ export class UserService {
         if (!user) {
             return;
         }
-        const nativeAuthMethod = user.getNativeAuthenticationMethod();
+        const nativeAuthMethod = user.getNativeAuthenticationMethod(false);
+        if (!nativeAuthMethod) {
+            return undefined;
+        }
         nativeAuthMethod.passwordResetToken = this.verificationTokenGenerator.generateVerificationToken();
         await this.connection.getRepository(ctx, NativeAuthenticationMethod).save(nativeAuthMethod);
         return user;
@@ -245,7 +259,8 @@ export class UserService {
         const user = await this.connection
             .getRepository(ctx, User)
             .createQueryBuilder('user')
-            .leftJoinAndSelect('user.authenticationMethods', 'authenticationMethod')
+            .leftJoinAndSelect('user.authenticationMethods', 'aums')
+            .leftJoin('user.authenticationMethods', 'authenticationMethod')
             .where('authenticationMethod.passwordResetToken = :passwordResetToken', { passwordResetToken })
             .getOne();
         if (!user) {
@@ -330,7 +345,8 @@ export class UserService {
         const user = await this.connection
             .getRepository(ctx, User)
             .createQueryBuilder('user')
-            .leftJoinAndSelect('user.authenticationMethods', 'authenticationMethod')
+            .leftJoinAndSelect('user.authenticationMethods', 'aums')
+            .leftJoin('user.authenticationMethods', 'authenticationMethod')
             .where('authenticationMethod.identifierChangeToken = :identifierChangeToken', {
                 identifierChangeToken: token,
             })

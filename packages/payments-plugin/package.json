@@ -1,6 +1,6 @@
 {
     "name": "@vendure/payments-plugin",
-    "version": "1.8.4",
+    "version": "1.9.5",
     "license": "MIT",
     "main": "package/index.js",
     "types": "package/index.d.ts",
@@ -13,7 +13,8 @@
         "build": "rimraf package && tsc -p ./tsconfig.build.json",
         "e2e": "jest --config ../../e2e-common/jest-config.js --runInBand --package=payments-plugin",
         "lint": "tslint --fix --project ./",
-        "ci": "yarn build"
+        "ci": "yarn build",
+        "dev-server:mollie": "yarn build && DB=sqlite node -r ts-node/register e2e/mollie-dev-server.ts"
     },
     "homepage": "https://www.vendure.io/",
     "funding": "https://github.com/sponsors/michaelbromley",
@@ -25,13 +26,18 @@
         "braintree": "3.x",
         "stripe": "8.x"
     },
+    "dependencies": {
+        "currency.js": "2.0.4"
+    },
     "devDependencies": {
         "@mollie/api-client": "^3.6.0",
         "@types/braintree": "^2.22.15",
-        "@vendure/common": "^1.8.4",
-        "@vendure/core": "^1.8.4",
-        "@vendure/testing": "^1.8.4",
+        "@types/localtunnel": "2.0.1",
+        "@vendure/common": "^1.9.5",
+        "@vendure/core": "^1.9.5",
+        "@vendure/testing": "^1.9.5",
         "braintree": "^3.0.0",
+        "localtunnel": "2.0.1",
         "nock": "^13.1.4",
         "rimraf": "^3.0.2",
         "stripe": "^8.197.0",

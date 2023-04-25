@@ -248,6 +248,34 @@ describe('ListQueryBuilder', () => {
             expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'E', 'F']);
         });
 
+        it('isNull true', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableString: {
+                            isNull: true,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'F']);
+        });
+
+        it('isNull false', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableString: {
+                            isNull: false,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['A', 'C', 'E']);
+        });
+
         describe('regex', () => {
             it('simple substring', async () => {
                 const { testEntities } = await adminClient.query(GET_LIST, {
@@ -327,7 +355,7 @@ describe('ListQueryBuilder', () => {
                 options: {
                     filter: {
                         ownerId: {
-                            eq: '13',
+                            eq: 'T_13',
                         },
                     },
                 },
@@ -341,7 +369,7 @@ describe('ListQueryBuilder', () => {
                 options: {
                     filter: {
                         ownerId: {
-                            notEq: '13',
+                            notEq: 'T_13',
                         },
                     },
                 },
@@ -355,7 +383,7 @@ describe('ListQueryBuilder', () => {
                 options: {
                     filter: {
                         ownerId: {
-                            in: ['10', '15'],
+                            in: ['T_10', 'T_15'],
                         },
                     },
                 },
@@ -383,7 +411,7 @@ describe('ListQueryBuilder', () => {
                 options: {
                     filter: {
                         ownerId: {
-                            notIn: ['10', '15'],
+                            notIn: ['T_10', 'T_15'],
                         },
                     },
                 },
@@ -404,6 +432,34 @@ describe('ListQueryBuilder', () => {
             });
 
             expect(getItemLabels(testEntities.items)).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
+        });
+
+        it('isNull true', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableId: {
+                            isNull: true,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'F']);
+        });
+
+        it('isNull false', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableId: {
+                            isNull: false,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['A', 'C', 'E']);
         });
 
         describe('regex', () => {
@@ -492,6 +548,34 @@ describe('ListQueryBuilder', () => {
             });
 
             expect(getItemLabels(testEntities.items)).toEqual(['C', 'E', 'F']);
+        });
+
+        it('isNull true', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableBoolean: {
+                            isNull: true,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'F']);
+        });
+
+        it('isNull false', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableBoolean: {
+                            isNull: false,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['A', 'C', 'E']);
         });
     });
 
@@ -582,6 +666,34 @@ describe('ListQueryBuilder', () => {
 
             expect(getItemLabels(testEntities.items)).toEqual(['C', 'D', 'E']);
         });
+
+        it('isNull true', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableNumber: {
+                            isNull: true,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'F']);
+        });
+
+        it('isNull false', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableNumber: {
+                            isNull: false,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['A', 'C', 'E']);
+        });
     });
 
     describe('date filtering', () => {
@@ -656,6 +768,34 @@ describe('ListQueryBuilder', () => {
             });
 
             expect(getItemLabels(testEntities.items)).toEqual(['B']);
+        });
+
+        it('isNull true', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableDate: {
+                            isNull: true,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['B', 'D', 'F']);
+        });
+
+        it('isNull false', async () => {
+            const { testEntities } = await adminClient.query(GET_LIST, {
+                options: {
+                    filter: {
+                        nullableDate: {
+                            isNull: false,
+                        },
+                    },
+                },
+            });
+
+            expect(getItemLabels(testEntities.items)).toEqual(['A', 'C', 'E']);
         });
     });
 
@@ -1106,6 +1246,28 @@ describe('ListQueryBuilder', () => {
             ]);
         });
     });
+
+    describe('relations in customFields', () => {
+        it('should resolve relations in customFields successfully', async () => {
+            const { testEntities } = await shopClient.query(GET_LIST_WITH_CUSTOM_FIELD_RELATION, {
+                options: {
+                    filter: {
+                        label: { eq: 'A' },
+                    },
+                },
+            });
+
+            expect(testEntities.items).toEqual([
+                {
+                    id: 'T_1',
+                    label: 'A',
+                    customFields: {
+                        relation: [{ id: 'T_1', data: 'A' }],
+                    },
+                },
+            ]);
+        });
+    });
 });
 
 const GET_LIST = gql`
@@ -1168,6 +1330,23 @@ const GET_ARRAY_LIST = gql`
             name
             date
             price
+        }
+    }
+`;
+
+const GET_LIST_WITH_CUSTOM_FIELD_RELATION = gql`
+    query GetTestWithCustomFieldRelation($options: TestEntityListOptions) {
+        testEntities(options: $options) {
+            items {
+                id
+                label
+                customFields {
+                    relation {
+                        id
+                        data
+                    }
+                }
+            }
         }
     }
 `;

@@ -86,7 +86,7 @@ export type SortOrder = 'ASC' | 'DESC';
 
 // prettier-ignore
 export type PrimitiveFields<T extends VendureEntity> = {
-    [K in keyof T]: T[K] extends LocaleString | number | string | boolean | Date ? K : never
+    [K in keyof T]: NonNullable<T[K]> extends LocaleString | number | string | boolean | Date ? K : never
 }[keyof T];
 
 // prettier-ignore
@@ -115,10 +115,12 @@ export interface StringOperators {
     in?: string[];
     notIn?: string[];
     regex?: string;
+    isNull?: boolean;
 }
 
 export interface BooleanOperators {
     eq?: boolean;
+    isNull?: boolean;
 }
 
 export interface NumberRange {
@@ -133,6 +135,7 @@ export interface NumberOperators {
     gt?: number;
     gte?: number;
     between?: NumberRange;
+    isNull?: boolean;
 }
 
 export interface DateRange {
@@ -145,6 +148,7 @@ export interface DateOperators {
     before?: Date;
     after?: Date;
     between?: DateRange;
+    isNull?: boolean;
 }
 
 export interface ListOperators {

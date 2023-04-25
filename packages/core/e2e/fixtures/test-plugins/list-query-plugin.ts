@@ -6,6 +6,7 @@ import {
     Ctx,
     Customer,
     CustomerService,
+    HasCustomFields,
     ListQueryBuilder,
     LocaleString,
     Order,
@@ -21,12 +22,30 @@ import {
     VendurePlugin,
 } from '@vendure/core';
 import gql from 'graphql-tag';
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne, Relation } from 'typeorm';
 
 import { Calculated } from '../../../src/common/calculated-decorator';
 
 @Entity()
-export class TestEntity extends VendureEntity implements Translatable {
+export class CustomFieldRelationTestEntity extends VendureEntity {
+    constructor(input: Partial<CustomFieldRelationTestEntity>) {
+        super(input);
+    }
+
+    @Column()
+    data: string;
+
+    @ManyToOne(() => TestEntity)
+    parent: Relation<TestEntity>;
+}
+
+class TestEntityCustomFields {
+    @OneToMany(() => CustomFieldRelationTestEntity, child => child.parent)
+    relation: Relation<CustomFieldRelationTestEntity[]>;
+}
+
+@Entity()
+export class TestEntity extends VendureEntity implements Translatable, HasCustomFields {
     constructor(input: Partial<TestEntity>) {
         super(input);
     }
@@ -91,6 +110,24 @@ export class TestEntity extends VendureEntity implements Translatable {
     @OneToOne(type => Order)
     @JoinColumn()
     orderRelation: Order;
+
+    @Column({ nullable: true })
+    nullableString: string;
+
+    @Column({ nullable: true })
+    nullableBoolean: boolean;
+
+    @Column({ nullable: true })
+    nullableNumber: number;
+
+    @Column('varchar', { nullable: true })
+    nullableId: ID;
+
+    @Column({ nullable: true })
+    nullableDate: Date;
+
+    @Column(() => TestEntityCustomFields)
+    customFields: TestEntityCustomFields;
 }
 
 @Entity()
@@ -105,6 +142,8 @@ export class TestEntityTranslation extends VendureEntity implements Translation<
 
     @ManyToOne(type => TestEntity, base => base.translations)
     base: TestEntity;
+
+    customFields: {};
 }
 
 @Entity()
@@ -132,7 +171,7 @@ export class ListQueryResolver {
         return this.listQueryBuilder
             .build(TestEntity, args.options, {
                 ctx,
-                relations: ['orderRelation', 'orderRelation.customer'],
+                relations: ['orderRelation', 'orderRelation.customer', 'customFields.relation'],
                 customPropertyMap: {
                     customerLastName: 'orderRelation.customer.lastName',
                 },
@@ -178,6 +217,15 @@ const apiExtensions = gql`
         name: String!
     }
 
+    type CustomFieldRelationTestEntity implements Node {
+        id: ID!
+        data: String!
+    }
+
+    type TestEntityCustomFields {
+        relation: [CustomFieldRelationTestEntity!]!
+    }
+
     type TestEntity implements Node {
         id: ID!
         createdAt: DateTime!
@@ -193,6 +241,12 @@ const apiExtensions = gql`
         ownerId: ID!
         translations: [TestEntityTranslation!]!
         orderRelation: Order
+        nullableString: String
+        nullableBoolean: Boolean
+        nullableNumber: Int
+        nullableId: ID
+        nullableDate: DateTime
+        customFields: TestEntityCustomFields!
     }
 
     type TestEntityList implements PaginatedList {
@@ -218,7 +272,7 @@ const apiExtensions = gql`
 
 @VendurePlugin({
     imports: [PluginCommonModule],
-    entities: [TestEntity, TestEntityPrice, TestEntityTranslation],
+    entities: [TestEntity, TestEntityPrice, TestEntityTranslation, CustomFieldRelationTestEntity],
     adminApiExtensions: {
         schema: apiExtensions,
         resolvers: [ListQueryResolver],
@@ -247,6 +301,11 @@ export class ListQueryPlugin implements OnApplicationBootstrap {
                     active: true,
                     order: 0,
                     ownerId: 10,
+                    nullableString: 'lorem',
+                    nullableBoolean: true,
+                    nullableNumber: 42,
+                    nullableId: 123,
+                    nullableDate: new Date('2022-01-05T10:00:00.000Z'),
                 }),
                 new TestEntity({
                     label: 'B',
@@ -263,6 +322,11 @@ export class ListQueryPlugin implements OnApplicationBootstrap {
                     active: false,
                     order: 2,
                     ownerId: 12,
+                    nullableString: 'lorem',
+                    nullableBoolean: true,
+                    nullableNumber: 42,
+                    nullableId: 123,
+                    nullableDate: new Date('2022-01-05T10:00:00.000Z'),
                 }),
                 new TestEntity({
                     label: 'D',
@@ -279,6 +343,11 @@ export class ListQueryPlugin implements OnApplicationBootstrap {
                     active: false,
                     order: 4,
                     ownerId: 14,
+                    nullableString: 'lorem',
+                    nullableBoolean: true,
+                    nullableNumber: 42,
+                    nullableId: 123,
+                    nullableDate: new Date('2022-01-05T10:00:00.000Z'),
                 }),
                 new TestEntity({
                     label: 'F',
@@ -297,6 +366,12 @@ export class ListQueryPlugin implements OnApplicationBootstrap {
                 D: { [LanguageCode.en]: 'dog', [LanguageCode.de]: 'hund' },
                 E: { [LanguageCode.en]: 'egg' },
                 F: { [LanguageCode.de]: 'baum' },
+            };
+
+            const nestedData: Record<string, Array<{ data: string }>> = {
+                A: [{ data: 'A' }],
+                B: [{ data: 'B' }],
+                C: [{ data: 'C' }],
             };
 
             for (const testEntity of testEntities) {
@@ -321,6 +396,17 @@ export class ListQueryPlugin implements OnApplicationBootstrap {
                                 name: translation,
                                 base: testEntity,
                                 languageCode: code,
+                            }),
+                        );
+                    }
+                }
+
+                if (nestedData[testEntity.label]) {
+                    for (const nestedContent of nestedData[testEntity.label]) {
+                        await this.connection.getRepository(CustomFieldRelationTestEntity).save(
+                            new CustomFieldRelationTestEntity({
+                                parent: testEntity,
+                                data: nestedContent.data,
                             }),
                         );
                     }

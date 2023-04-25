@@ -10,9 +10,7 @@ import {
     createUpdatedTranslatable,
     CustomFieldConfig,
     DataService,
-    FacetWithValues,
     findTranslation,
-    flattenFacetValues,
     getChannelCodeFromUserStatus,
     GetProductWithVariants,
     GlobalFlag,
@@ -23,6 +21,7 @@ import {
     Permission,
     ProductDetail,
     ProductVariant,
+    ProductVariantFragment,
     ServerConfigService,
     TaxCategory,
     unicodePatternValidator,
@@ -36,7 +35,7 @@ import { normalizeString } from '@vendure/common/lib/normalize-string';
 import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
 import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
 import { unique } from '@vendure/common/lib/unique';
-import { BehaviorSubject, combineLatest, EMPTY, from, merge, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, concat, EMPTY, from, merge, Observable } from 'rxjs';
 import {
     debounceTime,
     distinctUntilChanged,
@@ -47,10 +46,10 @@ import {
     skipUntil,
     startWith,
     switchMap,
+    switchMapTo,
     take,
     takeUntil,
     tap,
-    withLatestFrom,
 } from 'rxjs/operators';
 
 import { ProductDetailService } from '../../providers/product-detail/product-detail.service';
@@ -110,10 +109,9 @@ export class ProductDetailComponent
     filterInput = new FormControl('');
     assetChanges: SelectedAssets = {};
     variantAssetChanges: { [variantId: string]: SelectedAssets } = {};
-    variantFacetValueChanges: { [variantId: string]: string[] } = {};
+    variantFacetValueChanges: { [variantId: string]: ProductVariantFragment['facetValues'] } = {};
     productChannels$: Observable<ProductDetail.Channels[]>;
     facetValues$: Observable<ProductDetail.FacetValues[]>;
-    facets$: Observable<FacetWithValues.Fragment[]>;
     totalItems$: Observable<number>;
     currentPage$ = new BehaviorSubject(1);
     itemsPerPage$ = new BehaviorSubject(10);
@@ -163,24 +161,17 @@ export class ProductDetailComponent
     ngOnInit() {
         this.init();
         this.product$ = this.entity$;
-        this.totalItems$ = this.product$.pipe(map(product => product.variantList.totalItems));
-        this.paginationConfig$ = combineLatest(this.totalItems$, this.itemsPerPage$, this.currentPage$).pipe(
-            map(([totalItems, itemsPerPage, currentPage]) => ({
-                totalItems,
-                itemsPerPage,
-                currentPage,
-            })),
-        );
-        const variants$ = this.product$.pipe(map(product => product.variantList.items));
         const filterTerm$ = this.filterInput.valueChanges.pipe(
             startWith(''),
             debounceTime(200),
             shareReplay(),
+            tap(() => this.currentPage$.next(1)),
         );
         const initialVariants$ = this.product$.pipe(map(p => p.variantList.items));
-        const updatedVariants$ = combineLatest(filterTerm$, this.currentPage$, this.itemsPerPage$).pipe(
+        const variantsList$ = combineLatest(filterTerm$, this.currentPage$, this.itemsPerPage$).pipe(
             skipUntil(initialVariants$),
             skip(1),
+            debounceTime(100),
             switchMap(([term, currentPage, itemsPerPage]) => {
                 return this.dataService.product
                     .getProductVariants(
@@ -194,16 +185,28 @@ export class ProductDetailComponent
                         },
                         this.id,
                     )
-                    .mapStream(({ productVariants }) => productVariants.items);
+                    .mapStream(({ productVariants }) => productVariants);
             }),
             shareReplay({ bufferSize: 1, refCount: true }),
         );
+        const updatedVariants$ = variantsList$.pipe(map(result => result.items));
         this.variants$ = merge(initialVariants$, updatedVariants$).pipe(
             tap(variants => {
                 for (const variant of variants) {
                     this.productVariantMap.set(variant.id, variant);
                 }
             }),
+        );
+        this.totalItems$ = merge(
+            this.product$.pipe(map(product => product.variantList.totalItems)),
+            variantsList$.pipe(map(result => result.totalItems)),
+        );
+        this.paginationConfig$ = combineLatest(this.totalItems$, this.itemsPerPage$, this.currentPage$).pipe(
+            map(([totalItems, itemsPerPage, currentPage]) => ({
+                totalItems,
+                itemsPerPage,
+                currentPage,
+            })),
         );
         this.taxCategories$ = this.productDetailService.getTaxCategories().pipe(takeUntil(this.destroy$));
         this.activeTab$ = this.route.paramMap.pipe(map(qpm => qpm.get('tab') as any));
@@ -214,31 +217,23 @@ export class ProductDetailComponent
                 this.buildVariantFormArray(variants, languageCode);
             });
 
-        // FacetValues are provided initially by the nested array of the
-        // Product entity, but once a fetch to get all Facets is made (as when
-        // opening the FacetValue selector modal), then these additional values
-        // are concatenated onto the initial array.
-        this.facets$ = this.productDetailService.getFacets();
         const productFacetValues$ = this.product$.pipe(map(product => product.facetValues));
-        const allFacetValues$ = this.facets$.pipe(map(flattenFacetValues));
         const productGroup = this.getProductFormGroup();
-
-        const formFacetValueIdChanges$ = productGroup.valueChanges.pipe(
-            map(val => val.facetValueIds as string[]),
+        // tslint:disable-next-line:no-non-null-assertion
+        const formFacetValueIdChanges$ = productGroup.get('facetValueIds')!.valueChanges.pipe(
+            skip(1),
             distinctUntilChanged(),
+            switchMap(ids =>
+                this.dataService.facet
+                    .getFacetValues({ filter: { id: { in: ids } } })
+                    .mapSingle(({ facetValues }) => facetValues.items),
+            ),
+            shareReplay(1),
         );
-        const formChangeFacetValues$ = combineLatest(
-            formFacetValueIdChanges$,
-            productFacetValues$,
-            allFacetValues$,
-        ).pipe(
-            map(([ids, productFacetValues, allFacetValues]) => {
-                const combined = [...productFacetValues, ...allFacetValues];
-                return ids.map(id => combined.find(fv => fv.id === id)).filter(notNullOrUndefined);
-            }),
+        this.facetValues$ = concat(
+            productFacetValues$.pipe(take(1)),
+            productFacetValues$.pipe(switchMapTo(formFacetValueIdChanges$)),
         );
-
-        this.facetValues$ = merge(productFacetValues$, formChangeFacetValues$);
         this.productChannels$ = this.product$.pipe(map(p => p.channels));
         this.channelPriceIncludesTax$ = this.dataService.settings
             .getActiveChannel('cache-first')
@@ -455,35 +450,6 @@ export class ProductDetailComponent
         productGroup.markAsDirty();
     }
 
-    /**
-     * Opens a dialog to select FacetValues to apply to the select ProductVariants.
-     */
-    selectVariantFacetValue(selectedVariantIds: string[]) {
-        this.displayFacetValueModal()
-            .pipe(withLatestFrom(this.variants$))
-            .subscribe(([facetValueIds, variants]) => {
-                if (facetValueIds) {
-                    for (const variantId of selectedVariantIds) {
-                        const index = variants.findIndex(v => v.id === variantId);
-                        const variant = variants[index];
-                        const existingFacetValueIds = variant ? variant.facetValues.map(fv => fv.id) : [];
-                        const variantFormGroup = (this.detailForm.get('variants') as FormArray).controls.find(
-                            c => c.value.id === variantId,
-                        );
-                        if (variantFormGroup) {
-                            const uniqueFacetValueIds = unique([...existingFacetValueIds, ...facetValueIds]);
-                            variantFormGroup.patchValue({
-                                facetValueIds: uniqueFacetValueIds,
-                            });
-                            variantFormGroup.markAsDirty();
-                            this.variantFacetValueChanges[variantId] = uniqueFacetValueIds;
-                        }
-                    }
-                    this.changeDetector.markForCheck();
-                }
-            });
-    }
-
     variantsToCreateAreValid(): boolean {
         return (
             0 < this.createVariantsConfig.variants.length &&
@@ -494,16 +460,12 @@ export class ProductDetailComponent
     }
 
     private displayFacetValueModal(): Observable<string[] | undefined> {
-        return this.productDetailService.getFacets().pipe(
-            mergeMap(facets =>
-                this.modalService.fromComponent(ApplyFacetDialogComponent, {
-                    size: 'md',
-                    closable: true,
-                    locals: { facets },
-                }),
-            ),
-            map(facetValues => facetValues && facetValues.map(v => v.id)),
-        );
+        return this.modalService
+            .fromComponent(ApplyFacetDialogComponent, {
+                size: 'md',
+                closable: true,
+            })
+            .pipe(map(facetValues => facetValues && facetValues.map(v => v.id)));
     }
 
     create() {
@@ -589,6 +551,7 @@ export class ProductDetailComponent
                     this.detailForm.markAsPristine();
                     this.assetChanges = {};
                     this.variantAssetChanges = {};
+                    this.variantFacetValueChanges = {};
                     this.notificationService.success(_('common.notify-update-success'), {
                         entity: 'Product',
                     });
@@ -638,7 +601,7 @@ export class ProductDetailComponent
             const variantTranslation = findTranslation(variant, languageCode);
             const pendingFacetValueChanges = this.variantFacetValueChanges[variant.id];
             const facetValueIds = pendingFacetValueChanges
-                ? pendingFacetValueChanges
+                ? pendingFacetValueChanges.map(fv => fv.id)
                 : variant.facetValues.map(fv => fv.id);
             const group: VariantFormValue = {
                 id: variant.id,
