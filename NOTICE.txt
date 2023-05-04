@@ -1,5 +1,5 @@
 Intelligo Store (https://intelligo.store)
 Copyright © 2023, [Intelligo LLC](https://intelligo.mn/) and Contributors
 
-This product includes software developed by Vendure Framework (https://www.vendure.io/).
+This product includes software developed by Vendure (https://www.vendure.io/).
 Copyright © 2018 Michael Bromley
