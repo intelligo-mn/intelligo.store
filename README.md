@@ -50,5 +50,5 @@ Help us out… If you love free stuff and great software, give us a star! 🌟
 MIT
 
 ## Copyright
-#### Copyright © 2021-present, [Intelligo LLC](https://intelligo.mn/).  See [NOTICE](NOTICE.md) for details.
+#### Copyright © 2023, [Intelligo LLC](https://intelligo.mn/).  See [NOTICE](NOTICE.txt) for details.
 .
