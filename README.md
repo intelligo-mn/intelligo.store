@@ -1,4 +1,4 @@
-# platform.sale
+# intelligo.store
 
 A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
 
@@ -6,25 +6,9 @@ A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js
 [![Publish & Install](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-### [www.platform.sale](https://www.platform.sale/)
+### [www.intelligo.store](https://www.intelligo.store/)
 
-* [Live Demo](https://demo.platform.sale/)
-
-## Structure
-
-This project is a monorepo managed with [Lerna](https://github.com/lerna/lerna). Several npm packages are published from this repo, which can be found in the `packages/` directory.
-
-```
-platform/
-├── apps/           # Storefront and mobile apps
-├── docs/           # Documentation source
-├── e2e-common/     # Shared config for package e2e tests
-├── packages/       # Source for the platform.sale server, admin-ui & plugin packages
-├── scripts/
-    ├── changelog/  # Scripts used to generate the changelog based on the git history
-    ├── codegen/    # Scripts used to generate TypeScript code from the GraphQL APIs
-    ├── docs/       # Scripts used to generate documentation markdown from the source
-```
+* [Live Demo](https://demo.intelligo.store/)
 
 ## Development
 
