@@ -1,159 +1,54 @@
-# intelligo.store
+<div align="center">
+  <a href="https://intelligo.dev" target="_blank">
+  <picture>
+    <img src="https://github.com/intelligo-mn/intelligo/blob/master/docs/.vuepress/public/logo.png?raw=true" width="140" alt="Logo"/>
+  </picture>
+  </a>
+</div>
 
-A headless [GraphQL](https://graphql.org/) ecommerce framework built on [Node.js](https://nodejs.org) with [Nest](https://nestjs.com/) & [TypeScript](http://www.typescriptlang.org/), with a focus on developer productivity and ease of customization.
+<h1 align="center">Intelligo Store</h1>
 
-[![Build & Test](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/build_and_test.yml) 
-[![Publish & Install](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml/badge.svg)](https://github.com/intelligo-mn/platform.sale/actions/workflows/publish_and_install.yml)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+<div align="center">
 
-### [www.intelligo.store](https://www.intelligo.store/)
+A headless GraphQL commerce platform offers ultra-fast, dynamic, and personalized shopping experiences with customizable online stores. Ideal for developers seeking to enhance their e-commerce offering.
 
-* [Live Demo](https://demo.intelligo.store/)
+</div>
 
-## Development
+  <p align="center">
+    <br />
+    <a href="https://docs.intelligo.dev" rel="dofollow"><strong>intelligo.store</strong></a>
+    <br />
 
-The following instructions are for those who want to develop the platform.sale core framework or plugins (e.g. if you intend to make a pull request). For instructions on how to build a project *using* platform.sale.
+### Live demo
 
-### 1. Install top-level dependencies
+* Coming soon
 
-`yarn`
+## Features
 
-The root directory has a `package.json` which contains build-related dependencies for tasks including:
+- **Headless / API first**: Build mobile apps, custom storefronts, POS, automation, etc
+- **Extensible**: Build anything with webhooks, apps, metadata, and attributes
+- **GraphQL API**: Get many resources in a single request and [more](https://graphql.org/)
+- **Multichannel**: Split your inventory over multiple channels, with support for pricing and currency per channel.
+- **Enterprise ready**: Secure, scalable, and stable. Battle-tested by big brands
+- **Dashboard**: User friendly, fast, and productive.
+- **Global by design** Multi-currency, multi-language, multi-warehouse, tutti multi!
+- **Media management**: Dynamic crop & resize
+Cloud storage support.
+- **Team support**: Granular role-based permissions
+Built in admin UI.
+- **Inventory management**: Unlimited variants, Stock tracking, Dynamic collections, Faceted search
+- **Orders**: A comprehensive system for orders, dispatch, and refunds
+- **Cart**: Advanced payment and tax options, with full control over discounts and promotions
+- **Payments**: Flexible API architecture allows integration of any payment method
+- **SEO**: Packed with features that get stores to a wider audience
 
-* Building & deploying the docs 
-* Generating TypeScript types from the GraphQL schema
-* Linting, formatting & testing tasks to run on git commit & push
-
-### 2. Bootstrap the packages
-
-`yarn bootstrap`
-
-This runs the Lerna "bootstrap" command, which cross-links monorepo dependencies.
-
-### 3. Build all packages
-
-`yarn build`
-
-Packages must be built (i.e. TypeScript compiled, admin ui app built, certain assets copied etc.) before being used.
-
-Note that this can take a few minutes.
-
-### 4. Set up the server
-
-The server requires an SQL database to be available. The simplest option is to use SQLite, but if you have Docker available you can use the [dev-server docker-compose file](./packages/dev-server/docker-compose.yml) which will start up both MariaDB and Postgres as well as their GUI management tools.
-
-Vendure uses [TypeORM](http://typeorm.io), and officially supports **MySQL**, **PostgreSQL** and **SQLite**, though other TypeORM-supported databases may work.
-
-1. Configure the [dev config](./packages/dev-server/dev-config.ts), making sure the connection settings in the `getDbConfig()` function are correct for the database type you will be using.
-2. Create the database using your DB admin tool of choice (e.g. phpMyAdmin if you are using the docker image suggested above). Name it according to the `getDbConfig()` settings. If you are using SQLite, you can skip this step.
-3. Populate mock data: 
-   ```bash
-    cd packages/dev-server
-    DB=<mysql|postgres|sqlite> yarn populate
-    ```
-   If you do not specify the `DB` variable, it will default to "mysql".
-
-### 5. Run the dev server
-
-```
-cd packages/dev-server
-DB=<mysql|postgres|sqlite> yarn start
-```
-Or if you are in the root package 
-```
-DB=<mysql|postgres|sqlite> yarn dev-server:start
-```
-If you do not specify the `DB` argument, it will default to "mysql".
-
-### Testing admin ui changes locally
-
-If you are making changes to the admin ui, you need to start the admin ui independent from the dev-server:
-
-1. `cd packages/admin-ui`
-2. `yarn start`
-3. Go to http://localhost:4200 and log in with "superadmin", "superadmin"
-
-This will auto restart when you make changes to the admin ui. You don't need this step when you just use the admin ui just
-to test backend changes.
-
-### Testing your changes locally
-This example shows how to test changes to the `payments-plugin` package locally, but it will also work for other packages.
-
-1. Open 2 terminal windows:
-
-- Terminal 1 for watching and compiling the changes of the package you are developing
-- Terminal 2 for running the dev-server
-
-```shell
-# Terminal 1
-cd packages/payments-plugin
-yarn watch
-```
-:warning: If you are developing changes for the `core`package, you also need to watch the `common` package:
-```shell
-# Terminal 1
-# Root of the project
-yarn watch:core-common
-```
-
-2. After the changes in your package are compiled you have to stop and restart the dev-server:
-
-```shell
-# Terminal 2
-cd packages/dev-server
-DB=sqlite yarn start
-```
-
-3. The dev-server will now have your local changes from the changed package.
-
-:information_source: Lerna links to the `dist` folder of the packages, so you **don't** need to rerun 'yarn bootstrap'
-
-### Code generation
-
-[graphql-code-generator](https://github.com/dotansimha/graphql-code-generator) is used to automatically create TypeScript interfaces for all GraphQL server operations and admin ui queries. These generated interfaces are used in both the admin ui and the server.
-
-Running `yarn codegen` will generate the following files:
-
-* [`packages/common/src/generated-types.ts`](./packages/common/src/generated-types.ts): Types, Inputs & resolver args relating to the Admin API
-* [`packages/common/src/generated-shop-types.ts`](./packages/common/src/generated-shop-types.ts): Types, Inputs & resolver args relating to the Shop API
-* [`packages/admin-ui/src/lib/core/src/common/generated-types.ts`](./packages/admin-ui/src/lib/core/src/common/generated-types.ts): Types & operations relating to the admin-ui queries & mutations.
-* [`packages/admin-ui/src/lib/core/src/common/introspection-result.ts`](./packages/admin-ui/src/lib/core/src/common/introspection-result.ts): Used by the Apollo Client [`IntrospectionFragmentMatcher`](https://www.apollographql.com/docs/react/data/fragments/#fragments-on-unions-and-interfaces) to correctly handle fragments in the Admin UI.
-* Also generates types used in e2e tests in those packages which feature e2e tests (core, elasticsearch-plugin, asset-server-plugin etc).
-
-### Testing
-
-#### Server Unit Tests
-
-The core and several other packages have unit tests which are can be run all together by running `yarn test` from the root directory, or individually by running it from the package directory.
-
-Unit tests are co-located with the files which they test, and have the suffix `.spec.ts`.
-
-#### End-to-end Tests
-
-Certain packages have e2e tests, which are located at `/packages/<name>/e2e/`. All e2e tests can be run by running `yarn e2e` from the root directory, or individually by running it from the package directory.
-
-e2e tests use the `@vendure/testing` package. For details of how the setup works, see the [Testing docs](https://www.vendure.io/docs/developer-guide/testing/)
-
-When **debugging e2e tests**, set an environment variable `E2E_DEBUG=true` which will increase the global Jest timeout and allow you to step through the e2e tests without the tests automatically failing due to timeout.
-
-### Release Process
-
-All packages in this repo are released at every version change (using [Lerna's fixed mode](https://github.com/lerna/lerna#fixedlocked-mode-default)). This simplifies both the development (tracking multiple disparate versions is tough) and also the developer experience for users of the framework (it is simple to see that all packages are up-to-date and compatible).
-
-To make a release:
-
-##### 1. `yarn publish-release`
-
-It will run `lerna publish` which will prompt for which version to update to. Although we are using [conventional commits](https://www.conventionalcommits.org), the version is not automatically being calculated from the commit messages. Therefore the next version should be manually selected. 
-
-Next it will build all packages to ensure the distributed files are up to date.
-
-Finally the command will create changelog entries for this release.
-
-##### 2. `git push origin master --follow-tags`
-
-The reason we do not rely on Lerna to push the release to Git is that this repo has a lengthy pre-push hook which runs all tests and builds the admin ui. This long wait then invalidates the npm OTP and the publish will fail. So the solution is to publish first and then push.
+Intelligo Store is free and always will be.
+Help us out… If you love free stuff and great software, give us a star! 🌟
 
 ## License
 
 MIT
+
+## Copyright
+#### Copyright © 2021-present, [Intelligo LLC](https://intelligo.mn/).  See [NOTICE](NOTICE.md) for details.
+.
