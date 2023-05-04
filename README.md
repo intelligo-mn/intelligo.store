@@ -104,4 +104,3 @@ MIT
 
 ## Copyright
 #### Copyright © 2023, [Intelligo LLC](https://intelligo.mn/).  See [NOTICE](NOTICE.txt) for details.
-.
