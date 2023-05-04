@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://intelligo.dev" target="_blank">
+  <a href="https://intelligo.store" target="_blank">
   <picture>
     <img src="https://github.com/intelligo-mn/intelligo/blob/master/docs/.vuepress/public/logo.png?raw=true" width="140" alt="Logo"/>
   </picture>
