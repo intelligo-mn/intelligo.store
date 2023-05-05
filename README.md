@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://intelligo.store" target="_blank">
   <picture>
-    <img src="https://github.com/intelligo-mn/intelligo/blob/master/docs/.vuepress/public/logo.png?raw=true" width="140" alt="Logo"/>
+    <img src="https://github.com/intelligo-mn/intelligo-node/blob/master/docs/.vuepress/public/logo.png?raw=true" width="140" alt="Logo"/>
   </picture>
   </a>
 </div>
@@ -10,13 +10,15 @@
 
 <div align="center">
 
-A headless GraphQL commerce platform offers ultra-fast, dynamic, and personalized shopping experiences with customizable online stores. Ideal for developers seeking to enhance their e-commerce offering.
+A headless GraphQL commerce platform offers ultra-fast, dynamic, and personalized shopping experiences with customizable online stores. 
+<br />
+Ideal for developers seeking to enhance their e-commerce offering built with Nestjs, Nextjs, Flutter and Vendure.
 
 </div>
 
   <p align="center">
     <br />
-    <a href="https://docs.intelligo.dev" rel="dofollow"><strong>intelligo.store</strong></a>
+    <a href="https://intelligo.store" rel="dofollow"><strong>intelligo.store</strong></a>
     <br />
 
 ### Live demo
